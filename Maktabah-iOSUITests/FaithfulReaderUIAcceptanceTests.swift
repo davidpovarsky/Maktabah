@@ -53,6 +53,8 @@ final class SafariPrototypeReferenceTests: XCTestCase {
 class FaithfulReaderUIBase: MaktabahUITestBase {
     let workspaceNamespace = UUID().uuidString
     private var viewportURL: URL?
+    var readerTestTier: TestTier { .smoke }
+    var readerAdditionalLaunchArguments: [String] { [] }
     struct Viewport: Codable {
         struct Presentation: Codable {
             let wantsOverview: Bool; let isViewLoaded: Bool; let isInWindow: Bool
@@ -72,11 +74,11 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             URL(fileURLWithPath: $0).appendingPathComponent("faithful-\(scenario)-" + UUID().uuidString).path
         }
         viewportURL = prefix.map { URL(fileURLWithPath: $0 + ".viewport.json") }
-        launchWithTier(.smoke, scenario: scenario, backend: backend, extraArgs: [
+        launchWithTier(readerTestTier, scenario: scenario, backend: backend, extraArgs: [
             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
             "-studyWorkspaceTestingNamespace", workspaceNamespace,
             "-textViewBackgroundColorLight", String(background)
-        ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []), language: language, locale: language == "he" ? "he_IL" : "en_US",
+        ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []) + readerAdditionalLaunchArguments, language: language, locale: language == "he" ? "he_IL" : "en_US",
         extraEnvironment: prefix.map { ["CHAVRUSA_READER_VIEWPORT_REPORT": $0] } ?? [:])
         dismissAlertsIfNeeded()
     }

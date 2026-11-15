@@ -1,9 +1,19 @@
 import XCTest
 
-/// Prepared, NOT_RUN. Include alongside FaithfulReaderUIAcceptanceTests.swift
-/// in the existing UI-test target only for an explicitly authorized runtime run.
+/// Actual native acceptance through the existing synchronized UI-test target.
 /// Requires its isolated miniTest10 fixture and FAITHFUL_VIEWPORT_DIRECTORY.
 final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
+    override var readerTestTier: TestTier { .realUI }
+    override var readerAdditionalLaunchArguments: [String] {
+        ["-preferredBackend", "otzaria", "-smokeBackend", "otzaria", "-libraryViewMode", "0"]
+    }
+
+    override func tearDownWithError() throws {
+        if app != nil { retainNativeEvidence("sidebar-11201-final") }
+        XCUIDevice.shared.orientation = .portrait
+        try super.tearDownWithError()
+    }
+
     @MainActor
     func testSidebarBodyPagingRTL() throws {
         try exerciseBodyPaging(language: "he", isRTL: true)
@@ -16,12 +26,17 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func exerciseBodyPaging(language: String, isRTL: Bool) throws {
-        guard isPad else { throw XCTSkip("iPad sidebar acceptance") }
-        let orientation = XCUIDevice.shared.orientation
-        defer { XCUIDevice.shared.orientation = orientation }
+        XCTAssertTrue(isPad, "Required native iPad execution must not be skipped")
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(language: language, recordViewport: true)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
+        let expectedWork = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"])
+        let initialParts = app.staticTexts["reader-current-locator"].label.split(separator: "|", maxSplits: 2).map(String.init)
+        XCTAssertEqual(initialParts.count, 3)
+        XCTAssertEqual(initialParts.first, "otzaria")
+        XCTAssertEqual(initialParts.dropFirst().first, expectedWork)
+        retainNativeEvidence("sidebar-11201-\(language)-opening")
 
         let libraryDot = app.buttons["reader-sidebar-page-0"]
         let contentsDot = app.buttons["reader-sidebar-page-1"]

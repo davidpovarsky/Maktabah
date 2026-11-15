@@ -11,6 +11,7 @@ import unittest
 from contextlib import closing
 
 derive = runpy.run_path(str(Path(__file__).with_name("runtime27-fixture-oracle.py")))["derive_oracle"]
+paths = runpy.run_path(str(Path(__file__).with_name("runtime27-fixture-oracle.py")))["sidebar_paths"]
 
 
 class FixtureOracleTests(unittest.TestCase):
@@ -69,6 +70,40 @@ class FixtureOracleTests(unittest.TestCase):
                 with self.assertRaises(RuntimeError):
                     self.run_oracle()
                 self.report[key] = original
+
+
+class SidebarCatalogPathTests(unittest.TestCase):
+    def setUp(self):
+        self.db = sqlite3.connect(":memory:")
+        self.addCleanup(self.db.close)
+        self.db.executescript("""
+            CREATE TABLE category(id INTEGER PRIMARY KEY, parentId INTEGER, title TEXT);
+            CREATE TABLE book(id INTEGER PRIMARY KEY, categoryId INTEGER, title TEXT);
+            INSERT INTO category VALUES(1,NULL,'ספרים'),(2,1,'מוסר'),(3,1,'תנך');
+            INSERT INTO book VALUES(5,2,'מסילת ישרים'),(6,3,'בראשית');
+        """)
+
+    def test_actual_root_to_leaf_hierarchy(self):
+        self.assertEqual(paths(self.db)["HQ_SIDEBAR_MATCH_PATH"],
+                         {"book_id": 5, "path": ["ספרים", "מוסר", "מסילת ישרים"]})
+        self.assertEqual(paths(self.db)["HQ_SIDEBAR_EXCLUDED_PATH"]["path"],
+                         ["ספרים", "תנך", "בראשית"])
+
+    def test_missing_or_ambiguous_title_is_not_guessed(self):
+        self.db.execute("DELETE FROM book WHERE id=5")
+        with self.assertRaises(RuntimeError):
+            paths(self.db)
+        self.db.execute("INSERT INTO book VALUES(5,2,'מסילת ישרים'),(7,3,'מסילת ישרים')")
+        with self.assertRaises(RuntimeError):
+            paths(self.db)
+
+    def test_cycle_and_missing_parent_are_rejected(self):
+        self.db.execute("UPDATE category SET parentId=2 WHERE id=1")
+        with self.assertRaises(RuntimeError):
+            paths(self.db)
+        self.db.execute("UPDATE category SET parentId=99 WHERE id=1")
+        with self.assertRaises(RuntimeError):
+            paths(self.db)
 
 
 if __name__ == "__main__":

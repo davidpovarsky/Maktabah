@@ -1,0 +1,24 @@
+{
+  "compressed_sha256": "e9e6dedd2ceaadbe46234612c359e5bd8add00c348be8eaeba85cf029fa5c4d3",
+  "database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "mode": "ro&immutable=1",
+  "paths": {
+    "HQ_SIDEBAR_MATCH_PATH": {
+      "book_id": 3764,
+      "path": [
+        "ספרי מוסר",
+        "אחרונים",
+        "מסילת ישרים"
+      ]
+    },
+    "HQ_SIDEBAR_EXCLUDED_PATH": {
+      "book_id": 1,
+      "path": [
+        "תנ״ך",
+        "תורה",
+        "בראשית"
+      ]
+    }
+  },
+  "native_ui_tests": 0
+}

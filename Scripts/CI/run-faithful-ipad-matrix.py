@@ -206,7 +206,8 @@ for index, scenario in enumerate(scenarios):
         container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
         environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
         if runtime27_contract:
-            environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](udid, label))
+            environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](
+                udid, label, include_sidebar=any(case.startswith("Sidebar11201AcceptanceTests/") for case in selection)))
             recording_log = (artifacts / f"runtime27/recording-{label}.log").open("w")
             recording = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(artifacts / f"runtime27/native-{label}.mp4")],
                                          stdout=recording_log, stderr=subprocess.STDOUT)
