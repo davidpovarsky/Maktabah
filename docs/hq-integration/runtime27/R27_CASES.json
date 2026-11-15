@@ -2,10 +2,10 @@
   "schema_version": 1,
   "source_test_commit": "ad7903492b66e6a5faa9af61d99a4e0e905aa0b5",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
-  "app_source": "17d7ebbb890fbdbd18e40d73688fbe6211f0adec",
+  "app_source": "7ad2de8981e314c1b1adc5a4da5d4e9471c2ec9c",
   "sole_executor_thread": "01a1dc86-0c7b-7ee3-a098-2b4004ed686d",
   "independent_qa_thread": "01a1dc8b-f9bd-7d63-a628-7ad3d06196e8",
-  "scope": "NATIVE_R27_WINDOW_INPUT_DELIVERY_DIAGNOSTIC_NOT_NONINSTRUMENTED_FIX_ACCEPTANCE",
+  "scope": "NATIVE_R27_WINDOW_DESCRIPTOR_TARGET_DIAGNOSTIC_NOT_NONINSTRUMENTED_ACCEPTANCE",
   "native_cases_executed": 0,
   "required_nonzero_cases": 9,
   "expected_per_device": {
@@ -246,5 +246,15 @@
     "explicit_stop_limit_or_active_collision_found": false,
     "lifecycle_fix": "Owned child process group receives immediate interrupt; bounded escalation only that group, immediate unverified marker, parent reportsINTERRUPTED; formal test log flushed perline",
     "healthy_tests_rerun": 0
+  },
+  "app_source_before_dispatch_probe": "17d7ebbb890fbdbd18e40d73688fbe6211f0adec",
+  "dispatch_probe": {
+    "source": "5c6670b6f213f8a0defb1eadc32260e85c976dc6",
+    "seal": "1c4bf763ebd78030dfe61b827e99d64900168b60",
+    "integration": "7ad2de8981e314c1b1adc5a4da5d4e9471c2ec9c",
+    "source_file_sha256": "4cfbffca1fd0ddb4862b764c944b01efa818e54200cd2fd33688036fee0adfc8",
+    "purpose": "Observe actual descriptor/selector/inherited counts and real target/validation calls; no artificial invocation or command filtering",
+    "source_review": "Q_DISPATCH_INPUT_REVIEW_5c66.json",
+    "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   }
 }

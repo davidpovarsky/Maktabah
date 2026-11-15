@@ -19,7 +19,7 @@
     "Q ab23 native window/restore correction and U48d6 startup race correction"
   ],
   "test_correction": "021b5329b37d756604407e1256edf0001f708c3d",
-  "next_execution": "ONEcontrolled remaining-window continuation afterunknowncancel causeboundedcheck, sameapp/test/oracles, nohealthy8rerun",
+  "next_execution": "Newboundeddescriptor/target observation only; same1window/Qad790oracle, no unchangedretry/nohealthy8rerun; diagnosticpassnotfinalcorrection",
   "ui_retest_run": 43681096257,
   "ui_retest_checked_sha": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
   "ui_retest_test_source_sha": "021b5329b37d756604407e1256edf0001f708c3d",
@@ -50,5 +50,8 @@
   "ui_interrupted_result": "CANCELLED_FULL_REQUIRED_RESULTS_MISSING_FRESH_0_PASS_0_FAIL_1_UNVERIFIED; childEscapeassertionfailureobservedonlyafterparentcancel",
   "current_frozen_controlled_run": 43708796409,
   "current_frozen_controlled_sha": "5b46c400df45e3a6eb4fa552e0b0cb4a7e1ce018",
-  "current_run_cleanup_limit": "Frozen5b firstfix has knownleader-exit edge; no blanketcleanup guarantee. Laterbranchfix not retroactive; normalUIverdict unaffected."
+  "current_run_cleanup_limit": "Frozen5b firstfix has knownleader-exit edge; no blanketcleanup guarantee. Laterbranchfix not retroactive; normalUIverdict unaffected.",
+  "ui_completed_uncancelled_run": 43708796409,
+  "ui_completed_uncancelled_result": "0_FRESH_UI_PASS_1_FAIL_0_SKIP_OR_NOT_RUN_PLUS8SEPARATE_VERIFIED_REUSED_PASS",
+  "ui_completed_uncancelled_native_events": 58
 }

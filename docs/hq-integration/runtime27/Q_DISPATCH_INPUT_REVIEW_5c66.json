@@ -1,0 +1,23 @@
+{
+  "phase_final": false,
+  "reviewed_utc": "2026-11-15T12:16:00.446776+00:00",
+  "source_candidate_sha": "5c6670b6f213f8a0defb1eadc32260e85c976dc6",
+  "source_behavior_base": "914fa87f5b93e2667571001cd0c762ef58589d88",
+  "actual_uncancelled_baseline": "5b46c400df45e3a6eb4fa552e0b0cb4a7e1ce018",
+  "exact_changed_production_paths": {
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift": {
+      "baseline_sha256": "d04bb370070ac478ffdc8857197fdb8df0d1ca420a2ae75ed863af5771682d45",
+      "candidate_sha256": "4cfbffca1fd0ddb4862b764c944b01efa818e54200cd2fd33688036fee0adfc8"
+    }
+  },
+  "unchanged_UI_prefix_and_entire_canPerform_press_input_focus_dismiss_tail": true,
+  "source_review": "Only knownEscape descriptor booleans/counts+ownrespondsToSelector observation; allinheritedcommands/orderretained, super.keyCommands once. Publictarget override forwards originalsuper once/returnsexactsameresult; validate forwards superonce thenobservesflags. No artificialtarget/validation/actioninvocation, forcedreceiver, filtering, consumption, query/UIchange oracceptancebranch. Privacyfixedstage/knownframeworkflags/countsonly.",
+  "interpretation_limit": "validate ismenu/command validation, not guaranteed everykeypress; absence alone notfailure. Duplicateinheriteddescriptors alone do notprovewinner. Diagnosticpass requires finalnoninstrumentedconfirmation.",
+  "existing_Q_test_sha": "ad7903492b66e6a5faa9af61d99a4e0e905aa0b5",
+  "test_file_sha256": "a49f211277aa9f91aab8c254b9ac54ec6bac9ea5b6159884c626b44e2ae1458b",
+  "bounded_impact": "Same failedpalette-only branch. Original8healthyreader/globalhistorypaths donot instantiatepalette and remainunchanged. Prior8 maybereusedsubjecttoactualfrozen/source/test/data/deps/OS/nativecontextcompatibility; no new8execution.",
+  "eligible_verified_prior_pass": 8,
+  "native_UI_executed_in_review": 0,
+  "next_required": "T integrateexactsource+docs withunchangedQad790oracles; actualApplecompile+soleaffectedwindow undercompletecategorycapture/formalresult, noautomaticunchangedrepeat. No sourcebehaviorfixyet.",
+  "review_result": "No actionable defect inthisobservation-onlydelta; actualdescriptor/targetresultsPENDING"
+}
