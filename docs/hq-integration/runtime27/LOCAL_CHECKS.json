@@ -19,7 +19,7 @@
     "Q ab23 native window/restore correction and U48d6 startup race correction"
   ],
   "test_correction": "021b5329b37d756604407e1256edf0001f708c3d",
-  "next_execution": "Pending Q scoped Escape diagnosis/correction and8-pass change-impact audit. No new dispatch.",
+  "next_execution": "Await Q exact narrow Other-element selector correction; no new production behavior rewrite; only affected window diagnostic",
   "ui_retest_run": 43681096257,
   "ui_retest_checked_sha": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
   "ui_retest_test_source_sha": "021b5329b37d756604407e1256edf0001f708c3d",
@@ -35,5 +35,14 @@
   "ui_third_checked_sha": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
   "ui_third_result": "ACTUALLY_EXECUTED_8_PASS_1_FAIL_0_SKIP_OR_NOT_RUN",
   "ui_third_remaining_failure": "Native window case line169: actual palette remains open after Escape; Inspector not reached; actual semantic full-size cleanup restored",
-  "generated_project_pre_sign_gate": "Exact complete OpenStep object graph equality permits only consistent ID/reference renaming; actual2206object/15rename pair PASS; fixtures reject settings/membership/phase-order/workspace/missingproject changes. Shipping workflow NOT_RUN."
+  "generated_project_pre_sign_gate": "Exact complete OpenStep object graph equality permits only consistent ID/reference renaming; actual2206object/15rename pair PASS; fixtures reject settings/membership/phase-order/workspace/missingproject changes. Shipping workflow NOT_RUN.",
+  "ui_fourth_run": 43696201794,
+  "ui_fourth_result": "ONE_WINDOW_EXECUTED_0_FRESH_PASS_1_FAIL_SAME_ESCAPE_ASSERTION",
+  "ui_diagnostic_run": 43700083573,
+  "ui_diagnostic_checked_sha": "684f942e49753e445a102928dea8a0241d15d73b",
+  "ui_diagnostic_result": "ONE_WINDOW_EXECUTED_0_PASS_1_FAIL_AT_HARDWARE_CONTROL_VALUE_QUERY_BEFORE_ESCAPE",
+  "diagnostic_actual_native_events": 34,
+  "diagnostic_actual_hardware_delivery": "pressesBegan.other -> editingChanged -> pressesEnded.other; actual Hebrew edit visible; keyWindow/firstResponder true",
+  "diagnostic_actual_spindump": "Sampled app main runloop idle; Runner test164 waits XCUIElement.value query; no proved app deadlock or Escape-route failure in this attempt",
+  "verified_prior_reused_pass": 8
 }

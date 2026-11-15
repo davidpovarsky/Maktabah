@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_test_commit": "c9295c85a51710e592dc2558e6edb5395b1ecca5",
+  "source_test_commit": "ad7903492b66e6a5faa9af61d99a4e0e905aa0b5",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
   "app_source": "17d7ebbb890fbdbd18e40d73688fbe6211f0adec",
   "sole_executor_thread": "01a1dc86-0c7b-7ee3-a098-2b4004ed686d",
@@ -235,5 +235,7 @@
     "capture": "owned-device live logstream debug level bounded900seconds +bounded15min logshow with info/debug, retained on success/failure beforedevice deletion; mount/editmarkers required",
     "code_image_proof": "actual app executable/rootdylib hashes and bounded PaletteTextField nm symbols; nativebuildlog +actualgeneratedpbxproj bytes",
     "behavior_fix_claim": false
-  }
+  },
+  "source_test_before_role_refinement": "c9295c85a51710e592dc2558e6edb5395b1ecca5",
+  "query_refinement": "Exactone-line actualOther-role query for samepaletteidentifier, preservingallhardware/query/Escape/Inspector/locator/text/restore assertions/timeouts; sameU914source/capture; no SDKquery-resolution success inferred"
 }

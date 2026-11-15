@@ -1,0 +1,32 @@
+{
+  "phase_final": false,
+  "test_commit": "ad7903492b66e6a5faa9af61d99a4e0e905aa0b5",
+  "parent": "c9295c85a51710e592dc2558e6edb5395b1ecca5",
+  "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+  "blob": "efc78c2d267fd442de91328bdd95eb64bed7a6ae",
+  "sha256": "a49f211277aa9f91aab8c254b9ac54ec6bac9ea5b6159884c626b44e2ae1458b",
+  "exact_change": "app.descendants(matching:.any)[samepaletteID] becomes app.otherElements[samepaletteID]. Onlythisline differs fromc929.",
+  "actual_role_proof": [
+    {
+      "run": "43688380348",
+      "hierarchy_sha256": "781dfcff96c28babdb73e5eaecc697d5af28b1a5275fb183d78d244fcb6acbb3",
+      "exact_role_and_id": "Other, 0x113d15040, {{433.0, 187.0}, {345.0, 525.5}}, identifier: 'reader-library-command-palette', label: 'Command palette'"
+    },
+    {
+      "run": "43696201794",
+      "hierarchy_sha256": "2ccf28630baa4cc703f77173df58e47cc9474455160d9f88cc580573703a93a7",
+      "exact_role_and_id": "Other, 0x10b9b2080, {{433.0, 187.0}, {345.0, 290.0}}, identifier: 'reader-library-command-palette', label: 'Command palette'"
+    },
+    {
+      "run": "43700083573",
+      "hierarchy_sha256": "0a2ebde6dd968d6a7d9032dc172052ca35f4797227d35d96a463b54dcd5e8833",
+      "exact_role_and_id": "Other, 0x109c4b700, {{433.0, 187.0}, {345.0, 290.0}}, identifier: 'reader-library-command-palette', label: 'Command palette'"
+    }
+  ],
+  "reason": "Actual hardware edit proven by native trace+actual hierarchy/screenshot, but broad chainedquery times out reading value at164. App mainthread idle in spindump; no provedsource deadlock. Narrowtoactual observed AXrole instead of unrestricted all-role descendants.",
+  "oracle_semantics": "Same actual identified palette/input, all positivehardwarecontrol/realclear/fixturetitle/result/Escape/visible-dismissal/Inspector/text/locator/window assertions/timeouts unchanged. No sourcebehavior change, no fallbackdismiss or acceptanceweakening.",
+  "bounded_impact": "All8healthycase/basehelperbodies unchanged. Onlythefailedwindow querystrategy changes.",
+  "native_UI_executed": 0,
+  "portable_parse_diffcheck": "PASS, not AppleSDK/nativeacceptance",
+  "next_required": "T sole affecteddiagnosticwindow on same U914 source, retain live trace and actualpostEscape/evidence. No healthy8rerun. Queryrefinement is a concrete bounded alternative, not a claim theSDKstall is fixed."
+}
