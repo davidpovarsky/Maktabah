@@ -1,0 +1,68 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/3] Write sources
+[3/4] Emitting module OtzariaUIRoutingTests
+[4/5] Compiling OtzariaUIRoutingTests NavigationAuthorizationTests.swift
+[5/7] Compiling OtzariaUIRoutingTests PublicNavigationV2Tests.swift
+[6/7] Compiling OtzariaUIRoutingTests PublicNavigationLocalBindingTests.swift
+[7/14] Wrapping AST for OtzariaUIRoutingTests for debugging
+[8/14] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[9/15] Write sources
+[11/16] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[12/18] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[13/18] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[14/19] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[15/20] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[16/20] Write sources
+[18/21] Emitting module OtzariaUIRoutingPackageTests
+[19/22] Compiling OtzariaUIRoutingPackageTests runner.swift
+[20/22] Write Objects.LinkFileList
+[21/22] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (53.48s)
+Test Suite 'Selected tests' started at 2026-11-15 18:27:05.271
+
+Test Suite 'NavigationAuthorizationTests' started at 2026-11-15 18:27:05.306
+
+Test Case 'NavigationAuthorizationTests.testNativeRevocationInsideCompletionBackendReadCannotCompleteEffect' started at 2026-11-15 18:27:05.306
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:27: error: NavigationAuthorizationTests.testNativeRevocationInsideCompletionBackendReadCannotCompleteEffect : XCTAssertThrowsError failed: did not throw error - 
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:27: error: NavigationAuthorizationTests.testNativeRevocationInsideCompletionBackendReadCannotCompleteEffect : XCTAssertThrowsError failed: did not throw error - 
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:27: error: NavigationAuthorizationTests.testNativeRevocationInsideCompletionBackendReadCannotCompleteEffect : XCTAssertThrowsError failed: did not throw error - 
+
+Test Case 'NavigationAuthorizationTests.testNativeRevocationInsideCompletionBackendReadCannotCompleteEffect' failed (0.259 seconds)
+
+Test Case 'NavigationAuthorizationTests.testNativeRevocationInsideSynchronousBackendReadCannotAuthorizeEffect' started at 2026-11-15 18:27:05.566
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:15: error: NavigationAuthorizationTests.testNativeRevocationInsideSynchronousBackendReadCannotAuthorizeEffect : failed - Native authority revoked inside final backend read still authorized an effect
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:17: error: NavigationAuthorizationTests.testNativeRevocationInsideSynchronousBackendReadCannotAuthorizeEffect : XCTAssertEqual failed: ("1") is not equal to ("0") - 
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:15: error: NavigationAuthorizationTests.testNativeRevocationInsideSynchronousBackendReadCannotAuthorizeEffect : failed - Native authority revoked inside final backend read still authorized an effect
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:17: error: NavigationAuthorizationTests.testNativeRevocationInsideSynchronousBackendReadCannotAuthorizeEffect : XCTAssertEqual failed: ("1") is not equal to ("0") - 
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:15: error: NavigationAuthorizationTests.testNativeRevocationInsideSynchronousBackendReadCannotAuthorizeEffect : failed - Native authority revoked inside final backend read still authorized an effect
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:17: error: NavigationAuthorizationTests.testNativeRevocationInsideSynchronousBackendReadCannotAuthorizeEffect : XCTAssertEqual failed: ("1") is not equal to ("0") - 
+
+Test Case 'NavigationAuthorizationTests.testNativeRevocationInsideSynchronousBackendReadCannotAuthorizeEffect' failed (0.255 seconds)
+
+Test Suite 'NavigationAuthorizationTests' failed at 2026-11-15 18:27:05.821
+
+	 Executed 2 tests, with 9 failures (0 unexpected) in 0.514 (0.514) seconds
+
+Test Suite 'Selected tests' failed at 2026-11-15 18:27:05.821
+
+	 Executed 2 tests, with 9 failures (0 unexpected) in 0.514 (0.514) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

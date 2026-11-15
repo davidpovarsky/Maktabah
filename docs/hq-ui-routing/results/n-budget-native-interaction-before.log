@@ -1,0 +1,122 @@
+Building for debugging...
+[0/24] Write swift-version-2807070033DA82CF.txt
+[1/24] Copying catalog-status.json
+[2/24] Write sources
+[3/24] Copying examples.v1.json
+[4/24] Copying backend-capability-matrix.v1.json
+[5/24] Copying backend-acceptance-cases.v1.json
+[6/24] Copying action-result.v1.schema.json
+[7/24] Copying action-request.v1.schema.json
+[8/24] Copying action-catalog.v1.json
+[9/24] Write sources
+[13/25] Emitting module OtzariaActionCore
+[14/46] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[15/46] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[16/46] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[17/46] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[18/46] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[19/46] Compiling OtzariaActionCore ActionJSON.swift
+[20/46] Compiling OtzariaActionCore ActionReferences.swift
+[21/46] Compiling OtzariaActionCore ActionRequest.swift
+[22/46] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[23/46] Compiling OtzariaActionCore ActionSearch.swift
+[24/46] Compiling OtzariaActionCore ActionWireCodec.swift
+[25/46] Compiling OtzariaActionCore ActionDeadline.swift
+[26/46] Compiling OtzariaActionCore ActionExecutor.swift
+[27/46] Compiling OtzariaActionCore ActionExecutionContext.swift
+[28/46] Compiling OtzariaActionCore ActionPolicy.swift
+[29/46] Compiling OtzariaActionCore ActionValidation.swift
+[30/46] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[31/46] Compiling OtzariaActionCore ActionPorts.swift
+[32/46] Compiling OtzariaActionCore ActionRegistry.swift
+[33/46] Compiling OtzariaActionCore CatalogActionResolver.swift
+[34/46] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[35/47] Wrapping AST for OtzariaActionCore for debugging
+[37/48] Emitting module OtzariaUIRouting
+[38/60] Compiling OtzariaUIRouting PublicNavigationV2Codec.swift
+[39/60] Compiling OtzariaUIRouting UIRouteCodec.swift
+[40/60] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[41/60] Compiling OtzariaUIRouting PublicNavigationV2.swift
+[42/60] Compiling OtzariaUIRouting RouteSpec.swift
+[43/60] Compiling OtzariaUIRouting PublicNavigationLocalBinding.swift
+[44/60] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[45/60] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[46/60] Compiling OtzariaUIRouting UIDestinationPublicNavigationV2.swift
+[47/60] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[48/60] Compiling OtzariaUIRouting UIDiscoveryCancellationScope.swift
+[49/60] Compiling OtzariaUIRouting resource_bundle_accessor.swift
+[50/61] Wrapping AST for OtzariaUIRouting for debugging
+[52/62] Emitting module ChavrusaUIRoutingHost
+[53/77] Compiling ChavrusaUIRoutingHost NativeBindingSourceObservation.swift
+[54/77] Compiling ChavrusaUIRoutingHost NativeDestinationIntents.swift
+[55/77] Compiling ChavrusaUIRoutingHost NativeIntentOutcome.swift
+[56/77] Compiling ChavrusaUIRoutingHost NativeIntentService.swift
+[57/77] Compiling ChavrusaUIRoutingHost NativeNavigationAuthority.swift
+[58/77] Compiling ChavrusaUIRoutingHost NativeObservationDeadline.swift
+[59/77] Compiling ChavrusaUIRoutingHost NativePresentationObserver.swift
+[60/77] Compiling ChavrusaUIRoutingHost NativeReaderPlanBudget.swift
+[61/77] Compiling ChavrusaUIRoutingHost NativeRouteInbox.swift
+[62/77] Compiling ChavrusaUIRoutingHost NativeRouteURL.swift
+[63/77] Compiling ChavrusaUIRoutingHost NativeSceneDirectory.swift
+[64/77] Compiling ChavrusaUIRoutingHost NativeSceneIdentity.swift
+[65/77] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[66/77] Compiling ChavrusaUIRoutingHost NativeSurfaceState.swift
+[67/77] Compiling ChavrusaUIRoutingHost NativeSurfaceWitness.swift
+[68/78] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[70/79] Emitting module ChavrusaUIRoutingHostTests
+[71/90] Compiling ChavrusaUIRoutingHostTests NativeBindingSourceObservationTests.swift
+[72/90] Compiling ChavrusaUIRoutingHostTests NativeIntentServiceTests.swift
+[73/90] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+[74/90] Compiling ChavrusaUIRoutingHostTests NativePublicPreparedCommitTests.swift
+[75/90] Compiling ChavrusaUIRoutingHostTests NativeReaderPlanBudgetTests.swift
+[76/90] Compiling ChavrusaUIRoutingHostTests NativeRouteInboxTests.swift
+[77/90] Compiling ChavrusaUIRoutingHostTests NativeRouteURLTests.swift
+[78/90] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+[79/90] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[80/90] Compiling ChavrusaUIRoutingHostTests NativeSurfaceStateTests.swift
+[81/90] Compiling ChavrusaUIRoutingHostTests PNativeCoreInteractionReviewTests.swift
+[82/91] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[83/91] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\n-budget-review-build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[84/91] Write sources
+[86/92] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[87/94] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[88/94] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[89/95] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\n-budget-review-build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[90/95] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[91/95] Write sources
+[93/96] Emitting module ChavrusaUIRoutingHostPackageTests
+[94/97] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[95/98] Wrapping AST for ChavrusaUIRoutingHostPackageTests for debugging
+[96/98] Write Objects.LinkFileList
+[97/98] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (203.41s)
+Test Suite 'Selected tests' started at 2026-11-15 18:33:06.973
+
+Test Suite 'PNativeCoreInteractionReviewTests' started at 2026-11-15 18:33:07.007
+
+Test Case 'PNativeCoreInteractionReviewTests.testDelayedCoreRelativeStartStillCannotOutliveOriginalRetainedGuard' started at 2026-11-15 18:33:07.008
+
+Test Case 'PNativeCoreInteractionReviewTests.testDelayedCoreRelativeStartStillCannotOutliveOriginalRetainedGuard' passed (0.184 seconds)
+
+Test Case 'PNativeCoreInteractionReviewTests.testDetachedDriverCannotApplyAfterCanonicalGuard' started at 2026-11-15 18:33:07.192
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\n-budget-review\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\PNativeCoreInteractionReviewTests.swift:26: error: PNativeCoreInteractionReviewTests.testDetachedDriverCannotApplyAfterCanonicalGuard : XCTAssertEqual failed: ("1") is not equal to ("0") - Unregistered driver must be refused BEFORE its native effect
+
+Test Case 'PNativeCoreInteractionReviewTests.testDetachedDriverCannotApplyAfterCanonicalGuard' failed (0.162 seconds)
+
+Test Suite 'PNativeCoreInteractionReviewTests' failed at 2026-11-15 18:33:07.354
+
+	 Executed 2 tests, with 1 failure (0 unexpected) in 0.346 (0.346) seconds
+
+Test Suite 'Selected tests' failed at 2026-11-15 18:33:07.354
+
+	 Executed 2 tests, with 1 failure (0 unexpected) in 0.346 (0.346) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
