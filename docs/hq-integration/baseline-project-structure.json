@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "OpenStep token structure and additive target membership only; inherited duplicate keys preserved, not repaired",
+  "baseline": "df2a21941afa46da716387fce9de620865d2a151",
+  "inherited_duplicate_keys": [
+    {
+      "key": "240682637A5169A63619E577",
+      "identical": true
+    },
+    {
+      "key": "FB254BD29A50C530E907662A",
+      "identical": true
+    },
+    {
+      "key": "FDB5242B5960EB1507BD74A6",
+      "identical": true
+    },
+    {
+      "key": "3373C7B02164CDBB77BFFF48",
+      "identical": true
+    },
+    {
+      "key": "C2CCE35AFE445BF8BEF37C5F",
+      "identical": true
+    }
+  ],
+  "new_objects": 0,
+  "modified_existing_objects": [],
+  "sources": []
+}

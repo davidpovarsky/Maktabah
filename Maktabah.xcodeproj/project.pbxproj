@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12625FDCCD291F169D6788B2 /* MaktabahBookUpdateSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */; };
+		36A587F9D67487F899E8D564 /* MaktabahBookUpdateSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */; };
+		CC37848F7DE08819914E0505 /* MaktabahBookUpdateSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */; };
 		CF3000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
 		CF1000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
 		CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
@@ -1391,6 +1394,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookUpdates/MaktabahBookUpdateSafety.swift"; sourceTree = "<group>"; };
 		F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maktabah-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF0000000000000000000001 /* BackendAnnotationBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/BackendAnnotationBridge.swift"; sourceTree = "<group>"; };
 		CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/ReaderAnnotationRefreshCoordinator.swift"; sourceTree = "<group>"; };
@@ -2141,6 +2145,7 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */,
 				177DC9EB2AB8099576B13411 /* ThirdPartyNotices */,
 				8445728C5933CEAAACE4E089 /* SafariToolbarSourcePort.swift */,
 				FFF7EF2388CCE26B3FD09BEA /* ReaderToolbarActionAdapter.swift */,
@@ -4093,6 +4098,7 @@
 		4B3202242EDAFE85003B95D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				12625FDCCD291F169D6788B2 /* MaktabahBookUpdateSafety.swift in Sources */,
 				E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */,
 								CF1000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
 				CF1000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */,
@@ -4436,6 +4442,7 @@
 		4B7C90A52F83494200454BE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				36A587F9D67487F899E8D564 /* MaktabahBookUpdateSafety.swift in Sources */,
 								CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
 				CF2000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */,
 				CF2000000000000000000003 /* ChavrusaTextLocalizationResolver.swift in Sources */,
@@ -4784,6 +4791,7 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				CC37848F7DE08819914E0505 /* MaktabahBookUpdateSafety.swift in Sources */,
 				9FC1E4DC41DC2B4B1F7EF5CC /* ReaderNavigationDisplayPolicy.swift in Sources */,
 				E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */,
 				E81108000000000000000004 /* CompactStudyWorkspaceHostModifier.swift in Sources */,
