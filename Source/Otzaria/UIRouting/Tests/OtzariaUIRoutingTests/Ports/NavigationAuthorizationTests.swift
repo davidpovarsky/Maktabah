@@ -4,6 +4,61 @@ import OtzariaActionCore
 @testable import OtzariaUIRouting
 
 final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
+    @MainActor func testBackendDriftInsideNativeStateReadCannotAuthorizeEffect() async throws {
+        for (backend, epochOnly) in [(ActionBackendID.otzaria, false), (.sefaria, false), (.sefariaEmbedded, false), (.sefariaEmbedded, true)] {
+            let host = NavigationAuthorityFixture(context: context(backend), backend: backend), core = try executor(host)
+            let sceneCommand = try command(host), prepared = try await sceneCommand.prepareNavigation(using: core, context: host.context)
+            host.onNavigationStateRead = {
+                host.backend = .init(backend: backend, generation: epochOnly ? 1 : 2, rpcEpoch: backend == .sefariaEmbedded ? (epochOnly ? 8 : 7) : nil)
+            }
+            do {
+                try prepared.authorizeCommit(current: host.scene); host.effects += 1
+                XCTFail("Native state getter hid backend generation/epoch drift")
+            } catch { XCTAssertEqual((error as? ActionNavigationError)?.code, "backend_generation_changed") }
+            XCTAssertEqual(host.effects, 0)
+        }
+    }
+    @MainActor func testBackendDriftInsideCompletionNativeStateReadCannotCompleteEffect() async throws {
+        for (backend, epochOnly) in [(ActionBackendID.otzaria, false), (.sefaria, false), (.sefariaEmbedded, false), (.sefariaEmbedded, true)] {
+            let host = NavigationAuthorityFixture(context: context(backend), backend: backend), core = try executor(host)
+            let sceneCommand = try command(host), prepared = try await sceneCommand.prepareNavigation(using: core, context: host.context)
+            try prepared.authorizeCommit(current: host.scene); host.effects += 1
+            host.onNavigationStateRead = {
+                host.backend = .init(backend: backend, generation: epochOnly ? 1 : 2, rpcEpoch: backend == .sefariaEmbedded ? (epochOnly ? 8 : 7) : nil)
+            }
+            let result = completion(sceneCommand)
+            XCTAssertThrowsError(try prepared.validateCompletion(receipt: result.receipt, observed: result.observed)) {
+                XCTAssertEqual(($0 as? ActionNavigationError)?.code, "backend_generation_changed")
+            }
+            XCTAssertEqual(host.effects, 1)
+        }
+    }
+    @MainActor func testNativeRevocationInsideSynchronousBackendReadCannotAuthorizeEffect() async throws {
+        for backend in ActionBackendID.allCases {
+            let host = NavigationAuthorityFixture(context: context(backend), backend: backend), core = try executor(host)
+            let sceneCommand = try command(host), prepared = try await sceneCommand.prepareNavigation(using: core, context: host.context)
+            host.onSynchronousBackendRead = { host.active = false }
+            do {
+                try prepared.authorizeCommit(current: host.scene)
+                host.effects += 1
+                XCTFail("Native authority revoked inside final backend read still authorized an effect")
+            } catch { XCTAssertEqual((error as? ActionNavigationError)?.code, "navigation_authority_changed") }
+            XCTAssertEqual(host.effects, 0)
+        }
+    }
+    @MainActor func testNativeRevocationInsideCompletionBackendReadCannotCompleteEffect() async throws {
+        for backend in ActionBackendID.allCases {
+            let host = NavigationAuthorityFixture(context: context(backend), backend: backend), core = try executor(host)
+            let sceneCommand = try command(host), prepared = try await sceneCommand.prepareNavigation(using: core, context: host.context)
+            try prepared.authorizeCommit(current: host.scene); host.effects += 1
+            host.onSynchronousBackendRead = { host.active = false }
+            let result = completion(sceneCommand)
+            XCTAssertThrowsError(try prepared.validateCompletion(receipt: result.receipt, observed: result.observed)) {
+                XCTAssertEqual(($0 as? ActionNavigationError)?.code, "navigation_authority_changed")
+            }
+            XCTAssertEqual(host.effects, 1)
+        }
+    }
     @MainActor private func context(_ backend: ActionBackendID = .otzaria, origin: ActionOrigin = .inApp,
         scopes: Set<ActionScope> = [.discovery, .navigation], subject: String = "native-subject",
         allowed: Set<ActionBackendID>? = nil, works: [ActionBackendID: Set<String>]? = nil,
@@ -418,6 +473,8 @@ final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
     var readerCalls = 0
     var effects = 0
     var embeddedSyncUnavailable = false
+    var onSynchronousBackendRead: (@MainActor () -> Void)?
+    var onNavigationStateRead: (@MainActor () -> Void)?
     var finalReaderSnapshotGate: ReviewGate?
     private var acknowledgedReader = false
     private var postAcknowledgementSnapshots = 0
@@ -427,10 +484,12 @@ final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
         self.context = context; self.backend = .init(backend: backend, generation: 1, rpcEpoch: backend == .sefariaEmbedded ? 7 : nil)
     }
     func navigationState(sceneID: String) throws -> ActionNavigationState {
+        onNavigationStateRead?()
         guard sceneID == self.sceneID else { throw ActionPortError.unavailable }
         return .init(context: context, sceneID: self.sceneID, lifetimeID: lifetimeID, authorityRevision: authorityRevision, active: active)
     }
     func currentBackendSnapshot() throws -> ActionBackendSnapshot {
+        onSynchronousBackendRead?()
         if embeddedSyncUnavailable && backend.backend == .sefariaEmbedded { throw ActionPortError.unavailable }
         return backend
     }
