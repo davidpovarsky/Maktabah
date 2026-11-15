@@ -23,5 +23,7 @@
     "Source/Features/Search/ViewModel/SearchViewModel.swift",
     "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift"
   ],
-  "utc": "2026-11-15T17:45:54.2736204Z"
+  "utc": "2026-11-15T17:45:54.2736204Z",
+  "sourceWhitespaceAgainstBaseExit": 0,
+  "evidenceWhitespace": "Raw compiler logs and unified patch context intentionally retain source whitespace; whole-commit diff --check reports those evidence lines. Executable source check is separate."
 }

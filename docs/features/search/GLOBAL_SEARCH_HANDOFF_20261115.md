@@ -27,7 +27,7 @@ Windows Swift 6.3.3, portable only:
 
 | Check | Result | Evidence / limit |
 |---|---|---|
-| Full changed Swift syntax parse and whitespace | PASS | `swiftc -frontend -parse`; no Apple framework typecheck implied |
+| Full changed Swift syntax parse and executable-source whitespace | PASS | `swiftc -frontend -parse`; scoped `git diff --check base -- Source Tests tools`; no Apple framework typecheck implied |
 | Production session/presentation + exact original list prefetch predicate | 39 PASS | `tools/global-search-presentation-tests.py`; real Swift Observation, engine/storage/navigation doubles; unchanged navigation/mapping excluded from this harness |
 | Actual Search+Execution effective options/startSearch/loadNextBackendPage/stopSearch + actual BackendPaginationState | 18 PASS | Exact production bodies compiled unchanged; controlled held/throwing provider. Failed page preserves rows/offset, loading releases, retry clears error/appends once; cancelled old failures cannot overwrite active newer loading/results/error; fresh initial search clears prior page failure |
 | Existing real Otzaria view-model/Zayit wrapper/session/model regression | 191 PASS | `tools/hq-search-tests.py`; Combine/FFI/storage dependencies explicitly doubled |
@@ -35,6 +35,8 @@ Windows Swift 6.3.3, portable only:
 | Manager registration proposal | PASS | `git apply --check`; proposal only |
 
 Raw output: `selftest-20261115/presentation-and-real-paging.log`, `existing-search-regression.log`. Compile warnings in these logs are from the explicit dummy non-generic branch and the pre-existing redundant Sendable declaration; no hidden failure. Source hashes identify the exact executed bodies.
+
+Source candidate commit: `bf5e119a833c973e240f0b50e8e3fc3e15d783b1`. Raw logs and unified patch context preserve original whitespace. A whole-commit whitespace check consequently reports evidence lines; these are intentionally not stripped or represented as a whole-commit whitespace PASS. Executable source whitespace passes separately.
 
 ## Native and independent acceptance still required
 
