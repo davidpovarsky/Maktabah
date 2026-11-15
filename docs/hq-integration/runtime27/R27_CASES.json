@@ -5,7 +5,7 @@
   "app_source": "8cff79f5b83f3d46537bc77df398e4d2c0521d6c",
   "sole_executor_thread": "01a1df85-6013-7270-b48d-8e10222e95c6",
   "independent_qa_thread": null,
-  "scope": "SINGLE_MANAGER_COHERENT_SIX_AFFECTED_READER_CASES_NOT_FULL_RELEASE",
+  "scope": "SINGLE_MANAGER_COHERENT_SIX_READER_PLUS_FIVE_NATIVE_ROUTE_CASES_NOT_FULL_RELEASE",
   "native_cases_executed": 0,
   "required_nonzero_cases": 9,
   "expected_per_device": {
@@ -154,7 +154,12 @@
       "case_ids": [
         "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
         "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
-        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+        "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
       ]
     },
     {
@@ -173,7 +178,12 @@
     "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
     "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
     "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
-    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+    "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+    "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -283,5 +293,37 @@
     "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
     "native_status": "NOT_RUN"
   },
-  "selected_scope_reason": "R readerPlainText shared preprocessing changed on all three backends; R lazy reader/service and I adjacent source fixes changed, S Embedded runtime changed. Execute six affected reader/rotation/restoration cases; GlobalHistory unchanged and U owns separate window/Inspector run. No full-release acceptance."
+  "selected_scope_reason": "Six affected Reader cases retained; five new real native History URL/receipt/invalid-version cases supplement the original nine without replacing or weakening their oracles. Settings system Intent, full release and physical acceptance remain separate.",
+  "supplemental_cases": [
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL, Library present/History absent beforehand, real visible History plus exactly one request/backend/actual-workspace-scene canonical receipt, generation/Embedded epoch and increasing revisions; screenshots/tree/raw log retained"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL, Library present/History absent beforehand, real visible History plus exactly one request/backend/actual-workspace-scene canonical receipt, generation/Embedded epoch and increasing revisions; screenshots/tree/raw log retained"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL, Library present/History absent beforehand, real visible History plus exactly one request/backend/actual-workspace-scene canonical receipt, generation/Embedded epoch and increasing revisions; screenshots/tree/raw log retained"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL, Library present/History absent beforehand, real visible History plus exactly one request/backend/actual-workspace-scene canonical receipt, generation/Embedded epoch and increasing revisions; screenshots/tree/raw log retained"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL rejection, visible error and no History navigation"
+    }
+  ]
 }

@@ -111,6 +111,7 @@ struct iOSMainView: View {
         .sheet(isPresented: $showSettings) {
             NavigationStack {
                 SettingsView()
+                    .modifier(MaktabahNativeRoutingSurface(kind: .settings))
                     .listRowBackground(Color.appCellBackground)
                     .background(Color.appBackground)
                     .navigationTitle("Settings".localized)
@@ -169,6 +170,7 @@ struct iOSMainView: View {
                 .opacity(0.02)
                 .allowsHitTesting(false)
         }
+        .modifier(MaktabahNativeRoutingHost(manager: navigationManager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings))
         .modifier(CompactStudyWorkspaceHostModifier(manager: navigationManager))
         #if DEBUG
         .task {
@@ -178,6 +180,7 @@ struct iOSMainView: View {
     }
 
     private func handleOpenURL(_ url: URL, bManager: iOSNavigationManager) {
+        if MaktabahNativeURLHandler.handle(url, manager: bManager) { return }
         guard let deepLink = WidgetDeepLink.parse(from: url) else { return }
 
         Task {

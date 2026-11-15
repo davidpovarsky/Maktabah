@@ -198,6 +198,30 @@ class AffectedExecutionTests(unittest.TestCase):
         finally:
             collect.__globals__["OUT"] = original
 
+    def test_supplemental_navigation_cases_preserve_original_phase_and_not_run(self):
+        contract = copy.deepcopy(self.contract)
+        original_cases = copy.deepcopy(contract['cases'])
+        extra = {'case_id':'NativeRoutingAcceptanceTests/testActualHistoryURL', 'device':'ipad11', 'oracle':'visible History plus exact actual canonical receipt'}
+        contract['supplemental_cases'] = [extra]
+        contract['execution_case_ids'].append(extra['case_id'])
+        contract['execution_groups'][0]['case_ids'].append(extra['case_id'])
+        self.assertEqual(len(groups(contract)[0]['case_ids']), 2)
+        original = collect.__globals__['OUT']
+        try:
+            with tempfile.TemporaryDirectory() as folder:
+                collect.__globals__['OUT'] = Path(folder)
+                report = {}
+                collect(report, contract)
+                self.assertEqual(report['ui_not_run'], 3)
+                self.assertEqual(report['executed_ui_pass'], 0)
+                self.assertIn(extra['case_id'], [row['case_id'] for row in report['case_outcomes']])
+                self.assertEqual(contract['cases'], original_cases)
+        finally:
+            collect.__globals__['OUT'] = original
+        contract['supplemental_cases'].append(copy.deepcopy(contract['cases'][0]))
+        with self.assertRaises(ValueError):
+            groups(contract)
+
 
 class PreparedInputTests(unittest.TestCase):
     """Dependency drift must block before signing; tool responses are fixtures."""

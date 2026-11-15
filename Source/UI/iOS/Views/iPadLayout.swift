@@ -292,6 +292,7 @@ struct iPadLayout: View {
     private var historyTabContent: some View {
         NavigationStack {
             iOSHistoryView()
+                .modifier(MaktabahNativeRoutingSurface(kind: .history))
                 .navigationTitle(iOSTab.history.title)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {

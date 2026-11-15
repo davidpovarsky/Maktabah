@@ -30,6 +30,17 @@ cases = {'baseline':(text,0),
     'wrong_package_root':(text.replace('relativePath = Source/Otzaria/Actions;','relativePath = Source/Otzaria/Wrong;',1),1),
     'missing_integration_source':(remove_item(source_id,source_build),1),
     'package_not_on_project':(remove_item(project['rootObject'],objects[product]['package']),1)}
+host_products = [p for p in target['packageProductDependencies'] if objects[p]['productName']=='ChavrusaUIRoutingHost']
+if host_products:
+    host_product = host_products[0]
+    host_link = next(p for p in objects[framework_id]['files'] if objects[p].get('productRef')==host_product)
+    host_ref = next(p for p,v in objects.items() if v.get('path')=='Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift')
+    host_build = next(p for p in objects[source_id]['files'] if objects[p].get('fileRef')==host_ref)
+    cases.update({
+        'host_product_not_on_app':(remove_item(target_id,host_product),1),
+        'host_product_not_linked':(remove_item(framework_id,host_link),1),
+        'host_integration_source_missing':(remove_item(source_id,host_build),1),
+        'wrong_host_package_root':(text.replace('relativePath = Source/ChavrusaText/UIRoutingHost;','relativePath = Source/ChavrusaText/Wrong;',1),1)})
 outcomes=[]
 with tempfile.TemporaryDirectory(prefix='otzaria-registration-') as temp:
     for name,(candidate,expected) in cases.items():

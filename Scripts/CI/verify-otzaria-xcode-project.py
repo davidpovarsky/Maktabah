@@ -70,8 +70,12 @@ objects = project['objects']
 target = objects['F30576DD2FA46222005732C6']
 framework_phase = next(objects[item] for item in target['buildPhases'] if objects[item]['isa'] == 'PBXFrameworksBuildPhase')
 package_roots = {'Actions': 'OtzariaActionCore', 'UIRouting': 'OtzariaUIRouting'}
-for folder, name in package_roots.items():
-    package_path = root / 'Source/Otzaria' / folder
+package_specs = {f'Source/Otzaria/{folder}': name for folder, name in package_roots.items()}
+host_path = 'Source/ChavrusaText/UIRoutingHost'
+if (root / host_path / 'Package.swift').is_file():
+    package_specs[host_path] = 'ChavrusaUIRoutingHost'
+for relative_path, name in package_specs.items():
+    package_path = root / relative_path
     if not (package_path / 'Package.swift').is_file():
         continue
     products = [item for item in target.get('packageProductDependencies', [])
@@ -81,7 +85,7 @@ for folder, name in package_roots.items():
         continue
     product = products[0]
     package = objects.get(objects[product].get('package'), {})
-    if package.get('isa') != 'XCLocalSwiftPackageReference' or package.get('relativePath') != f'Source/Otzaria/{folder}':
+    if package.get('isa') != 'XCLocalSwiftPackageReference' or package.get('relativePath') != relative_path:
         missing.append(f'{name}: wrong local package reference')
     elif objects[product]['package'] not in objects[project['rootObject']].get('packageReferences', []):
         missing.append(f'{name}: package missing from project references')
@@ -93,6 +97,8 @@ overview_bridge = root / "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentat
 if overview_bridge.is_file() and "/* ReaderOverviewPresentation.swift in Sources */" not in sources:
     missing.append(overview_bridge.relative_to(root).as_posix())
 for source in sorted((root / "Source" / "Otzaria").rglob("*.swift")):
+    if '.build' in source.relative_to(root).parts:
+        continue
     if "Experimental" in source.parts:
         continue
     relative = source.relative_to(root / 'Source/Otzaria').parts
@@ -106,6 +112,22 @@ for source in sorted((root / "Source" / "Otzaria").rglob("*.swift")):
     token = f"/* {source.name} in Sources */"
     if token not in sources:
         missing.append(source.relative_to(root).as_posix())
+
+if host_path in package_specs:
+    source_phase = next(objects[item] for item in target['buildPhases'] if objects[item]['isa'] == 'PBXSourcesBuildPhase')
+    for source in sorted((root / host_path).rglob('*.swift')):
+        if '.build' in source.relative_to(root / host_path).parts:
+            continue
+        relative = source.relative_to(root / host_path)
+        if relative.parts[0] in {'Sources', 'Tests'} or relative.as_posix() == 'Package.swift':
+            if f'/* {source.name} in Sources */' in sources:
+                missing.append(f'SPM-owned host file compiled into app: {source.relative_to(root).as_posix()}')
+        elif relative.parts[0] == 'Integration':
+            expected = source.relative_to(root).as_posix()
+            refs = [key for key, item in objects.items()
+                    if item.get('isa') == 'PBXFileReference' and item.get('path') == expected]
+            if len(refs) != 1 or sum(objects[item].get('fileRef') == refs[0] for item in source_phase['files']) != 1:
+                missing.append(f'Exactly one app host Integration source required: {expected}')
 
 for expected in [
     "OtzariaSearchEngine.xcframework in Frameworks",
@@ -130,6 +152,6 @@ if missing:
 
 print(
     "Verified Maktabah-iOS app/package source ownership for "
-    f"{len(list((root / 'Source' / 'Otzaria').rglob('*.swift')))} Otzaria Swift files, "
+    f"{sum('.build' not in path.relative_to(root).parts for path in (root / 'Source/Otzaria').rglob('*.swift'))} Otzaria Swift files, "
     "both search frameworks, and required dictionaries"
 )
