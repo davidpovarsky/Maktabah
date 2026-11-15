@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sourcePin": "da186f456056fc5b9409de28fc7c989a2911cd1b",
+  "class": "GlobalSearchNativeAcceptanceTests",
+  "uiFile": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+  "nativeExecutionStatus": "NOT_RUN",
+  "normalBootstrapNoQuery": [
+    "testHebrewHeaderUsesActualRTLGeometry",
+    "testEnglishHeaderUsesActualLTRGeometry",
+    "testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+    "testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "testHeaderAndHistoryNativeAccessibilityAudit"
+  ],
+  "realSourceBootstrapNoQuery": [
+    "testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+    "testLegacyAdvancedUsesItsOwnSourceControls"
+  ],
+  "sourceDerivedQueryCases": [
+    "testReturnProducesOriginalRowsWithPersistentHeader",
+    "testModeEditRequiresExplicitRerun",
+    "testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+    "testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch"
+  ],
+  "additionalOperationPrerequisites": {
+    "testZeroMatchProjectionRetainsExplicitLoadMore": [
+      "GLOBAL_SEARCH_PAGING_QUERY",
+      "independent actual hasMore after mount"
+    ],
+    "testActualPageFailurePreservesRowsAndRetryAppends": [
+      "GLOBAL_SEARCH_PAGE_FAILURE_QUERY",
+      "real next-provider failure then real successful retry",
+      "provider trace/cursor evidence"
+    ],
+    "testOriginalResultPreviewOpensExpectedNativeLocator": [
+      "GLOBAL_SEARCH_TEST_QUERY",
+      "GLOBAL_SEARCH_EXPECTED_LOCATOR"
+    ],
+    "testHeldSearchCanBeCancelledWithQueryVisible": [
+      "GLOBAL_SEARCH_HELD_QUERY",
+      "actual held provider/task and late release/cancellation trace"
+    ]
+  },
+  "firstSubsetEnvironment": {
+    "GLOBAL_SEARCH_TEST_BACKEND": "otzaria"
+  },
+  "queryCaseEnvironment": [
+    "GLOBAL_SEARCH_TEST_QUERY",
+    "GLOBAL_SEARCH_TEST_BACKEND"
+  ],
+  "commonPrerequisites": [
+    "manager registered existing target",
+    "effective app and UI-test min26.2",
+    "exact integrated app/test SHA and installed source pin",
+    "assigned actual destination",
+    "isolated disposable app/container and genuine installed miniTest10",
+    "normal realUI bootstrap without bypass"
+  ],
+  "skipPolicy": "No skips/optional passes. Select exact methods whose prerequisites are available; keep unselected matrix rows NOT_RUN."
+}

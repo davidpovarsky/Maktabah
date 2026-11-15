@@ -1,0 +1,15 @@
+   Creating library C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-83sui5vx\Combine.lib and object C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-83sui5vx\Combine.exp
+production-session-sha256=db19ced7e315afcd466ae755c21d49c5857904cb3ed733ac847d349c3160a7d7
+   Creating library C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-83sui5vx\presentation.lib and object C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-83sui5vx\presentation.exp
+PASS: 42 Global Search presentation/orchestration assertions; boundary doubles, real Observation; native NOT_RUN
+Traceback (most recent call last):
+  File "C:\Users\DAVID\AppData\Local\Temp\global-search-independent-pinned-keyofcoo\tools\global-search-presentation-tests.py", line 82, in <module>
+    execution = execution_path.read_text(encoding="utf-8")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DAVID\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DAVID\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\DAVID\\AppData\\Local\\Temp\\global-search-independent-pinned-keyofcoo\\Source\\Features\\Search\\ViewModel\\Extensions\\Search+Execution.swift'

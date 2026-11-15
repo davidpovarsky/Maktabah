@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "utc": "2026-11-15T17:57:11.855628+00:00",
+  "kind": "LOCAL_PREPARATION_NOT_NATIVE_ACCEPTANCE",
+  "base": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
+  "swift": "6.3.3 Windows x86_64",
+  "python": "3.12.5",
+  "swiftSyntaxParseExit": 0,
+  "appleFrameworkTypecheck": "NOT_RUN",
+  "nativeCasesRun": 0,
+  "physicalCasesRun": 0,
+  "uiTestFileSHA256": "8414378841c72dbb99e4404f9eeaa2e5738b07700152fec82693c3cf1045da72",
+  "preparedUIMethods": [
+    "testHebrewHeaderUsesActualRTLGeometry",
+    "testEnglishHeaderUsesActualLTRGeometry",
+    "testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+    "testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+    "testLegacyAdvancedUsesItsOwnSourceControls",
+    "testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "testReturnProducesOriginalRowsWithPersistentHeader",
+    "testModeEditRequiresExplicitRerun",
+    "testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+    "testZeroMatchProjectionRetainsExplicitLoadMore",
+    "testActualPageFailurePreservesRowsAndRetryAppends",
+    "testOriginalResultPreviewOpensExpectedNativeLocator",
+    "testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+    "testHeldSearchCanBeCancelledWithQueryVisible",
+    "testHeaderAndHistoryNativeAccessibilityAudit"
+  ],
+  "preflightExpectedExit": 2,
+  "specificationSHA256": "88d91318f0436aa98221acb688fa5245c466b53d3831149a87a8c393824bb100",
+  "jsonArtifactsDecoded": 8,
+  "independentPortableAssertions": {
+    "presentation": 39,
+    "actualModelPaging": 18,
+    "existingSearch": 191,
+    "cachedReadiness": 14
+  },
+  "runtimeAcceptanceComplete": false,
+  "rawEvidenceSHA256": {
+    "immutable-snapshot-setup.log": "a60bae53c384f8055c7f48357548e72cebab15cbe2d2354ca1fe5e94a3cdd7ea",
+    "independent-existing-search.log": "79a7089cb5a2818057e8716ab4aac034ab988b72c1c3b8bea903bdfef46f7bd4",
+    "independent-presentation-paging-final.log": "4ba97de28cf6e0a73bfdb4ae0fb928e82f928692159866656280a4b26ef6da9a",
+    "independent-presentation-paging-pinned.log": "9aeff540295f4db9cd07e35c987891021a8a9d52e4d3cb4f3c644c9b298accec",
+    "independent-presentation-paging.log": "18fa30b923ed1df0c2030c74ac4c90c670a59e600eaea3baf2a1f68aca3e48fb"
+  },
+  "pinnedFinalCandidate": "da186f456056fc5b9409de28fc7c989a2911cd1b",
+  "finalImmutablePortableAssertions": {
+    "presentation": 42,
+    "actualModelPaging": 18,
+    "exitCode": 0,
+    "inputs": "immutable-execution-inputs.json"
+  },
+  "earlierExistingRegressionAssertions": {
+    "existingSearch": 191,
+    "cachedReadiness": 14
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "utc": "2026-11-15T17:53:38.639752+00:00",
+  "candidate": "da186f456056fc5b9409de28fc7c989a2911cd1b",
+  "execution": "unchanged existing S runner from byte-exact temporary git-show source snapshot; no active S worktree reads or writes",
+  "inputsGitBlobSHA256": {
+    "tools/global-search-presentation-tests.py": "4ddb677042dc98eac403995b782e7f148c856b32519c7e80a372b815d8fa3279",
+    "Tests/HQ/search/CombineFixture.swift": "b575a493a0040576fa376776b78575613bfcb930c7762f8ddf42ad00b8d18646",
+    "Tests/HQ/global-search/GlobalSearchPresentationFixtures.swift": "faad02e6cb39fdfbe843478f7f02f40b9670f5ae2eee166c0b878326a4ad12d4",
+    "Tests/HQ/global-search/GlobalSearchPagingFixtures.swift": "ddc1b961952cd75be7000e23395a4167e56d369cae8b6aedcec2c4b54e1edb0c",
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift": "db19ced7e315afcd466ae755c21d49c5857904cb3ed733ac847d349c3160a7d7",
+    "Source/Features/Search/iOS/SearchResultsListView.swift": "68de873ac09b141c1ecc3e2323707bacf1975f34a04c9e169f385c42d149ac87",
+    "Source/Features/Search/iOS/SearchModeView.swift": "ff58883e3a9abd67289757dc6ebdd95083c9d329689fd7b61cab130de5b64eac",
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": "859e67149be30763f1e32b13119ad9e3f061c8c08dc0917d1340607f89e4bc0c",
+    "Source/LibraryBackend/LibraryBackendModels.swift": "212a0f2ebef2580134f60c7027006cfe201c96a484e65f43732fedf778406a49",
+    "Source/ZayitSearch/UnifiedSearchScope.swift": "cab28b0ad32261adaa4ba0f40fdfa7f3ea54432ff820d218a3938e7c1f46eeb1",
+    "Source/ZayitSearch/UnifiedSearchPresentationPolicy.swift": "e4481c67a60f153a9ae7515490029193ba0660fd31fe984d02a765589d776a19",
+    "Source/Otzaria/Search/OtzariaSearchMode.swift": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876",
+    "Source/Otzaria/Search/OtzariaSearchModels.swift": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9",
+    "Vendor/ZayitSearchPort/Swift/ZayitSearchModels.swift": "0562a5c95d409b1dfda55e7929f50fdb9ebf5a589791c1b54b0dba929bb5bd83",
+    "Source/ChavrusaText/Search/UI/GlobalSearchSessionPresentation.swift": "a9b35d00d83d065129644a5fb742e11f7b115419cdabc7d7eb2b11935954d246"
+  },
+  "nativeCasesRun": 0,
+  "physicalCasesRun": 0,
+  "preparationNote": "Initial git archive identity guard stopped before execution because archive export changed line endings. git-show snapshot preserves exact committed bytes.",
+  "exitCode": 1,
+  "rawLogSHA256": "a60bae53c384f8055c7f48357548e72cebab15cbe2d2354ca1fe5e94a3cdd7ea"
+}

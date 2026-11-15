@@ -1,0 +1,26 @@
+   Creating library C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-d1y_ragz\Combine.lib and object C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-d1y_ragz\Combine.exp
+
+production-session-sha256=23ff2dd31aa41aa568db0fe306f41f2e8f4e44de95392968161c1c7b8dfc07b1
+   Creating library C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-d1y_ragz\presentation.lib and object C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-d1y_ragz\presentation.exp
+
+PASS: 39 Global Search presentation/orchestration assertions; boundary doubles, real Observation; native NOT_RUN
+production-search-execution-sha256=93b22547815e7944abc9f1b8e54ec771d9d62209087e9d8b0a9820769e64819a
+C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-d1y_ragz\ActualSearchExecution.swift:173:17: warning: constant 'searchCallbacks' inferred to have type '()', which may be unexpected
+
+171 |                 nearDistance: nearDistance
+
+172 |             )
+
+173 |             let searchCallbacks = await makeLibrarySearchCallbacks()
+
+    |                 |- warning: constant 'searchCallbacks' inferred to have type '()', which may be unexpected
+
+    |                 `- note: add an explicit type annotation to silence this warning
+
+174 | 
+
+175 |             await ldm.performSearch(
+
+   Creating library C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-d1y_ragz\paging.lib and object C:\Users\DAVID\AppData\Local\Temp\global-search-presentation-d1y_ragz\paging.exp
+
+PASS: 18 ACTUAL Search+Execution paging/cancellation assertions with held/throwing provider; native NOT_RUN

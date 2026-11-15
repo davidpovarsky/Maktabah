@@ -1,0 +1,31 @@
+{
+  "taskId": "1220546245946205",
+  "ownerThread": "01a1df8b-4498-76c1-8cca-cd5c11120b7a",
+  "kind": "SOURCE_BASELINE_ONLY",
+  "head": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
+  "branch": "codex/otzaria-global-search-acceptance-20261115",
+  "specificationSHA256": "88d91318f0436aa98221acb688fa5245c466b53d3831149a87a8c393824bb100",
+  "specificationBytes": 35749,
+  "specificationLines": 239,
+  "upstreamHead": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "sourceFiles": {
+    "Source/Features/Search/iOS/SearchModeView.swift": "a927c40690ecd08cb2742f1c9e62c62a6bdf6ff319b595762d8f9c972b853873",
+    "Source/Features/Search/iOS/SearchComponents.swift": "1a4de7719d13812f08c36d5068eb13cc2291192c84a30fe6122d204638b372d3",
+    "Source/Features/Search/iOS/SearchResultsListView.swift": "558a59387450c24deb43cb702b27f7941fe4e5296ed603a8a125fc5d76f1943f",
+    "Source/Features/Search/iOS/iOSSearchFilterViewController.swift": "14b1cc06b686d8b26dbea66ec9595d1f44d7edeeffab29a3c95611461d012c1d",
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift": "d2b89434f4ece1e2083379f3d9546ceaee92dd67ece7259711c55e431e8eb39e",
+    "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": "28a093aa26a3fd9a0bc2f41f98f3d36f995083c243337745c4c2f8e662a84514",
+    "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift": "241a024dab0c780fb90a9816442e62700eb3a8eb8845d5e26e02d70ce3c5cbd7",
+    "Source/Sefaria/Network/SefariaRemoteStore.swift": "03c49c6060f813c29a837416dc967d0e5f747904e097493c5db5658ee1d91e88",
+    "Source/UI/iOS/Views/iPadLayout.swift": "aadda0fa75750e367129593d1d2052edccfa60fc0ccd992060adfa7dde69e316",
+    "Source/UI/iOS/Views/iPhoneLayout.swift": "5c77c56ca2388d0e3ee592ba7dae24f8ac45157fa0ac46fc09c51fb6e812c08c",
+    "Maktabah-iOSUITests/MaktabahUITestBase.swift": "377ccb5354b5eccd14fe6c6e01a20f2113728092aca4166c898861ba0a6f0b40",
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "9b10cac327c9903a8e04ddebe853a8bbc1faa67b7716afdced8871695bc46f8b",
+    "Maktabah.xcodeproj/project.pbxproj": "2b0ba7c767acfb4dd3720d3a03edb1a8d8776354d90e9c636febeee98c81db54"
+  },
+  "nativeTestsExecuted": 0,
+  "physicalTestsExecuted": 0,
+  "untrackedSpecificationPreserved": true,
+  "publicV2NotIntegrated": true,
+  "frozenNativeRunNotInspected": "43736843778"
+}

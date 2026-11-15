@@ -1,0 +1,35 @@
+{
+  "run": 43736843778,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43736843778",
+  "actualRemoteConclusion": "completed/failure",
+  "checkout": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
+  "applicationSourcePin": "4dae2dac23b51f504e1722d24a90028cc4caa690",
+  "status": "BUILD_FAILED_UI_NOT_RUN",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "sdk": "27.1",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "ui": {
+    "PASS": 0,
+    "FAIL": 0,
+    "NOT_RUN": 11,
+    "iPad11": 8,
+    "iPhone": 3,
+    "junitInterpretation": "11 infrastructure errors before execution, not11 UI assertion failures"
+  },
+  "sourceArtifact": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\ci-monitor\\davidpovarsky__Maktabah\\43736843778\\TERMINAL_EVIDENCE_REVIEW.json",
+  "sourceArtifactSHA256": "61ae984b00087975c37d5f4bf6aea241b126fb887fb711d05a10cbccaab62706",
+  "scope": "Manager terminal evidence, not a new QA run or Global Search implementation acceptance",
+  "globalSearchTestsExecuted": 0,
+  "compilerErrors": [
+    {
+      "line": 67137,
+      "text": "/Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift:3:8: error: compiling for iOS 18.6, but module 'ChavrusaUIRoutingHost' has a minimum deployment target of iOS 26.0: /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/ChavrusaUIRoutingHost.swiftmodule/arm64-apple-ios-simulator.swiftmodule"
+    },
+    {
+      "line": 67141,
+      "text": "   |        `- error: compiling for iOS 18.6, but module 'ChavrusaUIRoutingHost' has a minimum deployment target of iOS 26.0: /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/ChavrusaUIRoutingHost.swiftmodule/arm64-apple-ios-simulator.swiftmodule"
+    }
+  ],
+  "rootCause": "Maktabah-iOS compiles at iOS18.6 but imported ChavrusaUIRoutingHost requires iOS26.0; MaktabahNativeIntents.swift:3:8",
+  "xcresultBundles": []
+}

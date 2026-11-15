@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "utc": "2026-11-15T17:46:32.111126+00:00",
+  "system": "Windows",
+  "candidate": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
+  "udid": null,
+  "status": "BLOCKED",
+  "nativeTestsRun": 0,
+  "physicalTestsRun": 0,
+  "scope": "read-only facts; no build, test, boot, erase, install, CI or settings mutation",
+  "blockers": [
+    "checkout is dirty; record/install an immutable manager-integrated candidate",
+    "Apple SDK/native simulator authority unavailable on this operating system"
+  ],
+  "checks": {
+    "head": {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "available": true,
+      "exitCode": 0,
+      "stdout": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8\n",
+      "stderr": ""
+    },
+    "status": {
+      "command": [
+        "git",
+        "status",
+        "--porcelain=v1"
+      ],
+      "available": true,
+      "exitCode": 0,
+      "stdout": "?? Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift\n?? docs/features/search/GLOBAL_SEARCH_NATIVE_LIQUID_GLASS_IMPLEMENTATION_PLAN_2026-11-15.md\n?? docs/features/search/qa-20261115/\n",
+      "stderr": ""
+    }
+  }
+}
