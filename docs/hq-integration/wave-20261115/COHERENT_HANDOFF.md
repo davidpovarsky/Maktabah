@@ -9,9 +9,9 @@ Single manager `01a1df85-6013-7270-b48d-8e10222e95c6`; branch `codex/otzaria-wav
 | Native UI01/current host | U `739e29704db988630764c091ff6237974502294f`, runtime source `5afdefdf7fae792eeb7a828dc9157e8cecab7f93` |
 | Corrected discovery | P `b9adb9c46ef04b0aac84ece0045ca7e420bc30d0`; manager combined 19 portable methods passed at `9e589d6f` |
 | Canonical navigation guard | P `065148d3662b5322bdd5dea038405079cd3a66c3`; writer final UI44/Core18 portable evidence, actual native authority still required |
-| Search readiness/real FFI fixtures | S `02f54e91ae97549534a66c6bdfb88838a5a31a5a` |
-| Live Bridge/RPC/relationships source | S `d3c697c9b7ecdbd0bcda54114ddeae7b7efbc0cf` |
-| Inspector provider/Notes/requested-mode/cancel | I `8cc9c6752763de742d2c1ceef3c407a87eb002c7` |
+| Search readiness/real FFI/resource publication witness | S `d0b953c1995105ae64d420489086e9263f8ca4b1` (includes `02f54e91`) |
+| Live Bridge/RPC/relationships and same-authority sync facet | S `bbfc161059a20d675b0798fa1e904af16595aede` (includes `d3c697c9`) |
+| Inspector provider/Notes/requested-mode/cancel and genuine corpus evidence | I `a9bc4ffdb65d39d2240e782f6539903906eb63f8` (application source remains `8cc9c675`) |
 | Resolver per-invocation proof deduplication | I `e765d7c0d2dfe152a42bf06b4202562d32874b8b` |
 | Reader lazy rows/source errors/render normalization | R `6d26b28f007765abc369e8f8664328c3a45226e1` |
 | Books Updates backend/CSV/WAL safety | D `3e542e91e85820e7422addd621db549f72125ddc`, tested source `258342ed08d1fcb59d68624d2e8713e66567c744` |
@@ -34,7 +34,9 @@ One affected native run selects 6 existing actual reader cases: Otzaria, Legacy 
 
 Local manager validation: source/package hashes and owner evidence reviewed; YAML triggers/steps retained structurally; package-registration baseline/5 negatives passed; unreviewed JS overlay rejected; affected case partition accepted; existing release-gate/evidence tests 16/16 passed. These are local source/fixture checks, not native UI passes.
 
-Current acceptance still open: actual app compilation/runtime, latest S synchronized epoch/resource invalidation facet, N actual scene/context/receipt integration, production/full DB/physical iPad, and complete cross-file updater recovery. D's Apple run `43725003334` independently reads SUCCESS at exact tested source and proves only 60 safety +37 boundary combinations and SDK compilation with doubles.
+The S synchronous facet now uses the RPC actor's single actual epoch storage under a short lock; it is not a MainActor mirror. Current Otzaria resource witnesses advance the existing coordinator generation and cancel captured work. The matching Search companion supplies publication revision plus current bounded disk evidence without waiting behind the long FFI lock. Writer 76 authority/actor assertions and 14 real-repository boundary assertions are attributed, not native passes. `RESOURCE_AUTHORITY.md` records supported paths and the unclaimed out-of-process exact-byte/timestamp ABA limit.
+
+Current acceptance still open: actual app compilation/runtime for the combined production facets, N actual scene/context/receipt integration, production/full DB/physical iPad, and complete cross-file updater recovery. D's Apple run `43725003334` independently reads SUCCESS at exact tested source and proves only 60 safety +37 boundary combinations and SDK compilation with doubles.
 
 Wave corpus remains installed v32/schema6 with matching search inputs. miniTest10-v6 is a genuine subset, not latest/full production. Latest schema7 multipart compatibility is a separate source finding under bounded D audit; no implicit upgrade/download is authorized by integration.
 
