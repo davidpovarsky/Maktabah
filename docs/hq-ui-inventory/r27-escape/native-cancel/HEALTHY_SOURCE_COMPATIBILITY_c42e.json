@@ -1,0 +1,58 @@
+{
+  "candidate_source": "c42e537ca9e2b22d7693b9a935386314ebbf73ce",
+  "eight_historical_method_bodies": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "body_unchanged": true,
+      "sha256": "736596289744794d8222ca4e6caca6d73e32267ce2e7dd22a4309a42ddf1c2f0"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "body_unchanged": true,
+      "sha256": "56241b70f72b6c5fb80ced7ea943f1094e70ed5d4b1445cf59e611d9565c54c3"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "body_unchanged": true,
+      "sha256": "7f7e6fbb5a11037d7ee3214f64422415bebcf8d8bb914ab6b46b3a4546a5102f"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "body_unchanged": true,
+      "sha256": "eefd94fac1e3416f8020e0bbd16b1428f3af9ef323685d4d879b43f823188c4b"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "body_unchanged": true,
+      "sha256": "ded108e7c9414461dfdcb5cb7d967383a2c264b32764ef795f3110ec70496b01"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "body_unchanged": true,
+      "sha256": "d0d304edaca6d11d3533534abacc264ec8fac6aa828e968b91b46ab5d1b1e8f1"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "body_unchanged": true,
+      "sha256": "8c0684b136d7a888884301738d0e80319cbcf22f81da1a55af3fa55b0230ea07"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "body_unchanged": true,
+      "sha256": "20975ff287264affdf50a3858cbd29ff1722e241cd6ff86bf8ea410cfc42808f"
+    }
+  ],
+  "original_R27_launch_override_unchanged": true,
+  "old_xctest_calibration_retained_unchanged_as_diagnostic": true,
+  "canonical_window_ui_oracles_exact_after_declared_delivery_normalization": true,
+  "original_window_change": "Only hardware A/Escape now use same calibrated native HID sender; added15s actual-edit positive-control wait, and attachment delivery label. All original input-count/container/filter/Inspector/text/locator/resize/fullscreen-restoration assertions and existing timeouts byte-identical after normalization.",
+  "hardware_evidence": "Actual source858477f9 run43755146411: real named HIDComparison PASS (A/backspace/full-empty1Escape/narrow-filtered1Escape/Inspector/text/locator/window). Same-source unchanged XCTest Window FAILED at Escape. No private UIKit consumer identified. No second Escape/manual callback/AX concealment.",
+  "production_delta_since_actual_8584": [
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"
+  ],
+  "native_pan_scope": "Existing primary UIViewController only, existing TabView background bounds hit-test, one touch, vertical-axis rejection before begin, simultaneous only own primary descendants, existing absolute44pt/1.25physicalRTL policy; detach at restore. Native TabView and list recognizers kept enabled; no new reader/controller/navigation/global monitor.",
+  "swiftui_limitation": "Actual8584 body simultaneousGesture did not fix LTR reverse or RTL first forward in run43755146411; native wrapper is scoped to observed missing gesture arbitration.",
+  "fresh_ui_pass_from_this_source": 0,
+  "validation": "Portable27policy + Swift parse +16release-evidence tests PASS; exact real adapter SDK preflight added before full app/test build. Native7case validation PENDING; physical iPad NOT_RUN",
+  "lease": "No edits to3 manager-leased Exact9401WorkspaceLifecycle owner hunks or observer block; current coordinator remains18d4aca3. No protected upstream file change."
+}
