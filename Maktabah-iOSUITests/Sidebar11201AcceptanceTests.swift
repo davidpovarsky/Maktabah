@@ -25,6 +25,64 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
+    func testSidebarSceneStateSurvivesBackgroundAndRotation() throws {
+        XCTAssertTrue(isPad)
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(recordViewport: true)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        assertReaderHasText()
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        let text = try XCTUnwrap(app.textViews["reader-text"].value as? String)
+        let expectedWork = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"])
+        let parts = locator.split(separator: "|", maxSplits: 2).map(String.init)
+        XCTAssertEqual(parts.count, 3)
+        XCTAssertEqual(parts.first, "otzaria")
+        XCTAssertEqual(parts.dropFirst().first, expectedWork)
+
+        let contents = app.buttons["reader-sidebar-page-1"]
+        if !contents.exists || !contents.isHittable { tap(readerSidebarToggle()) }
+        tap(contents)
+        waitSelected(contents)
+        let original = try viewport()
+        retainNativeEvidence("sidebar-scene-before-background")
+        XCUIDevice.shared.press(.home)
+        app.activate()
+        waitSelected(contents)
+        XCTAssertEqual(try viewport().object, original.object)
+
+        let application = app!
+        XCUIDevice.shared.orientation = .portrait
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in
+                MainActor.assumeIsolated { application.frame.height > application.frame.width }
+            }, object: nil
+        )], timeout: 20), .completed, "The actual native window must rotate")
+        if !contents.exists || !contents.isHittable { tap(readerSidebarToggle()) }
+        waitSelected(contents)
+        tap(readerSidebarToggle())
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        XCTAssertEqual(app.textViews["reader-text"].value as? String, text)
+        let after = try viewport()
+        XCTAssertEqual(after.object, original.object)
+        XCTAssertEqual(after.source, original.source)
+        XCTAssertEqual(after.offset, original.offset, accuracy: 1)
+        retainNativeEvidence("sidebar-scene-after-portrait-and-close")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in
+                MainActor.assumeIsolated { application.frame.width > application.frame.height }
+            }, object: nil
+        )], timeout: 20), .completed)
+        if !contents.exists || !contents.isHittable { tap(readerSidebarToggle()) }
+        waitSelected(contents)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        retainNativeEvidence("sidebar-scene-restored-landscape")
+    }
+
+    @MainActor
     private func exerciseBodyPaging(language: String, isRTL: Bool) throws {
         XCTAssertTrue(isPad, "Required native iPad execution must not be skipped")
         XCUIDevice.shared.orientation = .landscapeLeft
