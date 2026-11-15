@@ -106,6 +106,8 @@ Important unresolved questions or uncertainties.
   swipe. The old retry can conceal reversed paging. Direction-specific prepared
   coverage is in `Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift`; runtime,
   native gesture conflicts and physical-iPad acceptance remain NOT_RUN (2026-11-15).
+- [ ] Bound the Inspector reference-to-locator cache after canonical source reconstruction is verified. `MaktabahTorahInspectorSession.locatorsByReference` grows for every remembered segment/link although its unit and link-array caches have limits of 20/30; source browsing can retain locators for the entire session. Eviction must preserve exact numbered/complex Sefaria work identities and active source navigation; coordinate with the genuine Embedded catalog fix, rather than reconstructing identities with an invented alias/parser. (I, 2026-11-15)
+
 
 - [ ] Review legacy synchronous backend entry points separately from the strict
   10601 async settings/group repair. `iOSMainView`, annotation navigation and

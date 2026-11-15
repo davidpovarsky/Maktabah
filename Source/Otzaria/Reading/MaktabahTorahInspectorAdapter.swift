@@ -76,8 +76,10 @@ final class MaktabahTorahInspectorSession {
     ) -> TorahInspectorSelection? {
         if coordinator.activeBackendID == .sefaria || coordinator.activeBackendID == .sefariaEmbedded {
             if let locator = sefariaLocator,
-               locator.backend == .sefaria,
+               locator.backend == coordinator.activeBackendID,
                let sectionLocator = readerViewModel?.backendSection?.locator,
+               sectionLocator.backend == locator.backend,
+               sectionLocator.workKey == locator.workKey,
                locator != sectionLocator {
                 let reference = Self.reference(for: locator)
                 let sectionReference = Self.reference(for: sectionLocator)
@@ -159,11 +161,12 @@ final class MaktabahTorahInspectorSession {
     private func currentUnitSelection() -> TorahInspectorSelection? {
         guard let viewModel = readerViewModel else { return nil }
         if (coordinator.activeBackendID == .sefaria || coordinator.activeBackendID == .sefariaEmbedded),
-           let locator = viewModel.backendSection?.locator {
+           let locator = viewModel.backendSection?.locator,
+           locator.backend == coordinator.activeBackendID {
             let reference = Self.reference(for: locator)
             remember(locator, for: reference)
             return TorahInspectorSelection(
-                providerID: BackendID.sefaria.rawValue,
+                providerID: locator.backend.rawValue,
                 canonicalRef: reference,
                 scope: .section
             )
@@ -543,13 +546,13 @@ final class MaktabahTorahInspectorSession {
                 } ?? false
                 let matchesCanonical = (annRef == selection.canonicalRef)
                 let matchesWorkKey = (annLoc.backend == selectedLocator.backend && annLoc.workKey == selectedLocator.workKey)
-                hasMatchingLocator = matchesDirect || matchesPreferred || matchesCanonical
-                    || (matchesWorkKey && selection.scope == .segment && (annRef == (selection.preferredSegmentRef ?? selection.canonicalRef)))
+                hasMatchingLocator = matchesWorkKey && (matchesDirect || matchesPreferred || matchesCanonical)
             } else {
                 hasMatchingLocator = false
             }
             let isInsideSelectedUnit = annLoc.map {
-                contains($0, in: selection)
+                $0.backend == selectedLocator.backend && $0.workKey == selectedLocator.workKey
+                    && contains($0, in: selection)
             } ?? false
             let isSameBookOrBackend = (annLoc?.backend == selectedLocator.backend && annLoc?.workKey == selectedLocator.workKey)
                 || (annLoc == nil && annotation.bkId == viewModel.currentBook?.id)
@@ -728,12 +731,12 @@ final class MaktabahTorahInspectorSession {
             let previous = bridge.getPreviousReadingUnitDescriptor(
                 bookId: bookID,
                 beforeLineIndex: unit.startLineIndex,
-                mode: currentMode
+                mode: effectiveMode
             )
             let next = bridge.getNextReadingUnitDescriptor(
                 bookId: bookID,
                 afterLineIndex: unit.endLineIndex,
-                mode: currentMode
+                mode: effectiveMode
             )
             let section = OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next)
 
@@ -814,6 +817,7 @@ final class MaktabahTorahInspectorSession {
     }
 
     private func activeLocator(for reference: String, providerID: String?) throws -> TextLocator {
+        try Task.checkCancellation()
         guard let providerID,
               let backend = BackendID(rawValue: providerID),
               backend == coordinator.activeBackendID else {

@@ -1,0 +1,4 @@
+Source: 1c2fa5cfc3288bf16720e2345ce0b6dac3d571d2; case: gate
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-9ywfjfow\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-9ywfjfow\inspector-fixtures.exp
+
+FAIL FixtureError(message: "cancelled warm source cache lookup returned data")
