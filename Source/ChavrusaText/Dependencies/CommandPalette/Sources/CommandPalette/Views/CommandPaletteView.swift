@@ -161,7 +161,13 @@ public struct CommandPaletteView: View {
                 .accessibilityLabel(Text("Clear search"))
             }
 
-            KeyCap(label: "esc")
+            Button(action: onDismiss) {
+                KeyCap(label: "esc")
+            }
+            .buttonStyle(.plain)
+            .keyboardShortcut(.cancelAction)
+            .accessibilityLabel(Text("Close command palette"))
+            .accessibilityIdentifier("command-palette-close")
         }
         .padding(.horizontal, 18)
         .padding(.vertical, 15)
