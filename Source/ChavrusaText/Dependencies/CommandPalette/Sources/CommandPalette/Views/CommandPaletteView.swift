@@ -25,7 +25,11 @@ public struct CommandPaletteView: View {
     @ObservedObject private var recents: RecentCommandsStore
     @State private var query: String
     @State private var selection: CommandPaletteSelection
+    #if os(iOS)
+    @State private var isSearchFieldFocused = false
+    #else
     @FocusState private var isSearchFieldFocused: Bool
+    #endif
 
     /// Creates a palette.
     /// - Parameters:
