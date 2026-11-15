@@ -1,0 +1,33 @@
+{
+  "buildlog_sha256": "05757479f780d12605c06f8d6b7ced5e5f5d0a00a28a4a2840d34c00121d00eb",
+  "raw_lines": [
+    {
+      "line": 10601,
+      "text": "SwiftCompile normal arm64 Compiling\\ CommandPaletteModifier.swift,\\ CommandPaletteView.swift,\\ PaletteComponents.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift (in target 'CommandPalette' from project 'CommandPalette')"
+    },
+    {
+      "line": 10607,
+      "text": "SwiftCompile normal arm64 /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift (in target 'CommandPalette' from project 'CommandPalette')"
+    },
+    {
+      "line": 10705,
+      "text": "SwiftDriverJobDiscovery normal arm64 Compiling CommandPaletteModifier.swift, CommandPaletteView.swift, PaletteComponents.swift (in target 'CommandPalette' from project 'CommandPalette')"
+    },
+    {
+      "line": 50275,
+      "text": "SwiftCompile normal arm64 Compiling\\ AdaptiveTabContent.swift,\\ ScrollableTabBar.swift,\\ ScrollableTabBarDelegate.swift,\\ ScrollableTabBarLogger.swift,\\ StudyGroupsOverview.swift,\\ StudyProfileManagementView.swift,\\ StudyProfileMenu.swift,\\ LibraryCommandPaletteAdapter.swift,\\ ReaderToolbarActionAdapter.swift,\\ SafariToolbarSourcePort.swift,\\ iOSReaderSessionManager.swift,\\ iOSBookInfoAnchoredCard.swift,\\ iOSReaderWorkspaceView.swift,\\ MaktabahTorahInspectorAdapter.swift,\\ OtzariaInspectorRelationshipsProvider.swift,\\ OtzariaRelationshipClassifier.swift,\\ BackendAnnotationBridge.swift,\\ ReaderAnnotationRefreshCoordinator.swift,\\ ChavrusaTextLocalizationResolver.swift,\\ BackendNavigationAdapter.swift,\\ ReaderSessionRestoreCoordinator.swift,\\ SerializedSessionWriter.swift,\\ iOSTabBarVisibilityHost.swift,\\ ReaderPullNavigationStateMachine.swift,\\ ReaderSelectionRangeMapper.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarLogger.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift /Users/runner/work/Maktabah/Maktabah/Source/UI/iOS/Managers/iOSReaderSessionManager.swift /Users/runner/work/Maktabah/Maktabah/Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift /Users/runner/work/Maktabah/Maktabah/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Annotations/ReaderAnnotationRefreshCoordinator.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Navigation/SerializedSessionWriter.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ReaderHost/iOSTabBarVisibilityHost.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift (in target 'Maktabah-iOS' from project 'Maktabah')"
+    },
+    {
+      "line": 50305,
+      "text": "SwiftCompile normal arm64 /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift (in target 'Maktabah-iOS' from project 'Maktabah')"
+    },
+    {
+      "line": 50618,
+      "text": "SwiftDriverJobDiscovery normal arm64 Compiling AdaptiveTabContent.swift, ScrollableTabBar.swift, ScrollableTabBarDelegate.swift, ScrollableTabBarLogger.swift, StudyGroupsOverview.swift, StudyProfileManagementView.swift, StudyProfileMenu.swift, LibraryCommandPaletteAdapter.swift, ReaderToolbarActionAdapter.swift, SafariToolbarSourcePort.swift, iOSReaderSessionManager.swift, iOSBookInfoAnchoredCard.swift, iOSReaderWorkspaceView.swift, MaktabahTorahInspectorAdapter.swift, OtzariaInspectorRelationshipsProvider.swift, OtzariaRelationshipClassifier.swift, BackendAnnotationBridge.swift, ReaderAnnotationRefreshCoordinator.swift, ChavrusaTextLocalizationResolver.swift, BackendNavigationAdapter.swift, ReaderSessionRestoreCoordinator.swift, SerializedSessionWriter.swift, iOSTabBarVisibilityHost.swift, ReaderPullNavigationStateMachine.swift, ReaderSelectionRangeMapper.swift (in target 'Maktabah-iOS' from project 'Maktabah')"
+    }
+  ],
+  "app_binary_sha256": "dae681fe401bf6d15ad82df3ea67fb1dffba5a27f702fa7a82e645ecd44c54bc",
+  "previous_app_binary_sha256": "ce130a3606bd64e4f23a6e63fc32ac0a1f565fd9d71d75169a17d7b7399b0e3c",
+  "symbol_dump_available": false,
+  "binary_not_retained_in_existing_artifact": true
+}

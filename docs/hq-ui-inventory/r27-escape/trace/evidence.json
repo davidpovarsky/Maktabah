@@ -1,0 +1,15 @@
+{
+  "diagnostic_source": "914fa87f5b93e2667571001cd0c762ef58589d88",
+  "Q_test_tip": "c9295c85a51710e592dc2558e6edb5395b1ecca5",
+  "native_diagnostic_result": "PENDING_T_Q",
+  "Apple_SDK_builds_by_U": 0,
+  "native_UI_tests_by_U": 0,
+  "artifact_hash_normalization": "UTF-8 with CRLF normalized to LF",
+  "artifact_lf_sha256": {
+    "compiled-input-evidence.json": "1bf7170ab67cc7b5852617c7a07bc8ee50f538c886d93c0ef35c145cba1aa906",
+    "HANDOFF.md": "98769a9ab9c1820f11e7f202ec1e581314be6659b259996f06a491fff7c1a895",
+    "source.patch": "83206117966d15e00422a9d5790550f241e07ff5779622b42551935807fc4f3a",
+    "verification.json": "6e49cdc5ea5e881fcc6989abe580c451947ae1c4c241a0b085d77b4757fc4859",
+    "verify_trace.py": "98781e51f5d330b4fe05279e37fad24ab40d4fdf4581d6453742da73030beb0d"
+  }
+}
