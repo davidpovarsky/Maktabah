@@ -1,0 +1,56 @@
+    t =    85.08s Type '⎋' key (XCUIKeyboardKeyEscape) with no modifiers
+    t =    85.08s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    85.10s     Find the "חפש ספר בספרייה…" TextField
+    t =    85.98s     Check for interrupting elements affecting "חפש ספר בספרייה…" TextField
+    t =    86.14s         Wait for com.apple.springboard to idle
+    t =    86.24s Ignoring failure to get hierarchy for remote element in process 21872 (Error getting main window kAXErrorServerNotFound)
+    t =    86.25s Ignoring failure to get hierarchy for remote element in process 21872 (Error getting main window kAXErrorServerNotFound)
+    t =    86.41s     Synthesize event
+    t =    87.11s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    88.18s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    88.19s     Checking existence of `"reader-library-command-palette" Any`
+    t =    88.57s     Capturing element debug description
+    t =    89.21s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    89.21s     Checking existence of `"reader-library-command-palette" Any`
+    t =    89.62s     Capturing element debug description
+    t =    90.15s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    90.15s     Checking existence of `"reader-library-command-palette" Any`
+    t =    90.51s     Capturing element debug description
+    t =    91.14s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    91.14s     Checking existence of `"reader-library-command-palette" Any`
+    t =    91.59s     Capturing element debug description
+    t =    92.20s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    92.20s     Checking existence of `"reader-library-command-palette" Any`
+    t =    92.51s     Capturing element debug description
+    t =    93.14s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    93.14s     Checking existence of `"reader-library-command-palette" Any`
+    t =    93.50s     Capturing element debug description
+    t =    94.14s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    94.14s     Checking existence of `"reader-library-command-palette" Any`
+    t =    94.57s     Capturing element debug description
+    t =    95.17s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    95.17s     Checking existence of `"reader-library-command-palette" Any`
+    t =    95.51s     Capturing element debug description
+    t =    96.14s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    96.14s     Checking existence of `"reader-library-command-palette" Any`
+    t =    96.48s     Capturing element debug description
+    t =    97.14s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    97.14s     Checking existence of `"reader-library-command-palette" Any`
+    t =    97.54s     Capturing element debug description
+    t =    98.16s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    98.16s     Checking existence of `"reader-library-command-palette" Any`
+    t =    98.53s     Capturing element debug description
+    t =    99.16s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =    99.16s     Checking existence of `"reader-library-command-palette" Any`
+    t =    99.52s     Capturing element debug description
+    t =   100.17s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =   100.17s     Checking existence of `"reader-library-command-palette" Any`
+    t =   100.54s     Capturing element debug description
+    t =   101.15s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =   101.16s     Checking existence of `"reader-library-command-palette" Any`
+    t =   101.56s     Capturing element debug description
+    t =   102.14s Checking `Expect predicate `exists == 0` for object "reader-library-command-palette" Any`
+    t =   102.14s     Checking existence of `"reader-library-command-palette" Any`
+    t =   102.46s     Checking existence of `"reader-library-command-palette" Any` (retry 1)
+    t =   102.47s     Checking existence of `"reader-library-command-palette" Any` (retry 2)
+/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:169: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapNativeWindowResizePaletteAndInspector] : XCTAssertEqual failed: ("XCTWaiterResult(rawValue: 2)") is not equal to ("XCTWaiterResult(rawValue: 1)")
