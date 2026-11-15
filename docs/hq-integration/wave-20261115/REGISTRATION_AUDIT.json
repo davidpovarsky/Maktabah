@@ -1,0 +1,41 @@
+{
+  "scope": "Structural registration only; Apple compilation pending",
+  "new_objects": 20,
+  "source_files": [
+    "ActionAppIdentityBridge.swift",
+    "ActionBackendCoordinatorFacade.swift",
+    "ActionLiveBackendBridge.swift"
+  ],
+  "core_targets": [
+    "Maktabah",
+    "Maktabah-Direct",
+    "Maktabah-iOS"
+  ],
+  "ui_routing_targets": [
+    "Maktabah-iOS"
+  ],
+  "unchanged_build_settings": true,
+  "existing_objects_and_order_preserved": true,
+  "inherited_duplicate_keys_preserved": [
+    {
+      "key": "240682637A5169A63619E577",
+      "identical": true
+    },
+    {
+      "key": "FB254BD29A50C530E907662A",
+      "identical": true
+    },
+    {
+      "key": "FDB5242B5960EB1507BD74A6",
+      "identical": true
+    },
+    {
+      "key": "3373C7B02164CDBB77BFFF48",
+      "identical": true
+    },
+    {
+      "key": "C2CCE35AFE445BF8BEF37C5F",
+      "identical": true
+    }
+  ]
+}

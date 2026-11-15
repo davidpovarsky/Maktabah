@@ -1323,6 +1323,19 @@
 		E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
 		E81108000000000000000004 /* CompactStudyWorkspaceHostModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000005; };
 		E81109000000000000000002 /* ReaderOverviewPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81109000000000000000001; };
+		2AFA9DDCD22B555F95D3101F /* ActionAppIdentityBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD350FDBA74BE71A875EEC5; };
+		194BA2C5D63DD7A0E9C7CF99 /* ActionBackendCoordinatorFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472B7F434959A9F0E806751; };
+		4F8A0BC7E981AEBBFFB4825A /* ActionLiveBackendBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942E0C742F60E22D222A90; };
+		FC6CF820BC9E44AE868BB8BC /* OtzariaActionCore in Frameworks */ = {isa = PBXBuildFile; productRef = 582B5506A83D2F6132847CA7; };
+		6D44E07645CB357B0002F3B1 /* ActionAppIdentityBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD350FDBA74BE71A875EEC5; };
+		5093AF69136F77C09B9B49C9 /* ActionBackendCoordinatorFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472B7F434959A9F0E806751; };
+		A94DBD84766950781F6B9DE1 /* ActionLiveBackendBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942E0C742F60E22D222A90; };
+		08E82065938C41AB52292267 /* OtzariaActionCore in Frameworks */ = {isa = PBXBuildFile; productRef = 582B5506A83D2F6132847CA7; };
+		29329543A6CFE5F569B0EF8A /* ActionAppIdentityBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD350FDBA74BE71A875EEC5; };
+		9EE909C2BAB12E1FD38F399C /* ActionBackendCoordinatorFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472B7F434959A9F0E806751; };
+		1B3CB8CCEBD0480AC2E676CB /* ActionLiveBackendBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942E0C742F60E22D222A90; };
+		0F6DD92722DC911905F3771D /* OtzariaActionCore in Frameworks */ = {isa = PBXBuildFile; productRef = 582B5506A83D2F6132847CA7; };
+		DCACB3D4B595024586832F5F /* OtzariaUIRouting in Frameworks */ = {isa = PBXBuildFile; productRef = BC588C1940F9011A8FBA04C1; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2076,6 +2089,9 @@
 		E81108000000000000000001 /* ReaderNavigationChromeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderNavigationChromeState.swift"; sourceTree = "<group>"; };
 		E81108000000000000000005 /* CompactStudyWorkspaceHostModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/CompactStudyWorkspaceHostModifier.swift"; sourceTree = "<group>"; };
 		E81109000000000000000001 /* ReaderOverviewPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderOverviewPresentation.swift"; sourceTree = "<group>"; };
+		BBD350FDBA74BE71A875EEC5 /* ActionAppIdentityBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionAppIdentityBridge.swift"; sourceTree = "<group>"; };
+		7472B7F434959A9F0E806751 /* ActionBackendCoordinatorFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionBackendCoordinatorFacade.swift"; sourceTree = "<group>"; };
+		C2942E0C742F60E22D222A90 /* ActionLiveBackendBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionLiveBackendBridge.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2110,6 +2126,7 @@
 			files = (
 				CEF000000000000000000003 /* ZIPFoundation in Frameworks */,
 				4B88322F2F7EB3A7004C6213 /* libzstd in Frameworks */,
+				FC6CF820BC9E44AE868BB8BC /* OtzariaActionCore in Frameworks */,
 			);
 		};
 		4B7C91072F83494200454BE1 /* Frameworks */ = {
@@ -2118,6 +2135,7 @@
 				CEF000000000000000000004 /* ZIPFoundation in Frameworks */,
 				4B7C91322F834CF700454BE1 /* Sparkle in Frameworks */,
 				4B7C91092F83494200454BE1 /* libzstd in Frameworks */,
+				08E82065938C41AB52292267 /* OtzariaActionCore in Frameworks */,
 			);
 		};
 		4BD8A4E4307E521A00E04BCB /* Frameworks */ = {
@@ -2137,6 +2155,8 @@
 				F30577492FA46222005732C6 /* libzstd in Frameworks */,
 				F863781C27AE47117CE50EC6 /* OtzariaSearchEngine.xcframework in Frameworks */,
 				84D12781C078EB5DB21319C0 /* MaktabahZayitSearch.xcframework in Frameworks */,
+				0F6DD92722DC911905F3771D /* OtzariaActionCore in Frameworks */,
+				DCACB3D4B595024586832F5F /* OtzariaUIRouting in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -2346,6 +2366,9 @@
 				0A7A00000000000000000035 /* OtzariaPerformanceTelemetry.swift */,
 				0A7A0000000000000000001D /* OtzariaStateViews.swift */,
 				0A7A0000000000000000001E /* OtzariaFileLogger.swift */,
+				BBD350FDBA74BE71A875EEC5 /* ActionAppIdentityBridge.swift */,
+				7472B7F434959A9F0E806751 /* ActionBackendCoordinatorFacade.swift */,
+				C2942E0C742F60E22D222A90 /* ActionLiveBackendBridge.swift */,
 			);
 			path = Otzaria;
 			sourceTree = "<group>";
@@ -3756,6 +3779,7 @@
 			packageProductDependencies = (
 				CEF000000000000000000002 /* ZIPFoundation */,
 				4B88322E2F7EB3A7004C6213 /* libzstd */,
+				582B5506A83D2F6132847CA7 /* OtzariaActionCore */,
 			);
 			productName = maktab;
 			productReference = 4B3202282EDAFE85003B95D1 /* Maktabah Debug.app */;
@@ -3781,6 +3805,7 @@
 				CEF000000000000000000002 /* ZIPFoundation */,
 				4B7C90A32F83494200454BE1 /* libzstd */,
 				4B7C91312F834CF700454BE1 /* Sparkle */,
+				582B5506A83D2F6132847CA7 /* OtzariaActionCore */,
 			);
 			productName = maktab;
 			productReference = 4B7C912E2F83494200454BE1 /* Maktabah Debug.app */;
@@ -3844,6 +3869,8 @@
 				A20000000000000000000002 /* TorahInspectorUI */,
 				CEF000000000000000000002 /* ZIPFoundation */,
 				F30576E02FA46222005732C6 /* libzstd */,
+				582B5506A83D2F6132847CA7 /* OtzariaActionCore */,
+				BC588C1940F9011A8FBA04C1 /* OtzariaUIRouting */,
 			);
 			productName = maktab;
 			productReference = F305776F2FA46222005732C6 /* Maktabah.app */;
@@ -3903,6 +3930,8 @@
 				CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */,
 				4B7C91302F834CF700454BE1 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				44E970B960139E9AA64F4E71 /* OtzariaActionCore local package */,
+				68DF418172DF6306B7606B65 /* OtzariaUIRouting local package */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = 4B3202292EDAFE85003B95D1 /* Products */;
@@ -4437,6 +4466,9 @@
 				F3A000062FBB000100000001 /* SyncPendingStore.swift in Sources */,
 				F3A0000A2FBB000100000001 /* SingleFlight.swift in Sources */,
 				F3A0000E2FBB000100000001 /* ZstdDecompressor.swift in Sources */,
+				2AFA9DDCD22B555F95D3101F /* ActionAppIdentityBridge.swift in Sources */,
+				194BA2C5D63DD7A0E9C7CF99 /* ActionBackendCoordinatorFacade.swift in Sources */,
+				4F8A0BC7E981AEBBFFB4825A /* ActionLiveBackendBridge.swift in Sources */,
 			);
 		};
 		4B7C90A52F83494200454BE1 /* Sources */ = {
@@ -4781,6 +4813,9 @@
 				7C43CAFF8A64F7C8DCF630CF /* HistorySnapshot.swift in Sources */,
 				EEBDF61480D82A1441EAF2DD /* AnnotationSnapshot.swift in Sources */,
 				BD5DF925F31DE6CC287FFC10 /* WidgetSnapshotRecord.swift in Sources */,
+				6D44E07645CB357B0002F3B1 /* ActionAppIdentityBridge.swift in Sources */,
+				5093AF69136F77C09B9B49C9 /* ActionBackendCoordinatorFacade.swift in Sources */,
+				A94DBD84766950781F6B9DE1 /* ActionLiveBackendBridge.swift in Sources */,
 			);
 		};
 		4BD8A4E3307E521A00E04BCB /* Sources */ = {
@@ -5296,6 +5331,9 @@
 				F3AE62CF304C5838002569BB /* LibraryFilterMode.swift in Sources */,
 				F319965C3068C5D0005013F8 /* SearchResultBuffer.swift in Sources */,
 				8929444A1AD0BCA77A8D89C7 /* WidgetSnapshotRecord.swift in Sources */,
+				29329543A6CFE5F569B0EF8A /* ActionAppIdentityBridge.swift in Sources */,
+				9EE909C2BAB12E1FD38F399C /* ActionBackendCoordinatorFacade.swift in Sources */,
+				1B3CB8CCEBD0480AC2E676CB /* ActionLiveBackendBridge.swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */
@@ -6198,6 +6236,8 @@
             isa = XCLocalSwiftPackageReference;
             relativePath = Source/ChavrusaText/Dependencies/CommandPalette;
         };
+		44E970B960139E9AA64F4E71 /* OtzariaActionCore local package */ = {isa = XCLocalSwiftPackageReference; relativePath = Source/Otzaria/Actions; };
+		68DF418172DF6306B7606B65 /* OtzariaUIRouting local package */ = {isa = XCLocalSwiftPackageReference; relativePath = Source/Otzaria/UIRouting; };
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -6318,6 +6358,8 @@
             package = 66370DCD8947589AD0EB9BEB /* CommandPalette source fork */;
             productName = CommandPalette;
         };
+		582B5506A83D2F6132847CA7 /* OtzariaActionCore */ = {isa = XCSwiftPackageProductDependency; package = 44E970B960139E9AA64F4E71; productName = OtzariaActionCore; };
+		BC588C1940F9011A8FBA04C1 /* OtzariaUIRouting */ = {isa = XCSwiftPackageProductDependency; package = 68DF418172DF6306B7606B65; productName = OtzariaUIRouting; };
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B3202202EDAFE85003B95D1 /* Project object */;
