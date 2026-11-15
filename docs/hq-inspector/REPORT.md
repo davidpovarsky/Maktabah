@@ -134,3 +134,25 @@ EXECUTED_PASS12 corpus windows: entire indexed source book plus first/middle/las
 EXECUTED_PASS existing13-group synthetic suite after real schema-projection extraction: fixtures-native-schema-20261115.log. Explicit outside-build corpus DB and --database on noncorpus mode are rejected with expected exit2 before compilation/DB access: corpus-boundary-negative-20261115.log. Runner syntax check also PASS.
 
 Limits remain strict: dictionary decoding here uses Python/libzstd, NOT production Swift/C decoder; no Apple app, UI, iPad, MainActor/RSS/p95 or full production performance claim. miniTest10 is a genuine schema6/v32 subset, not the current production release. During read-only source preparation, official latest was verified as v38-20261112163847(443459877), whose DB is multipart schema7. Assigned I's release parser still selects monolithic asset names. This concrete compatibility/source-pin issue was routed to manager for D/R ownership; I did not alter their downloader or silently call v32 data latest production. Exact native/coherent source and physical acceptance remain OPEN.
+
+
+## Continued genuine TOC-member windows and explicit remaining inputs
+
+The next corpus run extends the12 windows to21 and leaves application sources unchanged. It reads source tocEntry/tocText/line_toc records to select first/lower-median/last mapped leaf and its exact direct member indexes; it does not infer line ranges or duplicate Reader's ancestor/unit grouping. Root title-line association and Reader unit equivalence are explicitly not asserted. No R service source was copied, changed or replaced.
+
+| Genuine source | TOC IDs / titles | Direct member counts | Exact relationship counts |
+| --- | --- | --- | --- |
+| Tehillim28 | 600/674/749: chapters1/75/150 | 7/12/7 | 12/6/5 |
+| Berakhot103 | 1558/1620/1682: daf2a/33a/64a | 15/38/16 | 16/21/12 |
+| DerashotHaRan3152 | 297503/297508/297514: chapters1/6/12 | 55/31/41 | 14/28/3 |
+
+EXECUTED_PASS: same corpus command,21 windows total, independent row/set identities, complete grouping, requested tail hydration and last exact point-source parity. miniTest10-toc-source-audit-20261115.log. All178 readonly query/parameter/EXPLAIN records are retained in the updated raw JSON.35metadata queries use the covering book/line index,0metadata frames decoded,90dictionary frames only requested snippet/point paths, no unindexed link scan observed, DB SHA unchanged. Current raw sourceHeada9bc4ffdb65d39d2240e782f6539903906eb63f8; production source bytes are unchanged from8cc9c675. The preceding12-window raw report remains preserved at a9bc4ffd. The compact summary is now generated automatically from raw records and includes the raw-audit SHA256; report generation was executed directly against the actual completed run records. Prior13-group regression evidence remains applicable: subsequent edits only expand the explicit corpus branch and generate reports, with no changed application/schema code or default fixture path.
+
+Manager's data-pin decision for this wave: installedv32/schema6 plus matchingv32 search inputs, not an upgrade to latestv38/schema7. miniTest10-v6 stays an authenticated subset, never full/latest acceptance. No old fullDB was downloaded to fill a fixture and no v38 data/engine/index change was made.
+
+Concrete acceptance inputs still unavailable to I:
+1. A read-only copy/location of the actual installed FULL v32/schema6 database with its verified installation/source manifest and matching v32 search fingerprint. The assigned tree exposes the authenticated15.47MB subset, not that installed full corpus; no full-data p95/RSS/DB or source-capacity completion is claimed.
+2. A coherent app/target source fingerprint containing S's actual Embedded relationship error/identity correction and I's Inspector corrections. I's isolated tree still contains the legacy S adapter; portable doubles must not substitute for that true source.
+3. A fresh real Apple/native execution with observed toolchain/SDK, app and UI-test target membership, simulator/device model+UDID+runtime, xcresult/screens/AX/logs, followed by physical iPad acceptance. Available local authority is Windows6.3.3 and the connected DC host is Linux. Historical Xcode27/Simulator evidence is not reused as fresh proof. Existing manager-coordinated native/R27 execution is not duplicated or represented as an I PASS.
+
+These are source/runtime evidence dependencies under the accepted single-manager contract, not a new approval requirement. Original Asana1219602987688876 remains OPEN.

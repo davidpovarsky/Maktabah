@@ -188,9 +188,31 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
 
     static func corpusFixtures() throws {
         for bookID in [28, 103, 3152] {
-            let indexes = try bridge().database.fetch(query: "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex", parameters: [bookID]) { $0.int(at: 0) }
+            let catalog = bridge().database
+            let indexes = try catalog.fetch(query: "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex", parameters: [bookID]) { $0.int(at: 0) }
             try expect(!indexes.isEmpty, "digest-pinned source book exists")
-            for (name, window) in [("all", indexes), ("first", [indexes[0]]), ("middle", [indexes[indexes.count / 2]]), ("last", [indexes[indexes.count - 1]])] {
+            var windows = [("all", indexes), ("first", [indexes[0]]), ("middle", [indexes[indexes.count / 2]]), ("last", [indexes[indexes.count - 1]])]
+            // Genuine direct TOC membership, not line-range arithmetic or a
+            // duplicate of Reader's unit/ancestor grouping implementation.
+            let nodes = try catalog.fetch(query: """
+                SELECT te.id, tt.text, MIN(l.lineIndex)
+                FROM tocEntry te JOIN tocText tt ON tt.id = te.textId
+                JOIN line_toc lt ON lt.tocEntryId = te.id JOIN line l ON l.id = lt.lineId
+                WHERE te.bookId = ? AND te.parentId IS NOT NULL
+                  AND NOT EXISTS (SELECT 1 FROM tocEntry child WHERE child.parentId = te.id)
+                GROUP BY te.id, tt.text ORDER BY MIN(l.lineIndex), te.id
+                """, parameters: [bookID]) { (id: $0.int(at: 0), title: $0.string(at: 1) ?? "") }
+            try expect(!nodes.isEmpty, "genuine source has mapped TOC leaves")
+            for (slot, offset) in [("first", 0), ("middle", (nodes.count - 1) / 2), ("last", nodes.count - 1)] {
+                let node = nodes[offset]
+                let members = try catalog.fetch(query: """
+                    SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId
+                    WHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex
+                    """, parameters: [bookID, node.id]) { $0.int(at: 0) }
+                try expect(!members.isEmpty, "source TOC member set is nonempty")
+                windows.append(("direct-TOC-\(slot)-\(node.id)-\(node.title)", members))
+            }
+            for (name, window) in windows {
                 let bridge = bridge()
                 bridge.database.splitContent = true
                 let expected = try bridge.database.corpusExpectedLinks(bookID: bookID, indexes: window)
