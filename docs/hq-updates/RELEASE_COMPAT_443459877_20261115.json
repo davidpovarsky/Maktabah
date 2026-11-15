@@ -1,0 +1,100 @@
+{
+  "lane": "D",
+  "thread_id": "01a1df8b-25d3-7691-8d3b-1d786882e2fb",
+  "audited_source_sha": "3e542e91e85820e7422addd621db549f72125ddc",
+  "status": "EXECUTED_PASS_PORTABLE_PARSER_AND_STATIC_ROUTE_AUDIT",
+  "latest": {
+    "tag": "v38-20261112163847",
+    "asset_count": 19,
+    "id": 443459877,
+    "url": "https://github.com/Otzaria/SeforimLibrary/releases/tag/v38-20261112163847",
+    "published_at": "2026-11-12T21:03:46Z"
+  },
+  "pinned_reference": {
+    "tag": "v32-20261010190601",
+    "id": 409213893,
+    "url": "https://github.com/Otzaria/SeforimLibrary/releases/tag/v32-20261010190601"
+  },
+  "multipart_manifest": {
+    "schemaVersion": 1,
+    "archive": "seforim-schema7.db.zst",
+    "size": 2246741848,
+    "sha256": "83acc93ddc25e0792d8f0408a1c393f1b9a355429a0b5be73cf4b39ccf9fbe2f",
+    "partSizeLimit": 1992294400,
+    "githubAssetLimit": 2147483648,
+    "parts": [
+      {
+        "name": "seforim-schema7.db.zst.part-000",
+        "size": 1992294400,
+        "sha256": "4a97295e9e2df67ee5a89f9fbe402a66646abf6a1278900080dfc8e0d7b867c5"
+      },
+      {
+        "name": "seforim-schema7.db.zst.part-001",
+        "size": 254447448,
+        "sha256": "5c8cd7228a4a00785b5b67f634818c029e90acf31c25abb21f03543080accafa"
+      }
+    ]
+  },
+  "exact_error": "OtzariaDatabaseBootstrapError.databaseAssetMissing",
+  "exact_error_description": "The latest Otzaria release does not contain a supported seforim database asset.",
+  "production_code_changed": false,
+  "installed_data_accessed": false,
+  "payload_downloaded": false,
+  "apple_native_runtime": "NOT_RUN",
+  "snapshot_hashes": [
+    {
+      "file": "latest.json",
+      "sha256": "23E71D67F2478D9E4ACCCD8DD2AEB7650E5B973F9A0E4FDADF862A2E1F0CD908"
+    },
+    {
+      "file": "release-443459877.json",
+      "sha256": "23E71D67F2478D9E4ACCCD8DD2AEB7650E5B973F9A0E4FDADF862A2E1F0CD908"
+    },
+    {
+      "file": "release-v32.json",
+      "sha256": "E4E94232E1A9425C99805B5F21ACDE1DC36FD76BA6A84EDAD48259BAE56EEFCA"
+    },
+    {
+      "file": "seforim-schema7.db.zst.manifest.json",
+      "sha256": "C2A1C27DF57982F2602B829CBAFA4157645EDE12AC93D4730F6939B6936EBC42"
+    },
+    {
+      "file": "main.swift",
+      "sha256": "E557BAD1BF34BF36E5452DE4361CE9E36354ADAE80AB2BE554B1F1FAD83C758E"
+    },
+    {
+      "file": "verification.log",
+      "sha256": "2400FEB5A41936EF7C291E670F1E010C963E505E549B0AE3C65CDF347A40A0F1"
+    }
+  ],
+  "source_blobs": [
+    {
+      "blob": "9a8e464e0b2e46302f6287fbf9fbe7942bdf4f1c",
+      "path": "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift"
+    },
+    {
+      "blob": "bfde8639e7b7d6dcc23a48f452e6cffc599bf050",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift"
+    },
+    {
+      "blob": "3e54359c96e51a0a8e5c4335ff9b342c807c5ee1",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift"
+    },
+    {
+      "blob": "beec770ce83d53172cf56c32a9f5a931b1b7e2f5",
+      "path": "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift"
+    },
+    {
+      "blob": "72b085c77c66ae98849e13693a84276008bd8fe2",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift"
+    },
+    {
+      "blob": "0c6081cec7b3c069b2b7ab013e831a3bee2884b5",
+      "path": "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift"
+    },
+    {
+      "blob": "c6e1532bba99972d623db1c87ac8d10c4d933a9e",
+      "path": "Vendor/OtzariaBootstrapTests/main.swift"
+    }
+  ]
+}
