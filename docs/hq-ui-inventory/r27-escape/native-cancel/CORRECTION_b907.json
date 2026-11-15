@@ -1,0 +1,29 @@
+{
+  "source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+  "upstream_main_verified": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "application_files": [
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "ownership": "DOWNSTREAM_OWNED_ABSENT_FROM_PINNED_UPSTREAM_MAIN",
+      "upstream_files_touched": false,
+      "source_sha256": "f34ec72a40791b205ca5f868aacb65e794b212ac3579710923eb467c4c914a94"
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "ownership": "DOWNSTREAM_OWNED_ABSENT_FROM_PINNED_UPSTREAM_MAIN",
+      "upstream_files_touched": false,
+      "source_sha256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "ownership": "DOWNSTREAM_OWNED_ABSENT_FROM_PINNED_UPSTREAM_MAIN",
+      "upstream_files_touched": false,
+      "source_sha256": "5bd280474da6f152fb2854b1ba4aa3b030efb05e63972bb9be946750c4914194"
+    }
+  ],
+  "scope": "Native palette cancellation candidate and active DEBUG observer only; protected original Source files unchanged",
+  "tests_changed": "Sidebar search field must be visible/hittable within actual sidebar horizontal column including NavigationBar; functional zero-result/inclusion/exclusion/query persistence/clear and reader object/source/offset/locator/text/state oracles unchanged",
+  "local_validation": "27 actual portable policy assertions + Swift syntax parse + git diff check PASS. Windows cannot typecheck SwiftUI/UIKit. Real SDK module/app/native execution pending.",
+  "native_acceptance": "NOT_RUN; no fixed/complete/merge-ready claim",
+  "release": "No release/TestFlight/live user DB changes"
+}

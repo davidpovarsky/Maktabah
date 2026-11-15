@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "source_test_commit": "3d3001ca2c58b3a4d0391e15a36b63aa08510f7f",
+  "source_test_commit": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
-  "app_source": "e8afde8e828da8b045eb916a72a727b38695e218",
+  "app_source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
   "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
   "independent_qa_thread": null,
-  "scope": "U_FIELD_LOCAL_ESCAPE_PRESS_AND_REAL_SIDEBAR_FOUR_CASES_NOT_FULL_RELEASE",
+  "scope": "U_NONINSTRUMENTED_NATIVE_CANCEL_AND_REAL_SIDEBAR_FIVE_CASES_NOT_FULL_RELEASE",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 12,
+  "required_nonzero_cases": 13,
   "expected_per_device": {
-    "ipad11": 8,
+    "ipad11": 9,
     "iphone": 4
   },
   "cases": [
@@ -84,6 +84,12 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "RealUI exact fixture work; native TOC page survives Home/activate and measured portrait/landscape changes; one native toggle; original TextKit object/source/offset, actual text/title/locator preserved; retained before/after screenshots+hierarchy"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Unmodified shared original bottom TOC action helper through realUI normal bootstrap, actual sidebar Contents selection, no modal TOC, exact real fixture work/backend and retained title"
     }
   ],
   "requirements": {
@@ -93,7 +99,7 @@
     "data_profile": "real native-installed miniTest10",
     "bootstrap": "realUI; never -smokeBypassBootstrap",
     "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
-    "scheduling": "One U-owned CI path/build-for-testing; one owned fresh11-window simulator executes4selected actual cases; prior8notrerun"
+    "scheduling": "One U-owned CI/build-for-testing and fresh11-window simulator executes5selected actual cases; historical8notfresh; DEBUG viewport observer is inactive without explicit report environment."
   },
   "required_test_environment": {
     "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
@@ -173,7 +179,8 @@
         "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation"
+        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
       ]
     }
   ],
@@ -181,7 +188,8 @@
     "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation"
+    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -195,7 +203,7 @@
     "runtime_status": "NOT_RUN",
     "scope": "Initial-empty iPad startup tab adoption at final validated commit boundary"
   },
-  "source_change_impact_decision": "Q exact Escape2path review: only window1 affected;8current actual healthy reader paths never instantiate palette and are eligible verified reuse subject to fresh actual runtime compatibility",
+  "source_change_impact_decision": "Prior8 are historical only; current observer start is guarded by missing report env on R27 old8 and no data/state observation executes. Confirm actual runtime/source/generated/fixture compatibility before any reuse.",
   "independent_change_impact": {
     "file": "docs/hq-integration/runtime27/Q_SOURCE_CHANGE_IMPACT_75ea.json",
     "source_file_sha256": "31f5b1ef6905e315cf9f463c05fa11145c0423e7438c10bdbf873127ae0860ac",
@@ -242,7 +250,7 @@
     }
   ],
   "prior_test_source_commit": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
-  "diagnostic_purpose": "Retained fixed stage capture only; acceptance requires real visible dismissal and Inspector/text/locator/window oracles",
+  "diagnostic_purpose": "Current noninstrumented candidate; retained collector may have no events. Acceptance depends on actual native UI postconditions.",
   "app_source_before_observation": "068920924e329573b07c7fa2b3c498364d0800de",
   "diagnostic_only": false,
   "native_trace": {
@@ -258,7 +266,8 @@
     "logging_level": "info",
     "capture": "owned-device live logstream debug level bounded900seconds +bounded15min logshow with info/debug, retained on success/failure beforedevice deletion; mount/editmarkers required",
     "code_image_proof": "actual app executable/rootdylib hashes and bounded PaletteTextField nm symbols; nativebuildlog +actualgeneratedpbxproj bytes",
-    "behavior_fix_claim": false
+    "behavior_fix_claim": false,
+    "status": "HISTORICAL_ONLY_REMOVED_FROM_CURRENT_TWO_PALETTE_SOURCES; zero current log events expected"
   },
   "source_test_before_role_refinement": "c9295c85a51710e592dc2558e6edb5395b1ecca5",
   "query_refinement": "Exactone-line actualOther-role query for samepaletteidentifier, preservingallhardware/query/Escape/Inspector/locator/text/restore assertions/timeouts; sameU914source/capture; no SDKquery-resolution success inferred",
@@ -282,6 +291,19 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
+    "source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+    "changed_production_paths": [
+      "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"
+    ],
+    "behavior": "One registered native SwiftUI cancel Button shortcut; remove unsuccessful field Escape descriptor and uncalibrated recognizer; remove all palette OSLog/target/validation diagnostics; mount existing DEBUG read-only observer in actual iPad scene-lived adapter",
+    "root_cause_claim": false,
+    "oracle": "Unchanged R27 test includes real hardware Escape + both container/input disappearance + actual Inspector + source text/locator + measured window restore; Sidebar geometry includes native navbar while all catalog/paging/reader/state oracles retained",
+    "native_status": "NOT_RUN",
+    "prior_failed_run": 43728847352
+  },
+  "previous_correction": {
     "source": "e8afde8e828da8b045eb916a72a727b38695e218",
     "test_source": "15ed01259d4b41864a53db76c0060c25393d75ef",
     "changed_production_paths": [
@@ -289,7 +311,7 @@
     ],
     "behavior": "Actual field-local UIKit press recognizer before the text view; first-responder/key-window/unmodified-Escape guard; existing native dismissal",
     "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
-    "native_status": "NOT_RUN",
+    "native_status": "ACTUAL_0PASS_4FAIL_0SKIP_RUN_43728847352",
     "next_native_selection": "Original window+actual input disappearance; registered realUI Sidebar RTL/LTR plus background/rotation state; old eight not fresh executions",
     "prior_failed_run": 43723356743
   }
