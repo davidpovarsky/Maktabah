@@ -10,6 +10,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
 
     private let manager = OtzariaSearchIndexManager.shared
     private var engineCache: [String: OtzariaSearchEngineBridge] = [:]
+    private var engineStamps: [String: OpenIndexStamp] = [:]
     private var indexingDatabasePaths: Set<String> = []
     private let lock = NSRecursiveLock()
 
@@ -25,6 +26,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
             return cached
         }
         let indexURL = manager.indexURL(for: databasePath)
+        let before = try? openIndexStamp(databasePath: databasePath)
         let engine = try OtzariaSearchEngineBridge(indexURL: indexURL)
         do {
             try Self.configureRequiredDictionaries(
@@ -38,7 +40,40 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
             throw error
         }
         engineCache[databasePath] = engine
+        if let before, before == (try? openIndexStamp(databasePath: databasePath)) {
+            engineStamps[databasePath] = before
+        }
         return engine
+    }
+
+    /// Discovery can inspect an already-open engine, but must never construct
+    /// one (the native constructor can create/write an index). A disk/profile
+    /// change makes the observation unknown, even if a cached engine still works.
+    func observedOpenIndexDocumentCount(databasePath: String) -> UInt64? {
+        lock.lock()
+        defer { lock.unlock() }
+        guard !indexingDatabasePaths.contains(databasePath),
+              let engine = engineCache[databasePath], let stamp = engineStamps[databasePath],
+              stamp == (try? openIndexStamp(databasePath: databasePath)),
+              let count = try? engine.documentCount(),
+              stamp == (try? openIndexStamp(databasePath: databasePath)) else { return nil }
+        return count
+    }
+
+    private struct OpenIndexStamp: Equatable {
+        let profile: String
+        let database: OtzariaIndexFingerprint
+        let path: String
+        let metadata: Data
+        let identity: Data
+    }
+
+    private func openIndexStamp(databasePath: String) throws -> OpenIndexStamp {
+        let url = manager.indexURL(for: databasePath)
+        return try OpenIndexStamp(profile: OtzariaDataProfileRegistry.activeProfileID,
+            database: manager.currentFingerprint(databasePath: databasePath), path: url.path,
+            metadata: Data(contentsOf: url.appendingPathComponent("meta.json")),
+            identity: Data(contentsOf: manager.identityURL(indexURL: url)))
     }
 
     @discardableResult
@@ -99,6 +134,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         if let engine = engineCache[databasePath] {
             engine.close()
             engineCache[databasePath] = nil
+            engineStamps[databasePath] = nil
         }
         OtzariaIndexFileLogger.log("repository cache invalidated databasePath=\(databasePath)")
     }
@@ -114,6 +150,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
             engine.close()
         }
         engineCache.removeAll()
+        engineStamps.removeAll()
         OtzariaIndexFileLogger.log("repository closeAllEngines done")
     }
 
@@ -123,6 +160,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         if let engine = engineCache[databasePath] {
             engine.close()
             engineCache[databasePath] = nil
+            engineStamps[databasePath] = nil
         }
         indexingDatabasePaths.insert(databasePath)
         OtzariaIndexFileLogger.log("exclusive indexing begin databasePath=\(databasePath)")
@@ -134,6 +172,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         if let engine = engineCache[databasePath] {
             engine.close()
             engineCache[databasePath] = nil
+            engineStamps[databasePath] = nil
         }
         indexingDatabasePaths.remove(databasePath)
         OtzariaIndexFileLogger.log("exclusive indexing end databasePath=\(databasePath)")

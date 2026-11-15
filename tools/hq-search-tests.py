@@ -9,6 +9,7 @@ import argparse
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument("--otzaria-baseline", help="Compile the full view model from this Git ref for an expected red regression run")
+parser.add_argument("--cached-readiness-only", action="store_true", help="Run only the whole-repository readiness regression")
 options = parser.parse_args()
 
 
@@ -70,8 +71,22 @@ with tempfile.TemporaryDirectory(prefix="otzaria-search-fixture-") as name:
     view_model.write_bytes(view_model_bytes + b"\nextension OtzariaTextSearchViewModel { var fixturePaginationTask: Task<Void, Never>? { paginationTask } }\n")
     executable = temp / ("search-fixtures.exe" if os.name == "nt" else "search-fixtures")
     started = time.monotonic()
-    run(["swiftc", "-swift-version", "5", "-parse-as-library", "-I", str(temp), "-L", str(temp),
-         "-lCombine", str(temp / "Locator.swift"), str(temp / "Capacity.swift"), str(temp / "IndexValidation.swift"), str(temp / "HitNavigation.swift"), *[str(ROOT / p) for p in sources],
-         str(view_model), "-o", str(executable)], temp)
-    run([str(executable), str(ROOT)], temp)
+    if not options.cached_readiness_only:
+        run(["swiftc", "-swift-version", "5", "-parse-as-library", "-I", str(temp), "-L", str(temp),
+             "-lCombine", str(temp / "Locator.swift"), str(temp / "Capacity.swift"), str(temp / "IndexValidation.swift"), str(temp / "HitNavigation.swift"), *[str(ROOT / p) for p in sources],
+             str(view_model), "-o", str(executable)], temp)
+        run([str(executable), str(ROOT)], temp)
+    # Compile the whole real repository separately from the UI/view-model
+    # fixture's repository double; reuse the same isolated fixture runner.
+    for resource in ("dictionary.json", "Acronyms.json"):
+        (temp / resource).write_text("{}", encoding="utf-8")
+    cached_executable = temp / ("cached-readiness.exe" if os.name == "nt" else "cached-readiness")
+    cached_sources = ["Source/Features/Search/Models/SearchResultItem.swift",
+                      "Source/Otzaria/Search/OtzariaSearchMode.swift",
+                      "Source/Otzaria/Search/OtzariaSearchModels.swift",
+                      "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+                      "Tests/HQ/search/CachedIndexReadinessFixtures.swift"]
+    run(["swiftc", "-swift-version", "5", "-parse-as-library", str(temp / "Locator.swift"),
+         *[str(ROOT / p) for p in cached_sources], "-o", str(cached_executable)], temp)
+    run([str(cached_executable)], temp)
     print(f"Portable Swift fixtures completed in {time.monotonic() - started:.2f}s")
