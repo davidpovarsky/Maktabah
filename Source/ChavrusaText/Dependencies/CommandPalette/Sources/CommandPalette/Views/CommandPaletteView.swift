@@ -1,6 +1,7 @@
 import SwiftUI
 #if os(iOS)
 import UIKit
+import UIKit.UIGestureRecognizerSubclass
 import OSLog
 private let paletteInputTraceLogger = Logger(subsystem: "com.davidpovarsky.chavrusatext", category: "R27PaletteInput")
 #endif
@@ -301,6 +302,7 @@ private struct PaletteSearchTextField: UIViewRepresentable {
         field.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         field.delegate = context.coordinator
         field.addTarget(context.coordinator, action: #selector(Coordinator.editingChanged(_:)), for: .editingChanged)
+        field.installEscapePressRecognizer()
         return field
     }
 
@@ -364,6 +366,21 @@ private final class PaletteTextField: UITextField {
     var onUp: (() -> Void)?
     var onDown: (() -> Void)?
     var wantsFocus = false
+
+    func installEscapePressRecognizer() {
+        let recognizer = PaletteEscapePressRecognizer(target: self, action: #selector(escapePress(_:)))
+        recognizer.allowedTouchTypes = []
+        recognizer.cancelsTouchesInView = false
+        recognizer.delaysTouchesBegan = false
+        recognizer.delaysTouchesEnded = false
+        addGestureRecognizer(recognizer)
+    }
+
+    @objc private func escapePress(_ recognizer: UIGestureRecognizer) {
+        guard recognizer.state == .recognized else { return }
+        trace("input.escapeGesture.action")
+        dismissFromKeyboard()
+    }
 
     // Diagnostic only: fixed stages and flags, never input/query/book content.
     func trace(_ stage: String) {
@@ -505,5 +522,26 @@ private final class PaletteTextField: UITextField {
     }
     @objc private func up(_ command: UIKeyCommand) { onUp?() }
     @objc private func down(_ command: UIKeyCommand) { onDown?() }
+}
+
+/// Field-local hardware input, before UIKit's text/focus recognizers route it.
+/// Never takes window/application event ownership or recognizes a touch.
+@MainActor
+private final class PaletteEscapePressRecognizer: UIGestureRecognizer {
+    override func canPrevent(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool { false }
+    override func canBePrevented(by preventingGestureRecognizer: UIGestureRecognizer) -> Bool { false }
+
+    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent) {
+        guard let field = view as? PaletteTextField else { state = .failed; return }
+        let escape = presses.contains {
+            $0.key?.keyCode == .keyboardEscape && $0.key?.modifierFlags.isEmpty == true
+        }
+        field.trace(escape ? "input.escapeGesture.escape" : "input.escapeGesture.other")
+        guard escape, field.isFirstResponder, field.window?.isKeyWindow == true else {
+            state = .failed
+            return
+        }
+        state = .recognized
+    }
 }
 #endif
