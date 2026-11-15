@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "source_test_commit": "8ecd0cad7a8b5d9174aed43754bc684f649593d4",
+  "source_test_commit": "3d3001ca2c58b3a4d0391e15a36b63aa08510f7f",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
   "app_source": "40e642349814568ccae4437cb914f01f0c12420b",
   "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
   "independent_qa_thread": null,
   "scope": "U_NATIVE_CANCEL_AND_SIDEBAR_RTL_LTR_FOCUSED_ACCEPTANCE_NOT_FULL_RELEASE",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 11,
+  "required_nonzero_cases": 12,
   "expected_per_device": {
-    "ipad11": 7,
+    "ipad11": 8,
     "iphone": 4
   },
   "cases": [
@@ -78,6 +78,12 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Same genuine fixture/native reader and functional search/state oracles in English LTR; fixed physical LTR body swipes and preserved one native toggle/TOC ownership"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "RealUI exact fixture work; native TOC page survives Home/activate and measured portrait/landscape changes; one native toggle; original TextKit object/source/offset, actual text/title/locator preserved; retained before/after screenshots+hierarchy"
     }
   ],
   "requirements": {
@@ -87,7 +93,7 @@
     "data_profile": "real native-installed miniTest10",
     "bootstrap": "realUI; never -smokeBypassBootstrap",
     "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
-    "scheduling": "One U-owned CI path/build-for-testing; one owned fresh11-window simulator executes the3selected actual cases; prior8notrerun"
+    "scheduling": "One U-owned CI path/build-for-testing; one owned fresh11-window simulator executes4selected actual cases; prior8notrerun"
   },
   "required_test_environment": {
     "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
@@ -166,14 +172,16 @@
       "case_ids": [
         "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
-        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation"
       ]
     }
   ],
   "execution_case_ids": [
     "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
-    "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
+    "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -282,6 +290,6 @@
     "behavior": "Existing visible esc hint becomes real native standard Cancel button; same host presentation state",
     "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
     "native_status": "NOT_RUN",
-    "next_native_selection": "Window original+actual input disappearance and two registered realUI Sidebar cases; old eight are not fresh executions"
+    "next_native_selection": "Original window+actual input disappearance; registered realUI Sidebar RTL/LTR plus background/rotation state; old eight not fresh executions"
   }
 }
