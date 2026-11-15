@@ -1,6 +1,10 @@
 import Foundation
 import OtzariaActionCore
 
+// Exact port from P's frozen Core065148d3. The app target compiles this
+// conformance beside the factory after the manager wires the same Core product.
+extension ActionBackendCoordinatorFacade: ActionSynchronousBackendStatePort {}
+
 /// App composition supplies one facade for P's existing typed ports. Discovery
 /// observes the active runtime without initializing it or mutating user data.
 @MainActor
@@ -14,6 +18,18 @@ enum ActionLiveBackendBridge {
                      legacyNetwork: @escaping @Sendable () async -> ActionReadinessEvidence = { .unknown }) -> ActionBackendCoordinatorFacade {
         ActionBackendCoordinatorFacade(coordinator: coordinator,
             epoch: { await SefariaJSRPCBridge.shared.sessionEpoch },
+            currentEpoch: { SefariaJSRPCBridge.shared.currentSessionEpoch },
+            resourceWitness: {
+                let bridge = OtzariaMaktabahBridge.shared
+                let generation = bridge.generationSnapshot()
+                let path = bridge.databasePath
+                let profile = OtzariaDataProfileRegistry.activeProfileID
+                let search = OtzariaTantivySearchRepository.shared.resourceObservation(databasePath: path)
+                guard generation == bridge.generationSnapshot(), path == bridge.databasePath,
+                      profile == OtzariaDataProfileRegistry.activeProfileID else { throw ActionPortError.staleState }
+                return .init(databaseGeneration: generation, searchRevision: search.revision,
+                    profileID: profile, databasePath: path, searchFingerprint: search.fingerprint)
+            },
             readiness: { snapshot in
                 var result = ActionBackendRuntimeEvidence(snapshot: snapshot)
                 switch snapshot.backend {

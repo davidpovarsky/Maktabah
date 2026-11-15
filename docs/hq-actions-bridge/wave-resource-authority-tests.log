@@ -1,0 +1,8 @@
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-actions-integration-k5bpqryu\integration-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-actions-integration-k5bpqryu\integration-fixtures.exp
+
+PASS: 76 Integration assertions using real app coordinator/models/protocols, facade, RPC bridge and runtime manager; providers/transport are doubles, no Hermes or Apple UI
+2026-11-15 16:55:47.673 integration-fixtures.exe[37076:8154] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-15 16:55:47.674 integration-fixtures.exe[37076:991c] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","event":"ready","sequence":1}
+2026-11-15 16:55:47.675 integration-fixtures.exe[37076:991c] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-15 16:55:47.677 integration-fixtures.exe[37076:8154] [SefariaJSRPCBridge] waitForReady: already ready with active transport and listeners
+2026-11-15 16:55:47.681 integration-fixtures.exe[37076:991c] [SefariaJSRPCBridge] waitForReady: already ready with active transport and listeners

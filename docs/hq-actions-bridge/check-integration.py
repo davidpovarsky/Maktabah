@@ -31,6 +31,7 @@ files = [
     "Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift",
     "docs/hq-actions-bridge/RuntimeAcceptance.swift",
     "docs/hq-actions-bridge/RelationshipsAcceptance.swift",
+    "docs/hq-actions-bridge/ResourceAcceptance.swift",
     "docs/hq-actions-bridge/IntegrationAcceptance.swift",
 ]
 with tempfile.TemporaryDirectory(prefix="hq-actions-integration-") as folder:
