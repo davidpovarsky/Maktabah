@@ -1,0 +1,13 @@
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
+@@ -156,8 +156,8 @@
+             }
+         } onCancel: { [weak self] in
+             Task { @MainActor in
+-                guard let self, mountWaiters[managerID]?.token == token else { return }
+-                mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
++                guard let self, self.mountWaiters[managerID]?.token == token else { return }
++                self.mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+             }
+         }
+     }

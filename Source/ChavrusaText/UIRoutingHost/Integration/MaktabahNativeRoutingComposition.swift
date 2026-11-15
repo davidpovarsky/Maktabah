@@ -199,8 +199,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
             }
         } onCancel: { [weak self] in
             Task { @MainActor in
-                guard let self, mountWaiters[managerID]?.token == token else { return }
-                mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+                guard let self, self.mountWaiters[managerID]?.token == token else { return }
+                self.mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
             }
         }
     }

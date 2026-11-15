@@ -21,3 +21,11 @@ docs/hq-ui-routing/N-app-owner-edge-inputs.json -text
 docs/hq-ui-routing/N-app-owner-edge-full.log -text
 docs/hq-ui-routing/N-app-reconciled-e8-inputs.json -text
 docs/hq-ui-routing/N-app-reconciled-e8-full.log -text
+docs/hq-ui-routing/N-mount-wait-initial-fixture-compile.log -text
+docs/hq-ui-routing/N-mount-wait-initial-fixture-inputs.json -text
+docs/hq-ui-routing/N-mount-wait-initial-boundary-compile.log -text
+docs/hq-ui-routing/N-mount-wait-initial-boundary-inputs.json -text
+docs/hq-ui-routing/N-mount-wait-before.log -text
+docs/hq-ui-routing/N-mount-wait-before-inputs.json -text
+docs/hq-ui-routing/N-mount-wait-after.log -text
+docs/hq-ui-routing/N-mount-wait-after-inputs.json -text

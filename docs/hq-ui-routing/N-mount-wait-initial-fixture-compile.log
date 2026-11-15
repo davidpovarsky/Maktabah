@@ -1,0 +1,288 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-2807070033DA82CF.txt
+[1/9] Write sources
+[3/10] Emitting module ChavrusaUIRoutingHostTests
+[4/12] Compiling ChavrusaUIRoutingHostTests ActualWaitForMount_ExplicitNativeBoundary.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:47:41: error: main actor-isolated property 'mountWaiters' cannot be accessed from outside of the actor
+
+45 |         let clock = SystemActionClock()
+
+46 |         try await NativeObservationDeadline.run(until: clock.now() + 5_000_000_000, clock: clock) { [self] in
+
+47 |             for await _ in changes { if mountWaiters.count == count { return } }
+
+   |                                         `- error: main actor-isolated property 'mountWaiters' cannot be accessed from outside of the actor
+
+48 |             throw ActionPortError.unavailable
+
+49 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:63:46: error: main actor-isolated property 'primed' cannot be accessed from outside of the actor
+
+61 |         let clock = SystemActionClock()
+
+62 |         try await NativeObservationDeadline.run(until: clock.now() + 5_000_000_000, clock: clock) { [self] in
+
+63 |             for await _ in primeChanges { if primed[manager] != nil { return } }
+
+   |                                              `- error: main actor-isolated property 'primed' cannot be accessed from outside of the actor
+
+64 |             throw ActionPortError.unavailable
+
+65 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:87:33: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+84 |             }
+
+85 |         } onCancel: { [weak self] in
+
+86 |             Task { @MainActor in
+
+   |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+87 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+   |                                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+   |                                 `- note: reference 'self.' explicitly
+
+88 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+89 |             }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:88:17: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+84 |             }
+
+85 |         } onCancel: { [weak self] in
+
+86 |             Task { @MainActor in
+
+   |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+87 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+88 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+   |                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+   |                 `- note: reference 'self.' explicitly
+
+89 |             }
+
+90 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NMountWaitTests.swift:46:34: error: 'async' property access in an autoclosure that does not support concurrency
+
+44 |         try await b.untilCount(2)
+
+45 |         b.mount(ObjectIdentifier(a), scene: "A")
+
+46 |         XCTAssertEqual(try await first.value.rawValue, "A")
+
+   |                                  `- error: 'async' property access in an autoclosure that does not support concurrency
+
+47 |         XCTAssertTrue(b.queued(ObjectIdentifier(z))); XCTAssertEqual(b.waiterCount, 1)
+
+48 |         b.mount(ObjectIdentifier(z), scene: "Z")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NMountWaitTests.swift:49:34: error: 'async' property access in an autoclosure that does not support concurrency
+
+47 |         XCTAssertTrue(b.queued(ObjectIdentifier(z))); XCTAssertEqual(b.waiterCount, 1)
+
+48 |         b.mount(ObjectIdentifier(z), scene: "Z")
+
+49 |         XCTAssertEqual(try await second.value.rawValue, "Z"); XCTAssertEqual(b.waiterCount, 0)
+
+   |                                  `- error: 'async' property access in an autoclosure that does not support concurrency
+
+50 |     }
+
+51 |     func testDuplicateAmbiguousAndFiniteCapacityRefuseWithoutStealingWaiters() async throws {
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NMountWaitTests.swift:64:34: error: 'async' call in an autoclosure that does not support concurrency
+
+62 |         }
+
+63 |         let mounted = ObjectIdentifier(owners[17]); b.existing(mounted, scene: "ready")
+
+64 |         XCTAssertEqual(try await b.run(mounted).rawValue, "ready")
+
+   |                                  `- error: 'async' call in an autoclosure that does not support concurrency
+
+65 |         b.existing(mounted, scene: "ambiguous")
+
+66 |         do { _ = try await b.run(mounted); XCTFail("Ambiguous mounted owner selected") }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NMountWaitTests.swift:85:34: error: 'async' property access in an autoclosure that does not support concurrency
+
+83 |         XCTAssertTrue(b.queued(id)); XCTAssertEqual(b.waiterCount, 1)
+
+84 |         b.mount(id, scene: "replacement")
+
+85 |         XCTAssertEqual(try await replacement.value.rawValue, "replacement")
+
+   |                                  `- error: 'async' property access in an autoclosure that does not support concurrency
+
+86 |         XCTAssertEqual(b.waiterCount, 0)
+
+87 |     }
+
+[5/12] Compiling ChavrusaUIRoutingHostTests NMountWaitTests.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:47:41: error: main actor-isolated property 'mountWaiters' cannot be accessed from outside of the actor
+
+45 |         let clock = SystemActionClock()
+
+46 |         try await NativeObservationDeadline.run(until: clock.now() + 5_000_000_000, clock: clock) { [self] in
+
+47 |             for await _ in changes { if mountWaiters.count == count { return } }
+
+   |                                         `- error: main actor-isolated property 'mountWaiters' cannot be accessed from outside of the actor
+
+48 |             throw ActionPortError.unavailable
+
+49 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:63:46: error: main actor-isolated property 'primed' cannot be accessed from outside of the actor
+
+61 |         let clock = SystemActionClock()
+
+62 |         try await NativeObservationDeadline.run(until: clock.now() + 5_000_000_000, clock: clock) { [self] in
+
+63 |             for await _ in primeChanges { if primed[manager] != nil { return } }
+
+   |                                              `- error: main actor-isolated property 'primed' cannot be accessed from outside of the actor
+
+64 |             throw ActionPortError.unavailable
+
+65 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:87:33: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+84 |             }
+
+85 |         } onCancel: { [weak self] in
+
+86 |             Task { @MainActor in
+
+   |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+87 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+   |                                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+   |                                 `- note: reference 'self.' explicitly
+
+88 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+89 |             }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:88:17: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+84 |             }
+
+85 |         } onCancel: { [weak self] in
+
+86 |             Task { @MainActor in
+
+   |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+87 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+88 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+   |                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+   |                 `- note: reference 'self.' explicitly
+
+89 |             }
+
+90 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NMountWaitTests.swift:46:34: error: 'async' property access in an autoclosure that does not support concurrency
+
+44 |         try await b.untilCount(2)
+
+45 |         b.mount(ObjectIdentifier(a), scene: "A")
+
+46 |         XCTAssertEqual(try await first.value.rawValue, "A")
+
+   |                                  `- error: 'async' property access in an autoclosure that does not support concurrency
+
+47 |         XCTAssertTrue(b.queued(ObjectIdentifier(z))); XCTAssertEqual(b.waiterCount, 1)
+
+48 |         b.mount(ObjectIdentifier(z), scene: "Z")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NMountWaitTests.swift:49:34: error: 'async' property access in an autoclosure that does not support concurrency
+
+47 |         XCTAssertTrue(b.queued(ObjectIdentifier(z))); XCTAssertEqual(b.waiterCount, 1)
+
+48 |         b.mount(ObjectIdentifier(z), scene: "Z")
+
+49 |         XCTAssertEqual(try await second.value.rawValue, "Z"); XCTAssertEqual(b.waiterCount, 0)
+
+   |                                  `- error: 'async' property access in an autoclosure that does not support concurrency
+
+50 |     }
+
+51 |     func testDuplicateAmbiguousAndFiniteCapacityRefuseWithoutStealingWaiters() async throws {
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NMountWaitTests.swift:64:34: error: 'async' call in an autoclosure that does not support concurrency
+
+62 |         }
+
+63 |         let mounted = ObjectIdentifier(owners[17]); b.existing(mounted, scene: "ready")
+
+64 |         XCTAssertEqual(try await b.run(mounted).rawValue, "ready")
+
+   |                                  `- error: 'async' call in an autoclosure that does not support concurrency
+
+65 |         b.existing(mounted, scene: "ambiguous")
+
+66 |         do { _ = try await b.run(mounted); XCTFail("Ambiguous mounted owner selected") }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NMountWaitTests.swift:85:34: error: 'async' property access in an autoclosure that does not support concurrency
+
+83 |         XCTAssertTrue(b.queued(id)); XCTAssertEqual(b.waiterCount, 1)
+
+84 |         b.mount(id, scene: "replacement")
+
+85 |         XCTAssertEqual(try await replacement.value.rawValue, "replacement")
+
+   |                                  `- error: 'async' property access in an autoclosure that does not support concurrency
+
+86 |         XCTAssertEqual(b.waiterCount, 0)
+
+87 |     }
+
+error: fatalError

@@ -1,0 +1,59 @@
+{
+  "status": "EXACT_TWO_LINE_COMPILER_FIX_PORTABLE_RED_GREEN_SEMANTICS_PASS_NO_NATIVE_RETRY",
+  "base043": "0436775d85893225005f29baf0aa3a20d7b88317",
+  "production_path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+  "future_working_sha256": "8cbe7f0a2c710344467e27f85d3a52bfd7619e40efa901e7fadd126136eaf24c",
+  "expected_future_git_blob": "bbed5237fecc5cc7fc753b84ff0df9ae5b3259e5",
+  "changed_production_lines": 2,
+  "original_complete_method_unique_compiler_error_sites": [
+    [
+      "ActualWaitForMount_ExplicitNativeBoundary.swift:101:33",
+      "reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit"
+    ],
+    [
+      "ActualWaitForMount_ExplicitNativeBoundary.swift:102:17",
+      "reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit"
+    ]
+  ],
+  "before_executed_tests": 0,
+  "after_executed_methods": 7,
+  "after_failures": 0,
+  "after_compiler_warnings": 0,
+  "method_names": [
+    "NMountWaitTests.testCancellationBeforeEntryRefusesEvenAlreadyMountedScene",
+    "NMountWaitTests.testCancellationBetweenEntryCheckAndContinuationNeverQueues",
+    "NMountWaitTests.testDuplicateAmbiguousAndFiniteCapacityRefuseWithoutStealingWaiters",
+    "NMountWaitTests.testExactAlreadyMountedManagerReturnsWithoutWaiter",
+    "NMountWaitTests.testMountResumesOnlyMatchingManagerAndCleansLedger",
+    "NMountWaitTests.testOldCancellationTaskCannotRemoveOrResumeReplacementToken",
+    "NMountWaitTests.testQueuedCancellationResumesAndRemovesItsOwnWaiter"
+  ],
+  "before_after_same_boundary_tests_waiter_type": true,
+  "full_actual_frozen_future_method_equivalence": true,
+  "backport": "N_043_MOUNT_WAIT_EXPLICIT_SELF_UNAPPLIED.diff",
+  "backport_apply_checks": {
+    "043": 0,
+    "98": 0
+  },
+  "raw_log_sha256": {
+    "N-mount-wait-initial-fixture-compile.log": "4a2ee3567132403e9432bb75e174903fb96e6d2f6edb346b37393ffae8eb82f8",
+    "N-mount-wait-initial-boundary-compile.log": "0b685d851095dbc8e522f7e66f65cb79c0ddb89450ddc7ce782532801ad8e36a",
+    "N-mount-wait-before.log": "acd60097acfe677cda594ea2cb2b14be01efe442bd0398526af139e5e0769fe4",
+    "N-mount-wait-after.log": "ba8f5f3efedf39b921ed9fa4f1c5570a8aab6c87f5b382a187dbd877b6c0f468"
+  },
+  "before_input_sha256": "314858aa70f2580400f275338a51c1dcfbb17e7c6a1a74c3912dd9938fe7bfe6",
+  "after_input_sha256": "8b4655eb7be5d6245fe2b58c6ddfe34650a96f25289004dce0b1acb555580e8c",
+  "test_scope": "Real Foundation Task/MainActor/checked continuations; complete actual method and waiter type; explicit scene registration/event-observation/independent-continuation ledger replacement shells",
+  "native_terminal_from_manager": {
+    "run": "43752226209",
+    "checkout": "0436775d85893225005f29baf0aa3a20d7b88317",
+    "app_source": "17414a0fd032918e01d8e2f1bfbcec2e33796c16",
+    "artifact": "14177879442",
+    "artifact_sha256": "0a3bdd0efc9fb832334dd31cea29d1c5d4bae826e07cd02a85b4461605ab4de9",
+    "result": "COMPILE_FAILED_0PASS_0FAIL_18NOT_RUN"
+  },
+  "new_SDK_native_CI_run_or_query": false,
+  "manager_original043_98_modified": false,
+  "public_v2_in_043_patch": false,
+  "activation_or_release": false
+}

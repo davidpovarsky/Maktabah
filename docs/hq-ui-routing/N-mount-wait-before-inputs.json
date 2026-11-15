@@ -1,0 +1,12 @@
+{
+  "mode": "BEFORE_EXACT_043",
+  "base": "0436775d85893225005f29baf0aa3a20d7b88317",
+  "source_path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+  "source_sha256": "9dbb9ec2ca61340286a383992537e7738a5a25f40cbe8c7996423aa2908f1adb",
+  "complete_actual_method_sha256": "a4957401effc6ca6f94b9330d0caee802711fbc3980c0ba0fa66347443531d60",
+  "actual_waiter_type_sha256": "b459a77fd1a02b9488f6599ab12919d397da8a2d1680d78c6f59ac90ea0d7faf",
+  "boundary_template_sha256": "cbdc9f493ec56074a6b7db8079523ea18e4bfa0e39c0b407374af266d32ca929",
+  "generated_boundary_sha256": "0767e8da9a5849b0165e6e1740c35ef08389d2090ca4ec888f2df8b64bdd63b0",
+  "tests_sha256": "045036cc1fcbd56257d974cf8b8a9f8f83b5a376a571d6c1b60b4c98910f27ec",
+  "scope": "Complete actual method/type; real Foundation Task/continuation/MainActor; native scene registration and deterministic ledger replacement shells; not Apple/UIKit"
+}
