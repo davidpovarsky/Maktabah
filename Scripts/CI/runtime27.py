@@ -11,6 +11,7 @@ import runpy
 import plistlib
 import html
 import xml.etree.ElementTree as ET
+import shutil
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "build/artifacts/runtime27"
@@ -58,6 +59,7 @@ def collect_cases(report, contract):
     report["case_outcomes"] = outcomes
     for name, status in [("pass", "Passed"), ("fail", "Failed"), ("skip", "Skipped")]:
         report[f"executed_ui_{name}"] = sum(row["actual"] == status for row in outcomes)
+    report["ui_not_run"] = sum(row["actual"] not in ["Passed", "Failed", "Skipped"] for row in outcomes)
     junit = ET.Element("testsuite", name="R27 real native subset", tests=str(len(outcomes)),
                        failures=str(sum(row["actual"] != "Passed" for row in outcomes)))
     for row in outcomes:
@@ -123,6 +125,7 @@ def main():
         if hashlib.sha256(test_path.read_bytes()).hexdigest() != "0f8e06fab18a2d48ff2e254cd603d293c038285a57e5b13514f491467ed51d7a":
             raise RuntimeError("Reviewed test source drift")
         report["test_source_commit"] = contract["source_test_commit"]
+        subprocess.run(["git", "merge-base", "--is-ancestor", contract["source_test_commit"], "HEAD"], cwd=ROOT, check=True)
         report["test_tree"] = capture(["git", "rev-parse", "HEAD:Maktabah-iOSUITests"], "test-tree.txt").strip()
         report["test_inputs_sha256"] = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
                                         for p in sorted((ROOT / "Maktabah-iOSUITests").glob("*.swift"))}
@@ -138,6 +141,11 @@ def main():
             info = plistlib.loads((bundle / "Info.plist").read_bytes())
             binary = bundle / info["CFBundleExecutable"]
             binaries[str(bundle.relative_to(ROOT))] = hashlib.sha256(binary.read_bytes()).hexdigest()
+        test_bundle = products / "Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest"
+        test_info = plistlib.loads((test_bundle / "Info.plist").read_bytes())
+        binaries[str(test_bundle.relative_to(ROOT))] = hashlib.sha256((test_bundle / test_info["CFBundleExecutable"]).read_bytes()).hexdigest()
+        for test_run in (ROOT / "build/DerivedData/Build/Products").glob("*.xctestrun"):
+            shutil.copyfile(test_run, OUT / test_run.name)
         report["built_binary_sha256"] = binaries
         os.environ["FAITHFUL_RUNTIME27_MANIFEST"] = str(contract_path)
         os.environ["VALIDATING_BASELINE"] = "false"
@@ -153,6 +161,11 @@ def main():
         print(str(error), file=sys.stderr)
         return 1
     finally:
+        if report["mode"] == "ui" and "case_outcomes" not in report:
+            try:
+                collect_cases(report, json.loads((ROOT / "docs/hq-integration/runtime27/R27_CASES.json").read_text()))
+            except Exception as error:
+                report["case_collection_error"] = str(error)
         (OUT / "result.json").write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps({key: report.get(key) for key in ("status", "checkout_sha", "sdk", "error")}, indent=2))
 

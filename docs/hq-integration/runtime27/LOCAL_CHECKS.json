@@ -1,0 +1,21 @@
+{
+  "scope": "LOCAL_GUARD_GATE_ORACLE_CHECKS_ONLY_UI_COUNT_ZERO",
+  "parser_unittest_cases": 8,
+  "release_gate_unittest_cases": 4,
+  "fixture_oracle_unittest_cases": 4,
+  "all_final_results": "PASS",
+  "actual_probe_run": 43678599137,
+  "probe_checkout": "9d8685e9b9972e0517bea96a618c370d187cf86f",
+  "probe_ui_cases": 0,
+  "probe_tool_schema": "xcresulttool0.4.0 actual Xcode27.1/27A9275",
+  "actual_negative_release_gate": "REFUSED_PROBE_ONLY_EVIDENCE",
+  "initial_oracle_fixture_failure": "Windows cleanup found SQLite context manager did not close handle; explicit closing applied in helper and fixture; four cases then PASS",
+  "ui_run": 43679005353,
+  "ui_checked_sha": "bfed97f63d77736f9d46581000f95790f2b3517e",
+  "ui_result": "PENDING_ACTUAL_COMPLETION_NO_UI_PASS_INFERRED",
+  "unexecuted_followups": [
+    "mandatoryTestFlight gate and separate metadata probe classification",
+    "explicit readonly oracle connection close",
+    "future binary/NOT_RUN artifact retention"
+  ]
+}

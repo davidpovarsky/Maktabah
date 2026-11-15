@@ -120,14 +120,16 @@ def main():
             archive = folder / "evidence.zip"
             with archive.open("wb") as output:
                 subprocess.run(["gh", "api", f"repos/{repository}/actions/artifacts/{artifact['id']}/zip"], stdout=output, check=True)
-            digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+            with archive.open("rb") as source:
+                digest = hashlib.file_digest(source, "sha256").hexdigest()
             require(artifact.get("digest") == "sha256:" + digest, "Artifact ZIP digest missing/mismatched")
             destination = folder / "extracted"
             with zipfile.ZipFile(archive) as value:
                 require(sum(member.file_size for member in value.infolist()) < 8 * 1024**3, "Oversized UI evidence")
                 for member in value.infolist():
-                    part = PurePosixPath(member.filename)
-                    require(not part.is_absolute() and ".." not in part.parts and not stat.S_ISLNK(member.external_attr >> 16), "Unsafe artifact member")
+                    part = PurePosixPath(member.filename.replace("\\", "/"))
+                    require(not part.is_absolute() and ".." not in part.parts and not re.match(r"^[A-Za-z]:", member.filename)
+                            and not stat.S_ISLNK(member.external_attr >> 16), "Unsafe artifact member")
                 value.extractall(destination)
             manifest_path = ROOT / "Scripts/CI/runtime27-release-manifest.json"
             manifest = json.loads(manifest_path.read_text())

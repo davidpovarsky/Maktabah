@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import sqlite3
 import subprocess
+from contextlib import closing
 
 
 def derive_oracle(udid, size):
@@ -23,7 +24,7 @@ def derive_oracle(udid, size):
     sql = ("SELECT l.sourceBookId, sourceLine.lineIndex, b.title FROM link l "
            "JOIN line sourceLine ON sourceLine.id=l.sourceLineId "
            "JOIN book b ON b.id=l.sourceBookId ORDER BY l.id LIMIT 1")
-    with sqlite3.connect(database.as_uri() + "?mode=ro&immutable=1", uri=True) as connection:
+    with closing(sqlite3.connect(database.as_uri() + "?mode=ro&immutable=1", uri=True)) as connection:
         if connection.execute("PRAGMA quick_check").fetchone() != ("ok",):
             raise RuntimeError("Actual fixture database failed read-only quick_check")
         selected = connection.execute(sql).fetchone()

@@ -1,0 +1,5 @@
+{
+  "status": "FAIL",
+  "distribution_started": false,
+  "error": "Missing full real UI acceptance; focused subsets/build/probe do not satisfy release"
+}
