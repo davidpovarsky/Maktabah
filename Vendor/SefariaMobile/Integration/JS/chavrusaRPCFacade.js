@@ -231,9 +231,20 @@ export class ChavrusaRPCFacade {
           };
           const rawSearchData = await global.Sefaria.search.execute_query(queryProps);
           const rawHits = rawSearchData?.hits?.hits || [];
+          // Capture source evidence before process_text_hits can mutate arrays.
+          const sourceRawHitsPresent = Array.isArray(rawSearchData?.hits?.hits);
+          const sourceRawHitCount = sourceRawHitsPresent ? rawSearchData.hits.hits.length : null;
+          const sourceTotal = rawSearchData?.hits?.total;
+          const sourceTotalValue = typeof sourceTotal === 'number' ? sourceTotal : sourceTotal?.value;
+          const sourceTotalRelation = ['eq', 'gte'].includes(sourceTotal?.relation) ? sourceTotal.relation : 'unknown';
+          const sourceCursorPresent = Object.prototype.hasOwnProperty.call(rawSearchData || {}, 'nextOffset');
+          const sourceCursor = rawSearchData?.nextOffset;
           const processedHits = global.Sefaria.search.process_text_hits
             ? global.Sefaria.search.process_text_hits(rawHits)
             : rawHits;
+
+          // Additive evidence for strict action clients. Preserve the legacy
+          // normalized result below; missing evidence must remain unknown.
 
           result = {
             hits: processedHits.map(hit => {
@@ -263,6 +274,20 @@ export class ChavrusaRPCFacade {
               : (rawSearchData?.hits?.total?.value || rawHits.length),
             start: queryProps.start,
             size: queryProps.size,
+            fidelity: {
+              schemaVersion: 1,
+              rawHitsPresent: sourceRawHitsPresent,
+              rawHitCount: sourceRawHitCount,
+              processedHitCount: Array.isArray(processedHits) ? processedHits.length : null,
+              rawStart: queryProps.start,
+              rawSize: queryProps.size,
+              totalPresent: Number.isSafeInteger(sourceTotalValue) && sourceTotalValue >= 0,
+              totalValue: Number.isSafeInteger(sourceTotalValue) && sourceTotalValue >= 0 ? sourceTotalValue : null,
+              totalRelation: sourceTotalRelation,
+              sourceCursorPresent,
+              sourceCursorValid: sourceCursorPresent && (sourceCursor === null || (Number.isSafeInteger(sourceCursor) && sourceCursor >= 0)),
+              sourceNextOffset: Number.isSafeInteger(sourceCursor) && sourceCursor >= 0 ? sourceCursor : null,
+            },
           };
           break;
         }

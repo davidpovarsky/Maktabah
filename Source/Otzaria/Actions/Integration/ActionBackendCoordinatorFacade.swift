@@ -1,0 +1,251 @@
+import Foundation
+import OtzariaActionCore
+
+/// Additive facade over the real application coordinator. No automatic backend
+/// selection, app composition, UI command, private registration or new engine.
+@MainActor
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort {
+    typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
+    typealias EpochProbe = @Sendable () async -> UInt64?
+    typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
+    typealias EmbeddedReferenceProof = @Sendable (ActionTextRef, ActionPortInvocation) async throws -> Void
+    typealias EmbeddedCatalog = @Sendable (ActionPortInvocation) async throws -> [LibraryCatalogNode]
+    private let coordinator: BackendCoordinator
+    private let readiness: ReadinessProbe
+    private let epoch: EpochProbe
+    private let embeddedSearch: EmbeddedSearch?
+    private let embeddedReferenceProof: EmbeddedReferenceProof?
+    private let embeddedCatalog: EmbeddedCatalog?
+
+    init(coordinator: BackendCoordinator, epoch: @escaping EpochProbe = { nil },
+         readiness: @escaping ReadinessProbe = { .init(snapshot: $0) },
+         embeddedSearch: EmbeddedSearch? = nil,
+         embeddedReferenceProof: EmbeddedReferenceProof? = nil,
+         embeddedCatalog: EmbeddedCatalog? = nil) {
+        self.coordinator = coordinator; self.epoch = epoch; self.readiness = readiness
+        self.embeddedSearch = embeddedSearch; self.embeddedReferenceProof = embeddedReferenceProof
+        self.embeddedCatalog = embeddedCatalog
+    }
+
+    func snapshot() async throws -> ActionBackendSnapshot {
+        try Task.checkCancellation()
+        let backend = ActionAppIdentityBridge.actionBackend(coordinator.activeBackendID)
+        let generation = coordinator.generation
+        let rpcEpoch = backend == .sefariaEmbedded ? await epoch() : nil
+        guard generation == coordinator.generation,
+              backend == ActionAppIdentityBridge.actionBackend(coordinator.activeBackendID) else { throw ActionPortError.staleState }
+        return .init(backend: backend, generation: generation, rpcEpoch: rpcEpoch)
+    }
+
+    private func currentEvidence(for backend: ActionBackendID) async throws -> ActionBackendRuntimeEvidence {
+        let before = try await snapshot()
+        if before.backend != backend { return .init(snapshot: before) }
+        var result = try await readiness(before)
+        guard result.snapshot == before, try await snapshot() == before else { throw ActionPortError.staleState }
+        // Bits establish provider registration only; operation readiness comes
+        // exclusively from the separate snapshot-bound observation above.
+        result.registeredCapabilities = ActionAppIdentityBridge.capabilityNames(coordinator.capabilities)
+        if backend == .sefariaEmbedded {
+            if embeddedCatalog == nil { result.catalog = .unavailable; result.references = .unavailable }
+            if embeddedSearch == nil { result.embeddedResponseFidelity = .unknown }
+            if embeddedReferenceProof == nil { result.references = .unavailable }
+        }
+        return result
+    }
+
+    func report(for backend: ActionBackendID) async throws -> ActionBackendReport {
+        try ActionBackendSemanticProfile(backend: backend).report(evidence: await currentEvidence(for: backend))
+    }
+
+    func assess(action: String, arguments: ActionObject, invocation: ActionPortInvocation) async throws -> ActionCapabilityAssessment {
+        let target = try ActionBackendArgumentTarget.resolve(arguments, fallback: invocation.snapshot.backend)
+        let before = try await snapshot()
+        try ActionBackendInvocationGuard.check(invocation, current: before, target: before.backend)
+        let query = action == "search.query" ? try ActionSearchArgumentMapping.query(arguments, backend: target) : nil
+        let result = try ActionBackendSemanticProfile(backend: target).assess(action: action, query: query,
+                    evidence: await currentEvidence(for: target))
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: before.backend)
+        return result
+    }
+
+    private func require(_ action: String, backend: ActionBackendID, query: ActionSearchQuery? = nil,
+                         invocation: ActionPortInvocation) async throws {
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        let result = try ActionBackendSemanticProfile(backend: backend).assess(action: action, query: query,
+                        evidence: await currentEvidence(for: backend))
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        guard result.registered else { throw ActionPortError.unavailable }
+        guard result.supported else { throw ActionPortError.notSupported }
+        guard result.availableNow else { throw ActionPortError.unavailable }
+    }
+
+    private func catalogWorks(backend: ActionBackendID, invocation: ActionPortInvocation) async throws -> ActionAppCatalogSnapshot {
+        try await require("catalog.resolveWork", backend: backend, invocation: invocation)
+        let nodes: [LibraryCatalogNode]
+        do {
+            if backend == .sefariaEmbedded {
+                guard let embeddedCatalog else { throw ActionPortError.notSupported }
+                nodes = try await embeddedCatalog(invocation)
+            } else { nodes = try await coordinator.catalog(for: ActionAppIdentityBridge.appBackend(backend)) }
+        }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        guard !nodes.isEmpty else { throw ActionPortError.unavailable }
+        let task = Task.detached {
+            let works = try ActionLibraryProjection.works(nodes, invocation: invocation)
+            return ActionAppCatalogSnapshot(works: works, workKeys: Set(works.map { $0.locator.workKey }))
+        }
+        let result = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        guard !result.works.isEmpty else { throw ActionPortError.unavailable }
+        return result
+    }
+
+    func catalog(for backend: ActionBackendID, invocation: ActionPortInvocation) async throws -> [ActionCatalogEntry] {
+        let works = try await catalogWorks(backend: backend, invocation: invocation)
+        let task = Task.detached { try ActionLibraryProjection.catalog(works.works, backend: backend, invocation: invocation) }
+        let result = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        return result
+    }
+
+    func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage {
+        try await require("search.query", backend: query.backend, query: query, invocation: invocation)
+        let works = try await catalogWorks(backend: query.backend, invocation: invocation)
+        if query.backend == .sefariaEmbedded {
+            guard let embeddedSearch else { throw ActionPortError.notSupported }
+            let result: ActionSearchPage
+            do { result = try await embeddedSearch(query, invocation) }
+            catch { throw safe(error) }
+            try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+            guard result.hits.allSatisfy({ $0.locator.backend == query.backend && works.workKeys.contains($0.locator.workKey) }) else {
+                throw ActionPortError.invalidResponse
+            }
+            return result
+        }
+        let scopeTask = Task.detached {
+            let scoped = works.works.map { ActionSearchScopeEntry(workRef: .init(backend: query.backend, workKey: $0.locator.workKey),
+                                                           authoritativeFilter: $0.searchPath) }
+            return try ActionSearchScopeMapping.filters(for: query, catalog: scoped)
+        }
+        let filters = try await withTaskCancellationHandler { try await scopeTask.value } onCancel: { scopeTask.cancel() }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        var request = LibrarySearchRequest(query: query.text, offset: query.offset, limit: query.limit)
+        request.filters = filters
+        // Legacy may perform unbounded postfilter scans when these are passed
+        // without authoritative filters. Never enter that fallback here.
+        request.scopeWorkKeys = []
+        guard let mode = LibrarySearchMode(rawValue: query.searchMode.rawValue),
+              let match = LibrarySearchMatchMode(rawValue: query.matchMode.rawValue),
+              let order = LibrarySearchSortOrder(rawValue: query.sortOrder.rawValue) else { throw ActionPortError.notSupported }
+        request.options.searchMode = mode
+        request.options.matchMode = match
+        request.options.sortOrder = order
+        request.options.wordDistance = query.wordDistance
+        let page: LibrarySearchPage
+        do { page = try await coordinator.search(request) }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        // Recheck operation-specific readiness after provider execution too.
+        try await require("search.query", backend: query.backend, query: query, invocation: invocation)
+        let task = Task.detached { try ActionLibraryProjection.searchPage(page, query: query, works: works.works) }
+        let result = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        return result
+    }
+
+    func referenceCandidates(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> {
+        if let work = query.workRef {
+            guard work.backend == query.backend, !work.workKey.isEmpty, work.workKey.count <= 512 else {
+                throw ActionContractError.invalid("workRef")
+            }
+            guard work.catalogRevision == nil else { throw ActionPortError.notSupported }
+        }
+        if let text = query.text, let section = query.section, text != section { throw ActionContractError.invalid("reference") }
+        guard (query.text?.count ?? 0) <= 1_000, (query.section?.count ?? 0) <= 500 else { throw ActionContractError.invalid("reference") }
+        try await require("catalog.resolveReference", backend: query.backend, invocation: invocation)
+        let works = try await catalogWorks(backend: query.backend, invocation: invocation)
+        let input = query.text ?? query.section
+        guard var input, !input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return .notFound }
+        if query.text == nil, let work = query.workRef {
+            guard works.workKeys.contains(work.workKey) else { return .notFound }
+            if query.backend == .otzaria {
+                guard work.workKey.hasPrefix("book:"), let book = Int(work.workKey.dropFirst(5)), book > 0,
+                      let line = Int64(input), line >= 0, Int(exactly: line) != nil else { return .notFound }
+                input = "\(book)|\(line)"
+            } else if input != work.workKey, !input.hasPrefix(work.workKey + " ") {
+                input = work.workKey + " " + input
+            }
+        }
+        // Never use Embedded's trim-only normalizer as identity proof. The work
+        // must already come from the shared resolver's actual catalog selection.
+        if query.backend == .sefariaEmbedded {
+            let work: ActionWorkRef
+            if let selected = query.workRef { work = selected }
+            else {
+                let lookupInput = input
+                let matchTask = Task.detached {
+                    try ActionBackendInvocationGuard.check(invocation, current: invocation.snapshot, target: query.backend)
+                    return works.workKeys.filter { lookupInput.hasPrefix($0 + " ") }
+                }
+                let keys = try await withTaskCancellationHandler { try await matchTask.value } onCancel: { matchTask.cancel() }
+                try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+                // General alias/ambiguity handling belongs to the shared resolver.
+                // Only one exact source-owned canonical work prefix is usable here.
+                guard keys.count == 1, let key = keys.first else { throw ActionPortError.notSupported }
+                work = .init(backend: query.backend, workKey: key)
+            }
+            guard works.workKeys.contains(work.workKey) else { throw ActionPortError.notFound }
+            let value = input == work.workKey || input.hasPrefix(work.workKey + " ") ? input : work.workKey + " " + input
+            let ref = ActionTextRef(backend: query.backend, workKey: work.workKey, position: .canonicalRef(value))
+            return .unique(try await validate(ref, invocation: invocation))
+        }
+        let normalized: TextLocator
+        do { normalized = try await coordinator.normalize(input) }
+        catch LibraryBackendError.invalidLocator { return .notFound }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        guard ActionAppIdentityBridge.actionBackend(normalized.backend) == query.backend,
+              works.workKeys.contains(normalized.workKey),
+              query.workRef == nil || query.workRef?.workKey == normalized.workKey else { return .notFound }
+        let ref = try ActionAppIdentityBridge.actionRef(normalized)
+        return .unique(try await validate(ref, invocation: invocation))
+    }
+
+    func validate(_ ref: ActionTextRef, invocation: ActionPortInvocation) async throws -> ActionTextRef {
+        let native = try ActionAppIdentityBridge.appLocator(ref)
+        try await require("catalog.resolveReference", backend: ref.backend, invocation: invocation)
+        let works = try await catalogWorks(backend: ref.backend, invocation: invocation)
+        guard works.workKeys.contains(ref.workKey) else { throw ActionPortError.notFound }
+        if ref.backend != .otzaria {
+            guard case .canonicalRef(let value) = native.position,
+                  value == ref.workKey || value.hasPrefix(ref.workKey + " ") else { throw ActionPortError.notFound }
+        }
+        if ref.backend == .sefariaEmbedded {
+            guard case .canonicalRef(let value) = ref.position, value != ref.workKey else { throw ActionPortError.notSupported }
+            guard let embeddedReferenceProof else { throw ActionPortError.notSupported }
+            do { try await embeddedReferenceProof(ref, invocation) }
+            catch { throw safe(error) }
+            try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: ref.backend)
+            return ref
+        }
+        let section: LibraryTextSection
+        do { section = try await coordinator.section(at: native) }
+        catch LibraryBackendError.invalidLocator { throw ActionPortError.notFound }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: ref.backend)
+        guard !section.segments.isEmpty,
+              section.locator.backend == native.backend, section.locator.workKey == native.workKey,
+              section.locator == native || section.segments.contains(where: { $0.locator == native }) else {
+            throw ActionPortError.notFound
+        }
+        return ref
+    }
+
+    private func safe(_ error: any Error) -> any Error {
+        if error is CancellationError { return CancellationError() }
+        if let error = error as? ActionPortError { return error }
+        if let error = error as? LibraryBackendError, error == .staleRequest { return ActionPortError.staleState }
+        return ActionPortError.unavailable
+    }
+}

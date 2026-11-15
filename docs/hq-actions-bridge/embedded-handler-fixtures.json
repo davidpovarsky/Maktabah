@@ -1,0 +1,385 @@
+{
+  "kind": "ACTUAL_HANDLER_SOURCE_WITH_EXPLICIT_ENGINE_DOUBLES",
+  "base": "3d6f90c90403a18e780ca37504da1c71285b219e",
+  "oldUIFieldsPreserved": true,
+  "rawErrorsPropagate": true,
+  "cases": [
+    {
+      "name": "eq_more_with_grouping",
+      "offset": 10,
+      "limit": 3,
+      "result": {
+        "hits": [
+          {
+            "ref": "Genesis 1:1",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          },
+          {
+            "ref": "Genesis 1:2",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          }
+        ],
+        "total": 20,
+        "start": 10,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": true,
+          "rawHitCount": 3,
+          "processedHitCount": 2,
+          "rawStart": 10,
+          "rawSize": 3,
+          "totalPresent": true,
+          "totalValue": 20,
+          "totalRelation": "eq",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    },
+    {
+      "name": "eq_in_place_processing",
+      "offset": 10,
+      "limit": 3,
+      "result": {
+        "hits": [
+          {
+            "ref": "Genesis 1:1",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          },
+          {
+            "ref": "Genesis 1:2",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          }
+        ],
+        "total": 20,
+        "start": 10,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": true,
+          "rawHitCount": 3,
+          "processedHitCount": 2,
+          "rawStart": 10,
+          "rawSize": 3,
+          "totalPresent": true,
+          "totalValue": 20,
+          "totalRelation": "eq",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    },
+    {
+      "name": "eq_empty",
+      "offset": 0,
+      "limit": 3,
+      "result": {
+        "hits": [],
+        "total": 0,
+        "start": 0,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": true,
+          "rawHitCount": 0,
+          "processedHitCount": 0,
+          "rawStart": 0,
+          "rawSize": 3,
+          "totalPresent": true,
+          "totalValue": 0,
+          "totalRelation": "eq",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    },
+    {
+      "name": "missing_hits",
+      "offset": 0,
+      "limit": 3,
+      "result": {
+        "hits": [],
+        "total": 0,
+        "start": 0,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": false,
+          "rawHitCount": null,
+          "processedHitCount": 0,
+          "rawStart": 0,
+          "rawSize": 3,
+          "totalPresent": true,
+          "totalValue": 0,
+          "totalRelation": "eq",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    },
+    {
+      "name": "missing_total",
+      "offset": 0,
+      "limit": 3,
+      "result": {
+        "hits": [
+          {
+            "ref": "Genesis 1:1",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          }
+        ],
+        "total": 1,
+        "start": 0,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": true,
+          "rawHitCount": 1,
+          "processedHitCount": 1,
+          "rawStart": 0,
+          "rawSize": 3,
+          "totalPresent": false,
+          "totalValue": null,
+          "totalRelation": "unknown",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    },
+    {
+      "name": "unknown_numeric_total",
+      "offset": 0,
+      "limit": 3,
+      "result": {
+        "hits": [
+          {
+            "ref": "Genesis 1:1",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          }
+        ],
+        "total": 8,
+        "start": 0,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": true,
+          "rawHitCount": 1,
+          "processedHitCount": 1,
+          "rawStart": 0,
+          "rawSize": 3,
+          "totalPresent": true,
+          "totalValue": 8,
+          "totalRelation": "unknown",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    },
+    {
+      "name": "gte_exhaustion_unknown",
+      "offset": 0,
+      "limit": 3,
+      "result": {
+        "hits": [
+          {
+            "ref": "Genesis 1:1",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          },
+          {
+            "ref": "Genesis 1:2",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          },
+          {
+            "ref": "Genesis 1:3",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          }
+        ],
+        "total": 3,
+        "start": 0,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": true,
+          "rawHitCount": 3,
+          "processedHitCount": 3,
+          "rawStart": 0,
+          "rawSize": 3,
+          "totalPresent": true,
+          "totalValue": 3,
+          "totalRelation": "gte",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    },
+    {
+      "name": "explicit_cursor",
+      "offset": 0,
+      "limit": 3,
+      "result": {
+        "hits": [
+          {
+            "ref": "Genesis 1:1",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          }
+        ],
+        "total": 8,
+        "start": 0,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": true,
+          "rawHitCount": 1,
+          "processedHitCount": 1,
+          "rawStart": 0,
+          "rawSize": 3,
+          "totalPresent": true,
+          "totalValue": 8,
+          "totalRelation": "unknown",
+          "sourceCursorPresent": true,
+          "sourceCursorValid": true,
+          "sourceNextOffset": 17
+        }
+      }
+    },
+    {
+      "name": "invalid_ref",
+      "offset": 0,
+      "limit": 3,
+      "result": {
+        "hits": [
+          {
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "language": "english"
+          }
+        ],
+        "total": 1,
+        "start": 0,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": true,
+          "rawHitCount": 1,
+          "processedHitCount": 1,
+          "rawStart": 0,
+          "rawSize": 3,
+          "totalPresent": true,
+          "totalValue": 1,
+          "totalRelation": "eq",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    },
+    {
+      "name": "impossible_count",
+      "offset": 0,
+      "limit": 3,
+      "result": {
+        "hits": [
+          {
+            "ref": "Genesis 1:1",
+            "title": "Genesis",
+            "workKey": "Genesis",
+            "snippet": "fixture",
+            "score": 1,
+            "language": "english"
+          }
+        ],
+        "total": 1,
+        "start": 0,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": true,
+          "rawHitCount": 1,
+          "processedHitCount": 1,
+          "rawStart": 0,
+          "rawSize": 3,
+          "totalPresent": true,
+          "totalValue": 0,
+          "totalRelation": "eq",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    },
+    {
+      "name": "missing_everything",
+      "offset": 0,
+      "limit": 3,
+      "result": {
+        "hits": [],
+        "total": 0,
+        "start": 0,
+        "size": 3,
+        "fidelity": {
+          "schemaVersion": 1,
+          "rawHitsPresent": false,
+          "rawHitCount": null,
+          "processedHitCount": 0,
+          "rawStart": 0,
+          "rawSize": 3,
+          "totalPresent": false,
+          "totalValue": null,
+          "totalRelation": "unknown",
+          "sourceCursorPresent": false,
+          "sourceCursorValid": false,
+          "sourceNextOffset": null
+        }
+      }
+    }
+  ]
+}
