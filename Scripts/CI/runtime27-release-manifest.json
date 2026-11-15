@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "scope": "full-release-ui",
+  "full_release_acceptance_required": true,
+  "max_age_hours": 24,
+  "required_os_major": 27,
+  "configurations": [
+    {
+      "id": "ipad11-native",
+      "device_size": "11",
+      "data_profile": "miniTest10",
+      "required_ui_cases": [
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+        "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+        "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+        "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+        "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+        "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+        "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+        "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+        "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+        "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+        "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+        "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+        "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+        "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+        "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+        "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+        "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+        "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+        "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+        "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+      ]
+    },
+    {
+      "id": "ipad13-native",
+      "device_size": "13",
+      "data_profile": "miniTest10",
+      "required_ui_cases": [
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+        "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+        "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+        "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+        "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+        "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+        "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+        "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+        "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+        "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+        "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+        "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+        "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+        "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+        "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+        "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+        "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+        "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+        "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+        "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+        "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement"
+      ]
+    },
+    {
+      "id": "ipad13-largest-text",
+      "device_size": "13",
+      "data_profile": "miniTest10",
+      "content_size": "accessibility-extra-extra-extra-large",
+      "required_ui_cases": [
+        "FaithfulReaderLargeTextTests/testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize"
+      ]
+    },
+    {
+      "id": "iphone-native",
+      "device_size": "phone",
+      "data_profile": "miniTest10",
+      "required_ui_cases": [
+        "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+        "FaithfulReaderIPhoneTests/testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+        "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+        "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+        "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+      ]
+    },
+    {
+      "id": "ipad13-production-release",
+      "device_size": "13",
+      "data_profile": "production",
+      "configuration": "Release",
+      "required_ui_cases": [
+        "FaithfulProductionReleaseTests/testRealProductionLibraryReaderAndGroupRestore"
+      ]
+    }
+  ],
+  "scope_note": "Initial9cases/SDK/builds cannot satisfy this existing native full matrix plus real production-release requirement. Physical iPad remains separate."
+}

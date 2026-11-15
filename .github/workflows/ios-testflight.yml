@@ -20,6 +20,10 @@ on:
         description: Exact git commit SHA expected to be built and signed (fail-closed check)
         required: false
         type: string
+      ui_acceptance_run:
+        description: Completed full R27 real UI acceptance run for this exact candidate; mandatory before signing
+        required: true
+        type: string
 
 permissions:
   actions: read
@@ -60,6 +64,16 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
+
+      - name: Require complete matching real UI acceptance before signing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ACCEPTANCE_RUN: ${{ inputs.ui_acceptance_run }}
+        run: |
+          set -euo pipefail
+          python3 Scripts/CI/verify-runtime27-release-gate.py \
+            --run "$ACCEPTANCE_RUN" --expected-sha "$(git rev-parse HEAD)" \
+            --out "$BUILD_DIR/logs/runtime27-release-gate.json"
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main

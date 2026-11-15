@@ -70,7 +70,7 @@ def parse_test_tree(tree, target):
     return cases
 
 
-def verify(summary, tree, log, required_cases, min_tests, target='Maktabah-iOSUITests', min_total_tests=1):
+def verify(summary, tree, log, required_cases, min_tests, target='Maktabah-iOSUITests', min_total_tests=1, required_executed_cases=()):
     require(type(min_tests) is int and min_tests > 0, '--min-tests must be positive')
     require(type(min_total_tests) is int and min_total_tests > 0, '--min-total-tests must be positive')
     required = [case_id(value) for value in required_cases]
@@ -86,6 +86,7 @@ def verify(summary, tree, log, required_cases, min_tests, target='Maktabah-iOSUI
     cases = parse_test_tree(tree, target)
     require(len(cases) == summary['totalTestCount'], 'xcresult summary/tree count mismatch')
     require(set(required) <= cases.keys(), 'Required UI cases absent: ' + str(sorted(set(required) - cases.keys())))
+    require({case_id(value) for value in required_executed_cases} <= cases.keys(), 'Required separate non-UI probe did not execute')
     logs = parse_xcodebuild_log(log)
     require(not logs['failed'] and not logs['skipped'], 'Log contradicts zero-failure/zero-skip results')
     require(set(logs['passed']) == cases.keys(), 'Log/xcresult case identity mismatch')
@@ -114,6 +115,7 @@ def main():
     parser.add_argument('--required-case', required=True, action='append', help='Reviewed real UI Suite/testMethod; unit/SDK probes do not count')
     parser.add_argument('--min-tests', type=int, default=1, help='Positive minimum of required real UI cases')
     parser.add_argument('--min-total-tests', type=int, default=1, help='Positive minimum actual total, including separate non-UI probes')
+    parser.add_argument('--required-executed-case', action='append', default=[], help='Required extra execution probe; does not count toward real UI minimum')
     parser.add_argument('--out', type=Path)
     args = parser.parse_args()
     report = {'status': 'FAIL', 'scope': args.scope, 'database_open': 'NOT_VERIFIED_BY_TEST_COUNTS'}
@@ -128,7 +130,7 @@ def main():
             if args.out:
                 args.out.with_suffix('.' + label + '.json').write_text(json.dumps(value, indent=2) + '\n')
         report.update(verify(summary, tree, args.log.read_text(encoding='utf-8'), args.required_case,
-                             args.min_tests, min_total_tests=args.min_total_tests))
+                             args.min_tests, min_total_tests=args.min_total_tests, required_executed_cases=args.required_executed_case))
     except (ValueError, OSError, subprocess.SubprocessError) as error:
         report['error'] = str(error)
         print('::error::' + str(error), file=sys.stderr)
