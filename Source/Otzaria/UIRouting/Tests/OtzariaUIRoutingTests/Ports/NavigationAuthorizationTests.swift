@@ -47,6 +47,36 @@ final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
             backendSnapshot: command.invocation.snapshot, visibleRoute: command.route.route)
         return (receipt, observed)
     }
+    @MainActor func testRevocationDuringFinalBackendAwaitPreventsReaderCompletion() async throws {
+        let host = NavigationAuthorityFixture(context: context()), core = try executor(host), gate = ReviewGate()
+        host.finalReaderSnapshotGate = gate
+        host.onReader = { reader in
+            try reader.navigationAuthorization!.authorizeCommit(invocation: reader.invocation, sceneID: reader.sceneID, destination: reader.destination)
+            host.effects += 1
+            return .acknowledged(.init(requestId: reader.invocation.requestId, snapshot: reader.invocation.snapshot,
+                sceneID: reader.sceneID, destination: reader.destination))
+        }
+        let ref = ActionTextRef(backend: .otzaria, workKey: "fixture:work", position: .legacyLine(42))
+        let request = ActionRequest(action: "reader.open", arguments: ["sectionLocator": try .encoded(ref)], expectedBackend: .otzaria)
+        let original = host.context, snapshot = host.backend
+        let safety = Task {
+            do { try await Task.sleep(nanoseconds: 2_000_000_000); try Task.checkCancellation(); await gate.release(safety: true) }
+            catch {}
+        }
+        let task = Task { await core.execute(request, context: original) }
+        await gate.waitForEntry()
+        host.active = false
+        await gate.release()
+        let result = await task.value
+        safety.cancel(); await safety.value
+        let observation = await gate.observation()
+        XCTAssertFalse(observation.safetyReleased)
+        XCTAssertEqual(observation.pending, 0)
+        XCTAssertEqual(host.backend, snapshot, "Only native authority revoked during the final backend await")
+        XCTAssertEqual(host.effects, 1, "Refusing completion cannot undo the already observed synthetic effect")
+        XCTAssertEqual(result.status, .failed)
+        XCTAssertEqual(result.error?.code, "navigation_authority_changed")
+    }
     @MainActor func testCompletionRequiresGuardAndExactObservedReceiptWithoutRegrant() async throws {
         for backend in ActionBackendID.allCases {
             let host = NavigationAuthorityFixture(context: context(backend), backend: backend)
@@ -388,6 +418,9 @@ final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
     var readerCalls = 0
     var effects = 0
     var embeddedSyncUnavailable = false
+    var finalReaderSnapshotGate: ReviewGate?
+    private var acknowledgedReader = false
+    private var postAcknowledgementSnapshots = 0
     var onReader: (@MainActor @Sendable (ActionOpenReaderCommand) throws -> ActionUIAcknowledgement)?
     var scene: UISceneSnapshot { .init(sceneID: .init(rawValue: sceneID)!, revision: sceneRevision, backendSnapshot: backend) }
     init(context: ActionExecutionContext, backend: ActionBackendID = .otzaria) {
@@ -401,7 +434,15 @@ final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
         if embeddedSyncUnavailable && backend.backend == .sefariaEmbedded { throw ActionPortError.unavailable }
         return backend
     }
-    func snapshot() async throws -> ActionBackendSnapshot { backend }
+    func snapshot() async throws -> ActionBackendSnapshot {
+        if acknowledgedReader {
+            postAcknowledgementSnapshots += 1
+            // First post-sink recheck precedes the old completion check; second
+            // is the shared final recheck whose await must not outlive it.
+            if postAcknowledgementSnapshots == 2, let finalReaderSnapshotGate { try await finalReaderSnapshotGate.wait() }
+        }
+        return backend
+    }
     func report(for backend: ActionBackendID) async throws -> ActionBackendReport {
         .init(id: backend, operations: Dictionary(uniqueKeysWithValues: ActionRegistry.implemented.map { ($0, .init(registered: true, supported: true, availableNow: true)) }))
     }
@@ -413,7 +454,9 @@ final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement {
         readerCalls += 1
         guard let onReader else { throw ActionPortError.unavailable }
-        return try onReader(command)
+        let result = try onReader(command)
+        if case .acknowledged = result { acknowledgedReader = true }
+        return result
     }
     func currentScene(sceneID: UIStableID, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UISceneSnapshot {
         guard sceneID.rawValue == self.sceneID else { throw ActionPortError.unavailable }; return scene

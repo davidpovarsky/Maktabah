@@ -1,0 +1,34 @@
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version-2807070033DA82CF.txt
+[1/3] Write Objects.LinkFileList
+[2/3] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (2.19s)
+Test Suite 'Selected tests' started at 2026-11-15 15:48:50.944
+
+Test Suite 'EngineTests' started at 2026-11-15 15:48:50.977
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' started at 2026-11-15 15:48:50.977
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' passed (0.216 seconds)
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' started at 2026-11-15 15:48:51.194
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' passed (0.069 seconds)
+
+Test Suite 'EngineTests' passed at 2026-11-15 15:48:51.262
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.285 (0.285) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 15:48:51.262
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.285 (0.285) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
