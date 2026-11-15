@@ -1,0 +1,11 @@
+# New immutable source validation
+
+Application source: `d1d90611c839dd0638fa936447f0b6587375e319`.
+
+This source includes the accepted inactive P/N/R composition, byte-preserved approved startup adoption, canonical workspace ownership, existing Global Search/current-v1 fixes, the six-line DEBUG viewport observer mount, the two exact owner-approved protected hooks, and N's two explicit-self compiler prefixes. No public-v2 registry/handler activation, content/newTab/reservation opt-in or automatic future binding mount was added. The U HID-provider/native-pan candidate and I's new three Zayit query tests are separate unmerged proposals.
+
+Actual portable evidence is retained with precise boundaries: Host85 and UIRouting85; separate app115 with native shells; seven actual extracted-hook assertions with native dependency shells; seven complete actual waitForMount XCTest methods using real Foundation Task/continuations and explicit scene-registration/ledger shells. All passed without compiler warnings. The seven hook assertions reject the old source; the complete old cancellation method reproduces the two native diagnostic sites. These counts overlap where stated and do not establish Apple SDK or UI acceptance.
+
+The owner explicitly approved application and focused validation of the exact two protected hooks. The active wave also authorizes ordinary focused native development/tests. A new manual source validation uses the existing workflow with the unchanged18 selected cases: seven no-query Global Search, six Reader, five native URL;15iPad/3iPhone. The original R27 test SHA remains `bee9297b0ba4c9cef30d39ebb34a534d3941c933118eafb84c283cd224d33b3b`. All18 were NOT_RUN on the previous043 candidate because of the compiler error. Full Release94, physical-device gates and historic healthy evidence remain separate.
+
+This is a reviewed source change with a new immutable application/tree pin, not a rerun of run43752226209. Its completed failure,47-file artifact and0PASS/0FAIL/18NOT_RUN remain unchanged. No retry/cancellation request is issued against that run. The old043 branch and original source/test evidence are preserved. Only this new source's actual xcresult/screenshots can establish new UI acceptance. One watcher with one bounded terminal/deadline event will be used after dispatch; no polling or automatic retry.

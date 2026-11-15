@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "source_test_commit": "c93b5a9d33fa09a8054f77eb280ce94472b68841",
-  "application_base": "fe6f5fe5126a964bd76d3f308489e131a491fe36",
-  "app_source": "17414a0fd032918e01d8e2f1bfbcec2e33796c16",
+  "application_base": "0436775d85893225005f29baf0aa3a20d7b88317",
+  "app_source": "d1d90611c839dd0638fa936447f0b6587375e319",
   "sole_executor_thread": "01a1df85-6013-7270-b48d-8e10222e95c6",
-  "independent_qa_thread": null,
-  "scope": "CURRENT_V1_GUARDS_AND_NATIVE_SEARCH_SENDABLE_CORRECTION_FOCUSED18_NOT_FULL_RELEASE",
+  "independent_qa_thread": "01a1df8b-4498-76c1-8cca-cd5c11120b7a",
+  "scope": "REVIEWED_INACTIVE_NATIVE_BINDING_OWNER_APPROVED_HOOKS_SEARCH_FOCUSED18_NOT_FULL_RELEASE",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 9,
+  "required_nonzero_cases": 18,
   "expected_per_device": {
-    "ipad11": 5,
-    "iphone": 4
+    "ipad11": 15,
+    "iphone": 3
   },
   "cases": [
     {
@@ -133,13 +133,12 @@
   ],
   "reused_ui_passes": 0,
   "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
-  "previous_manifest_sha256": "1f20458858d0890433d87e2131ac2283a73e369aaddadb39bd4c2ce57af59d3f",
+  "previous_manifest_sha256": "17724761c28f8a552a2b8135e56f48574fd8fe33b24b3728eb2b8f318f593b96",
   "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
-  "affected_execution_groups": {
-    "11-window": [
-      "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
-    ]
-  },
+  "affected_execution_groups": [
+    "11-reader",
+    "phone"
+  ],
   "reuse_candidates_subject_to_U_change_impact": [
     "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
     "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
@@ -211,7 +210,7 @@
     "runtime_status": "NOT_RUN",
     "scope": "Initial-empty iPad startup tab adoption at final validated commit boundary"
   },
-  "source_change_impact_decision": "Q exact Escape2path review: only window1 affected;8current actual healthy reader paths never instantiate palette and are eligible verified reuse subject to fresh actual runtime compatibility",
+  "source_change_impact_decision": "NativeManager setter/lifetime and workspace owner/source changes are reachable by Reader/URL paths. Preserve all historical healthy native evidence on its own exact source/context; no new reuse certified at dispatch. Source/build/context compatibility of this new candidate requires actual evidence.",
   "independent_change_impact": {
     "file": "docs/hq-integration/runtime27/Q_SOURCE_CHANGE_IMPACT_75ea.json",
     "source_file_sha256": "31f5b1ef6905e315cf9f463c05fa11145c0423e7438c10bdbf873127ae0860ac",
@@ -232,7 +231,7 @@
       "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
       "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
     ],
-    "candidate_reuse": "Q eligible8; retained actual base/fingerprints+conditional palette-unreachable path proof; confirm fresh runtime compatibility"
+    "candidate_reuse": "Preserved original-source historical evidence only;0freshreusedcertified for this new NativeManager/workspace composition"
   },
   "prior_app_source": "04b4d5f27e51d29508e8e0d4dcc8d3b07d405e4e",
   "escape_correction": {
@@ -298,16 +297,16 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
-    "source": "40e642349814568ccae4437cb914f01f0c12420b",
-    "test_source": "15ed01259d4b41864a53db76c0060c25393d75ef",
-    "changed_production_paths": [
-      "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
-    ],
-    "behavior": "Existing visible esc hint becomes real native standard Cancel button; same host presentation state",
-    "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
-    "native_status": "NOT_RUN"
+    "source": "d1d90611c839dd0638fa936447f0b6587375e319",
+    "manager_integrated_N_packet": "0b3def76cdfa5b48ec183c2b886f0e0a7f98c7ee",
+    "owner_approval": "Explicit human approval exact2protectedhooks; applied71b80eea",
+    "implementation": "Scoped inactive P/N/R contracts; actual canonical workspace owner; preserved v1 guards and GlobalSearch; N2selfprefix compiler correction; exact2approvednativehooks; U6DEBUGobserver mount only",
+    "oracle": "Exact original18 selected methods unchanged; no fabricated queries/data/readiness or fault control",
+    "native_status": "NOT_RUN until this reviewed source executes",
+    "public_enabled": false,
+    "automatic_retry": false
   },
-  "selected_scope_reason": "Reviewed new compatible current-v1 source composition: original APIs with P authority bracketing and N live-driver/token guard, plus S MainActor/Sendable Search action correction. Manager independently passed Host58/UIRouting62 and6 language action cases; I reviewed the exact Search correction. Same exact7no-query Search+6Reader+5native URL cases have never executed on the prior failed candidate; original oracles remain unchanged. Future v2/Rproducer hook/observer/handlers are not activated.",
+  "selected_scope_reason": "New reviewed immutable composition after actual native437522 compile failure: exact two explicit-self corrections, owner-approved exact NativeManager/Reader witness hooks, reconciled R startup/producer and accepted inactive P/N binding source. Manager actual Host85/UIRouting85 and separate app115 portable suites,7 cancellation methods and7 actual hook assertions have bounded declared scopes. Same exact7 no-query GlobalSearch+6Reader+5nativeURL cases and original oracles remain unchanged; all18 were NOT_RUN on prior043. Public-v2 defaultOFF/no handler, content, newTab or reservation activation. No HID provider/U native-pan merge. This is a new source validation, not an automatic rerun.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -387,6 +386,35 @@
       "status": "NOT_RUN",
       "oracle": "Unsuppressed native header/history accessibility audit; not manual VoiceOver acceptance",
       "prerequisite": "Genuine installed miniTest10, normal realUI bootstrap, isolated disposable simulator app; no invented query/provider trace"
+    }
+  ],
+  "manager_native_review_history": [
+    {
+      "app_source": "17414a0fd032918e01d8e2f1bfbcec2e33796c16",
+      "scope": "CURRENT_V1_GUARDS_AND_NATIVE_SEARCH_SENDABLE_CORRECTION_FOCUSED18_NOT_FULL_RELEASE",
+      "current_correction": {
+        "source": "40e642349814568ccae4437cb914f01f0c12420b",
+        "test_source": "15ed01259d4b41864a53db76c0060c25393d75ef",
+        "changed_production_paths": [
+          "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
+        ],
+        "behavior": "Existing visible esc hint becomes real native standard Cancel button; same host presentation state",
+        "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
+        "native_status": "NOT_RUN"
+      },
+      "selected_scope_reason": "Reviewed new compatible current-v1 source composition: original APIs with P authority bracketing and N live-driver/token guard, plus S MainActor/Sendable Search action correction. Manager independently passed Host58/UIRouting62 and6 language action cases; I reviewed the exact Search correction. Same exact7no-query Search+6Reader+5native URL cases have never executed on the prior failed candidate; original oracles remain unchanged. Future v2/Rproducer hook/observer/handlers are not activated.",
+      "source_change_impact_decision": "Q exact Escape2path review: only window1 affected;8current actual healthy reader paths never instantiate palette and are eligible verified reuse subject to fresh actual runtime compatibility",
+      "application_base": "fe6f5fe5126a964bd76d3f308489e131a491fe36",
+      "expected_per_device": {
+        "ipad11": 5,
+        "iphone": 4
+      },
+      "required_nonzero_cases": 9,
+      "affected_execution_groups": {
+        "11-window": [
+          "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+        ]
+      }
     }
   ]
 }
