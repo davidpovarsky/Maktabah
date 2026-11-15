@@ -1,0 +1,26 @@
+# Reader-history source lease and pre-edit hook audit — 2026-11-15
+
+[מיה | UX] [MAIN_SESSION], chat `01a1dc8a-c7c4-7080-8a49-d61dd056fa47`, GID `1220120889353811` only.
+
+Dispatcher explicitly extended U's lease to **exactly** `Source/Features/Search/iOS/SearchComponents.swift` (default-true showsGlobalHistory parameter + only history header/list condition) and `Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift` (pass false only). No other file ownership changed. S retains SearchModeView/SearchResultItem/engines; P retains reading-core/models. Original sidebar source remains d77045fe. This audit was written before applying either hook.
+
+Worktree `C:\Users\DAVID\Code\Maktabah-hq-sidebar-20261115`; branch `codex/otzaria-sidebar-20261115`; pre-edit HEAD `27fbf51b181a8241befce226baec93296c4c33a4`; pre-edit status/diff clean. Pinned upstream `d46af139b3a265399c16d87f5923acd8e3444024`, already checked against actual upstream main. No sync/fetch/merge performed.
+
+| File / ownership | Pinned upstream blob | Pre-edit actual blob | Exact scope / necessity / alternatives | Tests and rollback |
+| --- | --- | --- | --- | --- |
+| SearchComponents.swift — UPSTREAM_OWNED / SHARED_INTEGRATION_SEAM | `06246b43616fc0d5827c990b28e9769b9ebc5295` | `05f7b870a52ca30a1df8442f46abcc03e589acec` | Add one default-true `showsGlobalHistory` member to existing SearchHistoryOverlay; add it only to the condition that renders history header/list. Existing mode/near/help controls and overlay visibility stay under the original owner. Outer composition cannot selectively hide inner history rows; duplicating the component or removing the full overlay is worse and unnecessary. Existing global initializer calls omit the new defaulted parameter. | Local syntax parse + manual exact hunk review; prepared genuine UI oracle proves global history persisted, book history hidden while controls still operate. SDK/device NOT_RUN. Revert this small source commit/hunk. |
+| iOSBookSearchView.swift — UPSTREAM_OWNED / SHARED_INTEGRATION_SEAM | `3519f971897ee248a0f744a8b04ea28b29ef6d3b` | `6f19264c9248b1a06c3bfa57092f90bc319965e8` | One argument `showsGlobalHistory: false` at the existing book overlay construction. No new engine/store/history mutations, selection or results logic. | Same focused checks; physical iPad, RTL/backend/relaunch NOT_RUN. Revert argument/hunk. |
+
+Reviewable exact planned patch `book-history-proposed.patch` already passed `git apply --check` against the pre-edit tree; it has not been used to waive provenance review. Historical exact-source guard is unchanged and continues failing against its old frozen source contract; no manifest/approval is forged. No project membership, dependency, UI redesign, user DB, workflow, build, signing or release change.
+
+Known runtime risk: changed memberwise SwiftUI view initializer must receive Apple SDK typecheck when authorized; local syntax parsing cannot establish framework correctness. Default-true behavior is intended to preserve the global caller. Existing shared canonical history storage remains untouched. Physical acceptance remains OPEN, not DONE.
+
+## Applied tranche / actual scoped verification
+
+After the audit above, applied exactly the planned two-file patch: **3 added lines, 1 removed line**. Source gate is `showsGlobalHistory && !viewModel.searchHistory.isEmpty`; book construction passes false, other callers retain the default. The source now contains a configuration extension at the existing upstream component seam, not a replacement overlay. `book-history-proposed.patch` is also the exact applied source proposal (the earlier pre-edit check is historical, not a new pending permission gate).
+
+Executed local Swift frontend syntax parsing for both changed source files plus `Tests/HQ/sidebar/BookHistoryScopeAcceptanceTests.swift`; PASS. `git diff --check`: PASS. A bounded source-retention audit removed only the three declared additions/condition prefix and compared each whole file to pre-edit Git objects: both matched exactly. This establishes hunk scope, not functional behavior. Results: `history-local-checks.json`. Apple SDK typecheck/initializer acceptance, app builds, UI runtime and physical device: NOT_RUN.
+
+Prepared test `BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory` uses the existing real global-submission/history oracle, terminates/relaunches the app into a reader, focuses actual book search, waits positively for all four existing mode buttons and Help, requires the global query absent, then selects Near and requires the distance field. It fails if the entire overlay was removed as a shortcut. Existing broad `testHistoryRemainsGlobalAndIsAbsentFromBookSearch` remains unmodified/NOT_RUN. Test target registration and runtime authorization remain required; no project file changed. This adds one **test-only** Swift path, no app Swift file.
+
+Remaining gates: independent source review, authorized Apple SDK compile, global history persistence/click behavior, book-search control behavior, both RTL/LTR, book/backend switching and physical iPad at the final source SHA. No DONE/VERIFIED/functional PASS claim. The sidebar's separate TOC-icon criterion remains OPEN as documented in QA_CORRECTIONS.md. Slider source was preserved.

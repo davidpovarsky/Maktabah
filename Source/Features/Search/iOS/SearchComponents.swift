@@ -7,6 +7,7 @@ struct SearchHistoryOverlay: View {
     @Environment(\.dismissSearch) var dismissSearch
     var session: UnifiedSearchSessionController? = nil
     @Bindable var viewModel: SearchViewModel
+    var showsGlobalHistory = true
     @State var inputBarHeight: CGFloat = 0
     @Binding var isVisible: Bool?
     @State private var showingHelp: Bool = false
@@ -30,7 +31,7 @@ struct SearchHistoryOverlay: View {
         Group {
             if shouldShow {
                 VStack(spacing: 0) {
-                    if !viewModel.searchHistory.isEmpty {
+                    if showsGlobalHistory && !viewModel.searchHistory.isEmpty {
                         historyHeader
                         historyList
                     }

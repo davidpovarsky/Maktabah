@@ -68,6 +68,7 @@ struct iOSBookSearchView: View {
             .overlay(alignment: .bottom) {
                 SearchHistoryOverlay(
                     viewModel: viewModel,
+                    showsGlobalHistory: false,
                     isVisible: .constant(nil)
                 )
             }
