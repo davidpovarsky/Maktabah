@@ -1,0 +1,153 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write swift-version-2807070033DA82CF.txt
+[1/5] Copying Resources
+[2/5] Write sources
+[5/6] Emitting module OtzariaActionCore
+[6/8] Compiling OtzariaActionCore ActionRequest.swift
+[7/8] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[9/16] Emitting module OtzariaActionCoreTests
+[10/17] Compiling OtzariaActionCoreTests WireSecurityTests.swift
+[11/18] Wrapping AST for OtzariaActionCoreTests for debugging
+[12/18] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageDiscoveredTests.derived\all-discovered-tests.swift
+[13/19] Write sources
+[15/20] Emitting module OtzariaActionCorePackageDiscoveredTests
+[16/22] Compiling OtzariaActionCorePackageDiscoveredTests OtzariaActionCoreTests.swift
+[17/22] Compiling OtzariaActionCorePackageDiscoveredTests all-discovered-tests.swift
+[18/23] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageTests.derived\runner.swift
+[19/24] Wrapping AST for OtzariaActionCorePackageDiscoveredTests for debugging
+[20/24] Write sources
+[22/25] Emitting module OtzariaActionCorePackageTests
+[23/26] Compiling OtzariaActionCorePackageTests runner.swift
+[24/26] Write Objects.LinkFileList
+[25/26] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (42.06s)
+Test Suite 'All tests' started at 2026-11-15 03:07:34.190
+
+Test Suite 'debug.xctest' started at 2026-11-15 03:07:34.195
+
+Test Suite 'ContractAPITests' started at 2026-11-15 03:07:34.195
+
+Test Case 'ContractAPITests.testPositionKindValueMismatchRejected' started at 2026-11-15 03:07:34.195
+
+Test Case 'ContractAPITests.testPositionKindValueMismatchRejected' passed (0.003 seconds)
+
+Test Case 'ContractAPITests.testWirePositionAndSendableAPI' started at 2026-11-15 03:07:34.198
+
+Test Case 'ContractAPITests.testWirePositionAndSendableAPI' passed (0.001 seconds)
+
+Test Suite 'ContractAPITests' passed at 2026-11-15 03:07:34.199
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+
+Test Suite 'EngineTests' started at 2026-11-15 03:07:34.199
+
+Test Case 'EngineTests.testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented' started at 2026-11-15 03:07:34.199
+
+Test Case 'EngineTests.testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented' passed (0.097 seconds)
+
+Test Case 'EngineTests.testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls' started at 2026-11-15 03:07:34.297
+
+Test Case 'EngineTests.testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls' passed (0.046 seconds)
+
+Test Case 'EngineTests.testCancellationDeadlineAndReplayBudget' started at 2026-11-15 03:07:34.343
+
+Test Case 'EngineTests.testCancellationDeadlineAndReplayBudget' passed (0.352 seconds)
+
+Test Case 'EngineTests.testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason' started at 2026-11-15 03:07:34.695
+
+Test Case 'EngineTests.testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason' passed (0.033 seconds)
+
+Test Case 'EngineTests.testGenerationAndEmbeddedEpochChangesDiscardResults' started at 2026-11-15 03:07:34.727
+
+Test Case 'EngineTests.testGenerationAndEmbeddedEpochChangesDiscardResults' passed (0.052 seconds)
+
+Test Case 'EngineTests.testInactiveBackendRequiresSwitchWithoutCommandCalls' started at 2026-11-15 03:07:34.780
+
+Test Case 'EngineTests.testInactiveBackendRequiresSwitchWithoutCommandCalls' passed (0.026 seconds)
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' started at 2026-11-15 03:07:34.806
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' passed (0.219 seconds)
+
+Test Case 'EngineTests.testOutputAndWorkScopeBudgets' started at 2026-11-15 03:07:35.025
+
+Test Case 'EngineTests.testOutputAndWorkScopeBudgets' passed (0.069 seconds)
+
+Test Case 'EngineTests.testPaginationIdentityAndProviderErrors' started at 2026-11-15 03:07:35.094
+
+Test Case 'EngineTests.testPaginationIdentityAndProviderErrors' passed (0.063 seconds)
+
+Test Case 'EngineTests.testRightsOriginAndScopeFailClosed' started at 2026-11-15 03:07:35.157
+
+Test Case 'EngineTests.testRightsOriginAndScopeFailClosed' passed (0.041 seconds)
+
+Test Case 'EngineTests.testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange' started at 2026-11-15 03:07:35.198
+
+Test Case 'EngineTests.testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange' passed (0.067 seconds)
+
+Test Case 'EngineTests.testSemanticSupportAvailabilityAndRealZeroAreDistinct' started at 2026-11-15 03:07:35.265
+
+Test Case 'EngineTests.testSemanticSupportAvailabilityAndRealZeroAreDistinct' passed (0.053 seconds)
+
+Test Case 'EngineTests.testStagedCountWritesAndDiscoveryCannotAdvertiseThem' started at 2026-11-15 03:07:35.318
+
+Test Case 'EngineTests.testStagedCountWritesAndDiscoveryCannotAdvertiseThem' passed (0.036 seconds)
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' started at 2026-11-15 03:07:35.355
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' passed (0.143 seconds)
+
+Test Case 'EngineTests.testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines' started at 2026-11-15 03:07:35.497
+
+Test Case 'EngineTests.testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines' passed (1.064 seconds)
+
+Test Suite 'EngineTests' passed at 2026-11-15 03:07:36.561
+
+	 Executed 15 tests, with 0 failures (0 unexpected) in 2.361 (2.361) seconds
+
+Test Suite 'WireSecurityTests' started at 2026-11-15 03:07:36.561
+
+Test Case 'WireSecurityTests.testByteDepthAndInvalidGrammarBudgets' started at 2026-11-15 03:07:36.561
+
+Test Case 'WireSecurityTests.testByteDepthAndInvalidGrammarBudgets' passed (0.09 seconds)
+
+Test Case 'WireSecurityTests.testDuplicateDecodedKeysRejected' started at 2026-11-15 03:07:36.651
+
+Test Case 'WireSecurityTests.testDuplicateDecodedKeysRejected' passed (0.003 seconds)
+
+Test Case 'WireSecurityTests.testEnvelopeTypeBoundsAndUnknownFields' started at 2026-11-15 03:07:36.654
+
+Test Case 'WireSecurityTests.testEnvelopeTypeBoundsAndUnknownFields' passed (0.028 seconds)
+
+Test Case 'WireSecurityTests.testExactNumericTokenClassificationBeforeFoundationCoercion' started at 2026-11-15 03:07:36.683
+
+Test Case 'WireSecurityTests.testExactNumericTokenClassificationBeforeFoundationCoercion' passed (0.099 seconds)
+
+Test Case 'WireSecurityTests.testFrozenCatalogAndElevenExamplesProject' started at 2026-11-15 03:07:36.782
+
+Test Case 'WireSecurityTests.testFrozenCatalogAndElevenExamplesProject' passed (0.262 seconds)
+
+Test Case 'WireSecurityTests.testWireKeysDoNotAcquireUnicodeNormalizationAliases' started at 2026-11-15 03:07:37.044
+
+Test Case 'WireSecurityTests.testWireKeysDoNotAcquireUnicodeNormalizationAliases' passed (0.209 seconds)
+
+Test Suite 'WireSecurityTests' passed at 2026-11-15 03:07:37.253
+
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.692 (0.692) seconds
+
+Test Suite 'debug.xctest' passed at 2026-11-15 03:07:37.253
+
+	 Executed 23 tests, with 0 failures (0 unexpected) in 3.057 (3.057) seconds
+
+Test Suite 'All tests' passed at 2026-11-15 03:07:37.253
+
+	 Executed 23 tests, with 0 failures (0 unexpected) in 3.057 (3.057) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.007 seconds.

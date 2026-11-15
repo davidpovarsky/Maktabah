@@ -1,0 +1,38 @@
+[
+  {
+    "name": "action-catalog.v1.json",
+    "bytes": 45036,
+    "sha256": "21cf2f24255b9bae28fe4725d5394759ec12055e99e37f16fa7140cff755b503",
+    "matches_frozen_manifest": true
+  },
+  {
+    "name": "action-request.v1.schema.json",
+    "bytes": 1571,
+    "sha256": "5bdd92a543111ede8dfd74c40a284477b26ecf237f1d02b18d7e8a87a76af677",
+    "matches_frozen_manifest": true
+  },
+  {
+    "name": "action-result.v1.schema.json",
+    "bytes": 3859,
+    "sha256": "f4a25fdcd6aa05e16adaf990b9aa33b12fdc63c513163a23a86feec19ee5b724",
+    "matches_frozen_manifest": true
+  },
+  {
+    "name": "backend-acceptance-cases.v1.json",
+    "bytes": 98009,
+    "sha256": "678d326932532f267a8a932c286e5cee4b4c982cc9f86ada6238ed532eee85ed",
+    "matches_frozen_manifest": true
+  },
+  {
+    "name": "backend-capability-matrix.v1.json",
+    "bytes": 36996,
+    "sha256": "e8fb0933325e6c32b52422405e1e4988052d4fd81daac2cff1c019e862ca8965",
+    "matches_frozen_manifest": true
+  },
+  {
+    "name": "examples.v1.json",
+    "bytes": 10497,
+    "sha256": "939e20a96b34c82699e118d58a9674cd610301f4cf17f451ff9eb93e7ca504a3",
+    "matches_frozen_manifest": true
+  }
+]

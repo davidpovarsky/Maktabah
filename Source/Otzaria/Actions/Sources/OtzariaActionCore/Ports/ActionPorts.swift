@@ -65,8 +65,9 @@ public struct ActionUIReceipt: Sendable, Equatable {
     public let requestId: UUID
     public let snapshot: ActionBackendSnapshot
     public let sceneID: String
-    public init(requestId: UUID, snapshot: ActionBackendSnapshot, sceneID: String) {
-        self.requestId = requestId; self.snapshot = snapshot; self.sceneID = sceneID
+    public let destination: ActionReaderDestination
+    public init(requestId: UUID, snapshot: ActionBackendSnapshot, sceneID: String, destination: ActionReaderDestination) {
+        self.requestId = requestId; self.snapshot = snapshot; self.sceneID = sceneID; self.destination = destination
     }
 }
 public enum ActionUIAcknowledgement: Sendable, Equatable {

@@ -24,7 +24,7 @@ public struct ActionRequest: Sendable, Equatable, Codable {
     }
     public init(from decoder: any Decoder) throws {
         let keys = try decoder.container(keyedBy: AnyKey.self)
-        guard Set(keys.allKeys.map(\.stringValue)).isSubset(of: Set(CodingKeys.allCases.map(\.rawValue))) else {
+        guard Set(keys.allKeys.map { Array($0.stringValue.utf8) }).isSubset(of: Set(CodingKeys.allCases.map { Array($0.rawValue.utf8) })) else {
             throw ActionContractError.invalid("$")
         }
         let c = try decoder.container(keyedBy: CodingKeys.self)

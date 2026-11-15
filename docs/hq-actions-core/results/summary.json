@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-15",
+  "base": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "api_checkpoint": "3d6f90c90403a18e780ca37504da1c71285b219e",
+  "command": "swift test --package-path Source/Otzaria/Actions -j 1 -Xswiftc -strict-concurrency=complete",
+  "compiler": "Swift 6.3.3 Windows",
+  "status": "EXECUTED_PASS",
+  "xctest_count": 23,
+  "failures": 0,
+  "scope": "portable actual Core with explicit fake ports; frozen examples are schema projections",
+  "native_app": "NOT_RUN",
+  "physical_device": "NOT_RUN",
+  "historical_116_acceptance_cases": "NOT_RUN",
+  "sources_sha256": {
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift": "7c10bbf879c8d9917286e020816dfed8e259a6d9e1d5500f6056a61d4403b962",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": "638588d56544d4a306c41235b80c45391980d66b2c6f13fea26ab91265bad80b",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift": "90e1daa8d0795461f521d1c75abbe1b6b88009e13c0ff5c80e32aa0962b4de00",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift": "64e370008c0650849be70c3263939c657fe830a14522c3b23aed248486293a1a",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift": "687d2042739d3137158c51436ae3c315c73cdebca2639599f652bd558eee7792",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift": "fc457299d8187a5c4eb0722c3031de0c203926acb9e91082f32f9e4d485b08e4",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift": "0451c7a98611a62ab4cb8285356db26ebcd8ce27e5dab5d77616516d596d72bc",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift": "4c762e686ba1c3f08e5ec0a05fa3dfc6194993f11dbc8b4f4f8b6144c078aafa"
+  }
+}

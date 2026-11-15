@@ -7,9 +7,19 @@ public enum ActionWireCodec {
         var parser = StrictActionJSONParser(bytes: Array(data))
         let value = try parser.parse()
         try ActionSchemaValidator.validate(value, schema: ActionRegistry.schema("action-request.v1.schema.json"))
-        // There is only one parsed/validated value; JSONDecoder never sees the
-        // original ambiguous bytes. It decodes this canonical, duplicate-free tree.
-        return try value.decoded(as: ActionRequest.self)
+        // Preserve arguments from this EXACT tree. Re-encoding an approximate
+        // .number(1) and decoding again could erase its fractional-token origin
+        // before the descriptor checks offset/limit/position integer semantics.
+        guard let fields = value.object, let id = fields["requestId"]?.string.flatMap(UUID.init(uuidString:)),
+              let action = fields["action"]?.string, let arguments = fields["arguments"]?.object else {
+            throw ActionContractError.invalid("$")
+        }
+        return ActionRequest(requestId: id, action: action, arguments: arguments,
+            expectedBackend: fields["expectedBackend"]?.string.flatMap(ActionBackendID.init(rawValue:)),
+            expectedGeneration: fields["expectedGeneration"]?.unsignedInteger,
+            idempotencyKey: fields["idempotencyKey"]?.string,
+            requestedPresentation: fields["requestedPresentation"]?.string.flatMap(ActionPresentation.init(rawValue:)),
+            deadlineMs: fields["deadlineMs"]?.integer.map(Int.init))
     }
     public static func encodeResult(_ result: ActionResult) throws -> Data {
         let value = try ActionJSON.encoded(result)
@@ -64,15 +74,59 @@ private struct StrictActionJSONParser {
         default:
             let start = index
             while index < bytes.count, ![UInt8(32), 9, 10, 13, 44, 93, 125].contains(bytes[index]) { index += 1 }
-            let token = Data(bytes[start..<index])
-            // Foundation validates the complete numeric grammar (no NaN, +1,
-            // leading zero, hex or trailing garbage). Bool/string are not numbers.
-            let number = try JSONDecoder().decode(ActionJSON.self, from: token)
-            switch number {
-            case .integer, .unsigned, .number: return number
-            default: throw ActionContractError.invalid("$")
-            }
+            return try exactNumber(Array(bytes[start..<index]))
         }
+    }
+    private func exactNumber(_ token: [UInt8]) throws -> ActionJSON {
+        // Classify decimal tokens mathematically BEFORE any Foundation/Double
+        // coercion. Int64 decoding can otherwise round long fractional tokens.
+        guard !token.isEmpty, token.count <= 512 else { throw ActionContractError.invalid("$") }
+        var i = 0
+        let negative = token[0] == 45
+        if negative { i += 1 }
+        func digit(_ i: Int) -> Bool { i < token.count && (48...57).contains(token[i]) }
+        let intStart = i
+        guard digit(i) else { throw ActionContractError.invalid("$") }
+        if token[i] == 48 { i += 1 } else { while digit(i) { i += 1 } }
+        var digits = Array(token[intStart..<i])
+        var fractionCount = 0
+        if i < token.count && token[i] == 46 {
+            i += 1; let start = i
+            while digit(i) { i += 1 }
+            guard i > start else { throw ActionContractError.invalid("$") }
+            fractionCount = i - start; digits += token[start..<i]
+        }
+        var exponentText = "0"
+        if i < token.count && (token[i] == 101 || token[i] == 69) {
+            i += 1; let start = i
+            if i < token.count && (token[i] == 43 || token[i] == 45) { i += 1 }
+            let firstDigit = i
+            while digit(i) { i += 1 }
+            guard i > firstDigit else { throw ActionContractError.invalid("$") }
+            exponentText = String(decoding: token[start..<i], as: UTF8.self)
+        }
+        guard i == token.count else { throw ActionContractError.invalid("$") }
+        guard let significant = digits.firstIndex(where: { $0 != 48 }) else { return .integer(0) }
+        digits = Array(digits[significant...])
+        guard let exponent = Int(exponentText), (-10_000...10_000).contains(exponent) else { throw ActionContractError.invalid("$") }
+        let scale = exponent - fractionCount
+        if scale < 0 {
+            let places = -scale
+            if places > digits.count || !digits.suffix(places).allSatisfy({ $0 == 48 }) {
+                guard let number = Double(String(decoding: token, as: UTF8.self)), number.isFinite, number != 0 else {
+                    throw ActionContractError.invalid("$")
+                }
+                return .number(number) // NEVER accepted as an integer by schema.
+            }
+            digits.removeLast(places)
+        } else {
+            guard digits.count + scale <= 20 else { throw ActionContractError.invalid("$") }
+            digits += Array(repeating: 48, count: scale)
+        }
+        let text = (negative ? "-" : "") + String(decoding: digits, as: UTF8.self)
+        if let value = Int64(text) { return .integer(value) }
+        if !negative, let value = UInt64(text) { return .unsigned(value) }
+        throw ActionContractError.invalid("$")
     }
     mutating func string() throws -> String {
         guard take(34) else { throw ActionContractError.invalid("$") }

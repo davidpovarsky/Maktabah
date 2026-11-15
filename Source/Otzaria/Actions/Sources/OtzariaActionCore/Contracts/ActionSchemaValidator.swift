@@ -25,7 +25,10 @@ public enum ActionSchemaValidator {
             let properties = s["properties"]?.object ?? [:]
             let required = s["required"]?.array?.compactMap(\.string) ?? []
             if required.contains(where: { object[$0] == nil }) { try reject() }
-            if s["additionalProperties"] == .bool(false), !Set(object.keys).isSubset(of: Set(properties.keys)) { try reject() }
+            // Swift String equality is canonically equivalent; JSON property
+            // names are exact decoded code points, not normalized aliases.
+            if s["additionalProperties"] == .bool(false),
+               !Set(object.keys.map { Array($0.utf8) }).isSubset(of: Set(properties.keys.map { Array($0.utf8) })) { try reject() }
             if let max = s["maxProperties"]?.integer, object.count > max { try reject() }
             for (key, rule) in properties { if let v = object[key] { try validate(v, schema: rule, path: path + "." + key) } }
         case .array(let array):
@@ -57,7 +60,9 @@ public enum ActionSchemaValidator {
         switch (type, value) {
         case ("object", .object), ("array", .array), ("string", .string), ("integer", .integer),
              ("integer", .unsigned), ("number", .unsigned), ("number", .integer), ("number", .number), ("boolean", .bool), ("null", .null): true
-        case ("integer", .number(let v)): v.isFinite && v.rounded() == v
+        // Approximate floats never prove source integer-ness. The wire parser
+        // already classifies exact integral decimal/exponent forms losslessly.
+        case ("integer", .number): false
         default: false
         }
     }
