@@ -97,7 +97,7 @@
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "7a0d3542de1de9cfa909df284e894dc81edb7eca5968f5ddfad86d35e7fca41c",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "dd27d741cc8a23dc34dea19a1580f68cd42c5130d85bcad07c7e01b87670c680",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift": "6a79fed35cf6549795202764257849ce485bdc3e988c444fdb6c586355779c31",
-    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "531bff11246330fd8458cdc3374edc859fd0c529e2c548a3e0f368de1f0bbe04"
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "5a79afe5d6ac39e4539a2887d38ed9f4a6c02297dcab06fd6d4afa9bab69b245"
   },
   "log_sha256": "0eb885190484a87605cf9124f385374077dbca3b9269aab0a3e67058970c2c11",
   "native_tests_executed": 0,
@@ -160,11 +160,33 @@
       "xcuiautomation-voiceover-sdk.txt": "84145caca5aa765ae190a0a9cf63f71007ff449b9a4218ab259d6338ab621a3b"
     }
   },
-  "latest_live_UIKit_visibility_AppleSDK": "PENDING_NEW_SOURCE_CHECK",
+  "latest_live_UIKit_visibility_AppleSDK": {
+    "source": "a94e4d491ecf05f96307ecaeec4bde475cddd629",
+    "run": 43734557773,
+    "hostPackage": "SDK_COMPILE_PASS",
+    "UITestSources": "SDK_COMPILE_PASS",
+    "appIntegration": "NOT_COMPILED",
+    "nativeUITestsExecuted": 0,
+    "appMembership": "PASS",
+    "toolbar": "BUILD_FAILED",
+    "aggregate": "FAIL",
+    "xcode": "Xcode 27.1\nBuild version 27A9275",
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "/Applications/Xcode_27.1.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk",
+    "aggregateUITestWarningCount": 2158,
+    "rawArtifactsSHA256": {
+      "toolbar-sdk-compile.json": "e884b3c8e749f314af2b83b1a8e6f40c3bd192aba0dd9c169d455e09347a83e9",
+      "toolbar-sdk-compile.log": "90b89a3a242d278fda9a8aa7a867c860729bb14b5c97eabc71cde815f42504ce",
+      "ui-acceptance-typecheck.json": "226be911251a5d02b86177c7dabcd61bd290f75a22bf954188e34cf36b80abc2",
+      "ui-acceptance-typecheck.log": "efff87570c9fafe41db5b39458c5708f510e7cee94f85ccc97c37b73d80770eb",
+      "xcuiautomation-voiceover-sdk.txt": "84145caca5aa765ae190a0a9cf63f71007ff449b9a4218ab259d6338ab621a3b"
+    }
+  },
   "liveVisibilityPortable": {
     "log_sha256": "338284fe5f2d0eb6396643808165590b28f5b408f40300570014ecd2b8b7ec4b",
     "methods": 57,
     "failures": 0,
     "warnings": 0
-  }
+  },
+  "UITestDeclarationCorrection": "N-test-selection-report.json; five annotation line breaks only after exact SDK compile; native execution still NOT_RUN"
 }

@@ -1,0 +1,33 @@
+{
+  "status": "DECLARATION_SELECTION_VALID_NATIVE_NOT_RUN",
+  "change": "Only move the five @MainActor test annotations onto preceding lines so the existing shared verifier recognizes actual method declarations. Swift tokens unchanged.",
+  "source_sha256": "5a79afe5d6ac39e4539a2887d38ed9f4a6c02297dcab06fd6d4afa9bab69b245",
+  "sdk_checked_source": "a94e4d491ecf05f96307ecaeec4bde475cddd629",
+  "nativeTestsExecuted": 0,
+  "actual_empty_execution_log_result": {
+    "suites": [
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests",
+        "expected": [
+          "testWarmHistoryURLUsesOtzariaNativeScene",
+          "testWarmHistoryURLUsesLegacyNativeScene",
+          "testWarmHistoryURLUsesEmbeddedNativeScene",
+          "testColdHistoryURLWaitsForActualSceneMount",
+          "testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
+        ],
+        "passed": [],
+        "failed": [],
+        "missing": [
+          "testWarmHistoryURLUsesOtzariaNativeScene",
+          "testWarmHistoryURLUsesLegacyNativeScene",
+          "testWarmHistoryURLUsesEmbeddedNativeScene",
+          "testColdHistoryURLWaitsForActualSceneMount",
+          "testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
+        ],
+        "status": "FAIL"
+      }
+    ],
+    "status": "FAIL"
+  }
+}

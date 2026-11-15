@@ -83,10 +83,14 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         try requireNativeReceipt(request, backend: backend)
         capture("native-route-after-" + backend)
     }
-    @MainActor func testWarmHistoryURLUsesOtzariaNativeScene() throws { try warm("otzaria") }
-    @MainActor func testWarmHistoryURLUsesLegacyNativeScene() throws { try warm("sefaria") }
-    @MainActor func testWarmHistoryURLUsesEmbeddedNativeScene() throws { try warm("sefariaEmbedded") }
-    @MainActor func testColdHistoryURLWaitsForActualSceneMount() throws {
+    @MainActor
+    func testWarmHistoryURLUsesOtzariaNativeScene() throws { try warm("otzaria") }
+    @MainActor
+    func testWarmHistoryURLUsesLegacyNativeScene() throws { try warm("sefaria") }
+    @MainActor
+    func testWarmHistoryURLUsesEmbeddedNativeScene() throws { try warm("sefariaEmbedded") }
+    @MainActor
+    func testColdHistoryURLWaitsForActualSceneMount() throws {
         configure("otzaria"); app.launch()
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
         XCTAssertFalse(app.navigationBars["History"].exists)
@@ -99,7 +103,8 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         try requireNativeReceipt(request, backend: "otzaria")
         capture("native-cold-after")
     }
-    @MainActor func testUnknownURLVersionShowsErrorWithoutNavigatingToHistory() throws {
+    @MainActor
+    func testUnknownURLVersionShowsErrorWithoutNavigatingToHistory() throws {
         configure("otzaria"); app.launch()
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
         XCTAssertFalse(app.navigationBars["History"].exists)
