@@ -25,14 +25,15 @@ actor SefariaHTTPClient {
     }
 
     func post<T: Decodable & Sendable, Body: Encodable & Sendable>(
-        _ type: T.Type, url: URL, body: Body
+        _ type: T.Type, url: URL, body: Body,
+        timeoutInterval: TimeInterval = 30, maxAttempts: Int? = nil
     ) async throws -> T {
-        var request = URLRequest(url: url, timeoutInterval: 30)
+        var request = URLRequest(url: url, timeoutInterval: timeoutInterval)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Maktabah/1 SefariaNative", forHTTPHeaderField: "User-Agent")
         request.httpBody = try JSONEncoder().encode(body)
-        return try await send(type, request: request, maxAttempts: maximumAttempts)
+        return try await send(type, request: request, maxAttempts: maxAttempts ?? maximumAttempts)
     }
 
     func postData<Body: Encodable & Sendable>(url: URL, body: Body) async throws -> (Data, HTTPURLResponse) {

@@ -753,9 +753,17 @@ struct LibrarySearchHit: Codable, Hashable, Identifiable, Sendable {
 }
 
 struct LibrarySearchPage: Codable, Hashable, Sendable {
+    struct SourceEvidence: Codable, Hashable, Sendable {
+        let backend: BackendID
+        let rawHitCount: Int
+        let allRowsMapped: Bool
+        /// Verbatim source relation. Missing/unrecognized is never inferred eq.
+        let totalRelation: String?
+    }
     let hits: [LibrarySearchHit]
     let total: Int
     let nextOffset: Int?
+    var sourceEvidence: SourceEvidence? = nil
 }
 
 /// Encapsulates generic backend pagination continuation state, truthful monotonic totals,

@@ -1,0 +1,29 @@
+docs\hq-actions-bridge\LegacySourceAcceptance.swift:25:74: warning: conformance of 'AvailabilityFixtureProtocol' to protocol 'Sendable' is already unavailable
+
+ 23 |     func observed() -> (Int, Bool) { lock.lock(); defer { lock.unlock() }; return (requests, boundedReadOnly) }
+
+ 24 | }
+
+ 25 | private final class AvailabilityFixtureProtocol: URLProtocol, @unchecked Sendable {
+
+    |                     |                                                    `- warning: conformance of 'AvailabilityFixtureProtocol' to protocol 'Sendable' is already unavailable
+
+    |                     `- note: 'AvailabilityFixtureProtocol' inherits conformance to protocol 'Sendable' from superclass here
+
+ 26 |     static let state = AvailabilityFixtureState()
+
+ 27 |     override class func canInit(with request: URLRequest) -> Bool { true }
+
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-actions-integration-r4220url\integration-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-actions-integration-r4220url\integration-fixtures.exp
+
+PASS: 100 Integration assertions using real app coordinator/models/protocols, facade, RPC bridge and runtime manager; providers/transport are doubles, no Hermes or Apple UI
+2026-11-15 17:24:42.896 integration-fixtures.exe[10732:6100] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-15 17:24:42.897 integration-fixtures.exe[10732:a11c] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-15 17:24:42.899 integration-fixtures.exe[10732:a11c] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-15 17:24:42.899 integration-fixtures.exe[10732:6100] [SefariaJSRPCBridge] waitForReady: already ready with active transport and listeners
+2026-11-15 17:24:42.901 integration-fixtures.exe[10732:6934] [SefariaJSRPCBridge] waitForReady: already ready with active transport and listeners
+2026-11-15 17:24:42.931 integration-fixtures.exe[10732:6934] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-15 17:24:42.931 integration-fixtures.exe[10732:a1d0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","backendID":"sefariaEmbedded","sequence":1}
+2026-11-15 17:24:42.931 integration-fixtures.exe[10732:a1d0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-15 17:24:42.931 integration-fixtures.exe[10732:6100] [SefariaJSRPCBridge] waitForReady: already ready with active transport and listeners
+2026-11-15 17:24:42.965 integration-fixtures.exe[10732:8758] [SefariaJSRPCBridge] waitForReady: already ready with active transport and listeners
