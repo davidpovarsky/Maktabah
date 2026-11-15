@@ -1,0 +1,1 @@
+render: PASS — actual UTF16 ranges, RTL/Arabic/combining/emoji, source/translation/both; 200-segment synthetic Windows p50=53.33518981933594ms max=68.57681274414062ms

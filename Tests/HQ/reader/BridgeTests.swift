@@ -1,5 +1,7 @@
 import Foundation
 
+private enum ReaderFixtureError: Error { case sourceUnavailable, navigationUnavailable }
+
 @main struct BridgeTests {
     static func main() async throws {
         let cache = OtzariaReadingUnitSideCache.shared
@@ -40,6 +42,16 @@ import Foundation
         let cancelledAnchor = await cancelled.value
         precondition(cancelledAnchor == nil)
 
+        bridge.resetConnection()
+        bridge.database = SQLiteDatabase()
+        bridge.onRequireDatabase = {
+            bridge.onRequireDatabase = nil
+            bridge.resetConnection()
+            bridge.database = SQLiteDatabase()
+        }
+        let replacedBeforeLease = await bridge.lineAnchorAsync(bookId: 103, contentId: 0, characterIndex: 0)
+        precondition(replacedBeforeLease == nil, "anchor request started before DB replacement must not adopt the new DB lease")
+
         let shared = OtzariaMaktabahBridge.shared
         shared.resetConnection()
         let empty = SQLiteDatabase()
@@ -60,6 +72,26 @@ import Foundation
             preconditionFailure("reset during mapping must cancel final response")
         } catch is CancellationError {}
         OtzariaInspectorDocumentMapper.onMap = nil
+        shared.resetConnection()
+        let broken = SQLiteDatabase()
+        broken.sourceError = ReaderFixtureError.sourceUnavailable
+        shared.database = broken
+        shared.fallbackContent = BookContent(id: 0, nash: "misleading partial fallback", page: 0, part: 1, heRef: nil)
+        do {
+            _ = try await OtzariaGenericBackendAdapter().section(at: requested)
+            preconditionFailure("source read failure must reach the reader, never become a partial fallback")
+        } catch ReaderFixtureError.sourceUnavailable {}
+        shared.resetConnection()
+        shared.currentReadingUnitMode = .line
+        let brokenNavigation = SQLiteDatabase()
+        brokenNavigation.onFetch = {
+            if brokenNavigation.sourceFetches > 0 { throw ReaderFixtureError.navigationUnavailable }
+        }
+        shared.database = brokenNavigation
+        do {
+            _ = try await OtzariaGenericBackendAdapter().section(at: requested)
+            preconditionFailure("adjacent metadata error must not hide the next or previous unit")
+        } catch ReaderFixtureError.navigationUnavailable {}
         let adapter = OtzariaGenericBackendAdapter()
         let numeric = try await adapter.normalizedLocator(for: "103|41")
         precondition(numeric.position == .legacyLine(41))
@@ -69,6 +101,6 @@ import Foundation
                 preconditionFailure("invalid locator accepted: \(invalid)")
             } catch LibraryBackendError.invalidLocator {}
         }
-        print("bridge: PASS — actual publication/reset/conversion/adapter methods; cancellation; async exact anchor; multiline locator; reset during mapping; malformed locators rejected")
+        print("bridge: PASS — actual publication/reset/adapter methods; cancellation; reset-before-lease anchor rejected; multiline locator; reset during mapping; source and adjacent SQL errors propagated; malformed locators rejected")
     }
 }

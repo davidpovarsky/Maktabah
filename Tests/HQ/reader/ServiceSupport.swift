@@ -12,13 +12,31 @@ final class SQLiteDatabase {
     var mappings: [(Int, Int)] = [(0, 11), (1, 11), (2, 12)]
     var lines: [[Any?]] = [[100, 0, "שָׁלוֹם 😀", "א"], [101, 1, "English e\u{301}", "ב"], [102, 2, "ג", "ג"]]
     var sourceFetches = 0
-    var onFetch: (() -> Void)?
+    var metadataRows = 0
+    var sourceError: Error?
+    var onFetch: (() throws -> Void)?
     func fetch<T>(query: String, parameters: [Any] = [], mapping: (SQLiteRow) throws -> T) throws -> [T] {
-        onFetch?()
+        try onFetch?()
         let rows: [[Any?]]
         if query.contains("FROM tocEntry te") { rows = entries }
         else if query.contains("FROM line_toc lt") { rows = mappings.map { [$0.0, $0.1] } }
-        else if query.contains("SELECT lineIndex") { rows = lines.map { [$0[1]] } }
+        else if query.contains("SELECT l.lineIndex,") && query.contains("LIMIT 1") {
+            let indices = lines.compactMap { $0[1] as? Int }.sorted()
+            let target = parameters.count > 1 ? parameters[1] as? Int : nil
+            let selected: Int?
+            if query.contains("l.lineIndex = ?") { selected = indices.first { $0 == target } }
+            else if query.contains("l.lineIndex > ?") { selected = indices.first { $0 > target! } }
+            else if query.contains("l.lineIndex < ?") { selected = indices.last { $0 < target! } }
+            else { selected = indices.first }
+            rows = selected.map { index in
+                [[index, indices.last { $0 < index }, indices.first { $0 > index }]]
+            } ?? []
+            metadataRows += rows.count
+        }
+        else if query.contains("SELECT lineIndex") {
+            rows = lines.map { [$0[1]] }
+            metadataRows += rows.count
+        }
         else if query.contains("LEFT JOIN line_toc") {
             rows = lines.flatMap { line -> [[Any?]] in
                 let matches = mappings.filter { $0.0 == line[1] as? Int }
@@ -27,6 +45,7 @@ final class SQLiteDatabase {
         }
         else {
             sourceFetches += 1
+            if let sourceError { throw sourceError }
             if query.contains("lineIndex >=") {
                 let start = parameters[1] as! Int, end = parameters[2] as! Int
                 rows = lines.filter { let index = $0[1] as! Int; return start <= index && index <= end }

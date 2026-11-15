@@ -151,7 +151,8 @@ extension OtzariaMaktabahBridge {
             await worker.value
         }, onCancel: { worker.cancel() })
         guard !Task.isCancelled, currentReadingUnitMode == mode,
-              let (unit, loadedGeneration) = result, loadedGeneration == generationSnapshot() else { return nil }
+              let (unit, loadedGeneration) = result, loadedGeneration == generation,
+              generation == generationSnapshot() else { return nil }
         return lineAnchor(in: unit, characterIndex: characterIndex)
     }
 

@@ -1,0 +1,39 @@
+{
+  "base_sha": "b7c4f05c24ca7c603bed512b3f8bad4d33f799cb",
+  "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "authority": "Stable production/test inputs of executed wave-R final focused run, Windows Swift 6.3.3; not native app evidence",
+  "files": {
+    "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift": {
+      "sha256": "cd2731daaae53e07c7c661813b3abd098562e51efb4166354842e3ba8f8f3748",
+      "git_blob": "46d39867d81e611fd91059312ade764ff45db36f"
+    },
+    "Source/Otzaria/Reading/OtzariaMaktabahBridge+LineAnchors.swift": {
+      "sha256": "5c38872ddf4f35e2d072be5a71d5517d7f54bbb86eb5d1be7e49cc7b21220ca8",
+      "git_blob": "e60563ae7540468a061f931a4cf207093e6680a5"
+    },
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": {
+      "sha256": "b688d1f414b2be70494f803579187d6928a9dab896d4acdc7394051eac85d85e",
+      "git_blob": "be13c40d627b96e3ae2d04604d7e5c63e8425917"
+    },
+    "Tests/HQ/reader/BridgeSupport.swift": {
+      "sha256": "ac6f67759f9a8cff8e69e4842161cb33d62f915063f2ebd1f892c14e9e6195ca",
+      "git_blob": "0149cef01fa5f849fe9f613a3c65f5992e3e88fe"
+    },
+    "Tests/HQ/reader/BridgeTests.swift": {
+      "sha256": "7ade5ca10c04fedfe97bf6d8b27ef8a081d48e17d5c5d3e891473d2949ca6166",
+      "git_blob": "492ca76b115a168597aedd30b09a19d2fb145e01"
+    },
+    "Tests/HQ/reader/ServiceSupport.swift": {
+      "sha256": "d04cbbfcbfe57c81a36aa471ef2015c621ca205323297323e0e63451c7471d9b",
+      "git_blob": "4645e22ca4ba5a53c988f70cb9f2b3b496588147"
+    },
+    "Tests/HQ/reader/ServiceTests.swift": {
+      "sha256": "122a4327b2f283cfd5524649cfba1bc5ea16b373ff267da5ee9e71b41a10f975",
+      "git_blob": "c6d8dbbe856b434458dac75b1a32d51b67db0890"
+    },
+    "tools/hq-reader-checks.py": {
+      "sha256": "2b2a23d123d0b0c170973f26731ee66df88717f9a1fa93fbcd95ff5ab68e90f2",
+      "git_blob": "511527aa85667f3894a90466563218b10b33cc6a"
+    }
+  }
+}

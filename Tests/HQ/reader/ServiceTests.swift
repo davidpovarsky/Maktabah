@@ -6,6 +6,21 @@ import Foundation
         func check(_ value: Bool, _ message: String) { if !value { failures.append(message) } }
         let db = SQLiteDatabase()
         let service = OtzariaReadingUnitService(database: db)
+        let lineDB = SQLiteDatabase()
+        lineDB.lines = (0..<10_000).map { [100_000 + $0, $0 * 2, "שורה", nil] }
+        let lineService = OtzariaReadingUnitService(database: lineDB)
+        let middle = try lineService.descriptor(bookId: 103, containingLineIndex: 10_000, mode: .line)
+        check(middle?.sourceLineIndices == [10_000] && middle?.previousStartLineIndex == 9_998
+            && middle?.nextStartLineIndex == 10_002, "line metadata preserves exact sparse neighbors")
+        check(try lineService.firstDescriptor(bookId: 103, mode: .line)?.startLineIndex == 0, "lazy first line")
+        check(try lineService.nextDescriptor(bookId: 103, afterLineIndex: 9_999, mode: .line)?.startLineIndex == 10_000, "lazy next from hole")
+        check(try lineService.previousDescriptor(bookId: 103, beforeLineIndex: 10_001, mode: .line)?.startLineIndex == 10_000, "lazy previous from hole")
+        check(try lineService.descriptor(bookId: 103, containingLineIndex: 9_999, mode: .line) == nil, "lazy exact lookup never rounds a hole")
+        check(try lineService.previousDescriptor(bookId: 103, beforeLineIndex: 0, mode: .line) == nil, "lazy first boundary")
+        check(try lineService.nextDescriptor(bookId: 103, afterLineIndex: 19_998, mode: .line) == nil, "lazy last boundary")
+        check(lineDB.metadataRows == 4 && lineDB.sourceFetches == 0, "line lookups map only selected metadata, never whole book or content")
+        check(Mirror(reflecting: lineService).children.first { $0.label == "summariesCacheCost" }?.value as? Int == 0,
+            "line lookup does not retain whole-book summaries")
         let first = try service.firstDescriptor(bookId: 103, mode: .paragraph)!
         check(db.sourceFetches == 0, "descriptor is metadata only")
         check(first.sourceLineIndices == [0, 1], "first unit exact lines")
@@ -94,6 +109,17 @@ import Foundation
         }
         let didCancel = await cancelled.value
         check(didCancel && cancelDB.sourceFetches == 0, "cancelled metadata fetch propagates before decode")
+        let emptyDB = SQLiteDatabase()
+        emptyDB.lines = []
+        let emptyService = OtzariaReadingUnitService(database: emptyDB)
+        emptyDB.onFetch = { withUnsafeCurrentTask { $0?.cancel() } }
+        let emptyCancelled = Task.detached { () -> Bool in
+            do { _ = try emptyService.firstDescriptor(bookId: 103, mode: .line); return false }
+            catch is CancellationError { return true }
+            catch { return false }
+        }
+        check(await emptyCancelled.value, "cancelled empty bounded query is not successful EOF")
+        print("service: lazy sparse line lookups map 4 selected metadata rows across 7 requests on 10,000 rows; no content fetch or whole-book summary retention")
         print("service: \(failures.isEmpty ? "PASS" : "FAIL") — \(failures.joined(separator: "; "))")
         if !failures.isEmpty { exit(1) }
     }
