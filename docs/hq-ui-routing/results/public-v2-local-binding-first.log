@@ -1,0 +1,155 @@
+[0/1] Planning build
+Building for debugging...
+[0/13] Write swift-version-2807070033DA82CF.txt
+[1/13] Write sources
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[5/14] Emitting module OtzariaActionCore
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Sources\OtzariaActionCore\Engine\ActionExecutor.swift:120:40: error: instance method 'prepareNavigationSynchronously(sceneID:invocation:context:)' has multiple actor-isolation attributes (@MainActor and 'nonisolated')
+
+118 |     /// Capture the SAME injected native/backend authority before a host's first
+
+119 |     /// await. This is still surface-only; it cannot issue a content grant.
+
+120 |     @MainActor public nonisolated func prepareNavigationSynchronously(sceneID: String, invocation: ActionPortInvocation,
+
+    |                                        `- error: instance method 'prepareNavigationSynchronously(sceneID:invocation:context:)' has multiple actor-isolation attributes (@MainActor and 'nonisolated')
+
+121 |                                                                       context: ActionExecutionContext) throws -> ActionNavigationPreparation {
+
+122 |         guard let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
+
+[6/16] Compiling OtzariaActionCore ActionExecutor.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Sources\OtzariaActionCore\Engine\ActionExecutor.swift:120:40: error: instance method 'prepareNavigationSynchronously(sceneID:invocation:context:)' has multiple actor-isolation attributes (@MainActor and 'nonisolated')
+
+118 |     /// Capture the SAME injected native/backend authority before a host's first
+
+119 |     /// await. This is still surface-only; it cannot issue a content grant.
+
+120 |     @MainActor public nonisolated func prepareNavigationSynchronously(sceneID: String, invocation: ActionPortInvocation,
+
+    |                                        `- error: instance method 'prepareNavigationSynchronously(sceneID:invocation:context:)' has multiple actor-isolation attributes (@MainActor and 'nonisolated')
+
+121 |                                                                       context: ActionExecutionContext) throws -> ActionNavigationPreparation {
+
+122 |         guard let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Sources\OtzariaActionCore\Engine\ActionExecutor.swift:115:13: warning: no 'async' operations occur within 'await' expression
+
+113 |     public func prepareNavigation(sceneID: String, invocation: ActionPortInvocation,
+
+114 |                                   context: ActionExecutionContext) async throws -> ActionNavigationPreparation {
+
+115 |         try await prepareNavigationSynchronously(sceneID: sceneID, invocation: invocation, context: context)
+
+    |             `- warning: no 'async' operations occur within 'await' expression
+
+116 |     }
+
+117 | 
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Sources\OtzariaActionCore\Engine\ActionExecutor.swift:126:20: error: call to main actor-isolated initializer 'init(authority:backendAuthority:invocation:sceneID:context:destination:clock:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+
+124 |         }
+
+125 |         guard let navigationAuthority else { throw ActionNavigationError(.unavailable, "navigation_context_authority_unavailable") }
+
+126 |         return try ActionNavigationPreparation(authority: navigationAuthority, backendAuthority: backendAuthority, invocation: invocation, sceneID: sceneID,
+
+    |                    `- error: call to main actor-isolated initializer 'init(authority:backendAuthority:invocation:sceneID:context:destination:clock:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+
+127 |             context: context, destination: nil, clock: clock)
+
+128 |     }
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Sources\OtzariaActionCore\Ports\ActionNavigationAuthority.swift:55:5: note: calls to initializer 'init(authority:backendAuthority:invocation:sceneID:context:destination:clock:)' from outside of its actor context are implicitly asynchronous
+
+ 53 |     public nonisolated static func == (lhs: ActionNavigationPreparation, rhs: ActionNavigationPreparation) -> Bool { lhs === rhs }
+
+ 54 | 
+
+ 55 |     init(authority: any ActionNavigationAuthority, backendAuthority: any ActionSynchronousBackendStatePort,
+
+    |     `- note: calls to initializer 'init(authority:backendAuthority:invocation:sceneID:context:destination:clock:)' from outside of its actor context are implicitly asynchronous
+
+ 56 |          invocation: ActionPortInvocation, sceneID: String,
+
+ 57 |          context: ActionExecutionContext, destination: ActionReaderDestination?, clock: any ActionClock) throws {
+
+
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>
+
+[7/16] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Sources\OtzariaActionCore\Engine\ActionExecutor.swift:120:40: error: instance method 'prepareNavigationSynchronously(sceneID:invocation:context:)' has multiple actor-isolation attributes (@MainActor and 'nonisolated')
+
+118 |     /// Capture the SAME injected native/backend authority before a host's first
+
+119 |     /// await. This is still surface-only; it cannot issue a content grant.
+
+120 |     @MainActor public nonisolated func prepareNavigationSynchronously(sceneID: String, invocation: ActionPortInvocation,
+
+    |                                        `- error: instance method 'prepareNavigationSynchronously(sceneID:invocation:context:)' has multiple actor-isolation attributes (@MainActor and 'nonisolated')
+
+121 |                                                                       context: ActionExecutionContext) throws -> ActionNavigationPreparation {
+
+122 |         guard let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Sources\OtzariaActionCore\Engine\ActionExecutor.swift:115:13: warning: no 'async' operations occur within 'await' expression
+
+113 |     public func prepareNavigation(sceneID: String, invocation: ActionPortInvocation,
+
+114 |                                   context: ActionExecutionContext) async throws -> ActionNavigationPreparation {
+
+115 |         try await prepareNavigationSynchronously(sceneID: sceneID, invocation: invocation, context: context)
+
+    |             `- warning: no 'async' operations occur within 'await' expression
+
+116 |     }
+
+117 | 
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Sources\OtzariaActionCore\Engine\ActionExecutor.swift:126:20: error: call to main actor-isolated initializer 'init(authority:backendAuthority:invocation:sceneID:context:destination:clock:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+
+124 |         }
+
+125 |         guard let navigationAuthority else { throw ActionNavigationError(.unavailable, "navigation_context_authority_unavailable") }
+
+126 |         return try ActionNavigationPreparation(authority: navigationAuthority, backendAuthority: backendAuthority, invocation: invocation, sceneID: sceneID,
+
+    |                    `- error: call to main actor-isolated initializer 'init(authority:backendAuthority:invocation:sceneID:context:destination:clock:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+
+127 |             context: context, destination: nil, clock: clock)
+
+128 |     }
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Sources\OtzariaActionCore\Ports\ActionNavigationAuthority.swift:55:5: note: calls to initializer 'init(authority:backendAuthority:invocation:sceneID:context:destination:clock:)' from outside of its actor context are implicitly asynchronous
+
+ 53 |     public nonisolated static func == (lhs: ActionNavigationPreparation, rhs: ActionNavigationPreparation) -> Bool { lhs === rhs }
+
+ 54 | 
+
+ 55 |     init(authority: any ActionNavigationAuthority, backendAuthority: any ActionSynchronousBackendStatePort,
+
+    |     `- note: calls to initializer 'init(authority:backendAuthority:invocation:sceneID:context:destination:clock:)' from outside of its actor context are implicitly asynchronous
+
+ 56 |          invocation: ActionPortInvocation, sceneID: String,
+
+ 57 |          context: ActionExecutionContext, destination: ActionReaderDestination?, clock: any ActionClock) throws {
+
+
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>
+
+error: fatalError

@@ -1,0 +1,406 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/3] Write sources
+[3/4] Emitting module OtzariaUIRoutingTests
+[4/5] Compiling OtzariaUIRoutingTests PublicNavigationLocalBindingTests.swift
+[5/11] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[6/12] Write sources
+[8/13] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[9/15] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[10/15] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[11/13] Write Objects.LinkFileList
+[12/13] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (12.07s)
+Test Suite 'All tests' started at 2026-11-15 17:11:01.955
+
+Test Suite 'debug.xctest' started at 2026-11-15 17:11:01.960
+
+Test Suite 'CodecTests' started at 2026-11-15 17:11:01.960
+
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' started at 2026-11-15 17:11:01.960
+
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' passed (0.461 seconds)
+
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' started at 2026-11-15 17:11:02.421
+
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' passed (0.116 seconds)
+
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' started at 2026-11-15 17:11:02.537
+
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' passed (0.909 seconds)
+
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' started at 2026-11-15 17:11:03.447
+
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' passed (0.218 seconds)
+
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' started at 2026-11-15 17:11:03.665
+
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' passed (0.129 seconds)
+
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' started at 2026-11-15 17:11:03.794
+
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' passed (0.312 seconds)
+
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' started at 2026-11-15 17:11:04.106
+
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' passed (0.281 seconds)
+
+Test Suite 'CodecTests' passed at 2026-11-15 17:11:04.387
+
+	 Executed 7 tests, with 0 failures (0 unexpected) in 2.427 (2.427) seconds
+
+Test Suite 'DiscoveryReviewRegressionTests' started at 2026-11-15 17:11:04.387
+
+Test Case 'DiscoveryReviewRegressionTests.testBackendSwitchAndLostEpochDuringAssessmentAreRejected' started at 2026-11-15 17:11:04.387
+
+Test Case 'DiscoveryReviewRegressionTests.testBackendSwitchAndLostEpochDuringAssessmentAreRejected' passed (0.08 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testCallerDeadlineAlsoBoundsCoreAdvertisement' started at 2026-11-15 17:11:04.467
+
+Test Case 'DiscoveryReviewRegressionTests.testCallerDeadlineAlsoBoundsCoreAdvertisement' passed (0.509 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testCoreGenerationDriftDuringAdvertisementIsRejected' started at 2026-11-15 17:11:04.976
+
+Test Case 'DiscoveryReviewRegressionTests.testCoreGenerationDriftDuringAdvertisementIsRejected' passed (0.034 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testDeadlineCleansInitialAndFinalCurrentSceneWaits' started at 2026-11-15 17:11:05.010
+
+Test Case 'DiscoveryReviewRegressionTests.testDeadlineCleansInitialAndFinalCurrentSceneWaits' passed (1.021 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testDiscoveryDeadlineCancelsCooperativeHostBeforeSafetyRelease' started at 2026-11-15 17:11:06.031
+
+Test Case 'DiscoveryReviewRegressionTests.testDiscoveryDeadlineCancelsCooperativeHostBeforeSafetyRelease' passed (0.514 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testEmbeddedEpochDriftWithEchoedHostAssessmentIsRejected' started at 2026-11-15 17:11:06.545
+
+Test Case 'DiscoveryReviewRegressionTests.testEmbeddedEpochDriftWithEchoedHostAssessmentIsRejected' passed (0.075 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansInitialAndFinalCurrentSceneWaits' started at 2026-11-15 17:11:06.620
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansInitialAndFinalCurrentSceneWaits' passed (0.082 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansUpCooperativeHostBeforeSafetyRelease' started at 2026-11-15 17:11:06.702
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansUpCooperativeHostBeforeSafetyRelease' passed (0.048 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testGenerationDriftWithEchoedHostAssessmentIsRejected' started at 2026-11-15 17:11:06.750
+
+Test Case 'DiscoveryReviewRegressionTests.testGenerationDriftWithEchoedHostAssessmentIsRejected' passed (0.069 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingEmbeddedEpochIsUnavailableBeforeDiscovery' started at 2026-11-15 17:11:06.819
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingEmbeddedEpochIsUnavailableBeforeDiscovery' passed (0.03 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingExactSceneNeverFallsBackToOtherScene' started at 2026-11-15 17:11:06.849
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingExactSceneNeverFallsBackToOtherScene' passed (0.032 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testSceneRevisionChangesBeforeAndDuringAssessmentAreRejected' started at 2026-11-15 17:11:06.881
+
+Test Case 'DiscoveryReviewRegressionTests.testSceneRevisionChangesBeforeAndDuringAssessmentAreRejected' passed (0.074 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testTwoIndependentScenesUseExactSelectorAndRejectMatchingOtherScene' started at 2026-11-15 17:11:06.955
+
+Test Case 'DiscoveryReviewRegressionTests.testTwoIndependentScenesUseExactSelectorAndRejectMatchingOtherScene' passed (0.045 seconds)
+
+Test Suite 'DiscoveryReviewRegressionTests' passed at 2026-11-15 17:11:07.000
+
+	 Executed 13 tests, with 0 failures (0 unexpected) in 2.613 (2.613) seconds
+
+Test Suite 'DiscoveryTests' started at 2026-11-15 17:11:07.000
+
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' started at 2026-11-15 17:11:07.000
+
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' passed (0.253 seconds)
+
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' started at 2026-11-15 17:11:07.253
+
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' passed (0.053 seconds)
+
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' started at 2026-11-15 17:11:07.306
+
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' passed (0.088 seconds)
+
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' started at 2026-11-15 17:11:07.394
+
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' passed (0.281 seconds)
+
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' started at 2026-11-15 17:11:07.675
+
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' passed (0.078 seconds)
+
+Test Case 'DiscoveryTests.testSuccessfulDiscoveryCancelsDeadlineWaitWithoutAdvancingClock' started at 2026-11-15 17:11:07.752
+
+Test Case 'DiscoveryTests.testSuccessfulDiscoveryCancelsDeadlineWaitWithoutAdvancingClock' passed (0.043 seconds)
+
+Test Suite 'DiscoveryTests' passed at 2026-11-15 17:11:07.795
+
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.795 (0.795) seconds
+
+Test Suite 'GoldenAPITests' started at 2026-11-15 17:11:07.795
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' started at 2026-11-15 17:11:07.795
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' passed (0.001 seconds)
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' started at 2026-11-15 17:11:07.797
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' passed (0.0 seconds)
+
+Test Suite 'GoldenAPITests' passed at 2026-11-15 17:11:07.797
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+
+Test Suite 'NavigationAuthorizationTests' started at 2026-11-15 17:11:07.797
+
+Test Case 'NavigationAuthorizationTests.testCanonicalBackendAndNativeContextRemainSeparateSources' started at 2026-11-15 17:11:07.797
+
+Test Case 'NavigationAuthorizationTests.testCanonicalBackendAndNativeContextRemainSeparateSources' passed (0.049 seconds)
+
+Test Case 'NavigationAuthorizationTests.testCompletionRequiresGuardAndExactObservedReceiptWithoutRegrant' started at 2026-11-15 17:11:07.846
+
+Test Case 'NavigationAuthorizationTests.testCompletionRequiresGuardAndExactObservedReceiptWithoutRegrant' passed (0.148 seconds)
+
+Test Case 'NavigationAuthorizationTests.testCurrentSubjectScopeScenePairingAndMissingEpochRequiredAtPreparation' started at 2026-11-15 17:11:07.994
+
+Test Case 'NavigationAuthorizationTests.testCurrentSubjectScopeScenePairingAndMissingEpochRequiredAtPreparation' passed (0.314 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationAfterMutationDoNotBecomeCompletion' started at 2026-11-15 17:11:08.308
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationAfterMutationDoNotBecomeCompletion' passed (0.087 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationRecheckedSynchronously' started at 2026-11-15 17:11:08.396
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationRecheckedSynchronously' passed (0.104 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDiscoveryPermissionIsSeparateFromExecutionPreparation' started at 2026-11-15 17:11:08.500
+
+Test Case 'NavigationAuthorizationTests.testDiscoveryPermissionIsSeparateFromExecutionPreparation' passed (0.086 seconds)
+
+Test Case 'NavigationAuthorizationTests.testEmptySemanticRoutesCannotSmuggleContentPrivateStateOrFakeActions' started at 2026-11-15 17:11:08.585
+
+Test Case 'NavigationAuthorizationTests.testEmptySemanticRoutesCannotSmuggleContentPrivateStateOrFakeActions' passed (0.184 seconds)
+
+Test Case 'NavigationAuthorizationTests.testEpochDriftAfterImmediateGuardCannotBecomeCompletedReceipt' started at 2026-11-15 17:11:08.770
+
+Test Case 'NavigationAuthorizationTests.testEpochDriftAfterImmediateGuardCannotBecomeCompletedReceipt' passed (0.061 seconds)
+
+Test Case 'NavigationAuthorizationTests.testFullCommandBindingAndTrustedSceneRevisionStillRequired' started at 2026-11-15 17:11:08.831
+
+Test Case 'NavigationAuthorizationTests.testFullCommandBindingAndTrustedSceneRevisionStillRequired' passed (0.054 seconds)
+
+Test Case 'NavigationAuthorizationTests.testLifetimeReplacementAndBackendGenerationEpochDriftFailClosed' started at 2026-11-15 17:11:08.885
+
+Test Case 'NavigationAuthorizationTests.testLifetimeReplacementAndBackendGenerationEpochDriftFailClosed' passed (0.369 seconds)
+
+Test Case 'NavigationAuthorizationTests.testMissingEmbeddedSynchronousProofDoesNotBlockOtherBackends' started at 2026-11-15 17:11:09.254
+
+Test Case 'NavigationAuthorizationTests.testMissingEmbeddedSynchronousProofDoesNotBlockOtherBackends' passed (0.276 seconds)
+
+Test Case 'NavigationAuthorizationTests.testMissingSynchronousFacetCannotUseASecondAuthority' started at 2026-11-15 17:11:09.529
+
+Test Case 'NavigationAuthorizationTests.testMissingSynchronousFacetCannotUseASecondAuthority' passed (0.133 seconds)
+
+Test Case 'NavigationAuthorizationTests.testPureNavigationAllThreeBackendsSixOriginsAndOneUse' started at 2026-11-15 17:11:09.663
+
+Test Case 'NavigationAuthorizationTests.testPureNavigationAllThreeBackendsSixOriginsAndOneUse' passed (0.969 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRawPreparationBindsInvocationSceneAndCannotBecomeReaderAuthority' started at 2026-11-15 17:11:10.632
+
+Test Case 'NavigationAuthorizationTests.testRawPreparationBindsInvocationSceneAndCannotBecomeReaderAuthority' passed (0.054 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderAcknowledgementRequiresConsumedGuardAndFreshPostSinkAuthority' started at 2026-11-15 17:11:10.685
+
+Test Case 'NavigationAuthorizationTests.testReaderAcknowledgementRequiresConsumedGuardAndFreshPostSinkAuthority' passed (0.079 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderCannotBypassResolverOrForgePreparationAndRevocationBeforeCommit' started at 2026-11-15 17:11:10.765
+
+Test Case 'NavigationAuthorizationTests.testReaderCannotBypassResolverOrForgePreparationAndRevocationBeforeCommit' passed (0.056 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderStillUsesResolverSinkGuardAndExactReceiptAllBackends' started at 2026-11-15 17:11:10.820
+
+Test Case 'NavigationAuthorizationTests.testReaderStillUsesResolverSinkGuardAndExactReceiptAllBackends' passed (0.195 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRevocationAfterObservedMutationPreventsCompletion' started at 2026-11-15 17:11:11.016
+
+Test Case 'NavigationAuthorizationTests.testRevocationAfterObservedMutationPreventsCompletion' passed (0.578 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRevocationDuringFinalBackendAwaitPreventsReaderCompletion' started at 2026-11-15 17:11:11.594
+
+Test Case 'NavigationAuthorizationTests.testRevocationDuringFinalBackendAwaitPreventsReaderCompletion' passed (0.037 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRevokedOrChangedAuthorityNeverCommits' started at 2026-11-15 17:11:11.631
+
+Test Case 'NavigationAuthorizationTests.testRevokedOrChangedAuthorityNeverCommits' passed (0.558 seconds)
+
+Test Suite 'NavigationAuthorizationTests' passed at 2026-11-15 17:11:12.189
+
+	 Executed 20 tests, with 0 failures (0 unexpected) in 4.392 (4.392) seconds
+
+Test Suite 'PublicNavigationV2Tests' started at 2026-11-15 17:11:12.190
+
+Test Case 'PublicNavigationV2Tests.testBindingUsesFreshLocalCorrelationSceneBackendAndOneUseGuard' started at 2026-11-15 17:11:12.190
+
+Test Case 'PublicNavigationV2Tests.testBindingUsesFreshLocalCorrelationSceneBackendAndOneUseGuard' passed (0.536 seconds)
+
+Test Case 'PublicNavigationV2Tests.testDeadlineAndCancellationCleanExactVariantWaits' started at 2026-11-15 17:11:12.726
+
+Test Case 'PublicNavigationV2Tests.testDeadlineAndCancellationCleanExactVariantWaits' passed (1.246 seconds)
+
+Test Case 'PublicNavigationV2Tests.testDecodedIntentMustFitBudgetAfterBackendNormalization' started at 2026-11-15 17:11:13.971
+
+Test Case 'PublicNavigationV2Tests.testDecodedIntentMustFitBudgetAfterBackendNormalization' passed (0.247 seconds)
+
+Test Case 'PublicNavigationV2Tests.testDiscoveryReportsOnlyExactVerifiedVariantsAndNoGenericPolicyAdvertisement' started at 2026-11-15 17:11:14.218
+
+Test Case 'PublicNavigationV2Tests.testDiscoveryReportsOnlyExactVerifiedVariantsAndNoGenericPolicyAdvertisement' passed (0.056 seconds)
+
+Test Case 'PublicNavigationV2Tests.testExactVariantAllowlistNeverGuessesAnchorOrPresentation' started at 2026-11-15 17:11:14.274
+
+Test Case 'PublicNavigationV2Tests.testExactVariantAllowlistNeverGuessesAnchorOrPresentation' passed (0.138 seconds)
+
+Test Case 'PublicNavigationV2Tests.testLocalBindingCompletionRejectsABAAfterActualEffect' started at 2026-11-15 17:11:14.412
+
+Test Case 'PublicNavigationV2Tests.testLocalBindingCompletionRejectsABAAfterActualEffect' passed (0.371 seconds)
+
+Test Case 'PublicNavigationV2Tests.testLocalBindingDeadlineAndCancellationCleanAllBinderAwaits' started at 2026-11-15 17:11:14.783
+
+Test Case 'PublicNavigationV2Tests.testLocalBindingDeadlineAndCancellationCleanAllBinderAwaits' passed (2.137 seconds)
+
+Test Case 'PublicNavigationV2Tests.testLocalBindingMissingStaleAndExplicitObservedAbsence' started at 2026-11-15 17:11:16.920
+
+Test Case 'PublicNavigationV2Tests.testLocalBindingMissingStaleAndExplicitObservedAbsence' passed (0.357 seconds)
+
+Test Case 'PublicNavigationV2Tests.testLocalMappingAndNativeLifetimeRevocationAcrossEveryBinderAwait' started at 2026-11-15 17:11:17.277
+
+Test Case 'PublicNavigationV2Tests.testLocalMappingAndNativeLifetimeRevocationAcrossEveryBinderAwait' passed (3.432 seconds)
+
+Test Case 'PublicNavigationV2Tests.testNativeShapedLocalBindingAndExactReceiptsForAllBackends' started at 2026-11-15 17:11:20.709
+
+Test Case 'PublicNavigationV2Tests.testNativeShapedLocalBindingAndExactReceiptsForAllBackends' passed (2.217 seconds)
+
+Test Case 'PublicNavigationV2Tests.testNewGoldensAndAllBackendPresentationRoundTrips' started at 2026-11-15 17:11:22.926
+
+Test Case 'PublicNavigationV2Tests.testNewGoldensAndAllBackendPresentationRoundTrips' passed (0.972 seconds)
+
+Test Case 'PublicNavigationV2Tests.testPolicyRegistrationBoundsStagesAndReadOnlySemantics' started at 2026-11-15 17:11:23.899
+
+Test Case 'PublicNavigationV2Tests.testPolicyRegistrationBoundsStagesAndReadOnlySemantics' passed (0.199 seconds)
+
+Test Case 'PublicNavigationV2Tests.testPublicReferencesRejectPrivateRevisionsPathsSchemesAndCrossWork' started at 2026-11-15 17:11:24.098
+
+Test Case 'PublicNavigationV2Tests.testPublicReferencesRejectPrivateRevisionsPathsSchemesAndCrossWork' passed (0.43 seconds)
+
+Test Case 'PublicNavigationV2Tests.testReaderBindingRequiresLocalTabAndHostContentRights' started at 2026-11-15 17:11:24.527
+
+Test Case 'PublicNavigationV2Tests.testReaderBindingRequiresLocalTabAndHostContentRights' passed (0.209 seconds)
+
+Test Case 'PublicNavigationV2Tests.testReaderPlanUsesFreshCoreSinkInvocationAndCannotBypassSemanticExecution' started at 2026-11-15 17:11:24.737
+
+Test Case 'PublicNavigationV2Tests.testReaderPlanUsesFreshCoreSinkInvocationAndCannotBypassSemanticExecution' passed (0.391 seconds)
+
+Test Case 'PublicNavigationV2Tests.testRetainedLocalBindingRejectsInvalidationBeforeSurfaceOrReaderCommit' started at 2026-11-15 17:11:25.127
+
+Test Case 'PublicNavigationV2Tests.testRetainedLocalBindingRejectsInvalidationBeforeSurfaceOrReaderCommit' passed (1.984 seconds)
+
+Test Case 'PublicNavigationV2Tests.testRetainedReaderPlanRejectsGenerationChangedBeforeActualCoreSink' started at 2026-11-15 17:11:27.112
+
+Test Case 'PublicNavigationV2Tests.testRetainedReaderPlanRejectsGenerationChangedBeforeActualCoreSink' passed (0.392 seconds)
+
+Test Case 'PublicNavigationV2Tests.testRightsAndGenerationRevocationAcrossHostAwaitAreRechecked' started at 2026-11-15 17:11:27.503
+
+Test Case 'PublicNavigationV2Tests.testRightsAndGenerationRevocationAcrossHostAwaitAreRechecked' passed (0.442 seconds)
+
+Test Case 'PublicNavigationV2Tests.testRuntimeUnsupportedUnreadyDeniedAndBackendSwitchNeverFallback' started at 2026-11-15 17:11:27.945
+
+Test Case 'PublicNavigationV2Tests.testRuntimeUnsupportedUnreadyDeniedAndBackendSwitchNeverFallback' passed (0.469 seconds)
+
+Test Case 'PublicNavigationV2Tests.testSingleParserRejectsDuplicatesFractionsUnknownVersionsAndOversize' started at 2026-11-15 17:11:28.414
+
+Test Case 'PublicNavigationV2Tests.testSingleParserRejectsDuplicatesFractionsUnknownVersionsAndOversize' passed (0.022 seconds)
+
+Test Case 'PublicNavigationV2Tests.testStrictClosedSchemaRejectsPrivateAuthorityAndMutationPayloads' started at 2026-11-15 17:11:28.436
+
+Test Case 'PublicNavigationV2Tests.testStrictClosedSchemaRejectsPrivateAuthorityAndMutationPayloads' passed (0.657 seconds)
+
+Test Case 'PublicNavigationV2Tests.testStructuralReaderPlanCannotGrantDeniedWork' started at 2026-11-15 17:11:29.092
+
+Test Case 'PublicNavigationV2Tests.testStructuralReaderPlanCannotGrantDeniedWork' passed (0.457 seconds)
+
+Test Case 'PublicNavigationV2Tests.testV1IsFrozenAndMigrationIsExplicitOptInWithoutImportedCorrelation' started at 2026-11-15 17:11:29.550
+
+Test Case 'PublicNavigationV2Tests.testV1IsFrozenAndMigrationIsExplicitOptInWithoutImportedCorrelation' passed (0.549 seconds)
+
+Test Suite 'PublicNavigationV2Tests' passed at 2026-11-15 17:11:30.099
+
+	 Executed 23 tests, with 0 failures (0 unexpected) in 17.909 (17.909) seconds
+
+Test Suite 'RegistryTests' started at 2026-11-15 17:11:30.099
+
+Test Case 'RegistryTests.testAllBackendReferencesAndPresentationVariants' started at 2026-11-15 17:11:30.099
+
+Test Case 'RegistryTests.testAllBackendReferencesAndPresentationVariants' passed (1.514 seconds)
+
+Test Case 'RegistryTests.testCompleteStateAndBoundedSelection' started at 2026-11-15 17:11:31.613
+
+Test Case 'RegistryTests.testCompleteStateAndBoundedSelection' passed (0.173 seconds)
+
+Test Case 'RegistryTests.testConflictingBackendsAndFocusNeverGuess' started at 2026-11-15 17:11:31.786
+
+Test Case 'RegistryTests.testConflictingBackendsAndFocusNeverGuess' passed (0.171 seconds)
+
+Test Case 'RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists' started at 2026-11-15 17:11:31.957
+
+Test Case 'RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists' passed (0.139 seconds)
+
+Test Case 'RegistryTests.testRegistryDefinitionFailsClosed' started at 2026-11-15 17:11:32.096
+
+Test Case 'RegistryTests.testRegistryDefinitionFailsClosed' passed (0.179 seconds)
+
+Test Suite 'RegistryTests' passed at 2026-11-15 17:11:32.276
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 2.176 (2.176) seconds
+
+Test Suite 'ScenePortTests' started at 2026-11-15 17:11:32.276
+
+Test Case 'ScenePortTests.testCancellationIsRecheckedBeforeCommit' started at 2026-11-15 17:11:32.276
+
+Test Case 'ScenePortTests.testCancellationIsRecheckedBeforeCommit' passed (0.036 seconds)
+
+Test Case 'ScenePortTests.testEveryReceiptBindingAndObservedStateRequired' started at 2026-11-15 17:11:32.311
+
+Test Case 'ScenePortTests.testEveryReceiptBindingAndObservedStateRequired' passed (0.033 seconds)
+
+Test Case 'ScenePortTests.testExactAcknowledgementAllBackends' started at 2026-11-15 17:11:32.344
+
+Test Case 'ScenePortTests.testExactAcknowledgementAllBackends' passed (0.101 seconds)
+
+Test Case 'ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation' started at 2026-11-15 17:11:32.446
+
+Test Case 'ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation' passed (0.067 seconds)
+
+Test Case 'ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings' started at 2026-11-15 17:11:32.513
+
+Test Case 'ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings' passed (0.194 seconds)
+
+Test Suite 'ScenePortTests' passed at 2026-11-15 17:11:32.707
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.431 (0.431) seconds
+
+Test Suite 'debug.xctest' passed at 2026-11-15 17:11:32.707
+
+	 Executed 81 tests, with 0 failures (0 unexpected) in 30.744 (30.744) seconds
+
+Test Suite 'All tests' passed at 2026-11-15 17:11:32.707
+
+	 Executed 81 tests, with 0 failures (0 unexpected) in 30.744 (30.744) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

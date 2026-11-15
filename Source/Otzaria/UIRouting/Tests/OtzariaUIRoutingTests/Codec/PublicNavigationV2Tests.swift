@@ -4,14 +4,14 @@ import OtzariaActionCore
 @testable import OtzariaUIRouting
 
 final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
-    private let settings = UIDestinationID(rawValue: "test.settings")!
-    private let history = UIDestinationID(rawValue: "test.history")!
-    private let reader = UIDestinationID(rawValue: "test.reader")!
-    private let font = UIDestinationID(rawValue: "test.settings.fontSize")!
-    private let appearance = UIDestinationID(rawValue: "test.settings.appearance")!
-    private let links = UIDestinationID(rawValue: "test.reader.links")!
-    private let info = UIDestinationID(rawValue: "test.reader.info")!
-    private func registry() throws -> UIDestinationRegistry {
+    let settings = UIDestinationID(rawValue: "test.settings")!
+    let history = UIDestinationID(rawValue: "test.history")!
+    let reader = UIDestinationID(rawValue: "test.reader")!
+    let font = UIDestinationID(rawValue: "test.settings.fontSize")!
+    let appearance = UIDestinationID(rawValue: "test.settings.appearance")!
+    let links = UIDestinationID(rawValue: "test.reader.links")!
+    let info = UIDestinationID(rawValue: "test.reader.info")!
+    func registry() throws -> UIDestinationRegistry {
         let settings = UIDestinationDescriptor(id: settings, title: "Synthetic settings", implementation: .implemented,
             supportedBackends: ActionBackendID.allCases, presentations: [.currentTab, .sheet], anchors: [font, appearance],
             publicNavigationV2: .init(rules: [.init(presentation: .currentTab), .init(presentation: .sheet, components: [font, appearance])]))
@@ -25,21 +25,21 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
                 .init(presentation: .sheet, allowsRoot: false, components: [info]), .init(presentation: .inspector, components: [links])]))
         return try UIDestinationRegistry(descriptors: [settings, history, reader])
     }
-    private func content(_ backend: ActionBackendID, mode: ActionReaderDestination.PresentationMode = .sameTab) -> ActionReaderDestination {
+    func content(_ backend: ActionBackendID, mode: ActionReaderDestination.PresentationMode = .sameTab) -> ActionReaderDestination {
         .init(sectionLocator: .init(backend: backend, workKey: "fixture:work", position: backend == .otzaria ? .legacyLine(42) : .canonicalRef("Fixture 1:1")), presentationMode: mode)
     }
-    private func fixture(_ name: String) throws -> Data {
+    func fixture(_ name: String) throws -> Data {
         try Data(contentsOf: XCTUnwrap(Bundle.module.url(forResource: name, withExtension: "json", subdirectory: "Fixtures")))
     }
-    private func wire(_ object: ActionObject) throws -> Data { try JSONEncoder().encode(ActionJSON.object(object)) }
-    @MainActor private func source(_ backend: ActionBackendID = .otzaria) -> NavigationAuthorityFixture {
+    func wire(_ object: ActionObject) throws -> Data { try JSONEncoder().encode(ActionJSON.object(object)) }
+    @MainActor func source(_ backend: ActionBackendID = .otzaria) -> NavigationAuthorityFixture {
         .init(context: .init(subjectID: "public-v2-native", origin: .deepLink, allowedBackends: [backend], contentRights: [backend],
             scopes: [.discovery, .contentRead, .navigation], foregroundSceneID: "native-scene", pairedDeviceAvailable: true), backend: backend)
     }
-    @MainActor private func core(_ source: NavigationAuthorityFixture) throws -> ActionExecutor {
+    @MainActor func core(_ source: NavigationAuthorityFixture) throws -> ActionExecutor {
         try ActionExecutor(state: source, resolver: source, search: source, ui: source, navigationAuthority: source)
     }
-    @MainActor private func invocation(_ source: NavigationAuthorityFixture, deadline: UInt64 = UInt64.max) -> ActionPortInvocation {
+    @MainActor func invocation(_ source: NavigationAuthorityFixture, deadline: UInt64 = UInt64.max) -> ActionPortInvocation {
         .init(requestId: UUID(), snapshot: source.backend, deadlineUptimeNanoseconds: deadline)
     }
     func testNewGoldensAndAllBackendPresentationRoundTrips() throws {
@@ -287,14 +287,16 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
     @MainActor func testReaderBindingRequiresLocalTabAndHostContentRights() async throws {
         let registry = try registry(), source = source(), host = PublicV2TestHost(source), core = try core(source)
         let intent = PublicNavigationSpecV2(destination: reader, content: content(.otzaria), presentation: .inspector, component: links)
+        host.tab = .absent
         do { _ = try await registry.bindPublicV2(intent, scene: source.scene, context: source.context, invocation: invocation(source), core: core, host: host)
             XCTFail("Public payload invented a missing native tab") }
         catch { XCTAssertEqual((error as? UIRouteError)?.code, "route_not_prepared") }
+        host.tab = .present(.init(rawValue: "native-tab")!)
         let old = source.context
         source.context = .init(subjectID: old.subjectID, correlationID: old.correlationID, origin: old.origin,
             allowedBackends: old.allowedBackends, contentRights: [], scopes: old.scopes,
             foregroundSceneID: old.foregroundSceneID, pairedDeviceAvailable: old.pairedDeviceAvailable)
-        do { _ = try await registry.bindPublicV2(intent, scene: source.scene, localTabID: .init(rawValue: "native-tab"),
+        do { _ = try await registry.bindPublicV2(intent, scene: source.scene,
             context: source.context, invocation: invocation(source), core: core, host: host)
             XCTFail("Import granted host-denied content rights") }
         catch { XCTAssertEqual((error as? UIRouteError)?.code, "permission_denied") }
@@ -304,7 +306,7 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
       for backend in ActionBackendID.allCases {
         let registry = try registry(), source = source(backend), host = PublicV2TestHost(source), core = try core(source)
         let intent = PublicNavigationSpecV2(destination: reader, content: content(backend), presentation: .inspector, component: links), invocation = invocation(source)
-        let plan = try await registry.bindPublicV2(intent, scene: source.scene, localTabID: .init(rawValue: "native-tab"),
+        let plan = try await registry.bindPublicV2(intent, scene: source.scene,
             context: source.context, invocation: invocation, core: core, host: host)
         guard case .reader(let validated) = plan else { return XCTFail("Reader content received a surface grant") }
         XCTAssertEqual(source.resolutions, 0); XCTAssertEqual(source.readerCalls, 0); XCTAssertEqual(source.effects, 0)
@@ -316,6 +318,7 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
             let receipt = ActionUIReceipt(requestId: reader.invocation.requestId, snapshot: reader.invocation.snapshot, sceneID: reader.sceneID, destination: reader.destination)
             let uiReceipt = UISceneReceipt(requestId: validated.route.requestId, route: validated.route, backendSnapshot: source.backend, sceneID: source.scene.sceneID,
                 basedOnSceneRevision: 5, appliedSceneRevision: 6, coreReceipt: receipt)
+            source.sceneRevision = 6; host.inspectorVisible = true
             try prepared.validateCompletion(receipt: uiReceipt, observed: .init(sceneID: source.scene.sceneID, revision: 6, backendSnapshot: source.backend, visibleRoute: validated.route))
             return .acknowledged(receipt)
         }
@@ -334,7 +337,7 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
                 pairedDeviceAvailable: original.pairedDeviceAvailable)
             let core = try core(source), invocation = invocation(source)
             let intent = PublicNavigationSpecV2(destination: reader, content: content(backend), presentation: .inspector, component: links)
-            let plan = try await registry.bindPublicV2(intent, scene: source.scene, localTabID: .init(rawValue: "native-tab"),
+            let plan = try await registry.bindPublicV2(intent, scene: source.scene,
                 context: source.context, invocation: invocation, core: core, host: PublicV2TestHost(source))
             guard case .reader = plan else { return XCTFail("Content received a surface grant") }
             let args = try XCTUnwrap(ActionJSON.encoded(intent.content!).object)
@@ -348,7 +351,7 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
         for backend in ActionBackendID.allCases {
             let registry = try registry(), source = source(backend), core = try core(source), invocation = invocation(source)
             let intent = PublicNavigationSpecV2(destination: reader, content: content(backend), presentation: .inspector, component: links)
-            let plan = try await registry.bindPublicV2(intent, scene: source.scene, localTabID: .init(rawValue: "native-tab"),
+            let plan = try await registry.bindPublicV2(intent, scene: source.scene,
                 context: source.context, invocation: invocation, core: core, host: PublicV2TestHost(source))
             guard case .reader(let retained) = plan else { return XCTFail("Content received a surface grant") }
             source.backend = .init(backend: backend, generation: source.backend.generation + 1, rpcEpoch: source.backend.rpcEpoch)
@@ -370,26 +373,47 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
             XCTAssertEqual(source.resolutions, 1); XCTAssertEqual(source.readerCalls, 1); XCTAssertEqual(source.effects, 0)
         }
     }
-    private func safetyRelease(_ gate: ReviewGate) -> Task<Void, Never> {
+    func safetyRelease(_ gate: ReviewGate) -> Task<Void, Never> {
         Task { do { try await Task.sleep(nanoseconds: 2_000_000_000); try Task.checkCancellation(); await gate.release(safety: true) } catch {} }
     }
 }
 
 /// Exact public host capability checks over the EXISTING shared test authority;
 /// this adds no second backend/resolver/permissions implementation.
-@MainActor private final class PublicV2TestHost: UIPublicNavigationEligibilityPort {
+@MainActor final class PublicV2TestHost: UIPublicNavigationBindingPort {
     let source: NavigationAuthorityFixture
     var unsupported: Set<String> = []
     var ready = true
     var allowed = true
     var navigationGate: ReviewGate?
     var variantGate: ReviewGate?
+    var sceneGates: [Int: ReviewGate] = [:]
+    var sceneReads = 0
+    var workspace: UIPublicNavigationObservedID = .present(.init(rawValue: "native-workspace")!)
+    var profile: UIPublicNavigationObservedID = .present(.init(rawValue: "native-profile")!)
+    var tab: UIPublicNavigationObservedID = .present(.init(rawValue: "native-tab")!)
+    var mappingRevision: UInt64 = 1
+    var mappingUnavailable = false
+    var observedSceneRevision: UInt64?
+    var sidebarVisible: Bool?
+    var inspectorVisible: Bool? = false
+    var onObserve: (@MainActor () -> Void)?
+    func observePublicNavigationBinding(_ intent: PublicNavigationSpecV2, requestId: UUID, sceneID: UIStableID) throws -> UIPublicNavigationLocalBinding {
+        onObserve?()
+        guard !mappingUnavailable else { throw UIRouteError(.unavailable, "public_local_binding_unavailable") }
+        return .init(sceneID: source.scene.sceneID, sceneRevision: observedSceneRevision ?? source.sceneRevision,
+            backendSnapshot: source.backend, mappingRevision: mappingRevision, workspace: workspace, profile: profile,
+            tab: intent.content == nil ? .absent : tab, sidebarVisible: sidebarVisible,
+            inspectorVisible: intent.content == nil ? nil : inspectorVisible)
+    }
     init(_ source: NavigationAuthorityFixture) { self.source = source }
     static func key(_ destination: UIDestinationID, _ presentation: PublicNavigationSpecV2.Presentation, _ component: UIDestinationID?) -> String {
         destination.rawValue + ":" + presentation.rawValue + ":" + (component?.rawValue ?? "root")
     }
     func currentScene(sceneID: UIStableID, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UISceneSnapshot {
-        try await source.currentScene(sceneID: sceneID, context: context, invocation: invocation)
+        sceneReads += 1
+        if let gate = sceneGates[sceneReads] { try await gate.wait() }
+        return try await source.currentScene(sceneID: sceneID, context: context, invocation: invocation)
     }
     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UIRouteEligibility {
         try await source.assess(descriptor, scene: scene, context: context, invocation: invocation)
@@ -404,7 +428,7 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
         if let navigationGate { try await navigationGate.wait() }
         return assessment(intent.destination, intent.presentation, intent.component, scene: scene, requiresContent: intent.content != nil)
     }
-    private func assessment(_ destination: UIDestinationID, _ presentation: PublicNavigationSpecV2.Presentation,
+    func assessment(_ destination: UIDestinationID, _ presentation: PublicNavigationSpecV2.Presentation,
                             _ component: UIDestinationID?, scene: UISceneSnapshot, requiresContent: Bool) -> UIRouteEligibility {
         .init(sceneID: scene.sceneID, sceneRevision: scene.revision, backendSnapshot: scene.backendSnapshot,
             supported: !unsupported.contains(Self.key(destination, presentation, component)), ready: ready,

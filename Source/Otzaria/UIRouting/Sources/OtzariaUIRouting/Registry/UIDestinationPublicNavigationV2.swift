@@ -73,35 +73,50 @@ extension UIDestinationRegistry {
     /// correlation, tab, scene, revision or rights. No backend is switched.
     /// The reader plan is structural: canonical reader.open/resolver/sink and
     /// exact receipts are still mandatory; no content grant is minted here.
-    public func bindPublicV2(_ intent: PublicNavigationSpecV2, scene: UISceneSnapshot, localTabID: UIStableID? = nil,
+    @MainActor public func bindPublicV2(_ intent: PublicNavigationSpecV2, scene: UISceneSnapshot,
                              context: ActionExecutionContext, invocation: ActionPortInvocation, core: ActionExecutor,
-                             host: any UIPublicNavigationEligibilityPort, clock: any ActionClock = SystemActionClock()) async throws -> UIPublicNavigationPlanV2 {
+                             host: any UIPublicNavigationBindingPort, clock: any ActionClock = SystemActionClock()) async throws -> UIPublicNavigationPlanV2 {
         let normalized = try UIRouteCodec.decodePublicV2(UIRouteCodec.encodePublicV2(intent, registry: self), registry: self)
         guard invocation.snapshot == scene.backendSnapshot else { throw UIRouteError(.staleState, "backend_generation_changed") }
         let backend = normalized.backend ?? scene.backendSnapshot.backend
         guard backend == scene.backendSnapshot.backend else { throw UIRouteError(.requiresBackendSwitch, "backend_selection_required") }
-        guard normalized.content != nil || localTabID == nil else { throw UIRouteError(.failed, "unexpected_local_tab") }
+        // Capture original canonical context/lifetime and actual local mapping
+        // synchronously BEFORE any await, including entry into the deadline scope.
+        let authority = try core.prepareNavigationSynchronously(sceneID: scene.sceneID.rawValue, invocation: invocation, context: context)
+        let binding = try host.observePublicNavigationBinding(normalized, requestId: invocation.requestId, sceneID: scene.sceneID)
+        let local = UIPublicNavigationLocalBindingGuard(host: host, intent: normalized, invocation: invocation, binding: binding, authority: authority)
+        try local.validate(current: scene)
+        guard normalized.content != nil || binding.tab == .absent else { throw UIRouteError(.failed, "unexpected_local_tab") }
         let route = RouteSpec(requestId: invocation.requestId, destination: normalized.destination, backend: backend, content: normalized.content,
-            presentation: .init(kind: normalized.presentation.nativeKind, tabID: localTabID),
-            state: .init(inspectorVisible: normalized.presentation == .inspector ? true : nil),
+            presentation: .init(kind: normalized.presentation.nativeKind, tabID: binding.tab.value),
+            state: .init(workspaceID: binding.workspace.value, profileID: binding.profile.value,
+                         sidebarVisible: binding.sidebarVisible,
+                         inspectorVisible: normalized.presentation == .inspector ? true : binding.inspectorVisible),
             focus: normalized.component.map { .init(kind: .component, anchor: $0) },
             scene: .init(kind: .specific, sceneID: scene.sceneID, expectedRevision: scene.revision), expectedBackendSnapshot: invocation.snapshot)
-        let command = try UISceneCommand(route: validate(route), invocation: invocation, scene: scene)
-        return try await UIDiscoveryCancellationScope.run(until: invocation.deadlineUptimeNanoseconds, clock: clock) {
+        let validated = try validate(route)
+        let command = try UISceneCommand(route: .init(route: validated.route, descriptor: validated.descriptor, publicLocalBinding: local), invocation: invocation, scene: scene)
+        let result = try await UIDiscoveryCancellationScope.run(until: invocation.deadlineUptimeNanoseconds, clock: clock) { @MainActor in
+            try local.validate(current: scene)
             try await requireCurrentScene(scene, context: context, invocation: invocation, host: host, clock: clock)
+            try local.validate(current: scene)
             let assessment = try await host.assessPublicNavigation(normalized, scene: scene, context: context, invocation: invocation)
+            try local.validate(current: scene)
             try requirePublicAssessment(assessment, scene: scene)
             guard assessment.supported else { throw UIRouteError(.notSupported, "public_variant_not_supported") }
             guard assessment.ready else { throw UIRouteError(.unavailable, "public_variant_not_ready") }
             guard assessment.allowed else { throw UIRouteError(.failed, "permission_denied") }
             try await requireCurrentScene(scene, context: context, invocation: invocation, host: host, clock: clock)
+            try local.validate(current: scene)
             if normalized.content != nil {
-                // Fresh current canonical context, but this surface-only grant
-                // is discarded and can never authorize the content destination.
-                _ = try await core.prepareNavigation(sceneID: scene.sceneID.rawValue, invocation: invocation, context: context)
-                return .reader(command.route)
+                // Retain original local/lifetime boundary, but never turn this
+                // surface-only preparation into the later Core content grant.
+                return UIPublicNavigationPlanV2.reader(command.route)
             }
-            return .surface(try await command.prepareNavigation(using: core, context: context))
+            return UIPublicNavigationPlanV2.surface(UIAuthorizedSceneCommand(command: command, authorization: authority))
         }
+        // Returning from the structured scope is another await boundary.
+        try local.validate(current: scene)
+        return result
     }
 }

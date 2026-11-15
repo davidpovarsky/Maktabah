@@ -54,6 +54,8 @@ All waits stay inside the original cooperative deadline scope, with mandatory ex
 
 ## Bind only at actual local execution
 
+The following is the historical `9835982a` binding signature; it is superseded by [the mandatory local-binding correction](CONTRACT_PUBLIC_V2_LOCAL_BINDING_20261115.md).
+
 `bindPublicV2(_:scene:localTabID:context:invocation:core:host:clock:) async throws -> UIPublicNavigationPlanV2` validates the explicit public intent, exact host variant and fresh native/Core authority, then binds a newly host-issued local request UUID, selected authorized scene/revision, actual backend snapshot and (for content) locally prepared tab. A link cannot supply these fields. Backend nil uses the actual local backend; an explicit different backend returns requiresBackendSwitch without switching/substituting. A missing native tab for content fails unprepared; no invented ID or global/first-scene fallback exists.
 
 The non-Codable plan distinguishes:
@@ -92,3 +94,7 @@ No app target, current N handler, S/I/R source, Core package, deployment/signing
 ## Separate post-packet budget follow-up
 
 The original 72-method packet and its hashes above remain immutable. [PUBLIC_V2_BUDGET_FOLLOWUP_20261115.md](PUBLIC_V2_BUDGET_FOLLOWUP_20261115.md) records a reproduced decode/encode byte-budget mismatch and the v2-only normalized-output check. Its final 75-method run also verifies canonical denied-work enforcement and stale retained reader-plan rejection at the actual Core sink. No new native/public-v2 handler is activated.
+
+## Current trusted local binding correction
+
+[CONTRACT_PUBLIC_V2_LOCAL_BINDING_20261115.md](CONTRACT_PUBLIC_V2_LOCAL_BINDING_20261115.md) supersedes the original binder: mandatory synchronous actual host observation replaces caller tab input, preserves workspace/profile and required presentation fields before immutable preparation, and retains original canonical lifetime/mapping through both plan types and exact completion. Final affected-package evidence is 81 UI / 18 focused Core Engine XCTest, each with zero failures and compiler warnings; native enablement remains open. Original 72/75 input proofs remain unchanged.

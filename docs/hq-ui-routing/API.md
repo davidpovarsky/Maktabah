@@ -59,3 +59,7 @@ The additive `UIAuthorizedSceneCommand.validateCompletion(receipt:observed:)` ch
 ## Separately versioned public navigation v2
 
 [CONTRACT_PUBLIC_V2_20261115.md](CONTRACT_PUBLIC_V2_20261115.md) defines the additive read/navigation-only DTO, strict codec/schema and explicit v1 migration, per-destination presentation/component opt-in, exact live host variant checks and fresh local binding. V1/private/legacy behavior and current History-v1/Settings-intent tranche remain unchanged. No public session/restoration IDs, control values, mutation/persistence command, fallback parser, automatic backend switch or fabricated native capability is added. Native support is a separate host acceptance requirement.
+
+## Mandatory trusted public-v2 local binding correction
+
+[CONTRACT_PUBLIC_V2_LOCAL_BINDING_20261115.md](CONTRACT_PUBLIC_V2_LOCAL_BINDING_20261115.md) specifies the current required UIPublicNavigationBindingPort, explicit local workspace/profile/tab and preserved presentation observations, pre-await same-Core lifetime capture, and retained final commit/completion checks. Caller localTabID is removed; public DTO/schema/v1/goldens stay unchanged. Executed final runs: **81 UI XCTest / 0 failures / 0 compiler warnings** and **18 focused Core Engine XCTest / 0 failures / 0 compiler warnings**. These are portable synthetic-host results; current app v2/native/reservation/shareability/physical acceptance remains open. Exact proof: results/public-v2-local-binding-summary.json.
