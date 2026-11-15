@@ -1,0 +1,31 @@
+// Append unchanged to the exact fca92176 NativeSceneNavigationOrchestratorTests.swift.
+// Uses only the installed original public v1 commit entry and its existing fixture.
+extension NativeSceneNavigationOrchestratorTests {
+    func testV1DetachedOrReplacedOriginalDispatchNeverApplies() async throws {
+        for backend in ActionBackendID.allCases {
+            for change in 0..<3 {
+                let f = try await fixture(backendID: backend)
+                let replacement = NavigationTestDriver(sceneID: f.command.scene.sceneID, backend: f.backend)
+                var fired = false
+                f.backend.onSynchronousSnapshot = {
+                    guard !fired, f.driver.command != nil, f.driver.applied == 0 else { return }
+                    fired = true
+                    f.orchestrator.unregister(f.driver)
+                    if change == 1 { try! f.orchestrator.register(replacement) }
+                    if change == 2 { try! f.orchestrator.register(f.driver) }
+                }
+                let result = try await f.orchestrator.commit(f.command, context: f.context)
+                XCTAssertTrue(fired, "Guard callback must actually execute")
+                XCTAssertEqual(f.driver.applied, 0, "Detached original: \(backend), mode \(change)")
+                XCTAssertEqual(replacement.applied, 0)
+                guard case .staleState(let failure) = result else {
+                    XCTFail("Detached request must be stale: \(result)"); continue
+                }
+                XCTAssertEqual(failure.code, "scene_lifetime_changed")
+                XCTAssertNil(f.driver.command, "Original observation must be cleaned up")
+                XCTAssertThrowsError(try f.authority.navigationState(sceneID: f.command.scene.sceneID.rawValue),
+                    "Original v1 commit owns and releases its admission")
+            }
+        }
+    }
+}

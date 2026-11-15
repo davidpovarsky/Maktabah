@@ -1,0 +1,66 @@
+{
+  "status": "PORTABLE_JOINT_SOURCE_CANDIDATE_NATIVE_HOLD",
+  "joint_source": "98e6c7b94fd5e4c06b83cdda57cd6c9d9f41db6e",
+  "N_fix": "d9310293444c6fe9b49739c83d5b2d145960b3c0",
+  "P_core": "050031fac1bb21f738048beb8b5d011d5d0a6b4d",
+  "logs": [
+    {
+      "file": "N-detached-owner-before.log",
+      "sha256": "4aa752b4b3e5e8b75e2bf48a1d5a81c2163516a7a13231a5d2f24e58ca20bd60",
+      "xctest_final": {
+        "methods": 4,
+        "failures": 22
+      },
+      "compiler_warnings": 0,
+      "compiler_errors": 0
+    },
+    {
+      "file": "N-detached-owner-after.log",
+      "sha256": "ddf86511492e28c978ba7065e3d74f448d3be76f8c8558827edd03f930cbfbf2",
+      "xctest_final": {
+        "methods": 4,
+        "failures": 0
+      },
+      "compiler_warnings": 0,
+      "compiler_errors": 0
+    },
+    {
+      "file": "N-detached-owner-full-before-P-joint.log",
+      "sha256": "75bf30d1d4fb4168c097232edda899a050034319180f8c0aef1879f4b879b032",
+      "xctest_final": {
+        "methods": 84,
+        "failures": 0
+      },
+      "compiler_warnings": 0,
+      "compiler_errors": 0
+    },
+    {
+      "file": "N-detached-owner-joint-full.log",
+      "sha256": "76decd1f1e49710a429461e18504f8c0b73f041e6a7ecd86c1d4141ab4d06d1b",
+      "xctest_final": {
+        "methods": 84,
+        "failures": 0
+      },
+      "compiler_warnings": 0,
+      "compiler_errors": 0
+    },
+    {
+      "file": "N-detached-joint-P-review.log",
+      "sha256": "694ced29397158b0c368dea905920faf64ca7d7f65e2ee3e2b79d4939ec46481",
+      "xctest_final": {
+        "methods": 2,
+        "failures": 0
+      },
+      "compiler_warnings": 0,
+      "compiler_errors": 0
+    }
+  ],
+  "scope": "84 actual Host XCTest methods; 2 separate unchanged P review methods in an isolated committed snapshot; synthetic native drivers and controlled clock. Not 86 product cases.",
+  "limits": [
+    "Portable Windows Swift6.3.3 only",
+    "No actual native/SDK/device run",
+    "Relative Core deadline alone is not the original absolute deadline",
+    "Finite synchronous observations do not certify arbitrary mutually mutating callbacks",
+    "Future v2/content/newTab/producer observer inactive"
+  ]
+}

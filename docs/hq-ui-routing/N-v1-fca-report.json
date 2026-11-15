@@ -1,0 +1,47 @@
+{
+  "status": "EXACT_V1_BASELINE_PORTABLE_BACKPORT_UNAPPLIED_TO_MANAGER",
+  "base": "fca92176d48017ee0cd22831a1ae31f40958eed9",
+  "production_patch": "N_V1_FCA_POST_GUARD_DRIVER_TOKEN_UNAPPLIED.diff",
+  "test_patch": "N_V1_FCA_REGRESSION_UNAPPLIED.diff",
+  "applicability_original_baseline": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "logs": [
+    {
+      "file": "N-v1-fca-detached-before.log",
+      "sha256": "4444f8cc9fc66e804b0d23718493c5ed05f8b628bd5b11c2f1f34f3247b685ed",
+      "xctest_final": {
+        "methods": 1,
+        "failures": 18
+      },
+      "compiler_warnings": 0,
+      "compiler_errors": 0
+    },
+    {
+      "file": "N-v1-fca-detached-after.log",
+      "sha256": "77287d9f5b4c89efaedfc38466c9b55975caa91f730b494f6e61a3567e8ca952",
+      "xctest_final": {
+        "methods": 1,
+        "failures": 0
+      },
+      "compiler_warnings": 0,
+      "compiler_errors": 0
+    },
+    {
+      "file": "N-v1-fca-detached-full.log",
+      "sha256": "a6141bd0200b7b4fd0cae9e8a5659efc8117614a611747032987117a96bb6d18",
+      "xctest_final": {
+        "methods": 58,
+        "failures": 0
+      },
+      "compiler_warnings": 0,
+      "compiler_errors": 0
+    }
+  ],
+  "scope": "Original public v1 commit API only; 3 backends x 3 owner changes in 1 method. Full58 includes baseline57.",
+  "native_sdk": "NOT_RUN",
+  "P_core_backport": "SEPARATE_P_OWNERSHIP",
+  "manager_sources_modified": false
+}

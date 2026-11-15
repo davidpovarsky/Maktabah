@@ -1,0 +1,142 @@
+Building for debugging...
+[0/24] Write swift-version-2807070033DA82CF.txt
+[1/24] Copying catalog-status.json
+[2/24] Write sources
+[3/24] Copying examples.v1.json
+[4/24] Copying backend-capability-matrix.v1.json
+[5/24] Copying backend-acceptance-cases.v1.json
+[6/24] Copying action-result.v1.schema.json
+[7/24] Copying action-request.v1.schema.json
+[8/24] Copying action-catalog.v1.json
+[9/24] Write sources
+[13/25] Emitting module OtzariaActionCore
+[14/46] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[15/46] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[16/46] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[17/46] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[18/46] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[19/46] Compiling OtzariaActionCore ActionJSON.swift
+[20/46] Compiling OtzariaActionCore ActionReferences.swift
+[21/46] Compiling OtzariaActionCore ActionRequest.swift
+[22/46] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[23/46] Compiling OtzariaActionCore ActionSearch.swift
+[24/46] Compiling OtzariaActionCore ActionWireCodec.swift
+[25/46] Compiling OtzariaActionCore ActionDeadline.swift
+[26/46] Compiling OtzariaActionCore ActionExecutor.swift
+[27/46] Compiling OtzariaActionCore ActionExecutionContext.swift
+[28/46] Compiling OtzariaActionCore ActionPolicy.swift
+[29/46] Compiling OtzariaActionCore ActionValidation.swift
+[30/46] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[31/46] Compiling OtzariaActionCore ActionPorts.swift
+[32/46] Compiling OtzariaActionCore ActionRegistry.swift
+[33/46] Compiling OtzariaActionCore CatalogActionResolver.swift
+[34/46] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[35/47] Wrapping AST for OtzariaActionCore for debugging
+[37/48] Emitting module OtzariaUIRouting
+[38/56] Compiling OtzariaUIRouting UIRouteCodec.swift
+[39/56] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[40/56] Compiling OtzariaUIRouting RouteSpec.swift
+[41/56] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[42/56] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[43/56] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[44/56] Compiling OtzariaUIRouting UIDiscoveryCancellationScope.swift
+[45/56] Compiling OtzariaUIRouting resource_bundle_accessor.swift
+[46/57] Wrapping AST for OtzariaUIRouting for debugging
+[48/58] Emitting module ChavrusaUIRoutingHost
+[49/71] Compiling ChavrusaUIRoutingHost NativeDestinationIntents.swift
+[50/71] Compiling ChavrusaUIRoutingHost NativeIntentOutcome.swift
+[51/71] Compiling ChavrusaUIRoutingHost NativeIntentService.swift
+[52/71] Compiling ChavrusaUIRoutingHost NativeNavigationAuthority.swift
+[53/71] Compiling ChavrusaUIRoutingHost NativeObservationDeadline.swift
+[54/71] Compiling ChavrusaUIRoutingHost NativePresentationObserver.swift
+[55/71] Compiling ChavrusaUIRoutingHost NativeRouteInbox.swift
+[56/71] Compiling ChavrusaUIRoutingHost NativeRouteURL.swift
+[57/71] Compiling ChavrusaUIRoutingHost NativeSceneDirectory.swift
+[58/71] Compiling ChavrusaUIRoutingHost NativeSceneIdentity.swift
+[59/71] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[60/71] Compiling ChavrusaUIRoutingHost NativeSurfaceState.swift
+[61/71] Compiling ChavrusaUIRoutingHost NativeSurfaceWitness.swift
+[62/72] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[64/73] Emitting module ChavrusaUIRoutingHostTests
+[65/80] Compiling ChavrusaUIRoutingHostTests NativeIntentServiceTests.swift
+[66/80] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+[67/80] Compiling ChavrusaUIRoutingHostTests NativeRouteInboxTests.swift
+[68/80] Compiling ChavrusaUIRoutingHostTests NativeRouteURLTests.swift
+[69/80] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+[70/80] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[71/80] Compiling ChavrusaUIRoutingHostTests NativeSurfaceStateTests.swift
+[72/81] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[73/81] C:\Users\DAVID\.codex\tmp\nv1fca\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[74/81] Write sources
+[76/82] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[77/84] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[78/84] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[79/85] C:\Users\DAVID\.codex\tmp\nv1fca\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[80/85] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[81/85] Write sources
+[83/86] Emitting module ChavrusaUIRoutingHostPackageTests
+[84/87] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[85/88] Wrapping AST for ChavrusaUIRoutingHostPackageTests for debugging
+[86/88] Write Objects.LinkFileList
+[87/88] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (182.25s)
+Test Suite 'Selected tests' started at 2026-11-15 19:00:42.712
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' started at 2026-11-15 19:00:42.716
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies' started at 2026-11-15 19:00:42.716
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:293: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Detached original: otzaria, mode 0
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:296: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : failed - Detached request must be stale: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: D61DF966-2D00-4948-8C9D-6B79FBBC71C1, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: D61DF966-2D00-4948-8C9D-6B79FBBC71C1, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.otzaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.otzaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:293: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Detached original: otzaria, mode 1
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:296: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : failed - Detached request must be stale: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: 6A27CA02-46B0-474D-9710-D936B766D337, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 6A27CA02-46B0-474D-9710-D936B766D337, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.otzaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.otzaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:293: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Detached original: otzaria, mode 2
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:296: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : failed - Detached request must be stale: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: 29D893E7-F1FC-45BC-89C7-E3840C707529, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 29D893E7-F1FC-45BC-89C7-E3840C707529, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.otzaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.otzaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:293: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Detached original: sefaria, mode 0
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:296: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : failed - Detached request must be stale: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: 9CF7AEDF-EF3F-492B-819D-212B5990A0CA, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 9CF7AEDF-EF3F-492B-819D-212B5990A0CA, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.sefaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.sefaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:293: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Detached original: sefaria, mode 1
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:296: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : failed - Detached request must be stale: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: 6255F33E-7F68-4C01-A6A2-2D8FD4C6FBE2, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 6255F33E-7F68-4C01-A6A2-2D8FD4C6FBE2, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.sefaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.sefaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:293: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Detached original: sefaria, mode 2
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:296: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : failed - Detached request must be stale: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: C00E274E-F6F9-4889-8B23-2407B28037F0, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: C00E274E-F6F9-4889-8B23-2407B28037F0, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.sefaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.sefaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:293: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Detached original: sefariaEmbedded, mode 0
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:296: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : failed - Detached request must be stale: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: E8F9596B-D2B8-4CE4-B1AB-58CDE85BD18E, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: E8F9596B-D2B8-4CE4-B1AB-58CDE85BD18E, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.sefariaEmbedded), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.sefariaEmbedded, generation: 1, rpcEpoch: Optional(7)), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:293: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Detached original: sefariaEmbedded, mode 1
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:296: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : failed - Detached request must be stale: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: 4F527116-4D81-4DC3-BEDD-BEC21680BA32, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 4F527116-4D81-4DC3-BEDD-BEC21680BA32, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.sefariaEmbedded), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.sefariaEmbedded, generation: 1, rpcEpoch: Optional(7)), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:293: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Detached original: sefariaEmbedded, mode 2
+
+C:\Users\DAVID\.codex\tmp\n-v1-fca92176-inputs\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:296: error: NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies : failed - Detached request must be stale: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: 40FCA1D3-A629-45CF-91C8-3D6EC0B40CFB, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 40FCA1D3-A629-45CF-91C8-3D6EC0B40CFB, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.sefariaEmbedded), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.sefariaEmbedded, generation: 1, rpcEpoch: Optional(7)), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies' failed (0.95 seconds)
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' failed at 2026-11-15 19:00:43.665
+
+	 Executed 1 test, with 18 failures (0 unexpected) in 0.95 (0.95) seconds
+
+Test Suite 'Selected tests' failed at 2026-11-15 19:00:43.666
+
+	 Executed 1 test, with 18 failures (0 unexpected) in 0.95 (0.95) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

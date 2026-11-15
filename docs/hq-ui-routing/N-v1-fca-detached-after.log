@@ -1,0 +1,33 @@
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version-2807070033DA82CF.txt
+[1/5] Write sources
+[3/5] Emitting module ChavrusaUIRoutingHost
+[4/6] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[5/7] Write Objects.LinkFileList
+[6/7] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (8.04s)
+Test Suite 'Selected tests' started at 2026-11-15 19:01:45.436
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' started at 2026-11-15 19:01:45.440
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies' started at 2026-11-15 19:01:45.440
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testV1DetachedOrReplacedOriginalDispatchNeverApplies' passed (0.533 seconds)
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' passed at 2026-11-15 19:01:45.973
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.533 (0.533) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 19:01:45.973
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.533 (0.533) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
