@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source_test_commit": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
-  "app_source": "04b4d5f27e51d29508e8e0d4dcc8d3b07d405e4e",
+  "app_source": "068920924e329573b07c7fa2b3c498364d0800de",
   "sole_executor_thread": "01a1dc86-0c7b-7ee3-a098-2b4004ed686d",
   "independent_qa_thread": "01a1dc8b-f9bd-7d63-a628-7ad3d06196e8",
   "scope": "INITIAL_NATIVE_R27_SUBSET_WITH_SCOPED_STARTUP_RACE_FIX_NOT_FULL_RELEASE_ACCEPTANCE",
@@ -131,7 +131,7 @@
     "full production corpus/performance",
     "13inch/VoiceOver/DynamicType/full release coverage not part of initial9"
   ],
-  "reused_ui_passes": 0,
+  "reused_ui_passes": 8,
   "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
   "previous_manifest_sha256": "1f20458858d0890433d87e2131ac2283a73e369aaddadb39bd4c2ce57af59d3f",
   "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
@@ -159,7 +159,7 @@
   "execution_case_ids": [
     "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
   ],
-  "prior_pass_reuse_state": "PENDING_INDEPENDENT_EXACT_ESCAPE_CORRECTION_CHANGE_IMPACT",
+  "prior_pass_reuse_state": "ELIGIBLE_Q_VERIFIED8_PENDING_NEW_RUNTIME_COMPATIBILITY",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
   "application_correction": {
     "donor": "48d6d7b634e82b8cf4212018d3f089de60958bb5",
@@ -171,12 +171,12 @@
     "runtime_status": "NOT_RUN",
     "scope": "Initial-empty iPad startup tab adoption at final validated commit boundary"
   },
-  "source_change_impact_decision": "Q independent actual call-site review: startup path also reached by compact iPhone host. All original9 affected; prior5 PASS remain historical at source07, not candidate acceptance. No additional suites.",
+  "source_change_impact_decision": "Q exact Escape2path review: only window1 affected;8current actual healthy reader paths never instantiate palette and are eligible verified reuse subject to fresh actual runtime compatibility",
   "independent_change_impact": {
-    "file": "docs/hq-integration/runtime27/Q_SOURCE_CHANGE_IMPACT_48d6.json",
-    "source_file_sha256": "f0524ef14ee2bae83729a97ecf2218c96ca346d5419536228e49d970a9354d2f",
-    "required_case_count": 9,
-    "verified_reused_pass": 0
+    "file": "docs/hq-integration/runtime27/Q_SOURCE_CHANGE_IMPACT_75ea.json",
+    "source_file_sha256": "31f5b1ef6905e315cf9f463c05fa11145c0423e7438c10bdbf873127ae0860ac",
+    "required_new_case_count": 1,
+    "eligible_verified_reused_pass": 8
   },
   "current_healthy_evidence": {
     "run": 43688380348,
@@ -192,6 +192,29 @@
       "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
       "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
     ],
-    "candidate_reuse": "NOT_YET_VERIFIED_PENDING_EXACT_SOURCE_CHANGE_IMPACT"
-  }
+    "candidate_reuse": "Q eligible8; retained actual base/fingerprints+conditional palette-unreachable path proof; confirm fresh runtime compatibility"
+  },
+  "prior_app_source": "04b4d5f27e51d29508e8e0d4dcc8d3b07d405e4e",
+  "escape_correction": {
+    "donors_in_order": [
+      "83c13b412e8c38ec354b112d699d53c83d2352d8",
+      "75ea765de3d768402bf89798b6006b2aea7f9477"
+    ],
+    "evidence": "606e563490e1549cd9792c0922b9dcb87f30577b",
+    "integration": "068920924e329573b07c7fa2b3c498364d0800de",
+    "changed_production_paths": [
+      "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+    ],
+    "native_status": "NOT_RUN",
+    "test_oracle": "Unchanged Qab23 actualinput.typeKey(Escape) and palette-disappearance assertion, followed by Inspector and same locator/text/full-size restoration"
+  },
+  "change_impact_history": [
+    {
+      "file": "docs/hq-integration/runtime27/Q_SOURCE_CHANGE_IMPACT_48d6.json",
+      "source_file_sha256": "f0524ef14ee2bae83729a97ecf2218c96ca346d5419536228e49d970a9354d2f",
+      "required_case_count": 9,
+      "verified_reused_pass": 0
+    }
+  ]
 }

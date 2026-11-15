@@ -1,0 +1,44 @@
+{
+  "base_tested_sha": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+  "source_integration_sha": "068920924e329573b07c7fa2b3c498364d0800de",
+  "candidate_source_donor": "75ea765de3d768402bf89798b6006b2aea7f9477",
+  "application_source_hashes": {
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift": "c36591fa74faaad9e481d43ad748f565ebc26f81c33f2841d9db84756030a7b6",
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239"
+  },
+  "same_actual_test_inputs_sha256": {
+    "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+    "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift": "6560cb3026ce1dd621e7a76ac6876857485fd096453eeb0cc8c5c9f5b9993654",
+    "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+    "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "82e618702804f7d9c0c270c62c2537e301816285261c810530448295986527f6",
+    "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+    "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+    "Maktabah-iOSUITests/MaktabahUITestBase.swift": "c57157447416afbb5477928719e3d1af8373af76df0274ce85a558a37336461a",
+    "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e",
+    "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "66fafb8a8464823abc1cd574fffb79b8a56870af47f33810e7b52bdf1ef944d9",
+    "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift": "a79b4b0b78bf0e1e22f070d4558fc3d692f70c199012a5cd6e85043ea2530562",
+    "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f"
+  },
+  "same_helper_inputs_sha256": {
+    "Scripts/CI/hq-stage2-focused-apple.py": "143d1d78c77c018b5bba7ef14adafce2185018a7216ba4ad02b49d06bb998e1e",
+    "Scripts/CI/runtime27.py": "7e27525326c224c1c96004db6c505d456f7914887c72d131608dfbbc0fe82188",
+    "Scripts/CI/run-faithful-ipad-matrix.py": "c32974c22f34e261e04ed6a6e209fea844a6c4c30ca0723f65a51f264e236e00",
+    "Scripts/CI/runtime27-fixture-oracle.py": "c579fe356a38ca5431fc29d32a9193619ad2f930043dca8bdb805f0154c3f9f4",
+    "tools/verify_xcresult_zero_skips.py": "6785122ca4d8157eb94d7ccdf2da2b6c04faff9202a097a56c15810fd81ffa83"
+  },
+  "input_config_compatibility": "Only coherent application_source_sha and Source tree changed; Vendor/project/engines/resources/native inputs/pins identical",
+  "execution_compatibility": "Same exact window case on fresh11-inch, same fixture/oracle/test/driver/label. Original9 declarations preserved; selected1 only.",
+  "eligible_verified_reused_pass": 8,
+  "fresh_execution_pass": 0,
+  "fresh_execution_status": "NOT_RUN",
+  "required_runtime_compatibility_to_confirm_from_new_artifact": {
+    "Xcode": "27.1/27A9275",
+    "SDK": "27.1",
+    "OS": "27.2",
+    "OS_build": "24B8117",
+    "fixture": "same verified native miniTest10 profile+hash/schema/title row"
+  },
+  "outside_initial_scope": "Broader palette input/IME/selection paths remain NOT_RUN; not full release/physical acceptance"
+}

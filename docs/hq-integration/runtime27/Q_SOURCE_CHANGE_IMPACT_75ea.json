@@ -1,0 +1,92 @@
+{
+  "phase_final": false,
+  "created_utc": "2026-11-15T08:46:57.764550+00:00",
+  "base_tested_sha": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+  "candidate_source_sha": "75ea765de3d768402bf89798b6006b2aea7f9477",
+  "source_commits_in_order": [
+    "83c13b412e8c38ec354b112d699d53c83d2352d8",
+    "75ea765de3d768402bf89798b6006b2aea7f9477"
+  ],
+  "evidence_commit": "606e563490e1549cd9792c0922b9dcb87f30577b",
+  "exact_changed_paths": {
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift": {
+      "base_sha256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f",
+      "candidate_sha256": "c36591fa74faaad9e481d43ad748f565ebc26f81c33f2841d9db84756030a7b6"
+    },
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift": {
+      "base_sha256": "2f7b6765c4eb500f53b74a7261c372ad3c9d738d40f104705f4f02c938fdb0e2",
+      "candidate_sha256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239"
+    }
+  },
+  "all_19_test_helper_hashes_unchanged": true,
+  "Vendor_project_unchanged": true,
+  "source_review": "Changed only iOS palette input/responder hosting. Canonical query, commands/results/selection/recents/actions preserved; Mac field remains SwiftUI. No Q actionable source defect found. Actual Apple SDK compile and focused runtime still required. U parse is not a typecheck or UI pass.",
+  "reuse_decision": {
+    "eligible_prior_actual_pass": 8,
+    "fresh_execution_count_for_candidate": 0,
+    "prior_run": 43688380348,
+    "cases_and_absent_palette_hierarchies": [
+      {
+        "case": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+        "hierarchy_sha256": "4ca02582028e0c7d3b1e2e5d3fce2f360861b77456cfdfa701663f93810088a9"
+      },
+      {
+        "case": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+        "hierarchy_sha256": "94f124fdfa2c98b60c96605fb53215d3a3ea26d46120715814817290ef9a5e18"
+      },
+      {
+        "case": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation()",
+        "hierarchy_sha256": "a829d97904ebdab79116906dc41b657968fb632bbb1079ff4dd89470c169615d"
+      },
+      {
+        "case": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator()",
+        "hierarchy_sha256": "81933cbb5444bbea77503096d670696dbaf26b09c1c4de305792a5dfd2affb55"
+      },
+      {
+        "case": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+        "hierarchy_sha256": "62b35d129cc982339f6143875ac8bec6d2f29f78f11ac5a9880b2d035bad0b25"
+      },
+      {
+        "case": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+        "hierarchy_sha256": "bd43c2c2778a344519052dc266d6a65860d2e97b2e2b609fe530685cea676288"
+      },
+      {
+        "case": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation()",
+        "hierarchy_sha256": "fb153865217b46572fabf6ca7b805613c3ead448c0a2aa25df56d8e2e30b6057"
+      },
+      {
+        "case": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration()",
+        "hierarchy_sha256": "ea2488ff81b893dc0ee267b52598f9826d8041d8c682e47a0e73e5e575b2eac7"
+      }
+    ],
+    "call_path_proof": [
+      "Only instantiated native adapter call is Exact9401ViewerToolbar overlay guarded by local @State isPresented=false; only actual launcher action changes it true (ReaderSidebarPageCoordinator.swift53,61-66,77-89).",
+      "Eight healthy case bodies/shared test helpers unchanged; they never invoke launcher or palette, as rawlogs corroborate; eight final actual hierarchies contain no palette.",
+      "Legacy/embedded/Otzaria reader, orientation/background/cold-restore and global SearchHistory paths do not instantiate changed palette. Global history helper uses original global search input and native StartSearch action (FaithfulReaderUIAcceptanceTests.swift550-565).",
+      "Orphan ChavrusaReaderHost not instantiated; package commandPalette factory has no application call site other than native adapter. No eager static/global initializer added."
+    ],
+    "conditions": [
+      "T exact integrated source diff relative29 is exactly the two candidate source files/hashes; no additional app modifications.",
+      "All19 test/helper hashes, Qab23 case bodies, fixture/oracle/OS/devices/deps/pins/config fingerprints retained or independently verified compatible; T must freeze actual integrated SHA.",
+      "Prior8 counts remain explicitly verified_reused_pass=8, never new execution. Rerun actual affected window1; current candidate UI result remains pending."
+    ]
+  },
+  "affected_retest": [
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+  ],
+  "unchanged_required_oracles": [
+    "actual narrow native resize",
+    "focused real fixture title input and hittable real result",
+    "actual synthesized Escape and real palette disappearance",
+    "reachable real Inspector open/tools/close and disappearance",
+    "exact locator and text preservation",
+    "semantic native full-screen restore"
+  ],
+  "outside_initial_nine_acceptance": [
+    "External-query/clear synchronization",
+    "Return/up/down selection",
+    "Paste and marked composition",
+    "LTR/native input metrics and broader focus/IME paths"
+  ],
+  "outside_checks_status": "NOT_RUN; reader reuse does not certify them. Full release/physical/new RouteSpec gates remain OPEN."
+}
