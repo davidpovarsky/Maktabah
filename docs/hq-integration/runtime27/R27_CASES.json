@@ -237,5 +237,14 @@
     "behavior_fix_claim": false
   },
   "source_test_before_role_refinement": "c9295c85a51710e592dc2558e6edb5395b1ecca5",
-  "query_refinement": "Exactone-line actualOther-role query for samepaletteidentifier, preservingallhardware/query/Escape/Inspector/locator/text/restore assertions/timeouts; sameU914source/capture; no SDKquery-resolution success inferred"
+  "query_refinement": "Exactone-line actualOther-role query for samepaletteidentifier, preservingallhardware/query/Escape/Inspector/locator/text/restore assertions/timeouts; sameU914source/capture; no SDKquery-resolution success inferred",
+  "controlled_interruption_resume": {
+    "interrupted_run": 43704261180,
+    "same_source_test_oracles": true,
+    "continuation_limit": 1,
+    "cancellation_actor_or_cause": "UNKNOWN",
+    "explicit_stop_limit_or_active_collision_found": false,
+    "lifecycle_fix": "Owned child process group receives immediate interrupt; bounded escalation only that group, immediate unverified marker, parent reportsINTERRUPTED; formal test log flushed perline",
+    "healthy_tests_rerun": 0
+  }
 }

@@ -13,6 +13,7 @@ import html
 import xml.etree.ElementTree as ET
 import shutil
 import re
+import signal
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "build/artifacts/runtime27"
@@ -59,7 +60,42 @@ def capture(command, name):
 
 def run_logged(command, name, timeout):
     with (OUT / name).open("w") as output:
-        process = subprocess.run(command, cwd=ROOT, stdout=output, stderr=subprocess.STDOUT, timeout=timeout)
+        owned_group = sys.platform == "darwin"
+        process = subprocess.Popen(command, cwd=ROOT, stdout=output, stderr=subprocess.STDOUT,
+                                   start_new_session=owned_group)
+        try:
+            process.wait(timeout=timeout)
+        except BaseException as error:
+            # GitHub cancellation previously killed this supervisor while its
+            # native child continued through artifact upload. Stop only the
+            # process group created here; never another runner's work.
+            (OUT / (name + ".interrupted.json")).write_text(json.dumps({
+                "status": "INTERRUPTED_CHILD_UNVERIFIED", "exception": type(error).__name__,
+                "owned_process_group": process.pid if owned_group else None,
+                "acceptance_effect": "NONE; interrupted UI results require complete independent validation"}, indent=2) + "\n")
+            if process.poll() is None:
+                try:
+                    if owned_group:
+                        os.killpg(process.pid, signal.SIGINT)
+                    else:
+                        process.terminate()
+                except ProcessLookupError:
+                    pass
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    try:
+                        if owned_group:
+                            os.killpg(process.pid, getattr(signal, "SIGKILL", signal.SIGTERM))
+                        else:
+                            process.kill()
+                    except ProcessLookupError:
+                        pass
+                    try:
+                        process.wait(timeout=2)
+                    except subprocess.TimeoutExpired:
+                        pass  # Keep the original interruption, never claim cleanup completed.
+            raise
     if process.returncode:
         print("\n".join((OUT / name).read_text(errors="replace").splitlines()[-60:]), flush=True)
     return process.returncode
@@ -140,6 +176,9 @@ def main():
     try:
         if sys.platform != "darwin":
             raise RuntimeError("R27 execution requires real macOS/Xcode")
+        def interrupted(signum, frame):
+            raise KeyboardInterrupt(f"External signal {signum}; UI acceptance remains unverified")
+        signal.signal(signal.SIGTERM, interrupted)
         report["checkout_sha"] = capture(["git", "rev-parse", "HEAD"], "checkout.txt").strip()
         if report["checkout_sha"] != os.environ.get("EXPECTED_CHECKOUT_SHA"):
             raise RuntimeError("Unexpected checkout")
@@ -225,6 +264,9 @@ def main():
             raise RuntimeError("Required real UI subset failed, skipped or did not completely execute")
         report["status"] = "EXECUTED_PASS" if expected_count == len(contract["cases"]) else "SELECTED_UI_EXECUTED_PASS"
         return 0
+    except KeyboardInterrupt as error:
+        report.update(status="INTERRUPTED_UI_UNVERIFIED", error=str(error) or "External interruption")
+        return 130
     except Exception as error:
         report["error"] = str(error)
         print(str(error), file=sys.stderr)

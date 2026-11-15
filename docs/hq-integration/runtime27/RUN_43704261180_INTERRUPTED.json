@@ -1,0 +1,251 @@
+{
+  "run": 43704261180,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43704261180",
+  "checkout_sha": "eb38498b5d7235143aeecc5b1795ac15f9e1d475",
+  "conclusion": "cancelled",
+  "classification": "INTERRUPTED_NOT_ACCEPTED_UI_RESULT",
+  "fresh_counts": {
+    "ui_passed": 0,
+    "ui_failed": 0,
+    "ui_not_run_or_unverified": 1
+  },
+  "verified_prior_reused_pass": 8,
+  "artifact_id": 14158802600,
+  "artifact_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43704261180/artifacts/14158802600",
+  "artifact_sha256_declared_by_GitHub": "ef96c0dc9e1efdcdce06bda80d7864abb11f14fe41562edda279f4b555a40b5f",
+  "outer_zip_independently_hashed": false,
+  "cancel_cause": "UNKNOWN; job only says operation was canceled; no attribution to triggering actor",
+  "bounded_neighbor_check": "Exactbranch/workflow last5 snapshot had no observed superseding run; no explicit owner stop/limit/collision found. Does not prove identity/cause.",
+  "timing": {
+    "GitHub_cancel_error": "2026-11-15T11:00:44.906Z",
+    "matrix_phase_native_test": "2026-11-15T11:02:40.622533Z",
+    "child_named_test_failed": "2026-11-15T11:07:44.235Z",
+    "job_orphan_cleanup": "2026-11-15T11:08:28Z through11:10:13Z"
+  },
+  "partial_child_observation_not_normal_acceptance": "Flushed driver records hardware/clear/fixture/result progress, synthesizedEscape t184.69/199.70; original visible-dismissal assertion182 fails; Inspector not reached. Parent cancellation confounds normal route attribution.",
+  "driver_log_sha256": "2997d4f240e055d9ff6f78f0ef7a4b72a83739c2457b7d5a969b418f2b5c1300",
+  "partial_native_timeline": [
+    {
+      "timestamp": "2026-11-15 11:04:41.004838+0000",
+      "event": "stage=input.update first=false mounted=false keyWindow=false wantsFocus=false callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:41.175666+0000",
+      "event": "stage=package.appear"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:41.176063+0000",
+      "event": "stage=adapter.appear"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:41.176967+0000",
+      "event": "stage=input.update first=false mounted=false keyWindow=false wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:41.220716+0000",
+      "event": "stage=input.didMoveToWindow first=false mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:41.220972+0000",
+      "event": "stage=input.becomeFirstResponder.before first=false mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:41.294563+0000",
+      "event": "stage=delegate.beginEditing first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:44.278224+0000",
+      "event": "stage=input.becomeFirstResponder.after first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:44.342220+0000",
+      "event": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:46.663302+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:04:47.106851+0000",
+      "event": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:50.283297+0000",
+      "event": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:50.291470+0000",
+      "event": "stage=input.pressesBegan.other first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:50.397196+0000",
+      "event": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:50.400226+0000",
+      "event": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:51.119398+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:51.472386+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:51.641246+0000",
+      "event": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:51.642142+0000",
+      "event": "stage=input.pressesEnded.other first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:51.676829+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:51.793983+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:05:53.343036+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:10.673781+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:10.686738+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:19.737238+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:19.776731+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:19.837342+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:19.997929+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.003933+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.009438+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.015052+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.020226+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.029267+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.063983+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.067891+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.073080+0000",
+      "event": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.076562+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:20.092742+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:53.050036+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:06:53.552040+0000",
+      "event": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:00.419614+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:01.418202+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:04.392700+0000",
+      "event": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:33.500154+0000",
+      "event": "stage=input.resignFirstResponder.before first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:33.528707+0000",
+      "event": "stage=delegate.endEditing first=false mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:33.529173+0000",
+      "event": "stage=input.resignFirstResponder.after first=false mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:33.532102+0000",
+      "event": "stage=input.didMoveToWindow first=false mounted=false keyWindow=false wantsFocus=true callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:34.080765+0000",
+      "event": "stage=input.update first=false mounted=false keyWindow=false wantsFocus=false callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:34.148619+0000",
+      "event": "stage=input.didMoveToWindow first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:34.187773+0000",
+      "event": "stage=input.update first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:40.475688+0000",
+      "event": "stage=input.update first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:41.695420+0000",
+      "event": "stage=input.update first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    },
+    {
+      "timestamp": "2026-11-15 11:07:42.801823+0000",
+      "event": "stage=input.update first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    }
+  ],
+  "missing_required_results": [
+    "runtime27/result.json",
+    "verified summary/tree",
+    "formal test log(0bytes)",
+    "stream completion status",
+    "exported visual manifest"
+  ],
+  "prior_owned_simulator_udid": "6AB2B12F-A447-43D7-8397-42BAD2A62723",
+  "cleanup_completion": "Unverified after forced job cleanup; no other simulator or process was modified by T",
+  "controlled_continuation": "Director/Lead/Q/U allow ONE remaining-case controlled continuation after bounded check found no explicit stop/limit/collision; no healthy8 rerun and no automatic repeated interruption retry"
+}

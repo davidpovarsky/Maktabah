@@ -1,7 +1,7 @@
 {
   "scope": "LOCAL_GUARD_GATE_ORACLE_CHECKS_ONLY_UI_COUNT_ZERO",
   "parser_unittest_cases": 10,
-  "release_gate_unittest_cases": 19,
+  "release_gate_unittest_cases": 20,
   "fixture_oracle_unittest_cases": 4,
   "all_final_results": "PASS",
   "actual_probe_run": 43678599137,
@@ -19,7 +19,7 @@
     "Q ab23 native window/restore correction and U48d6 startup race correction"
   ],
   "test_correction": "021b5329b37d756604407e1256edf0001f708c3d",
-  "next_execution": "Await Q exact narrow Other-element selector correction; no new production behavior rewrite; only affected window diagnostic",
+  "next_execution": "ONEcontrolled remaining-window continuation afterunknowncancel causeboundedcheck, sameapp/test/oracles, nohealthy8rerun",
   "ui_retest_run": 43681096257,
   "ui_retest_checked_sha": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
   "ui_retest_test_source_sha": "021b5329b37d756604407e1256edf0001f708c3d",
@@ -44,5 +44,8 @@
   "diagnostic_actual_native_events": 34,
   "diagnostic_actual_hardware_delivery": "pressesBegan.other -> editingChanged -> pressesEnded.other; actual Hebrew edit visible; keyWindow/firstResponder true",
   "diagnostic_actual_spindump": "Sampled app main runloop idle; Runner test164 waits XCUIElement.value query; no proved app deadlock or Escape-route failure in this attempt",
-  "verified_prior_reused_pass": 8
+  "verified_prior_reused_pass": 8,
+  "cancellation_supervision_fixture": "Externalinterrupt and stubbornchild subcases stop only createdgroup and preserveunverifiedmarker; noUIexecuted",
+  "ui_interrupted_run": 43704261180,
+  "ui_interrupted_result": "CANCELLED_FULL_REQUIRED_RESULTS_MISSING_FRESH_0_PASS_0_FAIL_1_UNVERIFIED; childEscapeassertionfailureobservedonlyafterparentcancel"
 }

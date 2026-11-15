@@ -14,12 +14,36 @@ import io
 import os
 import sys
 import zipfile
+import signal
 from contextlib import redirect_stdout, redirect_stderr
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 
 gate = runpy.run_path(str(Path(__file__).with_name("verify-runtime27-release-gate.py")))
 collect = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["collect_cases"]
 groups = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["execution_groups"]
+
+
+class NativeChildCancellationTests(unittest.TestCase):
+    def test_external_interrupt_stops_only_the_created_group_and_remains_unverified(self):
+        function = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["run_logged"]
+        for stubborn in [False, True]:
+            with self.subTest(stubborn=stubborn), tempfile.TemporaryDirectory() as folder:
+                process = Mock(pid=321, returncode=130)
+                process.poll.return_value = None
+                process.wait.side_effect = ([KeyboardInterrupt("external cancel"), subprocess.TimeoutExpired("child", 5), 0]
+                                            if stubborn else [KeyboardInterrupt("external cancel"), 0])
+                with patch.dict(function.__globals__, ROOT=Path(folder), OUT=Path(folder)), \
+                     patch.object(sys, "platform", "darwin"), \
+                     patch.object(subprocess, "Popen", return_value=process) as launch, \
+                     patch.object(os, "killpg", create=True) as kill:
+                    with self.assertRaises(KeyboardInterrupt):
+                        function(["python3", "owned-ui-child.py"], "child.log", 30)
+                    self.assertTrue(launch.call_args.kwargs["start_new_session"])
+                    self.assertEqual(kill.call_args_list[0].args, (321, signal.SIGINT))
+                    self.assertTrue(all(call.args[0] == 321 for call in kill.call_args_list))
+                    self.assertEqual(len(kill.call_args_list), 2 if stubborn else 1)
+                marker = json.loads((Path(folder) / "child.log.interrupted.json").read_text())
+                self.assertEqual(marker["status"], "INTERRUPTED_CHILD_UNVERIFIED")
 
 
 class ReleaseGateTests(unittest.TestCase):

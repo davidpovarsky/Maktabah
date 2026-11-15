@@ -217,6 +217,7 @@ for index, scenario in enumerate(scenarios):
             process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
             for line in process.stdout:
                 log.write(line)
+                log.flush()
                 print(line, end="", flush=True)
             code = process.wait()
         device["xcodebuildExitCode"] = code
