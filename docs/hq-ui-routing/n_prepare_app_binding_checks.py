@@ -66,6 +66,6 @@ tests = read('docs/hq-ui-routing/N_APP_BINDING_ADAPTER_TESTS_20261115.swift')
 (TARGET / 'NRActualProducerConsumerTests.swift').write_bytes(prior + b'\n' + tests)
 manifest['generated_boundaries_sha256'] = hashlib.sha256(boundary.encode()).hexdigest()
 manifest['prior_R_adapter_boundary_sha256'] = hashlib.sha256((TARGET / 'RActualAdapterProducer_ProposedHookBoundaryDouble.swift').read_bytes()).hexdigest()
-output = 'N-app-owner-negative-control-inputs.json' if '--legacy-host-mount' in sys.argv else 'N-app-owner-correction-inputs.json'
+output = 'N-app-owner-negative-control-inputs.json' if '--legacy-host-mount' in sys.argv else 'N-app-owner-edge-inputs.json' if '--owner-edge-extension' in sys.argv else 'N-app-owner-correction-inputs.json'
 (OUT / output).write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8', newline='\n')
 print('Prepared actual app adapter and exact factory/session bodies; explicit remaining native boundaries.')

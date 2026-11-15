@@ -1,0 +1,69 @@
+{
+  "status": "UNCHANGED_CANONICAL_OWNER_SOURCE_EDGE_CASES_PORTABLE_PASS_REAL_CONNECTION_UNAPPLIED",
+  "production_source": "a0409b932ea4f5125122026500ab374eefc0ec87",
+  "source_blobs_verified": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift": {
+      "working_sha256": "163d5b0ca4a3a2f5acaac219a38021ef99ba764e31d6cb00eaeaafedf7115c8b",
+      "expected_git_blob": "ef338b73b558acab9aae9e975880b66d96a08d40"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": {
+      "working_sha256": "0020fee0de7f39922db0f27017679e543c318c541b48c1e9a33886cc575b38ba",
+      "expected_git_blob": "04ce0bcb0c6f03646c8221b2f597227ad9a2b130"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": {
+      "working_sha256": "76667742a0af445f277274c00c4538b58aa36c6b3ea8ad2d08b830b64997b3ab",
+      "expected_git_blob": "e82ecb9310a9032a4f11607fa8bfbbcff3224202"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": {
+      "working_sha256": "4290a2a0122be0d46c8403bdf8c48d1bbdb7ffe710e2d712709a04063da283db",
+      "expected_git_blob": "6c4d255ae948811bc7cce4d82f35209581f84709"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+      "working_sha256": "93c6440917f6fe6da76e7fce944486c589a2c17013698f4586224e98932983d8",
+      "expected_git_blob": "df0e1ceb7254f9dcdcf57bb30e6109875d225a5f"
+    }
+  },
+  "source_changes": false,
+  "actual_full_methods": 113,
+  "actual_app_methods": 20,
+  "failures": 0,
+  "compiler_warnings": 0,
+  "method_names": [
+    "NActualAppBindingAdapterTests.testActualAppAdapterExactRootReceiptAndNarrowCheckpointOnAllBackends",
+    "NActualAppBindingAdapterTests.testActualAppObserverRefusesCoreLastAwaitAfterExactReaderACK",
+    "NActualAppBindingAdapterTests.testActualAppObserverRevokesOriginalPreparationsAcrossSameTurnABA",
+    "NActualAppBindingAdapterTests.testActualCompositionFactoryDefaultsOffAndUsesOriginalLeaseWhenExplicit",
+    "NActualAppBindingAdapterTests.testActualCompositionRejectsWorkspaceOwnerSubstitutionBeforeCoalescedCallback",
+    "NActualAppBindingAdapterTests.testActualCurrentSceneAwaitCannotBorrowReadmittedSameContext",
+    "NActualAppBindingAdapterTests.testActualHostWithoutAuthoritativeProducerRefusesFutureBinding",
+    "NActualAppBindingAdapterTests.testActualMountAndRefreshClosuresDoNotRetainReplacedWorkspace",
+    "NActualAppBindingAdapterTests.testActualSessionPresentationRequiresLiveIndependentReaderEvidence",
+    "NActualAppBindingAdapterTests.testBackendGetterCannotRevokeOriginalOwnerIntoSuccessfulBinding",
+    "NActualAppBindingAdapterTests.testCancelAndLateOldLeaseCannotTakeReplacementSceneOwner",
+    "NActualAppBindingAdapterTests.testCanonicalNilPublicationRefusesSourceAndBindingInsideActualInvalidation",
+    "NActualAppBindingAdapterTests.testCanonicalOwnerABARevokesEachExplicitOperationAndLateCleanupPreservesNewObserver",
+    "NActualAppBindingAdapterTests.testExactMountPathReadsEqualSelectionReplacementWithoutAnyRefresh",
+    "NActualAppBindingAdapterTests.testLegacyRefreshStillReadsNewEnvironmentButRemainsPubliclyUnsupported",
+    "NActualAppBindingAdapterTests.testReaderRequiresIndependentWitnessAndPreservesBothInspectorBooleans",
+    "NActualAppBindingAdapterTests.testReadyNotificationAdmissionIsNotRevokedByActualAppObserver",
+    "NActualAppBindingAdapterTests.testRootNeverCopiesReaderInspectorOrBackgroundTarget",
+    "NActualAppBindingAdapterTests.testUnhookedActualAdapterRefusesEvenSuccessfulStoreAndWitness",
+    "NActualAppBindingAdapterTests.testUnsupportedShapesAndWrongCurrentReaderIdentityRefuseWithoutApply"
+  ],
+  "raw_log": "N-app-owner-edge-full.log",
+  "raw_log_sha256": "3b0395ce8914eb6aae5b75d955801ebaafdc8108780d201c0ced1c986e12c2b0",
+  "input_manifest_sha256": "e72764e2ee3b636d231937d85f9bfaa24fc5d70da9304d61024d144be7fa02e6",
+  "scope": "Prior93 + app20; overlapping111/110/107 not added. Exact actual mount/refresh+canonical source/adapter over explicitly doubled native shells.",
+  "new_edges": [
+    "Equal-selection old adapter externally retained with still-valid actual R observation",
+    "Different canonical owner of same adapter rejected as provenance mismatch",
+    "Canonical owner ABA with distinct operation/admission between writes",
+    "Late old cleanup does not remove new observer or third admission",
+    "Nil/inpublication source+binding reads fail closed in actual synchronous invalidation callback"
+  ],
+  "actual_lifecycle_producer_patch_applied": false,
+  "new_native_sdk_device": "NOT_RUN",
+  "public_enablement": false,
+  "R_reconciliation_or_frozen043_touched": false,
+  "manager_independent_review": "PENDING"
+}

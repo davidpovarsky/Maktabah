@@ -158,6 +158,9 @@
         session.workspaceProjectionSource = .init(owner: sourceOwner, legacyWorkspace: f.adapter)
         XCTAssertThrowsError(try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter))
         XCTAssertEqual(try f.n.authority.navigationState(sceneID: f.n.sceneID.rawValue).authorityRevision, f.n.admitted.authorityRevision)
+        let unrelatedOwner = try owner(f.adapter)
+        XCTAssertThrowsError(try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter,
+            workspaceOwner: unrelatedOwner, enabled: true), "Same adapter under another owner is not the mounted producer")
         let installed = try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter, workspaceOwner: sourceOwner, enabled: true)
         defer { installed.cancel() }
         XCTAssertThrowsError(try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter, workspaceOwner: sourceOwner, enabled: true))
@@ -215,6 +218,7 @@
         other.fixtureConnect(f.manager, groupID: f.groupID)
         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
         try sourceOwner.replace(with: other)
+        XCTAssertNotNil(f.adapter.mappingOwnershipObservation(), "Old adapter remains externally retained and independently available")
         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
         XCTAssertThrowsError(try installed.observePublicNavigationBinding(f.n.intent, requestId: UUID(), sceneID: f.n.sceneID), "Old adapter must not observe a substituted current app workspace")
         try composition.workspaceProjectionDidUpdate(session, workspace: other)
@@ -275,7 +279,58 @@
         XCTAssertThrowsError(try composition.configureFuturePublicBinding(session: try XCTUnwrap(host.session), manager: f.manager,
             workspace: other, enabled: true))
     }
+    func testCanonicalOwnerABARevokesEachExplicitOperationAndLateCleanupPreservesNewObserver() async throws {
+        let f = try await RConsumerFixture(.otzaria); defer { f.cleanup() }
+        let sourceOwner = try owner(f.adapter)
+        let first = try MaktabahNativePublicBindingAdapter(sceneID: f.n.sceneID, manager: f.manager, workspace: f.adapter,
+            workspaceOwner: sourceOwner, authority: f.n.authority, lease: f.n.lease, directory: f.n.directory, backend: f.n.backend,
+            presentation: { .init(ready: true, historyRootAvailable: true, witnessedReader: nil) }, invalidated: {})
+        defer { first.cancel() }
+        let firstGrant = try f.n.core.prepareNavigationSynchronously(sceneID: f.n.sceneID.rawValue, invocation: f.n.invocation, context: f.n.context)
+        let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+        other.fixtureConnect(f.manager, groupID: f.groupID)
+        try sourceOwner.replace(with: other)
+        XCTAssertThrowsError(try firstGrant.validateFreshness())
+        // Explicit DIFFERENT operation, never repair/re-admission of firstGrant.
+        let admitted = try f.n.authority.admit(context: f.n.context, sceneID: f.n.sceneID)
+        let invocation = ActionPortInvocation(requestId: UUID(), snapshot: f.n.invocation.snapshot, deadlineUptimeNanoseconds: UInt64.max)
+        let second = try MaktabahNativePublicBindingAdapter(sceneID: f.n.sceneID, manager: f.manager, workspace: other,
+            workspaceOwner: sourceOwner, authority: f.n.authority, lease: f.n.lease, directory: f.n.directory, backend: f.n.backend,
+            presentation: { .init(ready: true, historyRootAvailable: true, witnessedReader: nil) }, invalidated: {})
+        defer { second.cancel() }
+        let secondGrant = try f.n.core.prepareNavigationSynchronously(sceneID: f.n.sceneID.rawValue, invocation: invocation, context: f.n.context)
+        first.cancel() // Late cleanup must not remove the second owner's observer.
+        try sourceOwner.replace(with: f.adapter)
+        XCTAssertThrowsError(try secondGrant.validateFreshness())
+        XCTAssertThrowsError(try f.n.authority.navigationState(sceneID: f.n.sceneID.rawValue))
+        XCTAssertThrowsError(try first.observePublicNavigationBinding(f.n.intent, requestId: UUID(), sceneID: f.n.sceneID))
+        let third = try f.n.authority.admit(context: f.n.context, sceneID: f.n.sceneID)
+        f.n.authority.release(f.n.admitted); f.n.authority.release(admitted); first.cancel(); second.cancel()
+        XCTAssertEqual(try f.n.authority.navigationState(sceneID: f.n.sceneID.rawValue).authorityRevision, third.authorityRevision)
+        f.n.authority.release(third)
+        XCTAssertEqual(f.n.driver.applied, 0)
+    }
+    func testCanonicalNilPublicationRefusesSourceAndBindingInsideActualInvalidation() async throws {
+        let f = try await RConsumerFixture(.otzaria); defer { f.cleanup() }
+        let sourceOwner = try owner(f.adapter), source = MaktabahNativeWorkspaceProjectionSource(owner: sourceOwner, legacyWorkspace: nil)
+        let probe = NWorkspaceBindingWeakProbe()
+        var callbacks = 0
+        let host = try MaktabahNativePublicBindingAdapter(sceneID: f.n.sceneID, manager: f.manager, workspace: f.adapter,
+            workspaceOwner: sourceOwner, authority: f.n.authority, lease: f.n.lease, directory: f.n.directory, backend: f.n.backend,
+            presentation: { .init(ready: true, historyRootAvailable: true, witnessedReader: nil) }, invalidated: {
+                callbacks += 1
+                XCTAssertTrue(sourceOwner.isPublishing); XCTAssertNil(sourceOwner.current)
+                do { _ = try source.read(); XCTFail("Publication source read did not refuse") } catch {}
+                do { _ = try probe.value?.observePublicNavigationBinding(f.n.intent, requestId: UUID(), sceneID: f.n.sceneID); XCTFail("Publication binding did not refuse") } catch {}
+            })
+        probe.value = host; defer { host.cancel() }
+        try sourceOwner.replace(with: nil)
+        XCTAssertEqual(callbacks, 1); XCTAssertNil(try source.read())
+        XCTAssertThrowsError(try f.n.authority.navigationState(sceneID: f.n.sceneID.rawValue))
+        XCTAssertThrowsError(try host.observePublicNavigationBinding(f.n.intent, requestId: UUID(), sceneID: f.n.sceneID))
+    }
 }
+@MainActor private final class NWorkspaceBindingWeakProbe { weak var value: MaktabahNativePublicBindingAdapter? }
 @MainActor private final class NWorkspaceWeakProbe {
     weak var value: StudyWorkspaceNavigationAdapter?
     init(_ value: StudyWorkspaceNavigationAdapter) { self.value = value }
