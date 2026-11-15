@@ -1,0 +1,22 @@
+{
+  "phase_final": false,
+  "reviewed_utc": "2026-11-15T09:34:54.028741+00:00",
+  "source_candidate_sha": "914fa87f5b93e2667571001cd0c762ef58589d88",
+  "source_behavior_base": "75ea765de3d768402bf89798b6006b2aea7f9477",
+  "exact_failed_runtime_base": "6a54a44f4f94499325970471424f2482d48f14f8",
+  "source_sha256": {
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift": "d04bb370070ac478ffdc8857197fdb8df0d1ca420a2ae75ed863af5771682d45",
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift": "db3c527cf6748a4ebf01ffa81a45fdf77cd0afdd52aaa8508460b5feb3c18782"
+  },
+  "test_candidate_sha": "c9295c85a51710e592dc2558e6edb5395b1ecca5",
+  "test_sha256": "909a2f9b9a541b3638bd4ca1ee11d528f25aeae86e0d86a369996d5eed4ceb16",
+  "source_review": "Exact2leased production paths only; prior evidence docs in ancestry retained. Fixed-stage/Boolean OSLog observations; no query/book/user/locator/rawkey contents. Existing branches/guards/input matching/query/returnvalues/callbacks retained. Added responder/press-ended/cancelled overrides forward super once. Existing onDismiss forwarded synchronously once with logging. No acceptance switch, sleep, dispatcher, input injection or UI hiding.",
+  "behavior_limit": "Instrumentation may affect timing; diagnostic-only pass cannot certify final non-instrumented fix. Missing logs cannot prove no handler without normal mount/edit stages and capture status.",
+  "test_impact": "Only samefailedwindow positivehardware-keycontrol +realclear +postEscape evidence. Removingblockandsolecapture reproducesab23 bytes; all8healthycase/basehelperbodies unchanged. OriginalrealEscape/visible-dismissal/Inspector/text/locator/window oracles preserved.",
+  "eligible_verified_reused_pass": 8,
+  "prior_reuse_proof": "R27_GENERATED_PROJECT_REUSE_PROOF.json",
+  "fresh_UI_pass": 0,
+  "fresh_UI_executions_in_this_review": 0,
+  "next_required": "SoleT affectedwindow diagnostic execution after actualsource/test/configfreeze; retain exactcategory info/debug logs and collection status evenFAIL before simdeletion, postEscape actualsnapshot, codeimage/symbolproof ifavailable. Same data/OS/deps fingerprint compatibility required.",
+  "outside_scope": "No fullrelease/newRouteSpec/physical acceptance; no thirdbehaviorrewrite."
+}
