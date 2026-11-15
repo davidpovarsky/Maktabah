@@ -64,3 +64,9 @@ Lead's bounded checks found no connected Mac: local portable Windows only; Xcode
 The integrated application-only binary diff against remote baseline df2a2194 is 171,017 bytes (34,253 bytes gzip, ~45.7KB base64); this quantifies a potential future reviewed overlay transport. No existing supported input accepts that overlay. No workflow/toolkit/transport was changed or dispatched. A source-access route plus explicit unsigned command execution is needed; owner already authorized isolated integration and focused Apple verification, so the issue is transport/executor authorization, not a renewed request for those operations.
 
 Stage outcome until that route exists: exact isolated composition and membership PASS; actual Apple SDK compile NOT_RUN/BLOCKED_TRANSPORT; physical acceptance OPEN. Preserve all immutable refs/artifacts for the authorized next step.
+
+## Superseding execution route
+
+Owner subsequently authorized necessary isolated publication and a narrow manual-only focused validation entry. See STAGE2_VALIDATOR_NECESSITY.md and Scripts/CI/hq-stage2-focused-apple.py. The selected check is now the actual unsigned iOS app target with verified prebuilt native and real resource inputs; the model-only smoke was not dispatched. Existing immutable native artifacts from run40566258679 match all preserved native engine/Rust/upstream trees. Small real Sefaria resource artifact13658066283 was downloaded and digest-verified for metadata audit. No product stub or fake resource will be introduced.
+
+The new mode is false by default; normal workflow inputs/job bodies/default behavior and automatic triggers are preserved. Requested 40-character checkout SHA is mandatory for focused mode. One scoped job, no simulator tests/corpus/release. Local validator checks passed: source closure, wrong-SHA/source-tree refusal and archive traversal refusal. No Apple PASS is claimed before the actual run completes.

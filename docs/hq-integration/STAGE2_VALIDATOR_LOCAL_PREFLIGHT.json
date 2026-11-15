@@ -1,0 +1,22 @@
+{
+  "checkout_sha": "58c484b38f5200b24916d984c1d946cd4fc859b5",
+  "application_source_sha": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "validator_sha256": "80079ab08a3e07949c0f9a981d2b0d1a36a6cc9927bdfbe451cdbfb2f711c6b6",
+  "inputs_sha256": "292a456b666f5fe7375015cf5a31d361c5e80b204dac96b0f6ee420bd48a674f",
+  "workflow_sha256": "d61550c6be3e79d58243ad1e7dae3f84221943a1cccafbe8a25bbf982113f869",
+  "project_sha256": "fd366409667e7adf587494b9698826e543e1d7d2650c86c5539df7fcfdf37ea8",
+  "application_trees": {
+    "Source": "e671bd55f6fec3526cb2863f1a1ae34ba306aa84",
+    "Vendor": "857406808f59c271c58525fea8b49aa3e8191a0a",
+    "Maktabah.xcodeproj": "e2722a859700ba6f040485f273e4ba6a74e4e83d"
+  },
+  "package_resolved_sha256": "7af0561c2eb28caa4de4ea569f5c9826242bb67f345747034f845d63e40e0356",
+  "package_pins": {
+    "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+    "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+    "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+    "torahinspectorkit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+    "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+    "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+  }
+}

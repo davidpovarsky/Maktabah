@@ -34,6 +34,16 @@ on:
         required: true
         type: boolean
         default: false
+      hq_stage2_focused:
+        description: One unsigned integrated iOS app build with immutable prebuilt inputs; no runtime or data
+        required: true
+        type: boolean
+        default: false
+      hq_stage2_expected_sha:
+        description: Exact 40-character isolated commit required only for focused app mode
+        required: false
+        type: string
+        default: ''
       ui_diagnostic_cases:
         description: Optional exact Suite/testMethod diagnostics (phone suite on iPhone, others on 11-inch); never satisfies the full matrix or Release gate
         required: false
@@ -45,13 +55,48 @@ permissions:
   contents: read
 
 concurrency:
-  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}-${{ inputs.ui_diagnostic_cases != '' && 'diagnostic' || 'matrix' }}
+  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.hq_stage2_focused && 'hq-stage2-focused' || inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}-${{ inputs.ui_diagnostic_cases != '' && 'diagnostic' || 'matrix' }}
   cancel-in-progress: true
 
 jobs:
+  hq-stage2-focused:
+    name: Focused unsigned Maktabah-iOS (no runtime or data)
+    if: ${{ inputs.hq_stage2_focused }}
+    runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
+    timeout-minutes: 40
+    steps:
+      - name: Reject unrelated validation modes
+        if: ${{ inputs.ui_sdk_check_only || inputs.run_production_release || inputs.source_ref != '' || inputs.run_simulator_tests || inputs.ui_diagnostic_cases != '' }}
+        run: |
+          echo "::error::Focused app mode cannot request SDK-only, baseline, runtime or production validation."
+          exit 1
+      - name: Require immutable focused source
+        env:
+          REQUESTED_SHA: ${{ inputs.hq_stage2_expected_sha }}
+        run: |
+          [[ "$REQUESTED_SHA" =~ ^[a-f0-9]{40}$ ]] || { echo "::error::Focused mode requires an exact commit SHA."; exit 1; }
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.hq_stage2_expected_sha }}
+          fetch-depth: 0
+      - name: Compile exact integrated app without signing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXPECTED_CHECKOUT_SHA: ${{ inputs.hq_stage2_expected_sha }}
+        run: python3 Scripts/CI/hq-stage2-focused-apple.py
+      - name: Upload exact focused check provenance and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hq-stage2-focused-apple
+          path: |
+            build/hq-stage2/result.json
+            build/hq-stage2/*.log
+          if-no-files-found: warn
+
   ui-sdk-check-only:
     name: Focused SDK and workspace checks (no app/runtime acceptance)
-    if: ${{ inputs.ui_sdk_check_only }}
+    if: ${{ inputs.ui_sdk_check_only && !inputs.hq_stage2_focused }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 15
     steps:
@@ -79,7 +124,7 @@ jobs:
 
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
-    if: ${{ !inputs.ui_sdk_check_only }}
+    if: ${{ !inputs.ui_sdk_check_only && !inputs.hq_stage2_focused }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 360
 

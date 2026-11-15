@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": [
+    "reject ../outside",
+    "reject /absolute/escape",
+    "reject nested/../../outside",
+    "reject wrong immutable checkout before downloads",
+    "reject application-tree drift before downloads"
+  ],
+  "scope": "validator source/transport/archive safety only; not app or Apple execution"
+}
