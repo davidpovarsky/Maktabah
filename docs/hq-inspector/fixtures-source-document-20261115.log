@@ -1,0 +1,17 @@
+Source: working tree; case: all
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-wwnb_004\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-wwnb_004\inspector-fixtures.exp
+
+PASS links=100 exact IDs/group counts/last navigation/zero eager decode/visible and full snippets
+PASS links=500 exact IDs/group counts/last navigation/zero eager decode/visible and full snippets
+PASS links=2000 exact IDs/group counts/last navigation/zero eager decode/visible and full snippets
+PASS splitContent=false segment scope/point content/partial snippets/range+inverse suppression
+PASS splitContent=true segment scope/point content/partial snippets/range+inverse suppression
+PASS loadedEmpty versus SQL/decode failure and retry
+PASS cancellation before SQL, during metadata, between chunks, during hydration
+PASS actual note membership: segment/section/backend/book/sparse gaps/Sefaria section
+PASS actual reader tap paths: shell/no eager SQL/stale cancellation
+PASS actual notes loader: MainActor heartbeat, persisted/unsaved notes, same-book segment/section immutable ranges, stale generation/backend/book and cancellation
+PASS actual selection + Notes: Sefaria/Embedded provider, exact section/segment, foreign backend/work isolation, stale/missing section
+PASS actual document method: nine requested/current mode pairs, exact unit/adjacent/sparse locators, point-source fast path, stale/cancel cache isolation
+PASS actual source gate: exact warm locator, missing/foreign provider, unknown reference, cancellation before cached data
+ALL INSPECTOR FIXTURES PASSED (portable boundaries; no physical/production performance claim)

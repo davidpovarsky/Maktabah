@@ -731,12 +731,12 @@ final class MaktabahTorahInspectorSession {
             let previous = bridge.getPreviousReadingUnitDescriptor(
                 bookId: bookID,
                 beforeLineIndex: unit.startLineIndex,
-                mode: currentMode
+                mode: effectiveMode
             )
             let next = bridge.getNextReadingUnitDescriptor(
                 bookId: bookID,
                 afterLineIndex: unit.endLineIndex,
-                mode: currentMode
+                mode: effectiveMode
             )
             let section = OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next)
 
@@ -817,6 +817,7 @@ final class MaktabahTorahInspectorSession {
     }
 
     private func activeLocator(for reference: String, providerID: String?) throws -> TextLocator {
+        try Task.checkCancellation()
         guard let providerID,
               let backend = BackendID(rawValue: providerID),
               backend == coordinator.activeBackendID else {

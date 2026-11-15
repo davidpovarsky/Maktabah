@@ -61,6 +61,7 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     let database: SQLiteDatabase
     var currentReadingUnitMode: OtzariaUnitMode = .chapter
     var cachedAnchor: OtzariaLineAnchor?
+    let documentState = FixtureDocumentState()
     init(database: SQLiteDatabase) { self.database = database }
     func withDatabase<T>(_ work: (SQLiteDatabase) throws -> T) throws -> T { try work(database) }
     func lineAnchor(bookId: Int, contentId: Int, characterIndex: Int) -> OtzariaLineAnchor? { cachedAnchor }
@@ -107,14 +108,6 @@ struct TorahLinkedSource: Sendable {
     let id: ID
     let sourceRef: String
 }
-struct OtzariaReadingUnit {
-    let bookId: Int
-    let id = "fixture-unit"
-    let startLineIndex = 0
-    let endLineIndex = 3998
-    let sourceLineIndices: [Int]
-}
-enum OtzariaUnitMode { case chapter; var storageValue: String { "chapter" } }
 struct OtzariaPerformanceTelemetry: Sendable {
     static let shared = Self()
     func begin(_ name: String) -> Self { self }
@@ -124,11 +117,17 @@ struct OtzariaFileLogger: Sendable {
     static let shared = Self()
     func log(_ message: String) {}
 }
-extension String { var otsariaPlainText: String { self } }
+extension String {
+    var otsariaPlainText: String { self }
+    var readerPlainText: String { self }
+}
 
-enum BackendID: String, Sendable { case otzaria, sefaria, sefariaEmbedded }
-struct TextLocator: Equatable, Sendable {
-    enum Position: Equatable, Sendable { case legacyLine(Int), canonicalRef(String) }
+enum BackendID: String, Codable, Sendable {
+    case otzaria, sefaria, sefariaEmbedded
+    var displayName: String { rawValue }
+}
+struct TextLocator: Hashable, Codable, Sendable {
+    enum Position: Hashable, Codable, Sendable { case legacyLine(Int), canonicalRef(String) }
     let backend: BackendID; let workKey: String; let position: Position
     var persistenceKey: String { "\(backend):\(workKey):\(position)" }
 }

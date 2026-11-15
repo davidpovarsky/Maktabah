@@ -21,6 +21,8 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         if only == "tap" { try await tapFixtures(); return }
         if only == "notes" { try await notesLoadingFixtures(); return }
         if only == "selection" { try await selectionFixtures(); return }
+        if only == "document" { try await documentFixtures(); return }
+        if only == "gate" { try await sourceGateFixtures(); return }
         for count in [100, 500, 2000] {
             let bridge = bridge()
             // Duplicated, reversed, sparse indexes exercise exact windowing and
@@ -140,6 +142,8 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         try await tapFixtures()
         try await notesLoadingFixtures()
         try await selectionFixtures()
+        try await documentFixtures()
+        try await sourceGateFixtures()
         print("ALL INSPECTOR FIXTURES PASSED (portable boundaries; no physical/production performance claim)")
     }
 
@@ -179,6 +183,74 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         viewModel.didTapReaderText(at: 0)
         try expect(mappedTask.isCancelled && viewModel.selectedSegmentLocator == own, "mapped tap cancels stale anchor task and keeps newest selection")
         print("PASS actual reader tap paths: shell/no eager SQL/stale cancellation")
+    }
+
+    @MainActor static func sourceGateFixtures() async throws {
+        BackendCoordinator.shared.activeBackendID = .otzaria
+        let session = DocumentScopeFixture()
+        let locator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(100))
+        session.locators["cached"] = locator
+        let exact = try session.activeLocator(for: "cached", providerID: "otzaria")
+        try expect(exact == locator, "warm source cache preserves exact qualified locator")
+        for provider in [nil, "sefaria", "unknown"] as [String?] {
+            do { _ = try session.activeLocator(for: "cached", providerID: provider); throw FixtureError(message: "foreign/missing provider accepted") }
+            catch TorahError.missingProvider {}
+        }
+        do { _ = try session.activeLocator(for: "unknown", providerID: "otzaria"); throw FixtureError(message: "unknown source accepted") }
+        catch TorahError.invalidReference {}
+        let cancelled = Task { @MainActor in
+            withUnsafeCurrentTask { $0?.cancel() }
+            return try session.activeLocator(for: "cached", providerID: "otzaria")
+        }
+        do { _ = try await cancelled.value; throw FixtureError(message: "cancelled warm source cache lookup returned data") }
+        catch is CancellationError {}
+        try expect(session.otzaria.database.queryCount == 0, "source gate never reads/decodes DB")
+        print("PASS actual source gate: exact warm locator, missing/foreign provider, unknown reference, cancellation before cached data")
+    }
+
+    @MainActor static func documentFixtures() async throws {
+        BackendCoordinator.shared.activeBackendID = .otzaria
+        for current in [OtzariaUnitMode.chapter, .paragraph, .line] {
+            for requested in [OtzariaUnitMode.paragraph, .line, .chapter] {
+                let session = DocumentScopeFixture()
+                session.otzaria.currentReadingUnitMode = current
+                let locator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(100))
+                let request = "otzaria:unit-request:v1:1:100:\(requested.storageValue)"
+                let document = try await session.mapOtzariaDocument(locator: locator, requestedReference: request)
+                let calls = session.otzaria.documentState.modes
+                try expect(calls.map(\.0) == ["unit", "previous", "next"], "one real adapter unit/adjacent lookup path")
+                try expect(calls.allSatisfy { $0.1 == requested }, "document and adjacent descriptors use immutable requested mode \(requested), current=\(current)")
+                let stride: Int = requested == .chapter ? 100 : requested == .paragraph ? 10 : 1
+                try expect(document.previousSectionRef == "otzaria:v1:1:\(100 - stride)" && document.nextSectionRef == "otzaria:v1:1:\(102 + stride)", "exact adjacent source descriptor locators, no current-mode substitution")
+                try expect(document.providerID == "otzaria" && document.requestedRef == request && document.sectionRef == "otzaria:v1:1:100", "document preserves source and request identity")
+                try expect(document.segments.map(\.canonicalRef) == ["otzaria:v1:1:100", "otzaria:v1:1:102"], "exact sparse source line locators")
+                try expect(session.units[request]?.mode == requested, "remembered unit retains source mode")
+            }
+        }
+        // Point-source expansion must retain its cheap one-line path.
+        let session = DocumentScopeFixture()
+        let locator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(100))
+        let document = try await session.mapOtzariaDocument(locator: locator, requestedReference: "otzaria:v1:1:100")
+        try expect(document.segments.count == 1 && document.segments[0].text == "base 50" && session.otzaria.documentState.modes.isEmpty, "point expansion does not decode/request a whole unit")
+        for stale in ["generation", "cancel"] {
+            let session = DocumentScopeFixture()
+            let entered = DispatchSemaphore(value: 0), release = DispatchSemaphore(value: 0)
+            session.otzaria.documentState.onUnit = {
+                entered.signal()
+                _ = release.wait(timeout: .now() + 3)
+            }
+            let request = Task { @MainActor in
+                try await session.mapOtzariaDocument(locator: locator, requestedReference: "otzaria:unit-request:v1:1:100:paragraph")
+            }
+            let started = await Task.detached { entered.wait(timeout: .now() + 3) == .success }.value
+            try expect(started, "document loader started")
+            if stale == "generation" { BackendCoordinator.shared.generation += 1 } else { request.cancel() }
+            release.signal()
+            do { _ = try await request.value; throw FixtureError(message: "stale document returned") }
+            catch is CancellationError {}
+            try expect(session.locators.isEmpty && session.units.isEmpty, "stale/cancelled document never writes source caches")
+        }
+        print("PASS actual document method: nine requested/current mode pairs, exact unit/adjacent/sparse locators, point-source fast path, stale/cancel cache isolation")
     }
 
     @MainActor static func selectionFixtures() async throws {

@@ -77,7 +77,7 @@ def block(text, start, end):
 def run():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-ref", help="Read production source from a Git commit for a regression baseline")
-    parser.add_argument("--case", choices=["all", "scope", "tap", "notes", "selection"], default="all")
+    parser.add_argument("--case", choices=["all", "scope", "tap", "notes", "selection", "document", "gate"], default="all")
     args = parser.parse_args()
     def production(path):
         if args.source_ref:
@@ -96,6 +96,8 @@ def run():
         source = production(READING / "OtzariaLineSourcesService.swift")
         source = source.replace("import TorahInspectorCore", "")
         adapter = production(READING / "MaktabahTorahInspectorAdapter.swift")
+        units = production(READING / "OtzariaReadingUnit.swift")
+        library = production(ROOT / "Source/LibraryBackend/LibraryBackendModels.swift")
         contains = block(adapter, "    private func contains(", "    private func map(")
         contains = contains.replace("private func contains", "func contains")
         notes = block(adapter, "    private func notes(", "    private func contains(")
@@ -106,6 +108,14 @@ def run():
             (ROOT / "Tests/HQ/inspector/FixtureBoundary.swift").read_text(encoding="utf-8"),
             block(models, "struct OtzariaLinkedSource:", "struct OtzariaSourceSection:"),
             production(READING / "OtzariaLineAnchor.swift"),
+            block(units, "struct OtzariaReadingUnit:", "struct OtzariaUnitLevelOption:"),
+            block(units, "public enum OtzariaUnitMode:", "#if os(iOS)"),
+            production(READING / "OtzariaReadingUnitDescriptor.swift"),
+            block(library, "struct TextVersionMetadata:", "struct LibraryReaderCapabilities:"),
+            block(library, "struct LibraryTextLink:", "struct LibraryRelatedSource:"),
+            block(library, "struct LibraryTextSection:", "struct LibrarySearchRequest:"),
+            block(production(READING / "OtzariaInspectorRelationshipsProvider.swift"), "enum OtzariaInspectorDocumentMapper", "struct OtzariaInspectorRelationshipsProvider:"),
+            (ROOT / "Tests/HQ/inspector/DocumentFixtureBoundary.swift").read_text(encoding="utf-8"),
             block(production(ROOT / "Source/Features/Annotations/Models/Annotation.swift"), "struct Annotation:", "extension Annotation {"),
             source,
             "@MainActor final class NoteScopeFixture { var otzariaUnitsByReference: [String: OtzariaReadingUnit] = [:]\n"
@@ -124,7 +134,19 @@ def run():
             'static func reference(for locator: TextLocator) -> String { if case .canonicalRef(let ref) = locator.position { return ref }; return locator.persistenceKey }\n'
             'func cacheKey(providerID: String, reference: String) -> String { "\\(providerID):\\(reference)" }\n'
             + notes + contains + "}\n",
-            "enum MaktabahTorahInspectorFormatting { static func otzariaBookID(from key: String) -> Int? { Int(key.dropFirst(5)) } }",
+            block(adapter, "enum MaktabahTorahInspectorFormatting", "    static func relationshipKind(") + "}\n",
+            "@MainActor final class DocumentScopeFixture {\n"
+            "let coordinator = BackendCoordinator.shared\n"
+            "let otzaria = OtzariaMaktabahBridge(database: SQLiteDatabase(path: CommandLine.arguments[3]))\n"
+            "var preferredMode: LibraryReaderTextMode = .source\n"
+            "var locators: [String: TextLocator] = [:]\n"
+            "var units: [String: OtzariaReadingUnit] = [:]\n"
+            "func remember(_ locator: TextLocator, for reference: String) { locators[reference] = locator }\n"
+            "func remember(_ unit: OtzariaReadingUnit, for reference: String) { units[reference] = unit }\n"
+            "func locator(for reference: String, providerID: String) -> TextLocator? {\n"
+            "guard let value = locators[reference], value.backend.rawValue == providerID else { return nil }; return value\n}\n"
+            + block(adapter, "    private func mapOtzariaDocument(", "    private func activeLocator(").replace("private func mapOtzariaDocument", "func mapOtzariaDocument")
+            + block(adapter, "    private func activeLocator(", "    private func locator(for reference:").replace("private func activeLocator", "func activeLocator") + "}\n",
             tap,
             (ROOT / "Tests/HQ/inspector/InspectorFixtures.swift").read_text(encoding="utf-8"),
         ]
