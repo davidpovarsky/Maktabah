@@ -6,8 +6,11 @@ from pathlib import Path
 import subprocess
 import sys
 
+membership_code = 0
 if Path("Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift").is_file():
-    subprocess.run([sys.executable, "Scripts/CI/verify-otzaria-xcode-project.py"], check=True)
+    # Keep the membership gate failing, while still obtaining independent SDK
+    # compiler diagnostics for packages awaiting manager-owned app registration.
+    membership_code = subprocess.run([sys.executable, "Scripts/CI/verify-otzaria-xcode-project.py"]).returncode
 
 artifacts = Path("build/artifacts")
 artifacts.mkdir(parents=True, exist_ok=True)
@@ -114,4 +117,4 @@ if (native_host / "Package.swift").is_file():
         output.write("\n=== Native routing host SDK compilation ===\n" + native_host_result.stdout)
     print(json.dumps(native_host_report, indent=2))
     print(native_host_result.stdout)
-raise SystemExit(result.returncode or toolbar_code or native_host_code)
+raise SystemExit(result.returncode or toolbar_code or native_host_code or membership_code)
