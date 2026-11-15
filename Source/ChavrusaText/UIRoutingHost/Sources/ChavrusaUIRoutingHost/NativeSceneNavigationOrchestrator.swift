@@ -98,6 +98,13 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             defer { driver.endObservation(requestID: requestID) }
             let current = try directory.synchronousScene(sceneID: sceneID, context: context, backend: backend.currentBackendSnapshot())
             try prepared.authorizeCommit(current: current)
+            // Synchronous callbacks in the Core guard may detach/re-register
+            // even the same object. Preserve the ORIGINAL live dispatch token.
+            guard let liveDriver = drivers[sceneID], liveDriver === driver,
+                  let dispatch = dispatches[requestID], dispatch.token == token,
+                  dispatch.active, !dispatch.dispatched else {
+                throw UIRouteError(.staleState, "scene_lifetime_changed")
+            }
             // No await between the ONE Core guard and actual native mutation.
             // Mark uncertainty before apply: a throwing driver may have effects.
             didDispatch = true; dispatches[requestID]?.dispatched = true
