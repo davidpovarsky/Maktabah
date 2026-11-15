@@ -2,7 +2,13 @@
 
 Reviewed at the next UI02 checkpoint: HQ `docs/otzaria/ui-routing/HANLIN_CONTRACT_REVIEW_357D_20261115.md`, delivered by the existing dispatcher. This records the consumer implications of that review; it is not an independent SDK source review or live integration acceptance.
 
-Reported input is HanlinAgentSDK 0.1.0-preview.1 / HostAPI major 1 at `357d0042809c2c71bc6725466994b2adbaadf3da`. Its SDK-owned freshness/revocation P1 remains a live-dispatch blocker. Corrected, independently reviewed source and the actual distributable dependency graph/approved ChatUI entry are required before an adapter imports or calls it. No host-side workaround, SDK/Platform copy or duplicate dispatcher is introduced here.
+Original reviewed input was HanlinAgentSDK 0.1.0-preview.1 / HostAPI major 1 at `357d0042809c2c71bc6725466994b2adbaadf3da`, whose SDK-owned freshness/revocation P1 blocked live dispatch. That specific source hold is now cleared at corrected `08b5d6f31153063c31be321fbd35c7301f302fc1` as described below. The actual distributable dependency graph/approved ChatUI entry, accepted semantic/scene ports and Apple/native proof remain required before live integration. No host-side workaround, SDK/Platform copy or duplicate dispatcher is introduced here.
+
+## Corrected source disposition: 08b5d6f3
+
+Read the exact delivered `HANLIN_CONTRACT_08B_MANIFEST.json` and corrected disposition in the HQ review. Hanlin independent source QA accepted the reported revocation-await P1 correction at `08b5d6f31153063c31be321fbd35c7301f302fc1`, parent357d. The dispatcher reports it reviewed the exact correction and verified six public contract/manifest blobs unchanged. This permits typed-port review against the corrected input; it does not activate live UI06 or certify the native host graph.
+
+The reported 32 portable passes belong to the Hanlin writer; independent Hanlin QA matched 28 actual inputs to corrected Git bytes. No SDK tests were executed or reattributed by UI02. Existing host-owned identity/lifetime, complete receipt, exact-number and non-success-status boundaries below are unchanged. Canonical Hanlin UI entry/product, package distribution, accepted semantic/scene ports and actual Apple SDK/native UI proof remain open gates. The UI02 source/API and deployment metadata are unchanged; prior 24/0 UI02 and focused Core 1/0 evidence is retained, not rerun.
 
 ## Separate identities and lifetimes
 
