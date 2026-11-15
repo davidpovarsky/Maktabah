@@ -36,7 +36,13 @@ final class UnifiedSearchSessionController {
 
     // MARK: - Presentation State
 
-    var resultKitabFilter: String = ""
+    var resultKitabFilter: String = "" {
+        didSet {
+            // Clearing a loaded filter also remounts rows; it must not initiate a provider page.
+            if oldValue != resultKitabFilter { allowsAutomaticPaging = false }
+        }
+    }
+    private(set) var allowsAutomaticPaging = true
 
     // MARK: - Sheet / Disclosure Toggles
 
@@ -217,6 +223,7 @@ final class UnifiedSearchSessionController {
         submissionRevision += 1
         acceptsEngineUpdates = true
         resultKitabFilter = ""
+        allowsAutomaticPaging = true
         #if os(iOS)
         searchViewModel?.addToHistory(trimmed)
         #endif
@@ -554,6 +561,7 @@ final class UnifiedSearchSessionController {
         configurationInvalidated = false
         wasCancelled = false
         resultKitabFilter = ""
+        allowsAutomaticPaging = true
         searchViewModel?.clearResults()
     }
 

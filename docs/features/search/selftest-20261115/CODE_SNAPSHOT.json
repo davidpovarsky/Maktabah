@@ -1,7 +1,7 @@
 {
   "base": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
   "upstream": "d46af139b3a265399c16d87f5923acd8e3444024",
-  "protectedDiffSHA256": "be61f8da9168f436bae7b70a70bb8d1d1a1bea46053a5eaeb7672dd98f365557",
+  "protectedDiffSHA256": "a40428c1262635ac2407a3df3258e03ebbe89eb8ecc0713356ab3ce203b48931",
   "sourceHashes": {
     "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift": "8c010d020e16edad692d6fd5a733a12bbd6cff05e462ad71e2a1f4f4308532fa",
     "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
@@ -12,17 +12,17 @@
     "Source/ChavrusaText/Search/UI/GlobalSearchSessionPresentation.swift": "a9b35d00d83d065129644a5fb742e11f7b115419cdabc7d7eb2b11935954d246",
     "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99",
     "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift": "ef3144ec8c4e4ecbc96524c211a463f5bd774232c9b246e8d685ac505a7c623a",
-    "Source/Features/Search/iOS/SearchModeView.swift": "e2a250777570a1063023e9f0fd849313de2484c9e872abb8af22f90151281226",
+    "Source/Features/Search/iOS/SearchModeView.swift": "711484c9a20e5764d7a0bb2f0c09f9e50d981e34b686f5553f1c5dd2f76e1e90",
     "Source/Features/Search/iOS/SearchResultsListView.swift": "886f8fb197b9715ea7a46ec99c58db43298b4c489f0c243fac292c91d13699d5",
     "Source/Features/Search/iOS/iOSSearchFilterViewController.swift": "ee939f731ac87f1dc49132a98d8c96f8d68f8b9e5478478bae138fbb4b54d2dc",
     "Source/Features/Search/ViewModel/SearchViewModel.swift": "b4c12b471f06429c8e072f782ed2d7a793587bf101d610869d22f665420d5c7b",
     "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": "93b22547815e7944abc9f1b8e54ec771d9d62209087e9d8b0a9820769e64819a",
     "Source/UI/iOS/Views/iPadLayout.swift": "19819cc0b0a1cc2454d136ac60b6ffcd8079f0df65dbac50cc0dfab6c71b136a",
     "Source/UI/iOS/Views/iPhoneLayout.swift": "8610e062731d33445eb7fa76efdcd16195c69c7b460d76588b6d955158ace075",
-    "Source/ZayitSearch/UnifiedSearchSessionController.swift": "8d68c877b68038f2cb0f308e8cd7f129f09f975037857e35ec5eaa3cc4a6b5d6"
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift": "2c6d2f92c5a6f76170366075752afaa81d37db7f8d7bec985f7b954b51443aad"
   },
   "portableResults": {
-    "presentation": 39,
+    "presentation": 42,
     "actualPaging": 18,
     "existingModels": 191,
     "cachedReadiness": 14

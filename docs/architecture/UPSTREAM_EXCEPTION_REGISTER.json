@@ -206,7 +206,7 @@
       "paging_decision_ref": "Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/GLOBAL_SEARCH_PAGING_SEAM_REVIEW_20261115.md",
       "scope_and_rollback": "docs/features/search/GLOBAL_SEARCH_OWNERSHIP_20261115.md",
       "exact_protected_diff": "docs/features/search/selftest-20261115/PROTECTED_HUNKS.patch",
-      "verification": "39 session/presentation + 18 actual paging + 191 existing engine/model wrapper + 14 cached-readiness portable assertions; native/physical NOT_RUN",
+      "verification": "42 session/presentation + 18 actual paging + 191 existing engine/model wrapper + 14 cached-readiness portable assertions; native/physical NOT_RUN",
       "review_provenance": "Owner-approved A-G plan; manager explicitly authorized observed narrow paging-error hunks; manager reviews final candidate. No Reader/TOC/Library/Palette/lifecycle/project/workflow hunk implied."
     }
   ]

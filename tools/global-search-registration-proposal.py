@@ -57,7 +57,7 @@ code = files + [ROOT / p for p in protected] + [ROOT / "Source/ZayitSearch/Unifi
     "upstream": "d46af139b3a265399c16d87f5923acd8e3444024",
     "protectedDiffSHA256": hashlib.sha256(protected_diff).hexdigest(),
     "sourceHashes": {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in code},
-    "portableResults": {"presentation": 39, "actualPaging": 18, "existingModels": 191, "cachedReadiness": 14},
+    "portableResults": {"presentation": 42, "actualPaging": 18, "existingModels": 191, "cachedReadiness": 14},
     "nativeBuild": "NOT_RUN", "physicalDevice": "NOT_RUN"
 }, indent=2) + "\n", encoding="utf-8")
 print(f"Prepared manager-only proposal for {len(files)} iOS app sources; shared project untouched.")

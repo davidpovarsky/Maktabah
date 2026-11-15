@@ -157,7 +157,7 @@ struct SearchModeView: View {
             results: filtered,
             isLoadingMore: session.isLoadingMore,
             hasMore: session.hasMore,
-            automaticallyLoadsMore: session.resultKitabFilter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+            automaticallyLoadsMore: session.allowsAutomaticPaging && session.resultKitabFilter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
             onLoadMore: {
                 session.loadNextPage()
             },

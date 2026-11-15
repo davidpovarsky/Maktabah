@@ -44,7 +44,7 @@ extension AnyCancellable: Hashable {
     end = rows.index("\n                    }", begin) + len("\n                    }")
     predicate = rows[begin:end]
     mount = (ROOT / "Source/Features/Search/iOS/SearchModeView.swift").read_text(encoding="utf-8")
-    assert 'automaticallyLoadsMore: session.resultKitabFilter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty' in mount
+    assert 'automaticallyLoadsMore: session.allowsAutomaticPaging && session.resultKitabFilter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty' in mount
     assert 'var automaticallyLoadsMore: Bool = true' in rows
     assert 'query: session.query' in mount
     assert 'mode: session.searchModeForReader' in mount

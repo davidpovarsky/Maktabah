@@ -101,6 +101,9 @@ extension String {
         check(!session.resultsAreDirty && session.submissionRevision == 1, "local filter never dirties/reruns engine")
         check(session.selectedBookIds.isEmpty && session.query == "one two three", "local filter preserves scope/query")
         check(session.loadedResultsSummary.contains("0 מתוך 2"), "filtered count explicitly describes loaded results")
+        check(!session.allowsAutomaticPaging, "using loaded filter disables automatic provider paging")
+        session.resultKitabFilter = ""
+        check(!session.allowsAutomaticPaging, "clearing filter cannot re-enable implicit source requests")
         var rowRequests = 0
         for count in [5, 6, 10, 50, 100] {
             for index in 0..<count {
@@ -117,6 +120,7 @@ extension String {
         check(session.cancellationRevision == 1 && session.otzaria.clearCalls >= 2 && model.stopCalls >= 2,
               "cancel actually invokes all existing task/engine cancellation paths")
         session.runSearch()
+        check(session.allowsAutomaticPaging, "explicit new search restores normal prefetch")
         session.selectedBookIds = [42]
         session.configurationDidChange()
         check(session.resultsAreDirty && !session.isSearching, "changing books cancels and marks dirty")
