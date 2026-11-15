@@ -206,7 +206,7 @@ func sql(_ db: OpaquePointer, _ text: String) {
 func scalar(_ db: OpaquePointer, _ text: String) -> Int64 {
     var statement: OpaquePointer?
     let rc = sqlite3_prepare_v2(db, text, -1, &statement, nil)
-    precondition(rc == SQLITE_OK, "Fixture prepare failed (SQLite \(rc)): \(String(cString: sqlite3_errmsg(db))); SQL: \(text)")
+    precondition(rc == SQLITE_OK, "Fixture prepare failed (SQLite \(rc), extended \(sqlite3_extended_errcode(db))): \(String(cString: sqlite3_errmsg(db))); SQL: \(text)")
     defer { sqlite3_finalize(statement) }
     let result = sqlite3_step(statement)
     precondition(result == SQLITE_ROW, "Fixture read failed (SQLite \(result)): \(String(cString: sqlite3_errmsg(db))); SQL: \(text)")
@@ -214,13 +214,14 @@ func scalar(_ db: OpaquePointer, _ text: String) -> Int64 {
 }
 
 try check("busy WAL checkpoint reports failure and preserves committed data") {
-    let target = try create("busy-recovery.sqlite", "CREATE TABLE sentinel(value INTEGER); INSERT INTO sentinel VALUES(1);")
+    let target = try create("busy-recovery.sqlite", "CREATE TABLE sentinel(value INTEGER);")
     let writer = openWriter(target)
-    sql(writer, "PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0;")
+    // Establish an actual committed WAL before opening a read-only snapshot.
+    sql(writer, "PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0; INSERT INTO sentinel VALUES(1);")
     let reader = try MaktabahBookUpdateSafety.openReadOnly(path: target)
     defer { sqlite3_close_v2(reader) }
     sql(reader, "BEGIN;")
-    precondition(scalar(reader, "SELECT COUNT(*) FROM sentinel") == 1)
+    precondition(scalar(reader, "SELECT COUNT(*) AS initial_snapshot FROM sentinel") == 1)
     sql(writer, "INSERT INTO sentinel VALUES(2);")
     do {
         try MaktabahBookUpdateSafety.checkpointAndClose(writer, schemas: ["main"])
@@ -233,8 +234,8 @@ try check("busy WAL checkpoint reports failure and preserves committed data") {
     precondition(recoveryData.count > 0)
     let reopened = try MaktabahBookUpdateSafety.openReadOnly(path: target)
     defer { sqlite3_close_v2(reopened) }
-    precondition(scalar(reopened, "SELECT COUNT(*) FROM sentinel") == 2)
-    precondition(scalar(reader, "SELECT COUNT(*) FROM sentinel") == 1)
+    precondition(scalar(reopened, "SELECT COUNT(*) AS recovered_count FROM sentinel") == 2)
+    precondition(scalar(reader, "SELECT COUNT(*) AS retained_snapshot FROM sentinel") == 1)
     sql(reader, "COMMIT;")
 }
 try check("successful checkpoint closes safely and reopens committed content") {
@@ -262,9 +263,9 @@ try check("closing after a checkpoint failure rolls back an uncommitted write") 
 }
 try check("attached FTS checkpoint failure preserves archive and FTS recovery independently") {
     let target = try create("attached-recovery.sqlite", "CREATE TABLE sentinel(value INTEGER); INSERT INTO sentinel VALUES(1);")
-    let search = try create("attached-recovery-fts.sqlite", "CREATE VIRTUAL TABLE archive_fts USING fts5(nass_clean); INSERT INTO archive_fts VALUES('old');")
+    let search = try create("attached-recovery-fts.sqlite", "CREATE VIRTUAL TABLE archive_fts USING fts5(nass_clean);")
     let ftsWriter = openWriter(search)
-    sql(ftsWriter, "PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0;")
+    sql(ftsWriter, "PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0; INSERT INTO archive_fts VALUES('old');")
     let ftsReader = try MaktabahBookUpdateSafety.openReadOnly(path: search)
     defer { sqlite3_close_v2(ftsReader) }
     sql(ftsReader, "BEGIN;")
