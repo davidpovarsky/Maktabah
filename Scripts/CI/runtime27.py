@@ -276,10 +276,10 @@ def main():
         if report["mode"] != "ui":
             raise RuntimeError("Unknown runtime mode")
         # Fail cheap on the exact owned native component before restoring/building
-        # the full app. This is real SDK code generation, never runtime acceptance.
+        # the full app. This is real SDK module compilation, never runtime acceptance.
         sdk_path = capture(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], "sdk-path.txt").strip()
         palette_sources = sorted((ROOT / "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette").rglob("*.swift"))
-        palette_command = ["xcrun", "swiftc", "-emit-module", "-parse-as-library", "-module-name", "CommandPalette",
+        palette_command = ["xcrun", "swiftc", "-emit-module", "-parse-as-library", "-swift-version", "6", "-module-name", "CommandPalette",
                            "-sdk", sdk_path, "-target", "arm64-apple-ios27.0-simulator",
                            "-emit-module-path", str(OUT / "CommandPalette.swiftmodule"), *map(str, palette_sources)]
         report["palette_sdk_compile"] = {"command": palette_command, "native_ui_passes": 0}

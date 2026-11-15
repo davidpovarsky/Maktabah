@@ -72,5 +72,5 @@ https://developer.apple.com/documentation/uikit/uigesturerecognizer/canprevent(_
 https://developer.apple.com/documentation/uikit/uigesturerecognizer/canbeprevented(by:)
 The installed apple-api authority lookup run43728370900 failed before starting
 any job (0 SDK lookup results), not a source/API failure. The existing project
-R27 workflow now code-generates this exact self-contained package with its real
+R27 workflow now compiles this exact self-contained package module with its real
 SDK before the expensive app build, and records actual simctl io/ui help.
