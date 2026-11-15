@@ -3,7 +3,7 @@ import SQLite3
 
 // Portable checks compile the actual downstream service against the installed Windows SQLite SDK.
 var checks = 0
-func check(_ name: String, _ body: () throws -> Void) rethrows {
+@MainActor func check(_ name: String, _ body: () throws -> Void) rethrows {
     try body()
     checks += 1
     print("PASS \(name)")
@@ -123,7 +123,7 @@ print("EXECUTED_PASS \(checks) total schema/catalog/capacity/identity checks")
 var attachHost: OpaquePointer?
 precondition(sqlite3_open_v2(archive, &attachHost, SQLITE_OPEN_READWRITE | SQLITE_OPEN_URI, nil) == SQLITE_OK)
 defer { sqlite3_close_v2(attachHost) }
-func attach(_ target: String) -> Int32 {
+@MainActor func attach(_ target: String) -> Int32 {
     var stmt: OpaquePointer?
     precondition(sqlite3_prepare_v2(attachHost, "ATTACH DATABASE ? AS probe", -1, &stmt, nil) == SQLITE_OK)
     defer { sqlite3_finalize(stmt) }
@@ -145,3 +145,45 @@ check("readonly attachment resolves escaped Unicode and punctuation paths") {
     precondition(MaktabahBookUpdateSafety.existingDatabaseURI(path: path("virtual?name.sqlite")).contains("%3F"))
 }
 print("EXECUTED_PASS \(checks) total portable checks including existing-only ATTACH")
+
+try check("catalog preserves escaped quotes, Hebrew, BOM and CRLF") {
+    let entries = try parser.parseIndexCSV("\u{FEFF}bkid;cat;ver;file;size;name\r\n1;2;3;fixture-id;20;\"ספר \"\"אחד\"\"; title\"\r\n")
+    precondition(entries.count == 1 && entries[0].bk == "ספר \"אחד\"; title")
+}
+try check("catalog preserves quoted newlines") {
+    let entries = try parser.parseIndexCSV("1;2;3;fixture-id;20;\"first\nsecond\"")
+    precondition(entries[0].bk == "first\nsecond")
+}
+for (name, csv) in [
+    ("quote in unquoted field", "1;2;3;fixture-id;20;Bo\"ok\""),
+    ("junk after closing quote", "1;2;3;fixture-id;20;\"Book\"junk"),
+    ("two unclosed quoted fields with even quote count", "1;2;3;fixture-id;20;\"Book\n2;2;3;file;20;\"Other"),
+    ("NUL in quoted field", "1;2;3;fixture-id;20;\"Bo\0ok\""),
+    ("extra column", "1;2;3;fixture-id;20;Book;unexpected"),
+    ("download query injection", "1;2;3;file&export=other;20;Book"),
+    ("duplicate book identities", "1;2;3;file;20;Book\n1;2;4;file;30;Other"),
+] {
+    check("catalog rejects \(name)") { rejected { _ = try parser.parseIndexCSV(csv) } }
+}
+try check("author catalog valid header, BOM and blank lines") {
+    let entries = try parser.parseAuthIndexCSV("\u{FEFF}authid;version;file\r\n\r\n1;3;author_file\r\n")
+    precondition(entries.count == 1 && entries[0].authId == 1 && entries[0].versionName == 3)
+}
+for (name, csv) in [
+    ("partial batch", "1;3;file\n2;3"),
+    ("negative version", "1;-1;file"),
+    ("overflowing version", "1;999999999999999999999999;file"),
+    ("duplicate authors", "1;3;file\n1;4;other"),
+    ("invalid author identity", "0;3;file"),
+    ("query injection", "1;3;file&other=value"),
+    ("malformed quoting", "1;3;\"file"),
+] {
+    check("author catalog rejects \(name)") { rejected { _ = try parser.parseAuthIndexCSV(csv) } }
+}
+check("bounded catalog rejects oversized payload") {
+    rejected { _ = try MaktabahBookUpdateSafety.catalogRows(String(repeating: "a", count: 8 * 1024 * 1024 + 1)) }
+}
+check("bounded catalog rejects excessive row count") {
+    rejected { _ = try MaktabahBookUpdateSafety.catalogRows(String(repeating: "\n", count: 100_001)) }
+}
+print("EXECUTED_PASS \(checks) total portable service/production-parser checks")

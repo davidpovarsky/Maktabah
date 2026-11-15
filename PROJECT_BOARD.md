@@ -16,6 +16,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Books Updates must authorize a typed registered backend at every synchronous file/network/cleanup entry. A saved raw `maktabah` preference and `usesNativeMaktabahDataPath` do not establish ownership. The three current backends are explicitly unavailable; the legacy archive/FTS/author/main commits and unchecked WAL cleanup still require a genuine native recovery contract before any future enabling. Disposable safety fixtures cannot establish that contract.
+
 - The exact-9401 blob gate passed the 11001 sidebar even though TOC navigation ownership was missing. The native-sidebar repair now adds composition mutations alongside blob identity: inactive navigation trees must be unmounted, the original TOC must own its stack/search, and the existing public split must request a visible native toggle and width-qualified tiling. Page drag is confined to the page-control strip so it cannot compete with native edge/list gestures. These checks remain static; physical iPad geometry and reader continuity still require owner acceptance.
 
 - Production archive 11001 reports a duplicate Compile Sources entry for OtzariaReaderSourcesInspectorHost.swift. The project file is unchanged from the feature base; verify-otzaria-xcode-project.py checks membership presence but not uniqueness. A separately approved project-membership cleanup and duplicate-detection extension would prevent this warning; no project edit was made during UI restoration.

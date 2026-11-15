@@ -245,6 +245,7 @@ final class BookUpdateManager: Sendable {
     }
 
     func cleanupWorkingDirectory() {
+        guard (try? MaktabahBookUpdateSafety.requireCurrent()) != nil else { return }
         guard let filesPath = AppConfig.databaseFilesPath else { return }
         let directory = URL(fileURLWithPath: filesPath).appendingPathComponent("Updates", isDirectory: true)
         FileManager.default.cleanupDirectory(at: directory)
@@ -256,7 +257,12 @@ final class BookUpdateManager: Sendable {
         SQLite: Bool = false,
         filePrefix: String? = nil
     ) async throws -> URL {
+        try MaktabahBookUpdateSafety.requireCurrent()
+        try Task.checkCancellation()
         let (tempURL, _) = try await URLSession.shared.download(from: url)
+        defer { try? FileManager.default.removeItem(at: tempURL) }
+        try Task.checkCancellation()
+        try MaktabahBookUpdateSafety.requireCurrent()
         let defaultName =
             url.lastPathComponent.isEmpty ? "download" : url.lastPathComponent
         let cleanedPrefix = filePrefix?.trimmingCharacters(

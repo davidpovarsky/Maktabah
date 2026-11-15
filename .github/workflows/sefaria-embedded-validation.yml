@@ -34,6 +34,11 @@ on:
         required: true
         type: boolean
         default: false
+      books_updates_check_only:
+        description: Only run disposable Books Updates safety fixtures and Apple SDK typecheck; no app/device acceptance
+        required: false
+        type: boolean
+        default: false
       ui_diagnostic_cases:
         description: Optional exact Suite/testMethod diagnostics (phone suite on iPhone, others on 11-inch); never satisfies the full matrix or Release gate
         required: false
@@ -45,13 +50,37 @@ permissions:
   contents: read
 
 concurrency:
-  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}-${{ inputs.ui_diagnostic_cases != '' && 'diagnostic' || 'matrix' }}
+  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.books_updates_check_only && 'books-updates' || inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}-${{ inputs.ui_diagnostic_cases != '' && 'diagnostic' || 'matrix' }}
   cancel-in-progress: true
 
 jobs:
+  books-updates-check-only:
+    name: Books Updates Apple safety checks (no app runtime acceptance)
+    if: ${{ inputs.books_updates_check_only }}
+    runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
+    timeout-minutes: 15
+    steps:
+      - name: Reject conflicting acceptance inputs
+        if: ${{ inputs.run_production_release || inputs.source_ref != '' || inputs.ui_sdk_check_only }}
+        run: |
+          echo "::error::Books Updates checks cannot request other acceptance modes."
+          exit 1
+      - uses: actions/checkout@v4
+      - name: Verify actual update safety sources with disposable databases
+        run: python3 tools/hq-updates-test-apple.py
+      - name: Upload exact Apple safety evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: books-updates-apple-safety
+          include-hidden-files: true
+          path: |
+            Tests/HQ/updates/.build/hq-updates-apple-report.json
+            Tests/HQ/updates/.build/hq-updates-apple.log
+
   ui-sdk-check-only:
     name: Focused SDK and workspace checks (no app/runtime acceptance)
-    if: ${{ inputs.ui_sdk_check_only }}
+    if: ${{ inputs.ui_sdk_check_only && !inputs.books_updates_check_only }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 15
     steps:
@@ -79,7 +108,7 @@ jobs:
 
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
-    if: ${{ !inputs.ui_sdk_check_only }}
+    if: ${{ !inputs.ui_sdk_check_only && !inputs.books_updates_check_only }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 360
 
