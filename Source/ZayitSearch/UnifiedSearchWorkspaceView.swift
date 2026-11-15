@@ -76,16 +76,27 @@ struct UnifiedSearchWorkspaceView: View {
                                        !model.isLoadingMoreBackendResults {
                                         model.loadNextBackendPage()
                                     }
+                                } else if index >= max(0, results.count - 10) {
+                                    if scope == .zayit { zayitSession.model.loadNextPage() }
+                                    else { otzaria.loadNextPage() }
                                 }
                             }
                     }
 
-                    if isSefaria && navigationManager.searchViewModel.isLoadingMoreBackendResults {
+                    if (isSefaria && navigationManager.searchViewModel.isLoadingMoreBackendResults)
+                        || (!isSefaria && (scope == .zayit ? zayitSession.model.isLoadingMore : otzaria.isLoadingMore)) {
                         HStack {
                             Spacer()
                             ProgressView()
                                 .padding(.vertical, 8)
                             Spacer()
+                        }
+                    }
+                    if !isSefaria, let message = searchErrorMessage {
+                        Text(message).foregroundStyle(.secondary)
+                        Button("נסה לטעון שוב") {
+                            if scope == .zayit { zayitSession.model.loadNextPage() }
+                            else { otzaria.loadNextPage() }
                         }
                     }
                 }
@@ -320,9 +331,9 @@ struct UnifiedSearchWorkspaceView: View {
                 )
             }
         }
-        let engineResults = otzaria.enginePage?.results ?? []
-        return otzaria.results.enumerated().map { offset, item in
-            let engine = engineResults.indices.contains(offset) ? engineResults[offset] : nil
+        return otzaria.searchRecords.map { record in
+            let item = record.item
+            let engine: OtzariaEngineSearchResult? = record.metadata
             let descriptor = HighlightDescriptor(
                 literalTerms: (try? OtzariaSearchEngineBridge.splitQueryWords(query)) ?? [query],
                 matchedTerms: [], upstreamPattern: highlightPattern,
@@ -331,7 +342,7 @@ struct UnifiedSearchWorkspaceView: View {
             let snippet = engine.map { SearchInlineMarkupSanitizer.segments(from: $0.text) }
                 ?? [.init(text: item.attributedText.string, highlighted: false)]
             return UnifiedSearchResult(
-                id: "otzaria:\(item.bookId):\(item.page):\(offset)", engine: .otzaria,
+                id: item.stableID, engine: .otzaria,
                 stableBookIdentity: engine?.filePath ?? "book:\(item.bookId)",
                 title: item.bookTitle, reference: engine?.reference ?? "",
                 snippet: snippet,
@@ -372,12 +383,13 @@ struct UnifiedSearchWorkspaceView: View {
 
     private var searchErrorMessage: String? {
         if isSefaria, case .error(let message) = navigationManager.searchViewModel.state { return message }
+        if scope == .zayit, case .failed(let message) = zayitSession.state { return message }
         return scope == .zayit ? zayitSession.model.errorMessage : otzaria.errorMessage
     }
 
     private var isLoading: Bool {
         if isSefaria { return navigationManager.searchViewModel.isSearching }
-        return scope == .zayit ? zayitSession.model.isLoading : otzaria.isSearching
+        return scope == .zayit ? (zayitSession.model.isLoading || zayitSession.state == .restoring) : otzaria.isSearching
     }
     private var statusText: String {
         if isSefaria {
@@ -410,8 +422,13 @@ struct UnifiedSearchWorkspaceView: View {
             return
         }
         if scope == .zayit {
-            zayitSession.model.query = trimmed
-            zayitSession.model.runSearch()
+            Task {
+                await zayitSession.restoreIfNeeded(existingSeforimDB: ZayitSearchExistingDatabaseProvider.currentURL)
+                guard scope == .zayit, zayitSession.state == .ready,
+                      query.trimmingCharacters(in: .whitespacesAndNewlines) == trimmed else { return }
+                zayitSession.model.query = trimmed
+                zayitSession.model.runSearch()
+            }
         } else {
             otzaria.query = trimmed
             otzaria.mode = {
@@ -744,5 +761,73 @@ struct SearchDiagnosticsView: View {
             ("privacy", "No query text, document content, bookmarks, or user paths are included beyond managed log locations."),
         ]
         return values.map { "\($0.0)=\($0.1)" }.joined(separator: "\n")
+    }
+}
+
+/// Native feedback mounted by the existing search screen's narrow empty-state hook.
+struct UnifiedSearchFeedbackView: View {
+    let session: UnifiedSearchSessionController
+
+    var body: some View {
+        Group {
+            switch session.feedbackState {
+            case .loading:
+                ProgressView("מחפש…")
+            case .error(let message):
+                ContentUnavailableView {
+                    Label("החיפוש נכשל", systemImage: "exclamationmark.magnifyingglass")
+                } description: {
+                    Text(message)
+                } actions: {
+                    Button("נסה שוב") { session.runSearch() }
+                    Button("נתוני חיפוש") { session.showsSearchDataSheet = true }
+                }
+            case .missingIndex:
+                ContentUnavailableView {
+                    Label("נתוני החיפוש אינם מוכנים", systemImage: "externaldrive.badge.exclamationmark")
+                } description: {
+                    Text(session.statusText)
+                } actions: {
+                    Button("נתוני חיפוש") { session.showsSearchDataSheet = true }
+                    Button("נסה שוב") { session.runSearch() }
+                }
+            case .empty:
+                ContentUnavailableView {
+                    Label("לא נמצאו תוצאות", systemImage: "magnifyingglass")
+                } description: {
+                    Text("נסו לשנות את מילות החיפוש או את מסנן הספרים.")
+                } actions: {
+                    if !session.selectedBookIds.isEmpty {
+                        Button("חפש בכל הספרים") {
+                            session.clearFilter()
+                            session.runSearch()
+                        }
+                    }
+                }
+            case .results, .notSearched:
+                EmptyView()
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onChange(of: session.showsSearchDataSheet) { _, isPresented in
+            if !isPresented { session.refreshSearchData() }
+        }
+    }
+}
+
+struct UnifiedSearchPagingFeedbackView: View {
+    let session: UnifiedSearchSessionController
+
+    var body: some View {
+        if !session.isSefaria, session.hasMore, !session.isSearching,
+           !session.isLoadingMore, let message = session.errorMessage {
+            VStack(spacing: 8) {
+                Text(message).font(.footnote).foregroundStyle(.secondary)
+                Button("נסה לטעון שוב") { session.loadNextPage() }
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(.bar)
+        }
     }
 }

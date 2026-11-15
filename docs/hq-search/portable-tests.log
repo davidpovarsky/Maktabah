@@ -1,0 +1,6 @@
+   Creating library C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-7yu56f39\Combine.lib and object C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-7yu56f39\Combine.exp
+
+   Creating library C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-7yu56f39\search-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-7yu56f39\search-fixtures.exp
+
+PASS: 185 portable search assertions (real models/wrapper/session; fake FFI and Combine)
+Portable Swift fixtures completed in 51.25s

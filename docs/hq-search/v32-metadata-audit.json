@@ -1,0 +1,424 @@
+{
+  "date": "2026-11-15",
+  "scope": "metadata only; no payload/installation/runtime verification",
+  "checks": [
+    {
+      "pass": true,
+      "description": "otzaria manifest byte count"
+    },
+    {
+      "pass": true,
+      "description": "otzaria manifest API SHA256"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0000.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0001.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0002.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0003.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0004.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0005.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0006.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0007.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0008.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0009.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0010.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0011.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0012.zst"
+    },
+    {
+      "pass": true,
+      "description": "otzaria part API identity: otzaria-lexical-0013.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit manifest byte count"
+    },
+    {
+      "pass": true,
+      "description": "zayit manifest API SHA256"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0000.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0001.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0002.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0003.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0004.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0005.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0006.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0007.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0008.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0009.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0010.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0011.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0012.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0013.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0014.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0015.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0016.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0017.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0018.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0019.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0020.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0021.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0022.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0023.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0024.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0025.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0026.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0027.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0028.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0029.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0030.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0031.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0032.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0033.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0034.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0035.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0036.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0037.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0038.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0039.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0040.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0041.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0042.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0043.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0044.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0045.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0046.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0047.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0048.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0049.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0050.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0051.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0052.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0053.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0054.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0055.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0056.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0057.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0058.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0059.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0060.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0061.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0062.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0063.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0064.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0065.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0066.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0067.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0068.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0069.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0070.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0071.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0072.zst"
+    },
+    {
+      "pass": true,
+      "description": "zayit part API identity: zayit-index-0073.zst"
+    },
+    {
+      "pass": true,
+      "description": "official v32 release identity"
+    },
+    {
+      "pass": true,
+      "description": "official v32 compressed asset identity"
+    },
+    {
+      "pass": true,
+      "description": "Otzaria/Zayit canonical database agreement"
+    },
+    {
+      "pass": true,
+      "description": "Otzaria engine pin: commit"
+    },
+    {
+      "pass": true,
+      "description": "Otzaria engine pin: engineVersion"
+    },
+    {
+      "pass": true,
+      "description": "Otzaria engine pin: indexSchemaVersion"
+    },
+    {
+      "pass": true,
+      "description": "Otzaria engine pin: defaultGenerationOrder"
+    },
+    {
+      "pass": true,
+      "description": "bundled resource: Vendor/OtzariaSearchEngine/Resources/dictionary.json"
+    },
+    {
+      "pass": true,
+      "description": "bundled resource: Vendor/OtzariaSearchEngine/Resources/Acronyms.json"
+    }
+  ],
+  "otzaria": {
+    "release": "https://github.com/davidpovarsky/Maktabah/releases/tag/otzaria-search-data-v32-20261010190601-102293b3a63c",
+    "immutable": true,
+    "artifactIdentity": "102293b3a63c7f73fa05298457073804e57e020486753f8f6b8f7964ce29f17e",
+    "parts": 14
+  },
+  "zayit": {
+    "release": "https://github.com/davidpovarsky/Maktabah/releases/tag/zayit-search-data-v32-20261010190601-81cc25fa8fc3",
+    "immutable": true,
+    "artifactIdentity": "81cc25fa8fc3cf4612a5a4d23377daaac28b4b1293eb78be44c2d192f8cdb2e3",
+    "parts": 74
+  },
+  "passed": 101,
+  "failed": 0
+}

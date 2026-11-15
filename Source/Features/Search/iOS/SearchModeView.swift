@@ -43,6 +43,9 @@ struct SearchModeView: View {
             ZStack(alignment: .top) {
                 if !session.results.isEmpty {
                     searchResultsView(session: session)
+                        .safeAreaInset(edge: .bottom) { UnifiedSearchPagingFeedbackView(session: session) }
+                } else if session.showsSearchFeedback {
+                    UnifiedSearchFeedbackView(session: session)
                 } else if horizontalSizeClass == .regular {
                     searchRegularEmptyState(session: session, viewModel: viewModel)
                 } else {

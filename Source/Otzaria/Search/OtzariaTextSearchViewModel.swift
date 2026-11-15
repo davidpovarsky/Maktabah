@@ -3,6 +3,8 @@ import Foundation
 
 @MainActor
 final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
+    typealias ResultRecord = OtzariaSearchResultStore<SearchResultItem>.Record
+    @Published private(set) var searchRecords: [ResultRecord] = []
     @Published var query = ""
     @Published var negativeQuery = ""
     @Published var results: [SearchResultItem] = []
@@ -47,9 +49,28 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     private let artifactService = OtzariaSearchArtifactService.shared
     private var currentTask: Task<Void, Never>?
     private var searchGeneration: Int = 0
+    private var paginationTask: Task<Void, Never>?
+    private var resultStore = OtzariaSearchResultStore<SearchResultItem>()
+    private var executedRequest: OtzariaSearchRequest?
+    private var executedDatabasePath: String?
+    private var executedBackendGeneration: UInt64?
+    private var executedProfileID: String?
+
+    private func store(page: OtzariaSearchPage, items: [SearchResultItem], replacing: Bool) throws {
+        try resultStore.apply(page: page, items: items, replacing: replacing)
+        searchRecords = resultStore.records
+        results = searchRecords.map(\.item)
+        enginePage = page
+        hasMore = page.hasNextPage(consumed: resultStore.consumedCount)
+    }
+
+    private var statusGeneration = 0
 
     func refreshStatus() {
         guard !isIndexing, !isInstallingArtifact else { return }
+        statusGeneration += 1
+        let generation = statusGeneration
+        let profile = OtzariaDataProfileRegistry.activeProfileID
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
             status = .unavailable
             indexStatusDetail = nil
@@ -81,19 +102,54 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 status = .checkingPackage
                 Task.detached(priority: .utility) {
                     OtzariaSearchArtifactInstaller().recover(databasePath: path, storage: storage)
-                    await MainActor.run { self.refreshStatus() }
+                    await MainActor.run {
+                        guard self.statusGeneration == generation,
+                              path == OtzariaMaktabahBridge.shared.databasePath,
+                              profile == OtzariaDataProfileRegistry.activeProfileID else { return }
+                        self.refreshStatus()
+                    }
                 }
                 return
             }
         }
-        if manager.isIndexCurrent(databasePath: path) {
+        status = .checkingPackage
+        Task.detached(priority: .utility) { [repository] in
+            let validation: Result<UInt64, Error>
             do {
-                status = .ready(documentCount: try repository.documentCount(databasePath: path))
-                indexStatusDetail = buildInfoDetail()
+                let count = try manager.validateCurrentIndex(databasePath: path)
+                repository.invalidate(databasePath: path)
+                guard try repository.documentCount(databasePath: path) == count else {
+                    throw OtzariaSearchError.invalidEngineResponse("ספירת המסמכים השתנתה בעת פתיחת האינדקס.")
+                }
+                validation = .success(count)
             } catch {
-                status = .failed(error.localizedDescription)
+                repository.invalidate(databasePath: path)
+                OtzariaIndexFileLogger.logError("fresh index readiness validation failed", error: error)
+                validation = .failure(error)
             }
+            await MainActor.run {
+                guard self.statusGeneration == generation,
+                      path == OtzariaMaktabahBridge.shared.databasePath,
+                      profile == OtzariaDataProfileRegistry.activeProfileID,
+                      !self.isIndexing, !self.isInstallingArtifact else { return }
+                self.applyIndexValidation(validation, path: path, profile: profile, generation: generation)
+            }
+        }
+    }
+
+    private func applyIndexValidation(_ validation: Result<UInt64, Error>, path: String, profile: String, generation: Int) {
+        let manager = OtzariaSearchIndexManager.shared
+        switch validation {
+        case .success(let count):
+            status = .ready(documentCount: count)
+            indexStatusDetail = buildInfoDetail()
             return
+        case .failure(let error):
+            if FileManager.default.fileExists(atPath: manager.indexURL(for: path).path) {
+                status = .repairRequired(error.localizedDescription)
+                indexStatusDetail = error.localizedDescription
+                return
+            }
         }
         if OtzariaDatabaseAccessController.shared.source == .managedInternal {
             status = .checkingPackage
@@ -103,7 +159,10 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 do {
                     let availability = try await artifactService.checkAvailability(databasePath: path)
                     await MainActor.run {
-                        guard !self.isInstallingArtifact else { return }
+                        guard self.statusGeneration == generation,
+                              path == OtzariaMaktabahBridge.shared.databasePath,
+                              profile == OtzariaDataProfileRegistry.activeProfileID,
+                              !self.isIndexing, !self.isInstallingArtifact else { return }
                         let availableIdentity = availability.artifact.manifest.artifactIdentity
                         switch OtzariaSearchArtifactPolicy.managedDiscoveryDisposition(
                             trustedArtifactIdentity: trustedIdentity,
@@ -128,7 +187,10 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     }
                 } catch {
                     await MainActor.run {
-                        guard !self.isInstallingArtifact else { return }
+                        guard self.statusGeneration == generation,
+                              path == OtzariaMaktabahBridge.shared.databasePath,
+                              profile == OtzariaDataProfileRegistry.activeProfileID,
+                              !self.isIndexing, !self.isInstallingArtifact else { return }
                         if trustedIdentity != nil {
                             self.status = .repairRequired(error.localizedDescription)
                         } else {
@@ -153,6 +215,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     }
 
     func rebuildIndex() {
+        statusGeneration += 1
         if OtzariaDatabaseAccessController.shared.source == .managedInternal {
             installPrebuiltIndex()
             return
@@ -217,6 +280,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     }
 
     private func installPrebuiltIndex() {
+        statusGeneration += 1
         currentTask?.cancel()
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
             status = .unavailable
@@ -267,6 +331,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
     @discardableResult
     func installManagedArtifactAndWait() async -> Bool {
+        statusGeneration += 1
         guard !isReady else { return true }
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
             status = .unavailable
@@ -309,6 +374,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     }
 
     func removeManagedIndex() {
+        statusGeneration += 1
         guard let path = OtzariaMaktabahBridge.shared.databasePath else { return }
         do {
             try OtzariaSearchIndexManager.shared.clearIndex(databasePath: path)
@@ -354,6 +420,17 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         searchGeneration += 1
         let generation = searchGeneration
         currentTask?.cancel()
+        paginationTask?.cancel()
+        resultStore.clear()
+        searchRecords = []
+        results = []
+        enginePage = nil
+        executedRequest = nil
+        executedDatabasePath = nil
+        executedProfileID = nil
+        isSearching = false
+        isLoadingMore = false
+        hasMore = false
 
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { clear(); return }
@@ -376,16 +453,26 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         errorMessage = nil
         hasMore = false
         let request = makeSearchRequest(query: trimmed, offset: 0, limit: 100)
+        executedRequest = request
+        executedDatabasePath = path
+        let backendGeneration = BackendCoordinator.shared.generation
+        let profile = OtzariaDataProfileRegistry.activeProfileID
+        executedBackendGeneration = backendGeneration
+        executedProfileID = profile
 
         currentTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
                 let page = try repository.search(databasePath: path, request: request)
                 let items = repository.navigationItems(from: page)
-                await MainActor.run {
+                try await MainActor.run {
                     guard self.searchGeneration == generation else { return }
-                    self.enginePage = page
-                    self.results = items
-                    self.hasMore = page.truncated
+                    guard path == OtzariaMaktabahBridge.shared.databasePath,
+                          profile == OtzariaDataProfileRegistry.activeProfileID,
+                          backendGeneration == BackendCoordinator.shared.generation else {
+                        self.clear()
+                        return
+                    }
+                    try self.store(page: page, items: items, replacing: true)
                     self.isSearching = false
                 }
             } catch {
@@ -395,6 +482,8 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     self.errorMessage = error.localizedDescription
                     self.enginePage = nil
                     self.results = []
+                    self.searchRecords = []
+                    self.resultStore.clear()
                     self.hasMore = false
                     self.isSearching = false
                 }
@@ -404,24 +493,31 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
     func loadNextPage() {
         guard hasMore, !isLoadingMore else { return }
-        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return }
-        guard let path = OtzariaMaktabahBridge.shared.databasePath else { return }
+        guard var request = executedRequest, let path = executedDatabasePath,
+              path == OtzariaMaktabahBridge.shared.databasePath,
+              executedProfileID == OtzariaDataProfileRegistry.activeProfileID,
+              executedBackendGeneration == BackendCoordinator.shared.generation else { return }
 
         isLoadingMore = true
         let generation = searchGeneration
-        let offset = results.count
-        let request = makeSearchRequest(query: trimmed, offset: offset, limit: 100)
+        request.offset = resultStore.consumedCount
+        let nextRequest = request
+        let backendGeneration = executedBackendGeneration
+        let profile = executedProfileID
 
-        Task.detached(priority: .userInitiated) { [repository] in
+        paginationTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
-                let page = try repository.search(databasePath: path, request: request)
+                let page = try repository.search(databasePath: path, request: nextRequest)
                 let items = repository.navigationItems(from: page)
-                await MainActor.run {
+                try await MainActor.run {
                     guard self.searchGeneration == generation else { return }
-                    self.enginePage = page
-                    self.results.append(contentsOf: items)
-                    self.hasMore = page.truncated
+                    guard path == OtzariaMaktabahBridge.shared.databasePath,
+                          profile == OtzariaDataProfileRegistry.activeProfileID,
+                          backendGeneration == BackendCoordinator.shared.generation else {
+                        self.clear()
+                        return
+                    }
+                    try self.store(page: page, items: items, replacing: false)
                     self.isLoadingMore = false
                 }
             } catch {
@@ -429,6 +525,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 await MainActor.run {
                     guard self.searchGeneration == generation else { return }
                     self.isLoadingMore = false
+                    self.errorMessage = error.localizedDescription
                 }
             }
         }
@@ -437,12 +534,20 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     func clear() {
         searchGeneration += 1
         currentTask?.cancel()
+        paginationTask?.cancel()
         query = ""
         results = []
+        searchRecords = []
+        resultStore.clear()
+        executedRequest = nil
+        executedDatabasePath = nil
+        executedBackendGeneration = nil
+        executedProfileID = nil
         enginePage = nil
         errorMessage = nil
         hasMore = false
         isLoadingMore = false
+        isSearching = false
     }
 
     func indexLogCopyText() -> String {

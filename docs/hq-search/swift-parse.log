@@ -1,0 +1,14 @@
+Command: swiftc -frontend -parse <11 modified production Swift files>
+Exit: 0
+Scope: syntax only, no Apple SDK type checking
+Source/Features/Search/Models/SearchResultItem.swift
+Source/Features/Search/iOS/SearchModeView.swift
+Source/Otzaria/Search/OtzariaSearchIndexManager.swift
+Source/Otzaria/Search/OtzariaSearchModels.swift
+Source/Otzaria/Search/OtzariaTantivySearchRepository.swift
+Source/Otzaria/Search/OtzariaTextSearchViewModel.swift
+Source/ZayitSearch/UnifiedSearchSessionController.swift
+Source/ZayitSearch/UnifiedSearchWorkspaceView.swift
+Source/ZayitSearch/ZayitSearchDistribution.swift
+Source/ZayitSearch/ZayitSearchSessionController.swift
+Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift

@@ -1,0 +1,30 @@
+diff --git a/Source/Features/Search/Models/SearchResultItem.swift b/Source/Features/Search/Models/SearchResultItem.swift
+index 2849a4c7..2eed19f5 100644
+--- a/Source/Features/Search/Models/SearchResultItem.swift
++++ b/Source/Features/Search/Models/SearchResultItem.swift
+@@ -29,0 +30 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
++    let backendHitID: String?
+@@ -40,0 +42 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
++        if let backendHitID { return backendHitID }
+@@ -46,0 +49 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
++        if let backendHitID { return backendHitID }
+@@ -67,0 +71 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
++        case backendHitID
+@@ -82 +86,2 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
+-        resultLanguage: String? = nil
++        resultLanguage: String? = nil,
++        backendHitID: String? = nil
+@@ -94,0 +100 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
++        self.backendHitID = backendHitID
+@@ -111,0 +118 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
++        try container.encodeIfPresent(backendHitID, forKey: .backendHitID)
+@@ -131,0 +139 @@ struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiab
++        backendHitID = try container.decodeIfPresent(String.self, forKey: .backendHitID)
+diff --git a/Source/Features/Search/iOS/SearchModeView.swift b/Source/Features/Search/iOS/SearchModeView.swift
+index 8e288253..e09fe2e3 100644
+--- a/Source/Features/Search/iOS/SearchModeView.swift
++++ b/Source/Features/Search/iOS/SearchModeView.swift
+@@ -45,0 +46,3 @@ struct SearchModeView: View {
++                        .safeAreaInset(edge: .bottom) { UnifiedSearchPagingFeedbackView(session: session) }
++                } else if session.showsSearchFeedback {
++                    UnifiedSearchFeedbackView(session: session)
