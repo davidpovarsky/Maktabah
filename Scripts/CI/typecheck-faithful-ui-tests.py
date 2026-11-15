@@ -99,7 +99,8 @@ native_host = Path("Source/ChavrusaText/UIRoutingHost")
 if (native_host / "Package.swift").is_file():
     native_host_command = ["xcrun", "swift", "build", "--package-path", str(native_host),
                            "--triple", "arm64-apple-ios26.0-simulator", "--sdk", str(sdk),
-                           "-j", "2", "-Xswiftc", "-strict-concurrency=complete"]
+                           "-j", "2", "-v", "-Xswiftc", "-strict-concurrency=complete",
+                           "-Xswiftc", "-target", "-Xswiftc", "arm64-apple-ios26.0-simulator"]
     native_host_result = subprocess.run(native_host_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     native_host_code = native_host_result.returncode
     (artifacts / "native-routing-host-sdk.log").write_text(native_host_result.stdout, encoding="utf-8")
