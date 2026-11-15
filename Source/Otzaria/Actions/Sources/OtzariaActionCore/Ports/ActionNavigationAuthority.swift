@@ -84,6 +84,12 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
         guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw ActionNavigationError(.cancelled, "deadline_exceeded") }
     }
 
+    /// Nonconsuming freshness observation across host awaits. This grants no
+    /// effect and never substitutes for authorizeCommit or validateCompletion.
+    public func validateFreshness() throws {
+        try validateLive()
+    }
+
     /// Synchronous final guard: call once, immediately before native mutation on
     /// MainActor, with no intervening await. Failure never authorizes an effect.
     /// Fresh native context/rights/lifetime and backend snapshot come from their

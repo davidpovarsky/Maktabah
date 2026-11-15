@@ -1,0 +1,141 @@
+[0/1] Planning build
+Building for debugging...
+[0/13] Write swift-version-2807070033DA82CF.txt
+[1/13] Write sources
+[5/14] Emitting module OtzariaActionCore
+[6/16] Compiling OtzariaActionCore ActionExecutor.swift
+[7/16] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[8/28] Compiling OtzariaActionCore ActionJSON.swift
+[9/28] Compiling OtzariaActionCore ActionReferences.swift
+[10/28] Compiling OtzariaActionCore ActionRequest.swift
+[11/28] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[12/28] Compiling OtzariaActionCore ActionSearch.swift
+[13/28] Compiling OtzariaActionCore ActionWireCodec.swift
+[14/28] Compiling OtzariaActionCore ActionDeadline.swift
+[15/28] Compiling OtzariaActionCore ActionExecutionContext.swift
+[16/28] Compiling OtzariaActionCore ActionPolicy.swift
+[17/28] Compiling OtzariaActionCore ActionValidation.swift
+[18/28] Compiling OtzariaActionCore ActionPorts.swift
+[19/28] Compiling OtzariaActionCore ActionRegistry.swift
+[20/29] Wrapping AST for OtzariaActionCore for debugging
+[22/30] Emitting module OtzariaUIRouting
+[23/35] Compiling OtzariaUIRouting PublicNavigationV2.swift
+[24/35] Compiling OtzariaUIRouting PublicNavigationLocalBinding.swift
+[25/35] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[26/35] Compiling OtzariaUIRouting UIDestinationPublicNavigationV2.swift
+[27/35] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[28/40] Compiling OtzariaUIRouting PublicNavigationV2Codec.swift
+[29/40] Compiling OtzariaUIRouting UIRouteCodec.swift
+[30/40] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[31/40] Compiling OtzariaUIRouting RouteSpec.swift
+[32/40] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[33/41] Wrapping AST for OtzariaUIRouting for debugging
+[35/42] Emitting module OtzariaUIRoutingTests
+[36/51] Compiling OtzariaUIRoutingTests CodecTests.swift
+[37/51] Compiling OtzariaUIRoutingTests PublicNavigationV2Tests.swift
+[38/51] Compiling OtzariaUIRoutingTests GoldenAPITests.swift
+[39/51] Compiling OtzariaUIRoutingTests NavigationAuthorizationTests.swift
+[40/51] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+[41/51] Compiling OtzariaUIRoutingTests DiscoveryReviewRegressionTests.swift
+[42/51] Compiling OtzariaUIRoutingTests DiscoveryTests.swift
+[43/51] Compiling OtzariaUIRoutingTests RegistryTests.swift
+[44/51] Compiling OtzariaUIRoutingTests resource_bundle_accessor.swift
+[45/52] Wrapping AST for OtzariaUIRoutingTests for debugging
+[46/52] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[47/53] Write sources
+[49/54] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[50/56] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[51/56] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[53/56] Emitting module OtzariaUIRoutingPackageTests
+[54/57] Compiling OtzariaUIRoutingPackageTests runner.swift
+[55/57] Write Objects.LinkFileList
+[56/57] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (61.17s)
+Test Suite 'Selected tests' started at 2026-11-15 17:07:13.020
+
+Test Suite 'PublicNavigationV2Tests' started at 2026-11-15 17:07:13.051
+
+Test Case 'PublicNavigationV2Tests.testBindingUsesFreshLocalCorrelationSceneBackendAndOneUseGuard' started at 2026-11-15 17:07:13.051
+
+Test Case 'PublicNavigationV2Tests.testBindingUsesFreshLocalCorrelationSceneBackendAndOneUseGuard' passed (0.519 seconds)
+
+Test Case 'PublicNavigationV2Tests.testDeadlineAndCancellationCleanExactVariantWaits' started at 2026-11-15 17:07:13.570
+
+Test Case 'PublicNavigationV2Tests.testDeadlineAndCancellationCleanExactVariantWaits' passed (1.252 seconds)
+
+Test Case 'PublicNavigationV2Tests.testDecodedIntentMustFitBudgetAfterBackendNormalization' started at 2026-11-15 17:07:14.823
+
+Test Case 'PublicNavigationV2Tests.testDecodedIntentMustFitBudgetAfterBackendNormalization' passed (0.212 seconds)
+
+Test Case 'PublicNavigationV2Tests.testDiscoveryReportsOnlyExactVerifiedVariantsAndNoGenericPolicyAdvertisement' started at 2026-11-15 17:07:15.035
+
+Test Case 'PublicNavigationV2Tests.testDiscoveryReportsOnlyExactVerifiedVariantsAndNoGenericPolicyAdvertisement' passed (0.06 seconds)
+
+Test Case 'PublicNavigationV2Tests.testExactVariantAllowlistNeverGuessesAnchorOrPresentation' started at 2026-11-15 17:07:15.095
+
+Test Case 'PublicNavigationV2Tests.testExactVariantAllowlistNeverGuessesAnchorOrPresentation' passed (0.13 seconds)
+
+Test Case 'PublicNavigationV2Tests.testNewGoldensAndAllBackendPresentationRoundTrips' started at 2026-11-15 17:07:15.225
+
+Test Case 'PublicNavigationV2Tests.testNewGoldensAndAllBackendPresentationRoundTrips' passed (0.897 seconds)
+
+Test Case 'PublicNavigationV2Tests.testPolicyRegistrationBoundsStagesAndReadOnlySemantics' started at 2026-11-15 17:07:16.122
+
+Test Case 'PublicNavigationV2Tests.testPolicyRegistrationBoundsStagesAndReadOnlySemantics' passed (0.19 seconds)
+
+Test Case 'PublicNavigationV2Tests.testPublicReferencesRejectPrivateRevisionsPathsSchemesAndCrossWork' started at 2026-11-15 17:07:16.312
+
+Test Case 'PublicNavigationV2Tests.testPublicReferencesRejectPrivateRevisionsPathsSchemesAndCrossWork' passed (0.5 seconds)
+
+Test Case 'PublicNavigationV2Tests.testReaderBindingRequiresLocalTabAndHostContentRights' started at 2026-11-15 17:07:16.811
+
+Test Case 'PublicNavigationV2Tests.testReaderBindingRequiresLocalTabAndHostContentRights' passed (0.269 seconds)
+
+Test Case 'PublicNavigationV2Tests.testReaderPlanUsesFreshCoreSinkInvocationAndCannotBypassSemanticExecution' started at 2026-11-15 17:07:17.080
+
+Test Case 'PublicNavigationV2Tests.testReaderPlanUsesFreshCoreSinkInvocationAndCannotBypassSemanticExecution' passed (0.523 seconds)
+
+Test Case 'PublicNavigationV2Tests.testRetainedReaderPlanRejectsGenerationChangedBeforeActualCoreSink' started at 2026-11-15 17:07:17.604
+
+Test Case 'PublicNavigationV2Tests.testRetainedReaderPlanRejectsGenerationChangedBeforeActualCoreSink' passed (0.55 seconds)
+
+Test Case 'PublicNavigationV2Tests.testRightsAndGenerationRevocationAcrossHostAwaitAreRechecked' started at 2026-11-15 17:07:18.154
+
+Test Case 'PublicNavigationV2Tests.testRightsAndGenerationRevocationAcrossHostAwaitAreRechecked' passed (0.656 seconds)
+
+Test Case 'PublicNavigationV2Tests.testRuntimeUnsupportedUnreadyDeniedAndBackendSwitchNeverFallback' started at 2026-11-15 17:07:18.810
+
+Test Case 'PublicNavigationV2Tests.testRuntimeUnsupportedUnreadyDeniedAndBackendSwitchNeverFallback' passed (0.673 seconds)
+
+Test Case 'PublicNavigationV2Tests.testSingleParserRejectsDuplicatesFractionsUnknownVersionsAndOversize' started at 2026-11-15 17:07:19.483
+
+Test Case 'PublicNavigationV2Tests.testSingleParserRejectsDuplicatesFractionsUnknownVersionsAndOversize' passed (0.033 seconds)
+
+Test Case 'PublicNavigationV2Tests.testStrictClosedSchemaRejectsPrivateAuthorityAndMutationPayloads' started at 2026-11-15 17:07:19.517
+
+Test Case 'PublicNavigationV2Tests.testStrictClosedSchemaRejectsPrivateAuthorityAndMutationPayloads' passed (0.845 seconds)
+
+Test Case 'PublicNavigationV2Tests.testStructuralReaderPlanCannotGrantDeniedWork' started at 2026-11-15 17:07:20.362
+
+Test Case 'PublicNavigationV2Tests.testStructuralReaderPlanCannotGrantDeniedWork' passed (0.481 seconds)
+
+Test Case 'PublicNavigationV2Tests.testV1IsFrozenAndMigrationIsExplicitOptInWithoutImportedCorrelation' started at 2026-11-15 17:07:20.843
+
+Test Case 'PublicNavigationV2Tests.testV1IsFrozenAndMigrationIsExplicitOptInWithoutImportedCorrelation' passed (0.671 seconds)
+
+Test Suite 'PublicNavigationV2Tests' passed at 2026-11-15 17:07:21.514
+
+	 Executed 17 tests, with 0 failures (0 unexpected) in 8.462 (8.462) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 17:07:21.514
+
+	 Executed 17 tests, with 0 failures (0 unexpected) in 8.462 (8.462) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

@@ -1,0 +1,105 @@
+[0/1] Planning build
+Building for debugging...
+[0/2] Write swift-version-2807070033DA82CF.txt
+[2/9] Emitting module OtzariaActionCoreTests
+[3/10] Compiling OtzariaActionCoreTests EngineTests.swift
+[4/10] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageDiscoveredTests.derived\all-discovered-tests.swift
+[5/11] Write sources
+[7/12] Emitting module OtzariaActionCorePackageDiscoveredTests
+[8/14] Compiling OtzariaActionCorePackageDiscoveredTests OtzariaActionCoreTests.swift
+[9/14] Compiling OtzariaActionCorePackageDiscoveredTests all-discovered-tests.swift
+[10/12] Write Objects.LinkFileList
+[11/12] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (11.88s)
+Test Suite 'Selected tests' started at 2026-11-15 17:12:00.088
+
+Test Suite 'EngineTests' started at 2026-11-15 17:12:00.093
+
+Test Case 'EngineTests.testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends' started at 2026-11-15 17:12:00.093
+
+Test Case 'EngineTests.testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends' passed (0.427 seconds)
+
+Test Case 'EngineTests.testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented' started at 2026-11-15 17:12:00.520
+
+Test Case 'EngineTests.testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented' passed (0.043 seconds)
+
+Test Case 'EngineTests.testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls' started at 2026-11-15 17:12:00.563
+
+Test Case 'EngineTests.testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls' passed (0.039 seconds)
+
+Test Case 'EngineTests.testCancellationDeadlineAndReplayBudget' started at 2026-11-15 17:12:00.602
+
+Test Case 'EngineTests.testCancellationDeadlineAndReplayBudget' passed (0.188 seconds)
+
+Test Case 'EngineTests.testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason' started at 2026-11-15 17:12:00.790
+
+Test Case 'EngineTests.testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason' passed (0.039 seconds)
+
+Test Case 'EngineTests.testGenerationAndEmbeddedEpochChangesDiscardResults' started at 2026-11-15 17:12:00.829
+
+Test Case 'EngineTests.testGenerationAndEmbeddedEpochChangesDiscardResults' passed (0.064 seconds)
+
+Test Case 'EngineTests.testInactiveBackendRequiresSwitchWithoutCommandCalls' started at 2026-11-15 17:12:00.892
+
+Test Case 'EngineTests.testInactiveBackendRequiresSwitchWithoutCommandCalls' passed (0.029 seconds)
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' started at 2026-11-15 17:12:00.922
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' passed (0.384 seconds)
+
+Test Case 'EngineTests.testOutputAndWorkScopeBudgets' started at 2026-11-15 17:12:01.306
+
+Test Case 'EngineTests.testOutputAndWorkScopeBudgets' passed (0.073 seconds)
+
+Test Case 'EngineTests.testPaginationIdentityAndProviderErrors' started at 2026-11-15 17:12:01.379
+
+Test Case 'EngineTests.testPaginationIdentityAndProviderErrors' passed (0.068 seconds)
+
+Test Case 'EngineTests.testRightsOriginAndScopeFailClosed' started at 2026-11-15 17:12:01.446
+
+Test Case 'EngineTests.testRightsOriginAndScopeFailClosed' passed (0.027 seconds)
+
+Test Case 'EngineTests.testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange' started at 2026-11-15 17:12:01.473
+
+Test Case 'EngineTests.testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange' passed (0.034 seconds)
+
+Test Case 'EngineTests.testSemanticSupportAvailabilityAndRealZeroAreDistinct' started at 2026-11-15 17:12:01.508
+
+Test Case 'EngineTests.testSemanticSupportAvailabilityAndRealZeroAreDistinct' passed (0.034 seconds)
+
+Test Case 'EngineTests.testStagedCountWritesAndDiscoveryCannotAdvertiseThem' started at 2026-11-15 17:12:01.541
+
+Test Case 'EngineTests.testStagedCountWritesAndDiscoveryCannotAdvertiseThem' passed (0.029 seconds)
+
+Test Case 'EngineTests.testTypedUnsignedResolutionLimitDoesNotDefault' started at 2026-11-15 17:12:01.570
+
+Test Case 'EngineTests.testTypedUnsignedResolutionLimitDoesNotDefault' passed (0.043 seconds)
+
+Test Case 'EngineTests.testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay' started at 2026-11-15 17:12:01.614
+
+Test Case 'EngineTests.testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay' passed (0.152 seconds)
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' started at 2026-11-15 17:12:01.766
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' passed (0.047 seconds)
+
+Test Case 'EngineTests.testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines' started at 2026-11-15 17:12:01.812
+
+Test Case 'EngineTests.testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines' passed (1.053 seconds)
+
+Test Suite 'EngineTests' passed at 2026-11-15 17:12:02.865
+
+	 Executed 18 tests, with 0 failures (0 unexpected) in 2.772 (2.772) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 17:12:02.865
+
+	 Executed 18 tests, with 0 failures (0 unexpected) in 2.772 (2.772) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

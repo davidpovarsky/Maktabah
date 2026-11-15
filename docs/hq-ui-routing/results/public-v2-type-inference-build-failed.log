@@ -1,0 +1,111 @@
+[0/1] Planning build
+Building for debugging...
+[0/11] Write swift-version-2807070033DA82CF.txt
+[1/10] Write sources
+[3/11] Emitting module OtzariaUIRouting
+[4/18] Compiling OtzariaUIRouting PublicNavigationV2Codec.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Registry\UIDestinationPublicNavigationV2.swift:25:38: error: cannot infer contextual base in reference to member 'init'
+
+ 23 |             var components: [UIDestinationID?] = rule.components.map(Optional.some)
+
+ 24 |             if rule.allowsRoot { components.insert(nil, at: 0) }
+
+ 25 |             return components.map { .init(destination: descriptor.id, presentation: rule.presentation, component: $0, requiresContent: descriptor.requiresContent) }
+
+    |                                      `- error: cannot infer contextual base in reference to member 'init'
+
+ 26 |         }
+
+ 27 |     }
+
+[5/18] Compiling OtzariaUIRouting UIRouteCodec.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Registry\UIDestinationPublicNavigationV2.swift:25:38: error: cannot infer contextual base in reference to member 'init'
+
+ 23 |             var components: [UIDestinationID?] = rule.components.map(Optional.some)
+
+ 24 |             if rule.allowsRoot { components.insert(nil, at: 0) }
+
+ 25 |             return components.map { .init(destination: descriptor.id, presentation: rule.presentation, component: $0, requiresContent: descriptor.requiresContent) }
+
+    |                                      `- error: cannot infer contextual base in reference to member 'init'
+
+ 26 |         }
+
+ 27 |     }
+
+[6/18] Compiling OtzariaUIRouting UIRouteSchemas.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Registry\UIDestinationPublicNavigationV2.swift:25:38: error: cannot infer contextual base in reference to member 'init'
+
+ 23 |             var components: [UIDestinationID?] = rule.components.map(Optional.some)
+
+ 24 |             if rule.allowsRoot { components.insert(nil, at: 0) }
+
+ 25 |             return components.map { .init(destination: descriptor.id, presentation: rule.presentation, component: $0, requiresContent: descriptor.requiresContent) }
+
+    |                                      `- error: cannot infer contextual base in reference to member 'init'
+
+ 26 |         }
+
+ 27 |     }
+
+[7/18] Compiling OtzariaUIRouting PublicNavigationV2.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Registry\UIDestinationPublicNavigationV2.swift:25:38: error: cannot infer contextual base in reference to member 'init'
+
+ 23 |             var components: [UIDestinationID?] = rule.components.map(Optional.some)
+
+ 24 |             if rule.allowsRoot { components.insert(nil, at: 0) }
+
+ 25 |             return components.map { .init(destination: descriptor.id, presentation: rule.presentation, component: $0, requiresContent: descriptor.requiresContent) }
+
+    |                                      `- error: cannot infer contextual base in reference to member 'init'
+
+ 26 |         }
+
+ 27 |     }
+
+[8/18] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Registry\UIDestinationPublicNavigationV2.swift:25:38: error: cannot infer contextual base in reference to member 'init'
+
+ 23 |             var components: [UIDestinationID?] = rule.components.map(Optional.some)
+
+ 24 |             if rule.allowsRoot { components.insert(nil, at: 0) }
+
+ 25 |             return components.map { .init(destination: descriptor.id, presentation: rule.presentation, component: $0, requiresContent: descriptor.requiresContent) }
+
+    |                                      `- error: cannot infer contextual base in reference to member 'init'
+
+ 26 |         }
+
+ 27 |     }
+
+[9/18] Compiling OtzariaUIRouting UIDestinationPublicNavigationV2.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Registry\UIDestinationPublicNavigationV2.swift:25:38: error: cannot infer contextual base in reference to member 'init'
+
+ 23 |             var components: [UIDestinationID?] = rule.components.map(Optional.some)
+
+ 24 |             if rule.allowsRoot { components.insert(nil, at: 0) }
+
+ 25 |             return components.map { .init(destination: descriptor.id, presentation: rule.presentation, component: $0, requiresContent: descriptor.requiresContent) }
+
+    |                                      `- error: cannot infer contextual base in reference to member 'init'
+
+ 26 |         }
+
+ 27 |     }
+
+[10/18] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Registry\UIDestinationPublicNavigationV2.swift:25:38: error: cannot infer contextual base in reference to member 'init'
+
+ 23 |             var components: [UIDestinationID?] = rule.components.map(Optional.some)
+
+ 24 |             if rule.allowsRoot { components.insert(nil, at: 0) }
+
+ 25 |             return components.map { .init(destination: descriptor.id, presentation: rule.presentation, component: $0, requiresContent: descriptor.requiresContent) }
+
+    |                                      `- error: cannot infer contextual base in reference to member 'init'
+
+ 26 |         }
+
+ 27 |     }
+
+error: fatalError

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "destination": "test.reader",
+  "backend": "sefariaEmbedded",
+  "content": {
+    "sectionLocator": {
+      "backend": "sefariaEmbedded",
+      "workKey": "fixture:work",
+      "position": {"kind": "canonicalRef", "value": "Fixture 1:1"}
+    },
+    "presentationMode": "sameTab"
+  },
+  "presentation": "inspector",
+  "component": "test.reader.links"
+}
