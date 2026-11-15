@@ -1,0 +1,597 @@
+{
+  "manager115SourceCommit": "98b575fc2d25f085de69081b445825c677d7b9aa",
+  "currentDocsObserverDescendant": "5321c5972f238d8aa7a99bb49099946bd8361dd0",
+  "packageFilesUnchangedSince115Run": true,
+  "inputCount": 98,
+  "records": {
+    "Source/Otzaria/Actions/Package.swift": {
+      "gitBlob": "db3c297b2f8bf456067f87dad3c895a31b1970c4",
+      "gitBytesSHA256": "dba6e8bbfc4d3903aae908f6a6271aac13f5c3e9be0d3273f295160b94461b2a",
+      "actualCompiledWorkingBytesSHA256": "3987fc6c4d6b2378cc7cf89b44487dbca789980b867476acb4396a73b591be4e",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift": {
+      "gitBlob": "cd6763a204e09ee67897ed08e5bda52f9252c06a",
+      "gitBytesSHA256": "86d62737f24ea6c803b9ebabf23c4815d6d42d4904ca5403256a38d88c394fb4",
+      "actualCompiledWorkingBytesSHA256": "95e407f9f9d4d27df63b901406e4cd06e7c306f92672234272f11f02a9dda476",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift": {
+      "gitBlob": "91c9ad3bca459f1c3a6a247333eefe2e3894680d",
+      "gitBytesSHA256": "bfa19f14ac27ccc446935ae1a9bbb500af21f9545a390a7ac3efb5f939faa924",
+      "actualCompiledWorkingBytesSHA256": "38400558b0d0d15e73d692d63801675d1aa1051b73f69bc016975aa3bfadb66b",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift": {
+      "gitBlob": "ed9c95c38ddf14fffe0d0b1a67ba030edac3fb3c",
+      "gitBytesSHA256": "823ed4030f72c33aaf6e425e4b96f8ce713dc07555105e7090819c76e4f6153e",
+      "actualCompiledWorkingBytesSHA256": "a2a008e6f04c5f01a35a412f5d3a23da679de0447a376e44fc3b3cfc8f06d581",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift": {
+      "gitBlob": "a36a7dfc079f6fdd2f8752b7d047aad43a2ab37c",
+      "gitBytesSHA256": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+      "actualCompiledWorkingBytesSHA256": "b45b86613217cb29b5a8ec1e7949e5c0596b667d9c4688eccaa54dd458c4057a",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift": {
+      "gitBlob": "a558a29aeaa892c03beeeb3e66d16a26d5c2878d",
+      "gitBytesSHA256": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+      "actualCompiledWorkingBytesSHA256": "82e9aaf357c02dc71b1fd1351cd9c66bdd8febf32a8601478e78dbb66ed629fc",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift": {
+      "gitBlob": "ddd6a831edb9b1956ee09396069dd2bb0dde6ef3",
+      "gitBytesSHA256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+      "actualCompiledWorkingBytesSHA256": "049d5c042b15047ead280b7a0346598be7e4403ad1aaa7b9b911170195ca3b3c",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift": {
+      "gitBlob": "1fcbb5b7c757d8d5309acdbf9fbe215979359cfc",
+      "gitBytesSHA256": "e702e725423cb9c549f29c21c003b81c76f69b718b8b96bc1ebada664056efe3",
+      "actualCompiledWorkingBytesSHA256": "1615ad518d7af50a2d6b11ec43ccab053165cfc8118ee5d7c684c44d5e002834",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift": {
+      "gitBlob": "1a605f41609c49e892649179be48d86bca8bdc39",
+      "gitBytesSHA256": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40",
+      "actualCompiledWorkingBytesSHA256": "733681a6b082e6742208ea52408f65eee55466e06261fa3d6bbb21f0c5fd8bd8",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift": {
+      "gitBlob": "26c77db83fc6bf10e7edd1aeb0a95a682d246768",
+      "gitBytesSHA256": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+      "actualCompiledWorkingBytesSHA256": "d3db8a15f38040009ebfc17500a09fab9a77278afb3e759548ea22dc60e1682a",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift": {
+      "gitBlob": "65807c299e4336d03eb5f63fc19fe55aa32bdbbd",
+      "gitBytesSHA256": "7c10bbf879c8d9917286e020816dfed8e259a6d9e1d5500f6056a61d4403b962",
+      "actualCompiledWorkingBytesSHA256": "b5ae953b28a0f8d4ae4dbcf0a1cb815fc96249f79169a2c8799b0aaad6c41665",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift": {
+      "gitBlob": "18772cf8fe4be88b165db45434cd39af9eaa5959",
+      "gitBytesSHA256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+      "actualCompiledWorkingBytesSHA256": "e0ce60ba449fa879e9c807c8cfc52eac3854ed02d778bd7f1d73fdc6569571fd",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift": {
+      "gitBlob": "cae77610732cc405ae8857e7c0588b45eb5ee266",
+      "gitBytesSHA256": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+      "actualCompiledWorkingBytesSHA256": "ea82447522e138106b85685578b38a203e918c5aea6c6370eb73b5e233a08930",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift": {
+      "gitBlob": "4b2bf57b8be7b5cec1243809b127b3bc0a9d4e3c",
+      "gitBytesSHA256": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+      "actualCompiledWorkingBytesSHA256": "124e68c87b8598538befde637b4411095fd601981778eaba7eaf8ec9bddd2ea0",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": {
+      "gitBlob": "e7acf923928a2c041da185a38ab0ff658b66fc80",
+      "gitBytesSHA256": "a94dd85985f288edbd2e10b5a14b1731be25a8d25893e832e8515af63307cbdf",
+      "actualCompiledWorkingBytesSHA256": "7e75bc7f7118c31fa0266094318163b8a1c0a91241b3a3adc830e12241539f4b",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift": {
+      "gitBlob": "7086ec52c7d4c35cc12b81c1bc3106b231103a23",
+      "gitBytesSHA256": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+      "actualCompiledWorkingBytesSHA256": "9a627bb057d06f5210076d78732108ef220bd4799f3eb0216978b800c4455c28",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift": {
+      "gitBlob": "cfe84ff01387d376d09d981f60181d91f16624bb",
+      "gitBytesSHA256": "9471a6c0aeac5a5d95f81e02d9f217ddc531379090c73a779b17a81b1194b1c3",
+      "actualCompiledWorkingBytesSHA256": "6a57fc9ad9fa3538111163f966286761a2aa4c56867cdbaefa960002423f84ac",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift": {
+      "gitBlob": "e307ff135859121d7f5720b52277bc2387796eb9",
+      "gitBytesSHA256": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9",
+      "actualCompiledWorkingBytesSHA256": "3d956c5969861fe5f63d9f2b0b2e48136e81234da5c5c628ae8edce867862eb7",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift": {
+      "gitBlob": "dcaea3c26680124f33d7a2c90c719bde4f738d67",
+      "gitBytesSHA256": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6",
+      "actualCompiledWorkingBytesSHA256": "573a5552c4ccf666f650b46b8a76a9f983a07fae7d40120ff42ab23b5fe64225",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift": {
+      "gitBlob": "6e6660435b6f08b412d595cc6dd6af9c89642a81",
+      "gitBytesSHA256": "19aefe3f90bec25f530ab59be9443b137ce1258c5dd106c12b555161f703c868",
+      "actualCompiledWorkingBytesSHA256": "eba3eeeb0964fd0f40287cad2eb3e41abf2c22653b5eef66e4dd4f3b3b6aa140",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift": {
+      "gitBlob": "5fc87951cdb9db457b33958be0db20ca2a9f0d28",
+      "gitBytesSHA256": "e965698180cdd6cf245aa1af972b86b2e538a1a25e0e33cfa737e458b271ea99",
+      "actualCompiledWorkingBytesSHA256": "00c5f7d28223b670124dd61e655b430c6899ab1ad0f0372c8ea4b078ccd95dbb",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift": {
+      "gitBlob": "6850092099663bcdf5981f6daee6263d8f1690fc",
+      "gitBytesSHA256": "be610fb952ef7bd40356de08a4084389fd134b055be9d3bbcadd51899d63608d",
+      "actualCompiledWorkingBytesSHA256": "d8dac3b83d4b0b68a5031677aa12e02c1985765a9562db01b053c7dbd761a1c5",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift": {
+      "gitBlob": "50b5db7b9ec5d582076d26ab7ee8cf651f8390c6",
+      "gitBytesSHA256": "000a4dc6e9056f0c329085c2ba7303bfe56272c70fff292071e86b2da49a79aa",
+      "actualCompiledWorkingBytesSHA256": "3267ffa612c0612ae6ae738ba603e835520e6634c8e2970057c76b1fba5d2161",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift": {
+      "gitBlob": "d209deb51877332ec5d3c0e65993bc9acd12216e",
+      "gitBytesSHA256": "2aa07b1d3981dffc8dbbce430d88284e6de721dab66b2258573df5cd44377f85",
+      "actualCompiledWorkingBytesSHA256": "6df7a7d3eb7b45b82af9f1529601e19589c6838cf5cebe374cdcd00d73bbc7ec",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json": {
+      "gitBlob": "0301b404b0792df72f58b185337517b2b17c719f",
+      "gitBytesSHA256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "actualCompiledWorkingBytesSHA256": "21cf2f24255b9bae28fe4725d5394759ec12055e99e37f16fa7140cff755b503",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json": {
+      "gitBlob": "d7061a0379b4200fad6b15d682fc5d8d7f715d40",
+      "gitBytesSHA256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "actualCompiledWorkingBytesSHA256": "5bdd92a543111ede8dfd74c40a284477b26ecf237f1d02b18d7e8a87a76af677",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json": {
+      "gitBlob": "7ddf4235e97f9d278b755a523a21491cbcee8742",
+      "gitBytesSHA256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "actualCompiledWorkingBytesSHA256": "f4a25fdcd6aa05e16adaf990b9aa33b12fdc63c513163a23a86feec19ee5b724",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json": {
+      "gitBlob": "806d1eff72612adf2d9463028599e74993d4fe30",
+      "gitBytesSHA256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "actualCompiledWorkingBytesSHA256": "678d326932532f267a8a932c286e5cee4b4c982cc9f86ada6238ed532eee85ed",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json": {
+      "gitBlob": "9494c5d5f7e7c783dd8a72ba61381e2d68919039",
+      "gitBytesSHA256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "actualCompiledWorkingBytesSHA256": "e8fb0933325e6c32b52422405e1e4988052d4fd81daac2cff1c019e862ca8965",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json": {
+      "gitBlob": "0ec9c6f2fc976ee1dd868008bafb7bf43e6861c6",
+      "gitBytesSHA256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "actualCompiledWorkingBytesSHA256": "939e20a96b34c82699e118d58a9674cd610301f4cf17f451ff9eb93e7ca504a3",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift": {
+      "gitBlob": "eae3ff7aae593aedcf04464f7fac77ef37958827",
+      "gitBytesSHA256": "97e869791abbcf736890a0fd387eba00739bbd50cd11aa168fb295e83f3b8358",
+      "actualCompiledWorkingBytesSHA256": "6466cac4981178d44c8d14a95915b0c0df475d21c0f7a6464d3421e104a00cf7",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift": {
+      "gitBlob": "6b30bbce2c3fa8a0f8b5792414bcca5ce9ac145e",
+      "gitBytesSHA256": "e74b362654f3396f0274fee3a493110205384b5d8c498d25f181a30a4e2ec9df",
+      "actualCompiledWorkingBytesSHA256": "406787669cd5096a444b8f708c6f72b679c779ef04d53fae6bcd58930dfc362c",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift": {
+      "gitBlob": "7dd80e7661e4bcf438083497c454986227eca04f",
+      "gitBytesSHA256": "86dd55cd80cc1af17880a3a6e4842a158627b0dc8e220014fddf2c03985337e6",
+      "actualCompiledWorkingBytesSHA256": "3ce38aeb90eb347692a94cdf9db96497767a75088b2de6c5c43a285eb9f159e8",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift": {
+      "gitBlob": "f85ad546d8c437e86e65cd4836a5100e0ce561eb",
+      "gitBytesSHA256": "638580f65fb7f1436bb91ded515f94f66dda39ef1bcd2a0562d059898d083a84",
+      "actualCompiledWorkingBytesSHA256": "7765f4b487c1e034718bf121650f33c08935dc9d6aebfa59eec0d05b1c3319aa",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift": {
+      "gitBlob": "9d5e0e301822a18619e54f122d5b402e0a0faf09",
+      "gitBytesSHA256": "c2f575a0c8b224cca29b1715e372f6f0785a2df93c4ff85c7bc582fde189448c",
+      "actualCompiledWorkingBytesSHA256": "d4301e22d08090d9af57e47712161f2425b12c1487cd1df74d62ffe5518f74f6",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift": {
+      "gitBlob": "105ab11449b2334c15b454533c4e727eabfc14e7",
+      "gitBytesSHA256": "7f761fc50452b7c93dda2b26872edc371644ea46a30ef1334b3db90fc51b841b",
+      "actualCompiledWorkingBytesSHA256": "7b3f6481471d455b9235d241f22c939d5fe695f0002bda5e75ce47545f40b95f",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Package.swift": {
+      "gitBlob": "125de1ebfa710dd312c95c2b8b74bd52f24082f4",
+      "gitBytesSHA256": "568f830eaf2f0cae65c2f0a1279ec4affe20b012b987b7900e78d2378eda762d",
+      "actualCompiledWorkingBytesSHA256": "31c9bf1da9f236bd255d7a621498ada56b34d63f45c2e3fe938671a19713db3f",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/PublicNavigationV2Codec.swift": {
+      "gitBlob": "fc1cd021876317c0043bef1849f7328c5b1b52a4",
+      "gitBytesSHA256": "8c34df7932620a3f3d95e3547493cec2444c31b69493e91fbf1230c3af66df5d",
+      "actualCompiledWorkingBytesSHA256": "1e489bbddd4b378ec6a929f7a588c9c0d85e323998bc70273ee0ef8c4e4d0f42",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift": {
+      "gitBlob": "d092afe7dadea00e350f1956e6106db56f74c924",
+      "gitBytesSHA256": "abbd774134e5198c1f5d390781fe3401868f7a21c20f351ed40bde2b02ad50da",
+      "actualCompiledWorkingBytesSHA256": "93f827b3017b9207928d14af9cd96f80f77115e1e15aaed8494ea64f698e9780",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift": {
+      "gitBlob": "4e4748d76374866f23ad8088ce9d96f9913acd90",
+      "gitBytesSHA256": "854e094d9d47d94cdf1cb8b86876bcc93c2bc8a038539dcac0d8d94e39bf8fec",
+      "actualCompiledWorkingBytesSHA256": "dcf4cc928eebc1da5bc40c024c6631e7bda4181f46d6317da16ad8d09fc2b588",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift": {
+      "gitBlob": "83d2e69709b7d8c04f727704b1479811d78111a1",
+      "gitBytesSHA256": "6874bc23365b990acbaca1cea6957f1ab9fa586fcb3ef41e7a72a32c682f1ed4",
+      "actualCompiledWorkingBytesSHA256": "6951a5a05f28383cf269cd7ba0f3a9c4f599ec89dd158c05000fd60e7dce1900",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift": {
+      "gitBlob": "28c494ae62da396729bc31e18770cfa8a340aa7a",
+      "gitBytesSHA256": "a39499cf8a88d6c10893812941346710558125934445a629822a53a85c53e3a9",
+      "actualCompiledWorkingBytesSHA256": "fc51fc03e662debb2b2142939ce2dfe643aed6cf07f7b34bd7aea95d50e90300",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/PublicNavigationLocalBinding.swift": {
+      "gitBlob": "e8f10a22a8126fa7595c59ee06d9a477e3cef11a",
+      "gitBytesSHA256": "44b0216e216769f448db836263499545c70e7ad42bd358bdf520d41bbac3bd05",
+      "actualCompiledWorkingBytesSHA256": "7b256aea21be256e36480066dfbc76bfa46e6eda5a0ac51c47487a61a6aecbf2",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift": {
+      "gitBlob": "6fe131e6bad194960bb75df2dbcb100c19133075",
+      "gitBytesSHA256": "f606f6d435f5f7035fdeb4cf2eafaff4f9d4192ce504f5ccd4eb7386068e40a3",
+      "actualCompiledWorkingBytesSHA256": "5131c3f467b994f01a87ebe9265fd6725c2f2f92f23a6f3469d6a5d481972b5f",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift": {
+      "gitBlob": "460bb0744ff5e5196c2e025d9ef1b0ba0ab106fa",
+      "gitBytesSHA256": "ae580ffc84ee6b83d031331359827824c6ab86594939df361c89132e5a57bf8d",
+      "actualCompiledWorkingBytesSHA256": "d4fbaeedff3a35ae8ac02b8e0583b89da266adc794253512e2d9e675220a0f73",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift": {
+      "gitBlob": "23fe365eed368c3aafbb03a0304031338ce2fff6",
+      "gitBytesSHA256": "d3231ae87d31d8571133d64bbda27220a4aae72866f48bd4d1272e9cc7d8c062",
+      "actualCompiledWorkingBytesSHA256": "a345d388c0efbe55ee77013cecaa3ae841c2c62cb854ed91e55b2aee002d5cb5",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift": {
+      "gitBlob": "91f60ef8a78f76b421fd056da0c4e352f0bc4c72",
+      "gitBytesSHA256": "7c5692bfacc3b70a9218df87344cf84dc9fec2d098286f47fa28036b0eb14bee",
+      "actualCompiledWorkingBytesSHA256": "80004ca6a95a87fa0cf51ab97c116e6020eb32c80937422743c618a9f5fbce1c",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDiscoveryCancellationScope.swift": {
+      "gitBlob": "256c2bd6ae85bfb2f4693b4722a16a421bfd837d",
+      "gitBytesSHA256": "4382cc8184d8deaa84e0e954e07519ced768841bf7c53b624ad7a39771eb73ed",
+      "actualCompiledWorkingBytesSHA256": "b21bbe4791d3e4b75894e5e3cfd9fab9ea3013788531b44316ba02ce7b58ebe9",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Resources/catalog-status.json": {
+      "gitBlob": "bb375c63a6f85d56755c7b6c07152fc37ccf6d8c",
+      "gitBytesSHA256": "3b33f3498fb32e5af369bf040b6478f225d2e872c689fbebf9a9095598e507b2",
+      "actualCompiledWorkingBytesSHA256": "abb75034cbbe247bb10bb485b0d7911cec47ebe0d8392bf999d2b31a61e2573d",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/CodecTests.swift": {
+      "gitBlob": "6e1a0a0498af789f7a186d6225d9bca3362d5ca2",
+      "gitBytesSHA256": "8c4caba0ec9167ae608bb535d489eb2cdd67beee51b9294bd874ca3dae70a49d",
+      "actualCompiledWorkingBytesSHA256": "adae7d06599f7f46d8130e9200893e2d9bb05d82436bf6c790d3d0cc239d88e9",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/PublicNavigationV2Tests.swift": {
+      "gitBlob": "84a31542ec251bda19b6379f180423961583d272",
+      "gitBytesSHA256": "718858647cb58186beb24fed5f79a85feed0fd4bc025d7699572d3ec5e1239eb",
+      "actualCompiledWorkingBytesSHA256": "6afe53f787be257bc713ee1dd97d414b1ae36b44728928a0410cf33c41b964b1",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/GoldenAPITests.swift": {
+      "gitBlob": "1d45687a97dcb3450d1f213aeb196020e5eabd79",
+      "gitBytesSHA256": "b112cade7ce1f4c3818c08d77d90786466b24876ccdea8bdd632a701c2e67b99",
+      "actualCompiledWorkingBytesSHA256": "0d2475b626147f34f3c12d8cf72a1a7f6084947a4bf365e52050a3343ec2d957",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/NavigationAuthorizationTests.swift": {
+      "gitBlob": "22a012429af522beb086c7e158ccb1f097ce2995",
+      "gitBytesSHA256": "856c37406b0b13d268b3f0b515b6f80b90477ee03e56b9bcf2e6939264e83d04",
+      "actualCompiledWorkingBytesSHA256": "e6e49e47edcdbf423102161ba5ad1bb9bc7d2a2fd2d3f9afb8bc146b33eb7387",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/PublicNavigationLocalBindingTests.swift": {
+      "gitBlob": "99ff9c3d1bc7448cf5e4f9109392a9ac07566351",
+      "gitBytesSHA256": "1b0e334fce5ba587074b3c7b341e579f3787b47fc18d08fb1b0a369089c00dd1",
+      "actualCompiledWorkingBytesSHA256": "e6ac7f7cd3d22b782224cf01c04c228c449557b10c20dd4a60575ef0698c73af",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/ScenePortTests.swift": {
+      "gitBlob": "3ae445a95910ab247cb229e0bf6ed3ca015b26bb",
+      "gitBytesSHA256": "cc5274ce9d94479df24395bc25d711c62c60e7b4d35d567bcb673425a961beed",
+      "actualCompiledWorkingBytesSHA256": "ce772d7e2ca631846622e308d1b8fdd7899e3eec8183e8634b131406a05cc4bf",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/DiscoveryReviewRegressionTests.swift": {
+      "gitBlob": "39fa96a7881a399d707e6c8183b9e132dca6338b",
+      "gitBytesSHA256": "c00effd8b28448f21f2783bcbda38ee624e124a67f2abd8d7e3d4ad6c6ba2378",
+      "actualCompiledWorkingBytesSHA256": "82b729d0b9742842d7b0a6b6ac87b0eafef7a59a5ccdbee95cd8db35b65bd213",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/DiscoveryTests.swift": {
+      "gitBlob": "661aa81d03a591ccff49d4a69bef1ff65661aace",
+      "gitBytesSHA256": "28cc9bf0b35ff333794816ddbb3aba4d4dfee21c8dca0e1a82d72013691fc051",
+      "actualCompiledWorkingBytesSHA256": "b212059f5d7538a8a2fad69be8996644fe76660d80ac6fba9b04811db60e0552",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/RegistryTests.swift": {
+      "gitBlob": "981b691bc6ccb42e036c1e789ea7c175a619b69a",
+      "gitBytesSHA256": "85addd133b68ba60bffef7d5af96a1483871874be425876a1fe6ddc92b054695",
+      "actualCompiledWorkingBytesSHA256": "c5ee360aeeff0d798c406e0f627d56cfaa1c2d2e779612a1d9c8790f38f84dd1",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/legacy-reader-v0.json": {
+      "gitBlob": "85fa011f9a0a21fa748a77a9170bf721b397542f",
+      "gitBytesSHA256": "3f9a59a703cce2d2bd4c1ec557fb7285077535e3ac5c3fd6d3565e7988e60327",
+      "actualCompiledWorkingBytesSHA256": "4bba4ab163f66c3b905f3f886fb639ecf2115b89bb044d5299845a3ff4af91fd",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/private-reader-v1.json": {
+      "gitBlob": "2b393d73921e171f674cb47c8b93aa0ec0f23b4e",
+      "gitBytesSHA256": "160f9e73c68be07d2b951a635a3724ecc9165004d9077281bbd75463e19111d7",
+      "actualCompiledWorkingBytesSHA256": "c9c8fef9ea85c8b036ac93a59b8b6857183471239ecaa4eb6bf297be2c8cd19b",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/public-inspector-v2.json": {
+      "gitBlob": "c50a29130b217d097853c38bc9e9220086160704",
+      "gitBytesSHA256": "df64656625bea6f119adbcf6197e934dea9228531d85979e66b27d5b1a5296d5",
+      "actualCompiledWorkingBytesSHA256": "cef3e0ab181227f178c47e8d7f5b9726c9d290f9b17fb249c5fe208c41bd34d8",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/public-reader-v1.json": {
+      "gitBlob": "5f7768e2383039c7d6ee44573f671177c6405bf1",
+      "gitBytesSHA256": "748d3fc2268cd0b0104bfb185f39fa2ed21807734560cf9c2c33289f70eb6f29",
+      "actualCompiledWorkingBytesSHA256": "98aa0b19bf24dd512d2f342df940065b74b8465fadcf80b07eeb00a9edac54cb",
+      "difference": "CRLF/LF only"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/public-settings-v2.json": {
+      "gitBlob": "b2d431093dd3a550d568ebd6c024d8e550547d5f",
+      "gitBytesSHA256": "22182255351ae592359bb73f940d1d09438a420d25f8a714dbf3478ac725b833",
+      "actualCompiledWorkingBytesSHA256": "13965c1c58848481abbbb3d0494434cd9169443ef925c18e051bce041bf32d7d",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Package.swift": {
+      "gitBlob": "f7e27fada6560b963985c742c6bb4ddfff30b6d9",
+      "gitBytesSHA256": "609fef07a9a9dc2a4fc3747058c5a7a42e45bf07b80a77e34ecca81126a7944f",
+      "actualCompiledWorkingBytesSHA256": "4a1ee9828632d068776f45f24fef3c1c3a8e16526ef096478f4247ebbc40ca12",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift": {
+      "gitBlob": "b18bfcc6c8f4b59ac4c63ac2b8c2deca0348ad32",
+      "gitBytesSHA256": "2b0f2f66e320ad9248bf373e17b09cfa820e54208732ea55e780517ab6b888a0",
+      "actualCompiledWorkingBytesSHA256": "91d9ed75d69a663948bb0fc05a36e6d8be9224d1aae9be3a0c5695db6f8a837b",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": {
+      "gitBlob": "04ce0bcb0c6f03646c8221b2f597227ad9a2b130",
+      "gitBytesSHA256": "0020fee0de7f39922db0f27017679e543c318c541b48c1e9a33886cc575b38ba",
+      "actualCompiledWorkingBytesSHA256": "494f99bc5820bfe3ac7074cbd2aa03819b1fd1a7a82aa0cab8e6863ff47e52d4",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": {
+      "gitBlob": "e82ecb9310a9032a4f11607fa8bfbbcff3224202",
+      "gitBytesSHA256": "76667742a0af445f277274c00c4538b58aa36c6b3ea8ad2d08b830b64997b3ab",
+      "actualCompiledWorkingBytesSHA256": "1f8d1435725f44f060826519575938b87db9e2731238e11237a2759f085af203",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": {
+      "gitBlob": "6c4d255ae948811bc7cce4d82f35209581f84709",
+      "gitBytesSHA256": "4290a2a0122be0d46c8403bdf8c48d1bbdb7ffe710e2d712709a04063da283db",
+      "actualCompiledWorkingBytesSHA256": "5d27e87247693a7cd620e22bed05caf1d0730dc98d771e4e297696f5bcf025d8",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": {
+      "gitBlob": "8029e3500b4ada12a400c03196767d25652c1354",
+      "gitBytesSHA256": "75527662a7ad8440cdbfb32cca282da17f64c56673743cb42655fc29b0483a78",
+      "actualCompiledWorkingBytesSHA256": "e93ed9725a1adc045a12f1ceddf62304017fccb13e3fe6e37d91a406254642c3",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": {
+      "gitBlob": "e912ecdb2ea89816b1c78a19194434fbbc5f30b9",
+      "gitBytesSHA256": "7a0d3542de1de9cfa909df284e894dc81edb7eca5968f5ddfad86d35e7fca41c",
+      "actualCompiledWorkingBytesSHA256": "042f6a86a9231b6c074f9957238bd0dbe38884699c21854ce02992f9a7d26151",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+      "gitBlob": "df0e1ceb7254f9dcdcf57bb30e6109875d225a5f",
+      "gitBytesSHA256": "93c6440917f6fe6da76e7fce944486c589a2c17013698f4586224e98932983d8",
+      "actualCompiledWorkingBytesSHA256": "dacaefe7cd5b3c3bc789f3f803664bbc57aa209acd2e851c34067787ad969591",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift": {
+      "gitBlob": "290ddbd568b297f7ea913b88ea985e39a81fd324",
+      "gitBytesSHA256": "6a79fed35cf6549795202764257849ce485bdc3e988c444fdb6c586355779c31",
+      "actualCompiledWorkingBytesSHA256": "a963b584b108f5039bce7d9590be139cf54ef35436b0d8cb68c17b81be25ff4b",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift": {
+      "gitBlob": "ef338b73b558acab9aae9e975880b66d96a08d40",
+      "gitBytesSHA256": "163d5b0ca4a3a2f5acaac219a38021ef99ba764e31d6cb00eaeaafedf7115c8b",
+      "actualCompiledWorkingBytesSHA256": "5c8f1916af0436882e083160437ddd9f924244b25ec4cf39a446bd5a2cd3620b",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeBindingSourceObservation.swift": {
+      "gitBlob": "03ca2722f1dc577cf9ce46ebfa9afbb0cd9a441c",
+      "gitBytesSHA256": "fe9cc784e80a1bf39e570855245aafb13511d77de7399465c776f8b6f2442d55",
+      "actualCompiledWorkingBytesSHA256": "4ede3b9600d4f675781ee4f4b7325bae3fab903d0652faa9dcc7f96999b97436",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift": {
+      "gitBlob": "a90ab8903a2a6f64bb27cca9b1df56129daa34d0",
+      "gitBytesSHA256": "dd101e73718de3bfeb245d33799fb189bcd3a23b242f542dfdcdfb29cd833514",
+      "actualCompiledWorkingBytesSHA256": "76dd58a587821ca5aca08095c184d17012671b2f89efe6aef51b72de216f2afe",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift": {
+      "gitBlob": "0cb50e208ebb1c0d5bd08a4910fdd045ec7fe6df",
+      "gitBytesSHA256": "652b35b00f755868db71452ac607811da4ffdb10d2032a1324ff979fb78b8960",
+      "actualCompiledWorkingBytesSHA256": "49695338fed021d3ba154b9c1831afd5d8b50a8f77b7b2baa9fcf6ee0a4f8c24",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift": {
+      "gitBlob": "d0299073fcb69242840e605e511dc60429cfbf68",
+      "gitBytesSHA256": "d0b09256658b3fa734273a09d59fd0223aaca87deb4ef4d25fada08c5f37aadd",
+      "actualCompiledWorkingBytesSHA256": "e5315c13b6498a008c9faac81f050b9f230d2c1b34abb2b8d4303362a7ca0d86",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeNavigationAuthority.swift": {
+      "gitBlob": "2ab972171588ec06ec848b53d2875a3bd75032a0",
+      "gitBytesSHA256": "f1b0c55c381a5ad53773656aab337801e6faf2ba9d6c9befdf9f7d5eed5c1bf0",
+      "actualCompiledWorkingBytesSHA256": "e9fc131c671a5fa68550206bed846590197f3288729122a1733ca886e7a43686",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeObservationDeadline.swift": {
+      "gitBlob": "c6359c14b94af7c1b71b8610dcdc08bd15129e3f",
+      "gitBytesSHA256": "bce22578534f69f4f24fb4472c54786431b427e09e754443f662b0e78fd95943",
+      "actualCompiledWorkingBytesSHA256": "d7885ae9fc7e2cf49f12a33e4ff13a45e1d5f4a20f05f72f3e3a20f142d3412e",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePresentationObserver.swift": {
+      "gitBlob": "e6b8ed352d8cafbaef6c0ed7c70c258738b44de1",
+      "gitBytesSHA256": "1d90db72e592c646f39e069100bf0c5ec9c848412c2529ee9c0f91b66c8a8022",
+      "actualCompiledWorkingBytesSHA256": "1fcb7304e75dff916f0964e8ad87ce612e6637dafac782b34a63b33642a094af",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderPlanBudget.swift": {
+      "gitBlob": "c66d09ac11776aa7342b6f2855ada1b84a83e406",
+      "gitBytesSHA256": "c818a4fb51abacc8906642ab1321c7f82392e5d8e8ba873cc21f652bff4f9503",
+      "actualCompiledWorkingBytesSHA256": "af2c7ec689b4ad376b73c8b065c4a013d93fa42ac096728e9f7be50cfc871bde",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteInbox.swift": {
+      "gitBlob": "003153b574d785b5b5e5fb4ef9b40f4dfa14def9",
+      "gitBytesSHA256": "c131bdbaa59a510b7ffb9127e34889128147dda9a9a33ae2dfd4298d7e2ce95c",
+      "actualCompiledWorkingBytesSHA256": "7f83aee6278eeefe4a4692553f69c16efdf865963ccb3830739b29d8ad5a7bde",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteURL.swift": {
+      "gitBlob": "ff98e86828d6770e8f35247ba2b9ff4779cae623",
+      "gitBytesSHA256": "d56a7291c8bc664ce3265f6046315f500f04267f24e685f58a8bf266aa91f84f",
+      "actualCompiledWorkingBytesSHA256": "2134911dca37d9985b4fbb61ae26d77eda5abeea1e11c3143e2f55a491b75ad3",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneDirectory.swift": {
+      "gitBlob": "c49a644f7793fd4f7836daf9a78aebaaa34fc654",
+      "gitBytesSHA256": "61028bdba52398eb73cd3c6d0bbd3fd1a1f4136506311f89c62da8560e79a8ff",
+      "actualCompiledWorkingBytesSHA256": "62cecc21a3b4d580ec040132bf4db39dd80e688e36fd43a920f176b7bd40c1d7",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneIdentity.swift": {
+      "gitBlob": "598cc1a4d7194ebafa527f818e1cb81123fdc8ac",
+      "gitBytesSHA256": "c9920860a61c7edfd13b0412b08abe4849f7012d59a4a1eab89e034d7b3e5125",
+      "actualCompiledWorkingBytesSHA256": "2301551a701ce6b4ca3f02a511ec0d802f6039a34fbc127c7857207221e84ee7",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift": {
+      "gitBlob": "968ef1e5e75447a7fdaf7adf5f35382af0779a75",
+      "gitBytesSHA256": "ccad1b8bca4be323d5eec73c1f786960c1b545032084447bd6cd1572360a6187",
+      "actualCompiledWorkingBytesSHA256": "740760999a8525b04e846b54468a0d9025844fe17104d61fd99607e072d329a8",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceState.swift": {
+      "gitBlob": "d5824069eca8ef2e32d0306f0b264739b2acc228",
+      "gitBytesSHA256": "aeef7deb1c948a5344542264e59b099c66bd6c53ab34d687bf415530db118a2e",
+      "actualCompiledWorkingBytesSHA256": "70a35f7906ee20dc2e9e3a9148a4f457fcb1dba97de5720860b7cfca4ba2aa35",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift": {
+      "gitBlob": "0f87e80f82c94d3c6cae76c4d656ee04131f2b67",
+      "gitBytesSHA256": "b63e0379af0b955e4b9d460948cf2bb9005d4c542fccadaba1a8d449c015cd68",
+      "actualCompiledWorkingBytesSHA256": "90e9c10bb06e503fd159e5bef1f39ea4082d5361697b17d6fb134024b0f828e1",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeBindingSourceObservationTests.swift": {
+      "gitBlob": "fcb239d8943386fa2e61a6dd79af4c6011a871ee",
+      "gitBytesSHA256": "f4145764bede5aecf21170422c48dd6956bc4930a21ece9a654606a35045ec87",
+      "actualCompiledWorkingBytesSHA256": "7ed3a13ecff177cc11b70a789bfa3d8fdb8df7ff72df7523196531f2289f702c",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift": {
+      "gitBlob": "b9dfad8c74810a376391015e2935ca0dbe0bf258",
+      "gitBytesSHA256": "1c6963c266277fe04198d5291c6178bed1ca690d35647c1cead4f5be48e2c2ca",
+      "actualCompiledWorkingBytesSHA256": "a5907b70fe53cbacb2a4a24ca5e0faab51e5d18a62f0610c0288f437298585b6",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePresentationObserverTests.swift": {
+      "gitBlob": "fd4a8c376d6285eb99976dd255abb92773526900",
+      "gitBytesSHA256": "2538b3919efae9eb51c3fe67e2fda406fe138ea0128e5f65fb4128c05c218d1d",
+      "actualCompiledWorkingBytesSHA256": "4c98af08de5a0dc427cc560e5135df1bc245f507fd3ebbfc5207c88e05ad9d01",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePublicPreparedCommitTests.swift": {
+      "gitBlob": "5c97ec3ee5a0a8239be37e8a9d44fcddc7c23b81",
+      "gitBytesSHA256": "1a7498efc850097f51ba4d2377254ab1b9b087ccb046d1d963fff9a2e688de2e",
+      "actualCompiledWorkingBytesSHA256": "edd309b588c5d4bddc62b42e1edabb14bb9b716303ca4dff74e2fbe4612aa674",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeReaderPlanBudgetTests.swift": {
+      "gitBlob": "db937870ee325830e48b10cc53fa389f7389be50",
+      "gitBytesSHA256": "a2afb88371e2f25269b334c3843b1296d72d0a54d30ccd6317763fbaa5827874",
+      "actualCompiledWorkingBytesSHA256": "37cc1d709d6fd1a61201253f0ef8cd6507ed8e8ee983ee8a2039a5647ed20db7",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeRouteInboxTests.swift": {
+      "gitBlob": "fe66d69b9f15e2df50eee422393dcfc5ab4905fb",
+      "gitBytesSHA256": "5c135d909490cb87940162ac235463242f0811c10ad97fb2e8475dd2cb739052",
+      "actualCompiledWorkingBytesSHA256": "ec46b387e0e800f79af7624511487c088b379eba15f21f6461cf715193499c2f",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeRouteURLTests.swift": {
+      "gitBlob": "546d721bd869a7324e8b016f0394bf3932e65e15",
+      "gitBytesSHA256": "04ec7e801f77089891a0effdea911a168b00e8cbf3ad46febd969c7c444164c2",
+      "actualCompiledWorkingBytesSHA256": "ec1607b1e8b00c2260651f2e6bdebdead5f789e1b0160c1c52dadf49d8620183",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSceneDirectoryTests.swift": {
+      "gitBlob": "aba0361bb9d9d51968557a0f33ef5748e9d20b7c",
+      "gitBytesSHA256": "a300191a57b4ae6798a2690bee7386df0d0fa3b87ac9b546e77494c097c588b7",
+      "actualCompiledWorkingBytesSHA256": "22e42884366add1da0dd07edfc2392caf09965acb6b348bcd68e8c46207703fc",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSceneNavigationOrchestratorTests.swift": {
+      "gitBlob": "25b51dfe3f8e0c2bdd709eed897a4fbd6b518fd5",
+      "gitBytesSHA256": "b780bf2b3a84f4b9e2bb855175751fe267405c95705b3f3a41924ea2ead95f2f",
+      "actualCompiledWorkingBytesSHA256": "2df1a54e4824e69268dc697bc98122ae04bf2f1b3d7a241269067fc849fdddff",
+      "difference": "CRLF/LF only"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSurfaceStateTests.swift": {
+      "gitBlob": "341fb68b434546c3f4dd4490381cb75a0154dbc1",
+      "gitBytesSHA256": "ec6713ac06d972daa1f5a1fb1369e1efba8bae3cee82096ec9464672bb0fb8a9",
+      "actualCompiledWorkingBytesSHA256": "2f2c5ee0ab75d4ad0551b4fa40881329c9428be849a3111af2d5bdc1b3443993",
+      "difference": "CRLF/LF only"
+    }
+  },
+  "newSDKRun": false
+}
