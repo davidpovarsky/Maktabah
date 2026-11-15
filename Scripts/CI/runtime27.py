@@ -246,6 +246,8 @@ def main():
         report["sdk"] = capture(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"], "sdk.txt").strip()
         if not report["sdk"].startswith("27."):
             raise RuntimeError("Installed simulator SDK is not27.x")
+        capture(["xcrun", "simctl", "help", "io"], "simctl-io-help.txt")
+        capture(["xcrun", "simctl", "help", "ui"], "simctl-ui-help.txt")
         for kind in ("summary", "tests", "test-details", "activities"):
             capture(["xcrun", "xcresulttool", "get", "test-results", kind, "--help"], f"xcresult-{kind}-help.txt")
             if kind in ("summary", "tests"):
@@ -273,6 +275,18 @@ def main():
             return 0
         if report["mode"] != "ui":
             raise RuntimeError("Unknown runtime mode")
+        # Fail cheap on the exact owned native component before restoring/building
+        # the full app. This is real SDK code generation, never runtime acceptance.
+        sdk_path = capture(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], "sdk-path.txt").strip()
+        palette_sources = sorted((ROOT / "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette").rglob("*.swift"))
+        palette_command = ["xcrun", "swiftc", "-emit-module", "-parse-as-library", "-module-name", "CommandPalette",
+                           "-sdk", sdk_path, "-target", "arm64-apple-ios27.0-simulator",
+                           "-emit-module-path", str(OUT / "CommandPalette.swiftmodule"), *map(str, palette_sources)]
+        report["palette_sdk_compile"] = {"command": palette_command, "native_ui_passes": 0}
+        palette_code = run_logged(palette_command, "palette-sdk-compile.log", 180)
+        report["palette_sdk_compile"]["exit_code"] = palette_code
+        if palette_code:
+            raise RuntimeError("Owned palette component did not compile with actual Apple SDK")
         contract_path = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
         contract = json.loads(contract_path.read_text())
         groups = execution_groups(contract)

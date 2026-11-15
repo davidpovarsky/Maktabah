@@ -41,3 +41,36 @@ Apple documents cancelAction as unmodified Escape:
 https://developer.apple.com/documentation/swiftui/keyboardshortcut/cancelaction
 The text field's existing priority command was already present in the failing
 build; its registration alone does not establish dispatch.
+
+## Actual run43723356743 and next native route
+
+The standard Cancel candidate compiled with real Xcode27.1 / Swift6.4 and
+executed on iPad Pro11M5 Simulator27.2 (UDID recorded in RUN_43723356743.json).
+It failed the original visible palette-disappearance waiter at source188:
+0 fresh PASS /1 FAIL /0 skipped. The added whole-app input waiter and Inspector
+were NOT_REACHED. Actual post-Escape screenshot retains the live query/caret,
+result, software keyboard and new Close button. All65 fixed-stage input events
+are retained; there is no own Escape/action/dismiss forwarding event. The real
+Mac had no idb, idb_companion or Maestro. This is an actual failed correction,
+not an environment or handler-cause conclusion.
+
+Next candidate attaches a public UIGestureRecognizer subclass to the actual
+editable PaletteTextField. UIKit documents press delivery to recognizers before
+their attached view receives it. The recognizer only handles a real unmodified
+Escape UIPress when that same field is first responder in its own key window;
+its ordinary native target/action calls the existing guarded dismissal. It
+does not recognize touches or prevent other recognizers, and fails every
+unrelated press immediately. There is no application/window monitor, responder
+replacement, fabricated callback or weaker oracle. Fixed trace stages must
+establish actual gesture delivery; no cause or runtime fix is claimed before
+the selected test executes. Keyboard connection remains unverified; a visible
+software keyboard alone does not prove hardware disconnection.
+
+API basis:
+https://developer.apple.com/documentation/uikit/uigesturerecognizer/pressesbegan(_:with:)
+https://developer.apple.com/documentation/uikit/uigesturerecognizer/canprevent(_:)
+https://developer.apple.com/documentation/uikit/uigesturerecognizer/canbeprevented(by:)
+The installed apple-api authority lookup run43728370900 failed before starting
+any job (0 SDK lookup results), not a source/API failure. The existing project
+R27 workflow now code-generates this exact self-contained package with its real
+SDK before the expensive app build, and records actual simctl io/ui help.

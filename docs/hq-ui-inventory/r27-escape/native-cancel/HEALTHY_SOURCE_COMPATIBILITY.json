@@ -1,0 +1,66 @@
+{
+  "baseline_run": 43688380348,
+  "baseline_source": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+  "current_checked_sha": "02c921947eaa91ae834be0539785778fe7cd0eb8",
+  "case_bodies": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "method_lf_sha256": "c6a1ec4057fed34421ec6f94d54974cc58b52b98257d5944506fa4e296435fa3",
+      "exact_body_match": true
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "method_lf_sha256": "322b5851123d2c396b444c7e9283aea45c45e14789f44918a6020d2ae91b9d54",
+      "exact_body_match": true
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "method_lf_sha256": "69e38692d5a329e6cb17dc1bfc4eacbf414b72d42b132743f3d718dd31b1af9f",
+      "exact_body_match": true
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "method_lf_sha256": "00667ce4f50d678bb5c95d5482ecccbcf7944d0e307b41a62dedc5a6d61abe38",
+      "exact_body_match": true
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "method_lf_sha256": "289b444462e56fb9432c884f5c1ae1bb156a7cde3363a75a4978614e0d563f09",
+      "exact_body_match": true
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "method_lf_sha256": "442f470f9fb20265b90a7f93dd567c0b2e05dfcb7bc7c318acf6600e0527a244",
+      "exact_body_match": true
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "method_lf_sha256": "ea86b005da1f738c952b8c5b5fe9dc9a64d2be486a04ccb3c2d4d64d90737acf",
+      "exact_body_match": true
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "method_lf_sha256": "5db1bd145887e212a9b2ab0e4212f866586b9344fdb4dda0542401a163508f8f",
+      "exact_body_match": true
+    }
+  ],
+  "only_changed_production_paths": [
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+  ],
+  "unchanged_host_and_test_base_files": [
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+    "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+    "Maktabah-iOSUITests/MaktabahUITestBase.swift"
+  ],
+  "r27_native_launcher_exact_match": true,
+  "same_input_trees": {
+    "Vendor": "857406808f59c271c58525fea8b49aa3e8191a0a",
+    "Maktabah.xcodeproj": "e2722a859700ba6f040485f273e4ba6a74e4e83d"
+  },
+  "scope": "SOURCE_COMPATIBILITY_ONLY; eight cases do not instantiate palette; no new reader/pager/provider change",
+  "new_base_helper_properties": "Only Sidebar subclass overrides; R27 overrides launchReader entirely and never calls the configurable base launcher",
+  "native_runtime_toolchain_dependency_fixture_compatibility": "PENDING_FRESH_NATIVE_ARTIFACT_REVIEW",
+  "reused_ui_passes_certified_at_this_step": 0,
+  "fresh_ui_passes": 0
+}
