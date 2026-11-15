@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source_test_commit": "3d3001ca2c58b3a4d0391e15a36b63aa08510f7f",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
-  "app_source": "7d740d6d92822bdd4e7a1099c49970f790318468",
+  "app_source": "e8afde8e828da8b045eb916a72a727b38695e218",
   "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
   "independent_qa_thread": null,
   "scope": "U_FIELD_LOCAL_ESCAPE_PRESS_AND_REAL_SIDEBAR_FOUR_CASES_NOT_FULL_RELEASE",
@@ -282,7 +282,7 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
-    "source": "7d740d6d92822bdd4e7a1099c49970f790318468",
+    "source": "e8afde8e828da8b045eb916a72a727b38695e218",
     "test_source": "15ed01259d4b41864a53db76c0060c25393d75ef",
     "changed_production_paths": [
       "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
