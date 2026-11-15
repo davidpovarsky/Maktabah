@@ -23,6 +23,7 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         if only == "selection" { try await selectionFixtures(); return }
         if only == "document" { try await documentFixtures(); return }
         if only == "gate" { try await sourceGateFixtures(); return }
+        if only == "corpus" { try corpusFixtures(); return }
         for count in [100, 500, 2000] {
             let bridge = bridge()
             // Duplicated, reversed, sparse indexes exercise exact windowing and
@@ -183,6 +184,36 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         viewModel.didTapReaderText(at: 0)
         try expect(mappedTask.isCancelled && viewModel.selectedSegmentLocator == own, "mapped tap cancels stale anchor task and keeps newest selection")
         print("PASS actual reader tap paths: shell/no eager SQL/stale cancellation")
+    }
+
+    static func corpusFixtures() throws {
+        for bookID in [28, 103, 3152] {
+            let indexes = try bridge().database.fetch(query: "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex", parameters: [bookID]) { $0.int(at: 0) }
+            try expect(!indexes.isEmpty, "digest-pinned source book exists")
+            for (name, window) in [("all", indexes), ("first", [indexes[0]]), ("middle", [indexes[indexes.count / 2]]), ("last", [indexes[indexes.count - 1]])] {
+                let bridge = bridge()
+                bridge.database.splitContent = true
+                let expected = try bridge.database.corpusExpectedLinks(bookID: bookID, indexes: window)
+                let sources = try bridge.getLinksMetadataForLineIndices(bookID: bookID, sourceLineIndices: window)
+                let actual = Set(sources.map { "\($0.id):\($0.linkedBookId):\($0.linkedLineId):\($0.linkedLineIndex)" })
+                try expect(actual == expected, "genuine corpus exact relationship set book=\(bookID) scope=\(name)")
+                try expect(sources.allSatisfy { $0.content.isEmpty } && OtzariaLineContentDecoder.decoded == 0, "genuine compressed metadata remains decode-free")
+                try expect(bridge.database.metadataQueries == (window.count + 399) / 400, "genuine corpus bounded SQL batches")
+                let grouped = OtzariaLinkedSourceGrouping.indexGroups(from: sources)
+                try expect(grouped.reduce(0) { $0 + $1.count } == sources.count, "genuine corpus grouping retains all sources")
+                let tail = Array(sources.suffix(8))
+                let visible = tail.enumerated().map { index, source in
+                    TorahLinkedSource(id: "visible-\(index)", sourceRef: "otzaria:v1:\(source.linkedBookId):\(source.linkedLineIndex)")
+                }
+                let snippets = try bridge.fetchSnippets(for: visible)
+                try expect(snippets.count == visible.count && OtzariaLineContentDecoder.decoded <= visible.count, "only requested genuine compressed snippets are hydrated")
+                if let last = tail.last, let id = visible.last?.id {
+                    let point = try bridge.fetchLineContent(bookId: last.linkedBookId, lineIndex: last.linkedLineIndex)
+                    try expect(point != nil && snippets[id] == point?.content.otsariaPlainText, "last real source locator matches exact point SQL text")
+                }
+                print("PASS miniTest10 book=\(bookID) scope=\(name) lines=\(window.count) relationships=\(sources.count) visibleSnippets=\(snippets.count) exact row/set oracle, grouping, lazy dictionary decode, last-source point parity")
+            }
+        }
     }
 
     @MainActor static func sourceGateFixtures() async throws {

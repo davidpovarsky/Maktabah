@@ -2,7 +2,9 @@ import Foundation
 import Dispatch
 
 // Boundary substitutes only: actual generated service SQL executes in SQLite.
-// Decoder instrumentation uses plain text; it does not validate production zstd.
+// Default decoder instrumentation uses plain text. The explicit corpus case
+// decodes real dictionary frames in the Python query boundary; it does not
+// validate the production Swift/C ZSTD decoder or Apple runtime.
 struct FixtureError: Error { let message: String }
 struct SQLiteRow {
     let values: [Any]
@@ -22,6 +24,21 @@ final class SQLiteDatabase: @unchecked Sendable {
     var brokenMetadata = false
     var splitContent = false
     init(path: String) { self.path = path }
+    func corpusExpectedLinks(bookID: Int, indexes: [Int]) throws -> Set<String> {
+        let process = Process(), input = Pipe(), output = Pipe()
+        process.executableURL = URL(fileURLWithPath: CommandLine.arguments[1])
+        process.arguments = [CommandLine.arguments[2], "--oracle", path]
+        process.standardInput = input; process.standardOutput = output
+        try process.run()
+        input.fileHandleForWriting.write(try JSONSerialization.data(withJSONObject: ["bookID": bookID, "indexes": indexes]))
+        try input.fileHandleForWriting.close()
+        let data = output.fileHandleForReading.readDataToEndOfFile()
+        process.waitUntilExit()
+        guard process.terminationStatus == 0,
+              let body = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let rows = body["rows"] as? [[Int]] else { throw FixtureError(message: "corpus oracle failed") }
+        return Set(rows.map { $0.map(String.init).joined(separator: ":") })
+    }
     func fetch<T>(query: String, parameters: [Any] = [], map: (SQLiteRow) throws -> T) throws -> [T] {
         queryCount += 1
         let metadata = query.contains("WITH win")
@@ -73,22 +90,6 @@ struct OtzariaDatabaseCapabilities {
     let hasSuppressedLinkSides = true
     let hasSplitLineContent: Bool
     init(database: SQLiteDatabase) throws { hasSplitLineContent = database.splitContent }
-}
-struct OtzariaBookSchemaProjection {
-    let filePath: String; let isBaseBook: String; let dependenceType: String
-}
-enum OtzariaBookSchemaCompatibility {
-    static func projection(in db: SQLiteDatabase, alias: String) throws -> OtzariaBookSchemaProjection {
-        OtzariaBookSchemaProjection(filePath: "\(alias).filePath", isBaseBook: "\(alias).isBaseBook", dependenceType: "\(alias).dependenceType")
-    }
-}
-struct OtzariaLineContentProjection { let join: String; let expression: String }
-enum OtzariaLineContentCompatibility {
-    static func projection(capabilities: OtzariaDatabaseCapabilities, lineAlias: String, contentAlias: String) -> OtzariaLineContentProjection {
-        capabilities.hasSplitLineContent
-        ? OtzariaLineContentProjection(join: "LEFT JOIN line_content \(contentAlias) ON \(contentAlias).id = \(lineAlias).id", expression: "\(contentAlias).content")
-        : OtzariaLineContentProjection(join: "", expression: "\(lineAlias).content")
-    }
 }
 final class OtzariaLineContentDecoder {
     nonisolated(unsafe) static var decoded = 0
