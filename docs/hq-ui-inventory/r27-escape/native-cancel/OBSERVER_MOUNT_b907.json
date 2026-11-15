@@ -1,0 +1,73 @@
+{
+  "scope": "EXACT_SIX_LINE_DEBUG_OBSERVER_MOUNT_ONLY; no older Reader file copy",
+  "target": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+  "prior_blob": "ac7bf051cf9288ffa5b37ccb59f04d7969272d12",
+  "tested_blob": "18d4aca369859dd965fe36b0ba4dd2c8fc0f5924",
+  "tested_source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+  "patch": "docs/hq-ui-inventory/r27-escape/native-cancel/OBSERVER_MOUNT_b907.diff",
+  "patch_sha256": "8f6fcd5b438f1e957edde383df9602886f55a76903625134ba4d334b885ba74c",
+  "added_lines": 6,
+  "removed_lines": 0,
+  "dependencies": [
+    {
+      "path": "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+      "role": "Declaration UIViewRepresentable+Coordinator; DEBUG && canImport(UIKit); only SwiftUI/UIKit/Foundation system dependencies",
+      "tested_blob": "0a389d995df89ed07d272a4b8a1a005f94f051e2",
+      "manager043_blob": "0a389d995df89ed07d272a4b8a1a005f94f051e2",
+      "exact_match": true,
+      "new_delta_required": false
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+      "role": "ReaderOverviewPresentationController.acceptancePresentationSnapshot; DEBUG read-only presentation facts",
+      "tested_blob": "f11dc1ae25e99267ce53278b3b66cbd9f98c34fe",
+      "manager043_blob": "f11dc1ae25e99267ce53278b3b66cbd9f98c34fe",
+      "exact_match": true,
+      "new_delta_required": false
+    },
+    {
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "role": "iOSCustomIbarotTextView, captureViewportAnchor/updateViewportAccessibilityMetadata and reader-text AX identity; protected original file: READ ONLY, no supplied change/approval",
+      "tested_blob": "23cd37e5897b51b9d19839a089d8d3f4a0abc597",
+      "manager043_blob": "23cd37e5897b51b9d19839a089d8d3f4a0abc597",
+      "exact_match": true,
+      "new_delta_required": false
+    }
+  ],
+  "manager_base": "0436775d85893225005f29baf0aa3a20d7b88317",
+  "manager_target_blob": "ac7bf051cf9288ffa5b37ccb59f04d7969272d12",
+  "declaration_membership": "Existing043 project has observer PBXFileReference A76E95E42B83F0BFD3F87B95 and PBXBuildFile81A016942A00CF70CFAA6A68 in its Sources lists; no project change supplied",
+  "activation": "DEBUG only; CHAVRUSA_READER_VIEWPORT_REPORT must be nonempty and MAKTABAH_SMOKE_READY_FILE absent. Without report env no timer starts. Valid UUID request -> exactly one visible reader-text in probe.window -> source/offset/object + geometry snapshot atomic JSON. No app route/scene-authority receipt, renderer/text/selection mutation or legacy file exporter activation.",
+  "tested_receipt": {
+    "run": 43733876827,
+    "checkout": "bf463e035ee3251f14b3eab4cbdb069119247c47",
+    "app_source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+    "sdk_and_app_build": "ACTUAL_PASS",
+    "actual_device": {
+      "architecture": "arm64",
+      "deviceId": "A8836064-1798-4A03-82C7-015F908E7106",
+      "deviceName": "Faithful 11-inch 3589667b",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    },
+    "actual_ui_passes": [
+      "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+      "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
+    ],
+    "total_fresh_pass": 2,
+    "total_fresh_fail": 3,
+    "total_fresh_skip": 0,
+    "limits": "Only the two named cases passed on this exact immutable source. Escape and both body paging cases failed; no whole-U acceptance, future-owner composition, physical iPad or release acceptance.",
+    "artifact": {
+      "id": 14169514399,
+      "bytes": 467157049,
+      "sha256": "3bf127487d4ec6ab70ce9b90b33632e645f7729fe9f68dff5dad8a9dff1b5037",
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43733876827/artifacts/14169514399"
+    },
+    "sealed_receipt": "docs/hq-ui-inventory/r27-escape/native-cancel/RUN_43733876827.json"
+  },
+  "lease": "Manager owns only3 previously released workspace-owner lifecycle hunks in a new future composition. This additive observer block is outside that lease and can be preserved independently. No protected upstream witness is supplied or approved. Existing identical protected dependency blob is not permission for a new edit.",
+  "integration": "Apply only supplied6line diff to the original/ac7 lifecycle; retain new owner hunks. Do not copy current U coordinator or complete b907/858 tranche. Future composed source needs its own validation; no new run/query requested by this packet."
+}
