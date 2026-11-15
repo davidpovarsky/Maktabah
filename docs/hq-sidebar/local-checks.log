@@ -1,0 +1,5 @@
+   Creating library C:\Users\DAVID\AppData\Local\Temp\native-sidebar-policy-3thdjc3y\sidebar.lib and object C:\Users\DAVID\AppData\Local\Temp\native-sidebar-policy-3thdjc3y\sidebar.exp
+
+PASS: 27 actual sidebar width/RTL/gesture policy assertions; no device UI claim
+PASS: five changed/prepared Swift files parsed, including the pager Apple branch; diff whitespace clean
+NOT_RUN: Apple typecheck, app build, simulator/device, gesture arbitration and visual acceptance

@@ -9,8 +9,8 @@ enum ReaderSidebarPolicy {
             && availableWidth >= max(minimumSidebarWidth, sidebarWidth) + max(minimumReaderWidth, readerWidth) + dividerAllowance
     }
 
-    /// nil leaves the active page alone. Only the page-control strip owns this
-    /// gesture; reading/list scrolling and the native screen-edge swipe do not.
+    /// nil leaves the active page alone. The page-control strip uses this
+    /// policy; the page body uses native paging and gesture arbitration.
     static func swipeSelectsContents(horizontal: Double, vertical: Double, isRTL: Bool) -> Bool? {
         guard horizontal.isFinite, vertical.isFinite,
               abs(horizontal) >= 44, abs(horizontal) > abs(vertical) * 1.25 else { return nil }
@@ -27,21 +27,27 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     let library: (Bool) -> Library
     let contents: (Bool) -> Contents
     @Environment(\.layoutDirection) private var layoutDirection
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(iOSNavigationManager.self) private var navigationManager
 
     var body: some View {
-        // Each original page owns its NavigationStack. An unselected page must
-        // not remain in the hierarchy publishing search/principal toolbar items.
-        Group {
-            if coordinator.page == .library {
-                library(true)
-            } else {
-                contents(true)
-                    // Node IDs are book-local. Recreate only the TOC's local
-                    // search/expansion/scroll state when its reader changes.
-                    .id(activeContentsReaderID)
-            }
+        // Keep both original NavigationStacks at stable identities. The native
+        // pager owns horizontal dragging across the body and its transition;
+        // changing pages never changes the sibling reader's identity.
+        TabView(selection: $coordinator.page) {
+            library(coordinator.page == .library)
+                .accessibilityHidden(coordinator.page != .library)
+                .tag(ReaderSidebarPageCoordinator.Page.library)
+            contents(coordinator.page == .contents)
+                // Node IDs are book-local. Recreate only the TOC's local
+                // search/expansion/scroll state when its reader changes.
+                .id(activeContentsReaderID)
+                .accessibilityHidden(coordinator.page != .contents)
+                .tag(ReaderSidebarPageCoordinator.Page.contents)
         }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .animation(reduceMotion ? nil : .snappy, value: coordinator.page)
+        .environment(\.readerSidebarOwnsToggle, true)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-sidebar-pager")
         .background { ReaderSidebarSplitConfiguration() }
@@ -69,7 +75,7 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
                     vertical: Double(value.translation.height),
                     isRTL: layoutDirection == .rightToLeft
                 ) else { return }
-                withAnimation(.snappy) {
+                withAnimation(reduceMotion ? nil : .snappy) {
                     coordinator.page = selectsContents ? .contents : .library
                 }
             }
@@ -77,7 +83,7 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
 
     private func pageButton(_ page: ReaderSidebarPageCoordinator.Page, title: String) -> some View {
         Button {
-            withAnimation(.snappy) { coordinator.page = page }
+            withAnimation(reduceMotion ? nil : .snappy) { coordinator.page = page }
         } label: {
             Image(systemName: coordinator.page == page ? "circle.fill" : "circle")
                 .font(.system(size: 8))

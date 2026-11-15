@@ -21,11 +21,21 @@ private struct ReaderSidebarCoordinatorKey: EnvironmentKey {
     static let defaultValue: ReaderSidebarPageCoordinator? = nil
 }
 
+/// Scoped to the pager, not the scene: standalone TOC sheets retain Close.
+private struct ReaderSidebarOwnsToggleKey: EnvironmentKey {
+    static let defaultValue = false
+}
+
 private struct Exact9401WorkspaceKey: EnvironmentKey {
     static let defaultValue: StudyWorkspaceNavigationAdapter? = nil
 }
 
 extension EnvironmentValues {
+    var readerSidebarOwnsToggle: Bool {
+        get { self[ReaderSidebarOwnsToggleKey.self] }
+        set { self[ReaderSidebarOwnsToggleKey.self] = newValue }
+    }
+
     var exact9401Workspace: StudyWorkspaceNavigationAdapter? {
         get { self[Exact9401WorkspaceKey.self] }
         set { self[Exact9401WorkspaceKey.self] = newValue }

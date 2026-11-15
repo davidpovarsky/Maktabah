@@ -101,6 +101,12 @@ Important unresolved questions or uncertainties.
 
 ## Planned / Todo
 
+- [ ] Tighten the existing sidebar viewport UI test's swipe section: require the
+  expected physical direction per RTL/LTR instead of retrying the opposite
+  swipe. The old retry can conceal reversed paging. Direction-specific prepared
+  coverage is in `Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift`; runtime,
+  native gesture conflicts and physical-iPad acceptance remain NOT_RUN (2026-11-15).
+
 - [ ] Review legacy synchronous backend entry points separately from the strict
   10601 async settings/group repair. `iOSMainView`, annotation navigation and
   Bootstrap still call synchronous `commit`; cold target catalogs cannot be

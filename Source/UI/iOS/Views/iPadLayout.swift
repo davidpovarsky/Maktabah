@@ -111,12 +111,12 @@ struct iPadLayout: View {
                     iOSLibraryView()
                         .navigationTitle(iOSTab.viewer.title)
                         .toolbarGeneral(showSettings: $showSettings)
+                        .searchable(
+                            text: Bindable(bManager.libraryViewModel).searchQuery,
+                            placement: .navigationBarDrawer(displayMode: .always),
+                            prompt: String(localized: "Search Library")
+                        )
                 }
-                .searchable(
-                    text: Bindable(bManager.libraryViewModel).searchQuery,
-                    placement: .toolbar,
-                    prompt: String(localized: "Search Library")
-                )
                 .toolbarBackground(Color.appBackground, for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
                 .background(Color.appBackground)
