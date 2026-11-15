@@ -25,6 +25,18 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
+    func testOriginalBottomTOCActionUsesActualSidebarPage() throws {
+        XCTAssertTrue(isPad)
+        exerciseOriginalBottomTOCAction()
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        let expectedWork = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"])
+        let parts = app.staticTexts["reader-current-locator"].label.split(separator: "|", maxSplits: 2).map(String.init)
+        XCTAssertEqual(parts.count, 3)
+        XCTAssertEqual(parts.first, "otzaria")
+        XCTAssertEqual(parts.dropFirst().first, expectedWork)
+    }
+
+    @MainActor
     func testSidebarSceneStateSurvivesBackgroundAndRotation() throws {
         XCTAssertTrue(isPad)
         XCUIDevice.shared.orientation = .landscapeLeft
