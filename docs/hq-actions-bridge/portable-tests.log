@@ -1,0 +1,89 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/3] Write sources
+[3/4] Emitting module OtzariaActionCoreTests
+[4/5] Compiling OtzariaActionCoreTests BackendSemanticsTests.swift
+[5/11] C:\Users\DAVID\Code\Maktabah-hq-actions-bridge-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageDiscoveredTests.derived\all-discovered-tests.swift
+[6/12] Write sources
+[8/13] Emitting module OtzariaActionCorePackageDiscoveredTests
+[9/15] Compiling OtzariaActionCorePackageDiscoveredTests OtzariaActionCoreTests.swift
+[10/15] Compiling OtzariaActionCorePackageDiscoveredTests all-discovered-tests.swift
+[11/13] Write Objects.LinkFileList
+[12/13] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (16.96s)
+Test Suite 'Selected tests' started at 2026-11-15 03:26:18.926
+
+Test Suite 'BackendSemanticsTests' started at 2026-11-15 03:26:18.931
+
+Test Case 'BackendSemanticsTests.testActualEmbeddedHandlerFixtures' started at 2026-11-15 03:26:18.931
+
+Test Case 'BackendSemanticsTests.testActualEmbeddedHandlerFixtures' passed (0.024 seconds)
+
+Test Case 'BackendSemanticsTests.testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope' started at 2026-11-15 03:26:18.955
+
+Test Case 'BackendSemanticsTests.testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope' passed (0.0 seconds)
+
+Test Case 'BackendSemanticsTests.testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases' started at 2026-11-15 03:26:18.955
+
+Test Case 'BackendSemanticsTests.testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases' passed (0.001 seconds)
+
+Test Case 'BackendSemanticsTests.testEmbeddedReadinessIsPerOperationAndEpoch' started at 2026-11-15 03:26:18.956
+
+Test Case 'BackendSemanticsTests.testEmbeddedReadinessIsPerOperationAndEpoch' passed (0.0 seconds)
+
+Test Case 'BackendSemanticsTests.testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim' started at 2026-11-15 03:26:18.956
+
+Test Case 'BackendSemanticsTests.testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim' passed (0.0 seconds)
+
+Test Case 'BackendSemanticsTests.testIgnoredModesAndSortsAreRejected' started at 2026-11-15 03:26:18.956
+
+Test Case 'BackendSemanticsTests.testIgnoredModesAndSortsAreRejected' passed (0.0 seconds)
+
+Test Case 'BackendSemanticsTests.testInactiveBackendCannotBecomeAvailable' started at 2026-11-15 03:26:18.956
+
+Test Case 'BackendSemanticsTests.testInactiveBackendCannotBecomeAvailable' passed (0.0 seconds)
+
+Test Case 'BackendSemanticsTests.testInvocationGenerationEpochDeadlineAndCancellation' started at 2026-11-15 03:26:18.957
+
+Test Case 'BackendSemanticsTests.testInvocationGenerationEpochDeadlineAndCancellation' passed (0.001 seconds)
+
+Test Case 'BackendSemanticsTests.testLegacyDownloadedReadingDoesNotEnableOfflineSearch' started at 2026-11-15 03:26:18.958
+
+Test Case 'BackendSemanticsTests.testLegacyDownloadedReadingDoesNotEnableOfflineSearch' passed (0.0 seconds)
+
+Test Case 'BackendSemanticsTests.testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback' started at 2026-11-15 03:26:18.958
+
+Test Case 'BackendSemanticsTests.testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback' passed (0.0 seconds)
+
+Test Case 'BackendSemanticsTests.testOtzariaScopeUsesOnlyProvenCanonicalBookFilters' started at 2026-11-15 03:26:18.958
+
+Test Case 'BackendSemanticsTests.testOtzariaScopeUsesOnlyProvenCanonicalBookFilters' passed (0.0 seconds)
+
+Test Case 'BackendSemanticsTests.testRegistrationDoesNotProveReadiness' started at 2026-11-15 03:26:18.959
+
+Test Case 'BackendSemanticsTests.testRegistrationDoesNotProveReadiness' passed (0.0 seconds)
+
+Test Case 'BackendSemanticsTests.testSourceFeaturesSurviveWithoutEnablingStagedActions' started at 2026-11-15 03:26:18.959
+
+Test Case 'BackendSemanticsTests.testSourceFeaturesSurviveWithoutEnablingStagedActions' passed (0.001 seconds)
+
+Test Case 'BackendSemanticsTests.testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing' started at 2026-11-15 03:26:18.960
+
+Test Case 'BackendSemanticsTests.testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing' passed (0.0 seconds)
+
+Test Suite 'BackendSemanticsTests' passed at 2026-11-15 03:26:18.960
+
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.03 (0.03) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 03:26:18.961
+
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.03 (0.03) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.

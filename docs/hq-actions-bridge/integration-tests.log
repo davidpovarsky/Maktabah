@@ -1,0 +1,3 @@
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-actions-integration-6bzhist3\integration-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-actions-integration-6bzhist3\integration-fixtures.exp
+
+PASS: 20 Integration assertions using real app coordinator/models/protocols and real facade/identity bridge; providers are doubles
