@@ -393,13 +393,48 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
         let zayit = ZayitSearchEngineBridge()
         defer { zayit.close() }
         try zayit.open(paths: paths)
-        let zayitPage = try zayit.search(ZayitSearchRequest(
+        let zayitRequest = ZayitSearchRequest(
             query: "בראשית",
             near: ZayitSearchMatchMode.flexible.nearValue,
             limit: 25,
             offset: 0,
             filters: .init()
+        )
+        let zayitPage = try zayit.search(zayitRequest)
+        guard let firstHit = zayitPage.hits.first, zayitPage.totalHits > 0 else {
+            throw ZayitSearchDistributionError.validationFailed("Zayit bootstrap search returned no actual hits")
+        }
+        func samePage(_ current: ZayitSearchPage, as expected: ZayitSearchPage) -> Bool {
+            current.totalHits == expected.totalHits && current.isLastPage == expected.isLastPage &&
+                current.hits.count == expected.hits.count && zip(current.hits, expected.hits).allSatisfy { current, expected in
+                    current.id == expected.id && current.bookId == expected.bookId &&
+                        current.lineIndex == expected.lineIndex && current.stableBookKey == expected.stableBookKey &&
+                        current.reference == expected.reference
+                }
+        }
+        for repeatIndex in 1...2 {
+            guard samePage(try zayit.search(zayitRequest), as: zayitPage) else {
+                throw ZayitSearchDistributionError.validationFailed("Zayit warm repeat \(repeatIndex) changed IDs, locations, total or last-page state")
+            }
+        }
+        var bookFilter = zayitRequest.filters
+        bookFilter.bookIds = [firstHit.bookId]
+        let scopedPage = try zayit.search(ZayitSearchRequest(
+            query: zayitRequest.query, near: zayitRequest.near,
+            limit: zayitRequest.limit, offset: zayitRequest.offset, filters: bookFilter
         ))
+        guard !scopedPage.hits.isEmpty, scopedPage.totalHits > 0,
+              scopedPage.hits.allSatisfy({ $0.bookId == firstHit.bookId && $0.stableBookKey == firstHit.stableBookKey }) else {
+            throw ZayitSearchDistributionError.validationFailed("Zayit source-book filter lost its own actual matching book")
+        }
+        guard samePage(try zayit.search(zayitRequest), as: zayitPage) else {
+            throw ZayitSearchDistributionError.validationFailed("Zayit query changed after the source-book filter")
+        }
+        zayit.close()
+        try zayit.open(paths: paths)
+        guard samePage(try zayit.search(zayitRequest), as: zayitPage) else {
+            throw ZayitSearchDistributionError.validationFailed("Zayit close/reopen with identical parameters changed IDs, locations, total or last-page state")
+        }
         report.zayitSearchResults = zayitPage.totalHits
     }
 
