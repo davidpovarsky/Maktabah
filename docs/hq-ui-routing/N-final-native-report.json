@@ -102,7 +102,28 @@
   "log_sha256": "0eb885190484a87605cf9124f385374077dbca3b9269aab0a3e67058970c2c11",
   "native_tests_executed": 0,
   "physical_tests_executed": 0,
-  "latest_UIKit_witness_and_UI_test_AppleSDK": "PENDING_NEW_SOURCE_CHECK",
+  "latest_UIKit_witness_and_UI_test_AppleSDK": {
+    "source": "21fd57377f94bade008a4a729aac488fe42c8da6",
+    "run": 43734119718,
+    "hostPackage": "SDK_COMPILE_PASS",
+    "UITestSources": "SDK_COMPILE_PASS",
+    "appIntegration": "NOT_COMPILED",
+    "nativeUITestsExecuted": 0,
+    "appMembership": "PASS",
+    "toolbar": "BUILD_FAILED",
+    "aggregate": "FAIL",
+    "xcode": "Xcode 27.1\nBuild version 27A9275",
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "/Applications/Xcode_27.1.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk",
+    "aggregateUITestWarningCount": 2158,
+    "rawArtifactsSHA256": {
+      "toolbar-sdk-compile.json": "96014da7372929c15bb3d801104956809a446aacfea8f23548236750a365367d",
+      "toolbar-sdk-compile.log": "90b89a3a242d278fda9a8aa7a867c860729bb14b5c97eabc71cde815f42504ce",
+      "ui-acceptance-typecheck.json": "15c82b72eb7c23d33f96555db5568092d0d92f3a5ae61297626a9c4dfff14930",
+      "ui-acceptance-typecheck.log": "6b36935c2b06af0c680b039aeca5d0df8e02c53737a80b8d42511ffe39786c9d",
+      "xcuiautomation-voiceover-sdk.txt": "84145caca5aa765ae190a0a9cf63f71007ff449b9a4218ab259d6338ab621a3b"
+    }
+  },
   "prior_apple_package": {
     "source": "83ac528666d91a139bb0d010f7732144c60460c0",
     "run": 43731461025,
