@@ -130,6 +130,7 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     private let unitModeKey = "otzaria_reader_unit_mode"
     private let lock = NSRecursiveLock()
     private(set) var dbGeneration: UInt64 = 0
+    func generationSnapshot() -> UInt64 { lock.withLock { dbGeneration } }
     private var database: SQLiteDatabase?
     private var openedDatabaseURL: URL?
     private var readingUnitService: OtzariaReadingUnitService?
@@ -245,6 +246,28 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
         let result = work(service)
         guard lock.withLock({ dbGeneration == gen }) else { return nil }
         return result
+    }
+
+    /// Publish reader payloads under the same generation guard as the DB lease.
+    /// SQL/decode and cost estimation remain outside the bridge lock.
+    func withCachedReadingUnit(_ work: (OtzariaReadingUnitService) throws -> OtzariaReadingUnit?) rethrows -> OtzariaReadingUnit? {
+        guard !Task.isCancelled else { return nil }
+        let snapshot = lock.withLock { () -> (OtzariaReadingUnitService, UInt64)? in
+            guard let db = try? requireDatabase() else { return nil }
+            if readingUnitService == nil {
+                readingUnitService = OtzariaReadingUnitService(database: db)
+            }
+            guard let service = readingUnitService else { return nil }
+            return (service, dbGeneration)
+        }
+        guard let (service, generation) = snapshot,
+              let unit = try work(service), !Task.isCancelled else { return nil }
+        let cost = OtzariaReadingUnitSideCache.retainedCost(of: unit)
+        return lock.withLock {
+            guard generation == dbGeneration, !Task.isCancelled else { return nil }
+            OtzariaReadingUnitSideCache.shared.set(unit, mode: unit.mode, cost: cost)
+            return unit
+        }
     }
 
     func withDatabase<T>(_ work: (SQLiteDatabase) throws -> T) throws -> T {

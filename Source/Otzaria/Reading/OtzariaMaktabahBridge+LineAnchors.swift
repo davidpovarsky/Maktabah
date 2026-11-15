@@ -5,32 +5,43 @@ final class OtzariaReadingUnitSideCache: @unchecked Sendable {
 
     private let lock = NSLock()
     private var units: [String: OtzariaReadingUnit] = [:]
+    private var costs: [String: Int] = [:]
     private var lruKeys: [String] = []
     private var currentCost: Int = 0
     private var generation: Int = 0
     private let capacity = 50
-    private let maxCost = 20 * 1024 * 1024 // 20 MB text limit
+    private let maxCost = 20 * 1024 * 1024 // Estimated retained payload bytes, not process RSS.
 
-    func set(_ unit: OtzariaReadingUnit, mode: OtzariaUnitMode) {
+    static func retainedCost(of unit: OtzariaReadingUnit) -> Int {
+        // Strings can retain UTF16 storage; account for anchor text/metadata too.
+        2 * (unit.plainText.utf16.count + unit.html.utf16.count
+            + unit.id.utf16.count + (unit.title?.utf16.count ?? 0) + (unit.heRef?.utf16.count ?? 0)
+            + unit.lineAnchors.reduce(0) { $0 + $1.text.utf16.count + ($1.heRef?.utf16.count ?? 0) })
+            + MemoryLayout<OtzariaReadingUnit>.stride
+            + unit.sourceLineIndices.count * MemoryLayout<Int>.stride
+            + unit.lineAnchors.count * MemoryLayout<OtzariaLineAnchor>.stride
+    }
+
+    func set(_ unit: OtzariaReadingUnit, mode: OtzariaUnitMode, cost suppliedCost: Int? = nil) {
+        guard unit.mode == mode else { return }
+        let cost = suppliedCost ?? Self.retainedCost(of: unit)
+        // Oversized units still reach the reader; simply do not retain them here.
+        guard cost <= maxCost else { return }
         lock.lock()
         defer { lock.unlock() }
 
         let primaryKey = key(generation: generation, bookId: unit.bookId, contentId: unit.startLineIndex, mode: mode)
-        let cost = unit.plainText.utf16.count + unit.html.utf16.count
-
-        if let old = units.removeValue(forKey: primaryKey) {
-            currentCost -= (old.plainText.utf16.count + old.html.utf16.count)
-        }
+        currentCost -= costs[primaryKey] ?? 0
         units[primaryKey] = unit
+        costs[primaryKey] = cost
         currentCost += cost
         touch(primaryKey)
 
         while lruKeys.count > capacity || currentCost > maxCost {
             guard !lruKeys.isEmpty else { break }
             let oldest = lruKeys.removeFirst()
-            if let evicted = units.removeValue(forKey: oldest) {
-                currentCost -= (evicted.plainText.utf16.count + evicted.html.utf16.count)
-            }
+            units.removeValue(forKey: oldest)
+            currentCost -= costs.removeValue(forKey: oldest) ?? 0
         }
     }
 
@@ -44,10 +55,10 @@ final class OtzariaReadingUnitSideCache: @unchecked Sendable {
             return direct
         }
 
-        // Strict range check: only units matching current generation, bookId, and identical mode
+        // Semantic units can have holes or overlapping min/max spans.
         for (k, cached) in units {
             guard cached.bookId == bookId, cached.mode == mode else { continue }
-            if (cached.startLineIndex...cached.endLineIndex).contains(contentId) {
+            if cached.sourceLineIndices.contains(contentId) {
                 touch(k)
                 return cached
             }
@@ -59,9 +70,10 @@ final class OtzariaReadingUnitSideCache: @unchecked Sendable {
         lock.lock()
         defer { lock.unlock() }
         units.removeAll()
+        costs.removeAll()
         lruKeys.removeAll()
         currentCost = 0
-        generation += 1
+        generation &+= 1
     }
 
     private func touch(_ key: String) {
@@ -75,10 +87,6 @@ final class OtzariaReadingUnitSideCache: @unchecked Sendable {
 }
 
 extension OtzariaMaktabahBridge {
-    func cacheReadingUnit(_ unit: OtzariaReadingUnit, mode: OtzariaUnitMode? = nil) {
-        OtzariaReadingUnitSideCache.shared.set(unit, mode: mode ?? unit.mode)
-    }
-
     func cachedReadingUnit(bookId: Int, contentId: Int, mode: OtzariaUnitMode? = nil) -> OtzariaReadingUnit? {
         let requestedMode = mode ?? currentReadingUnitMode
         return OtzariaReadingUnitSideCache.shared.unit(bookId: bookId, contentId: contentId, mode: requestedMode)
@@ -97,20 +105,23 @@ extension OtzariaMaktabahBridge {
     }
 
     func lineAnchor(bookId: Int, contentId: Int, characterIndex: Int) -> OtzariaLineAnchor? {
+        guard !Task.isCancelled else { return nil }
+        let generation = generationSnapshot()
         let lineIndex = resolvedLineIndex(from: contentId)
         let mode = currentReadingUnitMode
         let unit = cachedReadingUnit(bookId: bookId, contentId: lineIndex, mode: mode)
             ?? (Thread.isMainThread ? nil : getReadingUnit(bookId: bookId, containingLineIndex: lineIndex, mode: mode))
-
-        if let unit {
-            cacheReadingUnit(unit, mode: mode)
-        }
 
         guard let unit, !unit.lineAnchors.isEmpty else {
             OtzariaFileLogger.shared.log("[OtzariaMaktabahBridge] lineAnchor missing unit bookId=\(bookId) contentId=\(contentId) lineIndex=\(lineIndex) characterIndex=\(characterIndex)")
             return nil
         }
 
+        guard generation == generationSnapshot(), mode == currentReadingUnitMode else { return nil }
+        return lineAnchor(in: unit, characterIndex: characterIndex)
+    }
+
+    private func lineAnchor(in unit: OtzariaReadingUnit, characterIndex: Int) -> OtzariaLineAnchor? {
         if let anchor = unit.lineAnchors.first(where: { NSLocationInRange(characterIndex, $0.range) }) {
             return anchor
         }
@@ -122,19 +133,26 @@ extension OtzariaMaktabahBridge {
     }
 
     func lineAnchorAsync(bookId: Int, contentId: Int, characterIndex: Int) async -> OtzariaLineAnchor? {
+        guard !Task.isCancelled else { return nil }
         let lineIndex = resolvedLineIndex(from: contentId)
-        if let direct = lineAnchor(bookId: bookId, contentId: lineIndex, characterIndex: characterIndex) {
-            return direct
-        }
         let mode = currentReadingUnitMode
-        let unit = await Task.detached(priority: .userInitiated) { [weak self] () -> OtzariaReadingUnit? in
-            self?.getReadingUnit(bookId: bookId, containingLineIndex: lineIndex, mode: mode)
-        }.value
-        if let unit {
-            cacheReadingUnit(unit, mode: mode)
-            return lineAnchor(bookId: bookId, contentId: lineIndex, characterIndex: characterIndex)
+        let generation = generationSnapshot()
+        if let cached = cachedReadingUnit(bookId: bookId, contentId: lineIndex, mode: mode) {
+            guard generation == generationSnapshot(), mode == currentReadingUnitMode else { return nil }
+            return lineAnchor(in: cached, characterIndex: characterIndex)
         }
-        return nil
+        let worker = Task.detached(priority: .userInitiated) { [weak self] () -> (OtzariaReadingUnit, UInt64)? in
+            guard !Task.isCancelled, let self,
+                  let generation = try? self.withDatabase({ _ in self.generationSnapshot() }),
+                  let unit = self.getReadingUnit(bookId: bookId, containingLineIndex: lineIndex, mode: mode) else { return nil }
+            return (unit, generation)
+        }
+        let result = await withTaskCancellationHandler(operation: {
+            await worker.value
+        }, onCancel: { worker.cancel() })
+        guard !Task.isCancelled, currentReadingUnitMode == mode,
+              let (unit, loadedGeneration) = result, loadedGeneration == generationSnapshot() else { return nil }
+        return lineAnchor(in: unit, characterIndex: characterIndex)
     }
 
     private func distance(from index: Int, to range: NSRange) -> Int {

@@ -1,5 +1,9 @@
 import Foundation
 
+enum OtzariaReadingUnitError: Error {
+    case inconsistentSourceLines
+}
+
 final class OtzariaReadingUnitService {
     private struct TocEntry {
         let id: Int
@@ -50,6 +54,7 @@ final class OtzariaReadingUnitService {
         let entriesById: [Int: TocEntry]
         let childrenByParentId: [Int: [Int]]
         let leafEntryByLineIndex: [Int: Int]
+        let lineIndices: [Int]
     }
 
     private let db: SQLiteDatabase
@@ -58,6 +63,11 @@ final class OtzariaReadingUnitService {
     private var summariesCache: [String: [UnitSummary]] = [:]
     private var contentCapabilities: OtzariaDatabaseCapabilities?
     private var contentDecoder: OtzariaLineContentDecoder?
+    private var cacheGeneration: UInt64 = 0
+    private var indexCacheCost = 0
+    private var summariesCacheCost = 0
+    private let maxIndexCacheCost = 100_000
+    private let maxSummariesCacheCost = 200_000
 
     init(database: SQLiteDatabase) {
         self.db = database
@@ -69,69 +79,52 @@ final class OtzariaReadingUnitService {
             summariesCache.removeAll()
             contentCapabilities = nil
             contentDecoder = nil
+            indexCacheCost = 0
+            summariesCacheCost = 0
+            cacheGeneration &+= 1
         }
     }
 
     func descriptor(bookId: Int, containingLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
         let summaries = try unitSummaries(bookId: bookId, mode: mode)
-        guard let summary = summaries.first(where: { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex })
-                ?? summaries.last(where: { $0.startLineIndex <= lineIndex })
-                ?? summaries.first(where: { $0.startLineIndex > lineIndex }) else {
-            return nil
-        }
-        let thresholdStart = summary.startLineIndex
-        let thresholdEnd = summary.endLineIndex
-        let prev = summaries.last(where: { $0.endLineIndex < thresholdStart })?.startLineIndex
-        let next = summaries.first(where: { $0.startLineIndex > thresholdEnd })?.startLineIndex
-        return summary.toDescriptor(previousStart: prev, nextStart: next)
+        guard let index = summaries.firstIndex(where: { $0.sourceLineIndices.contains(lineIndex) }) else { return nil }
+        return descriptor(at: index, in: summaries)
     }
 
     func firstDescriptor(bookId: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
-        let summaries = try unitSummaries(bookId: bookId, mode: mode)
-        var summary = summaries.first
-        if summary == nil && mode != .line {
-            summary = try unitSummaries(bookId: bookId, mode: .line).first
+        var summaries = try unitSummaries(bookId: bookId, mode: mode)
+        if summaries.isEmpty && mode != .line {
+            summaries = try unitSummaries(bookId: bookId, mode: .line)
         }
-        guard let summary else {
-            return nil
-        }
-        let next = summaries.first(where: { $0.startLineIndex > summary.endLineIndex })?.startLineIndex
-        return summary.toDescriptor(previousStart: nil, nextStart: next)
+        return summaries.isEmpty ? nil : descriptor(at: 0, in: summaries)
     }
 
     func nextDescriptor(bookId: Int, afterLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
         let summaries = try unitSummaries(bookId: bookId, mode: mode)
-        let current = summaries.first { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex }
-        let threshold = current?.endLineIndex ?? lineIndex
-        guard let next = summaries.first(where: { $0.startLineIndex > threshold }) else {
-            if mode != .line {
-                let lineSummaries = try unitSummaries(bookId: bookId, mode: .line)
-                return lineSummaries.first(where: { $0.startLineIndex > lineIndex })?.toDescriptor()
-            }
-            return nil
-        }
-        let prev = summaries.last(where: { $0.endLineIndex < next.startLineIndex })?.startLineIndex
-        let nextNext = summaries.first(where: { $0.startLineIndex > next.endLineIndex })?.startLineIndex
-        return next.toDescriptor(previousStart: prev, nextStart: nextNext)
+        let current = summaries.firstIndex { $0.sourceLineIndices.contains(lineIndex) }
+        guard let next = current.map({ $0 + 1 }) ?? summaries.firstIndex(where: { $0.startLineIndex > lineIndex }),
+              summaries.indices.contains(next) else { return nil }
+        return descriptor(at: next, in: summaries)
     }
 
     func previousDescriptor(bookId: Int, beforeLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
         let summaries = try unitSummaries(bookId: bookId, mode: mode)
-        let current = summaries.first { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex }
-        let threshold = current?.startLineIndex ?? lineIndex
-        guard let prev = summaries.last(where: { $0.endLineIndex < threshold }) else {
-            if mode != .line {
-                let lineSummaries = try unitSummaries(bookId: bookId, mode: .line)
-                return lineSummaries.last(where: { $0.endLineIndex < lineIndex })?.toDescriptor()
-            }
-            return nil
-        }
-        let prevPrev = summaries.last(where: { $0.endLineIndex < prev.startLineIndex })?.startLineIndex
-        let next = summaries.first(where: { $0.startLineIndex > prev.endLineIndex })?.startLineIndex
-        return prev.toDescriptor(previousStart: prevPrev, nextStart: next)
+        let current = summaries.firstIndex { $0.sourceLineIndices.contains(lineIndex) }
+        guard let previous = current.map({ $0 - 1 }) ?? summaries.lastIndex(where: { $0.endLineIndex < lineIndex }),
+              summaries.indices.contains(previous) else { return nil }
+        return descriptor(at: previous, in: summaries)
+    }
+
+    private func descriptor(at index: Int, in summaries: [UnitSummary]) -> OtzariaReadingUnitDescriptor {
+        summaries[index].toDescriptor(
+            previousStart: index > 0 ? summaries[index - 1].startLineIndex : nil,
+            nextStart: index + 1 < summaries.count ? summaries[index + 1].startLineIndex : nil
+        )
     }
 
     func buildUnit(from descriptor: OtzariaReadingUnitDescriptor) throws -> OtzariaReadingUnit? {
+        let indices = Array(Set(descriptor.sourceLineIndices)).sorted()
+        guard let start = indices.first, let end = indices.last else { return nil }
         let summary = UnitSummary(
             key: descriptor.id,
             bookId: descriptor.bookId,
@@ -139,9 +132,9 @@ final class OtzariaReadingUnitService {
             tocEntryId: descriptor.tocEntryId,
             title: descriptor.title,
             level: descriptor.level,
-            startLineIndex: descriptor.startLineIndex,
-            endLineIndex: descriptor.endLineIndex,
-            sourceLineIndices: descriptor.sourceLineIndices,
+            startLineIndex: start,
+            endLineIndex: end,
+            sourceLineIndices: indices,
             includeDescendants: descriptor.includeDescendants
         )
         return try buildUnit(from: summary)
@@ -167,55 +160,27 @@ final class OtzariaReadingUnitService {
 
     func firstReadingUnit(bookId: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
         let start = Date()
-        let summary = try unitSummaries(bookId: bookId, mode: mode).first
-            ?? (mode == .line ? nil : try unitSummaries(bookId: bookId, mode: .line).first)
-        var unit = try summary.flatMap(buildUnit(from:))
-        if unit == nil, mode != .line {
-            log("fallback \(mode.storageValue)->line firstReadingUnit bookId=\(bookId)")
-            unit = try unitSummaries(bookId: bookId, mode: .line).first.flatMap(buildUnit(from:))
-        }
+        let unit = try firstDescriptor(bookId: bookId, mode: mode).flatMap(buildUnit(from:))
         log("firstReadingUnit bookId=\(bookId) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(unitSummary(unit)) durationMs=\(elapsedMs(start))")
         return unit
     }
 
     func nextReadingUnit(bookId: Int, afterLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
         let start = Date()
-        let summaries = try unitSummaries(bookId: bookId, mode: mode)
-        let current = summaries.first { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex }
-        let threshold = current?.endLineIndex ?? lineIndex
-        var unit = try summaries.first(where: { $0.startLineIndex > threshold }).flatMap(buildUnit(from:))
-        if unit == nil, mode != .line {
-            log("fallback \(mode.storageValue)->line nextReadingUnit bookId=\(bookId) lineIndex=\(lineIndex)")
-            let lineSummaries = try unitSummaries(bookId: bookId, mode: .line)
-            unit = try lineSummaries.first(where: { $0.startLineIndex > lineIndex }).flatMap(buildUnit(from:))
-        }
+        let unit = try nextDescriptor(bookId: bookId, afterLineIndex: lineIndex, mode: mode).flatMap(buildUnit(from:))
         log("nextReadingUnit bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(unitSummary(unit)) durationMs=\(elapsedMs(start))")
         return unit
     }
 
     func previousReadingUnit(bookId: Int, beforeLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
         let start = Date()
-        let summaries = try unitSummaries(bookId: bookId, mode: mode)
-        let current = summaries.first { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex }
-        let threshold = current?.startLineIndex ?? lineIndex
-        var unit = try summaries.last(where: { $0.endLineIndex < threshold }).flatMap(buildUnit(from:))
-        if unit == nil, mode != .line {
-            log("fallback \(mode.storageValue)->line previousReadingUnit bookId=\(bookId) lineIndex=\(lineIndex)")
-            let lineSummaries = try unitSummaries(bookId: bookId, mode: .line)
-            unit = try lineSummaries.last(where: { $0.endLineIndex < lineIndex }).flatMap(buildUnit(from:))
-        }
+        let unit = try previousDescriptor(bookId: bookId, beforeLineIndex: lineIndex, mode: mode).flatMap(buildUnit(from:))
         log("previousReadingUnit bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(unitSummary(unit)) durationMs=\(elapsedMs(start))")
         return unit
     }
 
     private func readingUnitWithoutFallback(bookId: Int, containingLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
-        let summaries = try unitSummaries(bookId: bookId, mode: mode)
-        guard let summary = summaries.first(where: { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex })
-                ?? summaries.last(where: { $0.startLineIndex <= lineIndex })
-                ?? summaries.first(where: { $0.startLineIndex > lineIndex }) else {
-            return nil
-        }
-        return try buildUnit(from: summary)
+        try descriptor(bookId: bookId, containingLineIndex: lineIndex, mode: mode).flatMap(buildUnit(from:))
     }
 
     private func fallbackUnit(bookId: Int, lineIndex: Int, failedMode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
@@ -233,9 +198,10 @@ final class OtzariaReadingUnitService {
     }
 
     private func unitSummaries(bookId: Int, mode: OtzariaUnitMode) throws -> [UnitSummary] {
+        try Task.checkCancellation()
         let start = Date()
         let cacheKey = "\(bookId):\(mode.storageValue)"
-        let cached = cacheLock.withLock { summariesCache[cacheKey] }
+        let (cached, generation) = cacheLock.withLock { (summariesCache[cacheKey], cacheGeneration) }
         if let cached { return cached }
 
         let summaries: [UnitSummary]
@@ -248,9 +214,17 @@ final class OtzariaReadingUnitService {
             summaries = try chapterSummaries(bookId: bookId)
         }
 
+        try Task.checkCancellation()
+        let cost = summaries.count + summaries.reduce(0) { $0 + $1.sourceLineIndices.count + ($1.title?.utf16.count ?? 0) }
         cacheLock.withLock {
-            if summariesCache.count > 50 { summariesCache.removeAll() }
+            guard generation == cacheGeneration, cost <= maxSummariesCacheCost else { return }
+            if summariesCache[cacheKey] != nil { return }
+            if summariesCache.count >= 50 || summariesCacheCost + cost > maxSummariesCacheCost {
+                summariesCache.removeAll()
+                summariesCacheCost = 0
+            }
             summariesCache[cacheKey] = summaries
+            summariesCacheCost += cost
         }
         log("unitSummaries bookId=\(bookId) mode=\(mode.storageValue) count=\(summaries.count) durationMs=\(elapsedMs(start))")
         return summaries
@@ -263,6 +237,7 @@ final class OtzariaReadingUnitService {
             WHERE bookId = ?
             ORDER BY lineIndex
         """, parameters: [bookId]) { row in
+            try Task.checkCancellation()
             let lineIndex = row.int(at: 0)
             return UnitSummary(
                 key: "line:\(lineIndex)",
@@ -318,6 +293,7 @@ final class OtzariaReadingUnitService {
         // Root entry handling: identify roots with children and direct lines <= 3
         var rootTitleLinesByRootId: [Int: [Int]] = [:]
         for (entryId, entry) in index.entriesById where entry.parentId == nil {
+            try Task.checkCancellation()
             let children = index.childrenByParentId[entryId] ?? []
             if !children.isEmpty {
                 let directLines = index.leafEntryByLineIndex.compactMap { lineIndex, leafId in
@@ -334,6 +310,7 @@ final class OtzariaReadingUnitService {
         var heldRootLinesByRootId: [Int: [Int]] = [:]
 
         for (lineIndex, leafId) in index.leafEntryByLineIndex.sorted(by: { $0.key < $1.key }) {
+            try Task.checkCancellation()
             if rootTitleLinesByRootId[leafId] != nil {
                 heldRootLinesByRootId[leafId, default: []].append(lineIndex)
                 continue
@@ -364,7 +341,7 @@ final class OtzariaReadingUnitService {
             }
         }
 
-        return orderedEntryIds.compactMap { entryId in
+        var summaries = orderedEntryIds.compactMap { entryId -> UnitSummary? in
             guard let entry = index.entriesById[entryId],
                   let sourceLineIndices = lineIndicesByUnitId[entryId],
                   let start = sourceLineIndices.min(),
@@ -384,7 +361,16 @@ final class OtzariaReadingUnitService {
                 sourceLineIndices: sourceLineIndices.sorted(),
                 includeDescendants: includeDescendants
             )
-        }.sorted { $0.startLineIndex < $1.startLineIndex }
+        }
+        // Partial or dangling TOC mappings must never hide real source lines.
+        let mappedLines = Set(summaries.flatMap(\.sourceLineIndices))
+        for lineIndex in index.lineIndices where !mappedLines.contains(lineIndex) {
+            try Task.checkCancellation()
+            summaries.append(UnitSummary(key: "line:\(lineIndex)", bookId: bookId, mode: mode,
+                tocEntryId: nil, title: nil, level: nil, startLineIndex: lineIndex,
+                endLineIndex: lineIndex, sourceLineIndices: [lineIndex], includeDescendants: false))
+        }
+        return summaries.sorted { $0.startLineIndex < $1.startLineIndex }
     }
 
     private func rootEntryId(for entryId: Int, index: BookIndex) -> Int {
@@ -442,14 +428,19 @@ final class OtzariaReadingUnitService {
     }
 
     private func buildUnit(from summary: UnitSummary) throws -> OtzariaReadingUnit? {
+        try Task.checkCancellation()
         let lines = try sourceLines(for: summary)
         guard !lines.isEmpty else { return nil }
+        guard lines.map(\.lineIndex) == summary.sourceLineIndices else {
+            throw OtzariaReadingUnitError.inconsistentSourceLines
+        }
         let html = lines.map(\.html).joined(separator: "\n")
         var plainSegments: [String] = []
         var lineAnchors: [OtzariaLineAnchor] = []
         var currentOffset = 0
 
         for line in lines {
+            try Task.checkCancellation()
             let plain = line.html.otsariaPlainText
             plainSegments.append(plain)
             lineAnchors.append(
@@ -496,6 +487,7 @@ final class OtzariaReadingUnitService {
     }
 
     private func sourceLines(for summary: UnitSummary) throws -> [SourceLine] {
+        try Task.checkCancellation()
         let start = Date()
         let lines: [SourceLine]
         let access = try lineContentAccess()
@@ -515,6 +507,7 @@ final class OtzariaReadingUnitService {
             // Discontiguous lines: chunked IN query
             var allLines: [SourceLine] = []
             for chunkStart in stride(from: 0, to: summary.sourceLineIndices.count, by: 900) {
+                try Task.checkCancellation()
                 let chunk = Array(summary.sourceLineIndices[chunkStart..<min(chunkStart + 900, summary.sourceLineIndices.count)])
                 let placeholders = Array(repeating: "?", count: chunk.count).joined(separator: ",")
                 var parameters: [Any] = [summary.bookId]
@@ -540,7 +533,8 @@ final class OtzariaReadingUnitService {
     }
 
     private func mapSourceLine(_ row: SQLiteRow, decoder: OtzariaLineContentDecoder) throws -> SourceLine {
-        SourceLine(
+        try Task.checkCancellation()
+        return SourceLine(
             id: row.int(at: 0),
             lineIndex: row.int(at: 1),
             html: try decoder.decode(row: row, at: 2),
@@ -552,22 +546,23 @@ final class OtzariaReadingUnitService {
         projection: OtzariaLineContentProjection,
         decoder: OtzariaLineContentDecoder
     ) {
-        let (cachedCaps, cachedDec) = cacheLock.withLock {
-            (contentCapabilities, contentDecoder)
+        try Task.checkCancellation()
+        let (cachedCaps, cachedDec, generation) = cacheLock.withLock {
+            (contentCapabilities, contentDecoder, cacheGeneration)
         }
         let capabilities: OtzariaDatabaseCapabilities
         if let cachedCaps {
             capabilities = cachedCaps
         } else {
             capabilities = try OtzariaDatabaseCapabilities(database: db)
-            cacheLock.withLock { contentCapabilities = capabilities }
+            cacheLock.withLock { if generation == cacheGeneration { contentCapabilities = capabilities } }
         }
         let decoder: OtzariaLineContentDecoder
         if let cachedDec {
             decoder = cachedDec
         } else {
             decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
-            cacheLock.withLock { contentDecoder = decoder }
+            cacheLock.withLock { if generation == cacheGeneration { contentDecoder = decoder } }
         }
         return (
             OtzariaLineContentCompatibility.projection(capabilities: capabilities),
@@ -576,7 +571,8 @@ final class OtzariaReadingUnitService {
     }
 
     private func bookIndex(bookId: Int) throws -> BookIndex {
-        let cached = cacheLock.withLock { indexCache[bookId] }
+        try Task.checkCancellation()
+        let (cached, generation) = cacheLock.withLock { (indexCache[bookId], cacheGeneration) }
         if let cached { return cached }
         let start = Date()
         let schema = try OtzariaTOCSchemaCompatibility.projection(in: db)
@@ -589,7 +585,8 @@ final class OtzariaReadingUnitService {
             WHERE te.bookId = ?
             ORDER BY COALESCE(\(schema.resolvedLineIndex), 0), te.id
         """, parameters: [bookId]) { row in
-            TocEntry(
+            try Task.checkCancellation()
+            return TocEntry(
                 id: row.int(at: 0),
                 parentId: row.isNull(at: 1) ? nil : row.int(at: 1),
                 text: row.string(at: 2) ?? "",
@@ -609,27 +606,40 @@ final class OtzariaReadingUnitService {
 
         let mappings = try db.fetch(query: """
             SELECT l.lineIndex, lt.tocEntryId
-            FROM line_toc lt
-            JOIN line l ON l.id = lt.lineId
+            FROM line l
+            LEFT JOIN line_toc lt ON lt.lineId = l.id
             WHERE l.bookId = ?
-            ORDER BY l.lineIndex
+            ORDER BY l.lineIndex, lt.tocEntryId
         """, parameters: [bookId]) { row in
-            (lineIndex: row.int(at: 0), tocEntryId: row.int(at: 1))
+            try Task.checkCancellation()
+            return (lineIndex: row.int(at: 0), tocEntryId: row.isNull(at: 1) ? nil : row.int(at: 1))
         }
 
         var leafEntryByLineIndex: [Int: Int] = [:]
         for mapping in mappings {
-            leafEntryByLineIndex[mapping.lineIndex] = mapping.tocEntryId
+            try Task.checkCancellation()
+            guard let entryId = mapping.tocEntryId, let entry = entriesById[entryId] else { continue }
+            if let existingId = leafEntryByLineIndex[mapping.lineIndex],
+               let existing = entriesById[existingId], existing.level >= entry.level { continue }
+            leafEntryByLineIndex[mapping.lineIndex] = entryId
         }
 
         let index = BookIndex(
             entriesById: entriesById,
             childrenByParentId: childrenByParentId,
-            leafEntryByLineIndex: leafEntryByLineIndex
+            leafEntryByLineIndex: leafEntryByLineIndex,
+            lineIndices: Array(Set(mappings.map(\.lineIndex))).sorted()
         )
+        let cost = entries.reduce(0) { $0 + 4 + $1.text.utf16.count } + index.lineIndices.count * 3
         cacheLock.withLock {
-            if indexCache.count > 20 { indexCache.removeAll() }
+            guard generation == cacheGeneration, cost <= maxIndexCacheCost else { return }
+            if indexCache[bookId] != nil { return }
+            if indexCache.count >= 20 || indexCacheCost + cost > maxIndexCacheCost {
+                indexCache.removeAll()
+                indexCacheCost = 0
+            }
             indexCache[bookId] = index
+            indexCacheCost += cost
         }
         log("bookIndex bookId=\(bookId) tocEntries=\(entries.count) lineTocMappings=\(mappings.count) durationMs=\(elapsedMs(start))")
         return index

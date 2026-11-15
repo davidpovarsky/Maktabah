@@ -1,0 +1,10 @@
+bridge: PASS — actual publication/reset/conversion/adapter methods; cancellation; async exact anchor; multiline locator; reset during mapping; malformed locators rejected
+2026-11-15 02:30:57.549 bridge.exe[10900:6954] [Otzaria] getFirstReadingUnit start bookId=103 mode=paragraph
+2026-11-15 02:30:57.550 bridge.exe[10900:6954] [Otzaria] getFirstReadingUnit done bookId=103 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=1
+2026-11-15 02:30:57.550 bridge.exe[10900:6954] [Otzaria] makeBookContent unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 plainChars=16 htmlChars=16
+2026-11-15 02:30:57.552 bridge.exe[10900:8580] [Otzaria] getReadingUnit start bookId=103 lineIndex=0 mode=paragraph
+2026-11-15 02:30:57.552 bridge.exe[10900:8580] [Otzaria] getReadingUnit done bookId=103 lineIndex=0 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=0
+2026-11-15 02:30:57.553 bridge.exe[10900:6b1c] [Otzaria] getFirstReadingUnit start bookId=103 mode=paragraph
+2026-11-15 02:30:57.553 bridge.exe[10900:6b1c] [Otzaria] getFirstReadingUnit done bookId=103 mode=paragraph result=nil unit=nil durationMs=0
+2026-11-15 02:30:57.553 bridge.exe[10900:8580] [Otzaria] getFirstReadingUnit start bookId=103 mode=paragraph
+2026-11-15 02:30:57.553 bridge.exe[10900:8580] [Otzaria] getFirstReadingUnit done bookId=103 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=0
