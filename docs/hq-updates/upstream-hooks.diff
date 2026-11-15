@@ -1,0 +1,220 @@
+diff --git a/Source/Features/Library/Database/Updater/BookUpdateManager.swift b/Source/Features/Library/Database/Updater/BookUpdateManager.swift
+index e041494b..1a426536 100644
+--- a/Source/Features/Library/Database/Updater/BookUpdateManager.swift
++++ b/Source/Features/Library/Database/Updater/BookUpdateManager.swift
+@@ -39,0 +40 @@ final class BookUpdateManager: Sendable {
++        var safetyContext: MaktabahBookUpdateSafety.Context? = nil
+@@ -75,0 +77,2 @@ final class BookUpdateManager: Sendable {
++        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
++        try MaktabahBookUpdateSafety.requireStagingCapacity(entry.fileSize)
+@@ -76,0 +80,3 @@ final class BookUpdateManager: Sendable {
++        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
++        try MaktabahBookUpdateSafety.validateBookIdentity(expected: entry.bkid, actual: metadata.bkid, archive: metadata.archive)
++        guard metadata.bVer.map(Int64.init) == entry.versionName else { throw MaktabahBookUpdateSafety.Failure.incompatibleSchema }
+@@ -79,0 +86 @@ final class BookUpdateManager: Sendable {
++        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+@@ -86 +93,2 @@ final class BookUpdateManager: Sendable {
+-            workingDirectory: workingDirectory
++            workingDirectory: workingDirectory,
++            safetyContext: safetyContext
+@@ -161,0 +170 @@ final class BookUpdateManager: Sendable {
++        try MaktabahBookUpdateSafety.requireCurrent()
+@@ -199,0 +209 @@ final class BookUpdateManager: Sendable {
++        guard (try? MaktabahBookUpdateSafety.requireCurrent()) != nil else { return }
+@@ -212,0 +223 @@ final class BookUpdateManager: Sendable {
++        try MaktabahBookUpdateSafety.requireCurrent()
+diff --git a/Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift b/Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift
+index 10fe299b..ae7820c1 100644
+--- a/Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift
++++ b/Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift
+@@ -19,0 +20 @@ extension BookUpdateManager {
++        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
+@@ -26 +27,2 @@ extension BookUpdateManager {
+-        let items = entries.map { createUpdateItem(from: $0) }
++        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
++        let items = try entries.map { try createUpdateItem(from: $0) }
+@@ -36 +38 @@ extension BookUpdateManager {
+-    private func createUpdateItem(from entry: BookIndexEntry) -> BookUpdateItem {
++    private func createUpdateItem(from entry: BookIndexEntry) throws -> BookUpdateItem {
+@@ -38 +40 @@ extension BookUpdateManager {
+-        let versionState = (try? getBookVersionState(bookId: entry.bkid)) ?? .unknownVersion
++        let versionState = try getBookVersionState(bookId: entry.bkid)
+@@ -70 +72 @@ extension BookUpdateManager {
+-            return .unknownVersion
++            throw MaktabahBookUpdateSafety.Failure.missingFile
+@@ -72 +74,2 @@ extension BookUpdateManager {
+-        let db = try openDatabase(path: mainPath)
++        try MaktabahBookUpdateSafety.requireCurrent()
++        let db = try MaktabahBookUpdateSafety.openReadOnly(path: mainPath)
+@@ -75,4 +77,0 @@ extension BookUpdateManager {
+-        guard let versionColumn = resolveVersionColumn(in: db) else {
+-            return .unknownVersion
+-        }
+-
+@@ -80 +79 @@ extension BookUpdateManager {
+-            "SELECT `\(versionColumn)` FROM `0bok` WHERE `bkid` = ? LIMIT 1;"
++            "SELECT `bVer` FROM `0bok` WHERE `bkid` = ? LIMIT 1;"
+@@ -83 +82 @@ extension BookUpdateManager {
+-            return .unknownVersion
++            throw sqliteError(db, message: "Unable to read the installed book version.")
+@@ -89,3 +88,3 @@ extension BookUpdateManager {
+-        guard sqlite3_step(stmt) == SQLITE_ROW else {
+-            return .notInLibrary
+-        }
++        let rc = sqlite3_step(stmt)
++        if rc == SQLITE_DONE { return .notInLibrary }
++        guard rc == SQLITE_ROW else { throw sqliteError(db, message: "Unable to read the installed book version.") }
+@@ -102,0 +102 @@ extension BookUpdateManager {
++        try MaktabahBookUpdateSafety.requireCurrent()
+@@ -133,0 +134 @@ extension BookUpdateManager {
++        try MaktabahBookUpdateSafety.validateCatalogText(csv)
+@@ -139,2 +140,3 @@ extension BookUpdateManager {
+-        return dataRows.compactMap { columns in
+-            guard columns.count >= 5 else { return nil }
++        return try dataRows.filter { !$0.allSatisfy { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty } }.compactMap { columns in
++            try MaktabahBookUpdateSafety.validateCatalogRow(columns)
++            guard columns.count >= 6 else { return nil }
+diff --git a/Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift b/Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift
+index 5d5a8b1c..2bb69671 100644
+--- a/Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift
++++ b/Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift
+@@ -17,0 +18 @@ extension BookUpdateManager {
++        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
+@@ -27,0 +29 @@ extension BookUpdateManager {
++        try MaktabahBookUpdateSafety.validateBookIdentity(expected: metadata.bkid, actual: metadata.bkid, archive: metadata.archive)
+@@ -59 +61,2 @@ extension BookUpdateManager {
+-            workingDirectory: workingDirectory
++            workingDirectory: workingDirectory,
++            safetyContext: safetyContext
+@@ -82 +85,4 @@ extension BookUpdateManager {
+-        guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId) else { return }
++        try MaktabahBookUpdateSafety.requireArchive(archiveId)
++        guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId) else {
++            throw MaktabahBookUpdateSafety.Failure.invalidArchive
++        }
+@@ -110,0 +117,10 @@ extension BookUpdateManager {
++        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
++        guard stagedUpdate.safetyContext == safetyContext else {
++            throw MaktabahBookUpdateSafety.Failure.changedLibrary
++        }
++        try MaktabahBookUpdateSafety.validateBookIdentity(expected: stagedUpdate.entry.bkid, actual: stagedUpdate.metadata.bkid, archive: stagedUpdate.metadata.archive)
++        if !isOfflineImport, stagedUpdate.metadata.bVer.map(Int64.init) != stagedUpdate.entry.versionName {
++            throw MaktabahBookUpdateSafety.Failure.incompatibleSchema
++        }
++        try MaktabahBookUpdateSafety.requireArchive(stagedUpdate.metadata.archive)
++        return try await MaktabahBookUpdateSafety.$operationContext.withValue(safetyContext) {
+@@ -134,0 +151,2 @@ extension BookUpdateManager {
++        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
++
+@@ -140,0 +159 @@ extension BookUpdateManager {
++            try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+@@ -148,0 +168 @@ extension BookUpdateManager {
++        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+@@ -161,0 +182 @@ extension BookUpdateManager {
++        }
+@@ -182,0 +204 @@ extension BookUpdateManager {
++        try MaktabahBookUpdateSafety.requireCurrent()
+@@ -497 +519,7 @@ extension BookUpdateManager {
+-        else { return }
++        else { throw MaktabahBookUpdateSafety.Failure.invalidArchive }
++
++        try MaktabahBookUpdateSafety.requireArchive(archiveId)
++        for source in [sourceURL, ftsSourceURL] {
++            let sourceDB = try MaktabahBookUpdateSafety.openReadOnly(path: source.path)
++            sqlite3_close_v2(sourceDB)
++        }
+@@ -509,3 +537,3 @@ extension BookUpdateManager {
+-        try db.safeAttachDatabase(path: sourceURL.path, schema: "source_db")
+-        try db.safeAttachDatabase(path: ftsSourceURL.path, schema: "fts_source_db")
+-        try db.safeAttachDatabase(path: ftsDBPath, schema: "fts_db")
++        try db.safeAttachDatabase(path: MaktabahBookUpdateSafety.existingDatabaseURI(path: sourceURL.path, readOnly: true), schema: "source_db")
++        try db.safeAttachDatabase(path: MaktabahBookUpdateSafety.existingDatabaseURI(path: ftsSourceURL.path, readOnly: true), schema: "fts_source_db")
++        try db.safeAttachDatabase(path: MaktabahBookUpdateSafety.existingDatabaseURI(path: ftsDBPath), schema: "fts_db")
+diff --git a/Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift b/Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift
+index 1ebd757b..7727f5dc 100644
+--- a/Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift
++++ b/Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift
+@@ -13,0 +14 @@ extension BookUpdateManager {
++        try MaktabahBookUpdateSafety.requireExistingWritableFile(path)
+@@ -15 +16 @@ extension BookUpdateManager {
+-        let flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX
++        let flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_URI
+@@ -24 +25 @@ extension BookUpdateManager {
+-            let error = sqliteError(db, message: "Gagal membuka database \(path)")
++            let error = sqliteError(db, message: "Unable to open the existing book update database.")
+@@ -63 +64 @@ extension BookUpdateManager {
+-            throw sqliteError(db, message: "Gagal prepare SQL statement.")
++            throw sqliteError(db, message: "Unable to prepare book update SQL.")
+@@ -68 +69 @@ extension BookUpdateManager {
+-            throw sqliteError(db, message: "Gagal eksekusi SQL statement.")
++            throw sqliteError(db, message: "Unable to apply book update SQL.")
+@@ -74 +75 @@ extension BookUpdateManager {
+-            throw sqliteError(db, message: "SQL gagal dieksekusi.")
++            throw sqliteError(db, message: "Book update SQL failed.")
+@@ -143 +144 @@ extension BookUpdateManager {
+-            code: -5,
++            code: db.map { Int(sqlite3_extended_errcode($0)) } ?? Int(SQLITE_ERROR),
+diff --git a/Source/Features/Library/Updates/BookUpdateView.swift b/Source/Features/Library/Updates/BookUpdateView.swift
+index df466461..d8162f60 100644
+--- a/Source/Features/Library/Updates/BookUpdateView.swift
++++ b/Source/Features/Library/Updates/BookUpdateView.swift
+@@ -217 +217 @@ struct UpdateView: View {
+-        .disabled(viewModel.isUpdating || viewModel.selectedCount == 0)
++        .disabled(viewModel.isUpdating || viewModel.selectedCount == 0 || viewModel.updateFailureRequiresReview)
+diff --git a/Source/Features/Library/ViewModel/BookUpdateVM.swift b/Source/Features/Library/ViewModel/BookUpdateVM.swift
+index bcd0632b..9e59b5f0 100644
+--- a/Source/Features/Library/ViewModel/BookUpdateVM.swift
++++ b/Source/Features/Library/ViewModel/BookUpdateVM.swift
+@@ -17,0 +18 @@ final class BookUpdateViewModel: @unchecked Sendable {
++    var updateFailureRequiresReview = false
+@@ -50 +51,2 @@ final class BookUpdateViewModel: @unchecked Sendable {
+-                size += item.fileSize
++                let (sum, overflow) = size.addingReportingOverflow(item.fileSize)
++                size = overflow ? Int64.max : sum
+@@ -84,0 +87,2 @@ final class BookUpdateViewModel: @unchecked Sendable {
++                availableUpdates = []
++                updateSelectionSummary()
+@@ -118,0 +123 @@ final class BookUpdateViewModel: @unchecked Sendable {
++        guard !isUpdating, !updateFailureRequiresReview else { return }
+@@ -132 +136,0 @@ final class BookUpdateViewModel: @unchecked Sendable {
+-                BookUpdateManager.shared.cleanupWorkingDirectory()
+@@ -140,0 +145,7 @@ final class BookUpdateViewModel: @unchecked Sendable {
++            let safetyContext = try await MaktabahBookUpdateSafety.preflight()
++            try MaktabahBookUpdateSafety.requireStagingCapacity(totalSelectedSize)
++            defer {
++                if (try? MaktabahBookUpdateSafety.requireCurrent(safetyContext)) != nil {
++                    BookUpdateManager.shared.cleanupWorkingDirectory()
++                }
++            }
+@@ -142 +153,2 @@ final class BookUpdateViewModel: @unchecked Sendable {
+-            let authIndexMap = Dictionary(uniqueKeysWithValues: authEntries.map { ($0.authId, $0) })
++            let authIndexMap = Dictionary(authEntries.map { ($0.authId, $0) }, uniquingKeysWith: { _, latest in latest })
++            try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+@@ -154,0 +167,7 @@ final class BookUpdateViewModel: @unchecked Sendable {
++            guard stagedUpdates.count == selectedItems.count else {
++                updateFailureRequiresReview = true
++                progressMessage = "The download was incomplete. No book updates were applied. Reopen Books Updates after checking the library."
++                return
++            }
++            try await MaktabahBookUpdateSafety.revalidate(safetyContext)
++
+@@ -164,0 +184 @@ final class BookUpdateViewModel: @unchecked Sendable {
++            updateFailureRequiresReview = true
+@@ -193,0 +214 @@ final class BookUpdateViewModel: @unchecked Sendable {
++            if updateFailureRequiresReview { break }
+@@ -228,0 +250 @@ final class BookUpdateViewModel: @unchecked Sendable {
++            updateFailureRequiresReview = true
+diff --git a/Source/Features/Library/iOS/iOSLibraryView.swift b/Source/Features/Library/iOS/iOSLibraryView.swift
+index ede65ecf..46f20217 100644
+--- a/Source/Features/Library/iOS/iOSLibraryView.swift
++++ b/Source/Features/Library/iOS/iOSLibraryView.swift
+@@ -37 +37 @@ struct iOSLibraryView: View {
+-                UpdateView()
++                if MaktabahBookUpdateSafety.isMaktabahActive { UpdateView() }
+@@ -40 +40 @@ struct iOSLibraryView: View {
+-                viewModel.checkBookUpdatesPeriodically()
++                if MaktabahBookUpdateSafety.isMaktabahActive { viewModel.checkBookUpdatesPeriodically() }
+@@ -202,0 +203 @@ struct iOSLibraryView: View {
++            if MaktabahBookUpdateSafety.isMaktabahActive {
+@@ -213,0 +215 @@ struct iOSLibraryView: View {
++            }
