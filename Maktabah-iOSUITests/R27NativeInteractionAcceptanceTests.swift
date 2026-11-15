@@ -154,7 +154,7 @@ final class R27NativePadTests: R27NativeUIBase {
         XCTAssertEqual(nativeBar.count, 1, "Identify the actual wired native toolbar")
         XCTAssertTrue(nativeBar.firstMatch.frame.insetBy(dx: -1, dy: -1).contains(launcher.frame))
         tapInWindow(launcher)
-        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        let palette = app.otherElements["reader-library-command-palette"]
         XCTAssertTrue(palette.waitForExistence(timeout: 15))
         let input = palette.textFields.firstMatch
         tapInWindow(input)
