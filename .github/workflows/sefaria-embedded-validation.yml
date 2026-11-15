@@ -133,9 +133,13 @@ jobs:
           inputs = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text())
           inputs.pop('application_source_sha')
           inputs.pop('application_trees')
+          # A package resource-layout change must not restore an older copied
+          # Resources directory into a newly processed/signable bundle.
+          package_manifests = subprocess.check_output(['git', 'ls-files', '-z', 'Source/**/Package.swift']).decode().split('\0')
+          package_layout = b''.join(git(path) for path in package_manifests if path)
           native = (subprocess.check_output(['xcodebuild', '-version']) + git('Vendor') + git('Maktabah.xcodeproj')
-                    + pathlib.Path('Podfile').read_bytes() + json.dumps(inputs, sort_keys=True).encode())
-          prefix = 'runtime27-derived-v1-' + hashlib.sha256(native).hexdigest() + '-'
+                    + pathlib.Path('Podfile').read_bytes() + json.dumps(inputs, sort_keys=True).encode() + package_layout)
+          prefix = 'runtime27-derived-v2-' + hashlib.sha256(native).hexdigest() + '-'
           key = prefix + hashlib.sha256(git('Source') + git('Maktabah-iOSUITests')).hexdigest()
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write('prefix=' + prefix + '\nkey=' + key + '\n')
