@@ -8,8 +8,8 @@ import OtzariaUIRouting
     func testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog() async throws {
         let id = UIDestinationID(rawValue: "native.history")!
         let service = NativeIntentService(discover: { [
-            .init(backend: .otzaria, destination: id, title: "History"),
-            .init(backend: .sefaria, destination: id, title: "History")
+            .init(backend: .otzaria, destination: id, title: "History", sceneID: UIStableID(rawValue: "scene.A")!),
+            .init(backend: .sefaria, destination: id, title: "History", sceneID: UIStableID(rawValue: "scene.A")!)
         ] }, navigate: { _ in .requiresForeground })
         let values = try await service.destinations(matching: "hist")
         XCTAssertEqual(values.count, 2); XCTAssertNotEqual(values[0].id, values[1].id)
@@ -17,7 +17,7 @@ import OtzariaUIRouting
     }
     func testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged() async throws {
         let state = IntentTestState(), id = UIDestinationID(rawValue: "native.history")!
-        let service = NativeIntentService(discover: { state.available ? [.init(backend: .otzaria, destination: id, title: "History")] : [] },
+        let service = NativeIntentService(discover: { state.available ? [.init(backend: .otzaria, destination: id, title: "History", sceneID: UIStableID(rawValue: "scene.A")!)] : [] },
             navigate: { _ in state.calls += 1; return .queued(handle: "pending_native") })
         let entity = try await service.destinations()[0]
         let result = try await service.open(identifier: entity.id)
@@ -28,7 +28,7 @@ import OtzariaUIRouting
         XCTAssertEqual(state.calls, 1)
     }
     func testDuplicateLiveEntitiesFailClosed() async throws {
-        let value = NativeIntentService.Destination(backend: .otzaria, destination: UIDestinationID(rawValue: "native.history")!, title: "History")
+        let value = NativeIntentService.Destination(backend: .otzaria, destination: UIDestinationID(rawValue: "native.history")!, title: "History", sceneID: UIStableID(rawValue: "scene.A")!)
         let service = NativeIntentService(discover: { [value, value] }, navigate: { _ in .requiresForeground })
         do { _ = try await service.destinations(); XCTFail("duplicate catalog") }
         catch { XCTAssertEqual((error as? UIRouteError)?.code, "invalid_live_intent_catalog") }
@@ -45,5 +45,16 @@ import OtzariaUIRouting
             catch { XCTAssertEqual((error as? NativeIntentOutcome)?.status, expected) }
         }
     }
+    func testSameBackendDestinationsBindExactUserSelectedWindow() async throws {
+        let destination = UIDestinationID(rawValue: "native.history")!, state = IntentTestState()
+        let a = NativeIntentService.Destination(backend: .otzaria, destination: destination, title: "History A", sceneID: UIStableID(rawValue: "scene.A")!)
+        let b = NativeIntentService.Destination(backend: .otzaria, destination: destination, title: "History B", sceneID: UIStableID(rawValue: "scene.B")!)
+        let service = NativeIntentService(discover: { [a, b] }, navigate: { target in
+            state.selectedScene = target.sceneID; return .requiresForeground
+        })
+        XCTAssertNotEqual(a.id, b.id)
+        _ = try await service.open(identifier: b.id)
+        XCTAssertEqual(state.selectedScene, b.sceneID)
+    }
 }
-@MainActor private final class IntentTestState { var available = true; var calls = 0 }
+@MainActor private final class IntentTestState { var available = true; var calls = 0; var selectedScene: UIStableID? }

@@ -43,6 +43,8 @@ ui_sources = ["Maktabah-iOSUITests/MaktabahUITestBase.swift", "Maktabah-iOSUITes
               "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
               "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
               "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift"]
+if Path("Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift").is_file():
+    ui_sources.append("Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift")
 compiler_options = command.copy()
 command.extend(ui_sources)
 result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
@@ -98,6 +100,7 @@ native_host_code = 0
 native_host = Path("Source/ChavrusaText/UIRoutingHost")
 if (native_host / "Package.swift").is_file():
     native_host_command = ["xcrun", "swift", "build", "--package-path", str(native_host),
+                           "--build-system", "native",
                            "--triple", "arm64-apple-ios26.0-simulator", "--sdk", str(sdk),
                            "-j", "2", "-v", "-Xswiftc", "-strict-concurrency=complete",
                            "-Xswiftc", "-target", "-Xswiftc", "arm64-apple-ios26.0-simulator"]

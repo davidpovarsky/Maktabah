@@ -1,0 +1,281 @@
+[0/1] Planning build
+Building for debugging...
+[0/13] Write swift-version-2807070033DA82CF.txt
+[1/14] Write sources
+[2/14] Copying Resources
+[3/14] Write sources
+[5/13] Emitting module ChavrusaUIRoutingHost
+[6/14] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[7/15] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[9/16] Emitting module ChavrusaUIRoutingHostTests
+[10/17] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[11/18] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[12/18] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[13/19] Write sources
+[15/20] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[16/22] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[17/22] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[18/23] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[19/24] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[20/24] Write sources
+[22/25] Emitting module ChavrusaUIRoutingHostPackageTests
+[23/26] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[24/26] Write Objects.LinkFileList
+[25/26] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (48.41s)
+Test Suite 'All tests' started at 2026-11-15 15:03:24.281
+
+Test Suite 'debug.xctest' started at 2026-11-15 15:03:24.286
+
+Test Suite 'NativeIntentServiceTests' started at 2026-11-15 15:03:24.286
+
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' started at 2026-11-15 15:03:24.287
+
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' passed (0.005 seconds)
+
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' started at 2026-11-15 15:03:24.291
+
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' passed (0.0 seconds)
+
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' started at 2026-11-15 15:03:24.292
+
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' passed (0.001 seconds)
+
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' started at 2026-11-15 15:03:24.293
+
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' passed (0.0 seconds)
+
+Test Suite 'NativeIntentServiceTests' passed at 2026-11-15 15:03:24.293
+
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.006 (0.006) seconds
+
+Test Suite 'NativePresentationObserverTests' started at 2026-11-15 15:03:24.293
+
+Test Case 'NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation' started at 2026-11-15 15:03:24.293
+
+Test Case 'NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation' passed (0.137 seconds)
+
+Test Case 'NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation' started at 2026-11-15 15:03:24.430
+
+Test Case 'NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation' passed (0.184 seconds)
+
+Test Case 'NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost' started at 2026-11-15 15:03:24.615
+
+Test Case 'NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost' passed (0.055 seconds)
+
+Test Case 'NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest' started at 2026-11-15 15:03:24.670
+
+Test Case 'NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest' passed (0.103 seconds)
+
+Test Case 'NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored' started at 2026-11-15 15:03:24.773
+
+Test Case 'NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored' passed (0.05 seconds)
+
+Test Suite 'NativePresentationObserverTests' passed at 2026-11-15 15:03:24.823
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.53 (0.53) seconds
+
+Test Suite 'NativeRouteInboxTests' started at 2026-11-15 15:03:24.824
+
+Test Case 'NativeRouteInboxTests.testCancellationBoundToSubject' started at 2026-11-15 15:03:24.824
+
+Test Case 'NativeRouteInboxTests.testCancellationBoundToSubject' passed (0.001 seconds)
+
+Test Case 'NativeRouteInboxTests.testExpiredInputNeverQueues' started at 2026-11-15 15:03:24.824
+
+Test Case 'NativeRouteInboxTests.testExpiredInputNeverQueues' passed (0.0 seconds)
+
+Test Case 'NativeRouteInboxTests.testFiniteCapacityAndRevocationReleasePrivateState' started at 2026-11-15 15:03:24.825
+
+Test Case 'NativeRouteInboxTests.testFiniteCapacityAndRevocationReleasePrivateState' passed (0.001 seconds)
+
+Test Case 'NativeRouteInboxTests.testReplayIsIdempotentButConflictingDestinationFails' started at 2026-11-15 15:03:24.825
+
+Test Case 'NativeRouteInboxTests.testReplayIsIdempotentButConflictingDestinationFails' passed (0.001 seconds)
+
+Test Case 'NativeRouteInboxTests.testSameIDOtherSceneLifetimeCannotTakeOrReplace' started at 2026-11-15 15:03:24.826
+
+Test Case 'NativeRouteInboxTests.testSameIDOtherSceneLifetimeCannotTakeOrReplace' passed (0.001 seconds)
+
+Test Suite 'NativeRouteInboxTests' passed at 2026-11-15 15:03:24.827
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+
+Test Suite 'NativeRouteURLTests' started at 2026-11-15 15:03:24.827
+
+Test Case 'NativeRouteURLTests.testDebugSchemeIsExplicitAndReleaseDoesNotAcceptIt' started at 2026-11-15 15:03:24.827
+
+Test Case 'NativeRouteURLTests.testDebugSchemeIsExplicitAndReleaseDoesNotAcceptIt' passed (0.049 seconds)
+
+Test Case 'NativeRouteURLTests.testEmptyProductionRegistryDoesNotInstallFixtureRoutes' started at 2026-11-15 15:03:24.876
+
+Test Case 'NativeRouteURLTests.testEmptyProductionRegistryDoesNotInstallFixtureRoutes' passed (0.264 seconds)
+
+Test Case 'NativeRouteURLTests.testLegacyLinksAreDelegatedUnchanged' started at 2026-11-15 15:03:25.140
+
+Test Case 'NativeRouteURLTests.testLegacyLinksAreDelegatedUnchanged' passed (0.163 seconds)
+
+Test Case 'NativeRouteURLTests.testPrivateRestorationCannotEnterPublicURL' started at 2026-11-15 15:03:25.303
+
+Test Case 'NativeRouteURLTests.testPrivateRestorationCannotEnterPublicURL' passed (0.054 seconds)
+
+Test Case 'NativeRouteURLTests.testPublicHebrewReferenceRoundTripUsesCanonicalCodec' started at 2026-11-15 15:03:25.357
+
+Test Case 'NativeRouteURLTests.testPublicHebrewReferenceRoundTripUsesCanonicalCodec' passed (0.13 seconds)
+
+Test Case 'NativeRouteURLTests.testRejectsHostVersionPathAndCredentials' started at 2026-11-15 15:03:25.487
+
+Test Case 'NativeRouteURLTests.testRejectsHostVersionPathAndCredentials' passed (0.134 seconds)
+
+Test Case 'NativeRouteURLTests.testRejectsPaddingInvalidEncodingAndOversizedURL' started at 2026-11-15 15:03:25.621
+
+Test Case 'NativeRouteURLTests.testRejectsPaddingInvalidEncodingAndOversizedURL' passed (0.089 seconds)
+
+Test Case 'NativeRouteURLTests.testRejectsUnknownAndContradictoryParameters' started at 2026-11-15 15:03:25.710
+
+Test Case 'NativeRouteURLTests.testRejectsUnknownAndContradictoryParameters' passed (0.083 seconds)
+
+Test Suite 'NativeRouteURLTests' passed at 2026-11-15 15:03:25.794
+
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.966 (0.966) seconds
+
+Test Suite 'NativeSceneDirectoryTests' started at 2026-11-15 15:03:25.794
+
+Test Case 'NativeSceneDirectoryTests.testAuthorityIsReadForEveryObservationAcrossThreeBackends' started at 2026-11-15 15:03:25.794
+
+Test Case 'NativeSceneDirectoryTests.testAuthorityIsReadForEveryObservationAcrossThreeBackends' passed (0.002 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testCurrentTargetNeedsTrustedExactSceneAndNeverChoosesFirst' started at 2026-11-15 15:03:25.796
+
+Test Case 'NativeSceneDirectoryTests.testCurrentTargetNeedsTrustedExactSceneAndNeverChoosesFirst' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission' started at 2026-11-15 15:03:25.797
+
+Test Case 'NativeSceneDirectoryTests.testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission' passed (0.045 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testDuplicateMountAndFiniteSceneAdmission' started at 2026-11-15 15:03:25.842
+
+Test Case 'NativeSceneDirectoryTests.testDuplicateMountAndFiniteSceneAdmission' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testEmbeddedWithoutEpochFailsUnavailable' started at 2026-11-15 15:03:25.842
+
+Test Case 'NativeSceneDirectoryTests.testEmbeddedWithoutEpochFailsUnavailable' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testExpiredDeadlineDoesNotStartAuthorityRead' started at 2026-11-15 15:03:25.843
+
+Test Case 'NativeSceneDirectoryTests.testExpiredDeadlineDoesNotStartAuthorityRead' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testInFlightAdmissionIsBoundedAndCancellationReleasesIt' started at 2026-11-15 15:03:25.843
+
+Test Case 'NativeSceneDirectoryTests.testInFlightAdmissionIsBoundedAndCancellationReleasesIt' passed (0.002 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testMissingSceneNeverFallsBackToAnotherWindow' started at 2026-11-15 15:03:25.846
+
+Test Case 'NativeSceneDirectoryTests.testMissingSceneNeverFallsBackToAnotherWindow' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNativeABANotificationDuringAwaitIsStale' started at 2026-11-15 15:03:25.846
+
+Test Case 'NativeSceneDirectoryTests.testNativeABANotificationDuringAwaitIsStale' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNativeChangeDuringAuthorityAwaitFails' started at 2026-11-15 15:03:25.847
+
+Test Case 'NativeSceneDirectoryTests.testNativeChangeDuringAuthorityAwaitFails' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNativeStateChangeAdvancesRevision' started at 2026-11-15 15:03:25.848
+
+Test Case 'NativeSceneDirectoryTests.testNativeStateChangeAdvancesRevision' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNotMountedIsQueuedAndInventoryNeverBecomesSupported' started at 2026-11-15 15:03:25.849
+
+Test Case 'NativeSceneDirectoryTests.testNotMountedIsQueuedAndInventoryNeverBecomesSupported' passed (0.027 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testOldLeaseCannotRemoveRemountedSceneOrReuseRevision' started at 2026-11-15 15:03:25.875
+
+Test Case 'NativeSceneDirectoryTests.testOldLeaseCannotRemoveRemountedSceneOrReuseRevision' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testRevocationAfterAuthorityAwaitFails' started at 2026-11-15 15:03:25.876
+
+Test Case 'NativeSceneDirectoryTests.testRevocationAfterAuthorityAwaitFails' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount' started at 2026-11-15 15:03:25.877
+
+Test Case 'NativeSceneDirectoryTests.testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testTwoScenesAndStableReadOnlyRevisions' started at 2026-11-15 15:03:25.877
+
+Test Case 'NativeSceneDirectoryTests.testTwoScenesAndStableReadOnlyRevisions' passed (0.001 seconds)
+
+Test Suite 'NativeSceneDirectoryTests' passed at 2026-11-15 15:03:25.878
+
+	 Executed 16 tests, with 0 failures (0 unexpected) in 0.084 (0.084) seconds
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' started at 2026-11-15 15:03:25.878
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testBackendChangeAfterDispatchPreservesEffectUncertainty' started at 2026-11-15 15:03:25.878
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testBackendChangeAfterDispatchPreservesEffectUncertainty' passed (0.085 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCancellationAfterDispatchNeverClaimsNoEffect' started at 2026-11-15 15:03:25.963
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCancellationAfterDispatchNeverClaimsNoEffect' passed (0.084 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGuardThenExactVisibleReceipt' started at 2026-11-15 15:03:26.048
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGuardThenExactVisibleReceipt' passed (0.085 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testForegroundLossInvalidatesContextAndOldLeaseCannotRemoveReplacement' started at 2026-11-15 15:03:26.133
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testForegroundLossInvalidatesContextAndOldLeaseCannotRemoveReplacement' passed (0.086 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testMissingCanonicalScopeNeverMutatesNativeUI' started at 2026-11-15 15:03:26.219
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testMissingCanonicalScopeNeverMutatesNativeUI' passed (0.083 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRepeatedRequestDoesNotDispatchAgainOrReuseOldCompletion' started at 2026-11-15 15:03:26.303
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRepeatedRequestDoesNotDispatchAgainOrReuseOldCompletion' passed (0.111 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRevocationDuringVisibleWaitCannotBecomeCompletion' started at 2026-11-15 15:03:26.414
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRevocationDuringVisibleWaitCannotBecomeCompletion' passed (0.083 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testWrongVisibleSurfaceDoesNotAcknowledgeSameRequest' started at 2026-11-15 15:03:26.497
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:44: error: NativeSceneNavigationOrchestratorTests.testWrongVisibleSurfaceDoesNotAcknowledgeSameRequest : failed - Wrong native surface completed
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testWrongVisibleSurfaceDoesNotAcknowledgeSameRequest' failed (0.096 seconds)
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' failed at 2026-11-15 15:03:26.593
+
+	 Executed 8 tests, with 1 failure (0 unexpected) in 0.714 (0.714) seconds
+
+Test Suite 'NativeSurfaceStateTests' started at 2026-11-15 15:03:26.593
+
+Test Case 'NativeSurfaceStateTests.testMatchingNativeProjectionUsesOnlyTransportMetadataFromRequest' started at 2026-11-15 15:03:26.593
+
+Test Case 'NativeSurfaceStateTests.testMatchingNativeProjectionUsesOnlyTransportMetadataFromRequest' passed (0.058 seconds)
+
+Test Case 'NativeSurfaceStateTests.testSameRequestWithWrongNativeDestinationPresentationOrFocusCannotAcknowledge' started at 2026-11-15 15:03:26.651
+
+Test Case 'NativeSurfaceStateTests.testSameRequestWithWrongNativeDestinationPresentationOrFocusCannotAcknowledge' passed (0.06 seconds)
+
+Test Suite 'NativeSurfaceStateTests' passed at 2026-11-15 15:03:26.711
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.117 (0.117) seconds
+
+Test Suite 'debug.xctest' failed at 2026-11-15 15:03:26.711
+
+	 Executed 48 tests, with 1 failure (0 unexpected) in 2.422 (2.422) seconds
+
+Test Suite 'All tests' failed at 2026-11-15 15:03:26.711
+
+	 Executed 48 tests, with 1 failure (0 unexpected) in 2.422 (2.422) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

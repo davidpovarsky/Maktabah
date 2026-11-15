@@ -10,9 +10,11 @@ public final class NativeIntentService {
         public let backend: ActionBackendID
         public let destination: UIDestinationID
         public let title: String
-        public var id: String { backend.rawValue + ":" + destination.rawValue }
-        public init(backend: ActionBackendID, destination: UIDestinationID, title: String) {
+        public let sceneID: UIStableID
+        public var id: String { backend.rawValue + ":" + sceneID.rawValue + ":" + destination.rawValue }
+        public init(backend: ActionBackendID, destination: UIDestinationID, title: String, sceneID: UIStableID) {
             self.backend = backend; self.destination = destination; self.title = title
+            self.sceneID = sceneID
         }
     }
     public typealias Discover = @MainActor @Sendable () async throws -> [Destination]
@@ -37,7 +39,7 @@ public final class NativeIntentService {
     /// Re-resolve stale system entities against the current authorized catalog
     /// before handing off. The orchestrator reauthorizes at native commit.
     public func open(identifier: String) async throws -> UISceneAcknowledgement {
-        guard identifier.utf8.count <= 256 else { throw UIRouteError(.failed, "invalid_intent_entity") }
+        guard identifier.utf8.count <= 512 else { throw UIRouteError(.failed, "invalid_intent_entity") }
         let matches = try await destinations(identifiers: [identifier])
         guard matches.count == 1, let target = matches.first else { throw UIRouteError(.staleState, "intent_entity_no_longer_available") }
         return try await navigate(target)

@@ -12,9 +12,11 @@ public final class NativeSceneDirectory: UIDestinationEligibilityPort {
         public let isMounted: Bool
         public let visibleRoute: RouteSpec?
         public let surface: NativeSurfaceState?
-        public init(isForeground: Bool, isMounted: Bool, visibleRoute: RouteSpec?, surface: NativeSurfaceState? = nil) {
+        public let identity: NativeSceneIdentity?
+        public init(isForeground: Bool, isMounted: Bool, visibleRoute: RouteSpec?, surface: NativeSurfaceState? = nil, identity: NativeSceneIdentity? = nil) {
             self.isForeground = isForeground; self.isMounted = isMounted; self.visibleRoute = visibleRoute
             self.surface = surface
+            self.identity = identity
         }
     }
     public struct Lease: Sendable, Equatable {
@@ -100,6 +102,23 @@ public final class NativeSceneDirectory: UIDestinationEligibilityPort {
 
     public var mountedSceneCount: Int { entries.count }
     public var pendingObservationCount: Int { activeObservations }
+
+    /// Immediately before Core's synchronous guard. The caller supplies the
+    /// current snapshot read from the same retained synchronous S authority.
+    public func synchronousScene(sceneID: UIStableID, context: ActionExecutionContext, backend: ActionBackendSnapshot) throws -> UISceneSnapshot {
+        try Task.checkCancellation()
+        guard var entry = entries[sceneID] else { throw UIRouteError(.unavailable, "scene_missing") }
+        try entry.validate(context)
+        let observation = try entry.observe()
+        guard observation.isForeground else { throw UIRouteError(.requiresForeground, "exact_foreground_scene_required") }
+        guard observation.isMounted else { throw UIRouteError(.uiQueued, "scene_not_mounted") }
+        if backend.backend == .sefariaEmbedded, backend.rpcEpoch == nil { throw UIRouteError(.unavailable, "rpc_epoch_unavailable") }
+        if entry.observation != observation || entry.backend != backend {
+            entry.revision = try advance(); entry.observation = observation; entry.backend = backend
+            entries[sceneID] = entry
+        }
+        return .init(sceneID: sceneID, revision: entry.revision, backendSnapshot: backend, visibleRoute: observation.visibleRoute)
+    }
 
     private func advance() throws -> UInt64 {
         guard nextRevision < UInt64.max else { throw UIRouteError(.unavailable, "scene_revision_exhausted") }
