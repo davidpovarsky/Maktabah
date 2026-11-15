@@ -16,6 +16,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- `LibrarySearchPage.total: Int` alone cannot establish genuine zero after source mapping: raw rows may have been dropped and an Elasticsearch total may be a lower bound. Preserve optional raw-hit/mapping/relation evidence at the existing provider boundary. Legacy Action zero requires explicit source `eq`, zero raw rows and complete mapping; absent precision stays unknown.
+
 - Action discovery must avoid `OtzariaTantivySearchRepository.engine`/`documentCount` when the engine is unopened: construction may write an index. Use `observedOpenIndexDocumentCount` with its profile/database/meta/identity stamp, then combine it with canonical artifact/engine and expected production count validation. A cached successful query alone does not establish current installed-index readiness.
 
 - The exact-9401 blob gate passed the 11001 sidebar even though TOC navigation ownership was missing. The native-sidebar repair now adds composition mutations alongside blob identity: inactive navigation trees must be unmounted, the original TOC must own its stack/search, and the existing public split must request a visible native toggle and width-qualified tiling. Page drag is confined to the page-control strip so it cannot compete with native edge/list gestures. These checks remain static; physical iPad geometry and reader continuity still require owner acceptance.
