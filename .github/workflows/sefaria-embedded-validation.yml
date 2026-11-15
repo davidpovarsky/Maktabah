@@ -122,6 +122,20 @@ jobs:
         if: ${{ inputs.runtime27_mode == 'ui' }}
         with:
           ruby-version: '3.3'
+      - name: Read source-pinned Zayit build mode
+        id: zayit_source_mode
+        if: ${{ inputs.runtime27_mode == 'ui' }}
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib
+          rebuild = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text()).get('rebuild_zayit_framework', False)
+          assert type(rebuild) is bool
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('rebuild=' + str(rebuild).lower() + '\n')
+          PY
+      - name: Use Rust only for the reviewed matching Zayit build
+        if: ${{ steps.zayit_source_mode.outputs.rebuild == 'true' }}
+        uses: dtolnay/rust-toolchain@stable
       - name: Key disposable compiler cache by real SDK and native inputs
         id: runtime27_cache_key
         if: ${{ inputs.runtime27_mode == 'ui' }}
@@ -137,8 +151,9 @@ jobs:
           # Resources directory into a newly processed/signable bundle.
           package_manifests = subprocess.check_output(['git', 'ls-files', '-z', 'Source/**/Package.swift']).decode().split('\0')
           package_layout = b''.join(git(path) for path in package_manifests if path)
+          rust = subprocess.check_output(['rustc', '-Vv']) if inputs.get('rebuild_zayit_framework') else b''
           native = (subprocess.check_output(['xcodebuild', '-version']) + git('Vendor') + git('Maktabah.xcodeproj')
-                    + pathlib.Path('Podfile').read_bytes() + json.dumps(inputs, sort_keys=True).encode() + package_layout)
+                    + pathlib.Path('Podfile').read_bytes() + json.dumps(inputs, sort_keys=True).encode() + package_layout + rust)
           prefix = 'runtime27-derived-v2-' + hashlib.sha256(native).hexdigest() + '-'
           key = prefix + hashlib.sha256(git('Source') + git('Maktabah-iOSUITests')).hexdigest()
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
@@ -191,6 +206,7 @@ jobs:
             build/hq-stage2/ExpoModulesProvider.swift
             build/hq-stage2/resolved-Podfile.lock
             build/hq-stage2/privacy-dependency-inputs/
+            build/hq-stage2/rebuilt-zayit/
           if-no-files-found: error
 
   hq-stage2-focused:
@@ -220,6 +236,19 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - name: Read source-pinned Zayit build mode
+        id: zayit_source_mode
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib
+          rebuild = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text()).get('rebuild_zayit_framework', False)
+          assert type(rebuild) is bool
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('rebuild=' + str(rebuild).lower() + '\n')
+          PY
+      - name: Use Rust only for the reviewed matching Zayit build
+        if: ${{ steps.zayit_source_mode.outputs.rebuild == 'true' }}
+        uses: dtolnay/rust-toolchain@stable
       - name: Compile exact integrated app without signing
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -233,6 +262,7 @@ jobs:
           path: |
             build/hq-stage2/result.json
             build/hq-stage2/*.log
+            build/hq-stage2/rebuilt-zayit/
             build/hq-stage2/generated-pods-project.diff
             build/hq-stage2/resolved-Podfile.lock
             build/hq-stage2/actual-source-inputs.json
