@@ -1,0 +1,8 @@
+FAIL actual initializer publishes coverage after original registration
+FAIL actual observed setter brackets real reference publication
+FAIL actual selection setter brackets publication
+FAIL actual Observation modify accessor preserves append notifications
+FAIL same UUID target replacement still traverses actual hook
+FAIL actual nil selection is synchronously published
+FAIL actual isolated deinit retires owner without retaining it
+ASSERTIONS=7 FAILURES=7 PORTABLE_SHELLS_NOT_APPLE_SDK

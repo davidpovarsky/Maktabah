@@ -1,0 +1,39 @@
+{
+  "authorization": "Explicit human response: לאשר את שני ה־hooks המדויקים",
+  "authorizationQuestionId": "call_e39159e852d34d99920c48d3fb1ac6bb:0",
+  "beforeCommit": "f2b4ea3a6b0646330ebdd07d1ae4726800e960a1",
+  "scope": [
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "originalBlob": "e6f86d69a93b6f757f755b718c5353089fcd3c2e",
+      "patchSHA256": "3ec16b615de1600c4870613ac3bc85b037809251f826711ad711bd21e4e900f2",
+      "appliedExact": true,
+      "newWorkingBlob": "17ac03d083571da1c5abcb033facd23140dcc8d6"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "originalBlob": "4b63d11478d895920de0c991662b6aeffb24a077",
+      "patchSHA256": "8695e10c4cea62a391bc4f54412eea1d0988490dd95039a1cd9f3abe555860a8",
+      "appliedExact": true,
+      "newWorkingBlob": "7268aeec79c448c9fc452a2169c42fc50a8030f6"
+    }
+  ],
+  "changedSourceFiles": [
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+    "Source/UI/iOS/Views/iPadLayout.swift"
+  ],
+  "publicBindingsEnabled": false,
+  "automaticFutureMountApplied": false,
+  "nativeSDKTests": "NOT_RUN_YET",
+  "nativeRunRetry": false,
+  "releaseOrUserDataChanges": false,
+  "recordedUTC": "2026-11-15T20:52:50.027291+00:00",
+  "managerPortableHookChecks": "7actual extracted hook assertions RED7fail/GREEN7pass;strictSwift6 warnings-as-errors;realObservation/native dependencies explicit shells",
+  "appleDevtoolsPortableTypecheck": {
+    "authority": "local Swift compiler",
+    "diagnostics": "",
+    "status": "passed"
+  },
+  "AppleSDK": "NOT_RUN; connectedDesktopCommander host Linux, Sentinel host Windows; toolkitremoteXcodeoperations dispatchGHA so not invoked implicitly",
+  "noNewNativeRuns": true
+}

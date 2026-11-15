@@ -1,0 +1,9 @@
+C:\Users\DAVID\AppData\Local\Temp\approved-native-hooks-4zhxp2eh\before.swift:103:18: error: weak variable 'weakOwner' was never mutated; consider changing to 'let' constant [#WeakMutability]
+101 |               "actual nil selection is synchronously published")
+102 |         StudyWorkspaceNavigationAdapter.events = []
+103 |         weak var weakOwner = owner
+    |                  `- error: weak variable 'weakOwner' was never mutated; consider changing to 'let' constant [#WeakMutability]
+104 |         owner = nil
+105 |         check(weakOwner == nil && StudyWorkspaceNavigationAdapter.events == ["owner-deinit"],
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>

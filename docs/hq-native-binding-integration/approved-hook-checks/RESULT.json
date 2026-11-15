@@ -1,0 +1,33 @@
+{
+  "scope": "Actual property/initializer/deinit bodies and real portable Observation; native dependent classes are explicit shells",
+  "base": "f2b4ea3a6b0646330ebdd07d1ae4726800e960a1",
+  "AppleSDK": "NOT_RUN",
+  "results": {
+    "before": {
+      "bodyHashes": {
+        "reader": "869ed8582bfc4aecca57b84f146999f79b230e5cb8996f40f000f8db6a44f272",
+        "tabs": "8176086689f082d0b5e54d3d680ed9273ea8dd57cd1d2eeda5491bb749941d77",
+        "selection": "a7301c73c8420f79028794b73c04ce711674623b67d374ebb95312d1443a1868",
+        "initializer": "02d19484da4625e1edc7358fac7d285e9d555b32d0712a37ceba67b6e11135e3",
+        "destructor": "1930b56ce4833d5c9991251864fa3a28d33638fd0bf4d3c78130c01254fa07ff"
+      },
+      "generatedSHA256": "72927864dfea822f83164c641524f60ba51f7370272cff3cf549353866de6dd3",
+      "compileExit": 0,
+      "runExit": 1,
+      "output": "FAIL actual initializer publishes coverage after original registration\r\nFAIL actual observed setter brackets real reference publication\r\nFAIL actual selection setter brackets publication\r\nFAIL actual Observation modify accessor preserves append notifications\r\nFAIL same UUID target replacement still traverses actual hook\r\nFAIL actual nil selection is synchronously published\r\nFAIL actual isolated deinit retires owner without retaining it\r\nASSERTIONS=7 FAILURES=7 PORTABLE_SHELLS_NOT_APPLE_SDK\r\n"
+    },
+    "after": {
+      "bodyHashes": {
+        "reader": "869ed8582bfc4aecca57b84f146999f79b230e5cb8996f40f000f8db6a44f272",
+        "tabs": "46335b1ef49180e4c1a8bffd310892774ee271c453b5691bb39a45179663dd90",
+        "selection": "3355c9a9c811b9f118c76d3a8536b9e2d3a4cce8494134878783cd04176740ec",
+        "initializer": "903989393b09fda8665e14d4e388f3d1999cb10a341e39d2945948c0545a429e",
+        "destructor": "65938028b8f1ef5568074d781068b636cf99652ba3d074b355dcd2f3959ab01d"
+      },
+      "generatedSHA256": "ad37cbd6dc66e708f873978dc4cff5ceaee0cf953afb8908ebb068cb0bebb5ef",
+      "compileExit": 0,
+      "runExit": 0,
+      "output": "PASS actual initializer publishes coverage after original registration\r\nPASS actual observed setter brackets real reference publication\r\nPASS actual selection setter brackets publication\r\nPASS actual Observation modify accessor preserves append notifications\r\nPASS same UUID target replacement still traverses actual hook\r\nPASS actual nil selection is synchronously published\r\nPASS actual isolated deinit retires owner without retaining it\r\nASSERTIONS=7 FAILURES=0 PORTABLE_SHELLS_NOT_APPLE_SDK\r\n"
+    }
+  }
+}

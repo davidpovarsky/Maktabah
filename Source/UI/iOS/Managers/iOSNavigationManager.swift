@@ -39,8 +39,14 @@ class iOSNavigationManager: BackendSwitchParticipant {
     var authorViewModel = NarratorViewModel()
     var annotationViewModel = AnnotationViewModel()
 
-    var openTabs: [ReaderTab] = []
-    var activeTabId: UUID?
+    var openTabs: [ReaderTab] = [] {
+        willSet { StudyWorkspaceNavigationAdapter.nativeMappingTabsWillChange(self, to: newValue) }
+        didSet { StudyWorkspaceNavigationAdapter.nativeMappingDidChange(self) }
+    }
+    var activeTabId: UUID? {
+        willSet { StudyWorkspaceNavigationAdapter.nativeMappingSelectionWillChange(self, to: newValue) }
+        didSet { StudyWorkspaceNavigationAdapter.nativeMappingDidChange(self) }
+    }
     var showingTabsList: Bool = false
 
     var activeTab: ReaderTab? {
@@ -60,9 +66,11 @@ class iOSNavigationManager: BackendSwitchParticipant {
         unifiedSearchSession.searchViewModel = searchViewModel
         setupObservers()
         BackendCoordinator.shared.addSwitchParticipant(self)
+        StudyWorkspaceNavigationAdapter.nativeMappingOwnerInitialized(self)
     }
 
-    deinit {
+    isolated deinit {
+        StudyWorkspaceNavigationAdapter.nativeMappingOwnerWillDeinitialize(self)
         NotificationCenter.default.removeObserver(self)
     }
 

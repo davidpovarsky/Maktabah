@@ -1,0 +1,8 @@
+PASS actual initializer publishes coverage after original registration
+PASS actual observed setter brackets real reference publication
+PASS actual selection setter brackets publication
+PASS actual Observation modify accessor preserves append notifications
+PASS same UUID target replacement still traverses actual hook
+PASS actual nil selection is synchronously published
+PASS actual isolated deinit retires owner without retaining it
+ASSERTIONS=7 FAILURES=0 PORTABLE_SHELLS_NOT_APPLE_SDK

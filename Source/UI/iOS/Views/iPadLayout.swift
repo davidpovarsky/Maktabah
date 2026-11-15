@@ -136,6 +136,7 @@ struct iPadLayout: View {
                 .background(Color.appBackground)
                 .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("reader-detail-column")
+                .modifier(MaktabahNativeRoutingSurface(kind: .reader))
                 .modifier(Exact9401ViewerToolbar(manager: bManager))
         }
         .navigationSplitViewStyle(.balanced)
