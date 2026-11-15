@@ -4,6 +4,9 @@ import copy
 import importlib.util
 from pathlib import Path
 import unittest
+import subprocess
+import sys
+import tempfile
 
 spec = importlib.util.spec_from_file_location("guard", Path(__file__).with_name("verify_xcresult_zero_skips.py"))
 guard = importlib.util.module_from_spec(spec)
@@ -15,7 +18,7 @@ class ResultGuardTests(unittest.TestCase):
         self.summary = {"result": "Passed", "totalTestCount": 1, "passedTests": 1, "failedTests": 0, "skippedTests": 0}
         self.case = {"name": "testTap()", "nodeType": "Test Case", "result": "Passed", "nodeIdentifier": "Navigation/testTap()"}
         self.suite = {"name": "Navigation", "nodeType": "Test Suite", "children": [self.case]}
-        self.bundle = {"name": "Maktabah-iOSUITests", "nodeType": "Test Bundle", "children": [self.suite]}
+        self.bundle = {"name": "Maktabah-iOSUITests", "nodeType": "UI test bundle", "children": [self.suite]}
         self.tree = {"testNodes": [self.bundle]}
         self.log = "Test Case '-[Maktabah_iOSUITests.Navigation testTap]' passed (1.0 seconds).\nExecuted 1 test, with 0 failures\n** TEST SUCCEEDED **\n"
 
@@ -78,6 +81,24 @@ class ResultGuardTests(unittest.TestCase):
         self.suite["name"] = "Probe"
         with self.assertRaises(ValueError):
             self.verify()
+
+    def test_unit_bundle_never_counts_as_ui(self):
+        self.bundle["nodeType"] = "Unit test bundle"
+        with self.assertRaises(ValueError):
+            self.verify()
+
+    def test_original_owner_false_greens_rejected_by_cli(self):
+        fixtures = Path(__file__).parent / "fixtures/xcresult-zero-skips"
+        for filename, minimum in [("missing_xcresult_six_unit_log.log", "6"), ("zero_tests_minimum_zero.log", "0"),
+                                  ("real_log_failure_rejected.log", "1"), ("real_log_skip_rejected.log", "1")]:
+            with self.subTest(filename=filename), tempfile.TemporaryDirectory() as folder:
+                result = subprocess.run([sys.executable, str(Path(__file__).with_name("verify_xcresult_zero_skips.py")),
+                                         "--xcresult", str(Path(folder) / "absent.xcresult"),
+                                         "--log", str(fixtures / filename), "--scope", "focused-ui",
+                                         "--required-case", "Navigation/testTap", "--min-tests", minimum],
+                                        capture_output=True, text=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertNotIn("REAL_PRODUCTION_APP_OPENED_DATABASE=PASS", result.stdout)
 
 
 if __name__ == "__main__":

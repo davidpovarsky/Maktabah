@@ -288,6 +288,8 @@ def audit_generated_privacy(report, original_blob):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--preflight-only", action="store_true", help="Source/input closure only; no SDK or downloads")
+    ap.add_argument("--build-for-testing", action="store_true", help="Same exact inputs, real UI runner, simulator-only ad-hoc signing")
+    ap.add_argument("--derived-data", default="build/hq-stage2/DerivedData")
     args = ap.parse_args()
     config = json.loads(INPUTS.read_text())
     if args.preflight_only:
@@ -296,6 +298,8 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     report = dict(status="FAILED", scope="ONE_UNSIGNED_REAL_IOS_APP_BUILD", device="NOT_RUN", runtime="NOT_RUN",
                   no_fixture_or_app_model_mocks=True, signing=False, archive=False, distribution=False)
+    if args.build_for_testing:
+        report.update(scope="SIMULATOR_BUILD_FOR_REAL_UI", signing="SIMULATOR_AD_HOC_ONLY")
     try:
         report.update(preflight(config))
         require(sys.platform == "darwin", "Actual Apple check requires macOS/Xcode")
@@ -319,16 +323,19 @@ def main():
         require(pins(lock) == report["package_pins"], "Xcode changed committed package revisions")
         require(pins(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved") == report["package_pins"], "Workspace changed committed package revisions")
         verify_actual_sources(report)
-        command = ["xcodebuild", "build", *common, "-configuration", "Debug", "-sdk", "iphonesimulator",
-                   "-destination", "generic/platform=iOS Simulator", "-derivedDataPath", "build/hq-stage2/DerivedData",
+        derived_data = checked_path(ROOT / "build", str(Path(args.derived_data).relative_to("build")))
+        signing = (["CODE_SIGNING_ALLOWED=YES", "CODE_SIGNING_REQUIRED=YES", "CODE_SIGN_IDENTITY=-"] if args.build_for_testing
+                   else ["CODE_SIGNING_ALLOWED=NO", "CODE_SIGNING_REQUIRED=NO", "CODE_SIGN_IDENTITY="])
+        command = ["xcodebuild", "build-for-testing" if args.build_for_testing else "build", *common, "-configuration", "Debug", "-sdk", "iphonesimulator",
+                   "-destination", "generic/platform=iOS Simulator", "-derivedDataPath", str(derived_data),
                    "-disableAutomaticPackageResolution", "-jobs", "2", "-showBuildTimingSummary",
-                   "CODE_SIGNING_ALLOWED=NO", "CODE_SIGNING_REQUIRED=NO", "CODE_SIGN_IDENTITY=",
+                   *signing,
                    "ARCHS=arm64", "ONLY_ACTIVE_ARCH=YES", "ENABLE_USER_SCRIPT_SANDBOXING=NO",
                    "RCT_NO_LAUNCH_PACKAGER=1", "SKIP_BUNDLING=1", "FAIL_ON_MISSING_BUNDLE=1"]
-        logged(command, "unsigned-app-build.log", report)
+        logged(command, "simulator-build-for-testing.log" if args.build_for_testing else "unsigned-app-build.log", report)
         require(pins(lock) == report["package_pins"], "Build changed committed package revisions")
         report["package_resolved_after_sha256"] = digest(lock)
-        report["status"] = "UNSIGNED_APP_BUILD_PASS"
+        report["status"] = "SIMULATOR_BUILD_FOR_REAL_UI_PASS" if args.build_for_testing else "UNSIGNED_APP_BUILD_PASS"
         return 0
     except Exception as error:
         report["error"] = str(error)

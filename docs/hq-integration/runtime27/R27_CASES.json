@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "source_test_commit": "7bae3462e6c706c2a736bc3b2e5772564e8ad1f3",
+  "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+  "app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "sole_executor_thread": "01a1dc86-0c7b-7ee3-a098-2b4004ed686d",
+  "independent_qa_thread": "01a1dc8b-f9bd-7d63-a628-7ad3d06196e8",
+  "scope": "INITIAL_NATIVE07_SUBSET_NOT_NEW_UIROUTING_HANLIN_OR_FULL_RELEASE_ACCEPTANCE",
+  "native_cases_executed": 0,
+  "required_nonzero_cases": 9,
+  "expected_per_device": {
+    "ipad11": 5,
+    "iphone": 4
+  },
+  "cases": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Normal bootstrap, genuine fixture book/title, real portrait-to-landscape geometry change, exact locator preservation"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual Hebrew text entry+native submit+visible hittable exact submitted history row, existing native history helper"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Existing real native handle drag must resize window, exact locator preserved, real palette open/Escape and Inspector open/close state asserted; restore window"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real Legacy provider/TextKit, exact backend/work Genesis identity, real landscape transition and unchanged exact observed locator"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real embedded provider/TextKit, exact backend/work Genesis identity, real landscape transition and unchanged exact observed locator; unavailable is failure/not passed support"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Real fixture identity preserved after Home/activate and cold terminate/launch; setup scenario removed before cold relaunch, exact locator equality"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Actual Hebrew entry/native submit/visible hittable exact history row on conventional iPhone"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Real Legacy Genesis reader with actual iPhone geometry transition and locator preservation"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Real embedded Genesis reader with actual iPhone geometry transition and locator preservation; no fake backend"
+    }
+  ],
+  "requirements": {
+    "os_major": 27,
+    "phone": "conventional numbered iPhone, no Duo",
+    "ipad": "actual11inch;13inch/full release matrix remains separate",
+    "data_profile": "real native-installed miniTest10",
+    "bootstrap": "realUI; never -smokeBypassBootstrap",
+    "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
+    "scheduling": "one T-owned CI path/build-for-testing; no competing watcher/suite"
+  },
+  "required_test_environment": {
+    "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
+    "R27_EXPECTED_OTZARIA_BOOK_TITLE": "actual book.title from same selected real fixture row",
+    "FAITHFUL_VIEWPORT_DIRECTORY": "existing native app-data container/Documents hint; runner maps TEST_RUNNER_ prefix"
+  },
+  "fixture_oracle_sql": "SELECT l.sourceBookId, sourceLine.lineIndex, b.title FROM link l JOIN line sourceLine ON sourceLine.id=l.sourceLineId JOIN book b ON b.id=l.sourceBookId ORDER BY l.id LIMIT 1",
+  "fixture_fallback": "If no link, same existing app scenario selects book1/line1; read title for book1 and record absence. Never synthesize text/data or choose a book from UI observation.",
+  "baseline_helper_fingerprints": [
+    {
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "c57157447416afbb5477928719e3d1af8373af76df0274ce85a558a37336461a"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "82e618702804f7d9c0c270c62c2537e301816285261c810530448295986527f6"
+    },
+    {
+      "path": "Scripts/CI/prepare-faithful-ipad-fixtures.py",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "ffa6a4c5a0ea861bb21583fe811e0e52bec79e76d941b3b2d84ffc68b1da125f"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "adb90c0a2abab01ed0cc3e886197369a4d43698739957fdc52319b90d697f964"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "74c05fcad5acc79f9bdbb43d4d583a2eda5cfa248adc0b31faf155407b9e03d5"
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "4ed6723b2f190b9691971c5edc9fa5936281984b78bfe2a5928f55d2283a2c7d"
+    }
+  ],
+  "preserve_evidence": [
+    "actual app/test/dependency/source/generated-input fingerprints",
+    "native fixture profile/version/schema/hash/selected row evidence",
+    "device UDID/type/runtime build/orientation/window/locale/tool versions",
+    "required named case IDs and parsed UI-only xcresult leaves+JUnit+logs",
+    "screenshots+debug hierarchy and available recording even on failure",
+    "zero-test/skipped/failed/partial/mismatched results must fail closed",
+    "no unconditional production DB-open claim"
+  ],
+  "not_accepted": [
+    "new RouteSpec/scene-revision/Hanlin/AppIntent/URL behavior not connected to app07",
+    "physical iPad",
+    "full production corpus/performance",
+    "13inch/VoiceOver/DynamicType/full release coverage not part of initial9"
+  ],
+  "reused_ui_passes": 0,
+  "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI"
+}

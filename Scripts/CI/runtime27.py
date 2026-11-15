@@ -7,6 +7,10 @@ from pathlib import Path
 import subprocess
 import sys
 import urllib.request
+import runpy
+import plistlib
+import html
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "build/artifacts/runtime27"
@@ -18,6 +22,52 @@ def capture(command, name):
     if result.returncode:
         raise RuntimeError(f"Tool preflight failed: {command}; see {name}")
     return result.stdout
+
+
+def run_logged(command, name, timeout):
+    with (OUT / name).open("w") as output:
+        process = subprocess.run(command, cwd=ROOT, stdout=output, stderr=subprocess.STDOUT, timeout=timeout)
+    if process.returncode:
+        print("\n".join((OUT / name).read_text(errors="replace").splitlines()[-60:]), flush=True)
+    return process.returncode
+
+
+def collect_cases(report, contract):
+    outcomes = []
+    for size, device in [("11", "ipad11"), ("phone", "iphone")]:
+        summary_path = OUT / f"verified-{size}.summary.json"
+        tree_path = OUT / f"verified-{size}.tests.json"
+        summary = json.loads(summary_path.read_text()) if summary_path.exists() else {}
+        report.setdefault("actual_counts_by_device", {})[size] = summary
+        found = {}
+        def visit(node, suite=None):
+            if node.get("nodeType") == "Test Suite":
+                suite = node["name"].split(".")[-1]
+            if node.get("nodeType") == "Test Case":
+                identity = runpy.run_path(str(ROOT / 'tools/verify_xcresult_zero_skips.py'))['case_id'](node.get('nodeIdentifier') or f"{suite}/{node['name']}")
+                found[identity] = node.get("result", "unknown")
+            for child in node.get("children", []):
+                visit(child, suite)
+        if tree_path.exists():
+            for node in json.loads(tree_path.read_text()).get("testNodes", []):
+                visit(node)
+        for case in contract["cases"]:
+            if case["device"] == device:
+                outcomes.append({"case_id": case["case_id"], "device": device, "expected": case["oracle"],
+                                 "actual": found.get(case["case_id"], "NOT_RUN")})
+    report["case_outcomes"] = outcomes
+    for name, status in [("pass", "Passed"), ("fail", "Failed"), ("skip", "Skipped")]:
+        report[f"executed_ui_{name}"] = sum(row["actual"] == status for row in outcomes)
+    junit = ET.Element("testsuite", name="R27 real native subset", tests=str(len(outcomes)),
+                       failures=str(sum(row["actual"] != "Passed" for row in outcomes)))
+    for row in outcomes:
+        suite, method = row["case_id"].split("/")
+        case = ET.SubElement(junit, "testcase", classname=row["device"] + "." + suite, name=method)
+        if row["actual"] != "Passed":
+            ET.SubElement(case, "failure", message=row["actual"]).text = row["expected"]
+    ET.ElementTree(junit).write(OUT / "junit.xml", encoding="utf-8", xml_declaration=True)
+    (OUT / "cases.html").write_text("<!doctype html><meta charset=utf-8><title>Actual R27 UI outcomes</title><table>" +
+        "".join("<tr>" + "".join("<td>" + html.escape(row[key]) + "</td>" for key in ["device", "case_id", "actual", "expected"]) + "</tr>" for row in outcomes) + "</table>")
 
 
 def main():
@@ -62,7 +112,42 @@ def main():
         if report["mode"] == "probe":
             report["status"] = "ENVIRONMENT_PROBE_PASS_UI_NOT_RUN"
             return 0
-        raise RuntimeError("Real UI mode requires the immutable reviewed Q case manifest; not yet selected")
+        if report["mode"] != "ui":
+            raise RuntimeError("Unknown runtime mode")
+        contract_path = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
+        contract = json.loads(contract_path.read_text())
+        report["case_manifest_sha256"] = hashlib.sha256(contract_path.read_bytes()).hexdigest()
+        report["full_release_acceptance"] = False
+        report["scope"] = contract["scope"]
+        test_path = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
+        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "0f8e06fab18a2d48ff2e254cd603d293c038285a57e5b13514f491467ed51d7a":
+            raise RuntimeError("Reviewed test source drift")
+        report["test_source_commit"] = contract["source_test_commit"]
+        report["test_tree"] = capture(["git", "rev-parse", "HEAD:Maktabah-iOSUITests"], "test-tree.txt").strip()
+        report["test_inputs_sha256"] = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+                                        for p in sorted((ROOT / "Maktabah-iOSUITests").glob("*.swift"))}
+        report["helper_inputs_sha256"] = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in [
+            "Scripts/CI/hq-stage2-focused-apple.py", "Scripts/CI/hq-stage2-focused-apple.inputs.json", "Scripts/CI/runtime27.py",
+            "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27-fixture-oracle.py", "tools/verify_xcresult_zero_skips.py"]}
+        if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing", "--derived-data", "build/DerivedData"],
+                      "build-for-testing-driver.log", 4200):
+            raise RuntimeError("Real app/test build failed; UI cases NOT_RUN")
+        products = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator"
+        binaries = {}
+        for bundle in [products / "Maktabah.app", products / "Maktabah-iOSUITests-Runner.app"]:
+            info = plistlib.loads((bundle / "Info.plist").read_bytes())
+            binary = bundle / info["CFBundleExecutable"]
+            binaries[str(bundle.relative_to(ROOT))] = hashlib.sha256(binary.read_bytes()).hexdigest()
+        report["built_binary_sha256"] = binaries
+        os.environ["FAITHFUL_RUNTIME27_MANIFEST"] = str(contract_path)
+        os.environ["VALIDATING_BASELINE"] = "false"
+        # Native app installer, exact disposable-device lifecycle, existing tests.
+        code = run_logged([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 5400)
+        collect_cases(report, contract)
+        if code or report["executed_ui_pass"] != 9 or report["executed_ui_fail"] or report["executed_ui_skip"]:
+            raise RuntimeError("Required real UI subset failed, skipped or did not completely execute")
+        report["status"] = "EXECUTED_PASS"
+        return 0
     except Exception as error:
         report["error"] = str(error)
         print(str(error), file=sys.stderr)

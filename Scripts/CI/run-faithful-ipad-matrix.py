@@ -10,6 +10,7 @@ import subprocess
 import sys
 import time
 import uuid
+import signal
 from datetime import datetime, timezone
 
 root = Path.cwd()
@@ -41,6 +42,10 @@ runtimes.sort(key=lambda value: (
 device_types = sim_json("list", "devicetypes")["devicetypes"]
 baseline = os.environ.get("VALIDATING_BASELINE") == "true"
 diagnostic_cases = [item.strip() for item in os.environ.get("FAITHFUL_DIAGNOSTIC_CASES", "").split(",") if item.strip()]
+runtime27_contract = None
+if os.environ.get("FAITHFUL_RUNTIME27_MANIFEST"):
+    runtime27_contract = json.loads(Path(os.environ["FAITHFUL_RUNTIME27_MANIFEST"]).read_text())
+    diagnostic_cases = [value["case_id"] for value in runtime27_contract["cases"]]
 if diagnostic_cases:
     verify_selection = runpy.run_path("Scripts/CI/verify-faithful-xctest.py")["verify"]
     declarations = verify_selection("", diagnostic_cases)["suites"]
@@ -81,13 +86,15 @@ def create_compatible_ipad(size):
             failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
     raise SystemExit(f"No compatible {size}-inch iPad Pro / iPadOS 27 pair: {json.dumps(failures)}")
 
-phone_case_prefix = "FaithfulReaderIPhoneTests/"
+phone_case_prefix = ("FaithfulReaderIPhoneTests/", "R27NativePhoneTests/")
 diagnostic_sizes = (["11"] if any(not case.startswith(phone_case_prefix) for case in diagnostic_cases) else [])
 diagnostic_sizes += ["phone"] if any(case.startswith(phone_case_prefix) for case in diagnostic_cases) else []
 for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "13", "phone"]):
     udid, device_type, runtime, failures = create_compatible_ipad(size)
     device = {"size": size, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
     report["devices"].append(device)
+    recording = None
+    recording_log = None
 
     def phase(name, **details):
         device["phase"] = name
@@ -146,7 +153,7 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
         # Verify the small independent oracle first, before the large app's
         # installation/indexing. Both iPad sizes previously timed out installing
         # this oracle after Maktabah, for baseline and candidate alike.
-        if size != "phone":
+        if size != "phone" and (not diagnostic_cases or any(case.startswith("SafariPrototypeReferenceTests/") for case in diagnostic_cases)):
             install_owned_app(prototype, "com.example.safaritoolbarsearch", 180)
             phase("VERIFYING_ORACLE_LAUNCH")
             subprocess.run(["xcrun", "simctl", "launch", udid, "com.example.safaritoolbarsearch"], check=True, timeout=90)
@@ -160,8 +167,8 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
                                check=True, timeout=720)
                 break
             except subprocess.CalledProcessError:
-                report = artifacts / f"miniTest10-native-fixture-install-{size}.json"
-                failure = json.loads(report.read_text()) if report.is_file() else {}
+                fixture_report = artifacts / f"miniTest10-native-fixture-install-{size}.json"
+                failure = json.loads(fixture_report.read_text()) if fixture_report.is_file() else {}
                 errors = failure.get("errors") or []
                 transient_download = (failure.get("phase") == "install" and bool(errors)
                     and all(re.search(r"\bHTTP (502|503|504)\b", str(error)) for error in errors))
@@ -169,7 +176,7 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
                     raise
                 # Preserve the real failed report. Relaunch the same native
                 # installer once; every data/profile/hash check remains intact.
-                shutil.copyfile(report, artifacts / f"miniTest10-native-fixture-install-{size}-attempt-1.json")
+                shutil.copyfile(fixture_report, artifacts / f"miniTest10-native-fixture-install-{size}-attempt-1.json")
                 phase("RETRYING_TRANSIENT_FIXTURE_DOWNLOAD", attempt=2)
                 time.sleep(5)
         selection = ["SafariPrototypeReferenceTests", "FaithfulReaderVisualBaselineTests"]
@@ -191,6 +198,11 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
         environment = os.environ.copy()
         container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
         environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
+        if runtime27_contract:
+            environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](udid, size))
+            recording_log = (artifacts / f"runtime27/recording-{size}.log").open("w")
+            recording = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(artifacts / f"runtime27/native-{size}.mp4")],
+                                         stdout=recording_log, stderr=subprocess.STDOUT)
         phase("RUNNING_NATIVE_XCTEST", suites=selection)
         with (artifacts / f"test-simulator-{size}.log").open("w") as log:
             process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
@@ -209,6 +221,18 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
                                        "--log", str(artifacts / f"test-simulator-{size}.log"),
                                        "--out", str(artifacts / f"test-case-execution-{size}.json"), *selection])
         if verification.returncode:
+            code = code or 1
+        # Consume actual xcresult, not merely Xcode's textual summaries. Exact
+        # named methods are required for the reviewed R27 subset; default full
+        # suite selections expand through the existing declaration verifier.
+        declared = runpy.run_path("Scripts/CI/verify-faithful-xctest.py")["verify"]("", selection)
+        required = [row["suite"] + "/" + method for row in declared["suites"] for method in row["expected"]]
+        strict = [sys.executable, "tools/verify_xcresult_zero_skips.py", "--xcresult", str(result),
+                  "--log", str(artifacts / f"test-simulator-{size}.log"), "--scope", "focused-ui",
+                  "--min-tests", str(len(required)), "--out", str(artifacts / f"runtime27/verified-{size}.json")]
+        for identity in required:
+            strict.extend(["--required-case", identity])
+        if subprocess.run(strict).returncode:
             code = code or 1
         counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_text)]
         device["executedXCTestCount"] = max(counts, default=0)
@@ -277,6 +301,14 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
         # Retain a hard failure, but still execute the other required native
         # configurations so one device does not hide the iPhone/13-inch result.
     finally:
+        if recording is not None:
+            recording.send_signal(signal.SIGINT)
+            try:
+                recording.wait(timeout=30)
+            except subprocess.TimeoutExpired:
+                recording.terminate()
+                recording.wait(timeout=15)
+            recording_log.close()
         (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
         subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
         # Delete only the disposable simulator created above, never a user's/default device.

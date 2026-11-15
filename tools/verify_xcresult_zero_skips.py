@@ -42,7 +42,8 @@ def parse_test_tree(tree, target):
         kind, name, result = node.get('nodeType'), node.get('name', ''), node.get('result')
         if result is not None:
             require(result in ('Passed', 'Success'), 'Nonpassing xcresult node: ' + str(result))
-        if kind == 'Test Bundle':
+        require(kind != 'Unit test bundle', 'Unit test bundle cannot satisfy UI acceptance')
+        if kind == 'UI test bundle':
             bundle = name.removesuffix('.xctest')
         elif kind == 'Test Suite':
             suite = name.split('.')[-1]
@@ -57,7 +58,7 @@ def parse_test_tree(tree, target):
                 identity = case_id(suite + '/' + name)
             require(identity not in cases, 'Duplicate/retried UI case: ' + identity)
             cases[identity] = {'status': result, 'identifier': identifier,
-                               'identifierURL': node.get('testIdentifierURL'), 'target': bundle}
+                               'identifierURL': node.get('nodeIdentifierURL'), 'target': bundle}
         children = node.get('children', [])
         require(isinstance(children, list), 'Corrupt xcresult children')
         for child in children:
