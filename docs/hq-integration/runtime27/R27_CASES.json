@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_test_commit": "021b5329b37d756604407e1256edf0001f708c3d",
+  "source_test_commit": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
   "app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
   "sole_executor_thread": "01a1dc86-0c7b-7ee3-a098-2b4004ed686d",
@@ -29,7 +29,7 @@
       "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
       "device": "ipad11",
       "status": "NOT_RUN",
-      "oracle": "Existing real native handle drag must resize window, exact locator preserved, real palette open/Escape and Inspector open/close state asserted; restore window"
+      "oracle": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore"
     },
     {
       "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
@@ -133,11 +133,48 @@
   ],
   "reused_ui_passes": 0,
   "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
-  "test_corrections": [
+  "previous_manifest_sha256": "1f20458858d0890433d87e2131ac2283a73e369aaddadb39bd4c2ce57af59d3f",
+  "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
+  "affected_execution_groups": {
+    "11-reader": [
+      "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+    ],
+    "11-window": [
+      "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+    ]
+  },
+  "reuse_candidates_subject_to_U_change_impact": [
+    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+  ],
+  "execution_groups": [
     {
-      "commit": "021b5329b37d756604407e1256edf0001f708c3d",
-      "run": 43679005353,
-      "change": "One @MainActor annotation on native window resize test; no assertion/skip/oracle change"
+      "label": "11-reader",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+      ]
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+      ]
     }
-  ]
+  ],
+  "execution_case_ids": [
+    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+  ],
+  "prior_pass_reuse_state": "PENDING_INDEPENDENT_U_PRODUCTION_CHANGE_IMPACT_PROOF"
 }

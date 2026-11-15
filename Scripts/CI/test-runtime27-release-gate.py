@@ -19,6 +19,7 @@ from unittest.mock import patch
 
 gate = runpy.run_path(str(Path(__file__).with_name("verify-runtime27-release-gate.py")))
 collect = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["collect_cases"]
+groups = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["execution_groups"]
 
 
 class ReleaseGateTests(unittest.TestCase):
@@ -136,6 +137,47 @@ class EvidenceClassificationTests(unittest.TestCase):
                     report = {}
                     collect(report, contract)
                     self.assertEqual((report["executed_ui_pass"], report["executed_ui_fail"], report["ui_not_run"]), expected)
+        finally:
+            collect.__globals__["OUT"] = original
+
+
+class AffectedExecutionTests(unittest.TestCase):
+    def setUp(self):
+        self.contract = {"cases": [
+            {"case_id": "Pad/testReader", "device": "ipad11", "oracle": "actual reader state"},
+            {"case_id": "Pad/testWindow", "device": "ipad11", "oracle": "actual window restore"},
+            {"case_id": "Phone/testRestore", "device": "iphone", "oracle": "actual persisted state"}],
+            "execution_case_ids": ["Pad/testReader", "Pad/testWindow"],
+            "execution_groups": [{"label": "11-reader", "size": "11", "case_ids": ["Pad/testReader"]},
+                                 {"label": "11-window", "size": "11", "case_ids": ["Pad/testWindow"]}]}
+
+    def test_fresh_isolation_exactly_partitions_affected_cases(self):
+        self.assertEqual([row["label"] for row in groups(self.contract)], ["11-reader", "11-window"])
+
+    def test_empty_duplicate_unknown_wrong_device_scopes_rejected(self):
+        for selected in [[], ["Pad/testReader"] * 2, ["Pad/testAbsent"]]:
+            with self.subTest(selected=selected), self.assertRaises(ValueError):
+                groups({**self.contract, "execution_case_ids": selected})
+        bad = copy.deepcopy(self.contract)
+        bad["execution_groups"][1]["label"] = "11-reader"
+        with self.assertRaises(ValueError):
+            groups(bad)
+        bad = copy.deepcopy(self.contract)
+        bad["execution_groups"][1]["size"] = "phone"
+        bad["execution_groups"][1]["label"] = "phone"
+        with self.assertRaises(ValueError):
+            groups(bad)
+
+    def test_nonrequested_prior_pass_is_not_reported_as_new_or_not_run(self):
+        original = collect.__globals__["OUT"]
+        try:
+            with tempfile.TemporaryDirectory() as folder:
+                collect.__globals__["OUT"] = Path(folder)
+                report = {}
+                collect(report, self.contract)
+                self.assertEqual(report["ui_not_run"], 2)
+                self.assertEqual(len(report["case_outcomes"]), 2)
+                self.assertNotIn("Phone/testRestore", [row["case_id"] for row in report["case_outcomes"]])
         finally:
             collect.__globals__["OUT"] = original
 

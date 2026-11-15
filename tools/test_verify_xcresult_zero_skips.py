@@ -32,6 +32,14 @@ class ResultGuardTests(unittest.TestCase):
         self.assertEqual(result["required_ui_passed"], 1)
         self.assertEqual(result["database_open"], "NOT_VERIFIED_BY_TEST_COUNTS")
 
+    def test_actual_xcode27_execute_footer_and_build_only_refusal(self):
+        self.verify(log=self.log.replace("** TEST SUCCEEDED **", "** TEST EXECUTE SUCCEEDED **"))
+        for footer in ["** TEST BUILD SUCCEEDED **", "** TEST EXECUTE FAILED **", "** TEST EXECUTE CANCELLED **"]:
+            with self.subTest(footer=footer), self.assertRaises(ValueError):
+                self.verify(log=self.log.replace("** TEST SUCCEEDED **", footer))
+        with self.assertRaises(ValueError):
+            self.verify(log=self.log + "\n** TEST EXECUTE FAILED **\n")
+
     def test_reject_false_green_variants(self):
         variants = []
         for field, value in [("result", "Failed"), ("passedTests", 0), ("failedTests", 1), ("skippedTests", 1),

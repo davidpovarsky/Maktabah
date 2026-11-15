@@ -12,9 +12,41 @@ import plistlib
 import html
 import xml.etree.ElementTree as ET
 import shutil
+import re
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "build/artifacts/runtime27"
+
+
+def execution_groups(contract):
+    """Exact nonzero affected scope; every group owns a fresh disposable sim."""
+    cases = {row["case_id"]: row for row in contract["cases"]}
+    if len(cases) != len(contract["cases"]):
+        raise ValueError("Duplicated full-phase UI case declaration")
+    selected = contract.get("execution_case_ids", list(cases))
+    if (not selected or len(selected) != len(set(selected)) or not set(selected) <= cases.keys()
+            or any(not re.fullmatch(r"\w+/test\w+", value) for value in selected)):
+        raise ValueError("Invalid/empty/duplicated affected UI case selection")
+    groups = contract.get("execution_groups")
+    if groups is None:
+        groups = [{"label": size, "size": size, "case_ids": [value for value in selected if cases[value]["device"] == device]}
+                  for size, device in [("11", "ipad11"), ("13", "ipad13"), ("phone", "iphone")]]
+        groups = [group for group in groups if group["case_ids"]]
+    if not groups or len({group["label"] for group in groups}) != len(groups):
+        raise ValueError("Missing/duplicated owned simulator groups")
+    flattened = []
+    for group in groups:
+        size, label, members = group["size"], group["label"], group["case_ids"]
+        allowed = {"11": "11", "13": "13", "phone": "phone", "11-reader": "11", "11-window": "11"}
+        if allowed.get(label) != size or not members:
+            raise ValueError("Invalid owned simulator size/artifact label/scope")
+        device = {"11": "ipad11", "13": "ipad13", "phone": "iphone"}[size]
+        if any(value not in cases or cases[value]["device"] != device for value in members):
+            raise ValueError("A required UI case was assigned to the wrong device")
+        flattened.extend(members)
+    if len(flattened) != len(selected) or set(flattened) != set(selected):
+        raise ValueError("Owned simulator groups do not exactly partition the selected scope")
+    return groups
 
 
 def capture(command, name):
@@ -35,11 +67,13 @@ def run_logged(command, name, timeout):
 
 def collect_cases(report, contract):
     outcomes = []
-    for size, device in [("11", "ipad11"), ("phone", "iphone")]:
-        summary_path = OUT / f"verified-{size}.summary.json"
-        tree_path = OUT / f"verified-{size}.tests.json"
+    for group in execution_groups(contract):
+        label = group["label"]
+        device = {"11": "ipad11", "13": "ipad13", "phone": "iphone"}[group["size"]]
+        summary_path = OUT / f"verified-{label}.summary.json"
+        tree_path = OUT / f"verified-{label}.tests.json"
         summary = json.loads(summary_path.read_text()) if summary_path.exists() else {}
-        report.setdefault("actual_counts_by_device", {})[size] = summary
+        report.setdefault("actual_counts_by_device", {})[label] = summary
         found = {}
         def visit(node, suite=None):
             if node.get("nodeType") == "Test Suite":
@@ -53,8 +87,9 @@ def collect_cases(report, contract):
             for node in json.loads(tree_path.read_text()).get("testNodes", []):
                 visit(node)
         for case in contract["cases"]:
-            if case["device"] == device:
+            if case["case_id"] in group["case_ids"]:
                 outcomes.append({"case_id": case["case_id"], "device": device, "expected": case["oracle"],
+                                 "configuration_label": label,
                                  "actual": found.get(case["case_id"], "NOT_RUN")})
     report["case_outcomes"] = outcomes
     for name, status in [("pass", "Passed"), ("fail", "Failed"), ("skip", "Skipped")]:
@@ -123,11 +158,17 @@ def main():
             raise RuntimeError("Unknown runtime mode")
         contract_path = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
         contract = json.loads(contract_path.read_text())
+        groups = execution_groups(contract)
+        expected_count = sum(len(group["case_ids"]) for group in groups)
+        report["execution_groups"] = groups
+        report["full_phase_case_ids"] = [case["case_id"] for case in contract["cases"]]
+        report["requested_ui_case_count"] = expected_count
+        report["prior_pass_reuse"] = "Separate independent Q proof required; not counted as new execution"
         report["case_manifest_sha256"] = hashlib.sha256(contract_path.read_bytes()).hexdigest()
         report["full_release_acceptance"] = False
         report["scope"] = contract["scope"]
         test_path = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
-        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "7018060d54afaf60b37a98decba9fcdea6f5fed7434352e83bf76f1cd6a3971d":
+        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "66fafb8a8464823abc1cd574fffb79b8a56870af47f33810e7b52bdf1ef944d9":
             raise RuntimeError("Reviewed test source drift")
         report["test_source_commit"] = contract["source_test_commit"]
         subprocess.run(["git", "merge-base", "--is-ancestor", contract["source_test_commit"], "HEAD"], cwd=ROOT, check=True)
@@ -157,9 +198,9 @@ def main():
         # Native app installer, exact disposable-device lifecycle, existing tests.
         code = run_logged([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 5400)
         collect_cases(report, contract)
-        if code or report["executed_ui_pass"] != 9 or report["executed_ui_fail"] or report["executed_ui_skip"]:
+        if code or report["executed_ui_pass"] != expected_count or report["executed_ui_fail"] or report["executed_ui_skip"]:
             raise RuntimeError("Required real UI subset failed, skipped or did not completely execute")
-        report["status"] = "EXECUTED_PASS"
+        report["status"] = "EXECUTED_PASS" if expected_count == len(contract["cases"]) else "SELECTED_UI_EXECUTED_PASS"
         return 0
     except Exception as error:
         report["error"] = str(error)

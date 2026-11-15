@@ -100,7 +100,11 @@ def verify(summary, tree, log, required_cases, min_tests, target='Maktabah-iOSUI
     require(not logs['failed'] and not logs['skipped'], 'Log contradicts zero-failure/zero-skip results')
     require(set(logs['passed']) == cases.keys(), 'Log/xcresult case identity mismatch')
     require(logs['executed'] == len(cases), 'Log/xcresult execution count mismatch')
-    require('** TEST SUCCEEDED **' in log and '** TEST FAILED **' not in log, 'Missing/contradictory final test outcome')
+    # Xcode's actual test-without-building footer is TEST EXECUTE SUCCEEDED;
+    # build-for-testing's TEST BUILD SUCCEEDED is never runtime evidence.
+    success = re.search(r'^\*\* TEST(?: EXECUTE)? SUCCEEDED \*\*\s*$', log, re.MULTILINE)
+    failure = re.search(r'^\*\* TEST(?: EXECUTE| BUILD)? (?:FAILED|CANCELLED|ABORTED) \*\*\s*$', log, re.MULTILINE)
+    require(success and not failure, 'Missing/contradictory final test outcome')
     return {'status': 'EXECUTED_PASS', 'target': target, 'executed_total': len(cases),
             'required_ui_passed': len(required), 'required_ui_cases': sorted(required),
             'cases': cases, 'skipped': 0, 'failed': 0, 'database_open': 'NOT_VERIFIED_BY_TEST_COUNTS'}
