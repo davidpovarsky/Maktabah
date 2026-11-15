@@ -16,6 +16,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- In real R27 run 43713120298, a named palette Other element satisfied `exists == false` while its editable query and results remained visibly mounted in screenshots; Inspector Close was subsequently not hittable. Dismissal acceptance must also resolve the actual input through the whole app, retain a post-wait display screenshot and exercise the newly exposed native control. Container AX disappearance alone cannot certify visible dismissal. The strengthened U oracle is in R27NativeInteractionAcceptanceTests.swift.
+
 - The exact-9401 blob gate passed the 11001 sidebar even though TOC navigation ownership was missing. The native-sidebar repair now adds composition mutations alongside blob identity: inactive navigation trees must be unmounted, the original TOC must own its stack/search, and the existing public split must request a visible native toggle and width-qualified tiling. Page drag is confined to the page-control strip so it cannot compete with native edge/list gestures. These checks remain static; physical iPad geometry and reader continuity still require owner acceptance.
 
 - Production archive 11001 reports a duplicate Compile Sources entry for OtzariaReaderSourcesInspectorHost.swift. The project file is unchanged from the feature base; verify-otzaria-xcode-project.py checks membership presence but not uniqueness. A separately approved project-membership cleanup and duplicate-detection extension would prevent this warning; no project edit was made during UI restoration.
