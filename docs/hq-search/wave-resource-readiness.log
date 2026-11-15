@@ -1,0 +1,36 @@
+   Creating library C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-b2oi8g4j\Combine.lib and object C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-b2oi8g4j\Combine.exp
+
+C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Source\Otzaria\Search\OtzariaTantivySearchRepository.swift:6:40: warning: redundant conformance of 'SearchResultItem' to protocol 'Sendable'
+
+  4 | #endif
+
+  5 | 
+
+  6 | extension SearchResultItem: @unchecked Sendable {}
+
+    |                                        `- warning: redundant conformance of 'SearchResultItem' to protocol 'Sendable'
+
+  7 | 
+
+  8 | final class OtzariaTantivySearchRepository: @unchecked Sendable {
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Source\Features\Search\Models\SearchResultItem.swift:18:8: note: 'SearchResultItem' declares conformance to protocol 'Sendable' here
+
+ 16 | }
+
+ 17 | 
+
+ 18 | struct SearchResultItem: Codable, CopyableResult, Hashable, Sendable, Identifiable {
+
+    |        `- note: 'SearchResultItem' declares conformance to protocol 'Sendable' here
+
+ 19 |     let archive: String
+
+ 20 |     let tableName: String
+
+   Creating library C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-b2oi8g4j\cached-readiness.lib and object C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-b2oi8g4j\cached-readiness.exp
+
+PASS: 14 real-repository cached readiness assertions; FFI/storage dependencies are doubles
+Portable Swift fixtures completed in 17.22s
