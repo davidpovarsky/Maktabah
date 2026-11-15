@@ -16,8 +16,11 @@ public struct UIDestinationRegistry: Sendable {
                   Set(descriptor.supportedBackends).count == descriptor.supportedBackends.count,
                   Set(descriptor.presentations).count == descriptor.presentations.count,
                   descriptor.requiredCoreActions.count <= 16, Set(descriptor.requiredCoreActions).count == descriptor.requiredCoreActions.count,
-                  descriptor.requiredCoreActions.allSatisfy({ core.descriptor(for: $0) != nil }),
-                  descriptor.implementation != .implemented || !descriptor.requiredCoreActions.isEmpty else { throw UIRouteError(.failed, "invalid_registry") }
+                  descriptor.requiredCoreActions.allSatisfy({ core.descriptor(for: $0) != nil }) else { throw UIRouteError(.failed, "invalid_registry") }
+            if descriptor.implementation == .implemented && descriptor.requiredCoreActions.isEmpty {
+                guard descriptor.riskTier == 2, !descriptor.mutatesUserData, !descriptor.requiresContent,
+                      !descriptor.allowsPrivateState else { throw UIRouteError(.failed, "invalid_registry") }
+            }
         }
         let ids = Set(descriptors.map(\.id))
         guard Set(migrations.map(\.from)).count == migrations.count else { throw UIRouteError(.failed, "invalid_migrations") }
@@ -47,6 +50,7 @@ public struct UIDestinationRegistry: Sendable {
         if let backend = route.backend { backends.insert(backend) }
         if let snapshot = route.expectedBackendSnapshot { backends.insert(snapshot.backend) }
         if let content = route.content {
+            guard descriptor.requiredCoreActions.contains("reader.open") else { throw UIRouteError(.notSupported, "reader_action_required") }
             backends.insert(content.sectionLocator.backend)
             if let focus = content.focusLocator {
                 backends.insert(focus.backend)
@@ -133,6 +137,10 @@ public struct UIDestinationRegistry: Sendable {
         try await requireCurrentScene(scene, context: context, invocation: invocation, host: host, clock: clock)
         var result: [UIDestinationDescriptor] = []
         for descriptor in candidates where Set(descriptor.requiredCoreActions).isSubset(of: coreIDs) {
+            if descriptor.requiredCoreActions.isEmpty {
+                do { try await core.checkNavigationDiscovery(sceneID: scene.sceneID.rawValue, invocation: invocation, context: context) }
+                catch { continue }
+            }
             try Task.checkCancellation()
             guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
             let assessment = try await host.assess(descriptor, scene: scene, context: context, invocation: invocation)

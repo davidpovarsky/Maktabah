@@ -7,6 +7,7 @@ public actor ActionExecutor {
     private let search: any ActionSearchPort
     private let ui: (any ActionUICommandSink)?
     private let clock: any ActionClock
+    private let navigationAuthority: (any ActionNavigationAuthority)?
     private let capacity: Int
     private var workers = 0
     private let maxWorkers = 8
@@ -42,10 +43,12 @@ public actor ActionExecutor {
 
     public init(state: any ActionBackendStatePort, resolver: any ActionResolverPort, search: any ActionSearchPort,
                 ui: (any ActionUICommandSink)? = nil, registry: ActionRegistry? = nil,
-                clock: any ActionClock = SystemActionClock(), ledgerCapacity: Int = 256) throws {
+                clock: any ActionClock = SystemActionClock(), ledgerCapacity: Int = 256,
+                navigationAuthority: (any ActionNavigationAuthority)? = nil) throws {
         guard (1...256).contains(ledgerCapacity) else { throw ActionContractError.invalid("ledgerCapacity") }
         self.registry = try registry ?? ActionRegistry(); self.state = state; self.resolver = resolver
         self.search = search; self.ui = ui; self.clock = clock; capacity = ledgerCapacity
+        self.navigationAuthority = navigationAuthority
     }
 
     /// All untrusted transport adapters use this entry point and the same DTO.
@@ -104,6 +107,27 @@ public actor ActionExecutor {
     }
 
     private func workerFinished() { workers -= 1 }
+
+    /// UI-only preparation. No descriptor advertisement is a commit grant.
+    /// Content preparations are minted ONLY inside validated reader.open below.
+    public func prepareNavigation(sceneID: String, invocation: ActionPortInvocation,
+                                  context: ActionExecutionContext) async throws -> ActionNavigationPreparation {
+        guard let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
+            throw ActionNavigationError(.unavailable, "synchronous_navigation_authority_unavailable")
+        }
+        guard let navigationAuthority else { throw ActionNavigationError(.unavailable, "navigation_context_authority_unavailable") }
+        return try await ActionNavigationPreparation(authority: navigationAuthority, backendAuthority: backendAuthority, invocation: invocation, sceneID: sceneID,
+            context: context, destination: nil, clock: clock)
+    }
+
+    /// Metadata only: verify policy AND actual live guard availability. No grant
+    /// is returned/retained and no effect is authorized by discovery.
+    public func checkNavigationDiscovery(sceneID: String, invocation: ActionPortInvocation,
+                                        context: ActionExecutionContext) async throws {
+        do { try ActionPolicy.navigation(context: context, backend: invocation.snapshot.backend, sceneID: sceneID, discovery: true) }
+        catch let error as ActionEngineFailure { throw ActionNavigationError(error.status, error.code) }
+        _ = try await prepareNavigation(sceneID: sceneID, invocation: invocation, context: context)
+    }
 
     private func perform(_ action: ValidatedAction, context: ActionExecutionContext, deadline: UInt64, cached: Entry?) async throws -> ActionResult {
         let request = action.request
@@ -214,7 +238,15 @@ public actor ActionExecutor {
             let validated = try await resolver.validateDestination(destination, invocation: invocation)
             guard validated == destination else { throw ActionPortError.invalidResponse }
             try await recheck(snapshot, deadline: deadline)
-            let command = ActionOpenReaderCommand(destination: validated, sceneID: scene, invocation: invocation)
+            let authorization: ActionNavigationPreparation?
+            if let navigationAuthority {
+                guard let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
+                    throw ActionNavigationError(.unavailable, "synchronous_navigation_authority_unavailable")
+                }
+                authorization = try await ActionNavigationPreparation(authority: navigationAuthority, backendAuthority: backendAuthority, invocation: invocation, sceneID: scene,
+                    context: context, destination: validated, clock: clock)
+            } else { authorization = nil }
+            let command = ActionOpenReaderCommand(destination: validated, sceneID: scene, invocation: invocation, navigationAuthorization: authorization)
             let acknowledgement = try await ui.open(command)
             try await recheck(snapshot, deadline: deadline)
             switch acknowledgement {
@@ -326,6 +358,7 @@ public actor ActionExecutor {
         if let e = error as? ActionEngineFailure { status = e.status; code = e.code }
         else if error is CancellationError { status = .cancelled; code = "cancelled" }
         else if error is ActionContractError || error is DecodingError { status = .failed; code = "invalid_arguments" }
+        else if let e = error as? ActionNavigationError { status = e.status; code = e.code }
         else if let e = error as? ActionPortError {
             switch e {
             case .unavailable: status = .unavailable; code = "backend_unavailable"

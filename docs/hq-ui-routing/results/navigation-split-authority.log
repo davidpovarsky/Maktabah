@@ -1,0 +1,117 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/3] Write sources
+[4/5] Emitting module OtzariaActionCore
+[5/7] Compiling OtzariaActionCore ActionExecutor.swift
+[6/7] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[7/19] Compiling OtzariaActionCore ActionJSON.swift
+[8/19] Compiling OtzariaActionCore ActionReferences.swift
+[9/19] Compiling OtzariaActionCore ActionRequest.swift
+[10/19] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[11/19] Compiling OtzariaActionCore ActionSearch.swift
+[12/19] Compiling OtzariaActionCore ActionWireCodec.swift
+[13/19] Compiling OtzariaActionCore ActionDeadline.swift
+[14/19] Compiling OtzariaActionCore ActionExecutionContext.swift
+[15/19] Compiling OtzariaActionCore ActionPolicy.swift
+[16/19] Compiling OtzariaActionCore ActionValidation.swift
+[17/19] Compiling OtzariaActionCore ActionPorts.swift
+[18/19] Compiling OtzariaActionCore ActionRegistry.swift
+[20/21] Emitting module OtzariaUIRouting
+[21/29] Compiling OtzariaUIRouting UIRouteCodec.swift
+[22/29] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[23/29] Compiling OtzariaUIRouting RouteSpec.swift
+[24/29] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[25/29] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[26/29] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[27/29] Compiling OtzariaUIRouting UIDiscoveryCancellationScope.swift
+[28/29] Compiling OtzariaUIRouting resource_bundle_accessor.swift
+[30/38] Emitting module OtzariaUIRoutingTests
+[31/46] Compiling OtzariaUIRoutingTests CodecTests.swift
+[32/46] Compiling OtzariaUIRoutingTests GoldenAPITests.swift
+[33/46] Compiling OtzariaUIRoutingTests NavigationAuthorizationTests.swift
+[34/46] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+[35/46] Compiling OtzariaUIRoutingTests DiscoveryReviewRegressionTests.swift
+[36/46] Compiling OtzariaUIRoutingTests DiscoveryTests.swift
+[37/46] Compiling OtzariaUIRoutingTests RegistryTests.swift
+[38/46] Compiling OtzariaUIRoutingTests resource_bundle_accessor.swift
+[39/47] Wrapping AST for OtzariaActionCore for debugging
+[40/47] Wrapping AST for OtzariaUIRoutingTests for debugging
+[41/47] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[42/48] Write sources
+[44/49] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[45/51] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[46/51] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[48/51] Emitting module OtzariaUIRoutingPackageTests
+[49/52] Compiling OtzariaUIRoutingPackageTests runner.swift
+[50/52] Write Objects.LinkFileList
+[51/52] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (173.35s)
+Test Suite 'Selected tests' started at 2026-11-15 14:45:18.438
+
+Test Suite 'NavigationAuthorizationTests' started at 2026-11-15 14:45:18.443
+
+Test Case 'NavigationAuthorizationTests.testCurrentSubjectScopeScenePairingAndMissingEpochRequiredAtPreparation' started at 2026-11-15 14:45:18.443
+
+Test Case 'NavigationAuthorizationTests.testCurrentSubjectScopeScenePairingAndMissingEpochRequiredAtPreparation' passed (0.562 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationRecheckedSynchronously' started at 2026-11-15 14:45:19.004
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationRecheckedSynchronously' passed (0.166 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDiscoveryPermissionIsSeparateFromExecutionPreparation' started at 2026-11-15 14:45:19.171
+
+Test Case 'NavigationAuthorizationTests.testDiscoveryPermissionIsSeparateFromExecutionPreparation' passed (0.179 seconds)
+
+Test Case 'NavigationAuthorizationTests.testEmptySemanticRoutesCannotSmuggleContentPrivateStateOrFakeActions' started at 2026-11-15 14:45:19.350
+
+Test Case 'NavigationAuthorizationTests.testEmptySemanticRoutesCannotSmuggleContentPrivateStateOrFakeActions' passed (0.336 seconds)
+
+Test Case 'NavigationAuthorizationTests.testFullCommandBindingAndTrustedSceneRevisionStillRequired' started at 2026-11-15 14:45:19.686
+
+Test Case 'NavigationAuthorizationTests.testFullCommandBindingAndTrustedSceneRevisionStillRequired' passed (0.173 seconds)
+
+Test Case 'NavigationAuthorizationTests.testLifetimeReplacementAndBackendGenerationEpochDriftFailClosed' started at 2026-11-15 14:45:19.859
+
+Test Case 'NavigationAuthorizationTests.testLifetimeReplacementAndBackendGenerationEpochDriftFailClosed' passed (0.646 seconds)
+
+Test Case 'NavigationAuthorizationTests.testMissingSynchronousFacetCannotUseASecondAuthority' started at 2026-11-15 14:45:20.505
+
+Test Case 'NavigationAuthorizationTests.testMissingSynchronousFacetCannotUseASecondAuthority' passed (0.113 seconds)
+
+Test Case 'NavigationAuthorizationTests.testPureNavigationAllThreeBackendsSixOriginsAndOneUse' started at 2026-11-15 14:45:20.618
+
+Test Case 'NavigationAuthorizationTests.testPureNavigationAllThreeBackendsSixOriginsAndOneUse' passed (2.217 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRawPreparationBindsInvocationSceneAndCannotBecomeReaderAuthority' started at 2026-11-15 14:45:22.835
+
+Test Case 'NavigationAuthorizationTests.testRawPreparationBindsInvocationSceneAndCannotBecomeReaderAuthority' passed (0.108 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderCannotBypassResolverOrForgePreparationAndRevocationBeforeCommit' started at 2026-11-15 14:45:22.943
+
+Test Case 'NavigationAuthorizationTests.testReaderCannotBypassResolverOrForgePreparationAndRevocationBeforeCommit' passed (0.132 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderStillUsesResolverSinkGuardAndExactReceiptAllBackends' started at 2026-11-15 14:45:23.075
+
+Test Case 'NavigationAuthorizationTests.testReaderStillUsesResolverSinkGuardAndExactReceiptAllBackends' passed (0.347 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRevokedOrChangedAuthorityNeverCommits' started at 2026-11-15 14:45:23.422
+
+Test Case 'NavigationAuthorizationTests.testRevokedOrChangedAuthorityNeverCommits' passed (0.928 seconds)
+
+Test Suite 'NavigationAuthorizationTests' passed at 2026-11-15 14:45:24.350
+
+	 Executed 12 tests, with 0 failures (0 unexpected) in 5.907 (5.907) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 14:45:24.350
+
+	 Executed 12 tests, with 0 failures (0 unexpected) in 5.907 (5.907) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
