@@ -4,8 +4,12 @@ import os
 import subprocess
 import tempfile
 import time
+import argparse
 
 ROOT = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser()
+parser.add_argument("--otzaria-baseline", help="Compile the full view model from this Git ref for an expected red regression run")
+options = parser.parse_args()
 
 
 def run(args, cwd):
@@ -53,11 +57,21 @@ with tempfile.TemporaryDirectory(prefix="otzaria-search-fixture-") as name:
         "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
         "Source/ZayitSearch/ZayitSearchSessionController.swift",
         "Tests/HQ/search/SearchFixtures.swift",
+        "Tests/HQ/search/OtzariaViewModelFixtures.swift",
     ]
+    view_model = temp / "OtzariaTextSearchViewModel.swift"
+    view_model_bytes = (ROOT / "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift").read_bytes()
+    if options.otzaria_baseline:
+        view_model_bytes = subprocess.check_output([
+            "git", "show", options.otzaria_baseline + ":Source/Otzaria/Search/OtzariaTextSearchViewModel.swift"], cwd=ROOT)
+        print("Otzaria full-view-model baseline: " + options.otzaria_baseline, flush=True)
+    # Append a test-only same-file accessor to await the actual private task.
+    # The production class and every method body compile unchanged.
+    view_model.write_bytes(view_model_bytes + b"\nextension OtzariaTextSearchViewModel { var fixturePaginationTask: Task<Void, Never>? { paginationTask } }\n")
     executable = temp / ("search-fixtures.exe" if os.name == "nt" else "search-fixtures")
     started = time.monotonic()
     run(["swiftc", "-swift-version", "5", "-parse-as-library", "-I", str(temp), "-L", str(temp),
          "-lCombine", str(temp / "Locator.swift"), str(temp / "Capacity.swift"), str(temp / "IndexValidation.swift"), str(temp / "HitNavigation.swift"), *[str(ROOT / p) for p in sources],
-         "-o", str(executable)], temp)
+         str(view_model), "-o", str(executable)], temp)
     run([str(executable), str(ROOT)], temp)
     print(f"Portable Swift fixtures completed in {time.monotonic() - started:.2f}s")

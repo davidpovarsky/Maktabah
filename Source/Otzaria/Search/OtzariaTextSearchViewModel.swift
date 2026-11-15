@@ -498,6 +498,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
               executedProfileID == OtzariaDataProfileRegistry.activeProfileID,
               executedBackendGeneration == BackendCoordinator.shared.generation else { return }
 
+        errorMessage = nil
         isLoadingMore = true
         let generation = searchGeneration
         request.offset = resultStore.consumedCount
@@ -518,6 +519,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                         return
                     }
                     try self.store(page: page, items: items, replacing: false)
+                    self.errorMessage = nil
                     self.isLoadingMore = false
                 }
             } catch {

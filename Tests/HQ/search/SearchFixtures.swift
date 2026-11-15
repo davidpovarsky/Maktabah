@@ -44,6 +44,10 @@ final class OtzariaDatabaseAccessController {
 }
 enum OtzariaIndexFileLogger {
     static func logError(_ message: String, error: Error) {}
+    static func log(_ message: String) {}
+    static func clearLog() {}
+    static func logFileURL() -> URL? { nil }
+    static func readLogText() -> String { "" }
 }
 final class OtzariaSearchEngineBridge {
     static var currentBuild: OtzariaSearchEngineBuildInfo!
@@ -86,6 +90,7 @@ final class FixtureIndexValidator {
 @MainActor final class OtzariaMagicDictionaryManager {
     static let shared = OtzariaMagicDictionaryManager()
     var validatedDatabaseURL: URL? = FixtureEnvironment.root.appendingPathComponent("lexical.db")
+    func refreshIfNeeded() async throws -> Bool { false }
 }
 struct ZayitSearchArtifactStorage {
     init() throws {}
@@ -204,6 +209,7 @@ func item(_ id: String? = nil) -> SearchResultItem {
         try manifestAndReadiness()
         try await paging()
         try await restore()
+        try await otzariaPaginationRetry()
         print("PASS: \(assertions) portable search assertions (real models/wrapper/session; fake FFI and Combine)")
     }
 

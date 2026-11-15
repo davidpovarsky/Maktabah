@@ -1,0 +1,21 @@
+   Creating library C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-e5xf_10u\Combine.lib and object C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-e5xf_10u\Combine.exp
+
+Otzaria full-view-model baseline: 2c3fd9868ca54ff9cfbe8e923c9462575befac73
+   Creating library C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-e5xf_10u\search-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-e5xf_10u\search-fixtures.exp
+
+main/SearchFixtures.swift:195: Fatal error: FAIL: actual Otzaria retry clears stale page error immediately
+Current stack trace:
+0    swiftCore.dll                      0x00007ffac296e730 swift_reportError + 94
+1    swiftCore.dll                      0x00007ffac2a0dc00 swift_stdlib_reportFatalErrorInFile + 132
+2    swiftCore.dll                      0x00007ffac26473e0 StaticString.withUTF8Buffer<A>(_:) + 872
+3    swiftCore.dll                      0x00007ffac26467b0 _assertionFailure(_:_:file:line:flags:) + 262
+4    search-fixtures.exe                0x00007ff6854e5e04 <unavailable> + 810500
+5    search-fixtures.exe                0x00007ff6854f74a0 main + 44401
+6    swift_Concurrency.dll              0x00007ffb48ca2cb0 UnimplementedTaskExecutor.__deallocating_deinit + 25902
+7    swift_Concurrency.dll              0x00007ffb48ca9d60 swift_job_run + 114
+8    dispatch.dll                       0x00007ffb51f3d6d0 dispatch_queue_set_width + 1952
+9    dispatch.dll                       0x00007ffb51f3d6d0 dispatch_queue_set_width + 4994
+10   dispatch.dll                       0x00007ffb51f42b70 dispatch_prohibit_transition_to_multithreaded + 8630
+11   ucrtbase.dll                       0x00007ffb8b16cbe0 wcsrchr + 336
+12   KERNEL32.DLL                       0x00007ffb8b73dd90 BaseThreadInitThunk + 23
+13   ntdll.dll                          0x00007ffb8d7d9c30 RtlUserThreadStart + 44

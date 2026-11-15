@@ -1,3 +1,5 @@
+Current QA correction: see PAGINATION_RETRY_CORRECTION.md (Otzaria retry error clearing; 191 full-class portable assertions). The initial immutable snapshot below is historical.
+
 # Search / Index implementation handoff — 2026-11-15
 
 [נועם | DEV] [MAIN_SESSION]
