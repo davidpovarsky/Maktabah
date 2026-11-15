@@ -369,6 +369,8 @@ private final class PaletteTextField: UITextField {
 
     func installEscapePressRecognizer() {
         let recognizer = PaletteEscapePressRecognizer(target: self, action: #selector(escapePress(_:)))
+        recognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue),
+                                        NSNumber(value: UIPress.PressType.menu.rawValue)]
         recognizer.allowedTouchTypes = []
         recognizer.cancelsTouchesInView = false
         recognizer.delaysTouchesBegan = false
@@ -537,6 +539,9 @@ private final class PaletteEscapePressRecognizer: UIGestureRecognizer {
         let escape = presses.contains {
             $0.key?.keyCode == .keyboardEscape && $0.key?.modifierFlags.isEmpty == true
         }
+        let keyboardKey = presses.contains { $0.key != nil }
+        let menu = presses.contains { $0.type == .menu }
+        paletteInputTraceLogger.info("stage=input.escapeGesture.attributes hasKeyboardKey=\(keyboardKey, privacy: .public) menuPress=\(menu, privacy: .public) escapeKey=\(escape, privacy: .public)")
         field.trace(escape ? "input.escapeGesture.escape" : "input.escapeGesture.other")
         guard escape, field.isFirstResponder, field.window?.isKeyWindow == true else {
             state = .failed
