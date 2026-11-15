@@ -158,6 +158,18 @@ final class R27NativePadTests: R27NativeUIBase {
         XCTAssertTrue(palette.waitForExistence(timeout: 15))
         let input = palette.textFields.firstMatch
         tapInWindow(input)
+        let valueBeforeHardwareKey = input.value as? String
+        input.typeKey("a", modifierFlags: [])
+        recordWindowEvidence("r27-hardware-key-positive-control")
+        let valueAfterHardwareKey = try XCTUnwrap(input.value as? String)
+        XCTAssertNotEqual(valueAfterHardwareKey, valueBeforeHardwareKey,
+                          "The same hardware-key API must actually edit the focused input before testing Escape")
+        XCTAssertFalse(valueAfterHardwareKey.isEmpty)
+        XCTAssertNotEqual(valueAfterHardwareKey, input.placeholderValue)
+        tapInWindow(palette.buttons["xmark.circle.fill"])
+        let clearedValue = try XCTUnwrap(input.value as? String)
+        XCTAssertTrue(clearedValue.isEmpty || clearedValue == input.placeholderValue,
+                      "The real clear action must reset the query before the fixture search")
         let title = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
         input.typeText(title)
         XCTAssertEqual(input.value as? String, title)
@@ -166,6 +178,7 @@ final class R27NativePadTests: R27NativeUIBase {
         XCTAssertTrue(result.isHittable)
         recordWindowEvidence("r27-real-narrow-palette-filtered")
         input.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        recordWindowEvidence("r27-after-synthesized-escape")
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == false"), object: palette
         )], timeout: 15), .completed)
