@@ -1,0 +1,98 @@
+Source: df2a21941afa46da716387fce9de620865d2a151; case: notes
+C:\Users\DAVID\AppData\Local\Temp\hq-inspector-h9274vsg\InspectorFixtures.swift:1282:48: warning: no 'async' operations occur within 'await' expression
+
+1280 |             if release.wait(timeout: .now() + 2) != .success { timedOut.set() }
+
+1281 |         }
+
+1282 |         let request = Task { @MainActor in try await session.notes(for: selection) }
+
+     |                                                `- warning: no 'async' operations occur within 'await' expression
+
+1283 |         let heartbeat = Task.detached {
+
+1284 |             guard entered.wait(timeout: .now() + 3) == .success else { throw FixtureError(message: "notes loader did not start") }
+
+
+
+C:\Users\DAVID\AppData\Local\Temp\hq-inspector-h9274vsg\InspectorFixtures.swift:1282:44: warning: no calls to throwing functions occur within 'try' expression
+
+1280 |             if release.wait(timeout: .now() + 2) != .success { timedOut.set() }
+
+1281 |         }
+
+1282 |         let request = Task { @MainActor in try await session.notes(for: selection) }
+
+     |                                            `- warning: no calls to throwing functions occur within 'try' expression
+
+1283 |         let heartbeat = Task.detached {
+
+1284 |             guard entered.wait(timeout: .now() + 3) == .success else { throw FixtureError(message: "notes loader did not start") }
+
+
+
+C:\Users\DAVID\AppData\Local\Temp\hq-inspector-h9274vsg\InspectorFixtures.swift:1300:52: warning: no 'async' operations occur within 'await' expression
+
+1298 |             BackendCoordinator.shared.activeBackendID = .otzaria
+
+1299 |             viewModel.currentBook = FixtureBook(id: 1)
+
+1300 |             let request = Task { @MainActor in try await session.notes(for: selection) }
+
+     |                                                    `- warning: no 'async' operations occur within 'await' expression
+
+1301 |             let started = await Task.detached { entered.wait(timeout: .now() + 3) == .success }.value
+
+1302 |             try expect(started, "stale test loader started")
+
+
+
+C:\Users\DAVID\AppData\Local\Temp\hq-inspector-h9274vsg\InspectorFixtures.swift:1300:48: warning: no calls to throwing functions occur within 'try' expression
+
+1298 |             BackendCoordinator.shared.activeBackendID = .otzaria
+
+1299 |             viewModel.currentBook = FixtureBook(id: 1)
+
+1300 |             let request = Task { @MainActor in try await session.notes(for: selection) }
+
+     |                                                `- warning: no calls to throwing functions occur within 'try' expression
+
+1301 |             let started = await Task.detached { entered.wait(timeout: .now() + 3) == .success }.value
+
+1302 |             try expect(started, "stale test loader started")
+
+
+
+C:\Users\DAVID\AppData\Local\Temp\hq-inspector-h9274vsg\InspectorFixtures.swift:1323:31: warning: no 'async' operations occur within 'await' expression
+
+1321 |         local.note = "unsaved"
+
+1322 |         viewModel.currentAnnotations = [local]
+
+1323 |         let localResult = try await session.notes(for: selection)
+
+     |                               `- warning: no 'async' operations occur within 'await' expression
+
+1324 |         try expect(localResult.count == 1 && localResult[0].note == "unsaved", "unsaved notes preserved after background load")
+
+1325 |         print("PASS actual notes loader: MainActor heartbeat, persisted/unsaved notes, stale generation/backend/book and cancellation")
+
+
+
+C:\Users\DAVID\AppData\Local\Temp\hq-inspector-h9274vsg\InspectorFixtures.swift:1323:27: warning: no calls to throwing functions occur within 'try' expression
+
+1321 |         local.note = "unsaved"
+
+1322 |         viewModel.currentAnnotations = [local]
+
+1323 |         let localResult = try await session.notes(for: selection)
+
+     |                           `- warning: no calls to throwing functions occur within 'try' expression
+
+1324 |         try expect(localResult.count == 1 && localResult[0].note == "unsaved", "unsaved notes preserved after background load")
+
+1325 |         print("PASS actual notes loader: MainActor heartbeat, persisted/unsaved notes, stale generation/backend/book and cancellation")
+
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-h9274vsg\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-h9274vsg\inspector-fixtures.exp
+
+FAIL FixtureError(message: "cold notes loader must leave MainActor responsive")

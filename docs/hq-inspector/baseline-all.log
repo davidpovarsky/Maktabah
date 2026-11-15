@@ -1,0 +1,10 @@
+Source: df2a21941afa46da716387fce9de620865d2a151; case: all
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-70dpzkp0\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-70dpzkp0\inspector-fixtures.exp
+
+PASS links=100 exact IDs/group counts/last navigation/zero eager decode/visible and full snippets
+PASS links=500 exact IDs/group counts/last navigation/zero eager decode/visible and full snippets
+PASS links=2000 exact IDs/group counts/last navigation/zero eager decode/visible and full snippets
+PASS splitContent=false segment scope/point content/partial snippets/range+inverse suppression
+PASS splitContent=true segment scope/point content/partial snippets/range+inverse suppression
+PASS loadedEmpty versus SQL/decode failure and retry
+FAIL FixtureError(message: "cancelled metadata request succeeded")

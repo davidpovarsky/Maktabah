@@ -1,0 +1,4 @@
+Source: df2a21941afa46da716387fce9de620865d2a151; case: scope
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-l8khdpxj\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-l8khdpxj\inspector-fixtures.exp
+
+FAIL FixtureError(message: "segment cannot include all section notes")

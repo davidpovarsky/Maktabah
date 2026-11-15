@@ -52,11 +52,13 @@ extension OtzariaMaktabahBridge {
     /// relationships, range coverage, and per-side suppression, and never opens
     /// one SQLite connection per line.
     private func getLinks(bookID: Int, sourceLineIndices: [Int], includeContent: Bool = false) throws -> [OtzariaLinkedSource] {
+        try Task.checkCancellation()
         let uniqueIndexes = Array(Set(sourceLineIndices)).sorted()
         guard !uniqueIndexes.isEmpty else { return [] }
 
         do {
             return try withDatabase { db in
+                try Task.checkCancellation()
                 let categories = try categoryMap(in: db)
                 let resolver = OtzariaCategoryPathResolver(categoriesById: categories)
                 let schema = try OtzariaBookSchemaCompatibility.projection(in: db, alias: "linked_book")
@@ -77,6 +79,7 @@ extension OtzariaMaktabahBridge {
                 // Each index appears in the forward and inverse arms. 400 keeps
                 // the statement below SQLite's common 999-variable limit.
                 for start in stride(from: 0, to: uniqueIndexes.count, by: 400) {
+                    try Task.checkCancellation()
                     let indexes = Array(uniqueIndexes[start..<min(start + 400, uniqueIndexes.count)])
                     let placeholders = Array(repeating: "?", count: indexes.count).joined(separator: ",")
                     let forwardCoverage = capabilities.hasLinkRanges
@@ -189,6 +192,7 @@ extension OtzariaMaktabahBridge {
                         JOIN book linked_book ON linked_book.id = resolved.linkedBookId
                         ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId
                     """, parameters: parameters) { row in
+                        try Task.checkCancellation()
                         let linkId = row.int(at: 0)
                         let rawConnectionType = row.string(at: 1) ?? "OTHER"
                         let matchedSide = row.int(at: 2)
@@ -247,12 +251,15 @@ extension OtzariaMaktabahBridge {
                     }
                 }
 
+                try Task.checkCancellation()
                 return byIdentity.values.sorted {
                     let left = ($0.linkedBookOrderIndex ?? Int.max, $0.linkedLineIndex, $0.id)
                     let right = ($1.linkedBookOrderIndex ?? Int.max, $1.linkedLineIndex, $1.id)
                     return left < right
                 }
             }
+        } catch is CancellationError {
+            throw CancellationError()
         } catch {
             OtzariaFileLogger.shared.log(
                 "[OtzariaMaktabahBridge] getLinks error bookId=\(bookID) "
@@ -296,7 +303,9 @@ extension OtzariaMaktabahBridge {
     }
 
     func fetchLineContent(lineId: Int) throws -> String {
-        try withDatabase { db in
+        try Task.checkCancellation()
+        return try withDatabase { db in
+            try Task.checkCancellation()
             let capabilities = try OtzariaDatabaseCapabilities(database: db)
             let content = OtzariaLineContentCompatibility.projection(
                 capabilities: capabilities,
@@ -312,16 +321,19 @@ extension OtzariaMaktabahBridge {
                 LIMIT 1
             """
             let rows = try db.fetch(query: query, parameters: [lineId]) { row in
-                try decoder.decode(row: row, at: 2)
+                try Task.checkCancellation()
+                return try decoder.decode(row: row, at: 2)
             }
             return rows.first ?? ""
         }
     }
 
     func fetchLineContent(bookId: Int, lineIndex: Int) throws -> (content: String, heRef: String?)? {
+        try Task.checkCancellation()
         let interval = OtzariaPerformanceTelemetry.shared.begin("LineSources.fetchLineContent")
         defer { interval.end(extra: "bookId=\(bookId) lineIndex=\(lineIndex)") }
         return try withDatabase { db in
+            try Task.checkCancellation()
             let capabilities = try OtzariaDatabaseCapabilities(database: db)
             let content = OtzariaLineContentCompatibility.projection(
                 capabilities: capabilities,
@@ -337,6 +349,7 @@ extension OtzariaMaktabahBridge {
                 LIMIT 1
             """
             let rows = try db.fetch(query: query, parameters: [bookId, lineIndex]) { row in
+                try Task.checkCancellation()
                 let decoded = try decoder.decode(row: row, at: 2)
                 let heRef = row.string(at: 3)
                 return (decoded, heRef)
@@ -346,6 +359,7 @@ extension OtzariaMaktabahBridge {
     }
 
     func fetchSnippets(for sources: [TorahLinkedSource]) throws -> [TorahLinkedSource.ID: String] {
+        try Task.checkCancellation()
         guard !sources.isEmpty else { return [:] }
         let interval = OtzariaPerformanceTelemetry.shared.begin("Bridge.fetchSnippets")
         defer { interval.end(extra: "sources=\(sources.count)") }
@@ -372,6 +386,7 @@ extension OtzariaMaktabahBridge {
         }
 
         try withDatabase { db in
+            try Task.checkCancellation()
             let capabilities = try OtzariaDatabaseCapabilities(database: db)
             let content = OtzariaLineContentCompatibility.projection(
                 capabilities: capabilities,
@@ -383,6 +398,7 @@ extension OtzariaMaktabahBridge {
             for (bookId, lineIndices) in linesByBookId {
                 let sortedIndices = Array(lineIndices).sorted()
                 for start in stride(from: 0, to: sortedIndices.count, by: 400) {
+                    try Task.checkCancellation()
                     let chunk = Array(sortedIndices[start..<min(start + 400, sortedIndices.count)])
                     let placeholders = Array(repeating: "?", count: chunk.count).joined(separator: ",")
                     var params: [Any] = [bookId]
@@ -395,6 +411,7 @@ extension OtzariaMaktabahBridge {
                         WHERE l.bookId = ? AND l.lineIndex IN (\(placeholders))
                     """
                     let rows = try db.fetch(query: query, parameters: params) { row in
+                        try Task.checkCancellation()
                         let bId = row.int(at: 0)
                         let lIdx = row.int(at: 1)
                         let decoded = try decoder.decode(row: row, at: 2)
@@ -414,6 +431,7 @@ extension OtzariaMaktabahBridge {
             }
         }
 
+        try Task.checkCancellation()
         return results
     }
 

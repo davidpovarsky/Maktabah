@@ -62,7 +62,7 @@ final class MaktabahTorahInspectorSession {
         },
         notesFetcher: { [weak self] selection in
             guard let self else { throw TorahError.missingProvider }
-            return await self.notes(for: selection)
+            return try await self.notes(for: selection)
         },
         snippetsFetcher: { [weak self] sources in
             guard let self else { return [:] }
@@ -486,11 +486,33 @@ final class MaktabahTorahInspectorSession {
         }
     }
 
-    private func notes(for selection: TorahInspectorSelection) -> [TorahInspectorNote] {
+    private func notes(for selection: TorahInspectorSelection) async throws -> [TorahInspectorNote] {
+        try Task.checkCancellation()
         guard let viewModel = readerViewModel,
               let selectedLocator = locator(for: selection),
               selectedLocator.backend == coordinator.activeBackendID else { return [] }
+        let initialGeneration = coordinator.generation
+        let bookID = viewModel.currentBook?.id
+        // Keep the range fallback tied to this request across selection changes.
         let selectedRange = viewModel.selectedSegmentRange
+        let persistedAnnotations: [Annotation]
+        if let bookID {
+            let backgroundTask = Task.detached(priority: .userInitiated) {
+                try Task.checkCancellation()
+                let annotations = AnnotationManager.shared.loadAnnotations(bkId: bookID)
+                try Task.checkCancellation()
+                return annotations
+            }
+            persistedAnnotations = try await withTaskCancellationHandler(
+                operation: { try await backgroundTask.value },
+                onCancel: { backgroundTask.cancel() }
+            )
+        } else {
+            persistedAnnotations = []
+        }
+        guard !Task.isCancelled, coordinator.generation == initialGeneration,
+              selectedLocator.backend == coordinator.activeBackendID,
+              viewModel.currentBook?.id == bookID else { throw CancellationError() }
         var allByID: [Int64: Annotation] = [:]
         var unpersisted: [Annotation] = []
         for ann in viewModel.currentAnnotations {
@@ -500,11 +522,9 @@ final class MaktabahTorahInspectorSession {
                 unpersisted.append(ann)
             }
         }
-        if let bkId = viewModel.currentBook?.id {
-            for ann in AnnotationManager.shared.loadAnnotations(bkId: bkId) {
-                if let id = ann.id {
-                    allByID[id] = ann
-                }
+        for ann in persistedAnnotations {
+            if let id = ann.id {
+                allByID[id] = ann
             }
         }
         let candidateAnnotations = Array(allByID.values) + unpersisted
@@ -553,7 +573,8 @@ final class MaktabahTorahInspectorSession {
         _ locator: TextLocator,
         in selection: TorahInspectorSelection
     ) -> Bool {
-        guard locator.backend.rawValue == selection.providerID else { return false }
+        guard selection.scope == .section,
+              locator.backend.rawValue == selection.providerID else { return false }
         switch (locator.backend, locator.position) {
         case (.otzaria, .legacyLine(let lineIndex)):
             guard let unit = otzariaUnitsByReference[cacheKey(
@@ -561,7 +582,7 @@ final class MaktabahTorahInspectorSession {
                 reference: selection.canonicalRef
             )] else { return false }
             return locator.workKey == "book:\(unit.bookId)"
-                && (unit.startLineIndex...unit.endLineIndex).contains(lineIndex)
+                && unit.sourceLineIndices.contains(lineIndex)
         case (.sefaria, .canonicalRef(let reference)), (.sefariaEmbedded, .canonicalRef(let reference)):
             let section = SefariaRef.canonicalInput(selection.canonicalRef)
             let candidate = SefariaRef.canonicalInput(reference)
