@@ -1,0 +1,75 @@
+{
+  "phase_final": false,
+  "production_source_commit": "48d6d7b634e82b8cf4212018d3f089de60958bb5",
+  "production_evidence_commit": "f3358012844e1790b8f0e57f25f0be85c46b9549",
+  "base": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
+  "production_path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+  "production_git_blob": "36dd25996aedf5610f4d5bf30982163f4777a62a",
+  "production_git_sha256": "239768fdb1e9994baff9f1a9242c8ff59bfdc99cbf23b4ed43b72b0ff02dd083",
+  "U_normalized_evidence_hashes_checked": 16,
+  "Q_reran_U_tests": false,
+  "U_attributed_portable_tests": {
+    "baseline_pass": 108,
+    "baseline_expected_fail": 114,
+    "corrected_pass": 222,
+    "workspace_pass": 61,
+    "native_UI": 0
+  },
+  "source_review": "Narrow final prepublication adoption for initial-empty startup, retaining live VM/UUID/active ID; saved-empty/nonempty target authority and transaction guards retained. Actual runtime causality remains unproven until retest.",
+  "new_branch_scope": "restoringBackend != nil && previousGroup == nil; no iPad-only guard in changed adapter",
+  "reachable_callers": [
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "symbol": "Exact9401WorkspaceLifecycle.task",
+      "predicate": "MaktabahApp.isIpad && workspace==nil && sceneID nonempty",
+      "call": "adapter.attach -> switchGroup(restoringBackend:)"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift",
+      "symbol": "CompactStudyWorkspaceHostModifier.task",
+      "predicate": "!MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled && workspace==nil && sceneID nonempty",
+      "call": "same adapter.attach -> same switchGroup(restoringBackend:)"
+    }
+  ],
+  "runtime_case_preconditions": "All9 use enabled:true normal bootstrap + unique fresh workspace namespaces. Both History cases also traverse scene attach; no previous-case adapter-branch trace proves new cancellation/backend/selection guards unreachable. Reader cases may directly exercise live-tab adoption.",
+  "reuse_decision": {
+    "verified_reused_pass": 0,
+    "historical_5_passes_preserved_at_original_ceaf": true,
+    "new_source_acceptance_requires_all_9": "Shared startup control flow changed on both idioms. This is affected-scope regression, not a duplicate healthy suite."
+  },
+  "execution_groups": {
+    "11-reader": [
+      "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+    ],
+    "11-window": [
+      "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+    ],
+    "phone": [
+      "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+    ]
+  },
+  "required_counts_by_group": {
+    "11-reader": 4,
+    "11-window": 1,
+    "phone": 4
+  },
+  "total_required_new_UI": 9,
+  "unchanged_conditions": [
+    "one T build-for-testing/execution path",
+    "OS27 conventional iPhone+iPad only",
+    "separate fresh disposable11-window",
+    "strict named UI-only xcresult+log evidence",
+    "same genuine native fixture/oracle fingerprints",
+    "normal .realUI no smoke bootstrap bypass",
+    "no physical/distribution/new RouteSpec acceptance inferred"
+  ],
+  "Q_test_donor": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
+  "T_test_integration": "930c5de7",
+  "T_integrated_Q_blob_exact": true
+}

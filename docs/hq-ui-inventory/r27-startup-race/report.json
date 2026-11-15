@@ -1,0 +1,9 @@
+{
+  "source_head": "48d6d7b634e82b8cf4212018d3f089de60958bb5",
+  "adapter_ref": "worktree",
+  "adapter_sha256": "373db39a17c6d147296248f1943e833e4443a9c152d8c676ec1b9ed6a3166afd",
+  "adapter_lf_sha256": "239768fdb1e9994baff9f1a9242c8ff59bfdc99cbf23b4ed43b72b0ff02dd083",
+  "executed": "real adapter control flow + real models/store/JSON persistence; controlled actor-port doubles",
+  "native_UI_tests_executed": 0,
+  "exit_code": 0
+}

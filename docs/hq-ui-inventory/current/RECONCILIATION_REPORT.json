@@ -1,0 +1,48 @@
+{
+  "retained_rows_reconciled": 227,
+  "new_visible_cancel_row": 1,
+  "semantic_surfaces": 228,
+  "source_anchor_validation": "EXECUTED_PASS",
+  "semantic_reconciliation": "MAIN_SESSION_NO_INDEPENDENT_REVIEWER",
+  "native_route_acceptance": "NOT_RUN",
+  "physical_ipad": "NOT_RUN",
+  "local_code_files": 574,
+  "external_pinned_files_verified": 176,
+  "all_code_files_verified": 750,
+  "added_paths": [],
+  "removed_paths": [
+    "Source/Otzaria/Actions/Package.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift"
+  ],
+  "changed_paths": [
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+  ],
+  "changed_semantic_anchors": [
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "anchor": "struct LibraryCommandPaletteAdapter",
+      "old_blob": "c9aee7e586b096b81ccea6ac3c8e12471556063c",
+      "current_blob": "53118d44034c71dff28b1b9ed79612179872955f",
+      "line": 8
+    }
+  ],
+  "source_sha": "5afdefdf7fae792eeb7a828dc9157e8cecab7f93"
+}

@@ -1,0 +1,25 @@
+{
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43679005353",
+  "checked_sha": "bfed97f63d77736f9d46581000f95790f2b3517e",
+  "app_source_sha": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "test_source_sha": "7bae3462e6c706c2a736bc3b2e5772564e8ad1f3",
+  "phase": "TEST_BUILD_FAILED_BEFORE_UI",
+  "counts": {
+    "ui_passed": 0,
+    "ui_failed": 0,
+    "ui_not_run": 9,
+    "verified_reused_pass": 0
+  },
+  "diagnostic": "R27NativeInteractionAcceptanceTests.swift:121 main actor-isolated exerciseNativeWindowResize called from nonisolated test method",
+  "xcode": "27.1/27A9275",
+  "swift": "6.4",
+  "sdk": "27.1",
+  "build_log_bytes": 17551727,
+  "build_log_sha256": "268ceef9407cdfb2fa6fd228aaabceeab4f21407543576f97f9e4fe06ce5eac1",
+  "artifact_id": 14147823486,
+  "artifact_digest": "sha256:ac281e57d532b0984cf08a1b8cabcc12a0fe8bbc008590ff923a709999e863eb",
+  "artifact_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43679005353/artifacts/14147823486",
+  "correction_sha": "021b5329b37d756604407e1256edf0001f708c3d",
+  "correction": "Q owns exact one-line @MainActor annotation; no skip/assertion/oracle change",
+  "next": "Necessary actual same9 retest; failed attempt retained"
+}

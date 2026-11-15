@@ -1,0 +1,168 @@
+{
+  "status": "PUSH_TRIGGER_PREFLIGHT_PASS",
+  "existing_remote_ref": "ABSENT verified with git ls-remote before write",
+  "allowed_one_time_branch": "codex/otzaria-integration-20261115",
+  "all_events": [
+    "pull_request",
+    "push",
+    "schedule",
+    "workflow_call",
+    "workflow_dispatch"
+  ],
+  "forbidden_push_secondary_events": [
+    "check_run",
+    "check_suite",
+    "create",
+    "deployment",
+    "deployment_status",
+    "pull_request_target",
+    "release",
+    "repository_dispatch",
+    "workflow_run"
+  ],
+  "workflows_unchanged": true,
+  "existing_schedule_note": "otzaria-search-gates.yml already has schedule; schedules run default branch independently and are not activated by this branch push. No schedule added/changed.",
+  "skip_ci": "Applies to push/pull_request only, not manual workflow_dispatch",
+  "sources": [
+    "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule"
+  ],
+  "workflows": [
+    {
+      "path": ".github/workflows/cloudkit-schema.yml",
+      "events": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/codeql.yml",
+      "events": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/deploy-docs.yml",
+      "events": [
+        "push"
+      ]
+    },
+    {
+      "path": ".github/workflows/ios-build-data-profile.yml",
+      "events": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/ios-build.yml",
+      "events": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/ios-testflight.yml",
+      "events": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/maktabah-batch-b-validation.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/mini-test10-data-profile.yml",
+      "events": [
+        "workflow_call",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-search-artifacts.yml",
+      "events": [
+        "workflow_call",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/otzaria-search-gates.yml",
+      "events": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule"
+      ]
+    },
+    {
+      "path": ".github/workflows/pr-build.yml",
+      "events": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/pr-review.yml",
+      "events": [
+        "pull_request"
+      ]
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/sefaria-embedded-validation.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/upstream-boundary-guard.yml",
+      "events": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/upstream-resolved-fast-validation-2026-09-04.yml",
+      "events": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "path": ".github/workflows/upstream-resolved-validation-2026-09-04.yml",
+      "events": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "path": ".github/workflows/zayit-demo-data.yml",
+      "events": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "path": ".github/workflows/zayit-production-data.yml",
+      "events": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "path": ".github/workflows/zayit-search-gates.yml",
+      "events": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    }
+  ]
+}

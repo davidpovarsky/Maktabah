@@ -1,0 +1,52 @@
+diff --git a/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift b/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift
+index cc126a82..2b535247 100644
+--- a/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift
++++ b/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift
+@@ -406 +406,46 @@ private final class PaletteTextField: UITextField {
+-        return commands + (super.keyCommands ?? [])
++        let inherited = super.keyCommands ?? []
++        // Descriptor observation only: preserve every inherited command and
++        // ordering; never invoke an action/target/validation to test it here.
++        let escapeCommand = commands[0]
++        let inputMatches = escapeCommand.input == UIKeyCommand.inputEscape
++        let noModifiers = escapeCommand.modifierFlags.isEmpty
++        let priority = escapeCommand.wantsPriorityOverSystemBehavior
++        let disabled = escapeCommand.attributes.contains(.disabled)
++        let ownAction = escapeCommand.action == #selector(escape(_:))
++        let ownResponds = responds(to: #selector(escape(_:)))
++        let inheritedMatches = inherited.filter { isUnmodifiedEscapeCommand($0) }
++        let duplicateCount = inheritedMatches.count
++        let inheritedPriorityCount = inheritedMatches.filter(\.wantsPriorityOverSystemBehavior).count
++        paletteInputTraceLogger.info("stage=input.registry.escape inputMatches=\(inputMatches, privacy: .public) noModifiers=\(noModifiers, privacy: .public) priority=\(priority, privacy: .public) disabled=\(disabled, privacy: .public) ownAction=\(ownAction, privacy: .public) ownResponds=\(ownResponds, privacy: .public) inheritedMatches=\(duplicateCount, privacy: .public) inheritedPriorityMatches=\(inheritedPriorityCount, privacy: .public)")
++        return commands + inherited
++    }
++
++    private func isUnmodifiedEscapeCommand(_ value: Any?) -> Bool {
++        guard let command = value as? UIKeyCommand else { return false }
++        return command.input == UIKeyCommand.inputEscape && command.modifierFlags.isEmpty
++    }
++
++    override func target(forAction action: Selector, withSender sender: Any?) -> Any? {
++        let ownAction = action == #selector(escape(_:))
++        let escapeSender = isUnmodifiedEscapeCommand(sender)
++        if ownAction || escapeSender { trace("input.target.escape.enter") }
++        let resolved = super.target(forAction: action, withSender: sender)
++        if ownAction || escapeSender {
++            trace("input.target.escape.return")
++            let found = resolved != nil
++            let returnsSelf = (resolved as? UIResponder) === self
++            paletteInputTraceLogger.info("stage=input.target.escape.result ownAction=\(ownAction, privacy: .public) escapeSender=\(escapeSender, privacy: .public) found=\(found, privacy: .public) returnsSelf=\(returnsSelf, privacy: .public)")
++        }
++        return resolved
++    }
++
++    override func validate(_ command: UICommand) {
++        super.validate(command)
++        let ownAction = command.action == #selector(escape(_:))
++        let escapeInput = isUnmodifiedEscapeCommand(command)
++        if ownAction || escapeInput {
++            trace("input.validateCommand.escape")
++            let disabled = command.attributes.contains(.disabled)
++            let priority = (command as? UIKeyCommand)?.wantsPriorityOverSystemBehavior ?? false
++            paletteInputTraceLogger.info("stage=input.validateCommand.escape.result ownAction=\(ownAction, privacy: .public) escapeInput=\(escapeInput, privacy: .public) disabled=\(disabled, privacy: .public) priority=\(priority, privacy: .public)")
++        }

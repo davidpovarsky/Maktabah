@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "source_test_commit": "15ed01259d4b41864a53db76c0060c25393d75ef",
+  "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+  "app_source": "40e642349814568ccae4437cb914f01f0c12420b",
+  "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
+  "independent_qa_thread": null,
+  "scope": "U_NATIVE_CANCEL_CANDIDATE_ONE_REAL_WINDOW_CASE_NOT_FULL_RELEASE",
+  "native_cases_executed": 0,
+  "required_nonzero_cases": 9,
+  "expected_per_device": {
+    "ipad11": 5,
+    "iphone": 4
+  },
+  "cases": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Normal bootstrap, genuine fixture book/title, real portrait-to-landscape geometry change, exact locator preservation"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual Hebrew text entry+native submit+visible hittable exact submitted history row, existing native history helper"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real Legacy provider/TextKit, exact backend/work Genesis identity, real landscape transition and unchanged exact observed locator"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real embedded provider/TextKit, exact backend/work Genesis identity, real landscape transition and unchanged exact observed locator; unavailable is failure/not passed support"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Real fixture identity preserved after Home/activate and cold terminate/launch; setup scenario removed before cold relaunch, exact locator equality"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Actual Hebrew entry/native submit/visible hittable exact history row on conventional iPhone"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Real Legacy Genesis reader with actual iPhone geometry transition and locator preservation"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Real embedded Genesis reader with actual iPhone geometry transition and locator preservation; no fake backend"
+    }
+  ],
+  "requirements": {
+    "os_major": 27,
+    "phone": "conventional numbered iPhone, no Duo",
+    "ipad": "actual11inch;13inch/full release matrix remains separate",
+    "data_profile": "real native-installed miniTest10",
+    "bootstrap": "realUI; never -smokeBypassBootstrap",
+    "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
+    "scheduling": "One U-owned CI path/build-for-testing and one watcher; no competing suite"
+  },
+  "required_test_environment": {
+    "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
+    "R27_EXPECTED_OTZARIA_BOOK_TITLE": "actual book.title from same selected real fixture row",
+    "FAITHFUL_VIEWPORT_DIRECTORY": "existing native app-data container/Documents hint; runner maps TEST_RUNNER_ prefix"
+  },
+  "fixture_oracle_sql": "SELECT l.sourceBookId, sourceLine.lineIndex, b.title FROM link l JOIN line sourceLine ON sourceLine.id=l.sourceLineId JOIN book b ON b.id=l.sourceBookId ORDER BY l.id LIMIT 1",
+  "fixture_fallback": "If no link, same existing app scenario selects book1/line1; read title for book1 and record absence. Never synthesize text/data or choose a book from UI observation.",
+  "baseline_helper_fingerprints": [
+    {
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "c57157447416afbb5477928719e3d1af8373af76df0274ce85a558a37336461a"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "82e618702804f7d9c0c270c62c2537e301816285261c810530448295986527f6"
+    },
+    {
+      "path": "Scripts/CI/prepare-faithful-ipad-fixtures.py",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "ffa6a4c5a0ea861bb21583fe811e0e52bec79e76d941b3b2d84ffc68b1da125f"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "adb90c0a2abab01ed0cc3e886197369a4d43698739957fdc52319b90d697f964"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "74c05fcad5acc79f9bdbb43d4d583a2eda5cfa248adc0b31faf155407b9e03d5"
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "source_sha": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
+      "sha256": "4ed6723b2f190b9691971c5edc9fa5936281984b78bfe2a5928f55d2283a2c7d"
+    }
+  ],
+  "preserve_evidence": [
+    "actual app/test/dependency/source/generated-input fingerprints",
+    "native fixture profile/version/schema/hash/selected row evidence",
+    "device UDID/type/runtime build/orientation/window/locale/tool versions",
+    "required named case IDs and parsed UI-only xcresult leaves+JUnit+logs",
+    "screenshots+debug hierarchy and available recording even on failure",
+    "zero-test/skipped/failed/partial/mismatched results must fail closed",
+    "no unconditional production DB-open claim"
+  ],
+  "not_accepted": [
+    "new RouteSpec/scene-revision/Hanlin/AppIntent/URL behavior not connected to app07",
+    "physical iPad",
+    "full production corpus/performance",
+    "13inch/VoiceOver/DynamicType/full release coverage not part of initial9"
+  ],
+  "reused_ui_passes": 0,
+  "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
+  "previous_manifest_sha256": "1f20458858d0890433d87e2131ac2283a73e369aaddadb39bd4c2ce57af59d3f",
+  "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
+  "affected_execution_groups": {
+    "11-window": [
+      "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+    ]
+  },
+  "reuse_candidates_subject_to_U_change_impact": [
+    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+  ],
+  "execution_groups": [
+    {
+      "label": "11-window",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+      ]
+    }
+  ],
+  "execution_case_ids": [
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+  ],
+  "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
+  "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "application_correction": {
+    "donor": "48d6d7b634e82b8cf4212018d3f089de60958bb5",
+    "evidence": "f3358012844e1790b8f0e57f25f0be85c46b9549",
+    "integration": "04b4d5f27e51d29508e8e0d4dcc8d3b07d405e4e",
+    "changed_production_paths": [
+      "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"
+    ],
+    "runtime_status": "NOT_RUN",
+    "scope": "Initial-empty iPad startup tab adoption at final validated commit boundary"
+  },
+  "source_change_impact_decision": "Q exact Escape2path review: only window1 affected;8current actual healthy reader paths never instantiate palette and are eligible verified reuse subject to fresh actual runtime compatibility",
+  "independent_change_impact": {
+    "file": "docs/hq-integration/runtime27/Q_SOURCE_CHANGE_IMPACT_75ea.json",
+    "source_file_sha256": "31f5b1ef6905e315cf9f463c05fa11145c0423e7438c10bdbf873127ae0860ac",
+    "required_new_case_count": 1,
+    "eligible_verified_reused_pass": 8
+  },
+  "current_healthy_evidence": {
+    "run": 43688380348,
+    "tested_sha": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+    "ui_passed": 8,
+    "case_ids": [
+      "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+    ],
+    "candidate_reuse": "Q eligible8; retained actual base/fingerprints+conditional palette-unreachable path proof; confirm fresh runtime compatibility"
+  },
+  "prior_app_source": "04b4d5f27e51d29508e8e0d4dcc8d3b07d405e4e",
+  "escape_correction": {
+    "donors_in_order": [
+      "83c13b412e8c38ec354b112d699d53c83d2352d8",
+      "75ea765de3d768402bf89798b6006b2aea7f9477"
+    ],
+    "evidence": "606e563490e1549cd9792c0922b9dcb87f30577b",
+    "integration": "068920924e329573b07c7fa2b3c498364d0800de",
+    "changed_production_paths": [
+      "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+    ],
+    "native_status": "NOT_RUN",
+    "test_oracle": "Unchanged Qab23 actualinput.typeKey(Escape) and palette-disappearance assertion, followed by Inspector and same locator/text/full-size restoration"
+  },
+  "change_impact_history": [
+    {
+      "file": "docs/hq-integration/runtime27/Q_SOURCE_CHANGE_IMPACT_48d6.json",
+      "source_file_sha256": "f0524ef14ee2bae83729a97ecf2218c96ca346d5419536228e49d970a9354d2f",
+      "required_case_count": 9,
+      "verified_reused_pass": 0
+    }
+  ],
+  "prior_test_source_commit": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
+  "diagnostic_purpose": "Retained fixed stage capture only; acceptance requires real visible dismissal and Inspector/text/locator/window oracles",
+  "app_source_before_observation": "068920924e329573b07c7fa2b3c498364d0800de",
+  "diagnostic_only": false,
+  "native_trace": {
+    "donor": "914fa87f5b93e2667571001cd0c762ef58589d88",
+    "evidence": "99f5082f27369239ba98415fe23c6d1a9b4c4755",
+    "integration": "17d7ebbb890fbdbd18e40d73688fbe6211f0adec",
+    "source_sha256": {
+      "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift": "d04bb370070ac478ffdc8857197fdb8df0d1ca420a2ae75ed863af5771682d45",
+      "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift": "db3c527cf6748a4ebf01ffa81a45fdf77cd0afdd52aaa8508460b5feb3c18782"
+    },
+    "subsystem": "com.davidpovarsky.chavrusatext",
+    "category": "R27PaletteInput",
+    "logging_level": "info",
+    "capture": "owned-device live logstream debug level bounded900seconds +bounded15min logshow with info/debug, retained on success/failure beforedevice deletion; mount/editmarkers required",
+    "code_image_proof": "actual app executable/rootdylib hashes and bounded PaletteTextField nm symbols; nativebuildlog +actualgeneratedpbxproj bytes",
+    "behavior_fix_claim": false
+  },
+  "source_test_before_role_refinement": "c9295c85a51710e592dc2558e6edb5395b1ecca5",
+  "query_refinement": "Exactone-line actualOther-role query for samepaletteidentifier, preservingallhardware/query/Escape/Inspector/locator/text/restore assertions/timeouts; sameU914source/capture; no SDKquery-resolution success inferred",
+  "controlled_interruption_resume": {
+    "interrupted_run": 43704261180,
+    "same_source_test_oracles": true,
+    "continuation_limit": 1,
+    "cancellation_actor_or_cause": "UNKNOWN",
+    "explicit_stop_limit_or_active_collision_found": false,
+    "lifecycle_fix": "Owned child process group receives immediate interrupt; bounded escalation only that group, immediate unverified marker, parent reportsINTERRUPTED; formal test log flushed perline",
+    "healthy_tests_rerun": 0
+  },
+  "app_source_before_dispatch_probe": "17d7ebbb890fbdbd18e40d73688fbe6211f0adec",
+  "dispatch_probe": {
+    "source": "5c6670b6f213f8a0defb1eadc32260e85c976dc6",
+    "seal": "1c4bf763ebd78030dfe61b827e99d64900168b60",
+    "integration": "7ad2de8981e314c1b1adc5a4da5d4e9471c2ec9c",
+    "source_file_sha256": "4cfbffca1fd0ddb4862b764c944b01efa818e54200cd2fd33688036fee0adfc8",
+    "purpose": "Observe actual descriptor/selector/inherited counts and real target/validation calls; no artificial invocation or command filtering",
+    "source_review": "Q_DISPATCH_INPUT_REVIEW_5c66.json",
+    "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
+  },
+  "current_correction": {
+    "source": "40e642349814568ccae4437cb914f01f0c12420b",
+    "test_source": "15ed01259d4b41864a53db76c0060c25393d75ef",
+    "changed_production_paths": [
+      "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
+    ],
+    "behavior": "Existing visible esc hint becomes real native standard Cancel button; same host presentation state",
+    "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
+    "native_status": "NOT_RUN"
+  }
+}

@@ -1,4 +1,9 @@
 import SwiftUI
+#if os(iOS)
+import UIKit
+import OSLog
+private let paletteInputTraceLogger = Logger(subsystem: "com.davidpovarsky.chavrusatext", category: "R27PaletteInput")
+#endif
 
 /// The command palette: a search field, the matching commands in sections and a footer with the
 /// keys to use.
@@ -22,7 +27,11 @@ public struct CommandPaletteView: View {
     @ObservedObject private var recents: RecentCommandsStore
     @State private var query: String
     @State private var selection: CommandPaletteSelection
+    #if os(iOS)
+    @State private var isSearchFieldFocused = false
+    #else
     @FocusState private var isSearchFieldFocused: Bool
+    #endif
 
     /// Creates a palette.
     /// - Parameters:
@@ -90,6 +99,10 @@ public struct CommandPaletteView: View {
         .onChange(of: commands) { _, _ in
             selection.update(rows: makeRows(), keepingSelection: true)
         }
+        #if os(iOS)
+        .onAppear { paletteInputTraceLogger.info("stage=package.appear") }
+        .onDisappear { paletteInputTraceLogger.info("stage=package.disappear") }
+        #endif
         #if os(macOS)
         .onExitCommand(perform: onDismiss)
         #endif
@@ -105,15 +118,23 @@ public struct CommandPaletteView: View {
                 .font(.system(size: 18, weight: .medium))
                 .foregroundStyle(.secondary)
 
+            #if os(iOS)
+            PaletteSearchTextField(text: $query, placeholder: placeholder,
+                wantsFocus: isSearchFieldFocused,
+                onFocusChange: { focused in
+                    if isSearchFieldFocused != focused { isSearchFieldFocused = focused }
+                },
+                onSubmit: runSelection, onEscape: {
+                    paletteInputTraceLogger.info("stage=package.dismiss.forward")
+                    onDismiss()
+                },
+                onUp: { selection.moveUp() }, onDown: { selection.moveDown() })
+            #else
             TextField(placeholder, text: $query)
                 .textFieldStyle(.plain)
                 .font(.system(size: 20))
                 .focused($isSearchFieldFocused)
                 .autocorrectionDisabled()
-                #if os(iOS)
-                .textInputAutocapitalization(.never)
-                .submitLabel(.go)
-                #endif
                 .onSubmit(runSelection)
                 .onKeyPress(.downArrow) {
                     selection.moveDown()
@@ -127,6 +148,7 @@ public struct CommandPaletteView: View {
                     onDismiss()
                     return .handled
                 }
+            #endif
 
             if !query.isEmpty {
                 Button {
@@ -139,7 +161,13 @@ public struct CommandPaletteView: View {
                 .accessibilityLabel(Text("Clear search"))
             }
 
-            KeyCap(label: "esc")
+            Button(action: onDismiss) {
+                KeyCap(label: "esc")
+            }
+            .buttonStyle(.plain)
+            .keyboardShortcut(.cancelAction)
+            .accessibilityLabel(Text("Close command palette"))
+            .accessibilityIdentifier("command-palette-close")
         }
         .padding(.horizontal, 18)
         .padding(.vertical, 15)
@@ -244,3 +272,238 @@ public struct CommandPaletteView: View {
         command.action()
     }
 }
+
+#if os(iOS)
+/// The palette's actual text input owns keyboard commands, rather than relying
+/// on an ancestor hosting controller while text input has keyboard focus.
+@MainActor
+private struct PaletteSearchTextField: UIViewRepresentable {
+    @Binding var text: String
+    let placeholder: String
+    let wantsFocus: Bool
+    let onFocusChange: (Bool) -> Void
+    let onSubmit: () -> Void
+    let onEscape: () -> Void
+    let onUp: () -> Void
+    let onDown: () -> Void
+
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
+
+    func makeUIView(context: Context) -> PaletteTextField {
+        let field = PaletteTextField()
+        field.borderStyle = .none
+        field.backgroundColor = .clear
+        field.font = .systemFont(ofSize: 20)
+        field.textColor = .label
+        field.autocorrectionType = .no
+        field.autocapitalizationType = .none
+        field.returnKeyType = .go
+        field.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        field.delegate = context.coordinator
+        field.addTarget(context.coordinator, action: #selector(Coordinator.editingChanged(_:)), for: .editingChanged)
+        return field
+    }
+
+    func updateUIView(_ field: PaletteTextField, context: Context) {
+        context.coordinator.parent = self
+        if field.text != text, field.markedTextRange == nil { field.text = text }
+        field.placeholder = placeholder
+        field.accessibilityLabel = placeholder
+        field.textAlignment = context.environment.layoutDirection == .rightToLeft ? .right : .left
+        field.semanticContentAttribute = context.environment.layoutDirection == .rightToLeft ? .forceRightToLeft : .forceLeftToRight
+        field.onEscape = onEscape
+        field.onUp = onUp
+        field.onDown = onDown
+        field.wantsFocus = wantsFocus
+        field.trace("input.update")
+        field.reconcileFocus()
+    }
+
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: PaletteTextField, context: Context) -> CGSize? {
+        CGSize(width: proposal.width ?? max(0, uiView.intrinsicContentSize.width), height: uiView.intrinsicContentSize.height)
+    }
+
+    static func dismantleUIView(_ field: PaletteTextField, coordinator: Coordinator) {
+        field.trace("input.dismantle")
+        field.delegate = nil
+        field.onEscape = nil
+        field.onUp = nil
+        field.onDown = nil
+        field.resignFirstResponder()
+    }
+
+    @MainActor final class Coordinator: NSObject, UITextFieldDelegate {
+        var parent: PaletteSearchTextField
+        init(_ parent: PaletteSearchTextField) { self.parent = parent }
+
+        @objc func editingChanged(_ field: UITextField) {
+            (field as? PaletteTextField)?.trace("delegate.editingChanged")
+            let value = field.text ?? ""
+            if parent.text != value { parent.text = value }
+        }
+
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            (textField as? PaletteTextField)?.trace("delegate.beginEditing")
+            parent.onFocusChange(true)
+        }
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            (textField as? PaletteTextField)?.trace("delegate.endEditing")
+            parent.onFocusChange(false)
+        }
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            (textField as? PaletteTextField)?.trace("delegate.return")
+            parent.onSubmit()
+            return false
+        }
+    }
+}
+
+@MainActor
+private final class PaletteTextField: UITextField {
+    var onEscape: (() -> Void)?
+    var onUp: (() -> Void)?
+    var onDown: (() -> Void)?
+    var wantsFocus = false
+
+    // Diagnostic only: fixed stages and flags, never input/query/book content.
+    func trace(_ stage: String) {
+        let first = isFirstResponder
+        let mounted = window != nil
+        let keyWindow = window?.isKeyWindow ?? false
+        let requested = wantsFocus
+        let callback = onEscape != nil
+        paletteInputTraceLogger.info("stage=\(stage, privacy: .public) first=\(first, privacy: .public) mounted=\(mounted, privacy: .public) keyWindow=\(keyWindow, privacy: .public) wantsFocus=\(requested, privacy: .public) callback=\(callback, privacy: .public)")
+    }
+
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        trace("input.didMoveToWindow")
+        reconcileFocus()
+    }
+
+    override func becomeFirstResponder() -> Bool {
+        trace("input.becomeFirstResponder.before")
+        let result = super.becomeFirstResponder()
+        trace("input.becomeFirstResponder.after")
+        return result
+    }
+
+    override func resignFirstResponder() -> Bool {
+        trace("input.resignFirstResponder.before")
+        let result = super.resignFirstResponder()
+        trace("input.resignFirstResponder.after")
+        return result
+    }
+
+    func reconcileFocus() {
+        guard window != nil else { return }
+        if wantsFocus, !isFirstResponder { becomeFirstResponder() }
+        else if !wantsFocus, isFirstResponder { resignFirstResponder() }
+    }
+
+    override var keyCommands: [UIKeyCommand]? {
+        trace("input.keyCommands")
+        let commands = [
+            UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags: [], action: #selector(escape(_:))),
+            UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags: [], action: #selector(up(_:))),
+            UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags: [], action: #selector(down(_:)))
+        ]
+        for command in commands { command.wantsPriorityOverSystemBehavior = true }
+        let inherited = super.keyCommands ?? []
+        // Descriptor observation only: preserve every inherited command and
+        // ordering; never invoke an action/target/validation to test it here.
+        let escapeCommand = commands[0]
+        let inputMatches = escapeCommand.input == UIKeyCommand.inputEscape
+        let noModifiers = escapeCommand.modifierFlags.isEmpty
+        let priority = escapeCommand.wantsPriorityOverSystemBehavior
+        let disabled = escapeCommand.attributes.contains(.disabled)
+        let ownAction = escapeCommand.action == #selector(escape(_:))
+        let ownResponds = responds(to: #selector(escape(_:)))
+        let inheritedMatches = inherited.filter { isUnmodifiedEscapeCommand($0) }
+        let duplicateCount = inheritedMatches.count
+        let inheritedPriorityCount = inheritedMatches.filter(\.wantsPriorityOverSystemBehavior).count
+        paletteInputTraceLogger.info("stage=input.registry.escape inputMatches=\(inputMatches, privacy: .public) noModifiers=\(noModifiers, privacy: .public) priority=\(priority, privacy: .public) disabled=\(disabled, privacy: .public) ownAction=\(ownAction, privacy: .public) ownResponds=\(ownResponds, privacy: .public) inheritedMatches=\(duplicateCount, privacy: .public) inheritedPriorityMatches=\(inheritedPriorityCount, privacy: .public)")
+        return commands + inherited
+    }
+
+    private func isUnmodifiedEscapeCommand(_ value: Any?) -> Bool {
+        guard let command = value as? UIKeyCommand else { return false }
+        return command.input == UIKeyCommand.inputEscape && command.modifierFlags.isEmpty
+    }
+
+    override func target(forAction action: Selector, withSender sender: Any?) -> Any? {
+        let ownAction = action == #selector(escape(_:))
+        let escapeSender = isUnmodifiedEscapeCommand(sender)
+        if ownAction || escapeSender { trace("input.target.escape.enter") }
+        let resolved = super.target(forAction: action, withSender: sender)
+        if ownAction || escapeSender {
+            trace("input.target.escape.return")
+            let found = resolved != nil
+            let returnsSelf = (resolved as? UIResponder) === self
+            paletteInputTraceLogger.info("stage=input.target.escape.result ownAction=\(ownAction, privacy: .public) escapeSender=\(escapeSender, privacy: .public) found=\(found, privacy: .public) returnsSelf=\(returnsSelf, privacy: .public)")
+        }
+        return resolved
+    }
+
+    override func validate(_ command: UICommand) {
+        super.validate(command)
+        let ownAction = command.action == #selector(escape(_:))
+        let escapeInput = isUnmodifiedEscapeCommand(command)
+        if ownAction || escapeInput {
+            trace("input.validateCommand.escape")
+            let disabled = command.attributes.contains(.disabled)
+            let priority = (command as? UIKeyCommand)?.wantsPriorityOverSystemBehavior ?? false
+            paletteInputTraceLogger.info("stage=input.validateCommand.escape.result ownAction=\(ownAction, privacy: .public) escapeInput=\(escapeInput, privacy: .public) disabled=\(disabled, privacy: .public) priority=\(priority, privacy: .public)")
+        }
+    }
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(escape(_:)) || action == #selector(up(_:)) || action == #selector(down(_:)) {
+            trace(action == #selector(escape(_:)) ? "input.validate.escape" : "input.validate.arrow")
+            return isFirstResponder && window != nil
+        }
+        return super.canPerformAction(action, withSender: sender)
+    }
+
+    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        let remaining = presses.filter { $0.key?.keyCode != .keyboardEscape }
+        trace(remaining.count != presses.count ? "input.pressesBegan.escape" : "input.pressesBegan.other")
+        if remaining.count != presses.count { dismissFromKeyboard() }
+        if !remaining.isEmpty { super.pressesBegan(Set(remaining), with: event) }
+    }
+
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        trace(presses.contains { $0.key?.keyCode == .keyboardEscape } ? "input.pressesEnded.escape" : "input.pressesEnded.other")
+        super.pressesEnded(presses, with: event)
+    }
+
+    override func pressesCancelled(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        trace(presses.contains { $0.key?.keyCode == .keyboardEscape } ? "input.pressesCancelled.escape" : "input.pressesCancelled.other")
+        super.pressesCancelled(presses, with: event)
+    }
+
+    override func insertText(_ text: String) {
+        trace(text == "\u{1b}" ? "input.insertText.escape" : "input.insertText.other")
+        // Accept Escape delivered through UIKeyInput as well as hardware key
+        // commands/presses, without inserting the control character in the query.
+        if text == "\u{1b}" { dismissFromKeyboard() }
+        else { super.insertText(text) }
+    }
+
+    private func dismissFromKeyboard() {
+        trace("input.dismiss.enter")
+        guard isFirstResponder else { return }
+        resignFirstResponder()
+        trace("input.dismiss.callback")
+        onEscape?()
+        trace("input.dismiss.return")
+    }
+
+    @objc private func escape(_ command: UIKeyCommand) {
+        trace("input.action.escape")
+        dismissFromKeyboard()
+    }
+    @objc private func up(_ command: UIKeyCommand) { onUp?() }
+    @objc private func down(_ command: UIKeyCommand) { onDown?() }
+}
+#endif

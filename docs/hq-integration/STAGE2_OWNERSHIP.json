@@ -1,0 +1,293 @@
+{
+  "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "integrated_application_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "reviewed_at_tip": "b338390044274b79e45d267144469211e430e3d7",
+  "ownership_counts": {
+    "DOWNSTREAM_OWNED": 19,
+    "UPSTREAM_OWNED": 14,
+    "VENDORED_PORT_WRAPPER": 1
+  },
+  "paths": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "M",
+      "owner": "T",
+      "blob": "1a47e35e87136170b34f4ace98ddbb3cc328f0d6",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "cfd72d9129dfc1b7a3120991ac97df653d351412"
+    },
+    {
+      "path": "Source/ChavrusaText/BookUpdates/MaktabahBookUpdateSafety.swift",
+      "status": "A",
+      "owner": "D",
+      "blob": "78274beb44994f2fb26a3e75929408fdf86c6caf",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "ac7bf051cf9288ffa5b37ccb59f04d7969272d12",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "1a426536ef628a3c72da17a4b4d430c411689b5b",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "e041494b9e8cdb3831d3c93f008b2207755e757a"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "ae7820c1d71a613aca147ce7611c0302492746e6",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "10fe299b48da8da24e1eea08929b971cc0b3fe06"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "2bb69671d409c22b2e18265b02c01798bb2b6ff3",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "5d5a8b1c0c9693d4b44af4aee19e4200c470e799"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "7727f5dc3248ac315f083c3dfe4c884839e650b7",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "1ebd757b381152031e68ef2f223a9e5f91f0c716"
+    },
+    {
+      "path": "Source/Features/Library/Updates/BookUpdateView.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "d8162f600dbc177362c6cb53152e99c5aa2a0153",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "df466461353a7aea565dcb287b3a4181383fc29c"
+    },
+    {
+      "path": "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "9e59b5f0e6a8c160d82ca76b175a0915c1e96db0",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "bcd0632bf2ecf742eb8f2315b43f4e1f8a99fd90"
+    },
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "46f202177491274e37e140326913cfcbf716883b",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "1801e9885b81e5a3c88dec6ad7db19bb7ab70050"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "e934ec3df44fe008d9d4eee42ce8474b88208c60",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "3519f971897ee248a0f744a8b04ea28b29ef6d3b"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "823c616083095ea89a2c5d90cc88ee58cfe64c57"
+    },
+    {
+      "path": "Source/Features/Search/Models/SearchResultItem.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "2eed19f58dae86205bfd01b838db77a5ad1129ba",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "68b7d86be161a574eebf64661c14d382ffcba8f8"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "8e18d27ce9395acd700da328574f6a70cc842d80",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "06246b43616fc0d5827c990b28e9769b9ebc5295"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "e09fe2e341ef756c51d0dc9784ce9c19a9ed2043",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "2a556caa65b0e86802ec4c5a2d69f10f89b79b50"
+    },
+    {
+      "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "d993dab12cb007b24033faa8f3e83caca402b91f",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "936c263de86e9418ea88de2b31e1e4a57bb255a5",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+      "status": "M",
+      "owner": "I",
+      "blob": "64323245347b5132f0c44291b2580a6c74fcf15b",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaLineSourcesService.swift",
+      "status": "M",
+      "owner": "I",
+      "blob": "e116f85eb3ab5e7d58a65025301bf4185e4629a1",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaMaktabahBridge+LineAnchors.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "24222548c901d908801281594c7c08fa14677a20",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaMaktabahBridge+ReadingUnits.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "b3605a0b9a362f4c92888ac07b6031f90d385665",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "9acdb487d8dff421fd7deca9593a4b222dd07402",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift",
+      "status": "M",
+      "owner": "I",
+      "blob": "750fe0c6ee8be61b547c283675fa121c3827940a",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaSearchIndexManager.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "e88c977d48ccc27ec52ce57f85d03d93e718c089",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaSearchModels.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "22f3980075810cec64fa1e4d52198e5ae2dfa2b2",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "74ca8f454215c564a7b28b3855bf9c4d66ae040c",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "a833ce55790a761b6a9525d9403992fccc08c5f0",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "58d505603a44e1b476b448738540a8604cb183b9",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "9ad82bcfaf091056c7ea12a029a2856a89611653"
+    },
+    {
+      "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "1f4b24ec60a4092566a077e186455837743a0ff8",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "5983d641372c0c8142fb156677dbd0da79f027a3",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/ZayitSearch/ZayitSearchDistribution.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "9a3ccad793a21a12abad29f5ac5147e26e69aa00",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Source/ZayitSearch/ZayitSearchSessionController.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "83a2183bb358d2cc83748a1e65d411e96b27a289",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null
+    },
+    {
+      "path": "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "008bfe1695fa81145968331a1547a1232b31450e",
+      "ownership": "VENDORED_PORT_WRAPPER",
+      "upstream_blob": null
+    }
+  ],
+  "audit_references": {
+    "S": "docs/hq-search/HOOKS.md",
+    "D": "docs/hq-updates/HANDOFF.md + upstream-hooks.diff",
+    "U": "docs/hq-sidebar/upstream-hooks.patch + docs/hq-sidebar",
+    "P": "docs/hq-reader",
+    "I": "docs/hq-inspector/REPORT.md",
+    "T": "docs/hq-integration/HOOK_AUDIT_20261115.md"
+  },
+  "scope": "Pinned file-origin and exact retained hunks; functional/compiler/device gates remain separate."
+}

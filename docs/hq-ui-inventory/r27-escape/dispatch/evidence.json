@@ -1,0 +1,12 @@
+{
+  "source": "5c6670b6f213f8a0defb1eadc32260e85c976dc6",
+  "changes": "observations only; no command/action/UI behavior correction",
+  "native_extension_result": "NOT_RUN",
+  "artifact_lf_sha256": {
+    "baseline.json": "658e8caa8ffc18081639cbca665eef6c0a6827232c45aa6c8c46fac446e817e7",
+    "HANDOFF.md": "c4c82f45bec7439c21235ece6841e4c9c8b3a9c9e463d42a325f81bb4ed0313c",
+    "source.patch": "5db4788f03b8771815df05a9680409cbabe537126976e1e5e993d9e37176b26c",
+    "verification.json": "15fe797776118b3349140f60df01739e8971bd917acddfd214ad6e032d1891b3",
+    "verify_dispatch.py": "1d4e84bb24465cae113cd2ed3cf5cd7643e27e1082f3d808780d8daa61014f2f"
+  }
+}

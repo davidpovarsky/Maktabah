@@ -1,0 +1,42 @@
+{
+  "run": 43700083573,
+  "source_changes_during_review": [],
+  "raw_inspected": [
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43700083573-selective\\artifacts\\test-simulator-11-window.log",
+      "bytes": 22808,
+      "sha256": "b0232d28c4438bd5d0f7676caba719b402e0c0f8a68719c6a43ac35e6cf3f356"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43700083573-selective\\artifacts\\runtime27\\palette-input-11-window-stream.log",
+      "bytes": 56421,
+      "sha256": "25570403ab19ceda79819edb5f35d1fccbaededd8025940221fd71a3de560570"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43700083573-selective\\artifacts\\runtime27\\palette-compiled-images.json",
+      "bytes": 96537,
+      "sha256": "2608fab8f4a5e29764e6a4e0adfb2e105ebc061e087f262638913eb1231d0d01"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43700083573-selective\\artifacts\\visual-11-window\\6F7813D0-96D0-43F4-811B-847C9DCA2D75.txt",
+      "bytes": 14143581,
+      "sha256": "7b4ead5e0960996260480fa99112fe6a066a55fdafc66b288a5f0cdf2332faea"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43700083573-selective\\artifacts\\visual-11-window\\33EA9877-4A31-4FBD-BA80-0A940F43098D.png",
+      "bytes": 2294743,
+      "sha256": "6519314972daf1d34b25b7fe843d6872935b6c9527fcfda58ad7b7abab313704"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43700083573-selective\\artifacts\\visual-11-window\\227BF33B-1CDC-49F1-9D84-CD9837E19161.txt",
+      "bytes": 31072,
+      "sha256": "0a2ebde6dd968d6a7d9032dc172052ca35f4797227d35d96a463b54dcd5e8833"
+    }
+  ],
+  "local_evidence_lf_sha256": {
+    "run-43700083573-events.json": "733edf0b47d74927b03688103b93550de1326c6d7eb1acf3f16e2e61e9ef84e7",
+    "run-43700083573-stack-excerpts.log": "e08335049961a2fa5b2e96ef6e96bca15cb0c68993a5a009d7d8c8bfacd9a433",
+    "run-43700083573-review.md": "90be0dc35851272c2a656e375c474a2906cb8c0b17f7c097472aaa3822b1e9e1"
+  },
+  "Q_next_test_commit": "ad7903492b66e6a5faa9af61d99a4e0e905aa0b5"
+}

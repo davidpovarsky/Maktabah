@@ -1,0 +1,416 @@
+{
+  "status": "EXACT_COMPOSITION_PASS_APPLE_PENDING",
+  "base_sha": "df2a21941afa46da716387fce9de620865d2a151",
+  "rollback_ref": "codex/otzaria-integration-pre-stage2-20261115",
+  "rollback_sha": "242571c9a1502d068410c82af753ba2a8a2b0bbf",
+  "integrated_source_sha": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "lanes": [
+    {
+      "id": "S",
+      "head_sha": "08fa32f7e1e4a4af7d0286732d9b8976abd593f1",
+      "source_sha": "490420903fd772266b26e51b5192fd926d45013e",
+      "changed_paths": [
+        "Source/Features/Search/Models/SearchResultItem.swift",
+        "Source/Features/Search/iOS/SearchModeView.swift",
+        "Source/Otzaria/Search/OtzariaSearchIndexManager.swift",
+        "Source/Otzaria/Search/OtzariaSearchModels.swift",
+        "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+        "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+        "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+        "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift",
+        "Source/ZayitSearch/ZayitSearchDistribution.swift",
+        "Source/ZayitSearch/ZayitSearchSessionController.swift",
+        "Tests/HQ/search/CombineFixture.swift",
+        "Tests/HQ/search/OtzariaViewModelFixtures.swift",
+        "Tests/HQ/search/SearchFixtures.swift",
+        "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+        "docs/hq-search/ACK.md",
+        "docs/hq-search/ASANA_SYNC.json",
+        "docs/hq-search/COMMIT.md",
+        "docs/hq-search/HANDOFF.md",
+        "docs/hq-search/HOOKS.md",
+        "docs/hq-search/INDEPENDENT_RETEST.md",
+        "docs/hq-search/PAGINATION_RETRY_CORRECTION.md",
+        "docs/hq-search/database-release-v32.json",
+        "docs/hq-search/manifests/.gitattributes",
+        "docs/hq-search/manifests/otzaria-search-manifest.json",
+        "docs/hq-search/manifests/zayit-search-manifest.json",
+        "docs/hq-search/otzaria-retry-green.log",
+        "docs/hq-search/otzaria-retry-red.log",
+        "docs/hq-search/portable-tests.log",
+        "docs/hq-search/release-inventory.json",
+        "docs/hq-search/swift-parse.log",
+        "docs/hq-search/upstream-hooks.diff",
+        "docs/hq-search/upstream-identity-provenance.json",
+        "docs/hq-search/upstream-provenance.json",
+        "docs/hq-search/v32-metadata-audit.json",
+        "tools/hq-search-audit-manifests.py",
+        "tools/hq-search-tests.py"
+      ],
+      "all_delivered_blobs_retained": true
+    },
+    {
+      "id": "P",
+      "head_sha": "b7c4f05c24ca7c603bed512b3f8bad4d33f799cb",
+      "source_sha": null,
+      "changed_paths": [
+        "Source/Otzaria/App/OtzariaAppContainer.swift",
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift",
+        "Source/Otzaria/Reading/OtzariaMaktabahBridge+LineAnchors.swift",
+        "Source/Otzaria/Reading/OtzariaMaktabahBridge+ReadingUnits.swift",
+        "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+        "Tests/HQ/reader/BridgeSupport.swift",
+        "Tests/HQ/reader/BridgeTests.swift",
+        "Tests/HQ/reader/CacheTests.swift",
+        "Tests/HQ/reader/RenderTests.swift",
+        "Tests/HQ/reader/ServiceSupport.swift",
+        "Tests/HQ/reader/ServiceTests.swift",
+        "docs/hq-reader/ACK.md",
+        "docs/hq-reader/HOOKS.md",
+        "docs/hq-reader/PROJECT_BOARD.md",
+        "docs/hq-reader/RESULTS.md",
+        "docs/hq-reader/SCHEMA10-COMPARISON.md",
+        "docs/hq-reader/results/bridge-compile.log",
+        "docs/hq-reader/results/bridge-tests.log",
+        "docs/hq-reader/results/cache-baseline.log",
+        "docs/hq-reader/results/cache-compile.log",
+        "docs/hq-reader/results/cache-tests.log",
+        "docs/hq-reader/results/render-compile.log",
+        "docs/hq-reader/results/render-tests.log",
+        "docs/hq-reader/results/service-baseline.log",
+        "docs/hq-reader/results/service-compile.log",
+        "docs/hq-reader/results/service-tests.log",
+        "docs/hq-reader/results/sqlite-tests.log",
+        "docs/hq-reader/results/summary.json",
+        "tools/hq-reader-checks.py"
+      ],
+      "all_delivered_blobs_retained": true
+    },
+    {
+      "id": "I",
+      "head_sha": "a1bfa5f8ec89535115fd825efdd292d8e3bee5e3",
+      "source_sha": null,
+      "changed_paths": [
+        "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+        "Source/Otzaria/Reading/OtzariaLineSourcesService.swift",
+        "Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift",
+        "Tests/HQ/inspector/FixtureBoundary.swift",
+        "Tests/HQ/inspector/InspectorFixtures.swift",
+        "docs/hq-inspector/ACK.md",
+        "docs/hq-inspector/PROJECT_BOARD.md",
+        "docs/hq-inspector/REPORT.md",
+        "docs/hq-inspector/baseline-all.log",
+        "docs/hq-inspector/baseline-notes.log",
+        "docs/hq-inspector/baseline-same-book-notes.log",
+        "docs/hq-inspector/baseline-scope.log",
+        "docs/hq-inspector/baseline-tap.log",
+        "docs/hq-inspector/fixtures.log",
+        "docs/hq-inspector/notes-immutable-range.log",
+        "tools/hq-inspector-fixtures.py"
+      ],
+      "all_delivered_blobs_retained": true
+    },
+    {
+      "id": "U",
+      "head_sha": "3086d10ddfd24edad470535495fc101284a0b38c",
+      "source_sha": null,
+      "changed_paths": [
+        "PROJECT_BOARD.md",
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+        "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+        "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+        "Source/Features/Search/iOS/SearchComponents.swift",
+        "Source/UI/iOS/Views/iPadLayout.swift",
+        "Tests/HQ/sidebar/BookHistoryScopeAcceptanceTests.swift",
+        "Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift",
+        "docs/hq-sidebar/ACK.md",
+        "docs/hq-sidebar/HISTORY_HOOKS.md",
+        "docs/hq-sidebar/NEXT_TRANCHE_DIAGNOSIS.md",
+        "docs/hq-sidebar/QA_CORRECTIONS.md",
+        "docs/hq-sidebar/UPSTREAM_HOOKS.md",
+        "docs/hq-sidebar/VALIDATION.md",
+        "docs/hq-sidebar/book-history-proposed.patch",
+        "docs/hq-sidebar/history-local-checks.json",
+        "docs/hq-sidebar/legacy-guard.json",
+        "docs/hq-sidebar/local-checks.log",
+        "docs/hq-sidebar/upstream-hooks.patch",
+        "tools/hq-sidebar-check.py"
+      ],
+      "all_delivered_blobs_retained": true
+    },
+    {
+      "id": "D",
+      "head_sha": "1d3e6659bc0145becbc6b30e155ed631eaca9918",
+      "source_sha": null,
+      "changed_paths": [
+        "Source/ChavrusaText/BookUpdates/MaktabahBookUpdateSafety.swift",
+        "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+        "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+        "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+        "Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift",
+        "Source/Features/Library/Updates/BookUpdateView.swift",
+        "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+        "Source/Features/Library/iOS/iOSLibraryView.swift",
+        "Tests/HQ/updates/.gitignore",
+        "Tests/HQ/updates/AdapterMain.swift",
+        "Tests/HQ/updates/ProductionShims.swift",
+        "Tests/HQ/updates/main.swift",
+        "docs/hq-updates/ACK.md",
+        "docs/hq-updates/HANDOFF.md",
+        "docs/hq-updates/upstream-hooks.diff",
+        "tools/hq-updates-extract-fixtures.py",
+        "tools/hq-updates-test.ps1"
+      ],
+      "all_delivered_blobs_retained": true
+    }
+  ],
+  "application_inventory": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "M",
+      "owner": "T",
+      "blob": "1a47e35e87136170b34f4ace98ddbb3cc328f0d6"
+    },
+    {
+      "path": "Source/ChavrusaText/BookUpdates/MaktabahBookUpdateSafety.swift",
+      "status": "A",
+      "owner": "D",
+      "blob": "78274beb44994f2fb26a3e75929408fdf86c6caf"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "ac7bf051cf9288ffa5b37ccb59f04d7969272d12"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "3ff767d3d18954ceab90576ea9850b34a46b9791"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "1a426536ef628a3c72da17a4b4d430c411689b5b"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "ae7820c1d71a613aca147ce7611c0302492746e6"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "2bb69671d409c22b2e18265b02c01798bb2b6ff3"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "7727f5dc3248ac315f083c3dfe4c884839e650b7"
+    },
+    {
+      "path": "Source/Features/Library/Updates/BookUpdateView.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "d8162f600dbc177362c6cb53152e99c5aa2a0153"
+    },
+    {
+      "path": "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "9e59b5f0e6a8c160d82ca76b175a0915c1e96db0"
+    },
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "status": "M",
+      "owner": "D",
+      "blob": "46f202177491274e37e140326913cfcbf716883b"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "e934ec3df44fe008d9d4eee42ce8474b88208c60"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd"
+    },
+    {
+      "path": "Source/Features/Search/Models/SearchResultItem.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "2eed19f58dae86205bfd01b838db77a5ad1129ba"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "8e18d27ce9395acd700da328574f6a70cc842d80"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "e09fe2e341ef756c51d0dc9784ce9c19a9ed2043"
+    },
+    {
+      "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "d993dab12cb007b24033faa8f3e83caca402b91f"
+    },
+    {
+      "path": "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "936c263de86e9418ea88de2b31e1e4a57bb255a5"
+    },
+    {
+      "path": "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+      "status": "M",
+      "owner": "I",
+      "blob": "64323245347b5132f0c44291b2580a6c74fcf15b"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaLineSourcesService.swift",
+      "status": "M",
+      "owner": "I",
+      "blob": "e116f85eb3ab5e7d58a65025301bf4185e4629a1"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaMaktabahBridge+LineAnchors.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "24222548c901d908801281594c7c08fa14677a20"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaMaktabahBridge+ReadingUnits.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "b3605a0b9a362f4c92888ac07b6031f90d385665"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+      "status": "M",
+      "owner": "P",
+      "blob": "9acdb487d8dff421fd7deca9593a4b222dd07402"
+    },
+    {
+      "path": "Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift",
+      "status": "M",
+      "owner": "I",
+      "blob": "750fe0c6ee8be61b547c283675fa121c3827940a"
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaSearchIndexManager.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "e88c977d48ccc27ec52ce57f85d03d93e718c089"
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaSearchModels.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "22f3980075810cec64fa1e4d52198e5ae2dfa2b2"
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "74ca8f454215c564a7b28b3855bf9c4d66ae040c"
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "a833ce55790a761b6a9525d9403992fccc08c5f0"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "status": "M",
+      "owner": "U",
+      "blob": "58d505603a44e1b476b448738540a8604cb183b9"
+    },
+    {
+      "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "1f4b24ec60a4092566a077e186455837743a0ff8"
+    },
+    {
+      "path": "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "5983d641372c0c8142fb156677dbd0da79f027a3"
+    },
+    {
+      "path": "Source/ZayitSearch/ZayitSearchDistribution.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "9a3ccad793a21a12abad29f5ac5147e26e69aa00"
+    },
+    {
+      "path": "Source/ZayitSearch/ZayitSearchSessionController.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "83a2183bb358d2cc83748a1e65d411e96b27a289"
+    },
+    {
+      "path": "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+      "status": "M",
+      "owner": "S",
+      "blob": "008bfe1695fa81145968331a1547a1232b31450e"
+    }
+  ],
+  "merges": [
+    {
+      "merge_sha": "41e655baa8bbab4136f4a1f7eb3f273e3af4783f",
+      "ours_parent": "299a86878b2c22e180a786d37eff0b65116f2bdf",
+      "lane_parent": "08fa32f7e1e4a4af7d0286732d9b8976abd593f1",
+      "conflicts": [],
+      "resolution": "Automatic Git composition; every delivered file blob verified identical to its lane final tree."
+    },
+    {
+      "merge_sha": "589f21c784efa845cedb20667bd506a39a1aded7",
+      "ours_parent": "41e655baa8bbab4136f4a1f7eb3f273e3af4783f",
+      "lane_parent": "b7c4f05c24ca7c603bed512b3f8bad4d33f799cb",
+      "conflicts": [],
+      "resolution": "Automatic Git composition; every delivered file blob verified identical to its lane final tree."
+    },
+    {
+      "merge_sha": "9b21ba9684c0a3b8043b192d9a0fde4bc350f11a",
+      "ours_parent": "589f21c784efa845cedb20667bd506a39a1aded7",
+      "lane_parent": "a1bfa5f8ec89535115fd825efdd292d8e3bee5e3",
+      "conflicts": [],
+      "resolution": "Automatic Git composition; every delivered file blob verified identical to its lane final tree."
+    },
+    {
+      "merge_sha": "00339ac433eebd04c9489aa601480f805a7875e1",
+      "ours_parent": "9b21ba9684c0a3b8043b192d9a0fde4bc350f11a",
+      "lane_parent": "1d3e6659bc0145becbc6b30e155ed631eaca9918",
+      "conflicts": [],
+      "resolution": "Automatic Git composition; every delivered file blob verified identical to its lane final tree."
+    },
+    {
+      "merge_sha": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+      "ours_parent": "00339ac433eebd04c9489aa601480f805a7875e1",
+      "lane_parent": "3086d10ddfd24edad470535495fc101284a0b38c",
+      "conflicts": [],
+      "resolution": "Automatic Git composition; every delivered file blob verified identical to its lane final tree."
+    }
+  ],
+  "source_overlap_count": 0,
+  "semantic_conflict_resolutions": [],
+  "apple_compile": "NOT_RUN_PENDING_AUTHORITY",
+  "device": "NOT_RUN"
+}

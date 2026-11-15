@@ -624,7 +624,15 @@ jobs:
           python3 tools/verify_xcresult_zero_skips.py \
             --xcresult build/DerivedData-prod/ProductionTestResults.xcresult \
             --log build/logs/test-simulator-prod.log \
-            --min-tests 6
+            --scope production-ui \
+            --required-case BackendTransitionAcceptanceTests/testBackendSwitchViaSettingsPickerUI \
+            --required-executed-case BackendTransitionAcceptanceTests/testBackendSwitchRegressionScenario \
+            --required-executed-case BackendTransitionAcceptanceTests/testRoundTripBackendSwitchPersistsTabs \
+            --required-executed-case ProductionOtzariaAcceptanceTests/testProductionProfileLaunchResolution \
+            --required-executed-case ProductionOtzariaAcceptanceTests/testProductionDatabaseAssetManifestIntegrity \
+            --required-executed-case ProductionOtzariaAcceptanceTests/testProductionCorpusSQLiteIntegrity \
+            --min-tests 1 --min-total-tests 6 \
+            --out build/logs/production-ui-verification.json
 
       - name: Upload Production Acceptance Test Results
         if: always()

@@ -1,0 +1,10 @@
+{
+  "prior_lane_tip": "3086d10ddfd24edad470535495fc101284a0b38c",
+  "corrected_lane_tip": "3c369ea097e41a8a41850dc52db5744c3ec2dad1",
+  "integration_merge": "24dab7d960ddc146ee4a5e37fe7efd6163d82c2e",
+  "changed_paths": [
+    "docs/hq-sidebar/upstream-hooks.patch"
+  ],
+  "source_payload_unchanged": true,
+  "full_tree_whitespace": "PASS"
+}

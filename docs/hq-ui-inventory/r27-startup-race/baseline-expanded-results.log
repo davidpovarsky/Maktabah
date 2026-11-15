@@ -1,0 +1,115 @@
+FAIL: otzaria catalog concurrent tabs/order not overwritten
+FAIL: otzaria catalog VMs not recreated
+FAIL: otzaria catalog active ID remains valid
+FAIL: otzaria catalog concurrent tabs checkpointed
+FAIL: otzaria catalog real JSON reload preserves tabs and active UUID
+FAIL: otzaria catalog real JSON reload preserves reader state
+FAIL: otzaria catalog adopted group supports subsequent checkpoint
+FAIL: otzaria before-commit concurrent tabs/order not overwritten
+FAIL: otzaria before-commit VMs not recreated
+FAIL: otzaria before-commit active ID remains valid
+FAIL: otzaria before-commit concurrent tabs checkpointed
+FAIL: otzaria before-commit real JSON reload preserves tabs and active UUID
+FAIL: otzaria before-commit real JSON reload preserves reader state
+FAIL: otzaria before-commit adopted group supports subsequent checkpoint
+FAIL: otzaria catalog-scene rejected restore preserves real live tab/VM
+FAIL: otzaria catalog-scene no stale native publication
+FAIL: otzaria catalog-scene sidecar unchanged in memory and on disk
+FAIL: otzaria catalog-scene rejects stale/cancelled authority
+FAIL: otzaria catalog-foreign-live rejected restore preserves real live tab/VM
+FAIL: otzaria catalog-foreign-live no stale native publication
+FAIL: otzaria catalog-foreign-live sidecar unchanged in memory and on disk
+FAIL: otzaria catalog-foreign-live rejects stale/cancelled authority
+FAIL: otzaria before-commit-generation rejected restore preserves real live tab/VM
+FAIL: otzaria before-commit-generation no stale native publication
+FAIL: otzaria before-commit-generation sidecar unchanged in memory and on disk
+FAIL: otzaria before-commit-generation rejects stale/cancelled authority
+FAIL: otzaria before-commit-backend rejected restore preserves real live tab/VM
+FAIL: otzaria before-commit-backend no stale native publication
+FAIL: otzaria before-commit-backend sidecar unchanged in memory and on disk
+FAIL: otzaria before-commit-backend rejects stale/cancelled authority
+FAIL: otzaria before-commit-scene rejected restore preserves real live tab/VM
+FAIL: otzaria before-commit-scene no stale native publication
+FAIL: otzaria before-commit-scene sidecar unchanged in memory and on disk
+FAIL: otzaria before-commit-scene rejects stale/cancelled authority
+FAIL: otzaria before-commit-foreign-live rejected restore preserves real live tab/VM
+FAIL: otzaria before-commit-foreign-live no stale native publication
+FAIL: otzaria before-commit-foreign-live sidecar unchanged in memory and on disk
+FAIL: otzaria before-commit-foreign-live rejects stale/cancelled authority
+FAIL: sefaria catalog concurrent tabs/order not overwritten
+FAIL: sefaria catalog VMs not recreated
+FAIL: sefaria catalog active ID remains valid
+FAIL: sefaria catalog concurrent tabs checkpointed
+FAIL: sefaria catalog real JSON reload preserves tabs and active UUID
+FAIL: sefaria catalog real JSON reload preserves reader state
+FAIL: sefaria catalog adopted group supports subsequent checkpoint
+FAIL: sefaria before-commit concurrent tabs/order not overwritten
+FAIL: sefaria before-commit VMs not recreated
+FAIL: sefaria before-commit active ID remains valid
+FAIL: sefaria before-commit concurrent tabs checkpointed
+FAIL: sefaria before-commit real JSON reload preserves tabs and active UUID
+FAIL: sefaria before-commit real JSON reload preserves reader state
+FAIL: sefaria before-commit adopted group supports subsequent checkpoint
+FAIL: sefaria catalog-scene rejected restore preserves real live tab/VM
+FAIL: sefaria catalog-scene no stale native publication
+FAIL: sefaria catalog-scene sidecar unchanged in memory and on disk
+FAIL: sefaria catalog-scene rejects stale/cancelled authority
+FAIL: sefaria catalog-foreign-live rejected restore preserves real live tab/VM
+FAIL: sefaria catalog-foreign-live no stale native publication
+FAIL: sefaria catalog-foreign-live sidecar unchanged in memory and on disk
+FAIL: sefaria catalog-foreign-live rejects stale/cancelled authority
+FAIL: sefaria before-commit-generation rejected restore preserves real live tab/VM
+FAIL: sefaria before-commit-generation no stale native publication
+FAIL: sefaria before-commit-generation sidecar unchanged in memory and on disk
+FAIL: sefaria before-commit-generation rejects stale/cancelled authority
+FAIL: sefaria before-commit-backend rejected restore preserves real live tab/VM
+FAIL: sefaria before-commit-backend no stale native publication
+FAIL: sefaria before-commit-backend sidecar unchanged in memory and on disk
+FAIL: sefaria before-commit-backend rejects stale/cancelled authority
+FAIL: sefaria before-commit-scene rejected restore preserves real live tab/VM
+FAIL: sefaria before-commit-scene no stale native publication
+FAIL: sefaria before-commit-scene sidecar unchanged in memory and on disk
+FAIL: sefaria before-commit-scene rejects stale/cancelled authority
+FAIL: sefaria before-commit-foreign-live rejected restore preserves real live tab/VM
+FAIL: sefaria before-commit-foreign-live no stale native publication
+FAIL: sefaria before-commit-foreign-live sidecar unchanged in memory and on disk
+FAIL: sefaria before-commit-foreign-live rejects stale/cancelled authority
+FAIL: sefariaEmbedded catalog concurrent tabs/order not overwritten
+FAIL: sefariaEmbedded catalog VMs not recreated
+FAIL: sefariaEmbedded catalog active ID remains valid
+FAIL: sefariaEmbedded catalog concurrent tabs checkpointed
+FAIL: sefariaEmbedded catalog real JSON reload preserves tabs and active UUID
+FAIL: sefariaEmbedded catalog real JSON reload preserves reader state
+FAIL: sefariaEmbedded catalog adopted group supports subsequent checkpoint
+FAIL: sefariaEmbedded before-commit concurrent tabs/order not overwritten
+FAIL: sefariaEmbedded before-commit VMs not recreated
+FAIL: sefariaEmbedded before-commit active ID remains valid
+FAIL: sefariaEmbedded before-commit concurrent tabs checkpointed
+FAIL: sefariaEmbedded before-commit real JSON reload preserves tabs and active UUID
+FAIL: sefariaEmbedded before-commit real JSON reload preserves reader state
+FAIL: sefariaEmbedded before-commit adopted group supports subsequent checkpoint
+FAIL: sefariaEmbedded catalog-scene rejected restore preserves real live tab/VM
+FAIL: sefariaEmbedded catalog-scene no stale native publication
+FAIL: sefariaEmbedded catalog-scene sidecar unchanged in memory and on disk
+FAIL: sefariaEmbedded catalog-scene rejects stale/cancelled authority
+FAIL: sefariaEmbedded catalog-foreign-live rejected restore preserves real live tab/VM
+FAIL: sefariaEmbedded catalog-foreign-live no stale native publication
+FAIL: sefariaEmbedded catalog-foreign-live sidecar unchanged in memory and on disk
+FAIL: sefariaEmbedded catalog-foreign-live rejects stale/cancelled authority
+FAIL: sefariaEmbedded before-commit-generation rejected restore preserves real live tab/VM
+FAIL: sefariaEmbedded before-commit-generation no stale native publication
+FAIL: sefariaEmbedded before-commit-generation sidecar unchanged in memory and on disk
+FAIL: sefariaEmbedded before-commit-generation rejects stale/cancelled authority
+FAIL: sefariaEmbedded before-commit-backend rejected restore preserves real live tab/VM
+FAIL: sefariaEmbedded before-commit-backend no stale native publication
+FAIL: sefariaEmbedded before-commit-backend sidecar unchanged in memory and on disk
+FAIL: sefariaEmbedded before-commit-backend rejects stale/cancelled authority
+FAIL: sefariaEmbedded before-commit-scene rejected restore preserves real live tab/VM
+FAIL: sefariaEmbedded before-commit-scene no stale native publication
+FAIL: sefariaEmbedded before-commit-scene sidecar unchanged in memory and on disk
+FAIL: sefariaEmbedded before-commit-scene rejects stale/cancelled authority
+FAIL: sefariaEmbedded before-commit-foreign-live rejected restore preserves real live tab/VM
+FAIL: sefariaEmbedded before-commit-foreign-live no stale native publication
+FAIL: sefariaEmbedded before-commit-foreign-live sidecar unchanged in memory and on disk
+FAIL: sefariaEmbedded before-commit-foreign-live rejects stale/cancelled authority
+FAIL: 108/222 deterministic adapter/store assertions; native UI tests 0

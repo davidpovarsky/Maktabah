@@ -20,6 +20,10 @@ on:
         description: Exact git commit SHA expected to be built and signed (fail-closed check)
         required: false
         type: string
+      ui_acceptance_run:
+        description: Completed full R27 real UI acceptance run for this exact candidate; mandatory before signing
+        required: true
+        type: string
 
 permissions:
   actions: read
@@ -60,6 +64,16 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
+
+      - name: Require complete matching real UI acceptance before signing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ACCEPTANCE_RUN: ${{ inputs.ui_acceptance_run }}
+        run: |
+          set -euo pipefail
+          python3 Scripts/CI/verify-runtime27-release-gate.py \
+            --run "$ACCEPTANCE_RUN" --expected-sha "$(git rev-parse HEAD)" \
+            --out "$BUILD_DIR/logs/runtime27-release-gate.json"
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -112,7 +126,7 @@ jobs:
             echo "SKIP_BUNDLING=1" >> $GITHUB_ENV
             echo "GOOGLE_SERVICES_FILE=${PWD}/Source/GoogleService-Info.plist" >> $GITHUB_ENV
             export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
-            pod install
+            pod install --deployment
             chmod -R +x "${PWD}/Pods/Target Support Files" || true
           fi
 
@@ -327,14 +341,18 @@ jobs:
           github_token: ${{ github.token }}
       - name: Resolve Swift packages
         run: |
+          set -euo pipefail
           CONTAINER_ARGS=(-project "$PROJECT_PATH")
           if [ -d "Maktabah.xcworkspace" ]; then
             CONTAINER_ARGS=(-workspace Maktabah.xcworkspace)
+            mkdir -p Maktabah.xcworkspace/xcshareddata/swiftpm
+            cp Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved
           fi
           xcodebuild -resolvePackageDependencies \
             "${CONTAINER_ARGS[@]}" \
             -scheme "$SCHEME" \
-            -clonedSourcePackagesDirPath build/SourcePackages
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -onlyUsePackageVersionsFromResolvedFile
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -614,6 +632,13 @@ jobs:
             exit 1
           fi
           echo "Verified release HEAD matches expected_sha: $CURRENT_SHA"
+
+      - name: Verify prepared dependencies still match real UI acceptance
+        run: |
+          set -euo pipefail
+          python3 Scripts/CI/verify-runtime27-release-gate.py \
+            --check-prepared-inputs "$BUILD_DIR/logs/runtime27-approved-inputs.json" \
+            --out "$BUILD_DIR/logs/runtime27-prepared-inputs.json"
 
       - name: Import Apple Distribution certificate
         shell: bash

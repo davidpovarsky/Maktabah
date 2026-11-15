@@ -10,7 +10,7 @@ import uuid
 
 udid = str(uuid.UUID(sys.argv[1])).upper()
 label = sys.argv[2]
-if label not in ["11", "13", "phone", "production", "preflight"]:
+if label not in ["11", "13", "phone", "11-reader", "11-window", "production", "preflight"]:
     raise SystemExit("Unknown validation scenario")
 destination = Path("build/artifacts")
 destination.mkdir(parents=True, exist_ok=True)

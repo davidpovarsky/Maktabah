@@ -1,0 +1,212 @@
+{
+  "run": 43681096257,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43681096257",
+  "artifact_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43681096257/artifacts/14148779493",
+  "artifact_sha256_declared_by_GitHub": "c219cd204ccd46528edb9e0ecc7f0c4c132453c9aa10307f1490c7fd5d24ccd6",
+  "outer_zip_independently_hashed": false,
+  "checkout_sha": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
+  "app_source_sha": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "test_source_sha": "021b5329b37d756604407e1256edf0001f708c3d",
+  "counts": {
+    "ui_passed": 5,
+    "ui_failed": 4,
+    "ui_not_run": 0,
+    "verified_reused_pass": 0
+  },
+  "cases": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "device": "ipad11",
+      "expected": "Normal bootstrap, genuine fixture book/title, real portrait-to-landscape geometry change, exact locator preservation",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "device": "ipad11",
+      "expected": "Actual Hebrew text entry+native submit+visible hittable exact submitted history row, existing native history helper",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Existing real native handle drag must resize window, exact locator preserved, real palette open/Escape and Inspector open/close state asserted; restore window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "device": "ipad11",
+      "expected": "Real Legacy provider/TextKit, exact backend/work Genesis identity, real landscape transition and unchanged exact observed locator",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "device": "ipad11",
+      "expected": "Real embedded provider/TextKit, exact backend/work Genesis identity, real landscape transition and unchanged exact observed locator; unavailable is failure/not passed support",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "device": "iphone",
+      "expected": "Real fixture identity preserved after Home/activate and cold terminate/launch; setup scenario removed before cold relaunch, exact locator equality",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "device": "iphone",
+      "expected": "Actual Hebrew entry/native submit/visible hittable exact history row on conventional iPhone",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "device": "iphone",
+      "expected": "Real Legacy Genesis reader with actual iPhone geometry transition and locator preservation",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "device": "iphone",
+      "expected": "Real embedded Genesis reader with actual iPhone geometry transition and locator preservation; no fake backend",
+      "actual": "Passed"
+    }
+  ],
+  "raw_file_sha256": {
+    "artifacts\\runtime27\\result.json": "85dadfc75ea9663e6cbf892da3ae860c4fb48b3d602882e3d8ffe4f90155a131",
+    "artifacts\\faithful-ipad-matrix.json": "cbf719fb248b2fc0a254b8a90bddf638b54c951d135b52e6531ba5c2d958205d",
+    "artifacts\\test-simulator-11.log": "01b39046204a500d1db4fecacf60ad9fa70a5a4158461f84ff7114592c81394a",
+    "artifacts\\test-simulator-phone.log": "649b283c10e333a0037bfe262075192db823b212515052ea507e1a827347b1a0",
+    "artifacts\\runtime27\\verified-11.summary.json": "25acd166e7d389e35a849eddffc761d476be0423b54d070cc6e9ab4640f1df8d",
+    "artifacts\\runtime27\\verified-11.tests.json": "cbc2cc140c10f0a754607773a750dd2b7a0a48449ddae5d1373ae6e2bdef239f",
+    "artifacts\\runtime27\\verified-phone.summary.json": "7bf57cc034722f72039567010ee5d57804f6090134957ec3d3796e0da5792496",
+    "artifacts\\runtime27\\verified-phone.tests.json": "5dc5c4357c4b8e237638ba7ab388ca5263d0189f199a7878545207abf3a7d70a",
+    "hq-stage2\\result.json": "4664965dcfb95f496341012960d8e02a9c196b37ba7361b8900aff8786880855"
+  },
+  "actual_device_summary": {
+    "11": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "56267BE6-AD5D-4562-8199-2C58FADC2665",
+            "deviceName": "Faithful 11-inch ac6300ff",
+            "modelName": "iPad Pro 11-inch (M5)",
+            "osBuildNumber": "24B8117",
+            "osVersion": "27.2",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 4,
+          "passedTests": 1,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 4,
+      "finishTime": 1794722284.74,
+      "passedTests": 1,
+      "result": "Failed",
+      "runtimeWarnings": [
+        {
+          "issueType": "Runtime Warning",
+          "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+        }
+      ],
+      "skippedTests": 0,
+      "startTime": 1794721971.566,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Wait for a populated reader; structured diagnostics alone are not text evidence",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+          "testName": "testNormalBootstrapEmbeddedGenesisAndRotation()"
+        },
+        {
+          "failureText": "XCTAssertTrue failed - The original TextKit reader must render",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 3,
+          "testIdentifierString": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+          "testName": "testNormalBootstrapLegacyGenesisAndRotation()"
+        },
+        {
+          "failureText": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Identify the actual native principal hosting container uniquely",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 4,
+          "testIdentifierString": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+          "testName": "testNormalBootstrapNativeWindowResizePaletteAndInspector()"
+        },
+        {
+          "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 5,
+          "testIdentifierString": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+          "testName": "testNormalBootstrapOtzariaRotationPreservesExactLocator()"
+        }
+      ],
+      "title": "Test - Maktabah-iOS",
+      "topInsights": [],
+      "totalTestCount": 5
+    },
+    "phone": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "2D9CEC9F-48DC-4DF9-9EF0-7221151BB8F3",
+            "deviceName": "Faithful phone-inch 76f0af51",
+            "modelName": "iPhone 18 Pro",
+            "osBuildNumber": "24B8117",
+            "osVersion": "27.2",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 4,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1794723075.109,
+      "passedTests": 4,
+      "result": "Passed",
+      "runtimeWarnings": [
+        {
+          "issueType": "Runtime Warning",
+          "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+        }
+      ],
+      "skippedTests": 0,
+      "startTime": 1794722795.008,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - Maktabah-iOS",
+      "topInsights": [],
+      "totalTestCount": 4
+    }
+  },
+  "analysis": {
+    "phone": "4 actual PASS. Original guard rejected actual TEST EXECUTE SUCCEEDED footer; corrected guard re-audited same logs/tree, no repeated execution.",
+    "ipad": "History PASS; four actual UI failures. Window resize occurred, obsolete host assertions and app-local restore failed, contaminating later orientation. Legacy/Embedded final Library/Select a book; independently reproduced initial-empty startup race is a candidate until actual affected retest.",
+    "corrections_pending_actual_execution": [
+      "Q ab23bb4925dbcd6c63f094ffc5c58c786e651a6e wired native controls and semantic restore",
+      "T separate fresh reader/window simulators and exact selected-scope accounting",
+      "U 48d6d7b634e82b8cf4212018d3f089de60958bb5 initial-empty startup adoption"
+    ]
+  },
+  "release_or_physical_acceptance": false
+}

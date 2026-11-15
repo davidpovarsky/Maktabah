@@ -1,0 +1,25 @@
+FAIL: otzaria catalog concurrent tab not overwritten
+FAIL: otzaria catalog VM not recreated
+FAIL: otzaria catalog active ID remains valid
+FAIL: otzaria catalog concurrent tab checkpointed
+FAIL: otzaria before-commit concurrent tab not overwritten
+FAIL: otzaria before-commit VM not recreated
+FAIL: otzaria before-commit active ID remains valid
+FAIL: otzaria before-commit concurrent tab checkpointed
+FAIL: sefaria catalog concurrent tab not overwritten
+FAIL: sefaria catalog VM not recreated
+FAIL: sefaria catalog active ID remains valid
+FAIL: sefaria catalog concurrent tab checkpointed
+FAIL: sefaria before-commit concurrent tab not overwritten
+FAIL: sefaria before-commit VM not recreated
+FAIL: sefaria before-commit active ID remains valid
+FAIL: sefaria before-commit concurrent tab checkpointed
+FAIL: sefariaEmbedded catalog concurrent tab not overwritten
+FAIL: sefariaEmbedded catalog VM not recreated
+FAIL: sefariaEmbedded catalog active ID remains valid
+FAIL: sefariaEmbedded catalog concurrent tab checkpointed
+FAIL: sefariaEmbedded before-commit concurrent tab not overwritten
+FAIL: sefariaEmbedded before-commit VM not recreated
+FAIL: sefariaEmbedded before-commit active ID remains valid
+FAIL: sefariaEmbedded before-commit concurrent tab checkpointed
+FAIL: 21/45 deterministic adapter/store assertions; native UI tests 0

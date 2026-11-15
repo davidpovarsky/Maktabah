@@ -1,0 +1,27 @@
+{
+  "run": 43688380348,
+  "checkout": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+  "actual_result_attributed_to_Q": {
+    "passed": 8,
+    "failed": 1,
+    "skipped": 0,
+    "Inspector": "NOT_REACHED"
+  },
+  "inspected_by_U": [
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\test-simulator-11-window.log",
+      "size": 25803,
+      "raw_sha256": "173e7ba5f460e74142d2b54b937424ca100c2e28e6b5aebdfe778d7038e1f543"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\FC8183BB-6BDE-4144-8239-E57AAF8EDEA0.txt",
+      "size": 29571,
+      "raw_sha256": "781dfcff96c28babdb73e5eaecc697d5af28b1a5275fb183d78d244fcb6acbb3"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\B7263F5A-2C1D-43AE-A826-E06D13FB060E.png",
+      "size": 1018608,
+      "raw_sha256": "67affedda2a31d3ee83b39ad535090e483bf89fe4ef8f66632b4668cfb6068b4"
+    }
+  ]
+}

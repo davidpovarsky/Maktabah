@@ -1,0 +1,24 @@
+{
+  "run": 43704261180,
+  "raw_inspected": [
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43704261180-selective\\artifacts\\runtime27\\native-matrix-driver.log",
+      "bytes": 24452,
+      "sha256": "2997d4f240e055d9ff6f78f0ef7a4b72a83739c2457b7d5a969b418f2b5c1300"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43704261180-selective\\artifacts\\runtime27\\palette-input-11-window-stream.log",
+      "bytes": 88095,
+      "sha256": "3b5d7950c68e42efc6b2be2f21074d44d29716b53e478850575fbefdfe68d9e0"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43704261180-selective\\artifacts\\runtime27\\palette-compiled-images.json",
+      "bytes": 96537,
+      "sha256": "fc710e87ef2aca0d7f57de2b03000c4fd077d61f5c2839d47370bf64f248cd82"
+    }
+  ],
+  "local_evidence_lf_sha256": {
+    "run-43704261180-partial-events.json": "fce773e29de9134e4309345cfb681b2609fde7434936853aca7d9284e93de3a7",
+    "run-43704261180-partial-review.md": "422e01e398dc7eb752ef78cc8d6377571837fd577f26a720c42101f3653a751e"
+  }
+}

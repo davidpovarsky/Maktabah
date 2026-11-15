@@ -1,0 +1,48 @@
+{
+  "status": "EXECUTED_PASS",
+  "target": "Maktabah-iOSUITests",
+  "executed_total": 4,
+  "required_ui_passed": 4,
+  "required_ui_cases": [
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration"
+  ],
+  "cases": {
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation": {
+      "status": "Passed",
+      "identifier": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "target": "Maktabah-iOSUITests"
+    },
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit": {
+      "status": "Passed",
+      "identifier": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "target": "Maktabah-iOSUITests"
+    },
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation": {
+      "status": "Passed",
+      "identifier": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "target": "Maktabah-iOSUITests"
+    },
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration": {
+      "status": "Passed",
+      "identifier": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration()",
+      "identifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "target": "Maktabah-iOSUITests"
+    }
+  },
+  "skipped": 0,
+  "failed": 0,
+  "database_open": "NOT_VERIFIED_BY_TEST_COUNTS",
+  "run": 43681096257,
+  "checked_sha": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
+  "test_source_sha": "021b5329b37d756604407e1256edf0001f708c3d",
+  "post_run_parser_correction": "Accept actual Xcode27 TEST EXECUTE SUCCEEDED footer, still reject build-only/missing/failed/skipped/zero/mismatched results",
+  "actual_ui_tests_repeated": false,
+  "log_sha256": "649b283c10e333a0037bfe262075192db823b212515052ea507e1a827347b1a0",
+  "guard_sha256": "4c665fc76ca807267bd07116dd32d01ef1cb3d58722b8a7e9c5ec712ababefd3"
+}
