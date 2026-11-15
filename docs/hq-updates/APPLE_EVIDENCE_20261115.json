@@ -1,0 +1,48 @@
+{
+  "lane": "D",
+  "thread_id": "01a1df8b-25d3-7691-8d3b-1d786882e2fb",
+  "tested_source_sha": "258342ed08d1fcb59d68624d2e8713e66567c744",
+  "branch": "codex/otzaria-updates-20261115",
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43725003334",
+  "status": "EXECUTED_PASS",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "swift": "swift-driver version: 1.168.6 Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "host": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+  "sqlite": "3.54.0",
+  "sdkVersion": "27.1",
+  "target": "arm64-apple-ios26.0-simulator",
+  "appleSDKTypecheck": "EXECUTED_PASS_WITH_COMPILER_DOUBLES",
+  "core": "EXECUTED_PASS 60 total portable checks including WAL recovery fault injection",
+  "adapter": "EXECUTED_PASS 37 production-adapter boundary combinations (compiler doubles; no Apple UI validation)",
+  "appRuntime": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "nativeUpdateRecovery": "NOT_RUN",
+  "idb": "NOT_INSTALLED",
+  "maestro": "NOT_INSTALLED",
+  "report_sha256": "AB06509B68F246C88FB612D38EA26C8CE52B9818DB0B53E1E344BE26DFED9391",
+  "log_sha256": "7B36BB32B3762AD535308491DC87D5A41F513B15CB92079668E866411BD6167C",
+  "windows_log": "Tests/HQ/updates/.build/verification-wave-20261115-recovery-final.log",
+  "windows_log_sha256": "BDF63A0DE9D9A8FB7A6E030AB159BC1022F6087DCF51F7257481F7E12CD96C11",
+  "source_files": [
+    {
+      "sha256": "02ABD77E40076621EA526C22D8F5EDD232D498E82A7F10EB968E758CA7033F4C",
+      "path": "Source/ChavrusaText/BookUpdates/MaktabahBookUpdateSafety.swift",
+      "git_blob": "4a49db4ee64ce40f7baf272246f17080f1e91165"
+    },
+    {
+      "sha256": "65A3D82ED5385427142AB173379EF3F65CB5F798E3BEEEF4839B738766FE5C88",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+      "git_blob": "940a67a916f76348d11ae593ba6349948bb13582"
+    },
+    {
+      "sha256": "FE1CB55FFE581233A1AD4DF5476E9FF0C998F0885282A2921F90C7E04AFF1F44",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+      "git_blob": "2cadfc0a6cc532b272178194ac3a8d2ee0bd1968"
+    },
+    {
+      "sha256": "33D5D187DF49C6A2E710DA8A955E90D62D32F12F80189F50A27C04C506E501CE",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+      "git_blob": "076c7b559c5ff2ea6eec88ab76b1802a26d9f5a3"
+    }
+  ]
+}
