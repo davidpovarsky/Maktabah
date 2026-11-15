@@ -97,7 +97,7 @@
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "7a0d3542de1de9cfa909df284e894dc81edb7eca5968f5ddfad86d35e7fca41c",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "dd27d741cc8a23dc34dea19a1580f68cd42c5130d85bcad07c7e01b87670c680",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift": "6a79fed35cf6549795202764257849ce485bdc3e988c444fdb6c586355779c31",
-    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "531bff11246330fd8458cdc3374edc859fd0c529e2c548a3e0f368de1f0bbe04"
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "5a79afe5d6ac39e4539a2887d38ed9f4a6c02297dcab06fd6d4afa9bab69b245"
   },
   "log_sha256": "0eb885190484a87605cf9124f385374077dbca3b9269aab0a3e67058970c2c11",
   "native_tests_executed": 0,
@@ -187,5 +187,6 @@
     "methods": 57,
     "failures": 0,
     "warnings": 0
-  }
+  },
+  "UITestDeclarationCorrection": "N-test-selection-report.json; five annotation line breaks only after exact SDK compile; native execution still NOT_RUN"
 }
