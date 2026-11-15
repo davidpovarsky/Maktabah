@@ -80,3 +80,24 @@ Independent Roni thread 01a1dc8b-f9bd-7d63-a628-7ad3d06196e8 reproduced an old N
 - EXECUTED_PASS: `py -3 tools/hq-inspector-fixtures.py --case notes`, exit 0. Four blocked-load combinations cover segment/section scope with range-only changes and locator+range changes in the same book. Assertions preserve both direct original notes and the original range fallback while excluding the newer unrelated note. All prior Notes heartbeat, persisted/unsaved and generation/backend/book/cancellation checks also pass. Evidence: notes-immutable-range.log.
 - REUSED_VERIFIED_PASS: prior links/SQL/grouping/snippets/tap checks from 5aa235a; their production files are unchanged by this correction. No broad suite or Apple build was repeated.
 - Production hunk: only move the range snapshot before await plus an explanatory comment in downstream MaktabahTorahInspectorAdapter.swift. Rollback: revert the follow-up commit. Independent retest and all physical/production gates remain OPEN.
+
+## Wave restart: source-isolated Embedded selection and Notes (2026-11-15)
+
+Acting thread 01a1df8b-4498-76c1-8cca-cd5c11120b7a, [נועם | DEV] [MAIN_SESSION].
+Owner activation: Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/OWNER_ACTIVATION.md.
+Pre-edit branch codex/otzaria-inspector-20261115 at a1bfa5f8ec89535115fd825efdd292d8e3bee5e3 was clean. Upstream HEAD reverified by git ls-remote as d46af139b3a265399c16d87f5923acd8e3444024; this adapter remains absent from that upstream tree. No merge-base/ancestry assertion is made.
+
+Corrected two source identity errors in downstream MaktabahTorahInspectorAdapter.swift:
+- Explicit Sefaria/Embedded segment selection now requires active backend and the same work as its section. Section fallback preserves locator.backend instead of hardcoding sefaria, and rejects a stale foreign section.
+- Notes now require matching backend AND work before accepting equal canonical/preferred reference text or section containment. Equal text/ranges in another provider/work cannot establish annotation identity. Existing range fallback, immutable pre-await range, cancellation, cold background loading and unsaved notes remain intact.
+
+Only production adapter changed (9 added/6 removed); no Reader/SQLite, Core, shared ports, Kit, project, workflow or upstream hooks changed. Test boundary types and the existing Python harness were extended to extract actual selection/currentUnitSelection/otzariaSelection/locator(selection) methods plus original Notes methods. Locator cache lookup, framework/bridge values and DB/decoder remain explicit substitutes; this is not native rendering or RPC proof. Exact remembered backend/work/position is asserted. Native TextLocator has no catalog/data revision fields; no revision is fabricated or silently claimed as verified.
+
+EXECUTED_EXPECTED_FAIL at frozen a1bfa5f8:
+- selection-baseline-20261115.log: equal-ref foreign backend/work Notes are included (sefaria).
+- provider-baseline-20261115.log: Embedded selection returns the wrong provider.
+Both commands exited 1 at their behavioral assertion after successful compilation.
+
+EXECUTED_PASS: py -3 tools/hq-inspector-fixtures.py --case all, exit 0. Evidence fixtures-wave-20261115.log, 11 groups (100/500/2000 relationships; two content layouts; error/empty/retry; cancellation; note scope; actual tap; cold Notes including same-book immutable range; source selection/Notes). selection-fixed-20261115.log separately records focused success. Windows Swift6.3.3 / Python3.12; portable boundaries only. Existing FixtureError output is an intentional baseline assertion, not a hidden compile failure.
+
+Native execution availability: apple-doctor confirms Windows has no Apple SDK. Connected Desktop Commander torah-social reports Linux, not a Mac. No physical iPad/full corpus, production ZSTD, RSS/p95 or native source/Notes result is inferred. Manager owns coherent S/P/I app target composition and cross-feature acceptance. Both source tasks remain OPEN. Rollback: revert this wave correction commit; preexisting a1bfa5f8 stays intact.

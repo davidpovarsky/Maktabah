@@ -77,7 +77,7 @@ def block(text, start, end):
 def run():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-ref", help="Read production source from a Git commit for a regression baseline")
-    parser.add_argument("--case", choices=["all", "scope", "tap", "notes"], default="all")
+    parser.add_argument("--case", choices=["all", "scope", "tap", "notes", "selection"], default="all")
     args = parser.parse_args()
     def production(path):
         if args.source_ref:
@@ -110,10 +110,21 @@ def run():
             source,
             "@MainActor final class NoteScopeFixture { var otzariaUnitsByReference: [String: OtzariaReadingUnit] = [:]\n"
             "var readerViewModel: ReaderViewModel?\nlet coordinator = BackendCoordinator.shared\n"
-            "func locator(for selection: TorahInspectorSelection) -> TextLocator? { readerViewModel?.selectedSegmentLocator }\n"
+            "let otzaria = OtzariaMaktabahBridge.shared\n"
+            "var locatorsByReference: [String: TextLocator] = [:]\n"
+            + block(adapter, "    func selection(", "    func locator(for selection:")
+            + block(adapter, "    private func currentUnitSelection(", "    private func document(")
+            + "func remember(_ locator: TextLocator, for reference: String) { locatorsByReference[cacheKey(providerID: locator.backend.rawValue, reference: reference)] = locator }\n"
+            "func remember(_ unit: OtzariaReadingUnit, for reference: String) {}\n"
+            'static func unitReference(for unit: OtzariaReadingUnit) -> String { "fixture-unit" }\n'
+            + block(adapter, "    func locator(for selection:", "    private func currentUnitSelection(")
+            + "func locator(for reference: String, providerID: String) -> TextLocator? {\n"
+            "if let remembered = locatorsByReference[cacheKey(providerID: providerID, reference: reference)] { return remembered }\n"
+            "guard let locator = readerViewModel?.selectedSegmentLocator, locator.backend.rawValue == providerID else { return nil }; return locator\n}\n"
             'static func reference(for locator: TextLocator) -> String { if case .canonicalRef(let ref) = locator.position { return ref }; return locator.persistenceKey }\n'
             'func cacheKey(providerID: String, reference: String) -> String { "\\(providerID):\\(reference)" }\n'
             + notes + contains + "}\n",
+            "enum MaktabahTorahInspectorFormatting { static func otzariaBookID(from key: String) -> Int? { Int(key.dropFirst(5)) } }",
             tap,
             (ROOT / "Tests/HQ/inspector/InspectorFixtures.swift").read_text(encoding="utf-8"),
         ]

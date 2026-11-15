@@ -20,6 +20,7 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         if only == "scope" { try await noteScopeFixtures(); return }
         if only == "tap" { try await tapFixtures(); return }
         if only == "notes" { try await notesLoadingFixtures(); return }
+        if only == "selection" { try await selectionFixtures(); return }
         for count in [100, 500, 2000] {
             let bridge = bridge()
             // Duplicated, reversed, sparse indexes exercise exact windowing and
@@ -138,6 +139,7 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         try await noteScopeFixtures()
         try await tapFixtures()
         try await notesLoadingFixtures()
+        try await selectionFixtures()
         print("ALL INSPECTOR FIXTURES PASSED (portable boundaries; no physical/production performance claim)")
     }
 
@@ -177,6 +179,47 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         viewModel.didTapReaderText(at: 0)
         try expect(mappedTask.isCancelled && viewModel.selectedSegmentLocator == own, "mapped tap cancels stale anchor task and keeps newest selection")
         print("PASS actual reader tap paths: shell/no eager SQL/stale cancellation")
+    }
+
+    @MainActor static func selectionFixtures() async throws {
+        defer { BackendCoordinator.shared.activeBackendID = .otzaria; AnnotationManager.shared.rows = [] }
+        for backend in [BackendID.sefariaEmbedded, .sefaria] {
+            BackendCoordinator.shared.activeBackendID = backend
+            let section = TextLocator(backend: backend, workKey: "Genesis", position: .canonicalRef("Genesis 1"))
+            let segment = TextLocator(backend: backend, workKey: "Genesis", position: .canonicalRef("Genesis 1:2"))
+            let viewModel = ReaderViewModel()
+            viewModel.backendSection = FixtureSection(locator: section)
+            viewModel.selectedSegmentLocator = segment
+            let session = NoteScopeFixture()
+            session.readerViewModel = viewModel
+            guard let selected = session.selection(sefariaLocator: segment, otzariaLine: nil) else {
+                throw FixtureError(message: "missing native selection")
+            }
+            try expect(selected.providerID == backend.rawValue, "selection preserves active provider \(backend)")
+            try expect(selected.scope == .segment && selected.canonicalRef == "Genesis 1" && selected.preferredSegmentRef == "Genesis 1:2", "explicit segment remains exact \(backend)")
+            try expect(session.locator(for: selected) == segment, "source locator preserves exact backend/work/position \(backend)")
+            let current = session.selection(sefariaLocator: nil, otzariaLine: nil)
+            try expect(current?.providerID == backend.rawValue && current?.scope == .section, "current section preserves active provider \(backend)")
+
+            func note(_ id: Int64, backend: BackendID, workKey: String) -> Annotation {
+                Annotation(id: id, bkId: 1, contentId: 0, range: NSRange(location: 0, length: 4), rangeDiacritics: NSRange(location: 0, length: 4), colorHex: "#ffff00", type: .highlight, note: "note-\(id)", createdAt: 1, context: "base", page: 1, part: 1, backendLocator: TextLocator(backend: backend, workKey: workKey, position: .canonicalRef("Genesis 1:2")))
+            }
+            // Equal reference strings and ranges in a different engine/work
+            // must never be used as cross-source annotation identity.
+            AnnotationManager.shared.rows = [note(1, backend: backend, workKey: "Genesis"), note(2, backend: backend == .sefaria ? .sefariaEmbedded : .sefaria, workKey: "Genesis"), note(3, backend: backend, workKey: "Other")]
+            let notes = try await session.notes(for: selected)
+            try expect(notes.map(\.note) == ["note-1"], "Notes excludes equal-ref foreign backend/work \(backend)")
+            if let current {
+                let sectionNotes = try await session.notes(for: current)
+                try expect(sectionNotes.map(\.note) == ["note-1"], "section Notes excludes equal-ref foreign backend/work \(backend)")
+            }
+
+            viewModel.backendSection = FixtureSection(locator: TextLocator(backend: backend == .sefaria ? .sefariaEmbedded : .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1")))
+            try expect(session.selection(sefariaLocator: nil, otzariaLine: nil) == nil, "stale foreign section rejected")
+            viewModel.backendSection = nil
+            try expect(session.selection(sefariaLocator: nil, otzariaLine: nil) == nil, "missing section remains absent")
+        }
+        print("PASS actual selection + Notes: Sefaria/Embedded provider, exact section/segment, foreign backend/work isolation, stale/missing section")
     }
 
     @MainActor static func notesLoadingFixtures() async throws {

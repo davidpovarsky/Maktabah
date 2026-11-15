@@ -1,0 +1,4 @@
+Source: a1bfa5f8ec89535115fd825efdd292d8e3bee5e3; case: selection
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-k4wahs00\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-k4wahs00\inspector-fixtures.exp
+
+FAIL FixtureError(message: "Notes excludes equal-ref foreign backend/work sefaria")
