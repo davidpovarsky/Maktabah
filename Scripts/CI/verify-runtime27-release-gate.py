@@ -129,11 +129,53 @@ def sha256(path):
         return hashlib.file_digest(source, "sha256").hexdigest()
 
 
+def generated_project_equivalence(tested, prepared):
+    """Require complete object-graph equality, allowing only ID renaming."""
+    left, right = tested["objects"], prepared["objects"]
+    require(len(left) == len(right), "Generated project object membership changed")
+    mapping = {key: key for key in left.keys() & right.keys()}
+    pending, available = set(left) - set(right), set(right) - set(left)
+    renamed = {}
+
+    def remap(value):
+        if isinstance(value, dict):
+            return {mapping.get(key, key): remap(child) for key, child in value.items()}
+        if isinstance(value, list):
+            return [remap(child) for child in value]
+        return mapping.get(value, value) if isinstance(value, str) else value
+
+    while pending:
+        progress = False
+        for key in list(pending):
+            candidates = [candidate for candidate in available if right[candidate] == remap(left[key])]
+            if len(candidates) == 1:
+                candidate = candidates[0]
+                mapping[key] = candidate
+                renamed[key] = candidate
+                pending.remove(key)
+                available.remove(candidate)
+                progress = True
+        require(progress, "Generated project changed or object equivalence is ambiguous")
+    require(not available and remap(tested) == prepared,
+            "Generated project settings, references, scripts or ordered phases changed")
+    return {"status": "EXACT_OBJECT_GRAPH_EQUIVALENCE_PASS", "objects": len(left),
+            "renamed_ids": renamed, "array_order_preserved": True,
+            "prepared_semantic_sha256": hashlib.sha256(json.dumps(prepared, sort_keys=True,
+                separators=(",", ":")).encode()).hexdigest()}
+
+
 def verify_prepared_inputs(approved_path):
     approved = json.loads(approved_path.read_text())
     build = copy.deepcopy(approved["tested_build_report"])
     native = build["native_context"]
     require(subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip() == approved["candidate_sha"], "Candidate moved after UI gate")
+    project = approved_path.parent / "runtime27-approved-generated-project.pbxproj"
+    require(sha256(project) == native["generated_project_sha256"], "Tested generated project bytes missing/mismatched")
+    require(sha256(ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata") == native["workspace_sha256"],
+            "Generated workspace differs from real UI acceptance")
+    graphs = [json.loads(subprocess.check_output(["plutil", "-convert", "json", "-o", "-", "--", str(path)], text=True))
+              for path in [project, ROOT / "Maktabah.xcodeproj/project.pbxproj"]]
+    project_proof = generated_project_equivalence(*graphs)
     for path, expected in [("Podfile", native["podfile_sha256"]), ("Podfile.lock", native["pod_lock_sha256"]),
                            ("Vendor/SefariaMobile/Upstream/package-lock.json", native["npm_lock_sha256"]),
                            ("Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved", build["package_resolved_sha256"])]:
@@ -155,7 +197,7 @@ def verify_prepared_inputs(approved_path):
     helper["verify_actual_sources"](build)
     return {"status": "RELEASE_UI_INPUTS_PASS", "checkout_sha": approved["candidate_sha"],
             "tested_checkout_sha": approved["tested_sha"], "actual_source_inputs_verified": build["actual_source_inputs_verified"],
-            "actual_package_checkouts": build["actual_package_checkouts"]}
+            "actual_package_checkouts": build["actual_package_checkouts"], "generated_project_equivalence": project_proof}
 
 
 def main():
@@ -207,11 +249,15 @@ def main():
             build = json.loads(read(destination, "hq-stage2/result.json").read_text())
             lock = read(destination, "hq-stage2/resolved-Podfile.lock")
             require(sha256(lock) == build["native_context"]["pod_lock_sha256"], "UI Podfile.lock bytes missing/mismatched")
+            generated_project = read(destination, "hq-stage2/generated-Maktabah-project.pbxproj")
+            require(sha256(generated_project) == build["native_context"]["generated_project_sha256"],
+                    "Actual UI generated project bytes missing/mismatched")
             candidate_lock = ROOT / "Podfile.lock"
             require(not candidate_lock.is_symlink(), "Occupied native lock path is a symlink")
             require(not candidate_lock.exists() or sha256(candidate_lock) == sha256(lock), "Committed/current native lock differs from tested UI")
             shutil.copyfile(lock, candidate_lock)
             args.out.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(generated_project, args.out.parent / "runtime27-approved-generated-project.pbxproj")
             (args.out.parent / "runtime27-approved-inputs.json").write_text(json.dumps({"candidate_sha": args.expected_sha,
                 "tested_sha": run["head_sha"], "tested_build_report": build}, indent=2) + "\n")
             report.update(verified, acceptance_run=args.run, artifact_id=artifact["id"], artifact_zip_sha256=digest)

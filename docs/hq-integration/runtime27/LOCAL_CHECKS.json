@@ -1,7 +1,7 @@
 {
   "scope": "LOCAL_GUARD_GATE_ORACLE_CHECKS_ONLY_UI_COUNT_ZERO",
   "parser_unittest_cases": 10,
-  "release_gate_unittest_cases": 16,
+  "release_gate_unittest_cases": 19,
   "fixture_oracle_unittest_cases": 4,
   "all_final_results": "PASS",
   "actual_probe_run": 43678599137,
@@ -34,5 +34,6 @@
   "ui_third_run": 43688380348,
   "ui_third_checked_sha": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
   "ui_third_result": "ACTUALLY_EXECUTED_8_PASS_1_FAIL_0_SKIP_OR_NOT_RUN",
-  "ui_third_remaining_failure": "Native window case line169: actual palette remains open after Escape; Inspector not reached; actual semantic full-size cleanup restored"
+  "ui_third_remaining_failure": "Native window case line169: actual palette remains open after Escape; Inspector not reached; actual semantic full-size cleanup restored",
+  "generated_project_pre_sign_gate": "Exact complete OpenStep object graph equality permits only consistent ID/reference renaming; actual2206object/15rename pair PASS; fixtures reject settings/membership/phase-order/workspace/missingproject changes. Shipping workflow NOT_RUN."
 }

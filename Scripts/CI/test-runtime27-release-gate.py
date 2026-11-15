@@ -211,6 +211,7 @@ class PreparedInputTests(unittest.TestCase):
         self.addCleanup(lambda: self.function.__globals__.update(ROOT=self.old_root))
         files = {"Podfile": b"pod source", "Podfile.lock": b"approved resolved pods", "Vendor/SefariaMobile/Upstream/package-lock.json": b"pinned npm",
                  "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved": b"pinned swift",
+                 "Maktabah.xcworkspace/contents.xcworkspacedata": b"same workspace", "runtime27-approved-generated-project.pbxproj": b"tested generated project",
                  "Source/PrivacyInfo.xcprivacy": b"approved generated privacy", "Pods/ExpoModulesProvider.swift": b"approved generated expo"}
         self.hashes = {}
         for name, value in files.items():
@@ -222,12 +223,17 @@ class PreparedInputTests(unittest.TestCase):
         native = {"podfile_sha256": self.hashes["Podfile"], "pod_lock_sha256": self.hashes["Podfile.lock"],
                   "npm_lock_sha256": self.hashes["Vendor/SefariaMobile/Upstream/package-lock.json"],
                   "gitlink": "pinned-gitlink", "node": "v22.23.4", "cocoapods": "1.17.0",
+                  "generated_project_sha256": self.hashes["runtime27-approved-generated-project.pbxproj"],
+                  "workspace_sha256": self.hashes["Maktabah.xcworkspace/contents.xcworkspacedata"],
                   "generated_expo_providers": [{"path": "Pods/ExpoModulesProvider.swift", "sha256": self.hashes["Pods/ExpoModulesProvider.swift"]}]}
         self.approval = self.root / "approval.json"
         self.approval.write_text(json.dumps({"candidate_sha": self.sha, "tested_sha": self.sha, "tested_build_report": {
             "native_context": native, "package_resolved_sha256": self.hashes["Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"],
             "xcode": "Xcode 27.1", "generated_configuration": [{"path": "Source/PrivacyInfo.xcprivacy", "compiled_sha256": self.hashes["Source/PrivacyInfo.xcprivacy"]}]}}))
         self.pod_version = "1.17.0"
+        self.project = {"objects": {"target": {"isa": "PBXNativeTarget", "buildPhases": ["source", "link"]},
+                                   "source": {"isa": "PBXSourcesBuildPhase", "files": ["a.swift"]},
+                                   "link": {"isa": "PBXFrameworksBuildPhase", "files": ["native.a"]}}, "rootObject": "target"}
 
     def check(self):
         def command(args, **kwargs):
@@ -235,6 +241,8 @@ class PreparedInputTests(unittest.TestCase):
                 return self.sha
             if args[0] == "git":
                 return "pinned-gitlink"
+            if args[0] == "plutil":
+                return json.dumps(self.project)
             return {"xcodebuild": "Xcode 27.1", "node": "v22.23.4", "pod": self.pod_version}[args[0]]
         def audit(report):
             report.update(actual_source_inputs_verified=750, actual_package_checkouts={})
@@ -258,6 +266,36 @@ class PreparedInputTests(unittest.TestCase):
         self.pod_version = "1.18.0"
         with self.assertRaises(ValueError):
             self.check()
+
+    def test_missing_generated_project_and_changed_workspace_rejected(self):
+        for name in ["runtime27-approved-generated-project.pbxproj", "Maktabah.xcworkspace/contents.xcworkspacedata"]:
+            path = self.root / name
+            original = path.read_bytes()
+            path.write_bytes(b"not accepted")
+            with self.assertRaises(ValueError):
+                self.check()
+            path.write_bytes(original)
+
+    def test_generated_project_id_renaming_preserves_all_settings(self):
+        prepared = copy.deepcopy(self.project)
+        prepared["objects"]["new-source"] = prepared["objects"].pop("source")
+        prepared["objects"]["target"]["buildPhases"][0] = "new-source"
+        self.assertEqual(gate["generated_project_equivalence"](self.project, prepared)["renamed_ids"], {"source": "new-source"})
+
+    def test_generated_project_membership_settings_and_phase_order_drift_rejected(self):
+        variants = []
+        changed = copy.deepcopy(self.project)
+        changed["objects"]["source"]["files"] = ["different.swift"]
+        variants.append(changed)
+        changed = copy.deepcopy(self.project)
+        changed["objects"]["target"]["buildPhases"].reverse()
+        variants.append(changed)
+        changed = copy.deepcopy(self.project)
+        changed["objects"]["target"]["buildSettings"] = {"UNAPPROVED": "YES"}
+        variants.append(changed)
+        for prepared in variants:
+            with self.assertRaises(ValueError):
+                gate["generated_project_equivalence"](self.project, prepared)
 
     def test_only_named_actual_results_count(self):
         original = collect.__globals__["OUT"]
