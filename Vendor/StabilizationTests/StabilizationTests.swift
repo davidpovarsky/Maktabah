@@ -615,9 +615,29 @@ func testSearchPreviewVersionSwitchingInvariants() {
 
 // MARK: - Main Execution
 
+func testActualSefariaSearchTotalRejectsMissingEvidence() {
+    for total in ["0", "7", "{\"value\":0,\"relation\":\"eq\"}", "{\"value\":7,\"relation\":\"gte\"}"] {
+        let json = "{\"hits\":{\"total\":" + total + ",\"hits\":[]}}"
+        do { _ = try JSONDecoder().decode(SefariaSearchResponseDTO.self, from: Data(json.utf8)) }
+        catch { fatalError("Actual source total was rejected: " + total) }
+    }
+    for total in ["null", "{}", "{\"value\":null}", "{\"value\":\"0\"}", "-1", "{\"value\":-1}", "1.5", "true"] {
+        let json = "{\"hits\":{\"total\":" + total + ",\"hits\":[]}}"
+        do {
+            _ = try JSONDecoder().decode(SefariaSearchResponseDTO.self, from: Data(json.utf8))
+            fatalError("Unknown/invalid source total was promoted to zero: " + total)
+        } catch { /* Expected: retain invalid-response semantics, never empty/exact. */ }
+    }
+    print("PASS: actual Legacy Sefaria DTO, 4 explicit totals and 8 invalid/missing-total payloads")
+}
+
 @main
 enum StabilizationTestMain {
     static func main() {
+        if CommandLine.arguments.contains("--search-total-only") {
+            testActualSefariaSearchTotalRejectsMissingEvidence()
+            return
+        }
         print("=== Running Stabilization Regression Tests ===")
         testTOCDuplicateKeyCollision()
         testSafePathValidation()

@@ -53,6 +53,7 @@ extension IntegrationAcceptance {
         let event = SefariaRPCEvent(event: "ready", sequence: 1)
         await bridge.handleIncomingEvent(jsonString: String(decoding: try JSONEncoder().encode(event), as: UTF8.self))
         let epoch = await bridge.sessionEpoch
+        check(bridge.currentSessionEpoch == epoch, "synchronous epoch reads the same RPC actor-owned storage")
         try await runtime.ensureCatalogReady(timeoutSeconds: 1)
         let catalog = await runtime.observedReadiness(for: epoch)
         check(catalog.hostReady && catalog.catalogReady, "actual runtime records catalog readiness for current transport")
@@ -80,9 +81,11 @@ extension IntegrationAcceptance {
         do { _ = try await bridge.call(method: "downloads.remove"); fatalError("overlapping resource mutation accepted") }
         catch { check(true, "concurrent resource mutations are refused") }
         let mutationEpoch = await bridge.sessionEpoch
+        check(bridge.currentSessionEpoch == mutationEpoch, "sync authority observes in-flight resource invalidation without an echo/cache")
         try await transport.release()
         _ = try await install.value
         check(await bridge.sessionEpoch != mutationEpoch, "resource completion revokes snapshots from the in-flight operation")
+        check(bridge.currentSessionEpoch == (await bridge.sessionEpoch), "sync authority observes resource completion epoch immediately")
         check(await bridge.resourcesAreStable, "resource operation is no longer active after completion")
         let oldResources = await runtime.observedReadiness(for: epoch)
         check(!oldResources.catalogReady, "resource replacement revokes old catalog/search observations")
@@ -115,6 +118,18 @@ extension IntegrationAcceptance {
             catch { return false }
         }
         check(await cancelled.value, "already-cancelled RPC never dispatches")
+        let timeoutTransport = RuntimeFixtureTransport()
+        await timeoutTransport.hold("diagnostic.echo")
+        await bridge.setTransport(timeoutTransport)
+        let timeoutEpoch = bridge.currentSessionEpoch
+        let timed = Task { try await bridge.call(method: "diagnostic.echo", timeoutMs: 20) }
+        await timeoutTransport.waitForHeldRequest()
+        do { _ = try await timed.value; fatalError("nonresponding RPC did not time out") }
+        catch let error as SefariaRPCError { check(error.code == "TIMEOUT", "actual RPC actor timeout rejects pending call") }
+        try await timeoutTransport.release()
+        check(bridge.currentSessionEpoch == timeoutEpoch, "late read-only timeout response cannot corrupt authoritative epoch")
+        _ = try await bridge.call(method: "diagnostic.echo", timeoutMs: 1_000)
+        check(true, "RPC timeout leaves no locked continuation and subsequent call works")
         let beforeReset = await bridge.sessionEpoch
         await runtime.reset()
         check(await bridge.sessionEpoch != beforeReset, "runtime reset revokes epoch synchronously before returning")

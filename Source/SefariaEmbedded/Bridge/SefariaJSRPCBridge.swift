@@ -13,6 +13,21 @@ protocol SefariaJSTransport: AnyObject, Sendable {
     func sendToJS(jsonString: String) async throws
 }
 
+/// The single epoch authority. The RPC actor is the only writer; synchronous
+/// commit guards read this same value rather than a MainActor mirror/cache.
+private final class SefariaRPCSessionEpoch: @unchecked Sendable {
+    private let lock = NSLock()
+    private var value: UInt64 = 1
+    func read() -> UInt64 {
+        lock.lock(); defer { lock.unlock() }
+        return value
+    }
+    func write(_ value: UInt64) {
+        lock.lock(); defer { lock.unlock() }
+        self.value = value
+    }
+}
+
 actor SefariaJSRPCBridge {
     static let shared = SefariaJSRPCBridge()
 
@@ -28,7 +43,12 @@ actor SefariaJSRPCBridge {
 
     private(set) var isReady: Bool = false
     private(set) var hasActiveListeners: Bool = false
-    private(set) var sessionEpoch: UInt64 = 1
+    private nonisolated let epochAuthority = SefariaRPCSessionEpoch()
+    private(set) var sessionEpoch: UInt64 {
+        get { epochAuthority.read() }
+        set { epochAuthority.write(newValue) }
+    }
+    nonisolated var currentSessionEpoch: UInt64 { epochAuthority.read() }
     private var resourceMutationInProgress = false
 
     var resourcesAreStable: Bool { !resourceMutationInProgress }

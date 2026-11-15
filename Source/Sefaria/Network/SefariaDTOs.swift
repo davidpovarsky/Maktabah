@@ -106,16 +106,17 @@ struct SefariaSearchResponseDTO: Decodable, Sendable {
 
             init(from decoder: Decoder) throws {
                 if let single = try? decoder.singleValueContainer(),
-                   let integer = try? single.decode(Int.self) {
+                   let integer = try? single.decode(Int.self), integer >= 0 {
                     self.value = integer
                     return
                 }
                 if let container = try? decoder.container(keyedBy: CodingKeys.self),
-                   let integer = try? container.decodeIfPresent(Int.self, forKey: .value) {
+                   let integer = try? container.decodeIfPresent(Int.self, forKey: .value), integer >= 0 {
                     self.value = integer
                     return
                 }
-                self.value = 0
+                throw DecodingError.dataCorrupted(.init(codingPath: decoder.codingPath,
+                    debugDescription: "Search total must contain an explicit nonnegative integer; unknown is not zero"))
             }
         }
         let total: Total

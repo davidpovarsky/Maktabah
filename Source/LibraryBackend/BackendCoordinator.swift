@@ -258,6 +258,28 @@ final class BackendCoordinator {
     private(set) var activeTransitionToken: UInt64 = 0
     private var switchParticipants: [WeakSwitchParticipant] = []
 
+    struct ResourceWitness: Equatable, Sendable {
+        let databaseGeneration: UInt64
+        let searchRevision: UInt64
+        let profileID: String
+        let databasePath: String?
+        let searchFingerprint: Data?
+    }
+
+    private var resourceWitnesses: [BackendID: ResourceWitness] = [:]
+
+    /// The canonical backend generation also invalidates captured work when
+    /// resources change within the SAME selected backend. No selection, defaults,
+    /// tabs or user data are changed by this observation.
+    func observeResourceWitness(_ witness: ResourceWitness, for backend: BackendID) {
+        guard backend == activeBackendID else { return }
+        let previous = resourceWitnesses.updateValue(witness, forKey: backend)
+        guard let previous, previous != witness else { return }
+        inFlightCancellations.values.forEach { $0() }
+        inFlightCancellations.removeAll()
+        generation &+= 1
+    }
+
     private var registrations: [BackendID: LibraryBackendRegistration] = [:]
     private var inFlightCancellations: [UUID: @Sendable () -> Void] = [:]
     private let defaults: UserDefaults

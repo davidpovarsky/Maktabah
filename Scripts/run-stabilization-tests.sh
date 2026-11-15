@@ -9,4 +9,4 @@ swiftc \
   Source/Sefaria/Network/SefariaDTOs.swift \
   Vendor/StabilizationTests/StabilizationTests.swift \
   -o "$output"
-"$output"
+"$output" "$@"
