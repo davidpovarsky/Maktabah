@@ -1,0 +1,109 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/4] Write sources
+[3/5] Emitting module OtzariaActionCore
+[4/6] Compiling OtzariaActionCore ActionExecutor.swift
+[5/7] Write Objects.LinkFileList
+[6/7] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (24.32s)
+Test Suite 'Selected tests' started at 2026-11-15 15:47:09.847
+
+Test Suite 'NavigationAuthorizationTests' started at 2026-11-15 15:47:09.851
+
+Test Case 'NavigationAuthorizationTests.testCanonicalBackendAndNativeContextRemainSeparateSources' started at 2026-11-15 15:47:09.851
+
+Test Case 'NavigationAuthorizationTests.testCanonicalBackendAndNativeContextRemainSeparateSources' passed (0.107 seconds)
+
+Test Case 'NavigationAuthorizationTests.testCompletionRequiresGuardAndExactObservedReceiptWithoutRegrant' started at 2026-11-15 15:47:09.958
+
+Test Case 'NavigationAuthorizationTests.testCompletionRequiresGuardAndExactObservedReceiptWithoutRegrant' passed (0.393 seconds)
+
+Test Case 'NavigationAuthorizationTests.testCurrentSubjectScopeScenePairingAndMissingEpochRequiredAtPreparation' started at 2026-11-15 15:47:10.351
+
+Test Case 'NavigationAuthorizationTests.testCurrentSubjectScopeScenePairingAndMissingEpochRequiredAtPreparation' passed (0.674 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationAfterMutationDoNotBecomeCompletion' started at 2026-11-15 15:47:11.026
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationAfterMutationDoNotBecomeCompletion' passed (0.19 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationRecheckedSynchronously' started at 2026-11-15 15:47:11.216
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationRecheckedSynchronously' passed (0.163 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDiscoveryPermissionIsSeparateFromExecutionPreparation' started at 2026-11-15 15:47:11.379
+
+Test Case 'NavigationAuthorizationTests.testDiscoveryPermissionIsSeparateFromExecutionPreparation' passed (0.163 seconds)
+
+Test Case 'NavigationAuthorizationTests.testEmptySemanticRoutesCannotSmuggleContentPrivateStateOrFakeActions' started at 2026-11-15 15:47:11.542
+
+Test Case 'NavigationAuthorizationTests.testEmptySemanticRoutesCannotSmuggleContentPrivateStateOrFakeActions' passed (0.319 seconds)
+
+Test Case 'NavigationAuthorizationTests.testEpochDriftAfterImmediateGuardCannotBecomeCompletedReceipt' started at 2026-11-15 15:47:11.861
+
+Test Case 'NavigationAuthorizationTests.testEpochDriftAfterImmediateGuardCannotBecomeCompletedReceipt' passed (0.088 seconds)
+
+Test Case 'NavigationAuthorizationTests.testFullCommandBindingAndTrustedSceneRevisionStillRequired' started at 2026-11-15 15:47:11.949
+
+Test Case 'NavigationAuthorizationTests.testFullCommandBindingAndTrustedSceneRevisionStillRequired' passed (0.087 seconds)
+
+Test Case 'NavigationAuthorizationTests.testLifetimeReplacementAndBackendGenerationEpochDriftFailClosed' started at 2026-11-15 15:47:12.036
+
+Test Case 'NavigationAuthorizationTests.testLifetimeReplacementAndBackendGenerationEpochDriftFailClosed' passed (0.593 seconds)
+
+Test Case 'NavigationAuthorizationTests.testMissingEmbeddedSynchronousProofDoesNotBlockOtherBackends' started at 2026-11-15 15:47:12.630
+
+Test Case 'NavigationAuthorizationTests.testMissingEmbeddedSynchronousProofDoesNotBlockOtherBackends' passed (0.443 seconds)
+
+Test Case 'NavigationAuthorizationTests.testMissingSynchronousFacetCannotUseASecondAuthority' started at 2026-11-15 15:47:13.073
+
+Test Case 'NavigationAuthorizationTests.testMissingSynchronousFacetCannotUseASecondAuthority' passed (0.229 seconds)
+
+Test Case 'NavigationAuthorizationTests.testPureNavigationAllThreeBackendsSixOriginsAndOneUse' started at 2026-11-15 15:47:13.302
+
+Test Case 'NavigationAuthorizationTests.testPureNavigationAllThreeBackendsSixOriginsAndOneUse' passed (1.25 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRawPreparationBindsInvocationSceneAndCannotBecomeReaderAuthority' started at 2026-11-15 15:47:14.551
+
+Test Case 'NavigationAuthorizationTests.testRawPreparationBindsInvocationSceneAndCannotBecomeReaderAuthority' passed (0.087 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderAcknowledgementRequiresConsumedGuardAndFreshPostSinkAuthority' started at 2026-11-15 15:47:14.639
+
+Test Case 'NavigationAuthorizationTests.testReaderAcknowledgementRequiresConsumedGuardAndFreshPostSinkAuthority' passed (0.093 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderCannotBypassResolverOrForgePreparationAndRevocationBeforeCommit' started at 2026-11-15 15:47:14.732
+
+Test Case 'NavigationAuthorizationTests.testReaderCannotBypassResolverOrForgePreparationAndRevocationBeforeCommit' passed (0.069 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderStillUsesResolverSinkGuardAndExactReceiptAllBackends' started at 2026-11-15 15:47:14.801
+
+Test Case 'NavigationAuthorizationTests.testReaderStillUsesResolverSinkGuardAndExactReceiptAllBackends' passed (0.209 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRevocationAfterObservedMutationPreventsCompletion' started at 2026-11-15 15:47:15.010
+
+Test Case 'NavigationAuthorizationTests.testRevocationAfterObservedMutationPreventsCompletion' passed (0.691 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRevocationDuringFinalBackendAwaitPreventsReaderCompletion' started at 2026-11-15 15:47:15.701
+
+Test Case 'NavigationAuthorizationTests.testRevocationDuringFinalBackendAwaitPreventsReaderCompletion' passed (0.026 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRevokedOrChangedAuthorityNeverCommits' started at 2026-11-15 15:47:15.727
+
+Test Case 'NavigationAuthorizationTests.testRevokedOrChangedAuthorityNeverCommits' passed (0.616 seconds)
+
+Test Suite 'NavigationAuthorizationTests' passed at 2026-11-15 15:47:16.343
+
+	 Executed 20 tests, with 0 failures (0 unexpected) in 6.491 (6.491) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 15:47:16.343
+
+	 Executed 20 tests, with 0 failures (0 unexpected) in 6.491 (6.491) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
