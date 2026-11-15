@@ -1,0 +1,22 @@
+--- a/Source/UI/iOS/Managers/iOSNavigationManager.swift
++++ b/Source/UI/iOS/Managers/iOSNavigationManager.swift
+@@ -42,2 +42,8 @@
+-    var openTabs: [ReaderTab] = []
+-    var activeTabId: UUID?
++    var openTabs: [ReaderTab] = [] {
++        willSet { StudyWorkspaceNavigationAdapter.nativeMappingTabsWillChange(self, to: newValue) }
++        didSet { StudyWorkspaceNavigationAdapter.nativeMappingDidChange(self) }
++    }
++    var activeTabId: UUID? {
++        willSet { StudyWorkspaceNavigationAdapter.nativeMappingSelectionWillChange(self, to: newValue) }
++        didSet { StudyWorkspaceNavigationAdapter.nativeMappingDidChange(self) }
++    }
+@@ -63,3 +69,5 @@
+-    }
+-
+-    deinit {
++        StudyWorkspaceNavigationAdapter.nativeMappingOwnerInitialized(self)
++    }
++
++    isolated deinit {
++        StudyWorkspaceNavigationAdapter.nativeMappingOwnerWillDeinitialize(self)

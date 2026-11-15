@@ -1,0 +1,26 @@
+[
+  {
+    "name": "NativeManager",
+    "sourceCommit": "44f518fc",
+    "sourcePath": "docs/hq-native-mapping-producer/UPSTREAM_NATIVE_SETTER_HOOK_UNAPPLIED.diff",
+    "patchSHA256": "3ec16b615de1600c4870613ac3bc85b037809251f826711ad711bd21e4e900f2",
+    "checkExit": 0,
+    "checkOutput": "",
+    "applied": false,
+    "initialDefaultCheck": "error: patch failed: Source/UI/iOS/Managers/iOSNavigationManager.swift:42\nerror: Source/UI/iOS/Managers/iOSNavigationManager.swift: patch does not apply\n",
+    "checkCommand": "git apply --check --unidiff-zero (source proposal intentionally zero-context)",
+    "targetPath": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+    "actualBaseBlob": "e6f86d69a93b6f757f755b718c5353089fcd3c2e"
+  },
+  {
+    "name": "ReaderWitness",
+    "sourceCommit": "d583086",
+    "sourcePath": "docs/hq-ui-routing/N_APP_BINDING_LEGACY_READER_WITNESS_UNAPPLIED.diff",
+    "patchSHA256": "8695e10c4cea62a391bc4f54412eea1d0988490dd95039a1cd9f3abe555860a8",
+    "checkExit": 0,
+    "checkOutput": "",
+    "applied": false,
+    "targetPath": "Source/UI/iOS/Views/iPadLayout.swift",
+    "actualBaseBlob": "4b63d11478d895920de0c991662b6aeffb24a077"
+  }
+]
