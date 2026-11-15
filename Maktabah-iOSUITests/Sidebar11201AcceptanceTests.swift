@@ -268,10 +268,18 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func visibleSidebarSearch(in pager: XCUIElement) throws -> XCUIElement {
+        // UIKit places .navigationBarDrawer above the page body's AX bounds.
+        // Observe the visible native field in this sidebar's horizontal column,
+        // including its NavigationBar; keep offscreen/other-column fields out.
+        let body = pager.frame
+        let window = app.windows.firstMatch.frame
+        XCTAssertFalse(body.isEmpty)
+        let column = CGRect(x: body.minX, y: window.minY,
+                            width: body.width, height: window.height)
         let fields = app.searchFields.allElementsBoundByIndex.filter {
-            !$0.frame.isEmpty && pager.frame.contains($0.frame) && $0.isHittable
+            !$0.frame.isEmpty && column.insetBy(dx: -1, dy: 0).contains($0.frame) && $0.isHittable
         }
-        XCTAssertEqual(fields.count, 1, "One visible native Library search field")
+        XCTAssertEqual(fields.count, 1, "One visible native search field in the actual sidebar column")
         return try XCTUnwrap(fields.first)
     }
 
