@@ -73,7 +73,10 @@ final class UnifiedSearchSessionController {
     // MARK: - Private State
 
     private var cancellables: Set<AnyCancellable> = []
-    private var zayitHits: [Int64: ZayitSearchHit] = [:]
+    private var zayitHits: [String: ZayitSearchHit] = [:]
+    private var zayitSearchTask: Task<Void, Never>?
+    private var searchGeneration = 0
+    private var isPreparingZayitSearch = false
 
     init() {
         setupObservers()
@@ -83,7 +86,7 @@ final class UnifiedSearchSessionController {
         otzaria.objectWillChange.sink { [weak self] _ in
             guard let self else { return }
             Task { @MainActor in
-                if !self.isSefaria && self.scope != .zayit {
+                if self.hasSubmitted && !self.isSefaria && self.scope != .zayit {
                     self.results = self.otzaria.results
                     self.isSearching = self.otzaria.isSearching
                     self.errorMessage = self.otzaria.errorMessage
@@ -96,18 +99,20 @@ final class UnifiedSearchSessionController {
         zayitSession.objectWillChange.sink { [weak self] _ in
             guard let self else { return }
             Task { @MainActor in
-                if !self.isSefaria && self.scope == .zayit {
+                if self.hasSubmitted && !self.isSefaria && self.scope == .zayit {
                     let hits = self.zayitSession.model.hits
                     self.cacheZayitHits(hits)
                     self.results = self.mapZayitHits(hits)
-                    self.isSearching = self.zayitSession.model.isLoading
+                    self.isSearching = self.isPreparingZayitSearch || self.zayitSession.model.isLoading || self.zayitSession.state == .restoring
                     if let modelError = self.zayitSession.model.errorMessage, !modelError.isEmpty {
                         self.errorMessage = modelError
                     } else if case .failed(let sessionError) = self.zayitSession.state {
                         self.errorMessage = sessionError
+                    } else {
+                        self.errorMessage = nil
                     }
-                    self.hasMore = false
-                    self.isLoadingMore = false
+                    self.hasMore = self.zayitSession.model.hasMore
+                    self.isLoadingMore = self.zayitSession.model.isLoadingMore
                 }
             }
         }.store(in: &cancellables)
@@ -125,6 +130,19 @@ final class UnifiedSearchSessionController {
 
     var hasConfigurableOptions: Bool {
         scope == .advanced
+    }
+
+    var showsSearchFeedback: Bool { !isSefaria && hasSubmitted }
+
+    var feedbackState: UnifiedSearchPresentationState {
+        UnifiedSearchPresentationPolicy.resolve(resultCount: results.count, isLoading: isSearching,
+            errorMessage: errorMessage, hasSubmitted: hasSubmitted, indexReady: !packageMissing)
+    }
+
+    func refreshSearchData() {
+        guard !isSefaria else { return }
+        otzaria.refreshStatus()
+        Task { await zayitSession.restoreIfNeeded(existingSeforimDB: ZayitSearchExistingDatabaseProvider.currentURL) }
     }
 
     var packageMissing: Bool {
@@ -148,6 +166,9 @@ final class UnifiedSearchSessionController {
             return selectedBookIds.isEmpty ? backendName : "סינון ל־\(selectedBookIds.count) ספרים"
         }
         if scope == .zayit {
+            if case .failed(let error) = zayitSession.state { return error }
+            if zayitSession.state == .restoring { return "משחזר את מנוע זית…" }
+            if zayitSession.state == .notConfigured { return "חבילת אינדקס זית אינה מותקנת." }
             if let error = zayitSession.model.errorMessage { return error }
             return zayitSession.model.hits.isEmpty ? "זית" : "תוצאות זית (\(results.count))"
         }
@@ -159,6 +180,10 @@ final class UnifiedSearchSessionController {
     // MARK: - Search Execution
 
     func runSearch() {
+        searchGeneration += 1
+        zayitSearchTask?.cancel()
+        zayitSession.model.cancelSearch()
+        zayitHits.removeAll()
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else {
             clearResults()
@@ -213,14 +238,29 @@ final class UnifiedSearchSessionController {
     }
 
     private func runZayitSearch(query: String) {
+        isPreparingZayitSearch = true
         isSearching = true
         results = []
         hasMore = false
         isLoadingMore = false
 
-        Task {
+        let generation = searchGeneration
+        let backendGeneration = BackendCoordinator.shared.generation
+        let profile = OtzariaDataProfileRegistry.activeProfileID
+        let database = ZayitSearchExistingDatabaseProvider.currentURL
+        let filters = ZayitSearchFilters(bookIds: selectedBookIds.sorted().map { Int64($0) })
+        zayitSearchTask = Task {
             await zayitSession.restoreIfNeeded(existingSeforimDB: ZayitSearchExistingDatabaseProvider.currentURL)
+            guard !Task.isCancelled, generation == self.searchGeneration else { return }
+            guard !self.isSefaria, self.scope == .zayit,
+                  backendGeneration == BackendCoordinator.shared.generation,
+                  profile == OtzariaDataProfileRegistry.activeProfileID,
+                  database == ZayitSearchExistingDatabaseProvider.currentURL else {
+                self.clearResults()
+                return
+            }
             if case .failed(let error) = zayitSession.state {
+                self.isPreparingZayitSearch = false
                 await MainActor.run {
                     self.isSearching = false
                     self.errorMessage = error
@@ -228,6 +268,7 @@ final class UnifiedSearchSessionController {
                 return
             }
             guard zayitSession.state == .ready else {
+                self.isPreparingZayitSearch = false
                 await MainActor.run {
                     self.isSearching = false
                     if self.packageMissing {
@@ -237,7 +278,7 @@ final class UnifiedSearchSessionController {
                 return
             }
             zayitSession.model.query = query
-            let filters = ZayitSearchFilters(bookIds: selectedBookIds.map { Int64($0) })
+            self.isPreparingZayitSearch = false
             zayitSession.model.runSearch(filters: filters)
         }
     }
@@ -323,7 +364,7 @@ final class UnifiedSearchSessionController {
                 self.isLoadingMore = searchViewModel.isLoadingMoreBackendResults
             }
         } else if scope == .zayit {
-            // Zayit single page
+            zayitSession.model.loadNextPage()
         } else {
             otzaria.loadNextPage()
         }
@@ -361,7 +402,12 @@ final class UnifiedSearchSessionController {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         #endif
 
-        if scope == .zayit, let hit = zayitHits.values.first(where: { $0.bookId == Int64(item.bookId) && $0.lineIndex == item.page }) ?? zayitHits.values.first(where: { $0.bookTitle == item.bookTitle && $0.lineIndex == item.page }) {
+        if item.archive == "Zayit" {
+            guard scope == .zayit, let hitID = item.backendHitID,
+                  let hit = zayitHits[hitID] else {
+                errorMessage = "תוצאת זית אינה שייכת לחיפוש הנוכחי. יש לחפש שוב."
+                return
+            }
             ZayitSearchReaderNavigationAdapter.open(hit, using: manager)
             return
         }
@@ -432,11 +478,17 @@ final class UnifiedSearchSessionController {
     }
 
     func clearResults() {
+        isPreparingZayitSearch = false
+        searchGeneration += 1
+        zayitSearchTask?.cancel()
+        zayitSession.model.cancelSearch()
+        zayitHits.removeAll()
         results = []
         errorMessage = nil
         hasMore = false
         isLoadingMore = false
         hasSubmitted = false
+        isSearching = false
         otzaria.clear()
         searchViewModel?.clearResults()
     }
@@ -459,7 +511,7 @@ final class UnifiedSearchSessionController {
     private func cacheZayitHits(_ hits: [ZayitSearchHit]) {
         zayitHits.removeAll(keepingCapacity: true)
         for hit in hits {
-            zayitHits[hit.id] = hit
+            zayitHits[zayitHitID(hit)] = hit
         }
     }
 
@@ -492,9 +544,14 @@ final class UnifiedSearchSessionController {
                 attributedText: attr,
                 backendLocator: locator,
                 locationDisplayText: hit.reference.isEmpty ? nil : hit.reference,
-                highlightTerms: hit.matchedTerms
+                highlightTerms: hit.matchedTerms,
+                backendHitID: zayitHitID(hit)
             )
         }
+    }
+
+    private func zayitHitID(_ hit: ZayitSearchHit) -> String {
+        "zayit:\(OtzariaDataProfileRegistry.activeProfileID):\(hit.id)"
     }
 
     // MARK: - Reader Parameter Helpers

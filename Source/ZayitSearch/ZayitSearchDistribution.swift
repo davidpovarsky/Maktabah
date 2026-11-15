@@ -591,6 +591,8 @@ private extension ZayitSearchArtifactService {
 final class ZayitSearchDataController: ObservableObject {
     static let shared = ZayitSearchDataController()
     @Published private(set) var state: ZayitSearchPackageState = .notInstalled
+    /// Changes only after an actual package mutation, independently of discovery UI state.
+    @Published private(set) var revision: UInt64 = 0
 
     func refresh(discover: Bool = false) async {
         guard let database = ZayitSearchExistingDatabaseProvider.currentURL else {
@@ -626,6 +628,7 @@ final class ZayitSearchDataController: ObservableObject {
             ) { [weak self] update in
                 Task { @MainActor in self?.state = update }
             }
+            revision &+= 1
             await refresh()
         } catch let error as ZayitSearchDistributionError {
             switch error {
@@ -647,6 +650,7 @@ final class ZayitSearchDataController: ObservableObject {
         Task {
             do {
                 try await ZayitSearchArtifactService.shared.remove()
+                self.revision &+= 1
                 state = .notInstalled
             } catch {
                 state = .failed(error.localizedDescription)

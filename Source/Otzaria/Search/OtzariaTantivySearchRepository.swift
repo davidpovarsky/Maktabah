@@ -88,7 +88,9 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     }
 
     func documentCount(databasePath: String) throws -> UInt64 {
-        try engine(databasePath: databasePath).documentCount()
+        lock.lock()
+        defer { lock.unlock() }
+        return try engine(databasePath: databasePath).documentCount()
     }
 
     func invalidate(databasePath: String) {
@@ -138,6 +140,8 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     }
 
     func search(databasePath: String, request: OtzariaSearchRequest) throws -> OtzariaSearchPage {
+        lock.lock()
+        defer { lock.unlock() }
         let engine = try engine(databasePath: databasePath)
         return try engine.search(request)
     }
@@ -161,7 +165,8 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
                 attributedText: attrText,
                 backendLocator: locator,
                 locationDisplayText: result.reference.isEmpty ? nil : result.reference,
-                highlightTerms: highlightTerms.isEmpty ? nil : highlightTerms
+                highlightTerms: highlightTerms.isEmpty ? nil : highlightTerms,
+                backendHitID: result.stableHitID
             )
         }
     }

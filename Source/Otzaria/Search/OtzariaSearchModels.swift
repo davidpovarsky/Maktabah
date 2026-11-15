@@ -155,6 +155,41 @@ struct OtzariaSearchPage: Codable, Sendable {
     let groupCount: UInt32?
     let truncated: Bool
     let results: [OtzariaEngineSearchResult]
+
+    func hasNextPage(consumed: Int) -> Bool {
+        !results.isEmpty && (truncated || consumed < Int(totalCount))
+    }
+}
+
+extension OtzariaEngineSearchResult {
+    var stableHitID: String { "otzaria:\(filePath):\(id):\(segment)" }
+}
+
+/// Keep each item's metadata with its identity, never its offset in a later page.
+struct OtzariaSearchResultStore<Item: Identifiable & Sendable> where Item.ID == String {
+    struct Record: Sendable {
+        let item: Item
+        let metadata: OtzariaEngineSearchResult
+    }
+    private(set) var records: [Record] = []
+    private(set) var consumedCount = 0
+
+    mutating func apply(page: OtzariaSearchPage, items: [Item], replacing: Bool) throws {
+        guard page.results.count == items.count else {
+            throw OtzariaSearchError.invalidEngineResponse("Search result metadata count mismatch")
+        }
+        if replacing { clear() }
+        var seen = Set(records.map { $0.item.id })
+        for (item, metadata) in zip(items, page.results) where seen.insert(item.id).inserted {
+            records.append(Record(item: item, metadata: metadata))
+        }
+        consumedCount += page.results.count
+    }
+
+    mutating func clear() {
+        records = []
+        consumedCount = 0
+    }
 }
 
 struct OtzariaBookCounts: Codable, Sendable {
