@@ -1,0 +1,4 @@
+Actual leased bootstrap method SHA256: a495ef12af7782fa858e86c6f596c9a3c38323250ee1b67e1fde923ff334cd8c
+   Creating library C:\Users\DAVID\AppData\Local\Temp\otzaria-bootstrap-search-fixture-1lmotfou\bootstrap-search.lib and object C:\Users\DAVID\AppData\Local\Temp\otzaria-bootstrap-search-fixture-1lmotfou\bootstrap-search.exp
+
+PASS: 49 assertions across 12 exact-method scenarios; bridge/install/DB doubles, no native or FFI acceptance
