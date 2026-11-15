@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "source_test_commit": "15ed01259d4b41864a53db76c0060c25393d75ef",
+  "source_test_commit": "c93b5a9d33fa09a8054f77eb280ce94472b68841",
   "application_base": "fe6f5fe5126a964bd76d3f308489e131a491fe36",
-  "app_source": "4dae2dac23b51f504e1722d24a90028cc4caa690",
+  "app_source": "c93b5a9d33fa09a8054f77eb280ce94472b68841",
   "sole_executor_thread": "01a1df85-6013-7270-b48d-8e10222e95c6",
   "independent_qa_thread": null,
-  "scope": "SINGLE_MANAGER_COHERENT_SIX_READER_PLUS_FIVE_NATIVE_ROUTE_CASES_NOT_FULL_RELEASE",
+  "scope": "GLOBAL_SEARCH_SEVEN_REAL_NATIVE_CONTROLS_PLUS_SIX_READER_AND_FIVE_NATIVE_ROUTES_NOT_FULL_RELEASE",
   "native_cases_executed": 0,
   "required_nonzero_cases": 9,
   "expected_per_device": {
@@ -159,7 +159,14 @@
         "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
         "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
         "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
-        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
+        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+        "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+        "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+        "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+        "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+        "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+        "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+        "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit"
       ]
     },
     {
@@ -183,7 +190,14 @@
     "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
     "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
     "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
-    "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
+    "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+    "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+    "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+    "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+    "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -293,7 +307,7 @@
     "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
     "native_status": "NOT_RUN"
   },
-  "selected_scope_reason": "Six affected Reader cases retained; five new real native History URL/receipt/invalid-version cases supplement the original nine without replacing or weakening their oracles. Settings system Intent, full release and physical acceptance remain separate. Existing native miniTest10 INSTALL_SEARCH=1 bootstrap also verifies actual Swift-to-rebuilt-Zayit warm/filter/reopen consistency before the selected UI cases.",
+  "selected_scope_reason": "New independent I source packet selects seven no-query Global Search UI cases plus unchanged six Reader and five native-route regressions on affected combined app. Query/fault/paging/locator prerequisites, other backend capability cases, iPhone Search-specific checks, manual Stage Manager/VoiceOver and physical remain NOT_RUN. Existing actual miniTest10 Swift-to-Zayit warm/filter/reopen bootstrap remains unchanged.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -324,6 +338,55 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Actual system URL rejection, visible error and no History navigation"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native header geometry in Hebrew RTL; native field/controls bounds/hit targets",
+      "prerequisite": "Genuine installed miniTest10, normal realUI bootstrap, isolated disposable simulator app; no invented query/provider trace"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native header geometry in English LTR; native field/controls bounds/hit targets",
+      "prerequisite": "Genuine installed miniTest10, normal realUI bootstrap, isolated disposable simulator app; no invented query/provider trace"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "One real native editable field, genuine system clear, inline canonical history without submission",
+      "prerequisite": "Genuine installed miniTest10, normal realUI bootstrap, isolated disposable simulator app; no invented query/provider trace"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real Otzaria advanced Form includes conditional positive/negative/grouping/linguistic controls",
+      "prerequisite": "Genuine installed miniTest10, normal realUI bootstrap, isolated disposable simulator app; no invented query/provider trace"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Exact/fuzzy show no ignored advanced Otzaria bindings",
+      "prerequisite": "Genuine installed miniTest10, normal realUI bootstrap, isolated disposable simulator app; no invented query/provider trace"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Options dismissal retains actual query and no submission state",
+      "prerequisite": "Genuine installed miniTest10, normal realUI bootstrap, isolated disposable simulator app; no invented query/provider trace"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Unsuppressed native header/history accessibility audit; not manual VoiceOver acceptance",
+      "prerequisite": "Genuine installed miniTest10, normal realUI bootstrap, isolated disposable simulator app; no invented query/provider trace"
     }
   ]
 }
