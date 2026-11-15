@@ -1,0 +1,31 @@
+{
+  "observedAtUTC": "2026-11-15T15:13:24.9694059Z",
+  "threadUUID": "01a1df8a-df83-7f53-a190-7e582a40aaba",
+  "sourceHEAD": "d0b953c1995105ae64d420489086e9263f8ca4b1",
+  "reportSHA256": "99aca0c138c946c42e2a5a4a3bf3b4ce31a542ec8ee170aeff27612e1effffbe",
+  "toolSHA256": "6edcb1aff4d9d472d49d2355d36bc32c8797e3ae598b25fe921767bf6f5a1dfb",
+  "metadataChecksPassed": 101,
+  "metadataChecksFailed": 0,
+  "payloadGate": "ALL_COMPRESSED_PARTS_HASH_VERIFIED",
+  "components": [
+    {
+      "component": "otzaria",
+      "parts": 14,
+      "bytes": 3809352289,
+      "failures": 0
+    },
+    {
+      "component": "zayit",
+      "parts": 74,
+      "bytes": 2892852394,
+      "failures": 0
+    }
+  ],
+  "totalParts": 88,
+  "totalBytes": 6702204683,
+  "extraction": "NOT_RUN",
+  "installation": "NOT_RUN",
+  "nativeQueries": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "userDataMutation": false
+}

@@ -1,10 +1,19 @@
-"""Audit saved small release metadata/manifests; do not download DB/index assets."""
+"""Audit saved metadata; optionally stream/hash payloads without writing index bytes."""
 from pathlib import Path
+import argparse
 import hashlib
 import json
+import time
+import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs/hq-search"
+parser = argparse.ArgumentParser()
+parser.add_argument("--verify-payloads", action="store_true", help="Stream every saved-manifest part and verify its actual byte count/SHA256; no extraction or installation")
+parser.add_argument("--output", default="v32-metadata-audit.json", help="Report filename inside docs/hq-search")
+options = parser.parse_args()
+if Path(options.output).name != options.output:
+    parser.error("output must be a filename inside docs/hq-search")
 
 
 def read(path):
@@ -61,6 +70,42 @@ for resource in read(ROOT / "Vendor/OtzariaSearchEngine/Upstream/RESOURCE_MANIFE
         check(otzaria["resources"][resource["destination"]]["sha256"] == actual == resource["sha256"], "bundled resource: " + resource["destination"])
 report["passed"] = sum(x["pass"] for x in report["checks"])
 report["failed"] = len(report["checks"]) - report["passed"]
-(EVIDENCE / "v32-metadata-audit.json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+output = EVIDENCE / options.output
+output.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 print(f"v32 metadata audit: {report['passed']} PASS, {report['failed']} FAIL; payload/runtime/device gates OPEN")
+if options.verify_payloads and not report["failed"]:
+    report["scope"] = "Actual compressed payload stream/hash verification; no extraction, installation, corpus query or device acceptance"
+    report["payloads"] = []
+    for component, manifest in manifests.items():
+        release = next(x for x in inventory if x["tag_name"].startswith(component + "-search-data-v32-"))
+        assets = {a["name"]: a for a in release["assets"]}
+        parts = manifest["lexicalArtifact"]["parts"] if component == "otzaria" else manifest["parts"]
+        for part in parts:
+            started = time.monotonic()
+            record = {"component": component, "asset": part["assetName"], "status": "NOT_RUN",
+                      "expectedBytes": part["packagedBytes"], "expectedSHA256": part["sha256"]}
+            try:
+                digest, count = hashlib.sha256(), 0
+                request = urllib.request.Request(assets[part["assetName"]]["browser_download_url"], headers={"User-Agent": "Maktabah-source-payload-verification"})
+                with urllib.request.urlopen(request, timeout=60) as response:
+                    while chunk := response.read(4 * 1024 * 1024):
+                        count += len(chunk)
+                        if count > part["packagedBytes"]:
+                            raise ValueError("Payload exceeds manifest byte count")
+                        digest.update(chunk)
+                record.update(bytes=count, sha256=digest.hexdigest())
+                if count != part["packagedBytes"] or digest.hexdigest() != part["sha256"]:
+                    raise ValueError("Payload byte count or SHA256 does not match manifest")
+                record["status"] = "EXECUTED_PASS"
+            except Exception as error:
+                record.update(status="FAIL", error=type(error).__name__ + ": " + str(error))
+                report["failed"] += 1
+            record["elapsedSeconds"] = round(time.monotonic() - started, 2)
+            report["payloads"].append(record)
+            output.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            print(f"{record['status']}: {component}/{part['assetName']} ({record.get('bytes',0)} bytes)", flush=True)
+            if record["status"] != "EXECUTED_PASS":
+                raise SystemExit(1)
+    report["payloadGate"] = "ALL_COMPRESSED_PARTS_HASH_VERIFIED"
+    output.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 raise SystemExit(1 if report["failed"] else 0)
