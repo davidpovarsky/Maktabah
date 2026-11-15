@@ -1,0 +1,171 @@
+{
+  "ownerThread": "01a1dc89-87bb-7521-b249-ed383392e940",
+  "branch": "codex/otzaria-ui-registry-20261115",
+  "base": "2918825be8c5cc8ecee53d57e1f48ca51779cab4",
+  "apiCheckpoint": "fd51ee3f26c35f48211d11b49a56198eb6916584",
+  "coreParserSourcePin": "fd51ee3f26c35f48211d11b49a56198eb6916584",
+  "sourceIdentity": "Exact working-source hashes below; final commit recorded in source Asana notes",
+  "environment": "Swift 6.3.3 / x86_64-unknown-windows-msvc / Swift language 6",
+  "command": "swift test --package-path Source/Otzaria/UIRouting -j 1 -Xswiftc -strict-concurrency=complete",
+  "result": "EXECUTED_PASS_PORTABLE",
+  "executed": 24,
+  "failures": 0,
+  "compilerWarnings": 0,
+  "includesInitialAPITests": true,
+  "log": "docs/hq-ui-routing/results/ui-registry-tests.log",
+  "logSha256": "3a097ce91078726c340c7c2620132bc2f905cd7b031e4e077693946870a70c64",
+  "passedTests": [
+    "CodecTests.testDuplicateExactNumberAndBoundedIngress",
+    "CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields",
+    "CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys",
+    "CodecTests.testPrivateAndPublicGoldenCodecs",
+    "CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend",
+    "CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths",
+    "CodecTests.testRenameRemovedUnknownAndFutureVersion",
+    "DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends",
+    "DiscoveryTests.testDeadlineRecheckedAfterHostAwait",
+    "DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive",
+    "DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility",
+    "DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait",
+    "GoldenAPITests.testGoldenPrivateAndPublicDTOs",
+    "GoldenAPITests.testIDsAndSendableContracts",
+    "RegistryTests.testAllBackendReferencesAndPresentationVariants",
+    "RegistryTests.testCompleteStateAndBoundedSelection",
+    "RegistryTests.testConflictingBackendsAndFocusNeverGuess",
+    "RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists",
+    "RegistryTests.testRegistryDefinitionFailsClosed",
+    "ScenePortTests.testCancellationIsRecheckedBeforeCommit",
+    "ScenePortTests.testEveryReceiptBindingAndObservedStateRequired",
+    "ScenePortTests.testExactAcknowledgementAllBackends",
+    "ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation",
+    "ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings"
+  ],
+  "coreFocused": {
+    "log": "docs/hq-ui-routing/results/core-object-ingress.log",
+    "failures": 0,
+    "executed": 1
+  },
+  "priorCore26AndIndependent62Rerun": false,
+  "preservedFailedAttempt": {
+    "reason": "Legacy fixture UUID differed from canonical golden; fixture corrected",
+    "log": "docs/hq-ui-routing/results/ui-registry-attempt1-failed.log",
+    "failures": 1,
+    "executed": 24
+  },
+  "liveDestinations": 0,
+  "nativeUI": "NOT_RUN",
+  "appleCompiler": "NOT_RUN",
+  "physicalIPad": "NOT_RUN",
+  "independentReview": "PENDING",
+  "sources": [
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "sha256": "a94dd85985f288edbd2e10b5a14b1731be25a8d25893e832e8515af63307cbdf",
+      "bytes": 8441,
+      "gitBlob": "e7acf923928a2c041da185a38ab0ff658b66fc80"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift",
+      "sha256": "aaa582a7d303444494bc988c9215c04ae14d5a8abfc63b0c35fdc04d29ae6cdd",
+      "bytes": 8453,
+      "gitBlob": "4a02678b682cfe69ad6fe8a413b5e320c151ecd4"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Package.swift",
+      "sha256": "fcad7da85e9301a9fe0fad3b3cb7189368383f9547b762a20ff23206ae740dc3",
+      "bytes": 600,
+      "gitBlob": "7faaddc4e7a399adf772d9a98f56c35b7e520049"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift",
+      "sha256": "58c3ac03799d3dbe6b83e2b617cde6c20f46169816f7f4a8caa1fa12b1166729",
+      "bytes": 4795,
+      "gitBlob": "0b4c1ea55afd599c9ed035acba63278ecfeb2ce8"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+      "sha256": "558ebf48d34f6d1a940858675ee5ce1f31add78e5418c00946b1782b06118063",
+      "bytes": 6006,
+      "gitBlob": "dd8052a3e383585ea3024e7ad16d673f196d8ac9"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift",
+      "sha256": "a39499cf8a88d6c10893812941346710558125934445a629822a53a85c53e3a9",
+      "bytes": 7294,
+      "gitBlob": "28c494ae62da396729bc31e18770cfa8a340aa7a"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "sha256": "2a73af3cdc9d994d5083f4ccd4bb768931087b14f7e97bba9d507227d8168f42",
+      "bytes": 6915,
+      "gitBlob": "066569d311d2a3806ffe55f8681898cc8cf8d630"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift",
+      "sha256": "7daff5adae5cd99748de376838e5f44fb4de438e0dbd0e4163ba47c0f73e2c8d",
+      "bytes": 2145,
+      "gitBlob": "f90929941881a33bb9c96f66be9acffa0626024c"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+      "sha256": "8b1ff2491a8925bb6c15424644552205ea62390a0bfd938a69ce839c5521ef5d",
+      "bytes": 11593,
+      "gitBlob": "15f9b77328304a812ecbcda2b825f65fe2124303"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Resources/catalog-status.json",
+      "sha256": "abb75034cbbe247bb10bb485b0d7911cec47ebe0d8392bf999d2b31a61e2573d",
+      "bytes": 84,
+      "gitBlob": "bb375c63a6f85d56755c7b6c07152fc37ccf6d8c"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/CodecTests.swift",
+      "sha256": "8c4caba0ec9167ae608bb535d489eb2cdd67beee51b9294bd874ca3dae70a49d",
+      "bytes": 8889,
+      "gitBlob": "6e1a0a0498af789f7a186d6225d9bca3362d5ca2"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/legacy-reader-v0.json",
+      "sha256": "3f9a59a703cce2d2bd4c1ec557fb7285077535e3ac5c3fd6d3565e7988e60327",
+      "bytes": 519,
+      "gitBlob": "85fa011f9a0a21fa748a77a9170bf721b397542f"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/private-reader-v1.json",
+      "sha256": "c9c8fef9ea85c8b036ac93a59b8b6857183471239ecaa4eb6bf297be2c8cd19b",
+      "bytes": 594,
+      "gitBlob": "2b393d73921e171f674cb47c8b93aa0ec0f23b4e"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/public-reader-v1.json",
+      "sha256": "98aa0b19bf24dd512d2f342df940065b74b8465fadcf80b07eeb00a9edac54cb",
+      "bytes": 403,
+      "gitBlob": "5f7768e2383039c7d6ee44573f671177c6405bf1"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/GoldenAPITests.swift",
+      "sha256": "b112cade7ce1f4c3818c08d77d90786466b24876ccdea8bdd632a701c2e67b99",
+      "bytes": 1501,
+      "gitBlob": "1d45687a97dcb3450d1f213aeb196020e5eabd79"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/ScenePortTests.swift",
+      "sha256": "cc5274ce9d94479df24395bc25d711c62c60e7b4d35d567bcb673425a961beed",
+      "bytes": 11943,
+      "gitBlob": "3ae445a95910ab247cb229e0bf6ed3ca015b26bb"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/DiscoveryTests.swift",
+      "sha256": "d55cc1e416422b0e01300eb6133b27c3da4cc2e563075656d99def4b65a67679",
+      "bytes": 12120,
+      "gitBlob": "b708a47ba658e6ded85905876260683da95694f2"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/RegistryTests.swift",
+      "sha256": "09a134a371fbb05f849bd5388f0edfd8c631167a722b251f02febf8a54dfe7c7",
+      "bytes": 8622,
+      "gitBlob": "7d4e551d84554677789cf8572add13e77ab8f859"
+    }
+  ],
+  "logNormalization": "Text capture: trailing line whitespace and blank EOF lines removed; test output content retained"
+}

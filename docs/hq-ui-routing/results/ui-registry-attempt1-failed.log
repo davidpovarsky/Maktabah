@@ -1,0 +1,174 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write swift-version-2807070033DA82CF.txt
+[1/5] Copying Fixtures
+[2/5] Write sources
+[5/6] Emitting module OtzariaUIRouting
+[6/7] Compiling OtzariaUIRouting UIRouteCodec.swift
+[8/9] Emitting module OtzariaUIRoutingTests
+[9/13] Compiling OtzariaUIRoutingTests CodecTests.swift
+[10/13] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+[11/13] Compiling OtzariaUIRoutingTests DiscoveryTests.swift
+[12/13] Compiling OtzariaUIRoutingTests RegistryTests.swift
+[13/21] Wrapping AST for OtzariaUIRouting for debugging
+[14/21] Wrapping AST for OtzariaUIRoutingTests for debugging
+[15/21] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[16/22] Write sources
+[18/23] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[19/25] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[20/25] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[21/26] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[22/27] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[23/27] Write sources
+[25/28] Emitting module OtzariaUIRoutingPackageTests
+[26/29] Compiling OtzariaUIRoutingPackageTests runner.swift
+[27/29] Write Objects.LinkFileList
+[28/29] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (47.39s)
+Test Suite 'All tests' started at 2026-11-15 04:51:33.498
+
+Test Suite 'debug.xctest' started at 2026-11-15 04:51:33.502
+
+Test Suite 'CodecTests' started at 2026-11-15 04:51:33.502
+
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' started at 2026-11-15 04:51:33.502
+
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' passed (0.388 seconds)
+
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' started at 2026-11-15 04:51:33.890
+
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' passed (0.128 seconds)
+
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' started at 2026-11-15 04:51:34.018
+
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' passed (0.738 seconds)
+
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' started at 2026-11-15 04:51:34.756
+
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' passed (0.273 seconds)
+
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' started at 2026-11-15 04:51:35.029
+
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' passed (0.162 seconds)
+
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' started at 2026-11-15 04:51:35.191
+
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' passed (0.391 seconds)
+
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' started at 2026-11-15 04:51:35.581
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Codec\CodecTests.swift:34: error: CodecTests.testRenameRemovedUnknownAndFutureVersion : XCTAssertEqual failed: ("UIDecodedRoute(route: OtzariaUIRouting.UIValidatedRoute(route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 00000000-0000-0000-0000-000000000042, destination: OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader"), backend: Optional(OtzariaActionCore.ActionBackendID.otzaria), content: Optional(OtzariaActionCore.ActionReaderDestination(sectionLocator: OtzariaActionCore.ActionTextRef(backend: OtzariaActionCore.ActionBackendID.otzaria, workKey: "book:103", catalogRevision: nil, position: OtzariaActionCore.ActionTextPosition.legacyLine(42), dataRevision: nil), focusLocator: nil, presentationMode: OtzariaActionCore.ActionReaderDestination.PresentationMode.sameTab)), presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.currentTab, tabID: Optional(OtzariaUIRouting.UIStableID(rawValue: "fixture-tab"))), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.current, sceneID: nil, expectedRevision: nil), expectedBackendSnapshot: nil), descriptor: OtzariaUIRouting.UIDestinationDescriptor(id: OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader"), title: "Synthetic reader — not native", implementation: OtzariaUIRouting.UIDestinationDescriptor.Implementation.fixture, supportedBackends: [OtzariaActionCore.ActionBackendID.otzaria, OtzariaActionCore.ActionBackendID.sefaria, OtzariaActionCore.ActionBackendID.sefariaEmbedded], presentations: [OtzariaUIRouting.PresentationSpec.Kind.currentTab, OtzariaUIRouting.PresentationSpec.Kind.newTab, OtzariaUIRouting.PresentationSpec.Kind.newWindow, OtzariaUIRouting.PresentationSpec.Kind.sheet, OtzariaUIRouting.PresentationSpec.Kind.popover, OtzariaUIRouting.PresentationSpec.Kind.inspector, OtzariaUIRouting.PresentationSpec.Kind.sidebar], anchors: [OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader.text"), OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader.toc"), OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader.inspector"), OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader.noteSheet")], requiredCoreActions: ["reader.open"], riskTier: 2, mutatesUserData: false, requiresContent: true, allowsPrivateState: false, allowsPublicRoute: true)), migration: Optional(OtzariaUIRouting.UIRouteMigration(fromVersion: 0, from: OtzariaUIRouting.UIDestinationID(rawValue: "fixture.legacyReader"), to: Optional(OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader")))))") is not equal to ("UIDecodedRoute(route: OtzariaUIRouting.UIValidatedRoute(route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 00000000-0000-4000-8000-000000000042, destination: OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader"), backend: Optional(OtzariaActionCore.ActionBackendID.otzaria), content: Optional(OtzariaActionCore.ActionReaderDestination(sectionLocator: OtzariaActionCore.ActionTextRef(backend: OtzariaActionCore.ActionBackendID.otzaria, workKey: "book:103", catalogRevision: nil, position: OtzariaActionCore.ActionTextPosition.legacyLine(42), dataRevision: nil), focusLocator: nil, presentationMode: OtzariaActionCore.ActionReaderDestination.PresentationMode.sameTab)), presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.currentTab, tabID: Optional(OtzariaUIRouting.UIStableID(rawValue: "fixture-tab"))), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.current, sceneID: nil, expectedRevision: nil), expectedBackendSnapshot: nil), descriptor: OtzariaUIRouting.UIDestinationDescriptor(id: OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader"), title: "Synthetic reader — not native", implementation: OtzariaUIRouting.UIDestinationDescriptor.Implementation.fixture, supportedBackends: [OtzariaActionCore.ActionBackendID.otzaria, OtzariaActionCore.ActionBackendID.sefaria, OtzariaActionCore.ActionBackendID.sefariaEmbedded], presentations: [OtzariaUIRouting.PresentationSpec.Kind.currentTab, OtzariaUIRouting.PresentationSpec.Kind.newTab, OtzariaUIRouting.PresentationSpec.Kind.newWindow, OtzariaUIRouting.PresentationSpec.Kind.sheet, OtzariaUIRouting.PresentationSpec.Kind.popover, OtzariaUIRouting.PresentationSpec.Kind.inspector, OtzariaUIRouting.PresentationSpec.Kind.sidebar], anchors: [OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader.text"), OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader.toc"), OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader.inspector"), OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader.noteSheet")], requiredCoreActions: ["reader.open"], riskTier: 2, mutatesUserData: false, requiresContent: true, allowsPrivateState: false, allowsPublicRoute: true)), migration: Optional(OtzariaUIRouting.UIRouteMigration(fromVersion: 0, from: OtzariaUIRouting.UIDestinationID(rawValue: "fixture.legacyReader"), to: Optional(OtzariaUIRouting.UIDestinationID(rawValue: "fixture.reader")))))") -
+
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' failed (0.613 seconds)
+
+Test Suite 'CodecTests' failed at 2026-11-15 04:51:36.195
+
+	 Executed 7 tests, with 1 failure (0 unexpected) in 2.693 (2.693) seconds
+
+Test Suite 'DiscoveryTests' started at 2026-11-15 04:51:36.195
+
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' started at 2026-11-15 04:51:36.195
+
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' passed (0.652 seconds)
+
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' started at 2026-11-15 04:51:36.847
+
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' passed (0.108 seconds)
+
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' started at 2026-11-15 04:51:36.955
+
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' passed (0.194 seconds)
+
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' started at 2026-11-15 04:51:37.148
+
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' passed (0.716 seconds)
+
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' started at 2026-11-15 04:51:37.865
+
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' passed (0.189 seconds)
+
+Test Suite 'DiscoveryTests' passed at 2026-11-15 04:51:38.054
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.859 (1.859) seconds
+
+Test Suite 'GoldenAPITests' started at 2026-11-15 04:51:38.054
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' started at 2026-11-15 04:51:38.054
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' passed (0.004 seconds)
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' started at 2026-11-15 04:51:38.058
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' passed (0.0 seconds)
+
+Test Suite 'GoldenAPITests' passed at 2026-11-15 04:51:38.058
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+
+Test Suite 'RegistryTests' started at 2026-11-15 04:51:38.058
+
+Test Case 'RegistryTests.testAllBackendReferencesAndPresentationVariants' started at 2026-11-15 04:51:38.058
+
+Test Case 'RegistryTests.testAllBackendReferencesAndPresentationVariants' passed (4.058 seconds)
+
+Test Case 'RegistryTests.testCompleteStateAndBoundedSelection' started at 2026-11-15 04:51:42.116
+
+Test Case 'RegistryTests.testCompleteStateAndBoundedSelection' passed (0.453 seconds)
+
+Test Case 'RegistryTests.testConflictingBackendsAndFocusNeverGuess' started at 2026-11-15 04:51:42.569
+
+Test Case 'RegistryTests.testConflictingBackendsAndFocusNeverGuess' passed (0.487 seconds)
+
+Test Case 'RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists' started at 2026-11-15 04:51:43.056
+
+Test Case 'RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists' passed (0.547 seconds)
+
+Test Case 'RegistryTests.testRegistryDefinitionFailsClosed' started at 2026-11-15 04:51:43.603
+
+Test Case 'RegistryTests.testRegistryDefinitionFailsClosed' passed (0.416 seconds)
+
+Test Suite 'RegistryTests' passed at 2026-11-15 04:51:44.019
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 5.96 (5.96) seconds
+
+Test Suite 'ScenePortTests' started at 2026-11-15 04:51:44.019
+
+Test Case 'ScenePortTests.testCancellationIsRecheckedBeforeCommit' started at 2026-11-15 04:51:44.019
+
+Test Case 'ScenePortTests.testCancellationIsRecheckedBeforeCommit' passed (0.085 seconds)
+
+Test Case 'ScenePortTests.testEveryReceiptBindingAndObservedStateRequired' started at 2026-11-15 04:51:44.104
+
+Test Case 'ScenePortTests.testEveryReceiptBindingAndObservedStateRequired' passed (0.088 seconds)
+
+Test Case 'ScenePortTests.testExactAcknowledgementAllBackends' started at 2026-11-15 04:51:44.192
+
+Test Case 'ScenePortTests.testExactAcknowledgementAllBackends' passed (0.281 seconds)
+
+Test Case 'ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation' started at 2026-11-15 04:51:44.473
+
+Test Case 'ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation' passed (0.171 seconds)
+
+Test Case 'ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings' started at 2026-11-15 04:51:44.644
+
+Test Case 'ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings' passed (0.454 seconds)
+
+Test Suite 'ScenePortTests' passed at 2026-11-15 04:51:45.098
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.078 (1.078) seconds
+
+Test Suite 'debug.xctest' failed at 2026-11-15 04:51:45.098
+
+	 Executed 24 tests, with 1 failure (0 unexpected) in 11.594 (11.594) seconds
+
+Test Suite 'All tests' failed at 2026-11-15 04:51:45.098
+
+	 Executed 24 tests, with 1 failure (0 unexpected) in 11.594 (11.594) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.002 seconds.

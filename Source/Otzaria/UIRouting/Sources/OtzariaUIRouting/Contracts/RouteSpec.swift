@@ -4,7 +4,7 @@ import OtzariaActionCore
 public struct UIDestinationID: RawRepresentable, Codable, Sendable, Hashable {
     public let rawValue: String
     public init?(rawValue: String) {
-        guard rawValue.utf8.count <= 128, rawValue.range(of: "^[a-z][A-Za-z0-9_-]*(\\.[a-z][A-Za-z0-9_-]*){1,7}$", options: .regularExpression) != nil else { return nil }
+        guard rawValue.utf8.count <= 128, rawValue.range(of: "^[a-z][A-Za-z0-9_-]*(\\.[a-z][A-Za-z0-9_-]*){1,7}$", options: .regularExpression) == rawValue.startIndex..<rawValue.endIndex else { return nil }
         self.rawValue = rawValue
     }
     public init(from decoder: any Decoder) throws {
@@ -20,7 +20,7 @@ public struct UIDestinationID: RawRepresentable, Codable, Sendable, Hashable {
 public struct UIStableID: RawRepresentable, Codable, Sendable, Hashable {
     public let rawValue: String
     public init?(rawValue: String) {
-        guard rawValue.utf8.count <= 128, rawValue.range(of: "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$", options: .regularExpression) != nil else { return nil }
+        guard rawValue.utf8.count <= 128, rawValue.range(of: "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$", options: .regularExpression) == rawValue.startIndex..<rawValue.endIndex else { return nil }
         self.rawValue = rawValue
     }
     public init(from decoder: any Decoder) throws {

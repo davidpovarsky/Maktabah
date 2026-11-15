@@ -1,0 +1,155 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/4] Write sources
+[3/5] Emitting module OtzariaUIRouting
+[4/6] Compiling OtzariaUIRouting UIRouteCodec.swift
+[5/13] Copying Fixtures
+[6/8] Write Objects.LinkFileList
+[7/8] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (15.48s)
+Test Suite 'All tests' started at 2026-11-15 04:52:24.819
+
+Test Suite 'debug.xctest' started at 2026-11-15 04:52:24.824
+
+Test Suite 'CodecTests' started at 2026-11-15 04:52:24.824
+
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' started at 2026-11-15 04:52:24.824
+
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' passed (0.649 seconds)
+
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' started at 2026-11-15 04:52:25.473
+
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' passed (0.22 seconds)
+
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' started at 2026-11-15 04:52:25.693
+
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' passed (1.418 seconds)
+
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' started at 2026-11-15 04:52:27.111
+
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' passed (0.457 seconds)
+
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' started at 2026-11-15 04:52:27.568
+
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' passed (0.305 seconds)
+
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' started at 2026-11-15 04:52:27.874
+
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' passed (1.009 seconds)
+
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' started at 2026-11-15 04:52:28.882
+
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' passed (0.819 seconds)
+
+Test Suite 'CodecTests' passed at 2026-11-15 04:52:29.701
+
+	 Executed 7 tests, with 0 failures (0 unexpected) in 4.877 (4.877) seconds
+
+Test Suite 'DiscoveryTests' started at 2026-11-15 04:52:29.701
+
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' started at 2026-11-15 04:52:29.701
+
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' passed (0.516 seconds)
+
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' started at 2026-11-15 04:52:30.217
+
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' passed (0.087 seconds)
+
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' started at 2026-11-15 04:52:30.305
+
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' passed (0.182 seconds)
+
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' started at 2026-11-15 04:52:30.486
+
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' passed (0.623 seconds)
+
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' started at 2026-11-15 04:52:31.110
+
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' passed (0.251 seconds)
+
+Test Suite 'DiscoveryTests' passed at 2026-11-15 04:52:31.361
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.659 (1.659) seconds
+
+Test Suite 'GoldenAPITests' started at 2026-11-15 04:52:31.361
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' started at 2026-11-15 04:52:31.361
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' passed (0.007 seconds)
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' started at 2026-11-15 04:52:31.367
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' passed (0.0 seconds)
+
+Test Suite 'GoldenAPITests' passed at 2026-11-15 04:52:31.368
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.007 (0.007) seconds
+
+Test Suite 'RegistryTests' started at 2026-11-15 04:52:31.368
+
+Test Case 'RegistryTests.testAllBackendReferencesAndPresentationVariants' started at 2026-11-15 04:52:31.368
+
+Test Case 'RegistryTests.testAllBackendReferencesAndPresentationVariants' passed (2.856 seconds)
+
+Test Case 'RegistryTests.testCompleteStateAndBoundedSelection' started at 2026-11-15 04:52:34.224
+
+Test Case 'RegistryTests.testCompleteStateAndBoundedSelection' passed (0.385 seconds)
+
+Test Case 'RegistryTests.testConflictingBackendsAndFocusNeverGuess' started at 2026-11-15 04:52:34.609
+
+Test Case 'RegistryTests.testConflictingBackendsAndFocusNeverGuess' passed (0.528 seconds)
+
+Test Case 'RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists' started at 2026-11-15 04:52:35.138
+
+Test Case 'RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists' passed (0.446 seconds)
+
+Test Case 'RegistryTests.testRegistryDefinitionFailsClosed' started at 2026-11-15 04:52:35.584
+
+Test Case 'RegistryTests.testRegistryDefinitionFailsClosed' passed (0.444 seconds)
+
+Test Suite 'RegistryTests' passed at 2026-11-15 04:52:36.028
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 4.66 (4.66) seconds
+
+Test Suite 'ScenePortTests' started at 2026-11-15 04:52:36.028
+
+Test Case 'ScenePortTests.testCancellationIsRecheckedBeforeCommit' started at 2026-11-15 04:52:36.028
+
+Test Case 'ScenePortTests.testCancellationIsRecheckedBeforeCommit' passed (0.194 seconds)
+
+Test Case 'ScenePortTests.testEveryReceiptBindingAndObservedStateRequired' started at 2026-11-15 04:52:36.222
+
+Test Case 'ScenePortTests.testEveryReceiptBindingAndObservedStateRequired' passed (0.086 seconds)
+
+Test Case 'ScenePortTests.testExactAcknowledgementAllBackends' started at 2026-11-15 04:52:36.308
+
+Test Case 'ScenePortTests.testExactAcknowledgementAllBackends' passed (0.3 seconds)
+
+Test Case 'ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation' started at 2026-11-15 04:52:36.608
+
+Test Case 'ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation' passed (0.228 seconds)
+
+Test Case 'ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings' started at 2026-11-15 04:52:36.836
+
+Test Case 'ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings' passed (0.629 seconds)
+
+Test Suite 'ScenePortTests' passed at 2026-11-15 04:52:37.466
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.437 (1.437) seconds
+
+Test Suite 'debug.xctest' passed at 2026-11-15 04:52:37.466
+
+	 Executed 24 tests, with 0 failures (0 unexpected) in 12.64 (12.64) seconds
+
+Test Suite 'All tests' passed at 2026-11-15 04:52:37.466
+
+	 Executed 24 tests, with 0 failures (0 unexpected) in 12.64 (12.64) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.

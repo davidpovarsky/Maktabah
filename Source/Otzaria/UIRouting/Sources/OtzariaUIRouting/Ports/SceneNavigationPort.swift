@@ -23,8 +23,10 @@ public struct UISceneCommand: Sendable, Equatable {
     public let scene: UISceneSnapshot
     public init(route: UIValidatedRoute, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws {
         guard route.route.requestId == invocation.requestId else { throw UIRouteError(.failed, "request_binding_mismatch") }
+        guard route.route.backend != nil else { throw UIRouteError(.failed, "route_not_prepared") }
         if let target = route.route.backend, target != scene.backendSnapshot.backend { throw UIRouteError(.requiresBackendSwitch, "backend_selection_required") }
         guard scene.backendSnapshot == invocation.snapshot else { throw UIRouteError(.staleState, "backend_generation_changed") }
+        if invocation.snapshot.backend == .sefariaEmbedded && invocation.snapshot.rpcEpoch == nil { throw UIRouteError(.unavailable, "rpc_epoch_unavailable") }
         if let expected = route.route.expectedBackendSnapshot, expected != invocation.snapshot { throw UIRouteError(.staleState, "backend_generation_changed") }
         if let revision = route.route.scene.expectedRevision, revision != scene.revision { throw UIRouteError(.staleState, "scene_revision_changed") }
         if let target = route.route.scene.sceneID, target != scene.sceneID { throw UIRouteError(.staleState, "scene_target_changed") }
