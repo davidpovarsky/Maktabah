@@ -1,0 +1,69 @@
+[0/1] Planning build
+Building for debugging...
+[0/15] Write swift-version-2807070033DA82CF.txt
+[1/15] Write sources
+[4/14] Emitting module ChavrusaUIRoutingHost
+[5/27] Compiling ChavrusaUIRoutingHost NativeDestinationIntents.swift
+[6/27] Compiling ChavrusaUIRoutingHost NativeIntentOutcome.swift
+[7/27] Compiling ChavrusaUIRoutingHost NativeIntentService.swift
+[8/27] Compiling ChavrusaUIRoutingHost NativeNavigationAuthority.swift
+[9/27] Compiling ChavrusaUIRoutingHost NativeObservationDeadline.swift
+[10/27] Compiling ChavrusaUIRoutingHost NativePresentationObserver.swift
+[11/27] Compiling ChavrusaUIRoutingHost NativeRouteInbox.swift
+[12/27] Compiling ChavrusaUIRoutingHost NativeRouteURL.swift
+[13/27] Compiling ChavrusaUIRoutingHost NativeSceneDirectory.swift
+[14/27] Compiling ChavrusaUIRoutingHost NativeSceneIdentity.swift
+[15/27] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[16/27] Compiling ChavrusaUIRoutingHost NativeSurfaceState.swift
+[17/27] Compiling ChavrusaUIRoutingHost NativeSurfaceWitness.swift
+[18/28] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[20/29] Emitting module ChavrusaUIRoutingHostTests
+[21/37] Compiling ChavrusaUIRoutingHostTests NActualSurfaceShapeExamplesTests.swift
+[22/37] Compiling ChavrusaUIRoutingHostTests NativeIntentServiceTests.swift
+[23/37] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+[24/37] Compiling ChavrusaUIRoutingHostTests NativeRouteInboxTests.swift
+[25/37] Compiling ChavrusaUIRoutingHostTests NativeRouteURLTests.swift
+[26/37] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+[27/37] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[28/37] Compiling ChavrusaUIRoutingHostTests NativeSurfaceStateTests.swift
+[29/38] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[30/38] C:\Users\DAVID\.codex\tmp\otzaria-n-public-v2-9835982a\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[31/38] Write sources
+[33/39] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[34/41] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[35/41] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[36/42] C:\Users\DAVID\.codex\tmp\otzaria-n-public-v2-9835982a\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[37/42] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[38/42] Write sources
+[40/43] Emitting module ChavrusaUIRoutingHostPackageTests
+[41/44] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[42/45] Wrapping AST for ChavrusaUIRoutingHostPackageTests for debugging
+[43/45] Write Objects.LinkFileList
+[44/45] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (30.19s)
+Test Suite 'Selected tests' started at 2026-11-15 17:09:04.802
+
+Test Suite 'NActualSurfaceShapeExamplesTests' started at 2026-11-15 17:09:04.804
+
+Test Case 'NActualSurfaceShapeExamplesTests.testActualShapedLocalStateExamplesOnAllThreeBackends' started at 2026-11-15 17:09:04.804
+
+Generated 12 exact-shaped independent local-surface examples; no grants, receipts or native success fabricated
+
+Test Case 'NActualSurfaceShapeExamplesTests.testActualShapedLocalStateExamplesOnAllThreeBackends' passed (0.795 seconds)
+
+Test Suite 'NActualSurfaceShapeExamplesTests' passed at 2026-11-15 17:09:05.599
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.795 (0.795) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 17:09:05.599
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.795 (0.795) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

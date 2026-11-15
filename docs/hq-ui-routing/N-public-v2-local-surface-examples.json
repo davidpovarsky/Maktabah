@@ -1,0 +1,624 @@
+{
+  "examples" : [
+    {
+      "exampleID" : "otzaria.history",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "otzaria",
+        "destination" : "native.history",
+        "expectedBackendSnapshot" : {
+          "backend" : "otzaria",
+          "generation" : 101
+        },
+        "presentation" : {
+          "kind" : "currentTab"
+        },
+        "requestId" : "3C22C72E-2C33-496B-AC6F-B37ADCAAE58C",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.otzaria"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "otzaria",
+        "destination" : "native.history",
+        "presentation" : "currentTab",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "otzaria.settings",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "otzaria",
+        "destination" : "native.settings",
+        "expectedBackendSnapshot" : {
+          "backend" : "otzaria",
+          "generation" : 101
+        },
+        "presentation" : {
+          "kind" : "sheet"
+        },
+        "requestId" : "ECC54534-77C3-4D77-8784-59BB9DFA5DEC",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.otzaria"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "otzaria",
+        "destination" : "native.settings",
+        "presentation" : "sheet",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "otzaria.reader-inspector-closed",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "otzaria",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "otzaria",
+            "position" : {
+              "kind" : "legacyLine",
+              "value" : 42
+            },
+            "workKey" : "fixture:work.otzaria"
+          }
+        },
+        "destination" : "native.reader",
+        "expectedBackendSnapshot" : {
+          "backend" : "otzaria",
+          "generation" : 101
+        },
+        "presentation" : {
+          "kind" : "currentTab",
+          "tabID" : "33333333-3333-4333-8333-333333333333"
+        },
+        "requestId" : "CCA415D0-8704-4E26-A5FB-C7CA43CB1832",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.otzaria"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "inspectorVisible" : false,
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "otzaria",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "otzaria",
+            "position" : {
+              "kind" : "legacyLine",
+              "value" : 42
+            },
+            "workKey" : "fixture:work.otzaria"
+          }
+        },
+        "destination" : "native.reader",
+        "presentation" : "currentTab",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "otzaria.reader-inspector-open",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "otzaria",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "otzaria",
+            "position" : {
+              "kind" : "legacyLine",
+              "value" : 42
+            },
+            "workKey" : "fixture:work.otzaria"
+          }
+        },
+        "destination" : "native.reader",
+        "expectedBackendSnapshot" : {
+          "backend" : "otzaria",
+          "generation" : 101
+        },
+        "presentation" : {
+          "kind" : "currentTab",
+          "tabID" : "33333333-3333-4333-8333-333333333333"
+        },
+        "requestId" : "40F0BF63-3800-4DEF-858B-31EF5B14463D",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.otzaria"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "inspectorVisible" : true,
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "otzaria",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "otzaria",
+            "position" : {
+              "kind" : "legacyLine",
+              "value" : 42
+            },
+            "workKey" : "fixture:work.otzaria"
+          }
+        },
+        "destination" : "native.reader",
+        "presentation" : "currentTab",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "sefaria.history",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "sefaria",
+        "destination" : "native.history",
+        "expectedBackendSnapshot" : {
+          "backend" : "sefaria",
+          "generation" : 101
+        },
+        "presentation" : {
+          "kind" : "currentTab"
+        },
+        "requestId" : "F8CFDC2C-2306-4F08-A607-06DA76995A18",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.sefaria"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "sefaria",
+        "destination" : "native.history",
+        "presentation" : "currentTab",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "sefaria.settings",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "sefaria",
+        "destination" : "native.settings",
+        "expectedBackendSnapshot" : {
+          "backend" : "sefaria",
+          "generation" : 101
+        },
+        "presentation" : {
+          "kind" : "sheet"
+        },
+        "requestId" : "C59475FF-8739-4673-A490-569D39C20AD1",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.sefaria"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "sefaria",
+        "destination" : "native.settings",
+        "presentation" : "sheet",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "sefaria.reader-inspector-closed",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "sefaria",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "sefaria",
+            "position" : {
+              "kind" : "canonicalRef",
+              "value" : "Fixture 1:1"
+            },
+            "workKey" : "fixture:work.sefaria"
+          }
+        },
+        "destination" : "native.reader",
+        "expectedBackendSnapshot" : {
+          "backend" : "sefaria",
+          "generation" : 101
+        },
+        "presentation" : {
+          "kind" : "currentTab",
+          "tabID" : "33333333-3333-4333-8333-333333333333"
+        },
+        "requestId" : "405B1407-7C1F-4F29-B751-10C4A7DCB94C",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.sefaria"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "inspectorVisible" : false,
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "sefaria",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "sefaria",
+            "position" : {
+              "kind" : "canonicalRef",
+              "value" : "Fixture 1:1"
+            },
+            "workKey" : "fixture:work.sefaria"
+          }
+        },
+        "destination" : "native.reader",
+        "presentation" : "currentTab",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "sefaria.reader-inspector-open",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "sefaria",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "sefaria",
+            "position" : {
+              "kind" : "canonicalRef",
+              "value" : "Fixture 1:1"
+            },
+            "workKey" : "fixture:work.sefaria"
+          }
+        },
+        "destination" : "native.reader",
+        "expectedBackendSnapshot" : {
+          "backend" : "sefaria",
+          "generation" : 101
+        },
+        "presentation" : {
+          "kind" : "currentTab",
+          "tabID" : "33333333-3333-4333-8333-333333333333"
+        },
+        "requestId" : "4C64A1F2-B86E-4B69-B82E-E0C3E0C981D9",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.sefaria"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "inspectorVisible" : true,
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "sefaria",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "sefaria",
+            "position" : {
+              "kind" : "canonicalRef",
+              "value" : "Fixture 1:1"
+            },
+            "workKey" : "fixture:work.sefaria"
+          }
+        },
+        "destination" : "native.reader",
+        "presentation" : "currentTab",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "sefariaEmbedded.history",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "sefariaEmbedded",
+        "destination" : "native.history",
+        "expectedBackendSnapshot" : {
+          "backend" : "sefariaEmbedded",
+          "generation" : 101,
+          "rpcEpoch" : 17
+        },
+        "presentation" : {
+          "kind" : "currentTab"
+        },
+        "requestId" : "6CE7FECA-DF7D-4D2C-8F79-18C3A35EDF7C",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.sefariaEmbedded"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "sefariaEmbedded",
+        "destination" : "native.history",
+        "presentation" : "currentTab",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "sefariaEmbedded.settings",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "sefariaEmbedded",
+        "destination" : "native.settings",
+        "expectedBackendSnapshot" : {
+          "backend" : "sefariaEmbedded",
+          "generation" : 101,
+          "rpcEpoch" : 17
+        },
+        "presentation" : {
+          "kind" : "sheet"
+        },
+        "requestId" : "7895F024-6A99-44F0-B401-06D1946EA70C",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.sefariaEmbedded"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "sefariaEmbedded",
+        "destination" : "native.settings",
+        "presentation" : "sheet",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "sefariaEmbedded.reader-inspector-closed",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "sefariaEmbedded",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "sefariaEmbedded",
+            "position" : {
+              "kind" : "canonicalRef",
+              "value" : "Fixture 1:1"
+            },
+            "workKey" : "fixture:work.sefariaEmbedded"
+          }
+        },
+        "destination" : "native.reader",
+        "expectedBackendSnapshot" : {
+          "backend" : "sefariaEmbedded",
+          "generation" : 101,
+          "rpcEpoch" : 17
+        },
+        "presentation" : {
+          "kind" : "currentTab",
+          "tabID" : "33333333-3333-4333-8333-333333333333"
+        },
+        "requestId" : "98B813EE-0F91-406A-940C-E8AF7F886891",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.sefariaEmbedded"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "inspectorVisible" : false,
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "sefariaEmbedded",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "sefariaEmbedded",
+            "position" : {
+              "kind" : "canonicalRef",
+              "value" : "Fixture 1:1"
+            },
+            "workKey" : "fixture:work.sefariaEmbedded"
+          }
+        },
+        "destination" : "native.reader",
+        "presentation" : "currentTab",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    },
+    {
+      "exampleID" : "sefariaEmbedded.reader-inspector-open",
+      "expectedIndependentPrivateSurface" : {
+        "backend" : "sefariaEmbedded",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "sefariaEmbedded",
+            "position" : {
+              "kind" : "canonicalRef",
+              "value" : "Fixture 1:1"
+            },
+            "workKey" : "fixture:work.sefariaEmbedded"
+          }
+        },
+        "destination" : "native.reader",
+        "expectedBackendSnapshot" : {
+          "backend" : "sefariaEmbedded",
+          "generation" : 101,
+          "rpcEpoch" : 17
+        },
+        "presentation" : {
+          "kind" : "currentTab",
+          "tabID" : "33333333-3333-4333-8333-333333333333"
+        },
+        "requestId" : "31866B56-8E9F-42B5-893C-50ADFB457143",
+        "scene" : {
+          "expectedRevision" : 20,
+          "kind" : "specific",
+          "sceneID" : "N.fixture.scene.sefariaEmbedded"
+        },
+        "state" : {
+          "expandedComponents" : [
+
+          ],
+          "inspectorVisible" : true,
+          "profileID" : "22222222-2222-4222-8222-222222222222",
+          "version" : 1,
+          "visibleComponents" : [
+
+          ],
+          "workspaceID" : "11111111-1111-4111-8111-111111111111"
+        },
+        "version" : 1
+      },
+      "publicIntent" : {
+        "backend" : "sefariaEmbedded",
+        "content" : {
+          "presentationMode" : "sameTab",
+          "sectionLocator" : {
+            "backend" : "sefariaEmbedded",
+            "position" : {
+              "kind" : "canonicalRef",
+              "value" : "Fixture 1:1"
+            },
+            "workKey" : "fixture:work.sefariaEmbedded"
+          }
+        },
+        "destination" : "native.reader",
+        "presentation" : "currentTab",
+        "version" : 2
+      },
+      "sourceShape" : "Existing N projection shape; synthetic identities\/references, no UIKit execution"
+    }
+  ],
+  "notInstalledPublicV2" : true,
+  "shapeSource" : "Source\/ChavrusaText\/UIRoutingHost\/Integration\/MaktabahNativeSceneProjection.swift",
+  "shapeSourceCommit" : "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
+  "status" : "SYNTHETIC_ACTUAL_SHAPED_EXAMPLES_NOT_NATIVE_EVIDENCE"
+}

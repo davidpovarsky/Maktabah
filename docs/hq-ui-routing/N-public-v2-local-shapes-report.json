@@ -1,0 +1,21 @@
+{
+  "status": "PORTABLE_PROJECTION_EXAMPLES_PASS_NOT_NATIVE_EVIDENCE",
+  "N_host_and_shape_source": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
+  "P_contract_package": "9835982a8bb629965c925337d4dcb94c941f678b",
+  "Core_source": "945b483f0b01fe6722c0bd0dd864d8fe249cd973",
+  "executed_methods": 1,
+  "generated_examples": 12,
+  "failures": 0,
+  "warnings": 0,
+  "native_execution": 0,
+  "test": "NActualSurfaceShapeExamplesTests.testActualShapedLocalStateExamplesOnAllThreeBackends",
+  "command": "swift test --package-path C:/Users/DAVID/.codex/tmp/otzaria-n-public-v2-9835982a/Source/ChavrusaText/UIRoutingHost --scratch-path C:/Users/DAVID/.codex/tmp/otzaria-n-public-v2-9835982a/Source/Otzaria/UIRouting/.build -j 1 -Xswiftc -strict-concurrency=complete --filter NActualSurfaceShapeExamplesTests",
+  "environment": "Windows Swift6.3.3 x86_64; N_SHAPE_EXAMPLES_OUTPUT points to retained example artifact",
+  "example_artifact_sha256": "5e033e39c1527ce8d6da9c60c87f7c11c2c99b904bff999e4d473243d1b2bdef",
+  "test_source_sha256": "6a3f94da6217943ea8fbc353965861702a071bde6d4d2b4cd74b4e30c6a78a64",
+  "log_sha256": "be42500e4cef853ef66d1b0ec10344ba33f3e646c1631458403598aff565102d",
+  "native_projection_git_blob": "e912ecdb2ea89816b1c78a19194434fbbc5f30b9",
+  "native_projection_helper_git_blob": "d5824069eca8ef2e32d0306f0b264739b2acc228",
+  "public_dto_contains_no_private_ids": true,
+  "production_source_changed": false
+}
