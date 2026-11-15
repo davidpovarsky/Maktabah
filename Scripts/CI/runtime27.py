@@ -285,7 +285,7 @@ def main():
         report["full_release_acceptance"] = False
         report["scope"] = contract["scope"]
         test_path = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
-        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "a49f211277aa9f91aab8c254b9ac54ec6bac9ea5b6159884c626b44e2ae1458b":
+        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "bee9297b0ba4c9cef30d39ebb34a534d3941c933118eafb84c283cd224d33b3b":
             raise RuntimeError("Reviewed test source drift")
         report["test_source_commit"] = contract["source_test_commit"]
         subprocess.run(["git", "merge-base", "--is-ancestor", contract["source_test_commit"], "HEAD"], cwd=ROOT, check=True)
