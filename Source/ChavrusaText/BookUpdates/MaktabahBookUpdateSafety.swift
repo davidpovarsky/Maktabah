@@ -37,6 +37,22 @@ enum MaktabahBookUpdateSafety {
         URL(fileURLWithPath: canonical(path)).absoluteString + (readOnly ? "?mode=ro" : "?mode=rw")
     }
 
+    /// Consumes the caller's connection on both success and failure. SQLite owns
+    /// WAL/SHM cleanup: a busy checkpoint must never be followed by file deletion.
+    /// This preserves recovery data; it does not make separate commits atomic.
+    static func checkpointAndClose(_ db: OpaquePointer, schemas: [String] = ["main", "fts_db"]) throws {
+        defer { sqlite3_close_v2(db) }
+        for schema in schemas {
+            let rc = sqlite3_wal_checkpoint_v2(db, schema, SQLITE_CHECKPOINT_TRUNCATE, nil, nil)
+            guard rc == SQLITE_OK else {
+                let detail = String(cString: sqlite3_errmsg(db))
+                throw NSError(domain: "MaktabahBookUpdateRecovery", code: Int(rc), userInfo: [
+                    NSLocalizedDescriptionKey: "Unable to checkpoint book update database \(schema) (SQLite \(rc): \(detail)). Recovery files were preserved.",
+                ])
+            }
+        }
+    }
+
     /// Strict CSV decoding lives downstream; the original parser discards escaped quotes
     /// and accepts quotes in unquoted fields. Reject a malformed batch before staging.
     static func catalogRows(_ csv: String) throws -> [[String]] {

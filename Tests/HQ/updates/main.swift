@@ -187,3 +187,101 @@ check("bounded catalog rejects excessive row count") {
     rejected { _ = try MaktabahBookUpdateSafety.catalogRows(String(repeating: "\n", count: 100_001)) }
 }
 print("EXECUTED_PASS \(checks) total portable service/production-parser checks")
+
+func openWriter(_ path: String) -> OpaquePointer {
+    var db: OpaquePointer?
+    precondition(sqlite3_open_v2(path, &db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_URI, nil) == SQLITE_OK)
+    sqlite3_busy_timeout(db, 0)
+    return db!
+}
+func sql(_ db: OpaquePointer, _ text: String) {
+    precondition(sqlite3_exec(db, text, nil, nil, nil) == SQLITE_OK, String(cString: sqlite3_errmsg(db)))
+}
+func scalar(_ db: OpaquePointer, _ text: String) -> Int64 {
+    var statement: OpaquePointer?
+    precondition(sqlite3_prepare_v2(db, text, -1, &statement, nil) == SQLITE_OK)
+    defer { sqlite3_finalize(statement) }
+    precondition(sqlite3_step(statement) == SQLITE_ROW)
+    return sqlite3_column_int64(statement, 0)
+}
+
+try check("busy WAL checkpoint reports failure and preserves committed data") {
+    let target = try create("busy-recovery.sqlite", "CREATE TABLE sentinel(value INTEGER); INSERT INTO sentinel VALUES(1);")
+    let writer = openWriter(target)
+    sql(writer, "PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0;")
+    let reader = try MaktabahBookUpdateSafety.openReadOnly(path: target)
+    defer { sqlite3_close_v2(reader) }
+    sql(reader, "BEGIN;")
+    precondition(scalar(reader, "SELECT COUNT(*) FROM sentinel") == 1)
+    sql(writer, "INSERT INTO sentinel VALUES(2);")
+    do {
+        try MaktabahBookUpdateSafety.checkpointAndClose(writer, schemas: ["main"])
+        fatalError("Busy checkpoint must not publish success")
+    } catch let error as NSError {
+        precondition(error.domain == "MaktabahBookUpdateRecovery" && error.code == Int(SQLITE_BUSY))
+        precondition(error.localizedDescription.contains("Recovery files were preserved"))
+    }
+    let recoveryData = try Data(contentsOf: URL(fileURLWithPath: target + "-wal"))
+    precondition(recoveryData.count > 0)
+    let reopened = try MaktabahBookUpdateSafety.openReadOnly(path: target)
+    defer { sqlite3_close_v2(reopened) }
+    precondition(scalar(reopened, "SELECT COUNT(*) FROM sentinel") == 2)
+    precondition(scalar(reader, "SELECT COUNT(*) FROM sentinel") == 1)
+    sql(reader, "COMMIT;")
+}
+try check("successful checkpoint closes safely and reopens committed content") {
+    let target = try create("checkpoint-success.sqlite", "CREATE TABLE sentinel(value INTEGER);")
+    let writer = openWriter(target)
+    sql(writer, "PRAGMA journal_mode=WAL; INSERT INTO sentinel VALUES(9);")
+    try MaktabahBookUpdateSafety.checkpointAndClose(writer, schemas: ["main"])
+    let reopened = try MaktabahBookUpdateSafety.openReadOnly(path: target)
+    defer { sqlite3_close_v2(reopened) }
+    precondition(scalar(reopened, "SELECT value FROM sentinel") == 9)
+}
+try check("closing after a checkpoint failure rolls back an uncommitted write") {
+    let target = try create("rollback-recovery.sqlite", "CREATE TABLE sentinel(value INTEGER); INSERT INTO sentinel VALUES(1);")
+    let writer = openWriter(target)
+    sql(writer, "PRAGMA journal_mode=WAL; BEGIN IMMEDIATE; UPDATE sentinel SET value=99;")
+    do {
+        try MaktabahBookUpdateSafety.checkpointAndClose(writer, schemas: ["main"])
+        fatalError("Checkpoint during a write transaction must fail")
+    } catch let error as NSError {
+        precondition(error.domain == "MaktabahBookUpdateRecovery" && error.code == Int(SQLITE_LOCKED))
+    }
+    let reopened = try MaktabahBookUpdateSafety.openReadOnly(path: target)
+    defer { sqlite3_close_v2(reopened) }
+    precondition(scalar(reopened, "SELECT value FROM sentinel") == 1)
+}
+try check("attached FTS checkpoint failure preserves archive and FTS recovery independently") {
+    let target = try create("attached-recovery.sqlite", "CREATE TABLE sentinel(value INTEGER); INSERT INTO sentinel VALUES(1);")
+    let search = try create("attached-recovery-fts.sqlite", "CREATE VIRTUAL TABLE archive_fts USING fts5(nass_clean); INSERT INTO archive_fts VALUES('old');")
+    let ftsWriter = openWriter(search)
+    sql(ftsWriter, "PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0;")
+    let ftsReader = try MaktabahBookUpdateSafety.openReadOnly(path: search)
+    defer { sqlite3_close_v2(ftsReader) }
+    sql(ftsReader, "BEGIN;")
+    precondition(scalar(ftsReader, "SELECT COUNT(*) FROM archive_fts WHERE archive_fts MATCH 'old'") == 1)
+    sql(ftsWriter, "INSERT INTO archive_fts VALUES('fresh');")
+    sqlite3_close_v2(ftsWriter)
+    let writer = openWriter(target)
+    sql(writer, "PRAGMA journal_mode=WAL; INSERT INTO sentinel VALUES(2);")
+    let uri = MaktabahBookUpdateSafety.existingDatabaseURI(path: search).replacingOccurrences(of: "'", with: "''")
+    sql(writer, "ATTACH DATABASE '\(uri)' AS fts_db;")
+    do {
+        try MaktabahBookUpdateSafety.checkpointAndClose(writer)
+        fatalError("Busy FTS checkpoint must fail even if archive checkpoint succeeds")
+    } catch let error as NSError {
+        precondition(error.domain == "MaktabahBookUpdateRecovery" && error.code == Int(SQLITE_BUSY))
+        precondition(error.localizedDescription.contains("fts_db"))
+    }
+    let recoveryData = try Data(contentsOf: URL(fileURLWithPath: search + "-wal"))
+    precondition(recoveryData.count > 0)
+    let archiveReopened = try MaktabahBookUpdateSafety.openReadOnly(path: target)
+    defer { sqlite3_close_v2(archiveReopened) }
+    precondition(scalar(archiveReopened, "SELECT COUNT(*) FROM sentinel") == 2)
+    let ftsReopened = try MaktabahBookUpdateSafety.openReadOnly(path: search)
+    defer { sqlite3_close_v2(ftsReopened) }
+    precondition(scalar(ftsReopened, "SELECT COUNT(*) FROM archive_fts WHERE archive_fts MATCH 'fresh'") == 1)
+    sql(ftsReader, "COMMIT;")
+}
+print("EXECUTED_PASS \(checks) total portable checks including WAL recovery fault injection")
