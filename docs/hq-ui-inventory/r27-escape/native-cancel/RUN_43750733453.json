@@ -1,0 +1,86 @@
+{
+  "run_id": 43750733453,
+  "checkout_sha": "26ebc3a302f9dbd4b1ce309b8cdcb31b3fa2b729",
+  "app_source": "858477f985a6537232fbd2561f2fc72ff4781048",
+  "test_source": "858477f985a6537232fbd2561f2fc72ff4781048",
+  "actual_module_and_app_test_build": "PASS",
+  "fresh_ui_pass": 0,
+  "fresh_ui_fail": 0,
+  "fresh_ui_skip": 0,
+  "ui_not_run": 7,
+  "actual_case_outcomes": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "device": "ipad11",
+      "expected": "Normal bootstrap, genuine fixture book/title, real portrait-to-landscape geometry change, exact locator preservation",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "device": "ipad11",
+      "expected": "Real normal bootstrap; independently derived fixture category paths; functional Library search empty/match/exclude/clear; fixed physical RTL body swipes;20body+20dot transitions; one native toggle and TOC-local title/search; actual reader object/source/offset/title/locator preservation; vertical scroll arbitration",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "device": "ipad11",
+      "expected": "Same genuine fixture/native reader and functional search/state oracles in English LTR; fixed physical LTR body swipes and preserved one native toggle/TOC ownership",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+      "device": "ipad11",
+      "expected": "RealUI exact fixture work; native TOC page survives Home/activate and measured portrait/landscape changes; one native toggle; original TextKit object/source/offset, actual text/title/locator preserved; retained before/after screenshots+hierarchy",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+      "device": "ipad11",
+      "expected": "Unmodified shared original bottom TOC action helper through realUI normal bootstrap, actual sidebar Contents selection, no modal TOC, exact real fixture work/backend and retained title",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "device": "ipad11",
+      "expected": "Separate job-local pinned idb direct native HID on this owned disposable simulator. Real A/backspace visibly edit/clear production autofocus field; one Escape removes actual full empty input; genuine narrow resize and real fixture filtering; one Escape removes actual narrow filtered input; Inspector open/close, full text/exact locator and native window restoration. Original XCTest Escape case retained independently; transport ACK alone never UI acceptance.",
+      "configuration_label": "11-window",
+      "actual": "NOT_RUN"
+    }
+  ],
+  "failure": "Verified miniTest10 native fixture installed, then simctl terminate on exact owned UDID timed out after60s. Provisioning helper re-raised cleanup failure; XCTest and idb companion startup NOT_REACHED. This is CI infrastructure failure, not seven UI failures.",
+  "fixture_status": {
+    "passed": true,
+    "profileID": "miniTest10",
+    "profileVersion": 6,
+    "bookCount": 10,
+    "shaMatched": true
+  },
+  "termination": {
+    "status": "TIMEOUT",
+    "error": "Command '['xcrun', 'simctl', 'terminate', 'AE92E30F-B200-4F22-8646-3B4BE47F692A', 'com.davidpovarsky.chavrusatext']' timed out after 60 seconds",
+    "nativeValidationFailurePreserved": false
+  },
+  "owned_udid": "AE92E30F-B200-4F22-8646-3B4BE47F692A",
+  "idb": "Pinned1.7.8 job-local asset checksums/client import/native companion version PASS. No native key or visible input comparison executed.",
+  "correction": "Only driver/helper changes: one bounded verified-cleanup-timeout recovery requires original genuine fixture PASS/profile/bookCount/hash and no original native validation failure; records failed cleanup, verifies shutdown of exact owned simulator, reboots it. Every original selected UI case remains required; no test retry or acceptance from provisioning.",
+  "local_recovery_tests": "4 boundary checks PASS; no UI pass inferred",
+  "artifact": {
+    "id": 14177538817,
+    "bytes": 1150742,
+    "sha256": "ae93b4c5921575305d4066f251d155a404bbfe145ed36ddea18caf4bdf959847",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43750733453/artifacts/14177538817"
+  },
+  "acceptance": "OPEN; no MERGE_READY; physical iPad NOT_RUN"
+}

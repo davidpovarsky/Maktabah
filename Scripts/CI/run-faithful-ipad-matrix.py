@@ -175,6 +175,23 @@ for index, scenario in enumerate(scenarios):
             except subprocess.CalledProcessError:
                 fixture_report = artifacts / f"miniTest10-native-fixture-install-{label}.json"
                 failure = json.loads(fixture_report.read_text()) if fixture_report.is_file() else {}
+                termination_report = artifacts / f"miniTest10-native-fixture-termination-{label}.json"
+                termination = json.loads(termination_report.read_text()) if termination_report.is_file() else {}
+                recover_cleanup = runpy.run_path("Scripts/CI/runtime27-fixture-recovery.py")["verified_fixture_cleanup_timeout"]
+                if recover_cleanup(failure, termination, fixture_attempt):
+                    # Run43750733453 installed the genuine hashed fixture, then
+                    # simctl terminate timed out. Preserve that failure and
+                    # prove the exact owned simulator is idle before reboot.
+                    # No failed installer/test is retried or counted as passed.
+                    shutil.copyfile(fixture_report, artifacts / f"miniTest10-native-fixture-install-{label}-before-reboot.json")
+                    shutil.copyfile(termination_report, artifacts / f"miniTest10-native-fixture-termination-{label}-before-reboot.json")
+                    phase("RECOVERING_VERIFIED_FIXTURE_CLEANUP_TIMEOUT", udid=udid)
+                    assert device["udid"] == udid
+                    subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
+                    subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
+                    subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
+                    device["fixtureCleanupRecovery"] = "OWNED_SHUTDOWN_VERIFIED_AND_REBOOTED; ALL_UI_STILL_REQUIRED"
+                    break
                 errors = failure.get("errors") or []
                 transient_download = (failure.get("phase") == "install" and bool(errors)
                     and all(re.search(r"\bHTTP (502|503|504)\b", str(error)) for error in errors))
