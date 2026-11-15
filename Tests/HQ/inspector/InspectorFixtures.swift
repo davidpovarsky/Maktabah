@@ -208,6 +208,47 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         try expect(!timedOut.value, "cold notes loader must leave MainActor responsive")
         try expect(result.count == 1 && result[0].note == "persisted", "persisted notes preserved")
 
+        // A request keeps its original range even if selection changes within
+        // the same book while its cold load is suspended. Section requests may
+        // still include every member of their original unit, but no new range.
+        for scope in [TorahInspectorSelection.Scope.segment, .section] {
+            for changeLocator in [false, true] {
+                viewModel.selectedSegmentLocator = locator
+                viewModel.selectedSegmentRange = NSRange(location: 0, length: 4)
+                let entered = DispatchSemaphore(value: 0), release = DispatchSemaphore(value: 0)
+                var unrelated = annotation
+                unrelated.id = 2
+                unrelated.range = NSRange(location: 100, length: 4)
+                unrelated.rangeDiacritics = unrelated.range
+                unrelated.backendLocator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(8))
+                unrelated.note = "OTHER-SEGMENT"
+                // This note belongs to the original range fallback; retain it
+                // even though its locator is not a member of the selected unit.
+                var originalRangeNote = annotation
+                originalRangeNote.id = 3
+                originalRangeNote.backendLocator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(9))
+                originalRangeNote.note = "ORIGINAL-RANGE"
+                AnnotationManager.shared.rows = [annotation, unrelated, originalRangeNote]
+                AnnotationManager.shared.onLoad = {
+                    entered.signal()
+                    _ = release.wait(timeout: .now() + 3)
+                }
+                session.otzariaUnitsByReference["otzaria:original-unit"] = OtzariaReadingUnit(bookId: 1, sourceLineIndices: [0, 2, 4])
+                let requested = TorahInspectorSelection(providerID: "otzaria", canonicalRef: scope == .section ? "original-unit" : locator.persistenceKey, scope: scope)
+                let request = Task { @MainActor in try await session.notes(for: requested) }
+                let started = await Task.detached { entered.wait(timeout: .now() + 3) == .success }.value
+                try expect(started, "same-book range test loader started")
+                if changeLocator { viewModel.selectedSegmentLocator = unrelated.backendLocator }
+                viewModel.selectedSegmentRange = NSRange(location: 100, length: 4)
+                release.signal()
+                let oldRequestNotes = try await request.value
+                try expect(Set(oldRequestNotes.map(\.note)) == ["persisted", "ORIGINAL-RANGE"], "same-book \(scope) request must preserve its original range; locator changed=\(changeLocator)")
+            }
+        }
+        viewModel.selectedSegmentLocator = locator
+        viewModel.selectedSegmentRange = nil
+        AnnotationManager.shared.rows = [annotation]
+
         for stale in ["generation", "backend", "book", "cancel"] {
             let entered = DispatchSemaphore(value: 0), release = DispatchSemaphore(value: 0)
             AnnotationManager.shared.onLoad = {
@@ -241,6 +282,6 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         viewModel.currentAnnotations = [local]
         let localResult = try await session.notes(for: selection)
         try expect(localResult.count == 1 && localResult[0].note == "unsaved", "unsaved notes preserved after background load")
-        print("PASS actual notes loader: MainActor heartbeat, persisted/unsaved notes, stale generation/backend/book and cancellation")
+        print("PASS actual notes loader: MainActor heartbeat, persisted/unsaved notes, same-book segment/section immutable ranges, stale generation/backend/book and cancellation")
     }
 }

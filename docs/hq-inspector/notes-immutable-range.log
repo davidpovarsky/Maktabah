@@ -1,0 +1,4 @@
+Source: working tree; case: notes
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-mmxr7cb7\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-mmxr7cb7\inspector-fixtures.exp
+
+PASS actual notes loader: MainActor heartbeat, persisted/unsaved notes, same-book segment/section immutable ranges, stale generation/backend/book and cancellation

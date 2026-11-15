@@ -34,7 +34,7 @@ Upstream source edits: NONE. Minimal upstream hook register: NONE. AppContainer,
 
 ## Executed checks
 
-Command: `py -3 tools/hq-inspector-fixtures.py` (Windows Swift 6.3.3, Python 3.12.5, SQLite 3.45.3). See fixtures.log. The runner compiles the actual service, grouping, classification, preview, tap extension, Annotation value model and exact adapter notes/membership methods. Only framework/DB boundary types are substituted. The service's generated SQL executes against a disposable real SQLite database through Python stdlib. Production zstd decoding is replaced by a counted plain-text decoder. Temporary fixtures do not access user data or install dependencies.
+Original lane command at 5aa235a11e34d755f3745d402c267687885ec212: `py -3 tools/hq-inspector-fixtures.py` (Windows Swift 6.3.3, Python 3.12.5, SQLite 3.45.3). See fixtures.log; the focused corrective run below supersedes its Notes evidence. The runner compiles the actual service, grouping, classification, preview, tap extension, Annotation value model and exact adapter notes/membership methods. Only framework/DB boundary types are substituted. The service's generated SQL executes against a disposable real SQLite database through Python stdlib. Production zstd decoding is replaced by a counted plain-text decoder. Temporary fixtures do not access user data or install dependencies.
 
 | Scenario | Result |
 | --- | --- |
@@ -71,3 +71,12 @@ The same fixtures compiled against base df2a21941afa46da716387fce9de620865d2a151
 Next reviewer: independently review the three source diffs and exact fixture boundaries, then arrange the physical/production matrix at the final integrated SHA. Keep GID 1219602987688876 open until all original acceptance gates pass.
 
 Rollback: revert only this lane's local commit(s), or remove its branch after review. No schema, data, dependency or project migration requires rollback. Integration risk is limited to possible concurrent changes to the same downstream methods; no original Maktabah source was edited.
+
+## QA correction — same-book range changes
+
+Independent Roni thread 01a1dc8b-f9bd-7d63-a628-7ad3d06196e8 reproduced an old Notes request consuming a newer selection range within the same book at frozen 5aa235a. The backend/generation/book guards cannot distinguish that change. The correction snapshots `selectedSegmentRange` alongside the original locator before suspension. The original request retains its exact range fallback while later requests use the newer range; section scope retains its own unit membership. No identity-only guard is used because range changes can occur with the same locator.
+
+- EXECUTED_EXPECTED_FAIL: `py -3 tools/hq-inspector-fixtures.py --source-ref 5aa235a11e34d755f3745d402c267687885ec212 --case notes`, exit 1, `same-book segment request must preserve its original range; locator changed=false`. Evidence: baseline-same-book-notes.log.
+- EXECUTED_PASS: `py -3 tools/hq-inspector-fixtures.py --case notes`, exit 0. Four blocked-load combinations cover segment/section scope with range-only changes and locator+range changes in the same book. Assertions preserve both direct original notes and the original range fallback while excluding the newer unrelated note. All prior Notes heartbeat, persisted/unsaved and generation/backend/book/cancellation checks also pass. Evidence: notes-immutable-range.log.
+- REUSED_VERIFIED_PASS: prior links/SQL/grouping/snippets/tap checks from 5aa235a; their production files are unchanged by this correction. No broad suite or Apple build was repeated.
+- Production hunk: only move the range snapshot before await plus an explanatory comment in downstream MaktabahTorahInspectorAdapter.swift. Rollback: revert the follow-up commit. Independent retest and all physical/production gates remain OPEN.

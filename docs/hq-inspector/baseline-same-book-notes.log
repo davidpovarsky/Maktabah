@@ -1,0 +1,4 @@
+Source: 5aa235a11e34d755f3745d402c267687885ec212; case: notes
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-u5vb2yoa\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-u5vb2yoa\inspector-fixtures.exp
+
+FAIL FixtureError(message: "same-book segment request must preserve its original range; locator changed=false")

@@ -493,6 +493,8 @@ final class MaktabahTorahInspectorSession {
               selectedLocator.backend == coordinator.activeBackendID else { return [] }
         let initialGeneration = coordinator.generation
         let bookID = viewModel.currentBook?.id
+        // Keep the range fallback tied to this request across selection changes.
+        let selectedRange = viewModel.selectedSegmentRange
         let persistedAnnotations: [Annotation]
         if let bookID {
             let backgroundTask = Task.detached(priority: .userInitiated) {
@@ -511,7 +513,6 @@ final class MaktabahTorahInspectorSession {
         guard !Task.isCancelled, coordinator.generation == initialGeneration,
               selectedLocator.backend == coordinator.activeBackendID,
               viewModel.currentBook?.id == bookID else { throw CancellationError() }
-        let selectedRange = viewModel.selectedSegmentRange
         var allByID: [Int64: Annotation] = [:]
         var unpersisted: [Annotation] = []
         for ann in viewModel.currentAnnotations {
