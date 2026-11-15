@@ -193,6 +193,7 @@ public actor ActionExecutor {
         try await recheck(snapshot, deadline: deadline)
         try ActionPolicy.capability(assessment)
         let result: ActionResult
+        var navigationCompletion: ActionNavigationPreparation? = nil
         switch request.action {
         case "catalog.resolveWork":
             let ref = try request.arguments["workRef"]?.decoded(as: ActionWorkRef.self)
@@ -251,9 +252,9 @@ public actor ActionExecutor {
             try await recheck(snapshot, deadline: deadline)
             switch acknowledgement {
             case .acknowledged(let receipt):
-                if let authorization { try await authorization.validateCompletion() }
                 guard receipt.requestId == request.requestId, receipt.snapshot == snapshot, receipt.sceneID == scene,
                       receipt.destination == validated else { throw ActionPortError.invalidResponse }
+                navigationCompletion = authorization
                 result = ActionResult(request: request, status: .completed, backend: backend, backendGeneration: snapshot.generation, effects: ["reader_opened"])
             case .queued(let handle):
                 guard handle.range(of: "^[A-Za-z0-9_-]{8,128}$", options: .regularExpression) != nil else { throw ActionPortError.invalidResponse }
@@ -263,6 +264,10 @@ public actor ActionExecutor {
         default: throw ActionEngineFailure(.notSupported, "action_not_implemented")
         }
         try await recheck(snapshot, deadline: deadline)
+        // This synchronous MainActor check observes BOTH retained authorities
+        // after the last backend/readiness await. Do not add another readiness
+        // await after it; this is not an atomic cross-actor commit barrier.
+        if let navigationCompletion { try await navigationCompletion.validateCompletion() }
         return result
     }
 

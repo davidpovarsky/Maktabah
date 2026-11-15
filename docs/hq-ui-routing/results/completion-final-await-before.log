@@ -1,0 +1,48 @@
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version-2807070033DA82CF.txt
+[1/5] Write sources
+[3/6] Emitting module OtzariaUIRoutingTests
+[4/7] Compiling OtzariaUIRoutingTests NavigationAuthorizationTests.swift
+[5/8] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[6/9] Write sources
+[8/10] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[9/12] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[10/12] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[11/13] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[12/17] Wrapping AST for OtzariaUIRoutingTests for debugging
+[13/17] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[14/18] Write sources
+[16/19] Emitting module OtzariaUIRoutingPackageTests
+[17/20] Compiling OtzariaUIRoutingPackageTests runner.swift
+[18/20] Write Objects.LinkFileList
+[19/20] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (34.34s)
+Test Suite 'Selected tests' started at 2026-11-15 15:45:25.094
+
+Test Suite 'NavigationAuthorizationTests' started at 2026-11-15 15:45:25.099
+
+Test Case 'NavigationAuthorizationTests.testRevocationDuringFinalBackendAwaitPreventsReaderCompletion' started at 2026-11-15 15:45:25.099
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:77: error: NavigationAuthorizationTests.testRevocationDuringFinalBackendAwaitPreventsReaderCompletion : XCTAssertEqual failed: ("completed") is not equal to ("failed") - 
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Ports\NavigationAuthorizationTests.swift:78: error: NavigationAuthorizationTests.testRevocationDuringFinalBackendAwaitPreventsReaderCompletion : XCTAssertEqual failed: ("nil") is not equal to ("Optional("navigation_authority_changed")") - 
+
+Test Case 'NavigationAuthorizationTests.testRevocationDuringFinalBackendAwaitPreventsReaderCompletion' failed (0.077 seconds)
+
+Test Suite 'NavigationAuthorizationTests' failed at 2026-11-15 15:45:25.176
+
+	 Executed 1 test, with 2 failures (0 unexpected) in 0.077 (0.077) seconds
+
+Test Suite 'Selected tests' failed at 2026-11-15 15:45:25.176
+
+	 Executed 1 test, with 2 failures (0 unexpected) in 0.077 (0.077) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
