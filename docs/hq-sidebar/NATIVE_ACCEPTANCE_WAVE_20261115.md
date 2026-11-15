@@ -6,7 +6,8 @@ The retained Sidebar11201AcceptanceTests file has moved from the unregistered
 membership edit or new harness. Historical portable checks/docs remain evidence
 at their original SHAs; they are not native passes.
 
-The same two fixed-direction Hebrew RTL/English LTR cases now use the normal
+The two fixed-direction Hebrew RTL/English LTR cases and the added Home/activate/
+measured portrait-landscape scene-continuity case now use the normal
 realUI bootstrap, exact Otzaria preferred/backend arguments, isolated existing
 UUID sidecars and the existing actual TextKit viewport observer. Required iPad
 execution fails instead of skipping. The case checks the independent fixture
@@ -46,12 +47,17 @@ Environment values use the existing TEST_RUNNER forwarding convention.
 
 ## Remaining native scope
 
-The registered cases retain functional no-match/matching/excluded/clear-restore
+The registered body-paging cases retain functional no-match/matching/excluded/clear-restore
 catalog assertions, twenty fixed-direction body and twenty dot transitions per
 language, exact TOC title/search ownership, one native sidebar toggle, preserved
 reader object/source/offset/title/locator, and vertical scroll arbitration.
-They are NOT_RUN at this test revision until a real selected workflow executes.
-Current priority remains the already running focused Escape/Inspector case.
+The added scene case also checks the actual reader object/source/offset, full
+text/title/locator and TOC page after background/foreground and real orientation
+changes. All three remain NOT_RUN at dispatch until the real selected workflow
+executes. Run43728847352 selects these three plus the original strengthened
+Escape/Inspector/window case; its immutable checkout is01dd34af. Prior
+run43723356743 built successfully but its sole window case failed the original
+palette disappearance waiter; it did not execute these Sidebar cases.
 
 Manager decision for this wave: retain one system-owned toggle and its standard
 symbol; do not replace the control or reconfigure displayModeButtonItem merely

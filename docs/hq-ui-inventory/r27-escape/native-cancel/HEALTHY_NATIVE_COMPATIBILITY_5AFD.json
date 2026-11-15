@@ -1,0 +1,89 @@
+{
+  "baseline_run": 43688380348,
+  "compared_actual_run": 43723356743,
+  "compared_source": "5afdefdf7fae792eeb7a828dc9157e8cecab7f93",
+  "status": "ACTUAL_TOOLCHAIN_DEPENDENCY_FIXTURE_MATCH",
+  "comparisons": {
+    "xcode": true,
+    "swift": true,
+    "sdk_path": true,
+    "sdk_version": true,
+    "project_sha256": true,
+    "package_resolved_sha256": true,
+    "package_pins": true,
+    "native_context.gitlink": true,
+    "native_context.npm_lock_sha256": true,
+    "native_context.podfile_sha256": true,
+    "native_context.node": true,
+    "native_context.cocoapods": true,
+    "native_context.ruby": true,
+    "native_context.pod_lock_sha256": true,
+    "native_context.staged_workspace_package_lock_sha256": true
+  },
+  "fixture_comparisons": {
+    "fixture-oracle-11-reader.json": {
+      "database_sha256": true,
+      "schema": true,
+      "profileID": true,
+      "profileVersion": true,
+      "expected_compressed_sha256": true,
+      "selected": true
+    },
+    "fixture-oracle-11-window.json": {
+      "database_sha256": true,
+      "schema": true,
+      "profileID": true,
+      "profileVersion": true,
+      "expected_compressed_sha256": true,
+      "selected": true
+    },
+    "fixture-oracle-phone.json": {
+      "database_sha256": true,
+      "schema": true,
+      "profileID": true,
+      "profileVersion": true,
+      "expected_compressed_sha256": true,
+      "selected": true
+    }
+  },
+  "prior_actual_devices": {
+    "11-reader": {
+      "architecture": "arm64",
+      "deviceId": "A302483F-A84F-48AC-AE9F-AAEB902E8311",
+      "deviceName": "Faithful 11-inch baf3ec84",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    },
+    "phone": {
+      "architecture": "arm64",
+      "deviceId": "1410A1B0-929D-46E9-AC55-52B46AB3A50F",
+      "deviceName": "Faithful phone-inch 55b85fed",
+      "modelName": "iPhone 18 Pro",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    },
+    "11-window": {
+      "architecture": "arm64",
+      "deviceId": "2AE498D6-518F-4956-9CDB-CCA91384B2C7",
+      "deviceName": "Faithful 11-inch 86f78efa",
+      "modelName": "iPad Pro 11-inch (M5)",
+      "osBuildNumber": "24B8117",
+      "osVersion": "27.2",
+      "platform": "iOS Simulator"
+    }
+  },
+  "current_actual_ipad": {
+    "architecture": "arm64",
+    "deviceId": "DD3E95BC-05FE-4571-AA6C-90375F805DB2",
+    "deviceName": "Faithful 11-inch e96b8347",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "source_compatibility": "HEALTHY_SOURCE_COMPATIBILITY.json; eight exact test bodies and only palette production deltas",
+  "evidence_effect": "Eight historical real passes remain eligible for verified reuse at5afdef; zero fresh reader executions. New e8af press source and changed Sidebar helper require own current native fingerprint review before certification. Window remains0PASS/1FAIL; no phase completion."
+}
