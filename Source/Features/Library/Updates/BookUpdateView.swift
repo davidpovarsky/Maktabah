@@ -214,7 +214,7 @@ struct UpdateView: View {
         #endif
         .controlSize(.large)
         .buttonBorderShape(.capsule)
-        .disabled(viewModel.isUpdating || viewModel.selectedCount == 0)
+        .disabled(viewModel.isUpdating || viewModel.selectedCount == 0 || viewModel.updateFailureRequiresReview)
     }
 
     @ViewBuilder

@@ -15,6 +15,7 @@ extension BookUpdateManager {
         providedMetadata: BookMetadata? = nil,
         authorRow: [String: any Sendable]? = nil
     ) async throws -> BookUpdateResult {
+        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
         guard let metadata = try providedMetadata ?? readBookMetadata(from: url, fallbackBookId: 0) else {
             throw NSError(
                 domain: "BookUpdate",
@@ -25,6 +26,7 @@ extension BookUpdateManager {
             )
         }
 
+        try MaktabahBookUpdateSafety.validateBookIdentity(expected: metadata.bkid, actual: metadata.bkid, archive: metadata.archive)
         try preCreateArchiveTables(archiveId: metadata.archive, bookId: metadata.bkid)
 
         let workingDirectory = try makeWorkingDirectory()
@@ -56,7 +58,8 @@ extension BookUpdateManager {
             downloadedBookURL: downloadedBookURL,
             ftsSourceURL: ftsSourceURL,
             authorContext: nil,
-            workingDirectory: workingDirectory
+            workingDirectory: workingDirectory,
+            safetyContext: safetyContext
         )
 
         return try await applyStagedBookUpdate(stagedUpdate, isOfflineImport: true)
@@ -79,7 +82,10 @@ extension BookUpdateManager {
     }
 
     func preCreateArchiveTables(archiveId: Int, bookId: Int) throws {
-        guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId) else { return }
+        try MaktabahBookUpdateSafety.requireArchive(archiveId)
+        guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId) else {
+            throw MaktabahBookUpdateSafety.Failure.invalidArchive
+        }
 
         let db = try openDatabase(path: targetPath, enableWAL: false)
         defer {
@@ -108,6 +114,16 @@ extension BookUpdateManager {
         knownExists: Bool? = nil,
         isOfflineImport: Bool = false
     ) async throws -> BookUpdateResult {
+        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
+        guard stagedUpdate.safetyContext == safetyContext else {
+            throw MaktabahBookUpdateSafety.Failure.changedLibrary
+        }
+        try MaktabahBookUpdateSafety.validateBookIdentity(expected: stagedUpdate.entry.bkid, actual: stagedUpdate.metadata.bkid, archive: stagedUpdate.metadata.archive)
+        if !isOfflineImport, stagedUpdate.metadata.bVer.map(Int64.init) != stagedUpdate.entry.versionName {
+            throw MaktabahBookUpdateSafety.Failure.incompatibleSchema
+        }
+        try MaktabahBookUpdateSafety.requireArchive(stagedUpdate.metadata.archive)
+        return try await MaktabahBookUpdateSafety.$operationContext.withValue(safetyContext) {
         defer {
             FileManager.default.removeDatabaseAndSidecars(at: stagedUpdate.ftsSourceURL)
             FileManager.default.removeDatabaseAndSidecars(at: stagedUpdate.downloadedBookURL)
@@ -132,12 +148,15 @@ extension BookUpdateManager {
             )
         }
 
+        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+
         try convertBookDatabase(at: stagedUpdate.downloadedBookURL, bookId: stagedUpdate.metadata.bkid)
         try await BookArchiveSingleFlight.shared.run(
             archiveId: stagedUpdate.metadata.archive,
             bookId: stagedUpdate.metadata.bkid
         ) { [weak self] in
             guard let self else { return }
+            try await MaktabahBookUpdateSafety.revalidate(safetyContext)
             try replaceArchiveDatabase(
                 with: stagedUpdate.downloadedBookURL,
                 archiveId: stagedUpdate.metadata.archive,
@@ -146,6 +165,7 @@ extension BookUpdateManager {
             )
         }
 
+        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
         try saveBookMetadata(stagedUpdate.metadata, exists: exists, isOfflineImport: isOfflineImport)
 
         // Hapus cache per-kitab di folder Books jika ada, agar pembaca beralih ke arsip yang diperbarui
@@ -159,6 +179,7 @@ extension BookUpdateManager {
             catId: stagedUpdate.entry.category,
             action: exists ? .updated : .inserted
         )
+        }
     }
 
     private func shouldSkipOnlineUpdate(stagedUpdate: StagedBookUpdate, exists: Bool) throws -> Bool {
@@ -180,6 +201,7 @@ extension BookUpdateManager {
     }
 
     func changeBookId(oldId: Int, newId: Int) throws {
+        try MaktabahBookUpdateSafety.requireCurrent()
         LibraryDataManager.shared.closeAllArchiveConnections()
         guard let mainPath = AppConfig.mainDatabasePath else { return }
 
@@ -494,7 +516,13 @@ extension BookUpdateManager {
     ) throws {
         guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId),
               let ftsDBPath = AppConfig.archiveFtsDatabasePath(archiveId: archiveId)
-        else { return }
+        else { throw MaktabahBookUpdateSafety.Failure.invalidArchive }
+
+        try MaktabahBookUpdateSafety.requireArchive(archiveId)
+        for source in [sourceURL, ftsSourceURL] {
+            let sourceDB = try MaktabahBookUpdateSafety.openReadOnly(path: source.path)
+            sqlite3_close_v2(sourceDB)
+        }
 
         LibraryDataManager.shared.closeArchiveConnection(archiveId: archiveId)
 
@@ -506,9 +534,9 @@ extension BookUpdateManager {
             }
         }
 
-        try db.safeAttachDatabase(path: sourceURL.path, schema: "source_db")
-        try db.safeAttachDatabase(path: ftsSourceURL.path, schema: "fts_source_db")
-        try db.safeAttachDatabase(path: ftsDBPath, schema: "fts_db")
+        try db.safeAttachDatabase(path: MaktabahBookUpdateSafety.existingDatabaseURI(path: sourceURL.path, readOnly: true), schema: "source_db")
+        try db.safeAttachDatabase(path: MaktabahBookUpdateSafety.existingDatabaseURI(path: ftsSourceURL.path, readOnly: true), schema: "fts_source_db")
+        try db.safeAttachDatabase(path: MaktabahBookUpdateSafety.existingDatabaseURI(path: ftsDBPath), schema: "fts_db")
 
         let tableName = "b\(bookId)"
         let tocTable = "t\(bookId)"

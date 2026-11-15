@@ -17,13 +17,15 @@ extension BookUpdateManager {
     func fetchAvailableUpdates(
         from indexURL: URL
     ) async throws -> [BookUpdateItem] {
+        let safetyContext = try await MaktabahBookUpdateSafety.preflight()
         Logger.library.debug("📋 [Fetch Updates] Loading available updates from CSV...")
 
         let entries = try await fetchIndexEntries(from: indexURL)
 
         Logger.library.debug("📋 [Fetch Updates] Found \(entries.count) entries in CSV")
 
-        let items = entries.map { createUpdateItem(from: $0) }
+        try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+        let items = try entries.map { try createUpdateItem(from: $0) }
 
         let needsUpdateCount = items.reduce(into: 0) { count, item in
             if item.needsUpdate { count += 1 }
@@ -33,9 +35,9 @@ extension BookUpdateManager {
         return items
     }
 
-    private func createUpdateItem(from entry: BookIndexEntry) -> BookUpdateItem {
+    private func createUpdateItem(from entry: BookIndexEntry) throws -> BookUpdateItem {
         let bookName = LibraryDataManager.shared.getBook([entry.bkid]).first?.book ?? entry.bk
-        let versionState = (try? getBookVersionState(bookId: entry.bkid)) ?? .unknownVersion
+        let versionState = try getBookVersionState(bookId: entry.bkid)
         let currentVersion = versionState.currentVersion
 
         let item = BookUpdateItem(
@@ -67,28 +69,25 @@ extension BookUpdateManager {
 
     private func getBookVersionState(bookId: Int) throws -> BookVersionState {
         guard let mainPath = AppConfig.mainDatabasePath else {
-            return .unknownVersion
+            throw MaktabahBookUpdateSafety.Failure.missingFile
         }
-        let db = try openDatabase(path: mainPath)
+        try MaktabahBookUpdateSafety.requireCurrent()
+        let db = try MaktabahBookUpdateSafety.openReadOnly(path: mainPath)
         defer { sqlite3_close_v2(db) }
 
-        guard let versionColumn = resolveVersionColumn(in: db) else {
-            return .unknownVersion
-        }
-
         let sql =
-            "SELECT `\(versionColumn)` FROM `0bok` WHERE `bkid` = ? LIMIT 1;"
+            "SELECT `bVer` FROM `0bok` WHERE `bkid` = ? LIMIT 1;"
         var stmt: OpaquePointer?
         guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
-            return .unknownVersion
+            throw sqliteError(db, message: "Unable to read the installed book version.")
         }
         defer { sqlite3_finalize(stmt) }
 
         sqlite3_bind_int64(stmt, 1, Int64(bookId))
 
-        guard sqlite3_step(stmt) == SQLITE_ROW else {
-            return .notInLibrary
-        }
+        let rc = sqlite3_step(stmt)
+        if rc == SQLITE_DONE { return .notInLibrary }
+        guard rc == SQLITE_ROW else { throw sqliteError(db, message: "Unable to read the installed book version.") }
 
         if sqlite3_column_type(stmt, 0) == SQLITE_NULL {
             return .unknownVersion
@@ -100,6 +99,7 @@ extension BookUpdateManager {
     // MARK: - Fetch data yang diperlukan dari internet.
 
     private func fetchCSVString(from url: URL) async throws -> String {
+        try MaktabahBookUpdateSafety.requireCurrent()
         let (data, _) = try await URLSession.shared.data(from: url)
         guard let csv = String(data: data, encoding: .utf8) else {
             throw NSError(
@@ -131,13 +131,15 @@ extension BookUpdateManager {
     // MARK: - PARSE CSV
 
     func parseIndexCSV(_ csv: String) throws -> [BookIndexEntry] {
+        try MaktabahBookUpdateSafety.validateCatalogText(csv)
         let rows = CSVParser.parse(csv, separator: ";")
         guard !rows.isEmpty else { return [] }
 
         let dataRows = trimHeaderIfNeeded(rows, headerKey: "bkid")
 
-        return dataRows.compactMap { columns in
-            guard columns.count >= 5 else { return nil }
+        return try dataRows.filter { !$0.allSatisfy { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty } }.compactMap { columns in
+            try MaktabahBookUpdateSafety.validateCatalogRow(columns)
+            guard columns.count >= 6 else { return nil }
             guard let bkid = Int(columns[0]) else { return nil }
             guard let cat = Int(columns[1]) else { return nil }
             guard let versionName = Int64(columns[2]) else { return nil }

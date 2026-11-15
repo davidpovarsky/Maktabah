@@ -34,10 +34,10 @@ struct iOSLibraryView: View {
                 }
             }
             .sheet(isPresented: $viewModel.showingUpdateSheet) {
-                UpdateView()
+                if MaktabahBookUpdateSafety.isMaktabahActive { UpdateView() }
             }
             .task {
-                viewModel.checkBookUpdatesPeriodically()
+                if MaktabahBookUpdateSafety.isMaktabahActive { viewModel.checkBookUpdatesPeriodically() }
             }
             .alert(.Library.importSuccess, isPresented: $viewModel.showImportSuccessAlert) {
                 Button("OK", role: .cancel) {}
@@ -200,6 +200,7 @@ struct iOSLibraryView: View {
                 Label(.Library.select, systemImage: "checkmark.circle")
             }
 
+            if MaktabahBookUpdateSafety.isMaktabahActive {
             Button {
                 viewModel.showingUpdateSheet = true
             } label: {
@@ -210,6 +211,7 @@ struct iOSLibraryView: View {
                         : bookUpdates,
                     systemImage: "arrow.triangle.2.circlepath"
                 )
+            }
             }
 
             Button {

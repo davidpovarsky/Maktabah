@@ -15,6 +15,7 @@ final class BookUpdateViewModel: @unchecked Sendable {
     var availableUpdates: [BookUpdateItem] = []
     var isLoadingList = false
     var isUpdating = false
+    var updateFailureRequiresReview = false
     var progressMessage = ""
     var updateResults: [BookUpdateResult] = []
 
@@ -47,7 +48,8 @@ final class BookUpdateViewModel: @unchecked Sendable {
         for item in availableUpdates {
             if item.isSelected {
                 count += 1
-                size += item.fileSize
+                let (sum, overflow) = size.addingReportingOverflow(item.fileSize)
+                size = overflow ? Int64.max : sum
             }
             if item.needsUpdate {
                 needsCount += 1
@@ -82,6 +84,8 @@ final class BookUpdateViewModel: @unchecked Sendable {
                 progressMessage = String(localized: .Library.foundBooksNeedUpdate(needsUpdateCount))
 
             } catch {
+                availableUpdates = []
+                updateSelectionSummary()
                 progressMessage = "Error: \(error.localizedDescription)"
                 Logger.library.error("❌ [Load Updates] Error: \(error.localizedDescription, privacy: .public)")
             }
@@ -116,6 +120,7 @@ final class BookUpdateViewModel: @unchecked Sendable {
     // MARK: - Perform Selective Update
 
     func performSelectedUpdates() {
+        guard !isUpdating, !updateFailureRequiresReview else { return }
         let selectedItems = availableUpdates.filter { $0.isSelected && $0.needsUpdate }
         guard !selectedItems.isEmpty else {
             progressMessage = String(localized: .Library.noBooksSelected)
@@ -129,7 +134,6 @@ final class BookUpdateViewModel: @unchecked Sendable {
         Task { @MainActor [weak self] in
             defer {
                 self?.isUpdating = false
-                BookUpdateManager.shared.cleanupWorkingDirectory()
             }
             await self?.executeBookUpdates(selectedItems: selectedItems)
         }
@@ -138,8 +142,16 @@ final class BookUpdateViewModel: @unchecked Sendable {
     @MainActor
     private func executeBookUpdates(selectedItems: [BookUpdateItem]) async {
         do {
+            let safetyContext = try await MaktabahBookUpdateSafety.preflight()
+            try MaktabahBookUpdateSafety.requireStagingCapacity(totalSelectedSize)
+            defer {
+                if (try? MaktabahBookUpdateSafety.requireCurrent(safetyContext)) != nil {
+                    BookUpdateManager.shared.cleanupWorkingDirectory()
+                }
+            }
             let authEntries = try await BookUpdateManager.shared.fetchAuthIndexEntriesIfNeeded(from: Self.authCSVURL)
-            let authIndexMap = Dictionary(uniqueKeysWithValues: authEntries.map { ($0.authId, $0) })
+            let authIndexMap = Dictionary(authEntries.map { ($0.authId, $0) }, uniquingKeysWith: { _, latest in latest })
+            try await MaktabahBookUpdateSafety.revalidate(safetyContext)
 
             let selectedContexts = createSelectedContexts(from: selectedItems)
             for context in selectedContexts {
@@ -152,6 +164,13 @@ final class BookUpdateViewModel: @unchecked Sendable {
                 maxConcurrentDownloads: 3
             )
 
+            guard stagedUpdates.count == selectedItems.count else {
+                updateFailureRequiresReview = true
+                progressMessage = "The download was incomplete. No book updates were applied. Reopen Books Updates after checking the library."
+                return
+            }
+            try await MaktabahBookUpdateSafety.revalidate(safetyContext)
+
             progressMessage = String(localized: .Library.downloadPhaseCompleted(stagedUpdates.count, selectedItems.count))
 
             let results = await processStagedUpdates(
@@ -162,6 +181,7 @@ final class BookUpdateViewModel: @unchecked Sendable {
             try await LibraryDataManager.shared.processBookUpdates(results)
             refreshAvailableUpdatesState()
         } catch {
+            updateFailureRequiresReview = true
             progressMessage = "Error: \(error.localizedDescription)"
             Logger.library.error("❌ [Perform Updates] Error: \(error.localizedDescription, privacy: .public)")
         }
@@ -191,6 +211,7 @@ final class BookUpdateViewModel: @unchecked Sendable {
         var processingCount = 0
 
         for context in selectedContexts {
+            if updateFailureRequiresReview { break }
             guard let stagedUpdate = stagedUpdates[context.index] else { continue }
 
             context.item.status = .processing
@@ -226,6 +247,7 @@ final class BookUpdateViewModel: @unchecked Sendable {
             }
             return result
         } catch {
+            updateFailureRequiresReview = true
             context.item.status = .failed(error.localizedDescription)
             refreshAvailableUpdatesState()
             Logger.library.error("[Update] Failed to update book \(context.item.id): \(error.localizedDescription, privacy: .public)")
