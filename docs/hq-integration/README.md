@@ -1,4 +1,10 @@
-# Build11201 source registration handoff
+# Build11201 integration evidence
+
+Current stage: five repair lanes composed; the real unsigned arm64 Maktabah-iOS app build passed at exact checkout `3918864d9e4d963fa8686aab48e53c34a933c771`. See [STAGE2_FINAL_REPORT.md](STAGE2_FINAL_REPORT.md) for executed source, generated dependency context, results and remaining runtime/device gates. Application source is `07d1cafa6c6bc27aaf299aa826d28a4c02090cb5`; subsequent validator/documentation commits must not be mistaken for the executed checkout.
+
+The original registration-only handoff below is historical and superseded by the owner-authorized stage2 composition and actual Apple execution.
+
+## Historical registration-only handoff
 
 [תומר | INT] [MAIN_SESSION] — 2026-11-15
 

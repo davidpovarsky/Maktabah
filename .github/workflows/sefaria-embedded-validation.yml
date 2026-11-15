@@ -105,6 +105,7 @@ jobs:
             build/hq-stage2/generated-privacy.diff
             build/hq-stage2/privacy-*.xcprivacy
             build/hq-stage2/ExpoModulesProvider.swift
+            build/hq-stage2/privacy-dependency-inputs/*.xcprivacy
           if-no-files-found: warn
 
   ui-sdk-check-only:

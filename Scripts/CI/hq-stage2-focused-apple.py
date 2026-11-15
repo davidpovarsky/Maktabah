@@ -269,6 +269,16 @@ def audit_generated_privacy(report, original_blob):
                 for reason in reasons:
                     evidence.setdefault((category, reason), []).append({"pod_source": pod, "path": str(candidate.relative_to(ROOT)), "sha256": digest(candidate)})
     added = validate_privacy_delta(plistlib.loads(before_bytes), plistlib.loads(after_bytes), evidence)
+    retained = OUT / "privacy-dependency-inputs"
+    retained.mkdir(exist_ok=True)
+    for pair in added:
+        for item in pair["dependency_inputs"]:
+            source = checked_path(ROOT, item["path"])
+            require(digest(source) == item["sha256"], "Dependency privacy input changed during audit")
+            destination = retained / (item["sha256"] + ".xcprivacy")
+            if not destination.exists():
+                shutil.copyfile(source, destination)
+            item["artifact_path"] = str(destination.relative_to(OUT))
     report.setdefault("generated_configuration", []).append({"path": path, "origin": "Original React Native CocoaPods privacy aggregation",
         "original_git_blob": original_blob, "original_sha256": hashlib.sha256(before_bytes).hexdigest(),
         "compiled_sha256": hashlib.sha256(after_bytes).hexdigest(), "all_other_declarations_unchanged": True,
