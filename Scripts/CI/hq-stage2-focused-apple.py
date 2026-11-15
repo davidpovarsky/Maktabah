@@ -167,6 +167,35 @@ def install_real_pods(report):
     shutil.copyfile(ROOT / "Podfile.lock", OUT / "resolved-Podfile.lock")
 
 
+def verify_actual_sources(report):
+    entries = subprocess.check_output(["git", "ls-tree", "-r", "-z", "HEAD", "--", "Source", "Vendor"], cwd=ROOT)
+    expected = {}
+    for entry in entries.split(b"\0"):
+        if not entry:
+            continue
+        meta, path = entry.split(b"\t", 1)
+        if meta.split()[1] == b"blob":
+            expected[path.decode()] = meta.split()[2].decode()
+    paths = list(expected)
+    actual = subprocess.check_output(["git", "hash-object", "--no-filters", "--stdin-paths"], cwd=ROOT,
+                                     input=("\n".join(paths) + "\n").encode()).decode().splitlines()
+    require(len(actual) == len(paths), "Actual source hash inventory incomplete")
+    mismatches = [path for path, blob in zip(paths, actual) if blob != expected[path]]
+    require(not mismatches, "Dependency setup changed tracked app input: " + ", ".join(mismatches[:10]))
+    report["actual_source_inputs_verified"] = len(paths)
+    (OUT / "actual-source-inputs.json").write_text(json.dumps(expected, indent=2) + "\n")
+    checkouts = ROOT / "build/SourcePackages/checkouts"
+    folders = {p.name.casefold(): p for p in checkouts.iterdir() if p.is_dir()}
+    report["actual_package_checkouts"] = {}
+    for identity, revision in report["package_pins"].items():
+        require(identity.casefold() in folders, "Pinned package checkout missing: " + identity)
+        folder = folders[identity.casefold()]
+        head = capture("git", "-C", str(folder), "rev-parse", "HEAD")
+        dirty = capture("git", "-C", str(folder), "status", "--porcelain")
+        require(head == revision and not dirty, "Pinned package source differs/dirty: " + identity)
+        report["actual_package_checkouts"][identity] = {"head": head, "status": "CLEAN"}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--preflight-only", action="store_true", help="Source/input closure only; no SDK or downloads")
@@ -199,6 +228,7 @@ def main():
         logged(["xcodebuild", "-resolvePackageDependencies", *common, "-onlyUsePackageVersionsFromResolvedFile"], "resolve-packages.log", report)
         lock = ROOT / "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
         require(pins(lock) == report["package_pins"], "Xcode changed committed package revisions")
+        verify_actual_sources(report)
         command = ["xcodebuild", "build", *common, "-configuration", "Debug", "-sdk", "iphonesimulator",
                    "-destination", "generic/platform=iOS Simulator", "-derivedDataPath", "build/hq-stage2/DerivedData",
                    "-disableAutomaticPackageResolution", "-jobs", "2", "-showBuildTimingSummary",
