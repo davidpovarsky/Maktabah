@@ -211,6 +211,75 @@ import OtzariaUIRouting
         XCTAssertEqual(f.sink.calls, 1); XCTAssertEqual(f.driver.applied, 1)
     }
 
+    func testReaderExecutionDoesNotReplaceOwnerAtBackendRead() async throws {
+        for mode in 0..<3 {
+            let f = try await PublicConsumerFixture(.otzaria, reader: true)
+            defer { f.authority.release(f.admitted) }
+            guard case .reader(let retained) = try await f.bind() else { return XCTFail("Missing retained route") }
+            let replacement = NavigationTestDriver(sceneID: f.sceneID, backend: f.backend)
+            replacement.actualState = f.driver.actualState; replacement.targetTabID = f.driver.targetTabID
+            let before = f.backend.asynchronousSnapshots
+            f.backend.onSynchronousSnapshot = {
+                f.backend.onSynchronousSnapshot = nil
+                f.orchestrator.unregister(f.driver)
+                if mode != 0 {
+                    do { try f.orchestrator.register(mode == 1 ? replacement : f.driver) }
+                    catch { XCTFail("Fixture owner replacement failed: \(error)") }
+                }
+            }
+            f.sink.onOpen = { issued in try await Self.commitActualSink(f, retained: retained, issued: issued) }
+            do {
+                _ = try await f.orchestrator.executeReaderPlan(retained, originalInvocation: f.invocation, admitted: f.admitted)
+                XCTFail("Detached reader execution continued under a replacement owner")
+            } catch { XCTAssertEqual((error as? UIRouteError)?.code, "scene_lifetime_changed") }
+            XCTAssertEqual(f.backend.asynchronousSnapshots, before)
+            XCTAssertEqual(f.sink.calls, 0); XCTAssertEqual(f.driver.applied, 0); XCTAssertEqual(replacement.applied, 0)
+            XCTAssertEqual(try f.authority.navigationState(sceneID: f.sceneID.rawValue).authorityRevision, f.admitted.authorityRevision)
+        }
+    }
+
+    func testReaderExecutionKeepsOriginalOwnerDuringActualSinkGuard() async throws {
+        let f = try await PublicConsumerFixture(.otzaria, reader: true)
+        defer { f.authority.release(f.admitted) }
+        guard case .reader(let retained) = try await f.bind() else { return XCTFail("Missing retained route") }
+        var detached = false
+        f.backend.onSynchronousSnapshot = {
+            guard f.driver.command != nil, !detached else { return }
+            detached = true; f.backend.onSynchronousSnapshot = nil
+            f.orchestrator.unregister(f.driver)
+            do { try f.orchestrator.register(f.driver) }
+            catch { XCTFail("Fixture owner re-registration failed: \(error)") }
+        }
+        f.sink.onOpen = { issued in try await Self.commitActualSink(f, retained: retained, issued: issued) }
+        let result = try await f.orchestrator.executeReaderPlan(retained, originalInvocation: f.invocation, admitted: f.admitted)
+        XCTAssertNotEqual(result.status, .completed); XCTAssertTrue(detached)
+        XCTAssertEqual(f.sink.calls, 1); XCTAssertEqual(f.driver.applied, 0); XCTAssertNil(f.driver.command)
+    }
+
+    func testPostCoreOwnerRevokedInsideSynchronousBackendReadCannotComplete() async throws {
+        let clock = ReaderBudgetTestClock(now: 1_000_000_000)
+        let f = try await PublicConsumerFixture(.otzaria, reader: true, clock: clock, deadline: 3_000_000_000)
+        defer { f.authority.release(f.admitted) }
+        guard case .reader(let retained) = try await f.bind() else { return XCTFail("Missing retained route") }
+        clock.advance(to: 2_500_000_001)
+        var revoked = false
+        f.sink.onOpen = { issued in try await Self.commitActualSink(f, retained: retained, issued: issued) }
+        clock.onCancellation(of: f.invocation.deadlineUptimeNanoseconds) {
+            f.backend.onSynchronousSnapshot = {
+                f.backend.onSynchronousSnapshot = nil; revoked = true
+                do { try f.authority.invalidate(f.lease) }
+                catch { f.authority.unmount(f.lease); XCTFail("Fixture authority revocation failed: \(error)") }
+            }
+        }
+        do {
+            _ = try await f.orchestrator.executeReaderPlan(retained, originalInvocation: f.invocation, admitted: f.admitted)
+            XCTFail("A native owner revoked by the final synchronous backend read escaped as completed")
+        } catch { XCTAssertEqual((error as? UIRouteError)?.code, "native_effect_uncertain") }
+        XCTAssertTrue(revoked)
+        XCTAssertEqual(f.sink.calls, 1); XCTAssertEqual(f.driver.applied, 1)
+        XCTAssertThrowsError(try f.authority.navigationState(sceneID: f.sceneID.rawValue))
+    }
+
     private static func commitActualSink(_ f: PublicConsumerFixture, retained: UIValidatedRoute,
                                          issued: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement {
         let scene = try await f.directory.currentScene(sceneID: f.sceneID, context: f.context, invocation: issued.invocation)

@@ -1,0 +1,57 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/3] Write sources
+[3/4] Emitting module ChavrusaUIRoutingHost
+[4/5] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[6/14] Emitting module ChavrusaUIRoutingHostTests
+[7/18] Compiling ChavrusaUIRoutingHostTests NativeBindingSourceObservationTests.swift
+[8/18] Compiling ChavrusaUIRoutingHostTests NativePublicPreparedCommitTests.swift
+[9/18] Compiling ChavrusaUIRoutingHostTests NativeReaderPlanBudgetTests.swift
+[10/18] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[11/14] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[12/14] Write Objects.LinkFileList
+[13/14] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (27.59s)
+Test Suite 'Selected tests' started at 2026-11-15 18:45:41.800
+
+Test Suite 'NativePublicPreparedCommitTests' started at 2026-11-15 18:45:41.834
+
+Test Case 'NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies' started at 2026-11-15 18:45:41.834
+
+Test Case 'NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies' passed (1.668 seconds)
+
+Test Suite 'NativePublicPreparedCommitTests' passed at 2026-11-15 18:45:43.503
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.668 (1.668) seconds
+
+Test Suite 'NativeReaderPlanBudgetTests' started at 2026-11-15 18:45:43.503
+
+Test Case 'NativeReaderPlanBudgetTests.testPostCoreOwnerRevokedInsideSynchronousBackendReadCannotComplete' started at 2026-11-15 18:45:43.503
+
+Test Case 'NativeReaderPlanBudgetTests.testPostCoreOwnerRevokedInsideSynchronousBackendReadCannotComplete' passed (0.245 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead' started at 2026-11-15 18:45:43.748
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead' passed (0.644 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionKeepsOriginalOwnerDuringActualSinkGuard' started at 2026-11-15 18:45:44.392
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionKeepsOriginalOwnerDuringActualSinkGuard' passed (0.217 seconds)
+
+Test Suite 'NativeReaderPlanBudgetTests' passed at 2026-11-15 18:45:44.609
+
+	 Executed 3 tests, with 0 failures (0 unexpected) in 1.106 (1.106) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 18:45:44.609
+
+	 Executed 4 tests, with 0 failures (0 unexpected) in 2.774 (2.774) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.002 seconds.
+

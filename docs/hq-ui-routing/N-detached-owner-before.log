@@ -1,0 +1,107 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/4] Write sources
+[3/5] Emitting module ChavrusaUIRoutingHostTests
+[4/7] Compiling ChavrusaUIRoutingHostTests NativePublicPreparedCommitTests.swift
+[5/7] Compiling ChavrusaUIRoutingHostTests NativeReaderPlanBudgetTests.swift
+[6/8] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[7/13] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[8/14] Write sources
+[10/15] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[11/17] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[12/17] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[13/18] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[14/19] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[15/19] Write sources
+[17/20] Emitting module ChavrusaUIRoutingHostPackageTests
+[18/21] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[19/21] Write Objects.LinkFileList
+[20/21] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (49.04s)
+Test Suite 'Selected tests' started at 2026-11-15 18:42:43.756
+
+Test Suite 'NativePublicPreparedCommitTests' started at 2026-11-15 18:42:43.759
+
+Test Case 'NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies' started at 2026-11-15 18:42:43.760
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativePublicPreparedCommitTests.swift:149: error: NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Old owner mutated after its binding was detached
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativePublicPreparedCommitTests.swift:149: error: NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Old owner mutated after its binding was detached
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativePublicPreparedCommitTests.swift:149: error: NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Old owner mutated after its binding was detached
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativePublicPreparedCommitTests.swift:149: error: NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Old owner mutated after its binding was detached
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativePublicPreparedCommitTests.swift:149: error: NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Old owner mutated after its binding was detached
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativePublicPreparedCommitTests.swift:149: error: NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Old owner mutated after its binding was detached
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativePublicPreparedCommitTests.swift:149: error: NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Old owner mutated after its binding was detached
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativePublicPreparedCommitTests.swift:149: error: NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Old owner mutated after its binding was detached
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativePublicPreparedCommitTests.swift:149: error: NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies : XCTAssertEqual failed: ("1") is not equal to ("0") - Old owner mutated after its binding was detached
+
+Test Case 'NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies' failed (1.701 seconds)
+
+Test Suite 'NativePublicPreparedCommitTests' failed at 2026-11-15 18:42:45.460
+
+	 Executed 1 test, with 9 failures (0 unexpected) in 1.701 (1.701) seconds
+
+Test Suite 'NativeReaderPlanBudgetTests' started at 2026-11-15 18:42:45.460
+
+Test Case 'NativeReaderPlanBudgetTests.testPostCoreOwnerRevokedInsideSynchronousBackendReadCannotComplete' started at 2026-11-15 18:42:45.460
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:276: error: NativeReaderPlanBudgetTests.testPostCoreOwnerRevokedInsideSynchronousBackendReadCannotComplete : failed - A native owner revoked by the final synchronous backend read escaped as completed
+
+Test Case 'NativeReaderPlanBudgetTests.testPostCoreOwnerRevokedInsideSynchronousBackendReadCannotComplete' failed (0.176 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead' started at 2026-11-15 18:42:45.636
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:233: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : failed - Detached reader execution continued under a replacement owner
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:235: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : XCTAssertEqual failed: ("7") is not equal to ("3") - 
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:236: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : XCTAssertEqual failed: ("1") is not equal to ("0") - 
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:233: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : failed - Detached reader execution continued under a replacement owner
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:235: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : XCTAssertEqual failed: ("8") is not equal to ("3") - 
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:236: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : XCTAssertEqual failed: ("1") is not equal to ("0") - 
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:236: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : XCTAssertEqual failed: ("1") is not equal to ("0") - 
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:233: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : failed - Detached reader execution continued under a replacement owner
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:235: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : XCTAssertEqual failed: ("10") is not equal to ("3") - 
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:236: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : XCTAssertEqual failed: ("1") is not equal to ("0") - 
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:236: error: NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead : XCTAssertEqual failed: ("1") is not equal to ("0") - 
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead' failed (0.525 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionKeepsOriginalOwnerDuringActualSinkGuard' started at 2026-11-15 18:42:46.161
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeReaderPlanBudgetTests.swift:256: error: NativeReaderPlanBudgetTests.testReaderExecutionKeepsOriginalOwnerDuringActualSinkGuard : XCTAssertEqual failed: ("1") is not equal to ("0") - 
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionKeepsOriginalOwnerDuringActualSinkGuard' failed (0.268 seconds)
+
+Test Suite 'NativeReaderPlanBudgetTests' failed at 2026-11-15 18:42:46.429
+
+	 Executed 3 tests, with 13 failures (0 unexpected) in 0.969 (0.969) seconds
+
+Test Suite 'Selected tests' failed at 2026-11-15 18:42:46.429
+
+	 Executed 4 tests, with 22 failures (0 unexpected) in 2.669 (2.669) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

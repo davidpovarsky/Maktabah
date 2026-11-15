@@ -123,6 +123,36 @@ import OtzariaUIRouting
         XCTAssertEqual(failure.code, "native_effect_uncertain")
         XCTAssertEqual(f.driver.applied, 1); XCTAssertNil(f.driver.command)
     }
+
+    /// P's independent exact7be finding, extended to every backend and same-
+    /// instance re-registration (identity alone cannot preserve the old token).
+    func testDetachedDriverAfterCanonicalGuardNeverApplies() async throws {
+        for backend in ActionBackendID.allCases {
+            for mode in 0..<3 {
+                let f = try await PublicConsumerFixture(backend), prepared = try await f.surfacePlan()
+                defer { f.authority.release(f.admitted) }
+                let replacement = NavigationTestDriver(sceneID: f.sceneID, backend: f.backend)
+                replacement.actualState = f.driver.actualState; replacement.targetTabID = f.driver.targetTabID
+                var detached = false
+                f.backend.onSynchronousSnapshot = {
+                    guard f.driver.command != nil, f.driver.applied == 0, !detached else { return }
+                    detached = true; f.backend.onSynchronousSnapshot = nil
+                    f.orchestrator.unregister(f.driver)
+                    if mode != 0 {
+                        do { try f.orchestrator.register(mode == 1 ? replacement : f.driver) }
+                        catch { XCTFail("Fixture re-registration failed: \(error)") }
+                    }
+                }
+                let result = await f.orchestrator.commitPrepared(prepared, admitted: f.admitted)
+                XCTAssertTrue(detached)
+                if case .acknowledged = result { XCTFail("Detached owner completed") }
+                XCTAssertEqual(f.driver.applied, 0, "Old owner mutated after its binding was detached")
+                XCTAssertEqual(replacement.applied, 0); XCTAssertNil(f.driver.command)
+                XCTAssertEqual(f.directory.pendingObservationCount, 0)
+                XCTAssertEqual(try f.authority.navigationState(sceneID: f.sceneID.rawValue).authorityRevision, f.admitted.authorityRevision)
+            }
+        }
+    }
 }
 
 @MainActor final class PublicConsumerFixture {
