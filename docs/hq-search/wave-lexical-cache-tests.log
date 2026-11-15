@@ -1,0 +1,9 @@
+   Compiling maktabah_zayit_search v0.2.0 (C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Vendor\ZayitSearchPort\Rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.94s
+     Running unittests src\lib.rs (Vendor\ZayitSearchPort\Rust\target\debug\deps\maktabah_zayit_search-1395e35c8fad4102.exe)
+
+running 1 test
+test magic_dictionary_index::tests::repeated_ambiguous_lookup_retains_the_selected_base_meaning ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 4 filtered out; finished in 2.61s
+

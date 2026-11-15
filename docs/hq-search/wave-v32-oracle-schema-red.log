@@ -1,0 +1,18 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.31s
+     Running tests\fixture_index_search.rs (Vendor\ZayitSearchPort\Rust\target\debug\deps\fixture_index_search-46273eb65f97866c.exe)
+
+running 1 test
+
+thread 'production_v32_queries_and_paging_through_real_c_abi' (1136) panicked at tests\fixture_index_search.rs:377:70:
+called `Result::unwrap()` on an `Err` value: SqlInputError { error: Error { code: Unknown, extended_code: 1 }, msg: "no such column: b.filePath", sql: "SELECT l.bookId,l.lineIndex,COALESCE(NULLIF(b.filePath,''),'book:'||b.id) FROM line l JOIN book b ON b.id=l.bookId WHERE l.id=?1", offset: 44 }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test production_v32_queries_and_paging_through_real_c_abi ... FAILED
+
+failures:
+
+failures:
+    production_v32_queries_and_paging_through_real_c_abi
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 15.84s
+
+error: test failed, to rerun pass `--test fixture_index_search`

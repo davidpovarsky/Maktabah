@@ -46,7 +46,12 @@ impl MagicDictionaryIndex {
             .find(|e| e.base.iter().any(|b| b == &normalized))
             .cloned()
             .or_else(|| values.iter().max_by_key(|e| e.surface.len()).cloned());
-        self.cache.lock().put(normalized, values);
+        // Cache the selected meaning, not hash-map-ordered candidates. Returning
+        // candidates.first() on a cache hit can change an identical query's
+        // meaning (and turn its own scoped/paged follow-up into zero results).
+        self.cache
+            .lock()
+            .put(normalized, best.clone().into_iter().collect());
         Ok(best)
     }
 
@@ -172,6 +177,65 @@ impl SimpleLru {
         while self.map.len() > self.cap {
             if let Some(old) = self.order.pop_front() {
                 self.map.remove(&old);
+            }
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn repeated_ambiguous_lookup_retains_the_selected_base_meaning() {
+        let fixture = tempfile::tempdir().unwrap();
+        let path = fixture.path().join("lexical.db");
+        let conn = Connection::open(&path).unwrap();
+        conn.execute_batch("CREATE TABLE base(id INTEGER PRIMARY KEY,value TEXT); CREATE TABLE surface(id INTEGER PRIMARY KEY,base_id INTEGER,value TEXT); CREATE TABLE variant(id INTEGER PRIMARY KEY,value TEXT); CREATE TABLE surface_variant(surface_id INTEGER,variant_id INTEGER);").unwrap();
+        for index in 0..64_i64 {
+            let token = format!("מילה{index}");
+            let selected = index * 2 + 1;
+            let alternative = selected + 1;
+            conn.execute(
+                "INSERT INTO base VALUES(?1,?2)",
+                rusqlite::params![selected, token],
+            )
+            .unwrap();
+            conn.execute(
+                "INSERT INTO base VALUES(?1,?2)",
+                rusqlite::params![alternative, format!("אחר{index}")],
+            )
+            .unwrap();
+            conn.execute(
+                "INSERT INTO surface VALUES(?1,?1,?2)",
+                rusqlite::params![selected, token],
+            )
+            .unwrap();
+            conn.execute(
+                "INSERT INTO surface VALUES(?1,?1,?2)",
+                rusqlite::params![alternative, format!("חלופה{index}")],
+            )
+            .unwrap();
+            conn.execute(
+                "INSERT INTO variant VALUES(?1,?2)",
+                rusqlite::params![alternative, token],
+            )
+            .unwrap();
+            conn.execute("INSERT INTO surface_variant VALUES(?1,?1)", [alternative])
+                .unwrap();
+        }
+        drop(conn);
+        let dictionary = MagicDictionaryIndex::open(path).unwrap();
+        for index in 0..64 {
+            let token = format!("מילה{index}");
+            let first = dictionary.expansion_for(&token).unwrap().unwrap();
+            assert!(first.base.contains(&token));
+            for _ in 0..3 {
+                assert_eq!(
+                    dictionary.expansion_for(&token).unwrap().as_ref(),
+                    Some(&first),
+                    "warm lexical cache changed the selected meaning for {token}"
+                );
             }
         }
     }

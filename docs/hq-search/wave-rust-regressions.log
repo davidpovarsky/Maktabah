@@ -1,0 +1,47 @@
+   Compiling maktabah_zayit_search v0.2.0 (C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Vendor\ZayitSearchPort\Rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.76s
+     Running unittests src\lib.rs (Vendor\ZayitSearchPort\Rust\target\debug\deps\maktabah_zayit_search-1395e35c8fad4102.exe)
+
+running 5 tests
+test hebrew_text_utils::tests::normalizes_hebrew ... ok
+test search_query_parser::tests::keeps_acronyms ... ok
+test search_query_parser::tests::parses_exact ... ok
+test snippet_builder::tests::highlights_pointed_hebrew_without_splitting_utf8 ... ok
+test magic_dictionary_index::tests::repeated_ambiguous_lookup_retains_the_selected_base_meaning ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.60s
+
+     Running unittests src\bin\zayit_index_builder.rs (Vendor\ZayitSearchPort\Rust\target\debug\deps\zayit_index_builder-ad5824ede3409750.exe)
+
+running 5 tests
+test tests::small_text_stays_in_one_chunk ... ok
+test tests::large_text_is_split ... ok
+test tests::chunks_preserve_all_content_in_order ... ok
+test tests::chunks_are_never_empty ... ok
+test tests::hebrew_and_utf8_remain_valid ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src\bin\zayit_query.rs (Vendor\ZayitSearchPort\Rust\target\debug\deps\zayit_query-27255f68a52b1670.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\fixture_index_search.rs (Vendor\ZayitSearchPort\Rust\target\debug\deps\fixture_index_search-46273eb65f97866c.exe)
+
+running 2 tests
+test production_v32_queries_and_paging_through_real_c_abi ... ignored, Requires explicitly reconstructed and SHA256-verified isolated production v32 fixture
+test builds_and_searches_a_real_sqlite_fixture ... ok
+
+test result: ok. 1 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 2.53s
+
+     Running tests\line_decoder_tests.rs (Vendor\ZayitSearchPort\Rust\target\debug\deps\line_decoder_tests-3e7674110a7f2925.exe)
+
+running 3 tests
+test decodes_plain_text_and_blob_without_dictionary ... ok
+test decodes_zstd_dictionary_compressed_blob ... ok
+test line_decoder_loads_from_sqlite_with_various_schemas ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+

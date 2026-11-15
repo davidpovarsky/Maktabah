@@ -1,0 +1,19 @@
+   Compiling maktabah_zayit_search v0.2.0 (C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Vendor\ZayitSearchPort\Rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 11.97s
+     Running tests\fixture_index_search.rs (Vendor\ZayitSearchPort\Rust\target\debug\deps\fixture_index_search-46273eb65f97866c.exe)
+
+running 1 test
+
+thread 'production_v32_queries_and_paging_through_real_c_abi' (6880) panicked at tests\fixture_index_search.rs:372:13:
+assertion failed: !scoped.hits.is_empty()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test production_v32_queries_and_paging_through_real_c_abi ... FAILED
+
+failures:
+
+failures:
+    production_v32_queries_and_paging_through_real_c_abi
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 10.36s
+
+error: test failed, to rerun pass `--test fixture_index_search`
