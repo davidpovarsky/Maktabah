@@ -223,7 +223,7 @@ for index, scenario in enumerate(scenarios):
         environment = os.environ.copy()
         container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
         environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
-        if runtime27_contract and runtime27_contract.get("hid_comparison"):
+        if runtime27_contract and runtime27_contract.get("hid_comparison") and scenario.get("hid_comparison", True):
             tools = json.loads((artifacts / "runtime27/hid-tools.json").read_text())
             hid_comparison = runpy.run_path("Scripts/CI/runtime27-hid.py")["HIDComparison"](
                 udid, container, label, tools, artifacts / "runtime27")

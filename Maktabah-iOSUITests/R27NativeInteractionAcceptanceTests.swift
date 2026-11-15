@@ -173,6 +173,19 @@ final class R27NativePadTests: R27NativeUIBase {
                           "The same hardware-key API must actually edit the focused input before testing Escape")
         XCTAssertFalse(valueAfterHardwareKey.isEmpty)
         XCTAssertNotEqual(valueAfterHardwareKey, input.placeholderValue)
+        // The native input method can leave a character-choice popup after
+        // HID A. Complete the already-calibrated A/Backspace pair before the
+        // independent original pointer-owned clear-control assertion.
+        try sendNativeHID(.keyboardDeleteOrBackspace)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in MainActor.assumeIsolated {
+                let value = input.value as? String
+                return value?.isEmpty == true || value == input.placeholderValue
+            } }, object: nil
+        )], timeout: 15), .completed)
+        input.typeKey("a", modifierFlags: [])
+        XCTAssertFalse((input.value as? String ?? "").isEmpty)
+        XCTAssertNotEqual(input.value as? String, input.placeholderValue)
         tapInWindow(palette.buttons["xmark.circle.fill"])
         let clearedValue = try XCTUnwrap(input.value as? String)
         XCTAssertTrue(clearedValue.isEmpty || clearedValue == input.placeholderValue,
@@ -452,6 +465,20 @@ final class R27NativePadTests: R27NativeUIBase {
     private func restoreNativeWindow(to originalSize: CGSize) {
         let window = app.windows.firstMatch
         if abs(window.frame.width - originalSize.width) < 2 && abs(window.frame.height - originalSize.height) < 2 { return }
+        // An assertion can abort with the test palette and a native character
+        // chooser still active. Close those through real controls before
+        // invoking system Window Controls, so failure cannot poison siblings.
+        let paletteInput = app.textFields.matching(NSPredicate(
+            format: "placeholderValue == %@", "חפש ספר בספרייה…"
+        ))
+        if paletteInput.count == 1 {
+            try? sendNativeHID(.keyboardDeleteOrBackspace)
+            let close = app.buttons["command-palette-close"]
+            if close.exists && close.isHittable { close.tap() }
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "count == 0"), object: paletteInput
+            )], timeout: 15), .completed, "Cleanup must close the actual palette before native window restoration")
+        }
         let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
         // This public accessibility identifier is present in the actual failed
         // restore's SpringBoard hierarchy. App-local (42,32) was not this control.

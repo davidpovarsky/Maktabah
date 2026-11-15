@@ -1,0 +1,87 @@
+{
+  "baseline_run": 43688380348,
+  "compared_actual_run": 43760209604,
+  "compared_source": "c42e537ca9e2b22d7693b9a935386314ebbf73ce",
+  "status": "ACTUAL_TOOLCHAIN_DEPENDENCY_FIXTURE_AND_GENERATED_PROJECT_MATCH",
+  "comparisons": {
+    "xcode": true,
+    "swift": true,
+    "sdk_path": true,
+    "sdk_version": true,
+    "project_sha256": true,
+    "package_resolved_sha256": true,
+    "package_pins": true,
+    "native_context.gitlink": true,
+    "native_context.npm_lock_sha256": true,
+    "native_context.podfile_sha256": true,
+    "native_context.node": true,
+    "native_context.cocoapods": true,
+    "native_context.ruby": true,
+    "native_context.pod_lock_sha256": true,
+    "native_context.staged_workspace_package_lock_sha256": true
+  },
+  "fixture_comparisons": {
+    "11-reader": {
+      "database_sha256": true,
+      "schema": true,
+      "profileID": true,
+      "profileVersion": true,
+      "expected_compressed_sha256": true,
+      "selected": true
+    },
+    "11-window": {
+      "database_sha256": true,
+      "schema": true,
+      "profileID": true,
+      "profileVersion": true,
+      "expected_compressed_sha256": true,
+      "selected": true
+    },
+    "phone": {
+      "database_sha256": true,
+      "schema": true,
+      "profileID": true,
+      "profileVersion": true,
+      "expected_compressed_sha256": true,
+      "selected": true
+    }
+  },
+  "generated_project": {
+    "object_count": 2206,
+    "full_recursive_equality_after_ID_reference_bijection": true,
+    "uuid_mapping": {
+      "74B32CD6A2386864F3551EB2": "CEB7E04004C6F75A2EF9552D",
+      "E3FA4A6CB3EAA3DD49F12DFB": "3B00259E8F4B19B2353ACEC6",
+      "431E331486ED8D0A5A0901E8": "89057AF8910E865B2BF12021",
+      "D8CA916EC0FD44A79CC13902": "137CF612DC321DED8AF7D086",
+      "B3D5EF793FEF03FD9AB96C69": "9A92DD782B56B2C04B1F8673",
+      "14767886B312022B3C5F472B": "2A89FE913B43F3AFFE72F3A8",
+      "30242D1E3E3C5F30C0E67070": "22557735832C3678CDABBF0C",
+      "4146BC2775E654B3DA86CD45": "AE070C35FCA6F2A8AD44A273",
+      "1C533124990FD705EB737B0B": "6987F1A380DD9499325A5519",
+      "B68C703BFE69611C5690A96A": "86173D9D7687EF2701C6DC71",
+      "2AE50A2EA30E099CDCF4910F": "EAFC4C4BC94B098FAFEC02FE",
+      "5364D96C889322808FEC1813": "650B33C4F8509ADEE8CAD5D9",
+      "AA5FC03059E274A987AB4045": "9B906D819DFB982284DEA269",
+      "949A00875321D0030F21B84B": "8A03607DD52AB82509B2D895",
+      "BA56A6175E9242EAED5F77DF": "9CF14068E6BFE2D6583FF5D3"
+    },
+    "ignored_fields": [],
+    "arrays_order_preserved": true,
+    "baseline_parsed_sha256": "3a26858da37850ae19254babe58f409fa2e307932548d9f579e4495b76d80744",
+    "current_parsed_sha256": "181b391e7db1066af915a985e26fd5fa432aa0f9a766ebba6470e0dcc7a419c3",
+    "current_raw_sha256": "4596602bbe17b33d938487b4ce0dec34b9d43a31e3c65c6094d31ec8917b9623"
+  },
+  "current_actual_ipad": {
+    "architecture": "arm64",
+    "deviceId": "2ACCA3B8-A012-42D4-AAD8-69F1644F6F1F",
+    "deviceName": "Faithful 11-inch c5e7fb04",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "source_compatibility": "HEALTHY_SOURCE_COMPATIBILITY_c42e.json; exact historical8+launch retained and canonical Window UIoracles verified after declared HID delivery normalization. New primary-scoped native body pan remains UNACCEPTED; context equality is not UI success.",
+  "fresh_ui_passes_from_this_check": 0,
+  "reuse_limit": "Historical8 remain dated actual passes. This proves compatibility of compared context; does not turn them into fresh execution or certify failed/new UI, physical device or release."
+}

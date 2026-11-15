@@ -5,7 +5,7 @@
   "app_source": "c42e537ca9e2b22d7693b9a935386314ebbf73ce",
   "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
   "independent_qa_thread": null,
-  "scope": "U_SCOPED_NATIVE_SIDEBAR_PAN_AND_CALIBRATED_HID_SEVEN",
+  "scope": "U_READER_WINDOW_ISOLATION_AND_NATIVE_INPUT_METHOD_COMMIT",
   "native_cases_executed": 0,
   "required_nonzero_cases": 15,
   "expected_per_device": {
@@ -111,7 +111,7 @@
     "data_profile": "real native-installed miniTest10",
     "bootstrap": "realUI; never -smokeBypassBootstrap",
     "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
-    "scheduling": "One U-owned existing manual CI; one fresh disposable11-inch simulator;7selected native cases. Original XCTest Escape case unchanged, separate HID comparison, exact reader rotation and all4Sidebar cases fresh. Historical8 not fresh; other lanes/runners untouched."
+    "scheduling": "One existing manual job/build; sequential fresh disposable11-reader5cases and11-window2cases, each genuine fixture. Reader group independent of window resize/cleanup; no test retry. HID only window group. AppSourcec42 unchanged; privacy-only correction has no extra native request."
   },
   "required_test_environment": {
     "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
@@ -186,17 +186,25 @@
   ],
   "execution_groups": [
     {
-      "label": "11-window",
+      "label": "11-reader",
       "size": "11",
       "case_ids": [
-        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
         "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
-        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
         "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
         "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
-      ]
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison"
+      ],
+      "hid_comparison": true
     }
   ],
   "execution_case_ids": [
