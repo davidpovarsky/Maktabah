@@ -1,0 +1,277 @@
+[0/1] Planning build
+Building for debugging...
+[0/11] Write swift-version-2807070033DA82CF.txt
+[1/12] Write sources
+[2/12] Copying Resources
+[4/12] Emitting module OtzariaUIRouting
+[5/15] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[6/15] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[7/15] Compiling OtzariaUIRouting UIDiscoveryCancellationScope.swift
+[8/16] Compiling OtzariaUIRouting UIRouteCodec.swift
+[9/17] Wrapping AST for OtzariaUIRouting for debugging
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[11/18] Emitting module OtzariaUIRoutingTests
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:131:15: error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+129 |     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement { throw ActionPortError.unavailable }
+
+130 | }
+
+131 | private actor DiscoveryHost: UIDestinationEligibilityPort {
+
+    |               |- error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+    |               `- note: add stubs for conformance
+
+132 |     enum Behavior: Sendable { case ready, unsupported, notReady, denied, staleRevision, staleBackend, wrongScene, blocked }
+
+133 |     let behavior: Behavior
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift:105:10: note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+103 |     /// uncooperative child. Native UI03 owns bounded admission, not Core's worker
+
+104 |     /// limit; this package creates no detached worker or independent executor.
+
+105 |     func currentScene(sceneID: UIStableID, context: ActionExecutionContext,
+
+    |          `- note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+106 |                       invocation: ActionPortInvocation) async throws -> UISceneSnapshot
+
+107 |     /// Host-owned variant/readiness checks, additionally gated by Core discovery.
+
+[12/25] Compiling OtzariaUIRoutingTests CodecTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:131:15: error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+129 |     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement { throw ActionPortError.unavailable }
+
+130 | }
+
+131 | private actor DiscoveryHost: UIDestinationEligibilityPort {
+
+    |               |- error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+    |               `- note: add stubs for conformance
+
+132 |     enum Behavior: Sendable { case ready, unsupported, notReady, denied, staleRevision, staleBackend, wrongScene, blocked }
+
+133 |     let behavior: Behavior
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift:105:10: note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+103 |     /// uncooperative child. Native UI03 owns bounded admission, not Core's worker
+
+104 |     /// limit; this package creates no detached worker or independent executor.
+
+105 |     func currentScene(sceneID: UIStableID, context: ActionExecutionContext,
+
+    |          `- note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+106 |                       invocation: ActionPortInvocation) async throws -> UISceneSnapshot
+
+107 |     /// Host-owned variant/readiness checks, additionally gated by Core discovery.
+
+[13/25] Compiling OtzariaUIRoutingTests GoldenAPITests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:131:15: error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+129 |     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement { throw ActionPortError.unavailable }
+
+130 | }
+
+131 | private actor DiscoveryHost: UIDestinationEligibilityPort {
+
+    |               |- error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+    |               `- note: add stubs for conformance
+
+132 |     enum Behavior: Sendable { case ready, unsupported, notReady, denied, staleRevision, staleBackend, wrongScene, blocked }
+
+133 |     let behavior: Behavior
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift:105:10: note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+103 |     /// uncooperative child. Native UI03 owns bounded admission, not Core's worker
+
+104 |     /// limit; this package creates no detached worker or independent executor.
+
+105 |     func currentScene(sceneID: UIStableID, context: ActionExecutionContext,
+
+    |          `- note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+106 |                       invocation: ActionPortInvocation) async throws -> UISceneSnapshot
+
+107 |     /// Host-owned variant/readiness checks, additionally gated by Core discovery.
+
+[14/25] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:131:15: error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+129 |     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement { throw ActionPortError.unavailable }
+
+130 | }
+
+131 | private actor DiscoveryHost: UIDestinationEligibilityPort {
+
+    |               |- error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+    |               `- note: add stubs for conformance
+
+132 |     enum Behavior: Sendable { case ready, unsupported, notReady, denied, staleRevision, staleBackend, wrongScene, blocked }
+
+133 |     let behavior: Behavior
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift:105:10: note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+103 |     /// uncooperative child. Native UI03 owns bounded admission, not Core's worker
+
+104 |     /// limit; this package creates no detached worker or independent executor.
+
+105 |     func currentScene(sceneID: UIStableID, context: ActionExecutionContext,
+
+    |          `- note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+106 |                       invocation: ActionPortInvocation) async throws -> UISceneSnapshot
+
+107 |     /// Host-owned variant/readiness checks, additionally gated by Core discovery.
+
+[15/25] Compiling OtzariaUIRoutingTests DiscoveryReviewRegressionTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:131:15: error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+129 |     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement { throw ActionPortError.unavailable }
+
+130 | }
+
+131 | private actor DiscoveryHost: UIDestinationEligibilityPort {
+
+    |               |- error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+    |               `- note: add stubs for conformance
+
+132 |     enum Behavior: Sendable { case ready, unsupported, notReady, denied, staleRevision, staleBackend, wrongScene, blocked }
+
+133 |     let behavior: Behavior
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift:105:10: note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+103 |     /// uncooperative child. Native UI03 owns bounded admission, not Core's worker
+
+104 |     /// limit; this package creates no detached worker or independent executor.
+
+105 |     func currentScene(sceneID: UIStableID, context: ActionExecutionContext,
+
+    |          `- note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+106 |                       invocation: ActionPortInvocation) async throws -> UISceneSnapshot
+
+107 |     /// Host-owned variant/readiness checks, additionally gated by Core discovery.
+
+[16/25] Compiling OtzariaUIRoutingTests DiscoveryTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:131:15: error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+129 |     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement { throw ActionPortError.unavailable }
+
+130 | }
+
+131 | private actor DiscoveryHost: UIDestinationEligibilityPort {
+
+    |               |- error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+    |               `- note: add stubs for conformance
+
+132 |     enum Behavior: Sendable { case ready, unsupported, notReady, denied, staleRevision, staleBackend, wrongScene, blocked }
+
+133 |     let behavior: Behavior
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift:105:10: note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+103 |     /// uncooperative child. Native UI03 owns bounded admission, not Core's worker
+
+104 |     /// limit; this package creates no detached worker or independent executor.
+
+105 |     func currentScene(sceneID: UIStableID, context: ActionExecutionContext,
+
+    |          `- note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+106 |                       invocation: ActionPortInvocation) async throws -> UISceneSnapshot
+
+107 |     /// Host-owned variant/readiness checks, additionally gated by Core discovery.
+
+[17/25] Compiling OtzariaUIRoutingTests RegistryTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:131:15: error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+129 |     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement { throw ActionPortError.unavailable }
+
+130 | }
+
+131 | private actor DiscoveryHost: UIDestinationEligibilityPort {
+
+    |               |- error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+    |               `- note: add stubs for conformance
+
+132 |     enum Behavior: Sendable { case ready, unsupported, notReady, denied, staleRevision, staleBackend, wrongScene, blocked }
+
+133 |     let behavior: Behavior
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift:105:10: note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+103 |     /// uncooperative child. Native UI03 owns bounded admission, not Core's worker
+
+104 |     /// limit; this package creates no detached worker or independent executor.
+
+105 |     func currentScene(sceneID: UIStableID, context: ActionExecutionContext,
+
+    |          `- note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+106 |                       invocation: ActionPortInvocation) async throws -> UISceneSnapshot
+
+107 |     /// Host-owned variant/readiness checks, additionally gated by Core discovery.
+
+[18/25] Compiling OtzariaUIRoutingTests resource_bundle_accessor.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:131:15: error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+129 |     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement { throw ActionPortError.unavailable }
+
+130 | }
+
+131 | private actor DiscoveryHost: UIDestinationEligibilityPort {
+
+    |               |- error: type 'DiscoveryHost' does not conform to protocol 'UIDestinationEligibilityPort'
+
+    |               `- note: add stubs for conformance
+
+132 |     enum Behavior: Sendable { case ready, unsupported, notReady, denied, staleRevision, staleBackend, wrongScene, blocked }
+
+133 |     let behavior: Behavior
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift:105:10: note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+103 |     /// uncooperative child. Native UI03 owns bounded admission, not Core's worker
+
+104 |     /// limit; this package creates no detached worker or independent executor.
+
+105 |     func currentScene(sceneID: UIStableID, context: ActionExecutionContext,
+
+    |          `- note: protocol requires function 'currentScene(sceneID:context:invocation:)' with type '(UIStableID, ActionExecutionContext, ActionPortInvocation) async throws -> UISceneSnapshot'
+
+106 |                       invocation: ActionPortInvocation) async throws -> UISceneSnapshot
+
+107 |     /// Host-owned variant/readiness checks, additionally gated by Core discovery.
+
+error: fatalError

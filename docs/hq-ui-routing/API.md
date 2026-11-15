@@ -1,5 +1,7 @@
 # UI02 compiled API checkpoint
 
+Current shared discovery contract: [CONTRACT_DISCOVERY_20261115.md](CONTRACT_DISCOVERY_20261115.md). It supersedes the historical discovery freshness/deadline description below and adds mandatory `currentScene(sceneID:context:invocation:)`; no default fallback. Corrected focused run: 19 portable XCTest methods / 0 failures. Native acceptance remains open.
+
 Owner: independent top-level chat `01a1dc89-87bb-7521-b249-ed383392e940`. Branch `codex/otzaria-ui-registry-20261115`, base `2918825be8c5cc8ecee53d57e1f48ca51779cab4`. Scope: Contracts, Registry, Codec, Ports and fixtures only. No native surfaces or orchestration implementation.
 
 ## Public boundary available to UI03
@@ -28,7 +30,7 @@ Windows portable command: `swift test --package-path Source/Otzaria/UIRouting -j
 
 Core additive seam: `ActionWireCodec.decodeObject(_:) -> ActionObject` reuses the sole existing bounded parser, duplicate-key rejection and exact number handling. Focused `WireSecurityTests/testBoundedGenericObjectIngressReusesExactParser`: 1 passed, 0 failures; `results/core-object-ingress.log`. Existing Core26 and independent62 evidence was not rerun. Neither run is an Apple SDK, simulator or physical iPad result.
 
-SDK03/07 accepted shared host contract remains pending. Keep all Hanlin model/chat/composer/tool/skill/MCP/store ownership upstream; an actual thin host adapter remains separate work. Package metadata follows existing HanlinPlatform iOS26 minimum, no 17–25 fallback, and makes no iOS27-only SDK claim.
+SDK03/07 accepted shared host contract remains pending. Keep all Hanlin model/chat/composer/tool/skill/MCP/store ownership upstream; an actual thin host adapter remains separate work. Package metadata follows existing HanlinPlatform iOS26 minimum, no 17â€“25 fallback, and makes no iOS27-only SDK claim.
 
 ## Additive codec/registry tranche
 

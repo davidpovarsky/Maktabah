@@ -1,0 +1,112 @@
+[0/1] Planning build
+Building for debugging...
+[0/11] Write swift-version-2807070033DA82CF.txt
+[1/12] Write sources
+[2/12] Copying Resources
+[4/11] Emitting module OtzariaUIRoutingTests
+[5/18] Compiling OtzariaUIRoutingTests CodecTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:71:139: error: cannot find 'core' in scope
+
+ 69 |         }
+
+ 70 |         let noUI = try await executor(.otzaria, ui: false)
+
+ 71 |         let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: noUI.core, host: core.host(scene))
+
+    |                                                                                                                                           `- error: cannot find 'core' in scope
+
+ 72 |         XCTAssertFalse(result.contains { $0.id.rawValue == "test.reader" })
+
+ 73 |     }
+
+[6/18] Compiling OtzariaUIRoutingTests GoldenAPITests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:71:139: error: cannot find 'core' in scope
+
+ 69 |         }
+
+ 70 |         let noUI = try await executor(.otzaria, ui: false)
+
+ 71 |         let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: noUI.core, host: core.host(scene))
+
+    |                                                                                                                                           `- error: cannot find 'core' in scope
+
+ 72 |         XCTAssertFalse(result.contains { $0.id.rawValue == "test.reader" })
+
+ 73 |     }
+
+[7/18] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:71:139: error: cannot find 'core' in scope
+
+ 69 |         }
+
+ 70 |         let noUI = try await executor(.otzaria, ui: false)
+
+ 71 |         let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: noUI.core, host: core.host(scene))
+
+    |                                                                                                                                           `- error: cannot find 'core' in scope
+
+ 72 |         XCTAssertFalse(result.contains { $0.id.rawValue == "test.reader" })
+
+ 73 |     }
+
+[8/18] Compiling OtzariaUIRoutingTests DiscoveryReviewRegressionTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:71:139: error: cannot find 'core' in scope
+
+ 69 |         }
+
+ 70 |         let noUI = try await executor(.otzaria, ui: false)
+
+ 71 |         let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: noUI.core, host: core.host(scene))
+
+    |                                                                                                                                           `- error: cannot find 'core' in scope
+
+ 72 |         XCTAssertFalse(result.contains { $0.id.rawValue == "test.reader" })
+
+ 73 |     }
+
+[9/18] Compiling OtzariaUIRoutingTests DiscoveryTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:71:139: error: cannot find 'core' in scope
+
+ 69 |         }
+
+ 70 |         let noUI = try await executor(.otzaria, ui: false)
+
+ 71 |         let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: noUI.core, host: core.host(scene))
+
+    |                                                                                                                                           `- error: cannot find 'core' in scope
+
+ 72 |         XCTAssertFalse(result.contains { $0.id.rawValue == "test.reader" })
+
+ 73 |     }
+
+[10/18] Compiling OtzariaUIRoutingTests RegistryTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:71:139: error: cannot find 'core' in scope
+
+ 69 |         }
+
+ 70 |         let noUI = try await executor(.otzaria, ui: false)
+
+ 71 |         let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: noUI.core, host: core.host(scene))
+
+    |                                                                                                                                           `- error: cannot find 'core' in scope
+
+ 72 |         XCTAssertFalse(result.contains { $0.id.rawValue == "test.reader" })
+
+ 73 |     }
+
+[11/18] Compiling OtzariaUIRoutingTests resource_bundle_accessor.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryTests.swift:71:139: error: cannot find 'core' in scope
+
+ 69 |         }
+
+ 70 |         let noUI = try await executor(.otzaria, ui: false)
+
+ 71 |         let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: noUI.core, host: core.host(scene))
+
+    |                                                                                                                                           `- error: cannot find 'core' in scope
+
+ 72 |         XCTAssertFalse(result.contains { $0.id.rawValue == "test.reader" })
+
+ 73 |     }
+
+error: fatalError
