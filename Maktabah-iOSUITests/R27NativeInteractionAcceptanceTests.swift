@@ -166,6 +166,7 @@ final class R27NativePadTests: R27NativeUIBase {
         XCTAssertTrue(result.isHittable)
         recordWindowEvidence("r27-real-narrow-palette-filtered")
         input.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        recordWindowEvidence("r27-after-synthesized-escape")
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == false"), object: palette
         )], timeout: 15), .completed)
