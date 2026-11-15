@@ -1,0 +1,92 @@
+Building for debugging...
+[0/23] Write swift-version-2807070033DA82CF.txt
+[1/23] Copying Fixtures
+[2/23] Copying catalog-status.json
+[3/23] Write sources
+[5/23] Copying examples.v1.json
+[6/23] Copying backend-capability-matrix.v1.json
+[7/23] Copying backend-acceptance-cases.v1.json
+[8/23] Copying action-result.v1.schema.json
+[9/23] Copying action-request.v1.schema.json
+[10/23] Copying action-catalog.v1.json
+[11/23] Write sources
+[13/24] Emitting module OtzariaActionCore
+[14/39] Compiling OtzariaActionCore ActionJSON.swift
+[15/39] Compiling OtzariaActionCore ActionReferences.swift
+[16/39] Compiling OtzariaActionCore ActionRequest.swift
+[17/39] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[18/39] Compiling OtzariaActionCore ActionSearch.swift
+[19/39] Compiling OtzariaActionCore ActionWireCodec.swift
+[20/39] Compiling OtzariaActionCore ActionDeadline.swift
+[21/39] Compiling OtzariaActionCore ActionExecutor.swift
+[22/39] Compiling OtzariaActionCore ActionExecutionContext.swift
+[23/39] Compiling OtzariaActionCore ActionPolicy.swift
+[24/39] Compiling OtzariaActionCore ActionValidation.swift
+[25/39] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[26/39] Compiling OtzariaActionCore ActionPorts.swift
+[27/39] Compiling OtzariaActionCore ActionRegistry.swift
+[28/39] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[29/40] Wrapping AST for OtzariaActionCore for debugging
+[31/41] Emitting module OtzariaUIRouting
+[32/52] Compiling OtzariaUIRouting PublicNavigationV2Codec.swift
+[33/52] Compiling OtzariaUIRouting UIRouteCodec.swift
+[34/52] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[35/52] Compiling OtzariaUIRouting PublicNavigationV2.swift
+[36/52] Compiling OtzariaUIRouting RouteSpec.swift
+[37/52] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[38/52] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[39/52] Compiling OtzariaUIRouting UIDestinationPublicNavigationV2.swift
+[40/52] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[41/52] Compiling OtzariaUIRouting UIDiscoveryCancellationScope.swift
+[42/52] Compiling OtzariaUIRouting resource_bundle_accessor.swift
+[43/53] Wrapping AST for OtzariaUIRouting for debugging
+[45/54] Emitting module OtzariaUIRoutingTests
+[46/64] Compiling OtzariaUIRoutingTests CodecTests.swift
+[47/64] Compiling OtzariaUIRoutingTests NPublicV2ConsumerReviewTests.swift
+[48/64] Compiling OtzariaUIRoutingTests PublicNavigationV2Tests.swift
+[49/64] Compiling OtzariaUIRoutingTests GoldenAPITests.swift
+[50/64] Compiling OtzariaUIRoutingTests NavigationAuthorizationTests.swift
+[51/64] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+[52/64] Compiling OtzariaUIRoutingTests DiscoveryReviewRegressionTests.swift
+[53/64] Compiling OtzariaUIRoutingTests DiscoveryTests.swift
+[54/64] Compiling OtzariaUIRoutingTests RegistryTests.swift
+[55/64] Compiling OtzariaUIRoutingTests resource_bundle_accessor.swift
+[56/65] Wrapping AST for OtzariaUIRoutingTests for debugging
+[57/65] C:\Users\DAVID\.codex\tmp\otzaria-n-public-v2-9835982a\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[58/65] Write sources
+[60/66] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[61/68] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[62/68] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[63/69] C:\Users\DAVID\.codex\tmp\otzaria-n-public-v2-9835982a\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[64/69] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[65/69] Write sources
+[67/70] Emitting module OtzariaUIRoutingPackageTests
+[68/71] Compiling OtzariaUIRoutingPackageTests runner.swift
+[69/72] Wrapping AST for OtzariaUIRoutingPackageTests for debugging
+[70/72] Write Objects.LinkFileList
+[71/72] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (148.29s)
+Test Suite 'Selected tests' started at 2026-11-15 16:54:58.051
+
+Test Suite 'NPublicV2ConsumerReviewTests' started at 2026-11-15 16:54:58.085
+
+Test Case 'NPublicV2ConsumerReviewTests.testBoundSurfaceCannotAcknowledgeActualWorkspaceProfileProjection' started at 2026-11-15 16:54:58.085
+
+Test Case 'NPublicV2ConsumerReviewTests.testBoundSurfaceCannotAcknowledgeActualWorkspaceProfileProjection' passed (0.167 seconds)
+
+Test Suite 'NPublicV2ConsumerReviewTests' passed at 2026-11-15 16:54:58.253
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.167 (0.167) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 16:54:58.253
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.167 (0.167) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
