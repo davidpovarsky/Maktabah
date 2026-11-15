@@ -1,0 +1,2 @@
+# Preserve console evidence byte-for-byte, including native Windows line endings.
+*.log -text

@@ -56,5 +56,9 @@
   "earlierExistingRegressionAssertions": {
     "existingSearch": 191,
     "cachedReadiness": 14
-  }
+  },
+  "executableSourceWhitespaceExit": 0,
+  "wholePacketWhitespaceExit": 2,
+  "wholePacketWhitespaceReason": "raw console CR/spacing retained; no whole-packet whitespace PASS",
+  "uiTestFileGitBlobSHA256": "8414378841c72dbb99e4404f9eeaa2e5738b07700152fec82693c3cf1045da72"
 }
