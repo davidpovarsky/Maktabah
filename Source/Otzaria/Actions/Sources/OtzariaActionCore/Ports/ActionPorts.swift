@@ -1,0 +1,82 @@
+import Foundation
+
+public struct ActionBackendSnapshot: Codable, Sendable, Equatable, Hashable {
+    public let backend: ActionBackendID
+    public let generation: UInt64
+    public let rpcEpoch: UInt64?
+    public init(backend: ActionBackendID, generation: UInt64, rpcEpoch: UInt64? = nil) {
+        self.backend = backend; self.generation = generation; self.rpcEpoch = rpcEpoch
+    }
+}
+public struct ActionPortInvocation: Sendable, Equatable {
+    public let requestId: UUID
+    public let snapshot: ActionBackendSnapshot
+    public let deadlineUptimeNanoseconds: UInt64
+    public init(requestId: UUID, snapshot: ActionBackendSnapshot, deadlineUptimeNanoseconds: UInt64) {
+        self.requestId = requestId; self.snapshot = snapshot; self.deadlineUptimeNanoseconds = deadlineUptimeNanoseconds
+    }
+}
+public struct ActionCapabilityAssessment: Sendable, Equatable, Codable {
+    public let registered: Bool
+    public let supported: Bool
+    public let availableNow: Bool
+    public let reasonCode: String?
+    public init(registered: Bool, supported: Bool, availableNow: Bool, reasonCode: String? = nil) {
+        self.registered = registered; self.supported = supported; self.availableNow = availableNow; self.reasonCode = reasonCode
+    }
+}
+public struct ActionBackendReport: Sendable, Equatable, Codable {
+    public let id: ActionBackendID
+    public let operations: [String: ActionCapabilityAssessment]
+    public init(id: ActionBackendID, operations: [String: ActionCapabilityAssessment]) { self.id = id; self.operations = operations }
+}
+
+/// A production MainActor facade may conform using async methods. It must not
+/// perform heavy work on MainActor or turn missing assets/RPC errors into [].
+public protocol ActionBackendStatePort: Sendable {
+    func snapshot() async throws -> ActionBackendSnapshot
+    func report(for backend: ActionBackendID) async throws -> ActionBackendReport
+    func assess(action: String, arguments: ActionObject, invocation: ActionPortInvocation) async throws -> ActionCapabilityAssessment
+}
+public protocol ActionResolverPort: Sendable {
+    func resolveWork(_ query: ActionResolveWorkQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionWorkRef>
+    func resolveReference(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef>
+    func validateDestination(_ destination: ActionReaderDestination, invocation: ActionPortInvocation) async throws -> ActionReaderDestination
+}
+/// Optional data-source seam for the shared resolver owner; no duplicate index.
+public protocol ActionResolverDataPort: Sendable {
+    func catalog(for backend: ActionBackendID, invocation: ActionPortInvocation) async throws -> [ActionCatalogEntry]
+    func referenceCandidates(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef>
+    func validate(_ ref: ActionTextRef, invocation: ActionPortInvocation) async throws -> ActionTextRef
+}
+public protocol ActionSearchPort: Sendable {
+    func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage
+}
+
+public struct ActionOpenReaderCommand: Sendable, Equatable {
+    public let destination: ActionReaderDestination
+    public let sceneID: String
+    public let invocation: ActionPortInvocation
+    public init(destination: ActionReaderDestination, sceneID: String, invocation: ActionPortInvocation) {
+        self.destination = destination; self.sceneID = sceneID; self.invocation = invocation
+    }
+}
+public struct ActionUIReceipt: Sendable, Equatable {
+    public let requestId: UUID
+    public let snapshot: ActionBackendSnapshot
+    public let sceneID: String
+    public init(requestId: UUID, snapshot: ActionBackendSnapshot, sceneID: String) {
+        self.requestId = requestId; self.snapshot = snapshot; self.sceneID = sceneID
+    }
+}
+public enum ActionUIAcknowledgement: Sendable, Equatable {
+    case acknowledged(ActionUIReceipt), queued(handle: String), requiresForeground
+}
+public protocol ActionUICommandSink: Sendable {
+    /// Sink must recheck generation/epoch/cancellation/deadline immediately before
+    /// synchronous native commit. Enqueueing is never an acknowledgement.
+    @MainActor func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement
+}
+public enum ActionPortError: Error, Sendable, Equatable {
+    case unavailable, notSupported, notFound, staleState, invalidResponse
+}

@@ -1,0 +1,963 @@
+{
+  "schemaVersion": 1,
+  "kind": "STATIC_CODE_AUDIT_NOT_RUNTIME_PROOF",
+  "date": "2026-11-15",
+  "repository": "C:/Users/DAVID/Code/Maktabah",
+  "auditedCommit": "59b01fa2d604facbcc3b3b1075a6283e7f1115db",
+  "canonicalSource": "Source/LibraryBackend/BackendComposition.swift",
+  "backends": [
+    "otzaria",
+    "sefariaLegacy",
+    "sefariaEmbedded"
+  ],
+  "assessmentLegend": {
+    "implemented": "Code path and provider present; not tested live",
+    "implemented_with_gate": "Implemented; depends on readiness/data",
+    "implemented_with_fallback": "Implemented with fallback",
+    "partial": "Code path exists but gaps/semantic differences",
+    "not_registered": "Capability provider is nil at registration",
+    "unverified": "Code cannot prove this guarantee",
+    "limited": "Narrow parser, not general semantic support",
+    "stub": "Provider exists but returns placeholder/empty",
+    "ignored_options": "Request fields not mapped",
+    "active_only": "Coordinator currently resolves only active backend",
+    "app_shared_not_backend": "Exists app-wide but not integrated in semantic API"
+  },
+  "rows": [
+    {
+      "id": "catalog.tree",
+      "title": "Catalog tree",
+      "actionIds": [
+        "catalog.resolveWork"
+      ],
+      "otzaria": {
+        "assessment": "implemented",
+        "behavior": "Local book/category SQLite catalog, iOS-specific",
+        "evidence": [
+          "Source/LibraryBackend/BackendComposition.swift:13",
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:20"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "Hybrid snapshot/remote catalog, installed fallback",
+        "evidence": [
+          "Source/Sefaria/App/SefariaBackend.swift:29",
+          "Source/Sefaria/Reading/SefariaHybridCatalogStore.swift:22"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "implemented_with_gate",
+        "behavior": "Hermes TOC RPC after catalogReady",
+        "evidence": [
+          "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:29",
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedCatalogAdapter.swift:21"
+        ]
+      },
+      "testGate": "Catalog identity stability, stale cache, zero vs unavailable, offline"
+    },
+    {
+      "id": "catalog.work_metadata",
+      "title": "Book details",
+      "actionIds": [
+        "catalog.resolveWork"
+      ],
+      "otzaria": {
+        "assessment": "implemented",
+        "behavior": "Local workMetadata for local book ID",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:308"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "Hybrid offline/remote index metadata",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:39",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:150"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "Cached metadata or RPC, malformed response can yield placeholder",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedCatalogAdapter.swift:122"
+        ]
+      },
+      "testGate": "Author/title/categories accurate; placeholder vs unavailable"
+    },
+    {
+      "id": "catalog.authors",
+      "title": "List authors",
+      "actionIds": [
+        "catalog.listAuthors"
+      ],
+      "otzaria": {
+        "assessment": "implemented",
+        "behavior": "Local fetchAuthors",
+        "evidence": [
+          "Source/LibraryBackend/BackendComposition.swift:16",
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:9"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "not_registered",
+        "behavior": "authors provider nil, though work metadata may contain authors",
+        "evidence": [
+          "Source/Sefaria/App/SefariaBackend.swift:38"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "not_registered",
+        "behavior": "authors provider nil; work metadata may expose authors",
+        "evidence": [
+          "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:34",
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedCatalogAdapter.swift:120"
+        ]
+      },
+      "testGate": "Expose unsupported for global author list; optional metadata author on books"
+    },
+    {
+      "id": "navigation.normalize",
+      "title": "Normalize reference",
+      "actionIds": [
+        "catalog.resolveReference"
+      ],
+      "otzaria": {
+        "assessment": "limited",
+        "behavior": "Accepts numeric bookId|line only, NOT natural Hebrew ref",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:109"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented_with_fallback",
+        "behavior": "Remote /api/name resolving; offline canonical reference parser when needed",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:22",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:92"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "limited",
+        "behavior": "Only trims text, constructs same canonicalRef; no real alias/validation",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift:18"
+        ]
+      },
+      "testGate": "Never claim semantic resolution after simple string trim; add shared catalog resolver"
+    },
+    {
+      "id": "navigation.toc",
+      "title": "TOC hierarchy",
+      "actionIds": [
+        "reader.getTOC"
+      ],
+      "otzaria": {
+        "assessment": "implemented",
+        "behavior": "Local book TOC; constructs hierarchy",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:116"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "Hybrid index schema, alternate structures and offline metadata",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:27",
+          "Source/Sefaria/Offline/SefariaOfflineNavigationStore.swift:16"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "RPC navigation.textToc parses schema; empty on RPC failure or missing lengths",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift:76"
+        ]
+      },
+      "testGate": "TOC nonempty for known works, duplicate/invalid refs, Talmud, alternate structure"
+    },
+    {
+      "id": "navigation.alternates",
+      "title": "Alternate navigation structures",
+      "actionIds": [
+        "reader.getNavigationStructures"
+      ],
+      "otzaria": {
+        "assessment": "default_only",
+        "behavior": "Protocol default constructs one standard structure from TOC",
+        "evidence": [
+          "Source/LibraryBackend/LibraryBackendProtocols.swift:20",
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:116"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "Alternate index structures and downloaded schema",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:35",
+          "Source/Sefaria/Offline/SefariaOfflineNavigationStore.swift:37"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "RPC alts parsed; may call textToc repeatedly and default on failure",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift:35"
+        ]
+      },
+      "testGate": "Preserve structure IDs, avoid claiming unsupported alternates"
+    },
+    {
+      "id": "navigation.items",
+      "title": "Reader slider/navigation items",
+      "actionIds": [
+        "reader.navigationItems"
+      ],
+      "otzaria": {
+        "assessment": "implemented",
+        "behavior": "TOC leaves; policy-specific semantic slider option",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:159"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "Flattened TOC leaves from local/remote",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:31"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "Returns enumerated top-level TOC nodes (not necessarily leaf navigable units)",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift:154"
+        ]
+      },
+      "testGate": "Check actual chapter/folio and stable focus; parity not presumed"
+    },
+    {
+      "id": "reader.section",
+      "title": "Read structured section",
+      "actionIds": [
+        "reader.getSection"
+      ],
+      "otzaria": {
+        "assessment": "implemented",
+        "behavior": "Local SQLite reading unit/lines, iOS-only, detached task",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "Offline first, remote fallback with memory cache",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridStore.swift:23"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "implemented_with_gate",
+        "behavior": "RPC text.load after Hermes catalog ready; parses segments",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:18"
+        ]
+      },
+      "testGate": "Honor original texts, offsets, translations and error status"
+    },
+    {
+      "id": "reader.offline",
+      "title": "Offline read availability",
+      "actionIds": [
+        "reader.getSection"
+      ],
+      "otzaria": {
+        "assessment": "local_only",
+        "behavior": "Requires local Otzaria installation; independent package provider absent",
+        "evidence": [
+          "Source/LibraryBackend/BackendComposition.swift:24",
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "conditional",
+        "behavior": "Downloaded book first, remote fallback; offline only for installed works",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridStore.swift:23",
+          "Source/Sefaria/Offline/SefariaOfflineStore.swift:14"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "unverified_runtime",
+        "behavior": "JS/RN offlineOnline.text.load behavior; availability depends on Hermes and downloaded assets",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:18",
+          "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift:85"
+        ]
+      },
+      "testGate": "Offline acceptance with disabled network, file missing, stale data"
+    },
+    {
+      "id": "reader.prev_next",
+      "title": "Next/previous section",
+      "actionIds": [
+        "reader.getSection"
+      ],
+      "otzaria": {
+        "assessment": "implemented",
+        "behavior": "Reading-unit previous/next or content ids",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "LibraryTextSection from Sefaria DTO/local metadata includes next/prev",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridStore.swift:23",
+          "Source/Sefaria/Offline/SefariaOfflineStore.swift:14"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "implemented",
+        "behavior": "Uses prev/next refs in RPC text payload",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:108"
+        ]
+      },
+      "testGate": "Round-trip segment selection and pagination"
+    },
+    {
+      "id": "reader.translation",
+      "title": "Translation/bilingual segments",
+      "actionIds": [
+        "reader.getSection"
+      ],
+      "otzaria": {
+        "assessment": "hebrew_only",
+        "behavior": "Returns translation nil from local Otzaria section mapping",
+        "evidence": [
+          "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift:12"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "conditional",
+        "behavior": "Hebrew/source + translation if available and selected version supplied",
+        "evidence": [
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:52",
+          "Source/Sefaria/Offline/SefariaOfflineStore.swift:14"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "conditional",
+        "behavior": "he/text in JS content; may omit language/version details",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:41"
+        ]
+      },
+      "testGate": "Expose available languages/version metadata accurately"
+    },
+    {
+      "id": "reader.versions",
+      "title": "List versions/editions",
+      "actionIds": [
+        "reader.listVersions"
+      ],
+      "otzaria": {
+        "assessment": "not_registered",
+        "behavior": "metadata provider nil even though local section may report single descriptive version",
+        "evidence": [
+          "Source/LibraryBackend/BackendComposition.swift:20",
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented_remote",
+        "behavior": "metadata provider SefariaRemoteStore.versions, requires network; section may be offline",
+        "evidence": [
+          "Source/Sefaria/App/SefariaBackend.swift:40",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:610"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "RPC text.versions; returns [] on failure, section.versions=[]",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:160",
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:149"
+        ]
+      },
+      "testGate": "Distinguish empty verified list from missing runtime/invalid response"
+    },
+    {
+      "id": "reader.related_refs",
+      "title": "Metadata related locators",
+      "actionIds": [
+        "reader.relatedRefs"
+      ],
+      "otzaria": {
+        "assessment": "not_registered",
+        "behavior": "metadata provider nil",
+        "evidence": [
+          "Source/LibraryBackend/BackendComposition.swift:20"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented_remote",
+        "behavior": "/api/related via metadata remote provider",
+        "evidence": [
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:615",
+          "Source/Sefaria/App/SefariaBackend.swift:40"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "related maps links to refs, dependent on RPC response",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:193"
+        ]
+      },
+      "testGate": "Do not conflate link collection with edition metadata"
+    },
+    {
+      "id": "reader.links",
+      "title": "Commentaries/related sources",
+      "actionIds": [
+        "reader.relatedSources",
+        "reader.openCommentary"
+      ],
+      "otzaria": {
+        "assessment": "implemented",
+        "behavior": "Local Inspector relationships for exact line; iOS-only",
+        "evidence": [
+          "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift:68"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented_conditional",
+        "behavior": "Offline links if metadata present, otherwise remote API",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridStore.swift:81"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "RPC relationships.links; some failures map to [] rather than unavailable",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift:16"
+        ]
+      },
+      "testGate": "Return unavailable separately from genuine no commentaries; preserve anchorRefs"
+    },
+    {
+      "id": "reader.topics",
+      "title": "Related topics",
+      "actionIds": [
+        "reader.relatedTopics"
+      ],
+      "otzaria": {
+        "assessment": "stub",
+        "behavior": "topics() explicitly returns [] for valid locator",
+        "evidence": [
+          "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift:105"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented_remote",
+        "behavior": "/api/ref-topic-links remote; fails offline",
+        "evidence": [
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:648"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "Reads topics only when relationships.links JSON is dictionary with topics; array response -> []",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift:93"
+        ]
+      },
+      "testGate": "Only advertise topics when actual response confirmed"
+    },
+    {
+      "id": "search.basic",
+      "title": "Full-text search",
+      "actionIds": [
+        "search.query"
+      ],
+      "otzaria": {
+        "assessment": "implemented",
+        "behavior": "Tantivy index if available, else Otzaria bridge fallback",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented_remote",
+        "behavior": "/api/search-wrapper remote, not downloaded offline search",
+        "evidence": [
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+          "Source/Sefaria/App/SefariaBackend.swift:35"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "implemented_with_gate",
+        "behavior": "postInitSearch + RPC search.query",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:18",
+          "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift:85"
+        ]
+      },
+      "testGate": "Compare known fixtures and unavailable/index missing; no false empty"
+    },
+    {
+      "id": "search.scope",
+      "title": "Work filters/scope",
+      "actionIds": [
+        "search.query"
+      ],
+      "otzaria": {
+        "assessment": "partial",
+        "behavior": "request.filters parsed to IDs; scopeWorkKeys ignored in current search()",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "partial",
+        "behavior": "filters forwarded; scopeWorkKeys fallback pages entire remote search when filters empty; may be expensive/approximate",
+        "evidence": [
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:189"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "passes filters as appliedFilters; scopeWorkKeys ignored; JS interpretation unverified",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:23"
+        ]
+      },
+      "testGate": "Do not silently broaden work-scope; fail or normalize explicitly"
+    },
+    {
+      "id": "search.modes",
+      "title": "Phrase/OR/contains/near",
+      "actionIds": [
+        "search.query"
+      ],
+      "otzaria": {
+        "assessment": "partial",
+        "behavior": "Maps searchMode to local native and match exact/advanced; unknown equivalence on backend",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "partial",
+        "behavior": "OR/contains post-process multi-query streams, others post options to /api/search-wrapper; semantics need tests",
+        "evidence": [
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:316",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:433"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "ignored_options",
+        "behavior": "RPC hardcodes type:text field:exact sort:relevance, does NOT map LibrarySearchOptions.searchMode/matchMode/wordDistance",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:22"
+        ]
+      },
+      "testGate": "Reject unsupported options or implement exact per engine; never silently downgrade"
+    },
+    {
+      "id": "search.sort",
+      "title": "Sort canonical/relevance/chronological",
+      "actionIds": [
+        "search.query"
+      ],
+      "otzaria": {
+        "assessment": "partial",
+        "behavior": "canonical maps to catalogue, everything else relevance; chronological ignored",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "partial",
+        "behavior": "passes sort options to API; boolean session sorting score; external semantics not proven",
+        "evidence": [
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:316"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "ignored_options",
+        "behavior": "sortType always relevance; reverseSort ignored",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:23"
+        ]
+      },
+      "testGate": "Capability negotiate and test stable sort"
+    },
+    {
+      "id": "search.pagination",
+      "title": "Pagination and exact total",
+      "actionIds": [
+        "search.query"
+      ],
+      "otzaria": {
+        "assessment": "approximate_fallback",
+        "behavior": "Tantivy returns totalCount and truncated flag; bridge fallback guesses total lower bound",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "approximate_in_some_modes",
+        "behavior": "Remote total reported; filtered fallback and boolean mode compute partial/monotonic totals",
+        "evidence": [
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:189",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:316"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "Total fallback rawHits.count on absent count; nextOffset based on compactMapped hits, possible nonadvancing/skipped",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:22"
+        ]
+      },
+      "testGate": "Expose totalPrecision, continuation; test no deadlocks/duplicate IDs/non-advancing cursor"
+    },
+    {
+      "id": "search.offline",
+      "title": "Offline search availability",
+      "actionIds": [
+        "search.query"
+      ],
+      "otzaria": {
+        "assessment": "implemented_local",
+        "behavior": "Local Tantivy/bridge, contingent installed DB/index",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "not_registered",
+        "behavior": "search uses remote SefariaRemoteStore; offlineLibrary does NOT mean offlineSearch",
+        "evidence": [
+          "Source/Sefaria/App/SefariaBackend.swift:35",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:158"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "not_declared_unverified",
+        "behavior": "Runtime search index may have offline content but backend does not claim offlineSearch and code RPC depends on runtime",
+        "evidence": [
+          "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:31",
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:22"
+        ]
+      },
+      "testGate": "network-off tests; don't advertise offlineSearch based on download capability"
+    },
+    {
+      "id": "search.exact_count",
+      "title": "Count exact word occurrences",
+      "actionIds": [
+        "search.countOccurrences"
+      ],
+      "otzaria": {
+        "assessment": "unverified",
+        "behavior": "Search totalCount counts hits; no demonstrated per-token occurrence count",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "unverified",
+        "behavior": "Search API totals hits, no exact occurrence API",
+        "evidence": [
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:158"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "unverified",
+        "behavior": "RPC total counts hits; no proven exact token occurrence count",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:22"
+        ]
+      },
+      "testGate": "Return exact_count_unavailable until exhaustive fixture semantics certified"
+    },
+    {
+      "id": "offline.packages",
+      "title": "List/install/remove/update packages",
+      "actionIds": [
+        "packages.list",
+        "packages.install",
+        "packages.update"
+      ],
+      "otzaria": {
+        "assessment": "not_registered",
+        "behavior": "No OfflineLibraryProviding; Otzaria provisioning is separate",
+        "evidence": [
+          "Source/LibraryBackend/BackendComposition.swift:24"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "SefariaPackageManager supports manifest/install/remove/update; storage managed locally",
+        "evidence": [
+          "Source/Sefaria/Downloads/SefariaPackageManager.swift:26",
+          "Source/Sefaria/App/SefariaBackend.swift:43"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "implemented_with_gate",
+        "behavior": "RPC downloads.* and updates.*; Hermes packagesReady required",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift:65",
+          "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:39"
+        ]
+      },
+      "testGate": "Mutations require user consent and data safety; no remote uncontrolled installs"
+    },
+    {
+      "id": "offline.works",
+      "title": "Install/remove individual works",
+      "actionIds": [
+        "packages.installWorks"
+      ],
+      "otzaria": {
+        "assessment": "not_registered",
+        "behavior": "offlineWorks provider nil",
+        "evidence": [
+          "Source/LibraryBackend/BackendComposition.swift:25"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "SefariaPackageManager OfflineWorkProviding",
+        "evidence": [
+          "Source/Sefaria/Downloads/SefariaPackageManager.swift:43",
+          "Source/Sefaria/App/SefariaBackend.swift:45"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "implemented_with_gate",
+        "behavior": "RPC maps work -> available packages, may reject missing package",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift:205"
+        ]
+      },
+      "testGate": "Show not_supported vs missing package; no implicit bulk install"
+    },
+    {
+      "id": "offline.update_status",
+      "title": "Installed IDs / available updates",
+      "actionIds": [
+        "packages.status"
+      ],
+      "otzaria": {
+        "assessment": "not_registered",
+        "behavior": "OfflinePackage provider absent",
+        "evidence": [
+          "Source/LibraryBackend/BackendComposition.swift:24"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented",
+        "behavior": "Queries local package state + update manifest",
+        "evidence": [
+          "Source/Sefaria/Downloads/SefariaPackageManager.swift:41",
+          "Source/Sefaria/App/SefariaBackend.swift:43"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "partial",
+        "behavior": "Missing/failed RPC may be converted to [] or zero-change summary",
+        "evidence": [
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift:74",
+          "Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift:153"
+        ]
+      },
+      "testGate": "Do not report zero updates when runtime unavailable"
+    },
+    {
+      "id": "app.open_book",
+      "title": "Open native reader UI",
+      "actionIds": [
+        "reader.open",
+        "reader.openCommentary"
+      ],
+      "otzaria": {
+        "assessment": "integration_required",
+        "behavior": "Uses native Maktabah iOSNavigationManager for local books",
+        "evidence": [
+          "Source/UI/iOS/Managers/iOSNavigationManager.swift:170",
+          "Source/LibraryBackend/BackendComposition.swift:21"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "integration_required",
+        "behavior": "Neutral destination bridged to generic Maktabah reader",
+        "evidence": [
+          "Source/LibraryBackend/MaktabahBackendAdapter.swift:1",
+          "Source/Sefaria/App/SefariaBackend.swift:45"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "integration_required",
+        "behavior": "Neutral destination and full original RN native Sefaria surface both exist; verify which is user-visible and command acknowledgment",
+        "evidence": [
+          "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift:11",
+          "Source/UI/iOS/Managers/iOSNavigationManager.swift:170"
+        ]
+      },
+      "testGate": "No UI completed status until scene/view acknowledges; iPad acceptance"
+    },
+    {
+      "id": "app.notes",
+      "title": "Native annotations / note drafting",
+      "actionIds": [
+        "notes.prepareDraft",
+        "notes.saveDraft"
+      ],
+      "otzaria": {
+        "assessment": "app_shared_not_backend",
+        "behavior": "Existing global AnnotationStore; qualified note action binding not implemented",
+        "evidence": [
+          "Source/Features/Annotations/Database/AnnotationStore.swift:160"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "app_shared_not_backend",
+        "behavior": "Backend-specific locator migration and editable source context unverified",
+        "evidence": [
+          "Source/Features/Annotations/Coordinator/AnnotationCoordinator.swift:46"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "app_shared_not_backend",
+        "behavior": "RN surface selection may differ, no demonstrated ActionCore binding",
+        "evidence": [
+          "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift:11"
+        ]
+      },
+      "testGate": "Prepare-only in v1; persist gated and idempotent, verify all 3"
+    },
+    {
+      "id": "runtime.readiness",
+      "title": "Runtime availability",
+      "actionIds": [
+        "system.capabilities"
+      ],
+      "otzaria": {
+        "assessment": "conditional",
+        "behavior": "Installation/data path and iOS compile guards; registration doesn't imply loaded DB",
+        "evidence": [
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:20",
+          "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "conditional",
+        "behavior": "Depends on cached/offline book presence and remote network",
+        "evidence": [
+          "Source/Sefaria/Reading/SefariaHybridStore.swift:23",
+          "Source/Sefaria/Reading/SefariaHybridCatalogStore.swift:22"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "multiple_gates",
+        "behavior": "Hermes host/catalog/search/packages readiness separate; RPC transport epoch matters",
+        "evidence": [
+          "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift:20",
+          "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift:30"
+        ]
+      },
+      "testGate": "Query availability by operation; distinguish ready, initializing, offline, failed"
+    },
+    {
+      "id": "runtime.active_selection",
+      "title": "Call an inactive backend",
+      "actionIds": [
+        "system.selectBackend"
+      ],
+      "otzaria": {
+        "assessment": "active_only",
+        "behavior": "Coordinator methods use active registration/generation",
+        "evidence": [
+          "Source/LibraryBackend/BackendCoordinator.swift:275",
+          "Source/LibraryBackend/BackendCoordinator.swift:551"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "active_only",
+        "behavior": "Selected backend only unless explicit safe switch or future provider-scoped read port",
+        "evidence": [
+          "Source/LibraryBackend/BackendCoordinator.swift:275",
+          "Source/LibraryBackend/BackendCoordinator.swift:603"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "active_only",
+        "behavior": "Cannot assume RPC on inactive Embedded runtime; readiness/host required",
+        "evidence": [
+          "Source/LibraryBackend/BackendCoordinator.swift:275",
+          "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:29"
+        ]
+      },
+      "testGate": "Return requires_backend_switch and preserve active state; no silent global switch"
+    },
+    {
+      "id": "runtime.switch_cancellation",
+      "title": "Backend switch and cancellation",
+      "actionIds": [
+        "system.selectBackend"
+      ],
+      "otzaria": {
+        "assessment": "implemented_core",
+        "behavior": "Coordinator invalidates generations + cancels in-flight tasks on switch",
+        "evidence": [
+          "Source/LibraryBackend/BackendCoordinator.swift:473",
+          "Source/LibraryBackend/BackendCoordinator.swift:648"
+        ]
+      },
+      "sefariaLegacy": {
+        "assessment": "implemented_core",
+        "behavior": "Provider transient state invalidation; remote search sessions flushed",
+        "evidence": [
+          "Source/Sefaria/App/SefariaBackend.swift:50",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift:671"
+        ]
+      },
+      "sefariaEmbedded": {
+        "assessment": "implemented_core_with_rpcs",
+        "behavior": "Coordinator invokes SefariaJSRPCBridge.cancelAllInFlight; Hermes session epoch separate",
+        "evidence": [
+          "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:48",
+          "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift:30"
+        ]
+      },
+      "testGate": "Use backendGeneration+RPC epoch, no stale UI success"
+    }
+  ],
+  "total": 30,
+  "scope": "Static provider/adapter registration and method inspection; no simulator/iPad/remote API invocation.",
+  "criticalFlags": [
+    "embedded_search_ignores_modes_sort_scope",
+    "embedded_navigation_trim_only",
+    "embedded_relations_returns_empty_on_rpc_failure",
+    "embedded_download_status_returns_empty_on_failure",
+    "otzaria_topics_stub",
+    "otzaria_search_ignores_scopeWorkKeys",
+    "sefaria_legacy_search_remote_even_with_offline_books",
+    "no_proven_exact_occurrence_count",
+    "coordinator_active_backend_only",
+    "embedded_runtime_has_separate_capability_ready_gates"
+  ]
+}

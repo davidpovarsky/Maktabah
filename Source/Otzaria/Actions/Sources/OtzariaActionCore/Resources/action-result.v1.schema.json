@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://otzaria.invalid/schemas/action-result-v1.json",
+  "title": "Otzaria Semantic ActionResult v1 (design contract)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "apiVersion",
+    "requestId",
+    "action",
+    "status"
+  ],
+  "properties": {
+    "apiVersion": {
+      "const": 1
+    },
+    "requestId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "action": {
+      "type": "string",
+      "minLength": 3
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "ui_queued",
+        "requires_backend_switch",
+        "requires_foreground",
+        "requires_confirmation",
+        "needs_disambiguation",
+        "not_supported",
+        "unavailable",
+        "stale_state",
+        "cancelled",
+        "failed"
+      ]
+    },
+    "data": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "message",
+        "retryable"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "field": {
+          "type": "string"
+        },
+        "retryAfterMs": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "required": [
+          "ref",
+          "title",
+          "kind"
+        ],
+        "properties": {
+          "ref": {
+            "type": "object"
+          },
+          "title": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "work",
+              "commentary",
+              "section",
+              "segment"
+            ]
+          },
+          "confidenceBand": {
+            "enum": [
+              "exact",
+              "alias",
+              "fuzzy"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "next": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cursor": {
+          "type": "string",
+          "maxLength": 1024
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isStable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "effects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 12
+    },
+    "backend": {
+      "enum": [
+        "otzaria",
+        "sefaria",
+        "sefariaEmbedded"
+      ]
+    },
+    "backendGeneration": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "failed"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "error"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "needs_disambiguation"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "candidates"
+        ]
+      }
+    }
+  ],
+  "description": "Design contract; complete only after actual effect. UI queued is not opened."
+}

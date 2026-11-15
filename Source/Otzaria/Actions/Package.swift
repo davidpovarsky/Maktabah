@@ -1,0 +1,12 @@
+// swift-tools-version: 6.0
+import PackageDescription
+
+let package = Package(
+    name: "OtzariaActionCore",
+    products: [.library(name: "OtzariaActionCore", targets: ["OtzariaActionCore"])],
+    targets: [
+        .target(name: "OtzariaActionCore", resources: [.copy("Resources")]),
+        .testTarget(name: "OtzariaActionCoreTests", dependencies: ["OtzariaActionCore"])
+    ],
+    swiftLanguageModes: [.v6]
+)

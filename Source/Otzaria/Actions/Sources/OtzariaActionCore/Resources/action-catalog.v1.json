@@ -1,0 +1,1704 @@
+{
+  "catalogId": "otzaria.actions.v1",
+  "apiVersion": 1,
+  "description": "Design-only canonical action metadata. Swift Registry must be source-of-truth at implementation and generate/verify compatible schema projections.",
+  "actionCount": 29,
+  "actions": [
+    {
+      "id": "catalog.resolveWork",
+      "title": "Resolve work",
+      "riskTier": 0,
+      "requiredCapabilities": [
+        "catalog"
+      ],
+      "stage": "g2",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "workRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "catalogRevision": {
+                "type": "string",
+                "maxLength": 128
+              }
+            }
+          },
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "query"
+            ]
+          },
+          {
+            "required": [
+              "workRef"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "catalog.resolveReference",
+      "title": "Resolve locator or commentary",
+      "riskTier": 0,
+      "requiredCapabilities": [
+        "navigation"
+      ],
+      "stage": "g2",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "workRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "catalogRevision": {
+                "type": "string",
+                "maxLength": 128
+              }
+            }
+          },
+          "section": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "text"
+            ]
+          },
+          {
+            "required": [
+              "workRef"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "search.query",
+      "title": "Search text with stable hits",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "search"
+      ],
+      "stage": "g2",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "scopeWorkRefs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "backend",
+                "workKey"
+              ],
+              "properties": {
+                "backend": {
+                  "enum": [
+                    "otzaria",
+                    "sefaria",
+                    "sefariaEmbedded"
+                  ]
+                },
+                "workKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                "catalogRevision": {
+                  "type": "string",
+                  "maxLength": 128
+                }
+              }
+            },
+            "maxItems": 200
+          },
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "searchMode": {
+            "enum": [
+              "phrase",
+              "contains",
+              "or",
+              "near"
+            ]
+          },
+          "matchMode": {
+            "enum": [
+              "exact",
+              "hebrewLemmatized"
+            ]
+          },
+          "wordDistance": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "sortOrder": {
+            "enum": [
+              "relevance",
+              "canonical",
+              "chronological"
+            ]
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        }
+      }
+    },
+    {
+      "id": "search.countOccurrences",
+      "title": "Exact count only after proof",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "search"
+      ],
+      "stage": "g2-exactness-gate",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text",
+          "countUnit"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "scopeWorkRefs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "backend",
+                "workKey"
+              ],
+              "properties": {
+                "backend": {
+                  "enum": [
+                    "otzaria",
+                    "sefaria",
+                    "sefariaEmbedded"
+                  ]
+                },
+                "workKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                "catalogRevision": {
+                  "type": "string",
+                  "maxLength": 128
+                }
+              }
+            },
+            "maxItems": 200
+          },
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "matchMode": {
+            "enum": [
+              "exact",
+              "hebrewLemmatized"
+            ]
+          },
+          "countUnit": {
+            "enum": [
+              "matching_occurrences",
+              "matching_segments",
+              "matching_documents"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.getSection",
+      "title": "Read bounded text segment",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "reading"
+      ],
+      "stage": "g2",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sectionLocator"
+        ],
+        "properties": {
+          "sectionLocator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey",
+              "position"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "catalogRevision": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "position": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "canonicalRef",
+                      "legacyLine"
+                    ]
+                  },
+                  "value": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                }
+              },
+              "dataRevision": {
+                "type": "string",
+                "maxLength": 128
+              }
+            }
+          },
+          "maxSegments": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.relatedSources",
+      "title": "List related commentary or links",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "links"
+      ],
+      "stage": "g2",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sourceLocator"
+        ],
+        "properties": {
+          "sourceLocator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey",
+              "position"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "catalogRevision": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "position": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "canonicalRef",
+                      "legacyLine"
+                    ]
+                  },
+                  "value": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                }
+              },
+              "dataRevision": {
+                "type": "string",
+                "maxLength": 128
+              }
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "category": {
+            "type": "string",
+            "maxLength": 80
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.open",
+      "title": "Navigate to reader destination",
+      "riskTier": 2,
+      "requiredCapabilities": [
+        "navigation"
+      ],
+      "stage": "g3",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sectionLocator"
+        ],
+        "properties": {
+          "sectionLocator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey",
+              "position"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "catalogRevision": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "position": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "canonicalRef",
+                      "legacyLine"
+                    ]
+                  },
+                  "value": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                }
+              },
+              "dataRevision": {
+                "type": "string",
+                "maxLength": 128
+              }
+            }
+          },
+          "focusLocator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey",
+              "position"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "catalogRevision": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "position": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "canonicalRef",
+                      "legacyLine"
+                    ]
+                  },
+                  "value": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                }
+              },
+              "dataRevision": {
+                "type": "string",
+                "maxLength": 128
+              }
+            }
+          },
+          "presentationMode": {
+            "enum": [
+              "sameTab",
+              "newTab"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.openCommentary",
+      "title": "Resolve and open commentary",
+      "riskTier": 2,
+      "requiredCapabilities": [
+        "navigation"
+      ],
+      "stage": "g3",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "baseLocator"
+        ],
+        "properties": {
+          "workRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "catalogRevision": {
+                "type": "string",
+                "maxLength": 128
+              }
+            }
+          },
+          "commentaryQuery": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "baseLocator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey",
+              "position"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "catalogRevision": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "position": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "canonicalRef",
+                      "legacyLine"
+                    ]
+                  },
+                  "value": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                }
+              },
+              "dataRevision": {
+                "type": "string",
+                "maxLength": 128
+              }
+            }
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "workRef"
+            ]
+          },
+          {
+            "required": [
+              "commentaryQuery"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "search.openResults",
+      "title": "Open native search results",
+      "riskTier": 2,
+      "requiredCapabilities": [
+        "search"
+      ],
+      "stage": "g3",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "searchQuery": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "searchHandle": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 1024
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "searchQuery"
+            ]
+          },
+          {
+            "required": [
+              "searchHandle"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "notes.prepareDraft",
+      "title": "Open editable note draft, never save",
+      "riskTier": 2,
+      "requiredCapabilities": [
+        "navigation"
+      ],
+      "stage": "g4",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locator"
+        ],
+        "properties": {
+          "locator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey",
+              "position"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "catalogRevision": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "position": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "canonicalRef",
+                      "legacyLine"
+                    ]
+                  },
+                  "value": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                }
+              },
+              "dataRevision": {
+                "type": "string",
+                "maxLength": 128
+              }
+            }
+          },
+          "selectedText": {
+            "type": "string",
+            "maxLength": 10000
+          },
+          "proposedText": {
+            "type": "string",
+            "maxLength": 10000
+          }
+        }
+      }
+    },
+    {
+      "id": "notes.saveDraft",
+      "title": "Persist reviewed note only (future disabled)",
+      "riskTier": 3,
+      "requiredCapabilities": [
+        "navigation"
+      ],
+      "stage": "future-disabled",
+      "mutatesUserData": true,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "draftRef",
+          "confirmationToken"
+        ],
+        "properties": {
+          "draftRef": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 512
+          },
+          "confirmationToken": {
+            "type": "string",
+            "minLength": 16,
+            "maxLength": 1024
+          }
+        }
+      }
+    },
+    {
+      "id": "system.listBackends",
+      "title": "List all engines and readiness",
+      "riskTier": 0,
+      "requiredCapabilities": [],
+      "stage": "g1",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "includeReadiness": {
+            "type": "boolean"
+          },
+          "includeModes": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    {
+      "id": "system.selectBackend",
+      "title": "Request a user-visible backend switch",
+      "riskTier": 2,
+      "requiredCapabilities": [],
+      "stage": "g3-foreground-gated",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "targetBackend"
+        ],
+        "properties": {
+          "targetBackend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "expectedGeneration": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "catalog.listAuthors",
+      "title": "List source authors when available",
+      "riskTier": 0,
+      "requiredCapabilities": [
+        "authors"
+      ],
+      "stage": "g2-capability-gated",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.getTOC",
+      "title": "Get a work table of contents",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "navigation"
+      ],
+      "stage": "g2",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "workRef"
+        ],
+        "properties": {
+          "workRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              }
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.getNavigationStructures",
+      "title": "Get navigation structures and alternates",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "navigation"
+      ],
+      "stage": "g2",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "workRef"
+        ],
+        "properties": {
+          "workRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.navigationItems",
+      "title": "Get navigable units",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "navigation"
+      ],
+      "stage": "g2",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "workRef"
+        ],
+        "properties": {
+          "workRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              }
+            }
+          },
+          "structureID": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.listVersions",
+      "title": "List editions/translations",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "versions"
+      ],
+      "stage": "g2-capability-gated",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "workRef"
+        ],
+        "properties": {
+          "workRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.relatedRefs",
+      "title": "Get related section locators",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "versions"
+      ],
+      "stage": "g2-capability-gated",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sourceLocator"
+        ],
+        "properties": {
+          "sourceLocator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey",
+              "position"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "position": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "canonicalRef",
+                      "legacyLine"
+                    ]
+                  },
+                  "value": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "reader.relatedTopics",
+      "title": "Find topics related to a passage",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "links"
+      ],
+      "stage": "g2-runtime-verified-only",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sourceLocator"
+        ],
+        "properties": {
+          "sourceLocator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "backend",
+              "workKey",
+              "position"
+            ],
+            "properties": {
+              "backend": {
+                "enum": [
+                  "otzaria",
+                  "sefaria",
+                  "sefariaEmbedded"
+                ]
+              },
+              "workKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "position": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "canonicalRef",
+                      "legacyLine"
+                    ]
+                  },
+                  "value": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1000
+                      },
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        }
+      }
+    },
+    {
+      "id": "packages.list",
+      "title": "Get offline package manifest",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "offlineLibrary"
+      ],
+      "stage": "g6-readonly",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "forceRefresh": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    {
+      "id": "packages.status",
+      "title": "Get installed packages or works",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "offlineLibrary"
+      ],
+      "stage": "g6-readonly",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "includeWorks": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    {
+      "id": "packages.checkUpdates",
+      "title": "Check offline package updates",
+      "riskTier": 1,
+      "requiredCapabilities": [
+        "offlineLibrary"
+      ],
+      "stage": "g6-readonly",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "packages.install",
+      "title": "Install offline packages with explicit consent",
+      "riskTier": 3,
+      "requiredCapabilities": [
+        "offlineLibrary"
+      ],
+      "stage": "future-confirmed-mutation",
+      "mutatesUserData": true,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "backend",
+          "packageIDs",
+          "confirmationToken",
+          "idempotencyKey"
+        ],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "packageIDs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "minItems": 1,
+            "maxItems": 40,
+            "uniqueItems": true
+          },
+          "confirmationToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    {
+      "id": "packages.installWorks",
+      "title": "Install selected works",
+      "riskTier": 3,
+      "requiredCapabilities": [
+        "offlineLibrary"
+      ],
+      "stage": "future-confirmed-mutation",
+      "mutatesUserData": true,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "backend",
+          "workKeys",
+          "confirmationToken",
+          "idempotencyKey"
+        ],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "workKeys": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "minItems": 1,
+            "maxItems": 40,
+            "uniqueItems": true
+          },
+          "confirmationToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    {
+      "id": "packages.remove",
+      "title": "Remove downloaded packages",
+      "riskTier": 3,
+      "requiredCapabilities": [
+        "offlineLibrary"
+      ],
+      "stage": "future-confirmed-mutation",
+      "mutatesUserData": true,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "backend",
+          "packageIDs",
+          "confirmationToken",
+          "idempotencyKey"
+        ],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "packageIDs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "minItems": 1,
+            "maxItems": 40,
+            "uniqueItems": true
+          },
+          "confirmationToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    {
+      "id": "packages.removeWorks",
+      "title": "Remove downloaded works",
+      "riskTier": 3,
+      "requiredCapabilities": [
+        "offlineLibrary"
+      ],
+      "stage": "future-confirmed-mutation",
+      "mutatesUserData": true,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "backend",
+          "workKeys",
+          "confirmationToken",
+          "idempotencyKey"
+        ],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "workKeys": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "minItems": 1,
+            "maxItems": 40,
+            "uniqueItems": true
+          },
+          "confirmationToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    {
+      "id": "packages.update",
+      "title": "Update offline data with explicit consent",
+      "riskTier": 3,
+      "requiredCapabilities": [
+        "offlineLibrary"
+      ],
+      "stage": "future-confirmed-mutation",
+      "mutatesUserData": true,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "backend",
+          "confirmationToken",
+          "idempotencyKey"
+        ],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "confirmationToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    {
+      "id": "packages.cancel",
+      "title": "Cancel a running download/update",
+      "riskTier": 2,
+      "requiredCapabilities": [
+        "offlineLibrary"
+      ],
+      "stage": "g6-foreground-gated",
+      "mutatesUserData": false,
+      "execution": "uiOrHeadlessByAction",
+      "argumentsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "backend"
+        ],
+        "properties": {
+          "backend": {
+            "enum": [
+              "otzaria",
+              "sefaria",
+              "sefariaEmbedded"
+            ]
+          },
+          "operationHandle": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      }
+    }
+  ],
+  "threeBackendMapping": "backend-capability-matrix.v1.json",
+  "runtimeCapabilityNote": "Do not infer semantic/functional support from broad BackendCapabilities bit alone. Runtime readiness, actual search option support and active backend must be checked."
+}

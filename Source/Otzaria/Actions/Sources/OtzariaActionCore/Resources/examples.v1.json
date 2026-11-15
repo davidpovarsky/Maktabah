@@ -1,0 +1,357 @@
+{
+  "catalogId": "otzaria.actions.v1",
+  "apiVersion": 1,
+  "kind": "DESIGN_FIXTURES_ONLY",
+  "warning": "Synthetic fixtures for schema and adapter behavior. Not actual Otzaria corpus/search/URL execution. No action was run.",
+  "cases": [
+    {
+      "name": "ambiguous_hebrew_commentary_work",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000001",
+        "action": "catalog.resolveWork",
+        "arguments": {
+          "query": "כלי יקר",
+          "backend": "otzaria",
+          "limit": 10
+        }
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000001",
+        "action": "catalog.resolveWork",
+        "status": "needs_disambiguation",
+        "candidates": [
+          {
+            "ref": {
+              "backend": "otzaria",
+              "workKey": "fixture:commentary-a"
+            },
+            "title": "כלי יקר — מהדורה א׳",
+            "kind": "commentary",
+            "confidenceBand": "exact",
+            "reason": "Synthetic fixture: title not unique"
+          },
+          {
+            "ref": {
+              "backend": "otzaria",
+              "workKey": "fixture:commentary-b"
+            },
+            "title": "כלי יקר — מהדורה ב׳",
+            "kind": "commentary",
+            "confidenceBand": "alias",
+            "reason": "Synthetic fixture: multiple editions"
+          }
+        ],
+        "backend": "otzaria"
+      }
+    },
+    {
+      "name": "successful_empty_search_fixture",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000002",
+        "action": "search.query",
+        "arguments": {
+          "text": "מחרוזת בדיקה",
+          "backend": "otzaria",
+          "searchMode": "phrase",
+          "matchMode": "exact",
+          "offset": 0,
+          "limit": 10
+        }
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000002",
+        "action": "search.query",
+        "status": "completed",
+        "backend": "otzaria",
+        "data": {
+          "hits": [],
+          "total": 0,
+          "totalSemantics": "matching_segments",
+          "precision": "fixture_only",
+          "nextOffset": null
+        }
+      }
+    },
+    {
+      "name": "exact_word_count_not_certified",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "action": "search.countOccurrences",
+        "arguments": {
+          "text": "משה",
+          "backend": "otzaria",
+          "countUnit": "matching_occurrences",
+          "matchMode": "exact"
+        }
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "action": "search.countOccurrences",
+        "status": "not_supported",
+        "backend": "otzaria",
+        "error": {
+          "code": "exact_count_unavailable",
+          "message": "Backend occurrence-count semantics not yet verified.",
+          "retryable": false
+        }
+      }
+    },
+    {
+      "name": "reader_open_requires_ui_foreground",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000004",
+        "action": "reader.open",
+        "arguments": {
+          "sectionLocator": {
+            "backend": "otzaria",
+            "workKey": "fixture:book:1",
+            "position": {
+              "kind": "legacyLine",
+              "value": 42
+            }
+          }
+        },
+        "requestedPresentation": "headless"
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000004",
+        "action": "reader.open",
+        "status": "requires_foreground",
+        "backend": "otzaria",
+        "error": {
+          "code": "app_scene_unavailable",
+          "message": "Open Otzaria to finish navigation.",
+          "retryable": true
+        }
+      }
+    },
+    {
+      "name": "prepare_note_does_not_persist",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000005",
+        "action": "notes.prepareDraft",
+        "arguments": {
+          "locator": {
+            "backend": "sefariaEmbedded",
+            "workKey": "fixture:Genesis",
+            "position": {
+              "kind": "canonicalRef",
+              "value": "Genesis 1:1"
+            }
+          },
+          "proposedText": "טיוטה בלבד"
+        }
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000005",
+        "action": "notes.prepareDraft",
+        "status": "ui_queued",
+        "backend": "sefariaEmbedded",
+        "data": {
+          "draftRef": "fixture:draft:abc12345",
+          "persisted": false
+        },
+        "effects": [
+          "draft_editor_command_queued"
+        ]
+      }
+    },
+    {
+      "name": "remote_device_unavailable",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000006",
+        "action": "search.query",
+        "arguments": {
+          "text": "בראשית",
+          "backend": "otzaria",
+          "limit": 5
+        }
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000006",
+        "action": "search.query",
+        "status": "unavailable",
+        "backend": "otzaria",
+        "error": {
+          "code": "device_offline",
+          "message": "Paired device session is not available.",
+          "retryable": true
+        }
+      }
+    },
+    {
+      "name": "stale_backend_cancelled",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000007",
+        "action": "reader.relatedSources",
+        "arguments": {
+          "sourceLocator": {
+            "backend": "otzaria",
+            "workKey": "fixture:book:1",
+            "position": {
+              "kind": "legacyLine",
+              "value": 50
+            }
+          }
+        },
+        "expectedBackend": "otzaria",
+        "expectedGeneration": 6
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "00000000-0000-4000-8000-000000000007",
+        "action": "reader.relatedSources",
+        "status": "stale_state",
+        "backend": "otzaria",
+        "backendGeneration": 7,
+        "error": {
+          "code": "backend_generation_changed",
+          "message": "Backend changed. Retry with current locator.",
+          "retryable": true
+        }
+      }
+    },
+    {
+      "name": "all_three_backends_in_capability_discovery",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "03e3b201-470c-54ae-a2df-0f247812bb52",
+        "action": "system.listBackends",
+        "arguments": {
+          "includeReadiness": true
+        }
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "03e3b201-470c-54ae-a2df-0f247812bb52",
+        "action": "system.listBackends",
+        "status": "completed",
+        "backend": "otzaria",
+        "data": {
+          "backends": [
+            {
+              "id": "otzaria",
+              "state": "ready"
+            },
+            {
+              "id": "sefaria",
+              "state": "offline"
+            },
+            {
+              "id": "sefariaEmbedded",
+              "state": "initializing"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "otzaria_versions_not_registered",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "a0a8a4e4-7e67-5a73-a1bd-4906f1da3280",
+        "action": "reader.listVersions",
+        "arguments": {
+          "workRef": {
+            "backend": "otzaria",
+            "workKey": "fixture:book:1"
+          }
+        }
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "a0a8a4e4-7e67-5a73-a1bd-4906f1da3280",
+        "action": "reader.listVersions",
+        "status": "not_supported",
+        "backend": "otzaria",
+        "error": {
+          "code": "capability_unavailable",
+          "message": "capability unavailable",
+          "retryable": false
+        }
+      }
+    },
+    {
+      "name": "embedded_unsupported_search_mode",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "2a8fb262-b430-5da4-925c-beb3c20fb565",
+        "action": "search.query",
+        "arguments": {
+          "text": "??????",
+          "backend": "sefariaEmbedded",
+          "searchMode": "near",
+          "wordDistance": 7
+        },
+        "expectedBackend": "sefariaEmbedded"
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "2a8fb262-b430-5da4-925c-beb3c20fb565",
+        "action": "search.query",
+        "status": "not_supported",
+        "backend": "sefariaEmbedded",
+        "error": {
+          "code": "search_mode_unavailable",
+          "message": "search mode unavailable",
+          "retryable": false
+        }
+      }
+    },
+    {
+      "name": "cross_backend_needs_explicit_switch",
+      "fixture": true,
+      "request": {
+        "apiVersion": 1,
+        "requestId": "0cafa7af-d2ed-53f3-976d-5eec478c5c2f",
+        "action": "reader.open",
+        "arguments": {
+          "sectionLocator": {
+            "backend": "sefariaEmbedded",
+            "workKey": "Genesis",
+            "position": {
+              "kind": "canonicalRef",
+              "value": "Genesis 1:1"
+            }
+          }
+        },
+        "expectedBackend": "sefariaEmbedded"
+      },
+      "result": {
+        "apiVersion": 1,
+        "requestId": "0cafa7af-d2ed-53f3-976d-5eec478c5c2f",
+        "action": "reader.open",
+        "status": "requires_backend_switch",
+        "backend": "sefariaEmbedded",
+        "error": {
+          "code": "backend_selection_required",
+          "message": "backend selection required",
+          "retryable": false
+        }
+      }
+    }
+  ]
+}

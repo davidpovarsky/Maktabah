@@ -1,0 +1,2260 @@
+{
+  "schemaVersion": 1,
+  "kind": "FUTURE_TEST_PLAN_NOT_EXECUTED",
+  "sourceAudit": "backend-capability-matrix.v1.json",
+  "featureCount": 30,
+  "perBackend": 90,
+  "negativeAndCrossCuttingCount": 26,
+  "totalCases": 116,
+  "resultsRecorded": false,
+  "cases": [
+    {
+      "id": "BE_CATALOG_TREE_OTZARIA",
+      "backend": "otzaria",
+      "feature": "catalog.tree",
+      "title": "Otzaria / Catalog tree",
+      "codeAssessment": "implemented",
+      "testRequirement": "Catalog identity stability, stale cache, zero vs unavailable, offline",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendComposition.swift:13",
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:20"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_CATALOG_TREE_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "catalog.tree",
+      "title": "Sefaria Legacy / Catalog tree",
+      "codeAssessment": "implemented",
+      "testRequirement": "Catalog identity stability, stale cache, zero vs unavailable, offline",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/App/SefariaBackend.swift:29",
+        "Source/Sefaria/Reading/SefariaHybridCatalogStore.swift:22"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_CATALOG_TREE_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "catalog.tree",
+      "title": "Sefaria Embedded / Catalog tree",
+      "codeAssessment": "implemented_with_gate",
+      "testRequirement": "Catalog identity stability, stale cache, zero vs unavailable, offline",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:29",
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedCatalogAdapter.swift:21"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_CATALOG_WORK_METADATA_OTZARIA",
+      "backend": "otzaria",
+      "feature": "catalog.work_metadata",
+      "title": "Otzaria / Book details",
+      "codeAssessment": "implemented",
+      "testRequirement": "Author/title/categories accurate; placeholder vs unavailable",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:308"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_CATALOG_WORK_METADATA_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "catalog.work_metadata",
+      "title": "Sefaria Legacy / Book details",
+      "codeAssessment": "implemented",
+      "testRequirement": "Author/title/categories accurate; placeholder vs unavailable",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:39",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:150"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_CATALOG_WORK_METADATA_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "catalog.work_metadata",
+      "title": "Sefaria Embedded / Book details",
+      "codeAssessment": "partial",
+      "testRequirement": "Author/title/categories accurate; placeholder vs unavailable",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedCatalogAdapter.swift:122"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_CATALOG_AUTHORS_OTZARIA",
+      "backend": "otzaria",
+      "feature": "catalog.authors",
+      "title": "Otzaria / List authors",
+      "codeAssessment": "implemented",
+      "testRequirement": "Expose unsupported for global author list; optional metadata author on books",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendComposition.swift:16",
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:9"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_CATALOG_AUTHORS_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "catalog.authors",
+      "title": "Sefaria Legacy / List authors",
+      "codeAssessment": "not_registered",
+      "testRequirement": "Expose unsupported for global author list; optional metadata author on books",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/App/SefariaBackend.swift:38"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_CATALOG_AUTHORS_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "catalog.authors",
+      "title": "Sefaria Embedded / List authors",
+      "codeAssessment": "not_registered",
+      "testRequirement": "Expose unsupported for global author list; optional metadata author on books",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:34",
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedCatalogAdapter.swift:120"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_NORMALIZE_OTZARIA",
+      "backend": "otzaria",
+      "feature": "navigation.normalize",
+      "title": "Otzaria / Normalize reference",
+      "codeAssessment": "limited",
+      "testRequirement": "Never claim semantic resolution after simple string trim; add shared catalog resolver",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:109"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_NORMALIZE_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "navigation.normalize",
+      "title": "Sefaria Legacy / Normalize reference",
+      "codeAssessment": "implemented_with_fallback",
+      "testRequirement": "Never claim semantic resolution after simple string trim; add shared catalog resolver",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:22",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:92"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_NORMALIZE_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "navigation.normalize",
+      "title": "Sefaria Embedded / Normalize reference",
+      "codeAssessment": "limited",
+      "testRequirement": "Never claim semantic resolution after simple string trim; add shared catalog resolver",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift:18"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_TOC_OTZARIA",
+      "backend": "otzaria",
+      "feature": "navigation.toc",
+      "title": "Otzaria / TOC hierarchy",
+      "codeAssessment": "implemented",
+      "testRequirement": "TOC nonempty for known works, duplicate/invalid refs, Talmud, alternate structure",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:116"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_TOC_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "navigation.toc",
+      "title": "Sefaria Legacy / TOC hierarchy",
+      "codeAssessment": "implemented",
+      "testRequirement": "TOC nonempty for known works, duplicate/invalid refs, Talmud, alternate structure",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:27",
+        "Source/Sefaria/Offline/SefariaOfflineNavigationStore.swift:16"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_TOC_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "navigation.toc",
+      "title": "Sefaria Embedded / TOC hierarchy",
+      "codeAssessment": "partial",
+      "testRequirement": "TOC nonempty for known works, duplicate/invalid refs, Talmud, alternate structure",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift:76"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_ALTERNATES_OTZARIA",
+      "backend": "otzaria",
+      "feature": "navigation.alternates",
+      "title": "Otzaria / Alternate navigation structures",
+      "codeAssessment": "default_only",
+      "testRequirement": "Preserve structure IDs, avoid claiming unsupported alternates",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/LibraryBackendProtocols.swift:20",
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:116"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_ALTERNATES_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "navigation.alternates",
+      "title": "Sefaria Legacy / Alternate navigation structures",
+      "codeAssessment": "implemented",
+      "testRequirement": "Preserve structure IDs, avoid claiming unsupported alternates",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:35",
+        "Source/Sefaria/Offline/SefariaOfflineNavigationStore.swift:37"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_ALTERNATES_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "navigation.alternates",
+      "title": "Sefaria Embedded / Alternate navigation structures",
+      "codeAssessment": "partial",
+      "testRequirement": "Preserve structure IDs, avoid claiming unsupported alternates",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift:35"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_ITEMS_OTZARIA",
+      "backend": "otzaria",
+      "feature": "navigation.items",
+      "title": "Otzaria / Reader slider/navigation items",
+      "codeAssessment": "implemented",
+      "testRequirement": "Check actual chapter/folio and stable focus; parity not presumed",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:159"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_ITEMS_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "navigation.items",
+      "title": "Sefaria Legacy / Reader slider/navigation items",
+      "codeAssessment": "implemented",
+      "testRequirement": "Check actual chapter/folio and stable focus; parity not presumed",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridNavigationStore.swift:31"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_NAVIGATION_ITEMS_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "navigation.items",
+      "title": "Sefaria Embedded / Reader slider/navigation items",
+      "codeAssessment": "partial",
+      "testRequirement": "Check actual chapter/folio and stable focus; parity not presumed",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift:154"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_SECTION_OTZARIA",
+      "backend": "otzaria",
+      "feature": "reader.section",
+      "title": "Otzaria / Read structured section",
+      "codeAssessment": "implemented",
+      "testRequirement": "Honor original texts, offsets, translations and error status",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_SECTION_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "reader.section",
+      "title": "Sefaria Legacy / Read structured section",
+      "codeAssessment": "implemented",
+      "testRequirement": "Honor original texts, offsets, translations and error status",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridStore.swift:23"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_SECTION_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "reader.section",
+      "title": "Sefaria Embedded / Read structured section",
+      "codeAssessment": "implemented_with_gate",
+      "testRequirement": "Honor original texts, offsets, translations and error status",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:18"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_OFFLINE_OTZARIA",
+      "backend": "otzaria",
+      "feature": "reader.offline",
+      "title": "Otzaria / Offline read availability",
+      "codeAssessment": "local_only",
+      "testRequirement": "Offline acceptance with disabled network, file missing, stale data",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendComposition.swift:24",
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_OFFLINE_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "reader.offline",
+      "title": "Sefaria Legacy / Offline read availability",
+      "codeAssessment": "conditional",
+      "testRequirement": "Offline acceptance with disabled network, file missing, stale data",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridStore.swift:23",
+        "Source/Sefaria/Offline/SefariaOfflineStore.swift:14"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_OFFLINE_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "reader.offline",
+      "title": "Sefaria Embedded / Offline read availability",
+      "codeAssessment": "unverified_runtime",
+      "testRequirement": "Offline acceptance with disabled network, file missing, stale data",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:18",
+        "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift:85"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_PREV_NEXT_OTZARIA",
+      "backend": "otzaria",
+      "feature": "reader.prev_next",
+      "title": "Otzaria / Next/previous section",
+      "codeAssessment": "implemented",
+      "testRequirement": "Round-trip segment selection and pagination",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_PREV_NEXT_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "reader.prev_next",
+      "title": "Sefaria Legacy / Next/previous section",
+      "codeAssessment": "implemented",
+      "testRequirement": "Round-trip segment selection and pagination",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridStore.swift:23",
+        "Source/Sefaria/Offline/SefariaOfflineStore.swift:14"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_PREV_NEXT_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "reader.prev_next",
+      "title": "Sefaria Embedded / Next/previous section",
+      "codeAssessment": "implemented",
+      "testRequirement": "Round-trip segment selection and pagination",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:108"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_TRANSLATION_OTZARIA",
+      "backend": "otzaria",
+      "feature": "reader.translation",
+      "title": "Otzaria / Translation/bilingual segments",
+      "codeAssessment": "hebrew_only",
+      "testRequirement": "Expose available languages/version metadata accurately",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift:12"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_TRANSLATION_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "reader.translation",
+      "title": "Sefaria Legacy / Translation/bilingual segments",
+      "codeAssessment": "conditional",
+      "testRequirement": "Expose available languages/version metadata accurately",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:52",
+        "Source/Sefaria/Offline/SefariaOfflineStore.swift:14"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_TRANSLATION_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "reader.translation",
+      "title": "Sefaria Embedded / Translation/bilingual segments",
+      "codeAssessment": "conditional",
+      "testRequirement": "Expose available languages/version metadata accurately",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:41"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_VERSIONS_OTZARIA",
+      "backend": "otzaria",
+      "feature": "reader.versions",
+      "title": "Otzaria / List versions/editions",
+      "codeAssessment": "not_registered",
+      "testRequirement": "Distinguish empty verified list from missing runtime/invalid response",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendComposition.swift:20",
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_VERSIONS_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "reader.versions",
+      "title": "Sefaria Legacy / List versions/editions",
+      "codeAssessment": "implemented_remote",
+      "testRequirement": "Distinguish empty verified list from missing runtime/invalid response",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/App/SefariaBackend.swift:40",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:610"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_VERSIONS_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "reader.versions",
+      "title": "Sefaria Embedded / List versions/editions",
+      "codeAssessment": "partial",
+      "testRequirement": "Distinguish empty verified list from missing runtime/invalid response",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:160",
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:149"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_RELATED_REFS_OTZARIA",
+      "backend": "otzaria",
+      "feature": "reader.related_refs",
+      "title": "Otzaria / Metadata related locators",
+      "codeAssessment": "not_registered",
+      "testRequirement": "Do not conflate link collection with edition metadata",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendComposition.swift:20"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_RELATED_REFS_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "reader.related_refs",
+      "title": "Sefaria Legacy / Metadata related locators",
+      "codeAssessment": "implemented_remote",
+      "testRequirement": "Do not conflate link collection with edition metadata",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:615",
+        "Source/Sefaria/App/SefariaBackend.swift:40"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_RELATED_REFS_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "reader.related_refs",
+      "title": "Sefaria Embedded / Metadata related locators",
+      "codeAssessment": "partial",
+      "testRequirement": "Do not conflate link collection with edition metadata",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift:193"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_LINKS_OTZARIA",
+      "backend": "otzaria",
+      "feature": "reader.links",
+      "title": "Otzaria / Commentaries/related sources",
+      "codeAssessment": "implemented",
+      "testRequirement": "Return unavailable separately from genuine no commentaries; preserve anchorRefs",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift:68"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_LINKS_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "reader.links",
+      "title": "Sefaria Legacy / Commentaries/related sources",
+      "codeAssessment": "implemented_conditional",
+      "testRequirement": "Return unavailable separately from genuine no commentaries; preserve anchorRefs",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridStore.swift:81"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_LINKS_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "reader.links",
+      "title": "Sefaria Embedded / Commentaries/related sources",
+      "codeAssessment": "partial",
+      "testRequirement": "Return unavailable separately from genuine no commentaries; preserve anchorRefs",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift:16"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_TOPICS_OTZARIA",
+      "backend": "otzaria",
+      "feature": "reader.topics",
+      "title": "Otzaria / Related topics",
+      "codeAssessment": "stub",
+      "testRequirement": "Only advertise topics when actual response confirmed",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift:105"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_TOPICS_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "reader.topics",
+      "title": "Sefaria Legacy / Related topics",
+      "codeAssessment": "implemented_remote",
+      "testRequirement": "Only advertise topics when actual response confirmed",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:648"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_READER_TOPICS_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "reader.topics",
+      "title": "Sefaria Embedded / Related topics",
+      "codeAssessment": "partial",
+      "testRequirement": "Only advertise topics when actual response confirmed",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift:93"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_BASIC_OTZARIA",
+      "backend": "otzaria",
+      "feature": "search.basic",
+      "title": "Otzaria / Full-text search",
+      "codeAssessment": "implemented",
+      "testRequirement": "Compare known fixtures and unavailable/index missing; no false empty",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_BASIC_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "search.basic",
+      "title": "Sefaria Legacy / Full-text search",
+      "codeAssessment": "implemented_remote",
+      "testRequirement": "Compare known fixtures and unavailable/index missing; no false empty",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+        "Source/Sefaria/App/SefariaBackend.swift:35"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_BASIC_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "search.basic",
+      "title": "Sefaria Embedded / Full-text search",
+      "codeAssessment": "implemented_with_gate",
+      "testRequirement": "Compare known fixtures and unavailable/index missing; no false empty",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:18",
+        "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift:85"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_SCOPE_OTZARIA",
+      "backend": "otzaria",
+      "feature": "search.scope",
+      "title": "Otzaria / Work filters/scope",
+      "codeAssessment": "partial",
+      "testRequirement": "Do not silently broaden work-scope; fail or normalize explicitly",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_SCOPE_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "search.scope",
+      "title": "Sefaria Legacy / Work filters/scope",
+      "codeAssessment": "partial",
+      "testRequirement": "Do not silently broaden work-scope; fail or normalize explicitly",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:189"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_SCOPE_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "search.scope",
+      "title": "Sefaria Embedded / Work filters/scope",
+      "codeAssessment": "partial",
+      "testRequirement": "Do not silently broaden work-scope; fail or normalize explicitly",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:23"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_MODES_OTZARIA",
+      "backend": "otzaria",
+      "feature": "search.modes",
+      "title": "Otzaria / Phrase/OR/contains/near",
+      "codeAssessment": "partial",
+      "testRequirement": "Reject unsupported options or implement exact per engine; never silently downgrade",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_MODES_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "search.modes",
+      "title": "Sefaria Legacy / Phrase/OR/contains/near",
+      "codeAssessment": "partial",
+      "testRequirement": "Reject unsupported options or implement exact per engine; never silently downgrade",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:316",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:433"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_MODES_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "search.modes",
+      "title": "Sefaria Embedded / Phrase/OR/contains/near",
+      "codeAssessment": "ignored_options",
+      "testRequirement": "Reject unsupported options or implement exact per engine; never silently downgrade",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:22"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_SORT_OTZARIA",
+      "backend": "otzaria",
+      "feature": "search.sort",
+      "title": "Otzaria / Sort canonical/relevance/chronological",
+      "codeAssessment": "partial",
+      "testRequirement": "Capability negotiate and test stable sort",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_SORT_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "search.sort",
+      "title": "Sefaria Legacy / Sort canonical/relevance/chronological",
+      "codeAssessment": "partial",
+      "testRequirement": "Capability negotiate and test stable sort",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:316"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_SORT_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "search.sort",
+      "title": "Sefaria Embedded / Sort canonical/relevance/chronological",
+      "codeAssessment": "ignored_options",
+      "testRequirement": "Capability negotiate and test stable sort",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:23"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_PAGINATION_OTZARIA",
+      "backend": "otzaria",
+      "feature": "search.pagination",
+      "title": "Otzaria / Pagination and exact total",
+      "codeAssessment": "approximate_fallback",
+      "testRequirement": "Expose totalPrecision, continuation; test no deadlocks/duplicate IDs/non-advancing cursor",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_PAGINATION_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "search.pagination",
+      "title": "Sefaria Legacy / Pagination and exact total",
+      "codeAssessment": "approximate_in_some_modes",
+      "testRequirement": "Expose totalPrecision, continuation; test no deadlocks/duplicate IDs/non-advancing cursor",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:158",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:189",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:316"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_PAGINATION_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "search.pagination",
+      "title": "Sefaria Embedded / Pagination and exact total",
+      "codeAssessment": "partial",
+      "testRequirement": "Expose totalPrecision, continuation; test no deadlocks/duplicate IDs/non-advancing cursor",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:22"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_OFFLINE_OTZARIA",
+      "backend": "otzaria",
+      "feature": "search.offline",
+      "title": "Otzaria / Offline search availability",
+      "codeAssessment": "implemented_local",
+      "testRequirement": "network-off tests; don't advertise offlineSearch based on download capability",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_OFFLINE_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "search.offline",
+      "title": "Sefaria Legacy / Offline search availability",
+      "codeAssessment": "not_registered",
+      "testRequirement": "network-off tests; don't advertise offlineSearch based on download capability",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/App/SefariaBackend.swift:35",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:158"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_OFFLINE_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "search.offline",
+      "title": "Sefaria Embedded / Offline search availability",
+      "codeAssessment": "not_declared_unverified",
+      "testRequirement": "network-off tests; don't advertise offlineSearch based on download capability",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:31",
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:22"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_EXACT_COUNT_OTZARIA",
+      "backend": "otzaria",
+      "feature": "search.exact_count",
+      "title": "Otzaria / Count exact word occurrences",
+      "codeAssessment": "unverified",
+      "testRequirement": "Return exact_count_unavailable until exhaustive fixture semantics certified",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:211"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_EXACT_COUNT_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "search.exact_count",
+      "title": "Sefaria Legacy / Count exact word occurrences",
+      "codeAssessment": "unverified",
+      "testRequirement": "Return exact_count_unavailable until exhaustive fixture semantics certified",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:158"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_SEARCH_EXACT_COUNT_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "search.exact_count",
+      "title": "Sefaria Embedded / Count exact word occurrences",
+      "codeAssessment": "unverified",
+      "testRequirement": "Return exact_count_unavailable until exhaustive fixture semantics certified",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift:22"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_OFFLINE_PACKAGES_OTZARIA",
+      "backend": "otzaria",
+      "feature": "offline.packages",
+      "title": "Otzaria / List/install/remove/update packages",
+      "codeAssessment": "not_registered",
+      "testRequirement": "Mutations require user consent and data safety; no remote uncontrolled installs",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendComposition.swift:24"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_OFFLINE_PACKAGES_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "offline.packages",
+      "title": "Sefaria Legacy / List/install/remove/update packages",
+      "codeAssessment": "implemented",
+      "testRequirement": "Mutations require user consent and data safety; no remote uncontrolled installs",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Downloads/SefariaPackageManager.swift:26",
+        "Source/Sefaria/App/SefariaBackend.swift:43"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_OFFLINE_PACKAGES_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "offline.packages",
+      "title": "Sefaria Embedded / List/install/remove/update packages",
+      "codeAssessment": "implemented_with_gate",
+      "testRequirement": "Mutations require user consent and data safety; no remote uncontrolled installs",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift:65",
+        "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:39"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_OFFLINE_WORKS_OTZARIA",
+      "backend": "otzaria",
+      "feature": "offline.works",
+      "title": "Otzaria / Install/remove individual works",
+      "codeAssessment": "not_registered",
+      "testRequirement": "Show not_supported vs missing package; no implicit bulk install",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendComposition.swift:25"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_OFFLINE_WORKS_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "offline.works",
+      "title": "Sefaria Legacy / Install/remove individual works",
+      "codeAssessment": "implemented",
+      "testRequirement": "Show not_supported vs missing package; no implicit bulk install",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Downloads/SefariaPackageManager.swift:43",
+        "Source/Sefaria/App/SefariaBackend.swift:45"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_OFFLINE_WORKS_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "offline.works",
+      "title": "Sefaria Embedded / Install/remove individual works",
+      "codeAssessment": "implemented_with_gate",
+      "testRequirement": "Show not_supported vs missing package; no implicit bulk install",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift:205"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_OFFLINE_UPDATE_STATUS_OTZARIA",
+      "backend": "otzaria",
+      "feature": "offline.update_status",
+      "title": "Otzaria / Installed IDs / available updates",
+      "codeAssessment": "not_registered",
+      "testRequirement": "Do not report zero updates when runtime unavailable",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendComposition.swift:24"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_OFFLINE_UPDATE_STATUS_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "offline.update_status",
+      "title": "Sefaria Legacy / Installed IDs / available updates",
+      "codeAssessment": "implemented",
+      "testRequirement": "Do not report zero updates when runtime unavailable",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Downloads/SefariaPackageManager.swift:41",
+        "Source/Sefaria/App/SefariaBackend.swift:43"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_OFFLINE_UPDATE_STATUS_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "offline.update_status",
+      "title": "Sefaria Embedded / Installed IDs / available updates",
+      "codeAssessment": "partial",
+      "testRequirement": "Do not report zero updates when runtime unavailable",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift:74",
+        "Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift:153"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_APP_OPEN_BOOK_OTZARIA",
+      "backend": "otzaria",
+      "feature": "app.open_book",
+      "title": "Otzaria / Open native reader UI",
+      "codeAssessment": "integration_required",
+      "testRequirement": "No UI completed status until scene/view acknowledges; iPad acceptance",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/UI/iOS/Managers/iOSNavigationManager.swift:170",
+        "Source/LibraryBackend/BackendComposition.swift:21"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_APP_OPEN_BOOK_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "app.open_book",
+      "title": "Sefaria Legacy / Open native reader UI",
+      "codeAssessment": "integration_required",
+      "testRequirement": "No UI completed status until scene/view acknowledges; iPad acceptance",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/MaktabahBackendAdapter.swift:1",
+        "Source/Sefaria/App/SefariaBackend.swift:45"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_APP_OPEN_BOOK_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "app.open_book",
+      "title": "Sefaria Embedded / Open native reader UI",
+      "codeAssessment": "integration_required",
+      "testRequirement": "No UI completed status until scene/view acknowledges; iPad acceptance",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift:11",
+        "Source/UI/iOS/Managers/iOSNavigationManager.swift:170"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_APP_NOTES_OTZARIA",
+      "backend": "otzaria",
+      "feature": "app.notes",
+      "title": "Otzaria / Native annotations / note drafting",
+      "codeAssessment": "app_shared_not_backend",
+      "testRequirement": "Prepare-only in v1; persist gated and idempotent, verify all 3",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Features/Annotations/Database/AnnotationStore.swift:160"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_APP_NOTES_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "app.notes",
+      "title": "Sefaria Legacy / Native annotations / note drafting",
+      "codeAssessment": "app_shared_not_backend",
+      "testRequirement": "Prepare-only in v1; persist gated and idempotent, verify all 3",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Features/Annotations/Coordinator/AnnotationCoordinator.swift:46"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_APP_NOTES_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "app.notes",
+      "title": "Sefaria Embedded / Native annotations / note drafting",
+      "codeAssessment": "app_shared_not_backend",
+      "testRequirement": "Prepare-only in v1; persist gated and idempotent, verify all 3",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift:11"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_RUNTIME_READINESS_OTZARIA",
+      "backend": "otzaria",
+      "feature": "runtime.readiness",
+      "title": "Otzaria / Runtime availability",
+      "codeAssessment": "conditional",
+      "testRequirement": "Query availability by operation; distinguish ready, initializing, offline, failed",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:20",
+        "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift:46"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_RUNTIME_READINESS_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "runtime.readiness",
+      "title": "Sefaria Legacy / Runtime availability",
+      "codeAssessment": "conditional",
+      "testRequirement": "Query availability by operation; distinguish ready, initializing, offline, failed",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/Reading/SefariaHybridStore.swift:23",
+        "Source/Sefaria/Reading/SefariaHybridCatalogStore.swift:22"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_RUNTIME_READINESS_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "runtime.readiness",
+      "title": "Sefaria Embedded / Runtime availability",
+      "codeAssessment": "multiple_gates",
+      "testRequirement": "Query availability by operation; distinguish ready, initializing, offline, failed",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift:20",
+        "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift:30"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_RUNTIME_ACTIVE_SELECTION_OTZARIA",
+      "backend": "otzaria",
+      "feature": "runtime.active_selection",
+      "title": "Otzaria / Call an inactive backend",
+      "codeAssessment": "active_only",
+      "testRequirement": "Return requires_backend_switch and preserve active state; no silent global switch",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendCoordinator.swift:275",
+        "Source/LibraryBackend/BackendCoordinator.swift:551"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_RUNTIME_ACTIVE_SELECTION_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "runtime.active_selection",
+      "title": "Sefaria Legacy / Call an inactive backend",
+      "codeAssessment": "active_only",
+      "testRequirement": "Return requires_backend_switch and preserve active state; no silent global switch",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendCoordinator.swift:275",
+        "Source/LibraryBackend/BackendCoordinator.swift:603"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_RUNTIME_ACTIVE_SELECTION_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "runtime.active_selection",
+      "title": "Sefaria Embedded / Call an inactive backend",
+      "codeAssessment": "active_only",
+      "testRequirement": "Return requires_backend_switch and preserve active state; no silent global switch",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendCoordinator.swift:275",
+        "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:29"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_RUNTIME_SWITCH_CANCELLATION_OTZARIA",
+      "backend": "otzaria",
+      "feature": "runtime.switch_cancellation",
+      "title": "Otzaria / Backend switch and cancellation",
+      "codeAssessment": "implemented_core",
+      "testRequirement": "Use backendGeneration+RPC epoch, no stale UI success",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/LibraryBackend/BackendCoordinator.swift:473",
+        "Source/LibraryBackend/BackendCoordinator.swift:648"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_RUNTIME_SWITCH_CANCELLATION_SEFARIALEGACY",
+      "backend": "sefaria",
+      "feature": "runtime.switch_cancellation",
+      "title": "Sefaria Legacy / Backend switch and cancellation",
+      "codeAssessment": "implemented_core",
+      "testRequirement": "Use backendGeneration+RPC epoch, no stale UI success",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/Sefaria/App/SefariaBackend.swift:50",
+        "Source/Sefaria/Network/SefariaRemoteStore.swift:671"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "BE_RUNTIME_SWITCH_CANCELLATION_SEFARIAEMBEDDED",
+      "backend": "sefariaEmbedded",
+      "feature": "runtime.switch_cancellation",
+      "title": "Sefaria Embedded / Backend switch and cancellation",
+      "codeAssessment": "implemented_core_with_rpcs",
+      "testRequirement": "Use backendGeneration+RPC epoch, no stale UI success",
+      "assertions": [
+        "Respect selected backend and do not read the wrong backend",
+        "Return typed not_supported/unavailable for unsupported modes/data, not false completed",
+        "Preserve backend-qualified stable locators or truthful non-support",
+        "Report errors separately from verified-empty results",
+        "Retain original Maktabah UI behavior for currently supported actions"
+      ],
+      "evidenceFiles": [
+        "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift:48",
+        "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift:30"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "XBACKEND_MISMATCH",
+      "backend": "otzaria",
+      "feature": "cross-cutting",
+      "title": "Xbackend Mismatch",
+      "assertions": [
+        "Explicit request for sefariaEmbedded while active otzaria returns requires_backend_switch, no Otzaria result"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "XBACKEND_STALE",
+      "backend": "sefaria",
+      "feature": "cross-cutting",
+      "title": "Xbackend Stale",
+      "assertions": [
+        "Switch backend mid-search invalidates result before UI action"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "XBACKEND_HERMES_EPOCH",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "Xbackend Hermes Epoch",
+      "assertions": [
+        "RPC session epoch changed during query: cancel and unavailable/stale, no UI false success"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "O_SCOPE_KEYS",
+      "backend": "otzaria",
+      "feature": "cross-cutting",
+      "title": "O Scope Keys",
+      "assertions": [
+        "scopeWorkKeys cannot be silently ignored; safe conversion to book filters or not_supported"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "L_SCOPE_POSTFILTER",
+      "backend": "sefaria",
+      "feature": "cross-cutting",
+      "title": "L Scope Postfilter",
+      "assertions": [
+        "Scope fallback result total reports precision correctly, not exact when remote page incomplete"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "E_SEARCH_MODE_NEAR",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "E Search Mode Near",
+      "assertions": [
+        "Near query must be faithfully supported or return not_supported, no silent exact/relevance"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "E_SEARCH_SORT",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "E Search Sort",
+      "assertions": [
+        "Canonical/chronological sort must not silently use relevance"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "E_SEARCH_CURSOR",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "E Search Cursor",
+      "assertions": [
+        "Filtered/invalid raw hits do not skip cursor or cause nextOffset stalls"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "ALL_COUNT_TWO_WORDS",
+      "backend": "all",
+      "feature": "cross-cutting",
+      "title": "All Count Two Words",
+      "assertions": [
+        "Token count two occurrences in one segment must equal 2 or explicit exact_count_unavailable; never 1"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "E_LINKS_RPC_FAILURE",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "E Links Rpc Failure",
+      "assertions": [
+        "Failed relationships RPC returns unavailable, not completed with empty links"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "E_VERSIONS_RPC_FAILURE",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "E Versions Rpc Failure",
+      "assertions": [
+        "Failed version RPC returns unavailable, not completed with empty versions"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "E_DOWNLOAD_STATUS_FAIL",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "E Download Status Fail",
+      "assertions": [
+        "RPC runtime not ready cannot mean zero installed packages/no updates"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "E_NAV_TRIM_ONLY",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "E Nav Trim Only",
+      "assertions": [
+        "Unknown Hebrew phrase is not declared valid canonicalRef simply from whitespace trim"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "O_TOPICS_STUB",
+      "backend": "otzaria",
+      "feature": "cross-cutting",
+      "title": "O Topics Stub",
+      "assertions": [
+        "topics() empty stub must not be advertised as complete semantic topics support"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "L_OFFLINE_SEARCH",
+      "backend": "sefaria",
+      "feature": "cross-cutting",
+      "title": "L Offline Search",
+      "assertions": [
+        "Downloaded text alone does not imply working offline search"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "E_SEARCH_NOT_READY",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "E Search Not Ready",
+      "assertions": [
+        "Host ready but searchReady=false => initializing/unavailable, never zero matches"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "E_PACKAGES_NOT_READY",
+      "backend": "sefariaEmbedded",
+      "feature": "cross-cutting",
+      "title": "E Packages Not Ready",
+      "assertions": [
+        "Catalog ready but packagesReady=false => package API unavailable"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "L_OFFLINE_READER",
+      "backend": "sefaria",
+      "feature": "cross-cutting",
+      "title": "L Offline Reader",
+      "assertions": [
+        "Downloaded book section readable while disconnected; uninstalled work unavailable"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "APP_OLD_WIDGET_LINK",
+      "backend": "all",
+      "feature": "cross-cutting",
+      "title": "App Old Widget Link",
+      "assertions": [
+        "maktabah://annotation and maktabah://history continue unchanged"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "APP_NARRATIVE_OPEN",
+      "backend": "all",
+      "feature": "cross-cutting",
+      "title": "App Narrative Open",
+      "assertions": [
+        "reader.open returns UI-queued or requires foreground until appropriate native/RN scene acknowledges"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "APP_NOTE_PERMISSION",
+      "backend": "all",
+      "feature": "cross-cutting",
+      "title": "App Note Permission",
+      "assertions": [
+        "prepareDraft does not persist; saveDraft disabled without explicit confirmation"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "APP_INTENTS_THREE",
+      "backend": "all",
+      "feature": "cross-cutting",
+      "title": "App Intents Three",
+      "assertions": [
+        "All three backends produce same contract for supported actions via AppIntent/Shortcuts"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "MCP_DEVICE_OFFLINE",
+      "backend": "all",
+      "feature": "cross-cutting",
+      "title": "Mcp Device Offline",
+      "assertions": [
+        "Remote MCP call cannot falsely open iPad without paired active device"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "ALL_AUTH_SCOPE",
+      "backend": "all",
+      "feature": "cross-cutting",
+      "title": "All Auth Scope",
+      "assertions": [
+        "Untrusted JSON scopes/user confirmation ignored by trusted ExecutionContext"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "ALL_ALTERNATE_TOC",
+      "backend": "all",
+      "feature": "cross-cutting",
+      "title": "All Alternate Toc",
+      "assertions": [
+        "Valid alternate structure preserved where supported; unsupported returns truthful status"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    },
+    {
+      "id": "ALL_RESOURCE_BUDGET",
+      "backend": "all",
+      "feature": "cross-cutting",
+      "title": "All Resource Budget",
+      "assertions": [
+        "Heavy search/read/resolve operations bounded and cancellable off UI thread"
+      ],
+      "status": "NOT_RUN",
+      "deviceEvidence": null,
+      "commit": null
+    }
+  ]
+}
