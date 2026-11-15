@@ -1,6 +1,6 @@
 # N constraints for the corrected P host-local binding seam
 
-This is the consumer response to P's proposed mandatory async resolver plus synchronous MainActor binding observation. It records requirements, not final P API declarations or a second native/backend authority. No source/handler/registration is activated and no frozen native candidate/run is changed. Exact names and implementation remain P-owned until the corrected packet is published.
+This is the consumer response to P's refined mandatory **single synchronous MainActor** binding observation, captured before the first await and reread at guards/completion. It records requirements, not final P API declarations or a second native/backend authority. No source/handler/registration is activated and no frozen native candidate/run is changed. Exact names and implementation remain P-owned until the corrected packet is published.
 
 ## Binding source and meaning
 
@@ -16,7 +16,9 @@ This is the consumer response to P's proposed mandatory async resolver plus sync
 
 All capture/check operations touching N's native values are MainActor-isolated. A synchronous observation must independently read the current native selection/store revision, current exact directory scene, actual shared S snapshot and live reservation ownership. It may compare them with a retained local record; returning the record without these reads would merely echo stale state.
 
-There must be a real pre-await baseline for native mapping as well as Core authority. If async resolution includes waits, a fresh post-await selection cannot erase a pre-resolution A→B→A transition. N can establish the bounded, nonvisible request/reservation record synchronously before calling the binder; the binding protocol must make its first baseline capture and subsequent validation order explicit. Missing/unresolved record, expired deadline, mismatched request, remount, context release/re-admission or owner replacement must fail rather than return absent IDs.
+There must be a real pre-await baseline for native mapping as well as Core authority. A fresh post-await selection cannot erase a pre-resolution A→B→A transition. N establishes the bounded, nonvisible request/reservation record synchronously before calling the binder; the mandatory synchronous observation never allocates or changes native/visible/persisted state. Missing/unresolved record, expired deadline, mismatched request, remount, context release/re-admission or owner replacement must fail rather than return absent IDs.
+
+An actual mapping invalidation must synchronously invalidate the **existing admitted NativeNavigationAuthority** as well as its local binding record. Merely noticing a changed revision on the next binding read would not protect Core's final post-sink backend await, when no further native binding callback may occur. In particular, the existing SwiftUI `.onChange(selection)` is not proof of synchronous coalesced-ABA invalidation. N must implement/test the concrete owner-change observation and finite cleanup for the future adapter; this requirement does not claim that observer already exists in the frozen handler.
 
 ## Precommit versus completion
 
