@@ -1,0 +1,25 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write swift-version-2807070033DA82CF.txt
+[1/5] Write sources
+[5/6] Emitting module OtzariaActionCore
+[6/7] Compiling OtzariaActionCore ActionExecutor.swift
+[8/9] Emitting module ChavrusaUIRoutingHost
+[9/10] Compiling ChavrusaUIRoutingHost NativeSurfaceWitness.swift
+[11/18] Emitting module ChavrusaUIRoutingHostTests
+[12/19] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:156:69: error: invalid conversion from throwing function of type '@Sendable () throws -> ()' to non-throwing function type '@MainActor @Sendable () -> Void'
+
+154 |                     // The first post-sink backend await remains current; revoke
+
+155 |                     // during Core's LAST shared backend await after that ACK.
+
+156 |                     backend.afterSnapshot = { backend.afterSnapshot = { XCTAssertNoThrow(try authority.invalidate(lease)) } }
+
+    |                                                                     `- error: invalid conversion from throwing function of type '@Sendable () throws -> ()' to non-throwing function type '@MainActor @Sendable () -> Void'
+
+157 |                 }
+
+158 |                 return .acknowledged(coreReceipt)
+
+error: fatalError

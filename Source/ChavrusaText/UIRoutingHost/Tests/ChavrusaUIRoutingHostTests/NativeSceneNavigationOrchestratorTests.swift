@@ -122,10 +122,15 @@ import OtzariaUIRouting
         XCTAssertEqual(failure.code, "native_effect_uncertain"); XCTAssertGreaterThan(clock.now(), 200)
     }
     func testCoreReaderOwnerKeepsContextUntilItsPostSinkCompletionOnAllBackends() async throws {
-        for backendID in ActionBackendID.allCases {
+        for backendID in ActionBackendID.allCases { try await readerScenario(backendID, revokeAtFinalAwait: false) }
+    }
+    func testCoreReaderFinalBackendAwaitRevocationCannotCompleteSinkReceipt() async throws {
+        for backendID in ActionBackendID.allCases { try await readerScenario(backendID, revokeAtFinalAwait: true) }
+    }
+    private func readerScenario(_ backendID: ActionBackendID, revokeAtFinalAwait: Bool) async throws {
             let backend = NavigationTestBackend(backendID), authority = try NativeNavigationAuthority(), sceneID = UIStableID(rawValue: "reader.scene")!
             backend.readerReady = true
-            _ = try authority.mount(sceneID: sceneID, foreground: true)
+            let lease = try authority.mount(sceneID: sceneID, foreground: true)
             let directory = try NativeSceneDirectory(authority: backend), driver = NavigationTestDriver(sceneID: sceneID, backend: backend)
             _ = try directory.mount(sceneID: sceneID, observe: { driver.observation }, validateLifetime: { _ in })
             let ports = NavigationTestPorts(allowReader: true), sink = NavigationReaderSink()
@@ -145,16 +150,28 @@ import OtzariaUIRouting
                 let command = try UISceneCommand(route: registry.validate(route), invocation: reader.invocation, scene: scene)
                 let result = await orchestrator.commit(command, readerCommand: reader, context: context)
                 guard case .acknowledged(let receipt) = result, let coreReceipt = receipt.coreReceipt else { throw ActionPortError.invalidResponse }
+                if revokeAtFinalAwait {
+                    // The first post-sink backend await remains current; revoke
+                    // during Core's LAST shared backend await after that ACK.
+                    backend.afterSnapshot = { backend.afterSnapshot = {
+                        do { try authority.invalidate(lease) }
+                        catch { XCTFail("Fixture revocation failed: \(error)") }
+                    } }
+                }
                 return .acknowledged(coreReceipt)
             }
             let ref = ActionTextRef(backend: backendID, workKey: "fixture:work", position: backendID == .otzaria ? .legacyLine(1) : .canonicalRef("Fixture 1"))
             let result = await core.execute(.init(action: "reader.open", arguments: ["sectionLocator": try .encoded(ref)], expectedBackend: backendID), context: context)
-            XCTAssertEqual(result.status, .completed, "\(String(describing: result.error))")
+            if revokeAtFinalAwait {
+                XCTAssertNotEqual(result.status, .completed, "A native sink ACK is not the final Core action result")
+                XCTAssertThrowsError(try authority.navigationState(sceneID: sceneID.rawValue))
+            } else {
+                XCTAssertEqual(result.status, .completed, "\(String(describing: result.error))")
+                XCTAssertEqual(try authority.navigationState(sceneID: sceneID.rawValue).context, context)
+            }
             XCTAssertEqual(sink.calls, 1); XCTAssertEqual(driver.applied, 1)
-            XCTAssertEqual(try authority.navigationState(sceneID: sceneID.rawValue).context, context)
             authority.release(admitted)
             XCTAssertThrowsError(try authority.navigationState(sceneID: sceneID.rawValue))
-        }
     }
     func testOldRequestCleanupCannotReleaseReissuedOrReplacedNativeContext() async throws {
         for replaceLifetime in [false, true] {

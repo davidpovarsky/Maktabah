@@ -21,6 +21,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     private var lease: NativeSceneDirectory.Lease?
     private var command: UISceneCommand?
     private var visible: [UIDestinationID: NativeSurfaceWitness.Evidence] = [:]
+    var isPresentationReady: Bool { bindings.isPresentationReady }
 
     init(sceneID: UIStableID, directory: NativeSceneDirectory, bindings: MaktabahNativeSceneBindings,
          project: @escaping @MainActor () throws -> MaktabahNativeSceneProjection) {
@@ -57,6 +58,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
 
     func validateSurface(_ command: UISceneCommand) throws {
         guard mounted, foreground else { throw UIRouteError(.requiresForeground, "exact_foreground_scene_required") }
+        guard isPresentationReady else { throw UIRouteError(.unavailable, "native_presentation_in_progress") }
         let route = command.route.route, projection = try project(), identity = try projection.identity()
         guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
               route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }

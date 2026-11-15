@@ -45,9 +45,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         orchestrator = try NativeSceneNavigationOrchestrator(core: core, backend: backend, authority: authority, directory: directory)
         func id(_ value: String) -> UIDestinationID { UIDestinationID(rawValue: value)! }
         registry = try UIDestinationRegistry(descriptors: [
-            .init(id: id("native.history"), title: "History", implementation: .implemented,
+            .init(id: id("native.history"), title: "History".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true),
-            .init(id: id("native.settings"), title: "Settings", implementation: .implemented,
+            .init(id: id("native.settings"), title: "Settings".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.sheet], requiredCoreActions: [])
         ])
     }
@@ -191,7 +191,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         guard current == scene, let entry = scenes[scene.sceneID] else { throw UIRouteError(.staleState, "scene_or_backend_changed") }
         let supported = descriptor.id.rawValue == "native.settings" || (descriptor.id.rawValue == "native.history" && HistoryViewModel.shared.searchText.isEmpty)
         return .init(sceneID: scene.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
-                     supported: supported, ready: entry.session.foreground && entry.session.mounted, allowed: true)
+                     supported: supported, ready: entry.session.foreground && entry.session.mounted && entry.session.isPresentationReady, allowed: true)
     }
     private func deadline() -> UInt64 {
         let (value, overflow) = SystemActionClock().now().addingReportingOverflow(5_000_000_000)

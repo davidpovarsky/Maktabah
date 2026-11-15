@@ -76,3 +76,38 @@ hook("Source/UI/iOS/Views/iOSMainView.swift", [
 hook("Source/UI/iOS/Views/iPadLayout.swift", [("            iOSHistoryView()\n", "            iOSHistoryView()\n                .modifier(MaktabahNativeRoutingSurface(kind: .history))\n")])
 (Path(__file__).parent / "N_PROPOSED_NATIVE_HOOKS.diff").write_text("".join(hooks), encoding="utf-8")
 print(f"Proposed {len(integration)} app integration source registrations and five narrow native hooks; no protected file edited")
+
+# Shared native runner remains manager-owned. Propose ONLY retention of the
+# actual app reader log from the post-XCTest authoritative container lookup.
+runner_relative = "Scripts/CI/run-faithful-ipad-matrix.py"
+runner_old = (root / runner_relative).read_text(encoding="utf-8")
+runner_new = runner_old.replace("import json\n", "import json\nimport hashlib\n", 1)
+runner_anchor = '        viewport_reports = artifacts / f"viewport-reports-{label}"\n'
+assert runner_new.count(runner_anchor) == 1
+retention = '''        if any(case == "NativeRoutingAcceptanceTests" or case.startswith("NativeRoutingAcceptanceTests/") for case in selection):
+            native_dir = artifacts / f"native-routing-logs-{label}"
+            native_dir.mkdir(parents=True, exist_ok=True)
+            native_log_report = {"udid": udid, "label": label, "bundleID": "com.davidpovarsky.chavrusatext",
+                                 "collectedAt": datetime.now(timezone.utc).isoformat(), "status": "MISSING"}
+            try:
+                actual_container = Path(subprocess.check_output(
+                    ["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"],
+                    text=True, timeout=45).strip())
+                actual_log = actual_container / "Documents/OtzariaLogs/otzaria-reader.log"
+                native_log_report["actualContainer"] = str(actual_container)
+                if actual_log.is_file():
+                    retained_log = native_dir / "otzaria-reader.log"
+                    shutil.copyfile(actual_log, retained_log)
+                    native_log_report.update(status="RETAINED", bytes=retained_log.stat().st_size,
+                                             sha256=hashlib.sha256(retained_log.read_bytes()).hexdigest(),
+                                             artifact=str(retained_log.relative_to(artifacts)))
+            except Exception as error:
+                native_log_report.update(status="COLLECTION_ERROR", error=str(error))
+            (native_dir / "collection.json").write_text(json.dumps(native_log_report, indent=2) + "\\n")
+            device["nativeRoutingLog"] = native_log_report
+'''
+runner_new = runner_new.replace(runner_anchor, retention + runner_anchor, 1)
+runner_patch = "".join(difflib.unified_diff(runner_old.splitlines(keepends=True), runner_new.splitlines(keepends=True),
+                                          fromfile="a/" + runner_relative, tofile="b/" + runner_relative))
+(Path(__file__).parent / "N_PROPOSED_NATIVE_LOG_RETENTION.diff").write_text(runner_patch, encoding="utf-8")
+print("Proposed actual native log retention only; shared runner unchanged")
