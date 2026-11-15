@@ -1,0 +1,45 @@
+{
+  "R_dependency": "e8b81fe844a935109036f60252ab0f176065e877",
+  "single_parent_base": "0436775d85893225005f29baf0aa3a20d7b88317",
+  "N_production_source": "a0409b932ea4f5125122026500ab374eefc0ec87",
+  "sources": {
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift": {
+      "git_blob": "5ba997af025d29fb8fd354a39cbd41b145c0665e",
+      "git_bytes_sha256": "998002e7e974a1a03e46f83fe72ea8e22c7db4249bacd85f0e8fd1a29011983f"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift": {
+      "git_blob": "ed6dc3d685a103c733fd30b453ee36a39eae48e3",
+      "git_bytes_sha256": "893202bd779723b2a1e7f4ff641f54f7196a975c577406784c0303d0d4eabda4"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": {
+      "git_blob": "0fc38aa9dd9ea44b6e00b9111734f2c1394b5124",
+      "git_bytes_sha256": "be6f691e501d67379affe47ee76ebfaa39c504bfd4dfa863f686faae125f9cbd"
+    }
+  },
+  "policy_and_store_exact_R44": true,
+  "producer_block_exact_R44": true,
+  "producer_block_git_bytes_sha256": "366e8c0b5870200ca51e05605dcc0cec428f0243f89ecf3f1e2ef591fdbe20f1",
+  "N4b_dependency_patch_reverse_check_exit": 0,
+  "reverse_application_reconstructs_base043_store_and_adapter_exactly": true,
+  "reverse_reconstruction_git_form": {
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift": {
+      "raw_written_sha256": "e71d028212c3d1c346c36ff4fd88c3ba54646a4809b522f80439dd42cd7f5f3a",
+      "git_lf_sha256": "d244e658563f05be60f1989601a954e9899814c6493b2a62d7899f272bef16a4",
+      "exact_base_git_bytes_after_only_CRLF_normalization": true
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": {
+      "raw_written_sha256": "373db39a17c6d147296248f1943e833e4443a9c152d8c676ec1b9ed6a3166afd",
+      "git_lf_sha256": "239768fdb1e9994baff9f1a9242c8ff59bfdc99cbf23b4ed43b72b0ff02dd083",
+      "exact_base_git_bytes_after_only_CRLF_normalization": true
+    }
+  },
+  "approved_startup_adapter_blob": "36dd25996aedf5610f4d5bf30982163f4777a62a",
+  "N4b_proposal_patch_git_sha256": "8a2b00758e180b66b746e991455e9f60eef96f72d3dbd720237bb3fbd6d1eb79",
+  "R_official_source_test_patch_git_sha256": "2583ad3ca6d9d6cd678c3d2db68406af4341ea7b10674cb1d8069eead7b35dde",
+  "R_reported_patch_sha256": "2583ad3ca6d9d6cd678c3d2db68406af4341ea7b10674cb1d8069eead7b35dde",
+  "R_original_new_run_evidence": "69 Store +63 exact-native-boundary +30 startup +61 legacy; independently attributed to R, not N test counts",
+  "workspace_R_files_modified": false,
+  "app_source_dependency_applied": false,
+  "native_hook_applied": false,
+  "SDK_native": "NOT_RUN"
+}

@@ -1,0 +1,660 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-2807070033DA82CF.txt
+[1/13] Write sources
+[3/10] Emitting module ChavrusaUIRoutingHostTests
+[4/23] Compiling ChavrusaUIRoutingHostTests ActualAppMethodBodies_ExplicitNativeBoundaries.swift
+[5/23] Compiling ChavrusaUIRoutingHostTests Actual_MaktabahNativePublicBindingAdapter.swift
+[6/23] Compiling ChavrusaUIRoutingHostTests Actual_MaktabahNativeWorkspaceOwner.swift
+[7/23] Compiling ChavrusaUIRoutingHostTests NRActualProducerConsumerTests.swift
+[8/23] Compiling ChavrusaUIRoutingHostTests NReconciledRStartupTests.swift
+[9/23] Compiling ChavrusaUIRoutingHostTests RActualAdapterProducer_ProposedHookBoundaryDouble.swift
+[10/23] Compiling ChavrusaUIRoutingHostTests RActualStartupReconciliationChecks.swift
+[11/23] Compiling ChavrusaUIRoutingHostTests RActual_BackendSessionIntegrityRepair.swift
+[12/23] Compiling ChavrusaUIRoutingHostTests RActual_LibraryBackendModels.swift
+[13/23] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceMappingOwnership.swift
+[14/23] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceModels.swift
+[15/23] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspacePersistence.swift
+[16/23] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceStore.swift
+[17/29] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+[18/29] Compiling ChavrusaUIRoutingHostTests NativePublicPreparedCommitTests.swift
+[19/29] Compiling ChavrusaUIRoutingHostTests NativeReaderPlanBudgetTests.swift
+[20/29] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+[21/29] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[22/29] Compiling ChavrusaUIRoutingHostTests PNativeCoreInteractionReviewTests.swift
+[23/30] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[24/30] C:\Users\DAVID\.codex\tmp\njb-050\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[25/31] Write sources
+[27/32] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[28/34] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[29/34] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[30/35] C:\Users\DAVID\.codex\tmp\njb-050\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[31/36] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[32/36] Write sources
+[34/37] Emitting module ChavrusaUIRoutingHostPackageTests
+[35/38] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[36/38] Write Objects.LinkFileList
+[37/38] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (52.36s)
+Test Suite 'All tests' started at 2026-11-15 20:15:47.518
+
+Test Suite 'debug.xctest' started at 2026-11-15 20:15:47.521
+
+Test Suite 'NActualAppBindingAdapterTests' started at 2026-11-15 20:15:47.521
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppAdapterExactRootReceiptAndNarrowCheckpointOnAllBackends' started at 2026-11-15 20:15:47.521
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppAdapterExactRootReceiptAndNarrowCheckpointOnAllBackends' passed (0.428 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppObserverRefusesCoreLastAwaitAfterExactReaderACK' started at 2026-11-15 20:15:47.949
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppObserverRefusesCoreLastAwaitAfterExactReaderACK' passed (0.428 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppObserverRevokesOriginalPreparationsAcrossSameTurnABA' started at 2026-11-15 20:15:48.377
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppObserverRevokesOriginalPreparationsAcrossSameTurnABA' passed (0.137 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualCompositionFactoryDefaultsOffAndUsesOriginalLeaseWhenExplicit' started at 2026-11-15 20:15:48.514
+
+Test Case 'NActualAppBindingAdapterTests.testActualCompositionFactoryDefaultsOffAndUsesOriginalLeaseWhenExplicit' passed (0.039 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualCompositionRejectsWorkspaceOwnerSubstitutionBeforeCoalescedCallback' started at 2026-11-15 20:15:48.554
+
+Test Case 'NActualAppBindingAdapterTests.testActualCompositionRejectsWorkspaceOwnerSubstitutionBeforeCoalescedCallback' passed (0.038 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualCurrentSceneAwaitCannotBorrowReadmittedSameContext' started at 2026-11-15 20:15:48.592
+
+Test Case 'NActualAppBindingAdapterTests.testActualCurrentSceneAwaitCannotBorrowReadmittedSameContext' passed (0.044 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualHostWithoutAuthoritativeProducerRefusesFutureBinding' started at 2026-11-15 20:15:48.636
+
+Test Case 'NActualAppBindingAdapterTests.testActualHostWithoutAuthoritativeProducerRefusesFutureBinding' passed (0.044 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualMountAndRefreshClosuresDoNotRetainReplacedWorkspace' started at 2026-11-15 20:15:48.680
+
+Test Case 'NActualAppBindingAdapterTests.testActualMountAndRefreshClosuresDoNotRetainReplacedWorkspace' passed (0.04 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualSessionPresentationRequiresLiveIndependentReaderEvidence' started at 2026-11-15 20:15:48.720
+
+Test Case 'NActualAppBindingAdapterTests.testActualSessionPresentationRequiresLiveIndependentReaderEvidence' passed (0.044 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testBackendGetterCannotRevokeOriginalOwnerIntoSuccessfulBinding' started at 2026-11-15 20:15:48.764
+
+Test Case 'NActualAppBindingAdapterTests.testBackendGetterCannotRevokeOriginalOwnerIntoSuccessfulBinding' passed (0.041 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testCancelAndLateOldLeaseCannotTakeReplacementSceneOwner' started at 2026-11-15 20:15:48.805
+
+Test Case 'NActualAppBindingAdapterTests.testCancelAndLateOldLeaseCannotTakeReplacementSceneOwner' passed (0.043 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testCanonicalNilPublicationRefusesSourceAndBindingInsideActualInvalidation' started at 2026-11-15 20:15:48.848
+
+Test Case 'NActualAppBindingAdapterTests.testCanonicalNilPublicationRefusesSourceAndBindingInsideActualInvalidation' passed (0.041 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testCanonicalOwnerABARevokesEachExplicitOperationAndLateCleanupPreservesNewObserver' started at 2026-11-15 20:15:48.889
+
+Test Case 'NActualAppBindingAdapterTests.testCanonicalOwnerABARevokesEachExplicitOperationAndLateCleanupPreservesNewObserver' passed (0.046 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testExactMountPathReadsEqualSelectionReplacementWithoutAnyRefresh' started at 2026-11-15 20:15:48.935
+
+Test Case 'NActualAppBindingAdapterTests.testExactMountPathReadsEqualSelectionReplacementWithoutAnyRefresh' passed (0.047 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testLegacyRefreshStillReadsNewEnvironmentButRemainsPubliclyUnsupported' started at 2026-11-15 20:15:48.981
+
+Test Case 'NActualAppBindingAdapterTests.testLegacyRefreshStillReadsNewEnvironmentButRemainsPubliclyUnsupported' passed (0.042 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testReaderRequiresIndependentWitnessAndPreservesBothInspectorBooleans' started at 2026-11-15 20:15:49.023
+
+Test Case 'NActualAppBindingAdapterTests.testReaderRequiresIndependentWitnessAndPreservesBothInspectorBooleans' passed (0.091 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testReadyNotificationAdmissionIsNotRevokedByActualAppObserver' started at 2026-11-15 20:15:49.114
+
+Test Case 'NActualAppBindingAdapterTests.testReadyNotificationAdmissionIsNotRevokedByActualAppObserver' passed (0.157 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testRootNeverCopiesReaderInspectorOrBackgroundTarget' started at 2026-11-15 20:15:49.271
+
+Test Case 'NActualAppBindingAdapterTests.testRootNeverCopiesReaderInspectorOrBackgroundTarget' passed (0.052 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testUnhookedActualAdapterRefusesEvenSuccessfulStoreAndWitness' started at 2026-11-15 20:15:49.323
+
+Test Case 'NActualAppBindingAdapterTests.testUnhookedActualAdapterRefusesEvenSuccessfulStoreAndWitness' passed (0.152 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testUnsupportedShapesAndWrongCurrentReaderIdentityRefuseWithoutApply' started at 2026-11-15 20:15:49.474
+
+Test Case 'NActualAppBindingAdapterTests.testUnsupportedShapesAndWrongCurrentReaderIdentityRefuseWithoutApply' passed (0.044 seconds)
+
+Test Suite 'NActualAppBindingAdapterTests' passed at 2026-11-15 20:15:49.519
+
+	 Executed 20 tests, with 0 failures (0 unexpected) in 1.998 (1.998) seconds
+
+Test Suite 'NRActualProducerConsumerTests' started at 2026-11-15 20:15:49.519
+
+Test Case 'NRActualProducerConsumerTests.testActualAdapterProjectionBindsP050AndStrictFullSurfaceReceiptOnAllBackends' started at 2026-11-15 20:15:49.519
+
+Test Case 'NRActualProducerConsumerTests.testActualAdapterProjectionBindsP050AndStrictFullSurfaceReceiptOnAllBackends' passed (0.456 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testActualNativeSameTurnABAAndPostpublicationReadmissionPreserveReplacementCleanup' started at 2026-11-15 20:15:49.975
+
+Test Case 'NRActualProducerConsumerTests.testActualNativeSameTurnABAAndPostpublicationReadmissionPreserveReplacementCleanup' passed (0.302 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testActualProducerRevocationInCoreFinalAwaitRefusesEarlierExactNativeACK' started at 2026-11-15 20:15:50.277
+
+Test Case 'NRActualProducerConsumerTests.testActualProducerRevocationInCoreFinalAwaitRefusesEarlierExactNativeACK' passed (0.514 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testActualStoreCheckpointAndPublicationABAUseOriginalAuthority' started at 2026-11-15 20:15:50.791
+
+Test Case 'NRActualProducerConsumerTests.testActualStoreCheckpointAndPublicationABAUseOriginalAuthority' passed (0.121 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testFixedSourceAndExactOwnerRejectReplacementAndSameUUIDReaderABA' started at 2026-11-15 20:15:50.912
+
+Test Case 'NRActualProducerConsumerTests.testFixedSourceAndExactOwnerRejectReplacementAndSameUUIDReaderABA' passed (0.226 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testReadmissionInsideActualReadyNotificationSurvivesListenerOrder' started at 2026-11-15 20:15:51.138
+
+Test Case 'NRActualProducerConsumerTests.testReadmissionInsideActualReadyNotificationSurvivesListenerOrder' passed (0.2 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testUninstalledNativeHookCannotBindFromStoreOnlySuccess' started at 2026-11-15 20:15:51.338
+
+Test Case 'NRActualProducerConsumerTests.testUninstalledNativeHookCannotBindFromStoreOnlySuccess' passed (0.218 seconds)
+
+Test Suite 'NRActualProducerConsumerTests' passed at 2026-11-15 20:15:51.556
+
+	 Executed 7 tests, with 0 failures (0 unexpected) in 2.037 (2.037) seconds
+
+Test Suite 'NReconciledRStartupTests' started at 2026-11-15 20:15:51.556
+
+Test Case 'NReconciledRStartupTests.testImmutableReconciledStartupBodiesPreserveLateNativeOpenAndMappingCoherence' started at 2026-11-15 20:15:51.556
+
+PASS STARTUP[1] otzaria: late native open cannot expose ownership before live context publication
+
+PASS STARTUP[2] otzaria: actual startup method completes
+
+PASS STARTUP[3] otzaria: approved startup adoption retains late tabs and requested selection
+
+PASS STARTUP[4] otzaria: adoption preserves actual late reader instance without hydration/reload
+
+PASS STARTUP[5] otzaria: actual Store transaction adopts correct group/backend/tab identity
+
+PASS STARTUP[6] otzaria: producer becomes qualified only after coherent adoption
+
+PASS STARTUP[7] sefaria: late native open cannot expose ownership before live context publication
+
+PASS STARTUP[8] sefaria: actual startup method completes
+
+PASS STARTUP[9] sefaria: approved startup adoption retains late tabs and requested selection
+
+PASS STARTUP[10] sefaria: adoption preserves actual late reader instance without hydration/reload
+
+PASS STARTUP[11] sefaria: actual Store transaction adopts correct group/backend/tab identity
+
+PASS STARTUP[12] sefaria: producer becomes qualified only after coherent adoption
+
+PASS STARTUP[13] sefariaEmbedded: late native open cannot expose ownership before live context publication
+
+PASS STARTUP[14] sefariaEmbedded: actual startup method completes
+
+PASS STARTUP[15] sefariaEmbedded: approved startup adoption retains late tabs and requested selection
+
+PASS STARTUP[16] sefariaEmbedded: adoption preserves actual late reader instance without hydration/reload
+
+PASS STARTUP[17] sefariaEmbedded: actual Store transaction adopts correct group/backend/tab identity
+
+PASS STARTUP[18] sefariaEmbedded: producer becomes qualified only after coherent adoption
+
+PASS STARTUP[19] unhooked native startup adoption remains functional
+
+PASS STARTUP[20] successful startup/Store adoption never fabricates missing native hook coverage
+
+PASS STARTUP[21] generation: last throwing startup boundary rejects stale/failed publication
+
+PASS STARTUP[22] generation: failed startup never exposes coherent native mapping
+
+PASS STARTUP[23] generation: actual failed transaction preserves original snapshot and disk bytes
+
+PASS STARTUP[24] selection: last throwing startup boundary rejects stale/failed publication
+
+PASS STARTUP[25] selection: failed startup never exposes coherent native mapping
+
+PASS STARTUP[26] selection: approved previousSelection guard preserves newer actual selection
+
+PASS STARTUP[27] disk: last throwing startup boundary rejects stale/failed publication
+
+PASS STARTUP[28] disk: failed startup never exposes coherent native mapping
+
+PASS STARTUP[29] disk: actual failed transaction preserves original snapshot and disk bytes
+
+PASS STARTUP[30] disk: failed adoption cannot overwrite the live native open
+
+PASS: 30 actual attach/switchGroup startup-producer interaction assertions; native/backend/catalog/hydration boundary doubles, no Apple/native acceptance
+
+Test Case 'NReconciledRStartupTests.testImmutableReconciledStartupBodiesPreserveLateNativeOpenAndMappingCoherence' passed (0.235 seconds)
+
+Test Suite 'NReconciledRStartupTests' passed at 2026-11-15 20:15:51.792
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.235 (0.235) seconds
+
+Test Suite 'NativeBindingSourceObservationTests' started at 2026-11-15 20:15:51.792
+
+Test Case 'NativeBindingSourceObservationTests.testBroadCheckpointRevisionIsNotAUsableMappingEpoch' started at 2026-11-15 20:15:51.792
+
+Test Case 'NativeBindingSourceObservationTests.testBroadCheckpointRevisionIsNotAUsableMappingEpoch' passed (0.235 seconds)
+
+Test Case 'NativeBindingSourceObservationTests.testObserverRearmsOncePerMutationAndCancellationStopsOldLifetime' started at 2026-11-15 20:15:52.027
+
+Test Case 'NativeBindingSourceObservationTests.testObserverRearmsOncePerMutationAndCancellationStopsOldLifetime' passed (0.001 seconds)
+
+Test Case 'NativeBindingSourceObservationTests.testProducerMappingEpochPreservesCheckpointButRevokesSelection' started at 2026-11-15 20:15:52.028
+
+Test Case 'NativeBindingSourceObservationTests.testProducerMappingEpochPreservesCheckpointButRevokesSelection' passed (0.277 seconds)
+
+Test Case 'NativeBindingSourceObservationTests.testRealObservationInvalidationDuringFinalCoreBackendAwaitRejectsEarlierNativeACK' started at 2026-11-15 20:15:52.305
+
+Test Case 'NativeBindingSourceObservationTests.testRealObservationInvalidationDuringFinalCoreBackendAwaitRejectsEarlierNativeACK' passed (1.085 seconds)
+
+Test Case 'NativeBindingSourceObservationTests.testSameTurnWorkspaceABARevokesEachActualAdmissionBeforeSetterReturns' started at 2026-11-15 20:15:53.390
+
+Test Case 'NativeBindingSourceObservationTests.testSameTurnWorkspaceABARevokesEachActualAdmissionBeforeSetterReturns' passed (0.071 seconds)
+
+Test Case 'NativeBindingSourceObservationTests.testSourceTrackingDoesNotRetainCancelledOrReleasedObserver' started at 2026-11-15 20:15:53.462
+
+Test Case 'NativeBindingSourceObservationTests.testSourceTrackingDoesNotRetainCancelledOrReleasedObserver' passed (0.0 seconds)
+
+Test Case 'NativeBindingSourceObservationTests.testUnavailableSnapshotStillInvalidatesAndNeverBecomesBindingPermission' started at 2026-11-15 20:15:53.462
+
+Test Case 'NativeBindingSourceObservationTests.testUnavailableSnapshotStillInvalidatesAndNeverBecomesBindingPermission' passed (0.0 seconds)
+
+Test Suite 'NativeBindingSourceObservationTests' passed at 2026-11-15 20:15:53.462
+
+	 Executed 7 tests, with 0 failures (0 unexpected) in 1.671 (1.671) seconds
+
+Test Suite 'NativeIntentServiceTests' started at 2026-11-15 20:15:53.463
+
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' started at 2026-11-15 20:15:53.463
+
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' passed (0.004 seconds)
+
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' started at 2026-11-15 20:15:53.467
+
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' passed (0.001 seconds)
+
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' started at 2026-11-15 20:15:53.468
+
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' passed (0.001 seconds)
+
+Test Case 'NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow' started at 2026-11-15 20:15:53.469
+
+Test Case 'NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow' passed (0.003 seconds)
+
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' started at 2026-11-15 20:15:53.472
+
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' passed (0.001 seconds)
+
+Test Suite 'NativeIntentServiceTests' passed at 2026-11-15 20:15:53.472
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.01 (0.01) seconds
+
+Test Suite 'NativePresentationObserverTests' started at 2026-11-15 20:15:53.473
+
+Test Case 'NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation' started at 2026-11-15 20:15:53.473
+
+Test Case 'NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation' passed (0.29 seconds)
+
+Test Case 'NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation' started at 2026-11-15 20:15:53.763
+
+Test Case 'NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation' passed (0.146 seconds)
+
+Test Case 'NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost' started at 2026-11-15 20:15:53.909
+
+Test Case 'NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost' passed (0.094 seconds)
+
+Test Case 'NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest' started at 2026-11-15 20:15:54.002
+
+Test Case 'NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest' passed (0.181 seconds)
+
+Test Case 'NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored' started at 2026-11-15 20:15:54.183
+
+Test Case 'NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored' passed (0.074 seconds)
+
+Test Suite 'NativePresentationObserverTests' passed at 2026-11-15 20:15:54.257
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.785 (0.785) seconds
+
+Test Suite 'NativePublicPreparedCommitTests' started at 2026-11-15 20:15:54.258
+
+Test Case 'NativePublicPreparedCommitTests.testConsumedOriginalMappingOrGenerationDriftCannotBeRepreparedIntoSuccess' started at 2026-11-15 20:15:54.258
+
+Test Case 'NativePublicPreparedCommitTests.testConsumedOriginalMappingOrGenerationDriftCannotBeRepreparedIntoSuccess' passed (2.598 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies' started at 2026-11-15 20:15:56.856
+
+Test Case 'NativePublicPreparedCommitTests.testDetachedDriverAfterCanonicalGuardNeverApplies' passed (2.45 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testDriverUnregistrationInsideFinalAuthorityReadCannotAcknowledge' started at 2026-11-15 20:15:59.306
+
+Test Case 'NativePublicPreparedCommitTests.testDriverUnregistrationInsideFinalAuthorityReadCannotAcknowledge' passed (0.196 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testFinalMappingDriftAfterDispatchRemainsUncertainAndDoesNotReleaseOwner' started at 2026-11-15 20:15:59.502
+
+Test Case 'NativePublicPreparedCommitTests.testFinalMappingDriftAfterDispatchRemainsUncertainAndDoesNotReleaseOwner' passed (0.76 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testOldPreparedAdmissionAndCleanupCannotTakeReplacementContext' started at 2026-11-15 20:16:00.263
+
+Test Case 'NativePublicPreparedCommitTests.testOldPreparedAdmissionAndCleanupCannotTakeReplacementContext' passed (0.726 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testOriginalBoundSurfaceCompletesWithoutReplacingOrReleasingAdmissionOnAllBackends' started at 2026-11-15 20:16:00.989
+
+Test Case 'NativePublicPreparedCommitTests.testOriginalBoundSurfaceCompletesWithoutReplacingOrReleasingAdmissionOnAllBackends' passed (0.729 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testPreparedCancellationJoinsObserverCleanupAndRetainsOuterAdmission' started at 2026-11-15 20:16:01.718
+
+Test Case 'NativePublicPreparedCommitTests.testPreparedCancellationJoinsObserverCleanupAndRetainsOuterAdmission' passed (0.21 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testRetainedBoundReaderRouteUsesActualCoreSinkAndHoldsAdmissionUntilWholeResult' started at 2026-11-15 20:16:01.928
+
+Test Case 'NativePublicPreparedCommitTests.testRetainedBoundReaderRouteUsesActualCoreSinkAndHoldsAdmissionUntilWholeResult' passed (0.799 seconds)
+
+Test Suite 'NativePublicPreparedCommitTests' passed at 2026-11-15 20:16:02.727
+
+	 Executed 8 tests, with 0 failures (0 unexpected) in 8.47 (8.47) seconds
+
+Test Suite 'NativeReaderPlanBudgetTests' started at 2026-11-15 20:16:02.727
+
+Test Case 'NativeReaderPlanBudgetTests.testActualCoreReceivesOnlyRemainingBudgetAndKeepsOriginalAdmissionOnAllBackends' started at 2026-11-15 20:16:02.727
+
+Test Case 'NativeReaderPlanBudgetTests.testActualCoreReceivesOnlyRemainingBudgetAndKeepsOriginalAdmissionOnAllBackends' passed (0.664 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testConsumerRejectsCachedCompletionInsteadOfReusingOldNativeReceipt' started at 2026-11-15 20:16:03.392
+
+Test Case 'NativeReaderPlanBudgetTests.testConsumerRejectsCachedCompletionInsteadOfReusingOldNativeReceipt' passed (0.284 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testConsumerRejectsCoreACKWithoutOwnFullNativeReceipt' started at 2026-11-15 20:16:03.676
+
+Test Case 'NativeReaderPlanBudgetTests.testConsumerRejectsCoreACKWithoutOwnFullNativeReceipt' passed (0.246 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testFullNativeLedgerRefusesNewReaderBeforeCore' started at 2026-11-15 20:16:03.922
+
+Test Case 'NativeReaderPlanBudgetTests.testFullNativeLedgerRefusesNewReaderBeforeCore' passed (0.376 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testInsufficientOrExpiredOriginalBudgetNeverStartsCoreOrRoundsUp' started at 2026-11-15 20:16:04.297
+
+Test Case 'NativeReaderPlanBudgetTests.testInsufficientOrExpiredOriginalBudgetNeverStartsCoreOrRoundsUp' passed (0.411 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testOneReaderExecutionPerSceneIsAdmittedBeforeAnySecondCoreCall' started at 2026-11-15 20:16:04.708
+
+Test Case 'NativeReaderPlanBudgetTests.testOneReaderExecutionPerSceneIsAdmittedBeforeAnySecondCoreCall' passed (0.208 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testOriginalOwnerRevocationDuringOuterScopeCleanupCannotEscapeAsCompletion' started at 2026-11-15 20:16:04.916
+
+Test Case 'NativeReaderPlanBudgetTests.testOriginalOwnerRevocationDuringOuterScopeCleanupCannotEscapeAsCompletion' passed (0.174 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testPostCoreOwnerRevokedInsideSynchronousBackendReadCannotComplete' started at 2026-11-15 20:16:05.090
+
+Test Case 'NativeReaderPlanBudgetTests.testPostCoreOwnerRevokedInsideSynchronousBackendReadCannotComplete' passed (0.24 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead' started at 2026-11-15 20:16:05.330
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionDoesNotReplaceOwnerAtBackendRead' passed (0.571 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionKeepsOriginalOwnerDuringActualSinkGuard' started at 2026-11-15 20:16:05.901
+
+Test Case 'NativeReaderPlanBudgetTests.testReaderExecutionKeepsOriginalOwnerDuringActualSinkGuard' passed (0.211 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testReissuedAdmissionIsRefusedBeforeCoreAndOldCleanupPreservesReplacement' started at 2026-11-15 20:16:06.112
+
+Test Case 'NativeReaderPlanBudgetTests.testReissuedAdmissionIsRefusedBeforeCoreAndOldCleanupPreservesReplacement' passed (0.207 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testRemainingRequestBudgetRoundsDownAndUsesActualCoreSchemaBounds' started at 2026-11-15 20:16:06.319
+
+Test Case 'NativeReaderPlanBudgetTests.testRemainingRequestBudgetRoundsDownAndUsesActualCoreSchemaBounds' passed (0.394 seconds)
+
+Test Suite 'NativeReaderPlanBudgetTests' passed at 2026-11-15 20:16:06.714
+
+	 Executed 12 tests, with 0 failures (0 unexpected) in 3.986 (3.986) seconds
+
+Test Suite 'NativeRouteInboxTests' started at 2026-11-15 20:16:06.714
+
+Test Case 'NativeRouteInboxTests.testCancellationBoundToSubject' started at 2026-11-15 20:16:06.714
+
+Test Case 'NativeRouteInboxTests.testCancellationBoundToSubject' passed (0.001 seconds)
+
+Test Case 'NativeRouteInboxTests.testExpiredInputNeverQueues' started at 2026-11-15 20:16:06.715
+
+Test Case 'NativeRouteInboxTests.testExpiredInputNeverQueues' passed (0.0 seconds)
+
+Test Case 'NativeRouteInboxTests.testFiniteCapacityAndRevocationReleasePrivateState' started at 2026-11-15 20:16:06.715
+
+Test Case 'NativeRouteInboxTests.testFiniteCapacityAndRevocationReleasePrivateState' passed (0.0 seconds)
+
+Test Case 'NativeRouteInboxTests.testReplayIsIdempotentButConflictingDestinationFails' started at 2026-11-15 20:16:06.715
+
+Test Case 'NativeRouteInboxTests.testReplayIsIdempotentButConflictingDestinationFails' passed (0.0 seconds)
+
+Test Case 'NativeRouteInboxTests.testSameIDOtherSceneLifetimeCannotTakeOrReplace' started at 2026-11-15 20:16:06.716
+
+Test Case 'NativeRouteInboxTests.testSameIDOtherSceneLifetimeCannotTakeOrReplace' passed (0.0 seconds)
+
+Test Suite 'NativeRouteInboxTests' passed at 2026-11-15 20:16:06.716
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+
+Test Suite 'NativeRouteURLTests' started at 2026-11-15 20:16:06.716
+
+Test Case 'NativeRouteURLTests.testDebugSchemeIsExplicitAndReleaseDoesNotAcceptIt' started at 2026-11-15 20:16:06.716
+
+Test Case 'NativeRouteURLTests.testDebugSchemeIsExplicitAndReleaseDoesNotAcceptIt' passed (0.047 seconds)
+
+Test Case 'NativeRouteURLTests.testEmptyProductionRegistryDoesNotInstallFixtureRoutes' started at 2026-11-15 20:16:06.763
+
+Test Case 'NativeRouteURLTests.testEmptyProductionRegistryDoesNotInstallFixtureRoutes' passed (0.108 seconds)
+
+Test Case 'NativeRouteURLTests.testLegacyLinksAreDelegatedUnchanged' started at 2026-11-15 20:16:06.870
+
+Test Case 'NativeRouteURLTests.testLegacyLinksAreDelegatedUnchanged' passed (0.042 seconds)
+
+Test Case 'NativeRouteURLTests.testNativeEnvelopeCannotPublishUnconfiguredUniversalLink' started at 2026-11-15 20:16:06.912
+
+Test Case 'NativeRouteURLTests.testNativeEnvelopeCannotPublishUnconfiguredUniversalLink' passed (0.023 seconds)
+
+Test Case 'NativeRouteURLTests.testPrivateRestorationCannotEnterPublicURL' started at 2026-11-15 20:16:06.935
+
+Test Case 'NativeRouteURLTests.testPrivateRestorationCannotEnterPublicURL' passed (0.047 seconds)
+
+Test Case 'NativeRouteURLTests.testPublicHebrewReferenceRoundTripUsesCanonicalCodec' started at 2026-11-15 20:16:06.982
+
+Test Case 'NativeRouteURLTests.testPublicHebrewReferenceRoundTripUsesCanonicalCodec' passed (0.125 seconds)
+
+Test Case 'NativeRouteURLTests.testRejectsHostVersionPathAndCredentials' started at 2026-11-15 20:16:07.107
+
+Test Case 'NativeRouteURLTests.testRejectsHostVersionPathAndCredentials' passed (0.109 seconds)
+
+Test Case 'NativeRouteURLTests.testRejectsPaddingInvalidEncodingAndOversizedURL' started at 2026-11-15 20:16:07.216
+
+Test Case 'NativeRouteURLTests.testRejectsPaddingInvalidEncodingAndOversizedURL' passed (0.064 seconds)
+
+Test Case 'NativeRouteURLTests.testRejectsUnknownAndContradictoryParameters' started at 2026-11-15 20:16:07.280
+
+Test Case 'NativeRouteURLTests.testRejectsUnknownAndContradictoryParameters' passed (0.079 seconds)
+
+Test Suite 'NativeRouteURLTests' passed at 2026-11-15 20:16:07.360
+
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.643 (0.643) seconds
+
+Test Suite 'NativeSceneDirectoryTests' started at 2026-11-15 20:16:07.360
+
+Test Case 'NativeSceneDirectoryTests.testAuthorityIsReadForEveryObservationAcrossThreeBackends' started at 2026-11-15 20:16:07.360
+
+Test Case 'NativeSceneDirectoryTests.testAuthorityIsReadForEveryObservationAcrossThreeBackends' passed (0.002 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testCurrentTargetNeedsTrustedExactSceneAndNeverChoosesFirst' started at 2026-11-15 20:16:07.361
+
+Test Case 'NativeSceneDirectoryTests.testCurrentTargetNeedsTrustedExactSceneAndNeverChoosesFirst' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission' started at 2026-11-15 20:16:07.362
+
+Test Case 'NativeSceneDirectoryTests.testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission' passed (0.031 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testDuplicateMountAndFiniteSceneAdmission' started at 2026-11-15 20:16:07.394
+
+Test Case 'NativeSceneDirectoryTests.testDuplicateMountAndFiniteSceneAdmission' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testEmbeddedWithoutEpochFailsUnavailable' started at 2026-11-15 20:16:07.394
+
+Test Case 'NativeSceneDirectoryTests.testEmbeddedWithoutEpochFailsUnavailable' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testExpiredDeadlineDoesNotStartAuthorityRead' started at 2026-11-15 20:16:07.394
+
+Test Case 'NativeSceneDirectoryTests.testExpiredDeadlineDoesNotStartAuthorityRead' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testInFlightAdmissionIsBoundedAndCancellationReleasesIt' started at 2026-11-15 20:16:07.395
+
+Test Case 'NativeSceneDirectoryTests.testInFlightAdmissionIsBoundedAndCancellationReleasesIt' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testMissingSceneNeverFallsBackToAnotherWindow' started at 2026-11-15 20:16:07.395
+
+Test Case 'NativeSceneDirectoryTests.testMissingSceneNeverFallsBackToAnotherWindow' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNativeABANotificationDuringAwaitIsStale' started at 2026-11-15 20:16:07.396
+
+Test Case 'NativeSceneDirectoryTests.testNativeABANotificationDuringAwaitIsStale' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNativeChangeDuringAuthorityAwaitFails' started at 2026-11-15 20:16:07.396
+
+Test Case 'NativeSceneDirectoryTests.testNativeChangeDuringAuthorityAwaitFails' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNativeStateChangeAdvancesRevision' started at 2026-11-15 20:16:07.397
+
+Test Case 'NativeSceneDirectoryTests.testNativeStateChangeAdvancesRevision' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNotMountedIsQueuedAndInventoryNeverBecomesSupported' started at 2026-11-15 20:16:07.397
+
+Test Case 'NativeSceneDirectoryTests.testNotMountedIsQueuedAndInventoryNeverBecomesSupported' passed (0.022 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testOldLeaseCannotRemoveRemountedSceneOrReuseRevision' started at 2026-11-15 20:16:07.419
+
+Test Case 'NativeSceneDirectoryTests.testOldLeaseCannotRemoveRemountedSceneOrReuseRevision' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testRevocationAfterAuthorityAwaitFails' started at 2026-11-15 20:16:07.420
+
+Test Case 'NativeSceneDirectoryTests.testRevocationAfterAuthorityAwaitFails' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount' started at 2026-11-15 20:16:07.420
+
+Test Case 'NativeSceneDirectoryTests.testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount' passed (0.0 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testTwoScenesAndStableReadOnlyRevisions' started at 2026-11-15 20:16:07.421
+
+Test Case 'NativeSceneDirectoryTests.testTwoScenesAndStableReadOnlyRevisions' passed (0.001 seconds)
+
+Test Suite 'NativeSceneDirectoryTests' passed at 2026-11-15 20:16:07.421
+
+	 Executed 16 tests, with 0 failures (0 unexpected) in 0.062 (0.062) seconds
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' started at 2026-11-15 20:16:07.421
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testBackendChangeAfterDispatchPreservesEffectUncertainty' started at 2026-11-15 20:16:07.421
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testBackendChangeAfterDispatchPreservesEffectUncertainty' passed (0.058 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCancellationAfterDispatchNeverClaimsNoEffect' started at 2026-11-15 20:16:07.479
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCancellationAfterDispatchNeverClaimsNoEffect' passed (0.079 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalDeadlineExpiresDuringFinalSynchronousCompletionCheck' started at 2026-11-15 20:16:07.558
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalDeadlineExpiresDuringFinalSynchronousCompletionCheck' passed (0.075 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalEpochDriftAfterFinalObservationIsRejected' started at 2026-11-15 20:16:07.634
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalEpochDriftAfterFinalObservationIsRejected' passed (0.059 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends' started at 2026-11-15 20:16:07.693
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends' passed (0.185 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGuardThenExactVisibleReceipt' started at 2026-11-15 20:16:07.878
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGuardThenExactVisibleReceipt' passed (0.067 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalReadinessLossAfterFinalObservationIsRejected' started at 2026-11-15 20:16:07.944
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalReadinessLossAfterFinalObservationIsRejected' passed (0.065 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCoreReaderFinalBackendAwaitRevocationCannotCompleteSinkReceipt' started at 2026-11-15 20:16:08.010
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCoreReaderFinalBackendAwaitRevocationCannotCompleteSinkReceipt' passed (0.17 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCoreReaderOwnerKeepsContextUntilItsPostSinkCompletionOnAllBackends' started at 2026-11-15 20:16:08.180
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCoreReaderOwnerKeepsContextUntilItsPostSinkCompletionOnAllBackends' passed (0.17 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testForegroundLossInvalidatesContextAndOldLeaseCannotRemoveReplacement' started at 2026-11-15 20:16:08.350
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testForegroundLossInvalidatesContextAndOldLeaseCannotRemoveReplacement' passed (0.055 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testMissingCanonicalScopeNeverMutatesNativeUI' started at 2026-11-15 20:16:08.405
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testMissingCanonicalScopeNeverMutatesNativeUI' passed (0.06 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testOldRequestCleanupCannotReleaseReissuedOrReplacedNativeContext' started at 2026-11-15 20:16:08.465
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testOldRequestCleanupCannotReleaseReissuedOrReplacedNativeContext' passed (0.131 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRepeatedRequestDoesNotDispatchAgainOrReuseOldCompletion' started at 2026-11-15 20:16:08.596
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRepeatedRequestDoesNotDispatchAgainOrReuseOldCompletion' passed (0.064 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRevocationDuringVisibleWaitCannotBecomeCompletion' started at 2026-11-15 20:16:08.660
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRevocationDuringVisibleWaitCannotBecomeCompletion' passed (0.057 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testWrongVisibleSurfaceDoesNotAcknowledgeSameRequest' started at 2026-11-15 20:16:08.717
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testWrongVisibleSurfaceDoesNotAcknowledgeSameRequest' passed (0.065 seconds)
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' passed at 2026-11-15 20:16:08.782
+
+	 Executed 15 tests, with 0 failures (0 unexpected) in 1.36 (1.36) seconds
+
+Test Suite 'NativeSurfaceStateTests' started at 2026-11-15 20:16:08.782
+
+Test Case 'NativeSurfaceStateTests.testMatchingNativeProjectionUsesOnlyTransportMetadataFromRequest' started at 2026-11-15 20:16:08.782
+
+Test Case 'NativeSurfaceStateTests.testMatchingNativeProjectionUsesOnlyTransportMetadataFromRequest' passed (0.038 seconds)
+
+Test Case 'NativeSurfaceStateTests.testSameRequestWithWrongNativeDestinationPresentationOrFocusCannotAcknowledge' started at 2026-11-15 20:16:08.820
+
+Test Case 'NativeSurfaceStateTests.testSameRequestWithWrongNativeDestinationPresentationOrFocusCannotAcknowledge' passed (0.036 seconds)
+
+Test Suite 'NativeSurfaceStateTests' passed at 2026-11-15 20:16:08.856
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.074 (0.074) seconds
+
+Test Suite 'PNativeCoreInteractionReviewTests' started at 2026-11-15 20:16:08.856
+
+Test Case 'PNativeCoreInteractionReviewTests.testDelayedCoreRelativeStartStillCannotOutliveOriginalRetainedGuard' started at 2026-11-15 20:16:08.856
+
+Test Case 'PNativeCoreInteractionReviewTests.testDelayedCoreRelativeStartStillCannotOutliveOriginalRetainedGuard' passed (0.297 seconds)
+
+Test Case 'PNativeCoreInteractionReviewTests.testDetachedDriverCannotApplyAfterCanonicalGuard' started at 2026-11-15 20:16:09.153
+
+Test Case 'PNativeCoreInteractionReviewTests.testDetachedDriverCannotApplyAfterCanonicalGuard' passed (0.194 seconds)
+
+Test Suite 'PNativeCoreInteractionReviewTests' passed at 2026-11-15 20:16:09.347
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.492 (0.492) seconds
+
+Test Suite 'debug.xctest' passed at 2026-11-15 20:16:09.347
+
+	 Executed 114 tests, with 0 failures (0 unexpected) in 21.823 (21.823) seconds
+
+Test Suite 'All tests' passed at 2026-11-15 20:16:09.348
+
+	 Executed 114 tests, with 0 failures (0 unexpected) in 21.823 (21.823) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
