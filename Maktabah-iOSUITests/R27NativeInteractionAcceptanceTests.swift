@@ -160,7 +160,13 @@ final class R27NativePadTests: R27NativeUIBase {
         let input = palette.textFields.firstMatch
         tapInWindow(input)
         let valueBeforeHardwareKey = input.value as? String
-        input.typeKey("a", modifierFlags: [])
+        try sendNativeHID(.keyboardA)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in MainActor.assumeIsolated {
+                let value = input.value as? String
+                return value != valueBeforeHardwareKey && value != input.placeholderValue && value?.isEmpty == false
+            } }, object: nil
+        )], timeout: 15), .completed)
         recordWindowEvidence("r27-hardware-key-positive-control")
         let valueAfterHardwareKey = try XCTUnwrap(input.value as? String)
         XCTAssertNotEqual(valueAfterHardwareKey, valueBeforeHardwareKey,
@@ -184,8 +190,8 @@ final class R27NativePadTests: R27NativeUIBase {
         ))
         XCTAssertEqual(paletteInput.count, 1)
         recordWindowEvidence("r27-real-narrow-palette-filtered")
-        input.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
-        recordWindowEvidence("r27-after-synthesized-escape")
+        try sendNativeHID(.keyboardEscape)
+        recordWindowEvidence("r27-after-native-hid-escape")
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == false"), object: palette
         )], timeout: 15), .completed)

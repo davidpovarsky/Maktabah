@@ -8,7 +8,7 @@ Do not turn this into a duplicate issue tracker or a dump of temporary thoughts.
 
 Quick captures that still need classification.
 
-- Native keyboard acceptance needs an event-specific positive control. On OS27, XCTest A and arrow keys visibly worked while Escape left the real palette input present in both full and narrow windows (runs43737613337/43743222374). Those controls do not establish Escape HID delivery or identify a UIKit consumer. Compare a separate, scoped native HID transport before changing app-wide key routing; keep real input removal and reader/window assertions mandatory.
+- [x] Native keyboard acceptance needs an event-specific positive control. On OS27, XCTest A/arrows worked while its Escape left the real input present. Run43755146411 at858477f9 proved actual idb HID A/backspace edits and single-Escape removal at full empty and narrow filtered widths, Inspector open/close, exact text/locator and measured fullscreen restore; the unchanged XCTest Escape case failed on the same app. Use calibrated HID for hardware acceptance, preserving visible/state assertions. This identifies a transport-dependent outcome, not a UIKit consumer. Physical iPad remains unverified (2026-11-15).
 
 - ChavrusaText production sources have explicit Xcode membership; only MaktabahTests is synchronized. Real standalone SDK/component compilation can pass while the actual app cannot find a newly added type (Native42528226791). Keep the existing Sources-phase verifier in the early faithful SDK check; the overview bridge now has explicit iOS-only membership. No synchronized-group migration is needed.
 

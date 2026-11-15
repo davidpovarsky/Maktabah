@@ -287,6 +287,24 @@ def main():
         report["palette_sdk_compile"]["exit_code"] = palette_code
         if palette_code:
             raise RuntimeError("Owned palette component did not compile with actual Apple SDK")
+        # Compile the exact downstream UIKit adapter early, without app mocks
+        # or a second UI harness. Full real app/test compilation still follows.
+        sidebar_path = ROOT / "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"
+        sidebar = sidebar_path.read_text()
+        policy = sidebar.split("#if canImport(SwiftUI)", 1)[0]
+        adapter = sidebar[sidebar.index("private struct ReaderSidebarSplitConfiguration:"):sidebar.rindex("#endif")]
+        sidebar_sdk_source = OUT / "ReaderSidebarSplit.swift"
+        sidebar_sdk_source.write_text(policy + "\nimport SwiftUI\nimport UIKit\n" + adapter)
+        sidebar_command = ["xcrun", "swiftc", "-emit-module", "-parse-as-library", "-swift-version", "6",
+                           "-module-name", "ReaderSidebarSplit", "-sdk", sdk_path,
+                           "-target", "arm64-apple-ios27.0-simulator",
+                           "-emit-module-path", str(OUT / "ReaderSidebarSplit.swiftmodule"), str(sidebar_sdk_source)]
+        report["sidebar_sdk_compile"] = dict(command=sidebar_command, native_ui_passes=0,
+            original_source_sha256=hashlib.sha256(sidebar_path.read_bytes()).hexdigest())
+        sidebar_code = run_logged(sidebar_command, "sidebar-sdk-compile.log", 180)
+        report["sidebar_sdk_compile"]["exit_code"] = sidebar_code
+        if sidebar_code:
+            raise RuntimeError("Owned sidebar adapter did not compile with actual Apple SDK")
         contract_path = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
         contract = json.loads(contract_path.read_text())
         groups = execution_groups(contract)

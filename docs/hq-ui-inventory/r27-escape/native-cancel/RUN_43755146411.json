@@ -1,0 +1,132 @@
+{
+  "run_id": 43755146411,
+  "checkout_sha": "311b6efdd48f8b5b428e7360fa7d9e826e152266",
+  "app_source": "858477f985a6537232fbd2561f2fc72ff4781048",
+  "test_source": "858477f985a6537232fbd2561f2fc72ff4781048",
+  "native_sdk_module_and_app_test_build": "ACTUAL_PASS",
+  "actual_device": {
+    "architecture": "arm64",
+    "deviceId": "BD20A072-2878-44AA-BF1C-ED5556EFE560",
+    "deviceName": "Faithful 11-inch fb008d95",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "fresh_ui_pass": 4,
+  "fresh_ui_fail": 3,
+  "fresh_ui_skip": 0,
+  "ui_not_run": 0,
+  "actual_cases": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "device": "ipad11",
+      "expected": "Normal bootstrap, genuine fixture book/title, real portrait-to-landscape geometry change, exact locator preservation",
+      "configuration_label": "11-window",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "device": "ipad11",
+      "expected": "Real normal bootstrap; independently derived fixture category paths; functional Library search empty/match/exclude/clear; fixed physical RTL body swipes;20body+20dot transitions; one native toggle and TOC-local title/search; actual reader object/source/offset/title/locator preservation; vertical scroll arbitration",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "device": "ipad11",
+      "expected": "Same genuine fixture/native reader and functional search/state oracles in English LTR; fixed physical LTR body swipes and preserved one native toggle/TOC ownership",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+      "device": "ipad11",
+      "expected": "RealUI exact fixture work; native TOC page survives Home/activate and measured portrait/landscape changes; one native toggle; original TextKit object/source/offset, actual text/title/locator preserved; retained before/after screenshots+hierarchy",
+      "configuration_label": "11-window",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+      "device": "ipad11",
+      "expected": "Unmodified shared original bottom TOC action helper through realUI normal bootstrap, actual sidebar Contents selection, no modal TOC, exact real fixture work/backend and retained title",
+      "configuration_label": "11-window",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "device": "ipad11",
+      "expected": "Separate job-local pinned idb direct native HID on this owned disposable simulator. Real A/backspace visibly edit/clear production autofocus field; one Escape removes actual full empty input; genuine narrow resize and real fixture filtering; one Escape removes actual narrow filtered input; Inspector open/close, full text/exact locator and native window restoration. Original XCTest Escape case retained independently; transport ACK alone never UI acceptance.",
+      "configuration_label": "11-window",
+      "actual": "Passed"
+    }
+  ],
+  "failures": [
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 1,
+      "testIdentifierString": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "testName": "testNormalBootstrapNativeWindowResizePaletteAndInspector()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 5,
+      "testIdentifierString": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "testName": "testSidebarBodyPagingLTR()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 6,
+      "testIdentifierString": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "testName": "testSidebarBodyPagingRTL()"
+    }
+  ],
+  "hid": {
+    "named_case": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+    "actual": "Passed",
+    "actual_hid_usage_sequence": [
+      4,
+      42,
+      41,
+      41
+    ],
+    "exact_own_udid": "BD20A072-2878-44AA-BF1C-ED5556EFE560",
+    "actual_ui": "A visibly edited real autofocus field, Backspace cleared it, ONE Escape removed actual empty full input; real narrow resize/fixture query/hittable result; ONE Escape removed actual filtered narrow input; actual Inspector open/close; full real text/exact locator and measured native fullscreen restoration all passed.",
+    "visual_review": [
+      "0A4B7721 full input absent",
+      "24E9EBBE actual narrow reader input absent",
+      "EBD9640F actual narrow native Inspector visible",
+      "6414ABDA actual fullscreen restored, real reader text visible and palette absent; reviewed"
+    ],
+    "limit": "ACK alone never acceptance. These are actual passing named XCTest assertions plus inspected real PNG/AX. UIKit consumer/private cause not established. Physical iPad NOT_RUN."
+  },
+  "original_xctest": "Unchanged originalWindow case FAILED at first Escape waiter source189; same real visible input persists. Same app responds to genuine HID in separate case. Switch canonical hardware A/Escape provider to now-calibrated native HID, preserving all original visible/state oracles; old XCTest calibration remains explicitly diagnostic.",
+  "sidebar": "Both locales reached exact functional matching filter and fixture leaf after actual keyboard dismissal. LTR forward body reached actual TOC then reverse failed; RTL first forward failed. SwiftUI simultaneousGesture on TabView was ineffective across native child gestures. PNG90406053 LTR TOC retained; F8F35060 RTL matching Library retained. 20body/20dot/clear restoration NOT_REACHED.",
+  "other_named_passes": [
+    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
+  ],
+  "compatibility": "15actual context fields, all3fixture sets and complete2206generatedobjects compared equal under15consistentIDrenames; HEALTHY_NATIVE_COMPATIBILITY_43755146411.json. No blanket fresh historical8 claim.",
+  "next_candidate": "One scoped native UIPan on existing primary controller, hit-tested to existing TabView body, vertical failure before begin, simultaneous native descendant recognition, same absolute44pt/1.25RTL policy. No global/window recognizer, page/reader/controller replacement or native-scroll disable.",
+  "artifact": {
+    "id": 14179625929,
+    "bytes": 687009298,
+    "sha256": "02f526468c894327836f695051225691bce116f704d5eb9ab57b56a9e524da36",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43755146411/artifacts/14179625929"
+  },
+  "acceptance": "PARTIAL_OPEN; no MERGE_READY; physical iPad NOT_RUN"
+}
