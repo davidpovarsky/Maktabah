@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_test_commit": "c42e537ca9e2b22d7693b9a935386314ebbf73ce",
+  "source_test_commit": "78e97d25c10b7aa9139ebfa488d77ea21abb318b",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
   "app_source": "c42e537ca9e2b22d7693b9a935386314ebbf73ce",
   "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
@@ -475,5 +475,13 @@
     "fresh_ui_pass_from_this_source": 0,
     "validation": "Portable27policy + Swift parse +16release-evidence tests PASS; exact real adapter SDK preflight added before full app/test build. Native7case validation PENDING; physical iPad NOT_RUN",
     "lease": "No edits to3 manager-leased Exact9401WorkspaceLifecycle owner hunks or observer block; current coordinator remains18d4aca3. No protected upstream file change."
+  },
+  "hid_evidence_boundary_correction": {
+    "source": "78e97d25c10b7aa9139ebfa488d77ea21abb318b",
+    "packet": "docs/hq-ui-inventory/r27-escape/native-cancel/HID_EVIDENCE_BOUNDARY_FIX.json",
+    "local_focused_checks": 14,
+    "native_requested": false,
+    "app_source_unchanged": "c42e537ca9e2b22d7693b9a935386314ebbf73ce",
+    "constraint": "No extra native/SDK/CI/watch/retry for this privacy correction. Existing immutable f123 native run remains pre-correction and separately qualified; retain prior private/raw artifacts."
   }
 }

@@ -40,7 +40,17 @@
     "Matrix stdout now redacts the known job credential before log/console retention; no environment dict or raw argv is exported by the provider"
   ],
   "correction": "Token-free generated request_id plus validated safe nonce/key/owned UDID; no request basename export. Existing auth equality, nonce filename matching, staleness and key whitelist retained; reject nonce containing credential. No app callback/second key/acceptance shortcut.",
-  "focused_checks": "12 focused local provider checks PASS: prior6 auth/staleness/whitelist/delivery boundaries plus6 success/rejected-auth/key/nonce/malformed/transport-exception/export-redaction cases. Swift syntax parse/Python syntax PASS only.",
+  "focused_checks": "14 focused local provider checks PASS: prior6 boundaries plus8 privacy checks, including actual portable serve JSONL/ACK writes for accepted/rejected requests and captured startup argv/private-env separation. Swift/Python syntax PASS only.",
   "original_ui_oracles_and_method_bodies": "Entire test file identical to f123 outside private sendNativeHID helper; normalized proof passed. All Source app files unchanged; native pan producer remains c42e537c. No native validation claimed for this privacy correction.",
-  "delivery": "One immutable source/evidence packet with next genuine handoff, as requested; current pre-correction native source remains separately qualified."
+  "delivery": "One immutable source/evidence packet with next genuine handoff, as requested; current pre-correction native source remains separately qualified.",
+  "correction_source": "78e97d25c10b7aa9139ebfa488d77ea21abb318b",
+  "app_source_unchanged": "c42e537ca9e2b22d7693b9a935386314ebbf73ce",
+  "native_for_this_correction": "NOT_REQUESTED_NOT_RUN; no extra native/SDK/CI/watch/retry dispatched",
+  "ui_method_proof": "Git f123028d versus correction source: entire native test file byte-identical outside private sendNativeHID helper. All original UI oracle bodies and key event requests retained.",
+  "source_hashes": {
+    "Scripts/CI/runtime27-hid.py": "7488ccd1d101b5ae455815906b06f5671ca820eaabc18c6ef4b92c492e2172b0",
+    "Scripts/CI/test-runtime27-hid.py": "55331d080ade96946fd1fa817af437c64128dd1f1a9d94fe873712de79fb114d",
+    "Scripts/CI/run-faithful-ipad-matrix.py": "101ca7ed0f43905d28e024b02846e7ff60182cbd1293fe738d283157ee93530e",
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "97fcc6e3a29ec324d50bc376adb7e20c5ed39e28fa397f129b39f14dc94292d9"
+  }
 }
