@@ -3,6 +3,21 @@ import XCTest
 @testable import OtzariaActionCore
 
 final class BackendSemanticsTests: XCTestCase {
+    func testLoadedRuntimeContractRequiresExactSchemaNonceAndPositiveReadiness() {
+        var proof: ActionObject = ["contract": .string("chavrusa.actions.search-fidelity.v1"),
+            "searchFidelitySchema": .integer(1), "nonce": .string("fresh"),
+            "catalogReady": .bool(true), "searchReady": .bool(true), "resourcesStable": .bool(true)]
+        XCTAssertTrue(EmbeddedActionResponseProof.matchesRuntimeContract(.object(proof), nonce: "fresh"))
+        XCTAssertFalse(EmbeddedActionResponseProof.matchesRuntimeContract(.object(proof), nonce: "old"))
+        for field in ["contract", "searchFidelitySchema", "nonce", "catalogReady", "searchReady", "resourcesStable"] {
+            var missing = proof; missing.removeValue(forKey: field)
+            XCTAssertFalse(EmbeddedActionResponseProof.matchesRuntimeContract(.object(missing), nonce: "fresh"))
+        }
+        proof["searchReady"] = .bool(false)
+        XCTAssertFalse(EmbeddedActionResponseProof.matchesRuntimeContract(.object(proof), nonce: "fresh"))
+        proof["searchReady"] = .bool(true); proof["resourcesStable"] = .bool(false)
+        XCTAssertFalse(EmbeddedActionResponseProof.matchesRuntimeContract(.object(proof), nonce: "fresh"))
+    }
     private func evidence(_ backend: ActionBackendID) -> ActionBackendRuntimeEvidence {
         .init(snapshot: .init(backend: backend, generation: 3, rpcEpoch: backend == .sefariaEmbedded ? 9 : nil),
               registeredCapabilities: ["catalog", "navigation", "reading", "search", "versions", "offlineLibrary"],
