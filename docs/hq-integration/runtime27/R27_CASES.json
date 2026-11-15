@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "source_test_commit": "93408d356ef217567655a58045d82579da88f6d2",
+  "source_test_commit": "90436e9db44f4ec5e7f07c8d088f95f83cbb7b28",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
-  "app_source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+  "app_source": "90436e9db44f4ec5e7f07c8d088f95f83cbb7b28",
   "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
   "independent_qa_thread": null,
-  "scope": "U_SAME_APP_SOURCE_REAL_KEYCOMMAND_CALIBRATION_AND_CORRECTED_SIDEBAR_THREE_CASES",
+  "scope": "U_NONINSTRUMENTED_PRIORITY_FIELD_ESCAPE_AND_NATIVE_SIDEBAR_FOUR_CASES",
   "native_cases_executed": 0,
   "required_nonzero_cases": 14,
   "expected_per_device": {
@@ -95,7 +95,7 @@
       "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
       "device": "ipad11",
       "status": "NOT_RUN",
-      "oracle": "Existing realUI app and independently checked fixture; actual Close Button removes real input; actual down/up keys visibly change/restore selected result; then actual unmodified Escape removes full-window real input; real locator retained. Stop at actual failed stage, no synthetic callback."
+      "oracle": "RealUI/independent fixture; actual CloseButton removes input; down/up keys visibly change/restore selected result; actual empty-query full-window Escape removes input; reopen/type independently selected fixture title/visible hittable result; actual filtered full-window Escape removes input; exact locator retained."
     }
   ],
   "requirements": {
@@ -105,7 +105,7 @@
     "data_profile": "real native-installed miniTest10",
     "bootstrap": "realUI; never -smokeBypassBootstrap",
     "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
-    "scheduling": "One U-owned native build/test path, one fresh disposable iPad simulator,3exact cases. App source b907 unchanged; two prior Sidebar passes same appsource retained as dated evidence, not fresh. Original narrow Window remains failed, not silently accepted."
+    "scheduling": "One U-owned existing CI/build-for-testing; one fresh disposable11-inch simulator;4actual selected cases; historical8 and2priorSidebar cases not fresh. No GlobalSearch-owned hunks/other native runners touched."
   },
   "required_test_environment": {
     "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
@@ -182,6 +182,7 @@
       "label": "11-window",
       "size": "11",
       "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
         "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL"
@@ -189,6 +190,7 @@
     }
   ],
   "execution_case_ids": [
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
     "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL"
@@ -293,17 +295,16 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
-    "source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+    "source": "90436e9db44f4ec5e7f07c8d088f95f83cbb7b28",
     "changed_production_paths": [
-      "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
-      "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
-      "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"
+      "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
     ],
-    "behavior": "One registered native SwiftUI cancel Button shortcut; remove unsuccessful field Escape descriptor and uncalibrated recognizer; remove all palette OSLog/target/validation diagnostics; mount existing DEBUG read-only observer in actual iPad scene-lived adapter",
+    "relative_to_actual_native_source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+    "behavior": "Register priority unmodified Escape beside the actually calibrated field arrow commands with palette-specific dismissPaletteFromEscape: selector; require same field first responder, own key window and real dismiss callback; existing Button/raw input remain; no logs/global monitor/newcontroller",
     "root_cause_claim": false,
-    "oracle": "Unchanged R27 test includes real hardware Escape + both container/input disappearance + actual Inspector + source text/locator + measured window restore; Sidebar geometry includes native navbar while all catalog/paging/reader/state oracles retained",
-    "native_status": "ACTUAL_2PASS_3FAIL_0SKIP_RUN_43733876827",
-    "prior_failed_run": 43728847352
+    "oracle": "Retained original narrow-window filtered Escape/actual input/Inspector/text/locator/real restore method unchanged. Full-window Close/down/up/empty Escape plus actual filtered-fixture Escape. Corrected actual native clear/refocus and TOC collection/Navbar title queries; all body/dot/filter/state assertions remain.",
+    "native_status": "NOT_RUN",
+    "prior_failed_run": 43737613337
   },
   "previous_correction": {
     "source": "e8afde8e828da8b045eb916a72a727b38695e218",
@@ -318,9 +319,9 @@
     "prior_failed_run": 43723356743
   },
   "next_test_refinement": {
-    "test_source": "93408d356ef217567655a58045d82579da88f6d2",
-    "app_source_unchanged": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
-    "query_replacement": "Actual native field-owned Clear text / Hebrew clear Button, verify empty then exact intended query before functional assertions. No caret/delete position assumption.",
+    "test_source": "90436e9db44f4ec5e7f07c8d088f95f83cbb7b28",
+    "app_source_unchanged": "SUPERSEDED: one owned palette file changed fromb907; all other app source same",
+    "query_replacement": "Clear using observed native field-owned Button, verifyempty, tap actual field again to restore editing, then exact intendedquery. TOC actual CollectionView and native Navbar title observed in measuredsamecolumn.",
     "keyboard_calibration": "Actual native full-window Close Button, down/up selected-result changes, then full-window Escape. No new app code while callback/keycommand/window ownership unresolved.",
     "native_status": "NOT_RUN",
     "original_R27_window_oracle": "UNCHANGED_METHOD_BODY; all actual Escape/whole-app input/Inspector/locator/text/window assertions retained, not selected in this tests-only calibration run"
@@ -333,6 +334,19 @@
       "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
       "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
     ],
-    "current_native_context_compatibility": "PENDING_NEW_NATIVE_ARTIFACTS; no fresh2PASS inferred"
+    "current_native_context_compatibility": "New source changes only unmounted palette on these2 paths. Reconfirm actual native context before reuse; never count as fresh."
+  },
+  "prior_correction": {
+    "source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+    "changed_production_paths": [
+      "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"
+    ],
+    "behavior": "One registered native SwiftUI cancel Button shortcut; remove unsuccessful field Escape descriptor and uncalibrated recognizer; remove all palette OSLog/target/validation diagnostics; mount existing DEBUG read-only observer in actual iPad scene-lived adapter",
+    "root_cause_claim": false,
+    "oracle": "Unchanged R27 test includes real hardware Escape + both container/input disappearance + actual Inspector + source text/locator + measured window restore; Sidebar geometry includes native navbar while all catalog/paging/reader/state oracles retained",
+    "native_status": "ACTUAL_2PASS_3FAIL_0SKIP_RUN_43733876827",
+    "prior_failed_run": 43728847352
   }
 }

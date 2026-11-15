@@ -1,0 +1,63 @@
+{
+  "candidate_source": "90436e9db44f4ec5e7f07c8d088f95f83cbb7b28",
+  "baseline_run": 43688380348,
+  "eight_actual_cases": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "class_scoped": true,
+      "body_unchanged": true,
+      "sha256": "04b9b17e95d69a77901adbcd713107f7860430dc2d868831a7567ba85d22fc04"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "class_scoped": true,
+      "body_unchanged": true,
+      "sha256": "e0e793a68bca0ddf2c64ddd2a2d251295969d1e26a3a8857705c6a44c25f7324"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "class_scoped": true,
+      "body_unchanged": true,
+      "sha256": "7aef5060fd5f421756dc747a264fa56f272416320a6db34192a76dd6d415cb16"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "class_scoped": true,
+      "body_unchanged": true,
+      "sha256": "79ade9c73de41375c8998ee4c086601f81a0d979ca7f88e7a5ff0a3009ab2ca5"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "class_scoped": true,
+      "body_unchanged": true,
+      "sha256": "68a0fd32b3ffe9b41ff852d8722a83bd5ae5faaf0d8c227cd170bec298010740"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "class_scoped": true,
+      "body_unchanged": true,
+      "sha256": "97d00e0e519c646366b6b39710f685902be74e2a4872f1f01c988ed0aafad354"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "class_scoped": true,
+      "body_unchanged": true,
+      "sha256": "7bb1247df21609fc643a75c0b094a999c9ae8ff42ebf5281dff44602dbd5bfca"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "class_scoped": true,
+      "body_unchanged": true,
+      "sha256": "fe4f38b29dbaf0005d716f38ff8db11643acd4b81f0eedc10d3ea154f5c9ec6a"
+    }
+  ],
+  "retained_original_window_method_unchanged": true,
+  "source_delta_since_actual_b907": [
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
+  ],
+  "expected_actual_fixture_toolchain_project_compatibility": "PENDING_NEW_NATIVE_REPORT; source comparison alone no pass",
+  "prior2_sidebar_tests": "Same unopened-palette reachability; observer lifecycle/reader/library/TOC source unchanged from actual run3passes; no fresh2claimed",
+  "fresh_ui_pass_from_this_check": 0,
+  "R27_launch_override_unchanged": true,
+  "R27_launch_override_sha256": "e9634325347680821cbea70c6839ed8388d49cb990b9dae4976613744028d578"
+}

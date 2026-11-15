@@ -1,0 +1,18 @@
+{
+  "source": "90436e9db44f4ec5e7f07c8d088f95f83cbb7b28",
+  "live_upstream_main_reverified": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "only_new_production_file": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+  "classification": "DOWNSTREAM_LICENSED_ADAPTATION_ABSENT_FROM_UPSTREAM_PIN",
+  "prior_actual_native_source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+  "change": "One priority unmodified Escape key command using own palette-specific action beside actually working field arrows; first responder/key window/callback guard; existing actual dismissal and Button retained",
+  "basis": "Actual run43737613337 realCloseButton and down/up selection controls passed, while actual full-window empty Escape failed. Prior generic escape: descriptor failed; no selector collision or UIKit private consumer claimed.",
+  "native_acceptance": "NOT_RUN; next selected4 requires genuine original narrowWindow+Inspector/text/locator/restore, full empty+filtered Escape calibration, RTL/LTR full search/body/dot/state acceptance",
+  "test_refinements": [
+    "Refocus actual cleared field before genuine text entry; exactquery assertion",
+    "Actual TOC CollectionView identifier independent of role; title observed within native NavigationBar in same measuredsidebarcolumn",
+    "All original window assertions and old8 exact method bodies+native launch override retained"
+  ],
+  "local_checks": "27actual portablepolicy assertions, Swift syntax parse,16gate/helper tests and diff check PASS; no Windows UIKit typecheck claimed",
+  "boundaries": "No upstream-owned Source/project/SDK/dependency/trigger edits; no S-owned GlobalSearch hunks touched; no other native run/runner/watcher touched",
+  "acceptance": "OPEN; noMERGE_READY; no physical iPad/release/userdata claim"
+}
