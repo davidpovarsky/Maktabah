@@ -234,6 +234,7 @@ struct SearchFilterModalView: UIViewControllerRepresentable {
         filterVC.applyCategories(viewModel.displayedCategories)
 
         let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.text = viewModel.filterText
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "חיפוש ספר"
         searchController.searchResultsUpdater = context.coordinator

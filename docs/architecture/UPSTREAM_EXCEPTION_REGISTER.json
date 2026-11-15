@@ -187,6 +187,27 @@
       "expected_head_blob_sha": "9b924357f80454eac037f8ab48454dd07ce69a66",
       "review_provenance": "Exposes genuine .isSelected trait and value='selected' on the active TOC row",
       "owner_attestation": null
+    },
+    {
+      "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+      "paths": [
+        "Source/Features/Search/iOS/SearchModeView.swift",
+        "Source/Features/Search/iOS/SearchResultsListView.swift",
+        "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+        "Source/Features/Search/ViewModel/SearchViewModel.swift",
+        "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+        "Source/UI/iOS/Views/iPadLayout.swift",
+        "Source/UI/iOS/Views/iPhoneLayout.swift"
+      ],
+      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+      "task_base_sha": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
+      "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+      "approval_ref": "Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/GLOBAL_SEARCH_ASSIGNMENT_1220546245946205.md",
+      "paging_decision_ref": "Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/GLOBAL_SEARCH_PAGING_SEAM_REVIEW_20261115.md",
+      "scope_and_rollback": "docs/features/search/GLOBAL_SEARCH_OWNERSHIP_20261115.md",
+      "exact_protected_diff": "docs/features/search/selftest-20261115/PROTECTED_HUNKS.patch",
+      "verification": "39 session/presentation + 18 actual paging + 191 existing engine/model wrapper + 14 cached-readiness portable assertions; native/physical NOT_RUN",
+      "review_provenance": "Owner-approved A-G plan; manager explicitly authorized observed narrow paging-error hunks; manager reviews final candidate. No Reader/TOC/Library/Palette/lifecycle/project/workflow hunk implied."
     }
   ]
 }

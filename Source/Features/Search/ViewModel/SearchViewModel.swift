@@ -38,6 +38,7 @@ final class SearchViewModel: ViewModelBase {
     var backendNextOffset: Int? { paginationState.nextOffset }
     var backendTotalResults: Int { paginationState.totalResults }
     var isLoadingMoreBackendResults: Bool = false
+    var backendPaginationErrorMessage: String?
     var hasMoreBackendResults: Bool { paginationState.hasMore }
     var backendSearchGeneration: UInt64 = 0
     let loadMoreBackendWork = Mutex<Task<Void, Never>?>(nil)

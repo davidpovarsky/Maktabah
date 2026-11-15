@@ -1,0 +1,27 @@
+{
+  "authority": "Windows Swift syntax only; Apple typecheck NOT_RUN",
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\r\nTarget: x86_64-unknown-windows-msvc\r\nBuild config: +assertions",
+  "parseExit": 0,
+  "diffCheckExit": 0,
+  "registrationProposalCheckExit": 0,
+  "files": [
+    "C:\\Users\\DAVID\\Code\\Maktabah-global-search-ui-20261115\\Source\\ChavrusaText\\Search\\UI\\GlobalSearchAdvancedOptionsContent.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-global-search-ui-20261115\\Source\\ChavrusaText\\Search\\UI\\GlobalSearchContent.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-global-search-ui-20261115\\Source\\ChavrusaText\\Search\\UI\\GlobalSearchHeader.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-global-search-ui-20261115\\Source\\ChavrusaText\\Search\\UI\\GlobalSearchHistoryContent.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-global-search-ui-20261115\\Source\\ChavrusaText\\Search\\UI\\GlobalSearchPresentationCoordinator.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-global-search-ui-20261115\\Source\\ChavrusaText\\Search\\UI\\GlobalSearchResultsHeader.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-global-search-ui-20261115\\Source\\ChavrusaText\\Search\\UI\\GlobalSearchSessionPresentation.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-global-search-ui-20261115\\Source\\ChavrusaText\\Search\\UI\\GlobalSearchToolbar.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-global-search-ui-20261115\\Source\\ChavrusaText\\Search\\UI\\NativeGlobalSearchField.swift",
+    "Source/Features/Search/iOS/SearchModeView.swift",
+    "Source/Features/Search/iOS/SearchResultsListView.swift",
+    "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+    "Source/UI/iOS/Views/iPadLayout.swift",
+    "Source/UI/iOS/Views/iPhoneLayout.swift",
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+    "Source/Features/Search/ViewModel/SearchViewModel.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift"
+  ],
+  "utc": "2026-11-15T17:45:54.2736204Z"
+}

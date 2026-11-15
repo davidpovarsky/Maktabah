@@ -16,6 +16,9 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Global Search's loaded book-title filter must disable the original result-row `onAppear` prefetch while keeping explicit Load More, including zero matches. Otherwise rendering a filtered five-row projection triggers an unintended backend page request. The default-true `automaticallyLoadsMore` list argument preserves existing callers (2026-11-15).
+- Otzaria's blank custom-spacing text must map to an empty dictionary. A dictionary containing `"0-1": ""` makes the upstream gap resolver fall back to zero instead of the configured global distance. Preserve empty positional entries only when an actual custom expression is supplied (2026-11-15).
+
 - Books Updates must authorize a typed registered backend at every synchronous file/network/cleanup entry. A saved raw `maktabah` preference and `usesNativeMaktabahDataPath` do not establish ownership. The three current backends are explicitly unavailable; separate archive/FTS/author/main commits still require a genuine native recovery contract before any future enabling. The updater now leaves WAL/SHM cleanup to SQLite and propagates checkpoint errors before its integration-cache publication. Disposable safety fixtures cannot establish full native update acceptance.
 - Zayit's lexical cache must retain the selected expansion, not all candidate groups in HashMap order. Otherwise the warm lookup can choose another lemma and an identical query scoped to its own first-hit book can return zero. A real v32 C ABI reproduction and a public 64-token SQLite ambiguity regression cover this. It requires a matching rebuilt runtime binary, not an index/schema rebuild or user-package reset.
 

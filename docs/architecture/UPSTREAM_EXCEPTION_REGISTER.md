@@ -1,5 +1,9 @@
 # Explicitly approved upstream hooks
 
+## 2026-11-15 — owner-approved Global Search presentation connections
+
+Authorization: binding HQ `single-manager-wave-20261115/GLOBAL_SEARCH_ASSIGNMENT_1220546245946205.md`, task `1220546245946205`, complete owner-approved native Global Search specification (SHA256 `88d91318f0436aa98221acb688fa5245c466b53d3831149a87a8c393824bb100`). Covers only SearchModeView's global header/content/toolbar composition, dedicated Search split visibility and search functions in iPadLayout, and iPhone Global Search composition/duplicate searchable removal. Upstream pinned `d46af139b3a265399c16d87f5923acd8e3444024`; task base `13e40d1d`. Presentation is additive in `Source/ChavrusaText/Search/UI`; private existing compositions cannot be replaced through an extension. Exact ownership, rejected alternatives, verification gates and rollback: `docs/features/search/GLOBAL_SEARCH_OWNERSHIP_20261115.md`. No Reader/TOC/Library/Palette/lifecycle/project/workflow approval is implied. Manager reviews the final concrete diff; native and physical-device acceptance remain OPEN. Re-review on next upstream sync.
+
 No exceptions approved as of 2026-10-22.
 
 ## 2026-11-10 — exact native-sidebar TOC composition hook

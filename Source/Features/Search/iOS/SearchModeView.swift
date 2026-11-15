@@ -21,73 +21,18 @@ struct SearchModeView: View {
         @Bindable var viewModel = navigationManager.searchViewModel
 
         VStack(spacing: 0) {
-            if !isSearching {
-                SearchInputBar(
-                    text: Bindable(session).query,
-                    focusBinding: $isSearchFieldFocused,
-                    onSubmit: {
-                        Task {
-                            viewModel.addToHistory(session.query)
-                            session.runSearch()
-                            isSearchFieldFocused = false
-                        }
-                    }
-                )
-                .padding(.horizontal)
-                .padding(.vertical, 8)
-                .background(Color.appBackground)
-
-                UnifiedSearchInputControls(session: session)
+            GlobalSearchHeader(session: session, onSubmit: submitSearch)
+            GlobalSearchContent(session: session, viewModel: viewModel, onSubmit: submitSearch) {
+                searchResultsView(session: session)
             }
-
-            ZStack(alignment: .top) {
-                if !session.results.isEmpty {
-                    searchResultsView(session: session)
-                        .safeAreaInset(edge: .bottom) { UnifiedSearchPagingFeedbackView(session: session) }
-                } else if session.showsSearchFeedback {
-                    UnifiedSearchFeedbackView(session: session)
-                } else if horizontalSizeClass == .regular {
-                    searchRegularEmptyState(session: session, viewModel: viewModel)
-                } else {
-                    compactFilterView(viewModel: viewModel)
-                }
-
-                if !isSearching && isSearchFieldFocused {
-                    SearchHistoryOverlay(
-                        session: session,
-                        viewModel: viewModel,
-                        inputBarHeight: 0,
-                        isVisible: .init(
-                            get: { isSearchFieldFocused },
-                            set: { isSearchFieldFocused = $0 ?? false }
-                        )
-                    )
-                    .hideTabBarWhenKeyboardShown()
-                    .zIndex(10)
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .safeAreaInset(edge: .bottom, content: {
-            UnifiedSearchProgressView(session: session)
-                .transition(.asymmetric(
-                    insertion: .move(edge: .bottom).combined(with: .opacity),
-                    removal: .move(edge: .bottom).combined(with: .opacity)
-                ))
-        })
         .safeAreaInset(edge: .bottom, spacing: 0) {
             ftsMigrationBanner()
         }
         .navigationBarTitleDisplayMode(session.results.isEmpty ? .automatic : .inline)
         .toolbar {
-            UnifiedSearchToolbar(
+            GlobalSearchToolbar(
                 session: session,
-                onLeadingAction: {
-                    session.clearResults()
-                    session.query = ""
-                },
-                showSortMenu: true,
-                showSaveMenu: true,
                 canSaveResults: canSaveResults,
                 onSaveResults: { showingSaveResults = true },
                 onSavedResults: { showingSavedResults = true }
@@ -117,6 +62,9 @@ struct SearchModeView: View {
                    value: session.isSearching)
         .onAppear {
             session.searchViewModel = viewModel
+            if !session.availableScopes.contains(session.scope), !session.hasSubmitted {
+                session.scope = session.availableScopes.first ?? session.scope
+            }
             if session.selectedBookIds != viewModel.selectedBookIds {
                 session.selectedBookIds = viewModel.selectedBookIds
             }
@@ -162,9 +110,17 @@ struct SearchModeView: View {
             }
         }
         .animation(.easeInOut, value: showFtsMigrationOverlay)
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("global-search-screen")
     }
 
     // MARK: - Sub-views
+
+    private func submitSearch() {
+        let session = navigationManager.unifiedSearchSession
+        guard !session.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+        session.runSearch()
+    }
 
     private func compactFilterView(viewModel: SearchViewModel) -> some View {
         SearchFilterUIKitView(
@@ -195,20 +151,13 @@ struct SearchModeView: View {
     }
 
     private func searchResultsView(session: UnifiedSearchSessionController) -> some View {
-        let filtered: [SearchResultItem] = session.resultKitabFilter.isEmpty
-            ? session.results
-            : session.results.filter {
-                $0.bookTitle
-                    .normalizeArabic(false)
-                    .contains(
-                        session.resultKitabFilter.normalizeArabic(false)
-                )
-            }
+        let filtered = session.filteredResults
 
         return SearchResultsListView(
             results: filtered,
             isLoadingMore: session.isLoadingMore,
             hasMore: session.hasMore,
+            automaticallyLoadsMore: session.resultKitabFilter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
             onLoadMore: {
                 session.loadNextPage()
             },
@@ -218,11 +167,7 @@ struct SearchModeView: View {
         ) { item in
             session.openResult(item, using: navigationManager)
         }
-        .searchable(
-            text: Bindable(session).resultKitabFilter,
-            placement: .toolbar,
-            prompt: .filterByBooks
-        )
+        .accessibilityIdentifier("global-search-results")
     }
 
     @ViewBuilder

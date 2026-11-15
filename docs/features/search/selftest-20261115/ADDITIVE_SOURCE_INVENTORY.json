@@ -1,0 +1,52 @@
+{
+  "base": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
+  "projectEdited": false,
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift",
+      "sha256": "8c010d020e16edad692d6fd5a733a12bbd6cff05e462ad71e2a1f4f4308532fa",
+      "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift",
+      "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
+      "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+      "sha256": "54f053a0f4f4a674c4875101211a4d005aabee33af3abb21d45828c3f3cd8cf7",
+      "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "sha256": "3687d11438b54cac5257c7206c75b33cff041c8072f6a0c404625d8a1ce95023",
+      "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchPresentationCoordinator.swift",
+      "sha256": "5c1f6edd0df79c34be4c485aa997b7344b77881ae14d33a35aae1660de65ac83",
+      "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift",
+      "sha256": "22c7bb2e08f96a5c62174fd082effd286f1d70e7244c857844bece4acc4e81f4",
+      "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchSessionPresentation.swift",
+      "sha256": "a9b35d00d83d065129644a5fb742e11f7b115419cdabc7d7eb2b11935954d246",
+      "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+      "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99",
+      "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "sha256": "ef3144ec8c4e4ecbc96524c211a463f5bd774232c9b246e8d685ac505a7c623a",
+      "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
+    }
+  ],
+  "testMembership": "Portable S fixtures only; independent I owns native acceptance suite registration."
+}

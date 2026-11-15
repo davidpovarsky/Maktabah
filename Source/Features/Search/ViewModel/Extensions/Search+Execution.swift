@@ -28,6 +28,7 @@ extension SearchViewModel {
               let offset = paginationState.nextOffset else { return }
 
         isLoadingMoreBackendResults = true
+        backendPaginationErrorMessage = nil
         let generation = backendSearchGeneration
         let requestQuery = query
         let selectedBooks = selectedBookIds.compactMap { ldm.booksById[$0] }
@@ -62,6 +63,8 @@ extension SearchViewModel {
             } catch is CancellationError {
                 return
             } catch {
+                guard self.backendSearchGeneration == generation else { return }
+                self.backendPaginationErrorMessage = error.localizedDescription
                 #if DEBUG
                 print("Error loading next page: \(error)")
                 #endif
@@ -95,6 +98,7 @@ extension SearchViewModel {
         }
 
         isSearching = true
+        backendPaginationErrorMessage = nil
         isPaused = false
         cancelCompletionDismiss()
 

@@ -110,11 +110,6 @@ struct iPhoneLayout: View {
                 )
                 .toolbarGeneral(showSettings: $showSettings)
         }
-        .searchable(
-            text: Bindable(bManager.searchViewModel).filterText,
-            placement: .toolbar,
-            prompt: String(localized: "Filter Books to Search")
-        )
     }
 
     private var authorTabContent: some View {

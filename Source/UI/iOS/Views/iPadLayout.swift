@@ -18,6 +18,7 @@ struct iPadLayout: View {
     @StateObject private var historyViewModel = HistoryViewModel.shared
     @StateObject private var backendCoordinator = BackendCoordinator.shared
     @State private var sidebar = ReaderSidebarPageCoordinator()
+    @State private var searchPresentation = GlobalSearchPresentationCoordinator()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     var body: some View {
@@ -198,7 +199,7 @@ struct iPadLayout: View {
 
     @ViewBuilder
     private var searchTabContent: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $searchPresentation.columnVisibility) {
             searchSidebarContent
         } detail: {
             NavigationStack {
@@ -211,6 +212,10 @@ struct iPadLayout: View {
             .background(Color.appBackground)
         }
         .background(Color.appBackground.ignoresSafeArea())
+        .environment(\.globalSearchBookChooser) {
+            if horizontalSizeClass == .compact { bManager.unifiedSearchSession.showsBookFilterSheet = true }
+            else { searchPresentation.showBooks() }
+        }
     }
 
     @ViewBuilder

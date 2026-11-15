@@ -1,0 +1,269 @@
+diff --git a/Source/Features/Search/ViewModel/Extensions/Search+Execution.swift b/Source/Features/Search/ViewModel/Extensions/Search+Execution.swift
+index 43b7466b..0dffa113 100644
+--- a/Source/Features/Search/ViewModel/Extensions/Search+Execution.swift
++++ b/Source/Features/Search/ViewModel/Extensions/Search+Execution.swift
+@@ -28,6 +28,7 @@ extension SearchViewModel {
+               let offset = paginationState.nextOffset else { return }
+ 
+         isLoadingMoreBackendResults = true
++        backendPaginationErrorMessage = nil
+         let generation = backendSearchGeneration
+         let requestQuery = query
+         let selectedBooks = selectedBookIds.compactMap { ldm.booksById[$0] }
+@@ -62,6 +63,8 @@ extension SearchViewModel {
+             } catch is CancellationError {
+                 return
+             } catch {
++                guard self.backendSearchGeneration == generation else { return }
++                self.backendPaginationErrorMessage = error.localizedDescription
+                 #if DEBUG
+                 print("Error loading next page: \(error)")
+                 #endif
+@@ -95,6 +98,7 @@ extension SearchViewModel {
+         }
+ 
+         isSearching = true
++        backendPaginationErrorMessage = nil
+         isPaused = false
+         cancelCompletionDismiss()
+ 
+diff --git a/Source/Features/Search/ViewModel/SearchViewModel.swift b/Source/Features/Search/ViewModel/SearchViewModel.swift
+index e81831d4..566117c4 100644
+--- a/Source/Features/Search/ViewModel/SearchViewModel.swift
++++ b/Source/Features/Search/ViewModel/SearchViewModel.swift
+@@ -38,6 +38,7 @@ final class SearchViewModel: ViewModelBase {
+     var backendNextOffset: Int? { paginationState.nextOffset }
+     var backendTotalResults: Int { paginationState.totalResults }
+     var isLoadingMoreBackendResults: Bool = false
++    var backendPaginationErrorMessage: String?
+     var hasMoreBackendResults: Bool { paginationState.hasMore }
+     var backendSearchGeneration: UInt64 = 0
+     let loadMoreBackendWork = Mutex<Task<Void, Never>?>(nil)
+diff --git a/Source/Features/Search/iOS/SearchModeView.swift b/Source/Features/Search/iOS/SearchModeView.swift
+index e09fe2e3..dcf8396a 100644
+--- a/Source/Features/Search/iOS/SearchModeView.swift
++++ b/Source/Features/Search/iOS/SearchModeView.swift
+@@ -21,73 +21,18 @@ struct SearchModeView: View {
+         @Bindable var viewModel = navigationManager.searchViewModel
+ 
+         VStack(spacing: 0) {
+-            if !isSearching {
+-                SearchInputBar(
+-                    text: Bindable(session).query,
+-                    focusBinding: $isSearchFieldFocused,
+-                    onSubmit: {
+-                        Task {
+-                            viewModel.addToHistory(session.query)
+-                            session.runSearch()
+-                            isSearchFieldFocused = false
+-                        }
+-                    }
+-                )
+-                .padding(.horizontal)
+-                .padding(.vertical, 8)
+-                .background(Color.appBackground)
+-
+-                UnifiedSearchInputControls(session: session)
++            GlobalSearchHeader(session: session, onSubmit: submitSearch)
++            GlobalSearchContent(session: session, viewModel: viewModel, onSubmit: submitSearch) {
++                searchResultsView(session: session)
+             }
+-
+-            ZStack(alignment: .top) {
+-                if !session.results.isEmpty {
+-                    searchResultsView(session: session)
+-                        .safeAreaInset(edge: .bottom) { UnifiedSearchPagingFeedbackView(session: session) }
+-                } else if session.showsSearchFeedback {
+-                    UnifiedSearchFeedbackView(session: session)
+-                } else if horizontalSizeClass == .regular {
+-                    searchRegularEmptyState(session: session, viewModel: viewModel)
+-                } else {
+-                    compactFilterView(viewModel: viewModel)
+-                }
+-
+-                if !isSearching && isSearchFieldFocused {
+-                    SearchHistoryOverlay(
+-                        session: session,
+-                        viewModel: viewModel,
+-                        inputBarHeight: 0,
+-                        isVisible: .init(
+-                            get: { isSearchFieldFocused },
+-                            set: { isSearchFieldFocused = $0 ?? false }
+-                        )
+-                    )
+-                    .hideTabBarWhenKeyboardShown()
+-                    .zIndex(10)
+-                }
+-            }
+-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+         }
+-        .safeAreaInset(edge: .bottom, content: {
+-            UnifiedSearchProgressView(session: session)
+-                .transition(.asymmetric(
+-                    insertion: .move(edge: .bottom).combined(with: .opacity),
+-                    removal: .move(edge: .bottom).combined(with: .opacity)
+-                ))
+-        })
+         .safeAreaInset(edge: .bottom, spacing: 0) {
+             ftsMigrationBanner()
+         }
+         .navigationBarTitleDisplayMode(session.results.isEmpty ? .automatic : .inline)
+         .toolbar {
+-            UnifiedSearchToolbar(
++            GlobalSearchToolbar(
+                 session: session,
+-                onLeadingAction: {
+-                    session.clearResults()
+-                    session.query = ""
+-                },
+-                showSortMenu: true,
+-                showSaveMenu: true,
+                 canSaveResults: canSaveResults,
+                 onSaveResults: { showingSaveResults = true },
+                 onSavedResults: { showingSavedResults = true }
+@@ -117,6 +62,9 @@ struct SearchModeView: View {
+                    value: session.isSearching)
+         .onAppear {
+             session.searchViewModel = viewModel
++            if !session.availableScopes.contains(session.scope), !session.hasSubmitted {
++                session.scope = session.availableScopes.first ?? session.scope
++            }
+             if session.selectedBookIds != viewModel.selectedBookIds {
+                 session.selectedBookIds = viewModel.selectedBookIds
+             }
+@@ -162,10 +110,18 @@ struct SearchModeView: View {
+             }
+         }
+         .animation(.easeInOut, value: showFtsMigrationOverlay)
++        .accessibilityElement(children: .contain)
++        .accessibilityIdentifier("global-search-screen")
+     }
+ 
+     // MARK: - Sub-views
+ 
++    private func submitSearch() {
++        let session = navigationManager.unifiedSearchSession
++        guard !session.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
++        session.runSearch()
++    }
++
+     private func compactFilterView(viewModel: SearchViewModel) -> some View {
+         SearchFilterUIKitView(
+             viewModel: viewModel,
+@@ -195,20 +151,13 @@ struct SearchModeView: View {
+     }
+ 
+     private func searchResultsView(session: UnifiedSearchSessionController) -> some View {
+-        let filtered: [SearchResultItem] = session.resultKitabFilter.isEmpty
+-            ? session.results
+-            : session.results.filter {
+-                $0.bookTitle
+-                    .normalizeArabic(false)
+-                    .contains(
+-                        session.resultKitabFilter.normalizeArabic(false)
+-                )
+-            }
++        let filtered = session.filteredResults
+ 
+         return SearchResultsListView(
+             results: filtered,
+             isLoadingMore: session.isLoadingMore,
+             hasMore: session.hasMore,
++            automaticallyLoadsMore: session.resultKitabFilter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+             onLoadMore: {
+                 session.loadNextPage()
+             },
+@@ -218,11 +167,7 @@ struct SearchModeView: View {
+         ) { item in
+             session.openResult(item, using: navigationManager)
+         }
+-        .searchable(
+-            text: Bindable(session).resultKitabFilter,
+-            placement: .toolbar,
+-            prompt: .filterByBooks
+-        )
++        .accessibilityIdentifier("global-search-results")
+     }
+ 
+     @ViewBuilder
+diff --git a/Source/Features/Search/iOS/SearchResultsListView.swift b/Source/Features/Search/iOS/SearchResultsListView.swift
+index 34c3d6a7..d8b91be6 100644
+--- a/Source/Features/Search/iOS/SearchResultsListView.swift
++++ b/Source/Features/Search/iOS/SearchResultsListView.swift
+@@ -15,6 +15,7 @@ struct SearchResultsListView: View {
+     var showsBookTitle: Bool = true
+     var isLoadingMore: Bool = false
+     var hasMore: Bool = false
++    var automaticallyLoadsMore: Bool = true
+     var onLoadMore: (() -> Void)? = nil
+     var onSearchInBook: ((SearchResultItem) -> Void)? = nil
+     var query: String = ""
+@@ -130,7 +131,7 @@ struct SearchResultsListView: View {
+                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                 .id(group.id)
+                 .onAppear {
+-                    if index == groups.count - 5, hasMore, !isLoadingMore {
++                    if automaticallyLoadsMore, index == groups.count - 5, hasMore, !isLoadingMore {
+                         onLoadMore?()
+                     }
+                 }
+diff --git a/Source/Features/Search/iOS/iOSSearchFilterViewController.swift b/Source/Features/Search/iOS/iOSSearchFilterViewController.swift
+index ad057e54..05254df8 100644
+--- a/Source/Features/Search/iOS/iOSSearchFilterViewController.swift
++++ b/Source/Features/Search/iOS/iOSSearchFilterViewController.swift
+@@ -234,6 +234,7 @@ struct SearchFilterModalView: UIViewControllerRepresentable {
+         filterVC.applyCategories(viewModel.displayedCategories)
+ 
+         let searchController = UISearchController(searchResultsController: nil)
++        searchController.searchBar.text = viewModel.filterText
+         searchController.obscuresBackgroundDuringPresentation = false
+         searchController.searchBar.placeholder = "חיפוש ספר"
+         searchController.searchResultsUpdater = context.coordinator
+diff --git a/Source/UI/iOS/Views/iPadLayout.swift b/Source/UI/iOS/Views/iPadLayout.swift
+index 5f9b66df..4b63d114 100644
+--- a/Source/UI/iOS/Views/iPadLayout.swift
++++ b/Source/UI/iOS/Views/iPadLayout.swift
+@@ -18,6 +18,7 @@ struct iPadLayout: View {
+     @StateObject private var historyViewModel = HistoryViewModel.shared
+     @StateObject private var backendCoordinator = BackendCoordinator.shared
+     @State private var sidebar = ReaderSidebarPageCoordinator()
++    @State private var searchPresentation = GlobalSearchPresentationCoordinator()
+     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+ 
+     var body: some View {
+@@ -198,7 +199,7 @@ struct iPadLayout: View {
+ 
+     @ViewBuilder
+     private var searchTabContent: some View {
+-        NavigationSplitView {
++        NavigationSplitView(columnVisibility: $searchPresentation.columnVisibility) {
+             searchSidebarContent
+         } detail: {
+             NavigationStack {
+@@ -211,6 +212,10 @@ struct iPadLayout: View {
+             .background(Color.appBackground)
+         }
+         .background(Color.appBackground.ignoresSafeArea())
++        .environment(\.globalSearchBookChooser) {
++            if horizontalSizeClass == .compact { bManager.unifiedSearchSession.showsBookFilterSheet = true }
++            else { searchPresentation.showBooks() }
++        }
+     }
+ 
+     @ViewBuilder
+diff --git a/Source/UI/iOS/Views/iPhoneLayout.swift b/Source/UI/iOS/Views/iPhoneLayout.swift
+index b6692b11..af61bf91 100644
+--- a/Source/UI/iOS/Views/iPhoneLayout.swift
++++ b/Source/UI/iOS/Views/iPhoneLayout.swift
+@@ -110,11 +110,6 @@ struct iPhoneLayout: View {
+                 )
+                 .toolbarGeneral(showSettings: $showSettings)
+         }
+-        .searchable(
+-            text: Bindable(bManager.searchViewModel).filterText,
+-            placement: .toolbar,
+-            prompt: String(localized: "Filter Books to Search")
+-        )
+     }
+ 
+     private var authorTabContent: some View {

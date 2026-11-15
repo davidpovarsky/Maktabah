@@ -15,6 +15,7 @@ struct SearchResultsListView: View {
     var showsBookTitle: Bool = true
     var isLoadingMore: Bool = false
     var hasMore: Bool = false
+    var automaticallyLoadsMore: Bool = true
     var onLoadMore: (() -> Void)? = nil
     var onSearchInBook: ((SearchResultItem) -> Void)? = nil
     var query: String = ""
@@ -130,7 +131,7 @@ struct SearchResultsListView: View {
                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                 .id(group.id)
                 .onAppear {
-                    if index == groups.count - 5, hasMore, !isLoadingMore {
+                    if automaticallyLoadsMore, index == groups.count - 5, hasMore, !isLoadingMore {
                         onLoadMore?()
                     }
                 }

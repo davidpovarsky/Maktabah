@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import Observation
 import SwiftUI
 #if canImport(UIKit)
 import UIKit
@@ -25,6 +26,13 @@ final class UnifiedSearchSessionController {
     var hasMore: Bool = false
     var isLoadingMore: Bool = false
     var hasSubmitted: Bool = false
+    private(set) var submittedConfiguration: [String]?
+    private(set) var configurationInvalidated = false
+    private(set) var wasCancelled = false
+    /// Counts accepted engine submissions, never keystrokes or local result filtering.
+    private(set) var submissionRevision = 0
+    private(set) var cancellationRevision = 0
+    private(set) var paginationRevision = 0
 
     // MARK: - Presentation State
 
@@ -75,6 +83,8 @@ final class UnifiedSearchSessionController {
     private var cancellables: Set<AnyCancellable> = []
     private var zayitHits: [String: ZayitSearchHit] = [:]
     private var zayitSearchTask: Task<Void, Never>?
+    private var sefariaSearchTask: Task<Void, Never>?
+    private var acceptsEngineUpdates = false
     private var searchGeneration = 0
     private var isPreparingZayitSearch = false
 
@@ -86,7 +96,7 @@ final class UnifiedSearchSessionController {
         otzaria.objectWillChange.sink { [weak self] _ in
             guard let self else { return }
             Task { @MainActor in
-                if self.hasSubmitted && !self.isSefaria && self.scope != .zayit {
+                if self.acceptsEngineUpdates && !self.resultsAreDirty && self.hasSubmitted && !self.isSefaria && self.scope != .zayit {
                     self.results = self.otzaria.results
                     self.isSearching = self.otzaria.isSearching
                     self.errorMessage = self.otzaria.errorMessage
@@ -99,7 +109,7 @@ final class UnifiedSearchSessionController {
         zayitSession.objectWillChange.sink { [weak self] _ in
             guard let self else { return }
             Task { @MainActor in
-                if self.hasSubmitted && !self.isSefaria && self.scope == .zayit {
+                if self.acceptsEngineUpdates && !self.resultsAreDirty && self.hasSubmitted && !self.isSefaria && self.scope == .zayit {
                     let hits = self.zayitSession.model.hits
                     self.cacheZayitHits(hits)
                     self.results = self.mapZayitHits(hits)
@@ -125,11 +135,12 @@ final class UnifiedSearchSessionController {
     }
 
     var availableScopes: [UnifiedSearchScope] {
-        isSefaria ? [.exact, .advanced] : UnifiedSearchScope.allCases
+        if BackendCoordinator.shared.activeBackendID == .sefariaEmbedded { return [.exact] }
+        return isSefaria ? [.exact, .advanced] : UnifiedSearchScope.allCases
     }
 
     var hasConfigurableOptions: Bool {
-        scope == .advanced
+        scope == .advanced && (!isSefaria || supportsSefariaOptions)
     }
 
     var showsSearchFeedback: Bool { !isSefaria && hasSubmitted }
@@ -180,17 +191,39 @@ final class UnifiedSearchSessionController {
     // MARK: - Search Execution
 
     func runSearch() {
-        searchGeneration += 1
-        zayitSearchTask?.cancel()
-        zayitSession.model.cancelSearch()
-        zayitHits.removeAll()
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else {
             clearResults()
             return
         }
+        guard !(isSearching && submittedConfiguration == requestConfiguration) else { return }
+        stopEngineWork()
+        submittedConfiguration = requestConfiguration
+        configurationInvalidated = false
         hasSubmitted = true
+        wasCancelled = false
         errorMessage = nil
+        hasMore = false
+        guard availableScopes.contains(scope) else {
+            results = []
+            errorMessage = "שיטת חיפוש זו אינה נתמכת במקור הפעיל. בחרו שיטה זמינה."
+            return
+        }
+        if let message = optionsValidationMessage {
+            results = []
+            errorMessage = message
+            return
+        }
+        submissionRevision += 1
+        acceptsEngineUpdates = true
+        resultKitabFilter = ""
+        #if os(iOS)
+        searchViewModel?.addToHistory(trimmed)
+        #endif
+        #if DEBUG
+        NSLog("[GlobalSearch] submit revision=%d generation=%d backend=%@ scope=%@", submissionRevision, searchGeneration,
+              BackendCoordinator.shared.activeBackendID.rawValue, scope.rawValue)
+        #endif
 
         if isSefaria {
             runSefariaSearch(query: trimmed)
@@ -209,6 +242,7 @@ final class UnifiedSearchSessionController {
         isLoadingMore = false
 
         searchViewModel.query = query
+        searchViewModel.state = .loading
         searchViewModel.setSelectedBooks(selectedBookIds)
         if scope == .exact {
             searchViewModel.backendSearchOptions.matchMode = .exact
@@ -221,19 +255,43 @@ final class UnifiedSearchSessionController {
             searchViewModel.backendSearchOptions.sortOrder = sefariaSortOrder
             searchViewModel.backendSearchOptions.reverseSort = sefariaReverseSort
         }
-        searchViewModel.addToHistory(query)
+        // Preserve provider fidelity through SearchViewModel.effectiveBackendSearchOptions().
+        // Phrase enforces exact; contains enforces Hebrew lemmatization; near preserves match mode.
+        if !supportsSefariaOptions || scope == .exact {
+            searchViewModel.searchMode = .phrase
+        } else if sefariaWordDistance > 0 {
+            searchViewModel.searchMode = .near
+            searchViewModel.nearDistance = sefariaWordDistance
+        } else {
+            searchViewModel.searchMode = sefariaMatchMode == .exact ? .phrase : .contains
+        }
+        if !supportsSefariaOptions {
+            searchViewModel.backendSearchOptions.matchMode = .exact
+            searchViewModel.backendSearchOptions.wordDistance = 0
+            searchViewModel.backendSearchOptions.sortOrder = .relevance
+            searchViewModel.backendSearchOptions.reverseSort = false
+        }
 
-        Task {
+        let generation = searchGeneration
+        sefariaSearchTask = Task {
             await searchViewModel.startSearch()
-            await MainActor.run {
-                self.results = searchViewModel.results
-                self.isSearching = searchViewModel.isSearching
-                self.hasMore = searchViewModel.hasMoreBackendResults
-                self.isLoadingMore = searchViewModel.isLoadingMoreBackendResults
-                if case .error(let msg) = searchViewModel.state {
-                    self.errorMessage = msg
-                }
-            }
+            guard !Task.isCancelled else { return }
+            self.observeSefariaState(generation: generation)
+        }
+    }
+
+    private func observeSefariaState(generation: Int) {
+        guard generation == searchGeneration, acceptsEngineUpdates, !resultsAreDirty,
+              isSefaria, let model = searchViewModel else { return }
+        withObservationTracking {
+            results = model.results
+            isSearching = model.isSearching
+            hasMore = model.hasMoreBackendResults
+            isLoadingMore = model.isLoadingMoreBackendResults
+            if case .error(let message) = model.state { errorMessage = message }
+            else { errorMessage = model.backendPaginationErrorMessage }
+        } onChange: { [weak self] in
+            Task { @MainActor in self?.observeSefariaState(generation: generation) }
         }
     }
 
@@ -299,20 +357,25 @@ final class UnifiedSearchSessionController {
             }
         }()
         otzaria.order = otzariaOrder
-        otzaria.negativeQuery = otzariaNegativeQuery
-        otzaria.scope = otzariaScope
-        otzaria.negativeScope = otzariaNegativeScope
-        otzaria.wordMatchMode = otzariaWordMatchMode
-        otzaria.wordMatchCount = otzariaWordMatchCount
-        otzaria.grouping = otzariaGrouping
-        otzaria.distance = otzariaDistance
-        otzaria.negativeDistance = otzariaNegativeDistance
-        otzaria.matchNikud = otzariaMatchNikud
-        otzaria.matchTaamim = otzariaMatchTaamim
+        let advanced = scope == .advanced
+        otzaria.negativeQuery = advanced ? otzariaNegativeQuery : ""
+        otzaria.scope = advanced ? otzariaScope : .wordDistance
+        otzaria.negativeScope = advanced ? otzariaNegativeScope : .wordDistance
+        otzaria.wordMatchMode = advanced ? otzariaWordMatchMode : .all
+        otzaria.wordMatchCount = advanced ? otzariaWordMatchCount : 1
+        otzaria.grouping = advanced ? otzariaGrouping : nil
+        otzaria.distance = advanced ? otzariaDistance : 0
+        otzaria.negativeDistance = advanced ? otzariaNegativeDistance : 0
+        otzaria.matchNikud = advanced && otzariaMatchNikud
+        otzaria.matchTaamim = advanced && otzariaMatchTaamim
         otzaria.selectedBookIds = selectedBookIds
 
         if scope == .advanced {
             applyOtzariaAdvancedWordOptions(to: query)
+        } else {
+            otzaria.searchOptions = [:]
+            otzaria.customSpacing = [:]
+            otzaria.alternativeWords = [:]
         }
 
         otzaria.search()
@@ -337,7 +400,8 @@ final class UnifiedSearchSessionController {
             ]
         }
         otzaria.searchOptions = options
-        otzaria.customSpacing = Dictionary(uniqueKeysWithValues: otzariaCustomSpacingText
+        otzaria.customSpacing = otzariaCustomSpacingText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            ? [:] : Dictionary(uniqueKeysWithValues: otzariaCustomSpacingText
             .split(separator: ",", omittingEmptySubsequences: false)
             .enumerated()
             .map { ("\($0.offset)-\($0.offset + 1)", String($0.element).trimmingCharacters(in: .whitespaces)) })
@@ -354,15 +418,16 @@ final class UnifiedSearchSessionController {
     // MARK: - Pagination
 
     func loadNextPage() {
+        guard acceptsEngineUpdates, !resultsAreDirty, !isSearching, hasMore, !isLoadingMore else { return }
+        paginationRevision += 1
+        #if DEBUG
+        NSLog("[GlobalSearch] page revision=%d generation=%d backend=%@ scope=%@", paginationRevision, searchGeneration,
+              BackendCoordinator.shared.activeBackendID.rawValue, scope.rawValue)
+        #endif
         if isSefaria {
             guard let searchViewModel, hasMore, !isLoadingMore else { return }
             isLoadingMore = true
             searchViewModel.loadNextBackendPage()
-            Task { @MainActor in
-                self.results = searchViewModel.results
-                self.hasMore = searchViewModel.hasMoreBackendResults
-                self.isLoadingMore = searchViewModel.isLoadingMoreBackendResults
-            }
         } else if scope == .zayit {
             zayitSession.model.loadNextPage()
         } else {
@@ -398,6 +463,7 @@ final class UnifiedSearchSessionController {
     }
 
     func openResult(_ item: SearchResultItem, using manager: iOSNavigationManager) {
+        guard !resultsAreDirty, !wasCancelled else { return }
         #if canImport(UIKit)
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         #endif
@@ -478,19 +544,52 @@ final class UnifiedSearchSessionController {
     }
 
     func clearResults() {
-        isPreparingZayitSearch = false
-        searchGeneration += 1
-        zayitSearchTask?.cancel()
-        zayitSession.model.cancelSearch()
-        zayitHits.removeAll()
+        stopEngineWork()
         results = []
         errorMessage = nil
         hasMore = false
         isLoadingMore = false
         hasSubmitted = false
-        isSearching = false
-        otzaria.clear()
+        submittedConfiguration = nil
+        configurationInvalidated = false
+        wasCancelled = false
+        resultKitabFilter = ""
         searchViewModel?.clearResults()
+    }
+
+    private func stopEngineWork() {
+        acceptsEngineUpdates = false
+        searchGeneration += 1
+        isPreparingZayitSearch = false
+        sefariaSearchTask?.cancel()
+        sefariaSearchTask = nil
+        zayitSearchTask?.cancel()
+        zayitSearchTask = nil
+        zayitSession.model.cancelSearch()
+        otzaria.clear()
+        searchViewModel?.stopSearch()
+        zayitHits.removeAll()
+        isSearching = false
+        isLoadingMore = false
+    }
+
+    func cancelSearch() {
+        guard isSearching || isLoadingMore else { return }
+        cancellationRevision += 1
+        stopEngineWork()
+        results = []
+        errorMessage = nil
+        hasMore = false
+        wasCancelled = true
+        #if DEBUG
+        NSLog("[GlobalSearch] cancel revision=%d generation=%d", cancellationRevision, searchGeneration)
+        #endif
+    }
+
+    func configurationDidChange() {
+        guard resultsAreDirty else { return }
+        configurationInvalidated = true
+        if isSearching || isLoadingMore { stopEngineWork() }
     }
 
     func clearFilter() {
@@ -499,7 +598,7 @@ final class UnifiedSearchSessionController {
     }
 
     func handleBackendChanged() {
-        scope = .advanced
+        scope = BackendCoordinator.shared.activeBackendID == .sefariaEmbedded ? .exact : .advanced
         clearFilter()
         clearResults()
         query = ""

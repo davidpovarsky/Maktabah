@@ -1,0 +1,51 @@
+# Global Search native presentation — source candidate
+
+Task `1220546245946205`; S implementation in `codex/otzaria-global-search-ui-20261115`, base `13e40d1daa4a53799c94cd8ed5170f1343b9b1e8`. Implementation is ready for manager integration and real Apple compilation/acceptance. **Task remains OPEN. No native build, simulator screenshot, xcresult or physical-device PASS is claimed.** Canonical full specification is byte-preserved, SHA256 `88d91318f0436aa98221acb688fa5245c466b53d3831149a87a8c393824bb100`.
+
+## Behavior and boundaries
+
+- One content-mounted native `UISearchTextField`, keyboard Search/Enter and native clear. SwiftUI `.searchable` creates a navigation-owned field; the content-position requirement is served by UIKit's public standalone search field. Native Glass options/popover, subtle book-scope action and checked mode menu. Native toolbar has bookmark/More and no added glass layer.
+- Preserve local `.advanced` default and backend. Embedded offers exact only because its actual provider hardcodes exact/relevance; Legacy advanced match/distance/sort are routed through the existing `SearchViewModel` options without its phrase-mode overrides silently discarding them. No backend switch.
+- All existing Otzaria advanced bindings, including positive/negative scope, negative distance and grouping, are exposed in a native Form. Hidden advanced settings are neutralized on exact/fuzzy requests; raw option text is retained, positional custom spacing/alternatives are not compacted. Empty spacing uses the actual engine's global-distance fallback. Zayit only exposes its actual exact/flexible match modes, with the existing default unchanged.
+- Query/mode/books/active options changes mark submitted results dirty and withhold stale rows. One explicit rerun applies the new settings. Reverting inputs after cancellation does not revive a cancelled result set. Local result-title filtering is excluded from request identity, changes no selection/query, and suppresses automatic row prefetch. Explicit Load More remains available when every loaded row is filtered out.
+- Canonical global history is an inline List using existing SearchViewModel/UserDefaults; no new history store. Existing book-local SearchComponents/overlay is unchanged. The existing native UIKit hierarchy, diffable snapshots and tri-state are reused; a one-line chooser fix restores its canonical book-name filter on reopen.
+- Dedicated Search split visibility cannot alter Reader visibility. Regular iPad scope action reveals native sidebar; compact scope action uses the existing adaptive native chooser. Other iPad functions and all iPhone tabs except Global Search composition are untouched.
+- Actual task cancellation uses existing Otzaria.clear, Zayit model cancellation and SearchViewModel.stopSearch; generation/configuration gates reject stale publication. A synchronous native FFI call may finish internally after task cancellation; no new engine interrupt ABI is invented. Its late result cannot be accepted by this session.
+- Loading, cancellation, dirty rerun, source error, missing index, genuine empty, loaded-filter empty and paging error are distinct. Legacy initial and later pages are observed through the real Observation runtime, including a generation-checked paging error that the old provider-facing catch discarded.
+- Counts say loaded/filtered explicitly. Legacy/Embedded total precision is unknown at this UI adapter; the UI says so. Local engine aggregate reports are labelled as engine reports, never exact occurrence counts.
+- Existing rows, snippets, highlights, version grouping, context preview, context menu, copy, locator and reader routes are reused. Save retains the original numeric-archive persistence gate; no Otzaria/Sefaria schema extension or fake Save. Existing saved-results browsing stays within the native data-path gate.
+
+## Exact ownership and registration
+
+See `GLOBAL_SEARCH_OWNERSHIP_20261115.md`, both upstream exception registers, and `selftest-20261115/PROTECTED_HUNKS.patch`. Original upstream pinned `d46af139b3a265399c16d87f5923acd8e3444024`. Necessary SearchViewModel paging seam was explicitly reviewed by manager in HQ `GLOBAL_SEARCH_PAGING_SEAM_REVIEW_20261115.md`.
+
+Nine additive production files under `Source/ChavrusaText/Search/UI` belong to the existing iOS app module. Exact file list/content hashes: `selftest-20261115/ADDITIVE_SOURCE_INVENTORY.json`. Manager-only reviewable registration diff: `selftest-20261115/MANAGER_REGISTRATION_PROPOSAL.patch`; `git apply --check` passes against this task base. The real project file/workflows remain untouched by S. No package/dependency/engine/profile/schema change. Rollback is revert this task candidate and manager's registration patch together; leave user data and other lanes intact.
+
+## Executed validation
+
+Windows Swift 6.3.3, portable only:
+
+| Check | Result | Evidence / limit |
+|---|---|---|
+| Full changed Swift syntax parse and whitespace | PASS | `swiftc -frontend -parse`; no Apple framework typecheck implied |
+| Production session/presentation + exact original list prefetch predicate | 39 PASS | `tools/global-search-presentation-tests.py`; real Swift Observation, engine/storage/navigation doubles; unchanged navigation/mapping excluded from this harness |
+| Actual Search+Execution effective options/startSearch/loadNextBackendPage/stopSearch + actual BackendPaginationState | 18 PASS | Exact production bodies compiled unchanged; controlled held/throwing provider. Failed page preserves rows/offset, loading releases, retry clears error/appends once; cancelled old failures cannot overwrite active newer loading/results/error; fresh initial search clears prior page failure |
+| Existing real Otzaria view-model/Zayit wrapper/session/model regression | 191 PASS | `tools/hq-search-tests.py`; Combine/FFI/storage dependencies explicitly doubled |
+| Existing real repository cached-readiness regression | 14 PASS | Same runner; no index installation/readiness mutation |
+| Manager registration proposal | PASS | `git apply --check`; proposal only |
+
+Raw output: `selftest-20261115/presentation-and-real-paging.log`, `existing-search-regression.log`. Compile warnings in these logs are from the explicit dummy non-generic branch and the pre-existing redundant Sendable declaration; no hidden failure. Source hashes identify the exact executed bodies.
+
+## Native and independent acceptance still required
+
+Read-only `apple-doctor` confirms no Apple SDK on this Windows host; connected-device discovery did not yield a usable Mac. Installed apple-devtools, ios-simulator-skill and maestro-mobile-testing were inspected. Apple API documentation supports the standalone search field and native Glass styles, but it is not compiler/runtime evidence: [UISearchTextField](https://developer.apple.com/documentation/uikit/uisearchtextfield), [glass button style](https://developer.apple.com/documentation/swiftui/primitivebuttonstyle/glass), [buttonBorderShape](https://developer.apple.com/documentation/swiftui/view/buttonbordershape(_:)).
+
+Manager owns the shared Apple run and app-target deployment alignment (baseline app target18.6 vs package26.0 was independently reported). Do not use old failed run43736843778 as acceptance or restart/watch it. Register the nine sources, compile against real installed iOS/iPadOS26–27 SDK with deployment26.2, and execute I's independent suite on this exact integration SHA. Fix actual compiler/runtime defects before claiming native readiness.
+
+I owns `GlobalSearchNativeAcceptanceTests.swift` and `qa-20261115/**`; S supplied concrete AX selectors and the prefetch fix. Remaining matrix **NOT_RUN**: iPad11 portrait/landscape/Stage Manager, iPhone compact, real three backend plus Zayit capabilities, real paging50/100, cancellation/error/index states, selection/tree/history, snippets/versions/context/copy/reader locators, real supported save/reopen, Reader/TOC/Inspector nonregression, light/dark/system/custom theme, RTL/LTR, keyboard, VoiceOver, Dynamic Type, Reduce Motion/Transparency. Physical iPad acceptance remains separately NOT_RUN until actually performed. No screenshots are fabricated, and no main merge/release/TestFlight or live-user data mutation was performed.
+
+## Accessibility contract
+
+Containers: `global-search-screen`, `global-search-header`, `global-search-results-header`, `global-search-results`. Main field: `global-search-query`; clear uses UIKit's actual system clear button. Controls: `global-search-options`, `global-search-options-content`, `global-search-options-done`, `global-search-books`, `global-search-mode`, `global-search-mode-{rawScope}`. History: `global-search-history`, `global-search-history-clear`, `global-search-history-{canonical query}`. Results: `global-search-count`, `global-search-result-filter-toggle`, `global-search-result-filter`, `global-search-result-filter-done`, `global-search-sort`. States/actions: `global-search-dirty/rerun/loading/cancel/cancelled/error/retry/missing-index/index-status/empty/filter-empty/page-error/page-retry`. Existing rows keep `search-result-preview-toggle-{stableID}`; Load More and native tree/tri-state retain actual existing labels. More actions: `global-search-more/data/reset/saved/save`.
+
+DEBUG logs `[GlobalSearch] submit/page/cancel` report only routing revision/generation/backend/scope, no query/book/user text. These observability counters prove routing only; independent tests must also discriminate real backend request/cancellation behavior rather than accepting a UI label or counter alone.
