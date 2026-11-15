@@ -1,0 +1,1447 @@
+{
+  "status": "FAIL",
+  "executed_ui_pass": 0,
+  "executed_ui_fail": 1,
+  "mode": "ui",
+  "idb": "NOT_USED_XCUITEST_DRIVER",
+  "maestro": "NOT_USED_NO_SELECTED_FLOW",
+  "distribution": false,
+  "checkout_sha": "5b46c400df45e3a6eb4fa552e0b0cb4a7e1ce018",
+  "xcode": "Xcode 27.1\nBuild version 27A9275\n",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "python": "3.15.2 (main, Oct 25 2026, 16:57:51) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "sdk": "27.1",
+  "available_runtime27": [
+    {
+      "isAvailable": true,
+      "version": "27.0",
+      "isInternal": false,
+      "buildversion": "24A434",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 18 Pro.simdevicetype",
+          "name": "iPhone 18 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-18-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 18 Pro Max.simdevicetype",
+          "name": "iPhone 18 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-18-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17 Pro.simdevicetype",
+          "name": "iPhone 17 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17 Pro Max.simdevicetype",
+          "name": "iPhone 17 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17e.simdevicetype",
+          "name": "iPhone 17e",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17e"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone Air.simdevicetype",
+          "name": "iPhone Air",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-Air"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17.simdevicetype",
+          "name": "iPhone 17",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16 Pro.simdevicetype",
+          "name": "iPhone 16 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16 Pro Max.simdevicetype",
+          "name": "iPhone 16 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16e.simdevicetype",
+          "name": "iPhone 16e",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16e"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16.simdevicetype",
+          "name": "iPhone 16",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16 Plus.simdevicetype",
+          "name": "iPhone 16 Plus",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16-Plus"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15 Pro.simdevicetype",
+          "name": "iPhone 15 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15 Pro Max.simdevicetype",
+          "name": "iPhone 15 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15.simdevicetype",
+          "name": "iPhone 15",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15 Plus.simdevicetype",
+          "name": "iPhone 15 Plus",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15-Plus"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14 Pro.simdevicetype",
+          "name": "iPhone 14 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14 Pro Max.simdevicetype",
+          "name": "iPhone 14 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14.simdevicetype",
+          "name": "iPhone 14",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14 Plus.simdevicetype",
+          "name": "iPhone 14 Plus",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Plus"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone SE (3rd generation).simdevicetype",
+          "name": "iPhone SE (3rd generation)",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13 Pro.simdevicetype",
+          "name": "iPhone 13 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13 Pro Max.simdevicetype",
+          "name": "iPhone 13 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13.simdevicetype",
+          "name": "iPhone 13",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13 mini.simdevicetype",
+          "name": "iPhone 13 mini",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13-mini"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12 Pro.simdevicetype",
+          "name": "iPhone 12 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12 Pro Max.simdevicetype",
+          "name": "iPhone 12 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12.simdevicetype",
+          "name": "iPhone 12",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12 mini.simdevicetype",
+          "name": "iPhone 12 mini",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12-mini"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone SE (2nd generation).simdevicetype",
+          "name": "iPhone SE (2nd generation)",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-SE--2nd-generation-"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 11 Pro.simdevicetype",
+          "name": "iPhone 11 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 11 Pro Max.simdevicetype",
+          "name": "iPhone 11 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 11.simdevicetype",
+          "name": "iPhone 11",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-11"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 13-inch (M5) (16GB).simdevicetype",
+          "name": "iPad Pro 13-inch (M5) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 13-inch (M5).simdevicetype",
+          "name": "iPad Pro 13-inch (M5)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-12GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M5) (16GB).simdevicetype",
+          "name": "iPad Pro 11-inch (M5) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M5).simdevicetype",
+          "name": "iPad Pro 11-inch (M5)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-12GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M4) (16GB).simdevicetype",
+          "name": "iPad Pro 11-inch (M4) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M4-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M4).simdevicetype",
+          "name": "iPad Pro 11-inch (M4)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M4-8GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 13-inch (M4) (16GB).simdevicetype",
+          "name": "iPad Pro 13-inch (M4) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M4-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 13-inch (M4).simdevicetype",
+          "name": "iPad Pro 13-inch (M4)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M4-8GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 13-inch (M4).simdevicetype",
+          "name": "iPad Air 13-inch (M4)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-13-inch-M4"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 11-inch (M4).simdevicetype",
+          "name": "iPad Air 11-inch (M4)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-11-inch-M4"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad (A16).simdevicetype",
+          "name": "iPad (A16)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-A16"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 13-inch (M3).simdevicetype",
+          "name": "iPad Air 13-inch (M3)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-13-inch-M3"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 11-inch (M3).simdevicetype",
+          "name": "iPad Air 11-inch (M3)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-11-inch-M3"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 11-inch (M2).simdevicetype",
+          "name": "iPad Air 11-inch (M2)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-11-inch-M2"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 13-inch (M2).simdevicetype",
+          "name": "iPad Air 13-inch (M2)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-13-inch-M2"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad mini (A17 Pro).simdevicetype",
+          "name": "iPad mini (A17 Pro)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-mini-A17-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (11-inch) (4th generation) (16GB).simdevicetype",
+          "name": "iPad Pro (11-inch) (4th generation) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-4th-generation-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (11-inch) (4th generation).simdevicetype",
+          "name": "iPad Pro (11-inch) (4th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-4th-generation-8GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (12.9-inch) (6th generation) (16GB).simdevicetype",
+          "name": "iPad Pro (12.9-inch) (6th generation) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-12-9-inch-6th-generation-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (12.9-inch) (6th generation).simdevicetype",
+          "name": "iPad Pro (12.9-inch) (6th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-12-9-inch-6th-generation-8GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad (10th generation).simdevicetype",
+          "name": "iPad (10th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-10th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air (5th generation).simdevicetype",
+          "name": "iPad Air (5th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-5th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad mini (6th generation).simdevicetype",
+          "name": "iPad mini (6th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-mini-6th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (11-inch) (3rd generation).simdevicetype",
+          "name": "iPad Pro (11-inch) (3rd generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-3rd-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (12.9-inch) (5th generation).simdevicetype",
+          "name": "iPad Pro (12.9-inch) (5th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-12-9-inch-5th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad (9th generation).simdevicetype",
+          "name": "iPad (9th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-9th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air (4th generation).simdevicetype",
+          "name": "iPad Air (4th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air--4th-generation-"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (11-inch) (2nd generation).simdevicetype",
+          "name": "iPad Pro (11-inch) (2nd generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro--11-inch---2nd-generation-"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (12.9-inch) (4th generation).simdevicetype",
+          "name": "iPad Pro (12.9-inch) (4th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro--12-9-inch---4th-generation-"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+      "platform": "iOS",
+      "bundlePath": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.1.434.0.LseOJS/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime",
+      "runtimeRoot": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.1.434.0.LseOJS/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "iOS 27.0"
+    },
+    {
+      "isAvailable": true,
+      "version": "27.1",
+      "isInternal": false,
+      "buildversion": "24A94425",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone Duo.simdevicetype",
+          "name": "iPhone Duo",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-Duo"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-1",
+      "platform": "iOS",
+      "bundlePath": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.1.94425.0.63AI9s/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.1.simruntime",
+      "runtimeRoot": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.1.94425.0.63AI9s/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.1.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "iOS 27.1"
+    },
+    {
+      "isAvailable": true,
+      "version": "27.2",
+      "isInternal": false,
+      "buildversion": "24B8117",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 18 Pro.simdevicetype",
+          "name": "iPhone 18 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-18-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 18 Pro Max.simdevicetype",
+          "name": "iPhone 18 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-18-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17 Pro.simdevicetype",
+          "name": "iPhone 17 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17 Pro Max.simdevicetype",
+          "name": "iPhone 17 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17e.simdevicetype",
+          "name": "iPhone 17e",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17e"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone Air.simdevicetype",
+          "name": "iPhone Air",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-Air"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17.simdevicetype",
+          "name": "iPhone 17",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16 Pro.simdevicetype",
+          "name": "iPhone 16 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16 Pro Max.simdevicetype",
+          "name": "iPhone 16 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16e.simdevicetype",
+          "name": "iPhone 16e",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16e"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16.simdevicetype",
+          "name": "iPhone 16",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16 Plus.simdevicetype",
+          "name": "iPhone 16 Plus",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16-Plus"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15 Pro.simdevicetype",
+          "name": "iPhone 15 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15 Pro Max.simdevicetype",
+          "name": "iPhone 15 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15.simdevicetype",
+          "name": "iPhone 15",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15 Plus.simdevicetype",
+          "name": "iPhone 15 Plus",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15-Plus"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14 Pro.simdevicetype",
+          "name": "iPhone 14 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14 Pro Max.simdevicetype",
+          "name": "iPhone 14 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14.simdevicetype",
+          "name": "iPhone 14",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14 Plus.simdevicetype",
+          "name": "iPhone 14 Plus",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Plus"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone SE (3rd generation).simdevicetype",
+          "name": "iPhone SE (3rd generation)",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13 Pro.simdevicetype",
+          "name": "iPhone 13 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13 Pro Max.simdevicetype",
+          "name": "iPhone 13 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13.simdevicetype",
+          "name": "iPhone 13",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13 mini.simdevicetype",
+          "name": "iPhone 13 mini",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13-mini"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12 Pro.simdevicetype",
+          "name": "iPhone 12 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12 Pro Max.simdevicetype",
+          "name": "iPhone 12 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12.simdevicetype",
+          "name": "iPhone 12",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12 mini.simdevicetype",
+          "name": "iPhone 12 mini",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12-mini"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone SE (2nd generation).simdevicetype",
+          "name": "iPhone SE (2nd generation)",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-SE--2nd-generation-"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 11 Pro.simdevicetype",
+          "name": "iPhone 11 Pro",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 11 Pro Max.simdevicetype",
+          "name": "iPhone 11 Pro Max",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro-Max"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 11.simdevicetype",
+          "name": "iPhone 11",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-11"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad mini (A20 Pro).simdevicetype",
+          "name": "iPad mini (A20 Pro)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-mini-A20-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 13-inch (M5) (16GB).simdevicetype",
+          "name": "iPad Pro 13-inch (M5) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 13-inch (M5).simdevicetype",
+          "name": "iPad Pro 13-inch (M5)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-12GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M5) (16GB).simdevicetype",
+          "name": "iPad Pro 11-inch (M5) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M5).simdevicetype",
+          "name": "iPad Pro 11-inch (M5)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-12GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M4) (16GB).simdevicetype",
+          "name": "iPad Pro 11-inch (M4) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M4-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M4).simdevicetype",
+          "name": "iPad Pro 11-inch (M4)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M4-8GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 13-inch (M4) (16GB).simdevicetype",
+          "name": "iPad Pro 13-inch (M4) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M4-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 13-inch (M4).simdevicetype",
+          "name": "iPad Pro 13-inch (M4)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M4-8GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 13-inch (M4).simdevicetype",
+          "name": "iPad Air 13-inch (M4)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-13-inch-M4"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 11-inch (M4).simdevicetype",
+          "name": "iPad Air 11-inch (M4)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-11-inch-M4"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad (A16).simdevicetype",
+          "name": "iPad (A16)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-A16"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 13-inch (M3).simdevicetype",
+          "name": "iPad Air 13-inch (M3)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-13-inch-M3"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 11-inch (M3).simdevicetype",
+          "name": "iPad Air 11-inch (M3)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-11-inch-M3"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 11-inch (M2).simdevicetype",
+          "name": "iPad Air 11-inch (M2)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-11-inch-M2"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air 13-inch (M2).simdevicetype",
+          "name": "iPad Air 13-inch (M2)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-13-inch-M2"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad mini (A17 Pro).simdevicetype",
+          "name": "iPad mini (A17 Pro)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-mini-A17-Pro"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (11-inch) (4th generation) (16GB).simdevicetype",
+          "name": "iPad Pro (11-inch) (4th generation) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-4th-generation-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (11-inch) (4th generation).simdevicetype",
+          "name": "iPad Pro (11-inch) (4th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-4th-generation-8GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (12.9-inch) (6th generation) (16GB).simdevicetype",
+          "name": "iPad Pro (12.9-inch) (6th generation) (16GB)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-12-9-inch-6th-generation-16GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (12.9-inch) (6th generation).simdevicetype",
+          "name": "iPad Pro (12.9-inch) (6th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-12-9-inch-6th-generation-8GB"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad (10th generation).simdevicetype",
+          "name": "iPad (10th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-10th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air (5th generation).simdevicetype",
+          "name": "iPad Air (5th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air-5th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad mini (6th generation).simdevicetype",
+          "name": "iPad mini (6th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-mini-6th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (11-inch) (3rd generation).simdevicetype",
+          "name": "iPad Pro (11-inch) (3rd generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-3rd-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (12.9-inch) (5th generation).simdevicetype",
+          "name": "iPad Pro (12.9-inch) (5th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-12-9-inch-5th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad (9th generation).simdevicetype",
+          "name": "iPad (9th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-9th-generation"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Air (4th generation).simdevicetype",
+          "name": "iPad Air (4th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Air--4th-generation-"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (11-inch) (2nd generation).simdevicetype",
+          "name": "iPad Pro (11-inch) (2nd generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro--11-inch---2nd-generation-"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro (12.9-inch) (4th generation).simdevicetype",
+          "name": "iPad Pro (12.9-inch) (4th generation)",
+          "productFamily": "iPad",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro--12-9-inch---4th-generation-"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2",
+      "platform": "iOS",
+      "bundlePath": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.B9krue/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime",
+      "runtimeRoot": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.8117.0.B9krue/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "iOS 27.2"
+    },
+    {
+      "isAvailable": true,
+      "version": "27.2",
+      "isInternal": false,
+      "buildversion": "24B91016s",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone Duo.simdevicetype",
+          "name": "iPhone Duo",
+          "productFamily": "iPhone",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-Duo"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2-iPhone19-4",
+      "platform": "iOS",
+      "bundlePath": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.91016.19.0FVsP1/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime",
+      "runtimeRoot": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.iPhoneOS.SimulatorRuntime-v24.2.91016.19.0FVsP1/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.2.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "iOS 27.2"
+    },
+    {
+      "isAvailable": true,
+      "version": "27.0",
+      "isInternal": false,
+      "buildversion": "24J360",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (3rd generation).simdevicetype",
+          "name": "Apple TV 4K (3rd generation)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-3rd-generation-4K"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (3rd generation) (at 1080p).simdevicetype",
+          "name": "Apple TV 4K (3rd generation) (at 1080p)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-3rd-generation-1080p"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (2nd generation).simdevicetype",
+          "name": "Apple TV 4K (2nd generation)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-4K"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (2nd generation) (at 1080p).simdevicetype",
+          "name": "Apple TV 4K (2nd generation) (at 1080p)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-1080p"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.tvOS-27-0",
+      "platform": "tvOS",
+      "bundlePath": "/Library/Developer/CoreSimulator/Volumes/tvOS_24J360/Library/Developer/CoreSimulator/Profiles/Runtimes/tvOS 27.0.simruntime",
+      "runtimeRoot": "/Library/Developer/CoreSimulator/Volumes/tvOS_24J360/Library/Developer/CoreSimulator/Profiles/Runtimes/tvOS 27.0.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "tvOS 27.0"
+    },
+    {
+      "isAvailable": true,
+      "version": "27.2",
+      "isInternal": false,
+      "buildversion": "24K150",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (4th generation).simdevicetype",
+          "name": "Apple TV 4K (4th generation)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-4th-generation-4K"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (4th generation) (at 1080p).simdevicetype",
+          "name": "Apple TV 4K (4th generation) (at 1080p)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-4th-generation-1080p"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (3rd generation).simdevicetype",
+          "name": "Apple TV 4K (3rd generation)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-3rd-generation-4K"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (3rd generation) (at 1080p).simdevicetype",
+          "name": "Apple TV 4K (3rd generation) (at 1080p)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-3rd-generation-1080p"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (2nd generation).simdevicetype",
+          "name": "Apple TV 4K (2nd generation)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-4K"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple TV 4K (2nd generation) (at 1080p).simdevicetype",
+          "name": "Apple TV 4K (2nd generation) (at 1080p)",
+          "productFamily": "Apple TV",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-1080p"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.tvOS-27-2",
+      "platform": "tvOS",
+      "bundlePath": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.AppleTVOS.SimulatorRuntime-v24.11.150.0.GPmPVv/Library/Developer/CoreSimulator/Profiles/Runtimes/tvOS 27.2.simruntime",
+      "runtimeRoot": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.AppleTVOS.SimulatorRuntime-v24.11.150.0.GPmPVv/Library/Developer/CoreSimulator/Profiles/Runtimes/tvOS 27.2.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "tvOS 27.2"
+    },
+    {
+      "isAvailable": true,
+      "version": "27.0",
+      "isInternal": false,
+      "buildversion": "24R362",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 12 (46mm).simdevicetype",
+          "name": "Apple Watch Series 12 (46mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-12-46mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 12 (42mm).simdevicetype",
+          "name": "Apple Watch Series 12 (42mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-12-42mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Ultra 4 (49mm).simdevicetype",
+          "name": "Apple Watch Ultra 4 (49mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Ultra-4-49mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 11 (46mm).simdevicetype",
+          "name": "Apple Watch Series 11 (46mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-11-46mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 11 (42mm).simdevicetype",
+          "name": "Apple Watch Series 11 (42mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-11-42mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 10 (46mm).simdevicetype",
+          "name": "Apple Watch Series 10 (46mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-10-46mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 10 (42mm).simdevicetype",
+          "name": "Apple Watch Series 10 (42mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-10-42mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 9 (45mm).simdevicetype",
+          "name": "Apple Watch Series 9 (45mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-9-45mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 9 (41mm).simdevicetype",
+          "name": "Apple Watch Series 9 (41mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-9-41mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Ultra 3 (49mm).simdevicetype",
+          "name": "Apple Watch Ultra 3 (49mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Ultra-3-49mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Ultra 2 (49mm).simdevicetype",
+          "name": "Apple Watch Ultra 2 (49mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Ultra-2-49mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch SE 3 (44mm).simdevicetype",
+          "name": "Apple Watch SE 3 (44mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-3-44mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch SE 3 (40mm).simdevicetype",
+          "name": "Apple Watch SE 3 (40mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-3-40mm"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.watchOS-27-0",
+      "platform": "watchOS",
+      "bundlePath": "/Library/Developer/CoreSimulator/Volumes/watchOS_24R362/Library/Developer/CoreSimulator/Profiles/Runtimes/watchOS 27.0.simruntime",
+      "runtimeRoot": "/Library/Developer/CoreSimulator/Volumes/watchOS_24R362/Library/Developer/CoreSimulator/Profiles/Runtimes/watchOS 27.0.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "watchOS 27.0"
+    },
+    {
+      "isAvailable": true,
+      "version": "27.2",
+      "isInternal": false,
+      "buildversion": "24S118",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 12 (46mm).simdevicetype",
+          "name": "Apple Watch Series 12 (46mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-12-46mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 12 (42mm).simdevicetype",
+          "name": "Apple Watch Series 12 (42mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-12-42mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Ultra 4 (49mm).simdevicetype",
+          "name": "Apple Watch Ultra 4 (49mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Ultra-4-49mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 11 (46mm).simdevicetype",
+          "name": "Apple Watch Series 11 (46mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-11-46mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 11 (42mm).simdevicetype",
+          "name": "Apple Watch Series 11 (42mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-11-42mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 10 (46mm).simdevicetype",
+          "name": "Apple Watch Series 10 (46mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-10-46mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 10 (42mm).simdevicetype",
+          "name": "Apple Watch Series 10 (42mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-10-42mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 9 (45mm).simdevicetype",
+          "name": "Apple Watch Series 9 (45mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-9-45mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Series 9 (41mm).simdevicetype",
+          "name": "Apple Watch Series 9 (41mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-9-41mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Ultra 3 (49mm).simdevicetype",
+          "name": "Apple Watch Ultra 3 (49mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Ultra-3-49mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch Ultra 2 (49mm).simdevicetype",
+          "name": "Apple Watch Ultra 2 (49mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Ultra-2-49mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch SE 3 (44mm).simdevicetype",
+          "name": "Apple Watch SE 3 (44mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-3-44mm"
+        },
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Watch SE 3 (40mm).simdevicetype",
+          "name": "Apple Watch SE 3 (40mm)",
+          "productFamily": "Apple Watch",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-3-40mm"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.watchOS-27-2",
+      "platform": "watchOS",
+      "bundlePath": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.WatchOS.SimulatorRuntime-v24.19.118.0.XHVvWY/Library/Developer/CoreSimulator/Profiles/Runtimes/watchOS 27.2.simruntime",
+      "runtimeRoot": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.WatchOS.SimulatorRuntime-v24.19.118.0.XHVvWY/Library/Developer/CoreSimulator/Profiles/Runtimes/watchOS 27.2.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "watchOS 27.2"
+    },
+    {
+      "isAvailable": true,
+      "version": "27.0",
+      "isInternal": false,
+      "buildversion": "24M362",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Vision Pro.simdevicetype",
+          "name": "Apple Vision Pro",
+          "productFamily": "Apple Vision",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Vision-Pro-4K"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.xrOS-27-0",
+      "platform": "xrOS",
+      "bundlePath": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.XROS.SimulatorRuntime-v24.13.362.0.9CBXoi/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 27.0.simruntime",
+      "runtimeRoot": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.XROS.SimulatorRuntime-v24.13.362.0.9CBXoi/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 27.0.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "visionOS 27.0"
+    },
+    {
+      "isAvailable": true,
+      "version": "27.2",
+      "isInternal": false,
+      "buildversion": "24N120",
+      "supportedArchitectures": [
+        "arm64"
+      ],
+      "supportedDeviceTypes": [
+        {
+          "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Vision Pro.simdevicetype",
+          "name": "Apple Vision Pro",
+          "productFamily": "Apple Vision",
+          "identifier": "com.apple.CoreSimulator.SimDeviceType.Apple-Vision-Pro-4K"
+        }
+      ],
+      "identifier": "com.apple.CoreSimulator.SimRuntime.xrOS-27-2",
+      "platform": "xrOS",
+      "bundlePath": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.XROS.SimulatorRuntime-v24.14.120.0.vdhoCh/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 27.2.simruntime",
+      "runtimeRoot": "/private/var/run/com.apple.security.cryptexd/mnt/com.apple.XROS.SimulatorRuntime-v24.14.120.0.vdhoCh/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 27.2.simruntime/Contents/Resources/RuntimeRoot",
+      "lastUsage": {
+        "arm64": "0001-01-01T00:00:00Z"
+      },
+      "name": "visionOS 27.2"
+    }
+  ],
+  "reviewed_skills": [
+    {
+      "repository": "conorluddy/ios-simulator-skill",
+      "revision": "86fb9ba90a438bd2ee7ab640165bd77da396d941",
+      "path": "ios-simulator-skill/skills/ios-simulator-skill",
+      "sha256": "3a77551b707c65b648d681926cb91131abaf99603bf2415f16f389169b0b3524",
+      "runtime_tools_installed": []
+    },
+    {
+      "repository": "foreztgump/maestro-mobile-testing-skill",
+      "revision": "d2d9d9387ebba3724d972bee75af15da28622aeb",
+      "path": "skills/maestro-mobile-testing",
+      "sha256": "1efab8198f938cc35c62e867e166669009e15c4d5b9718b017ca1d3394c6e02e",
+      "runtime_tools_installed": []
+    }
+  ],
+  "execution_groups": [
+    {
+      "label": "11-window",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+      ]
+    }
+  ],
+  "full_phase_case_ids": [
+    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+  ],
+  "requested_ui_case_count": 1,
+  "prior_pass_reuse": "Separate independent Q proof required; not counted as new execution",
+  "case_manifest_sha256": "ea8754d4eac87bc3b0cf8dc64054c0ec79c4c7800d74016e0fbc068f11d513cb",
+  "full_release_acceptance": false,
+  "scope": "NATIVE_R27_WINDOW_INPUT_DELIVERY_DIAGNOSTIC_NOT_NONINSTRUMENTED_FIX_ACCEPTANCE",
+  "test_source_commit": "ad7903492b66e6a5faa9af61d99a4e0e905aa0b5",
+  "test_tree": "a0a8a2f47ae25100df0aa02d01398ea48766ca94",
+  "test_inputs_sha256": {
+    "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+    "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift": "6560cb3026ce1dd621e7a76ac6876857485fd096453eeb0cc8c5c9f5b9993654",
+    "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+    "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "82e618702804f7d9c0c270c62c2537e301816285261c810530448295986527f6",
+    "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+    "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+    "Maktabah-iOSUITests/MaktabahUITestBase.swift": "c57157447416afbb5477928719e3d1af8373af76df0274ce85a558a37336461a",
+    "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e",
+    "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "a49f211277aa9f91aab8c254b9ac54ec6bac9ea5b6159884c626b44e2ae1458b",
+    "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift": "a79b4b0b78bf0e1e22f070d4558fc3d692f70c199012a5cd6e85043ea2530562",
+    "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f"
+  },
+  "helper_inputs_sha256": {
+    "Scripts/CI/hq-stage2-focused-apple.py": "73b5dc96efd557a6afd75da90cfec95452e6c07950e669b3f473448fcd12a25b",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "39c7c0c694903fdea8a716cb5d177e8cfba37a5f0a103755ec6349ed13a80ab7",
+    "Scripts/CI/runtime27.py": "e09de4f7362a90603148a6043d787249845d3582ca92b1b539b65256b05eea0c",
+    "Scripts/CI/run-faithful-ipad-matrix.py": "ba31e4f2751a0c808d43b6a461a6b5592eb300d364dbeae302a41508898075ba",
+    "Scripts/CI/runtime27-fixture-oracle.py": "c579fe356a38ca5431fc29d32a9193619ad2f930043dca8bdb805f0154c3f9f4",
+    "tools/verify_xcresult_zero_skips.py": "6785122ca4d8157eb94d7ccdf2da2b6c04faff9202a097a56c15810fd81ffa83",
+    "Scripts/CI/collect-runtime27-palette-log.py": "4eca164c61e84d39f0a01e193020ba6245058d1c198d2aa1490cfa0152fd304f"
+  },
+  "palette_compiled_code_images": {
+    "acceptance_effect": "NONE; symbols do not establish UI behavior",
+    "images": [
+      {
+        "path": "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah",
+        "bytes": 40512,
+        "sha256": "c5ef8f2754f5802e9e492c588f4f9fbb231a9531860a0c5c3dd1d4660949bb4c",
+        "nm_exit_code": 0,
+        "matched_symbol_count": 0,
+        "bounded_matched_symbols": [],
+        "nm_stdout_sha256": "3d98a3b5ce66320eb226b89b3653dd71fa0c7cff715d02e2114948464c627791"
+      },
+      {
+        "path": "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah.debug.dylib",
+        "bytes": 142836704,
+        "sha256": "f6af6da2d5a2be94c83b30185251f6bb3f84bcbc937140708de73632cf8c63e2",
+        "nm_exit_code": 0,
+        "matched_symbol_count": 86,
+        "bounded_matched_symbols": [
+          "000000000411efb0 d _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GACyxq_GAad2aDRzAA0E8ModifierR_rlWL",
+          "000000000411efb0 - 33 0000 STSYM _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GACyxq_GAad2aDRzAA0E8ModifierR_rlWL",
+          "000000000121fa0c t _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GACyxq_GAad2aDRzAA0E8ModifierR_rlWl",
+          "000000000121fa0c - 01 0000   FUN _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GACyxq_GAad2aDRzAA0E8ModifierR_rlWl",
+          "00000000037d4bf8 s _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GMR",
+          "00000000037d4bf8 - 0b 0000 STSYM _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GMR",
+          "000000000411eb40 - 33 0000 STSYM _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GMd",
+          "000000000411eb40 d _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GMd",
+          "000000000411ec88 - 33 0000 STSYM _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGACyxq_GAad2aDRzAA0eX0R_rlWL",
+          "000000000411ec88 d _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGACyxq_GAad2aDRzAA0eX0R_rlWL",
+          "00000000012091c8 - 01 0000   FUN _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGACyxq_GAad2aDRzAA0eX0R_rlWl",
+          "00000000012091c8 t _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGACyxq_GAad2aDRzAA0eX0R_rlWl",
+          "00000000037d4be0 s _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGMR",
+          "00000000037d4be0 - 0b 0000 STSYM _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGMR",
+          "000000000411eb28 - 33 0000 STSYM _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGMd",
+          "000000000411eb28 d _$s7SwiftUI15ModifiedContentVyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGMd",
+          "000000000411ec90 d _$s7SwiftUI15ModifiedContentVyACyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGA125_GACyxq_GAad2aDRzAA0eX0R_rlWL",
+          "000000000411ec90 - 33 0000 STSYM _$s7SwiftUI15ModifiedContentVyACyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGA125_GACyxq_GAad2aDRzAA0eX0R_rlWL",
+          "0000000001209480 t _$s7SwiftUI15ModifiedContentVyACyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGA125_GACyxq_GAad2aDRzAA0eX0R_rlWl",
+          "0000000001209480 - 01 0000   FUN _$s7SwiftUI15ModifiedContentVyACyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGA125_GACyxq_GAad2aDRzAA0eX0R_rlWl",
+          "00000000037d4be8 s _$s7SwiftUI15ModifiedContentVyACyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGA125_GMR",
+          "00000000037d4be8 - 0b 0000 STSYM _$s7SwiftUI15ModifiedContentVyACyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGA125_GMR",
+          "000000000411eb30 d _$s7SwiftUI15ModifiedContentVyACyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGA125_GMd",
+          "000000000411eb30 - 33 0000 STSYM _$s7SwiftUI15ModifiedContentVyACyAA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAVyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyACyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderE0VACyAA6IDViewVyAeAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowE0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ANQo_GGA38_ACyACyACyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeE0VyA93_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ANQo__SSQo__SayA12_7CommandVGQo_AA017_AppearanceActionX0VGA125_GMd",
+          "00000000037d4bf0 s _$s7SwiftUI4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyAA15ModifiedContentVyAIyAcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAIyAA012_ConditionalK0VyAA03AnyC0VAIyAIyAIyAIyAA6VStackVyAA05TupleC0VyAIyAIyAA6HStackVyAZyAIyAIyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVAIyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyAIyA2_A14_GG_AA16PlainButtonStyleVQo_AA0G18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyAIyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAIyAA06ScrollC0VyAIyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderC0VAIyAA6IDViewVyAcAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowC0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_AIyAIyAIyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeC0VyA97_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_MR",
+          "00000000037d4bf0 - 0b 0000 STSYM _$s7SwiftUI4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyAA15ModifiedContentVyAIyAcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAIyAA012_ConditionalK0VyAA03AnyC0VAIyAIyAIyAIyAA6VStackVyAA05TupleC0VyAIyAIyAA6HStackVyAZyAIyAIyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVAIyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyAIyA2_A14_GG_AA16PlainButtonStyleVQo_AA0G18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyAIyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAIyAA06ScrollC0VyAIyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderC0VAIyAA6IDViewVyAcAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowC0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_AIyAIyAIyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeC0VyA97_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_MR",
+          "000000000411eb38 - 33 0000 STSYM _$s7SwiftUI4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyAA15ModifiedContentVyAIyAcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAIyAA012_ConditionalK0VyAA03AnyC0VAIyAIyAIyAIyAA6VStackVyAA05TupleC0VyAIyAIyAA6HStackVyAZyAIyAIyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVAIyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyAIyA2_A14_GG_AA16PlainButtonStyleVQo_AA0G18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyAIyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAIyAA06ScrollC0VyAIyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderC0VAIyAA6IDViewVyAcAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowC0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_AIyAIyAIyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeC0VyA97_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_Md",
+          "000000000411eb38 d _$s7SwiftUI4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyAA15ModifiedContentVyAIyAcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAIyAA012_ConditionalK0VyAA03AnyC0VAIyAIyAIyAIyAA6VStackVyAA05TupleC0VyAIyAIyAA6HStackVyAZyAIyAIyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVAIyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyAIyA2_A14_GG_AA16PlainButtonStyleVQo_AA0G18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyAIyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAIyAA06ScrollC0VyAIyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderC0VAIyAA6IDViewVyAcAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowC0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_AIyAIyAIyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeC0VyA97_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_Md",
+          "00000000037d4bc0 - 0b 0000 STSYM _$s7SwiftUI4ViewPAAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalJ0VyAA03AnyC0VAKyAKyAKyAKyAA6VStackVyAA05TupleC0VyAKyAKyAA6HStackVyASyAKyAKyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleT0VyAA017HierarchicalShapeW0VGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVAKyAcAE06buttonW0yQrqd__AA015PrimitiveButtonW0Rd__lFQOyAA6ButtonVyAKyAWA7_GG_AA011PlainButtonW0VQo_AA023AccessibilityAttachmentT0VGSgA9_0R3CapVtGGAA14_PaddingLayoutVGA31_G_AA7DividerVAMyAKyAQyASyA8__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAKyAA06ScrollC0VyAKyAA04LazyM0VyAA7ForEachVySayA9_0Z10PaletteRowOGSSAMyA9_013SectionHeaderC0VAKyAA6IDViewVyAcAEA13_yQrqd__AAA14_Rd__lFQOyA16_yA9_0z3RowC0VG_A20_Qo_SSGA23_GGGGA31_GGA41_G_AIQo_GGA35_AKyAKyAKyAUyASyAUyASyA53_ySaySSGSSA27_G_A37_tGG_A79_A79_AA6SpacerVA37_tGGA1_GA31_GA31_GtGGA41_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA021_InsettableBackgroundyT0VyAA8MaterialVA93_GGAA08_OverlayT0VyAA012StrokeBorderyC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo_MR",
+          "00000000037d4bc0 s _$s7SwiftUI4ViewPAAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalJ0VyAA03AnyC0VAKyAKyAKyAKyAA6VStackVyAA05TupleC0VyAKyAKyAA6HStackVyASyAKyAKyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleT0VyAA017HierarchicalShapeW0VGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVAKyAcAE06buttonW0yQrqd__AA015PrimitiveButtonW0Rd__lFQOyAA6ButtonVyAKyAWA7_GG_AA011PlainButtonW0VQo_AA023AccessibilityAttachmentT0VGSgA9_0R3CapVtGGAA14_PaddingLayoutVGA31_G_AA7DividerVAMyAKyAQyASyA8__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAKyAA06ScrollC0VyAKyAA04LazyM0VyAA7ForEachVySayA9_0Z10PaletteRowOGSSAMyA9_013SectionHeaderC0VAKyAA6IDViewVyAcAEA13_yQrqd__AAA14_Rd__lFQOyA16_yA9_0z3RowC0VG_A20_Qo_SSGA23_GGGGA31_GGA41_G_AIQo_GGA35_AKyAKyAKyAUyASyAUyASyA53_ySaySSGSSA27_G_A37_tGG_A79_A79_AA6SpacerVA37_tGGA1_GA31_GA31_GtGGA41_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA021_InsettableBackgroundyT0VyAA8MaterialVA93_GGAA08_OverlayT0VyAA012StrokeBorderyC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo_MR",
+          "000000000411eb08 - 33 0000 STSYM _$s7SwiftUI4ViewPAAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalJ0VyAA03AnyC0VAKyAKyAKyAKyAA6VStackVyAA05TupleC0VyAKyAKyAA6HStackVyASyAKyAKyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleT0VyAA017HierarchicalShapeW0VGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVAKyAcAE06buttonW0yQrqd__AA015PrimitiveButtonW0Rd__lFQOyAA6ButtonVyAKyAWA7_GG_AA011PlainButtonW0VQo_AA023AccessibilityAttachmentT0VGSgA9_0R3CapVtGGAA14_PaddingLayoutVGA31_G_AA7DividerVAMyAKyAQyASyA8__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAKyAA06ScrollC0VyAKyAA04LazyM0VyAA7ForEachVySayA9_0Z10PaletteRowOGSSAMyA9_013SectionHeaderC0VAKyAA6IDViewVyAcAEA13_yQrqd__AAA14_Rd__lFQOyA16_yA9_0z3RowC0VG_A20_Qo_SSGA23_GGGGA31_GGA41_G_AIQo_GGA35_AKyAKyAKyAUyASyAUyASyA53_ySaySSGSSA27_G_A37_tGG_A79_A79_AA6SpacerVA37_tGGA1_GA31_GA31_GtGGA41_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA021_InsettableBackgroundyT0VyAA8MaterialVA93_GGAA08_OverlayT0VyAA012StrokeBorderyC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo_Md",
+          "000000000411eb08 d _$s7SwiftUI4ViewPAAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalJ0VyAA03AnyC0VAKyAKyAKyAKyAA6VStackVyAA05TupleC0VyAKyAKyAA6HStackVyASyAKyAKyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleT0VyAA017HierarchicalShapeW0VGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVAKyAcAE06buttonW0yQrqd__AA015PrimitiveButtonW0Rd__lFQOyAA6ButtonVyAKyAWA7_GG_AA011PlainButtonW0VQo_AA023AccessibilityAttachmentT0VGSgA9_0R3CapVtGGAA14_PaddingLayoutVGA31_G_AA7DividerVAMyAKyAQyASyA8__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAKyAA06ScrollC0VyAKyAA04LazyM0VyAA7ForEachVySayA9_0Z10PaletteRowOGSSAMyA9_013SectionHeaderC0VAKyAA6IDViewVyAcAEA13_yQrqd__AAA14_Rd__lFQOyA16_yA9_0z3RowC0VG_A20_Qo_SSGA23_GGGGA31_GGA41_G_AIQo_GGA35_AKyAKyAKyAUyASyAUyASyA53_ySaySSGSSA27_G_A37_tGG_A79_A79_AA6SpacerVA37_tGGA1_GA31_GA31_GtGGA41_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA021_InsettableBackgroundyT0VyAA8MaterialVA93_GGAA08_OverlayT0VyAA012StrokeBorderyC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo_Md",
+          "00000000037d4bc8 - 0b 0000 STSYM _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo_MR",
+          "00000000037d4bc8 s _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo_MR",
+          "000000000411eb10 - 33 0000 STSYM _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo_Md",
+          "000000000411eb10 d _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo_Md",
+          "00000000037d4bd0 - 0b 0000 STSYM _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo__SSQo_MR",
+          "00000000037d4bd0 s _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo__SSQo_MR",
+          "000000000411eb18 - 33 0000 STSYM _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo__SSQo_Md",
+          "000000000411eb18 d _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo__SSQo_Md",
+          "00000000037d4bd8 s _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo__SSQo__SayA12_7CommandVGQo_MR",
+          "00000000037d4bd8 - 0b 0000 STSYM _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo__SSQo__SayA12_7CommandVGQo_MR",
+          "000000000411eb20 d _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo__SSQo__SayA12_7CommandVGQo_Md",
+          "000000000411eb20 - 33 0000 STSYM _$s7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyAA15ModifiedContentVyAA012_ConditionalN0VyAA03AnyC0VANyANyANyANyAA6VStackVyAA05TupleC0VyANyANyAA6HStackVyAVyANyANyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA016_ForegroundStyleX0VyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVANyAcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyANyAZA10_GG_AA16PlainButtonStyleVQo_AA023AccessibilityAttachmentX0VGSgA12_0V3CapVtGGAA14_PaddingLayoutVGA34_G_AA7DividerVAPyANyATyAVyA11__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollC6ReaderVyAcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQOyANyAA06ScrollC0VyANyAA04LazyQ0VyAA7ForEachVySayA12_17CommandPaletteRowOGSSAPyA12_013SectionHeaderC0VANyAA6IDViewVyAcAEA16_yQrqd__AAA17_Rd__lFQOyA19_yA12_010CommandRowC0VG_A23_Qo_SSGA26_GGGGA34_GGA44_G_ALQo_GGA38_ANyANyANyAXyAVyAXyAVyA53_ySaySSGSSA30_G_A40_tGG_A79_A79_AA6SpacerVA40_tGGA4_GA34_GA34_GtGGA44_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA026_InsettableBackgroundShapeX0VyAA8MaterialVA93_GGAA08_OverlayX0VyAA017StrokeBorderShapeC0VyA93_AA5ColorVAA05EmptyC0VGGGGAA13_ShadowEffectVG_Qo__ALQo__SSQo__SayA12_7CommandVGQo_Md",
+          "000000000411ef88 - 33 0000 STSYM _OBJC_METACLASS_$__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "000000000411ef88 d _OBJC_METACLASS_$__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "000000000411ef00 d _OBJC_METACLASS_$__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "000000000411ef00 - 33 0000 STSYM _OBJC_METACLASS_$__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "00000000040d8920 - 32 0000 STSYM __DATA__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "00000000040d8920 s __DATA__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "00000000040d8860 - 32 0000 STSYM __DATA__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "00000000040d8860 s __DATA__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "00000000034ee608 s __INSTANCE_METHODS__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "00000000034ef450 s __INSTANCE_METHODS__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "0000000004047d50 s __IVARS__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "0000000004047d50 - 2f 0000 STSYM __IVARS__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "0000000004047ce0 - 2f 0000 STSYM __IVARS__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "0000000004047ce0 s __IVARS__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "0000000004047d08 - 2f 0000 STSYM __METACLASS_DATA__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "0000000004047d08 s __METACLASS_DATA__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "0000000004047c88 - 2f 0000 STSYM __METACLASS_DATA__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "0000000004047c88 s __METACLASS_DATA__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "0000000004047dd8 - 2f 0000 STSYM __PROPERTIES__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "0000000004047dd8 s __PROPERTIES__TtC14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C16PaletteTextField",
+          "0000000004047c78 - 2f 0000 STSYM __PROTOCOLS__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "0000000004047c78 s __PROTOCOLS__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator",
+          "0000000004047cd0 - 2f 0000 STSYM __PROTOCOLS__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator.167",
+          "0000000004047cd0 s __PROTOCOLS__TtCV14CommandPaletteP33_09462C23069B70BC72B49D9E416BBC5C22PaletteSearchTextField11Coordinator.167",
+          "0000000003756c08 - 0a 0000 STSYM _get_witness_table 7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GAaDHPqd__AaDHD2_A132_HO_A30_AA0E8ModifierHPyHCHC.169",
+          "0000000003756c08 s _get_witness_table 7SwiftUI15ModifiedContentVyAA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQOyACyACyAeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyAeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQOyACyAA012_ConditionalD0VyAA03AnyE0VACyACyACyACyAA6VStackVyAA05TupleE0VyACyACyAA6HStackVyAZyACyACyAA5ImageVAA30_EnvironmentKeyWritingModifierVyAA4FontVSgGGAA24_ForegroundStyleModifierVyAA22HierarchicalShapeStyleVGG_14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLVACyAeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQOyAA6ButtonVyACyA2_A14_GG_AA16PlainButtonStyleVQo_AA0I18AttachmentModifierVGSgA16_6KeyCapVtGGAA14_PaddingLayoutVGA38_G_AA7DividerVATyACyAXyAZyA15__AA4TextVtGGAA16_FlexFrameLayoutVGAA06ScrollE6ReaderVyAeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQOyACyAA06ScrollE0VyACyAA04LazyW0VyAA7ForEachVySayA16_17CommandPaletteRowOGSSATyA16_013SectionHeaderE0VACyAA6IDViewVyAeAEA20_yQrqd__AAA21_Rd__lFQOyA23_yA16_010CommandRowE0VG_A27_Qo_SSGA30_GGGGA38_GGA48_G_ARQo_GGA42_ACyACyACyA0_yAZyA0_yAZyA57_ySaySSGSSA34_G_A44_tGG_A83_A83_AA6SpacerVA44_tGGA8_GA38_GA38_GtGGA48_GAA11_ClipEffectVyAA16RoundedRectangleVGGAA34_InsettableBackgroundShapeModifierVyAA8MaterialVA97_GGAA16_OverlayModifierVyAA017StrokeBorderShapeE0VyA97_AA5ColorVAA05EmptyE0VGGGGAA13_ShadowEffectVG_Qo__ARQo__SSQo__SayA16_7CommandVGQo_AA25_AppearanceActionModifierVGA129_G_Qo_A30_GAaDHPqd__AaDHD2_A132_HO_A30_AA0E8ModifierHPyHCHC.169",
+          "00000000037551c0 s _symbolic _____yAAy_____y_____y_____y_____yAAy_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo______GA70_G 7SwiftUI15ModifiedContentV AA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA012_ConditionalD0V AA03AnyE0V AA6VStackV AA05TupleE0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollE6ReaderV AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollE0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderE0V AA6IDViewV AeAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowE0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeE0V AA5ColorV AA05EmptyE0V AA13_ShadowEffectV A7_7CommandV AA017_AppearanceActionX0V",
+          "00000000037551c0 - 0a 0000 STSYM _symbolic _____yAAy_____y_____y_____y_____yAAy_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo______GA70_G 7SwiftUI15ModifiedContentV AA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA012_ConditionalD0V AA03AnyE0V AA6VStackV AA05TupleE0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollE6ReaderV AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollE0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderE0V AA6IDViewV AeAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowE0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeE0V AA5ColorV AA05EmptyE0V AA13_ShadowEffectV A7_7CommandV AA017_AppearanceActionX0V",
+          "00000000037555f2 - 0a 0000 STSYM _symbolic _____y_____yAAyAAy_____y_____y_____y_____yAAy_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo______GA70_G_Qo_AWG 7SwiftUI15ModifiedContentV AA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQO AeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA012_ConditionalD0V AA03AnyE0V AA6VStackV AA05TupleE0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA24_ForegroundStyleModifierV AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA0I18AttachmentModifierV A11_6KeyCapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollE6ReaderV AeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollE0V AA04LazyW0V AA7ForEachV A11_17CommandPaletteRowO A11_013SectionHeaderE0V AA6IDViewV AeAEA15_yQrqd__AAA16_Rd__lFQO A11_010CommandRowE0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA34_InsettableBackgroundShapeModifierV AA8MaterialV AA16_OverlayModifierV AA017StrokeBorderShapeE0V AA5ColorV AA05EmptyE0V AA13_ShadowEffectV A11_7CommandV AA25_AppearanceActionModifierV",
+          "00000000037555f2 s _symbolic _____y_____yAAyAAy_____y_____y_____y_____yAAy_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo______GA70_G_Qo_AWG 7SwiftUI15ModifiedContentV AA4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQO AeAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA012_ConditionalD0V AA03AnyE0V AA6VStackV AA05TupleE0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA24_ForegroundStyleModifierV AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA0I18AttachmentModifierV A11_6KeyCapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollE6ReaderV AeAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollE0V AA04LazyW0V AA7ForEachV A11_17CommandPaletteRowO A11_013SectionHeaderE0V AA6IDViewV AeAEA15_yQrqd__AAA16_Rd__lFQO A11_010CommandRowE0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA34_InsettableBackgroundShapeModifierV AA8MaterialV AA16_OverlayModifierV AA017StrokeBorderShapeE0V AA5ColorV AA05EmptyE0V AA13_ShadowEffectV A11_7CommandV AA25_AppearanceActionModifierV",
+          "00000000037553d4 s _symbolic _____y_____yAAy_____y_____y_____y_____yAAy_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo______GA70_G_Qo_ 7SwiftUI4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQO AA15ModifiedContentV AcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA012_ConditionalK0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA24_ForegroundStyleModifierV AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA0G18AttachmentModifierV A11_6KeyCapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyW0V AA7ForEachV A11_17CommandPaletteRowO A11_013SectionHeaderC0V AA6IDViewV AcAEA15_yQrqd__AAA16_Rd__lFQO A11_010CommandRowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA34_InsettableBackgroundShapeModifierV AA8MaterialV AA16_OverlayModifierV AA017StrokeBorderShapeC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV A11_7CommandV AA25_AppearanceActionModifierV",
+          "00000000037553d4 - 0a 0000 STSYM _symbolic _____y_____yAAy_____y_____y_____y_____yAAy_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo______GA70_G_Qo_ 7SwiftUI4ViewPAAE20accessibilityElement8childrenQrAA26AccessibilityChildBehaviorV_tFQO AA15ModifiedContentV AcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA012_ConditionalK0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA24_ForegroundStyleModifierV AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA0G18AttachmentModifierV A11_6KeyCapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAEAjkL_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyW0V AA7ForEachV A11_17CommandPaletteRowO A11_013SectionHeaderC0V AA6IDViewV AcAEA15_yQrqd__AAA16_Rd__lFQO A11_010CommandRowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA34_InsettableBackgroundShapeModifierV AA8MaterialV AA16_OverlayModifierV AA017StrokeBorderShapeC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV A11_7CommandV AA25_AppearanceActionModifierV",
+          "0000000003754808 s _symbolic _____y_____y_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo_ 7SwiftUI4ViewPAAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA15ModifiedContentV AA012_ConditionalJ0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleT0V AA017HierarchicalShapeW0V 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE06buttonW0yQrqd__AA015PrimitiveButtonW0Rd__lFQO AA6ButtonV AA011PlainButtonW0V AA023AccessibilityAttachmentT0V A4_0R3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyM0V AA7ForEachV A4_0Z10PaletteRowO A4_013SectionHeaderC0V AA6IDViewV AcAEA8_yQrqd__AAA9_Rd__lFQO A4_0z3RowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA021_InsettableBackgroundyT0V AA8MaterialV AA08_OverlayT0V AA012StrokeBorderyC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV",
+          "0000000003754808 - 0a 0000 STSYM _symbolic _____y_____y_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo_ 7SwiftUI4ViewPAAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA15ModifiedContentV AA012_ConditionalJ0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleT0V AA017HierarchicalShapeW0V 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE06buttonW0yQrqd__AA015PrimitiveButtonW0Rd__lFQO AA6ButtonV AA011PlainButtonW0V AA023AccessibilityAttachmentT0V A4_0R3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyM0V AA7ForEachV A4_0Z10PaletteRowO A4_013SectionHeaderC0V AA6IDViewV AcAEA8_yQrqd__AAA9_Rd__lFQO A4_0z3RowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA021_InsettableBackgroundyT0V AA8MaterialV AA08_OverlayT0V AA012StrokeBorderyC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV",
+          "00000000037549de - 0a 0000 STSYM _symbolic _____y_____y_____y_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo_ 7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA15ModifiedContentV AA012_ConditionalN0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderC0V AA6IDViewV AcAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV",
+          "00000000037549de s _symbolic _____y_____y_____y_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo_ 7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA15ModifiedContentV AA012_ConditionalN0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderC0V AA6IDViewV AcAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV",
+          "0000000003754fb4 s _symbolic _____y_____y_____y_____y_____yAAy_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo______G 7SwiftUI15ModifiedContentV AA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA012_ConditionalD0V AA03AnyE0V AA6VStackV AA05TupleE0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollE6ReaderV AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollE0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderE0V AA6IDViewV AeAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowE0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeE0V AA5ColorV AA05EmptyE0V AA13_ShadowEffectV A7_7CommandV AA017_AppearanceActionX0V",
+          "0000000003754fb4 - 0a 0000 STSYM _symbolic _____y_____y_____y_____y_____yAAy_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo______G 7SwiftUI15ModifiedContentV AA4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AeAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA012_ConditionalD0V AA03AnyE0V AA6VStackV AA05TupleE0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AeAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollE6ReaderV AeAEAfgH_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollE0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderE0V AA6IDViewV AeAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowE0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeE0V AA5ColorV AA05EmptyE0V AA13_ShadowEffectV A7_7CommandV AA017_AppearanceActionX0V",
+          "0000000003754bc2 - 0a 0000 STSYM _symbolic _____y_____y_____y_____y_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo_ 7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA15ModifiedContentV AA012_ConditionalN0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderC0V AA6IDViewV AcAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV",
+          "0000000003754bc2 s _symbolic _____y_____y_____y_____y_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo_ 7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA15ModifiedContentV AA012_ConditionalN0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderC0V AA6IDViewV AcAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV",
+          "0000000003754db2 - 0a 0000 STSYM _symbolic _____y_____y_____y_____y_____y_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo_ 7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA15ModifiedContentV AA012_ConditionalN0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderC0V AA6IDViewV AcAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV A7_7CommandV",
+          "0000000003754db2 s _symbolic _____y_____y_____y_____y_____y_____y_____AAyAAyAAyAAy_____y_____yAAyAAy_____yAEyAAyAAy__________y_____SgGG_____y_____GG______AAy_____y_____yAAyAgOGG______Qo______GSg_____tGG_____GA1_G______AByAAyADyAEyAP______tGG_____G_____y_____yAAy_____yAAy_____y_____ySay_____GSSABy_____AAy_____y_____yARy_____G_AUQo_SSGAWGGGGA1_GGA8_G_SSSgQo_GGA4_AAyAAyAAyAFyAEyAFyAEyA13_ySaySSGSSAZG_A5_tGG_A36_A36______A5_tGGAKGA1_GA1_GtGGA8_G_____y_____GG_____y_____A47_GG_____y_____yA47___________GGGG_____G_Qo__A29_Qo__SSQo__Say_____GQo_ 7SwiftUI4ViewPAAE8onChange2of7initial_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AcAE4task4name8priority4file4line_QrSSSg_ScPSSSiyyYaYAcntFQO AA15ModifiedContentV AA012_ConditionalN0V AA03AnyC0V AA6VStackV AA05TupleC0V AA6HStackV AA5ImageV AA30_EnvironmentKeyWritingModifierV AA4FontV AA016_ForegroundStyleX0V AA22HierarchicalShapeStyleV 14CommandPalette22PaletteSearchTextField33_09462C23069B70BC72B49D9E416BBC5CLLV AcAE11buttonStyleyQrqd__AA20PrimitiveButtonStyleRd__lFQO AA6ButtonV AA16PlainButtonStyleV AA023AccessibilityAttachmentX0V A7_0V3CapV AA14_PaddingLayoutV AA7DividerV AA4TextV AA16_FlexFrameLayoutV AA06ScrollC6ReaderV AcAEAdeF_Qrqd___Sbyqd___qd__tctSQRd__lFQO AA06ScrollC0V AA04LazyQ0V AA7ForEachV A7_17CommandPaletteRowO A7_013SectionHeaderC0V AA6IDViewV AcAEA11_yQrqd__AAA12_Rd__lFQO A7_010CommandRowC0V AA6SpacerV AA11_ClipEffectV AA16RoundedRectangleV AA026_InsettableBackgroundShapeX0V AA8MaterialV AA08_OverlayX0V AA017StrokeBorderShapeC0V AA5ColorV AA05EmptyC0V AA13_ShadowEffectV A7_7CommandV"
+        ],
+        "nm_stdout_sha256": "e23db29490243660382d51b823dabdd0c69eea42315b6c488bc0014950383ae5"
+      },
+      {
+        "path": "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/__preview.dylib",
+        "bytes": 16800,
+        "sha256": "f83708fd5c2cbaeedddaf295bfe1832e34648b1e2136bc150bf8edc82c2965e1",
+        "nm_exit_code": 0,
+        "matched_symbol_count": 0,
+        "bounded_matched_symbols": [],
+        "nm_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "built_binary_sha256": {
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "c5ef8f2754f5802e9e492c588f4f9fbb231a9531860a0c5c3dd1d4660949bb4c",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "b49a8daa29270dafb37781d370b219b497cb55c6cfab54ba858f3d3cb8b4d2b7",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "e245d8cd75f8a8d00dfa6d88f38f129b064776a5f3ae7a0ae27422dfbd31cfc8"
+  },
+  "actual_counts_by_device": {
+    "11-window": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "12E5B006-9593-407E-A4DB-136F19DEA0D8",
+            "deviceName": "Faithful 11-inch d0f007a5",
+            "modelName": "iPad Pro 11-inch (M5)",
+            "osBuildNumber": "24B8117",
+            "osVersion": "27.2",
+            "platform": "iOS Simulator"
+          },
+          "expectedFailures": 0,
+          "failedTests": 1,
+          "passedTests": 0,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "finishTime": 1794743962.812,
+      "passedTests": 0,
+      "result": "Failed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1794743694.189,
+      "statistics": [],
+      "testFailures": [
+        {
+          "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+          "testName": "testNormalBootstrapNativeWindowResizePaletteAndInspector()"
+        }
+      ],
+      "title": "Test - Maktabah-iOS",
+      "topInsights": [],
+      "totalTestCount": 1
+    }
+  },
+  "case_outcomes": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    }
+  ],
+  "executed_ui_skip": 0,
+  "ui_not_run": 0,
+  "error": "Required real UI subset failed, skipped or did not completely execute"
+}

@@ -1,0 +1,39 @@
+{
+  "run": 43708796409,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43708796409",
+  "artifact_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43708796409/artifacts/14160960584",
+  "artifact_bytes": 196864817,
+  "artifact_sha256_declared_by_GitHub": "b8becfbfcdbe0658047cc79d468909ac29304f184d505c87a9b7b94c56c93dda",
+  "outer_zip_independently_hashed": false,
+  "checkout_sha": "5b46c400df45e3a6eb4fa552e0b0cb4a7e1ce018",
+  "app_source_sha": "17d7ebbb890fbdbd18e40d73688fbe6211f0adec",
+  "test_source_sha": "ad7903492b66e6a5faa9af61d99a4e0e905aa0b5",
+  "status": "COMPLETE_UNCANCELLED_NATIVE_WINDOW_FAIL",
+  "counts": {
+    "ui_passed": 0,
+    "ui_failed": 1,
+    "ui_not_run": 0,
+    "ui_skipped": 0,
+    "verified_prior_reused_pass": 8
+  },
+  "case_outcomes": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    }
+  ],
+  "route_evidence": {
+    "source_events": 58,
+    "live_capture_sha256": "de01a33897216e8fc71d254aadd29b85ab8438491d00a8a65186208dcd7ed093",
+    "normal_hardware_clear_fixture_and_result": "Reached and assertions passed",
+    "actual_Escape": "XCTest typeKey sent141.31s; actualvisible-disappearance assertion182 failed",
+    "native_input_state": "FirstResponder,mounted,keyWindow,wantsFocus,callback=true aroundEscape; keyCommands queried; no Escapevalidation/action/rawpress/input/dismiss/forward stages",
+    "cause_limit": "Shows pre-handler gap; exact platform/source cause not inferred. U/Q now investigating descriptor/selector/target validation boundary. No thirdblindbehaviorrewrite.",
+    "Inspector": "NOT_REACHED"
+  },
+  "project_semantic_compatibility": "GENERATED_PROJECT_RUN3_RUN7_EQUIVALENCE.json: complete2206objects identical under15UUIDrenames, everyarray/field preserved, allothernative_contextfields identical",
+  "distribution_physical_or_noninstrumented_fix_acceptance": false
+}
