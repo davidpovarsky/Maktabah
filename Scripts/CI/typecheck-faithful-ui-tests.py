@@ -17,6 +17,7 @@ artifacts.mkdir(parents=True, exist_ok=True)
 sdk = Path(subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], text=True).strip())
 platform = Path(subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-platform-path"], text=True).strip())
 version = subprocess.check_output(["xcodebuild", "-version"], text=True).strip()
+swift_version = subprocess.check_output(["xcrun", "swift", "--version"], text=True).strip()
 # Targeted read-only SDK evidence: current documentation introduces a VoiceOver
 # automation service, but its actual platform/Simulator availability must come
 # from this installed toolchain rather than an older Simulator guide.
@@ -50,7 +51,7 @@ command.extend(ui_sources)
 result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 (artifacts / "ui-acceptance-typecheck.log").write_text(result.stdout, encoding="utf-8")
 report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
-          "xcode": version, "sdk": str(sdk), "target": "arm64-apple-ios18.6-simulator",
+          "xcode": version, "swift": swift_version, "sdk": str(sdk), "target": "arm64-apple-ios18.6-simulator",
           "status": "SDK_COMPILE_PASS" if result.returncode == 0 else "FAIL",
           "includesCodeGeneration": True,
           "warningCount": result.stdout.count("warning:"),
@@ -108,7 +109,7 @@ if (native_host / "Package.swift").is_file():
     native_host_code = native_host_result.returncode
     (artifacts / "native-routing-host-sdk.log").write_text(native_host_result.stdout, encoding="utf-8")
     native_host_sources = [native_host / "Package.swift", *sorted((native_host / "Sources").rglob("*.swift"))]
-    native_host_report = {"sourceSHA": report["sourceSHA"], "xcode": version, "sdk": str(sdk),
+    native_host_report = {"sourceSHA": report["sourceSHA"], "xcode": version, "swift": swift_version, "sdk": str(sdk),
                           "target": "arm64-apple-ios26.0-simulator", "command": native_host_command,
                           "status": "SDK_COMPILE_PASS" if native_host_code == 0 else "BUILD_FAILED",
                           "notRuntimeAcceptance": True, "nativeUITestsExecuted": 0,
@@ -121,4 +122,8 @@ if (native_host / "Package.swift").is_file():
         output.write("\n=== Native routing host SDK compilation ===\n" + native_host_result.stdout)
     print(json.dumps(native_host_report, indent=2))
     print(native_host_result.stdout)
+report["appMembershipStatus"] = "PASS" if membership_code == 0 else "FAIL"
+report["toolbarSDKStatus"] = "SDK_COMPILE_PASS" if toolbar_code == 0 else "BUILD_FAILED"
+report["aggregateSDKStatus"] = "PASS" if not (result.returncode or toolbar_code or native_host_code or membership_code) else "FAIL"
+(artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 raise SystemExit(result.returncode or toolbar_code or native_host_code or membership_code)

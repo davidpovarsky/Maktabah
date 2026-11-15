@@ -59,4 +59,9 @@ final class NativeRouteURLTests: XCTestCase {
         let url = try NativeRouteURL.encode(route(), registry: registry())
         XCTAssertThrowsError(try NativeRouteURL.decode(url, registry: .init()))
     }
+    func testNativeEnvelopeCannotPublishUnconfiguredUniversalLink() throws {
+        let registry = try registry()
+        XCTAssertThrowsError(try NativeRouteURL.encode(route(), scheme: "https", registry: registry))
+        XCTAssertThrowsError(try NativeRouteURL.decode(URL(string: "https://history?bkId=103")!, scheme: "https", registry: registry))
+    }
 }

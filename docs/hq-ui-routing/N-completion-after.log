@@ -1,0 +1,78 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/4] Write sources
+[2/4] Copying Resources
+[4/5] Emitting module ChavrusaUIRoutingHost
+[5/6] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[6/8] Write Objects.LinkFileList
+[7/8] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (17.41s)
+Test Suite 'Selected tests' started at 2026-11-15 15:31:50.467
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' started at 2026-11-15 15:31:50.473
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testBackendChangeAfterDispatchPreservesEffectUncertainty' started at 2026-11-15 15:31:50.473
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testBackendChangeAfterDispatchPreservesEffectUncertainty' passed (0.108 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCancellationAfterDispatchNeverClaimsNoEffect' started at 2026-11-15 15:31:50.581
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCancellationAfterDispatchNeverClaimsNoEffect' passed (0.088 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalDeadlineExpiresDuringFinalSynchronousCompletionCheck' started at 2026-11-15 15:31:50.670
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalDeadlineExpiresDuringFinalSynchronousCompletionCheck' passed (0.097 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalEpochDriftAfterFinalObservationIsRejected' started at 2026-11-15 15:31:50.766
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalEpochDriftAfterFinalObservationIsRejected' passed (0.093 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends' started at 2026-11-15 15:31:50.859
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends' passed (0.264 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGuardThenExactVisibleReceipt' started at 2026-11-15 15:31:51.123
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGuardThenExactVisibleReceipt' passed (0.095 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalReadinessLossAfterFinalObservationIsRejected' started at 2026-11-15 15:31:51.219
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalReadinessLossAfterFinalObservationIsRejected' passed (0.08 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testForegroundLossInvalidatesContextAndOldLeaseCannotRemoveReplacement' started at 2026-11-15 15:31:51.298
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testForegroundLossInvalidatesContextAndOldLeaseCannotRemoveReplacement' passed (0.074 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testMissingCanonicalScopeNeverMutatesNativeUI' started at 2026-11-15 15:31:51.372
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testMissingCanonicalScopeNeverMutatesNativeUI' passed (0.083 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRepeatedRequestDoesNotDispatchAgainOrReuseOldCompletion' started at 2026-11-15 15:31:51.455
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRepeatedRequestDoesNotDispatchAgainOrReuseOldCompletion' passed (0.086 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRevocationDuringVisibleWaitCannotBecomeCompletion' started at 2026-11-15 15:31:51.541
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRevocationDuringVisibleWaitCannotBecomeCompletion' passed (0.086 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testWrongVisibleSurfaceDoesNotAcknowledgeSameRequest' started at 2026-11-15 15:31:51.627
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testWrongVisibleSurfaceDoesNotAcknowledgeSameRequest' passed (0.081 seconds)
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' passed at 2026-11-15 15:31:51.708
+
+	 Executed 12 tests, with 0 failures (0 unexpected) in 1.235 (1.235) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 15:31:51.708
+
+	 Executed 12 tests, with 0 failures (0 unexpected) in 1.235 (1.235) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

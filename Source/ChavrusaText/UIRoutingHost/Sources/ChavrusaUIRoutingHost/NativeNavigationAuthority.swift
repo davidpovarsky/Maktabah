@@ -46,16 +46,20 @@ public final class NativeNavigationAuthority: ActionNavigationAuthority {
         guard entries[lease.sceneID]?.lease == lease else { return }
         entries.removeValue(forKey: lease.sceneID)
     }
-    public func admit(context: ActionExecutionContext, sceneID: UIStableID) throws {
+    @discardableResult
+    public func admit(context: ActionExecutionContext, sceneID: UIStableID) throws -> ActionNavigationState {
         try Task.checkCancellation()
         guard var entry = entries[sceneID] else { throw UIRouteError(.unavailable, "scene_missing") }
         guard entry.foreground, context.foregroundSceneID == sceneID.rawValue else { throw UIRouteError(.requiresForeground, "exact_foreground_scene_required") }
         guard entry.context == nil else { throw UIRouteError(.unavailable, "native_scene_busy") }
         entry.context = context; entry.revision = try advance(); entries[sceneID] = entry
+        return try navigationState(sceneID: sceneID.rawValue)
     }
-    public func release(context: ActionExecutionContext, sceneID: UIStableID) {
-        guard var entry = entries[sceneID], entry.context == context else { return }
-        entry.context = nil; entries[sceneID] = entry
+    public func release(_ admitted: ActionNavigationState) {
+        guard let id = UIStableID(rawValue: admitted.sceneID), var entry = entries[id],
+              entry.lease.lifetimeID == admitted.lifetimeID, entry.revision == admitted.authorityRevision,
+              entry.context == admitted.context else { return }
+        entry.context = nil; entries[id] = entry
     }
     public func navigationState(sceneID: String) throws -> ActionNavigationState {
         guard let id = UIStableID(rawValue: sceneID), let entry = entries[id], let context = entry.context else {

@@ -14,7 +14,7 @@ public enum NativeRouteURL {
     public static let maximumURLBytes = 6_144
 
     public static func decode(_ url: URL, scheme: String = "maktabah", registry: UIDestinationRegistry) throws -> Input {
-        guard url.absoluteString.utf8.count <= maximumURLBytes,
+        guard ["maktabah", "maktabah-debug"].contains(scheme), url.absoluteString.utf8.count <= maximumURLBytes,
               let c = URLComponents(url: url, resolvingAgainstBaseURL: false),
               c.scheme == scheme, c.user == nil, c.password == nil,
               c.port == nil, c.fragment == nil else { throw UIRouteError(.failed, "invalid_route_url") }
@@ -47,6 +47,7 @@ public enum NativeRouteURL {
     /// Caller must have approved shareability/content rights before publication.
     /// Explicit public input prevents accidental projection of private state.
     public static func encode(_ route: PublicRouteSpec, scheme: String = "maktabah", registry: UIDestinationRegistry) throws -> URL {
+        guard ["maktabah", "maktabah-debug"].contains(scheme) else { throw UIRouteError(.notSupported, "native_url_scheme_required") }
         let data = try UIRouteCodec.encodePublic(route, registry: registry)
         var c = URLComponents()
         c.scheme = scheme; c.host = "action"; c.path = "/v1/" + route.destination.rawValue

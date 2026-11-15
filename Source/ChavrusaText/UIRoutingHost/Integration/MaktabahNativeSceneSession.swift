@@ -58,7 +58,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func validateSurface(_ command: UISceneCommand) throws {
         guard mounted, foreground else { throw UIRouteError(.requiresForeground, "exact_foreground_scene_required") }
         let route = command.route.route, projection = try project(), identity = try projection.identity()
-        guard command.scene.sceneID == sceneID, route.content == nil, route.focus == nil, route.presentation.tabID == nil,
+        guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
+              route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
+        guard route.content == nil, route.focus == nil, route.presentation.tabID == nil,
               route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID) else {
             throw UIRouteError(.notSupported, "native_surface_variant_not_installed")
         }
@@ -86,6 +88,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         self.project = project
     }
     func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? { try project().surface(kind) }
+    func windowLabel(number: Int) -> String {
+        let projection = try? project()
+        let names = [projection?.workspace?.profile?.name, projection?.workspace?.group?.name]
+            .compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: " / ")
+        let window = String(localized: "Window \(number)")
+        return names.isEmpty ? window : names + " — " + window
+    }
 
     func prepare(_ route: PublicRouteSpec, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
         guard route.destination.rawValue == "native.history", route.content == nil, route.presentation == .currentTab else {

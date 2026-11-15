@@ -30,6 +30,7 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
         let context: ActionExecutionContext
         var dispatched: Bool
         var active: Bool
+        let token: UUID
     }
     private var dispatches: [UUID: Dispatch] = [:]
 
@@ -46,6 +47,7 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
     public func unregister(_ driver: any NativeSceneDriver) {
         guard let current = drivers[driver.sceneID], current === driver else { return }
         drivers.removeValue(forKey: driver.sceneID)
+        dispatches = dispatches.filter { $0.value.command.scene.sceneID != driver.sceneID }
     }
     public func snapshot(target: SceneTarget, context: ActionExecutionContext) async throws -> UISceneSnapshot {
         try await directory.snapshot(target: target, context: context)
@@ -72,16 +74,20 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             }
             guard dispatches.count < capacity else { throw UIRouteError(.unavailable, "native_dispatch_ledger_full") }
             guard let driver = drivers[sceneID] else { throw UIRouteError(.unavailable, "scene_driver_missing") }
-            if reader == nil { try authority.admit(context: context, sceneID: sceneID) }
+            let admitted: ActionNavigationState
+            if reader == nil { admitted = try authority.admit(context: context, sceneID: sceneID) }
             else {
-                let admitted = try authority.navigationState(sceneID: sceneID.rawValue)
+                admitted = try authority.navigationState(sceneID: sceneID.rawValue)
                 guard admitted.active, admitted.context == context else { throw UIRouteError(.staleState, "native_context_changed") }
             }
-            defer { authority.release(context: context, sceneID: sceneID) }
-            let admitted = try authority.navigationState(sceneID: sceneID.rawValue)
+            // Content is admitted by the outer Core invocation owner. Its
+            // retained grant must remain live through Core's own post-sink
+            // completion check; only that outer owner releases it afterwards.
+            defer { if reader == nil { authority.release(admitted) } }
             try driver.validateSurface(command)
-            dispatches[requestID] = Dispatch(command: command, context: context, dispatched: false, active: true)
-            defer { dispatches[requestID]?.active = false }
+            let token = UUID()
+            dispatches[requestID] = Dispatch(command: command, context: context, dispatched: false, active: true, token: token)
+            defer { if dispatches[requestID]?.token == token { dispatches[requestID]?.active = false } }
             let prepared: UIAuthorizedSceneCommand
             if let reader { prepared = try command.prepareNavigation(readerCommand: reader) }
             else { prepared = try await command.prepareNavigation(using: core, context: context) }
@@ -106,10 +112,13 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             }
             let receipt = UISceneReceipt(requestId: requestID, route: observedRoute, backendSnapshot: observed.backendSnapshot,
                 sceneID: observed.sceneID, basedOnSceneRevision: command.scene.revision, appliedSceneRevision: observed.revision, coreReceipt: coreReceipt)
-            try receipt.validate(for: command, observed: observed)
             // The authority/context may have been revoked during layout waits.
             guard let live = try? authority.navigationState(sceneID: sceneID.rawValue), live.active, live.context == context, live.lifetimeID == admitted.lifetimeID,
                   live.authorityRevision == admitted.authorityRevision else { throw UIRouteError(.staleState, "native_context_changed") }
+            // Retain and revalidate the ORIGINAL Core preparation after the
+            // final native/directory awaits. N's context check alone cannot
+            // certify current S generation/epoch/readiness/deadline authority.
+            try prepared.validateCompletion(receipt: receipt, observed: observed)
             return .acknowledged(receipt)
         } catch {
             // Preserve failed pre-dispatch identity too: never auto-retry the
@@ -118,7 +127,14 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
         }
     }
     private func acknowledgement(_ error: any Error, didDispatch: Bool) -> UISceneAcknowledgement {
-        let status = (error as? UIRouteError)?.status ?? (error as? ActionNavigationError)?.status ?? (error is CancellationError ? .cancelled : .failed)
+        let portStatus: ActionStatus?
+        switch error as? ActionPortError {
+        case .unavailable, .notFound: portStatus = .unavailable
+        case .staleState: portStatus = .staleState
+        case .notSupported: portStatus = .notSupported
+        default: portStatus = nil
+        }
+        let status = (error as? UIRouteError)?.status ?? (error as? ActionNavigationError)?.status ?? portStatus ?? (error is CancellationError ? .cancelled : .failed)
         let code = didDispatch ? "native_effect_uncertain" : ((error as? UIRouteError)?.code ?? (error as? ActionNavigationError)?.code ?? "native_navigation_failed")
         let failure = ActionFailure(code: code, message: didDispatch ? "Native UI may have changed; completion was not verified." : "Native navigation was not completed.")
         switch status {

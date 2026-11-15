@@ -25,6 +25,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         let managerID: ObjectIdentifier
         let session: MaktabahNativeSceneSession
         let lease: NativeNavigationAuthority.Lease
+        let windowNumber: Int
     }
     private var scenes: [UIStableID: Registration] = [:]
     private var contexts: [UIStableID: ActionExecutionContext] = [:]
@@ -54,6 +55,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     func mount(sceneID: UIStableID, manager: iOSNavigationManager, bindings: MaktabahNativeSceneBindings, foreground: Bool,
                project: @escaping @MainActor () throws -> MaktabahNativeSceneProjection) throws -> MaktabahNativeSceneSession {
         guard scenes[sceneID] == nil else { throw UIRouteError(.unavailable, "native_scene_already_registered") }
+        guard let windowNumber = (1...16).first(where: { number in !scenes.values.contains(where: { $0.windowNumber == number }) }) else {
+            throw UIRouteError(.unavailable, "native_scene_admission_rejected")
+        }
         let session = MaktabahNativeSceneSession(sceneID: sceneID, directory: directory, bindings: bindings, project: project)
         session.foreground = foreground
         let lease = try authority.mount(sceneID: sceneID, foreground: foreground)
@@ -63,7 +67,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
                       context.subjectID == "maktabah.scene:" + sceneID.rawValue else { throw UIRouteError(.staleState, "native_scene_context_changed") }
             }
             try orchestrator.register(session)
-            scenes[sceneID] = .init(managerID: ObjectIdentifier(manager), session: session, lease: lease)
+            scenes[sceneID] = .init(managerID: ObjectIdentifier(manager), session: session, lease: lease, windowNumber: windowNumber)
             mountWaiters.removeValue(forKey: ObjectIdentifier(manager))?.continuation.resume(returning: sceneID)
             return session
         } catch { session.unmount(); authority.unmount(lease); throw error }
@@ -163,12 +167,13 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
             let snapshot = try backend.currentBackendSnapshot(), context = context(sceneID: id, origin: .appIntent, snapshot: snapshot)
             try issue(context, sceneID: id)
             defer { finish(context, sceneID: id) }
-            try authority.admit(context: context, sceneID: id)
-            defer { authority.release(context: context, sceneID: id) }
+            let admitted = try authority.admit(context: context, sceneID: id)
+            defer { authority.release(admitted) }
             let invocation = ActionPortInvocation(requestId: UUID(), snapshot: snapshot, deadlineUptimeNanoseconds: deadline())
             let scene = try await directory.currentScene(sceneID: id, context: context, invocation: invocation)
             let descriptors = try await registry.discover(scene: scene, context: context, invocation: invocation, core: core, host: self)
-            values += descriptors.map { .init(backend: snapshot.backend, destination: $0.id, title: $0.title + " — " + id.rawValue, sceneID: id) }
+            let windowLabel = entry.session.windowLabel(number: entry.windowNumber)
+            values += descriptors.map { .init(backend: snapshot.backend, destination: $0.id, title: $0.title + " — " + windowLabel, sceneID: id) }
         }
         return values
     }
