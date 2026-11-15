@@ -2,10 +2,10 @@
   "schema_version": 1,
   "source_test_commit": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
-  "app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "app_source": "04b4d5f27e51d29508e8e0d4dcc8d3b07d405e4e",
   "sole_executor_thread": "01a1dc86-0c7b-7ee3-a098-2b4004ed686d",
   "independent_qa_thread": "01a1dc8b-f9bd-7d63-a628-7ad3d06196e8",
-  "scope": "INITIAL_NATIVE07_SUBSET_NOT_NEW_UIROUTING_HANLIN_OR_FULL_RELEASE_ACCEPTANCE",
+  "scope": "INITIAL_NATIVE_R27_SUBSET_WITH_SCOPED_STARTUP_RACE_FIX_NOT_FULL_RELEASE_ACCEPTANCE",
   "native_cases_executed": 0,
   "required_nonzero_cases": 9,
   "expected_per_device": {
@@ -176,5 +176,16 @@
     "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
     "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
   ],
-  "prior_pass_reuse_state": "PENDING_INDEPENDENT_U_PRODUCTION_CHANGE_IMPACT_PROOF"
+  "prior_pass_reuse_state": "PENDING_INDEPENDENT_U_PRODUCTION_CHANGE_IMPACT_PROOF",
+  "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "application_correction": {
+    "donor": "48d6d7b634e82b8cf4212018d3f089de60958bb5",
+    "evidence": "f3358012844e1790b8f0e57f25f0be85c46b9549",
+    "integration": "04b4d5f27e51d29508e8e0d4dcc8d3b07d405e4e",
+    "changed_production_paths": [
+      "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"
+    ],
+    "runtime_status": "NOT_RUN",
+    "scope": "Initial-empty iPad startup tab adoption at final validated commit boundary"
+  }
 }
