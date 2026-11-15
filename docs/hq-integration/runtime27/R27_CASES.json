@@ -136,18 +136,6 @@
   "previous_manifest_sha256": "1f20458858d0890433d87e2131ac2283a73e369aaddadb39bd4c2ce57af59d3f",
   "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
   "affected_execution_groups": {
-    "11-reader": [
-      "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
-      "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
-      "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
-      "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
-    ],
-    "phone": [
-      "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
-      "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
-      "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
-      "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
-    ],
     "11-window": [
       "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
     ]
@@ -161,26 +149,6 @@
   ],
   "execution_groups": [
     {
-      "label": "11-reader",
-      "size": "11",
-      "case_ids": [
-        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
-        "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
-        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
-        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
-      ]
-    },
-    {
-      "label": "phone",
-      "size": "phone",
-      "case_ids": [
-        "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
-        "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
-        "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
-        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
-      ]
-    },
-    {
       "label": "11-window",
       "size": "11",
       "case_ids": [
@@ -189,17 +157,9 @@
     }
   ],
   "execution_case_ids": [
-    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
-    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
-    "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
-    "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
-    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
-    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
-    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
-    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
     "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
   ],
-  "prior_pass_reuse_state": "NO_REUSE_SOURCE_CHANGE_REACHES_IPHONE_COMPACT_AND_IPAD_HOSTS",
+  "prior_pass_reuse_state": "PENDING_INDEPENDENT_EXACT_ESCAPE_CORRECTION_CHANGE_IMPACT",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
   "application_correction": {
     "donor": "48d6d7b634e82b8cf4212018d3f089de60958bb5",
@@ -217,5 +177,21 @@
     "source_file_sha256": "f0524ef14ee2bae83729a97ecf2218c96ca346d5419536228e49d970a9354d2f",
     "required_case_count": 9,
     "verified_reused_pass": 0
+  },
+  "current_healthy_evidence": {
+    "run": 43688380348,
+    "tested_sha": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+    "ui_passed": 8,
+    "case_ids": [
+      "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+    ],
+    "candidate_reuse": "NOT_YET_VERIFIED_PENDING_EXACT_SOURCE_CHANGE_IMPACT"
   }
 }

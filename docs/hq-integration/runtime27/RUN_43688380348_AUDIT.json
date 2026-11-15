@@ -134,5 +134,12 @@
     "artifacts\\visual-11-window\\FC8183BB-6BDE-4144-8239-E57AAF8EDEA0.txt": "781dfcff96c28babdb73e5eaecc697d5af28b1a5275fb183d78d244fcb6acbb3",
     "artifacts\\visual-11-window\\manifest.json": "8a9691d7dd3f718728c8d11d603647b5ce3ca027a9ab581ff6654c997405d4f2",
     "artifacts\\visual-phone\\manifest.json": "07277b1cdb9f104933af468083b903005b16a1a853a2bc51e225b80662ffb388"
+  },
+  "window_actual_recording": {
+    "artifact_member": "artifacts/visual-11-window/4E4603FA-F523-487F-BCB5-73A8FE0EDE43.mp4",
+    "bytes": 46898469,
+    "sha256": "4667a2444a9b460c47a27a7fc325327cd1f1b0c038833ea574a6af2514be87f2",
+    "zip_member_crc_verified": true,
+    "independent_outer_zip_sha256": false
   }
 }

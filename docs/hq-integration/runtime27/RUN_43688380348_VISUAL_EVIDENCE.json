@@ -1,0 +1,202 @@
+[
+  {
+    "case": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+    "label": "11-reader",
+    "name": "r27-final-native-screen_0_AD9032E4-CD6F-42FE-B255-005CAF6C04F0.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-reader\\95F424A5-748D-425C-8012-0CCC2862A3AA.png",
+    "bytes": 586243,
+    "sha256": "ad3fcf5f71328c4780329755a35e1262a3841b91dc4478f1a152bbfaea77fa0a"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+    "label": "11-reader",
+    "name": "r27-final-native-hierarchy_0_1214F549-EEC1-4202-965E-0EB7D876818B.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-reader\\3C729EB4-877D-4FDB-BEE6-E5E9EAE30499.txt",
+    "bytes": 48732,
+    "sha256": "4ca02582028e0c7d3b1e2e5d3fce2f360861b77456cfdfa701663f93810088a9"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+    "label": "11-reader",
+    "name": "r27-final-native-screen_0_4278113D-9AF6-4F90-8895-E801756F5604.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-reader\\FAA73C47-CB6C-4C43-A907-A68F58C1FD98.png",
+    "bytes": 340977,
+    "sha256": "3b181e15a9c6b29b84b910061608806bb543996a172b716cb710b7813a1f7c7b"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+    "label": "11-reader",
+    "name": "r27-final-native-hierarchy_0_F7AC8ABB-F587-436F-9251-E83595493E46.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-reader\\4385269F-4818-458D-A0F3-E48E4F390616.txt",
+    "bytes": 26560,
+    "sha256": "94f124fdfa2c98b60c96605fb53215d3a3ea26d46120715814817290ef9a5e18"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation()",
+    "label": "11-reader",
+    "name": "r27-final-native-screen_0_1929E5AF-54CA-44EE-B78C-1C5ABAF3348E.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-reader\\0C2E5930-24A7-4043-8B70-C4438200D1C4.png",
+    "bytes": 583199,
+    "sha256": "f46295e84615903bc31487a05a31edb35ff88d7170b8394ac3f3e95e8446adba"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation()",
+    "label": "11-reader",
+    "name": "r27-final-native-hierarchy_0_FBDCBDEB-4D0D-4D2E-BF98-4AD6C1FD4353.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-reader\\6AA9145E-ED0D-4505-9D10-24FD703CFDF6.txt",
+    "bytes": 48383,
+    "sha256": "a829d97904ebdab79116906dc41b657968fb632bbb1079ff4dd89470c169615d"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator()",
+    "label": "11-reader",
+    "name": "r27-final-native-screen_0_98DBEBB6-FCFD-47C9-87DE-97BAB8D17AC4.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-reader\\A7330E6F-1693-4AA3-9435-0428EB2CC539.png",
+    "bytes": 903053,
+    "sha256": "aa7310992c77b0f43980a9147ed8aa2f0932e25e221082161337d93549844ef6"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator()",
+    "label": "11-reader",
+    "name": "r27-final-native-hierarchy_0_E77CF704-0363-46F8-8FAD-1D86397CDCCD.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-reader\\8E53BB95-59F5-4047-B729-BA8D24D18B90.txt",
+    "bytes": 32621,
+    "sha256": "81933cbb5444bbea77503096d670696dbaf26b09c1c4de305792a5dfd2affb55"
+  },
+  {
+    "case": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+    "label": "phone",
+    "name": "r27-final-native-screen_0_6073FAC6-95B0-4489-9FA8-1DBD113FE5A8.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-phone\\9BF3F281-8D2A-45FA-834C-612E7EFF8421.png",
+    "bytes": 246936,
+    "sha256": "0b0b752767af7c675cab4c39f77fbf1ccda46d3a885227fbb4ea78db0365b8cc"
+  },
+  {
+    "case": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation()",
+    "label": "phone",
+    "name": "r27-final-native-hierarchy_0_D306EE9F-BA88-4C45-A269-1FCB55E50B38.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-phone\\96F191B1-7193-4013-8386-A16A20B0BDEE.txt",
+    "bytes": 9972,
+    "sha256": "62b35d129cc982339f6143875ac8bec6d2f29f78f11ac5a9880b2d035bad0b25"
+  },
+  {
+    "case": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+    "label": "phone",
+    "name": "r27-final-native-screen_0_81D661E8-1D59-4111-85D9-7A2067D01180.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-phone\\AB37D386-0086-4F57-A199-D16FE556DB21.png",
+    "bytes": 317531,
+    "sha256": "e1b5162a2e87a86a6151859124c8176ae355031adeb790f8ea9cf8f4df4bb56a"
+  },
+  {
+    "case": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+    "label": "phone",
+    "name": "r27-final-native-hierarchy_0_8A4E1C88-1880-4EDC-80AF-D9121DE87658.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-phone\\5C2D514B-FC79-41A8-8DDE-6A1C9CCF2B30.txt",
+    "bytes": 13935,
+    "sha256": "bd43c2c2778a344519052dc266d6a65860d2e97b2e2b609fe530685cea676288"
+  },
+  {
+    "case": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation()",
+    "label": "phone",
+    "name": "r27-final-native-screen_0_564E57B9-57EB-4EDF-AFCB-C61BFFFAC435.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-phone\\22D274A1-477D-4D24-BA74-BA2E8D356379.png",
+    "bytes": 243059,
+    "sha256": "a4760182ca9cab0eaebbcd86d1e102098b82f2788813b7af591630ac8519ee2f"
+  },
+  {
+    "case": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation()",
+    "label": "phone",
+    "name": "r27-final-native-hierarchy_0_14471277-E1F9-4D3A-B731-FECF7AC72846.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-phone\\C70A3642-9AC6-45E7-AC43-3973F0EBFDE1.txt",
+    "bytes": 9440,
+    "sha256": "fb153865217b46572fabf6ca7b805613c3ead448c0a2aa25df56d8e2e30b6057"
+  },
+  {
+    "case": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration()",
+    "label": "phone",
+    "name": "r27-final-native-screen_0_E9776CDC-011F-4749-B8B9-F412A538ACF6.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-phone\\41E1CBC0-1DC2-4E8A-960F-E85D53FEFFE8.png",
+    "bytes": 349508,
+    "sha256": "dab92a2802c8a0eed985a8eade2ae1ca55a5bf3d80fc82004419c591a93af387"
+  },
+  {
+    "case": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration()",
+    "label": "phone",
+    "name": "r27-final-native-hierarchy_0_88F2B9D0-ED5A-4800-9FB6-D2F2D8E06323.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-phone\\546E4F76-3C55-426B-B56B-C0CB24A268F9.txt",
+    "bytes": 8517,
+    "sha256": "ea2488ff81b893dc0ee267b52598f9826d8041d8c682e47a0e73e5e575b2eac7"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "label": "11-window",
+    "name": "r27-final-native-screen_0_304BFD02-F443-4232-A9C6-B96B92FAA811.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\6EBEA759-7C81-4390-9FBB-70CA28B8988B.png",
+    "bytes": 1018608,
+    "sha256": "67affedda2a31d3ee83b39ad535090e483bf89fe4ef8f66632b4668cfb6068b4"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "label": "11-window",
+    "name": "r27-final-native-hierarchy_0_1D83C2D6-3B94-40E7-942D-4B7D46F03673.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\0CA58DAD-C143-453A-8246-3477B88FF28B.txt",
+    "bytes": 21933,
+    "sha256": "42ec4e57b50ce2f5998e621766e7e10c50b3aa023224d1296cf9820571df9ed6"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "label": "11-window",
+    "name": "r27-native-fullscreen-restored-screen_0_159310F6-A251-481D-A86E-908F91DD3577.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\B7263F5A-2C1D-43AE-A826-E06D13FB060E.png",
+    "bytes": 1018608,
+    "sha256": "67affedda2a31d3ee83b39ad535090e483bf89fe4ef8f66632b4668cfb6068b4"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "label": "11-window",
+    "name": "r27-native-fullscreen-restored-hierarchy_0_E7ED7521-8885-43AA-BE53-B3F14A24E475.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\A3D3C7F1-763C-41AB-8526-6644172475A5.txt",
+    "bytes": 21982,
+    "sha256": "27d909c308c483c7f220d8fe689802db1e2d891b3fc6d1a073d8fb3e707350f3"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "label": "11-window",
+    "name": "Debug description for `\"reader-library-command-palette\" Any`_0_CF73B2BF-24BB-449C-8BB8-2A9DDC9C1BEF.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\4B722C31-EDCF-46B9-8563-6F8667049C58.txt",
+    "bytes": 213,
+    "sha256": "35b91955a34312d8d290513ead75dc59071f450ce432408d60f1b8e5d081356c"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "label": "11-window",
+    "name": "r27-real-narrow-palette-filtered-screen_0_85250BE1-7B63-4994-A4A4-1F106626D49E.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\31998B26-C339-4B08-A994-79B647B4487F.png",
+    "bytes": 2289427,
+    "sha256": "22e166f2d364354347840389d8de2a3eb3273370d8893f3ba1570caf8b978e81"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "label": "11-window",
+    "name": "r27-real-narrow-palette-filtered-hierarchy_0_0D12B1D9-AF14-46F7-A56C-528FAA67D9B9.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\FC8183BB-6BDE-4144-8239-E57AAF8EDEA0.txt",
+    "bytes": 29571,
+    "sha256": "781dfcff96c28babdb73e5eaecc697d5af28b1a5275fb183d78d244fcb6acbb3"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "label": "11-window",
+    "name": "r27-real-narrow-window-screen_0_63A4748F-15D5-44C3-AE07-35DFF1A84516.png",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\D4DDCFBD-D328-4916-8371-84590E5F6E26.png",
+    "bytes": 3680031,
+    "sha256": "bed9817715db0109cdf32800e6c27a10b5b45afae260fbb67ba761b03a661f1f"
+  },
+  {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "label": "11-window",
+    "name": "r27-real-narrow-window-hierarchy_0_9572A55B-CCDA-4B73-9321-41AF801DC925.txt",
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43688380348-selective\\artifacts\\visual-11-window\\E3E04290-1412-4BB1-9A9C-B20B57EA55C5.txt",
+    "bytes": 20279,
+    "sha256": "ef556a215192483011f7ce59fc73c0fc6b6d365cf372089302d5b566d48a4008"
+  }
+]
