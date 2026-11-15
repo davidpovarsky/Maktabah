@@ -4,10 +4,13 @@ import json
 import os
 from pathlib import Path
 import runpy
+import sys
 import tempfile
 import time
+from contextlib import asynccontextmanager
+from types import ModuleType, SimpleNamespace
 import unittest
-from unittest.mock import AsyncMock
+from unittest.mock import AsyncMock, Mock, patch
 
 provider = runpy.run_path(str(Path(__file__).with_name('runtime27-hid.py')))
 dispatch = provider['dispatch_request']
@@ -125,6 +128,69 @@ class HIDEvidencePrivacyTests(unittest.IsolatedAsyncioTestCase):
         exported = instance.redact_evidence(raw)
         self.assertNotIn(self.token.casefold(), exported.casefold())
         self.assertIn(self.nonce, exported)
+
+    async def test_server_writes_actual_success_and_rejection_exports_without_credential(self):
+        class StopAfterCycle(Exception):
+            pass
+
+        @asynccontextmanager
+        async def build(*args, **kwargs):
+            self.assertFalse('R27_HID_AUTH_TOKEN' in os.environ)
+            yield SimpleNamespace(companion=SimpleNamespace(udid='OWN-UDID'), key=self.client.key)
+
+        async def stop(*args):
+            raise StopAfterCycle()
+
+        modules = {name: ModuleType(name) for name in
+                   ['idb', 'idb.grpc', 'idb.grpc.client', 'idb.common', 'idb.common.types']}
+        modules['idb.grpc.client'].Client = SimpleNamespace(build=build)
+        modules['idb.common.types'].DomainSocketAddress = lambda path: SimpleNamespace(path=path)
+        folder = Path(self.folder.name)
+        documents = folder / 'app' / 'Documents'
+        documents.mkdir(parents=True)
+        self.path = documents / self.path.name
+        args = SimpleNamespace(socket='unused-local-test-socket', udid='OWN-UDID', containers=str(folder),
+                               ready=str(folder / 'ready.json'), evidence=str(folder / 'evidence.jsonl'))
+        for key, delivered in [(41, True), (self.token, False)]:
+            self.payload['key'] = key
+            self.path.write_text(json.dumps(self.payload))
+            with patch.dict(sys.modules, modules), patch.dict(os.environ, {'R27_HID_AUTH_TOKEN': self.token}), \
+                    patch.object(provider['asyncio'], 'sleep', stop):
+                with self.assertRaises(StopAfterCycle):
+                    await provider['serve'](args)
+            exported = Path(args.evidence).read_text()
+            ack = self.path.with_name(self.path.name.replace('.request.json', '.ack.json')).read_text()
+            self.assertNotIn(self.token, exported)
+            self.assertNotIn(self.token, ack)
+            self.assertEqual(json.loads(ack)['delivered'], delivered)
+        self.client.key.assert_awaited_once_with(41, duration=0.05)
+
+    async def test_startup_argv_is_credential_free_and_auth_is_server_only(self):
+        folder = Path(self.folder.name)
+        instance = provider['HIDComparison'].__new__(provider['HIDComparison'])
+        instance.udid, instance.token, instance.label = 'OWN-UDID', self.token, 'local'
+        instance.container = folder / 'app'
+        instance.tools = {'companion': 'unused-companion', 'python': 'unused-python'}
+        instance.directory, instance.artifacts = folder, folder
+        instance.socket, instance.ready = folder / 'socket', folder / 'ready.json'
+        instance.socket.touch()
+        instance.ready.write_text(json.dumps(dict(udid=instance.udid)))
+        instance.logs, instance.processes = [], []
+        process = Mock()
+        process.poll.return_value = 0
+        with patch.object(provider['subprocess'], 'Popen', return_value=process) as spawn, \
+                patch.dict(os.environ, {'R27_HID_AUTH_TOKEN': 'inherited-fake'}):
+            private_environment = instance.start()
+        try:
+            self.assertEqual(len(spawn.call_args_list), 2)
+            for call in spawn.call_args_list:
+                self.assertNotIn(self.token, ' '.join(call.args[0]))
+                self.assertNotIn('--token', call.args[0])
+            self.assertFalse('R27_HID_AUTH_TOKEN' in spawn.call_args_list[0].kwargs['env'])
+            self.assertTrue(spawn.call_args_list[1].kwargs['env'].get('R27_HID_AUTH_TOKEN') == self.token)
+            self.assertTrue(private_environment.get('TEST_RUNNER_R27_HID_TOKEN') == self.token)
+        finally:
+            instance.stop()
 
 
 if __name__ == '__main__':

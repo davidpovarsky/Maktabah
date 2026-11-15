@@ -80,6 +80,7 @@ class HIDComparison:
 
     def start(self):
         environment = os.environ.copy()
+        environment.pop("R27_HID_AUTH_TOKEN", None)
         environment.update(IDB_COMPANION_TMPDIR=str(self.directory), TMPDIR=str(self.directory))
         commands = [
             [self.tools["companion"], "--udid", self.udid, "--grpc-domain-sock", str(self.socket)],
