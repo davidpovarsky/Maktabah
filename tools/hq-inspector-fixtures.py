@@ -143,7 +143,7 @@ def write_corpus_report(report):
 def run():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-ref", help="Read production source from a Git commit for a regression baseline")
-    parser.add_argument("--case", choices=["all", "scope", "tap", "notes", "selection", "document", "gate", "corpus"], default="all")
+    parser.add_argument("--case", choices=["all", "scope", "tap", "notes", "note-identity", "selection", "document", "gate", "corpus"], default="all")
     parser.add_argument("--database", type=Path, help="Digest-pinned miniTest10 copy under this worktree's build directory; corpus case only")
     args = parser.parse_args()
     def production(path):
