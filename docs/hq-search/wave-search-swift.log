@@ -1,0 +1,69 @@
+   Creating library C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-lf9s1c92\Combine.lib and object C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-lf9s1c92\Combine.exp
+
+   Creating library C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-lf9s1c92\search-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\otzaria-search-fixture-lf9s1c92\search-fixtures.exp
+
+PASS: 191 portable search assertions (real models/wrapper/session; fake FFI and Combine)
+C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Source\Features\Search\Models\SearchResultItem.swift:121:52: error: value of type 'NSAttributedString' has no member 'archivedData'
+
+119 | 
+
+120 |         if let rawAttributedText {
+
+121 |             try container.encode(rawAttributedText.archivedData(), forKey: .attributedText)
+
+    |                                                    `- error: value of type 'NSAttributedString' has no member 'archivedData'
+
+122 |         }
+
+123 |     }
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Source\Features\Search\Models\SearchResultItem.swift:142:52: error: type 'NSAttributedString' has no member 'unarchiveSecure'
+
+140 | 
+
+141 |         if let data = try container.decodeIfPresent(Data.self, forKey: .attributedText) {
+
+142 |             rawAttributedText = NSAttributedString.unarchiveSecure(from: data)
+
+    |                                                    `- error: type 'NSAttributedString' has no member 'unarchiveSecure'
+
+143 |         } else {
+
+144 |             rawAttributedText = nil
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Source\Features\Search\Models\SearchResultItem.swift:171:37: error: value of type 'String' has no member 'convertToArabicDigits'
+
+169 |             return "\(bookTitle)\n\(attributedText.string)\n\n"
+
+170 |         }
+
+171 |         let pageArab = String(page).convertToArabicDigits()
+
+    |                                     `- error: value of type 'String' has no member 'convertToArabicDigits'
+
+172 |         let partArab = String(part).convertToArabicDigits()
+
+173 |         if page != -1, part != -1 {
+
+
+
+C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Source\Features\Search\Models\SearchResultItem.swift:172:37: error: value of type 'String' has no member 'convertToArabicDigits'
+
+170 |         }
+
+171 |         let pageArab = String(page).convertToArabicDigits()
+
+172 |         let partArab = String(part).convertToArabicDigits()
+
+    |                                     `- error: value of type 'String' has no member 'convertToArabicDigits'
+
+173 |         if page != -1, part != -1 {
+
+174 |             return "\(bookTitle) - ج: \(partArab) • ص: \(pageArab)\n\(attributedText.string)\n\n"
+
+error: input file 'C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Tests\HQ\search\CachedIndexReadinessFixtures.swift' was modified during the build
+error: input file 'C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Tests\HQ\search\CachedIndexReadinessFixtures.swift' was modified during the build
