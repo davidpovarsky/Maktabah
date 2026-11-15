@@ -528,6 +528,7 @@ private final class PaletteTextField: UITextField {
 /// Never takes window/application event ownership or recognizes a touch.
 @MainActor
 private final class PaletteEscapePressRecognizer: UIGestureRecognizer {
+    override func shouldReceive(_ event: UIEvent) -> Bool { event.type == .presses }
     override func canPrevent(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool { false }
     override func canBePrevented(by preventingGestureRecognizer: UIGestureRecognizer) -> Bool { false }
 
