@@ -168,7 +168,7 @@ private actor DiscoveryHost: UIDestinationEligibilityPort {
     func waitForEntry() async { await gate.waitForEntry() }
     func release() async { await gate.release() }
 }
-private final class DiscoveryClock: ActionClock, @unchecked Sendable {
+final class DiscoveryClock: ActionClock, @unchecked Sendable {
     private let lock = NSLock()
     private var value: UInt64 = 10
     private var waits: [UUID: (UInt64, CheckedContinuation<Void, any Error>)] = [:]

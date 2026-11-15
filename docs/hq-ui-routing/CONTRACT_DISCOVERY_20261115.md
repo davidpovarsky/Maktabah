@@ -48,3 +48,15 @@ No upstream-owned file, project/manifest/workflow/lock, Core source, Resolver, B
 ## Executed evidence
 
 Corrected focused Windows Swift6.3.3 strict-concurrency build and **19 XCTest methods / 0 failures / 0 warnings**, including 13 review regressions and 6 affected discovery methods. Logs and exact working-source hashes: `results/discovery-review-summary.json` and `results/discovery-review-after.log`. Before-fix reproduction and both fixture build-only failures are retained. Native/physical tests executed: zero. No healthy unrelated suites rerun.
+
+## Manager acceptance and combined-source verification
+
+Manager primary `01a1df85-6013-7270-b48d-8e10222e95c6` accepted this exact shared portable contract at `b9adb9c46ef04b0aac84ece0045ca7e420bc30d0` after reviewing the diff, mandatory no-fallback exact-scene/SAME-Core authority, generation/epoch/revision checks, cooperative cleanup, 18 source/fixture/manifest hashes and 4 raw log hashes, and the 19 writer XCTest results. **DISC01/02 CLOSED_PORTABLE**. This supersedes the historical pending-independent-review hold, not native/device requirements.
+
+Manager reports true-two-parent merges into combined G1 `9e589d6f` and native UI01/navigation base `a6c5b1d2`, with Actions/UIRouting package trees identical. The manager independently executed the same 19 focused Discovery XCTest methods under Swift6.3.3 strict concurrency on combined G1: exit0 / 0 failures. This is a new combined-source execution of the same coverage, not 38 distinct cases and not P execution. Raw manager log was read directly and its final19/0 result checked by P:
+
+`C:/Users/DAVID/Code/Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/G1_DISCOVERY_9e589d6f.log`
+
+SHA256: `fe60c65ccbe25b8fd79c36c2accf305f3a355506c366400ca86bfadbda072860`.
+
+After U inventory reconciliation, manager activated independent N primary `01a1df99-3d84-7d03-9927-af9bf35022b9` with this exact contract. Native observer implementation, scene orchestration and visible receipts belong to N. Actual Apple/native/physical acceptance remains open; source UI02 is not DONE. No public signature or source behavior changed in this acceptance record.

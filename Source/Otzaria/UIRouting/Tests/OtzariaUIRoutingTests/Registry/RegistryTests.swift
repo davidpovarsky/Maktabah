@@ -85,7 +85,11 @@ final class RegistryTests: XCTestCase {
         XCTAssertThrowsError(try UIDestinationRegistry(descriptors: [fixture], migrations: [.init(fromVersion: 0, from: id("old.reader"), to: id("missing.reader"))]))
         XCTAssertThrowsError(try UIDestinationRegistry(descriptors: [fixture], migrations: [.init(fromVersion: 1, from: id("old.reader"), to: fixture.id)]))
         let unbacked = UIDestinationDescriptor(id: id("fixture.unbacked"), title: "Unbacked", implementation: .implemented, supportedBackends: [.otzaria], presentations: [.currentTab])
-        XCTAssertThrowsError(try UIDestinationRegistry(descriptors: [unbacked]))
+        XCTAssertNoThrow(try UIDestinationRegistry(descriptors: [unbacked]))
+        // Registration alone is structural; execution requires Core's one-use
+        // live-authority navigation preparation and the synchronous guard.
+        let pureRegistry = try UIDestinationRegistry(descriptors: [unbacked])
+        XCTAssertThrowsError(try pureRegistry.validate(.init(destination: unbacked.id, content: .init(sectionLocator: ref()))))
         for mutates in [true, false] {
             let unsafe = UIDestinationDescriptor(id: id("fixture.unsafe"), title: "Unsafe", implementation: .fixture, supportedBackends: [.otzaria], presentations: [.currentTab], riskTier: mutates ? 2 : 3, mutatesUserData: mutates)
             XCTAssertThrowsError(try UIDestinationRegistry(descriptors: [unsafe]).validate(.init(destination: unsafe.id)))

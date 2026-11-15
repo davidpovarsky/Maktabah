@@ -33,13 +33,70 @@ public struct UISceneCommand: Sendable, Equatable {
         guard route.route.content == nil || route.route.presentation.tabID != nil else { throw UIRouteError(.failed, "route_not_prepared") }
         self.route = route; self.invocation = invocation; self.scene = scene
     }
-    /// Host must perform this and Core authorization immediately before native
-    /// synchronous commit, not before an unrelated async wait/queue operation.
+    /// Structural stale/deadline check, not authorization. Native hosts use the
+    /// authorized wrapper's final synchronous guard immediately before mutation.
     public func validateCurrent(_ current: UISceneSnapshot, now: UInt64) throws {
         try Task.checkCancellation()
         guard now < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
+        try validateScene(current)
+    }
+    private func validateScene(_ current: UISceneSnapshot) throws {
         guard current.sceneID == scene.sceneID, current.revision == scene.revision,
               current.backendSnapshot == invocation.snapshot else { throw UIRouteError(.staleState, "scene_or_backend_changed") }
+    }
+
+    /// UI-only routes use canonical Core navigation permission, not a fabricated
+    /// semantic action. Content must arrive through reader.open's existing sink.
+    public func prepareNavigation(using core: ActionExecutor, context: ActionExecutionContext) async throws -> UIAuthorizedSceneCommand {
+        guard route.descriptor.implementation == .implemented, route.descriptor.requiredCoreActions.isEmpty,
+              route.route.content == nil, route.route.state.privateState == nil else {
+            throw UIRouteError(.notSupported, "semantic_execution_required")
+        }
+        let authorization = try await core.prepareNavigation(sceneID: scene.sceneID.rawValue, invocation: invocation, context: context)
+        return UIAuthorizedSceneCommand(command: self, authorization: authorization)
+    }
+
+    /// Content can only be prepared from the matching command delivered by the
+    /// existing validated reader.open executor -> resolver -> sink path.
+    public func prepareNavigation(readerCommand: ActionOpenReaderCommand) throws -> UIAuthorizedSceneCommand {
+        guard route.route.content != nil, readerCommand.destination == route.route.content,
+              readerCommand.invocation == invocation, readerCommand.sceneID == scene.sceneID.rawValue,
+              let authorization = readerCommand.navigationAuthorization else {
+            throw UIRouteError(.failed, "reader_command_authorization_required")
+        }
+        return UIAuthorizedSceneCommand(command: self, authorization: authorization)
+    }
+
+    /// Final synchronous native guard. Obtain reader authorization only from the
+    /// Core-delivered ActionOpenReaderCommand after resolver validation. The
+    /// authorization re-reads its retained exact Core authority and is one-use.
+    /// Native host must mutate immediately after this returns, with no await.
+    @MainActor fileprivate func authorizeCommit(current: UISceneSnapshot, using authorization: ActionNavigationPreparation) throws {
+        guard route.descriptor.implementation == .implemented, !route.descriptor.mutatesUserData, route.descriptor.riskTier < 3 else {
+            throw UIRouteError(.notSupported, "destination_not_implemented")
+        }
+        let required = route.descriptor.requiredCoreActions
+        guard route.route.content == nil ? required.isEmpty : required == ["reader.open"] else {
+            throw UIRouteError(.notSupported, "semantic_execution_required")
+        }
+        try validateScene(current)
+        try authorization.authorizeCommit(invocation: invocation, sceneID: scene.sceneID.rawValue, destination: route.route.content)
+    }
+}
+
+/// Trusted non-Codable preparation binds the complete immutable scene command.
+/// No public initializer or replaceable route/authorization. Discovery and
+/// decoded routes cannot construct this wrapper or a Core preparation.
+public struct UIAuthorizedSceneCommand: Sendable {
+    public let command: UISceneCommand
+    private let authorization: ActionNavigationPreparation
+    fileprivate init(command: UISceneCommand, authorization: ActionNavigationPreparation) {
+        self.command = command; self.authorization = authorization
+    }
+    /// Apply exactly command.route after this succeeds, synchronously with no
+    /// await. It consumes the one-use preparation; observation/receipt follow.
+    @MainActor public func authorizeCommit(current: UISceneSnapshot) throws {
+        try command.authorizeCommit(current: current, using: authorization)
     }
 }
 public struct UISceneReceipt: Sendable, Equatable {
