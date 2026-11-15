@@ -67,6 +67,10 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
     private func validateLive() throws {
         try Task.checkCancellation()
         guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw ActionNavigationError(.cancelled, "deadline_exceeded") }
+        // Bracket the native ownership read with the SAME live backend source:
+        // native revocation during the first backend read must be observed,
+        // and generation/epoch drift during the native read must still refuse.
+        let beforeNative = try backendAuthority.currentBackendSnapshot()
         let live = try authority.navigationState(sceneID: sceneID)
         let backend = try backendAuthority.currentBackendSnapshot()
         guard live.active, original.active, live.lifetimeID == original.lifetimeID,
@@ -74,10 +78,12 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
             throw ActionNavigationError(.failed, "navigation_authority_changed")
         }
         guard live.sceneID == sceneID, original.sceneID == sceneID else { throw ActionNavigationError(.staleState, "scene_target_changed") }
-        if backend.backend == .sefariaEmbedded && backend.rpcEpoch == nil {
+        if (backend.backend == .sefariaEmbedded && backend.rpcEpoch == nil)
+            || (beforeNative.backend == .sefariaEmbedded && beforeNative.rpcEpoch == nil) {
             throw ActionNavigationError(.unavailable, "rpc_epoch_unavailable")
         }
-        guard backend == invocation.snapshot, preparedSnapshot == invocation.snapshot else { throw ActionNavigationError(.staleState, "backend_generation_changed") }
+        guard beforeNative == invocation.snapshot, backend == invocation.snapshot,
+              preparedSnapshot == invocation.snapshot else { throw ActionNavigationError(.staleState, "backend_generation_changed") }
         do { try ActionPolicy.navigation(context: live.context, backend: backend.backend, sceneID: sceneID, destination: destination) }
         catch let error as ActionEngineFailure { throw ActionNavigationError(error.status, error.code) }
         try Task.checkCancellation()
