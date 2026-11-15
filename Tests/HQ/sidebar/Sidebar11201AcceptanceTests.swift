@@ -33,11 +33,29 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
 
         let pager = app.descendants(matching: .any)["reader-sidebar-pager"].firstMatch
         XCTAssertTrue(pager.waitForExistence(timeout: 15))
-        let query = "בראשית"
+        let library = app.otherElements["library-column"].firstMatch
+        // Paths are exported from the pinned miniTest10 fixture's real category
+        // hierarchy. Fail closed when absent, never guess ancestor labels.
+        let matchPath = try fixturePath("HQ_SIDEBAR_MATCH_PATH", endingIn: "מסילת ישרים")
+        let excludedPath = try fixturePath("HQ_SIDEBAR_EXCLUDED_PATH", endingIn: "בראשית")
+        try revealBook(at: matchPath, in: library)
+        try revealBook(at: excludedPath, in: library)
+        let query = "מסילת"
         let search = try visibleSidebarSearch(in: pager)
         tap(search)
-        search.typeText(query)
+        let originalCatalog = catalogRows(in: library)
+        XCTAssertFalse(originalCatalog.isEmpty)
+        // A disconnected field cannot pass this empty-result oracle, even if
+        // it faithfully echoes and preserves every character typed into it.
+        replaceQuery(in: search, with: "__HQ_NO_CATALOG_MATCH_151126__")
+        waitForCatalog { library.collectionViews.cells.count == 0 }
+        replaceQuery(in: search, with: query)
+        waitForCatalog { !self.bookLabel(excludedPath.last!, in: library).exists }
+        try revealBook(at: matchPath, in: library)
+        XCTAssertTrue(bookLabel(matchPath.last!, in: library).exists)
+        XCTAssertFalse(bookLabel(excludedPath.last!, in: library).exists)
         XCTAssertEqual(search.value as? String, query)
+        let librarySearchPrompt = search.placeholderValue
         // Dismiss the keyboard without clearing the canonical query.
         if app.keyboards.firstMatch.exists {
             let dismiss = app.buttons.matching(NSPredicate(format:
@@ -48,7 +66,7 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
         let title = app.staticTexts["reader-header-title"].label
         let locator = app.staticTexts["reader-current-locator"].label
         let original = try viewport()
-        for _ in 0..<5 {
+        for _ in 0..<10 { // Twenty body transitions per language.
             // Fixed physical direction, center of the BODY. Do not retry in
             // the opposite direction or touch the bottom page-control strip.
             dragBody(pager, towardContents: true, isRTL: isRTL)
@@ -56,10 +74,21 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
             XCTAssertFalse(libraryDot.isSelected)
             XCTAssertFalse(app.buttons["toc-close"].exists,
                            "The original split owns the sidebar toggle")
+            let toc = app.otherElements["toc-column"].firstMatch
+            XCTAssertTrue(toc.waitForExistence(timeout: 15))
+            XCTAssertTrue(toc.staticTexts[language == "he" ? "תוכן עניינים" : "Table of Contents"].exists)
+            let tocSearch = try visibleSidebarSearch(in: pager)
+            XCTAssertEqual(tocSearch.placeholderValue,
+                           language == "he" ? "חיפוש בתוכן" : "Search Contents")
+            XCTAssertNotEqual(tocSearch.placeholderValue, librarySearchPrompt,
+                              "TOC owns its search; Library search must not leak")
+            XCTAssertNotEqual(tocSearch.value as? String, query)
             _ = readerSidebarToggle() // Asserts exactly one native/custom owner.
             dragBody(pager, towardContents: false, isRTL: isRTL)
             waitSelected(libraryDot)
             XCTAssertEqual(try visibleSidebarSearch(in: pager).value as? String, query)
+            XCTAssertTrue(bookLabel(matchPath.last!, in: library).exists)
+            XCTAssertFalse(bookLabel(excludedPath.last!, in: library).exists)
             XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
             XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
             let actual = try viewport()
@@ -68,12 +97,81 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
             XCTAssertEqual(actual.offset, original.offset, accuracy: 1)
         }
 
+        replaceQuery(in: try visibleSidebarSearch(in: pager), with: "")
+        waitForCatalog { self.catalogRows(in: library) == originalCatalog }
+        try revealBook(at: matchPath, in: library)
+        try revealBook(at: excludedPath, in: library)
+        XCTAssertTrue(bookLabel(matchPath.last!, in: library).exists)
+        XCTAssertTrue(bookLabel(excludedPath.last!, in: library).exists,
+                      "Clearing the canonical query restores the excluded book")
+
+        // Twenty dot transitions are covered here too, independently of the
+        // historical suite that permits opposite-direction swipe retries.
+        for _ in 0..<10 {
+            tap(contentsDot)
+            waitSelected(contentsDot)
+            tap(libraryDot)
+            waitSelected(libraryDot)
+            XCTAssertEqual(try viewport().object, original.object)
+        }
+
         // A vertical body scroll must not be interpreted as page navigation.
         pager.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65))
             .press(forDuration: 0.05, thenDragTo:
                 pager.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.35)))
         XCTAssertTrue(libraryDot.isSelected)
         retainNativeEvidence("sidebar-11201-\(language)-body-paging")
+    }
+
+    @MainActor
+    private func fixturePath(_ key: String, endingIn title: String) throws -> [String] {
+        let json = try XCTUnwrap(ProcessInfo.processInfo.environment[key],
+                                "Supply the actual miniTest10 category/book path as JSON")
+        let path = try JSONDecoder().decode([String].self, from: Data(json.utf8))
+        let leaf = try XCTUnwrap(path.last)
+        XCTAssertEqual(leaf, title, "Expected seeded fixture book, not arbitrary UI text")
+        XCTAssertTrue(path.allSatisfy { !$0.isEmpty })
+        return path
+    }
+
+    @MainActor
+    private func bookLabel(_ title: String, in library: XCUIElement) -> XCUIElement {
+        library.collectionViews.cells.staticTexts[title].firstMatch
+    }
+
+    @MainActor
+    private func revealBook(at path: [String], in library: XCUIElement) throws {
+        for (index, title) in path.enumerated() {
+            let label = bookLabel(title, in: library)
+            XCTAssertTrue(label.waitForExistence(timeout: 15), "Fixture path is missing: \(title)")
+            if index + 1 < path.count && !bookLabel(path[index + 1], in: library).exists {
+                tap(label) // Category ancestor only; never open the leaf book.
+            }
+        }
+    }
+
+    @MainActor
+    private func catalogRows(in library: XCUIElement) -> [String] {
+        library.collectionViews.cells.staticTexts.allElementsBoundByIndex.map { $0.label }
+    }
+
+    @MainActor
+    private func replaceQuery(in field: XCUIElement, with query: String) {
+        tap(field)
+        let old = field.value as? String ?? ""
+        // The last entered query leaves the caret at the end. Empty fields
+        // expose their placeholder as value, which must not be deleted.
+        if !old.isEmpty && old != field.placeholderValue {
+            field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count))
+        }
+        if !query.isEmpty { field.typeText(query) }
+    }
+
+    @MainActor
+    private func waitForCatalog(_ condition: @escaping @MainActor () -> Bool) {
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in MainActor.assumeIsolated { condition() } }, object: nil
+        )], timeout: 15), .completed)
     }
 
     @MainActor

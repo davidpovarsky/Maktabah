@@ -16,7 +16,7 @@ The first Python invocation resolved to a nonprinting system32 launcher; it is n
 
 `Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift` contains two direction-specific cases. They use the existing app and isolated miniTest10 fixture, not mocked view implementations. Include this file in the existing UI-test target alongside `FaithfulReaderUIBase` only for an authorized run; no target membership or CI was changed here. Existing fixture dependencies and `FAITHFUL_VIEWPORT_DIRECTORY` must be configured. Test files have syntax coverage only, not Apple SDK compile coverage.
 
-Each case types a genuine native Library query, performs five round trips using fixed physical direction in the center of the body (never the dots and never an opposite-direction retry), checks selected dots, search-query retention, one sidebar toggle/no `toc-close`, canonical reader title/locator, actual TextKit object/source/offset, and vertical scrolling. Diagnostic screenshots/hierarchy are retained. Native transition continuity and physical-device gestures still require human visual/runtime review.
+After Q review, each case specifies ten body round trips (20 fixed-direction transitions, never an opposite-direction retry), ten dot round trips, functional matching/nonmatching/empty/clear-restore catalog assertions, exact TOC search/title ownership, canonical reader title/locator, actual TextKit object/source/offset, and vertical scrolling. Real miniTest10 category paths must be supplied; those fixture values are not yet generated here. See `QA_CORRECTIONS.md` for prerequisites and the explicitly OPEN TOC-icon criterion. All prepared runtime assertions remain NOT_RUN. Diagnostic screenshots/hierarchy are retained; continuity and physical-device gestures require human visual/runtime review.
 
 The existing `FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport` also covers row/scroll retention, repeated dot changes and reader width/viewport; its old swipe test retries the opposite direction and therefore cannot alone prove RTL correctness. It was not modified or executed in this lane.
 
@@ -28,6 +28,7 @@ The existing `FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKi
 | Native horizontal body gesture, Hebrew RTL and English LTR | Correct physical direction; interactive transition and cancellation; two working dots | NOT_RUN |
 | Vertical list rows, expansion/selection and edge swipe/back | Vertical scrolling and row interactions retained; native screen-edge action wins appropriately | NOT_RUN |
 | Toggle ownership in Library, TOC, loading, empty and failure states | One functioning native split action, visible/openable with proper accessibility | NOT_RUN |
+| TOC-specific toggle symbol | A page-specific icon on the single native control | OPEN — not implemented; documented classic-button API is inapplicable and forbids reconfiguration; see QA_CORRECTIONS.md |
 | Standalone/non-pager TOC sheet | Original Close action remains | NOT_RUN |
 | Multiple reader tabs, active-tab TOC identity | TOC follows UUID without remounting reader; selected node stays accurate | NOT_RUN |
 | Sidebar close/open, compact split, Stage Manager, rotation | Canonical visibility/compact bindings and reader mount/anchor preserved | NOT_RUN |
