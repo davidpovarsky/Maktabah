@@ -16,11 +16,15 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
     }
     public let surface: NativeSurfaceState
     public let report: @MainActor (Evidence) -> Void
+    public let observeVisibility: @MainActor (@escaping @MainActor () -> Evidence?) -> Void
     public let submissionID: UUID?
     @Environment(\.scenePhase) private var scenePhase
 
-    public init(surface: NativeSurfaceState, submissionID: UUID? = nil, report: @escaping @MainActor (Evidence) -> Void) {
+    public init(surface: NativeSurfaceState, submissionID: UUID? = nil,
+                observeVisibility: @escaping @MainActor (@escaping @MainActor () -> Evidence?) -> Void = { _ in },
+                report: @escaping @MainActor (Evidence) -> Void) {
         self.surface = surface; self.submissionID = submissionID; self.report = report
+        self.observeVisibility = observeVisibility
     }
 
     public func makeUIViewController(context: Context) -> MarkerController { MarkerController() }
@@ -28,6 +32,7 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
         _ = scenePhase
         let view = controller.marker
         view.surface = surface; view.report = report; view.submissionID = submissionID
+        observeVisibility { [weak view] in view?.currentEvidence() }
         view.setNeedsLayout()
     }
     public static func dismantleUIViewController(_ controller: MarkerController, coordinator: ()) {
@@ -67,9 +72,15 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
         public override func didMoveToWindow() { super.didMoveToWindow(); setNeedsLayout(); if window == nil { publish(visible: false) } }
         public override func layoutSubviews() {
             super.layoutSubviews()
+            guard let evidence = currentEvidence() else { publish(visible: false); return }
+            lastScene = evidence.sceneID
+            publish(visible: evidence.isVisible)
+        }
+        /// Re-read actual UIKit state immediately at each scene observation.
+        /// A previously visible layout is not proof after a modal/window change.
+        fileprivate func currentEvidence() -> Evidence? {
             guard let window, let scene = window.windowScene,
-                  let id = UIStableID(rawValue: scene.session.persistentIdentifier) else { publish(visible: false); return }
-            lastScene = id
+                  let surface, let id = UIStableID(rawValue: scene.session.persistentIdentifier) else { return nil }
             let target = convert(bounds, to: window), intersection = target.intersection(window.bounds)
             let area = target.width * target.height
             var visible = hasAppeared && scene.activationState == .foregroundActive && !window.isHidden
@@ -87,7 +98,7 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
             var top = window.rootViewController
             while let presented = top?.presentedViewController { top = presented }
             if let top, top !== window.rootViewController, !isDescendant(of: top.view) { visible = false }
-            publish(visible: visible)
+            return Evidence(sceneID: id, surface: surface, isVisible: visible, submissionID: submissionID)
         }
         fileprivate func publish(visible: Bool) {
             guard let surface, let id = lastScene else { return }

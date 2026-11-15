@@ -93,7 +93,8 @@ struct MaktabahNativeRoutingSurface: ViewModifier {
     func body(content: Content) -> some View {
         content.background {
             if let session, let state = try? session.surface(kind) {
-                NativeSurfaceWitness(surface: state, submissionID: session.submissionID) { session.observe($0) }
+                NativeSurfaceWitness(surface: state, submissionID: session.submissionID,
+                    observeVisibility: { session.observeVisibility(for: state.destination, check: $0) }) { session.observe($0) }
                     .allowsHitTesting(false).accessibilityHidden(true)
             }
         }
