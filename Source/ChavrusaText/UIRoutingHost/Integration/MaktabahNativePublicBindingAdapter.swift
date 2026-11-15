@@ -13,10 +13,12 @@ struct MaktabahNativePublicPresentation {
 
 /// App-target adapter over immutable R44 producer APIs. Not an executor, cache,
 /// permission authority or public registration. Composition opts in separately.
-@MainActor final class MaktabahNativePublicBindingAdapter: UIPublicNavigationBindingPort {
+@MainActor final class MaktabahNativePublicBindingAdapter: UIPublicNavigationBindingPort, MaktabahNativeWorkspaceOwnerObserver {
     let sceneID: UIStableID
     private weak var manager: iOSNavigationManager?
     private weak var workspace: StudyWorkspaceNavigationAdapter?
+    private weak var workspaceOwner: MaktabahNativeWorkspaceOwner?
+    private var ownerObservation: UUID?
     private let owner: ObjectIdentifier
     private let source: StudyWorkspaceMappingSource
     private let sourceID: UUID?
@@ -30,16 +32,19 @@ struct MaktabahNativePublicPresentation {
     private var retired = false
 
     init(sceneID: UIStableID, manager: iOSNavigationManager, workspace: StudyWorkspaceNavigationAdapter,
+         workspaceOwner: MaktabahNativeWorkspaceOwner,
          authority: NativeNavigationAuthority, lease: NativeNavigationAuthority.Lease,
          directory: NativeSceneDirectory, backend: any ActionSynchronousBackendStatePort,
          presentation: @escaping @MainActor () throws -> MaktabahNativePublicPresentation,
          invalidated: @escaping @MainActor () -> Void) throws {
-        guard lease.sceneID == sceneID else { throw UIRouteError(.staleState, "public_binding_wrong_lease") }
+        guard lease.sceneID == sceneID, workspaceOwner.current === workspace else { throw UIRouteError(.staleState, "public_binding_wrong_lease_or_owner") }
         self.sceneID = sceneID; self.manager = manager; self.workspace = workspace
+        self.workspaceOwner = workspaceOwner
         owner = ObjectIdentifier(manager); source = workspace.mappingOwnershipSource
         sourceID = workspace.mappingOwnershipObservation()?.epoch.sourceID
         self.authority = authority; self.lease = lease; self.directory = directory; self.backend = backend
         self.presentation = presentation; self.invalidated = invalidated
+        ownerObservation = try workspaceOwner.observe(self)
         subscription = source.subscribeInvalidation(owner: self) { adapter, _ in adapter.revokeOriginalLease() }
     }
 
@@ -52,13 +57,19 @@ struct MaktabahNativePublicPresentation {
     func cancel() {
         guard !retired else { return }
         retired = true; subscription?.cancel(); subscription = nil
+        if let ownerObservation { workspaceOwner?.cancelObservation(ownerObservation) }
+        ownerObservation = nil
         revokeOriginalLease()
     }
     func ownsSource(_ workspace: StudyWorkspaceNavigationAdapter) -> Bool { !retired && self.workspace === workspace }
-    isolated deinit { subscription?.cancel() }
+    func workspaceOwnerWillChange() { cancel() }
+    isolated deinit {
+        subscription?.cancel()
+        if let ownerObservation { workspaceOwner?.cancelObservation(ownerObservation) }
+    }
 
     private func mapping() throws -> StudyWorkspaceMappingObservation {
-        guard !retired, let manager, let workspace, ObjectIdentifier(manager) == owner,
+        guard !retired, let manager, let workspace, workspaceOwner?.current === workspace, ObjectIdentifier(manager) == owner,
               let actual = workspace.mappingOwnershipObservation(), actual.source === source,
               actual.owner == owner, actual.scene == sceneID.rawValue, actual.coverage == .liveNativeSetters,
               let sourceID, actual.epoch.sourceID == sourceID else {

@@ -6,7 +6,14 @@ import ChavrusaUIRoutingHost
 private struct MaktabahNativeRoutingSessionKey: EnvironmentKey {
     static let defaultValue: MaktabahNativeSceneSession? = nil
 }
+private struct MaktabahNativeWorkspaceOwnerKey: EnvironmentKey {
+    static let defaultValue: MaktabahNativeWorkspaceOwner? = nil
+}
 extension EnvironmentValues {
+    var maktabahNativeWorkspaceOwner: MaktabahNativeWorkspaceOwner? {
+        get { self[MaktabahNativeWorkspaceOwnerKey.self] }
+        set { self[MaktabahNativeWorkspaceOwnerKey.self] = newValue }
+    }
     var maktabahNativeRoutingSession: MaktabahNativeSceneSession? {
         get { self[MaktabahNativeRoutingSessionKey.self] }
         set { self[MaktabahNativeRoutingSessionKey.self] = newValue }
@@ -22,6 +29,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
     @Binding var showSettings: Bool
     @Environment(\.scenePhase) private var phase
     @Environment(\.exact9401Workspace) private var workspace
+    @Environment(\.maktabahNativeWorkspaceOwner) private var workspaceOwner
     @State private var sceneID = ""
     @State private var session: MaktabahNativeSceneSession?
     private var ready: Bool { MaktabahApp.isIpad && (!ChavrusaTextReaderUI.isEnabled || workspace?.attached == true) && !sceneID.isEmpty }
@@ -54,29 +62,36 @@ struct MaktabahNativeRoutingHost: ViewModifier {
                 catch { session.presentation.revoke() }
             }
             .onChange(of: workspace?.selection) { _, _ in
-                guard let session else { mountIfReady(); return }
-                let bindings = bindings, workspace = workspace
-                session.updateProjection {
-                    .init(manager: bindings.manager, selectedTab: bindings.selectedTab.wrappedValue,
-                          columnVisibility: bindings.columnVisibility.wrappedValue, settingsPresented: bindings.showSettings.wrappedValue,
-                          sidebar: nil, workspace: workspace)
-                }
-                try? MaktabahNativeRoutingComposition.shared.workspaceProjectionDidUpdate(session, workspace: workspace)
+                refreshProjection()
             }
             .onDisappear {
                 if let session { MaktabahNativeRoutingComposition.shared.unmount(session) }
                 session = nil
             }
     }
+    private func refreshProjection() {
+        guard let session else { mountIfReady(); return }
+        let bindings = bindings
+        let source = session.workspaceProjectionSource.flatMap { $0.isAuthoritative ? $0 : nil }
+            ?? MaktabahNativeWorkspaceProjectionSource(owner: nil, legacyWorkspace: workspace)
+        session.updateProjection(source.projection { workspace in
+            .init(manager: bindings.manager, selectedTab: bindings.selectedTab.wrappedValue,
+                  columnVisibility: bindings.columnVisibility.wrappedValue, settingsPresented: bindings.showSettings.wrappedValue,
+                  sidebar: nil, workspace: workspace)
+        })
+        try? MaktabahNativeRoutingComposition.shared.workspaceProjectionDidUpdate(session, workspace: workspace)
+    }
     private func mountIfReady() {
         guard ready, session == nil, let id = UIStableID(rawValue: sceneID) else { return }
         do {
-            let bindings = bindings, workspace = workspace
-            let value = try MaktabahNativeRoutingComposition.shared.mount(sceneID: id, manager: manager, bindings: bindings, foreground: phase == .active) {
+            let bindings = bindings
+            let source = MaktabahNativeWorkspaceProjectionSource(owner: workspaceOwner, legacyWorkspace: workspace)
+            let value = try MaktabahNativeRoutingComposition.shared.mount(sceneID: id, manager: manager, bindings: bindings, foreground: phase == .active,
+                workspaceSource: source, project: source.projection { workspace in
                 .init(manager: bindings.manager, selectedTab: bindings.selectedTab.wrappedValue,
                       columnVisibility: bindings.columnVisibility.wrappedValue, settingsPresented: bindings.showSettings.wrappedValue,
                       sidebar: nil, workspace: workspace)
-            }
+            })
             session = value
             MaktabahNativeRoutingComposition.shared.installIntentDependency()
         } catch {

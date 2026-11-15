@@ -1,0 +1,30 @@
+{
+  "N_APP_OWNER_ACTUAL_LIFECYCLE_PRODUCER_UNAPPLIED.diff": {
+    "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+    "before_sha256": "ce5acd64a1a3dfd688ff2a5385036919c05748a6db3621bffadf17004c918c4f",
+    "after_sha256": "e739621bbc2f2e953b63705fdb45e16780ff05655dfac8005c93424bbe4d3510",
+    "patch_sha256": "e3a1f4e38b53a8d0be8e7d51dcdf84b732ecd9f3e58b63617212bd1b5d93616a",
+    "check_exit": 0,
+    "applied": false,
+    "gate": "Exact downstream owner-file approval/application; replaces canonical State reference, no mirrored workspace storage",
+    "original_git_blob": "ac7bf051cf9288ffa5b37ccb59f04d7969272d12"
+  },
+  "N_APP_OWNER_BOTH_SOURCES_REGISTRATION_UNAPPLIED.diff": {
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "before_sha256": "e16ab6728b9d2e7892613d39a9597856139c5ba8413502f67ffe3a48df67596b",
+    "after_sha256": "1e80c3be8ae5efcd2a0a275228afa01e4f538fb26379611a813541475d5b2727",
+    "patch_sha256": "96d0d2cfd33fa319494dea786e241ced58e2d7c562684588e597401a9fea0050",
+    "check_exit": 0,
+    "applied": false,
+    "gate": "Manager project writer; supersedes earlier adapter-only proposal; R policy dependency also required"
+  },
+  "N_APP_OWNER_FUTURE_MOUNT_CONNECTION_UNAPPLIED.diff": {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+    "before_sha256": "4290a2a0122be0d46c8403bdf8c48d1bbdb7ffe710e2d712709a04063da283db",
+    "after_sha256": "d1bfa73e05a80fddc099b55457f96cc2c2933884eb2600cff5430753a950b038",
+    "patch_sha256": "c5bfafcb057f4769c9006493303ebcb9bdab6171b86f185cb5c90bad1f21bd5e",
+    "check_exit": 0,
+    "applied": false,
+    "gate": "After actual owner producer connection; internal switch stays false; no URL/policy enablement"
+  }
+}

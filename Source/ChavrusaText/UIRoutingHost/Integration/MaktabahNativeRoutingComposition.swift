@@ -55,12 +55,13 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     }
 
     func mount(sceneID: UIStableID, manager: iOSNavigationManager, bindings: MaktabahNativeSceneBindings, foreground: Bool,
+               workspaceSource: MaktabahNativeWorkspaceProjectionSource? = nil,
                project: @escaping @MainActor () throws -> MaktabahNativeSceneProjection) throws -> MaktabahNativeSceneSession {
         guard scenes[sceneID] == nil else { throw UIRouteError(.unavailable, "native_scene_already_registered") }
         guard let windowNumber = (1...16).first(where: { number in !scenes.values.contains(where: { $0.windowNumber == number }) }) else {
             throw UIRouteError(.unavailable, "native_scene_admission_rejected")
         }
-        let session = MaktabahNativeSceneSession(sceneID: sceneID, directory: directory, bindings: bindings, project: project)
+        let session = MaktabahNativeSceneSession(sceneID: sceneID, directory: directory, bindings: bindings, workspaceSource: workspaceSource, project: project)
         session.foreground = foreground
         let lease = try authority.mount(sceneID: sceneID, foreground: foreground)
         do {
@@ -92,16 +93,20 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     @discardableResult
     func configureFuturePublicBinding(session: MaktabahNativeSceneSession, manager: iOSNavigationManager,
                                       workspace: StudyWorkspaceNavigationAdapter,
+                                      workspaceOwner: MaktabahNativeWorkspaceOwner? = nil,
                                       enabled: Bool = false) throws -> MaktabahNativePublicBindingAdapter {
         guard enabled else { throw UIRouteError(.notSupported, "future_public_binding_disabled") }
+        guard let workspaceOwner, workspaceOwner.current === workspace, session.usesWorkspaceOwner(workspaceOwner) else {
+            throw UIRouteError(.unavailable, "authoritative_workspace_owner_not_installed")
+        }
         guard let entry = scenes[session.sceneID], entry.session === session,
               entry.managerID == ObjectIdentifier(manager), entry.publicBinding == nil else {
             throw UIRouteError(.staleState, "public_binding_registration_changed")
         }
         let binding = try MaktabahNativePublicBindingAdapter(sceneID: session.sceneID, manager: manager,
-            workspace: workspace, authority: authority, lease: entry.lease, directory: directory, backend: backend,
-            presentation: { [weak session, weak workspace] in
-                guard let session, let workspace, session.ownsWorkspace(workspace) else { throw ActionPortError.unavailable }
+            workspace: workspace, workspaceOwner: workspaceOwner, authority: authority, lease: entry.lease, directory: directory, backend: backend,
+            presentation: { [weak session] in
+                guard let session else { throw ActionPortError.unavailable }
                 return try session.publicBindingPresentation()
             }, invalidated: { [weak self, weak session] in
                 guard let self, let session, self.scenes[session.sceneID]?.session === session else { return }

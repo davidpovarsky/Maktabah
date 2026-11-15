@@ -18,6 +18,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     private let directory: NativeSceneDirectory
     private var project: @MainActor () throws -> MaktabahNativeSceneProjection
     private let bindings: MaktabahNativeSceneBindings
+    let workspaceProjectionSource: MaktabahNativeWorkspaceProjectionSource?
     private var lease: NativeSceneDirectory.Lease?
     private var command: UISceneCommand?
     private var visible: [UIDestinationID: NativeSurfaceWitness.Evidence] = [:]
@@ -25,9 +26,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     var isPresentationReady: Bool { bindings.isPresentationReady }
 
     init(sceneID: UIStableID, directory: NativeSceneDirectory, bindings: MaktabahNativeSceneBindings,
+         workspaceSource: MaktabahNativeWorkspaceProjectionSource? = nil,
          project: @escaping @MainActor () throws -> MaktabahNativeSceneProjection) {
         self.sceneID = sceneID; self.directory = directory; self.project = project
         self.bindings = bindings
+        workspaceProjectionSource = workspaceSource
         presentation = NativePresentationObserver(sceneID: sceneID)
     }
 
@@ -92,7 +95,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         self.project = project
     }
     func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? { try project().surface(kind) }
-    func ownsWorkspace(_ workspace: StudyWorkspaceNavigationAdapter) -> Bool { (try? project().workspace) === workspace }
+    func usesWorkspaceOwner(_ owner: MaktabahNativeWorkspaceOwner) -> Bool { workspaceProjectionSource?.uses(owner) == true }
     /// Passive independent evidence only. With the reader marker absent this
     /// stays nil even if a reader model contains the requested destination.
     func publicBindingPresentation() throws -> MaktabahNativePublicPresentation {

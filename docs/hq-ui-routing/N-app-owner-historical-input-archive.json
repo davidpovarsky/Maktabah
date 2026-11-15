@@ -1,0 +1,8 @@
+{
+  "archive": "N-app-owner-control-and-initial110-inputs.zip",
+  "sha256": "1043380125dc2b9840adc4072659942589e44f184e4a47cd63f837255191a63a",
+  "all_local_inputs_exactly_match_both_recorded_manifests": true,
+  "local_input_count": 8,
+  "R_inputs": "Immutable R44 Git source bytes in both manifests",
+  "legacy_mount": "Exact immutable4b method extracted by recorded preparation flag"
+}

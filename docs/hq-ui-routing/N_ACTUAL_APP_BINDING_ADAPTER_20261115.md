@@ -1,5 +1,7 @@
 # N actual downstream app binding adapter
 
+**4b owner-path claim superseded:** manager review found that the host captured its workspace in the projection closure. Its project-based identity check did not prove current environment ownership, and the shell-substitution test was insufficient. The 107 portable results remain valid for those doubled boundaries. Current correction and explicit unapplied real-producer gate are in `N_ACTUAL_HOST_WORKSPACE_OWNER_CORRECTION_20261115.md`; do not treat this historical packet as actual pre-callback replacement coverage.
+
 Implemented in `Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift`, with actual downstream composition/session/host connections. It consumes immutable R `44f518fcccce6bd20127f39eea8462d7a7a9dd47` APIs and the existing SAME NativeNavigationAuthority lease, Core/P050 port and scene directory. It is not a documentation-only or test-only adapter. The production default is `futurePublicBindingsEnabled = false`; no current handler, registry policy, URL, content/newTab/reservation or reader executor is enabled.
 
 ## Lifetime and observation
@@ -8,7 +10,7 @@ The adapter retains one fixed source handle/sourceID, weak actual manager/worksp
 
 It subscribes with R's typed `subscribeInvalidation`, revoking only its original lease synchronously at the prepublication fence. No await, Task, SwiftUI onChange or ready notification repairs/revokes a replacement admission. Failure to invalidate unmounts only that exact lease. Callback cleanup clears that scene's existing composition context and revokes the actual presentation wait; lifecycle unmount cancels the subscription. Late old-lease cleanup cannot affect a replacement scene lifetime.
 
-The factory `configureFuturePublicBinding` defaults off and constructs the adapter from the original registered manager/session/lease/directory/backend. Its weak presentation closure also checks the actual session projection still owns the same workspace object, so an old source cannot silently serve a substituted app workspace before a coalesced callback. An installed adapter handles ownership invalidation synchronously. The downstream host's later workspace notification updates projection but does not revoke a freshly admitted operation for the same fixed producer; replacement/nil owners retire the binding. With no adapter installed, that callback performs the existing current-v1 invalidation unchanged.
+The factory `configureFuturePublicBinding` defaults off and constructs the adapter from the original registered manager/session/lease/directory/backend. At4b its weak presentation closure checked the session's captured projection; that did **not** establish live environment ownership before a coalesced callback. This claim is withdrawn and replaced by the canonical-owner correction linked above. An installed R producer handles its own mapping invalidation synchronously. The downstream host's later workspace notification avoids revoking a freshly admitted operation for the same fixed producer. With no adapter installed, that callback performs the existing current-v1 invalidation.
 
 ## Exact shapes and independent presentation
 

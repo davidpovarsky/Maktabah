@@ -1,0 +1,38 @@
+--- a/Maktabah.xcodeproj/project.pbxproj
++++ b/Maktabah.xcodeproj/project.pbxproj
+@@ -1344,6 +1344,8 @@
+ 		AA725622473EC7E3A537C03B /* MaktabahNativeSceneProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3679E7CCB7DA2D4DF51A2FC5 /* MaktabahNativeSceneProjection.swift */; };
+ 		4516A179B623B5FC4CBAC1FF /* MaktabahNativeSceneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F87859DF502D48133E2C6E /* MaktabahNativeSceneSession.swift */; };
+ 		6274C19EF48599FF678A6515 /* MaktabahNativeURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20D070C658D432A4CD59CE1 /* MaktabahNativeURLHandler.swift */; };
++		5236809E8664B2AD25C159B5 /* MaktabahNativePublicBindingAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65E4BEE5F3C1AE7ADBFB345 /* MaktabahNativePublicBindingAdapter.swift */; };
++		8D2678655749473E1E6C56D3 /* MaktabahNativeWorkspaceOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346A39685ADFBA6B7F19E3F5 /* MaktabahNativeWorkspaceOwner.swift */; };
+ /* End PBXBuildFile section */
+ 
+ /* Begin PBXContainerItemProxy section */
+@@ -2107,6 +2109,8 @@
+ 		3679E7CCB7DA2D4DF51A2FC5 /* MaktabahNativeSceneProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift; sourceTree = "<group>"; };
+ 		65F87859DF502D48133E2C6E /* MaktabahNativeSceneSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift; sourceTree = "<group>"; };
+ 		F20D070C658D432A4CD59CE1 /* MaktabahNativeURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift; sourceTree = "<group>"; };
++		F65E4BEE5F3C1AE7ADBFB345 /* MaktabahNativePublicBindingAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift; sourceTree = "<group>"; };
++		346A39685ADFBA6B7F19E3F5 /* MaktabahNativeWorkspaceOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift; sourceTree = "<group>"; };
+ /* End PBXFileReference section */
+ 
+ /* Begin PBXFileSystemSynchronizedRootGroup section */
+@@ -3763,6 +3767,8 @@
+ 				348F3CE98841B091C9694605 /* MaktabahNativeSceneBindings.swift */,
+ 				3679E7CCB7DA2D4DF51A2FC5 /* MaktabahNativeSceneProjection.swift */,
+ 				65F87859DF502D48133E2C6E /* MaktabahNativeSceneSession.swift */,
++				346A39685ADFBA6B7F19E3F5 /* MaktabahNativeWorkspaceOwner.swift */,
++				F65E4BEE5F3C1AE7ADBFB345 /* MaktabahNativePublicBindingAdapter.swift */,
+ 				F20D070C658D432A4CD59CE1 /* MaktabahNativeURLHandler.swift */,
+ 			);
+ 			name = "Native Routing Host";
+@@ -4865,6 +4871,8 @@
+ 				272FA036D80429868E339D38 /* MaktabahNativeSceneBindings.swift in Sources */,
+ 				AA725622473EC7E3A537C03B /* MaktabahNativeSceneProjection.swift in Sources */,
+ 				4516A179B623B5FC4CBAC1FF /* MaktabahNativeSceneSession.swift in Sources */,
++				8D2678655749473E1E6C56D3 /* MaktabahNativeWorkspaceOwner.swift in Sources */,
++				5236809E8664B2AD25C159B5 /* MaktabahNativePublicBindingAdapter.swift in Sources */,
+ 				6274C19EF48599FF678A6515 /* MaktabahNativeURLHandler.swift in Sources */,
+ 				CC37848F7DE08819914E0505 /* MaktabahBookUpdateSafety.swift in Sources */,
+ 				9FC1E4DC41DC2B4B1F7EF5CC /* ReaderNavigationDisplayPolicy.swift in Sources */,

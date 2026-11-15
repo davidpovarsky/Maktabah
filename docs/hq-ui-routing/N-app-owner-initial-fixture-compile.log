@@ -1,0 +1,316 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-2807070033DA82CF.txt
+[1/9] Write sources
+[3/10] Emitting module ChavrusaUIRoutingHostTests
+[4/20] Compiling ChavrusaUIRoutingHostTests ActualAppMethodBodies_ExplicitNativeBoundaries.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+[5/20] Compiling ChavrusaUIRoutingHostTests Actual_MaktabahNativePublicBindingAdapter.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+[6/20] Compiling ChavrusaUIRoutingHostTests Actual_MaktabahNativeWorkspaceOwner.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+[7/20] Compiling ChavrusaUIRoutingHostTests NRActualProducerConsumerTests.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+[8/20] Compiling ChavrusaUIRoutingHostTests RActual_BackendSessionIntegrityRepair.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+[9/20] Compiling ChavrusaUIRoutingHostTests RActual_LibraryBackendModels.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+[10/20] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceMappingOwnership.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+[11/20] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceModels.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+[12/20] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspacePersistence.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+[13/20] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceStore.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:30: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                              `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:506:51: error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+504 |         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+
+505 |         other.fixtureConnect(f.manager, groupID: f.groupID)
+
+506 |         XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+
+    |                                                   `- error: value of type 'StudyWorkspaceNavigationAdapter' has no member 'selection'
+
+507 |         try sourceOwner.replace(with: other)
+
+508 |         XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
+
+error: fatalError

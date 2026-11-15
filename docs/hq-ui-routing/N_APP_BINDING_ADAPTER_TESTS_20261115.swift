@@ -1,8 +1,13 @@
 // Appended to unchanged immutable R consumer fixture in the isolated test target.
 @MainActor final class NActualAppBindingAdapterTests: XCTestCase, @unchecked Sendable {
+    private var workspaceOwners: [MaktabahNativeWorkspaceOwner] = []
+    private func owner(_ workspace: StudyWorkspaceNavigationAdapter) throws -> MaktabahNativeWorkspaceOwner {
+        let owner = MaktabahNativeWorkspaceOwner(); try owner.replace(with: workspace)
+        workspaceOwners.append(owner); return owner
+    }
     private func adapter(_ f: RConsumerFixture, witness: Bool = false,
                          read: (@MainActor () throws -> MaktabahNativePublicPresentation)? = nil) throws -> MaktabahNativePublicBindingAdapter {
-        try MaktabahNativePublicBindingAdapter(sceneID: f.n.sceneID, manager: f.manager, workspace: f.adapter,
+        try MaktabahNativePublicBindingAdapter(sceneID: f.n.sceneID, manager: f.manager, workspace: f.adapter, workspaceOwner: owner(f.adapter),
             authority: f.n.authority, lease: f.n.lease, directory: f.n.directory, backend: f.n.backend,
             presentation: read ?? { .init(ready: true, historyRootAvailable: true,
                 witnessedReader: witness ? f.n.driver.surface : nil) }, invalidated: {})
@@ -149,12 +154,13 @@
         let f = try await RConsumerFixture(.otzaria); defer { f.cleanup() }
         let composition = NAppCompositionBoundary(f.n, manager: f.manager)
         let session = composition.session
-        session.projectedWorkspace = f.adapter
+        let sourceOwner = try owner(f.adapter)
+        session.workspaceProjectionSource = .init(owner: sourceOwner, legacyWorkspace: f.adapter)
         XCTAssertThrowsError(try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter))
         XCTAssertEqual(try f.n.authority.navigationState(sceneID: f.n.sceneID.rawValue).authorityRevision, f.n.admitted.authorityRevision)
-        let installed = try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter, enabled: true)
+        let installed = try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter, workspaceOwner: sourceOwner, enabled: true)
         defer { installed.cancel() }
-        XCTAssertThrowsError(try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter, enabled: true))
+        XCTAssertThrowsError(try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter, workspaceOwner: sourceOwner, enabled: true))
         f.manager.activeTabId = f.b.id
         XCTAssertThrowsError(try f.n.authority.navigationState(sceneID: f.n.sceneID.rawValue))
         XCTAssertEqual(session.invalidations, 1); XCTAssertEqual(session.revocations, 1)
@@ -198,16 +204,79 @@
     }
     func testActualCompositionRejectsWorkspaceOwnerSubstitutionBeforeCoalescedCallback() async throws {
         let f = try await RConsumerFixture(.otzaria); defer { f.cleanup() }
-        let composition = NAppCompositionBoundary(f.n, manager: f.manager), session = composition.session
-        session.projectedWorkspace = f.adapter
-        let installed = try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter, enabled: true)
+        let composition = NAppCompositionBoundary(f.n, manager: f.manager), sourceOwner = try owner(f.adapter)
+        NAppCompositionBoundary.shared = composition
+        let host = NActualRoutingHostPath(manager: f.manager, sceneID: f.n.sceneID.rawValue, owner: sourceOwner)
+        host.runMount()
+        let session = try XCTUnwrap(host.session)
+        let installed = try composition.configureFuturePublicBinding(session: session, manager: f.manager, workspace: f.adapter, workspaceOwner: sourceOwner, enabled: true)
         defer { installed.cancel() }
         let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
         other.fixtureConnect(f.manager, groupID: f.groupID)
-        session.projectedWorkspace = other
+        XCTAssertEqual(other.selection, f.adapter.selection, "Actual equal selection must not require onChange")
+        try sourceOwner.replace(with: other)
+        XCTAssertTrue(try session.readMountedWorkspace() === other, "Exact mount projection rereads the actual canonical owner before refresh")
         XCTAssertThrowsError(try installed.observePublicNavigationBinding(f.n.intent, requestId: UUID(), sceneID: f.n.sceneID), "Old adapter must not observe a substituted current app workspace")
         try composition.workspaceProjectionDidUpdate(session, workspace: other)
         XCTAssertThrowsError(try f.n.authority.navigationState(sceneID: f.n.sceneID.rawValue))
         XCTAssertEqual(f.n.driver.applied, 0)
     }
+    func testActualHostWithoutAuthoritativeProducerRefusesFutureBinding() async throws {
+        let f = try await RConsumerFixture(.otzaria); defer { f.cleanup() }
+        let composition = NAppCompositionBoundary(f.n, manager: f.manager)
+        NAppCompositionBoundary.shared = composition
+        let host = NActualRoutingHostPath(manager: f.manager, sceneID: f.n.sceneID.rawValue, owner: nil, legacy: f.adapter)
+        host.runMount()
+        XCTAssertThrowsError(try composition.configureFuturePublicBinding(session: try XCTUnwrap(host.session), manager: f.manager,
+            workspace: f.adapter, enabled: true))
+        XCTAssertEqual(try f.n.authority.navigationState(sceneID: f.n.sceneID.rawValue).authorityRevision, f.n.admitted.authorityRevision)
+    }
+    func testActualMountAndRefreshClosuresDoNotRetainReplacedWorkspace() async throws {
+        let f = try await RConsumerFixture(.otzaria); defer { f.cleanup() }
+        var transient: StudyWorkspaceNavigationAdapter? = .init(sceneID: f.n.sceneID.rawValue, store: f.store)
+        transient!.fixtureConnect(f.manager, groupID: f.groupID)
+        let weakOld = NWorkspaceWeakProbe(transient!)
+        let sourceOwner = try owner(transient!)
+        let composition = NAppCompositionBoundary(f.n, manager: f.manager)
+        NAppCompositionBoundary.shared = composition
+        let host = NActualRoutingHostPath(manager: f.manager, sceneID: f.n.sceneID.rawValue, owner: sourceOwner)
+        host.runMount(); host.runRefresh()
+        transient = nil
+        try sourceOwner.replace(with: f.adapter)
+        XCTAssertNil(weakOld.value, "Neither exact production closure may retain the old workspace")
+        XCTAssertTrue(try XCTUnwrap(host.session).readMountedWorkspace() === f.adapter)
+    }
+    func testExactMountPathReadsEqualSelectionReplacementWithoutAnyRefresh() async throws {
+        let f = try await RConsumerFixture(.otzaria); defer { f.cleanup() }
+        var transient: StudyWorkspaceNavigationAdapter? = .init(sceneID: f.n.sceneID.rawValue, store: f.store)
+        transient!.fixtureConnect(f.manager, groupID: f.groupID)
+        XCTAssertEqual(transient!.selection, f.adapter.selection)
+        let weakOld = NWorkspaceWeakProbe(transient!), sourceOwner = try owner(transient!)
+        let composition = NAppCompositionBoundary(f.n, manager: f.manager)
+        NAppCompositionBoundary.shared = composition
+        let host = NActualRoutingHostPath(manager: f.manager, sceneID: f.n.sceneID.rawValue, owner: sourceOwner)
+        host.runMount()
+        transient = nil
+        try sourceOwner.replace(with: f.adapter)
+        // No projection shell assignment, SwiftUI onChange, refresh, Task or await.
+        XCTAssertTrue(try XCTUnwrap(host.session).readMountedWorkspace() === f.adapter)
+        XCTAssertNil(weakOld.value)
+    }
+    func testLegacyRefreshStillReadsNewEnvironmentButRemainsPubliclyUnsupported() async throws {
+        let f = try await RConsumerFixture(.otzaria); defer { f.cleanup() }
+        let composition = NAppCompositionBoundary(f.n, manager: f.manager)
+        NAppCompositionBoundary.shared = composition
+        let host = NActualRoutingHostPath(manager: f.manager, sceneID: f.n.sceneID.rawValue, owner: nil, legacy: f.adapter)
+        host.runMount()
+        let other = StudyWorkspaceNavigationAdapter(sceneID: f.n.sceneID.rawValue, store: f.store)
+        other.fixtureConnect(f.manager, groupID: f.groupID)
+        host.setLegacyEnvironment(other); host.runRefresh()
+        XCTAssertTrue(try XCTUnwrap(host.session).readMountedWorkspace() === other)
+        XCTAssertThrowsError(try composition.configureFuturePublicBinding(session: try XCTUnwrap(host.session), manager: f.manager,
+            workspace: other, enabled: true))
+    }
+}
+@MainActor private final class NWorkspaceWeakProbe {
+    weak var value: StudyWorkspaceNavigationAdapter?
+    init(_ value: StudyWorkspaceNavigationAdapter) { self.value = value }
 }
