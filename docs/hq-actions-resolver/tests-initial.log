@@ -1,0 +1,93 @@
+[0/1] Planning build
+Building for debugging...
+[0/13] Write sources
+[1/13] Write swift-version-2807070033DA82CF.txt
+[2/13] Write sources
+[4/14] Emitting module OtzariaActionCore
+[5/15] Compiling OtzariaActionCore CatalogActionResolver.swift
+[6/16] Wrapping AST for OtzariaActionCore for debugging
+[8/17] Emitting module OtzariaActionCoreTests
+[9/19] Compiling OtzariaActionCoreTests ContractAPITests.swift
+[10/19] Compiling OtzariaActionCoreTests CatalogActionResolverTests.swift
+[11/20] Wrapping AST for OtzariaActionCoreTests for debugging
+[12/20] C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageDiscoveredTests.derived\all-discovered-tests.swift
+[13/20] Write sources
+[15/21] Emitting module OtzariaActionCorePackageDiscoveredTests
+[16/23] Compiling OtzariaActionCorePackageDiscoveredTests OtzariaActionCoreTests.swift
+[17/23] Compiling OtzariaActionCorePackageDiscoveredTests all-discovered-tests.swift
+[18/24] C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageTests.derived\runner.swift
+[19/24] Wrapping AST for OtzariaActionCorePackageDiscoveredTests for debugging
+[20/24] Write sources
+[22/25] Emitting module OtzariaActionCorePackageTests
+[23/26] Compiling OtzariaActionCorePackageTests runner.swift
+[24/27] Wrapping AST for OtzariaActionCorePackageTests for debugging
+[25/27] Write Objects.LinkFileList
+[26/27] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (92.93s)
+Test Suite 'Selected tests' started at 2026-11-15 03:00:46.109
+
+Test Suite 'CatalogActionResolverTests' started at 2026-11-15 03:00:46.141
+
+Test Case 'CatalogActionResolverTests.testBudgetsFailWithoutSearchingOnlyPrefix' started at 2026-11-15 03:00:46.141
+
+Test Case 'CatalogActionResolverTests.testBudgetsFailWithoutSearchingOnlyPrefix' passed (0.007 seconds)
+
+Test Case 'CatalogActionResolverTests.testDeadlineAndCancellationBeforeAndDuringSourceAwait' started at 2026-11-15 03:00:46.149
+
+Test Case 'CatalogActionResolverTests.testDeadlineAndCancellationBeforeAndDuringSourceAwait' passed (0.001 seconds)
+
+Test Case 'CatalogActionResolverTests.testDuplicateTitlesEditionsAliasesAndLimitOne' started at 2026-11-15 03:00:46.150
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Resolver\CatalogActionResolverTests.swift:125: error: CatalogActionResolverTests.testDuplicateTitlesEditionsAliasesAndLimitOne : XCTAssertEqual failed: ("Optional(OtzariaActionCore.ActionJSON.string("book:10"))") is not equal to ("Optional(OtzariaActionCore.ActionJSON.string("book:1"))") -
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Resolver\CatalogActionResolverTests.swift:125: error: CatalogActionResolverTests.testDuplicateTitlesEditionsAliasesAndLimitOne : XCTAssertEqual failed: ("Optional(OtzariaActionCore.ActionJSON.string("book:10"))") is not equal to ("Optional(OtzariaActionCore.ActionJSON.string("book:1"))") -
+
+Test Case 'CatalogActionResolverTests.testDuplicateTitlesEditionsAliasesAndLimitOne' failed (0.012 seconds)
+
+Test Case 'CatalogActionResolverTests.testGenerationBackendAndEpochChangeAcrossEveryDataAwait' started at 2026-11-15 03:00:46.161
+
+Test Case 'CatalogActionResolverTests.testGenerationBackendAndEpochChangeAcrossEveryDataAwait' passed (0.001 seconds)
+
+Test Case 'CatalogActionResolverTests.testMalformedAndCrossBackendInputsBeforeProvider' started at 2026-11-15 03:00:46.162
+
+Test Case 'CatalogActionResolverTests.testMalformedAndCrossBackendInputsBeforeProvider' passed (0.0 seconds)
+
+Test Case 'CatalogActionResolverTests.testMissingVersusUnavailableAndRedactedFailure' started at 2026-11-15 03:00:46.163
+
+Test Case 'CatalogActionResolverTests.testMissingVersusUnavailableAndRedactedFailure' passed (0.001 seconds)
+
+Test Case 'CatalogActionResolverTests.testReferenceAmbiguityIsStableCappedAndFullyValidated' started at 2026-11-15 03:00:46.163
+
+Test Case 'CatalogActionResolverTests.testReferenceAmbiguityIsStableCappedAndFullyValidated' passed (0.009 seconds)
+
+Test Case 'CatalogActionResolverTests.testReferenceFidelityUnknownEmbeddedAndWrongWork' started at 2026-11-15 03:00:46.172
+
+Test Case 'CatalogActionResolverTests.testReferenceFidelityUnknownEmbeddedAndWrongWork' passed (0.001 seconds)
+
+Test Case 'CatalogActionResolverTests.testSourceNormalizationPreservesNikudAndCase' started at 2026-11-15 03:00:46.173
+
+Test Case 'CatalogActionResolverTests.testSourceNormalizationPreservesNikudAndCase' passed (0.003 seconds)
+
+Test Case 'CatalogActionResolverTests.testSourceSubstitutionAndMalformedCatalogRejected' started at 2026-11-15 03:00:46.176
+
+Test Case 'CatalogActionResolverTests.testSourceSubstitutionAndMalformedCatalogRejected' passed (0.0 seconds)
+
+Test Case 'CatalogActionResolverTests.testThreeBackendsAndExactSectionFocus' started at 2026-11-15 03:00:46.177
+
+Test Case 'CatalogActionResolverTests.testThreeBackendsAndExactSectionFocus' passed (0.001 seconds)
+
+Test Suite 'CatalogActionResolverTests' failed at 2026-11-15 03:00:46.178
+
+	 Executed 11 tests, with 2 failures (0 unexpected) in 0.036 (0.036) seconds
+
+Test Suite 'Selected tests' failed at 2026-11-15 03:00:46.178
+
+	 Executed 11 tests, with 2 failures (0 unexpected) in 0.036 (0.036) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.002 seconds.
