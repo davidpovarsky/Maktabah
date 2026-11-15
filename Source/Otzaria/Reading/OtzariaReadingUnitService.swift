@@ -86,12 +86,14 @@ final class OtzariaReadingUnitService {
     }
 
     func descriptor(bookId: Int, containingLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
+        if mode == .line { return try lineDescriptor(bookId: bookId, lookup: .containing(lineIndex)) }
         let summaries = try unitSummaries(bookId: bookId, mode: mode)
         guard let index = summaries.firstIndex(where: { $0.sourceLineIndices.contains(lineIndex) }) else { return nil }
         return descriptor(at: index, in: summaries)
     }
 
     func firstDescriptor(bookId: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
+        if mode == .line { return try lineDescriptor(bookId: bookId, lookup: .first) }
         var summaries = try unitSummaries(bookId: bookId, mode: mode)
         if summaries.isEmpty && mode != .line {
             summaries = try unitSummaries(bookId: bookId, mode: .line)
@@ -100,6 +102,7 @@ final class OtzariaReadingUnitService {
     }
 
     func nextDescriptor(bookId: Int, afterLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
+        if mode == .line { return try lineDescriptor(bookId: bookId, lookup: .next(lineIndex)) }
         let summaries = try unitSummaries(bookId: bookId, mode: mode)
         let current = summaries.firstIndex { $0.sourceLineIndices.contains(lineIndex) }
         guard let next = current.map({ $0 + 1 }) ?? summaries.firstIndex(where: { $0.startLineIndex > lineIndex }),
@@ -108,11 +111,64 @@ final class OtzariaReadingUnitService {
     }
 
     func previousDescriptor(bookId: Int, beforeLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
+        if mode == .line { return try lineDescriptor(bookId: bookId, lookup: .previous(lineIndex)) }
         let summaries = try unitSummaries(bookId: bookId, mode: mode)
         let current = summaries.firstIndex { $0.sourceLineIndices.contains(lineIndex) }
         guard let previous = current.map({ $0 - 1 }) ?? summaries.lastIndex(where: { $0.endLineIndex < lineIndex }),
               summaries.indices.contains(previous) else { return nil }
         return descriptor(at: previous, in: summaries)
+    }
+
+    private enum LineLookup {
+        case first, containing(Int), next(Int), previous(Int)
+    }
+
+    /// Resolve one row and its actual adjacent locators without indexing the book.
+    /// All predicates are fixed SQL; only bound values come from the request.
+    private func lineDescriptor(bookId: Int, lookup: LineLookup) throws -> OtzariaReadingUnitDescriptor? {
+        try Task.checkCancellation()
+        let predicate: String
+        let order: String
+        let parameters: [Any]
+        switch lookup {
+        case .first:
+            predicate = ""
+            order = "ASC"
+            parameters = [bookId]
+        case .containing(let index):
+            predicate = "AND l.lineIndex = ?"
+            order = "ASC"
+            parameters = [bookId, index]
+        case .next(let index):
+            predicate = "AND l.lineIndex > ?"
+            order = "ASC"
+            parameters = [bookId, index]
+        case .previous(let index):
+            predicate = "AND l.lineIndex < ?"
+            order = "DESC"
+            parameters = [bookId, index]
+        }
+        let result = try db.fetch(query: """
+            SELECT l.lineIndex,
+                   (SELECT MAX(p.lineIndex) FROM line p WHERE p.bookId = l.bookId AND p.lineIndex < l.lineIndex),
+                   (SELECT MIN(n.lineIndex) FROM line n WHERE n.bookId = l.bookId AND n.lineIndex > l.lineIndex)
+            FROM line l
+            WHERE l.bookId = ? \(predicate)
+            ORDER BY l.lineIndex \(order)
+            LIMIT 1
+        """, parameters: parameters) { row in
+            try Task.checkCancellation()
+            let index = row.int(at: 0)
+            return OtzariaReadingUnitDescriptor(
+                id: "line:\(index)", bookId: bookId, mode: .line,
+                tocEntryId: nil, title: nil, level: nil,
+                startLineIndex: index, endLineIndex: index, sourceLineIndices: [index], heRef: nil,
+                previousStartLineIndex: row.isNull(at: 1) ? nil : row.int(at: 1),
+                nextStartLineIndex: row.isNull(at: 2) ? nil : row.int(at: 2)
+            )
+        }
+        try Task.checkCancellation()
+        return result.first
     }
 
     private func descriptor(at index: Int, in summaries: [UnitSummary]) -> OtzariaReadingUnitDescriptor {
@@ -291,19 +347,15 @@ final class OtzariaReadingUnitService {
         let index = try bookIndex(bookId: bookId)
 
         // Root entry handling: identify roots with children and direct lines <= 3
-        var rootTitleLinesByRootId: [Int: [Int]] = [:]
-        for (entryId, entry) in index.entriesById where entry.parentId == nil {
+        var directRootLineCounts: [Int: Int] = [:]
+        for leafId in index.leafEntryByLineIndex.values {
             try Task.checkCancellation()
-            let children = index.childrenByParentId[entryId] ?? []
-            if !children.isEmpty {
-                let directLines = index.leafEntryByLineIndex.compactMap { lineIndex, leafId in
-                    leafId == entryId ? lineIndex : nil
-                }.sorted()
-                if !directLines.isEmpty && directLines.count <= 3 {
-                    rootTitleLinesByRootId[entryId] = directLines
-                }
+            if let entry = index.entriesById[leafId], entry.parentId == nil,
+               !(index.childrenByParentId[leafId]?.isEmpty ?? true) {
+                directRootLineCounts[leafId, default: 0] += 1
             }
         }
+        let rootTitleEntryIds = Set(directRootLineCounts.compactMap { $0.value <= 3 ? $0.key : nil })
 
         var orderedEntryIds: [Int] = []
         var lineIndicesByUnitId: [Int: [Int]] = [:]
@@ -311,7 +363,7 @@ final class OtzariaReadingUnitService {
 
         for (lineIndex, leafId) in index.leafEntryByLineIndex.sorted(by: { $0.key < $1.key }) {
             try Task.checkCancellation()
-            if rootTitleLinesByRootId[leafId] != nil {
+            if rootTitleEntryIds.contains(leafId) {
                 heldRootLinesByRootId[leafId, default: []].append(lineIndex)
                 continue
             }
@@ -430,10 +482,10 @@ final class OtzariaReadingUnitService {
     private func buildUnit(from summary: UnitSummary) throws -> OtzariaReadingUnit? {
         try Task.checkCancellation()
         let lines = try sourceLines(for: summary)
-        guard !lines.isEmpty else { return nil }
         guard lines.map(\.lineIndex) == summary.sourceLineIndices else {
             throw OtzariaReadingUnitError.inconsistentSourceLines
         }
+        guard !lines.isEmpty else { return nil }
         let html = lines.map(\.html).joined(separator: "\n")
         var plainSegments: [String] = []
         var lineAnchors: [OtzariaLineAnchor] = []
@@ -534,6 +586,8 @@ final class OtzariaReadingUnitService {
 
     private func mapSourceLine(_ row: SQLiteRow, decoder: OtzariaLineContentDecoder) throws -> SourceLine {
         try Task.checkCancellation()
+        // A missing LEFT JOIN payload is a broken source row, not empty text.
+        guard !row.isNull(at: 2) else { throw OtzariaReadingUnitError.inconsistentSourceLines }
         return SourceLine(
             id: row.int(at: 0),
             lineIndex: row.int(at: 1),

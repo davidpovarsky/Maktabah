@@ -1,0 +1,389 @@
+PASS: actual production mapping and lazy-line SQL; sparse/foreign/missing/boundary isolation
+{
+  "rows": [
+    [
+      0,
+      11
+    ],
+    [
+      1,
+      null
+    ],
+    [
+      2,
+      12
+    ]
+  ],
+  "fixture_plan": [
+    [
+      4,
+      0,
+      0,
+      "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=?)"
+    ],
+    [
+      10,
+      0,
+      0,
+      "SEARCH lt USING COVERING INDEX sqlite_autoindex_line_toc_1 (lineId=?) LEFT-JOIN"
+    ],
+    [
+      32,
+      0,
+      0,
+      "USE TEMP B-TREE FOR RIGHT PART OF ORDER BY"
+    ]
+  ],
+  "line_queries": [
+    {
+      "variant": 0,
+      "parameters": [
+        103
+      ],
+      "rows": [
+        [
+          0,
+          null,
+          1
+        ]
+      ],
+      "sqlite_vm_steps": 63,
+      "fixture_plan": [
+        [
+          4,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=?)"
+        ],
+        [
+          12,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          17,
+          12,
+          0,
+          "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          37,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          42,
+          37,
+          0,
+          "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ]
+      ]
+    },
+    {
+      "variant": 1,
+      "parameters": [
+        103,
+        10000
+      ],
+      "rows": [
+        [
+          10000,
+          9998,
+          10002
+        ]
+      ],
+      "sqlite_vm_steps": 74,
+      "fixture_plan": [
+        [
+          4,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          19,
+          14,
+          0,
+          "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          39,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          44,
+          39,
+          0,
+          "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ]
+      ]
+    },
+    {
+      "variant": 2,
+      "parameters": [
+        103,
+        9999
+      ],
+      "rows": [
+        [
+          10000,
+          9998,
+          10002
+        ]
+      ],
+      "sqlite_vm_steps": 75,
+      "fixture_plan": [
+        [
+          4,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          19,
+          14,
+          0,
+          "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          39,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          44,
+          39,
+          0,
+          "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ]
+      ]
+    },
+    {
+      "variant": 3,
+      "parameters": [
+        103,
+        10001
+      ],
+      "rows": [
+        [
+          10000,
+          9998,
+          10002
+        ]
+      ],
+      "sqlite_vm_steps": 76,
+      "fixture_plan": [
+        [
+          4,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          15,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          20,
+          15,
+          0,
+          "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          40,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          45,
+          40,
+          0,
+          "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ]
+      ]
+    },
+    {
+      "variant": 1,
+      "parameters": [
+        103,
+        9999
+      ],
+      "rows": [],
+      "sqlite_vm_steps": 13,
+      "fixture_plan": [
+        [
+          4,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          19,
+          14,
+          0,
+          "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          39,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          44,
+          39,
+          0,
+          "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ]
+      ]
+    },
+    {
+      "variant": 3,
+      "parameters": [
+        103,
+        0
+      ],
+      "rows": [],
+      "sqlite_vm_steps": 13,
+      "fixture_plan": [
+        [
+          4,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          15,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          20,
+          15,
+          0,
+          "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          40,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          45,
+          40,
+          0,
+          "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ]
+      ]
+    },
+    {
+      "variant": 2,
+      "parameters": [
+        103,
+        19998
+      ],
+      "rows": [],
+      "sqlite_vm_steps": 14,
+      "fixture_plan": [
+        [
+          4,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          19,
+          14,
+          0,
+          "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          39,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          44,
+          39,
+          0,
+          "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ]
+      ]
+    },
+    {
+      "variant": 0,
+      "parameters": [
+        105
+      ],
+      "rows": [],
+      "sqlite_vm_steps": 11,
+      "fixture_plan": [
+        [
+          4,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=?)"
+        ],
+        [
+          12,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          17,
+          12,
+          0,
+          "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+        ],
+        [
+          37,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 2"
+        ],
+        [
+          42,
+          37,
+          0,
+          "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+        ]
+      ]
+    }
+  ]
+}

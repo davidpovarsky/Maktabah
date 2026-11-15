@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "scope": "Byte-identical neutral-renderer UTF8 output, actual miniTest10-v6 Berakhot/Tehillim/Derashot books; not TextKit/device acceptance",
+  "before": {
+    "103": {
+      "bytes": 1140991,
+      "sha256": "518a41e341f0626e1b70f0d2326d0a824e8eb9f267156d0bcd160887a23ffd04"
+    },
+    "28": {
+      "bytes": 396628,
+      "sha256": "3c6f5956581496a2181c7884c57280f45c14f249564e46e26ae1517912482e18"
+    },
+    "3152": {
+      "bytes": 703290,
+      "sha256": "65947e88d7b2bf5e4a957110329866605de784e954f299fcf37a28b4716e147a"
+    }
+  },
+  "after": {
+    "103": {
+      "bytes": 1140991,
+      "sha256": "518a41e341f0626e1b70f0d2326d0a824e8eb9f267156d0bcd160887a23ffd04"
+    },
+    "28": {
+      "bytes": 396628,
+      "sha256": "3c6f5956581496a2181c7884c57280f45c14f249564e46e26ae1517912482e18"
+    },
+    "3152": {
+      "bytes": 703290,
+      "sha256": "65947e88d7b2bf5e4a957110329866605de784e954f299fcf37a28b4716e147a"
+    }
+  }
+}

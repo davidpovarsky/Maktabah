@@ -48,7 +48,7 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         let backgroundTask = Task.detached(priority: .userInitiated) { () -> (section: LibraryTextSection, generation: UInt64, mode: OtzariaUnitMode) in
             try Task.checkCancellation()
             guard locator.backend == .otzaria,
-                  case .legacyLine(let line) = locator.position else { throw LibraryBackendError.invalidLocator }
+                  case .legacyLine(let line) = locator.position, line >= 0 else { throw LibraryBackendError.invalidLocator }
             let bridge = OtzariaMaktabahBridge.shared
             let generation = try bridge.withDatabase { _ in bridge.generationSnapshot() }
             let bookID: Int?
@@ -62,14 +62,26 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
             } else {
                 bookID = nil
             }
-            guard let bookID else { throw LibraryBackendError.invalidLocator }
+            guard let bookID, bookID > 0 else { throw LibraryBackendError.invalidLocator }
 
             let mode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
-            if let unit = line == 0
-                ? OtzariaMaktabahBridge.shared.getFirstReadingUnit(bookId: bookID, mode: mode)
-                : OtzariaMaktabahBridge.shared.getReadingUnit(bookId: bookID, containingLineIndex: line, mode: mode) {
-                let previous = OtzariaMaktabahBridge.shared.getPreviousReadingUnitDescriptor(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode)
-                let next = OtzariaMaktabahBridge.shared.getNextReadingUnitDescriptor(bookId: bookID, afterLineIndex: unit.endLineIndex, mode: mode)
+            // The legacy optional bridge methods log and erase SQL/decode errors.
+            // Preserve those errors here so a failed chapter cannot appear as a
+            // successful single-row fallback or as the last navigation unit.
+            let loaded = try bridge.withCachedReadingUnit { service in
+                try line == 0
+                    ? service.firstReadingUnit(bookId: bookID, mode: mode)
+                    : service.readingUnit(bookId: bookID, containingLineIndex: line, mode: mode)
+            }
+            if let unit = loaded {
+                let adjacent = bridge.withReadingUnitService { service in
+                    Result {
+                        (try service.previousDescriptor(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode),
+                         try service.nextDescriptor(bookId: bookID, afterLineIndex: unit.endLineIndex, mode: mode))
+                    }
+                }
+                guard let adjacent else { throw CancellationError() }
+                let (previous, next) = try adjacent.get()
                 try Task.checkCancellation()
                 guard generation == bridge.generationSnapshot(), mode == bridge.currentReadingUnitMode else { throw CancellationError() }
                 return (OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next), generation, mode)

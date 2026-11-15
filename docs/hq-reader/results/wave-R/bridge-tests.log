@@ -1,0 +1,8 @@
+bridge: PASS — actual publication/reset/adapter methods; cancellation; reset-before-lease anchor rejected; multiline locator; reset during mapping; source and adjacent SQL errors propagated; malformed locators rejected
+2026-11-15 16:23:49.026 bridge.exe[34352:78c8] [Otzaria] getFirstReadingUnit start bookId=103 mode=paragraph
+2026-11-15 16:23:49.031 bridge.exe[34352:78c8] [Otzaria] getFirstReadingUnit done bookId=103 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=5
+2026-11-15 16:23:49.031 bridge.exe[34352:78c8] [Otzaria] makeBookContent unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 plainChars=16 htmlChars=16
+2026-11-15 16:23:49.042 bridge.exe[34352:a570] [Otzaria] getReadingUnit start bookId=103 lineIndex=0 mode=paragraph
+2026-11-15 16:23:49.042 bridge.exe[34352:a570] [Otzaria] getReadingUnit done bookId=103 lineIndex=0 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=0
+2026-11-15 16:23:49.043 bridge.exe[34352:a570] [Otzaria] getReadingUnit start bookId=103 lineIndex=0 mode=paragraph
+2026-11-15 16:23:49.045 bridge.exe[34352:a570] [Otzaria] getReadingUnit done bookId=103 lineIndex=0 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=0
