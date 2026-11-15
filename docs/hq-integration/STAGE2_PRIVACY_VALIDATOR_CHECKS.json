@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checks": [
+    "unchanged accepted",
+    "only evidenced additive pair accepted",
+    "rejected tracking changed",
+    "rejected collection changed",
+    "rejected original key removed",
+    "rejected original reason removed",
+    "rejected unproven addition",
+    "rejected duplicate reason",
+    "rejected duplicate category",
+    "rejected empty unproven category"
+  ],
+  "scope": "bounded validator-context tests only; no app SDK or privacy compliance claim"
+}

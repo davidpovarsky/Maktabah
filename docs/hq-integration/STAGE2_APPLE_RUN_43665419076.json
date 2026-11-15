@@ -1,0 +1,177 @@
+{
+  "status": "FAILED",
+  "scope": "ONE_UNSIGNED_REAL_IOS_APP_BUILD",
+  "device": "NOT_RUN",
+  "runtime": "NOT_RUN",
+  "no_fixture_or_app_model_mocks": true,
+  "signing": false,
+  "archive": false,
+  "distribution": false,
+  "checkout_sha": "a088cad312c5504df309d981d8cfb38056739458",
+  "application_source_sha": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+  "validator_sha256": "1e84374a816d004ac8b73612a858bd11406b608cf66e80d3f46ae18e58a2409f",
+  "inputs_sha256": "ebd76835068d593735467d8ebcc60605bc5a042bd04d73e0d019f91a018adac2",
+  "workflow_sha256": "6b63eb237cb3456f0bfecf3873bd164155b3a6bcc8c098105e1d5d780aa06b13",
+  "project_sha256": "6b2961b879ad625143c0ef6de943bfa3254e29ac8f9458658e15abe120a71775",
+  "application_trees": {
+    "Source": "e671bd55f6fec3526cb2863f1a1ae34ba306aa84",
+    "Vendor": "857406808f59c271c58525fea8b49aa3e8191a0a",
+    "Maktabah.xcodeproj": "e2722a859700ba6f040485f273e4ba6a74e4e83d"
+  },
+  "package_resolved_sha256": "c9959df672bb641a4a5cfb729574a6c83840dabeb067d2db79ddeee0bd8adc7e",
+  "package_pins": {
+    "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+    "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+    "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+    "torahinspectorkit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+    "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+    "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+  },
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "sdk_path": "/Applications/Xcode_27.1.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk",
+  "sdk_version": "27.1",
+  "developer_dir": "/Applications/Xcode_27.1.app/Contents/Developer",
+  "commands": [
+    [
+      "git",
+      "submodule",
+      "update",
+      "--init",
+      "--depth",
+      "1",
+      "Vendor/SefariaMobile/Upstream"
+    ],
+    [
+      "/opt/homebrew/opt/python@3.15/bin/python3.15",
+      "Scripts/CI/prepare-pinned-sharp-libvips.py"
+    ],
+    [
+      "npm",
+      "ci",
+      "--legacy-peer-deps"
+    ],
+    [
+      "chmod",
+      "-R",
+      "+x",
+      "/Users/runner/work/Maktabah/Maktabah/Vendor/SefariaMobile/Upstream/node_modules/.bin",
+      "/Users/runner/work/Maktabah/Maktabah/Vendor/SefariaMobile/Upstream/node_modules/expo/bin"
+    ],
+    [
+      "pod",
+      "install"
+    ],
+    [
+      "bash",
+      "Scripts/CI/verify-xcframework.sh",
+      "Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework",
+      "otzaria_search_engine.h"
+    ],
+    [
+      "bash",
+      "Scripts/CI/verify-xcframework.sh",
+      "Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework",
+      "maktabah_zayit_search.h"
+    ],
+    [
+      "/opt/homebrew/opt/python@3.15/bin/python3.15",
+      "Scripts/CI/verify-otzaria-xcode-project.py"
+    ],
+    [
+      "xcodebuild",
+      "-resolvePackageDependencies",
+      "-workspace",
+      "Maktabah.xcworkspace",
+      "-scheme",
+      "Maktabah-iOS",
+      "-clonedSourcePackagesDirPath",
+      "build/SourcePackages",
+      "-onlyUsePackageVersionsFromResolvedFile"
+    ]
+  ],
+  "native_context": {
+    "gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+    "npm_lock_sha256": "181335ac7cc6aaa5a62cf80744bb73c6df8d384ef06654f54bfecc3e7f4a8ec2",
+    "podfile_sha256": "bc10dd717dcbdf5958e94354ea2a19479306b0eb2e5d9fd46c6da95c3c849f46",
+    "node": "v22.23.4",
+    "cocoapods": "1.17.0",
+    "ruby": "ruby 3.3.13 (2026-10-23 revision af48f08f21) [arm64-darwin23]",
+    "pod_lock_sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7",
+    "generated_project_sha256": "84c38810b8530f58a25d758a828b682a930d1f64a6c0a43a705b262005a127e2",
+    "workspace_sha256": "d27bfdb7fb6d0dc873c287f7c4b84c161de200fec99b9a0fb11eec850896eb3f",
+    "staged_workspace_package_lock_sha256": "c9959df672bb641a4a5cfb729574a6c83840dabeb067d2db79ddeee0bd8adc7e"
+  },
+  "artifact_inputs": [
+    {
+      "id": 12763376316,
+      "name": "ios-build-otzaria-xcframework",
+      "sha256": "ba24e27a2c26281e0af3d11cd7ea00fe88ff44a3634194dfd10ce89a526eccd5",
+      "tar": "OtzariaSearchEngine.xcframework.tar",
+      "destination": "Vendor/OtzariaSearchEngine",
+      "producer_run": 40566258679,
+      "verified_sha256": "ba24e27a2c26281e0af3d11cd7ea00fe88ff44a3634194dfd10ce89a526eccd5"
+    },
+    {
+      "id": 12763202077,
+      "name": "ios-build-zayit-xcframework",
+      "sha256": "8f46a00dfc99fbbd01b24a0a72dbee3937d42456169413a7768c4eb112b249d3",
+      "tar": "MaktabahZayitSearch.xcframework.tar",
+      "destination": "Vendor/ZayitSearchPort/build",
+      "producer_run": 40566258679,
+      "verified_sha256": "8f46a00dfc99fbbd01b24a0a72dbee3937d42456169413a7768c4eb112b249d3"
+    },
+    {
+      "id": 12763481138,
+      "name": "ios-build-swift-packages",
+      "sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd",
+      "tar": "SourcePackages.tar",
+      "destination": "build",
+      "producer_run": 40566258679,
+      "verified_sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd"
+    },
+    {
+      "id": 13658066283,
+      "name": "sefaria-embedded-validation-manifests",
+      "sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda",
+      "producer_run": 42577170165,
+      "verified_sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda"
+    }
+  ],
+  "resource_inputs": {
+    "gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+    "json_files": {
+      "sources/calendar.json": {
+        "size": 1651059,
+        "sha256": "9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7"
+      },
+      "sources/hebrew_categories.json": {
+        "size": 16121,
+        "sha256": "f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d"
+      },
+      "sources/packages.json": {
+        "size": 238990,
+        "sha256": "3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba"
+      },
+      "sources/people.json": {
+        "size": 52354,
+        "sha256": "b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4"
+      },
+      "sources/search_toc.json": {
+        "size": 829599,
+        "sha256": "6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05"
+      },
+      "sources/toc.json": {
+        "size": 4172545,
+        "sha256": "0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963"
+      },
+      "sources/topic_toc.json": {
+        "size": 1810962,
+        "sha256": "282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c"
+      }
+    },
+    "jsbundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
+    "no_book_database_payload": true
+  },
+  "error": "Dependency setup changed tracked app input: Source/PrivacyInfo.xcprivacy"
+}

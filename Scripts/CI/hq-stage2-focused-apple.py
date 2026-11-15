@@ -6,6 +6,8 @@ import inspect
 import json
 import os
 from pathlib import Path, PurePosixPath
+import plistlib
+import re
 import shutil
 import subprocess
 import sys
@@ -163,6 +165,11 @@ def install_real_pods(report):
     report["native_context"]["pod_lock_sha256"] = digest(ROOT / "Podfile.lock")
     report["native_context"]["generated_project_sha256"] = digest(ROOT / "Maktabah.xcodeproj/project.pbxproj")
     report["native_context"]["workspace_sha256"] = digest(ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata")
+    report["native_context"]["generated_expo_providers"] = []
+    for provider in (ROOT / "Pods").rglob("ExpoModulesProvider.swift"):
+        report["native_context"]["generated_expo_providers"].append({"path": str(provider.relative_to(ROOT)), "sha256": digest(provider)})
+        require(len(report["native_context"]["generated_expo_providers"]) == 1, "Ambiguous generated Expo provider")
+        shutil.copyfile(provider, OUT / "ExpoModulesProvider.swift")
     (OUT / "generated-pods-project.diff").write_text(capture("git", "diff", "--", "Maktabah.xcodeproj/project.pbxproj") + "\n")
     shutil.copyfile(ROOT / "Podfile.lock", OUT / "resolved-Podfile.lock")
     # The generated workspace has its own SwiftPM lock location. Restore the
@@ -189,9 +196,12 @@ def verify_actual_sources(report):
                                      input=("\n".join(paths) + "\n").encode()).decode().splitlines()
     require(len(actual) == len(paths), "Actual source hash inventory incomplete")
     mismatches = [path for path, blob in zip(paths, actual) if blob != expected[path]]
+    if "Source/PrivacyInfo.xcprivacy" in mismatches:
+        audit_generated_privacy(report, expected["Source/PrivacyInfo.xcprivacy"])
+        mismatches.remove("Source/PrivacyInfo.xcprivacy")
     require(not mismatches, "Dependency setup changed tracked app input: " + ", ".join(mismatches[:10]))
     report["actual_source_inputs_verified"] = len(paths)
-    (OUT / "actual-source-inputs.json").write_text(json.dumps(expected, indent=2) + "\n")
+    (OUT / "actual-source-inputs.json").write_text(json.dumps(dict(zip(paths, actual)), indent=2) + "\n")
     checkouts = ROOT / "build/SourcePackages/checkouts"
     folders = {p.name.casefold(): p for p in checkouts.iterdir() if p.is_dir()}
     report["actual_package_checkouts"] = {}
@@ -202,6 +212,67 @@ def verify_actual_sources(report):
         dirty = capture("git", "-C", str(folder), "status", "--porcelain")
         require(head == revision and not dirty, "Pinned package source differs/dirty: " + identity)
         report["actual_package_checkouts"][identity] = {"head": head, "status": "CLEAN"}
+
+
+def privacy_categories(document):
+    result = {}
+    for row in document.get("NSPrivacyAccessedAPITypes", []):
+        require(set(row) == {"NSPrivacyAccessedAPIType", "NSPrivacyAccessedAPITypeReasons"}, "Unexpected generated privacy schema")
+        category, reasons = row["NSPrivacyAccessedAPIType"], row["NSPrivacyAccessedAPITypeReasons"]
+        require(isinstance(category, str) and category.startswith("NSPrivacyAccessedAPICategory"), "Invalid privacy API category")
+        require(isinstance(reasons, list) and bool(reasons) and all(isinstance(r, str) and re.fullmatch(r"[A-Z0-9]{4}\.[0-9]+", r) for r in reasons), "Invalid privacy reason schema")
+        require(category not in result and len(reasons) == len(set(reasons)), "Duplicate generated API category/reason")
+        result.setdefault(category, set()).update(reasons)
+    return result
+
+
+def validate_privacy_delta(before, after, evidence):
+    require({k: v for k, v in before.items() if k != "NSPrivacyAccessedAPITypes"} ==
+            {k: v for k, v in after.items() if k != "NSPrivacyAccessedAPITypes"}, "Setup changed non-API privacy declarations")
+    old, new = privacy_categories(before), privacy_categories(after)
+    require(all(category in new and reasons <= new[category] for category, reasons in old.items()), "Setup removed original API reasons")
+    added = []
+    for category, reasons in new.items():
+        for reason in sorted(reasons - old.get(category, set())):
+            require((category, reason) in evidence, "Generated API reason lacks real dependency provenance: " + category + "/" + reason)
+            added.append({"category": category, "reason": reason, "dependency_inputs": evidence[(category, reason)]})
+    return added
+
+
+def audit_generated_privacy(report, original_blob):
+    path = "Source/PrivacyInfo.xcprivacy"
+    before_bytes = subprocess.check_output(["git", "show", "HEAD:" + path], cwd=ROOT)
+    after_bytes = (ROOT / path).read_bytes()
+    (OUT / "privacy-original.xcprivacy").write_bytes(before_bytes)
+    (OUT / "privacy-generated.xcprivacy").write_bytes(after_bytes)
+    (OUT / "generated-privacy.diff").write_text(capture("git", "diff", "--", path) + "\n")
+    lock = json.loads(capture("ruby", "-rjson", "-ryaml", "-e",
+        "puts JSON.generate(YAML.load_file(ARGV[0], permitted_classes: [Symbol], aliases: true))", "Podfile.lock"))
+    roots = [("installed Pods", ROOT / "Pods")]
+    for pod, values in lock.get("EXTERNAL SOURCES", {}).items():
+        source = values.get(":path") or values.get("path")
+        if source:
+            root = (ROOT / source).resolve()
+            require(root.is_relative_to(ROOT.resolve()), "External Pod source escaped workspace")
+            roots.append((pod, root))
+    evidence, seen = {}, set()
+    for pod, root in roots:
+        for candidate in root.rglob("*.xcprivacy"):
+            if candidate.resolve() in seen:
+                continue
+            seen.add(candidate.resolve())
+            try:
+                declared = privacy_categories(plistlib.loads(candidate.read_bytes()))
+            except (ValueError, OSError, RuntimeError):
+                continue
+            for category, reasons in declared.items():
+                for reason in reasons:
+                    evidence.setdefault((category, reason), []).append({"pod_source": pod, "path": str(candidate.relative_to(ROOT)), "sha256": digest(candidate)})
+    added = validate_privacy_delta(plistlib.loads(before_bytes), plistlib.loads(after_bytes), evidence)
+    report.setdefault("generated_configuration", []).append({"path": path, "origin": "Original React Native CocoaPods privacy aggregation",
+        "original_git_blob": original_blob, "original_sha256": hashlib.sha256(before_bytes).hexdigest(),
+        "compiled_sha256": hashlib.sha256(after_bytes).hexdigest(), "all_other_declarations_unchanged": True,
+        "all_original_reasons_retained": True, "added_reasons": added})
 
 
 def main():
