@@ -1,0 +1,36 @@
+diff --git a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift
+index 4164e97a..36dd2599 100644
+--- a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift
++++ b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift
+@@ -90,0 +91 @@ final class StudyWorkspaceNavigationAdapter {
++        let previousSelection = selection
+@@ -92 +93 @@ final class StudyWorkspaceNavigationAdapter {
+-        let requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
++        var requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
+@@ -104 +105 @@ final class StudyWorkspaceNavigationAdapter {
+-            let staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
++            var staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
+@@ -116,0 +118,18 @@ final class StudyWorkspaceNavigationAdapter {
++                var startupDocuments: [ReaderDocumentTab]?
++                if restoringBackend != nil, previousGroup == nil {
++                    try Task.checkCancellation()
++                    guard BackendCoordinator.shared.activeBackendID == previousBackend,
++                          BackendCoordinator.shared.generation == previousGeneration else {
++                        throw BackendTransitionError.transitionSuperseded
++                    }
++                    guard selection == previousSelection else { throw StudyWorkspaceError.invalidMembership }
++                    // A native open can finish while the initial empty restore awaits
++                    // its catalog/backend. Adopt those live instances at the last
++                    // throwing boundary, before publication can overwrite them.
++                    if previousTabs.isEmpty, target.tabs.isEmpty, desiredBackend == previousBackend,
++                       !manager.openTabs.isEmpty {
++                        staged = manager.openTabs
++                        requested = manager.activeTabId
++                        startupDocuments = capture(staged, backend: desiredBackend)
++                    }
++                }
+@@ -120,0 +140,4 @@ final class StudyWorkspaceNavigationAdapter {
++                    if let startupDocuments, let index = value.groups.firstIndex(where: { $0.id == id }) {
++                        value.groups[index].tabs = startupDocuments
++                        value.groups[index].activeTabID = (staged.first(where: { $0.id == requested }) ?? staged.first)?.id
++                    }
