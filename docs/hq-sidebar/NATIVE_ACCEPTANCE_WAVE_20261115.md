@@ -53,9 +53,11 @@ reader object/source/offset/title/locator, and vertical scroll arbitration.
 They are NOT_RUN at this test revision until a real selected workflow executes.
 Current priority remains the already running focused Escape/Inspector case.
 
-TOC-specific system-toggle icon is still OPEN. The manager has been asked for
-the material choice between the system-owned native symbol and one replacement
-native Button using public toolbar(removing: .sidebarToggle) and canonical
-column visibility. No new source implementation or acceptance was inferred.
+Manager decision for this wave: retain one system-owned toggle and its standard
+symbol; do not replace the control or reconfigure displayModeButtonItem merely
+to change its image. The historical TOC-specific icon requirement is unimplemented,
+not a completed fix. Its source task stays open if that criterion is still required.
+Direct manager decision received in this Desktop chat; official API evidence is
+in QA_CORRECTIONS.md. No application source change follows from this decision.
 Physical iPad, VoiceOver/Dynamic Type, interrupted gestures, TOC selection and
 multi-scene continuity remain open until their own actual evidence exists.
