@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Focused portable Inspector checks; stdlib only, no app/user database.
+"""Focused portable Inspector checks; no app/user database.
 
 Compiles the actual service/grouping/classifier and exact note-scope/tap methods
 with fixture boundary types. Generated SQL runs against temporary SQLite via
-Python; Apple frameworks, production zstd and app UI are explicitly not tested.
+Python. Default fixtures use stdlib and a counted plain-text decoder. The explicit
+digest-pinned miniTest10 corpus case uses installed Python zstandard at the
+decoder boundary. Apple frameworks, native Swift ZSTD and app UI are not tested.
 """
 import json
+import hashlib
 import argparse
 from contextlib import closing
 import os
@@ -63,10 +66,28 @@ def make_database(path):
 def query():
     request = json.load(sys.stdin)
     try:
-        with closing(sqlite3.connect(f"file:{sys.argv[2]}?mode=ro", uri=True)) as db:
+        with closing(sqlite3.connect(Path(sys.argv[2]).resolve().as_uri() + "?mode=ro&immutable=1", uri=True)) as db:
             rows = db.execute(request["query"], request["parameters"]).fetchall()
+            if os.environ.get("HQ_INSPECTOR_CORPUS") == "1":
+                import zstandard
+                dictionaries = {dictionary.dict_id(): dictionary for (data,) in db.execute("SELECT dict FROM zstd_dict") for dictionary in [zstandard.ZstdCompressionDict(data)]}
+                decoded = 0
+                def decode(value):
+                    nonlocal decoded
+                    if not isinstance(value, bytes):
+                        return value
+                    frame = zstandard.get_frame_parameters(value)
+                    if frame.content_size > 16 * 1024 * 1024 or frame.dict_id not in dictionaries:
+                        raise ValueError("invalid frame size/dictionary")
+                    result = zstandard.ZstdDecompressor(dict_data=dictionaries[frame.dict_id]).decompress(value, max_output_size=16 * 1024 * 1024)
+                    decoded += 1
+                    return result.decode("utf-8")
+                rows = [[decode(value) for value in row] for row in rows]
+                plan = db.execute("EXPLAIN QUERY PLAN " + request["query"], request["parameters"]).fetchall()
+                with Path(os.environ["HQ_INSPECTOR_QUERY_LOG"]).open("a", encoding="utf-8") as log:
+                    log.write(json.dumps({"sql": request["query"], "parameters": request["parameters"], "rows": len(rows), "decodedFrames": decoded, "plan": plan}) + "\n")
         print(json.dumps({"rows": rows}))
-    except sqlite3.Error as error:
+    except (sqlite3.Error, ValueError) as error:
         print(json.dumps({"error": str(error)}))
 
 
@@ -74,10 +95,38 @@ def block(text, start, end):
     return text[text.index(start):text.index(end, text.index(start))]
 
 
+def corpus_oracle():
+    """Independent row/set oracle, not the service's SQL CTE/UNION query."""
+    if os.environ.get("HQ_INSPECTOR_CORPUS") != "1":
+        raise SystemExit("oracle is for the explicit corpus case only")
+    request = json.load(sys.stdin)
+    book, indexes = request["bookID"], set(request["indexes"])
+    with closing(sqlite3.connect(Path(sys.argv[2]).resolve().as_uri() + "?mode=ro&immutable=1", uri=True)) as db:
+        lines = {row[0]: row[1:] for row in db.execute("SELECT id, bookId, lineIndex FROM line")}
+        window = {key for key, (work, index) in lines.items() if work == book and index in indexes}
+        types = dict(db.execute("SELECT id, name FROM connection_type"))
+        hidden = set(db.execute("SELECT linkId, side FROM link_suppressed_side"))
+        coverage = {}
+        for line, link, side in db.execute("SELECT lineId, linkId, side FROM link_coverage"):
+            coverage.setdefault((link, side), set()).add(line)
+        references = {"REFERENCE", "QUOTATION", "MESORAT_HASHAS", "EIN_MISHPAT", "MISHNAH_IN_TALMUD", "RELATED", "OTHER", "SIFREI_MITZVOT", "ESSAY", "ALLUSION", "LITURGY", "LAW", "SUMMARY"}
+        dependent = {"COMMENTARY", "SUPER_COMMENTARY", "TARGUM", "MIDRASH", "PARSHANUT", "DIBUR_HAMATCHIL", "ELUCIDATION", "EXPLICATION", "FOOTNOTES"}
+        expected = set()
+        for key, source, target, source_line, target_line, kind in db.execute("SELECT id, sourceBookId, targetBookId, sourceLineId, targetLineId, connectionTypeId FROM link"):
+            if source == book and (key, 0) not in hidden and ({source_line} | coverage.get((key, 0), set())) & window:
+                expected.add((key, target, target_line, lines[target_line][1]))
+            anchors = ({target_line} | coverage.get((key, 1), set())) & window
+            eligible_same_work = types.get(kind) in references and ((key, 0) in hidden or any(anchor != source_line and anchor not in coverage.get((key, 0), set()) for anchor in anchors))
+            if target == book and anchors and (key, 1) not in hidden and types.get(kind) in references | dependent and (source != target or eligible_same_work):
+                expected.add((key, source, source_line, lines[source_line][1]))
+    print(json.dumps({"rows": sorted(expected)}))
+
+
 def run():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-ref", help="Read production source from a Git commit for a regression baseline")
-    parser.add_argument("--case", choices=["all", "scope", "tap", "notes", "selection", "document", "gate"], default="all")
+    parser.add_argument("--case", choices=["all", "scope", "tap", "notes", "selection", "document", "gate", "corpus"], default="all")
+    parser.add_argument("--database", type=Path, help="Digest-pinned miniTest10 copy under this worktree's build directory; corpus case only")
     args = parser.parse_args()
     def production(path):
         if args.source_ref:
@@ -91,13 +140,27 @@ def run():
     with tempfile.TemporaryDirectory(prefix="hq-inspector-") as temp:
         temp = Path(temp)
         database = temp / "fixture.sqlite"
-        make_database(database)
+        if args.case == "corpus":
+            if args.database is None:
+                parser.error("corpus case requires --database")
+            database = args.database.resolve()
+            if not database.is_relative_to(ROOT / "build"):
+                parser.error("corpus copy must be under this assigned worktree's build directory")
+            profile = json.loads((ROOT / "Source/Otzaria/DataProfiles/miniTest10.profile.json").read_text(encoding="utf-8"))
+            digest = hashlib.sha256(database.read_bytes()).hexdigest()
+            if database.stat().st_size != profile["sourceDatabase"]["databaseBytes"] or digest != profile["sourceDatabase"]["databaseSHA256"]:
+                raise SystemExit("database does not match digest-pinned miniTest10 profile")
+        else:
+            if args.database is not None:
+                parser.error("--database is permitted only with --case corpus")
+            make_database(database)
         models = production(ROOT / "Source/Otzaria/Domain/OtzariaModels.swift")
         source = production(READING / "OtzariaLineSourcesService.swift")
         source = source.replace("import TorahInspectorCore", "")
         adapter = production(READING / "MaktabahTorahInspectorAdapter.swift")
         units = production(READING / "OtzariaReadingUnit.swift")
         library = production(ROOT / "Source/LibraryBackend/LibraryBackendModels.swift")
+        compatibility = production(ROOT / "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift")
         contains = block(adapter, "    private func contains(", "    private func map(")
         contains = contains.replace("private func contains", "func contains")
         notes = block(adapter, "    private func notes(", "    private func contains(")
@@ -106,6 +169,9 @@ def run():
         tap = tap.replace("#if os(iOS)", "").replace("#endif", "").replace("#else\n        false", "")
         generated = [
             (ROOT / "Tests/HQ/inspector/FixtureBoundary.swift").read_text(encoding="utf-8"),
+            block(compatibility, "struct OtzariaLineContentProjection:", "final class OtzariaLineContentDecoder"),
+            block(compatibility, "struct OtzariaBookSchemaProjection:", "struct OtzariaTOCSchemaProjection:"),
+            block(compatibility, "enum OtzariaBookSchemaCompatibility", "    static func projection(in database: OpaquePointer") + "}\n",
             block(models, "struct OtzariaLinkedSource:", "struct OtzariaSourceSection:"),
             production(READING / "OtzariaLineAnchor.swift"),
             block(units, "struct OtzariaReadingUnit:", "struct OtzariaUnitLevelOption:"),
@@ -162,10 +228,35 @@ def run():
         print(f"Source: {args.source_ref or 'working tree'}; case: {args.case}", flush=True)
         subprocess.run([swiftc, "-parse-as-library", *map(str, inputs), "-o", str(exe)], check=True)
         env = dict(os.environ, HQ_INSPECTOR_CASE=args.case)
+        env.pop("HQ_INSPECTOR_CORPUS", None)
+        env.pop("HQ_INSPECTOR_QUERY_LOG", None)
+        if args.case == "corpus":
+            env.update(HQ_INSPECTOR_CORPUS="1", HQ_INSPECTOR_QUERY_LOG=str(temp / "corpus-queries.jsonl"))
         completed = subprocess.run([str(exe), sys.executable, str(Path(__file__).resolve()), str(database)], env=env)
         if completed.returncode:
             raise SystemExit(completed.returncode)
+        if args.case == "corpus":
+            if hashlib.sha256(database.read_bytes()).hexdigest() != digest:
+                raise SystemExit("read-only corpus database changed")
+            queries = [json.loads(line) for line in (temp / "corpus-queries.jsonl").read_text(encoding="utf-8").splitlines()]
+            report = {"profile": "miniTest10", "profileVersion": profile["profileVersion"], "databaseSHA256": digest, "databaseUnchanged": True,
+                      "sqlite": sqlite3.sqlite_version, "decoder": "Python zstandard dictionary boundary, not production Swift decoder", "queries": queries,
+                      "sourceHead": args.source_ref or subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+                      "sourceSHA256": {name: hashlib.sha256(production(ROOT / name).encode("utf-8")).hexdigest() for name in [
+                          "Source/Otzaria/Reading/OtzariaLineSourcesService.swift",
+                          "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift",
+                          "Source/Otzaria/Reading/OtzariaLinkedSourceGrouping.swift",
+                          "Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift",
+                          "Source/Otzaria/Reading/OtzariaCategoryPathResolver.swift"]}}
+            target = ROOT / "docs/hq-inspector/miniTest10-source-audit-20261115.json"
+            target.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            print(json.dumps({"report": str(target), "metadataQueries": sum("WITH win" in q["sql"] for q in queries), "decodedFrames": sum(q["decodedFrames"] for q in queries), "databaseUnchanged": True}))
 
 
 if __name__ == "__main__":
-    query() if len(sys.argv) > 1 and sys.argv[1] == "--query" else run()
+    if len(sys.argv) > 1 and sys.argv[1] == "--query":
+        query()
+    elif len(sys.argv) > 1 and sys.argv[1] == "--oracle":
+        corpus_oracle()
+    else:
+        run()

@@ -1,0 +1,8 @@
+usage: hq-inspector-fixtures.py [-h] [--source-ref SOURCE_REF]
+                                [--case {all,scope,tap,notes,selection,document,gate,corpus}]
+                                [--database DATABASE]
+hq-inspector-fixtures.py: error: corpus copy must be under this assigned worktree's build directory
+usage: hq-inspector-fixtures.py [-h] [--source-ref SOURCE_REF]
+                                [--case {all,scope,tap,notes,selection,document,gate,corpus}]
+                                [--database DATABASE]
+hq-inspector-fixtures.py: error: --database is permitted only with --case corpus
