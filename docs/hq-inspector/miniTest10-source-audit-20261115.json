@@ -23,6 +23,145 @@
       ]
     },
     {
+      "sql": "SELECT te.id, tt.text, MIN(l.lineIndex)\nFROM tocEntry te JOIN tocText tt ON tt.id = te.textId\nJOIN line_toc lt ON lt.tocEntryId = te.id JOIN line l ON l.id = lt.lineId\nWHERE te.bookId = ? AND te.parentId IS NOT NULL\n  AND NOT EXISTS (SELECT 1 FROM tocEntry child WHERE child.parentId = te.id)\nGROUP BY te.id, tt.text ORDER BY MIN(l.lineIndex), te.id",
+      "parameters": [
+        28
+      ],
+      "rows": 150,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          11,
+          0,
+          0,
+          "SEARCH te USING INDEX idx_toc_book (bookId=?)"
+        ],
+        [
+          21,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          25,
+          21,
+          0,
+          "SEARCH child USING COVERING INDEX idx_toc_parent (parentId=?)"
+        ],
+        [
+          34,
+          0,
+          0,
+          "SEARCH tt USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          37,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          41,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          77,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId\nWHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex",
+      "parameters": [
+        28,
+        600
+      ],
+      "rows": 7,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          8,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          19,
+          0,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId\nWHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex",
+      "parameters": [
+        28,
+        674
+      ],
+      "rows": 12,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          8,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          19,
+          0,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId\nWHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex",
+      "parameters": [
+        28,
+        749
+      ],
+      "rows": 7,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          8,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          19,
+          0,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ]
+      ]
+    },
+    {
       "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
       "parameters": [],
       "rows": 18,
@@ -5251,6 +5390,29 @@
       ]
     },
     {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        3276,
+        996
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
       "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?)",
       "parameters": [
         103,
@@ -5268,29 +5430,6 @@
         ],
         [
           25,
-          0,
-          0,
-          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
-        ]
-      ]
-    },
-    {
-      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
-      "parameters": [
-        3276,
-        996
-      ],
-      "rows": 1,
-      "decodedFrames": 1,
-      "plan": [
-        [
-          3,
-          0,
-          0,
-          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
-        ],
-        [
-          11,
           0,
           0,
           "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
@@ -5344,6 +5483,1124 @@
       ]
     },
     {
+      "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
+      "parameters": [],
+      "rows": 18,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN category"
+        ]
+      ]
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "SELECT book.isBaseBook FROM book WHERE id = ?",
+      "parameters": [
+        28
+      ],
+      "rows": 1,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SEARCH book USING INTEGER PRIMARY KEY (rowid=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "    WITH win(id) AS (\n        SELECT id FROM line\n        WHERE bookId = ? AND lineIndex IN (?,?,?,?,?,?,?)\n    ), matched(linkId, matchedSide, anchorLineId) AS (\n        SELECT link.id, 0, link.sourceLineId\n        FROM link\n        WHERE link.sourceBookId = 28\n          AND link.sourceLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 0, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 0 AND link.sourceBookId = 28 AND coverage.lineId IN (SELECT id FROM win)\n        UNION\n        SELECT link.id, 1, link.targetLineId\n        FROM link\n        WHERE link.targetBookId = 28\n          AND link.targetLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 1, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 1 AND link.targetBookId = 28 AND coverage.lineId IN (SELECT id FROM win)\n    ), resolved AS (\n        SELECT DISTINCT\n            link.id AS linkId,\n            COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,\n            matched.matchedSide AS matchedSide,\n            link.sourceBookId AS sourceBookId,\n            link.targetBookId AS targetBookId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetLineId ELSE link.sourceLineId\n            END AS linkedLineId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetBookId ELSE link.sourceBookId\n            END AS linkedBookId\n        FROM matched\n        JOIN link ON link.id = matched.linkId\n        LEFT JOIN connection_type ON connection_type.id = link.connectionTypeId\n        WHERE (\n            matched.matchedSide = 0\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 0)\n        ) OR (\n            matched.matchedSide = 1\n            AND connection_type.name IN ('COMMENTARY', 'SUPER_COMMENTARY', 'TARGUM', 'MIDRASH', 'PARSHANUT', 'DIBUR_HAMATCHIL', 'ELUCIDATION', 'EXPLICATION', 'FOOTNOTES', 'REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 1)\n            AND (link.sourceBookId != link.targetBookId OR (\n  connection_type.name IN ('REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n  AND (\n    EXISTS (\n      SELECT 1 FROM link_suppressed_side source_hidden\n      WHERE source_hidden.linkId = link.id AND source_hidden.side = 0\n    )\n    OR (\n      matched.anchorLineId != link.sourceLineId\n      AND NOT EXISTS (SELECT 1 FROM link_coverage source_coverage WHERE source_coverage.linkId = link.id AND source_coverage.side = 0 AND source_coverage.lineId = matched.anchorLineId)\n    )\n  )\n))\n        )\n    )\n    SELECT resolved.linkId,\n           resolved.rawConnectionType,\n           resolved.matchedSide,\n           resolved.sourceBookId,\n           resolved.targetBookId,\n           resolved.linkedLineId,\n           resolved.linkedBookId,\n           linked_line.lineIndex,\n           linked_book.title,\n           NULL,\n           linked_book.categoryId,\n           linked_book.orderIndex,\n           linked_book.isBaseBook,\n           linked_book.dependenceType,\n           linked_line.heRef\n    FROM resolved\n    JOIN line linked_line ON linked_line.id = resolved.linkedLineId\n    \n    JOIN book linked_book ON linked_book.id = resolved.linkedBookId\n    ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId",
+      "parameters": [
+        28,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "rows": 12,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "CO-ROUTINE resolved"
+        ],
+        [
+          4,
+          2,
+          0,
+          "CO-ROUTINE matched"
+        ],
+        [
+          6,
+          4,
+          0,
+          "COMPOUND QUERY"
+        ],
+        [
+          7,
+          6,
+          0,
+          "LEFT-MOST SUBQUERY"
+        ],
+        [
+          10,
+          7,
+          0,
+          "SEARCH link USING INDEX idx_link_source_targetorder (sourceLineId=?)"
+        ],
+        [
+          14,
+          7,
+          0,
+          "LIST SUBQUERY 2"
+        ],
+        [
+          16,
+          14,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          76,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          79,
+          76,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          83,
+          76,
+          0,
+          "LIST SUBQUERY 4"
+        ],
+        [
+          85,
+          83,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          137,
+          76,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          149,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          152,
+          149,
+          0,
+          "SEARCH link USING INDEX idx_link_target_line (targetLineId=?)"
+        ],
+        [
+          156,
+          149,
+          0,
+          "LIST SUBQUERY 6"
+        ],
+        [
+          158,
+          156,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          218,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          221,
+          218,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          225,
+          218,
+          0,
+          "LIST SUBQUERY 8"
+        ],
+        [
+          227,
+          225,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          279,
+          218,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          302,
+          2,
+          0,
+          "SCAN matched"
+        ],
+        [
+          305,
+          2,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          308,
+          2,
+          0,
+          "SEARCH connection_type USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ],
+        [
+          316,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 10"
+        ],
+        [
+          320,
+          316,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          407,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 11"
+        ],
+        [
+          411,
+          407,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          472,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 12"
+        ],
+        [
+          476,
+          472,
+          0,
+          "SEARCH source_hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          489,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 13"
+        ],
+        [
+          493,
+          489,
+          0,
+          "SEARCH source_coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=? AND linkId=? AND side=?)"
+        ],
+        [
+          530,
+          2,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ],
+        [
+          535,
+          0,
+          0,
+          "SCAN resolved"
+        ],
+        [
+          538,
+          0,
+          0,
+          "SEARCH linked_line USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          541,
+          0,
+          0,
+          "SEARCH linked_book USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          562,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?)",
+      "parameters": [
+        28,
+        6,
+        7,
+        20
+      ],
+      "rows": 3,
+      "decodedFrames": 3,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          28,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?)",
+      "parameters": [
+        3276,
+        4,
+        6,
+        996
+      ],
+      "rows": 3,
+      "decodedFrames": 3,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          28,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?)",
+      "parameters": [
+        3764,
+        217,
+        234
+      ],
+      "rows": 2,
+      "decodedFrames": 2,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          25,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.id, l.lineIndex, lc.content, l.heRef\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex = ?\n    LIMIT 1",
+      "parameters": [
+        3764,
+        234
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          5,
+          0,
+          0,
+          "SEARCH l USING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
+      "parameters": [],
+      "rows": 18,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN category"
+        ]
+      ]
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "SELECT book.isBaseBook FROM book WHERE id = ?",
+      "parameters": [
+        28
+      ],
+      "rows": 1,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SEARCH book USING INTEGER PRIMARY KEY (rowid=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "    WITH win(id) AS (\n        SELECT id FROM line\n        WHERE bookId = ? AND lineIndex IN (?,?,?,?,?,?,?,?,?,?,?,?)\n    ), matched(linkId, matchedSide, anchorLineId) AS (\n        SELECT link.id, 0, link.sourceLineId\n        FROM link\n        WHERE link.sourceBookId = 28\n          AND link.sourceLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 0, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 0 AND link.sourceBookId = 28 AND coverage.lineId IN (SELECT id FROM win)\n        UNION\n        SELECT link.id, 1, link.targetLineId\n        FROM link\n        WHERE link.targetBookId = 28\n          AND link.targetLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 1, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 1 AND link.targetBookId = 28 AND coverage.lineId IN (SELECT id FROM win)\n    ), resolved AS (\n        SELECT DISTINCT\n            link.id AS linkId,\n            COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,\n            matched.matchedSide AS matchedSide,\n            link.sourceBookId AS sourceBookId,\n            link.targetBookId AS targetBookId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetLineId ELSE link.sourceLineId\n            END AS linkedLineId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetBookId ELSE link.sourceBookId\n            END AS linkedBookId\n        FROM matched\n        JOIN link ON link.id = matched.linkId\n        LEFT JOIN connection_type ON connection_type.id = link.connectionTypeId\n        WHERE (\n            matched.matchedSide = 0\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 0)\n        ) OR (\n            matched.matchedSide = 1\n            AND connection_type.name IN ('COMMENTARY', 'SUPER_COMMENTARY', 'TARGUM', 'MIDRASH', 'PARSHANUT', 'DIBUR_HAMATCHIL', 'ELUCIDATION', 'EXPLICATION', 'FOOTNOTES', 'REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 1)\n            AND (link.sourceBookId != link.targetBookId OR (\n  connection_type.name IN ('REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n  AND (\n    EXISTS (\n      SELECT 1 FROM link_suppressed_side source_hidden\n      WHERE source_hidden.linkId = link.id AND source_hidden.side = 0\n    )\n    OR (\n      matched.anchorLineId != link.sourceLineId\n      AND NOT EXISTS (SELECT 1 FROM link_coverage source_coverage WHERE source_coverage.linkId = link.id AND source_coverage.side = 0 AND source_coverage.lineId = matched.anchorLineId)\n    )\n  )\n))\n        )\n    )\n    SELECT resolved.linkId,\n           resolved.rawConnectionType,\n           resolved.matchedSide,\n           resolved.sourceBookId,\n           resolved.targetBookId,\n           resolved.linkedLineId,\n           resolved.linkedBookId,\n           linked_line.lineIndex,\n           linked_book.title,\n           NULL,\n           linked_book.categoryId,\n           linked_book.orderIndex,\n           linked_book.isBaseBook,\n           linked_book.dependenceType,\n           linked_line.heRef\n    FROM resolved\n    JOIN line linked_line ON linked_line.id = resolved.linkedLineId\n    \n    JOIN book linked_book ON linked_book.id = resolved.linkedBookId\n    ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId",
+      "parameters": [
+        28,
+        1258,
+        1259,
+        1260,
+        1261,
+        1262,
+        1263,
+        1264,
+        1265,
+        1266,
+        1267,
+        1268,
+        1269
+      ],
+      "rows": 6,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "CO-ROUTINE resolved"
+        ],
+        [
+          4,
+          2,
+          0,
+          "CO-ROUTINE matched"
+        ],
+        [
+          6,
+          4,
+          0,
+          "COMPOUND QUERY"
+        ],
+        [
+          7,
+          6,
+          0,
+          "LEFT-MOST SUBQUERY"
+        ],
+        [
+          10,
+          7,
+          0,
+          "SEARCH link USING INDEX idx_link_source_targetorder (sourceLineId=?)"
+        ],
+        [
+          14,
+          7,
+          0,
+          "LIST SUBQUERY 2"
+        ],
+        [
+          16,
+          14,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          91,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          94,
+          91,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          98,
+          91,
+          0,
+          "LIST SUBQUERY 4"
+        ],
+        [
+          100,
+          98,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          167,
+          91,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          179,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          182,
+          179,
+          0,
+          "SEARCH link USING INDEX idx_link_target_line (targetLineId=?)"
+        ],
+        [
+          186,
+          179,
+          0,
+          "LIST SUBQUERY 6"
+        ],
+        [
+          188,
+          186,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          263,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          266,
+          263,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          270,
+          263,
+          0,
+          "LIST SUBQUERY 8"
+        ],
+        [
+          272,
+          270,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          339,
+          263,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          362,
+          2,
+          0,
+          "SCAN matched"
+        ],
+        [
+          365,
+          2,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          368,
+          2,
+          0,
+          "SEARCH connection_type USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ],
+        [
+          376,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 10"
+        ],
+        [
+          380,
+          376,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          467,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 11"
+        ],
+        [
+          471,
+          467,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          532,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 12"
+        ],
+        [
+          536,
+          532,
+          0,
+          "SEARCH source_hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          549,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 13"
+        ],
+        [
+          553,
+          549,
+          0,
+          "SEARCH source_coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=? AND linkId=? AND side=?)"
+        ],
+        [
+          590,
+          2,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ],
+        [
+          595,
+          0,
+          0,
+          "SCAN resolved"
+        ],
+        [
+          598,
+          0,
+          0,
+          "SEARCH linked_line USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          601,
+          0,
+          0,
+          "SEARCH linked_book USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          622,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?)",
+      "parameters": [
+        3276,
+        459,
+        461,
+        463
+      ],
+      "rows": 3,
+      "decodedFrames": 3,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          28,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?)",
+      "parameters": [
+        3764,
+        801,
+        806,
+        809
+      ],
+      "rows": 3,
+      "decodedFrames": 3,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          28,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.id, l.lineIndex, lc.content, l.heRef\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex = ?\n    LIMIT 1",
+      "parameters": [
+        3764,
+        809
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          5,
+          0,
+          0,
+          "SEARCH l USING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
+      "parameters": [],
+      "rows": 18,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN category"
+        ]
+      ]
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "SELECT book.isBaseBook FROM book WHERE id = ?",
+      "parameters": [
+        28
+      ],
+      "rows": 1,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SEARCH book USING INTEGER PRIMARY KEY (rowid=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "    WITH win(id) AS (\n        SELECT id FROM line\n        WHERE bookId = ? AND lineIndex IN (?,?,?,?,?,?,?)\n    ), matched(linkId, matchedSide, anchorLineId) AS (\n        SELECT link.id, 0, link.sourceLineId\n        FROM link\n        WHERE link.sourceBookId = 28\n          AND link.sourceLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 0, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 0 AND link.sourceBookId = 28 AND coverage.lineId IN (SELECT id FROM win)\n        UNION\n        SELECT link.id, 1, link.targetLineId\n        FROM link\n        WHERE link.targetBookId = 28\n          AND link.targetLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 1, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 1 AND link.targetBookId = 28 AND coverage.lineId IN (SELECT id FROM win)\n    ), resolved AS (\n        SELECT DISTINCT\n            link.id AS linkId,\n            COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,\n            matched.matchedSide AS matchedSide,\n            link.sourceBookId AS sourceBookId,\n            link.targetBookId AS targetBookId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetLineId ELSE link.sourceLineId\n            END AS linkedLineId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetBookId ELSE link.sourceBookId\n            END AS linkedBookId\n        FROM matched\n        JOIN link ON link.id = matched.linkId\n        LEFT JOIN connection_type ON connection_type.id = link.connectionTypeId\n        WHERE (\n            matched.matchedSide = 0\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 0)\n        ) OR (\n            matched.matchedSide = 1\n            AND connection_type.name IN ('COMMENTARY', 'SUPER_COMMENTARY', 'TARGUM', 'MIDRASH', 'PARSHANUT', 'DIBUR_HAMATCHIL', 'ELUCIDATION', 'EXPLICATION', 'FOOTNOTES', 'REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 1)\n            AND (link.sourceBookId != link.targetBookId OR (\n  connection_type.name IN ('REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n  AND (\n    EXISTS (\n      SELECT 1 FROM link_suppressed_side source_hidden\n      WHERE source_hidden.linkId = link.id AND source_hidden.side = 0\n    )\n    OR (\n      matched.anchorLineId != link.sourceLineId\n      AND NOT EXISTS (SELECT 1 FROM link_coverage source_coverage WHERE source_coverage.linkId = link.id AND source_coverage.side = 0 AND source_coverage.lineId = matched.anchorLineId)\n    )\n  )\n))\n        )\n    )\n    SELECT resolved.linkId,\n           resolved.rawConnectionType,\n           resolved.matchedSide,\n           resolved.sourceBookId,\n           resolved.targetBookId,\n           resolved.linkedLineId,\n           resolved.linkedBookId,\n           linked_line.lineIndex,\n           linked_book.title,\n           NULL,\n           linked_book.categoryId,\n           linked_book.orderIndex,\n           linked_book.isBaseBook,\n           linked_book.dependenceType,\n           linked_line.heRef\n    FROM resolved\n    JOIN line linked_line ON linked_line.id = resolved.linkedLineId\n    \n    JOIN book linked_book ON linked_book.id = resolved.linkedBookId\n    ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId",
+      "parameters": [
+        28,
+        2671,
+        2672,
+        2673,
+        2674,
+        2675,
+        2676,
+        2677
+      ],
+      "rows": 5,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "CO-ROUTINE resolved"
+        ],
+        [
+          4,
+          2,
+          0,
+          "CO-ROUTINE matched"
+        ],
+        [
+          6,
+          4,
+          0,
+          "COMPOUND QUERY"
+        ],
+        [
+          7,
+          6,
+          0,
+          "LEFT-MOST SUBQUERY"
+        ],
+        [
+          10,
+          7,
+          0,
+          "SEARCH link USING INDEX idx_link_source_targetorder (sourceLineId=?)"
+        ],
+        [
+          14,
+          7,
+          0,
+          "LIST SUBQUERY 2"
+        ],
+        [
+          16,
+          14,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          76,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          79,
+          76,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          83,
+          76,
+          0,
+          "LIST SUBQUERY 4"
+        ],
+        [
+          85,
+          83,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          137,
+          76,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          149,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          152,
+          149,
+          0,
+          "SEARCH link USING INDEX idx_link_target_line (targetLineId=?)"
+        ],
+        [
+          156,
+          149,
+          0,
+          "LIST SUBQUERY 6"
+        ],
+        [
+          158,
+          156,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          218,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          221,
+          218,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          225,
+          218,
+          0,
+          "LIST SUBQUERY 8"
+        ],
+        [
+          227,
+          225,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          279,
+          218,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          302,
+          2,
+          0,
+          "SCAN matched"
+        ],
+        [
+          305,
+          2,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          308,
+          2,
+          0,
+          "SEARCH connection_type USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ],
+        [
+          316,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 10"
+        ],
+        [
+          320,
+          316,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          407,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 11"
+        ],
+        [
+          411,
+          407,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          472,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 12"
+        ],
+        [
+          476,
+          472,
+          0,
+          "SEARCH source_hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          489,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 13"
+        ],
+        [
+          493,
+          489,
+          0,
+          "SEARCH source_coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=? AND linkId=? AND side=?)"
+        ],
+        [
+          530,
+          2,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ],
+        [
+          535,
+          0,
+          0,
+          "SCAN resolved"
+        ],
+        [
+          538,
+          0,
+          0,
+          "SEARCH linked_line USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          541,
+          0,
+          0,
+          "SEARCH linked_book USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          562,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?)",
+      "parameters": [
+        3276,
+        994,
+        996
+      ],
+      "rows": 2,
+      "decodedFrames": 2,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          25,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        382,
+        445
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?)",
+      "parameters": [
+        103,
+        1168,
+        1973
+      ],
+      "rows": 2,
+      "decodedFrames": 2,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          25,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.id, l.lineIndex, lc.content, l.heRef\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex = ?\n    LIMIT 1",
+      "parameters": [
+        3276,
+        996
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          5,
+          0,
+          0,
+          "SEARCH l USING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
       "sql": "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex",
       "parameters": [
         103
@@ -5356,6 +6613,145 @@
           0,
           0,
           "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT te.id, tt.text, MIN(l.lineIndex)\nFROM tocEntry te JOIN tocText tt ON tt.id = te.textId\nJOIN line_toc lt ON lt.tocEntryId = te.id JOIN line l ON l.id = lt.lineId\nWHERE te.bookId = ? AND te.parentId IS NOT NULL\n  AND NOT EXISTS (SELECT 1 FROM tocEntry child WHERE child.parentId = te.id)\nGROUP BY te.id, tt.text ORDER BY MIN(l.lineIndex), te.id",
+      "parameters": [
+        103
+      ],
+      "rows": 125,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          11,
+          0,
+          0,
+          "SEARCH te USING INDEX idx_toc_book (bookId=?)"
+        ],
+        [
+          21,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          25,
+          21,
+          0,
+          "SEARCH child USING COVERING INDEX idx_toc_parent (parentId=?)"
+        ],
+        [
+          34,
+          0,
+          0,
+          "SEARCH tt USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          37,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          41,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          77,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId\nWHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex",
+      "parameters": [
+        103,
+        1558
+      ],
+      "rows": 15,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          8,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          19,
+          0,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId\nWHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex",
+      "parameters": [
+        103,
+        1620
+      ],
+      "rows": 38,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          8,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          19,
+          0,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId\nWHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex",
+      "parameters": [
+        103,
+        1682
+      ],
+      "rows": 16,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          8,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          19,
+          0,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
         ]
       ]
     },
@@ -11018,6 +12414,1188 @@
       ]
     },
     {
+      "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
+      "parameters": [],
+      "rows": 18,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN category"
+        ]
+      ]
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "SELECT book.isBaseBook FROM book WHERE id = ?",
+      "parameters": [
+        103
+      ],
+      "rows": 1,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SEARCH book USING INTEGER PRIMARY KEY (rowid=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "    WITH win(id) AS (\n        SELECT id FROM line\n        WHERE bookId = ? AND lineIndex IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\n    ), matched(linkId, matchedSide, anchorLineId) AS (\n        SELECT link.id, 0, link.sourceLineId\n        FROM link\n        WHERE link.sourceBookId = 103\n          AND link.sourceLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 0, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 0 AND link.sourceBookId = 103 AND coverage.lineId IN (SELECT id FROM win)\n        UNION\n        SELECT link.id, 1, link.targetLineId\n        FROM link\n        WHERE link.targetBookId = 103\n          AND link.targetLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 1, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 1 AND link.targetBookId = 103 AND coverage.lineId IN (SELECT id FROM win)\n    ), resolved AS (\n        SELECT DISTINCT\n            link.id AS linkId,\n            COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,\n            matched.matchedSide AS matchedSide,\n            link.sourceBookId AS sourceBookId,\n            link.targetBookId AS targetBookId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetLineId ELSE link.sourceLineId\n            END AS linkedLineId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetBookId ELSE link.sourceBookId\n            END AS linkedBookId\n        FROM matched\n        JOIN link ON link.id = matched.linkId\n        LEFT JOIN connection_type ON connection_type.id = link.connectionTypeId\n        WHERE (\n            matched.matchedSide = 0\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 0)\n        ) OR (\n            matched.matchedSide = 1\n            AND connection_type.name IN ('COMMENTARY', 'SUPER_COMMENTARY', 'TARGUM', 'MIDRASH', 'PARSHANUT', 'DIBUR_HAMATCHIL', 'ELUCIDATION', 'EXPLICATION', 'FOOTNOTES', 'REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 1)\n            AND (link.sourceBookId != link.targetBookId OR (\n  connection_type.name IN ('REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n  AND (\n    EXISTS (\n      SELECT 1 FROM link_suppressed_side source_hidden\n      WHERE source_hidden.linkId = link.id AND source_hidden.side = 0\n    )\n    OR (\n      matched.anchorLineId != link.sourceLineId\n      AND NOT EXISTS (SELECT 1 FROM link_coverage source_coverage WHERE source_coverage.linkId = link.id AND source_coverage.side = 0 AND source_coverage.lineId = matched.anchorLineId)\n    )\n  )\n))\n        )\n    )\n    SELECT resolved.linkId,\n           resolved.rawConnectionType,\n           resolved.matchedSide,\n           resolved.sourceBookId,\n           resolved.targetBookId,\n           resolved.linkedLineId,\n           resolved.linkedBookId,\n           linked_line.lineIndex,\n           linked_book.title,\n           NULL,\n           linked_book.categoryId,\n           linked_book.orderIndex,\n           linked_book.isBaseBook,\n           linked_book.dependenceType,\n           linked_line.heRef\n    FROM resolved\n    JOIN line linked_line ON linked_line.id = resolved.linkedLineId\n    \n    JOIN book linked_book ON linked_book.id = resolved.linkedBookId\n    ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId",
+      "parameters": [
+        103,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "rows": 16,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "CO-ROUTINE resolved"
+        ],
+        [
+          4,
+          2,
+          0,
+          "CO-ROUTINE matched"
+        ],
+        [
+          6,
+          4,
+          0,
+          "COMPOUND QUERY"
+        ],
+        [
+          7,
+          6,
+          0,
+          "LEFT-MOST SUBQUERY"
+        ],
+        [
+          10,
+          7,
+          0,
+          "SEARCH link USING INDEX idx_link_source_targetorder (sourceLineId=?)"
+        ],
+        [
+          14,
+          7,
+          0,
+          "LIST SUBQUERY 2"
+        ],
+        [
+          16,
+          14,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          100,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          103,
+          100,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          107,
+          100,
+          0,
+          "LIST SUBQUERY 4"
+        ],
+        [
+          109,
+          107,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          185,
+          100,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          197,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          200,
+          197,
+          0,
+          "SEARCH link USING INDEX idx_link_target_line (targetLineId=?)"
+        ],
+        [
+          204,
+          197,
+          0,
+          "LIST SUBQUERY 6"
+        ],
+        [
+          206,
+          204,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          290,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          293,
+          290,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          297,
+          290,
+          0,
+          "LIST SUBQUERY 8"
+        ],
+        [
+          299,
+          297,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          375,
+          290,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          398,
+          2,
+          0,
+          "SCAN matched"
+        ],
+        [
+          401,
+          2,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          404,
+          2,
+          0,
+          "SEARCH connection_type USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ],
+        [
+          412,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 10"
+        ],
+        [
+          416,
+          412,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          503,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 11"
+        ],
+        [
+          507,
+          503,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          568,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 12"
+        ],
+        [
+          572,
+          568,
+          0,
+          "SEARCH source_hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          585,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 13"
+        ],
+        [
+          589,
+          585,
+          0,
+          "SEARCH source_coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=? AND linkId=? AND side=?)"
+        ],
+        [
+          626,
+          2,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ],
+        [
+          631,
+          0,
+          0,
+          "SCAN resolved"
+        ],
+        [
+          634,
+          0,
+          0,
+          "SEARCH linked_line USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          637,
+          0,
+          0,
+          "SEARCH linked_book USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          658,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        3891,
+        1531
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?)",
+      "parameters": [
+        103,
+        533,
+        620,
+        634
+      ],
+      "rows": 3,
+      "decodedFrames": 3,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          28,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?)",
+      "parameters": [
+        382,
+        1894,
+        1896,
+        1900
+      ],
+      "rows": 3,
+      "decodedFrames": 3,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          28,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.id, l.lineIndex, lc.content, l.heRef\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex = ?\n    LIMIT 1",
+      "parameters": [
+        382,
+        1900
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          5,
+          0,
+          0,
+          "SEARCH l USING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
+      "parameters": [],
+      "rows": 18,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN category"
+        ]
+      ]
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "SELECT book.isBaseBook FROM book WHERE id = ?",
+      "parameters": [
+        103
+      ],
+      "rows": 1,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SEARCH book USING INTEGER PRIMARY KEY (rowid=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "    WITH win(id) AS (\n        SELECT id FROM line\n        WHERE bookId = ? AND lineIndex IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\n    ), matched(linkId, matchedSide, anchorLineId) AS (\n        SELECT link.id, 0, link.sourceLineId\n        FROM link\n        WHERE link.sourceBookId = 103\n          AND link.sourceLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 0, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 0 AND link.sourceBookId = 103 AND coverage.lineId IN (SELECT id FROM win)\n        UNION\n        SELECT link.id, 1, link.targetLineId\n        FROM link\n        WHERE link.targetBookId = 103\n          AND link.targetLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 1, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 1 AND link.targetBookId = 103 AND coverage.lineId IN (SELECT id FROM win)\n    ), resolved AS (\n        SELECT DISTINCT\n            link.id AS linkId,\n            COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,\n            matched.matchedSide AS matchedSide,\n            link.sourceBookId AS sourceBookId,\n            link.targetBookId AS targetBookId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetLineId ELSE link.sourceLineId\n            END AS linkedLineId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetBookId ELSE link.sourceBookId\n            END AS linkedBookId\n        FROM matched\n        JOIN link ON link.id = matched.linkId\n        LEFT JOIN connection_type ON connection_type.id = link.connectionTypeId\n        WHERE (\n            matched.matchedSide = 0\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 0)\n        ) OR (\n            matched.matchedSide = 1\n            AND connection_type.name IN ('COMMENTARY', 'SUPER_COMMENTARY', 'TARGUM', 'MIDRASH', 'PARSHANUT', 'DIBUR_HAMATCHIL', 'ELUCIDATION', 'EXPLICATION', 'FOOTNOTES', 'REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 1)\n            AND (link.sourceBookId != link.targetBookId OR (\n  connection_type.name IN ('REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n  AND (\n    EXISTS (\n      SELECT 1 FROM link_suppressed_side source_hidden\n      WHERE source_hidden.linkId = link.id AND source_hidden.side = 0\n    )\n    OR (\n      matched.anchorLineId != link.sourceLineId\n      AND NOT EXISTS (SELECT 1 FROM link_coverage source_coverage WHERE source_coverage.linkId = link.id AND source_coverage.side = 0 AND source_coverage.lineId = matched.anchorLineId)\n    )\n  )\n))\n        )\n    )\n    SELECT resolved.linkId,\n           resolved.rawConnectionType,\n           resolved.matchedSide,\n           resolved.sourceBookId,\n           resolved.targetBookId,\n           resolved.linkedLineId,\n           resolved.linkedBookId,\n           linked_line.lineIndex,\n           linked_book.title,\n           NULL,\n           linked_book.categoryId,\n           linked_book.orderIndex,\n           linked_book.isBaseBook,\n           linked_book.dependenceType,\n           linked_line.heRef\n    FROM resolved\n    JOIN line linked_line ON linked_line.id = resolved.linkedLineId\n    \n    JOIN book linked_book ON linked_book.id = resolved.linkedBookId\n    ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId",
+      "parameters": [
+        103,
+        1559,
+        1560,
+        1561,
+        1562,
+        1563,
+        1564,
+        1565,
+        1566,
+        1567,
+        1568,
+        1569,
+        1570,
+        1571,
+        1572,
+        1573,
+        1574,
+        1575,
+        1576,
+        1577,
+        1578,
+        1579,
+        1580,
+        1581,
+        1582,
+        1583,
+        1584,
+        1585,
+        1586,
+        1587,
+        1588,
+        1589,
+        1590,
+        1591,
+        1592,
+        1593,
+        1594,
+        1595,
+        1596
+      ],
+      "rows": 21,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "CO-ROUTINE resolved"
+        ],
+        [
+          4,
+          2,
+          0,
+          "CO-ROUTINE matched"
+        ],
+        [
+          6,
+          4,
+          0,
+          "COMPOUND QUERY"
+        ],
+        [
+          7,
+          6,
+          0,
+          "LEFT-MOST SUBQUERY"
+        ],
+        [
+          10,
+          7,
+          0,
+          "SEARCH link USING INDEX idx_link_source_targetorder (sourceLineId=?)"
+        ],
+        [
+          14,
+          7,
+          0,
+          "LIST SUBQUERY 2"
+        ],
+        [
+          16,
+          14,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          169,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          172,
+          169,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          176,
+          169,
+          0,
+          "LIST SUBQUERY 4"
+        ],
+        [
+          178,
+          176,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          323,
+          169,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          335,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          338,
+          335,
+          0,
+          "SEARCH link USING INDEX idx_link_target_line (targetLineId=?)"
+        ],
+        [
+          342,
+          335,
+          0,
+          "LIST SUBQUERY 6"
+        ],
+        [
+          344,
+          342,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          497,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          500,
+          497,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          504,
+          497,
+          0,
+          "LIST SUBQUERY 8"
+        ],
+        [
+          506,
+          504,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          651,
+          497,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          674,
+          2,
+          0,
+          "SCAN matched"
+        ],
+        [
+          677,
+          2,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          680,
+          2,
+          0,
+          "SEARCH connection_type USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ],
+        [
+          688,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 10"
+        ],
+        [
+          692,
+          688,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          779,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 11"
+        ],
+        [
+          783,
+          779,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          844,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 12"
+        ],
+        [
+          848,
+          844,
+          0,
+          "SEARCH source_hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          861,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 13"
+        ],
+        [
+          865,
+          861,
+          0,
+          "SEARCH source_coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=? AND linkId=? AND side=?)"
+        ],
+        [
+          902,
+          2,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ],
+        [
+          907,
+          0,
+          0,
+          "SCAN resolved"
+        ],
+        [
+          910,
+          0,
+          0,
+          "SEARCH linked_line USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          913,
+          0,
+          0,
+          "SEARCH linked_book USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          934,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        382,
+        2318
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        3764,
+        107
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        28,
+        1649
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        3152,
+        252
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.id, l.lineIndex, lc.content, l.heRef\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex = ?\n    LIMIT 1",
+      "parameters": [
+        3152,
+        252
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          5,
+          0,
+          0,
+          "SEARCH l USING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
+      "parameters": [],
+      "rows": 18,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN category"
+        ]
+      ]
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "SELECT book.isBaseBook FROM book WHERE id = ?",
+      "parameters": [
+        103
+      ],
+      "rows": 1,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SEARCH book USING INTEGER PRIMARY KEY (rowid=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "    WITH win(id) AS (\n        SELECT id FROM line\n        WHERE bookId = ? AND lineIndex IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\n    ), matched(linkId, matchedSide, anchorLineId) AS (\n        SELECT link.id, 0, link.sourceLineId\n        FROM link\n        WHERE link.sourceBookId = 103\n          AND link.sourceLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 0, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 0 AND link.sourceBookId = 103 AND coverage.lineId IN (SELECT id FROM win)\n        UNION\n        SELECT link.id, 1, link.targetLineId\n        FROM link\n        WHERE link.targetBookId = 103\n          AND link.targetLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 1, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 1 AND link.targetBookId = 103 AND coverage.lineId IN (SELECT id FROM win)\n    ), resolved AS (\n        SELECT DISTINCT\n            link.id AS linkId,\n            COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,\n            matched.matchedSide AS matchedSide,\n            link.sourceBookId AS sourceBookId,\n            link.targetBookId AS targetBookId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetLineId ELSE link.sourceLineId\n            END AS linkedLineId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetBookId ELSE link.sourceBookId\n            END AS linkedBookId\n        FROM matched\n        JOIN link ON link.id = matched.linkId\n        LEFT JOIN connection_type ON connection_type.id = link.connectionTypeId\n        WHERE (\n            matched.matchedSide = 0\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 0)\n        ) OR (\n            matched.matchedSide = 1\n            AND connection_type.name IN ('COMMENTARY', 'SUPER_COMMENTARY', 'TARGUM', 'MIDRASH', 'PARSHANUT', 'DIBUR_HAMATCHIL', 'ELUCIDATION', 'EXPLICATION', 'FOOTNOTES', 'REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 1)\n            AND (link.sourceBookId != link.targetBookId OR (\n  connection_type.name IN ('REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n  AND (\n    EXISTS (\n      SELECT 1 FROM link_suppressed_side source_hidden\n      WHERE source_hidden.linkId = link.id AND source_hidden.side = 0\n    )\n    OR (\n      matched.anchorLineId != link.sourceLineId\n      AND NOT EXISTS (SELECT 1 FROM link_coverage source_coverage WHERE source_coverage.linkId = link.id AND source_coverage.side = 0 AND source_coverage.lineId = matched.anchorLineId)\n    )\n  )\n))\n        )\n    )\n    SELECT resolved.linkId,\n           resolved.rawConnectionType,\n           resolved.matchedSide,\n           resolved.sourceBookId,\n           resolved.targetBookId,\n           resolved.linkedLineId,\n           resolved.linkedBookId,\n           linked_line.lineIndex,\n           linked_book.title,\n           NULL,\n           linked_book.categoryId,\n           linked_book.orderIndex,\n           linked_book.isBaseBook,\n           linked_book.dependenceType,\n           linked_line.heRef\n    FROM resolved\n    JOIN line linked_line ON linked_line.id = resolved.linkedLineId\n    \n    JOIN book linked_book ON linked_book.id = resolved.linkedBookId\n    ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId",
+      "parameters": [
+        103,
+        2859,
+        2860,
+        2861,
+        2862,
+        2863,
+        2864,
+        2865,
+        2866,
+        2867,
+        2868,
+        2869,
+        2870,
+        2871,
+        2872,
+        2873,
+        2874
+      ],
+      "rows": 12,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "CO-ROUTINE resolved"
+        ],
+        [
+          4,
+          2,
+          0,
+          "CO-ROUTINE matched"
+        ],
+        [
+          6,
+          4,
+          0,
+          "COMPOUND QUERY"
+        ],
+        [
+          7,
+          6,
+          0,
+          "LEFT-MOST SUBQUERY"
+        ],
+        [
+          10,
+          7,
+          0,
+          "SEARCH link USING INDEX idx_link_source_targetorder (sourceLineId=?)"
+        ],
+        [
+          14,
+          7,
+          0,
+          "LIST SUBQUERY 2"
+        ],
+        [
+          16,
+          14,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          103,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          106,
+          103,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          110,
+          103,
+          0,
+          "LIST SUBQUERY 4"
+        ],
+        [
+          112,
+          110,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          191,
+          103,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          203,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          206,
+          203,
+          0,
+          "SEARCH link USING INDEX idx_link_target_line (targetLineId=?)"
+        ],
+        [
+          210,
+          203,
+          0,
+          "LIST SUBQUERY 6"
+        ],
+        [
+          212,
+          210,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          299,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          302,
+          299,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          306,
+          299,
+          0,
+          "LIST SUBQUERY 8"
+        ],
+        [
+          308,
+          306,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          387,
+          299,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          410,
+          2,
+          0,
+          "SCAN matched"
+        ],
+        [
+          413,
+          2,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          416,
+          2,
+          0,
+          "SEARCH connection_type USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ],
+        [
+          424,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 10"
+        ],
+        [
+          428,
+          424,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          515,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 11"
+        ],
+        [
+          519,
+          515,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          580,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 12"
+        ],
+        [
+          584,
+          580,
+          0,
+          "SEARCH source_hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          597,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 13"
+        ],
+        [
+          601,
+          597,
+          0,
+          "SEARCH source_coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=? AND linkId=? AND side=?)"
+        ],
+        [
+          638,
+          2,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ],
+        [
+          643,
+          0,
+          0,
+          "SCAN resolved"
+        ],
+        [
+          646,
+          0,
+          0,
+          "SEARCH linked_line USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          649,
+          0,
+          0,
+          "SEARCH linked_book USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          670,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?,?,?,?)",
+      "parameters": [
+        28,
+        1469,
+        2207,
+        2307,
+        2343,
+        2344,
+        2345
+      ],
+      "rows": 6,
+      "decodedFrames": 6,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          37,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        3152,
+        282
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.id, l.lineIndex, lc.content, l.heRef\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex = ?\n    LIMIT 1",
+      "parameters": [
+        3152,
+        282
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          5,
+          0,
+          0,
+          "SEARCH l USING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
       "sql": "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex",
       "parameters": [
         3152
@@ -11030,6 +13608,145 @@
           0,
           0,
           "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT te.id, tt.text, MIN(l.lineIndex)\nFROM tocEntry te JOIN tocText tt ON tt.id = te.textId\nJOIN line_toc lt ON lt.tocEntryId = te.id JOIN line l ON l.id = lt.lineId\nWHERE te.bookId = ? AND te.parentId IS NOT NULL\n  AND NOT EXISTS (SELECT 1 FROM tocEntry child WHERE child.parentId = te.id)\nGROUP BY te.id, tt.text ORDER BY MIN(l.lineIndex), te.id",
+      "parameters": [
+        3152
+      ],
+      "rows": 12,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          11,
+          0,
+          0,
+          "SEARCH te USING INDEX idx_toc_book (bookId=?)"
+        ],
+        [
+          21,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          25,
+          21,
+          0,
+          "SEARCH child USING COVERING INDEX idx_toc_parent (parentId=?)"
+        ],
+        [
+          34,
+          0,
+          0,
+          "SEARCH tt USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          37,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          41,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          77,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId\nWHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex",
+      "parameters": [
+        3152,
+        297503
+      ],
+      "rows": 55,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          8,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          19,
+          0,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId\nWHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex",
+      "parameters": [
+        3152,
+        297508
+      ],
+      "rows": 31,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          8,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          19,
+          0,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId\nWHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex",
+      "parameters": [
+        3152,
+        297514
+      ],
+      "rows": 41,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          8,
+          0,
+          0,
+          "SEARCH lt USING COVERING INDEX idx_linetoc_toc (tocEntryId=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          19,
+          0,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
         ]
       ]
     },
@@ -12972,9 +15689,1204 @@
           "USE TEMP B-TREE FOR ORDER BY"
         ]
       ]
+    },
+    {
+      "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
+      "parameters": [],
+      "rows": 18,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN category"
+        ]
+      ]
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "SELECT book.isBaseBook FROM book WHERE id = ?",
+      "parameters": [
+        3152
+      ],
+      "rows": 1,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SEARCH book USING INTEGER PRIMARY KEY (rowid=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "    WITH win(id) AS (\n        SELECT id FROM line\n        WHERE bookId = ? AND lineIndex IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\n    ), matched(linkId, matchedSide, anchorLineId) AS (\n        SELECT link.id, 0, link.sourceLineId\n        FROM link\n        WHERE link.sourceBookId = 3152\n          AND link.sourceLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 0, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 0 AND link.sourceBookId = 3152 AND coverage.lineId IN (SELECT id FROM win)\n        UNION\n        SELECT link.id, 1, link.targetLineId\n        FROM link\n        WHERE link.targetBookId = 3152\n          AND link.targetLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 1, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 1 AND link.targetBookId = 3152 AND coverage.lineId IN (SELECT id FROM win)\n    ), resolved AS (\n        SELECT DISTINCT\n            link.id AS linkId,\n            COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,\n            matched.matchedSide AS matchedSide,\n            link.sourceBookId AS sourceBookId,\n            link.targetBookId AS targetBookId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetLineId ELSE link.sourceLineId\n            END AS linkedLineId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetBookId ELSE link.sourceBookId\n            END AS linkedBookId\n        FROM matched\n        JOIN link ON link.id = matched.linkId\n        LEFT JOIN connection_type ON connection_type.id = link.connectionTypeId\n        WHERE (\n            matched.matchedSide = 0\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 0)\n        ) OR (\n            matched.matchedSide = 1\n            AND connection_type.name IN ('COMMENTARY', 'SUPER_COMMENTARY', 'TARGUM', 'MIDRASH', 'PARSHANUT', 'DIBUR_HAMATCHIL', 'ELUCIDATION', 'EXPLICATION', 'FOOTNOTES', 'REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 1)\n            AND (link.sourceBookId != link.targetBookId OR (\n  connection_type.name IN ('REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n  AND (\n    EXISTS (\n      SELECT 1 FROM link_suppressed_side source_hidden\n      WHERE source_hidden.linkId = link.id AND source_hidden.side = 0\n    )\n    OR (\n      matched.anchorLineId != link.sourceLineId\n      AND NOT EXISTS (SELECT 1 FROM link_coverage source_coverage WHERE source_coverage.linkId = link.id AND source_coverage.side = 0 AND source_coverage.lineId = matched.anchorLineId)\n    )\n  )\n))\n        )\n    )\n    SELECT resolved.linkId,\n           resolved.rawConnectionType,\n           resolved.matchedSide,\n           resolved.sourceBookId,\n           resolved.targetBookId,\n           resolved.linkedLineId,\n           resolved.linkedBookId,\n           linked_line.lineIndex,\n           linked_book.title,\n           NULL,\n           linked_book.categoryId,\n           linked_book.orderIndex,\n           linked_book.isBaseBook,\n           linked_book.dependenceType,\n           linked_line.heRef\n    FROM resolved\n    JOIN line linked_line ON linked_line.id = resolved.linkedLineId\n    \n    JOIN book linked_book ON linked_book.id = resolved.linkedBookId\n    ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId",
+      "parameters": [
+        3152,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "rows": 14,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "CO-ROUTINE resolved"
+        ],
+        [
+          4,
+          2,
+          0,
+          "CO-ROUTINE matched"
+        ],
+        [
+          6,
+          4,
+          0,
+          "COMPOUND QUERY"
+        ],
+        [
+          7,
+          6,
+          0,
+          "LEFT-MOST SUBQUERY"
+        ],
+        [
+          10,
+          7,
+          0,
+          "SEARCH link USING INDEX idx_link_source_targetorder (sourceLineId=?)"
+        ],
+        [
+          14,
+          7,
+          0,
+          "LIST SUBQUERY 2"
+        ],
+        [
+          16,
+          14,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          220,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          223,
+          220,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          227,
+          220,
+          0,
+          "LIST SUBQUERY 4"
+        ],
+        [
+          229,
+          227,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          425,
+          220,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          437,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          440,
+          437,
+          0,
+          "SEARCH link USING INDEX idx_link_target_line (targetLineId=?)"
+        ],
+        [
+          444,
+          437,
+          0,
+          "LIST SUBQUERY 6"
+        ],
+        [
+          446,
+          444,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          650,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          653,
+          650,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          657,
+          650,
+          0,
+          "LIST SUBQUERY 8"
+        ],
+        [
+          659,
+          657,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          855,
+          650,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          878,
+          2,
+          0,
+          "SCAN matched"
+        ],
+        [
+          881,
+          2,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          884,
+          2,
+          0,
+          "SEARCH connection_type USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ],
+        [
+          892,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 10"
+        ],
+        [
+          896,
+          892,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          983,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 11"
+        ],
+        [
+          987,
+          983,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          1048,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 12"
+        ],
+        [
+          1052,
+          1048,
+          0,
+          "SEARCH source_hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          1065,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 13"
+        ],
+        [
+          1069,
+          1065,
+          0,
+          "SEARCH source_coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=? AND linkId=? AND side=?)"
+        ],
+        [
+          1106,
+          2,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ],
+        [
+          1111,
+          0,
+          0,
+          "SCAN resolved"
+        ],
+        [
+          1114,
+          0,
+          0,
+          "SEARCH linked_line USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          1117,
+          0,
+          0,
+          "SEARCH linked_book USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          1138,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?)",
+      "parameters": [
+        28,
+        12,
+        2405,
+        2504
+      ],
+      "rows": 3,
+      "decodedFrames": 3,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          28,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?,?)",
+      "parameters": [
+        1,
+        284,
+        294,
+        348,
+        1530
+      ],
+      "rows": 4,
+      "decodedFrames": 4,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          31,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        103,
+        1861
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.id, l.lineIndex, lc.content, l.heRef\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex = ?\n    LIMIT 1",
+      "parameters": [
+        28,
+        2504
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          5,
+          0,
+          0,
+          "SEARCH l USING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
+      "parameters": [],
+      "rows": 18,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN category"
+        ]
+      ]
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "SELECT book.isBaseBook FROM book WHERE id = ?",
+      "parameters": [
+        3152
+      ],
+      "rows": 1,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SEARCH book USING INTEGER PRIMARY KEY (rowid=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "    WITH win(id) AS (\n        SELECT id FROM line\n        WHERE bookId = ? AND lineIndex IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\n    ), matched(linkId, matchedSide, anchorLineId) AS (\n        SELECT link.id, 0, link.sourceLineId\n        FROM link\n        WHERE link.sourceBookId = 3152\n          AND link.sourceLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 0, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 0 AND link.sourceBookId = 3152 AND coverage.lineId IN (SELECT id FROM win)\n        UNION\n        SELECT link.id, 1, link.targetLineId\n        FROM link\n        WHERE link.targetBookId = 3152\n          AND link.targetLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 1, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 1 AND link.targetBookId = 3152 AND coverage.lineId IN (SELECT id FROM win)\n    ), resolved AS (\n        SELECT DISTINCT\n            link.id AS linkId,\n            COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,\n            matched.matchedSide AS matchedSide,\n            link.sourceBookId AS sourceBookId,\n            link.targetBookId AS targetBookId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetLineId ELSE link.sourceLineId\n            END AS linkedLineId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetBookId ELSE link.sourceBookId\n            END AS linkedBookId\n        FROM matched\n        JOIN link ON link.id = matched.linkId\n        LEFT JOIN connection_type ON connection_type.id = link.connectionTypeId\n        WHERE (\n            matched.matchedSide = 0\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 0)\n        ) OR (\n            matched.matchedSide = 1\n            AND connection_type.name IN ('COMMENTARY', 'SUPER_COMMENTARY', 'TARGUM', 'MIDRASH', 'PARSHANUT', 'DIBUR_HAMATCHIL', 'ELUCIDATION', 'EXPLICATION', 'FOOTNOTES', 'REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 1)\n            AND (link.sourceBookId != link.targetBookId OR (\n  connection_type.name IN ('REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n  AND (\n    EXISTS (\n      SELECT 1 FROM link_suppressed_side source_hidden\n      WHERE source_hidden.linkId = link.id AND source_hidden.side = 0\n    )\n    OR (\n      matched.anchorLineId != link.sourceLineId\n      AND NOT EXISTS (SELECT 1 FROM link_coverage source_coverage WHERE source_coverage.linkId = link.id AND source_coverage.side = 0 AND source_coverage.lineId = matched.anchorLineId)\n    )\n  )\n))\n        )\n    )\n    SELECT resolved.linkId,\n           resolved.rawConnectionType,\n           resolved.matchedSide,\n           resolved.sourceBookId,\n           resolved.targetBookId,\n           resolved.linkedLineId,\n           resolved.linkedBookId,\n           linked_line.lineIndex,\n           linked_book.title,\n           NULL,\n           linked_book.categoryId,\n           linked_book.orderIndex,\n           linked_book.isBaseBook,\n           linked_book.dependenceType,\n           linked_line.heRef\n    FROM resolved\n    JOIN line linked_line ON linked_line.id = resolved.linkedLineId\n    \n    JOIN book linked_book ON linked_book.id = resolved.linkedBookId\n    ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId",
+      "parameters": [
+        3152,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269
+      ],
+      "rows": 28,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "CO-ROUTINE resolved"
+        ],
+        [
+          4,
+          2,
+          0,
+          "CO-ROUTINE matched"
+        ],
+        [
+          6,
+          4,
+          0,
+          "COMPOUND QUERY"
+        ],
+        [
+          7,
+          6,
+          0,
+          "LEFT-MOST SUBQUERY"
+        ],
+        [
+          10,
+          7,
+          0,
+          "SEARCH link USING INDEX idx_link_source_targetorder (sourceLineId=?)"
+        ],
+        [
+          14,
+          7,
+          0,
+          "LIST SUBQUERY 2"
+        ],
+        [
+          16,
+          14,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          148,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          151,
+          148,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          155,
+          148,
+          0,
+          "LIST SUBQUERY 4"
+        ],
+        [
+          157,
+          155,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          281,
+          148,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          293,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          296,
+          293,
+          0,
+          "SEARCH link USING INDEX idx_link_target_line (targetLineId=?)"
+        ],
+        [
+          300,
+          293,
+          0,
+          "LIST SUBQUERY 6"
+        ],
+        [
+          302,
+          300,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          434,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          437,
+          434,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          441,
+          434,
+          0,
+          "LIST SUBQUERY 8"
+        ],
+        [
+          443,
+          441,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          567,
+          434,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          590,
+          2,
+          0,
+          "SCAN matched"
+        ],
+        [
+          593,
+          2,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          596,
+          2,
+          0,
+          "SEARCH connection_type USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ],
+        [
+          604,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 10"
+        ],
+        [
+          608,
+          604,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          695,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 11"
+        ],
+        [
+          699,
+          695,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          760,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 12"
+        ],
+        [
+          764,
+          760,
+          0,
+          "SEARCH source_hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          777,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 13"
+        ],
+        [
+          781,
+          777,
+          0,
+          "SEARCH source_coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=? AND linkId=? AND side=?)"
+        ],
+        [
+          818,
+          2,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ],
+        [
+          823,
+          0,
+          0,
+          "SCAN resolved"
+        ],
+        [
+          826,
+          0,
+          0,
+          "SEARCH linked_line USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          829,
+          0,
+          0,
+          "SEARCH linked_book USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          850,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?,?,?,?,?,?)",
+      "parameters": [
+        28,
+        836,
+        994,
+        1002,
+        1537,
+        1539,
+        1593
+      ],
+      "rows": 6,
+      "decodedFrames": 6,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          37,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.id, l.lineIndex, lc.content, l.heRef\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex = ?\n    LIMIT 1",
+      "parameters": [
+        28,
+        1593
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          5,
+          0,
+          0,
+          "SEARCH l USING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT id, parentId, title, level, orderIndex\n    FROM category",
+      "parameters": [],
+      "rows": 18,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN category"
+        ]
+      ]
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "PRAGMA table_info(book)",
+      "parameters": [],
+      "rows": 22,
+      "decodedFrames": 0,
+      "plan": []
+    },
+    {
+      "sql": "SELECT book.isBaseBook FROM book WHERE id = ?",
+      "parameters": [
+        3152
+      ],
+      "rows": 1,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SEARCH book USING INTEGER PRIMARY KEY (rowid=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "    WITH win(id) AS (\n        SELECT id FROM line\n        WHERE bookId = ? AND lineIndex IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\n    ), matched(linkId, matchedSide, anchorLineId) AS (\n        SELECT link.id, 0, link.sourceLineId\n        FROM link\n        WHERE link.sourceBookId = 3152\n          AND link.sourceLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 0, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 0 AND link.sourceBookId = 3152 AND coverage.lineId IN (SELECT id FROM win)\n        UNION\n        SELECT link.id, 1, link.targetLineId\n        FROM link\n        WHERE link.targetBookId = 3152\n          AND link.targetLineId IN (SELECT id FROM win)\n        UNION SELECT link.id, 1, coverage.lineId FROM link_coverage coverage JOIN link ON link.id = coverage.linkId WHERE coverage.side = 1 AND link.targetBookId = 3152 AND coverage.lineId IN (SELECT id FROM win)\n    ), resolved AS (\n        SELECT DISTINCT\n            link.id AS linkId,\n            COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,\n            matched.matchedSide AS matchedSide,\n            link.sourceBookId AS sourceBookId,\n            link.targetBookId AS targetBookId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetLineId ELSE link.sourceLineId\n            END AS linkedLineId,\n            CASE matched.matchedSide\n                WHEN 0 THEN link.targetBookId ELSE link.sourceBookId\n            END AS linkedBookId\n        FROM matched\n        JOIN link ON link.id = matched.linkId\n        LEFT JOIN connection_type ON connection_type.id = link.connectionTypeId\n        WHERE (\n            matched.matchedSide = 0\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 0)\n        ) OR (\n            matched.matchedSide = 1\n            AND connection_type.name IN ('COMMENTARY', 'SUPER_COMMENTARY', 'TARGUM', 'MIDRASH', 'PARSHANUT', 'DIBUR_HAMATCHIL', 'ELUCIDATION', 'EXPLICATION', 'FOOTNOTES', 'REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n            AND NOT EXISTS (SELECT 1 FROM link_suppressed_side hidden WHERE hidden.linkId = link.id AND hidden.side = 1)\n            AND (link.sourceBookId != link.targetBookId OR (\n  connection_type.name IN ('REFERENCE', 'QUOTATION', 'MESORAT_HASHAS', 'EIN_MISHPAT', 'MISHNAH_IN_TALMUD', 'RELATED', 'OTHER', 'SIFREI_MITZVOT', 'ESSAY', 'ALLUSION', 'LITURGY', 'LAW', 'SUMMARY')\n  AND (\n    EXISTS (\n      SELECT 1 FROM link_suppressed_side source_hidden\n      WHERE source_hidden.linkId = link.id AND source_hidden.side = 0\n    )\n    OR (\n      matched.anchorLineId != link.sourceLineId\n      AND NOT EXISTS (SELECT 1 FROM link_coverage source_coverage WHERE source_coverage.linkId = link.id AND source_coverage.side = 0 AND source_coverage.lineId = matched.anchorLineId)\n    )\n  )\n))\n        )\n    )\n    SELECT resolved.linkId,\n           resolved.rawConnectionType,\n           resolved.matchedSide,\n           resolved.sourceBookId,\n           resolved.targetBookId,\n           resolved.linkedLineId,\n           resolved.linkedBookId,\n           linked_line.lineIndex,\n           linked_book.title,\n           NULL,\n           linked_book.categoryId,\n           linked_book.orderIndex,\n           linked_book.isBaseBook,\n           linked_book.dependenceType,\n           linked_line.heRef\n    FROM resolved\n    JOIN line linked_line ON linked_line.id = resolved.linkedLineId\n    \n    JOIN book linked_book ON linked_book.id = resolved.linkedBookId\n    ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId",
+      "parameters": [
+        3152,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527
+      ],
+      "rows": 3,
+      "decodedFrames": 0,
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "CO-ROUTINE resolved"
+        ],
+        [
+          4,
+          2,
+          0,
+          "CO-ROUTINE matched"
+        ],
+        [
+          6,
+          4,
+          0,
+          "COMPOUND QUERY"
+        ],
+        [
+          7,
+          6,
+          0,
+          "LEFT-MOST SUBQUERY"
+        ],
+        [
+          10,
+          7,
+          0,
+          "SEARCH link USING INDEX idx_link_source_targetorder (sourceLineId=?)"
+        ],
+        [
+          14,
+          7,
+          0,
+          "LIST SUBQUERY 2"
+        ],
+        [
+          16,
+          14,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          178,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          181,
+          178,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          185,
+          178,
+          0,
+          "LIST SUBQUERY 4"
+        ],
+        [
+          187,
+          185,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          341,
+          178,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          353,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          356,
+          353,
+          0,
+          "SEARCH link USING INDEX idx_link_target_line (targetLineId=?)"
+        ],
+        [
+          360,
+          353,
+          0,
+          "LIST SUBQUERY 6"
+        ],
+        [
+          362,
+          360,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          524,
+          6,
+          0,
+          "UNION USING TEMP B-TREE"
+        ],
+        [
+          527,
+          524,
+          0,
+          "SEARCH coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=?)"
+        ],
+        [
+          531,
+          524,
+          0,
+          "LIST SUBQUERY 8"
+        ],
+        [
+          533,
+          531,
+          0,
+          "SEARCH line USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          687,
+          524,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          710,
+          2,
+          0,
+          "SCAN matched"
+        ],
+        [
+          713,
+          2,
+          0,
+          "SEARCH link USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          716,
+          2,
+          0,
+          "SEARCH connection_type USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ],
+        [
+          724,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 10"
+        ],
+        [
+          728,
+          724,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          815,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 11"
+        ],
+        [
+          819,
+          815,
+          0,
+          "SEARCH hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          880,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 12"
+        ],
+        [
+          884,
+          880,
+          0,
+          "SEARCH source_hidden USING COVERING INDEX sqlite_autoindex_link_suppressed_side_1 (linkId=? AND side=?)"
+        ],
+        [
+          897,
+          2,
+          0,
+          "CORRELATED SCALAR SUBQUERY 13"
+        ],
+        [
+          901,
+          897,
+          0,
+          "SEARCH source_coverage USING COVERING INDEX sqlite_autoindex_link_coverage_1 (lineId=? AND linkId=? AND side=?)"
+        ],
+        [
+          938,
+          2,
+          0,
+          "USE TEMP B-TREE FOR DISTINCT"
+        ],
+        [
+          943,
+          0,
+          0,
+          "SCAN resolved"
+        ],
+        [
+          946,
+          0,
+          0,
+          "SEARCH linked_line USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          949,
+          0,
+          0,
+          "SEARCH linked_book USING INTEGER PRIMARY KEY (rowid=?)"
+        ],
+        [
+          970,
+          0,
+          0,
+          "USE TEMP B-TREE FOR ORDER BY"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        28,
+        1602
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        103,
+        937
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.bookId, l.lineIndex, lc.content\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex IN (?)",
+      "parameters": [
+        1,
+        630
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          11,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
+    },
+    {
+      "sql": "    SELECT l.id, l.lineIndex, lc.content, l.heRef\n    FROM line l\n    LEFT JOIN line_content lc ON lc.id = l.id\n    WHERE l.bookId = ? AND l.lineIndex = ?\n    LIMIT 1",
+      "parameters": [
+        28,
+        1602
+      ],
+      "rows": 1,
+      "decodedFrames": 1,
+      "plan": [
+        [
+          5,
+          0,
+          0,
+          "SEARCH l USING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+        ],
+        [
+          14,
+          0,
+          0,
+          "SEARCH lc USING INTEGER PRIMARY KEY (rowid=?) LEFT-JOIN"
+        ]
+      ]
     }
   ],
-  "sourceHead": "8cc9c6752763de742d2c1ceef3c407a87eb002c7",
+  "sourceHead": "a9bc4ffdb65d39d2240e782f6539903906eb63f8",
   "sourceSHA256": {
     "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
     "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift": "42c0f319f3483278c201d1f6a63878c0e94fd63bf30a4a1a6bd69a743aec3fc1",
@@ -12988,5 +16900,6 @@
     1,
     5,
     7
-  ]
+  ],
+  "sourceHashEncoding": "UTF-8 production text with universal newlines, matching compiled fixture input"
 }

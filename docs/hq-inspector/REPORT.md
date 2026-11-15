@@ -134,3 +134,42 @@ EXECUTED_PASS12 corpus windows: entire indexed source book plus first/middle/las
 EXECUTED_PASS existing13-group synthetic suite after real schema-projection extraction: fixtures-native-schema-20261115.log. Explicit outside-build corpus DB and --database on noncorpus mode are rejected with expected exit2 before compilation/DB access: corpus-boundary-negative-20261115.log. Runner syntax check also PASS.
 
 Limits remain strict: dictionary decoding here uses Python/libzstd, NOT production Swift/C decoder; no Apple app, UI, iPad, MainActor/RSS/p95 or full production performance claim. miniTest10 is a genuine schema6/v32 subset, not the current production release. During read-only source preparation, official latest was verified as v38-20261112163847(443459877), whose DB is multipart schema7. Assigned I's release parser still selects monolithic asset names. This concrete compatibility/source-pin issue was routed to manager for D/R ownership; I did not alter their downloader or silently call v32 data latest production. Exact native/coherent source and physical acceptance remain OPEN.
+
+
+## Continued genuine TOC-member windows and explicit remaining inputs
+
+The next corpus run extends the12 windows to21 and leaves application sources unchanged. It reads source tocEntry/tocText/line_toc records to select first/lower-median/last mapped leaf and its exact direct member indexes; it does not infer line ranges or duplicate Reader's ancestor/unit grouping. Root title-line association and Reader unit equivalence are explicitly not asserted. No R service source was copied, changed or replaced.
+
+| Genuine source | TOC IDs / titles | Direct member counts | Exact relationship counts |
+| --- | --- | --- | --- |
+| Tehillim28 | 600/674/749: chapters1/75/150 | 7/12/7 | 12/6/5 |
+| Berakhot103 | 1558/1620/1682: daf2a/33a/64a | 15/38/16 | 16/21/12 |
+| DerashotHaRan3152 | 297503/297508/297514: chapters1/6/12 | 55/31/41 | 14/28/3 |
+
+EXECUTED_PASS: same corpus command,21 windows total, independent row/set identities, complete grouping, requested tail hydration and last exact point-source parity. miniTest10-toc-source-audit-20261115.log. All178 readonly query/parameter/EXPLAIN records are retained in the updated raw JSON.35metadata queries use the covering book/line index,0metadata frames decoded,90dictionary frames only requested snippet/point paths, no unindexed link scan observed, DB SHA unchanged. Current raw sourceHeada9bc4ffdb65d39d2240e782f6539903906eb63f8; production source bytes are unchanged from8cc9c675. The preceding12-window raw report remains preserved at a9bc4ffd. The compact summary is now generated automatically from raw records and includes the raw-audit SHA256; report generation was executed directly against the actual completed run records. Prior13-group regression evidence remains applicable: subsequent edits only expand the explicit corpus branch and generate reports, with no changed application/schema code or default fixture path.
+
+Manager's data-pin decision for this wave: installedv32/schema6 plus matchingv32 search inputs, not an upgrade to latestv38/schema7. miniTest10-v6 stays an authenticated subset, never full/latest acceptance. No old fullDB was downloaded to fill a fixture and no v38 data/engine/index change was made.
+
+Concrete acceptance inputs still unavailable to I:
+1. A read-only copy/location of the actual installed FULL v32/schema6 database with its verified installation/source manifest and matching v32 search fingerprint. The assigned tree exposes the authenticated15.47MB subset, not that installed full corpus; no full-data p95/RSS/DB or source-capacity completion is claimed.
+2. A coherent app/target source fingerprint containing S's actual Embedded relationship error/identity correction and I's Inspector corrections. I's isolated tree still contains the legacy S adapter; portable doubles must not substitute for that true source.
+3. A fresh real Apple/native execution with observed toolchain/SDK, app and UI-test target membership, simulator/device model+UDID+runtime, xcresult/screens/AX/logs, followed by physical iPad acceptance. Available local authority is Windows6.3.3 and the connected DC host is Linux. Historical Xcode27/Simulator evidence is not reused as fresh proof. Existing manager-coordinated native/R27 execution is not duplicated or represented as an I PASS.
+
+These are source/runtime evidence dependencies under the accepted single-manager contract, not a new approval requirement. Original Asana1219602987688876 remains OPEN.
+
+
+## Notes draft identity isolation follow-up
+
+Pre-edit HEAD08bb8f2e3b1fe9bf6f4607221bb0f129c4f3005e, same assigned branch/worktree, clean. Existing downstream Inspector adapter is the only production file changed. The persisted-ID fallback previously used annotation.createdAt for unsaved notes. Two local drafts with the same timestamp therefore shared a UI ID; a timestamp equal to a persisted numeric ID also shared that ID. The actual openNote/deleteNote host in manager candidatefe6f5fe5126a964bd76d3f308489e131a491fe36 parses note.id as Int64 before persisted lookup/mutation. That protected host was inspected read-only and was not changed. This is a source-level collision and portable fixture reproduction, not an observed native deletion.
+
+Correction: a per-response draft ordinal plus immutable timestamp produces the private nonnumeric draft display ID. Persisted IDs keep their exact decimal value and existing actions. Draft IDs remain distinct and stable while currentAnnotations draft order is unchanged, independent of persisted row count/order and draft body edits; no durable identity or ordering stability across draft reorder/removal is invented. Drafts remain visible and cannot be misinterpreted by the existing numeric persisted-target guards. No UUID store, actor cache, annotation persistence/schema, Reader/SQLite code, Core/Resolver port, upstream hook, Kit, app/project or workflow change.
+
+EXECUTED_EXPECTED_FAIL: --case note-identity --source-ref08bb8f2e, compiled successfully then exit1 at persisted/same-timestamp draft uniqueness. note-identity-baseline-20261115.log.
+EXECUTED_PASS: py -3 tools/hq-inspector-fixtures.py --case all, exit0,14groups. fixtures-note-identities-20261115.log. New exact Notes-method regression proves persisted numeric target preservation, same-timestamp draft uniqueness, all draft IDs rejected by Int64 conversion, stable reload/body-edit IDs and independence from persisted-count changes. Existing Notes cold background loading/heartbeat/cancellation/stale/immutable-range, source-provider isolation, source document modes/gates, SQL/error/empty/grouping/snippet100/500/2000 and tap fixtures also pass. This is Windows Swift6.3.3 with explicit boundaries, not XCTest/Apple app/native acceptance.
+
+REUSED_VERIFIED_PASS: prior21 genuine miniTest10 SQL/source/TOC-member windows at08bb8f2e; their service, schema/grouping/classifier source hashes and query/decoder boundaries are unchanged. No repeated corpus or native run is claimed. Manager's dispatched43727696309 source candidatefe6f5fe does not contain this follow-up; I did not poll/watch that run or infer a result from it. Any future native evidence must use a compatible source fingerprint and cover actual Notes behavior before closure. Original task remains OPEN and full installedv32/schema6 plus physical iPad/native decoder/performance dependencies remain as previously recorded. Rollback: revert this draft-identity follow-up commit only.
+
+
+### All-three-backend draft-ID continuation
+
+Source correction is0a400d9cad0c3a03ad6cadbc04b18571eed795d5. The same focused Notes identity scenario was then parameterized over otzaria, sefaria and sefariaEmbedded using explicit qualified source locators. --case note-identity compiled and exited0 on all three. Numeric saved IDs remain exact; same-timestamp drafts are unique/nonnumeric, stable across reload/draft-body edit and changed persisted row counts. note-identities-three-backends-20261115.log. This follow-up changes only that focused test and evidence, not production code or the default fixture implementation; the preceding14-group full run remains the scoped regression evidence at0a400d9c. Source-shaped local annotations do not prove production Sefaria/Hermes/Notes UI or native guarded callbacks. The manager's already dispatched candidate does not contain0a400d9c; no native result was consumed, polled or inferred by I.

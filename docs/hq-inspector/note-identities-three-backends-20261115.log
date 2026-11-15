@@ -1,0 +1,4 @@
+Source: working tree; case: note-identity
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-xdecvuvm\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-xdecvuvm\inspector-fixtures.exp
+
+PASS actual Notes identities on all3 backends: numeric persisted targets, unique same-timestamp drafts, nonnumeric draft guards, stable IDs across reload/body edit/persisted-count changes

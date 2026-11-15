@@ -531,7 +531,11 @@ final class MaktabahTorahInspectorSession {
             }
         }
         let candidateAnnotations = Array(allByID.values) + unpersisted
+        var draftIndex = 0
         return candidateAnnotations.compactMap { annotation in
+            // Draft display identities must never parse as persisted mutation targets.
+            let noteID = annotation.id.map(String.init) ?? "draft:\(annotation.createdAt):\(draftIndex)"
+            if annotation.id == nil { draftIndex += 1 }
             let annLoc = annotation.backendLocator
                 ?? (annotation.bkId < 0 ? LegacyIdentityRegistry.shared.locator(for: annotation.bkId) : nil)
                 ?? (annotation.bkId == viewModel.currentBook?.id ? viewModel.currentBook?.backendLocator : nil)
@@ -564,7 +568,7 @@ final class MaktabahTorahInspectorSession {
                   let noteBody = annotation.note?.trimmingCharacters(in: .whitespacesAndNewlines),
                   !noteBody.isEmpty else { return nil }
             return TorahInspectorNote(
-                id: annotation.id.map(String.init) ?? "\(annotation.createdAt)",
+                id: noteID,
                 selectedText: annotation.context.isEmpty ? (selection.preferredSegmentRef ?? selection.canonicalRef) : annotation.context,
                 note: noteBody,
                 tag: annotation.tags.first
