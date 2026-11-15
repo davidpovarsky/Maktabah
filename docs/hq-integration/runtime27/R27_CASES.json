@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source_test_commit": "15ed01259d4b41864a53db76c0060c25393d75ef",
   "application_base": "fe6f5fe5126a964bd76d3f308489e131a491fe36",
-  "app_source": "8cff79f5b83f3d46537bc77df398e4d2c0521d6c",
+  "app_source": "4dae2dac23b51f504e1722d24a90028cc4caa690",
   "sole_executor_thread": "01a1df85-6013-7270-b48d-8e10222e95c6",
   "independent_qa_thread": null,
   "scope": "SINGLE_MANAGER_COHERENT_SIX_READER_PLUS_FIVE_NATIVE_ROUTE_CASES_NOT_FULL_RELEASE",
@@ -293,7 +293,7 @@
     "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
     "native_status": "NOT_RUN"
   },
-  "selected_scope_reason": "Six affected Reader cases retained; five new real native History URL/receipt/invalid-version cases supplement the original nine without replacing or weakening their oracles. Settings system Intent, full release and physical acceptance remain separate.",
+  "selected_scope_reason": "Six affected Reader cases retained; five new real native History URL/receipt/invalid-version cases supplement the original nine without replacing or weakening their oracles. Settings system Intent, full release and physical acceptance remain separate. Existing native miniTest10 INSTALL_SEARCH=1 bootstrap also verifies actual Swift-to-rebuilt-Zayit warm/filter/reopen consistency before the selected UI cases.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",

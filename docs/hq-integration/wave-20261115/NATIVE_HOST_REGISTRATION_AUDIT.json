@@ -1,0 +1,32 @@
+{
+  "reviewed_checkout": "718dbd0ba984dab9ee47ceeb36495ac1119afe40",
+  "N_packet": "a94e4d491ecf05f96307ecaeec4bde475cddd629",
+  "raw_patch_sha256": "468a37902370fc19a0a40b7ffb9fb6a9a0670872aca0500bc4b5d0e31719f01a",
+  "patch_caveat": "Only registration patch line endings normalized to existing LF project; actual applied graph verified. Native hook/collector patches preserved CRLF.",
+  "graph_validation": "PASS_EXACT_APPLIED_PROJECT_BYTES_AND_GRAPH",
+  "new_objects": 18,
+  "changed_existing_objects": [
+    "4B32021F2EDAFE85003B95D1",
+    "4B3202202EDAFE85003B95D1",
+    "F30576DD2FA46222005732C6",
+    "F30576E22FA46222005732C6",
+    "F30577472FA46222005732C6"
+  ],
+  "existing_objects_settings_order_duplicates": "PRESERVED",
+  "linked_product": "051C43E6363E71B6FF327F74",
+  "integration_sources": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift"
+  ],
+  "other_app_targets": "UNCHANGED",
+  "native_ui_test_membership": "Existing synchronized Maktabah-iOSUITests root owns new NativeRoutingAcceptanceTests.swift; execution NOT_RUN",
+  "application": "COMMITTED_IN_e07227ac_NOT_NATIVE_ACCEPTANCE",
+  "review_decision": "P945/N a94 completion, admission and current UIKit visibility reviewed; native app compilation/acceptance pending",
+  "public_route_decision": "Current v1 History root only; Settings intent-only. No state/focus/private fallback.",
+  "portable_evidence": "Manager57/0 at9c4 code; later a94 UIKit-only delta has actual package SDK compile proof. Native test713 annotation-only selection correction verified; no UI execution."
+}

@@ -1,0 +1,76 @@
+{
+  "source_pin": "4dae2dac23b51f504e1722d24a90028cc4caa690",
+  "P_final_authority": "945b483f0b01fe6722c0bd0dd864d8fe249cd973",
+  "S_Rust": "eb2f321a343a2c66381f50dadd37c94c49bb5cd0",
+  "S_Swift_bootstrap": "318926482cd093dfcb4e6c4628224d4f1d2fd67b",
+  "N_code": "a94e4d491ecf05f96307ecaeec4bde475cddd629",
+  "N_test_selection": "713f65d447b860f11c7e77768c3ddeebc54bad6b",
+  "source_registration_commit": "e07227ac",
+  "manager_checks": {
+    "N_portable_methods": 57,
+    "N_portable_at": "34baa6b77a15e91c04c066f8202ef2fa4c671481",
+    "bootstrap_Swift_assertions": 49,
+    "bootstrap_scenarios": 12,
+    "bootstrap_transports": "explicit bridge/install/DB doubles, not FFI/native",
+    "new_Rust_binary_controls": 8,
+    "actual_Git_preflight_old_binary_for_new_Rust": "REJECTED",
+    "registration_baseline_and_negative_graph_cases": 10,
+    "existing_release_and_evidence_controls_with_supplemental_case": 17,
+    "native_selected_declarations": 11,
+    "original_R27_declarations_and_oracles": 9,
+    "supplemental_native_route_declarations": 5,
+    "native_empty_execution_log": "5missing/FAIL, not PASS"
+  },
+  "S_attributed_actual_Rust": {
+    "component_tests_passed": 14,
+    "default_production_ignored": 1,
+    "explicit_production_passed": 1,
+    "production_seconds": 13.56,
+    "genuine_Hebrew_queries": 4,
+    "SQLite_verified_distinct_paging_hits": 150,
+    "data": "isolated canonical v32/index/lexical, not user installation",
+    "physical_user_root_cause": "UNPROVEN"
+  },
+  "native_plan": {
+    "groups": [
+      {
+        "label": "11-reader",
+        "cases": 8
+      },
+      {
+        "label": "phone",
+        "cases": 3
+      }
+    ],
+    "new_Zayit_framework": "Rebuild from exact reviewed source with unchanged production script; preserve verified old baseline, hash/archive new slices and verify unchanged before/after app link",
+    "Otzaria_framework": "Unchanged qualified source/binary retained",
+    "Metro": "Rebuild exact approved JS overlay",
+    "N_installed_scope": "iPad History root public URL/currentTab and Settings root Intent/sheet; system Intent runtime separately NOT_RUN",
+    "acceptance": "NOT_RUN_BEFORE_DISPATCH; partial11cannot_unlock_full_release"
+  },
+  "evidence": [
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\ZAYIT_SOURCE_CLOSURE_CONTROLS.log",
+      "sha256": "e68aa9917ef7e67d51a8e8e84ee764010f7264c993756049ce97e902f837a7fb"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\N_COMBINED_NATIVE_HOST_57.log",
+      "sha256": "74d6735d9c0d4e226acedce3417a017f5febc41e0103709f6a171f13be7cd0a4"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\COMBINED_BOOTSTRAP_ZAYIT_PROOF.log",
+      "sha256": "217e8cdb1621f69da0137507e29c4316513f6f77067a3641dda3fcee6e56bef4"
+    }
+  ],
+  "prior_terminal": "43727696309 unchanged BUILD_FAILED/0UIpass/0UIfail/6NOT_RUN",
+  "no_main_TestFlight_or_user_data_change": true,
+  "N_attributed_SDK": {
+    "run": "43734557773",
+    "exact_source": "a94e4d491ecf05f96307ecaeec4bde475cddd629",
+    "own_host_status": "SDK_COMPILE_PASS",
+    "five_UI_sources_status": "SDK_COMPILE_PASS",
+    "aggregate_status": "FAIL",
+    "toolbar_status": "BUILD_FAILED",
+    "scope": "Package/UI source compilation only; seven app Integration files NOT_APP_COMPILED until this batch"
+  }
+}
