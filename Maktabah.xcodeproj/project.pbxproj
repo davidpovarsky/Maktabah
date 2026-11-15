@@ -1344,6 +1344,15 @@
 		AA725622473EC7E3A537C03B /* MaktabahNativeSceneProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3679E7CCB7DA2D4DF51A2FC5 /* MaktabahNativeSceneProjection.swift */; };
 		4516A179B623B5FC4CBAC1FF /* MaktabahNativeSceneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F87859DF502D48133E2C6E /* MaktabahNativeSceneSession.swift */; };
 		6274C19EF48599FF678A6515 /* MaktabahNativeURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20D070C658D432A4CD59CE1 /* MaktabahNativeURLHandler.swift */; };
+		6D50C3C2B26D78610F06EFCA /* GlobalSearchAdvancedOptionsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ABE8FEA961512F3F52FACE /* GlobalSearchAdvancedOptionsContent.swift */; };
+		7D6DCCB71806B8DEFAF2ED3A /* GlobalSearchContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B39B10B3EFBF691E007E72 /* GlobalSearchContent.swift */; };
+		91B06925102036635A78F09B /* GlobalSearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB19BCF5065C7BD735C5AAF /* GlobalSearchHeader.swift */; };
+		AE2CC3E3760C03243158C2F1 /* GlobalSearchHistoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257668E3097AB6FA4A36791A /* GlobalSearchHistoryContent.swift */; };
+		55FE102F2016FEF30B6BC046 /* GlobalSearchPresentationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D692C750D16893E97E579C /* GlobalSearchPresentationCoordinator.swift */; };
+		FFAAF300C2C396D9965C283B /* GlobalSearchResultsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F704BA2EA205485EE8F24436 /* GlobalSearchResultsHeader.swift */; };
+		BAC911FEC055199206E27D4F /* GlobalSearchSessionPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4FE062C3A730319E3E417E /* GlobalSearchSessionPresentation.swift */; };
+		748DF9F602C2B22531A78C61 /* GlobalSearchToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5389C28E1836740638EE4ADF /* GlobalSearchToolbar.swift */; };
+		F2C36537F65234FF8B7F798D /* NativeGlobalSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA71DFF1B37DDE8B890673D /* NativeGlobalSearchField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2107,6 +2116,15 @@
 		3679E7CCB7DA2D4DF51A2FC5 /* MaktabahNativeSceneProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift; sourceTree = "<group>"; };
 		65F87859DF502D48133E2C6E /* MaktabahNativeSceneSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift; sourceTree = "<group>"; };
 		F20D070C658D432A4CD59CE1 /* MaktabahNativeURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift; sourceTree = "<group>"; };
+		25ABE8FEA961512F3F52FACE /* GlobalSearchAdvancedOptionsContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalSearchAdvancedOptionsContent.swift; path = Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift; sourceTree = SOURCE_ROOT; };
+		45B39B10B3EFBF691E007E72 /* GlobalSearchContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalSearchContent.swift; path = Source/ChavrusaText/Search/UI/GlobalSearchContent.swift; sourceTree = SOURCE_ROOT; };
+		9AB19BCF5065C7BD735C5AAF /* GlobalSearchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalSearchHeader.swift; path = Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift; sourceTree = SOURCE_ROOT; };
+		257668E3097AB6FA4A36791A /* GlobalSearchHistoryContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalSearchHistoryContent.swift; path = Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift; sourceTree = SOURCE_ROOT; };
+		B6D692C750D16893E97E579C /* GlobalSearchPresentationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalSearchPresentationCoordinator.swift; path = Source/ChavrusaText/Search/UI/GlobalSearchPresentationCoordinator.swift; sourceTree = SOURCE_ROOT; };
+		F704BA2EA205485EE8F24436 /* GlobalSearchResultsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalSearchResultsHeader.swift; path = Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift; sourceTree = SOURCE_ROOT; };
+		1F4FE062C3A730319E3E417E /* GlobalSearchSessionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalSearchSessionPresentation.swift; path = Source/ChavrusaText/Search/UI/GlobalSearchSessionPresentation.swift; sourceTree = SOURCE_ROOT; };
+		5389C28E1836740638EE4ADF /* GlobalSearchToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalSearchToolbar.swift; path = Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift; sourceTree = SOURCE_ROOT; };
+		AFA71DFF1B37DDE8B890673D /* NativeGlobalSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NativeGlobalSearchField.swift; path = Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2181,6 +2199,7 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				9F5BEF33F7E721EEC8281795 /* Global Search UI */,
 				93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */,
 				177DC9EB2AB8099576B13411 /* ThirdPartyNotices */,
 				8445728C5933CEAAACE4E089 /* SafariToolbarSourcePort.swift */,
@@ -3766,6 +3785,22 @@
 				F20D070C658D432A4CD59CE1 /* MaktabahNativeURLHandler.swift */,
 			);
 			name = "Native Routing Host";
+			sourceTree = "<group>";
+		};
+		9F5BEF33F7E721EEC8281795 /* Global Search UI */ = {
+			isa = PBXGroup;
+			children = (
+				25ABE8FEA961512F3F52FACE /* GlobalSearchAdvancedOptionsContent.swift */,
+				45B39B10B3EFBF691E007E72 /* GlobalSearchContent.swift */,
+				9AB19BCF5065C7BD735C5AAF /* GlobalSearchHeader.swift */,
+				257668E3097AB6FA4A36791A /* GlobalSearchHistoryContent.swift */,
+				B6D692C750D16893E97E579C /* GlobalSearchPresentationCoordinator.swift */,
+				F704BA2EA205485EE8F24436 /* GlobalSearchResultsHeader.swift */,
+				1F4FE062C3A730319E3E417E /* GlobalSearchSessionPresentation.swift */,
+				5389C28E1836740638EE4ADF /* GlobalSearchToolbar.swift */,
+				AFA71DFF1B37DDE8B890673D /* NativeGlobalSearchField.swift */,
+			);
+			name = "Global Search UI";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5360,6 +5395,15 @@
 				FA1000000000000000000003 /* UnifiedSearchPresentationPolicy.swift in Sources */,
 				FA1000000000000000000004 /* ZayitInstallCapacityPolicy.swift in Sources */,
 				FA1000000000000000000005 /* UnifiedSearchSessionController.swift in Sources */,
+				6D50C3C2B26D78610F06EFCA /* GlobalSearchAdvancedOptionsContent.swift in Sources */,
+				7D6DCCB71806B8DEFAF2ED3A /* GlobalSearchContent.swift in Sources */,
+				91B06925102036635A78F09B /* GlobalSearchHeader.swift in Sources */,
+				AE2CC3E3760C03243158C2F1 /* GlobalSearchHistoryContent.swift in Sources */,
+				55FE102F2016FEF30B6BC046 /* GlobalSearchPresentationCoordinator.swift in Sources */,
+				FFAAF300C2C396D9965C283B /* GlobalSearchResultsHeader.swift in Sources */,
+				BAC911FEC055199206E27D4F /* GlobalSearchSessionPresentation.swift in Sources */,
+				748DF9F602C2B22531A78C61 /* GlobalSearchToolbar.swift in Sources */,
+				F2C36537F65234FF8B7F798D /* NativeGlobalSearchField.swift in Sources */,
 				FA1000000000000000000006 /* UnifiedSearchScope.swift in Sources */,
 				4B2DCF09307A91C600951BFF /* ReaderAnnotationEvent.swift in Sources */,
 				B483563522A5498E6D6452ED /* HistoryDatabaseManager.swift in Sources */,
@@ -6118,7 +6162,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Support: David Povarsky";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -6177,7 +6221,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Support: David Povarsky";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

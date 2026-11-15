@@ -208,6 +208,18 @@
       "exact_protected_diff": "docs/features/search/selftest-20261115/PROTECTED_HUNKS.patch",
       "verification": "42 session/presentation + 18 actual paging + 191 existing engine/model wrapper + 14 cached-readiness portable assertions; native/physical NOT_RUN",
       "review_provenance": "Owner-approved A-G plan; manager explicitly authorized observed narrow paging-error hunks; manager reviews final candidate. No Reader/TOC/Library/Palette/lifecycle/project/workflow hunk implied."
+    },
+    {
+      "patch_id": "GLOBAL_SEARCH_MANAGER_REGISTRATION_DEPLOYMENT_20261115",
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "SCOPED_INTEGRATION_NATIVE_ACCEPTANCE_OPEN",
+      "approval_ref": "Owner task1220546245946205/full native26–27 implementation specification and sole-manager wave registration ownership",
+      "scope": "Nine additive Search UI references/build files/group/Sources edges; Maktabah-iOS Debug/Release deployment overrides18.6→26.2 only",
+      "necessity": "Existing app18.6 cannot import actual native host module requiring26.0; exact error in run43736843778; plan and project26.2 align",
+      "exact_diff_base": "da186f456056fc5b9409de28fc7c989a2911cd1b",
+      "source_and_rollback": "docs/features/search/manager-integration/INTEGRATION_REVIEW.md",
+      "verification": "17 source inputs +9 actual app source graph paths verified;42presentation +18actual paging manager portable assertions; Apple/native/physical NOT_RUN",
+      "preserved_baseline_duplicates": 5
     }
   ]
 }

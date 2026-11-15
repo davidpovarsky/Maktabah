@@ -1,0 +1,13 @@
+# Global Search isolated manager candidate
+
+Task1220546245946205. Source candidate da186f456056fc5b9409de28fc7c989a2911cd1b includes S's four-commit chain from coherent13e40d1daa4a53799c94cd8ed5170f1343b9b1e8. Independent I identified missing actual query/mode/distance row bindings and implicit provider prefetch on loaded-filter clear; S fixed both with source regressions. Original Search rows/highlighting/locator implementation, Reader/TOC/Library/Palette and native public-v2 hooks are preserved.
+
+Manager integration is isolated at C:/Users/DAVID/Code/Maktabah-global-search-integration-20261115, branch codex/otzaria-global-search-native-20261115. Other branches/worktrees and their dirty work remain unchanged. No main/release/TestFlight/user-data action.
+
+Manager applied the exact nine-file additive app-module registration proposal, validated each file reference → build-file → actual Maktabah-iOS Sources phase, and verified all17 source snapshot inputs. Nine newly checked-out files have Git's LF→Windows CRLF conversion; their exact immutable Git LF hashes match the producer inventory and working content differs only by that declared conversion. No source rewrite was used to make hashes pass.
+
+Only the Maktabah-iOS Debug/Release deployment overrides change18.6→26.2, aligning the owner-approved iOS26–27 specification and existing project26.2 minimum with imported native host packages requiring26.0. Actual run43736843778 failed at that import before all11 UI cases. The targeted configuration fix is not an Apple compiler success claim. Other platform/test settings, SDK choices, signing, release version, package pins, build triggers and workflow files stay unchanged. Reverting this registration/deployment patch restores the prior project settings; reverting S's task chain restores its Search composition. No data migration/rollback is involved.
+
+The graph audit exposed five pre-existing duplicate PBX object definitions in baseline13e40d1d. Exact IDs/counts are retained in SOURCE_REGISTRATION_REVIEW.json; this patch introduces none. Existing duplicate-source warnings are preserved and not relabeled as a clean native build.
+
+Real Apple SDK/typecheck, simulator UI screenshots/xcresult and physical acceptance remain NOT_RUN. I owns the independent native acceptance source and matrix; its immutable packet must be integrated/reviewed before a declared focused native test selection. Do not infer device acceptance from source syntax, Python project checks or Windows Swift fixtures. Existing failed run43736843778 and its terminal evidence remain unchanged; no automatic rerun/watcher is started by this source integration.

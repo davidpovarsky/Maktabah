@@ -34,3 +34,7 @@ implemented deltas are appended to `PROTECTED_HUNKS.diff`. These cover only
 workspace docking/state, Search List backing/rows, and the enabled Library's
 inline title. Main-session review; no independent agent/device acceptance.
 Re-review on the next upstream sync; no future or unrelated source permission.
+
+## Global Search manager registration and deployment alignment — 2026-11-15
+
+Task1220546245946205 and its owner-approved native iOS26–27 plan authorize the narrow Search registration connections. The sole manager applied S's exact nine-file additive `Maktabah-iOS` Sources registration and changed only that app target's Debug/Release overrides18.6→26.2, matching the specification/existing project setting and fixing the observed host-minimum import mismatch in run43736843778. Exact source, graph evidence, preserved baseline warnings, necessity and rollback: `docs/features/search/manager-integration/INTEGRATION_REVIEW.md` and `SOURCE_REGISTRATION_REVIEW.json`. SDK/runtime/physical acceptance remain pending; no signing/workflow/release/data permission is implied.

@@ -1,0 +1,93 @@
+{
+  "sourceCandidate": "da186f456056fc5b9409de28fc7c989a2911cd1b",
+  "sourceSnapshotInputsVerified": 17,
+  "verifiedWindowsCheckoutCRLFConversionsAgainstExactGitLF": [
+    "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchPresentationCoordinator.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchSessionPresentation.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift"
+  ],
+  "registration": [
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift",
+      "reference": "25ABE8FEA961512F3F52FACE",
+      "buildFile": "6D50C3C2B26D78610F06EFCA",
+      "targetSourcesPhase": "F30576E22FA46222005732C6"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift",
+      "reference": "45B39B10B3EFBF691E007E72",
+      "buildFile": "7D6DCCB71806B8DEFAF2ED3A",
+      "targetSourcesPhase": "F30576E22FA46222005732C6"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+      "reference": "9AB19BCF5065C7BD735C5AAF",
+      "buildFile": "91B06925102036635A78F09B",
+      "targetSourcesPhase": "F30576E22FA46222005732C6"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "reference": "257668E3097AB6FA4A36791A",
+      "buildFile": "AE2CC3E3760C03243158C2F1",
+      "targetSourcesPhase": "F30576E22FA46222005732C6"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchPresentationCoordinator.swift",
+      "reference": "B6D692C750D16893E97E579C",
+      "buildFile": "55FE102F2016FEF30B6BC046",
+      "targetSourcesPhase": "F30576E22FA46222005732C6"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift",
+      "reference": "F704BA2EA205485EE8F24436",
+      "buildFile": "FFAAF300C2C396D9965C283B",
+      "targetSourcesPhase": "F30576E22FA46222005732C6"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchSessionPresentation.swift",
+      "reference": "1F4FE062C3A730319E3E417E",
+      "buildFile": "BAC911FEC055199206E27D4F",
+      "targetSourcesPhase": "F30576E22FA46222005732C6"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+      "reference": "5389C28E1836740638EE4ADF",
+      "buildFile": "748DF9F602C2B22531A78C61",
+      "targetSourcesPhase": "F30576E22FA46222005732C6"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "reference": "AFA71DFF1B37DDE8B890673D",
+      "buildFile": "F2C36537F65234FF8B7F798D",
+      "targetSourcesPhase": "F30576E22FA46222005732C6"
+    }
+  ],
+  "appDeployment": {
+    "Debug": "26.2",
+    "Release": "26.2"
+  },
+  "preservedBaselineDuplicateObjectDefinitions": {
+    "240682637A5169A63619E577": 2,
+    "FB254BD29A50C530E907662A": 2,
+    "FDB5242B5960EB1507BD74A6": 2,
+    "3373C7B02164CDBB77BFFF48": 2,
+    "C2CCE35AFE445BF8BEF37C5F": 2
+  },
+  "baselineNote": "Initial broad uniqueness check exposed five pre-existing duplicate object definitions; no new duplicates introduced. Existing warnings are not native acceptance.",
+  "nativeSDKTypecheck": "NOT_RUN",
+  "simulator": "NOT_RUN",
+  "managerExecutedTests": {
+    "presentationAndActualRowPredicate": 42,
+    "actualProviderPagingCancellation": 18,
+    "failures": 0,
+    "platform": "Windows Swift portable with explicit boundary doubles; no Apple UI",
+    "rawLog": "MANAGER_FOCUSED_TESTS.log",
+    "logSHA256": "8911dbba0ea43a99c250d14aa8982d0e18448e954596d8d3b77c52acf8c4436d"
+  }
+}
