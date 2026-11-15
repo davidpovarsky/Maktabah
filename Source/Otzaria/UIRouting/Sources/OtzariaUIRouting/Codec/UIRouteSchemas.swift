@@ -56,6 +56,15 @@ public enum UIRouteSchemas {
             "presentation": enumeration(["currentTab", "newTab"])
         ], required: ["version", "requestId", "destination", "presentation"])
     }
+    public static func publicNavigationV2() throws -> ActionJSON {
+        let core = try ActionRegistry()
+        return object([
+            "version": .object(["const": .integer(2)]), "destination": string(128, pattern: destinationPattern),
+            "backend": enumeration(ActionBackendID.allCases.map(\.rawValue)), "content": try contentSchema(core: core, publicOnly: true),
+            "presentation": enumeration(PublicNavigationSpecV2.Presentation.allCases.map(\.rawValue)),
+            "component": string(128, pattern: destinationPattern)
+        ], required: ["version", "destination", "presentation"])
+    }
     private static func uuid() -> ActionJSON { .object(["type": .string("string"), "format": .string("uuid"), "maxLength": .integer(36), "minLength": .integer(36)]) }
     private static func fields(_ core: ActionRegistry, action: String) throws -> ActionObject {
         guard let fields = core.descriptor(for: action)?.argumentsSchema.object else { throw UIRouteError(.failed, "core_schema_missing") }

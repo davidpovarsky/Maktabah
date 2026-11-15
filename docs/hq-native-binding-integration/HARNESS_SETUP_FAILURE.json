@@ -1,0 +1,6 @@
+{
+  "failed": "Portable harness string extraction expected LF; current manager source working files CRLF",
+  "executedTests": 0,
+  "sourceCorrection": false,
+  "correction": "Normalize CRLF to LF only for in-memory method extraction; retain original read-byte manifest hashes"
+}

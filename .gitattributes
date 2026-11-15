@@ -1,1 +1,5 @@
 Vendor/OtzariaSearchEngine/Resources/*.json binary
+
+# Preserve exact manager native-binding evidence bytes.
+docs/hq-native-binding-integration/*.log -text whitespace=-blank-at-eol
+docs/hq-native-binding-integration/*.json -text whitespace=-blank-at-eol

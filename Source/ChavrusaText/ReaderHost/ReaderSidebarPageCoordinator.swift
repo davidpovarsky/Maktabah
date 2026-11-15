@@ -102,13 +102,15 @@ struct Exact9401ViewerToolbar: ViewModifier {
 /// tabs. The iPhone keeps its existing independent compact implementation.
 struct Exact9401WorkspaceLifecycle: ViewModifier {
     let manager: iOSNavigationManager
-    @State private var workspace: StudyWorkspaceNavigationAdapter?
+    @State private var workspaceOwner = MaktabahNativeWorkspaceOwner()
+    private var workspace: StudyWorkspaceNavigationAdapter? { workspaceOwner.current }
     @State private var sceneID = ""
     @Environment(\.scenePhase) private var scenePhase
 
     func body(content: Content) -> some View {
         content
             .environment(\.exact9401Workspace, workspace)
+            .environment(\.maktabahNativeWorkspaceOwner, workspaceOwner)
             .background {
                 if MaktabahApp.isIpad {
                     ReaderSceneIdentityReader { sceneID = $0 }
@@ -123,7 +125,7 @@ struct Exact9401WorkspaceLifecycle: ViewModifier {
                 guard MaktabahApp.isIpad, workspace == nil, !sceneID.isEmpty else { return }
                 manager.restoreSessionIfNeeded()
                 let adapter = StudyWorkspaceNavigationAdapter(sceneID: sceneID, store: .forCurrentProcess())
-                workspace = adapter
+                do { try workspaceOwner.replace(with: adapter) } catch { return }
                 await adapter.attach(manager)
             }
             .onChange(of: manager.openTabs.map(\.id)) { _, _ in workspace?.synchronize(manager) }

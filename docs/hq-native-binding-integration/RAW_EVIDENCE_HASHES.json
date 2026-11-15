@@ -1,0 +1,17 @@
+{
+  "Host-manager.log": {
+    "sha256": "a224d2d29bebc4fab6058c083c47cc7480375302a8eb1bf8d6bab102fa511951",
+    "distinctPassedMethods": 85,
+    "compilerWarnings": 0
+  },
+  "UIRouting-manager.log": {
+    "sha256": "b73894750d8cc06ffa95b3c81b35bf7dd513d062a2a723b5bbdb87791044367e",
+    "distinctPassedMethods": 85,
+    "compilerWarnings": 0
+  },
+  "App-binding-e8-manager.log": {
+    "sha256": "7dceb7c1ee2d57839c9a3a681e680adad364624a43c4e1bfe9db7e9ebb5543b5",
+    "distinctPassedMethods": 115,
+    "compilerWarnings": 0
+  }
+}

@@ -30,9 +30,17 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
         let context: ActionExecutionContext
         var dispatched: Bool
         var active: Bool
+        var acknowledged: Bool
         let token: UUID
     }
     private var dispatches: [UUID: Dispatch] = [:]
+    private struct ReaderExecution: Sendable {
+        let requestId: UUID
+        let driver: any NativeSceneDriver
+        let token: UUID
+        var valid: Bool
+    }
+    private var readerExecutions: [UIStableID: ReaderExecution] = [:]
 
     public init(core: ActionExecutor, backend: any ActionSynchronousBackendStatePort, authority: NativeNavigationAuthority,
                 directory: NativeSceneDirectory, dispatchCapacity: Int = 256, clock: any ActionClock = SystemActionClock()) throws {
@@ -48,6 +56,11 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
         guard let current = drivers[driver.sceneID], current === driver else { return }
         drivers.removeValue(forKey: driver.sceneID)
         dispatches = dispatches.filter { $0.value.command.scene.sceneID != driver.sceneID }
+        if var execution = readerExecutions[driver.sceneID], execution.driver === driver {
+            // Retire the original call until its owner finishes; do not let a
+            // replacement call borrow its slot or let late cleanup erase it.
+            execution.valid = false; readerExecutions[driver.sceneID] = execution
+        }
     }
     public func snapshot(target: SceneTarget, context: ActionExecutionContext) async throws -> UISceneSnapshot {
         try await directory.snapshot(target: target, context: context)
@@ -61,8 +74,101 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
                        context: ActionExecutionContext) async -> UISceneAcknowledgement {
         await commitCurrent(command, context: context, reader: readerCommand)
     }
+    /// Future public-v2 consumer: retain the ORIGINAL binder-issued wrapper and
+    /// the caller's original admission. Never re-prepare or re-admit here. The
+    /// caller owns release after this full completion check (or full Core result
+    /// for content, which still enters through the actual reader sink above).
+    public func commitPrepared(_ prepared: UIAuthorizedSceneCommand,
+                               admitted: ActionNavigationState) async -> UISceneAcknowledgement {
+        guard prepared.command.route.route.content == nil else {
+            return .notSupported(.init(code: "core_reader_command_required", message: "Use canonical reader.open."))
+        }
+        return await commitCurrent(prepared.command, context: admitted.context, reader: nil,
+                                   originalPreparation: prepared, borrowedAdmission: admitted)
+    }
+
+    /// Inactive future consumer entry. The already configured canonical sink
+    /// must retain this EXACT validated route and use Core's actual issued
+    /// invocation/grant; this method installs no sink/route/renderer. The caller
+    /// retains admission and producer subscription through the whole result.
+    public func executeReaderPlan(_ retained: UIValidatedRoute, originalInvocation: ActionPortInvocation,
+                                  admitted: ActionNavigationState) async throws -> ActionResult {
+        guard let sceneID = retained.route.scene.sceneID, sceneID.rawValue == admitted.sceneID else { throw UIRouteError(.staleState, "native_context_changed") }
+        guard let driver = drivers[sceneID] else { throw UIRouteError(.unavailable, "scene_driver_missing") }
+        if let old = dispatches[originalInvocation.requestId] {
+            guard old.command.route == retained, old.context == admitted.context else { throw UIRouteError(.failed, "native_request_replay_conflict") }
+            throw UIRouteError(old.active ? .unavailable : .staleState, old.active ? "native_request_in_progress" : "native_request_already_finished")
+        }
+        guard readerExecutions[sceneID] == nil, readerExecutions.count < 16 else { throw UIRouteError(.unavailable, "native_reader_execution_in_progress") }
+        guard dispatches.count < capacity else { throw UIRouteError(.unavailable, "native_dispatch_ledger_full") }
+        let executionToken = UUID()
+        readerExecutions[sceneID] = ReaderExecution(requestId: originalInvocation.requestId, driver: driver, token: executionToken, valid: true)
+        defer { if readerExecutions[sceneID]?.token == executionToken { readerExecutions.removeValue(forKey: sceneID) } }
+        let phase = ReaderExecutionPhase()
+        do {
+            try validateReaderOwner(admitted, invocation: originalInvocation)
+            try validateReaderExecution(sceneID: sceneID, driver: driver, token: executionToken)
+            let result = try await NativeObservationDeadline.run(until: originalInvocation.deadlineUptimeNanoseconds, clock: clock) { @MainActor [self] in
+                try validateReaderOwner(admitted, invocation: originalInvocation)
+                try validateReaderExecution(sceneID: sceneID, driver: driver, token: executionToken)
+                let request = try NativeReaderPlanBudget.request(for: retained, original: originalInvocation, now: clock.now())
+                phase.coreStarted = true
+                let result = await core.execute(request, context: admitted.context)
+                if result.status == .completed {
+                    try validateReaderOwner(admitted, invocation: originalInvocation)
+                    try validateReaderExecution(sceneID: sceneID, driver: driver, token: executionToken)
+                    try validateReaderReceipt(retained, admitted: admitted)
+                }
+                return result
+            }
+            // Leaving the structured scope is another await/cleanup boundary.
+            if result.status == .completed {
+                try validateReaderOwner(admitted, invocation: originalInvocation)
+                try validateReaderExecution(sceneID: sceneID, driver: driver, token: executionToken)
+                try validateReaderReceipt(retained, admitted: admitted)
+            }
+            return result
+        } catch {
+            // Once Core starts, an outer deadline/cancellation/freshness failure
+            // cannot assert that no native effect happened. No retry/rollback.
+            if phase.coreStarted { throw UIRouteError(.failed, "native_effect_uncertain") }
+            throw error
+        }
+    }
+
+    private func validateReaderOwner(_ original: ActionNavigationState, invocation: ActionPortInvocation) throws {
+        try Task.checkCancellation()
+        guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
+        // The synchronous backend facet may revoke native ownership while it
+        // reads. Observe native state AFTER that callback, not before it.
+        let snapshot = try backend.currentBackendSnapshot()
+        let current = try authority.navigationState(sceneID: original.sceneID)
+        guard Self.sameAdmission(original, current) else { throw UIRouteError(.staleState, "native_context_changed") }
+        guard snapshot == invocation.snapshot else { throw UIRouteError(.staleState, "backend_generation_changed") }
+    }
+
+    private func validateReaderExecution(sceneID: UIStableID, driver: any NativeSceneDriver, token: UUID) throws {
+        guard let currentDriver = drivers[sceneID], currentDriver === driver,
+              let execution = readerExecutions[sceneID], execution.valid,
+              execution.token == token, execution.driver === driver else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
+    }
+
+    private static func sameAdmission(_ original: ActionNavigationState, _ current: ActionNavigationState) -> Bool {
+        original.active && current.active && original.sceneID == current.sceneID && original.context == current.context
+            && original.lifetimeID == current.lifetimeID && original.authorityRevision == current.authorityRevision
+    }
+
+    private func validateReaderReceipt(_ retained: UIValidatedRoute, admitted: ActionNavigationState) throws {
+        guard let actual = dispatches[retained.route.requestId], actual.acknowledged, !actual.active,
+              actual.command.route == retained, actual.context == admitted.context else {
+            throw UIRouteError(.failed, "native_reader_receipt_missing")
+        }
+    }
+
+    @MainActor private final class ReaderExecutionPhase { var coreStarted = false }
     private func commitCurrent(_ command: UISceneCommand, context: ActionExecutionContext,
-                               reader: ActionOpenReaderCommand?) async -> UISceneAcknowledgement {
+                               reader: ActionOpenReaderCommand?, originalPreparation: UIAuthorizedSceneCommand? = nil,
+                               borrowedAdmission: ActionNavigationState? = nil) async -> UISceneAcknowledgement {
         let requestID = command.invocation.requestId, sceneID = command.scene.sceneID
         var didDispatch = false
         do {
@@ -74,37 +180,51 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             }
             guard dispatches.count < capacity else { throw UIRouteError(.unavailable, "native_dispatch_ledger_full") }
             guard let driver = drivers[sceneID] else { throw UIRouteError(.unavailable, "scene_driver_missing") }
+            let readerExecution = readerExecutions[sceneID]
+            if let readerExecution {
+                guard reader != nil, readerExecution.requestId == requestID else { throw UIRouteError(.unavailable, "native_reader_execution_in_progress") }
+                try validateReaderExecution(sceneID: sceneID, driver: driver, token: readerExecution.token)
+            }
             let admitted: ActionNavigationState
-            if reader == nil { admitted = try authority.admit(context: context, sceneID: sceneID) }
+            let ownsAdmission = reader == nil && originalPreparation == nil
+            if ownsAdmission { admitted = try authority.admit(context: context, sceneID: sceneID) }
             else {
-                admitted = try authority.navigationState(sceneID: sceneID.rawValue)
-                guard admitted.active, admitted.context == context else { throw UIRouteError(.staleState, "native_context_changed") }
+                let live = try authority.navigationState(sceneID: sceneID.rawValue)
+                guard live.active, live.context == context else { throw UIRouteError(.staleState, "native_context_changed") }
+                if let borrowedAdmission {
+                    guard borrowedAdmission.sceneID == sceneID.rawValue, Self.sameAdmission(borrowedAdmission, live) else {
+                        throw UIRouteError(.staleState, "native_context_changed")
+                    }
+                    admitted = borrowedAdmission
+                } else { admitted = live }
             }
             // Content is admitted by the outer Core invocation owner. Its
             // retained grant must remain live through Core's own post-sink
             // completion check; only that outer owner releases it afterwards.
-            defer { if reader == nil { authority.release(admitted) } }
+            defer { if ownsAdmission { authority.release(admitted) } }
             try driver.validateSurface(command)
             let token = UUID()
-            dispatches[requestID] = Dispatch(command: command, context: context, dispatched: false, active: true, token: token)
+            dispatches[requestID] = Dispatch(command: command, context: context, dispatched: false, active: true, acknowledged: false, token: token)
             defer { if dispatches[requestID]?.token == token { dispatches[requestID]?.active = false } }
             let prepared: UIAuthorizedSceneCommand
-            if let reader { prepared = try command.prepareNavigation(readerCommand: reader) }
+            if let originalPreparation { prepared = originalPreparation }
+            else if let reader { prepared = try command.prepareNavigation(readerCommand: reader) }
             else { prepared = try await command.prepareNavigation(using: core, context: context) }
             // Recheck the actual driver identity after Core preparation awaits.
             guard let currentDriver = drivers[sceneID], currentDriver === driver else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
+            if let readerExecution { try validateReaderExecution(sceneID: sceneID, driver: driver, token: readerExecution.token) }
             try driver.validateSurface(command)
             try driver.beginObservation(command)
             defer { driver.endObservation(requestID: requestID) }
             let current = try directory.synchronousScene(sceneID: sceneID, context: context, backend: backend.currentBackendSnapshot())
             try prepared.authorizeCommit(current: current)
-            // Synchronous callbacks in the Core guard may detach/re-register
-            // even the same object. Preserve the ORIGINAL live dispatch token.
-            guard let liveDriver = drivers[sceneID], liveDriver === driver,
+            // A synchronous Core/backend callback can detach even the same
+            // driver instance. Check the ORIGINAL active dispatch ownership
+            // after the guard and immediately before this call's native effect.
+            guard let currentDriver = drivers[sceneID], currentDriver === driver,
                   let dispatch = dispatches[requestID], dispatch.token == token,
-                  dispatch.active, !dispatch.dispatched else {
-                throw UIRouteError(.staleState, "scene_lifetime_changed")
-            }
+                  dispatch.active, !dispatch.dispatched, !dispatch.acknowledged else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
+            if let readerExecution { try validateReaderExecution(sceneID: sceneID, driver: driver, token: readerExecution.token) }
             // No await between the ONE Core guard and actual native mutation.
             // Mark uncertainty before apply: a throwing driver may have effects.
             didDispatch = true; dispatches[requestID]?.dispatched = true
@@ -126,6 +246,10 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             // final native/directory awaits. N's context check alone cannot
             // certify current S generation/epoch/readiness/deadline authority.
             try prepared.validateCompletion(receipt: receipt, observed: observed)
+            guard let currentDriver = drivers[sceneID], currentDriver === driver,
+                  dispatches[requestID]?.token == token else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
+            if let readerExecution { try validateReaderExecution(sceneID: sceneID, driver: driver, token: readerExecution.token) }
+            dispatches[requestID]?.acknowledged = true
             return .acknowledged(receipt)
         } catch {
             // Preserve failed pre-dispatch identity too: never auto-retry the

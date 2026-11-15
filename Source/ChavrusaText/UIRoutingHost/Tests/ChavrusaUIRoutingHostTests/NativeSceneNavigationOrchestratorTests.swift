@@ -200,10 +200,11 @@ import OtzariaUIRouting
     let context: ActionExecutionContext
     let command: UISceneCommand
 }
-@MainActor private final class NavigationTestBackend: ActionSynchronousBackendStatePort {
+@MainActor final class NavigationTestBackend: ActionSynchronousBackendStatePort {
     var value: ActionBackendSnapshot
     var available = true
     var readerReady = false
+    var asynchronousSnapshots = 0
     var afterSnapshot: (@MainActor () -> Void)?
     var onSynchronousSnapshot: (@MainActor () -> Void)?
     init(_ backend: ActionBackendID) { value = .init(backend: backend, generation: 1, rpcEpoch: backend == .sefariaEmbedded ? 7 : nil) }
@@ -212,6 +213,7 @@ import OtzariaUIRouting
         onSynchronousSnapshot?(); return value
     }
     func snapshot() async throws -> ActionBackendSnapshot {
+        asynchronousSnapshots += 1
         let captured = value, callback = afterSnapshot
         afterSnapshot = nil; callback?(); return captured
     }
@@ -227,7 +229,7 @@ private final class CompletionTestClock: ActionClock, @unchecked Sendable {
     func expire() { lock.withLock { value = 201 } }
     func sleep(until deadline: UInt64) async throws { try await Task.sleep(nanoseconds: 60_000_000_000) }
 }
-private struct NavigationTestPorts: ActionResolverPort, ActionSearchPort {
+struct NavigationTestPorts: ActionResolverPort, ActionSearchPort {
     var allowReader = false
     func resolveWork(_ query: ActionResolveWorkQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionWorkRef> { .notFound }
     func resolveReference(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> { .notFound }
@@ -236,18 +238,20 @@ private struct NavigationTestPorts: ActionResolverPort, ActionSearchPort {
     }
     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage { throw ActionPortError.notSupported }
 }
-@MainActor private final class NavigationTestDriver: NativeSceneDriver {
+@MainActor final class NavigationTestDriver: NativeSceneDriver {
     let sceneID: UIStableID
     let backend: NavigationTestBackend
     var command: UISceneCommand?
     var applied = 0, wrongSurface = false, wait = false
     var content: ActionReaderDestination?
+    var actualState = UIStateSpec()
+    var targetTabID = UIStableID(rawValue: "native-tab")!
     var afterApply: (@MainActor () throws -> Void)?
     init(sceneID: UIStableID, backend: NavigationTestBackend) { self.sceneID = sceneID; self.backend = backend }
     var surface: NativeSurfaceState {
         .init(destination: UIDestinationID(rawValue: content == nil ? (wrongSurface ? "native.history" : "native.settings") : "native.reader")!,
-              presentation: content == nil ? .init(kind: applied == 0 ? .currentTab : .sheet) : .init(tabID: UIStableID(rawValue: "native-tab")!),
-              content: content, state: .init(), focus: nil)
+              presentation: content == nil ? .init(kind: applied == 0 ? .currentTab : .sheet) : .init(tabID: targetTabID),
+              content: content, state: actualState, focus: nil)
     }
     var observation: NativeSceneDirectory.Observation {
         .init(isForeground: true, isMounted: true,
@@ -262,7 +266,7 @@ private struct NavigationTestPorts: ActionResolverPort, ActionSearchPort {
     }
     func endObservation(requestID: UUID) { command = nil }
 }
-@MainActor private final class NavigationReaderSink: ActionUICommandSink {
+@MainActor final class NavigationReaderSink: ActionUICommandSink {
     var calls = 0
     var onOpen: (@MainActor @Sendable (ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement)?
     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement {

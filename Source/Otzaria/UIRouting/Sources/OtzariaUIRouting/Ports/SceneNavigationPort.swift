@@ -15,7 +15,10 @@ public struct UISceneSnapshot: Sendable, Equatable {
 public struct UIValidatedRoute: Sendable, Equatable {
     public let route: RouteSpec
     public let descriptor: UIDestinationDescriptor
-    init(route: RouteSpec, descriptor: UIDestinationDescriptor) { self.route = route; self.descriptor = descriptor }
+    let publicLocalBinding: UIPublicNavigationLocalBindingGuard?
+    init(route: RouteSpec, descriptor: UIDestinationDescriptor, publicLocalBinding: UIPublicNavigationLocalBindingGuard? = nil) {
+        self.route = route; self.descriptor = descriptor; self.publicLocalBinding = publicLocalBinding
+    }
 }
 public struct UISceneCommand: Sendable, Equatable {
     public let route: UIValidatedRoute
@@ -80,6 +83,7 @@ public struct UISceneCommand: Sendable, Equatable {
             throw UIRouteError(.notSupported, "semantic_execution_required")
         }
         try validateScene(current)
+        try route.publicLocalBinding?.validate(current: current)
         try authorization.authorizeCommit(invocation: invocation, sceneID: scene.sceneID.rawValue, destination: route.route.content)
     }
 }
@@ -90,7 +94,7 @@ public struct UISceneCommand: Sendable, Equatable {
 public struct UIAuthorizedSceneCommand: Sendable {
     public let command: UISceneCommand
     private let authorization: ActionNavigationPreparation
-    fileprivate init(command: UISceneCommand, authorization: ActionNavigationPreparation) {
+    init(command: UISceneCommand, authorization: ActionNavigationPreparation) {
         self.command = command; self.authorization = authorization
     }
     /// Apply exactly command.route after this succeeds, synchronously with no
@@ -102,6 +106,7 @@ public struct UIAuthorizedSceneCommand: Sendable {
     /// after any layout/readiness await. This cannot authorize/repeat mutation.
     @MainActor public func validateCompletion(receipt: UISceneReceipt, observed: UISceneSnapshot) throws {
         try receipt.validate(for: command, observed: observed)
+        try command.route.publicLocalBinding?.validate(current: observed, completion: true)
         try authorization.validateCompletion()
     }
 }

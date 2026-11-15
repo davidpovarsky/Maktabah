@@ -9,6 +9,7 @@ import ChavrusaUIRoutingHost
 /// canonical resolver. No facade/cache/parser/permission implementation here.
 @MainActor
 final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
+    static let futurePublicBindingsEnabled = false
     static let shared: MaktabahNativeRoutingComposition = {
         // Only programmer-defined finite capacities/validated static metadata
         // can fail construction. Runtime readiness is queried at invocation.
@@ -26,6 +27,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         let session: MaktabahNativeSceneSession
         let lease: NativeNavigationAuthority.Lease
         let windowNumber: Int
+        var publicBinding: MaktabahNativePublicBindingAdapter? = nil
     }
     private var scenes: [UIStableID: Registration] = [:]
     private var contexts: [UIStableID: ActionExecutionContext] = [:]
@@ -53,12 +55,13 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     }
 
     func mount(sceneID: UIStableID, manager: iOSNavigationManager, bindings: MaktabahNativeSceneBindings, foreground: Bool,
+               workspaceSource: MaktabahNativeWorkspaceProjectionSource? = nil,
                project: @escaping @MainActor () throws -> MaktabahNativeSceneProjection) throws -> MaktabahNativeSceneSession {
         guard scenes[sceneID] == nil else { throw UIRouteError(.unavailable, "native_scene_already_registered") }
         guard let windowNumber = (1...16).first(where: { number in !scenes.values.contains(where: { $0.windowNumber == number }) }) else {
             throw UIRouteError(.unavailable, "native_scene_admission_rejected")
         }
-        let session = MaktabahNativeSceneSession(sceneID: sceneID, directory: directory, bindings: bindings, project: project)
+        let session = MaktabahNativeSceneSession(sceneID: sceneID, directory: directory, bindings: bindings, workspaceSource: workspaceSource, project: project)
         session.foreground = foreground
         let lease = try authority.mount(sceneID: sceneID, foreground: foreground)
         do {
@@ -81,8 +84,48 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     }
     func unmount(_ session: MaktabahNativeSceneSession) {
         guard let entry = scenes[session.sceneID], entry.session === session else { return }
+        entry.publicBinding?.cancel()
         orchestrator.unregister(session); session.unmount(); authority.unmount(entry.lease); scenes.removeValue(forKey: session.sceneID)
         contexts.removeValue(forKey: session.sceneID)
+    }
+    /// Explicit future composition only; no current handler or registry opts in.
+    /// The original scene registration/lease/Core/directory remain authoritative.
+    @discardableResult
+    func configureFuturePublicBinding(session: MaktabahNativeSceneSession, manager: iOSNavigationManager,
+                                      workspace: StudyWorkspaceNavigationAdapter,
+                                      workspaceOwner: MaktabahNativeWorkspaceOwner? = nil,
+                                      enabled: Bool = false) throws -> MaktabahNativePublicBindingAdapter {
+        guard enabled else { throw UIRouteError(.notSupported, "future_public_binding_disabled") }
+        guard let workspaceOwner, workspaceOwner.current === workspace, session.usesWorkspaceOwner(workspaceOwner) else {
+            throw UIRouteError(.unavailable, "authoritative_workspace_owner_not_installed")
+        }
+        guard let entry = scenes[session.sceneID], entry.session === session,
+              entry.managerID == ObjectIdentifier(manager), entry.publicBinding == nil else {
+            throw UIRouteError(.staleState, "public_binding_registration_changed")
+        }
+        let binding = try MaktabahNativePublicBindingAdapter(sceneID: session.sceneID, manager: manager,
+            workspace: workspace, workspaceOwner: workspaceOwner, authority: authority, lease: entry.lease, directory: directory, backend: backend,
+            presentation: { [weak session] in
+                guard let session else { throw ActionPortError.unavailable }
+                return try session.publicBindingPresentation()
+            }, invalidated: { [weak self, weak session] in
+                guard let self, let session, self.scenes[session.sceneID]?.session === session else { return }
+                self.contexts.removeValue(forKey: session.sceneID)
+                do { try session.nativeStateChanged() } catch { session.unmount() }
+                session.presentation.revoke()
+            })
+        scenes[session.sceneID]?.publicBinding = binding
+        return binding
+    }
+    /// With a fixed producer installed, its typed synchronous fence owns
+    /// invalidation. A coalesced SwiftUI notification must not revoke a new
+    /// post-publication admission. Replacement owners retire the old binding.
+    func workspaceProjectionDidUpdate(_ session: MaktabahNativeSceneSession, workspace: StudyWorkspaceNavigationAdapter?) throws {
+        guard let entry = scenes[session.sceneID], entry.session === session else { throw ActionPortError.staleState }
+        if let binding = entry.publicBinding {
+            if let workspace, binding.ownsSource(workspace) { return }
+            binding.cancel()
+        } else { try invalidateContext(session) }
     }
     func invalidateContext(_ session: MaktabahNativeSceneSession) throws {
         guard let entry = scenes[session.sceneID], entry.session === session else { throw UIRouteError(.staleState, "scene_lifetime_changed") }

@@ -112,11 +112,18 @@ public actor ActionExecutor {
     /// Content preparations are minted ONLY inside validated reader.open below.
     public func prepareNavigation(sceneID: String, invocation: ActionPortInvocation,
                                   context: ActionExecutionContext) async throws -> ActionNavigationPreparation {
+        try await prepareNavigationSynchronously(sceneID: sceneID, invocation: invocation, context: context)
+    }
+
+    /// Capture the SAME injected native/backend authority before a host's first
+    /// await. This is still surface-only; it cannot issue a content grant.
+    @MainActor public func prepareNavigationSynchronously(sceneID: String, invocation: ActionPortInvocation,
+                                                                      context: ActionExecutionContext) throws -> ActionNavigationPreparation {
         guard let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
             throw ActionNavigationError(.unavailable, "synchronous_navigation_authority_unavailable")
         }
         guard let navigationAuthority else { throw ActionNavigationError(.unavailable, "navigation_context_authority_unavailable") }
-        return try await ActionNavigationPreparation(authority: navigationAuthority, backendAuthority: backendAuthority, invocation: invocation, sceneID: sceneID,
+        return try ActionNavigationPreparation(authority: navigationAuthority, backendAuthority: backendAuthority, invocation: invocation, sceneID: sceneID,
             context: context, destination: nil, clock: clock)
     }
 

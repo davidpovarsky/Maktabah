@@ -1,0 +1,12 @@
+{
+  "file": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+  "originalBlob": "ac7bf051cf9288ffa5b37ccb59f04d7969272d12",
+  "proposalSHA256": "e3a1f4e38b53a8d0be8e7d51dcdf84b732ecd9f3e58b63617212bd1b5d93616a",
+  "leases": {
+    "R": "explicit3hunkrelease received actualthread01a1df8b-9fa8-7042-b62d-7cf1993b636c",
+    "U": "explicit3hunkrelease received actualthread01a1df8a-3373-79e3-b7fa-f6a06cc8b578"
+  },
+  "scope": "Manager applies exact3downstreamhunks only in new future tree; N nofilepermission",
+  "UUnmergedDebugObserver": "Not present in base043/ac7, not deleted/overwritten on U311/18d. Separate review required before future adoption.",
+  "upstreamProtectedFilesTouched": false
+}
