@@ -25,18 +25,18 @@ final class DiscoveryTests: XCTestCase, @unchecked Sendable {
         return try UIDestinationRegistry(descriptors: [descriptor("test.reader", action: "reader.open"), descriptor("test.search", action: "search.query", risk: 1),
             descriptor("test.notes", action: "notes.prepareDraft"), descriptor("test.mutation", action: "reader.open", mutates: true), descriptor("test.risk", action: "reader.open", risk: 3)])
     }
-    private func executor(_ backend: ActionBackendID, ready: Bool = true, supported: Bool = true, ui: Bool = true) async throws -> ActionExecutor {
+    private func executor(_ backend: ActionBackendID, ready: Bool = true, supported: Bool = true, ui: Bool = true) async throws -> DiscoveryRuntime {
         let ports = DiscoveryCorePorts(backend: backend, ready: ready, supported: supported)
         let sink: (any ActionUICommandSink)? = ui ? DiscoveryCoreUI() : nil
-        return try ActionExecutor(state: ports, resolver: ports, search: ports, ui: sink)
+        return DiscoveryRuntime(core: try ActionExecutor(state: ports, resolver: ports, search: ports, ui: sink), state: ports)
     }
     func testActualCorePolicyDiscoverySixOriginsAllBackends() async throws {
         let registry = try registry()
         for backend in ActionBackendID.allCases {
             let core = try await executor(backend), scene = scene(backend)
             for origin in [ActionOrigin.inApp, .appIntent, .deepLink, .internalAI, .guide, .mcp] {
-                let host = DiscoveryHost(), context = context(backend, origin: origin)
-                let result = try await registry.discover(scene: scene, context: context, invocation: invocation(scene), core: core, host: host)
+                let host = core.host(scene), context = context(backend, origin: origin)
+                let result = try await registry.discover(scene: scene, context: context, invocation: invocation(scene), core: core.core, host: host)
                 let ids = Set(result.map { $0.id.rawValue })
                 XCTAssertTrue(ids.contains("test.reader"))
                 XCTAssertEqual(ids.contains("test.search"), origin != .deepLink)
@@ -49,32 +49,32 @@ final class DiscoveryTests: XCTestCase, @unchecked Sendable {
     func testReadinessRightsSceneDeviceAndHostEligibility() async throws {
         let registry = try registry(), scene = scene(), invocation = invocation(scene)
         for pair in [(false, true), (true, false)] {
-            let core = try await executor(.otzaria, ready: pair.0, supported: pair.1), host = DiscoveryHost()
-            let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: core, host: host)
+            let core = try await executor(.otzaria, ready: pair.0, supported: pair.1), host = core.host(scene)
+            let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: core.core, host: host)
             XCTAssertTrue(result.isEmpty)
             let calls = await host.calls; XCTAssertEqual(calls, 0)
         }
         for context in [context(.otzaria, rights: false), context(.otzaria, navigation: false), context(.otzaria, scene: nil), context(.otzaria, origin: .mcp, paired: false)] {
-            let core = try await executor(.otzaria), host = DiscoveryHost()
-            let result = try await registry.discover(scene: scene, context: context, invocation: invocation, core: core, host: host)
+            let core = try await executor(.otzaria), host = core.host(scene)
+            let result = try await registry.discover(scene: scene, context: context, invocation: invocation, core: core.core, host: host)
             let ids = Set(result.map { $0.id.rawValue })
             if context.contentRights.isEmpty { XCTAssertFalse(ids.contains("test.search")) }
             if !context.scopes.contains(.navigation) || context.foregroundSceneID == nil { XCTAssertFalse(ids.contains("test.reader")) }
             if context.origin == .mcp { XCTAssertTrue(ids.isEmpty) }
         }
         for behavior in [DiscoveryHost.Behavior.unsupported, .notReady, .denied] {
-            let core = try await executor(.otzaria), host = DiscoveryHost(behavior)
-            let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: core, host: host)
+            let core = try await executor(.otzaria), host = core.host(scene, behavior)
+            let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: core.core, host: host)
             XCTAssertTrue(result.isEmpty)
         }
         let noUI = try await executor(.otzaria, ui: false)
-        let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: noUI, host: DiscoveryHost())
+        let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation, core: noUI.core, host: noUI.host(scene))
         XCTAssertFalse(result.contains { $0.id.rawValue == "test.reader" })
     }
     func testFixturesInventoryAndEmptyNeverAdvertiseAsLive() async throws {
-        let scene = scene(), core = try await executor(.otzaria), host = DiscoveryHost()
+        let scene = scene(), core = try await executor(.otzaria), host = core.host(scene)
         for registry in [try UIDestinationRegistry(), try UIDestinationRegistry.fixtures(), try registry(stage: .fixture), try registry(stage: .inventoryOnly)] {
-            let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation(scene), core: core, host: host)
+            let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation(scene), core: core.core, host: host)
             XCTAssertTrue(result.isEmpty)
         }
         let calls = await host.calls; XCTAssertEqual(calls, 0)
@@ -83,26 +83,33 @@ final class DiscoveryTests: XCTestCase, @unchecked Sendable {
         let registry = try registry(), scene = scene(), core = try await executor(.otzaria)
         for behavior in [DiscoveryHost.Behavior.staleRevision, .staleBackend, .wrongScene] {
             do {
-                _ = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation(scene), core: core, host: DiscoveryHost(behavior))
+                _ = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation(scene), core: core.core, host: core.host(scene, behavior))
                 XCTFail("Stale host assessment accepted")
             } catch { XCTAssertEqual((error as? UIRouteError)?.status, .staleState) }
         }
         do {
-            _ = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation(scene, deadline: 0), core: core, host: DiscoveryHost())
+            _ = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation(scene, deadline: 0), core: core.core, host: core.host(scene))
             XCTFail("Expired discovery accepted")
         } catch { XCTAssertEqual((error as? UIRouteError)?.status, .cancelled) }
         let wrong = ActionPortInvocation(requestId: UUID(), snapshot: .init(backend: .sefaria, generation: 1), deadlineUptimeNanoseconds: UInt64.max)
-        do { _ = try await registry.discover(scene: scene, context: context(.otzaria), invocation: wrong, core: core, host: DiscoveryHost()); XCTFail("Wrong backend accepted") }
+        do { _ = try await registry.discover(scene: scene, context: context(.otzaria), invocation: wrong, core: core.core, host: core.host(scene)); XCTFail("Wrong backend accepted") }
         catch { XCTAssertEqual((error as? UIRouteError)?.status, .staleState) }
-        let host = DiscoveryHost(.blocked), context = context(.otzaria), invocation = invocation(scene)
-        let task = Task { try await registry.discover(scene: scene, context: context, invocation: invocation, core: core, host: host) }
+        let host = core.host(scene, .blocked), context = context(.otzaria), invocation = invocation(scene)
+        let task = Task { try await registry.discover(scene: scene, context: context, invocation: invocation, core: core.core, host: host) }
         await host.waitForEntry(); task.cancel(); await host.release()
         do { _ = try await task.value; XCTFail("Cancelled discovery advertised destinations") } catch is CancellationError {} catch { XCTFail("Unexpected \(error)") }
     }
+    func testSuccessfulDiscoveryCancelsDeadlineWaitWithoutAdvancingClock() async throws {
+        let registry = try registry(), scene = scene(), core = try await executor(.otzaria), clock = DiscoveryClock()
+        let result = try await registry.discover(scene: scene, context: context(.otzaria), invocation: invocation(scene, deadline: 20), core: core.core, host: core.host(scene), clock: clock)
+        XCTAssertFalse(result.isEmpty)
+        XCTAssertEqual(clock.now(), 10)
+        XCTAssertEqual(clock.pendingSleeps, 0)
+    }
     func testDeadlineRecheckedAfterHostAwait() async throws {
-        let registry = try registry(), scene = scene(), core = try await executor(.otzaria), host = DiscoveryHost(.blocked), clock = DiscoveryClock()
+        let registry = try registry(), scene = scene(), core = try await executor(.otzaria), host = core.host(scene, .blocked), clock = DiscoveryClock()
         let context = context(.otzaria), invocation = invocation(scene, deadline: 20)
-        let task = Task { try await registry.discover(scene: scene, context: context, invocation: invocation, core: core, host: host, clock: clock) }
+        let task = Task { try await registry.discover(scene: scene, context: context, invocation: invocation, core: core.core, host: host, clock: clock) }
         await host.waitForEntry(); clock.advance(to: 20); await host.release()
         do { _ = try await task.value; XCTFail("Late host response accepted") } catch { XCTAssertEqual((error as? UIRouteError)?.status, .cancelled) }
     }
@@ -128,15 +135,31 @@ private actor DiscoveryCorePorts: ActionBackendStatePort, ActionResolverPort, Ac
 @MainActor private final class DiscoveryCoreUI: ActionUICommandSink {
     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement { throw ActionPortError.unavailable }
 }
+private struct DiscoveryRuntime {
+    let core: ActionExecutor
+    let state: DiscoveryCorePorts
+    func host(_ scene: UISceneSnapshot, _ behavior: DiscoveryHost.Behavior = .ready) -> DiscoveryHost {
+        DiscoveryHost(behavior, scene: scene, state: state)
+    }
+}
 private actor DiscoveryHost: UIDestinationEligibilityPort {
     enum Behavior: Sendable { case ready, unsupported, notReady, denied, staleRevision, staleBackend, wrongScene, blocked }
     let behavior: Behavior
     private(set) var calls = 0
-    private let gate = SceneTestGate()
-    init(_ behavior: Behavior = .ready) { self.behavior = behavior }
+    private let gate = ReviewGate()
+    private let scene: UISceneSnapshot
+    private let state: DiscoveryCorePorts
+    init(_ behavior: Behavior, scene: UISceneSnapshot, state: DiscoveryCorePorts) {
+        self.behavior = behavior; self.scene = scene; self.state = state
+    }
+    func currentScene(sceneID: UIStableID, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UISceneSnapshot {
+        try Task.checkCancellation()
+        guard sceneID == scene.sceneID else { throw UIRouteError(.unavailable, "scene_unavailable") }
+        return .init(sceneID: scene.sceneID, revision: scene.revision, backendSnapshot: try await state.snapshot())
+    }
     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UIRouteEligibility {
         calls += 1
-        if behavior == .blocked { await gate.enter() }
+        if behavior == .blocked { try await gate.wait() }
         return .init(sceneID: behavior == .wrongScene ? UIStableID(rawValue: "other-scene")! : scene.sceneID,
             sceneRevision: behavior == .staleRevision ? scene.revision + 1 : scene.revision,
             backendSnapshot: behavior == .staleBackend ? .init(backend: scene.backendSnapshot.backend, generation: 2) : scene.backendSnapshot,
@@ -148,7 +171,28 @@ private actor DiscoveryHost: UIDestinationEligibilityPort {
 private final class DiscoveryClock: ActionClock, @unchecked Sendable {
     private let lock = NSLock()
     private var value: UInt64 = 10
+    private var waits: [UUID: (UInt64, CheckedContinuation<Void, any Error>)] = [:]
+    var pendingSleeps: Int { lock.withLock { waits.count } }
     func now() -> UInt64 { lock.withLock { value } }
-    func advance(to value: UInt64) { lock.withLock { self.value = value } }
-    func sleep(until deadline: UInt64) async throws { try Task.checkCancellation() }
+    func advance(to value: UInt64) {
+        let ready = lock.withLock {
+            self.value = value
+            let ready = waits.filter { $0.value.0 <= value }
+            ready.keys.forEach { waits.removeValue(forKey: $0) }
+            return ready.values.map { $0.1 }
+        }
+        ready.forEach { $0.resume() }
+    }
+    func sleep(until deadline: UInt64) async throws {
+        let id = UUID()
+        try await withTaskCancellationHandler(operation: {
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, any Error>) in
+                lock.withLock {
+                    if Task.isCancelled { continuation.resume(throwing: CancellationError()) }
+                    else if value >= deadline { continuation.resume() }
+                    else { waits[id] = (deadline, continuation) }
+                }
+            }
+        }, onCancel: { self.lock.withLock { self.waits.removeValue(forKey: id)?.1.resume(throwing: CancellationError()) } })
+    }
 }

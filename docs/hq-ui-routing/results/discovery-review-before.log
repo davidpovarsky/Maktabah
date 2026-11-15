@@ -1,0 +1,79 @@
+[0/1] Planning build
+Building for debugging...
+[0/11] Write swift-version-2807070033DA82CF.txt
+[1/12] Write sources
+[2/12] Copying Resources
+[4/11] Emitting module OtzariaUIRoutingTests
+[5/12] Compiling OtzariaUIRoutingTests DiscoveryReviewRegressionTests.swift
+[6/13] Wrapping AST for OtzariaUIRoutingTests for debugging
+[7/13] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[8/14] Write sources
+[10/15] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[11/17] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[12/17] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[13/18] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[14/19] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[15/19] Write sources
+[17/20] Emitting module OtzariaUIRoutingPackageTests
+[18/21] Compiling OtzariaUIRoutingPackageTests runner.swift
+[19/21] Write Objects.LinkFileList
+[20/21] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (63.98s)
+Test Suite 'Selected tests' started at 2026-11-15 12:46:49.894
+
+Test Suite 'DiscoveryReviewRegressionTests' started at 2026-11-15 12:46:49.980
+
+Test Case 'DiscoveryReviewRegressionTests.testCallerDeadlineAlsoBoundsCoreAdvertisement' started at 2026-11-15 12:46:49.980
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryReviewRegressionTests.swift:85: error: DiscoveryReviewRegressionTests.testCallerDeadlineAlsoBoundsCoreAdvertisement : XCTAssertFalse failed - Core advertisement outlived the caller deadline until safety release
+
+Test Case 'DiscoveryReviewRegressionTests.testCallerDeadlineAlsoBoundsCoreAdvertisement' failed (2.189 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testDiscoveryDeadlineCancelsCooperativeHostBeforeSafetyRelease' started at 2026-11-15 12:46:52.169
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryReviewRegressionTests.swift:73: error: DiscoveryReviewRegressionTests.testDiscoveryDeadlineCancelsCooperativeHostBeforeSafetyRelease : XCTAssertFalse failed - Discovery waited for safety/manual release instead of its deadline
+
+Test Case 'DiscoveryReviewRegressionTests.testDiscoveryDeadlineCancelsCooperativeHostBeforeSafetyRelease' failed (2.077 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testEmbeddedEpochDriftWithEchoedHostAssessmentIsRejected' started at 2026-11-15 12:46:54.247
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryReviewRegressionTests.swift:51: error: DiscoveryReviewRegressionTests.testEmbeddedEpochDriftWithEchoedHostAssessmentIsRejected : failed - Unexpected eligible metadata: ["review.search"]
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryReviewRegressionTests.swift:58: error: DiscoveryReviewRegressionTests.testEmbeddedEpochDriftWithEchoedHostAssessmentIsRejected : failed - Unexpected eligible metadata: ["review.search"]
+
+Test Case 'DiscoveryReviewRegressionTests.testEmbeddedEpochDriftWithEchoedHostAssessmentIsRejected' failed (0.126 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansUpCooperativeHostBeforeSafetyRelease' started at 2026-11-15 12:46:54.373
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansUpCooperativeHostBeforeSafetyRelease' passed (0.07 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testGenerationDriftWithEchoedHostAssessmentIsRejected' started at 2026-11-15 12:46:54.443
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryReviewRegressionTests.swift:38: error: DiscoveryReviewRegressionTests.testGenerationDriftWithEchoedHostAssessmentIsRejected : failed - Unexpected eligible metadata: ["review.search"]
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryReviewRegressionTests.swift:45: error: DiscoveryReviewRegressionTests.testGenerationDriftWithEchoedHostAssessmentIsRejected : failed - Unexpected eligible metadata: ["review.search"]
+
+Test Case 'DiscoveryReviewRegressionTests.testGenerationDriftWithEchoedHostAssessmentIsRejected' failed (0.113 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingEmbeddedEpochIsUnavailableBeforeDiscovery' started at 2026-11-15 12:46:54.556
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Tests\OtzariaUIRoutingTests\Registry\DiscoveryReviewRegressionTests.swift:63: error: DiscoveryReviewRegressionTests.testMissingEmbeddedEpochIsUnavailableBeforeDiscovery : failed - Unexpected eligible metadata: ["review.search"]
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingEmbeddedEpochIsUnavailableBeforeDiscovery' failed (0.083 seconds)
+
+Test Suite 'DiscoveryReviewRegressionTests' failed at 2026-11-15 12:46:54.639
+
+	 Executed 6 tests, with 7 failures (0 unexpected) in 4.658 (4.658) seconds
+
+Test Suite 'Selected tests' failed at 2026-11-15 12:46:54.639
+
+	 Executed 6 tests, with 7 failures (0 unexpected) in 4.658 (4.658) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

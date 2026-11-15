@@ -96,14 +96,41 @@ public struct UIDestinationRegistry: Sendable {
 
     /// Host variant assessment supplements, never replaces, Core authorization.
     /// No shipped fixture/inventory descriptor can appear in live discovery.
+    /// The original invocation deadline/cancellation covers every awaited port,
+    /// including Core advertisement and current-scene observations. Timely return
+    /// requires cooperative ports; this is not an uncooperative-worker boundary.
     public func discover(scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation,
                          core: ActionExecutor, host: any UIDestinationEligibilityPort, clock: any ActionClock = SystemActionClock()) async throws -> [UIDestinationDescriptor] {
         try Task.checkCancellation()
         guard invocation.snapshot == scene.backendSnapshot else { throw UIRouteError(.staleState, "backend_generation_changed") }
+        if invocation.snapshot.backend == .sefariaEmbedded && invocation.snapshot.rpcEpoch == nil { throw UIRouteError(.unavailable, "rpc_epoch_unavailable") }
+        guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
         let candidates = descriptors.filter { $0.implementation == .implemented && !$0.mutatesUserData && $0.riskTier < 3 && $0.supportedBackends.contains(scene.backendSnapshot.backend) }
         guard !candidates.isEmpty else { return [] }
+        return try await UIDiscoveryCancellationScope.run(until: invocation.deadlineUptimeNanoseconds, clock: clock) {
+            try await discoverCurrent(candidates: candidates, scene: scene, context: context, invocation: invocation, core: core, host: host, clock: clock)
+        }
+    }
+
+    private func requireCurrentScene(_ scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation,
+                                     host: any UIDestinationEligibilityPort, clock: any ActionClock) async throws {
+        try Task.checkCancellation()
+        guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
+        let current = try await host.currentScene(sceneID: scene.sceneID, context: context, invocation: invocation)
+        try Task.checkCancellation()
+        guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
+        if current.backendSnapshot.backend == .sefariaEmbedded && current.backendSnapshot.rpcEpoch == nil { throw UIRouteError(.unavailable, "rpc_epoch_unavailable") }
+        guard current.sceneID == scene.sceneID, current.revision == scene.revision,
+              current.backendSnapshot == invocation.snapshot else { throw UIRouteError(.staleState, "scene_or_backend_changed") }
+    }
+
+    private func discoverCurrent(candidates: [UIDestinationDescriptor], scene: UISceneSnapshot, context: ActionExecutionContext,
+                                 invocation: ActionPortInvocation, core: ActionExecutor, host: any UIDestinationEligibilityPort,
+                                 clock: any ActionClock) async throws -> [UIDestinationDescriptor] {
+        try await requireCurrentScene(scene, context: context, invocation: invocation, host: host, clock: clock)
         guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
         let coreIDs = Set(await core.advertisedActions(for: scene.backendSnapshot.backend, context: context).map(\.id))
+        try await requireCurrentScene(scene, context: context, invocation: invocation, host: host, clock: clock)
         var result: [UIDestinationDescriptor] = []
         for descriptor in candidates where Set(descriptor.requiredCoreActions).isSubset(of: coreIDs) {
             try Task.checkCancellation()
@@ -113,8 +140,10 @@ public struct UIDestinationRegistry: Sendable {
             guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
             guard assessment.sceneID == scene.sceneID, assessment.sceneRevision == scene.revision,
                   assessment.backendSnapshot == scene.backendSnapshot else { throw UIRouteError(.staleState, "scene_or_backend_changed") }
+            try await requireCurrentScene(scene, context: context, invocation: invocation, host: host, clock: clock)
             if assessment.supported && assessment.ready && assessment.allowed { result.append(descriptor) }
         }
+        try await requireCurrentScene(scene, context: context, invocation: invocation, host: host, clock: clock)
         return result
     }
 

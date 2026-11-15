@@ -91,8 +91,22 @@ public struct UIRouteEligibility: Sendable, Equatable {
     }
 }
 public protocol UIDestinationEligibilityPort: Sendable {
+    /// Independently observe the EXACT authorized native scene selected by this
+    /// trusted ID and the SAME current backend-state authority used by Core.
+    /// Include current generation/RPC epoch and scene revision after relevant
+    /// awaits. Never echo a captured/requested scene or choose a global/first
+    /// scene fallback. Validate host context/lifetime and fail on missing state.
+    ///
+    /// All discovery port methods must cooperate with cancellation/deadline:
+    /// promptly end waits and clean up their continuations/resources when the
+    /// caller is cancelled. Registry's structured scope cannot hard-kill an
+    /// uncooperative child. Native UI03 owns bounded admission, not Core's worker
+    /// limit; this package creates no detached worker or independent executor.
+    func currentScene(sceneID: UIStableID, context: ActionExecutionContext,
+                      invocation: ActionPortInvocation) async throws -> UISceneSnapshot
     /// Host-owned variant/readiness checks, additionally gated by Core discovery.
     /// Route/state JSON cannot construct or grant this trusted assessment.
+    /// Must obey the same cancellation/deadline/cleanup obligation above.
     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext,
                 invocation: ActionPortInvocation) async throws -> UIRouteEligibility
 }

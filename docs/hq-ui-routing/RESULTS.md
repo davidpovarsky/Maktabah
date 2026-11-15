@@ -29,3 +29,11 @@ READY_FOR_INDEPENDENT_REVIEW for this portable tranche after the recorded final 
 Read the R27 owner directive/execution contract at the natural checkpoint. T/Q retain the sole actual iPhone+iPad OS27 runtime wave and pre-TestFlight acceptance gate. This new unwired package cannot inherit build3918864d or any earlier runtime pass. Current Apple compiler/simulator/physical iPad acceptance for these contracts is NOT_RUN. Only a genuine exact P-owned regression delivered from that wave should trigger scoped owner corrections; no speculative app edits or duplicate suite.
 
 Rollback: revert the isolated UI02 commits, retaining all earlier refs/user work. The Core parser seam can be reverted with its matching wire test when no remaining downstream codec depends on it. No persistent user state was written.
+
+## 15 November corrected DISC01/02 tranche
+
+Preserved paused WIP completed in the same worktree. Mandatory exact-scene `currentScene` observes the same current Core authority around all discovery awaits. Entire invocation is inside a cooperative structured deadline scope. See CONTRACT_DISCOVERY_20261115.md for frozen consumer signatures and limits.
+
+EXECUTED_PASS: Swift6.3.3 Windows strict concurrency, focused `--filter Discovery`: **19 XCTest methods / 0 failures / 0 compiler warnings** (13 review regressions + 6 discovery methods). Deadline tests return before finite safety release and clean cooperative pending continuations, including initial/final currentScene and Core advertisement. Two separate scenes share backend/revision to prove exact ID binding and absent-scene refusal. Manual clock now performs cancellable deadline waits and success cleans its timer without advancing it.
+
+Raw before log preserved: 6 methods, 1 pass/5 failed methods/7 failed assertions. Two build-only fixture adaptation failures are also preserved (0 tests executed); neither is a native result. Exact source and log hashes are in results/discovery-review-summary.json; final raw output is results/discovery-review-after.log. Earlier UI24/Core26/independent62 are not added or relabelled as fresh evidence. No actual native host, Apple compiler/runtime, physical iPad or SDK execution by P. Full source tasks remain open pending manager contract acceptance and real native/provider integration.

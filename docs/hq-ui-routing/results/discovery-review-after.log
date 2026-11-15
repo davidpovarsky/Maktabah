@@ -1,0 +1,128 @@
+[0/1] Planning build
+Building for debugging...
+[0/11] Write swift-version-2807070033DA82CF.txt
+[1/11] Write sources
+[3/10] Emitting module OtzariaUIRoutingTests
+[4/17] Compiling OtzariaUIRoutingTests CodecTests.swift
+[5/17] Compiling OtzariaUIRoutingTests GoldenAPITests.swift
+[6/17] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+[7/17] Compiling OtzariaUIRoutingTests DiscoveryReviewRegressionTests.swift
+[8/17] Compiling OtzariaUIRoutingTests DiscoveryTests.swift
+[9/17] Compiling OtzariaUIRoutingTests RegistryTests.swift
+[10/17] Compiling OtzariaUIRoutingTests resource_bundle_accessor.swift
+[11/18] Wrapping AST for OtzariaUIRoutingTests for debugging
+[12/18] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[13/19] Write sources
+[15/20] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[16/22] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[17/22] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[18/23] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[19/24] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[20/24] Write sources
+[22/25] Emitting module OtzariaUIRoutingPackageTests
+[23/26] Compiling OtzariaUIRoutingPackageTests runner.swift
+[24/26] Write Objects.LinkFileList
+[25/26] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (54.76s)
+Test Suite 'Selected tests' started at 2026-11-15 14:15:30.658
+
+Test Suite 'DiscoveryReviewRegressionTests' started at 2026-11-15 14:15:30.725
+
+Test Case 'DiscoveryReviewRegressionTests.testBackendSwitchAndLostEpochDuringAssessmentAreRejected' started at 2026-11-15 14:15:30.725
+
+Test Case 'DiscoveryReviewRegressionTests.testBackendSwitchAndLostEpochDuringAssessmentAreRejected' passed (0.381 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testCallerDeadlineAlsoBoundsCoreAdvertisement' started at 2026-11-15 14:15:31.107
+
+Test Case 'DiscoveryReviewRegressionTests.testCallerDeadlineAlsoBoundsCoreAdvertisement' passed (0.529 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testCoreGenerationDriftDuringAdvertisementIsRejected' started at 2026-11-15 14:15:31.636
+
+Test Case 'DiscoveryReviewRegressionTests.testCoreGenerationDriftDuringAdvertisementIsRejected' passed (0.148 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testDeadlineCleansInitialAndFinalCurrentSceneWaits' started at 2026-11-15 14:15:31.785
+
+Test Case 'DiscoveryReviewRegressionTests.testDeadlineCleansInitialAndFinalCurrentSceneWaits' passed (1.024 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testDiscoveryDeadlineCancelsCooperativeHostBeforeSafetyRelease' started at 2026-11-15 14:15:32.809
+
+Test Case 'DiscoveryReviewRegressionTests.testDiscoveryDeadlineCancelsCooperativeHostBeforeSafetyRelease' passed (0.507 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testEmbeddedEpochDriftWithEchoedHostAssessmentIsRejected' started at 2026-11-15 14:15:33.316
+
+Test Case 'DiscoveryReviewRegressionTests.testEmbeddedEpochDriftWithEchoedHostAssessmentIsRejected' passed (0.264 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansInitialAndFinalCurrentSceneWaits' started at 2026-11-15 14:15:33.580
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansInitialAndFinalCurrentSceneWaits' passed (0.229 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansUpCooperativeHostBeforeSafetyRelease' started at 2026-11-15 14:15:33.809
+
+Test Case 'DiscoveryReviewRegressionTests.testExternalCancellationCleansUpCooperativeHostBeforeSafetyRelease' passed (0.122 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testGenerationDriftWithEchoedHostAssessmentIsRejected' started at 2026-11-15 14:15:33.931
+
+Test Case 'DiscoveryReviewRegressionTests.testGenerationDriftWithEchoedHostAssessmentIsRejected' passed (0.22 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingEmbeddedEpochIsUnavailableBeforeDiscovery' started at 2026-11-15 14:15:34.152
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingEmbeddedEpochIsUnavailableBeforeDiscovery' passed (0.1 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingExactSceneNeverFallsBackToOtherScene' started at 2026-11-15 14:15:34.252
+
+Test Case 'DiscoveryReviewRegressionTests.testMissingExactSceneNeverFallsBackToOtherScene' passed (0.09 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testSceneRevisionChangesBeforeAndDuringAssessmentAreRejected' started at 2026-11-15 14:15:34.342
+
+Test Case 'DiscoveryReviewRegressionTests.testSceneRevisionChangesBeforeAndDuringAssessmentAreRejected' passed (0.214 seconds)
+
+Test Case 'DiscoveryReviewRegressionTests.testTwoIndependentScenesUseExactSelectorAndRejectMatchingOtherScene' started at 2026-11-15 14:15:34.556
+
+Test Case 'DiscoveryReviewRegressionTests.testTwoIndependentScenesUseExactSelectorAndRejectMatchingOtherScene' passed (0.123 seconds)
+
+Test Suite 'DiscoveryReviewRegressionTests' passed at 2026-11-15 14:15:34.679
+
+	 Executed 13 tests, with 0 failures (0 unexpected) in 3.952 (3.952) seconds
+
+Test Suite 'DiscoveryTests' started at 2026-11-15 14:15:34.679
+
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' started at 2026-11-15 14:15:34.679
+
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' passed (0.654 seconds)
+
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' started at 2026-11-15 14:15:35.334
+
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' passed (0.115 seconds)
+
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' started at 2026-11-15 14:15:35.449
+
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' passed (0.248 seconds)
+
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' started at 2026-11-15 14:15:35.697
+
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' passed (0.749 seconds)
+
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' started at 2026-11-15 14:15:36.446
+
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' passed (0.231 seconds)
+
+Test Case 'DiscoveryTests.testSuccessfulDiscoveryCancelsDeadlineWaitWithoutAdvancingClock' started at 2026-11-15 14:15:36.677
+
+Test Case 'DiscoveryTests.testSuccessfulDiscoveryCancelsDeadlineWaitWithoutAdvancingClock' passed (0.125 seconds)
+
+Test Suite 'DiscoveryTests' passed at 2026-11-15 14:15:36.802
+
+	 Executed 6 tests, with 0 failures (0 unexpected) in 2.123 (2.123) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 14:15:36.802
+
+	 Executed 19 tests, with 0 failures (0 unexpected) in 6.075 (6.075) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
