@@ -1,0 +1,28 @@
+{
+  "originalICommits": [
+    "5dd41581ccac769b3a7c91648476f31a221eeb49",
+    "c5379e020874b0d5c450a3be56acf203fc18e14f"
+  ],
+  "integratedICommits": [
+    "f607ec2d",
+    "67f37cd3"
+  ],
+  "testFile": "Maktabah-iOSUITests\\GlobalSearchNativeAcceptanceTests.swift",
+  "gitSHA256": "8414378841c72dbb99e4404f9eeaa2e5738b07700152fec82693c3cf1045da72",
+  "registeredOnlyExistingSynchronizedUITestTarget": true,
+  "uiTestDeployment": {
+    "Debug": "26.2",
+    "Release": "26.2"
+  },
+  "declaredMethods": 17,
+  "selectedNoQueryMethods": [
+    "testHebrewHeaderUsesActualRTLGeometry",
+    "testEnglishHeaderUsesActualLTRGeometry",
+    "testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+    "testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "testHeaderAndHistoryNativeAccessibilityAudit"
+  ],
+  "nativeExecuted": 0
+}
