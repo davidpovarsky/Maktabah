@@ -138,8 +138,15 @@
   "affected_execution_groups": {
     "11-reader": [
       "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
       "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
       "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+    ],
+    "phone": [
+      "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
     ],
     "11-window": [
       "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
@@ -158,8 +165,19 @@
       "size": "11",
       "case_ids": [
         "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
         "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
         "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+      ]
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "case_ids": [
+        "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+        "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+        "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
       ]
     },
     {
@@ -172,11 +190,16 @@
   ],
   "execution_case_ids": [
     "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
     "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
     "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
     "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
   ],
-  "prior_pass_reuse_state": "PENDING_INDEPENDENT_U_PRODUCTION_CHANGE_IMPACT_PROOF",
+  "prior_pass_reuse_state": "NO_REUSE_SOURCE_CHANGE_REACHES_IPHONE_COMPACT_AND_IPAD_HOSTS",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
   "application_correction": {
     "donor": "48d6d7b634e82b8cf4212018d3f089de60958bb5",
@@ -187,5 +210,12 @@
     ],
     "runtime_status": "NOT_RUN",
     "scope": "Initial-empty iPad startup tab adoption at final validated commit boundary"
+  },
+  "source_change_impact_decision": "Q independent actual call-site review: startup path also reached by compact iPhone host. All original9 affected; prior5 PASS remain historical at source07, not candidate acceptance. No additional suites.",
+  "independent_change_impact": {
+    "file": "docs/hq-integration/runtime27/Q_SOURCE_CHANGE_IMPACT_48d6.json",
+    "source_file_sha256": "f0524ef14ee2bae83729a97ecf2218c96ca346d5419536228e49d970a9354d2f",
+    "required_case_count": 9,
+    "verified_reused_pass": 0
   }
 }

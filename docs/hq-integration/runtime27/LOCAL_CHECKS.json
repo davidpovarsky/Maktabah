@@ -19,7 +19,7 @@
     "Q ab23 native window/restore correction and U48d6 startup race correction"
   ],
   "test_correction": "021b5329b37d756604407e1256edf0001f708c3d",
-  "next_execution": "Affected UI retest after Q source-impact decision and U source integration. No prior pass reuse inferred.",
+  "next_execution": "Only original9, all affected by startup path change per Q; fresh11-reader4 + phone4 + fresh11-window1 last; verified reuse0",
   "ui_retest_run": 43681096257,
   "ui_retest_checked_sha": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
   "ui_retest_test_source_sha": "021b5329b37d756604407e1256edf0001f708c3d",
@@ -29,5 +29,6 @@
   "release_required_native_ui_case_device_pairs": 94,
   "release_required_separate_prototype_oracles": 2,
   "prepared_sidebar_cases": "RTL/LTR remainNOT_RUN; required by release manifest, existing source read-only, target registration and genuine fixture paths pending Q execution contract",
-  "ui_retest_os": "27.2 build24B8117"
+  "ui_retest_os": "27.2 build24B8117",
+  "actual_negative_release_gate_latest": "Current guard refused actual failed UI run43681096257 before artifact download/distribution"
 }
