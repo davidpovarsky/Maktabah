@@ -69,3 +69,15 @@ The navigation contract now provides `UIAuthorizedSceneCommand.validateCompletio
 Portable verification of the completion addition: strict Swift6.3.3 Windows **19 NavigationAuthorizationTests / 0 failures / 0 warnings** (15 existing +4 new methods), plus **2 focused legacy Core EngineTests / 0 failures / 0 warnings**. New cases prove an exact captured receipt alone remains structurally valid after revocation, while canonical completion refuses it; cover post-effect lifetime/subject/scopes/rights/work/scene/resource generation/RPC epoch changes, deadline/cancellation, consumed-guard requirement, full UI receipt binding, no regrant, actual-reader ACK refusal when the native guard was skipped or revoked after an effect, and unchanged queue/legacy behavior. Reader positive paths exercise the existing resolver/sink/receipt chain on all3 synthetic backends.
 
 Exact source/Git/log hashes: `results/navigation-completion-summary.json`; final logs `navigation-completion-tests.log`, `navigation-completion-legacy.log`. Older44/18 and other runs are not added or inherited as final-source coverage. No Apple/native/physical/S-production case was executed.
+
+## Separately versioned public navigation v2
+
+See [CONTRACT_PUBLIC_V2_20261115.md](CONTRACT_PUBLIC_V2_20261115.md) for exact opt-in rules, strict shared codec/schema, explicit v1 migration and fresh local binding with canonical Core execution.
+
+## Executed verification and exact source packet
+
+Final strict Swift6.3.3 Windows run of the complete affected UIRouting package: **72 distinct XCTest methods / 0 failures / 0 compiler warnings**, including **14 new public-v2 methods**, old codec/golden/private-v0/v1 tests,19 DISC methods,20 navigation-authority methods (including the final-await race) and5 scene/receipt methods. These are portable synthetic-authority/host cases, not native UI. The old v1 public schema method body and original3 golden Git blobs were verified unchanged; all Core package inputs match945b483f.
+
+All3 backends x4 public presentation forms round-trip; guarded UI-only binding and canonical actual Core reader sink execution run for all3 synthetic backends. Both public bind and exact variant-discovery awaits are tested for context/rights/generation revocation, deadline and caller cancellation with finite cleanup gates. Initial v2 compile hit a contextual type-inference error and executed0tests; that log is retained. Intermediate47/0 and earlier72/0 runs are not added to the final72. Final raw log and exact50 package input working SHA256/Git blobs, old fixture identities and all retained log hashes: `results/public-v2-summary.json`, `results/public-v2-final.log`.
+
+No app target, current N handler, S/I/R source, Core package, deployment/signing or workflow/gate is edited. This packet is ready for manager/N contract review; actual v2 public read-only surfaces, real URL import/publishing, Apple compiler/runtime and physical acceptance remain NOT_RUN/open.

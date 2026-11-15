@@ -44,16 +44,19 @@ public enum UIRouteCodec {
         catch { throw UIRouteError(.failed, "invalid_public_reference") }
         guard let descriptor = registry.descriptor(for: route.destination), descriptor.allowsPublicRoute,
               !descriptor.mutatesUserData, descriptor.riskTier < 3 else { throw UIRouteError(.notSupported, "public_route_not_supported") }
-        for ref in [route.content?.sectionLocator, route.content?.focusLocator].compactMap({ $0 }) {
-            let key = ref.workKey
-            guard !key.contains("/"), !key.contains("\\"), !key.contains("?"), !key.contains("#"),
-                  !key.contains("\0"), !key.lowercased().hasPrefix("file:"), !key.lowercased().hasPrefix("http:") else { throw UIRouteError(.failed, "private_path_not_public") }
-        }
+        try validatePublicReferences(route.content)
         let privateShape = RouteSpec(requestId: route.requestId, destination: route.destination, backend: route.backend, content: route.content,
             presentation: PresentationSpec(kind: route.presentation == .newTab ? .newTab : .currentTab))
         let validated = try registry.validate(privateShape)
         return PublicRouteSpec(version: route.version, requestId: route.requestId, destination: route.destination,
                                backend: validated.route.backend, content: route.content, presentation: route.presentation)
+    }
+    static func validatePublicReferences(_ content: ActionReaderDestination?) throws {
+        for ref in [content?.sectionLocator, content?.focusLocator].compactMap({ $0 }) {
+            let key = ref.workKey
+            guard !key.contains("/"), !key.contains("\\"), !key.contains("?"), !key.contains("#"),
+                  !key.contains("\0"), !key.lowercased().hasPrefix("file:"), !key.lowercased().hasPrefix("http:") else { throw UIRouteError(.failed, "private_path_not_public") }
+        }
     }
     /// Explicit public input only; never projects private restoration state.
     /// The host must separately approve content rights and URL publishing.

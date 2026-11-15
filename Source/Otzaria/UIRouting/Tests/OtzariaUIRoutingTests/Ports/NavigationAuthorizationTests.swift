@@ -404,7 +404,7 @@ final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
 
 /// One trusted live authority instance is injected into the actual Core actor.
 /// Synthetic MainActor state and effects, not a native UI acceptance fixture.
-@MainActor private final class NavigationAuthorityFixture: ActionNavigationAuthority, ActionSynchronousBackendStatePort, ActionResolverPort, ActionSearchPort,
+@MainActor final class NavigationAuthorityFixture: ActionNavigationAuthority, ActionSynchronousBackendStatePort, ActionResolverPort, ActionSearchPort,
     ActionUICommandSink, UIDestinationEligibilityPort {
     var context: ActionExecutionContext
     var backend: ActionBackendSnapshot

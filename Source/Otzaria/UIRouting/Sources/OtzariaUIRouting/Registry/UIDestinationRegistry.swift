@@ -21,7 +21,9 @@ public struct UIDestinationRegistry: Sendable {
                 guard descriptor.riskTier == 2, !descriptor.mutatesUserData, !descriptor.requiresContent,
                       !descriptor.allowsPrivateState else { throw UIRouteError(.failed, "invalid_registry") }
             }
+            try Self.validatePublicNavigationPolicyV2(descriptor)
         }
+        guard descriptors.reduce(0, { $0 + Self.publicVariantsV2($1).count }) <= 128 else { throw UIRouteError(.failed, "public_variants_limit") }
         let ids = Set(descriptors.map(\.id))
         guard Set(migrations.map(\.from)).count == migrations.count else { throw UIRouteError(.failed, "invalid_migrations") }
         for migration in migrations {
@@ -116,7 +118,7 @@ public struct UIDestinationRegistry: Sendable {
         }
     }
 
-    private func requireCurrentScene(_ scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation,
+    func requireCurrentScene(_ scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation,
                                      host: any UIDestinationEligibilityPort, clock: any ActionClock) async throws {
         try Task.checkCancellation()
         guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
@@ -149,7 +151,7 @@ public struct UIDestinationRegistry: Sendable {
             guard assessment.sceneID == scene.sceneID, assessment.sceneRevision == scene.revision,
                   assessment.backendSnapshot == scene.backendSnapshot else { throw UIRouteError(.staleState, "scene_or_backend_changed") }
             try await requireCurrentScene(scene, context: context, invocation: invocation, host: host, clock: clock)
-            if assessment.supported && assessment.ready && assessment.allowed { result.append(descriptor) }
+            if assessment.supported && assessment.ready && assessment.allowed { result.append(descriptor.withoutPublicNavigationV2()) }
         }
         try await requireCurrentScene(scene, context: context, invocation: invocation, host: host, clock: clock)
         return result

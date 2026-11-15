@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "destination": "test.settings",
+  "presentation": "sheet",
+  "component": "test.settings.fontSize"
+}
