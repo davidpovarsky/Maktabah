@@ -4,7 +4,7 @@ public enum ActionOrigin: String, Sendable { case inApp, appIntent, deepLink, in
 public enum ActionScope: String, Hashable, Sendable { case discovery, contentRead, navigation }
 
 /// Trusted adapter-owned data. Intentionally neither Decodable nor Codable.
-public struct ActionExecutionContext: Sendable {
+public struct ActionExecutionContext: Sendable, Equatable {
     public let subjectID: String
     public let correlationID: UUID
     public let origin: ActionOrigin

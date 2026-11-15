@@ -1,0 +1,34 @@
+[0/1] Planning build
+Building for debugging...
+[0/14] Write swift-version-2807070033DA82CF.txt
+[1/14] Write sources
+[3/14] Copying Resources
+[4/14] Write sources
+[6/15] Emitting module OtzariaActionCore
+[7/20] Compiling OtzariaActionCore ActionExecutor.swift
+[8/20] Compiling OtzariaActionCore ActionExecutionContext.swift
+[9/20] Compiling OtzariaActionCore ActionPolicy.swift
+[10/20] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[11/20] Compiling OtzariaActionCore ActionPorts.swift
+[12/29] Compiling OtzariaActionCore ActionJSON.swift
+[13/29] Compiling OtzariaActionCore ActionReferences.swift
+[14/29] Compiling OtzariaActionCore ActionRequest.swift
+[15/29] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[16/29] Compiling OtzariaActionCore ActionSearch.swift
+[17/29] Compiling OtzariaActionCore ActionWireCodec.swift
+[18/29] Compiling OtzariaActionCore ActionDeadline.swift
+[19/29] Compiling OtzariaActionCore ActionValidation.swift
+[20/29] Compiling OtzariaActionCore ActionRegistry.swift
+[21/30] Wrapping AST for OtzariaActionCore for debugging
+[23/31] Emitting module OtzariaUIRouting
+[24/39] Compiling OtzariaUIRouting UIRouteCodec.swift
+[25/39] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[26/39] Compiling OtzariaUIRouting RouteSpec.swift
+[27/39] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[28/39] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[29/39] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[30/39] Compiling OtzariaUIRouting UIDiscoveryCancellationScope.swift
+[31/39] Compiling OtzariaUIRouting resource_bundle_accessor.swift
+error: input file 'C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift' was modified during the build
+error: input file 'C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\Sources\OtzariaUIRouting\Ports\SceneNavigationPort.swift' was modified during the build
+error: fatalError

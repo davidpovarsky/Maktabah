@@ -1,0 +1,126 @@
+[0/1] Planning build
+Building for debugging...
+[0/11] Write swift-version-2807070033DA82CF.txt
+[1/11] Copying Resources
+[2/11] Write sources
+[4/12] Emitting module OtzariaActionCore
+[5/17] Compiling OtzariaActionCore ActionExecutor.swift
+[6/17] Compiling OtzariaActionCore ActionExecutionContext.swift
+[7/17] Compiling OtzariaActionCore ActionPolicy.swift
+[8/17] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[9/17] Compiling OtzariaActionCore ActionPorts.swift
+[10/26] Compiling OtzariaActionCore ActionJSON.swift
+[11/26] Compiling OtzariaActionCore ActionReferences.swift
+[12/26] Compiling OtzariaActionCore ActionRequest.swift
+[13/26] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[14/26] Compiling OtzariaActionCore ActionSearch.swift
+[15/26] Compiling OtzariaActionCore ActionWireCodec.swift
+[16/26] Compiling OtzariaActionCore ActionDeadline.swift
+[17/26] Compiling OtzariaActionCore ActionValidation.swift
+[18/26] Compiling OtzariaActionCore ActionRegistry.swift
+[19/27] Wrapping AST for OtzariaActionCore for debugging
+[21/28] Emitting module OtzariaActionCoreTests
+[22/32] Compiling OtzariaActionCoreTests ContractAPITests.swift
+[23/32] Compiling OtzariaActionCoreTests WireSecurityTests.swift
+[24/32] Compiling OtzariaActionCoreTests EngineTests.swift
+[25/32] Compiling OtzariaActionCoreTests MockPorts.swift
+[26/32] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageDiscoveredTests.derived\all-discovered-tests.swift
+[27/33] Write sources
+[29/34] Emitting module OtzariaActionCorePackageDiscoveredTests
+[30/36] Compiling OtzariaActionCorePackageDiscoveredTests OtzariaActionCoreTests.swift
+[31/36] Compiling OtzariaActionCorePackageDiscoveredTests all-discovered-tests.swift
+[32/34] Write Objects.LinkFileList
+[33/34] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (63.90s)
+Test Suite 'Selected tests' started at 2026-11-15 14:50:07.502
+
+Test Suite 'EngineTests' started at 2026-11-15 14:50:07.506
+
+Test Case 'EngineTests.testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends' started at 2026-11-15 14:50:07.506
+
+Test Case 'EngineTests.testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends' passed (0.614 seconds)
+
+Test Case 'EngineTests.testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented' started at 2026-11-15 14:50:08.120
+
+Test Case 'EngineTests.testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented' passed (0.045 seconds)
+
+Test Case 'EngineTests.testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls' started at 2026-11-15 14:50:08.165
+
+Test Case 'EngineTests.testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls' passed (0.042 seconds)
+
+Test Case 'EngineTests.testCancellationDeadlineAndReplayBudget' started at 2026-11-15 14:50:08.208
+
+Test Case 'EngineTests.testCancellationDeadlineAndReplayBudget' passed (0.294 seconds)
+
+Test Case 'EngineTests.testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason' started at 2026-11-15 14:50:08.502
+
+Test Case 'EngineTests.testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason' passed (0.056 seconds)
+
+Test Case 'EngineTests.testGenerationAndEmbeddedEpochChangesDiscardResults' started at 2026-11-15 14:50:08.558
+
+Test Case 'EngineTests.testGenerationAndEmbeddedEpochChangesDiscardResults' passed (0.068 seconds)
+
+Test Case 'EngineTests.testInactiveBackendRequiresSwitchWithoutCommandCalls' started at 2026-11-15 14:50:08.626
+
+Test Case 'EngineTests.testInactiveBackendRequiresSwitchWithoutCommandCalls' passed (0.051 seconds)
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' started at 2026-11-15 14:50:08.677
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' passed (0.422 seconds)
+
+Test Case 'EngineTests.testOutputAndWorkScopeBudgets' started at 2026-11-15 14:50:09.100
+
+Test Case 'EngineTests.testOutputAndWorkScopeBudgets' passed (0.08 seconds)
+
+Test Case 'EngineTests.testPaginationIdentityAndProviderErrors' started at 2026-11-15 14:50:09.180
+
+Test Case 'EngineTests.testPaginationIdentityAndProviderErrors' passed (0.083 seconds)
+
+Test Case 'EngineTests.testRightsOriginAndScopeFailClosed' started at 2026-11-15 14:50:09.263
+
+Test Case 'EngineTests.testRightsOriginAndScopeFailClosed' passed (0.041 seconds)
+
+Test Case 'EngineTests.testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange' started at 2026-11-15 14:50:09.304
+
+Test Case 'EngineTests.testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange' passed (0.072 seconds)
+
+Test Case 'EngineTests.testSemanticSupportAvailabilityAndRealZeroAreDistinct' started at 2026-11-15 14:50:09.377
+
+Test Case 'EngineTests.testSemanticSupportAvailabilityAndRealZeroAreDistinct' passed (0.071 seconds)
+
+Test Case 'EngineTests.testStagedCountWritesAndDiscoveryCannotAdvertiseThem' started at 2026-11-15 14:50:09.448
+
+Test Case 'EngineTests.testStagedCountWritesAndDiscoveryCannotAdvertiseThem' passed (0.066 seconds)
+
+Test Case 'EngineTests.testTypedUnsignedResolutionLimitDoesNotDefault' started at 2026-11-15 14:50:09.513
+
+Test Case 'EngineTests.testTypedUnsignedResolutionLimitDoesNotDefault' passed (0.067 seconds)
+
+Test Case 'EngineTests.testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay' started at 2026-11-15 14:50:09.580
+
+Test Case 'EngineTests.testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay' passed (0.522 seconds)
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' started at 2026-11-15 14:50:10.102
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' passed (0.13 seconds)
+
+Test Case 'EngineTests.testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines' started at 2026-11-15 14:50:10.233
+
+Test Case 'EngineTests.testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines' passed (1.178 seconds)
+
+Test Suite 'EngineTests' passed at 2026-11-15 14:50:11.411
+
+	 Executed 18 tests, with 0 failures (0 unexpected) in 3.904 (3.904) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 14:50:11.411
+
+	 Executed 18 tests, with 0 failures (0 unexpected) in 3.904 (3.904) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

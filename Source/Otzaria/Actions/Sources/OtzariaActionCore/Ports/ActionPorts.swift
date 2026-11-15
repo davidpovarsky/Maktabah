@@ -57,8 +57,11 @@ public struct ActionOpenReaderCommand: Sendable, Equatable {
     public let destination: ActionReaderDestination
     public let sceneID: String
     public let invocation: ActionPortInvocation
-    public init(destination: ActionReaderDestination, sceneID: String, invocation: ActionPortInvocation) {
+    public let navigationAuthorization: ActionNavigationPreparation?
+    public init(destination: ActionReaderDestination, sceneID: String, invocation: ActionPortInvocation,
+                navigationAuthorization: ActionNavigationPreparation? = nil) {
         self.destination = destination; self.sceneID = sceneID; self.invocation = invocation
+        self.navigationAuthorization = navigationAuthorization
     }
 }
 public struct ActionUIReceipt: Sendable, Equatable {

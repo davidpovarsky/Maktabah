@@ -40,3 +40,7 @@ public protocol ActionUICommandSink: Sendable {
 - `ActionPortError` cases: unavailable, notSupported, notFound, staleState, invalidResponse. External errors are mapped to safe codes; never emit raw SQL/paths/credentials.
 
 Only P owns Contracts/Registry/Policy/Engine/Ports/Resources. Resolver/** and Integration/** are reserved for separately assigned owners; no one edits the shared API without coordination. Future additive DTO conveniences are possible; no signature break is planned. Actual Apple/backend/native UI, broad research116 cases and adversarial engine acceptance remain NOT_RUN at this checkpoint.
+
+## Native navigation authorization addition (15 November)
+
+Current additive API and authority limitations: [CONTRACT_NAVIGATION_AUTHORIZATION_20261115.md](../hq-ui-routing/CONTRACT_NAVIGATION_AUTHORIZATION_20261115.md). Core adds a synchronous facet for its exact existing state object and a separately injected trusted native context/scene/lifetime authority; canonical ActionPolicy remains the single permission implementation. UI-only metadata is not a grant. Content preparations only attach inside the validated reader.open resolver/sink path. Source-compatible initializer labels remain, while native guarded execution fails closed without actual synchronous authority. No SharedSnapshot field, Resolver, Bridge, reader engine or second backend authority is added.

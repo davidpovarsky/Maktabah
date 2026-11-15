@@ -49,3 +49,15 @@ Manager reports true-two-parent merges into combined G1 `9e589d6f` and native UI
 SHA256: `fe60c65ccbe25b8fd79c36c2accf305f3a355506c366400ca86bfadbda072860`.
 
 After U inventory reconciliation, manager activated independent N primary `01a1df99-3d84-7d03-9927-af9bf35022b9` with this exact contract. Native observer implementation, scene orchestration and visible receipts belong to N. Actual Apple/native/physical acceptance remains open; source UI02 is not DONE. No public signature or source behavior changed in this acceptance record.
+
+## Canonical native navigation preparation
+
+See [CONTRACT_NAVIGATION_AUTHORIZATION_20261115.md](CONTRACT_NAVIGATION_AUTHORIZATION_20261115.md) for the additive Core/UI02 API, exact authority split and immediate-precommit/postreceipt limits.
+
+## Verified portable source packet
+
+Final strict Swift6.3.3 Windows executions: **44 UI02 XCTest methods / 0 failures / 0 warnings**, including **15 new navigation authorization methods**, plus a separate **18 existing Core EngineTests / 0 failures / 0 warnings** verifying the shared policy refactor and reader/replay/admission behavior. The final UI filter includes Discovery (all19), Registry (5) and ScenePort (5) alongside the15 new methods. These counts overlap earlier executions and are not added to them.
+
+The first in-progress compilation was invalidated by a source edit during build and executed zero tests; its log is retained. Earlier49/0 full-UI and12/0 intermediate runs are preserved but not relabelled as final-source acceptance. Final exact working SHA256 and Git blob IDs plus all raw-log hashes: `results/navigation-summary.json`. Final logs: `results/navigation-final.log`, `results/navigation-core-engine.log`. No native/S-production/physical execution by P.
+
+Coverage includes isolated changes to subject/scope/origin/allowed backend/work bounds/rights/scene, revoked active state, authority-revision ABA, replacement lifetime, request/scene/content binding and one-use consumption, deadlines/cancellation, discovery-vs-execution, missing actual guard/facet/native context, separated canonical backend/native authority, same-backend canonical resource generation, before/after Embedded epoch drift and unavailable Embedded proof without blocking the other two backends. Content still exercises the actual Core resolver/sink/receipt path on all3 synthetic backends; forged/missing/UI-only preparations cannot authorize content.
