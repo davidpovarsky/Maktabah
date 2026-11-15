@@ -122,7 +122,7 @@ final class R27NativePadTests: R27NativeUIBase {
     }
 
     @MainActor
-    func testZNormalBootstrapNativeWindowResizePaletteAndInspector() throws {
+    func testNormalBootstrapNativeWindowResizePaletteAndInspector() throws {
         XCTAssertTrue(isPad)
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(scenario: "readerDetail")
