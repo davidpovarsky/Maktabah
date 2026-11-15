@@ -106,6 +106,23 @@ import OtzariaUIRouting
             XCTAssertEqual(try f.authority.navigationState(sceneID: f.sceneID.rawValue).authorityRevision, f.admitted.authorityRevision)
         }
     }
+
+    func testDriverUnregistrationInsideFinalAuthorityReadCannotAcknowledge() async throws {
+        let f = try await PublicConsumerFixture(.otzaria), prepared = try await f.surfacePlan()
+        defer { f.authority.release(f.admitted) }
+        f.driver.afterApply = {
+            f.backend.afterSnapshot = {
+                f.backend.onSynchronousSnapshot = {
+                    f.backend.onSynchronousSnapshot = nil
+                    f.orchestrator.unregister(f.driver)
+                }
+            }
+        }
+        let result = await f.orchestrator.commitPrepared(prepared, admitted: f.admitted)
+        guard case .staleState(let failure) = result else { return XCTFail("Unregistered native owner acknowledged completion") }
+        XCTAssertEqual(failure.code, "native_effect_uncertain")
+        XCTAssertEqual(f.driver.applied, 1); XCTAssertNil(f.driver.command)
+    }
 }
 
 @MainActor final class PublicConsumerFixture {
@@ -125,15 +142,18 @@ import OtzariaUIRouting
     let host: PublicConsumerBindingHost
     let intent: PublicNavigationSpecV2
     let sink: NavigationReaderSink
+    let clock: any ActionClock
 
-    init(_ backendID: ActionBackendID, reader: Bool = false) async throws {
+    init(_ backendID: ActionBackendID, reader: Bool = false, clock: any ActionClock = SystemActionClock(),
+         deadline: UInt64 = UInt64.max, dispatchCapacity: Int = 256) async throws {
+        self.clock = clock
         backend = NavigationTestBackend(backendID); backend.readerReady = reader
         authority = try NativeNavigationAuthority(); lease = try authority.mount(sceneID: sceneID, foreground: true)
         context = .init(subjectID: "native.public.consumer", origin: .deepLink, allowedBackends: [backendID],
             contentRights: reader ? [backendID] : [], scopes: reader ? [.navigation, .discovery, .contentRead] : [.navigation, .discovery],
             foregroundSceneID: sceneID.rawValue)
         admitted = try authority.admit(context: context, sceneID: sceneID)
-        directory = try NativeSceneDirectory(authority: backend)
+        directory = try NativeSceneDirectory(authority: backend, clock: clock)
         driver = NavigationTestDriver(sceneID: sceneID, backend: backend)
         driver.actualState = .init(workspaceID: .init(rawValue: "11111111-1111-4111-8111-111111111111"),
             profileID: .init(rawValue: "22222222-2222-4222-8222-222222222222"), inspectorVisible: reader ? false : nil)
@@ -144,10 +164,11 @@ import OtzariaUIRouting
         })
         sink = NavigationReaderSink()
         let ports = NavigationTestPorts(allowReader: reader)
-        core = try ActionExecutor(state: backend, resolver: ports, search: ports, ui: sink, navigationAuthority: authority)
-        orchestrator = try NativeSceneNavigationOrchestrator(core: core, backend: backend, authority: authority, directory: directory)
+        core = try ActionExecutor(state: backend, resolver: ports, search: ports, ui: sink, clock: clock, navigationAuthority: authority)
+        orchestrator = try NativeSceneNavigationOrchestrator(core: core, backend: backend, authority: authority,
+            directory: directory, dispatchCapacity: dispatchCapacity, clock: clock)
         try orchestrator.register(driver)
-        invocation = .init(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+        invocation = .init(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: deadline)
         scene = try await directory.currentScene(sceneID: sceneID, context: context, invocation: invocation)
         let destination = UIDestinationID(rawValue: reader ? "native.reader" : "native.settings")!
         let content: ActionReaderDestination? = reader ? .init(sectionLocator: .init(backend: backendID, workKey: "fixture:work",
@@ -159,7 +180,7 @@ import OtzariaUIRouting
         host = PublicConsumerBindingHost(directory: directory, backend: backend, driver: driver, context: context, invocation: invocation, hasReaderTarget: reader)
     }
     func bind() async throws -> UIPublicNavigationPlanV2 {
-        try await registry.bindPublicV2(intent, scene: scene, context: context, invocation: invocation, core: core, host: host)
+        try await registry.bindPublicV2(intent, scene: scene, context: context, invocation: invocation, core: core, host: host, clock: clock)
     }
     func surfacePlan() async throws -> UIAuthorizedSceneCommand {
         guard case .surface(let prepared) = try await bind() else { throw ActionPortError.invalidResponse }

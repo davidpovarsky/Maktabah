@@ -204,6 +204,7 @@ import OtzariaUIRouting
     var value: ActionBackendSnapshot
     var available = true
     var readerReady = false
+    var asynchronousSnapshots = 0
     var afterSnapshot: (@MainActor () -> Void)?
     var onSynchronousSnapshot: (@MainActor () -> Void)?
     init(_ backend: ActionBackendID) { value = .init(backend: backend, generation: 1, rpcEpoch: backend == .sefariaEmbedded ? 7 : nil) }
@@ -212,6 +213,7 @@ import OtzariaUIRouting
         onSynchronousSnapshot?(); return value
     }
     func snapshot() async throws -> ActionBackendSnapshot {
+        asynchronousSnapshots += 1
         let captured = value, callback = afterSnapshot
         afterSnapshot = nil; callback?(); return captured
     }

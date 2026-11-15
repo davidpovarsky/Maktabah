@@ -1,0 +1,73 @@
+[0/1] Planning build
+Building for debugging...
+[0/13] Write swift-version-2807070033DA82CF.txt
+[1/11] Write sources
+[4/12] Emitting module ChavrusaUIRoutingHost
+[5/14] Compiling ChavrusaUIRoutingHost NativeReaderPlanBudget.swift
+[6/14] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[7/15] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[9/16] Emitting module ChavrusaUIRoutingHostTests
+[10/26] Compiling ChavrusaUIRoutingHostTests NativeBindingSourceObservationTests.swift
+[11/26] Compiling ChavrusaUIRoutingHostTests NativeIntentServiceTests.swift
+[12/26] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+[13/26] Compiling ChavrusaUIRoutingHostTests NativePublicPreparedCommitTests.swift
+[14/26] Compiling ChavrusaUIRoutingHostTests NativeReaderPlanBudgetTests.swift
+[15/26] Compiling ChavrusaUIRoutingHostTests NativeRouteInboxTests.swift
+[16/26] Compiling ChavrusaUIRoutingHostTests NativeRouteURLTests.swift
+[17/26] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+[18/26] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[19/26] Compiling ChavrusaUIRoutingHostTests NativeSurfaceStateTests.swift
+[20/27] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[21/27] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[22/28] Write sources
+[24/29] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[25/31] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[26/31] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[27/32] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[28/33] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[29/33] Write sources
+[31/34] Emitting module ChavrusaUIRoutingHostPackageTests
+[32/35] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[33/35] Write Objects.LinkFileList
+[34/35] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (41.19s)
+Test Suite 'Selected tests' started at 2026-11-15 17:59:31.999
+
+Test Suite 'NativeReaderPlanBudgetTests' started at 2026-11-15 17:59:32.036
+
+Test Case 'NativeReaderPlanBudgetTests.testActualCoreReceivesOnlyRemainingBudgetAndKeepsOriginalAdmissionOnAllBackends' started at 2026-11-15 17:59:32.036
+
+Test Case 'NativeReaderPlanBudgetTests.testActualCoreReceivesOnlyRemainingBudgetAndKeepsOriginalAdmissionOnAllBackends' passed (0.489 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testInsufficientOrExpiredOriginalBudgetNeverStartsCoreOrRoundsUp' started at 2026-11-15 17:59:32.526
+
+Test Case 'NativeReaderPlanBudgetTests.testInsufficientOrExpiredOriginalBudgetNeverStartsCoreOrRoundsUp' passed (0.274 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testOriginalOwnerRevocationDuringOuterScopeCleanupCannotEscapeAsCompletion' started at 2026-11-15 17:59:32.800
+
+Test Case 'NativeReaderPlanBudgetTests.testOriginalOwnerRevocationDuringOuterScopeCleanupCannotEscapeAsCompletion' passed (0.136 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testReissuedAdmissionIsRefusedBeforeCoreAndOldCleanupPreservesReplacement' started at 2026-11-15 17:59:32.936
+
+Test Case 'NativeReaderPlanBudgetTests.testReissuedAdmissionIsRefusedBeforeCoreAndOldCleanupPreservesReplacement' passed (0.125 seconds)
+
+Test Case 'NativeReaderPlanBudgetTests.testRemainingRequestBudgetRoundsDownAndUsesActualCoreSchemaBounds' started at 2026-11-15 17:59:33.061
+
+Test Case 'NativeReaderPlanBudgetTests.testRemainingRequestBudgetRoundsDownAndUsesActualCoreSchemaBounds' passed (0.259 seconds)
+
+Test Suite 'NativeReaderPlanBudgetTests' passed at 2026-11-15 17:59:33.320
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.283 (1.283) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 17:59:33.320
+
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.283 (1.283) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
