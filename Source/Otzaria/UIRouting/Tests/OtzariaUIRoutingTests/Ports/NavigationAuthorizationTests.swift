@@ -38,6 +38,102 @@ final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
             foregroundSceneID: scene ?? original.foregroundSceneID, pairedDeviceAvailable: original.pairedDeviceAvailable,
             maxActions: original.maxActions, maxResultBytes: original.maxResultBytes)
     }
+    private func completion(_ command: UISceneCommand) -> (receipt: UISceneReceipt, observed: UISceneSnapshot) {
+        let applied = command.scene.revision + 1
+        let receipt = UISceneReceipt(requestId: command.invocation.requestId, route: command.route.route,
+            backendSnapshot: command.invocation.snapshot, sceneID: command.scene.sceneID,
+            basedOnSceneRevision: command.scene.revision, appliedSceneRevision: applied)
+        let observed = UISceneSnapshot(sceneID: command.scene.sceneID, revision: applied,
+            backendSnapshot: command.invocation.snapshot, visibleRoute: command.route.route)
+        return (receipt, observed)
+    }
+    @MainActor func testCompletionRequiresGuardAndExactObservedReceiptWithoutRegrant() async throws {
+        for backend in ActionBackendID.allCases {
+            let host = NavigationAuthorityFixture(context: context(backend), backend: backend)
+            let prepared = try await command(host).prepareNavigation(using: executor(host), context: host.context)
+            let result = completion(prepared.command)
+            XCTAssertThrowsError(try prepared.validateCompletion(receipt: result.receipt, observed: result.observed))
+            try prepared.authorizeCommit(current: host.scene)
+            host.effects += 1
+            try prepared.validateCompletion(receipt: result.receipt, observed: result.observed)
+            let wrong = UISceneReceipt(requestId: UUID(), route: result.receipt.route, backendSnapshot: host.backend,
+                sceneID: host.scene.sceneID, basedOnSceneRevision: 5, appliedSceneRevision: 6)
+            XCTAssertThrowsError(try prepared.validateCompletion(receipt: wrong, observed: result.observed))
+            XCTAssertThrowsError(try prepared.authorizeCommit(current: host.scene), "Completion must not reissue commit authority")
+            XCTAssertEqual(host.effects, 1)
+        }
+    }
+    @MainActor func testRevocationAfterObservedMutationPreventsCompletion() async throws {
+        for mutation in 0..<10 {
+            let original = changed(context(.sefariaEmbedded, works: [.sefariaEmbedded: ["fixture:work"]]), rights: [.sefariaEmbedded])
+            let host = NavigationAuthorityFixture(context: original, backend: .sefariaEmbedded)
+            let prepared = try await command(host).prepareNavigation(using: executor(host), context: original)
+            try prepared.authorizeCommit(current: host.scene)
+            host.effects += 1
+            let observedResult = completion(prepared.command)
+            switch mutation {
+            case 0: host.active = false
+            case 1: host.authorityRevision += 2 // Revocation + restore while original context fields match.
+            case 2: host.context = changed(original, subject: "replaced-subject")
+            case 3: host.context = changed(original, scopes: [.discovery])
+            case 4: host.context = changed(original, rights: [])
+            case 5: host.context = changed(original, works: [.sefariaEmbedded: []])
+            case 6: host.lifetimeID = UUID()
+            case 7: host.backend = .init(backend: .sefariaEmbedded, generation: 2, rpcEpoch: 7)
+            case 8: host.backend = .init(backend: .sefariaEmbedded, generation: 1, rpcEpoch: 8)
+            default: host.context = changed(original, scene: "other-scene")
+            }
+            // Structural observation alone remains correct about the captured
+            // effect, but cannot prove current post-await permission/freshness.
+            XCTAssertNoThrow(try observedResult.receipt.validate(for: prepared.command, observed: observedResult.observed))
+            XCTAssertThrowsError(try prepared.validateCompletion(receipt: observedResult.receipt, observed: observedResult.observed))
+            XCTAssertEqual(host.effects, 1, "Refusing completion is not rollback/no-effect proof")
+        }
+    }
+    @MainActor func testDeadlineAndCancellationAfterMutationDoNotBecomeCompletion() async throws {
+        let host = NavigationAuthorityFixture(context: context()), clock = DiscoveryClock(), core = try executor(host, clock: clock)
+        let prepared = try await command(host, deadline: 20).prepareNavigation(using: core, context: host.context)
+        try prepared.authorizeCommit(current: host.scene); host.effects += 1
+        let result = completion(prepared.command)
+        clock.advance(to: 20)
+        XCTAssertThrowsError(try prepared.validateCompletion(receipt: result.receipt, observed: result.observed)) {
+            XCTAssertEqual(($0 as? ActionNavigationError)?.status, .cancelled)
+        }
+        let next = try await command(host, deadline: 30).prepareNavigation(using: core, context: host.context)
+        try next.authorizeCommit(current: host.scene); host.effects += 1
+        let nextResult = completion(next.command), gate = SceneTestGate()
+        let task = Task { @MainActor in
+            await gate.enter()
+            try next.validateCompletion(receipt: nextResult.receipt, observed: nextResult.observed)
+        }
+        await gate.waitForEntry(); task.cancel(); await gate.release()
+        do { try await task.value; XCTFail("Cancelled post-effect wait completed") } catch is CancellationError {} catch { XCTFail("Unexpected \(error)") }
+        XCTAssertEqual(host.effects, 2)
+    }
+    @MainActor func testReaderAcknowledgementRequiresConsumedGuardAndFreshPostSinkAuthority() async throws {
+        for mode in 0..<3 {
+            let host = NavigationAuthorityFixture(context: context()), core = try executor(host)
+            host.onReader = { reader in
+                if mode == 2 { return .queued(handle: "queued-fixture") }
+                if mode == 1 {
+                    try reader.navigationAuthorization!.authorizeCommit(invocation: reader.invocation, sceneID: reader.sceneID, destination: reader.destination)
+                    host.effects += 1
+                    host.active = false // An awaited native observation could revoke context after the effect.
+                }
+                return .acknowledged(.init(requestId: reader.invocation.requestId, snapshot: reader.invocation.snapshot,
+                    sceneID: reader.sceneID, destination: reader.destination))
+            }
+            let ref = ActionTextRef(backend: .otzaria, workKey: "fixture:work", position: .legacyLine(42))
+            let result = await core.execute(.init(action: "reader.open", arguments: ["sectionLocator": try .encoded(ref)], expectedBackend: .otzaria), context: host.context)
+            if mode == 2 { XCTAssertEqual(result.status, .uiQueued); XCTAssertEqual(host.effects, 0) }
+            else {
+                XCTAssertEqual(result.status, .failed)
+                XCTAssertEqual(result.error?.code, mode == 0 ? "navigation_commit_not_authorized" : "navigation_authority_changed")
+                XCTAssertEqual(host.effects, mode == 1 ? 1 : 0)
+            }
+            XCTAssertEqual(host.resolutions, 1); XCTAssertEqual(host.readerCalls, 1)
+        }
+    }
     @MainActor func testPureNavigationAllThreeBackendsSixOriginsAndOneUse() async throws {
         for backend in ActionBackendID.allCases {
             for origin in [ActionOrigin.inApp, .appIntent, .deepLink, .internalAI, .guide, .mcp] {
@@ -239,9 +335,10 @@ final class NavigationAuthorizationTests: XCTestCase, @unchecked Sendable {
                 try prepared.authorizeCommit(current: scene)
                 host.effects += 1
                 let receipt = ActionUIReceipt(requestId: reader.invocation.requestId, snapshot: reader.invocation.snapshot, sceneID: reader.sceneID, destination: reader.destination)
-                try UISceneReceipt(requestId: request.requestId, route: command.route.route, backendSnapshot: host.backend, sceneID: scene.sceneID,
+                let uiReceipt = UISceneReceipt(requestId: request.requestId, route: command.route.route, backendSnapshot: host.backend, sceneID: scene.sceneID,
                     basedOnSceneRevision: scene.revision, appliedSceneRevision: scene.revision + 1, coreReceipt: receipt)
-                    .validate(for: command, observed: .init(sceneID: scene.sceneID, revision: scene.revision + 1, backendSnapshot: host.backend, visibleRoute: command.route.route))
+                try prepared.validateCompletion(receipt: uiReceipt, observed: .init(sceneID: scene.sceneID, revision: scene.revision + 1,
+                    backendSnapshot: host.backend, visibleRoute: command.route.route))
                 return .acknowledged(receipt)
             }
             let result = await core.execute(request, context: host.context)

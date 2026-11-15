@@ -251,6 +251,7 @@ public actor ActionExecutor {
             try await recheck(snapshot, deadline: deadline)
             switch acknowledgement {
             case .acknowledged(let receipt):
+                if let authorization { try await authorization.validateCompletion() }
                 guard receipt.requestId == request.requestId, receipt.snapshot == snapshot, receipt.sceneID == scene,
                       receipt.destination == validated else { throw ActionPortError.invalidResponse }
                 result = ActionResult(request: request, status: .completed, backend: backend, backendGeneration: snapshot.generation, effects: ["reader_opened"])

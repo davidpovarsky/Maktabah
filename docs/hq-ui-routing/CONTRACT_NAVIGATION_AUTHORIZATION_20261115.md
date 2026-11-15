@@ -68,3 +68,25 @@ Final strict Swift6.3.3 Windows executions: **44 UI02 XCTest methods / 0 failure
 The first in-progress compilation was invalidated by a source edit during build and executed zero tests; its log is retained. Earlier49/0 full-UI and12/0 intermediate runs are preserved but not relabelled as final-source acceptance. Final exact working SHA256 and Git blob IDs plus all raw-log hashes: `results/navigation-summary.json`. Final logs: `results/navigation-final.log`, `results/navigation-core-engine.log`. No native/S-production/physical execution by P.
 
 Coverage includes isolated changes to subject/scope/origin/allowed backend/work bounds/rights/scene, revoked active state, authority-revision ABA, replacement lifetime, request/scene/content binding and one-use consumption, deadlines/cancellation, discovery-vs-execution, missing actual guard/facet/native context, separated canonical backend/native authority, same-backend canonical resource generation, before/after Embedded epoch drift and unavailable Embedded proof without blocking the other two backends. Content still exercises the actual Core resolver/sink/receipt path on all3 synthetic backends; forged/missing/UI-only preparations cannot authorize content.
+
+## Additive post-observation authority validation
+
+Follow-through from source `065148d3662b5322bdd5dea038405079cd3a66c3`: a structural UISceneReceipt check cannot prove current permission after an awaited UI observation. Reusing the one-use commit guard for that check is intentionally forbidden. The canonical additive read-only APIs are:
+
+```swift
+@MainActor ActionNavigationPreparation.validateCompletion() throws
+@MainActor UIAuthorizedSceneCommand.validateCompletion(
+    receipt: UISceneReceipt, observed: UISceneSnapshot) throws
+```
+
+For N: after the authorized synchronous mutation and any cancellable native layout/visibility wait, obtain the actual observed scene/result and call `prepared.validateCompletion(receipt:observed:)` before publishing acknowledged/completed. It checks the exact complete route, request, scene/revisions/backend and content receipt, then re-reads the same retained S backend authority and N context/lifetime through Core's existing canonical policy. Deadline, caller cancellation, changed subject/correlation/scopes/origin/rights/work scope/scene, inactive/replaced/revoked lifetime or canonical generation/RPC epoch refuse completion even if the captured UI receipt remains structurally valid.
+
+This creates no new grant and never resets the consumed commit guard. It cannot authorize/repeat mutation or replace admission/callback deduplication. A pre-commit/discovery-only preparation cannot validate completion. Bare `receipt.validate(for:observed:)` remains a structural compatibility API, not a complete current-authority acceptance check.
+
+Core reader.open additionally performs this current-authority check automatically on an acknowledged native sink command whenever native authorization is configured. This also refuses a superficially matching ACK from a sink that never consumed its required commit guard. Queue-only results remain queued without requiring an already-applied effect. Unconfigured legacy/non-native sinks retain their existing behavior; they still cannot use UI02's guarded native path.
+
+A failed/cancelled/expired completion can follow an actual UI effect. Preserve that fact/uncertainty in the native host outcome; missing effects in a Core failure is not proof of no effect. Never infer rollback, retry automatically or mark completed. This is still immediate precommit plus fresh post-observation checking, without an atomic barrier across actors. No new S/N/R/I source, UI target, workflow, schema, resolver, replay store or backend snapshot field is introduced.
+
+Portable verification of the completion addition: strict Swift6.3.3 Windows **19 NavigationAuthorizationTests / 0 failures / 0 warnings** (15 existing +4 new methods), plus **2 focused legacy Core EngineTests / 0 failures / 0 warnings**. New cases prove an exact captured receipt alone remains structurally valid after revocation, while canonical completion refuses it; cover post-effect lifetime/subject/scopes/rights/work/scene/resource generation/RPC epoch changes, deadline/cancellation, consumed-guard requirement, full UI receipt binding, no regrant, actual-reader ACK refusal when the native guard was skipped or revoked after an effect, and unchanged queue/legacy behavior. Reader positive paths exercise the existing resolver/sink/receipt chain on all3 synthetic backends.
+
+Exact source/Git/log hashes: `results/navigation-completion-summary.json`; final logs `navigation-completion-tests.log`, `navigation-completion-legacy.log`. Older44/18 and other runs are not added or inherited as final-source coverage. No Apple/native/physical/S-production case was executed.

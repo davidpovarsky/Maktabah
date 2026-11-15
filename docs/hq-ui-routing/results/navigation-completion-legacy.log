@@ -1,0 +1,53 @@
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version-2807070033DA82CF.txt
+[1/4] Copying Resources
+[2/4] Write sources
+[4/5] Emitting module OtzariaActionCore
+[5/7] Compiling OtzariaActionCore ActionExecutor.swift
+[6/7] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[7/19] Compiling OtzariaActionCore ActionJSON.swift
+[8/19] Compiling OtzariaActionCore ActionReferences.swift
+[9/19] Compiling OtzariaActionCore ActionRequest.swift
+[10/19] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[11/19] Compiling OtzariaActionCore ActionSearch.swift
+[12/19] Compiling OtzariaActionCore ActionWireCodec.swift
+[13/19] Compiling OtzariaActionCore ActionDeadline.swift
+[14/19] Compiling OtzariaActionCore ActionExecutionContext.swift
+[15/19] Compiling OtzariaActionCore ActionPolicy.swift
+[16/19] Compiling OtzariaActionCore ActionValidation.swift
+[17/19] Compiling OtzariaActionCore ActionPorts.swift
+[18/19] Compiling OtzariaActionCore ActionRegistry.swift
+[19/27] Wrapping AST for OtzariaActionCore for debugging
+[21/28] Emitting module OtzariaActionCoreTests
+[22/24] Write Objects.LinkFileList
+[23/24] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (32.26s)
+Test Suite 'Selected tests' started at 2026-11-15 15:13:45.762
+
+Test Suite 'EngineTests' started at 2026-11-15 15:13:45.800
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' started at 2026-11-15 15:13:45.800
+
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' passed (0.314 seconds)
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' started at 2026-11-15 15:13:46.114
+
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' passed (0.069 seconds)
+
+Test Suite 'EngineTests' passed at 2026-11-15 15:13:46.183
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.383 (0.383) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 15:13:46.184
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.383 (0.383) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
