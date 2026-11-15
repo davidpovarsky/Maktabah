@@ -1,0 +1,126 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-2807070033DA82CF.txt
+[1/13] Write sources
+[3/10] Emitting module ChavrusaUIRoutingHostTests
+[4/18] Compiling ChavrusaUIRoutingHostTests NRActualProducerConsumerTests.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:110:74: error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+108 |         let source = f.adapter.mappingOwnershipSource
+
+109 |         var fenced = 0
+
+110 |         let subscription = source.subscribeInvalidation(owner: consumer) { owner, _ in
+
+    |                                                                          `- error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+111 |             owner.revoke(); fenced += 1
+
+112 |             XCTAssertNil(f.adapter.mappingOwnershipObservation())
+
+[5/18] Compiling ChavrusaUIRoutingHostTests RActualAdapterProducer_ProposedHookBoundaryDouble.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:110:74: error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+108 |         let source = f.adapter.mappingOwnershipSource
+
+109 |         var fenced = 0
+
+110 |         let subscription = source.subscribeInvalidation(owner: consumer) { owner, _ in
+
+    |                                                                          `- error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+111 |             owner.revoke(); fenced += 1
+
+112 |             XCTAssertNil(f.adapter.mappingOwnershipObservation())
+
+[6/18] Compiling ChavrusaUIRoutingHostTests RActual_BackendSessionIntegrityRepair.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:110:74: error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+108 |         let source = f.adapter.mappingOwnershipSource
+
+109 |         var fenced = 0
+
+110 |         let subscription = source.subscribeInvalidation(owner: consumer) { owner, _ in
+
+    |                                                                          `- error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+111 |             owner.revoke(); fenced += 1
+
+112 |             XCTAssertNil(f.adapter.mappingOwnershipObservation())
+
+[7/18] Compiling ChavrusaUIRoutingHostTests RActual_LibraryBackendModels.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:110:74: error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+108 |         let source = f.adapter.mappingOwnershipSource
+
+109 |         var fenced = 0
+
+110 |         let subscription = source.subscribeInvalidation(owner: consumer) { owner, _ in
+
+    |                                                                          `- error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+111 |             owner.revoke(); fenced += 1
+
+112 |             XCTAssertNil(f.adapter.mappingOwnershipObservation())
+
+[8/18] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceMappingOwnership.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:110:74: error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+108 |         let source = f.adapter.mappingOwnershipSource
+
+109 |         var fenced = 0
+
+110 |         let subscription = source.subscribeInvalidation(owner: consumer) { owner, _ in
+
+    |                                                                          `- error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+111 |             owner.revoke(); fenced += 1
+
+112 |             XCTAssertNil(f.adapter.mappingOwnershipObservation())
+
+[9/18] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceModels.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:110:74: error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+108 |         let source = f.adapter.mappingOwnershipSource
+
+109 |         var fenced = 0
+
+110 |         let subscription = source.subscribeInvalidation(owner: consumer) { owner, _ in
+
+    |                                                                          `- error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+111 |             owner.revoke(); fenced += 1
+
+112 |             XCTAssertNil(f.adapter.mappingOwnershipObservation())
+
+[10/18] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspacePersistence.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:110:74: error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+108 |         let source = f.adapter.mappingOwnershipSource
+
+109 |         var fenced = 0
+
+110 |         let subscription = source.subscribeInvalidation(owner: consumer) { owner, _ in
+
+    |                                                                          `- error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+111 |             owner.revoke(); fenced += 1
+
+112 |             XCTAssertNil(f.adapter.mappingOwnershipObservation())
+
+[11/18] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceStore.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NRActualProducerConsumerTests.swift:110:74: error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+108 |         let source = f.adapter.mappingOwnershipSource
+
+109 |         var fenced = 0
+
+110 |         let subscription = source.subscribeInvalidation(owner: consumer) { owner, _ in
+
+    |                                                                          `- error: invalid conversion from throwing function of type '@Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) throws -> Void' to non-throwing function type '@MainActor @Sendable (RAuthorityConsumer, StudyWorkspaceMappingEvent) -> Void'
+
+111 |             owner.revoke(); fenced += 1
+
+112 |             XCTAssertNil(f.adapter.mappingOwnershipObservation())
+
+error: fatalError

@@ -1,0 +1,67 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/3] Write sources
+[3/4] Emitting module ChavrusaUIRoutingHostTests
+[4/12] Compiling ChavrusaUIRoutingHostTests NRActualProducerConsumerTests.swift
+[5/12] Compiling ChavrusaUIRoutingHostTests RActualAdapterProducer_ProposedHookBoundaryDouble.swift
+[6/12] Compiling ChavrusaUIRoutingHostTests RActual_BackendSessionIntegrityRepair.swift
+[7/12] Compiling ChavrusaUIRoutingHostTests RActual_LibraryBackendModels.swift
+[8/12] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceMappingOwnership.swift
+[9/12] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceModels.swift
+[10/12] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspacePersistence.swift
+[11/12] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceStore.swift
+[12/19] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[13/19] C:\Users\DAVID\.codex\tmp\njb-050\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[14/20] Write sources
+[16/21] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[17/23] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[18/23] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[20/23] Emitting module ChavrusaUIRoutingHostPackageTests
+[21/23] Write Objects.LinkFileList
+[22/23] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (72.67s)
+Test Suite 'Selected tests' started at 2026-11-15 19:05:27.043
+
+Test Suite 'NRActualProducerConsumerTests' started at 2026-11-15 19:05:27.048
+
+Test Case 'NRActualProducerConsumerTests.testActualAdapterProjectionBindsP050AndStrictFullSurfaceReceiptOnAllBackends' started at 2026-11-15 19:05:27.048
+
+Test Case 'NRActualProducerConsumerTests.testActualAdapterProjectionBindsP050AndStrictFullSurfaceReceiptOnAllBackends' passed (1.813 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testActualNativeSameTurnABAAndPostpublicationReadmissionPreserveReplacementCleanup' started at 2026-11-15 19:05:28.861
+
+Test Case 'NRActualProducerConsumerTests.testActualNativeSameTurnABAAndPostpublicationReadmissionPreserveReplacementCleanup' passed (1.667 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testActualProducerRevocationInCoreFinalAwaitRefusesEarlierExactNativeACK' started at 2026-11-15 19:05:30.528
+
+Test Case 'NRActualProducerConsumerTests.testActualProducerRevocationInCoreFinalAwaitRefusesEarlierExactNativeACK' passed (4.089 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testActualStoreCheckpointAndPublicationABAUseOriginalAuthority' started at 2026-11-15 19:05:34.617
+
+Test Case 'NRActualProducerConsumerTests.testActualStoreCheckpointAndPublicationABAUseOriginalAuthority' passed (0.562 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testFixedSourceAndExactOwnerRejectReplacementAndSameUUIDReaderABA' started at 2026-11-15 19:05:35.179
+
+Test Case 'NRActualProducerConsumerTests.testFixedSourceAndExactOwnerRejectReplacementAndSameUUIDReaderABA' passed (1.083 seconds)
+
+Test Case 'NRActualProducerConsumerTests.testUninstalledNativeHookCannotBindFromStoreOnlySuccess' started at 2026-11-15 19:05:36.262
+
+Test Case 'NRActualProducerConsumerTests.testUninstalledNativeHookCannotBindFromStoreOnlySuccess' passed (1.037 seconds)
+
+Test Suite 'NRActualProducerConsumerTests' passed at 2026-11-15 19:05:37.299
+
+	 Executed 6 tests, with 0 failures (0 unexpected) in 10.251 (10.251) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 19:05:37.299
+
+	 Executed 6 tests, with 0 failures (0 unexpected) in 10.251 (10.251) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

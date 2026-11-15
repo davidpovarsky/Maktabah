@@ -1,0 +1,18 @@
+{
+  "status": "MINIMAL_CURRENT_V1_N_P_PAIR_PORTABLE_PASS",
+  "base": "fca92176d48017ee0cd22831a1ae31f40958eed9",
+  "P_current_v1": "9fadde58093d352fa2fa8b7cc18d07904382e880",
+  "P_core_blob": "fbe9db5962dde66685d272231d77e6257640ae54",
+  "N_production_patch": "N_V1_FCA_POST_GUARD_DRIVER_TOKEN_UNAPPLIED.diff",
+  "N_test_patch": "N_V1_FCA_REGRESSION_UNAPPLIED.diff",
+  "combined_input_manifest_sha256": "11c71ce59fa7029254c664db92c3360fa81ecb9f8e9c134490c34bdcf960a759",
+  "actual_host_methods": 58,
+  "failures": 0,
+  "compiler_warnings": 0,
+  "raw_log": "N-v1-fca-P9f-pair-host.log",
+  "raw_log_sha256": "1c12e19e1bb402e4f81368e1d47c97c13bda9c8c08e78c47d6030344e888f352",
+  "future_preparation_v2_dependencies": false,
+  "actual_native_sdk_device": "NOT_RUN",
+  "P_UI62_reexecuted_by_N": false,
+  "manager_application": "Manager reports original-blob/check/apply of N exact v1 patches; N did not mutate manager branch"
+}

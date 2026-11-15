@@ -1,0 +1,41 @@
+{
+  "R_commit": "44f518fcccce6bd20127f39eea8462d7a7a9dd47",
+  "N_P_snapshot": "98e6c7b94fd5e4c06b83cdda57cd6c9d9f41db6e",
+  "inputs": {
+    "Source/LibraryBackend/LibraryBackendModels.swift": {
+      "git_blob": "0a2fb19bce041b334752816176dc68a39bbe3ea8",
+      "sha256": "c0fba93f1495b8859dea21d5747cc86062a4dab9dc41bd960daea6baf49c27ad"
+    },
+    "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift": {
+      "git_blob": "d3c3451a79e2d0ded0db3a22d7754ea85747e99c",
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift": {
+      "git_blob": "651c77818b59cb0eac5667d63cc51ceac09aa192",
+      "sha256": "31191cc0c61f8b834a2aa24018a3b65051fdffad7abbb96d7b611efe8d4231c7"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift": {
+      "git_blob": "de3a6a7d8d16e9a81a6f5cfcdf6859c84efbcbdd",
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift": {
+      "git_blob": "5ba997af025d29fb8fd354a39cbd41b145c0665e",
+      "sha256": "998002e7e974a1a03e46f83fe72ea8e22c7db4249bacd85f0e8fd1a29011983f"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift": {
+      "git_blob": "ed6dc3d685a103c733fd30b453ee36a39eae48e3",
+      "sha256": "893202bd779723b2a1e7f4ff641f54f7196a975c577406784c0303d0d4eabda4"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": {
+      "git_blob": "8f4ae9a44e3a93309734bd29c3093ce84e54a890",
+      "sha256": "b5b7a90faefc893c0e542d42f0a932fe9583708290328756ae7026a986eedb83"
+    },
+    "tools/workspace_mapping_native_boundary_fixture.swift": {
+      "git_blob": "ae2a5808c50382f302c7b16c0ce8a16d71c657f6",
+      "sha256": "6662cf9894a7ceafc4ddd9bc52ec55c8c8d3f1c7fef43aa8115d031dab8b9db6"
+    }
+  },
+  "exact_adapter_block_sha256": "366e8c0b5870200ca51e05605dcc0cec428f0243f89ecf3f1e2ef591fdbe20f1",
+  "generated_boundary_sha256": "32f918238ac3d8515fc6beb10a14f41fb357670026e507fe3a2b410afdef5fac",
+  "N_test_sha256": "faa7abc145c9dd78df046adce3d721276031f563101857fca3abd7c9a79e5f4e"
+}
