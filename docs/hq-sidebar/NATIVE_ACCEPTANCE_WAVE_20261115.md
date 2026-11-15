@@ -53,11 +53,41 @@ language, exact TOC title/search ownership, one native sidebar toggle, preserved
 reader object/source/offset/title/locator, and vertical scroll arbitration.
 The added scene case also checks the actual reader object/source/offset, full
 text/title/locator and TOC page after background/foreground and real orientation
-changes. All three remain NOT_RUN at dispatch until the real selected workflow
-executes. Run43728847352 selects these three plus the original strengthened
-Escape/Inspector/window case; its immutable checkout is01dd34af. Prior
-run43723356743 built successfully but its sole window case failed the original
-palette disappearance waiter; it did not execute these Sidebar cases.
+changes. Actual run43728847352 (checkout01dd34af, sourcee8afde8e) built
+successfully and executed all four selected cases: 0PASS/4FAIL/0skip. The
+window case still failed the original Escape disappearance waiter. Both
+body-paging cases failed before functional filtering because the test wrongly
+required native NavigationBar search to be contained in the pager body. The
+scene case selected TOC but stopped at its first viewport request, before Home
+or rotation: the existing observer was attached only to the unused iPad host.
+These outcomes do not establish filtering or scene-state product failures.
+Exact SDK/device/event/visual evidence is sealed in
+`../hq-ui-inventory/r27-escape/native-cancel/RUN_43728847352.json`.
+
+Candidateb9077d4a widens the search oracle to the actual sidebar horizontal
+column, including its NavigationBar, and mounts the existing read-only DEBUG
+observer in Exact9401WorkspaceLifecycle. All functional/continuity assertions
+remain. The original bottom TOC helper is also selected through normal realUI
+bootstrap as a fourth Sidebar case, sharing the exact original test body.
+Actual run43733876827 (checkoutbf463e03/sourceb9077d4a) completed
+2PASS/3FAIL/0skip. The scene and original bottomTOC cases passed, with actual
+screenshots reviewed and a real viewport report retained. The noninstrumented
+Escape case still visibly retained the palette. Both paging cases passed the
+no-match filter but stopped after test replacement produced the malformed
+query `מסילת_151126__`: tapping the middle of the search field before deleting
+moved the caret and left a suffix. The test now uses the observed native clear
+Button (`Clear text` / `מחיקת המלל`) and asserts the exact query before filtering.
+Body paging, matching and clear restoration remain unaccepted until rerun.
+Historical eight are not fresh executions. Exact source/native dependency/data/
+generated-project compatibility atb907 is sealed separately.
+
+The next tests-only selection keeps app sourceb907 unchanged: two corrected
+body cases plus a same-target native palette calibration. That case first
+exercises the actual Close Button, then requires visible down/up result
+selection through real hardware-key API, then tests full-window Escape. No
+production rewrite follows from an unproved event-consumer hypothesis.
+Prior run43723356743 built successfully but its sole window case failed the
+original palette disappearance waiter; no Sidebar cases ran there.
 
 Manager decision for this wave: retain one system-owned toggle and its standard
 symbol; do not replace the control or reconfigure displayModeButtonItem merely

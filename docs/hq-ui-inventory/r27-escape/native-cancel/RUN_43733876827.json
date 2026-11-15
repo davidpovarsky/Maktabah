@@ -1,0 +1,115 @@
+{
+  "run_id": 43733876827,
+  "checkout_sha": "bf463e035ee3251f14b3eab4cbdb069119247c47",
+  "source_sha": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+  "palette_sdk_module_compile": "ACTUAL_SWIFT6_APPLE_SDK_PASS",
+  "app_build_for_testing": "ACTUAL_PASS",
+  "actual_device": {
+    "architecture": "arm64",
+    "deviceId": "A8836064-1798-4A03-82C7-015F908E7106",
+    "deviceName": "Faithful 11-inch 3589667b",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "fresh_ui_pass": 2,
+  "fresh_ui_fail": 3,
+  "fresh_ui_skip": 0,
+  "actual_cases": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "device": "ipad11",
+      "expected": "Real normal bootstrap; independently derived fixture category paths; functional Library search empty/match/exclude/clear; fixed physical RTL body swipes;20body+20dot transitions; one native toggle and TOC-local title/search; actual reader object/source/offset/title/locator preservation; vertical scroll arbitration",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "device": "ipad11",
+      "expected": "Same genuine fixture/native reader and functional search/state oracles in English LTR; fixed physical LTR body swipes and preserved one native toggle/TOC ownership",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+      "device": "ipad11",
+      "expected": "RealUI exact fixture work; native TOC page survives Home/activate and measured portrait/landscape changes; one native toggle; original TextKit object/source/offset, actual text/title/locator preserved; retained before/after screenshots+hierarchy",
+      "configuration_label": "11-window",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+      "device": "ipad11",
+      "expected": "Unmodified shared original bottom TOC action helper through realUI normal bootstrap, actual sidebar Contents selection, no modal TOC, exact real fixture work/backend and retained title",
+      "configuration_label": "11-window",
+      "actual": "Passed"
+    }
+  ],
+  "actual_failures": [
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 1,
+      "testIdentifierString": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "testName": "testNormalBootstrapNativeWindowResizePaletteAndInspector()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed - Fixture path is missing: ספרי מוסר",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 3,
+      "testIdentifierString": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "testName": "testSidebarBodyPagingLTR()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed - Fixture path is missing: ספרי מוסר",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 4,
+      "testIdentifierString": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "testName": "testSidebarBodyPagingRTL()"
+    }
+  ],
+  "native_pass_scope": [
+    "TOC page and actual reader object/source/offset/title/locator/text preserved through Home/activate, measured portrait, sidebar close and measured landscape",
+    "Original shared bottom TOC action helper passed through actual normal realUI bootstrap and independent fixture work/backend check"
+  ],
+  "retained_last_viewport_report": {
+    "bottomInset": 0,
+    "capturedAt": 1794760571.0568008,
+    "contentHeight": 805,
+    "contentOffsetY": 0,
+    "object": 5675991277374074822,
+    "offset": 10,
+    "overviewPresentations": [],
+    "requestID": "D61854ED-9DA2-481A-ABDE-8DFD6E891009",
+    "source": 0,
+    "topInset": 0,
+    "viewportHeight": 1178
+  },
+  "visual_review": [
+    "B361C132-7962-4D75-B769-29DB1F4019F3.png: actual bottom action opened original TOC sidebar, native toggle, real title/text retained",
+    "61C00454-8EDE-49CD-BA33-10D8AC2686AC.png: actual portrait window, sidebar closed and real reader text visible",
+    "27C402D4-02B9-4BEF-B8DB-957B4C9A010B.png: palette remains visible with caret/query/result/software keyboard after Escape",
+    "D112D540-BCB1-4EE8-B915-BB9D7AF65AEF.png and locale AX: actual unintended query is Hebrew match prefix plus suffix _151126__; no-match search had passed, subsequent intended-match case is invalid due test replacement caret assumption"
+  ],
+  "sidebar_failure_classification": "TEST_QUERY_REPLACEMENT_DEFECT: center tap moved caret inside original long query, repeated Delete removed prefix and left suffix. Current actual search field-owned Clear text / Hebrew clear action will replace query; exact intended value must be asserted. No product matching/filtering conclusion from malformed query. Body paging and clear restoration NOT_REACHED.",
+  "R27": "Noninstrumented native Button-only Escape shortcut still does not visibly dismiss. Original waiter source188 failed, downstream global input/Inspector acceptance NOT_REACHED. Callback fault/UIView bridge/window-specific cause unproved. Next actual existing-target calibration verifies Button dismissal, real down/up selection and full-window Escape before more production changes.",
+  "native_compatibility": "HEALTHY_NATIVE_COMPATIBILITY_43733876827.json verifies actual15toolchain/dependency fields,3fixture sets,2206complete generated project objects modulo15ID renames. Eight older case bodies/launch override exactly match; no fresh8execution claimed.",
+  "artifact": {
+    "id": 14169514399,
+    "bytes": 467157049,
+    "sha256": "3bf127487d4ec6ab70ce9b90b33632e645f7729fe9f68dff5dad8a9dff1b5037",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43733876827/artifacts/14169514399"
+  },
+  "acceptance": "PARTIAL_OPEN; no MERGE_READY; physical iPad NOT_RUN"
+}

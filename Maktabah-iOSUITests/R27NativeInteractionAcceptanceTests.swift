@@ -210,6 +210,60 @@ final class R27NativePadTests: R27NativeUIBase {
     }
 
     @MainActor
+    func testNormalBootstrapPaletteKeyboardDispatchCalibration() throws {
+        XCTAssertTrue(isPad)
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(scenario: "readerDetail")
+        let locator = try assertTarget(backend: "otzaria")
+        let launcher = app.navigationBars.buttons["reader-command-palette-launcher"]
+        let palette = app.otherElements["reader-library-command-palette"]
+        let input = app.textFields.matching(NSPredicate(
+            format: "placeholderValue == %@", "חפש ספר בספרייה…"
+        ))
+
+        // First exercise the existing actual production Button. A failed
+        // keyboard route must not be mistaken for a broken dismiss callback.
+        tapInWindow(launcher)
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        XCTAssertEqual(input.count, 1)
+        tapInWindow(palette.buttons["command-palette-close"])
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "count == 0"), object: input
+        )], timeout: 15), .completed, "The actual native Close control must remove the real input")
+        recordWindowEvidence("r27-calibration-actual-close-button-dismissed")
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+
+        tapInWindow(launcher)
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        XCTAssertEqual(input.count, 1)
+        tapInWindow(input.firstMatch)
+        recordWindowEvidence("r27-calibration-full-window-input")
+        let selected = palette.buttons.matching(NSPredicate(format: "isSelected == true"))
+        XCTAssertEqual(selected.count, 1)
+        let initial = selected.firstMatch.label
+        input.firstMatch.typeKey(XCUIKeyboardKey.downArrow, modifierFlags: [])
+        let movesDown = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { selected.count == 1 && selected.firstMatch.label != initial }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [movesDown], timeout: 15), .completed,
+                       "A real field UIKeyCommand must visibly move result selection")
+        recordWindowEvidence("r27-calibration-keycommand-down-moved-selection")
+        input.firstMatch.typeKey(XCUIKeyboardKey.upArrow, modifierFlags: [])
+        let movesBack = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { selected.count == 1 && selected.firstMatch.label == initial }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [movesBack], timeout: 15), .completed)
+        recordWindowEvidence("r27-calibration-keycommand-up-restored-selection")
+        input.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        recordWindowEvidence("r27-calibration-full-window-after-escape")
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "count == 0"), object: input
+        )], timeout: 15), .completed, "Escape must remove the real input in the actual full native window")
+        XCTAssertFalse(palette.exists)
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+    }
+
+    @MainActor
     private func tapInWindow(_ element: XCUIElement) {
         XCTAssertTrue(element.waitForExistence(timeout: 15))
         XCTAssertTrue(element.isHittable)

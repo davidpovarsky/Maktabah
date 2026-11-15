@@ -244,12 +244,24 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
     private func replaceQuery(in field: XCUIElement, with query: String) {
         tap(field)
         let old = field.value as? String ?? ""
-        // The last entered query leaves the caret at the end. Empty fields
-        // expose their placeholder as value, which must not be deleted.
         if !old.isEmpty && old != field.placeholderValue {
-            field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count))
+            // A center tap can put the caret in the middle of a long/bidi
+            // query. Use UIKit's actual field-owned clear action, observed in
+            // both native locales, instead of assuming a deletion position.
+            let clear = field.buttons.matching(NSPredicate(
+                format: "label IN %@", ["Clear text", "מחיקת המלל"]
+            ))
+            XCTAssertEqual(clear.count, 1)
+            XCTAssertTrue(clear.firstMatch.isHittable)
+            tap(clear.firstMatch)
+            let cleared = field.value as? String ?? ""
+            XCTAssertTrue(cleared.isEmpty || cleared == field.placeholderValue)
         }
-        if !query.isEmpty { field.typeText(query) }
+        if !query.isEmpty {
+            field.typeText(query)
+            XCTAssertEqual(field.value as? String, query,
+                           "Functional filtering must exercise the exact intended query")
+        }
     }
 
     @MainActor
