@@ -30,7 +30,7 @@ Windows portable command: `swift test --package-path Source/Otzaria/UIRouting -j
 
 Core additive seam: `ActionWireCodec.decodeObject(_:) -> ActionObject` reuses the sole existing bounded parser, duplicate-key rejection and exact number handling. Focused `WireSecurityTests/testBoundedGenericObjectIngressReusesExactParser`: 1 passed, 0 failures; `results/core-object-ingress.log`. Existing Core26 and independent62 evidence was not rerun. Neither run is an Apple SDK, simulator or physical iPad result.
 
-SDK03/07 accepted shared host contract remains pending. Keep all Hanlin model/chat/composer/tool/skill/MCP/store ownership upstream; an actual thin host adapter remains separate work. Package metadata follows existing HanlinPlatform iOS26 minimum, no 17â€“25 fallback, and makes no iOS27-only SDK claim.
+SDK03/07 accepted shared host contract remains pending. Keep all Hanlin model/chat/composer/tool/skill/MCP/store ownership upstream; an actual thin host adapter remains separate work. Package metadata follows existing HanlinPlatform iOS26 minimum, no 17–25 fallback, and makes no iOS27-only SDK claim.
 
 ## Additive codec/registry tranche
 
