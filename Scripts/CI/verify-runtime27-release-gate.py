@@ -31,11 +31,16 @@ def read(root, relative):
     return path
 
 
-def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, now=None):
+def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, now=None, reuse_proof=None):
     require(manifest.get("full_release_acceptance_required") is True and manifest.get("configurations"), "Missing full release requirements")
     require(re.fullmatch(r"[a-f0-9]{40}", expected_sha) is not None, "Missing exact candidate SHA")
     require(run.get("status") == "completed" and run.get("conclusion") == "success", "UI acceptance run did not complete successfully")
-    require(run.get("head_sha") == expected_sha, "Stale/different acceptance checkout")
+    tested_sha = run.get("head_sha")
+    if tested_sha != expected_sha:
+        require(reuse_proof and reuse_proof.get("kind") == "DOCUMENTATION_ONLY_DESCENDANT"
+                and reuse_proof.get("tested_sha") == tested_sha and reuse_proof.get("candidate_sha") == expected_sha
+                and all(path.startswith("docs/hq-integration/") for path in reuse_proof.get("changed_paths", [])),
+                "Stale/different acceptance checkout without bounded input-equivalence proof")
     require(run.get("event") == "workflow_dispatch", "Unexpected acceptance trigger")
     require(run.get("path", "").split("@")[0] == ".github/workflows/sefaria-embedded-validation.yml", "Unexpected acceptance workflow")
     completed = datetime.fromisoformat(run["updated_at"].replace("Z", "+00:00"))
@@ -44,11 +49,11 @@ def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, n
     result = json.loads(read(root, "artifacts/runtime27/result.json").read_text())
     require(result.get("status") == "EXECUTED_PASS" and result.get("full_release_acceptance") is True,
             "Missing full real UI acceptance; focused subsets/build/probe do not satisfy release")
-    require(result.get("checkout_sha") == expected_sha, "Acceptance artifact checkout mismatch")
+    require(result.get("checkout_sha") == tested_sha, "Acceptance artifact checkout mismatch")
     require(result.get("release_manifest_sha256") == manifest_sha, "Missing/stale full acceptance manifest")
     require(result.get("scope") == manifest["scope"] == "full-release-ui", "Partial/non-release UI scope")
     build = json.loads(read(root, "hq-stage2/result.json").read_text())
-    require(build.get("status") == "SIMULATOR_BUILD_FOR_REAL_UI_PASS" and build.get("checkout_sha") == expected_sha, "Missing actual matching app/test build")
+    require(build.get("status") == "SIMULATOR_BUILD_FOR_REAL_UI_PASS" and build.get("checkout_sha") == tested_sha, "Missing actual matching app/test build")
     require(build.get("application_trees") == application_trees, "Application/dependency project fingerprints changed")
     require(build.get("actual_source_inputs_verified", 0) > 0 and len(build.get("actual_package_checkouts", {})) == 6,
             "Missing actual app/package input audit")
@@ -88,13 +93,28 @@ def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, n
         if required["data_profile"] == "production":
             require(data.get("bookCount", 0) >= 7000 and data.get("extractedBytes", 0) >= 1_500_000_000,
                     "Production UI gate lacks full real corpus evidence")
-    return {"status": "RELEASE_UI_GATE_PASS", "checkout_sha": expected_sha, "required_ui_passed": passed,
+    return {"status": "RELEASE_UI_GATE_PASS", "checkout_sha": expected_sha, "tested_checkout_sha": tested_sha,
+            "bounded_reuse_proof": reuse_proof, "required_ui_passed": passed,
             "configurations": sorted(required_configs), "release_manifest_sha256": manifest_sha,
             "database_effect_claim": "NONE; actual data report and real UI assertions checked separately"}
 
 
 def api(path):
     return json.loads(subprocess.check_output(["gh", "api", path], text=True))
+
+
+def documentation_reuse(tested_sha, candidate_sha):
+    require(re.fullmatch(r"[a-f0-9]{40}", tested_sha or "") is not None, "Missing tested SHA")
+    if tested_sha == candidate_sha:
+        return None
+    subprocess.run(["git", "merge-base", "--is-ancestor", tested_sha, candidate_sha], check=True)
+    delta = subprocess.check_output(["git", "diff", "--name-only", tested_sha, candidate_sha], text=True).splitlines()
+    require(all(path.startswith("docs/hq-integration/") for path in delta),
+            "Changed app/test/data/dependency/tool/configuration inputs require affected-case validation")
+    diff = subprocess.check_output(["git", "diff", "--binary", tested_sha, candidate_sha])
+    return {"kind": "DOCUMENTATION_ONLY_DESCENDANT", "tested_sha": tested_sha, "candidate_sha": candidate_sha,
+            "changed_paths": delta, "diff_sha256": hashlib.sha256(diff).hexdigest(),
+            "impact": "All application, test, data-profile, dependency, tool and execution configuration bytes unchanged"}
 
 
 def main():
@@ -110,7 +130,8 @@ def main():
         require(repository == "davidpovarsky/Maktabah", "Unexpected repository")
         run = api(f"repos/{repository}/actions/runs/{args.run}")
         # Reject stale/failure before downloading potentially large artifacts.
-        require(run.get("head_sha") == args.expected_sha and run.get("conclusion") == "success", "UI run failed or candidate changed")
+        require(run.get("conclusion") == "success", "UI run failed")
+        reuse = documentation_reuse(run.get("head_sha"), args.expected_sha)
         artifacts = api(f"repos/{repository}/actions/runs/{args.run}/artifacts?per_page=100")["artifacts"]
         selected = [v for v in artifacts if v["name"] == "runtime27-evidence" and not v["expired"]]
         require(len(selected) == 1, "Exactly one live runtime27-evidence artifact is mandatory")
@@ -136,7 +157,7 @@ def main():
             manifest_sha = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
             trees = {path: subprocess.check_output(["git", "rev-parse", "HEAD:" + path], text=True).strip()
                      for path in ["Source", "Vendor", "Maktabah.xcodeproj"]}
-            report.update(verify(run, destination, args.expected_sha, manifest, manifest_sha, trees))
+            report.update(verify(run, destination, args.expected_sha, manifest, manifest_sha, trees, reuse_proof=reuse))
             report.update(acceptance_run=args.run, artifact_id=artifact["id"], artifact_zip_sha256=digest)
     except (ValueError, KeyError, OSError, subprocess.SubprocessError) as error:
         report["error"] = str(error)

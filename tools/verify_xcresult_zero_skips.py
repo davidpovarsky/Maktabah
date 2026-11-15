@@ -70,7 +70,8 @@ def parse_test_tree(tree, target):
     return cases
 
 
-def verify(summary, tree, log, required_cases, min_tests, target='Maktabah-iOSUITests', min_total_tests=1, required_executed_cases=()):
+def verify(summary, tree, log, required_cases, min_tests, target='Maktabah-iOSUITests', min_total_tests=1,
+           required_executed_cases=(), expected_device=None, expected_os_major=None):
     require(type(min_tests) is int and min_tests > 0, '--min-tests must be positive')
     require(type(min_total_tests) is int and min_total_tests > 0, '--min-total-tests must be positive')
     required = [case_id(value) for value in required_cases]
@@ -81,9 +82,17 @@ def verify(summary, tree, log, required_cases, min_tests, target='Maktabah-iOSUI
         require(type(summary.get(key)) is int and summary[key] >= 0, 'Missing/invalid xcresult count: ' + key)
     require(summary.get('result') == 'Passed', 'xcresult summary did not pass')
     require(summary['failedTests'] == 0 and summary['skippedTests'] == 0, 'xcresult contains failed/skipped tests')
-    require(not summary.get('testFailures') and not summary.get('expectedFailures'), 'xcresult contains failures/expected failures')
+    require(type(summary.get('expectedFailures')) is int and summary['expectedFailures'] == 0
+            and summary.get('testFailures') == [], 'xcresult failure metadata is missing/nonempty')
     require(summary['totalTestCount'] == summary['passedTests'] >= min_total_tests, 'xcresult total/passed count empty/inconsistent')
     cases = parse_test_tree(tree, target)
+    devices = tree.get('devices', [])
+    require(isinstance(devices, list) and devices and all(v.get('deviceId') and v.get('osVersion') for v in devices),
+            'Missing actual xcresult device/OS identity')
+    if expected_device:
+        require(len(devices) == 1 and devices[0]['deviceId'] == expected_device, 'Wrong actual xcresult device')
+    if expected_os_major:
+        require(all(str(v['osVersion']).split('.')[0] == str(expected_os_major) for v in devices), 'Wrong actual xcresult OS')
     require(len(cases) == summary['totalTestCount'], 'xcresult summary/tree count mismatch')
     require(set(required) <= cases.keys(), 'Required UI cases absent: ' + str(sorted(set(required) - cases.keys())))
     require({case_id(value) for value in required_executed_cases} <= cases.keys(), 'Required separate non-UI probe did not execute')
@@ -116,6 +125,8 @@ def main():
     parser.add_argument('--min-tests', type=int, default=1, help='Positive minimum of required real UI cases')
     parser.add_argument('--min-total-tests', type=int, default=1, help='Positive minimum actual total, including separate non-UI probes')
     parser.add_argument('--required-executed-case', action='append', default=[], help='Required extra execution probe; does not count toward real UI minimum')
+    parser.add_argument('--expected-device')
+    parser.add_argument('--expected-os-major', type=int)
     parser.add_argument('--out', type=Path)
     args = parser.parse_args()
     report = {'status': 'FAIL', 'scope': args.scope, 'database_open': 'NOT_VERIFIED_BY_TEST_COUNTS'}
@@ -130,7 +141,8 @@ def main():
             if args.out:
                 args.out.with_suffix('.' + label + '.json').write_text(json.dumps(value, indent=2) + '\n')
         report.update(verify(summary, tree, args.log.read_text(encoding='utf-8'), args.required_case,
-                             args.min_tests, min_total_tests=args.min_total_tests, required_executed_cases=args.required_executed_case))
+                             args.min_tests, min_total_tests=args.min_total_tests, required_executed_cases=args.required_executed_case,
+                             expected_device=args.expected_device, expected_os_major=args.expected_os_major))
     except (ValueError, OSError, subprocess.SubprocessError) as error:
         report['error'] = str(error)
         print('::error::' + str(error), file=sys.stderr)

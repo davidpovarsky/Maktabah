@@ -61,12 +61,14 @@ def collect_cases(report, contract):
         report[f"executed_ui_{name}"] = sum(row["actual"] == status for row in outcomes)
     report["ui_not_run"] = sum(row["actual"] not in ["Passed", "Failed", "Skipped"] for row in outcomes)
     junit = ET.Element("testsuite", name="R27 real native subset", tests=str(len(outcomes)),
-                       failures=str(sum(row["actual"] != "Passed" for row in outcomes)))
+                       failures=str(report["executed_ui_fail"]), skipped=str(report["executed_ui_skip"]),
+                       errors=str(report["ui_not_run"]))
     for row in outcomes:
         suite, method = row["case_id"].split("/")
         case = ET.SubElement(junit, "testcase", classname=row["device"] + "." + suite, name=method)
         if row["actual"] != "Passed":
-            ET.SubElement(case, "failure", message=row["actual"]).text = row["expected"]
+            tag = "failure" if row["actual"] == "Failed" else "skipped" if row["actual"] == "Skipped" else "error"
+            ET.SubElement(case, tag, message=row["actual"]).text = row["expected"]
     ET.ElementTree(junit).write(OUT / "junit.xml", encoding="utf-8", xml_declaration=True)
     (OUT / "cases.html").write_text("<!doctype html><meta charset=utf-8><title>Actual R27 UI outcomes</title><table>" +
         "".join("<tr>" + "".join("<td>" + html.escape(row[key]) + "</td>" for key in ["device", "case_id", "actual", "expected"]) + "</tr>" for row in outcomes) + "</table>")
@@ -122,7 +124,7 @@ def main():
         report["full_release_acceptance"] = False
         report["scope"] = contract["scope"]
         test_path = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
-        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "0f8e06fab18a2d48ff2e254cd603d293c038285a57e5b13514f491467ed51d7a":
+        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "7018060d54afaf60b37a98decba9fcdea6f5fed7434352e83bf76f1cd6a3971d":
             raise RuntimeError("Reviewed test source drift")
         report["test_source_commit"] = contract["source_test_commit"]
         subprocess.run(["git", "merge-base", "--is-ancestor", contract["source_test_commit"], "HEAD"], cwd=ROOT, check=True)

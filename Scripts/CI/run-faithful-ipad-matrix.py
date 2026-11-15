@@ -229,6 +229,7 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
         required = [row["suite"] + "/" + method for row in declared["suites"] for method in row["expected"]]
         strict = [sys.executable, "tools/verify_xcresult_zero_skips.py", "--xcresult", str(result),
                   "--log", str(artifacts / f"test-simulator-{size}.log"), "--scope", "focused-ui",
+                  "--expected-device", udid, "--expected-os-major", "27",
                   "--min-tests", str(len(required)), "--out", str(artifacts / f"runtime27/verified-{size}.json")]
         for identity in required:
             strict.extend(["--required-case", identity])

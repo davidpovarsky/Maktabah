@@ -1,7 +1,7 @@
 {
   "scope": "LOCAL_GUARD_GATE_ORACLE_CHECKS_ONLY_UI_COUNT_ZERO",
-  "parser_unittest_cases": 8,
-  "release_gate_unittest_cases": 4,
+  "parser_unittest_cases": 9,
+  "release_gate_unittest_cases": 7,
   "fixture_oracle_unittest_cases": 4,
   "all_final_results": "PASS",
   "actual_probe_run": 43678599137,
@@ -12,10 +12,12 @@
   "initial_oracle_fixture_failure": "Windows cleanup found SQLite context manager did not close handle; explicit closing applied in helper and fixture; four cases then PASS",
   "ui_run": 43679005353,
   "ui_checked_sha": "bfed97f63d77736f9d46581000f95790f2b3517e",
-  "ui_result": "PENDING_ACTUAL_COMPLETION_NO_UI_PASS_INFERRED",
+  "ui_result": "RUN1_TEST_BUILD_FAILED_0_UI_PASS_0_UI_FAIL_9_NOT_RUN",
   "unexecuted_followups": [
     "mandatoryTestFlight gate and separate metadata probe classification",
     "explicit readonly oracle connection close",
     "future binary/NOT_RUN artifact retention"
-  ]
+  ],
+  "test_correction": "021b5329b37d756604407e1256edf0001f708c3d",
+  "next_execution": "Necessary same9case real build-for-testing/UI retest; no prior UI pass to repeat"
 }

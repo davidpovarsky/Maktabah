@@ -15,11 +15,12 @@ spec.loader.exec_module(guard)
 
 class ResultGuardTests(unittest.TestCase):
     def setUp(self):
-        self.summary = {"result": "Passed", "totalTestCount": 1, "passedTests": 1, "failedTests": 0, "skippedTests": 0}
+        self.summary = {"result": "Passed", "totalTestCount": 1, "passedTests": 1, "failedTests": 0, "skippedTests": 0,
+                        "expectedFailures": 0, "testFailures": []}
         self.case = {"name": "testTap()", "nodeType": "Test Case", "result": "Passed", "nodeIdentifier": "Navigation/testTap()"}
         self.suite = {"name": "Navigation", "nodeType": "Test Suite", "children": [self.case]}
         self.bundle = {"name": "Maktabah-iOSUITests", "nodeType": "UI test bundle", "children": [self.suite]}
-        self.tree = {"testNodes": [self.bundle]}
+        self.tree = {"testNodes": [self.bundle], "devices": [{"deviceId": "owned", "osVersion": "27.0"}]}
         self.log = "Test Case '-[Maktabah_iOSUITests.Navigation testTap]' passed (1.0 seconds).\nExecuted 1 test, with 0 failures\n** TEST SUCCEEDED **\n"
 
     def verify(self, **kwargs):
@@ -86,6 +87,16 @@ class ResultGuardTests(unittest.TestCase):
         self.bundle["nodeType"] = "Unit test bundle"
         with self.assertRaises(ValueError):
             self.verify()
+
+    def test_actual_device_and_os_required(self):
+        for devices in [[], [{}], [{"deviceId": "owned"}]]:
+            self.tree["devices"] = devices
+            with self.assertRaises(ValueError):
+                self.verify()
+        self.tree["devices"] = [{"deviceId": "owned", "osVersion": "27.0"}]
+        for kwargs in [{"expected_device": "different"}, {"expected_os_major": 26}]:
+            with self.assertRaises(ValueError):
+                guard.verify(self.summary, self.tree, self.log, ["Navigation/testTap"], 1, **kwargs)
 
     def test_original_owner_false_greens_rejected_by_cli(self):
         fixtures = Path(__file__).parent / "fixtures/xcresult-zero-skips"

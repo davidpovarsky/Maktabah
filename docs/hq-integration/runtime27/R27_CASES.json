@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_test_commit": "7bae3462e6c706c2a736bc3b2e5772564e8ad1f3",
+  "source_test_commit": "021b5329b37d756604407e1256edf0001f708c3d",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
   "app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
   "sole_executor_thread": "01a1dc86-0c7b-7ee3-a098-2b4004ed686d",
@@ -132,5 +132,12 @@
     "13inch/VoiceOver/DynamicType/full release coverage not part of initial9"
   ],
   "reused_ui_passes": 0,
-  "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI"
+  "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
+  "test_corrections": [
+    {
+      "commit": "021b5329b37d756604407e1256edf0001f708c3d",
+      "run": 43679005353,
+      "change": "One @MainActor annotation on native window resize test; no assertion/skip/oracle change"
+    }
+  ]
 }

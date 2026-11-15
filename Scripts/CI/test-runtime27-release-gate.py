@@ -7,8 +7,10 @@ from pathlib import Path
 import runpy
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 
 gate = runpy.run_path(str(Path(__file__).with_name("verify-runtime27-release-gate.py")))
+collect = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["collect_cases"]
 
 
 class ReleaseGateTests(unittest.TestCase):
@@ -33,7 +35,8 @@ class ReleaseGateTests(unittest.TestCase):
         self.build = {"status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS", "checkout_sha": self.sha, "application_trees": self.trees,
                       "actual_source_inputs_verified": 750, "actual_package_checkouts": {str(i): {"head": str(i), "status": "CLEAN"} for i in range(6)},
                       "package_pins": {str(i): str(i) for i in range(6)}}
-        self.summary = {"result": "Passed", "totalTestCount": 1, "passedTests": 1, "failedTests": 0, "skippedTests": 0}
+        self.summary = {"result": "Passed", "totalTestCount": 1, "passedTests": 1, "failedTests": 0, "skippedTests": 0,
+                        "expectedFailures": 0, "testFailures": []}
         self.tree = {"devices": [{"deviceId": "owned", "osVersion": "27.0"}], "testNodes": [
             {"nodeType": "UI test bundle", "name": "Maktabah-iOSUITests", "children": [
                 {"nodeType": "Test Suite", "name": "Navigation", "children": [
@@ -86,6 +89,55 @@ class ReleaseGateTests(unittest.TestCase):
         self.tree["testNodes"][0]["nodeType"] = "Unit test bundle"
         with self.assertRaises(ValueError):
             self.check()
+
+    def test_documentation_only_reuse_preserves_checked_sha(self):
+        self.check()
+        candidate = "b" * 40
+        proof = {"kind": "DOCUMENTATION_ONLY_DESCENDANT", "tested_sha": self.sha, "candidate_sha": candidate,
+                 "changed_paths": ["docs/hq-integration/runtime27/REPORT.md"]}
+        accepted = gate["verify"](self.run, self.root, candidate, self.manifest, "manifest", self.trees, self.now, proof)
+        self.assertEqual(accepted["tested_checkout_sha"], self.sha)
+        self.assertEqual(accepted["checkout_sha"], candidate)
+        proof["changed_paths"] = ["Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"]
+        with self.assertRaises(ValueError):
+            gate["verify"](self.run, self.root, candidate, self.manifest, "manifest", self.trees, self.now, proof)
+
+
+class EvidenceClassificationTests(unittest.TestCase):
+    def test_missing_execution_is_not_an_executed_ui_failure(self):
+        original = collect.__globals__["OUT"]
+        try:
+            with tempfile.TemporaryDirectory() as folder:
+                collect.__globals__["OUT"] = Path(folder)
+                contract = {"cases": [{"device": "ipad11", "case_id": "Native/testTap", "oracle": "actual post-tap state"}]}
+                report = {}
+                collect(report, contract)
+                self.assertEqual(report["executed_ui_pass"], 0)
+                self.assertEqual(report["executed_ui_fail"], 0)
+                self.assertEqual(report["ui_not_run"], 1)
+                junit = ET.parse(Path(folder) / "junit.xml").getroot()
+                self.assertEqual(junit.attrib["failures"], "0")
+                self.assertEqual(junit.attrib["errors"], "1")
+        finally:
+            collect.__globals__["OUT"] = original
+
+    def test_only_named_actual_results_count(self):
+        original = collect.__globals__["OUT"]
+        try:
+            with tempfile.TemporaryDirectory() as folder:
+                folder = Path(folder)
+                collect.__globals__["OUT"] = folder
+                (folder / "verified-11.tests.json").write_text(json.dumps({"testNodes": [
+                    {"nodeType": "Test Suite", "name": "Native", "children": [
+                        {"nodeType": "Test Case", "name": "testTap()", "nodeIdentifier": "Native/testTap()", "result": "Failed"},
+                        {"nodeType": "Test Case", "name": "testOther()", "nodeIdentifier": "Native/testOther()", "result": "Passed"}]}]}))
+                contract = {"cases": [{"device": "ipad11", "case_id": "Native/testTap", "oracle": "actual post-tap state"},
+                                      {"device": "iphone", "case_id": "Phone/testTap", "oracle": "actual phone action"}]}
+                report = {}
+                collect(report, contract)
+                self.assertEqual((report["executed_ui_pass"], report["executed_ui_fail"], report["ui_not_run"]), (0, 1, 1))
+        finally:
+            collect.__globals__["OUT"] = original
 
 
 if __name__ == "__main__":
