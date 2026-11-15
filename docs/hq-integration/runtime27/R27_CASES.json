@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "source_test_commit": "15ed01259d4b41864a53db76c0060c25393d75ef",
-  "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
-  "app_source": "40e642349814568ccae4437cb914f01f0c12420b",
-  "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
+  "application_base": "fe6f5fe5126a964bd76d3f308489e131a491fe36",
+  "app_source": "10a93f99818925db39e1844c4a97055e8551c08f",
+  "sole_executor_thread": "01a1df85-6013-7270-b48d-8e10222e95c6",
   "independent_qa_thread": null,
-  "scope": "U_NATIVE_CANCEL_CANDIDATE_ONE_REAL_WINDOW_CASE_NOT_FULL_RELEASE",
+  "scope": "SINGLE_MANAGER_COHERENT_SIX_AFFECTED_READER_CASES_NOT_FULL_RELEASE",
   "native_cases_executed": 0,
   "required_nonzero_cases": 9,
   "expected_per_device": {
@@ -75,7 +75,7 @@
     "data_profile": "real native-installed miniTest10",
     "bootstrap": "realUI; never -smokeBypassBootstrap",
     "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
-    "scheduling": "One U-owned CI path/build-for-testing and one watcher; no competing suite"
+    "scheduling": "One single-manager coherent CI path/build-for-testing and one bounded watcher for this six-Reader selection; U retains its separate window/Inspector source lane"
   },
   "required_test_environment": {
     "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",

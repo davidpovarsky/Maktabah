@@ -8,15 +8,15 @@ Single manager `01a1df85-6013-7270-b48d-8e10222e95c6`; branch `codex/otzaria-wav
 | --- | --- |
 | Native UI01/current host | U `739e29704db988630764c091ff6237974502294f`, runtime source `5afdefdf7fae792eeb7a828dc9157e8cecab7f93` |
 | Corrected discovery | P `b9adb9c46ef04b0aac84ece0045ca7e420bc30d0`; manager combined 19 portable methods passed at `9e589d6f` |
-| Canonical navigation guard | P `065148d3662b5322bdd5dea038405079cd3a66c3`; writer final UI44/Core18 portable evidence, actual native authority still required |
-| Search readiness/real FFI/resource publication witness | S `d0b953c1995105ae64d420489086e9263f8ca4b1` (includes `02f54e91`) |
-| Live Bridge/RPC/relationships and same-authority sync facet | S `bbfc161059a20d675b0798fa1e904af16595aede` (includes `d3c697c9`) |
-| Inspector provider/Notes/requested-mode/cancel and genuine corpus evidence | I `a9bc4ffdb65d39d2240e782f6539903906eb63f8` (application source remains `8cc9c675`) |
+| Canonical navigation guard/completion and package resources | P `996a7ba0f32948f55485a89a1f9f2a98cc968364` includes `bedd754d` completion and earlier `065148d3`; portable proof only, corrected Apple build pending |
+| Search readiness/real FFI/resource publication witness | S `d0b953c1995105ae64d420489086e9263f8ca4b1` (includes `02f54e91`), compressed payload evidence `012701db3b473914cfb0c7c97fc4f649389ad1fd` |
+| Live Bridge/RPC/relationships and same-authority sync facet | S `946d61eea648db1f3ca33e60edd724e99790ab2e` includes `bbfc1610` and `d3c697c9`; source-backed Legacy zero/readiness and fresh JS resource proof |
+| Inspector provider/Notes/requested-mode/cancel and genuine corpus evidence | I `c7b52c6f7c13bdb3bd5c6dd6eadbf48074408715`, Notes source `0a400d9c`, includes earlier `8cc9c675` and 21-window subset evidence |
 | Resolver per-invocation proof deduplication | I `e765d7c0d2dfe152a42bf06b4202562d32874b8b` |
 | Reader lazy rows/source errors/render normalization | R `6d26b28f007765abc369e8f8664328c3a45226e1` |
 | Books Updates backend/CSV/WAL safety | D `3e542e91e85820e7422addd621db549f72125ddc`, tested source `258342ed08d1fcb59d68624d2e8713e66567c744` |
 
-All packets retain true two-parent ancestry and existing source/refs/caches. The older runtime `3b2619bf`, G1 `dfac1f31` and N base `a6c5b1d2` remain preserved. N independently develops in its own tree; its 40-method foundation milestone is not included or claimed to be native route completion here.
+All packets retain true two-parent ancestry and existing source/refs/caches. The older runtime `3b2619bf`, G1 `dfac1f31` and N base `a6c5b1d2` remain preserved. N independently develops in its own tree. Its `d337c608` native proposal/49 portable methods have been reviewed; final canonical completion check is required before its package registration and five native hook sites are applied. No N native route completion is claimed here.
 
 ## Conflict and ownership review
 
@@ -41,3 +41,15 @@ Current acceptance still open: actual app compilation/runtime for the combined p
 Wave corpus remains installed v32/schema6 with matching search inputs. miniTest10-v6 is a genuine subset, not latest/full production. Latest schema7 multipart compatibility is a separate source finding under bounded D audit; no implicit upgrade/download is authorized by integration.
 
 Rollback: preserve this candidate and review scoped reverts on an isolated branch. No reset, stash, cleanup or overwriting another developer's tree. Existing release gate stays closed until its original real acceptance requirements are satisfied.
+
+## Terminal native evidence and corrective intake
+
+Run `43727696309` at immutable `fe6f5fe5126a964bd76d3f308489e131a491fe36` failed during simulator build-for-testing: CodeSign rejected `OtzariaUIRouting_OtzariaUIRouting.bundle` with "bundle format unrecognized, invalid, or unsuitable". Actual result is **0 fresh UI PASS / 0 UI FAIL / 6 NOT_RUN**. No xcresult or screenshots were produced because tests did not start. The existing watcher terminated naturally; no cancellation or automatic retry. Raw artifacts and six independently checked extracted-file hashes are retained externally in `single-manager-wave-20261115/run-43727696309/TERMINAL_AUDIT.json`. Prior healthy UI passes retain their exact historical inputs and are not new executions of these changed Reader sources.
+
+Actual Mac target membership passed and exact-source Metro generated bundle SHA256 `6ed1fee31285b96164acc8a17ab1d9d97cbde1394e8dcdd3a1d557fe0ce377ce`. Built-app resource comparison/Hermes/UI were not reached. P's narrow correction processes both packages' JSON resources at the normal bundle root and updates the Core lookup, with all seven Git resource blobs unchanged. It does not bypass CodeSign. Manager verified 44 current source hashes, 44 completion-source Git blobs and five exact owner logs. P's 19 completion methods, two legacy methods, one resource method and nine Codec/Golden methods are attributed scoped portable executions, not Apple passes.
+
+The existing manual compiler-cache key now includes actual local Package.swift blob identities and a v2 namespace. This prevents an earlier copied root `Resources` folder surviving via DerivedData fallback. Old caches remain untouched. YAML structural comparison proves only the existing cache-key script changed; modes, automatic triggers, test and release steps are identical.
+
+S's next source packet binds optional provider evidence to Legacy backend/raw rows/mapping/actual `eq` relation; lower-bound or missing evidence cannot become genuine zero. Its bounded synthetic search-endpoint observation replaces permanently unknown default readiness without reading user query text or changing UI/disk state. Direct Embedded Related now checks fresh nonce-bound JS resource stability before/after actual reads, including a promise that outlives native timeout. Owner's 100 transport-boundary assertions and 15 BackendSemantics methods are portable with explicit transports, not live endpoint/Hermes proof. I's nonnumeric draft IDs cannot collide with persisted numeric mutation targets; draft-order stability remains explicitly bounded. Manager independently ran the combined pre-resource candidate `0164b508`: 15 BackendSemantics methods and all 14 Inspector groups passed. Fresh combined resource/Core and provider-boundary verification is being retained separately before the next native dispatch.
+
+S verified all 88 compressed v32 parts (6,702,204,683 bytes) against size/SHA256 with 101 metadata checks. This is attributed compressed-payload evidence, not app installation, completed corpus queries or physical-device readiness. Reconstruction is independently owned in S's isolated fixture; no user DB is touched.
