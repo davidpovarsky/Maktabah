@@ -655,7 +655,7 @@ final class UnifiedSearchSessionController {
 
     // MARK: - Reader Parameter Helpers
 
-    private var searchModeForReader: SearchMode {
+    var searchModeForReader: SearchMode {
         switch scope {
         case .exact: return .phrase
         case .fuzzy: return .contains
@@ -664,7 +664,7 @@ final class UnifiedSearchSessionController {
         }
     }
 
-    private var nearDistanceForReader: Int {
+    var nearDistanceForReader: Int {
         if isSefaria {
             return sefariaWordDistance > 0 ? sefariaWordDistance : 10
         }

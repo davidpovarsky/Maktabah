@@ -14,6 +14,7 @@ Task `1220546245946205`; S implementation in `codex/otzaria-global-search-ui-202
 - Loading, cancellation, dirty rerun, source error, missing index, genuine empty, loaded-filter empty and paging error are distinct. Legacy initial and later pages are observed through the real Observation runtime, including a generation-checked paging error that the old provider-facing catch discarded.
 - Counts say loaded/filtered explicitly. Legacy/Embedded total precision is unknown at this UI adapter; the UI says so. Local engine aggregate reports are labelled as engine reports, never exact occurrence counts.
 - Existing rows, snippets, highlights, version grouping, context preview, context menu, copy, locator and reader routes are reused. Save retains the original numeric-archive persistence gate; no Otzaria/Sefaria schema extension or fake Save. Existing saved-results browsing stays within the native data-path gate.
+- Independent I identified that the old global mount omitted the existing list's query/mode/distance inputs, leaving its lazy snippet keyword array empty. The mount now forwards the canonical session query and the same computed mode/distance used for Reader navigation; shared row/resolver logic remains unchanged. Actual lazy snippet appearance/highlight remains a required native case.
 
 ## Exact ownership and registration
 

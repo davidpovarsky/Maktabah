@@ -46,6 +46,9 @@ extension AnyCancellable: Hashable {
     mount = (ROOT / "Source/Features/Search/iOS/SearchModeView.swift").read_text(encoding="utf-8")
     assert 'automaticallyLoadsMore: session.resultKitabFilter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty' in mount
     assert 'var automaticallyLoadsMore: Bool = true' in rows
+    assert 'query: session.query' in mount
+    assert 'mode: session.searchModeForReader' in mount
+    assert 'nearDistance: session.nearDistanceForReader' in mount
     (tmp / "RealRowPrefetch.swift").write_text("""
 func realRowPrefetch(index: Int, groups: [Int], hasMore: Bool, isLoadingMore: Bool,
                      automaticallyLoadsMore: Bool, onLoadMore: (() -> Void)?) {

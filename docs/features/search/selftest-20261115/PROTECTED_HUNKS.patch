@@ -40,7 +40,7 @@ index e81831d4..566117c4 100644
      var backendSearchGeneration: UInt64 = 0
      let loadMoreBackendWork = Mutex<Task<Void, Never>?>(nil)
 diff --git a/Source/Features/Search/iOS/SearchModeView.swift b/Source/Features/Search/iOS/SearchModeView.swift
-index e09fe2e3..dcf8396a 100644
+index e09fe2e3..eaacbf6f 100644
 --- a/Source/Features/Search/iOS/SearchModeView.swift
 +++ b/Source/Features/Search/iOS/SearchModeView.swift
 @@ -21,73 +21,18 @@ struct SearchModeView: View {
@@ -150,7 +150,7 @@ index e09fe2e3..dcf8396a 100644
      private func compactFilterView(viewModel: SearchViewModel) -> some View {
          SearchFilterUIKitView(
              viewModel: viewModel,
-@@ -195,20 +151,13 @@ struct SearchModeView: View {
+@@ -195,34 +151,26 @@ struct SearchModeView: View {
      }
  
      private func searchResultsView(session: UnifiedSearchSessionController) -> some View {
@@ -173,7 +173,13 @@ index e09fe2e3..dcf8396a 100644
              onLoadMore: {
                  session.loadNextPage()
              },
-@@ -218,11 +167,7 @@ struct SearchModeView: View {
+             onSearchInBook: { item in
+                 session.searchInBook(item)
+-            }
++            },
++            query: session.query,
++            mode: session.searchModeForReader,
++            nearDistance: session.nearDistanceForReader
          ) { item in
              session.openResult(item, using: navigationManager)
          }

@@ -163,7 +163,10 @@ struct SearchModeView: View {
             },
             onSearchInBook: { item in
                 session.searchInBook(item)
-            }
+            },
+            query: session.query,
+            mode: session.searchModeForReader,
+            nearDistance: session.nearDistanceForReader
         ) { item in
             session.openResult(item, using: navigationManager)
         }
