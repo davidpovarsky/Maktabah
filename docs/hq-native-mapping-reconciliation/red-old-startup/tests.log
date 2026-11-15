@@ -1,0 +1,141 @@
+PASS STORE[1] missing scene has no default stable epoch
+PASS STORE[2] fixed source identity
+PASS STORE[3] selection revokes synchronously before snapshot publication
+PASS STORE[4] selection epoch classified
+PASS STORE[5] same-turn ABA revokes intervening admission
+PASS STORE[6] rearmed synchronous B setter
+PASS STORE[7] rearmed synchronous A setter
+PASS STORE[8] rearmed synchronous B setter
+PASS STORE[9] rearmed synchronous A setter
+PASS STORE[10] rearmed synchronous B setter
+PASS STORE[11] rearmed synchronous A setter
+PASS STORE[12] rearmed synchronous B setter
+PASS STORE[13] rearmed synchronous A setter
+PASS STORE[14] rearmed synchronous B setter
+PASS STORE[15] rearmed synchronous A setter
+PASS STORE[16] rearmed synchronous B setter
+PASS STORE[17] rearmed synchronous A setter
+PASS STORE[18] rearmed synchronous B setter
+PASS STORE[19] rearmed synchronous A setter
+PASS STORE[20] rearmed synchronous B setter
+PASS STORE[21] rearmed synchronous A setter
+PASS STORE[22] rearmed synchronous B setter
+PASS STORE[23] rearmed synchronous A setter
+PASS STORE[24] rearmed synchronous B setter
+PASS STORE[25] rearmed synchronous A setter
+PASS STORE[26] rearmed synchronous B setter
+PASS STORE[27] rearmed synchronous A setter
+PASS STORE[28] rearmed synchronous B setter
+PASS STORE[29] rearmed synchronous A setter
+PASS STORE[30] rearmed synchronous B setter
+PASS STORE[31] rearmed synchronous A setter
+PASS STORE[32] rearmed synchronous B setter
+PASS STORE[33] rearmed synchronous A setter
+PASS STORE[34] rearmed synchronous B setter
+PASS STORE[35] rearmed synchronous A setter
+PASS STORE[36] rearmed synchronous B setter
+PASS STORE[37] rearmed synchronous A setter
+PASS STORE[38] rearmed synchronous B setter
+PASS STORE[39] rearmed synchronous A setter
+PASS STORE[40] rearmed synchronous B setter
+PASS STORE[41] rearmed synchronous A setter
+PASS STORE[42] rearmed synchronous B setter
+PASS STORE[43] rearmed synchronous A setter
+PASS STORE[44] rearmed synchronous B setter
+PASS STORE[45] rearmed synchronous A setter
+PASS STORE[46] checkpoint/no-op/position/rename/order preserve mapping
+PASS STORE[47] narrow epoch independent of persisted checkpoint revision
+PASS STORE[48] unchanged checkpoint publication and unrelated group membership preserve exact-scene availability
+PASS STORE[49] invalid transaction rolls back epoch and snapshot
+PASS STORE[50] invalid membership does not revoke an existing admission
+PASS STORE[51] failed disk save never emits ownership invalidation
+PASS STORE[52] failed save preserves actual primary bytes
+PASS STORE[53] replacement book behind same tab UUID invalidates
+PASS STORE[54] backend ownership distinguished
+PASS STORE[55] same book/id/backend changed work identity is not progress
+PASS STORE[56] target tab removal classified
+PASS STORE[57] unrelated profile/scene changes do not revoke scene A
+PASS STORE[58] scene removal is unavailable
+PASS STORE[59] reattach cannot revive old epoch
+PASS STORE[60] Store observation explicitly excludes native setters
+PASS STORE[61] weak source registry does not retain historical/unavailable scene probes
+PASS STORE[62] canonical observer cancellation stops callbacks
+PASS STORE[63] same persisted scene/group identity in a replacement Store has a distinct actual owner and source lifetime
+PASS STORE[64] retained source revokes synchronously when actual Store owner deinitializes
+PASS STORE[65] finite real producer sequence boundary
+PASS STORE[66] real producer overflow retires rather than wraps or readmits
+PASS STORE[67] broad revision overflow rejects failed transaction without mapping invalidation
+PASS STORE[68] qualified sefaria legacy negative identity is preserved, not revalidated as an Otzaria ID
+PASS STORE[69] qualified sefariaEmbedded legacy negative identity is preserved, not revalidated as an Otzaria ID
+PASS NATIVE_BOUNDARY[1] Store-only success cannot imply installed live-native coverage
+PASS NATIVE_BOUNDARY[2] actual live qualified target projection
+PASS NATIVE_BOUNDARY[3] live selection setter invalidates without delayed Store checkpoint
+PASS NATIVE_BOUNDARY[4] test actually spans live-to-Store checkpoint gap
+PASS NATIVE_BOUNDARY[5] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[6] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[7] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[8] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[9] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[10] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[11] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[12] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[13] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[14] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[15] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[16] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[17] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[18] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[19] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[20] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[21] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[22] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[23] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[24] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[25] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[26] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[27] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[28] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[29] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[30] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[31] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[32] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[33] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[34] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[35] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[36] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[37] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[38] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[39] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[40] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[41] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[42] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[43] native ABA A invalidates before setter returns
+PASS NATIVE_BOUNDARY[44] native ABA B invalidates intervening readmission
+PASS NATIVE_BOUNDARY[45] native no-op/order/render and identical Store checkpoint preserve binding
+PASS NATIVE_BOUNDARY[46] changed Store selection cannot expose old live native mapping under a ready combined epoch
+PASS NATIVE_BOUNDARY[47] context becomes available only after actual native projection catches up
+PASS NATIVE_BOUNDARY[48] absent active target is not absence of background tabs; no first-tab fallback
+PASS NATIVE_BOUNDARY[49] stale active target fails closed instead of selecting first tab
+PASS NATIVE_BOUNDARY[50] same UUID book replacement classified
+PASS NATIVE_BOUNDARY[51] same target new reader lifetime classified
+PASS NATIVE_BOUNDARY[52] in-place view-model slot mutation is fenced despite native ID-only Equatable
+PASS NATIVE_BOUNDARY[53] incompatible backend replacement classified and unavailable
+PASS NATIVE_BOUNDARY[54] actual failed Store save preserves combined native producer and its admission
+PASS NATIVE_BOUNDARY[55] typed callback synchronous
+PASS NATIVE_BOUNDARY[56] deterministic typed subscription cancellation
+PASS NATIVE_BOUNDARY[57] old subscription cleanup cannot cancel replacement; one bounded listener per owneSwift/ErrorType.swift:254: Fatal error: Error raised at top level: main.WorkspaceStartupReconciliationChecks.(unknown context at $7ff7149c4184).Failure(name: "otzaria: approved startup adoption retains late tabs and requested selection")
+Current stack trace:
+0    swiftCore.dll                      0x00007ffab48be730 swift_reportError + 94
+1    swiftCore.dll                      0x00007ffab495dc00 swift_stdlib_reportFatalErrorInFile + 132
+2    swiftCore.dll                      0x00007ffab45973e0 StaticString.withUTF8Buffer<A>(_:) + 872
+3    swiftCore.dll                      0x00007ffab45967b0 _assertionFailure(_:_:file:line:flags:) + 262
+4    swiftCore.dll                      0x00007ffab460dd00 swift_errorInMain + 784
+5    producer-tests.exe                 0x00007ff7148fbca0 type metadata accessor for BackendPaginationState + 481338
+6    swift_Concurrency.dll              0x00007ffb48ca2cb0 UnimplementedTaskExecutor.__deallocating_deinit + 25902
+7    swift_Concurrency.dll              0x00007ffb48ca9d60 swift_job_run + 114
+8    dispatch.dll                       0x00007ffb4eded6d0 dispatch_queue_set_width + 1952
+9    dispatch.dll                       0x00007ffb4eded6d0 dispatch_queue_set_width + 4994
+10   dispatch.dll                       0x00007ffb4edf2b70 dispatch_prohibit_transition_to_multithreaded + 8630
+11   ucrtbase.dll                       0x00007ffb8b16cbe0 wcsrchr + 336
+12   KERNEL32.DLL                       0x00007ffb8b73dd90 BaseThreadInitThunk + 23
+13   ntdll.dll                          0x00007ffb8d7d9c30 RtlUserThreadStart + 44

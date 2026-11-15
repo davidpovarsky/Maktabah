@@ -19,6 +19,142 @@ final class StudyWorkspaceNavigationAdapter {
         self.store = store
     }
 
+    // MARK: Native mapping producer
+
+    /// Unavailable until the exact native initialization/setter/lifetime hooks
+    /// are installed. Store-only checkpoints never imply native coverage.
+    let mappingOwnershipSource = StudyWorkspaceMappingSource(available: false)
+    @ObservationIgnored private weak var mappingManager: iOSNavigationManager?
+    @ObservationIgnored private var mappingOwnerID: ObjectIdentifier?
+    @ObservationIgnored private var mappingSubscription: StudyWorkspaceMappingSubscription?
+    private final class WeakMappingAdapter {
+        weak var value: StudyWorkspaceNavigationAdapter?
+        init(_ value: StudyWorkspaceNavigationAdapter) { self.value = value }
+    }
+    private final class WeakMappingManager {
+        weak var value: iOSNavigationManager?
+        init(_ value: iOSNavigationManager) { self.value = value }
+    }
+    private static var mappingAdapters: [ObjectIdentifier: WeakMappingAdapter] = [:]
+    private static var mappingHookOwners: [ObjectIdentifier: WeakMappingManager] = [:]
+
+    isolated deinit {
+        mappingSubscription?.cancel()
+        mappingOwnershipSource.retire()
+        Self.mappingAdapters.removeValue(forKey: ObjectIdentifier(self))
+    }
+
+    func mappingOwnershipObservation() -> StudyWorkspaceMappingObservation? {
+        guard let manager = mappingManager, let epoch = mappingOwnershipSource.event.epoch,
+              let projection = currentMappingProjection(manager) else { return nil }
+        return .init(source: mappingOwnershipSource, owner: ObjectIdentifier(manager), scene: sceneID, epoch: epoch,
+            coverage: .liveNativeSetters, projection: projection)
+    }
+
+    private func bindMappingOwner(_ manager: iOSNavigationManager) {
+        guard mappingManager == nil else { return }
+        mappingManager = manager
+        mappingOwnerID = ObjectIdentifier(manager)
+        Self.mappingAdapters = Self.mappingAdapters.filter { $0.value.value != nil }
+        Self.mappingAdapters[ObjectIdentifier(self)] = .init(self)
+        mappingSubscription = store.mappingSource(scene: sceneID).subscribe(owner: self) { adapter, event in
+            if (event.reasons.contains(.ownerLifetime) || event.reasons.contains(.epochExhausted)) && event.phase == .unavailable {
+                adapter.mappingOwnershipSource.retire()
+            } else if event.phase == .changing {
+                adapter.mappingOwnershipSource.beginChange(event.reasons)
+            } else {
+                adapter.finishMappingPublication()
+            }
+        }
+    }
+
+    private func currentMappingProjection(_ manager: iOSNavigationManager) -> StudyWorkspaceMappingProjection? {
+        mappingProjection(manager, tabs: manager.openTabs, activeID: manager.activeTabId,
+            groupID: liveGroupID, backend: liveBackend)
+    }
+
+    private func mappingProjection(_ manager: iOSNavigationManager, tabs: [iOSNavigationManager.ReaderTab],
+                                   activeID: UUID?, groupID: UUID?, backend: BackendID?) -> StudyWorkspaceMappingProjection? {
+        guard attached, mappingManager === manager,
+              Self.mappingHookOwners[ObjectIdentifier(manager)]?.value === manager,
+              store.mappingSource(scene: sceneID).mappingRevision != nil,
+              backend == BackendCoordinator.shared.activeBackendID else { return nil }
+        return StudyWorkspaceMappingPolicy.native(
+            workspace: StudyWorkspaceMappingPolicy.workspace(store.snapshot, scene: sceneID),
+            groupID: groupID, backend: backend, tabs: mappingTabs(tabs), activeID: activeID)
+    }
+
+    private func mappingTabs(_ tabs: [iOSNavigationManager.ReaderTab]) -> [StudyWorkspaceNativeMappingTab] {
+        tabs.map { tab in
+            StudyWorkspaceNativeMappingTab(id: tab.id, target: .init(
+                backend: tab.book.backendLocator?.backend ?? BackendCoordinator.shared.activeBackendID,
+                bookID: tab.book.id, workKey: tab.book.backendLocator?.workKey,
+                readerOwner: ObjectIdentifier(tab.viewModel)))
+        }
+    }
+
+    private func setMappingLiveContext(groupID: UUID, backend: BackendID, manager: iOSNavigationManager) {
+        let before = currentMappingProjection(manager)
+        let after = mappingProjection(manager, tabs: manager.openTabs, activeID: manager.activeTabId,
+            groupID: groupID, backend: backend)
+        mappingOwnershipSource.beginChange(StudyWorkspaceMappingPolicy.changes(from: before, to: after))
+        liveGroupID = groupID
+        liveBackend = backend
+        finishMappingPublication()
+    }
+
+    private func finishMappingPublication() {
+        mappingOwnershipSource.finishChange(available: mappingManager.flatMap(currentMappingProjection) != nil)
+    }
+
+    /// These entry points have no effect without a registered actual adapter.
+    /// The companion exact upstream patch remains UNAPPLIED in R's worktree.
+    static func nativeMappingOwnerInitialized(_ manager: iOSNavigationManager) {
+        mappingHookOwners = mappingHookOwners.filter { $0.value.value != nil }
+        mappingHookOwners[ObjectIdentifier(manager)] = .init(manager)
+    }
+
+    static func nativeMappingOwnerWillDeinitialize(_ manager: iOSNavigationManager) {
+        for adapter in mappingAdapters.values.compactMap(\.value) where adapter.mappingOwnerID == ObjectIdentifier(manager) {
+            adapter.mappingOwnershipSource.retire()
+            adapter.mappingSubscription?.cancel()
+        }
+        mappingHookOwners.removeValue(forKey: ObjectIdentifier(manager))
+    }
+
+    private static func withMappingAdapters(_ manager: iOSNavigationManager, _ update: (StudyWorkspaceNavigationAdapter) -> Void) {
+        mappingAdapters = mappingAdapters.filter { $0.value.value != nil }
+        for adapter in mappingAdapters.values.compactMap(\.value) where adapter.mappingManager === manager { update(adapter) }
+    }
+
+    static func nativeMappingTabsWillChange(_ manager: iOSNavigationManager, to tabs: [iOSNavigationManager.ReaderTab]) {
+        withMappingAdapters(manager) { adapter in
+            let reasons = StudyWorkspaceMappingPolicy.changes(
+                from: adapter.currentMappingProjection(manager),
+                to: adapter.mappingProjection(manager, tabs: tabs, activeID: manager.activeTabId,
+                    groupID: adapter.liveGroupID, backend: adapter.liveBackend))
+                .union(StudyWorkspaceMappingPolicy.nativeTargetChanges(from: adapter.mappingTabs(manager.openTabs), to: adapter.mappingTabs(tabs)))
+            adapter.mappingOwnershipSource.beginChange(reasons)
+        }
+    }
+
+    static func nativeMappingSelectionWillChange(_ manager: iOSNavigationManager, to activeID: UUID?) {
+        withMappingAdapters(manager) { adapter in
+            var reasons = StudyWorkspaceMappingPolicy.changes(
+                from: adapter.currentMappingProjection(manager),
+                to: adapter.mappingProjection(manager, tabs: manager.openTabs, activeID: activeID,
+                    groupID: adapter.liveGroupID, backend: adapter.liveBackend))
+            if manager.activeTabId != activeID { reasons.insert(.selection) }
+            adapter.mappingOwnershipSource.beginChange(reasons)
+        }
+    }
+
+    static func nativeMappingDidChange(_ manager: iOSNavigationManager) {
+        withMappingAdapters(manager) { $0.finishMappingPublication() }
+    }
+
+    // MARK: Workspace presentation
+
     var selection: StudySceneSelection? { store.snapshot?.scenes[sceneID] }
     var group: StudyTabGroup? { store.selectedGroup(scene: sceneID) }
     var activeDocumentID: UUID? {
@@ -32,6 +168,7 @@ final class StudyWorkspaceNavigationAdapter {
 
     func attach(_ manager: iOSNavigationManager) async {
         guard !attached else { return }
+        bindMappingOwner(manager)
         do {
             let backend = BackendCoordinator.shared.activeBackendID
             try store.attach(scene: sceneID, legacyTabs: capture(manager.openTabs, backend: backend), activeID: manager.activeTabId)
@@ -54,7 +191,7 @@ final class StudyWorkspaceNavigationAdapter {
             // A backend switch publishes fresh tabs. Capture retained outgoing instances first.
             let outgoing = currentBackend == backend ? manager.openTabs : (cache[id]?[backend] ?? [])
             try persistProjection(outgoing, activeID: currentBackend == backend ? manager.activeTabId : nil, groupID: id, backend: backend)
-            liveBackend = currentBackend
+            setMappingLiveContext(groupID: id, backend: currentBackend, manager: manager)
             cache[id, default: [:]][currentBackend] = manager.openTabs
             if currentBackend != backend {
                 try persistProjection(manager.openTabs, activeID: manager.activeTabId, groupID: id, backend: currentBackend)
@@ -179,8 +316,7 @@ final class StudyWorkspaceNavigationAdapter {
                     for tab in previousTabs { manager.closeTab(id: tab.id) }
                 }
                 if let previousGroup { cache[previousGroup, default: [:]][previousBackend] = previousTabs }
-                liveGroupID = id
-                liveBackend = desiredBackend
+                setMappingLiveContext(groupID: id, backend: desiredBackend, manager: manager)
                 cache[id, default: [:]][desiredBackend] = staged
             })
         }

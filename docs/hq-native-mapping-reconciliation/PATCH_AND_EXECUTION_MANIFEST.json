@@ -1,0 +1,32 @@
+{
+  "base_sha": "0436775d85893225005f29baf0aa3a20d7b88317",
+  "source_input_R44": "44f518fcccce6bd20127f39eea8462d7a7a9dd47",
+  "N_proposal_reviewed": "4b68336fcea12e02989130facbadac9963286bd2",
+  "patch_sha256": "2583ad3ca6d9d6cd678c3d2db68406af4341ea7b10674cb1d8069eead7b35dde",
+  "forward_apply_check_on_isolated_base_index": true,
+  "patch_result_blobs_exactly_match_current_index": {
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift": "5ba997af025d29fb8fd354a39cbd41b145c0665e",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift": "ed6dc3d685a103c733fd30b453ee36a39eae48e3",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": "0fc38aa9dd9ea44b6e00b9111734f2c1394b5124",
+    "tools/hq-workspace-mapping-producer-checks.py": "9933096f7cbd834284393ad9bb278369aeafc92a",
+    "tools/test_workspace_mapping_producer.swift": "723b068dccee13159f8ff47c67c913c6b8f37814",
+    "tools/test_workspace_mapping_startup_reconciliation.swift": "698397c8ee035d68517b3913a3b037175bb9c7ab",
+    "tools/workspace_mapping_native_boundary_fixture.swift": "b9ceea67f5d92463509e94a01a614b535cd17b4b",
+    "Tests/HQ/workspace-producer/NativeBindingSourceObservation_bdd1169a.swift": "03ca2722f1dc577cf9ce46ebfa9afbb0cd9a441c"
+  },
+  "counts_executed_new": {
+    "STORE": 69,
+    "NATIVE_BOUNDARY": 63,
+    "STARTUP": 30
+  },
+  "existing_workspace_checks_new": 61,
+  "compiler_warnings": 0,
+  "native_UI_SDK": "NOT_RUN",
+  "native_hook": "UNAPPLIED",
+  "registration": [
+    "New policy alongside existing Store target membership; manager owns project edit",
+    "New policy include in original workspace harness; manager owns shared harness edit",
+    "Existing R44 exact native setter/lifetime proposal remains unapplied; review separately"
+  ],
+  "rollback": "Scoped revert of this reconciliation commit, no resets or changes to manager/N/oldR worktrees"
+}

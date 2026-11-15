@@ -1,0 +1,1178 @@
+diff --git a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift
+new file mode 100644
+index 00000000..5ba997af
+--- /dev/null
++++ b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift
+@@ -0,0 +1,203 @@
++import Foundation
++import Observation
++
++/// Source-owned change metadata only. These values never authorize navigation
++/// and are deliberately absent from Codable persistence and public wire DTOs.
++enum StudyWorkspaceMappingChangeReason: String, Hashable, Sendable {
++    case availability, selection, profileMembership, groupMembership
++    case tabMembership, targetIdentity, backend, ownerLifetime, epochExhausted
++}
++
++struct StudyWorkspaceMappingEpoch: Equatable, Sendable {
++    let sourceID: UUID
++    let revision: UInt64
++}
++
++struct StudyWorkspaceMappingEvent: Equatable, Sendable {
++    enum Phase: Equatable, Sendable { case unavailable, changing, available }
++    let phase: Phase
++    let epoch: StudyWorkspaceMappingEpoch?
++    let reasons: Set<StudyWorkspaceMappingChangeReason>
++}
++
++enum StudyWorkspaceMappingCoverage: Sendable { case workspaceStoreOnly, liveNativeSetters }
++
++struct StudyWorkspaceMappingObservation {
++    let source: StudyWorkspaceMappingSource
++    let owner: ObjectIdentifier
++    let scene: String
++    let epoch: StudyWorkspaceMappingEpoch
++    let coverage: StudyWorkspaceMappingCoverage
++    let projection: StudyWorkspaceMappingProjection
++}
++
++@MainActor final class StudyWorkspaceMappingSubscription {
++    private var source: StudyWorkspaceMappingSource?
++    private let id: UUID
++    fileprivate init(source: StudyWorkspaceMappingSource, id: UUID) { self.source = source; self.id = id }
++    func cancel() { source?.removeListener(id); source = nil }
++    isolated deinit { source?.removeListener(id) }
++}
++
++/// One fixed observable property per real owner/scene. During publication its
++/// revision is nil: an invalidation callback cannot admit a new request against
++/// the old mapping with a new, prematurely stable epoch.
++@MainActor @Observable
++final class StudyWorkspaceMappingSource {
++    private(set) var event: StudyWorkspaceMappingEvent
++    var mappingRevision: UInt64? { event.epoch?.revision }
++    @ObservationIgnored private let sourceID = UUID()
++    @ObservationIgnored private var revision: UInt64 = 0
++    @ObservationIgnored private let maximumRevision: UInt64
++    @ObservationIgnored private var retired = false
++    private struct Listener {
++        weak var owner: AnyObject?
++        let callback: @MainActor (AnyObject, StudyWorkspaceMappingEvent) -> Void
++    }
++    @ObservationIgnored private var listeners: [UUID: Listener] = [:]
++
++    init(available: Bool, maximumRevision: UInt64 = .max) {
++        self.maximumRevision = maximumRevision
++        event = .init(phase: .unavailable, epoch: nil, reasons: [])
++        if available { event = .init(phase: .available, epoch: .init(sourceID: sourceID, revision: 0), reasons: []) }
++    }
++
++    /// One subscription per consumer/owner lifetime, never per request. The
++    /// callback receives its weak owner as an argument instead of retaining it.
++    func subscribe<Owner: AnyObject>(owner: Owner, _ listener: @escaping @MainActor (Owner, StudyWorkspaceMappingEvent) -> Void) -> StudyWorkspaceMappingSubscription {
++        let id = UUID()
++        listeners = listeners.filter { $0.value.owner != nil && $0.value.owner !== owner }
++        guard !retired else { return .init(source: self, id: id) }
++        listeners[id] = .init(owner: owner, callback: { owner, event in
++            guard let owner = owner as? Owner else { return }
++            listener(owner, event)
++        })
++        return .init(source: self, id: id)
++    }
++
++    /// Authority consumers invalidate only before publication/unavailability.
++    /// A ready notification must not revoke a new admission made after publish.
++    func subscribeInvalidation<Owner: AnyObject>(owner: Owner, _ listener: @escaping @MainActor (Owner, StudyWorkspaceMappingEvent) -> Void) -> StudyWorkspaceMappingSubscription {
++        subscribe(owner: owner) { owner, event in
++            guard event.phase != .available else { return }
++            listener(owner, event)
++        }
++    }
++
++    func removeListener(_ id: UUID) { listeners.removeValue(forKey: id) }
++
++    func beginChange(_ reasons: Set<StudyWorkspaceMappingChangeReason>) {
++        guard !retired, !reasons.isEmpty else { return }
++        // Overflow fails closed rather than recycling an old epoch.
++        guard revision < maximumRevision else { retire(reason: .epochExhausted); return }
++        revision += 1
++        publish(.init(phase: .changing, epoch: nil, reasons: reasons))
++    }
++
++    func finishChange(available: Bool) {
++        guard !retired else { return }
++        let phase: StudyWorkspaceMappingEvent.Phase = available ? .available : .unavailable
++        let next = StudyWorkspaceMappingEvent(phase: phase,
++            epoch: available ? .init(sourceID: sourceID, revision: revision) : nil, reasons: event.reasons)
++        if next != event { publish(next) }
++    }
++
++    func retire(reason: StudyWorkspaceMappingChangeReason = .ownerLifetime) {
++        guard !retired else { return }
++        retired = true
++        publish(.init(phase: .unavailable, epoch: nil, reasons: [reason]))
++        listeners.removeAll()
++    }
++
++    private func publish(_ next: StudyWorkspaceMappingEvent) {
++        event = next
++        for id in Array(listeners.keys) {
++            guard let listener = listeners[id] else { continue }
++            guard let owner = listener.owner else { listeners.removeValue(forKey: id); continue }
++            listener.callback(owner, next)
++        }
++    }
++}
++
++struct StudyWorkspaceMappingTarget: Equatable {
++    let backend: BackendID
++    let bookID: Int
++    let workKey: String?
++    // Used only by live owners; a replaced reader object is a different lifetime.
++    let readerOwner: ObjectIdentifier?
++}
++
++struct StudyWorkspaceMappingProjection: Equatable {
++    let profileID: UUID
++    let groupID: UUID
++    let profileIDs: Set<UUID>
++    let groupIDs: Set<UUID>
++    let activeTabID: UUID?
++    let targets: [UUID: StudyWorkspaceMappingTarget]
++}
++
++struct StudyWorkspaceNativeMappingTab {
++    let id: UUID
++    let target: StudyWorkspaceMappingTarget
++}
++
++enum StudyWorkspaceMappingPolicy {
++    static func native(workspace: StudyWorkspaceMappingProjection?, groupID: UUID?,
++                       backend: BackendID?, tabs: [StudyWorkspaceNativeMappingTab], activeID: UUID?) -> StudyWorkspaceMappingProjection? {
++        guard let workspace, groupID == workspace.groupID, let backend,
++              Set(tabs.map(\.id)).count == tabs.count,
++              tabs.allSatisfy({ $0.target.backend == backend }),
++              activeID.map({ id in tabs.contains { $0.id == id } }) ?? true else { return nil }
++        return .init(profileID: workspace.profileID, groupID: workspace.groupID,
++            profileIDs: workspace.profileIDs, groupIDs: workspace.groupIDs,
++            activeTabID: activeID, targets: Dictionary(uniqueKeysWithValues: tabs.map { ($0.id, $0.target) }))
++    }
++
++    /// No position, scroll, selection range, title, ordering or persisted revision
++    /// participates. Invalid/missing owner data has no stable projection.
++    static func workspace(_ snapshot: StudyWorkspaceSnapshot?, scene: String) -> StudyWorkspaceMappingProjection? {
++        guard let snapshot, (try? snapshot.validate()) != nil,
++              let selection = snapshot.scenes[scene],
++              let group = snapshot.groups.first(where: { $0.id == selection.groupID && $0.profileID == selection.profileID }) else { return nil }
++        if let requested = selection.activeTabIDsByGroup?[group.id], !group.tabs.contains(where: { $0.id == requested }) { return nil }
++        var targets: [UUID: StudyWorkspaceMappingTarget] = [:]
++        for document in group.tabs {
++            let primary = document.session.backendLocator?.workKey
++            let current = document.session.locator?.workKey
++            if let primary, let current, primary != current { return nil }
++            targets[document.id] = .init(backend: document.backend, bookID: document.session.bookId,
++                workKey: primary ?? current, readerOwner: nil)
++        }
++        return .init(profileID: selection.profileID, groupID: group.id,
++            profileIDs: [selection.profileID],
++            groupIDs: [group.id],
++            activeTabID: selection.activeTabIDsByGroup?[group.id] ?? group.activeTabID, targets: targets)
++    }
++
++    static func changes(from old: StudyWorkspaceMappingProjection?, to new: StudyWorkspaceMappingProjection?) -> Set<StudyWorkspaceMappingChangeReason> {
++        guard old != new else { return [] }
++        guard let old, let new else { return [.availability] }
++        var result = Set<StudyWorkspaceMappingChangeReason>()
++        if old.profileID != new.profileID || old.groupID != new.groupID || old.activeTabID != new.activeTabID { result.insert(.selection) }
++        if old.profileIDs != new.profileIDs { result.insert(.profileMembership) }
++        if old.groupIDs != new.groupIDs { result.insert(.groupMembership) }
++        return result.union(targetChanges(from: old.targets, to: new.targets))
++    }
++
++    static func nativeTargetChanges(from old: [StudyWorkspaceNativeMappingTab], to new: [StudyWorkspaceNativeMappingTab]) -> Set<StudyWorkspaceMappingChangeReason> {
++        targetChanges(from: Dictionary(old.map { ($0.id, $0.target) }, uniquingKeysWith: { first, _ in first }),
++                      to: Dictionary(new.map { ($0.id, $0.target) }, uniquingKeysWith: { first, _ in first }))
++    }
++
++    private static func targetChanges(from old: [UUID: StudyWorkspaceMappingTarget], to new: [UUID: StudyWorkspaceMappingTarget]) -> Set<StudyWorkspaceMappingChangeReason> {
++        var result = Set<StudyWorkspaceMappingChangeReason>()
++        if Set(old.keys) != Set(new.keys) { result.insert(.tabMembership) }
++        for id in Set(old.keys).intersection(new.keys) {
++            guard let lhs = old[id], let rhs = new[id] else { continue }
++            if lhs.backend != rhs.backend { result.insert(.backend) }
++            if lhs.bookID != rhs.bookID || lhs.workKey != rhs.workKey { result.insert(.targetIdentity) }
++            if lhs.readerOwner != rhs.readerOwner { result.insert(.ownerLifetime) }
++        }
++        return result
++    }
++}
+diff --git a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift
+index 36dd2599..0fc38aa9 100644
+--- a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift
++++ b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift
+@@ -21,0 +22,136 @@ final class StudyWorkspaceNavigationAdapter {
++    // MARK: Native mapping producer
++
++    /// Unavailable until the exact native initialization/setter/lifetime hooks
++    /// are installed. Store-only checkpoints never imply native coverage.
++    let mappingOwnershipSource = StudyWorkspaceMappingSource(available: false)
++    @ObservationIgnored private weak var mappingManager: iOSNavigationManager?
++    @ObservationIgnored private var mappingOwnerID: ObjectIdentifier?
++    @ObservationIgnored private var mappingSubscription: StudyWorkspaceMappingSubscription?
++    private final class WeakMappingAdapter {
++        weak var value: StudyWorkspaceNavigationAdapter?
++        init(_ value: StudyWorkspaceNavigationAdapter) { self.value = value }
++    }
++    private final class WeakMappingManager {
++        weak var value: iOSNavigationManager?
++        init(_ value: iOSNavigationManager) { self.value = value }
++    }
++    private static var mappingAdapters: [ObjectIdentifier: WeakMappingAdapter] = [:]
++    private static var mappingHookOwners: [ObjectIdentifier: WeakMappingManager] = [:]
++
++    isolated deinit {
++        mappingSubscription?.cancel()
++        mappingOwnershipSource.retire()
++        Self.mappingAdapters.removeValue(forKey: ObjectIdentifier(self))
++    }
++
++    func mappingOwnershipObservation() -> StudyWorkspaceMappingObservation? {
++        guard let manager = mappingManager, let epoch = mappingOwnershipSource.event.epoch,
++              let projection = currentMappingProjection(manager) else { return nil }
++        return .init(source: mappingOwnershipSource, owner: ObjectIdentifier(manager), scene: sceneID, epoch: epoch,
++            coverage: .liveNativeSetters, projection: projection)
++    }
++
++    private func bindMappingOwner(_ manager: iOSNavigationManager) {
++        guard mappingManager == nil else { return }
++        mappingManager = manager
++        mappingOwnerID = ObjectIdentifier(manager)
++        Self.mappingAdapters = Self.mappingAdapters.filter { $0.value.value != nil }
++        Self.mappingAdapters[ObjectIdentifier(self)] = .init(self)
++        mappingSubscription = store.mappingSource(scene: sceneID).subscribe(owner: self) { adapter, event in
++            if (event.reasons.contains(.ownerLifetime) || event.reasons.contains(.epochExhausted)) && event.phase == .unavailable {
++                adapter.mappingOwnershipSource.retire()
++            } else if event.phase == .changing {
++                adapter.mappingOwnershipSource.beginChange(event.reasons)
++            } else {
++                adapter.finishMappingPublication()
++            }
++        }
++    }
++
++    private func currentMappingProjection(_ manager: iOSNavigationManager) -> StudyWorkspaceMappingProjection? {
++        mappingProjection(manager, tabs: manager.openTabs, activeID: manager.activeTabId,
++            groupID: liveGroupID, backend: liveBackend)
++    }
++
++    private func mappingProjection(_ manager: iOSNavigationManager, tabs: [iOSNavigationManager.ReaderTab],
++                                   activeID: UUID?, groupID: UUID?, backend: BackendID?) -> StudyWorkspaceMappingProjection? {
++        guard attached, mappingManager === manager,
++              Self.mappingHookOwners[ObjectIdentifier(manager)]?.value === manager,
++              store.mappingSource(scene: sceneID).mappingRevision != nil,
++              backend == BackendCoordinator.shared.activeBackendID else { return nil }
++        return StudyWorkspaceMappingPolicy.native(
++            workspace: StudyWorkspaceMappingPolicy.workspace(store.snapshot, scene: sceneID),
++            groupID: groupID, backend: backend, tabs: mappingTabs(tabs), activeID: activeID)
++    }
++
++    private func mappingTabs(_ tabs: [iOSNavigationManager.ReaderTab]) -> [StudyWorkspaceNativeMappingTab] {
++        tabs.map { tab in
++            StudyWorkspaceNativeMappingTab(id: tab.id, target: .init(
++                backend: tab.book.backendLocator?.backend ?? BackendCoordinator.shared.activeBackendID,
++                bookID: tab.book.id, workKey: tab.book.backendLocator?.workKey,
++                readerOwner: ObjectIdentifier(tab.viewModel)))
++        }
++    }
++
++    private func setMappingLiveContext(groupID: UUID, backend: BackendID, manager: iOSNavigationManager) {
++        let before = currentMappingProjection(manager)
++        let after = mappingProjection(manager, tabs: manager.openTabs, activeID: manager.activeTabId,
++            groupID: groupID, backend: backend)
++        mappingOwnershipSource.beginChange(StudyWorkspaceMappingPolicy.changes(from: before, to: after))
++        liveGroupID = groupID
++        liveBackend = backend
++        finishMappingPublication()
++    }
++
++    private func finishMappingPublication() {
++        mappingOwnershipSource.finishChange(available: mappingManager.flatMap(currentMappingProjection) != nil)
++    }
++
++    /// These entry points have no effect without a registered actual adapter.
++    /// The companion exact upstream patch remains UNAPPLIED in R's worktree.
++    static func nativeMappingOwnerInitialized(_ manager: iOSNavigationManager) {
++        mappingHookOwners = mappingHookOwners.filter { $0.value.value != nil }
++        mappingHookOwners[ObjectIdentifier(manager)] = .init(manager)
++    }
++
++    static func nativeMappingOwnerWillDeinitialize(_ manager: iOSNavigationManager) {
++        for adapter in mappingAdapters.values.compactMap(\.value) where adapter.mappingOwnerID == ObjectIdentifier(manager) {
++            adapter.mappingOwnershipSource.retire()
++            adapter.mappingSubscription?.cancel()
++        }
++        mappingHookOwners.removeValue(forKey: ObjectIdentifier(manager))
++    }
++
++    private static func withMappingAdapters(_ manager: iOSNavigationManager, _ update: (StudyWorkspaceNavigationAdapter) -> Void) {
++        mappingAdapters = mappingAdapters.filter { $0.value.value != nil }
++        for adapter in mappingAdapters.values.compactMap(\.value) where adapter.mappingManager === manager { update(adapter) }
++    }
++
++    static func nativeMappingTabsWillChange(_ manager: iOSNavigationManager, to tabs: [iOSNavigationManager.ReaderTab]) {
++        withMappingAdapters(manager) { adapter in
++            let reasons = StudyWorkspaceMappingPolicy.changes(
++                from: adapter.currentMappingProjection(manager),
++                to: adapter.mappingProjection(manager, tabs: tabs, activeID: manager.activeTabId,
++                    groupID: adapter.liveGroupID, backend: adapter.liveBackend))
++                .union(StudyWorkspaceMappingPolicy.nativeTargetChanges(from: adapter.mappingTabs(manager.openTabs), to: adapter.mappingTabs(tabs)))
++            adapter.mappingOwnershipSource.beginChange(reasons)
++        }
++    }
++
++    static func nativeMappingSelectionWillChange(_ manager: iOSNavigationManager, to activeID: UUID?) {
++        withMappingAdapters(manager) { adapter in
++            var reasons = StudyWorkspaceMappingPolicy.changes(
++                from: adapter.currentMappingProjection(manager),
++                to: adapter.mappingProjection(manager, tabs: manager.openTabs, activeID: activeID,
++                    groupID: adapter.liveGroupID, backend: adapter.liveBackend))
++            if manager.activeTabId != activeID { reasons.insert(.selection) }
++            adapter.mappingOwnershipSource.beginChange(reasons)
++        }
++    }
++
++    static func nativeMappingDidChange(_ manager: iOSNavigationManager) {
++        withMappingAdapters(manager) { $0.finishMappingPublication() }
++    }
++
++    // MARK: Workspace presentation
++
+@@ -34,0 +171 @@ final class StudyWorkspaceNavigationAdapter {
++        bindMappingOwner(manager)
+@@ -57 +194 @@ final class StudyWorkspaceNavigationAdapter {
+-            liveBackend = currentBackend
++            setMappingLiveContext(groupID: id, backend: currentBackend, manager: manager)
+@@ -182,2 +319 @@ final class StudyWorkspaceNavigationAdapter {
+-                liveGroupID = id
+-                liveBackend = desiredBackend
++                setMappingLiveContext(groupID: id, backend: desiredBackend, manager: manager)
+diff --git a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift
+index e5fcd59c..ed6dc3d6 100644
+--- a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift
++++ b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift
+@@ -26,0 +27,31 @@ final class StudyWorkspaceStore {
++    private final class WeakMappingSource {
++        weak var value: StudyWorkspaceMappingSource?
++        init(_ value: StudyWorkspaceMappingSource) { self.value = value }
++    }
++    @ObservationIgnored private var mappingSources: [String: WeakMappingSource] = [:]
++    @ObservationIgnored private var isMutating = false
++    @ObservationIgnored private var isPublishingMapping = false
++
++    /// The persisted revision includes checkpoints. Consumers must retain this
++    /// fixed scene source instead of observing the broad snapshot/revision.
++    func mappingSource(scene: String) -> StudyWorkspaceMappingSource {
++        mappingSources = mappingSources.filter { $0.value.value != nil }
++        if let source = mappingSources[scene]?.value { return source }
++        let source = StudyWorkspaceMappingSource(available: !isPublishingMapping && loadError == nil
++            && StudyWorkspaceMappingPolicy.workspace(snapshot, scene: scene) != nil)
++        mappingSources[scene] = .init(source)
++        return source
++    }
++
++    func mappingObservation(scene: String) -> StudyWorkspaceMappingObservation? {
++        let source = mappingSource(scene: scene)
++        guard loadError == nil,
++              let epoch = source.event.epoch,
++              let projection = StudyWorkspaceMappingPolicy.workspace(snapshot, scene: scene) else { return nil }
++        return .init(source: source, owner: ObjectIdentifier(self), scene: scene, epoch: epoch,
++            coverage: .workspaceStoreOnly, projection: projection)
++    }
++
++    isolated deinit {
++        for source in mappingSources.values { source.value?.retire() }
++    }
+@@ -39,0 +71,3 @@ final class StudyWorkspaceStore {
++            guard !isMutating else { throw StudyWorkspaceError.invalidMembership }
++            isMutating = true
++            defer { isMutating = false }
+@@ -50 +84 @@ final class StudyWorkspaceStore {
+-            snapshot = initial
++            publishSnapshot(initial)
+@@ -71 +105,3 @@ final class StudyWorkspaceStore {
+-        guard var candidate = snapshot else { throw StudyWorkspaceError.invalidMembership }
++        guard !isMutating, var candidate = snapshot else { throw StudyWorkspaceError.invalidMembership }
++        isMutating = true
++        defer { isMutating = false }
+@@ -72,0 +109 @@ final class StudyWorkspaceStore {
++        guard candidate.revision < UInt64.max else { throw StudyWorkspaceError.invalidMembership }
+@@ -75,0 +113,14 @@ final class StudyWorkspaceStore {
++        publishSnapshot(candidate)
++    }
++
++    /// All throwing validation/persistence finished before this synchronous
++    /// fence. No observer can see the new snapshot with an old live admission.
++    private func publishSnapshot(_ candidate: StudyWorkspaceSnapshot) {
++        isPublishingMapping = true
++        mappingSources = mappingSources.filter { $0.value.value != nil }
++        let beforeSources = mappingSources.compactMapValues(\.value)
++        for (scene, source) in beforeSources {
++            source.beginChange(StudyWorkspaceMappingPolicy.changes(
++                from: StudyWorkspaceMappingPolicy.workspace(snapshot, scene: scene),
++                to: StudyWorkspaceMappingPolicy.workspace(candidate, scene: scene)))
++        }
+@@ -76,0 +128,4 @@ final class StudyWorkspaceStore {
++        isPublishingMapping = false
++        for (scene, source) in mappingSources.compactMapValues(\.value) {
++            source.finishChange(available: StudyWorkspaceMappingPolicy.workspace(candidate, scene: scene) != nil)
++        }
+diff --git a/Tests/HQ/workspace-producer/NativeBindingSourceObservation_bdd1169a.swift b/Tests/HQ/workspace-producer/NativeBindingSourceObservation_bdd1169a.swift
+new file mode 100644
+index 00000000..03ca2722
+--- /dev/null
++++ b/Tests/HQ/workspace-producer/NativeBindingSourceObservation_bdd1169a.swift
+@@ -0,0 +1,47 @@
++import Observation
++
++/// Future binding adapter's synchronous invalidation trigger, not an authority
++/// or a mapping cache. Keep ONE observer per fixed real source owner, rather
++/// than registering one per request. Native source mutations MUST be MainActor
++/// isolated (as StudyWorkspaceStore.snapshot is). The read must track that fixed
++/// owner's observable stored revision/snapshot, not a constant or desired state.
++/// A broad checkpoint/render revision is NOT a mapping epoch: the native owner
++/// must distinguish invalidation from its own permitted presentation/reservation
++/// transition before wiring this trigger. This helper does not classify writes.
++///
++/// Observation calls onChange during the setter, before its return. Invalidation
++/// must only revoke the existing admitted native authority/local reservations;
++/// it must not mutate this source. Rearming tracks the same fixed property, so
++/// it needs no Task/actor hop or reread of the pending new value. There is no
++/// async/coalesced onChange window. A nil revision is unavailable source state,
++/// never permission or an observed-absent binding; the binding port must refuse
++/// unavailable observations independently.
++@MainActor
++public final class NativeBindingSourceObservation {
++    private let readRevision: @MainActor () -> UInt64?
++    private let invalidate: @MainActor () -> Void
++    private var cancelled = false
++
++    public init(readRevision: @escaping @MainActor () -> UInt64?, onInvalidation: @escaping @MainActor () -> Void) {
++        self.readRevision = readRevision; invalidate = onInvalidation
++        arm()
++    }
++
++    /// Cancels this owner lifetime. The one remaining tracking callback captures
++    /// self weakly, performs no later invalidation and does not rearm. No task,
++    /// continuation or strong source→observer retain cycle survives teardown.
++    public func cancel() { cancelled = true }
++
++    private func arm() {
++        guard !cancelled else { return }
++        withObservationTracking { _ = readRevision() } onChange: { [weak self] in
++            // The fixed source contract requires MainActor-isolated setters;
++            // invalidation must occur synchronously on that same executor.
++            MainActor.assumeIsolated {
++                guard let self, !self.cancelled else { return }
++                self.invalidate()
++                self.arm()
++            }
++        }
++    }
++}
+diff --git a/tools/hq-workspace-mapping-producer-checks.py b/tools/hq-workspace-mapping-producer-checks.py
+new file mode 100644
+index 00000000..9933096f
+--- /dev/null
++++ b/tools/hq-workspace-mapping-producer-checks.py
+@@ -0,0 +1,87 @@
++"""Focused actual Store/Observation/persistence tests, never live user data."""
++from pathlib import Path
++import hashlib
++import json
++import os
++import subprocess
++import tempfile
++import sys
++import argparse
++
++sys.stdout.reconfigure(encoding="utf-8")
++sys.stderr.reconfigure(encoding="utf-8")
++
++ROOT = Path(__file__).resolve().parents[1]
++parser = argparse.ArgumentParser()
++parser.add_argument("--startup-ref", help="Immutable alternate startup method source for discriminating regression checks only")
++parser.add_argument("--artifacts-dir", type=Path)
++args = parser.parse_args()
++OUT = args.artifacts_dir or ROOT / "docs/hq-native-mapping-reconciliation/results"
++OUT.mkdir(parents=True, exist_ok=True)
++SOURCES = [
++    "Source/LibraryBackend/LibraryBackendModels.swift",
++    "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
++    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
++    "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
++    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
++    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
++    "tools/test_workspace_mapping_producer.swift",
++    "tools/test_workspace_mapping_startup_reconciliation.swift",
++]
++with tempfile.TemporaryDirectory(prefix="workspace-producer-compile-") as temp:
++    observer = Path(temp) / "NativeBindingSourceObservation.swift"
++    # A canonical test snapshot makes the source/test patch runnable on base043
++    # without requiring a second branch/package or an unreferenced Git object.
++    observer_snapshot = "Tests/HQ/workspace-producer/NativeBindingSourceObservation_bdd1169a.swift"
++    observer_bytes = (ROOT / observer_snapshot).read_bytes().replace(b"\r\n", b"\n")
++    assert hashlib.sha256(observer_bytes).hexdigest() == "fe9cc784e80a1bf39e570855245aafb13511d77de7399465c776f8b6f2442d55"
++    observer.write_bytes(observer_bytes)
++    adapter_source = (ROOT / "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift").read_text(encoding="utf-8")
++    producer_block = adapter_source.split("// MARK: Native mapping producer", 1)[1].split("// MARK: Workspace presentation", 1)[0]
++    startup_source = (subprocess.check_output(["git", "show", args.startup_ref + ":Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"], cwd=ROOT).decode("utf-8")
++                      if args.startup_ref else adapter_source)
++    def method(marker):
++        start = startup_source.index(marker)
++        end = startup_source.index("{", start) + 1
++        depth = 1
++        while depth:
++            depth += (startup_source[end] == "{") - (startup_source[end] == "}")
++            end += 1
++        return startup_source[start:end]
++    startup_methods = "\n".join(method(m) for m in ["func attach(_ manager:", "func switchGroup(to id:"])
++    boundary = Path(temp) / "NativeProducerBoundary.swift"
++    boundary.write_text((ROOT / "tools/workspace_mapping_native_boundary_fixture.swift").read_text(encoding="utf-8")
++                        .replace("// ACTUAL_PRODUCER_BLOCK", producer_block)
++                        .replace("// ACTUAL_STARTUP_METHODS", startup_methods), encoding="utf-8")
++    exe = Path(temp) / ("producer-tests.exe" if os.name == "nt" else "producer-tests")
++    summary = {"scope": "Actual Store, real Observation, real isolated persistence; canonical N observer at bdd1169a; no native setter coverage inferred",
++               "status": "RUNNING",
++               "swift_version": subprocess.check_output(["swiftc", "--version"], text=True).strip(),
++               "observer_sha256": hashlib.sha256(observer_bytes).hexdigest(),
++               "canonical_observer_snapshot": observer_snapshot,
++               "actual_adapter_block_sha256": hashlib.sha256(producer_block.encode()).hexdigest(), "source_sha256": {
++                   path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest() for path in SOURCES}}
++    summary["actual_startup_methods_sha256"] = hashlib.sha256(startup_methods.encode()).hexdigest()
++    summary["startup_methods_ref"] = args.startup_ref or "CURRENT_RECONCILED_WORKTREE"
++    summary["extra_source_sha256"] = {path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest() for path in [
++        "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
++        "tools/workspace_mapping_native_boundary_fixture.swift", "tools/hq-workspace-mapping-producer-checks.py"]}
++    (OUT / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
++    for name, command in [
++        ("compile", ["swiftc", "-swift-version", "6", "-strict-concurrency=complete", "-parse-as-library",
++                     *[str(ROOT / path) for path in SOURCES], str(observer), str(boundary), "-o", str(exe)]),
++        ("tests", [str(exe)]),
++    ]:
++        result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", timeout=180)
++        (OUT / f"{name}.log").write_text((result.stdout + result.stderr).rstrip() + "\n", encoding="utf-8")
++        summary[f"{name}_exit"] = result.returncode
++        if name == "compile": summary["compiler_warning_count"] = (result.stdout + result.stderr).count("warning:")
++        print(f"{name}: exit={result.returncode}", flush=True)
++        if result.returncode:
++            print(result.stdout + result.stderr, flush=True)
++            break
++        if name == "tests":
++            print(result.stdout, flush=True)
++    summary["status"] = "PASS_PORTABLE_ONLY" if summary.get("tests_exit", 1) == 0 else "FAILED"
++    (OUT / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
++    raise SystemExit(summary.get("tests_exit", 1))
+diff --git a/tools/test_workspace_mapping_producer.swift b/tools/test_workspace_mapping_producer.swift
+new file mode 100644
+index 00000000..723b068d
+--- /dev/null
++++ b/tools/test_workspace_mapping_producer.swift
+@@ -0,0 +1,178 @@
++import Foundation
++import Observation
++
++private struct CheckFailure: Error { let message: String }
++
++@main struct WorkspaceMappingProducerTests {
++    @MainActor static func main() async throws {
++        let fm = FileManager.default
++        let root = fm.temporaryDirectory.appendingPathComponent("workspace-mapping-producer-\(UUID())")
++        try fm.createDirectory(at: root, withIntermediateDirectories: true)
++        defer { try? fm.removeItem(at: root) }
++        var checks = 0
++        func expect(_ condition: Bool, _ name: String) throws {
++            guard condition else { throw CheckFailure(message: name) }
++            checks += 1
++            print("PASS STORE[\(checks)] \(name)")
++        }
++        func document(id: UUID = UUID(), book: Int = 17, key: String = "book:17", backend: BackendID = .otzaria, line: Int = 0) -> ReaderDocumentTab {
++            .init(backend: backend, session: .init(id: id, bookId: book, bookTitle: "fixture",
++                backendLocator: .init(backend: backend, workKey: key, position: .legacyLine(line)),
++                contentId: line, locator: .init(backend: backend, workKey: key, position: .legacyLine(line)),
++                scrollPosition: .init(x: 0, y: CGFloat(line))))
++        }
++        let persistence = StudyWorkspacePersistence(url: root.appendingPathComponent("store/workspace.json"))
++        let store = StudyWorkspaceStore(persistence: persistence, canonicalSessionURL: root.appendingPathComponent("absent-session.json"))
++        let a = document(), b = document(book: 18, key: "book:18")
++        let source = store.mappingSource(scene: "a")
++        try expect(source.mappingRevision == nil, "missing scene has no default stable epoch")
++        try store.attach(scene: "a", legacyTabs: [a, b], activeID: a.id)
++        guard let group = store.selectedGroup(scene: "a"), let initial = source.event.epoch else { throw CheckFailure(message: "real attach must publish available ownership") }
++        try expect(source === store.mappingSource(scene: "a"), "fixed source identity")
++        var admitted = true
++        var invalidations = 0
++        var observedFence = false
++        let observer = NativeBindingSourceObservation(readRevision: { source.mappingRevision }, onInvalidation: {
++            admitted = false
++            invalidations += 1
++        })
++        withObservationTracking { _ = store.snapshot } onChange: {
++            MainActor.assumeIsolated { observedFence = source.mappingRevision == nil }
++        }
++        try store.saveTabs([a, b], activeID: b.id, groupID: group.id)
++        try expect(!admitted && observedFence, "selection revokes synchronously before snapshot publication")
++        try expect(source.event.epoch != initial && source.event.reasons.contains(.selection), "selection epoch classified")
++        admitted = true // Re-admission between writes; deliberately no await.
++        let between = source.event.epoch
++        try store.saveTabs([a, b], activeID: a.id, groupID: group.id)
++        try expect(!admitted && source.event.epoch != between && source.event.epoch != initial, "same-turn ABA revokes intervening admission")
++        for _ in 0..<20 {
++            admitted = true
++            try store.saveTabs([a, b], activeID: b.id, groupID: group.id)
++            try expect(!admitted, "rearmed synchronous B setter")
++            admitted = true
++            try store.saveTabs([a, b], activeID: a.id, groupID: group.id)
++            try expect(!admitted, "rearmed synchronous A setter")
++        }
++        admitted = true
++        let stable = source.event.epoch
++        let broadRevision = store.snapshot!.revision
++        let callbacks = invalidations
++        try store.transaction { _ in }
++        try store.saveTabs([document(id: a.id, line: 90), b], activeID: a.id, groupID: group.id)
++        try store.renameGroup(group.id, name: "renamed")
++        try store.renameProfile(group.profileID, name: "renamed profile", symbol: "book")
++        try store.reorderDocument(b.id, to: 0, groupID: group.id)
++        try expect(admitted && source.event.epoch == stable && invalidations == callbacks, "checkpoint/no-op/position/rename/order preserve mapping")
++        try expect(store.snapshot!.revision > broadRevision, "narrow epoch independent of persisted checkpoint revision")
++        var unchangedObservationAvailable = false
++        withObservationTracking { _ = store.snapshot } onChange: {
++            MainActor.assumeIsolated { unchangedObservationAvailable = store.mappingObservation(scene: "a")?.epoch == stable }
++        }
++        try store.transaction { _ in }
++        _ = try store.addGroup(profileID: group.profileID, name: "unrelated sibling group")
++        try expect(unchangedObservationAvailable && admitted && source.event.epoch == stable && invalidations == callbacks,
++            "unchanged checkpoint publication and unrelated group membership preserve exact-scene availability")
++        let beforeFailure = store.snapshot!
++        let diskBeforeFailure = try Data(contentsOf: persistence.url)
++        do {
++            try store.transaction { $0.groups.removeAll() }
++            throw CheckFailure(message: "invalid membership accepted")
++        } catch StudyWorkspaceError.invalidMembership {}
++        try expect(store.snapshot == beforeFailure && source.event.epoch == stable, "invalid transaction rolls back epoch and snapshot")
++        try expect(admitted && invalidations == callbacks, "invalid membership does not revoke an existing admission")
++        if fm.fileExists(atPath: persistence.backupURL.path) { try fm.removeItem(at: persistence.backupURL) }
++        try fm.createDirectory(at: persistence.backupURL, withIntermediateDirectories: false)
++        do {
++            try store.renameGroup(group.id, name: "save must fail")
++            throw CheckFailure(message: "disk save failure expected")
++        } catch is CheckFailure { throw CheckFailure(message: "disk failure fixture did not fail") }
++        catch {}
++        try expect(store.snapshot == beforeFailure && source.event.epoch == stable, "failed disk save never emits ownership invalidation")
++        try expect(try Data(contentsOf: persistence.url) == diskBeforeFailure, "failed save preserves actual primary bytes")
++        try fm.removeItem(at: persistence.backupURL)
++        try store.saveTabs([document(id: a.id, book: 19, key: "book:19"), b], activeID: a.id, groupID: group.id)
++        try expect(source.event.reasons.contains(.targetIdentity) && !admitted, "replacement book behind same tab UUID invalidates")
++        let replaced = source.event.epoch
++        try store.saveTabs([document(id: a.id, book: 19, key: "other", backend: .sefaria), b], activeID: a.id, groupID: group.id)
++        try expect(source.event.reasons.contains(.backend) && source.event.epoch != replaced, "backend ownership distinguished")
++        let beforeKey = source.event.epoch
++        try store.saveTabs([document(id: a.id, book: 19, key: "another", backend: .sefaria), b], activeID: a.id, groupID: group.id)
++        try expect(source.event.reasons == [.targetIdentity] && source.event.epoch != beforeKey, "same book/id/backend changed work identity is not progress")
++        let removeEpoch = source.event.epoch
++        try store.saveTabs([document(id: a.id, book: 19, key: "another", backend: .sefaria)], activeID: a.id, groupID: group.id)
++        try expect(source.event.reasons.contains(.tabMembership) && source.event.epoch != removeEpoch, "target tab removal classified")
++        let unrelated = source.event.epoch
++        let profileB = try store.addProfile(name: "other", symbol: "book")
++        let groupB = store.snapshot!.groups.first { $0.profileID == profileB }!
++        try store.transaction {
++            $0.scenes["b"] = .init(profileID: profileB, groupID: groupB.id)
++        }
++        try store.saveTabs([document(book: 77, key: "book:77")], activeID: nil, groupID: groupB.id)
++        try expect(source.event.epoch == unrelated, "unrelated profile/scene changes do not revoke scene A")
++        try store.transaction {
++            $0.scenes.removeValue(forKey: "a")
++            $0.lastActiveSceneID = "b"
++        }
++        try expect(source.mappingRevision == nil && source.event.reasons.contains(.availability), "scene removal is unavailable")
++        try store.attach(scene: "a", legacyTabs: [], activeID: nil)
++        try expect(source.mappingRevision != nil && source.event.epoch != unrelated, "reattach cannot revive old epoch")
++        try expect(store.mappingObservation(scene: "a")?.coverage == .workspaceStoreOnly, "Store observation explicitly excludes native setters")
++        for index in 0..<500 {
++            let unused = store.mappingSource(scene: "unused-\(index)")
++            if unused.mappingRevision != nil { throw CheckFailure(message: "unknown source received default epoch") }
++        }
++        _ = store.mappingSource(scene: "a")
++        let registry = Mirror(reflecting: store).children.first { $0.label == "mappingSources" }!.value
++        try expect(Mirror(reflecting: registry).children.count <= 2, "weak source registry does not retain historical/unavailable scene probes")
++        observer.cancel()
++        let afterCancel = invalidations
++        try store.saveTabs([], activeID: nil, groupID: groupB.id)
++        try expect(invalidations == afterCancel, "canonical observer cancellation stops callbacks")
++        let replacement = StudyWorkspaceStore(persistence: persistence, canonicalSessionURL: root.appendingPathComponent("none.json"))
++        let replacementObservation = replacement.mappingObservation(scene: "a")!
++        try expect(replacementObservation.owner != ObjectIdentifier(store)
++            && replacementObservation.epoch.sourceID != source.event.epoch?.sourceID,
++            "same persisted scene/group identity in a replacement Store has a distinct actual owner and source lifetime")
++
++        var temporary: StudyWorkspaceStore? = StudyWorkspaceStore(persistence: .init(url: root.appendingPathComponent("lifetime/workspace.json")), canonicalSessionURL: root.appendingPathComponent("absent.json"))
++        try temporary!.attach(scene: "life", legacyTabs: [a], activeID: a.id)
++        let lifetimeSource = temporary!.mappingSource(scene: "life")
++        var lifetimeAdmission = true
++        let lifetimeObserver = NativeBindingSourceObservation(readRevision: { lifetimeSource.mappingRevision }, onInvalidation: { lifetimeAdmission = false })
++        weak var weakStore = temporary
++        temporary = nil
++        try expect(weakStore == nil && !lifetimeAdmission && lifetimeSource.mappingRevision == nil && lifetimeSource.event.reasons == [.ownerLifetime], "retained source revokes synchronously when actual Store owner deinitializes")
++        lifetimeObserver.cancel()
++        weakStore = nil
++        let overflow = StudyWorkspaceMappingSource(available: true, maximumRevision: 1)
++        overflow.beginChange([.selection]); overflow.finishChange(available: true)
++        try expect(overflow.mappingRevision == 1, "finite real producer sequence boundary")
++        overflow.beginChange([.selection]); overflow.finishChange(available: true)
++        try expect(overflow.mappingRevision == nil && overflow.event.reasons == [.epochExhausted], "real producer overflow retires rather than wraps or readmits")
++        let overflowPersistence = StudyWorkspacePersistence(url: root.appendingPathComponent("max-revision/workspace.json"))
++        var maxSnapshot = store.snapshot!
++        maxSnapshot.revision = .max
++        try overflowPersistence.save(maxSnapshot)
++        let maxStore = StudyWorkspaceStore(persistence: overflowPersistence, canonicalSessionURL: root.appendingPathComponent("none.json"))
++        let maxSource = maxStore.mappingSource(scene: "a")
++        let maxEpoch = maxSource.event.epoch
++        do {
++            try maxStore.transaction { _ in }
++            throw CheckFailure(message: "persisted revision must not wrap")
++        } catch StudyWorkspaceError.invalidMembership {}
++        try expect(maxStore.snapshot?.revision == .max && maxSource.event.epoch == maxEpoch,
++            "broad revision overflow rejects failed transaction without mapping invalidation")
++        for backend in [BackendID.sefaria, .sefariaEmbedded] {
++            let signedStore = StudyWorkspaceStore(persistence: .init(url: root.appendingPathComponent("signed-\(backend.rawValue)/workspace.json")), canonicalSessionURL: root.appendingPathComponent("none.json"))
++            let signed = document(book: -17, key: "Genesis", backend: backend)
++            try signedStore.attach(scene: "signed", legacyTabs: [signed], activeID: signed.id)
++            try expect(signedStore.mappingObservation(scene: "signed")?.projection.targets[signed.id]?.bookID == -17,
++                "qualified \(backend.rawValue) legacy negative identity is preserved, not revalidated as an Otzaria ID")
++        }
++        let storeChecks = checks
++        let nativeChecks = try MappingNativeBoundaryChecks.run(root: root)
++        print("PASS: \(storeChecks) actual Store/source assertions + \(nativeChecks) exact adapter-body/boundary-double assertions; actual Apple/native setter installation NOT_RUN")
++        try await WorkspaceStartupReconciliationChecks.run(root: root)
++    }
++}
+diff --git a/tools/test_workspace_mapping_startup_reconciliation.swift b/tools/test_workspace_mapping_startup_reconciliation.swift
+new file mode 100644
+index 00000000..698397c8
+--- /dev/null
++++ b/tools/test_workspace_mapping_startup_reconciliation.swift
+@@ -0,0 +1,102 @@
++import Foundation
++
++/// Exercises the ACTUAL approved/reconciled attach and switchGroup method bodies.
++/// The native manager/backend/catalog/hydration shell remains an explicit double.
++@MainActor enum WorkspaceStartupReconciliationChecks {
++    private struct Failure: Error { let name: String }
++    static func run(root: URL) async throws {
++        var checks = 0
++        func expect(_ value: Bool, _ name: String) throws {
++            guard value else { throw Failure(name: name) }
++            checks += 1
++            print("PASS STARTUP[\(checks)] \(name)")
++        }
++        let coordinator = BackendCoordinator.shared
++        for backend in BackendID.allCases {
++            coordinator.activeBackendID = backend
++            coordinator.generation = 0
++            let store = StudyWorkspaceStore(persistence: .init(url: root.appendingPathComponent("startup-\(backend.rawValue)/workspace.json")), canonicalSessionURL: root.appendingPathComponent("absent.json"))
++            let manager = iOSNavigationManager(installed: true)
++            let adapter = StudyWorkspaceNavigationAdapter(sceneID: "startup", store: store)
++            let first = iOSNavigationManager.ReaderTab(id: UUID(), book: .init(17, key: "first", backend: backend), viewModel: .init())
++            let selected = iOSNavigationManager.ReaderTab(id: UUID(), book: .init(-18, key: "selected", backend: backend), viewModel: .init())
++            var sourceStayedUnavailable = false
++            coordinator.beforeNextCommit = {
++                manager.openTabs = [first, selected]
++                manager.activeTabId = selected.id
++                sourceStayedUnavailable = adapter.mappingOwnershipObservation() == nil && adapter.mappingOwnershipSource.mappingRevision == nil
++            }
++            await adapter.attach(manager)
++            let group = store.selectedGroup(scene: "startup")!
++            let observation = adapter.mappingOwnershipObservation()
++            try expect(sourceStayedUnavailable, "\(backend.rawValue): late native open cannot expose ownership before live context publication")
++            try expect(adapter.errorMessage == nil && adapter.attached && !adapter.isSwitching, "\(backend.rawValue): actual startup method completes")
++            try expect(manager.openTabs.map(\.id) == [first.id, selected.id] && manager.activeTabId == selected.id,
++                "\(backend.rawValue): approved startup adoption retains late tabs and requested selection")
++            try expect(manager.openTabs[1].viewModel === selected.viewModel && selected.viewModel.loadCalls == 0,
++                "\(backend.rawValue): adoption preserves actual late reader instance without hydration/reload")
++            try expect(group.tabs.map(\.id) == [first.id, selected.id] && group.activeTabID == selected.id
++                && group.tabs.allSatisfy { $0.backend == backend }, "\(backend.rawValue): actual Store transaction adopts correct group/backend/tab identity")
++            try expect(observation?.projection.groupID == group.id && observation?.projection.activeTabID == selected.id
++                && observation?.projection.targets[selected.id]?.bookID == -18, "\(backend.rawValue): producer becomes qualified only after coherent adoption")
++        }
++
++        coordinator.activeBackendID = .otzaria; coordinator.generation = 0
++        let unhookedStore = StudyWorkspaceStore(persistence: .init(url: root.appendingPathComponent("startup-unhooked/workspace.json")), canonicalSessionURL: root.appendingPathComponent("absent.json"))
++        let unhookedManager = iOSNavigationManager(installed: false)
++        let unhookedAdapter = StudyWorkspaceNavigationAdapter(sceneID: "unhooked", store: unhookedStore)
++        coordinator.beforeNextCommit = {
++            let tab = iOSNavigationManager.ReaderTab(id: UUID(), book: .init(29, key: "unhooked"), viewModel: .init())
++            unhookedManager.openTabs = [tab]; unhookedManager.activeTabId = tab.id
++        }
++        await unhookedAdapter.attach(unhookedManager)
++        try expect(unhookedManager.openTabs.count == 1 && unhookedStore.selectedGroup(scene: "unhooked")?.tabs.count == 1,
++            "unhooked native startup adoption remains functional")
++        try expect(unhookedAdapter.mappingOwnershipObservation() == nil && unhookedAdapter.mappingOwnershipSource.mappingRevision == nil,
++            "successful startup/Store adoption never fabricates missing native hook coverage")
++
++        for drift in ["generation", "selection", "disk"] {
++            coordinator.activeBackendID = .otzaria; coordinator.generation = 0
++            let persistence = StudyWorkspacePersistence(url: root.appendingPathComponent("startup-drift-\(drift)/workspace.json"))
++            let store = StudyWorkspaceStore(persistence: persistence, canonicalSessionURL: root.appendingPathComponent("absent.json"))
++            let manager = iOSNavigationManager(installed: true)
++            let adapter = StudyWorkspaceNavigationAdapter(sceneID: "drift", store: store)
++            var intendedGroup: UUID?
++            var snapshotBefore: StudyWorkspaceSnapshot?
++            var bytesBefore: Data?
++            let late = iOSNavigationManager.ReaderTab(id: UUID(), book: .init(88, key: "late"), viewModel: .init())
++            coordinator.beforeNextCommit = {
++                snapshotBefore = store.snapshot
++                bytesBefore = try Data(contentsOf: persistence.url)
++                if drift == "generation" { coordinator.generation += 1 }
++                else if drift == "selection" {
++                    let profile = store.snapshot!.scenes["drift"]!.profileID
++                    let other = try store.addGroup(profileID: profile, name: "changed while awaiting")
++                    intendedGroup = other
++                    try store.transaction { $0.scenes["drift"]?.groupID = other }
++                } else {
++                    manager.openTabs = [late]; manager.activeTabId = late.id
++                    try FileManager.default.createDirectory(at: persistence.backupURL, withIntermediateDirectories: false)
++                }
++            }
++            await adapter.attach(manager)
++            try expect(adapter.errorMessage != nil && !adapter.isSwitching && manager.persistCalls == 0,
++                "\(drift): last throwing startup boundary rejects stale/failed publication")
++            try expect(adapter.mappingOwnershipObservation() == nil && adapter.mappingOwnershipSource.mappingRevision == nil,
++                "\(drift): failed startup never exposes coherent native mapping")
++            if drift == "selection" {
++                try expect(store.snapshot?.scenes["drift"]?.groupID == intendedGroup,
++                    "selection: approved previousSelection guard preserves newer actual selection")
++            } else {
++                try expect(store.snapshot == snapshotBefore && (try? Data(contentsOf: persistence.url)) == bytesBefore,
++                    "\(drift): actual failed transaction preserves original snapshot and disk bytes")
++            }
++            if drift == "disk" {
++                try expect(manager.openTabs.first?.id == late.id && manager.openTabs.first?.viewModel === late.viewModel,
++                    "disk: failed adoption cannot overwrite the live native open")
++            }
++        }
++        coordinator.beforeNextCommit = nil
++        print("PASS: \(checks) actual attach/switchGroup startup-producer interaction assertions; native/backend/catalog/hydration boundary doubles, no Apple/native acceptance")
++    }
++}
+diff --git a/tools/workspace_mapping_native_boundary_fixture.swift b/tools/workspace_mapping_native_boundary_fixture.swift
+new file mode 100644
+index 00000000..b9ceea67
+--- /dev/null
++++ b/tools/workspace_mapping_native_boundary_fixture.swift
+@@ -0,0 +1,305 @@
++import Foundation
++import Observation
++
++// Only the Apple native manager/book/view-model shell is doubled. The runner
++// inserts the complete exact producer block from the actual downstream adapter.
++@MainActor final class BackendCoordinator {
++    static let shared = BackendCoordinator()
++    var activeBackendID: BackendID = .otzaria
++    var generation: UInt64 = 0
++    var beforeNextCommit: (() throws -> Void)?
++    func commitCheckedAsync(_ backend: BackendID, beforeCommit: () throws -> Void = {}, publish: () -> Void = {}) async throws {
++        await Task.yield()
++        let hook = beforeNextCommit
++        beforeNextCommit = nil
++        try hook?()
++        try beforeCommit()
++        activeBackendID = backend
++        publish()
++    }
++}
++enum BackendTransitionError: Error { case transitionSuperseded }
++@MainActor final class ChavrusaTextTargetBackendBookResolver {
++    static let shared = ChavrusaTextTargetBackendBookResolver()
++    func withTargetCatalog<T>(in backend: BackendID, operation: () async throws -> T) async throws -> T {
++        await Task.yield()
++        return try await operation()
++    }
++    func resolveBook(id: Int, backendLocator: String?, title: String?, in backend: BackendID) throws -> MappingFixtureBook {
++        .init(id, key: backendLocator ?? "fixture", backend: backend)
++    }
++}
++@MainActor final class MappingFixtureBook {
++    let id: Int
++    var backendLocator: TextLocator?
++    init(_ id: Int, key: String, backend: BackendID = .otzaria) {
++        self.id = id
++        backendLocator = .init(backend: backend, workKey: key, position: .legacyLine(0))
++    }
++}
++@MainActor final class MappingFixtureReader {
++    var renderRevision = 0
++    var contentText = ""
++    var needsScrollRestore = false
++    var loadCalls = 0
++    func loadBackendContent(_ locator: TextLocator) { loadCalls += 1 }
++    func loadInitialContent(initialContentId: Int?) { loadCalls += 1 }
++    func loadTOC(book: MappingFixtureBook) { loadCalls += 1 }
++}
++
++@MainActor @Observable final class iOSNavigationManager {
++    struct ReaderTab: Identifiable, Equatable {
++        let id: UUID
++        let book: MappingFixtureBook
++        var initialContentId: Int?
++        var viewModel: MappingFixtureReader
++        static func == (lhs: ReaderTab, rhs: ReaderTab) -> Bool { lhs.id == rhs.id }
++    }
++    @ObservationIgnored let installed: Bool
++    var persistCalls = 0
++    var openTabs: [ReaderTab] = [] {
++        willSet { if installed { StudyWorkspaceNavigationAdapter.nativeMappingTabsWillChange(self, to: newValue) } }
++        didSet { if installed { StudyWorkspaceNavigationAdapter.nativeMappingDidChange(self) } }
++    }
++    var activeTabId: UUID? {
++        willSet { if installed { StudyWorkspaceNavigationAdapter.nativeMappingSelectionWillChange(self, to: newValue) } }
++        didSet { if installed { StudyWorkspaceNavigationAdapter.nativeMappingDidChange(self) } }
++    }
++    init(installed: Bool) {
++        self.installed = installed
++        if installed { StudyWorkspaceNavigationAdapter.nativeMappingOwnerInitialized(self) }
++    }
++    isolated deinit {
++        if installed { StudyWorkspaceNavigationAdapter.nativeMappingOwnerWillDeinitialize(self) }
++    }
++    func selectTab(id: UUID) { activeTabId = id }
++    func closeTab(id: UUID) {
++        openTabs.removeAll { $0.id == id }
++        if activeTabId == id { activeTabId = openTabs.first?.id }
++    }
++    func persistCurrentSession(immediate: Bool) { persistCalls += 1 }
++}
++
++@MainActor @Observable final class StudyWorkspaceNavigationAdapter {
++    let sceneID: String
++    let store: StudyWorkspaceStore
++    private(set) var attached = false
++    private var liveGroupID: UUID?
++    private var liveBackend: BackendID?
++    private(set) var isSwitching = false
++    var errorMessage: String?
++    private var cache: [UUID: [BackendID: [iOSNavigationManager.ReaderTab]]] = [:]
++    var selection: StudySceneSelection? { store.snapshot?.scenes[sceneID] }
++    var group: StudyTabGroup? { store.selectedGroup(scene: sceneID) }
++    init(sceneID: String, store: StudyWorkspaceStore) { self.sceneID = sceneID; self.store = store }
++    func fixtureConnect(_ manager: iOSNavigationManager, groupID: UUID, backend: BackendID = .otzaria) {
++        bindMappingOwner(manager)
++        attached = true
++        setMappingLiveContext(groupID: groupID, backend: backend, manager: manager)
++    }
++    // ACTUAL_PRODUCER_BLOCK
++    // ACTUAL_STARTUP_METHODS
++    private func capture(_ tabs: [iOSNavigationManager.ReaderTab], backend: BackendID) -> [ReaderDocumentTab] {
++        tabs.map { .init(backend: backend, session: .init(id: $0.id, bookId: $0.book.id,
++            backendLocator: $0.book.backendLocator, contentId: $0.initialContentId, locator: $0.book.backendLocator)) }
++    }
++    private func matches(_ tab: iOSNavigationManager.ReaderTab, _ document: ReaderDocumentTab) -> Bool {
++        tab.id == document.id && tab.book.id == document.session.bookId && tab.book.backendLocator?.workKey == document.session.backendLocator?.workKey
++    }
++    private func hydrate(_ document: ReaderDocumentTab) throws -> iOSNavigationManager.ReaderTab {
++        .init(id: document.id, book: .init(document.session.bookId, key: document.session.backendLocator?.workKey ?? "fixture", backend: document.backend),
++            initialContentId: document.session.contentId, viewModel: .init())
++    }
++}
++
++@MainActor enum MappingNativeBoundaryChecks {
++    private struct Failure: Error { let name: String }
++    private final class Subscriber { var calls = 0 }
++    private final class Admission { var valid = true; var revocations = 0 }
++    private final class ReadyReader {
++        weak var adapter: StudyWorkspaceNavigationAdapter?
++        weak var admission: Admission?
++    }
++    static func run(root: URL) throws -> Int {
++        var count = 0
++        func expect(_ value: Bool, _ name: String) throws {
++            guard value else { throw Failure(name: name) }
++            count += 1
++            print("PASS NATIVE_BOUNDARY[\(count)] \(name)")
++        }
++        let store = StudyWorkspaceStore(persistence: .init(url: root.appendingPathComponent("native/workspace.json")),
++            canonicalSessionURL: root.appendingPathComponent("no-session.json"))
++        let idA = UUID(), idB = UUID()
++        func saved(_ id: UUID, _ book: Int) -> ReaderDocumentTab {
++            .init(backend: .otzaria, session: .init(id: id, bookId: book,
++                backendLocator: .init(backend: .otzaria, workKey: "book:\(book)", position: .legacyLine(0))))
++        }
++        try store.attach(scene: "native", legacyTabs: [saved(idA, 17), saved(idB, 18)], activeID: idA)
++        let group = store.selectedGroup(scene: "native")!
++        let a = iOSNavigationManager.ReaderTab(id: idA, book: .init(17, key: "book:17"), viewModel: .init())
++        let b = iOSNavigationManager.ReaderTab(id: idB, book: .init(18, key: "book:18"), viewModel: .init())
++        let unhooked = iOSNavigationManager(installed: false)
++        unhooked.openTabs = [a, b]; unhooked.activeTabId = idA
++        let unavailableAdapter = StudyWorkspaceNavigationAdapter(sceneID: "native", store: store)
++        unavailableAdapter.fixtureConnect(unhooked, groupID: group.id)
++        try expect(unavailableAdapter.mappingOwnershipObservation() == nil
++            && unavailableAdapter.mappingOwnershipSource.mappingRevision == nil, "Store-only success cannot imply installed live-native coverage")
++
++        var manager: iOSNavigationManager? = .init(installed: true)
++        manager!.openTabs = [a, b]; manager!.activeTabId = idA
++        var adapter: StudyWorkspaceNavigationAdapter? = .init(sceneID: "native", store: store)
++        adapter!.fixtureConnect(manager!, groupID: group.id)
++        let source = adapter!.mappingOwnershipSource
++        let initial = adapter!.mappingOwnershipObservation()!
++        try expect(initial.projection.activeTabID == idA && initial.projection.targets[idA]?.bookID == 17, "actual live qualified target projection")
++        var admitted = true
++        var callbacks = 0
++        let observer = NativeBindingSourceObservation(readRevision: { source.mappingRevision }, onInvalidation: {
++            admitted = false; callbacks += 1
++        })
++        var callbackReadmittedOldMapping = false
++        withObservationTracking { _ = manager!.activeTabId } onChange: {
++            MainActor.assumeIsolated {
++                callbackReadmittedOldMapping = true
++                admitted = true // Raw Observation is willSet; the old value is still visible.
++            }
++        }
++        manager!.activeTabId = idB
++        try expect(callbackReadmittedOldMapping && !admitted && adapter!.mappingOwnershipObservation()?.projection.activeTabID == idB,
++            "live selection setter invalidates without delayed Store checkpoint")
++        try expect(store.selectedGroup(scene: "native")?.activeTabID == idA, "test actually spans live-to-Store checkpoint gap")
++        for _ in 0..<20 {
++            admitted = true
++            manager!.activeTabId = idA
++            try expect(!admitted, "native ABA A invalidates before setter returns")
++            admitted = true
++            manager!.activeTabId = idB
++            try expect(!admitted, "native ABA B invalidates intervening readmission")
++        }
++        let steady = source.event.epoch
++        let calls = callbacks
++        admitted = true
++        manager!.activeTabId = idB
++        manager!.openTabs.swapAt(0, 1)
++        manager!.openTabs[0].initialContentId = 40
++        b.viewModel.renderRevision += 1
++        try store.saveTabs([saved(idA, 17), saved(idB, 18)], activeID: idA, groupID: group.id)
++        try store.renameGroup(group.id, name: "presentation only")
++        try expect(admitted && callbacks == calls && source.event.epoch == steady,
++            "native no-op/order/render and identical Store checkpoint preserve binding")
++        let otherGroup = try store.addGroup(profileID: group.profileID, name: "other group")
++        var snapshotFenced = false
++        withObservationTracking { _ = store.snapshot } onChange: {
++            MainActor.assumeIsolated { snapshotFenced = adapter!.mappingOwnershipObservation() == nil }
++        }
++        try store.transaction { $0.scenes["native"]?.groupID = otherGroup }
++        try expect(snapshotFenced && source.mappingRevision == nil,
++            "changed Store selection cannot expose old live native mapping under a ready combined epoch")
++        manager!.openTabs = []; manager!.activeTabId = nil
++        adapter!.fixtureConnect(manager!, groupID: otherGroup)
++        try expect(adapter!.mappingOwnershipObservation()?.projection.targets.isEmpty == true,
++            "context becomes available only after actual native projection catches up")
++        try store.transaction { $0.scenes["native"]?.groupID = group.id }
++        manager!.openTabs = [a, b]; manager!.activeTabId = idB
++        adapter!.fixtureConnect(manager!, groupID: group.id)
++        manager!.activeTabId = nil
++        let noActive = adapter!.mappingOwnershipObservation()!
++        try expect(noActive.projection.activeTabID == nil && noActive.projection.targets.count == 2,
++            "absent active target is not absence of background tabs; no first-tab fallback")
++        manager!.activeTabId = UUID()
++        try expect(adapter!.mappingOwnershipObservation() == nil && source.mappingRevision == nil,
++            "stale active target fails closed instead of selecting first tab")
++        manager!.activeTabId = idA
++        let replaced = iOSNavigationManager.ReaderTab(id: idA, book: .init(99, key: "book:99"), viewModel: a.viewModel)
++        manager!.openTabs = [replaced, b]
++        try expect(source.event.reasons.contains(.targetIdentity), "same UUID book replacement classified")
++        let newReader = iOSNavigationManager.ReaderTab(id: idA, book: replaced.book, viewModel: .init())
++        manager!.openTabs = [newReader, b]
++        try expect(source.event.reasons.contains(.ownerLifetime), "same target new reader lifetime classified")
++        let beforeSlotMutation = source.event.epoch
++        manager!.openTabs[0].viewModel = .init()
++        try expect(source.event.epoch != beforeSlotMutation && source.event.reasons.contains(.ownerLifetime), "in-place view-model slot mutation is fenced despite native ID-only Equatable")
++        let foreign = iOSNavigationManager.ReaderTab(id: idA, book: .init(99, key: "foreign", backend: .sefaria), viewModel: newReader.viewModel)
++        manager!.openTabs = [foreign, b]
++        try expect(source.event.reasons.contains(.backend) && adapter!.mappingOwnershipObservation() == nil,
++            "incompatible backend replacement classified and unavailable")
++        manager!.openTabs = [newReader, b]
++
++        let stableBeforeFailure = source.event.epoch
++        let callbacksBeforeFailure = callbacks
++        let backup = root.appendingPathComponent("native/workspace.json.bak")
++        if FileManager.default.fileExists(atPath: backup.path) { try FileManager.default.removeItem(at: backup) }
++        try FileManager.default.createDirectory(at: backup, withIntermediateDirectories: false)
++        var saveFailed = false
++        do { try store.renameGroup(group.id, name: "must fail before invalidation") }
++        catch { saveFailed = true }
++        try expect(saveFailed && source.event.epoch == stableBeforeFailure && callbacks == callbacksBeforeFailure,
++            "actual failed Store save preserves combined native producer and its admission")
++        try FileManager.default.removeItem(at: backup)
++
++        var subscriber: Subscriber? = Subscriber()
++        var subscription: StudyWorkspaceMappingSubscription? = source.subscribe(owner: subscriber!) { owner, _ in owner.calls += 1 }
++        manager!.activeTabId = idB
++        try expect(subscriber!.calls > 0, "typed callback synchronous")
++        subscription!.cancel()
++        let cancelledCalls = subscriber!.calls
++        manager!.activeTabId = idA
++        try expect(subscriber!.calls == cancelledCalls, "deterministic typed subscription cancellation")
++        subscription = source.subscribe(owner: subscriber!) { owner, _ in owner.calls += 1 }
++        let oldSubscription = subscription
++        subscription = source.subscribe(owner: subscriber!) { owner, _ in owner.calls += 1 }
++        oldSubscription?.cancel()
++        let beforeReplacement = subscriber!.calls
++        manager!.activeTabId = idB
++        try expect(subscriber!.calls == beforeReplacement + 2, "old subscription cleanup cannot cancel replacement; one bounded listener per owner")
++        weak var weakSubscriber = subscriber
++        subscriber = nil
++        try expect(weakSubscriber == nil, "producer callback does not retain consumer")
++        manager!.activeTabId = idB
++        subscription = nil
++        weakSubscriber = nil
++
++        let admission = Admission()
++        let readyReader = ReadyReader()
++        readyReader.adapter = adapter
++        readyReader.admission = admission
++        let invalidationOnly = source.subscribeInvalidation(owner: admission) { owner, _ in
++            owner.valid = false; owner.revocations += 1
++        }
++        let readyNotification = source.subscribe(owner: readyReader) { owner, event in
++            if event.phase == .available, owner.adapter?.mappingOwnershipObservation() != nil {
++                owner.admission?.valid = true
++            }
++        }
++        manager!.activeTabId = idA
++        try expect(admission.revocations == 1 && admission.valid,
++            "post-publication readmission is not revoked by ready notifications or listener order")
++        invalidationOnly.cancel(); readyNotification.cancel()
++
++        admitted = true
++        let beforeLifetimeEnd = callbacks
++        manager = nil
++        try expect(!admitted && callbacks > beforeLifetimeEnd && source.mappingRevision == nil && source.event.reasons == [.ownerLifetime],
++            "native owner teardown invalidates a retained adapter source")
++        observer.cancel()
++        weak var weakAdapter = adapter
++        adapter = nil
++        try expect(weakAdapter == nil, "registry and Store listener do not retain adapter")
++        weakAdapter = nil
++        for backend in [BackendID.sefaria, .sefariaEmbedded] {
++            BackendCoordinator.shared.activeBackendID = backend
++            let signedID = UUID()
++            let signedStore = StudyWorkspaceStore(persistence: .init(url: root.appendingPathComponent("native-signed-\(backend.rawValue)/workspace.json")), canonicalSessionURL: root.appendingPathComponent("none.json"))
++            try signedStore.attach(scene: "signed", legacyTabs: [.init(backend: backend, session: .init(id: signedID, bookId: -17, backendLocator: .init(backend: backend, workKey: "Genesis", position: .canonicalRef("Genesis"))))], activeID: signedID)
++            let signedManager = iOSNavigationManager(installed: true)
++            signedManager.openTabs = [.init(id: signedID, book: .init(-17, key: "Genesis", backend: backend), viewModel: .init())]
++            signedManager.activeTabId = signedID
++            let signedAdapter = StudyWorkspaceNavigationAdapter(sceneID: "signed", store: signedStore)
++            signedAdapter.fixtureConnect(signedManager, groupID: signedStore.selectedGroup(scene: "signed")!.id, backend: backend)
++            try expect(signedAdapter.mappingOwnershipObservation()?.projection.targets[signedID]?.bookID == -17,
++                "live \(backend.rawValue) signed legacy identity is observed without a second numeric permission policy")
++        }
++        print("PASS: \(count) exact adapter producer-body assertions against proposed-hook native boundary double; actual Apple/native setter installation remains NOT_RUN")
++        return count
++    }
++}

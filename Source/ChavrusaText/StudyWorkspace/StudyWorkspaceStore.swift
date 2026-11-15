@@ -24,6 +24,37 @@ final class StudyWorkspaceStore {
     private(set) var loadError: String?
     private let persistence: StudyWorkspacePersistence
     private let canonicalSessionURL: URL
+    private final class WeakMappingSource {
+        weak var value: StudyWorkspaceMappingSource?
+        init(_ value: StudyWorkspaceMappingSource) { self.value = value }
+    }
+    @ObservationIgnored private var mappingSources: [String: WeakMappingSource] = [:]
+    @ObservationIgnored private var isMutating = false
+    @ObservationIgnored private var isPublishingMapping = false
+
+    /// The persisted revision includes checkpoints. Consumers must retain this
+    /// fixed scene source instead of observing the broad snapshot/revision.
+    func mappingSource(scene: String) -> StudyWorkspaceMappingSource {
+        mappingSources = mappingSources.filter { $0.value.value != nil }
+        if let source = mappingSources[scene]?.value { return source }
+        let source = StudyWorkspaceMappingSource(available: !isPublishingMapping && loadError == nil
+            && StudyWorkspaceMappingPolicy.workspace(snapshot, scene: scene) != nil)
+        mappingSources[scene] = .init(source)
+        return source
+    }
+
+    func mappingObservation(scene: String) -> StudyWorkspaceMappingObservation? {
+        let source = mappingSource(scene: scene)
+        guard loadError == nil,
+              let epoch = source.event.epoch,
+              let projection = StudyWorkspaceMappingPolicy.workspace(snapshot, scene: scene) else { return nil }
+        return .init(source: source, owner: ObjectIdentifier(self), scene: scene, epoch: epoch,
+            coverage: .workspaceStoreOnly, projection: projection)
+    }
+
+    isolated deinit {
+        for source in mappingSources.values { source.value?.retire() }
+    }
 
     init(persistence: StudyWorkspacePersistence, canonicalSessionURL: URL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("Maktabah/States/ios_reader_session.json")) {
         self.persistence = persistence
@@ -37,6 +68,9 @@ final class StudyWorkspaceStore {
         guard loadError == nil else { throw StudyWorkspaceError.invalidMembership }
         try persistence.archiveBeforeMigration(canonicalSessionURL: canonicalSessionURL)
         if snapshot == nil {
+            guard !isMutating else { throw StudyWorkspaceError.invalidMembership }
+            isMutating = true
+            defer { isMutating = false }
             let profile = StudyProfile(id: UUID(), name: "אישי", symbol: "person.crop.circle", order: 0)
             let group = StudyTabGroup(id: UUID(), profileID: profile.id, name: "כל הכרטיסיות", order: 0,
                                       tabs: legacyTabs, activeTabID: activeID)
@@ -47,7 +81,7 @@ final class StudyWorkspaceStore {
             initial.scenes[scene] = .init(profileID: profile.id, groupID: group.id)
             initial.lastActiveSceneID = scene
             try persistence.save(initial)
-            snapshot = initial
+            publishSnapshot(initial)
         } else if snapshot?.scenes[scene] == nil {
             try transaction { value in
                 let previous = value.lastActiveSceneID.flatMap { value.scenes[$0] }
@@ -68,12 +102,33 @@ final class StudyWorkspaceStore {
     }
 
     func transaction(_ mutate: (inout StudyWorkspaceSnapshot) throws -> Void) throws {
-        guard var candidate = snapshot else { throw StudyWorkspaceError.invalidMembership }
+        guard !isMutating, var candidate = snapshot else { throw StudyWorkspaceError.invalidMembership }
+        isMutating = true
+        defer { isMutating = false }
         try mutate(&candidate)
+        guard candidate.revision < UInt64.max else { throw StudyWorkspaceError.invalidMembership }
         candidate.revision += 1
         try candidate.validate()
         try persistence.save(candidate)
+        publishSnapshot(candidate)
+    }
+
+    /// All throwing validation/persistence finished before this synchronous
+    /// fence. No observer can see the new snapshot with an old live admission.
+    private func publishSnapshot(_ candidate: StudyWorkspaceSnapshot) {
+        isPublishingMapping = true
+        mappingSources = mappingSources.filter { $0.value.value != nil }
+        let beforeSources = mappingSources.compactMapValues(\.value)
+        for (scene, source) in beforeSources {
+            source.beginChange(StudyWorkspaceMappingPolicy.changes(
+                from: StudyWorkspaceMappingPolicy.workspace(snapshot, scene: scene),
+                to: StudyWorkspaceMappingPolicy.workspace(candidate, scene: scene)))
+        }
         snapshot = candidate
+        isPublishingMapping = false
+        for (scene, source) in mappingSources.compactMapValues(\.value) {
+            source.finishChange(available: StudyWorkspaceMappingPolicy.workspace(candidate, scene: scene) != nil)
+        }
     }
 
     func selectedGroup(scene: String) -> StudyTabGroup? {

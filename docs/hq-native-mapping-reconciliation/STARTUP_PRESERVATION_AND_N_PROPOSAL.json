@@ -1,0 +1,25 @@
+{
+  "base": "0436775d85893225005f29baf0aa3a20d7b88317",
+  "R44": "44f518fcccce6bd20127f39eea8462d7a7a9dd47",
+  "N_proposal": "4b68336fcea12e02989130facbadac9963286bd2",
+  "N_proposal_result_matches_all_three_working_sources": true,
+  "approved_startup_adapter_blob": "36dd25996aedf5610f4d5bf30982163f4777a62a",
+  "approved_adapter_reconstructed_exactly_removing_only_producer_block_and_three_connections": true,
+  "producer_block_exact_R44": true,
+  "producer_block_sha256": "020268dc8b8fbe628aa885e620a78c0a176567d205e330390efefcac6d1d77b1",
+  "source_records": {
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift": {
+      "working_sha256": "f1d3ac031a21af1289b1a754d82b11a45ab99a14770cbe7671147af57978e1aa",
+      "git_blob": "5ba997af025d29fb8fd354a39cbd41b145c0665e"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift": {
+      "working_sha256": "4ff77cafc2541879b35887c9ed080edfc01cf43e1e22edc336e04596652eb6b6",
+      "git_blob": "ed6dc3d685a103c733fd30b453ee36a39eae48e3"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": {
+      "working_sha256": "489576bb379db181891bc41b1c69d2ad90b3b33f515324814ce956a15bc16cc7",
+      "git_blob": "0fc38aa9dd9ea44b6e00b9111734f2c1394b5124"
+    }
+  },
+  "native_manager_blob_untouched": "e6f86d69a93b6f757f755b718c5353089fcd3c2e"
+}

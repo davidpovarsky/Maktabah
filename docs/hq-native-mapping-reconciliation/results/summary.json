@@ -1,0 +1,28 @@
+{
+  "scope": "Actual Store, real Observation, real isolated persistence; canonical N observer at bdd1169a; no native setter coverage inferred",
+  "status": "PASS_PORTABLE_ONLY",
+  "swift_version": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "observer_sha256": "fe9cc784e80a1bf39e570855245aafb13511d77de7399465c776f8b6f2442d55",
+  "canonical_observer_snapshot": "Tests/HQ/workspace-producer/NativeBindingSourceObservation_bdd1169a.swift",
+  "actual_adapter_block_sha256": "366e8c0b5870200ca51e05605dcc0cec428f0243f89ecf3f1e2ef591fdbe20f1",
+  "source_sha256": {
+    "Source/LibraryBackend/LibraryBackendModels.swift": "92827bb530b90d6e0add5fdab75ceb7c3ace8401f70cdc6b0e38d525d44655cd",
+    "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift": "6cdb27ec5935c4c8a15df5d1f7425127021c43bc120d974bd416dad75c312afb",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift": "f005d3423325d3247a04172722e400c886cf5157e6bf6588367bc94ffdb903e4",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift": "d524f3c91b4ecfc3fa93547092c4c378320c10651818366211d7905b0d023dab",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift": "f1d3ac031a21af1289b1a754d82b11a45ab99a14770cbe7671147af57978e1aa",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift": "4ff77cafc2541879b35887c9ed080edfc01cf43e1e22edc336e04596652eb6b6",
+    "tools/test_workspace_mapping_producer.swift": "ee5e8265be31d41f4da1bd68e3f5c8e7823ff740c3c9ea2a8b7f0736c2dbbc9b",
+    "tools/test_workspace_mapping_startup_reconciliation.swift": "9afb600dfc80e4874dae345f5c04219b239cf82bf02c255bb55c0c57d8589d4a"
+  },
+  "actual_startup_methods_sha256": "3975ebddaef6af3ec23b5e584eab3bbe9ca3425d490d3a9cd1f28e205ed52c26",
+  "startup_methods_ref": "CURRENT_RECONCILED_WORKTREE",
+  "extra_source_sha256": {
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": "489576bb379db181891bc41b1c69d2ad90b3b33f515324814ce956a15bc16cc7",
+    "tools/workspace_mapping_native_boundary_fixture.swift": "035cf3180f74222fdd26e0fd0f8638074d5d51d3af9d8af2c27cf7e3f17906e0",
+    "tools/hq-workspace-mapping-producer-checks.py": "322316b2d7fa4037d772bbc89331dc7f924294d4dbf764723a8918014a97e490"
+  },
+  "compile_exit": 0,
+  "compiler_warning_count": 0,
+  "tests_exit": 0
+}
