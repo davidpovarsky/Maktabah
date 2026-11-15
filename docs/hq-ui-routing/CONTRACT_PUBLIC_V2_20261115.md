@@ -88,3 +88,7 @@ Final strict Swift6.3.3 Windows run of the complete affected UIRouting package: 
 All3 backends x4 public presentation forms round-trip; guarded UI-only binding and canonical actual Core reader sink execution run for all3 synthetic backends. Both public bind and exact variant-discovery awaits are tested for context/rights/generation revocation, deadline and caller cancellation with finite cleanup gates. Initial v2 compile hit a contextual type-inference error and executed0tests; that log is retained. Intermediate47/0 and earlier72/0 runs are not added to the final72. Final raw log and exact50 package input working SHA256/Git blobs, old fixture identities and all retained log hashes: `results/public-v2-summary.json`, `results/public-v2-final.log`.
 
 No app target, current N handler, S/I/R source, Core package, deployment/signing or workflow/gate is edited. This packet is ready for manager/N contract review; actual v2 public read-only surfaces, real URL import/publishing, Apple compiler/runtime and physical acceptance remain NOT_RUN/open.
+
+## Separate post-packet budget follow-up
+
+The original 72-method packet and its hashes above remain immutable. [PUBLIC_V2_BUDGET_FOLLOWUP_20261115.md](PUBLIC_V2_BUDGET_FOLLOWUP_20261115.md) records a reproduced decode/encode byte-budget mismatch and the v2-only normalized-output check. Its final 75-method run also verifies canonical denied-work enforcement and stale retained reader-plan rejection at the actual Core sink. No new native/public-v2 handler is activated.

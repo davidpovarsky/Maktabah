@@ -62,6 +62,32 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
             }
         }
     }
+    func testDecodedIntentMustFitBudgetAfterBackendNormalization() throws {
+        let registry = try registry(), encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys]
+        var boundary: Data?, belowBoundary: Data?
+        for count in 1...512 {
+            let ref = ActionTextRef(backend: .sefaria, workKey: "fixture:work", position: .canonicalRef(String(repeating: "📖", count: count)))
+            let destination = ActionReaderDestination(sectionLocator: ref, focusLocator: ref)
+            let input = PublicNavigationSpecV2(destination: reader, content: destination, presentation: .inspector, component: links)
+            let raw = try encoder.encode(input)
+            let normalized = PublicNavigationSpecV2(destination: reader, backend: .sefaria, content: destination, presentation: .inspector, component: links)
+            let normalizedBytes = try encoder.encode(normalized)
+            if raw.count <= UIRouteCodec.maxPublicBytes && normalizedBytes.count > UIRouteCodec.maxPublicBytes {
+                boundary = raw
+                break
+            }
+            if normalizedBytes.count <= UIRouteCodec.maxPublicBytes { belowBoundary = raw }
+        }
+        let raw = try XCTUnwrap(boundary, "No normalization boundary exercised")
+        XCTAssertThrowsError(try UIRouteCodec.decodePublicV2(raw, registry: registry)) {
+            XCTAssertEqual(($0 as? UIRouteError)?.code, "public_route_too_large")
+        }
+        let accepted = try UIRouteCodec.decodePublicV2(XCTUnwrap(belowBoundary), registry: registry)
+        let encoded = try UIRouteCodec.encodePublicV2(accepted, registry: registry)
+        XCTAssertLessThanOrEqual(encoded.count, UIRouteCodec.maxPublicBytes)
+        XCTAssertEqual(try UIRouteCodec.decodePublicV2(encoded, registry: registry), accepted)
+    }
     func testV1IsFrozenAndMigrationIsExplicitOptInWithoutImportedCorrelation() throws {
         let registry = try registry(), id = UUID()
         let v1 = PublicRouteSpec(requestId: id, destination: history)
@@ -298,6 +324,51 @@ final class PublicNavigationV2Tests: XCTestCase, @unchecked Sendable {
         XCTAssertEqual(result.status, .completed, "\(String(describing: result.error))")
         XCTAssertEqual(source.resolutions, 1); XCTAssertEqual(source.effects, 1)
       }
+    }
+    @MainActor func testStructuralReaderPlanCannotGrantDeniedWork() async throws {
+        for backend in ActionBackendID.allCases {
+            let registry = try registry(), source = source(backend), original = source.context
+            source.context = .init(subjectID: original.subjectID, correlationID: original.correlationID, origin: original.origin,
+                allowedBackends: original.allowedBackends, contentRights: original.contentRights, scopes: original.scopes,
+                allowedWorkKeys: [backend: ["different:work"]], foregroundSceneID: original.foregroundSceneID,
+                pairedDeviceAvailable: original.pairedDeviceAvailable)
+            let core = try core(source), invocation = invocation(source)
+            let intent = PublicNavigationSpecV2(destination: reader, content: content(backend), presentation: .inspector, component: links)
+            let plan = try await registry.bindPublicV2(intent, scene: source.scene, localTabID: .init(rawValue: "native-tab"),
+                context: source.context, invocation: invocation, core: core, host: PublicV2TestHost(source))
+            guard case .reader = plan else { return XCTFail("Content received a surface grant") }
+            let args = try XCTUnwrap(ActionJSON.encoded(intent.content!).object)
+            let result = await core.execute(.init(requestId: invocation.requestId, action: "reader.open", arguments: args,
+                expectedBackend: backend), context: source.context)
+            XCTAssertEqual(result.status, .failed); XCTAssertEqual(result.error?.code, "permission_denied")
+            XCTAssertEqual(source.resolutions, 0); XCTAssertEqual(source.readerCalls, 0); XCTAssertEqual(source.effects, 0)
+        }
+    }
+    @MainActor func testRetainedReaderPlanRejectsGenerationChangedBeforeActualCoreSink() async throws {
+        for backend in ActionBackendID.allCases {
+            let registry = try registry(), source = source(backend), core = try core(source), invocation = invocation(source)
+            let intent = PublicNavigationSpecV2(destination: reader, content: content(backend), presentation: .inspector, component: links)
+            let plan = try await registry.bindPublicV2(intent, scene: source.scene, localTabID: .init(rawValue: "native-tab"),
+                context: source.context, invocation: invocation, core: core, host: PublicV2TestHost(source))
+            guard case .reader(let retained) = plan else { return XCTFail("Content received a surface grant") }
+            source.backend = .init(backend: backend, generation: source.backend.generation + 1, rpcEpoch: source.backend.rpcEpoch)
+            source.onReader = { reader in
+                do {
+                    _ = try UISceneCommand(route: retained, invocation: reader.invocation, scene: source.scene)
+                    XCTFail("Retained route silently rebound to a newer generation")
+                    throw ActionPortError.invalidResponse
+                } catch let error as UIRouteError {
+                    XCTAssertEqual(error.status, .staleState); XCTAssertEqual(error.code, "backend_generation_changed")
+                    // Test host translates the route's refusal into the existing Core port error.
+                    throw ActionPortError.staleState
+                }
+            }
+            let args = try XCTUnwrap(ActionJSON.encoded(intent.content!).object)
+            let result = await core.execute(.init(requestId: invocation.requestId, action: "reader.open", arguments: args,
+                expectedBackend: backend), context: source.context)
+            XCTAssertEqual(result.status, .staleState); XCTAssertEqual(result.error?.code, "backend_generation_changed")
+            XCTAssertEqual(source.resolutions, 1); XCTAssertEqual(source.readerCalls, 1); XCTAssertEqual(source.effects, 0)
+        }
     }
     private func safetyRelease(_ gate: ReviewGate) -> Task<Void, Never> {
         Task { do { try await Task.sleep(nanoseconds: 2_000_000_000); try Task.checkCancellation(); await gate.release(safety: true) } catch {} }

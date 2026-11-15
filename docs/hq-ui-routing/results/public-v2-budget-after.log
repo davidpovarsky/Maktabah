@@ -1,0 +1,40 @@
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version-2807070033DA82CF.txt
+[1/5] Write sources
+[4/5] Emitting module OtzariaUIRouting
+[5/6] Compiling OtzariaUIRouting PublicNavigationV2Codec.swift
+[7/14] Emitting module OtzariaUIRoutingTests
+[8/15] Compiling OtzariaUIRoutingTests PublicNavigationV2Tests.swift
+[9/15] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[10/16] Write sources
+[12/17] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[13/19] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[14/19] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[15/17] Write Objects.LinkFileList
+[16/17] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (17.43s)
+Test Suite 'Selected tests' started at 2026-11-15 16:57:13.898
+
+Test Suite 'PublicNavigationV2Tests' started at 2026-11-15 16:57:13.901
+
+Test Case 'PublicNavigationV2Tests.testDecodedIntentMustFitBudgetAfterBackendNormalization' started at 2026-11-15 16:57:13.901
+
+Test Case 'PublicNavigationV2Tests.testDecodedIntentMustFitBudgetAfterBackendNormalization' passed (0.264 seconds)
+
+Test Suite 'PublicNavigationV2Tests' passed at 2026-11-15 16:57:14.165
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.264 (0.264) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 16:57:14.165
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.264 (0.264) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

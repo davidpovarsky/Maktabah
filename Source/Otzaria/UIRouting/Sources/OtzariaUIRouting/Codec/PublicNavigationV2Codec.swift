@@ -30,7 +30,12 @@ extension UIRouteCodec {
                 }
             }
         }
-        return try registry.validatePublicNavigationV2(intent)
+        let normalized = try registry.validatePublicNavigationV2(intent)
+        // Binding and publishing must be able to re-encode every accepted DTO
+        // within the same budget, including a backend inferred from content.
+        let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+        guard try encoder.encode(normalized).count <= maxPublicBytes else { throw UIRouteError(.failed, "public_route_too_large") }
+        return normalized
     }
 
     /// An explicit public DTO only, never a projection of private route state.
