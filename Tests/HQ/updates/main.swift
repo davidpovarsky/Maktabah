@@ -1,5 +1,8 @@
 import Foundation
 import SQLite3
+#if canImport(Darwin)
+import Darwin
+#endif
 
 // Portable checks compile the actual downstream service against the installed Windows SQLite SDK.
 var checks = 0
@@ -7,6 +10,9 @@ var checks = 0
     try body()
     checks += 1
     print("PASS \(name)")
+    #if canImport(Darwin)
+    Darwin.fflush(nil)
+    #endif
 }
 func rejected(_ body: () throws -> Void) {
     do { try body(); fatalError("Expected fail-closed rejection") } catch { }
@@ -199,9 +205,11 @@ func sql(_ db: OpaquePointer, _ text: String) {
 }
 func scalar(_ db: OpaquePointer, _ text: String) -> Int64 {
     var statement: OpaquePointer?
-    precondition(sqlite3_prepare_v2(db, text, -1, &statement, nil) == SQLITE_OK)
+    let rc = sqlite3_prepare_v2(db, text, -1, &statement, nil)
+    precondition(rc == SQLITE_OK, "Fixture prepare failed (SQLite \(rc)): \(String(cString: sqlite3_errmsg(db))); SQL: \(text)")
     defer { sqlite3_finalize(statement) }
-    precondition(sqlite3_step(statement) == SQLITE_ROW)
+    let result = sqlite3_step(statement)
+    precondition(result == SQLITE_ROW, "Fixture read failed (SQLite \(result)): \(String(cString: sqlite3_errmsg(db))); SQL: \(text)")
     return sqlite3_column_int64(statement, 0)
 }
 
