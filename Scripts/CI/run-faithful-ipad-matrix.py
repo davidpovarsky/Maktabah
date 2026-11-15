@@ -99,6 +99,7 @@ for index, scenario in enumerate(scenarios):
     report["devices"].append(device)
     recording = None
     recording_log = None
+    palette_log_stream = None
 
     def phase(name, **details):
         device["phase"] = name
@@ -209,11 +210,14 @@ for index, scenario in enumerate(scenarios):
             recording_log = (artifacts / f"runtime27/recording-{label}.log").open("w")
             recording = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(artifacts / f"runtime27/native-{label}.mp4")],
                                          stdout=recording_log, stderr=subprocess.STDOUT)
+        if runtime27_contract and label == "11-window":
+            palette_log_stream = runpy.run_path("Scripts/CI/collect-runtime27-palette-log.py")["PaletteLogStream"](udid, label).start()
         phase("RUNNING_NATIVE_XCTEST", suites=selection)
         with (artifacts / f"test-simulator-{label}.log").open("w") as log:
             process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
             for line in process.stdout:
                 log.write(line)
+                log.flush()
                 print(line, end="", flush=True)
             code = process.wait()
         device["xcodebuildExitCode"] = code
@@ -309,6 +313,8 @@ for index, scenario in enumerate(scenarios):
         # Retain a hard failure, but still execute the other required native
         # configurations so one device does not hide the iPhone/13-inch result.
     finally:
+        if palette_log_stream is not None:
+            device["paletteInputStream"] = palette_log_stream.stop()
         if recording is not None:
             recording.send_signal(signal.SIGINT)
             try:
@@ -317,6 +323,13 @@ for index, scenario in enumerate(scenarios):
                 recording.terminate()
                 recording.wait(timeout=15)
             recording_log.close()
+        if runtime27_contract and label == "11-window":
+            try:
+                capture = subprocess.run([sys.executable, "Scripts/CI/collect-runtime27-palette-log.py", udid, label],
+                                         check=False, timeout=60)
+                device["paletteInputDiagnosticExitCode"] = capture.returncode
+            except subprocess.TimeoutExpired:
+                device["paletteInputDiagnosticExitCode"] = "TIMEOUT; no handler-delivery inference"
         (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
         subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
         # Delete only the disposable simulator created above, never a user's/default device.

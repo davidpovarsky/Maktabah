@@ -164,6 +164,7 @@ def install_real_pods(report):
             or any(p.is_file() for p in (ROOT / "Pods").rglob("RCTBridgeModule.h")), "Real React header was not restored")
     report["native_context"]["pod_lock_sha256"] = digest(ROOT / "Podfile.lock")
     report["native_context"]["generated_project_sha256"] = digest(ROOT / "Maktabah.xcodeproj/project.pbxproj")
+    shutil.copyfile(ROOT / "Maktabah.xcodeproj/project.pbxproj", OUT / "generated-Maktabah-project.pbxproj")
     report["native_context"]["workspace_sha256"] = digest(ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata")
     report["native_context"]["generated_expo_providers"] = []
     for provider in (ROOT / "Pods").rglob("ExpoModulesProvider.swift"):

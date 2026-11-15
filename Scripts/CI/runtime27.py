@@ -13,6 +13,8 @@ import html
 import xml.etree.ElementTree as ET
 import shutil
 import re
+import signal
+import time
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "build/artifacts/runtime27"
@@ -57,12 +59,104 @@ def capture(command, name):
     return result.stdout
 
 
+def stop_owned_process_group(process, grace_seconds=5, kill_wait_seconds=2):
+    """Observe the created group independently of its Python leader's exit."""
+    pgid = process.pid
+
+    def alive():
+        process.poll()  # Reap the leader if it exited; children may still exist.
+        try:
+            os.killpg(pgid, 0)
+            return True
+        except ProcessLookupError:
+            return False
+
+    def send(kind):
+        try:
+            os.killpg(pgid, kind)
+        except ProcessLookupError:
+            pass
+
+    def wait_gone(seconds):
+        end = time.monotonic() + seconds
+        while alive():
+            if time.monotonic() >= end:
+                return False
+            time.sleep(0.05)
+        return True
+
+    send(signal.SIGINT)
+    gone = wait_gone(grace_seconds)
+    if not gone:
+        send(getattr(signal, "SIGKILL", signal.SIGTERM))
+        gone = wait_gone(kill_wait_seconds)
+    return {"owned_pgid": pgid, "group_state": "GONE_CHECKED" if gone else "STILL_PRESENT_UNVERIFIED",
+            "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED"}
+
+
 def run_logged(command, name, timeout):
     with (OUT / name).open("w") as output:
-        process = subprocess.run(command, cwd=ROOT, stdout=output, stderr=subprocess.STDOUT, timeout=timeout)
+        owned_group = sys.platform == "darwin"
+        process = subprocess.Popen(command, cwd=ROOT, stdout=output, stderr=subprocess.STDOUT,
+                                   start_new_session=owned_group)
+        try:
+            process.wait(timeout=timeout)
+        except BaseException as error:
+            # GitHub cancellation previously killed this supervisor while its
+            # native child continued through artifact upload. Stop only the
+            # process group created here; never another runner's work.
+            marker = {
+                "status": "INTERRUPTED_CHILD_UNVERIFIED", "exception": type(error).__name__,
+                "owned_process_group": process.pid if owned_group else None,
+                "acceptance_effect": "NONE; interrupted UI results require complete independent validation"}
+            marker_path = OUT / (name + ".interrupted.json")
+            marker_path.write_text(json.dumps(marker, indent=2) + "\n")
+            if owned_group:
+                try:
+                    marker["cleanup"] = stop_owned_process_group(process)
+                except OSError as cleanup_error:
+                    marker["cleanup"] = {"error": type(cleanup_error).__name__, "state": "UNVERIFIED"}
+                marker_path.write_text(json.dumps(marker, indent=2) + "\n")
+            elif process.poll() is None:
+                try:
+                    process.terminate()
+                except ProcessLookupError:
+                    pass
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    try:
+                        process.kill()
+                    except ProcessLookupError:
+                        pass
+                    try:
+                        process.wait(timeout=2)
+                    except subprocess.TimeoutExpired:
+                        pass  # Keep the original interruption, never claim cleanup completed.
+            raise
     if process.returncode:
         print("\n".join((OUT / name).read_text(errors="replace").splitlines()[-60:]), flush=True)
     return process.returncode
+
+
+def capture_palette_code_images(bundle, executable):
+    """Retain actual compiled-image provenance, including Xcode's debug dylib."""
+    evidence = {"acceptance_effect": "NONE; symbols do not establish UI behavior", "images": []}
+    for path in [bundle / executable, *sorted(bundle.glob("*.dylib"))]:
+        row = {"path": str(path.relative_to(ROOT)), "bytes": path.stat().st_size}
+        with path.open("rb") as stream:
+            row["sha256"] = hashlib.file_digest(stream, "sha256").hexdigest()
+        try:
+            result = subprocess.run(["xcrun", "nm", "-a", str(path)], capture_output=True, timeout=45)
+            matches = [line for line in result.stdout.decode("utf-8", errors="replace").splitlines()
+                       if "PaletteTextField" in line or "PaletteSearchTextField" in line]
+            row.update(nm_exit_code=result.returncode, matched_symbol_count=len(matches),
+                       bounded_matched_symbols=matches[:200], nm_stdout_sha256=hashlib.sha256(result.stdout).hexdigest())
+        except (OSError, subprocess.TimeoutExpired) as error:
+            row["symbol_capture_error"] = type(error).__name__
+        evidence["images"].append(row)
+    (OUT / "palette-compiled-images.json").write_text(json.dumps(evidence, indent=2) + "\n")
+    return evidence
 
 
 def collect_cases(report, contract):
@@ -120,12 +214,35 @@ def main():
     try:
         if sys.platform != "darwin":
             raise RuntimeError("R27 execution requires real macOS/Xcode")
+        interrupt_received = False
+        def interrupted(signum, frame):
+            nonlocal interrupt_received
+            if interrupt_received:
+                return  # Already stopping owned work within the bounded grace.
+            interrupt_received = True
+            raise KeyboardInterrupt(f"External signal {signum}; UI acceptance remains unverified")
+        signal.signal(signal.SIGINT, interrupted)
+        signal.signal(signal.SIGTERM, interrupted)
         report["checkout_sha"] = capture(["git", "rev-parse", "HEAD"], "checkout.txt").strip()
         if report["checkout_sha"] != os.environ.get("EXPECTED_CHECKOUT_SHA"):
             raise RuntimeError("Unexpected checkout")
         report["xcode"] = capture(["xcodebuild", "-version"], "xcode.txt")
         report["swift"] = capture(["xcrun", "swiftc", "--version"], "swift.txt")
         report["python"] = sys.version
+        # Inspect the real execution Mac, independently of installed Windows skills.
+        # These CLIs are optional because XCUITest is this case's native driver.
+        report["optional_native_clis"] = {}
+        for name in ("idb", "idb_companion", "maestro"):
+            path = shutil.which(name)
+            tool = {"path": path, "status": "NOT_INSTALLED" if not path else "PRESENT"}
+            if path:
+                try:
+                    version = subprocess.run([path, "--version"], text=True, capture_output=True, timeout=15)
+                    tool.update(version_exit_code=version.returncode,
+                                version_output=(version.stdout + version.stderr)[:2000])
+                except (OSError, subprocess.TimeoutExpired) as error:
+                    tool.update(version_error=type(error).__name__)
+            report["optional_native_clis"][name] = tool
         report["sdk"] = capture(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"], "sdk.txt").strip()
         if not report["sdk"].startswith("27."):
             raise RuntimeError("Installed simulator SDK is not27.x")
@@ -163,12 +280,12 @@ def main():
         report["execution_groups"] = groups
         report["full_phase_case_ids"] = [case["case_id"] for case in contract["cases"]]
         report["requested_ui_case_count"] = expected_count
-        report["prior_pass_reuse"] = "Separate independent Q proof required; not counted as new execution"
+        report["prior_pass_reuse"] = "Historical eight cases require exact compatibility proof; never counted as new execution"
         report["case_manifest_sha256"] = hashlib.sha256(contract_path.read_bytes()).hexdigest()
         report["full_release_acceptance"] = False
         report["scope"] = contract["scope"]
         test_path = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
-        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "66fafb8a8464823abc1cd574fffb79b8a56870af47f33810e7b52bdf1ef944d9":
+        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "a49f211277aa9f91aab8c254b9ac54ec6bac9ea5b6159884c626b44e2ae1458b":
             raise RuntimeError("Reviewed test source drift")
         report["test_source_commit"] = contract["source_test_commit"]
         subprocess.run(["git", "merge-base", "--is-ancestor", contract["source_test_commit"], "HEAD"], cwd=ROOT, check=True)
@@ -177,7 +294,8 @@ def main():
                                         for p in sorted((ROOT / "Maktabah-iOSUITests").glob("*.swift"))}
         report["helper_inputs_sha256"] = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in [
             "Scripts/CI/hq-stage2-focused-apple.py", "Scripts/CI/hq-stage2-focused-apple.inputs.json", "Scripts/CI/runtime27.py",
-            "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27-fixture-oracle.py", "tools/verify_xcresult_zero_skips.py"]}
+            "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27-fixture-oracle.py", "tools/verify_xcresult_zero_skips.py",
+            "Scripts/CI/collect-runtime27-palette-log.py"]}
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing", "--derived-data", "build/DerivedData"],
                       "build-for-testing-driver.log", 4200):
             raise RuntimeError("Real app/test build failed; UI cases NOT_RUN")
@@ -187,6 +305,8 @@ def main():
             info = plistlib.loads((bundle / "Info.plist").read_bytes())
             binary = bundle / info["CFBundleExecutable"]
             binaries[str(bundle.relative_to(ROOT))] = hashlib.sha256(binary.read_bytes()).hexdigest()
+            if bundle.name == "Maktabah.app":
+                report["palette_compiled_code_images"] = capture_palette_code_images(bundle, info["CFBundleExecutable"])
         test_bundle = products / "Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest"
         test_info = plistlib.loads((test_bundle / "Info.plist").read_bytes())
         binaries[str(test_bundle.relative_to(ROOT))] = hashlib.sha256((test_bundle / test_info["CFBundleExecutable"]).read_bytes()).hexdigest()
@@ -202,6 +322,9 @@ def main():
             raise RuntimeError("Required real UI subset failed, skipped or did not completely execute")
         report["status"] = "EXECUTED_PASS" if expected_count == len(contract["cases"]) else "SELECTED_UI_EXECUTED_PASS"
         return 0
+    except KeyboardInterrupt as error:
+        report.update(status="INTERRUPTED_UI_UNVERIFIED", error=str(error) or "External interruption")
+        return 130
     except Exception as error:
         report["error"] = str(error)
         print(str(error), file=sys.stderr)
