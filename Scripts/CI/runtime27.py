@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 import shutil
 import re
 import signal
+import time
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "build/artifacts/runtime27"
@@ -58,6 +59,41 @@ def capture(command, name):
     return result.stdout
 
 
+def stop_owned_process_group(process, grace_seconds=5, kill_wait_seconds=2):
+    """Observe the created group independently of its Python leader's exit."""
+    pgid = process.pid
+
+    def alive():
+        process.poll()  # Reap the leader if it exited; children may still exist.
+        try:
+            os.killpg(pgid, 0)
+            return True
+        except ProcessLookupError:
+            return False
+
+    def send(kind):
+        try:
+            os.killpg(pgid, kind)
+        except ProcessLookupError:
+            pass
+
+    def wait_gone(seconds):
+        end = time.monotonic() + seconds
+        while alive():
+            if time.monotonic() >= end:
+                return False
+            time.sleep(0.05)
+        return True
+
+    send(signal.SIGINT)
+    gone = wait_gone(grace_seconds)
+    if not gone:
+        send(getattr(signal, "SIGKILL", signal.SIGTERM))
+        gone = wait_gone(kill_wait_seconds)
+    return {"owned_pgid": pgid, "group_state": "GONE_CHECKED" if gone else "STILL_PRESENT_UNVERIFIED",
+            "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED"}
+
+
 def run_logged(command, name, timeout):
     with (OUT / name).open("w") as output:
         owned_group = sys.platform == "darwin"
@@ -69,26 +105,28 @@ def run_logged(command, name, timeout):
             # GitHub cancellation previously killed this supervisor while its
             # native child continued through artifact upload. Stop only the
             # process group created here; never another runner's work.
-            (OUT / (name + ".interrupted.json")).write_text(json.dumps({
+            marker = {
                 "status": "INTERRUPTED_CHILD_UNVERIFIED", "exception": type(error).__name__,
                 "owned_process_group": process.pid if owned_group else None,
-                "acceptance_effect": "NONE; interrupted UI results require complete independent validation"}, indent=2) + "\n")
-            if process.poll() is None:
+                "acceptance_effect": "NONE; interrupted UI results require complete independent validation"}
+            marker_path = OUT / (name + ".interrupted.json")
+            marker_path.write_text(json.dumps(marker, indent=2) + "\n")
+            if owned_group:
                 try:
-                    if owned_group:
-                        os.killpg(process.pid, signal.SIGINT)
-                    else:
-                        process.terminate()
+                    marker["cleanup"] = stop_owned_process_group(process)
+                except OSError as cleanup_error:
+                    marker["cleanup"] = {"error": type(cleanup_error).__name__, "state": "UNVERIFIED"}
+                marker_path.write_text(json.dumps(marker, indent=2) + "\n")
+            elif process.poll() is None:
+                try:
+                    process.terminate()
                 except ProcessLookupError:
                     pass
                 try:
                     process.wait(timeout=5)
                 except subprocess.TimeoutExpired:
                     try:
-                        if owned_group:
-                            os.killpg(process.pid, getattr(signal, "SIGKILL", signal.SIGTERM))
-                        else:
-                            process.kill()
+                        process.kill()
                     except ProcessLookupError:
                         pass
                     try:
@@ -176,8 +214,14 @@ def main():
     try:
         if sys.platform != "darwin":
             raise RuntimeError("R27 execution requires real macOS/Xcode")
+        interrupt_received = False
         def interrupted(signum, frame):
+            nonlocal interrupt_received
+            if interrupt_received:
+                return  # Already stopping owned work within the bounded grace.
+            interrupt_received = True
             raise KeyboardInterrupt(f"External signal {signum}; UI acceptance remains unverified")
+        signal.signal(signal.SIGINT, interrupted)
         signal.signal(signal.SIGTERM, interrupted)
         report["checkout_sha"] = capture(["git", "rev-parse", "HEAD"], "checkout.txt").strip()
         if report["checkout_sha"] != os.environ.get("EXPECTED_CHECKOUT_SHA"):

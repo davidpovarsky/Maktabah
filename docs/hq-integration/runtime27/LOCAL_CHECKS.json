@@ -1,7 +1,7 @@
 {
   "scope": "LOCAL_GUARD_GATE_ORACLE_CHECKS_ONLY_UI_COUNT_ZERO",
   "parser_unittest_cases": 10,
-  "release_gate_unittest_cases": 20,
+  "release_gate_unittest_cases": 21,
   "fixture_oracle_unittest_cases": 4,
   "all_final_results": "PASS",
   "actual_probe_run": 43678599137,
@@ -45,7 +45,10 @@
   "diagnostic_actual_hardware_delivery": "pressesBegan.other -> editingChanged -> pressesEnded.other; actual Hebrew edit visible; keyWindow/firstResponder true",
   "diagnostic_actual_spindump": "Sampled app main runloop idle; Runner test164 waits XCUIElement.value query; no proved app deadlock or Escape-route failure in this attempt",
   "verified_prior_reused_pass": 8,
-  "cancellation_supervision_fixture": "Externalinterrupt and stubbornchild subcases stop only createdgroup and preserveunverifiedmarker; noUIexecuted",
+  "cancellation_supervision_fixture": "IndependentPGIDcheck/escalation evenifleaderalreadyexited +createdgroup-only supervision subcases PASS. RealMac interruption ofthisnewedgefix NOT_RUN. Off-group simulatoragents not independentlyverified.",
   "ui_interrupted_run": 43704261180,
-  "ui_interrupted_result": "CANCELLED_FULL_REQUIRED_RESULTS_MISSING_FRESH_0_PASS_0_FAIL_1_UNVERIFIED; childEscapeassertionfailureobservedonlyafterparentcancel"
+  "ui_interrupted_result": "CANCELLED_FULL_REQUIRED_RESULTS_MISSING_FRESH_0_PASS_0_FAIL_1_UNVERIFIED; childEscapeassertionfailureobservedonlyafterparentcancel",
+  "current_frozen_controlled_run": 43708796409,
+  "current_frozen_controlled_sha": "5b46c400df45e3a6eb4fa552e0b0cb4a7e1ce018",
+  "current_run_cleanup_limit": "Frozen5b firstfix has knownleader-exit edge; no blanketcleanup guarantee. Laterbranchfix not retroactive; normalUIverdict unaffected."
 }

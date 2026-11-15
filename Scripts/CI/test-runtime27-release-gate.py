@@ -26,24 +26,42 @@ groups = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["executio
 class NativeChildCancellationTests(unittest.TestCase):
     def test_external_interrupt_stops_only_the_created_group_and_remains_unverified(self):
         function = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["run_logged"]
-        for stubborn in [False, True]:
-            with self.subTest(stubborn=stubborn), tempfile.TemporaryDirectory() as folder:
+        for leader_already_exited in [False, True]:
+            with self.subTest(leader_already_exited=leader_already_exited), tempfile.TemporaryDirectory() as folder:
                 process = Mock(pid=321, returncode=130)
-                process.poll.return_value = None
-                process.wait.side_effect = ([KeyboardInterrupt("external cancel"), subprocess.TimeoutExpired("child", 5), 0]
-                                            if stubborn else [KeyboardInterrupt("external cancel"), 0])
-                with patch.dict(function.__globals__, ROOT=Path(folder), OUT=Path(folder)), \
+                process.poll.return_value = 0 if leader_already_exited else None
+                process.wait.side_effect = KeyboardInterrupt("external cancel")
+                stop = Mock(return_value={"owned_pgid": 321, "group_state": "GONE_CHECKED"})
+                with patch.dict(function.__globals__, ROOT=Path(folder), OUT=Path(folder), stop_owned_process_group=stop), \
                      patch.object(sys, "platform", "darwin"), \
-                     patch.object(subprocess, "Popen", return_value=process) as launch, \
-                     patch.object(os, "killpg", create=True) as kill:
+                     patch.object(subprocess, "Popen", return_value=process) as launch:
                     with self.assertRaises(KeyboardInterrupt):
                         function(["python3", "owned-ui-child.py"], "child.log", 30)
                     self.assertTrue(launch.call_args.kwargs["start_new_session"])
-                    self.assertEqual(kill.call_args_list[0].args, (321, signal.SIGINT))
-                    self.assertTrue(all(call.args[0] == 321 for call in kill.call_args_list))
-                    self.assertEqual(len(kill.call_args_list), 2 if stubborn else 1)
+                    stop.assert_called_once_with(process)
                 marker = json.loads((Path(folder) / "child.log.interrupted.json").read_text())
                 self.assertEqual(marker["status"], "INTERRUPTED_CHILD_UNVERIFIED")
+                self.assertEqual(marker["cleanup"]["group_state"], "GONE_CHECKED")
+
+    def test_stubborn_group_member_is_stopped_even_after_leader_exits(self):
+        function = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["stop_owned_process_group"]
+        process = Mock(pid=321)
+        process.poll.return_value = 0  # Reproduces the exited-leader/live-child edge.
+        state = {"child_alive": True}
+        signals = []
+        def group_signal(pgid, kind):
+            self.assertEqual(pgid, 321)
+            if kind == 0:
+                if not state["child_alive"]:
+                    raise ProcessLookupError()
+            else:
+                signals.append(kind)
+                if kind == getattr(signal, "SIGKILL", signal.SIGTERM):
+                    state["child_alive"] = False
+        with patch.object(os, "killpg", side_effect=group_signal, create=True):
+            result = function(process, grace_seconds=0, kill_wait_seconds=0)
+        self.assertEqual(signals, [signal.SIGINT, getattr(signal, "SIGKILL", signal.SIGTERM)])
+        self.assertEqual(result["group_state"], "GONE_CHECKED")
 
 
 class ReleaseGateTests(unittest.TestCase):
