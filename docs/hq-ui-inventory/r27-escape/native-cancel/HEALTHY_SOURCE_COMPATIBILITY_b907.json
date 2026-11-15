@@ -1,0 +1,68 @@
+{
+  "baseline_run": 43688380348,
+  "baseline_checkout": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+  "candidate_source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+  "eight_actual_cases": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "body_unchanged": true,
+      "sha256": "04b9b17e95d69a77901adbcd713107f7860430dc2d868831a7567ba85d22fc04",
+      "class_scoped": true
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "body_unchanged": true,
+      "sha256": "e0e793a68bca0ddf2c64ddd2a2d251295969d1e26a3a8857705c6a44c25f7324",
+      "class_scoped": true
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "body_unchanged": true,
+      "sha256": "7aef5060fd5f421756dc747a264fa56f272416320a6db34192a76dd6d415cb16",
+      "class_scoped": true
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "body_unchanged": true,
+      "sha256": "79ade9c73de41375c8998ee4c086601f81a0d979ca7f88e7a5ff0a3009ab2ca5",
+      "class_scoped": true
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "body_unchanged": true,
+      "sha256": "68a0fd32b3ffe9b41ff852d8722a83bd5ae5faaf0d8c227cd170bec298010740",
+      "class_scoped": true
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "body_unchanged": true,
+      "sha256": "97d00e0e519c646366b6b39710f685902be74e2a4872f1f01c988ed0aafad354",
+      "class_scoped": true
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "body_unchanged": true,
+      "sha256": "7bb1247df21609fc643a75c0b094a999c9ae8ff42ebf5281dff44602dbd5bfca",
+      "class_scoped": true
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "body_unchanged": true,
+      "sha256": "fe4f38b29dbaf0005d716f38ff8db11643acd4b81f0eedc10d3ea154f5c9ec6a",
+      "class_scoped": true
+    }
+  ],
+  "R27_launch_override_unchanged": true,
+  "changed_production_files": [
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+  ],
+  "observer_reachability": "Existing observer view newly mounted on iPad under DEBUG. R27 launch override rejects recordViewport=true and supplies no CHAVRUSA_READER_VIEWPORT_REPORT; Coordinator.start returns at its first env guard, before timer/prefix/traversal/state work. No state observer runs for historical8.",
+  "palette_reachability": "These8 do not open palette; prior Q source-path analysis retained. Current2palette changes cannot execute on those paths.",
+  "shared_helper_refactor": "FaithfulReaderUIBase default options do not affect overridden R27 launchReader. Original bottomTOC body moved to shared helper; these8 do not call it.",
+  "tests_unchanged_source_blob": "bee9297b0ba4c9cef30d39ebb34a534d3941c933118eafb84c283cd224d33b3b",
+  "actual_runtime_compatibility": "PENDING_RUN_43733876827; no newly reused passes certified from source alone",
+  "fresh_native_ui_passes": 0,
+  "physical_ipad": "NOT_RUN"
+}

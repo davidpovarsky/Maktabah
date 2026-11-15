@@ -1,0 +1,35 @@
+{
+  "run": 43728847352,
+  "scope": "Retained xcresult synthesized-event request, not proof of final UIKit/HID delivery",
+  "events": [
+    {
+      "attachment": "03096E59-32B3-4DF5-AF10-A0F43ECDF66F",
+      "sha256": "a29f83ef4475fc03af080efed200805595300542bb7b18e4ffcf27a5739dada7",
+      "name": "Type '\u238b' key (XCUIKeyboardKeyEscape)",
+      "targetProcessID": 50011,
+      "event": {
+        "eventType": 9,
+        "keyCode": 0,
+        "keyModifierFlags": 0,
+        "mergeModifierFlagsWithCurrentFlags": false,
+        "keyPhase": 0,
+        "key": "\u001b"
+      }
+    },
+    {
+      "attachment": "3871B825-B6DE-42E7-877F-F3D570219059",
+      "sha256": "64f019b69f5f9e56a34ced8694fa35525a0bdf46460079a0cb579fbe744892dc",
+      "name": "Type 'a' key",
+      "targetProcessID": 50011,
+      "event": {
+        "eventType": 9,
+        "keyCode": 0,
+        "keyModifierFlags": 0,
+        "mergeModifierFlagsWithCurrentFlags": false,
+        "keyPhase": 0,
+        "key": "a"
+      }
+    }
+  ],
+  "conclusion": "XCTest retained intended unmodified ESC U+001B and calibration a to same PID50011, same event type9. No keycode/HID delivery inferred; only a is independently observed in field callbacks."
+}
