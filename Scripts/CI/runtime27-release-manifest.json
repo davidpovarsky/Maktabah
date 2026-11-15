@@ -10,6 +10,11 @@
       "device_size": "11",
       "data_profile": "miniTest10",
       "required_ui_cases": [
+        "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+        "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+        "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+        "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+        "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
         "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
         "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
         "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
@@ -38,11 +43,29 @@
         "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
         "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
         "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+        "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic",
+        "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch",
+        "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation",
+        "SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression",
+        "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+        "Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear",
+        "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+        "Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability",
+        "Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState",
+        "Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders",
+        "Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels",
+        "PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent",
+        "PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates",
         "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
         "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
         "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
         "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
-        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
+      ],
+      "required_oracle_cases": [
+        "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
       ]
     },
     {
@@ -50,6 +73,11 @@
       "device_size": "13",
       "data_profile": "miniTest10",
       "required_ui_cases": [
+        "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+        "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+        "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+        "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+        "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
         "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
         "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
         "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
@@ -78,6 +106,9 @@
         "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
         "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
         "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement"
+      ],
+      "required_oracle_cases": [
+        "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
       ]
     },
     {
@@ -112,5 +143,16 @@
       ]
     }
   ],
-  "scope_note": "Initial9cases/SDK/builds cannot satisfy this existing native full matrix plus real production-release requirement. Physical iPad remains separate."
+  "scope_note": "Preserves every declared case in the existing full native faithful matrix and production Release, plus Q real-bootstrap9. Separate prototype oracle cases never inflate Maktabah UI counts. Initial9ispartial; physical iPad remains separate.",
+  "prepared_source_requirements": [
+    {
+      "path": "Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift",
+      "sha256": "1fe3f1f5f0f2d949914524da7695fdae201c0594a24149f2f80dbd6ba00e6706",
+      "required_cases": [
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
+      ],
+      "state": "PREPARED_NOT_RUN; needs Q-selected target registration and independently derived fixture category paths before execution"
+    }
+  ]
 }

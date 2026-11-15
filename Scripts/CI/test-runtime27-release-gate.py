@@ -65,6 +65,16 @@ class ReleaseGateTests(unittest.TestCase):
     def test_complete_positive_fixture(self):
         self.assertEqual(self.check()["required_ui_passed"], 1)
 
+    def test_prototype_oracle_never_inflates_native_ui_count(self):
+        self.required["required_oracle_cases"] = ["Prototype/testTap"]
+        self.summary.update(totalTestCount=2, passedTests=2)
+        self.tree["testNodes"][0]["children"].append({"nodeType": "Test Suite", "name": "Prototype", "children": [
+            {"nodeType": "Test Case", "name": "testTap()", "nodeIdentifier": "Prototype/testTap()", "result": "Passed"}]})
+        self.log = self.log.replace("Executed 1 test", "Executed 2 tests") + "\nTest Case '-[Prototype testTap]' passed (1 second)"
+        result = self.check()
+        self.assertEqual(result["required_ui_passed"], 1)
+        self.assertEqual(result["separate_oracle_executed"], 1)
+
     def test_reject_stale_failed_partial_and_missing_evidence(self):
         variants = [
             ("run", "head_sha", "b" * 40), ("run", "conclusion", "failure"), ("run", "status", "in_progress"),

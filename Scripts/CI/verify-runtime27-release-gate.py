@@ -67,6 +67,7 @@ def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, n
     require(len(configs) == len(required_configs) and {row.get("id") for row in configs} == required_configs.keys(),
             "Missing/duplicate/partial device configurations")
     passed = 0
+    oracle_executed = 0
     for actual in configs:
         required = required_configs[actual["id"]]
         require(actual.get("status") == "EXECUTED_PASS" and actual.get("device_size") == required["device_size"], "Device acceptance incomplete")
@@ -84,8 +85,11 @@ def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, n
         require(len(devices) == 1 and devices[0].get("deviceId") == actual["device_udid"]
                 and devices[0].get("osVersion") == actual["os_version"], "xcresult actual device/OS does not match configuration")
         log = read(root, actual["log_path"]).read_text()
-        checked = GUARD["verify"](summary, tree, log, required["required_ui_cases"], len(required["required_ui_cases"]))
+        oracles = required.get("required_oracle_cases", [])
+        checked = GUARD["verify"](summary, tree, log, required["required_ui_cases"], len(required["required_ui_cases"]),
+                                  min_total_tests=len(required["required_ui_cases"]) + len(oracles), required_executed_cases=oracles)
         passed += checked["required_ui_passed"]
+        oracle_executed += len(oracles)
         data = json.loads(read(root, actual["data_evidence_path"]).read_text())
         require(data.get("passed") is True and data.get("profileID") == required["data_profile"]
                 and data.get("shaMatched") is True and data.get("expectedSHA256")
@@ -97,6 +101,7 @@ def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, n
                     "Production UI gate lacks full real corpus evidence")
     return {"status": "RELEASE_UI_GATE_PASS", "checkout_sha": expected_sha, "tested_checkout_sha": tested_sha,
             "bounded_reuse_proof": reuse_proof, "required_ui_passed": passed,
+            "separate_oracle_executed": oracle_executed,
             "configurations": sorted(required_configs), "release_manifest_sha256": manifest_sha,
             "database_effect_claim": "NONE; actual data report and real UI assertions checked separately"}
 
