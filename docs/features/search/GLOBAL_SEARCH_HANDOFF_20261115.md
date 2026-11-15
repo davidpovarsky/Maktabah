@@ -1,5 +1,15 @@
 # Global Search native presentation — source candidate
 
+## 2026-11-15 — actual Apple Swift 6 action-key defect correction
+
+Manager run `43744659996`, published checkout `fca92176d48017ee0cd22831a1ae31f40958eed9` / app pin `c93b5a9d33fa09a8054f77eb280ce94472b68841`, actually failed compilation with Xcode27.1/Swift6.4/SDK27.1. `GlobalSearchPresentationCoordinator.swift:5:16` declared a static environment default with non-Sendable `(() -> Void)?`. All18 UI cases were NOT_RUN; there is no xcresult, screenshot or native PASS. Exact retained evidence is in HQ `ci-monitor/davidpovarsky__Maktabah/43744659996/artifacts/hq-stage2/simulator-build-for-testing.log` at lines66810/66814 and `TERMINAL_EVIDENCE_REVIEW.json`.
+
+The correction on S's branch changes **only two production type annotations**: both key default and EnvironmentValues accessor now use `(@MainActor @Sendable () -> Void)?`. The default remains nil, and the existing native header invocation/iPad action body and all Search state are unchanged. The action is safe to transfer and must execute on MainActor. No unchecked conformance, unsafe isolation escape, concurrency setting, state model, project or workflow edit is introduced. Rollback this correction by reverting its commit only; the frozen manager candidate remains untouched by S.
+
+Focused `tools/global-search-action-swift6-tests.py` compiles the exact production declarations/coordinator and actual copied iPad closure body with `-swift-version 6 -strict-concurrency=complete -warnings-as-errors`. Only SwiftUI's EnvironmentKey/EnvironmentValues and split-visibility interfaces are explicit portable stand-ins. Original `da186f45` declarations reproduce the concurrency error (expected RED); corrected declarations compile, six runtime assertions pass for absent/default action, actor-hop transfer, regular native sidebar and compact chooser routing, and a missing MainActor hop is independently rejected. This is real Swift language checking, **not Apple framework typechecking or UI acceptance**. Raw RED/green/negative diagnostics and `RESULT.json` are under `selftest-20261115/swift6-action/`. Original42+18 focused regressions are retained in `retained-presentation-paging.log`.
+
+Authoritative semantics checked: [Apple EnvironmentKey.defaultValue](https://developer.apple.com/documentation/swiftui/environmentkey/defaultvalue) and [Swift Sendable](https://docs.swift.org/latest/documentation/swift/sendable/). The installed Apple compiler error is the actual platform evidence; the corrected candidate still requires manager-coordinated SDK compilation and independent runtime acceptance. No new CI, retry, watcher or cancellation was started by S.
+
 Task `1220546245946205`; S implementation in `codex/otzaria-global-search-ui-20261115`, base `13e40d1daa4a53799c94cd8ed5170f1343b9b1e8`. Implementation is ready for manager integration and real Apple compilation/acceptance. **Task remains OPEN. No native build, simulator screenshot, xcresult or physical-device PASS is claimed.** Canonical full specification is byte-preserved, SHA256 `88d91318f0436aa98221acb688fa5245c466b53d3831149a87a8c393824bb100`.
 
 ## Behavior and boundaries

@@ -1,0 +1,4 @@
+RED confirmed: original exact key/value rejected by Swift6 concurrency checking
+PASS: 6 Swift6 action/key assertions; exact production declarations/iPad action, explicit SwiftUI stand-ins; native NOT_RUN
+PASS: missing MainActor hop rejected; no unsafe Sendable/nonisolated escape
+production-action-source-sha256=a2f4e8bb914d14af1f253c8fe87731095ebf3717251f8eda589efdb43c7f39c7

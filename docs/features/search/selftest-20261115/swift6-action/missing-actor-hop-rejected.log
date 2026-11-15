@@ -1,0 +1,8 @@
+C:\Users\DAVID\AppData\Local\Temp\global-search-action-swift6-benwhz1r\missing-actor-hop.swift:66:31: error: expression is 'async' but is not marked with 'await'
+64 |         environment.globalSearchBookChooser = regular.nativeBookAction
+65 |         let sendableRegularAction = environment.globalSearchBookChooser
+66 |         await Task.detached { sendableRegularAction?() }.value
+   |                               |- error: expression is 'async' but is not marked with 'await'
+   |                               `- note: calls function of type '@MainActor @Sendable () -> Void' from outside of its actor context are implicitly asynchronous
+67 |         check(coordinator.columnVisibility == .all, "transferred regular action hops to MainActor and reveals Search sidebar")
+68 |         check(!manager.unifiedSearchSession.showsBookFilterSheet, "regular action does not request compact chooser")

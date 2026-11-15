@@ -2,11 +2,11 @@ import SwiftUI
 
 /// Presentation only. Query, selected books, options and history stay in their existing owners.
 private struct GlobalSearchBookChooserKey: EnvironmentKey {
-    static let defaultValue: (() -> Void)? = nil
+    static let defaultValue: (@MainActor @Sendable () -> Void)? = nil
 }
 
 extension EnvironmentValues {
-    var globalSearchBookChooser: (() -> Void)? {
+    var globalSearchBookChooser: (@MainActor @Sendable () -> Void)? {
         get { self[GlobalSearchBookChooserKey.self] }
         set { self[GlobalSearchBookChooserKey.self] = newValue }
     }

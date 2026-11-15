@@ -24,7 +24,7 @@
     },
     {
       "path": "Source/ChavrusaText/Search/UI/GlobalSearchPresentationCoordinator.swift",
-      "sha256": "5c1f6edd0df79c34be4c485aa997b7344b77881ae14d33a35aae1660de65ac83",
+      "sha256": "a2f4e8bb914d14af1f253c8fe87731095ebf3717251f8eda589efdb43c7f39c7",
       "target": "Maktabah-iOS (same Sources phase as UnifiedSearchSessionController.swift)"
     },
     {

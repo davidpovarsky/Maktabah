@@ -1,0 +1,70 @@
+C:\Users\DAVID\AppData\Local\Temp\global-search-action-swift6-benwhz1r\baseline-red.swift:32:16: error: static property 'defaultValue' is not concurrency-safe because non-'Sendable' type '(() -> Void)?' may have shared mutable state [#MutableGlobalVariable]
+
+30 | /// Presentation only. Query, selected books, options and history stay in their existing owners.
+
+31 | private struct GlobalSearchBookChooserKey: EnvironmentKey {
+
+32 |     static let defaultValue: (() -> Void)? = nil
+
+   |                `- error: static property 'defaultValue' is not concurrency-safe because non-'Sendable' type '(() -> Void)?' may have shared mutable state [#MutableGlobalVariable]
+
+33 | }
+
+34 | 
+
+
+
+<unknown>:0: note: a function type must be marked '@Sendable' to conform to 'Sendable'
+
+C:\Users\DAVID\AppData\Local\Temp\global-search-action-swift6-benwhz1r\baseline-red.swift:32:16: note: add '@MainActor' to make static property 'defaultValue' part of global actor 'MainActor'
+
+30 | /// Presentation only. Query, selected books, options and history stay in their existing owners.
+
+31 | private struct GlobalSearchBookChooserKey: EnvironmentKey {
+
+32 |     static let defaultValue: (() -> Void)? = nil
+
+   |                |- note: add '@MainActor' to make static property 'defaultValue' part of global actor 'MainActor'
+
+   |                `- note: disable concurrency-safety checks if accesses are protected by an external synchronization mechanism
+
+33 | }
+
+34 | 
+
+
+
+C:\Users\DAVID\AppData\Local\Temp\global-search-action-swift6-benwhz1r\baseline-red.swift:66:31: error: no 'async' operations occur within 'await' expression
+
+64 |         environment.globalSearchBookChooser = regular.nativeBookAction
+
+65 |         let sendableRegularAction = environment.globalSearchBookChooser
+
+66 |         await Task.detached { await sendableRegularAction?() }.value
+
+   |                               `- error: no 'async' operations occur within 'await' expression
+
+67 |         check(coordinator.columnVisibility == .all, "transferred regular action hops to MainActor and reveals Search sidebar")
+
+68 |         check(!manager.unifiedSearchSession.showsBookFilterSheet, "regular action does not request compact chooser")
+
+
+
+C:\Users\DAVID\AppData\Local\Temp\global-search-action-swift6-benwhz1r\baseline-red.swift:73:31: error: no 'async' operations occur within 'await' expression
+
+71 |         environment.globalSearchBookChooser = compact.nativeBookAction
+
+72 |         let sendableCompactAction = environment.globalSearchBookChooser
+
+73 |         await Task.detached { await sendableCompactAction?() }.value
+
+   |                               `- error: no 'async' operations occur within 'await' expression
+
+74 |         check(manager.unifiedSearchSession.showsBookFilterSheet, "transferred compact action opens existing native chooser")
+
+75 |         check(coordinator.columnVisibility == .detailOnly, "compact action preserves split visibility")
+
+
+
+[#MutableGlobalVariable]: <https://docs.swift.org/compiler/documentation/diagnostics/mutable-global-variable>
+

@@ -1,0 +1,18 @@
+{
+  "authority": "Windows Swift6.3.3 language/concurrency compiler; explicit SwiftUI SDK stand-ins",
+  "flags": [
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-warnings-as-errors"
+  ],
+  "productionSourceSHA256": "a2f4e8bb914d14af1f253c8fe87731095ebf3717251f8eda589efdb43c7f39c7",
+  "iPadActionBodySHA256": "ecac18c3de3b0b6c6e02b6780a015e1170200380e8860435d42fc69dff8276cb",
+  "baseline": "da186f456056fc5b9409de28fc7c989a2911cd1b",
+  "baselineExpectedRedExit": 1,
+  "candidateCompileExit": 0,
+  "candidateRunExit": 0,
+  "actionAssertions": 6,
+  "missingActorHopExpectedRejectionExit": 1,
+  "appleSDKTypecheck": "NOT_RUN for corrected candidate; prior frozen candidate failed actual Swift6 SDK compilation"
+}
