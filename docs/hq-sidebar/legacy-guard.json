@@ -1,0 +1,26 @@
+{
+  "ref": "d77045feb24f1dc025e0554b2a2bf252a3bf5e14",
+  "inventory_counts": {
+    "BACKEND_RETAINED": 660,
+    "EXACT_9401_BLOB": 80,
+    "INACTIVE_RETAINED_NEW_UI": 26,
+    "DOWNSTREAM_INTEGRATION": 3,
+    "ACTIVE_PROFILE_UI": 2,
+    "DECLARED_EXCEPTION": 9
+  },
+  "gate": "FAIL_CLOSED",
+  "failures": [
+    "FINAL_BLOB_DRIFT:Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+    "FINAL_BLOB_DRIFT:Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+    "FINAL_BLOB_DRIFT:Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+    "FINAL_BLOB_DRIFT:Source/UI/iOS/Views/iPadLayout.swift",
+    "EXCEPTION_DIFF_DRIFT:Source/UI/iOS/Views/iPadLayout.swift",
+    "EXACT_BLOB_REQUIRED:Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+    "ONE_ACTIVE_SIDEBAR_PAGE_REQUIRED",
+    "EXACT_NATIVE_IPAD_HUNK_REQUIRED",
+    "NATIVE_PAGER_REVIEWED_SOURCE_DRIFT",
+    "RETAINED_11001_CONTRACT_DRIFT:Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+    "RETAINED_11001_CONTRACT_DRIFT:Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"
+  ],
+  "device_acceptance": "OWNER_DEVICE_ACCEPTANCE_PENDING"
+}

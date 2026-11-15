@@ -35,3 +35,14 @@ The existing `FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKi
 | Physical iPad runtime/visual evidence at final SHA | All affected scenarios with OS/model/screenshots | NOT_RUN — required before closure |
 
 Status: implementation prepared for QA; both tasks remain open. No full build, project CI, expensive compile, simulator, TestFlight or user-data operation executed.
+
+## Historical exact-source guard — EXECUTED_FAIL, separate evidence
+
+After the implementation commit, ran the unchanged read-only command:
+`py -3 Scripts/CI/verify-9401-exact-source.py --ref d77045feb24f1dc025e0554b2a2bf252a3bf5e14`
+
+Actual exit **1**, `gate: FAIL_CLOSED`; full output `legacy-guard.json`. It reports 11 failures: four FINAL_BLOB_DRIFT entries (the four edited source files), iPad EXCEPTION_DIFF_DRIFT, TOC EXACT_BLOB_REQUIRED, ONE_ACTIVE_SIDEBAR_PAGE_REQUIRED, EXACT_NATIVE_IPAD_HUNK_REQUIRED, NATIVE_PAGER_REVIEWED_SOURCE_DRIFT, and retained-11001 contract drift for TOC/coordinator. This is a real failing historical gate, not a PASS. Its manifest, approvals, constants and script were not regenerated or edited.
+
+The guard still pins reviewed iPad/pager blobs and exact TOC structure from the previous contract. Its single-conditional-page check conflicts with the stable native page identities needed by the current authorized repair. The 15 Nov owner directive allows the documented necessary hooks; no approval was invented and no guard bypass was installed. The current dot-strip custom gesture remains restricted to that strip; native body paging uses TabView. The old guard does not validate native pager direction, toolbar arbitration, state retention or physical-iPad behavior. Independent Q must reconcile the changed source against the new instruction and runtime evidence before acceptance. Do not use the 27 portable PASS assertions to cancel this failing gate or to authorize a release.
+
+Implementation source SHA: `d77045feb24f1dc025e0554b2a2bf252a3bf5e14`. A subsequent documentation-only commit adds this guard output/annotation; app source is unchanged.
