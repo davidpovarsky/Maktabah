@@ -19,6 +19,7 @@ struct iOSTOCView: View {
     @State private var searchText = ""
     @State private var expandedPaths: Set<ObjectIdentifier> = []
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.readerSidebarOwnsToggle) private var sidebarOwnsToggle
 
     init(
         tocViewModel: BookTOCViewModel,
@@ -148,19 +149,21 @@ struct iOSTOCView: View {
                         .searchable(text: $searchText, prompt: String(localized: "Search Contents"))
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                Button {
-                                    if let onClose {
-                                        onClose()
-                                    } else {
-                                        dismiss()
+                            if !sidebarOwnsToggle {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button {
+                                        if let onClose {
+                                            onClose()
+                                        } else {
+                                            dismiss()
+                                        }
+                                    } label: {
+                                        ContentsToggleIcon(isOpen: true)
                                     }
-                                } label: {
-                                    ContentsToggleIcon(isOpen: true)
+                                    .accessibilityLabel(String(localized: "Close Table of Contents"))
+                                    .accessibilityIdentifier("toc-close")
+                                    .help(String(localized: "Close Table of Contents"))
                                 }
-                                .accessibilityLabel(String(localized: "Close Table of Contents"))
-                                .accessibilityIdentifier("toc-close")
-                                .help(String(localized: "Close Table of Contents"))
                             }
                             ToolbarItem(placement: .principal) {
                                 VStack(spacing: 1) {

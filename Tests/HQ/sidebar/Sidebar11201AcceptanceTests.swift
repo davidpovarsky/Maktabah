@@ -1,0 +1,200 @@
+import XCTest
+
+/// Prepared, NOT_RUN. Include alongside FaithfulReaderUIAcceptanceTests.swift
+/// in the existing UI-test target only for an explicitly authorized runtime run.
+/// Requires its isolated miniTest10 fixture and FAITHFUL_VIEWPORT_DIRECTORY.
+final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
+    @MainActor
+    func testSidebarBodyPagingRTL() throws {
+        try exerciseBodyPaging(language: "he", isRTL: true)
+    }
+
+    @MainActor
+    func testSidebarBodyPagingLTR() throws {
+        try exerciseBodyPaging(language: "en", isRTL: false)
+    }
+
+    @MainActor
+    private func exerciseBodyPaging(language: String, isRTL: Bool) throws {
+        guard isPad else { throw XCTSkip("iPad sidebar acceptance") }
+        let orientation = XCUIDevice.shared.orientation
+        defer { XCUIDevice.shared.orientation = orientation }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(language: language, recordViewport: true)
+        assertReaderHasText()
+
+        let libraryDot = app.buttons["reader-sidebar-page-0"]
+        let contentsDot = app.buttons["reader-sidebar-page-1"]
+        if !libraryDot.exists || libraryDot.frame.isEmpty || !libraryDot.frame.intersects(app.frame) {
+            tap(readerSidebarToggle())
+        }
+        tap(libraryDot)
+        waitSelected(libraryDot)
+
+        let pager = app.descendants(matching: .any)["reader-sidebar-pager"].firstMatch
+        XCTAssertTrue(pager.waitForExistence(timeout: 15))
+        let library = app.otherElements["library-column"].firstMatch
+        // Paths are exported from the pinned miniTest10 fixture's real category
+        // hierarchy. Fail closed when absent, never guess ancestor labels.
+        let matchPath = try fixturePath("HQ_SIDEBAR_MATCH_PATH", endingIn: "מסילת ישרים")
+        let excludedPath = try fixturePath("HQ_SIDEBAR_EXCLUDED_PATH", endingIn: "בראשית")
+        try revealBook(at: matchPath, in: library)
+        try revealBook(at: excludedPath, in: library)
+        let query = "מסילת"
+        let search = try visibleSidebarSearch(in: pager)
+        tap(search)
+        let originalCatalog = catalogRows(in: library)
+        XCTAssertFalse(originalCatalog.isEmpty)
+        // A disconnected field cannot pass this empty-result oracle, even if
+        // it faithfully echoes and preserves every character typed into it.
+        replaceQuery(in: search, with: "__HQ_NO_CATALOG_MATCH_151126__")
+        waitForCatalog { library.collectionViews.cells.count == 0 }
+        replaceQuery(in: search, with: query)
+        waitForCatalog { !self.bookLabel(excludedPath.last!, in: library).exists }
+        try revealBook(at: matchPath, in: library)
+        XCTAssertTrue(bookLabel(matchPath.last!, in: library).exists)
+        XCTAssertFalse(bookLabel(excludedPath.last!, in: library).exists)
+        XCTAssertEqual(search.value as? String, query)
+        let librarySearchPrompt = search.placeholderValue
+        // Dismiss the keyboard without clearing the canonical query.
+        if app.keyboards.firstMatch.exists {
+            let dismiss = app.buttons.matching(NSPredicate(format:
+                "label IN %@", ["Hide keyboard", "הסתרת המקלדת", "הסתר מקלדת"]))
+            if dismiss.firstMatch.exists { tap(dismiss.firstMatch) }
+        }
+
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        let original = try viewport()
+        for _ in 0..<10 { // Twenty body transitions per language.
+            // Fixed physical direction, center of the BODY. Do not retry in
+            // the opposite direction or touch the bottom page-control strip.
+            dragBody(pager, towardContents: true, isRTL: isRTL)
+            waitSelected(contentsDot)
+            XCTAssertFalse(libraryDot.isSelected)
+            XCTAssertFalse(app.buttons["toc-close"].exists,
+                           "The original split owns the sidebar toggle")
+            let toc = app.otherElements["toc-column"].firstMatch
+            XCTAssertTrue(toc.waitForExistence(timeout: 15))
+            XCTAssertTrue(toc.staticTexts[language == "he" ? "תוכן עניינים" : "Table of Contents"].exists)
+            let tocSearch = try visibleSidebarSearch(in: pager)
+            XCTAssertEqual(tocSearch.placeholderValue,
+                           language == "he" ? "חיפוש בתוכן" : "Search Contents")
+            XCTAssertNotEqual(tocSearch.placeholderValue, librarySearchPrompt,
+                              "TOC owns its search; Library search must not leak")
+            XCTAssertNotEqual(tocSearch.value as? String, query)
+            _ = readerSidebarToggle() // Asserts exactly one native/custom owner.
+            dragBody(pager, towardContents: false, isRTL: isRTL)
+            waitSelected(libraryDot)
+            XCTAssertEqual(try visibleSidebarSearch(in: pager).value as? String, query)
+            XCTAssertTrue(bookLabel(matchPath.last!, in: library).exists)
+            XCTAssertFalse(bookLabel(excludedPath.last!, in: library).exists)
+            XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+            XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+            let actual = try viewport()
+            XCTAssertEqual(actual.object, original.object, "Reader must not remount")
+            XCTAssertEqual(actual.source, original.source)
+            XCTAssertEqual(actual.offset, original.offset, accuracy: 1)
+        }
+
+        replaceQuery(in: try visibleSidebarSearch(in: pager), with: "")
+        waitForCatalog { self.catalogRows(in: library) == originalCatalog }
+        try revealBook(at: matchPath, in: library)
+        try revealBook(at: excludedPath, in: library)
+        XCTAssertTrue(bookLabel(matchPath.last!, in: library).exists)
+        XCTAssertTrue(bookLabel(excludedPath.last!, in: library).exists,
+                      "Clearing the canonical query restores the excluded book")
+
+        // Twenty dot transitions are covered here too, independently of the
+        // historical suite that permits opposite-direction swipe retries.
+        for _ in 0..<10 {
+            tap(contentsDot)
+            waitSelected(contentsDot)
+            tap(libraryDot)
+            waitSelected(libraryDot)
+            XCTAssertEqual(try viewport().object, original.object)
+        }
+
+        // A vertical body scroll must not be interpreted as page navigation.
+        pager.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65))
+            .press(forDuration: 0.05, thenDragTo:
+                pager.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.35)))
+        XCTAssertTrue(libraryDot.isSelected)
+        retainNativeEvidence("sidebar-11201-\(language)-body-paging")
+    }
+
+    @MainActor
+    private func fixturePath(_ key: String, endingIn title: String) throws -> [String] {
+        let json = try XCTUnwrap(ProcessInfo.processInfo.environment[key],
+                                "Supply the actual miniTest10 category/book path as JSON")
+        let path = try JSONDecoder().decode([String].self, from: Data(json.utf8))
+        let leaf = try XCTUnwrap(path.last)
+        XCTAssertEqual(leaf, title, "Expected seeded fixture book, not arbitrary UI text")
+        XCTAssertTrue(path.allSatisfy { !$0.isEmpty })
+        return path
+    }
+
+    @MainActor
+    private func bookLabel(_ title: String, in library: XCUIElement) -> XCUIElement {
+        library.collectionViews.cells.staticTexts[title].firstMatch
+    }
+
+    @MainActor
+    private func revealBook(at path: [String], in library: XCUIElement) throws {
+        for (index, title) in path.enumerated() {
+            let label = bookLabel(title, in: library)
+            XCTAssertTrue(label.waitForExistence(timeout: 15), "Fixture path is missing: \(title)")
+            if index + 1 < path.count && !bookLabel(path[index + 1], in: library).exists {
+                tap(label) // Category ancestor only; never open the leaf book.
+            }
+        }
+    }
+
+    @MainActor
+    private func catalogRows(in library: XCUIElement) -> [String] {
+        library.collectionViews.cells.staticTexts.allElementsBoundByIndex.map { $0.label }
+    }
+
+    @MainActor
+    private func replaceQuery(in field: XCUIElement, with query: String) {
+        tap(field)
+        let old = field.value as? String ?? ""
+        // The last entered query leaves the caret at the end. Empty fields
+        // expose their placeholder as value, which must not be deleted.
+        if !old.isEmpty && old != field.placeholderValue {
+            field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count))
+        }
+        if !query.isEmpty { field.typeText(query) }
+    }
+
+    @MainActor
+    private func waitForCatalog(_ condition: @escaping @MainActor () -> Bool) {
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in MainActor.assumeIsolated { condition() } }, object: nil
+        )], timeout: 15), .completed)
+    }
+
+    @MainActor
+    private func waitSelected(_ dot: XCUIElement) {
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "isSelected == true"), object: dot
+        )], timeout: 15), .completed)
+    }
+
+    @MainActor
+    private func visibleSidebarSearch(in pager: XCUIElement) throws -> XCUIElement {
+        let fields = app.searchFields.allElementsBoundByIndex.filter {
+            !$0.frame.isEmpty && pager.frame.contains($0.frame) && $0.isHittable
+        }
+        XCTAssertEqual(fields.count, 1, "One visible native Library search field")
+        return try XCTUnwrap(fields.first)
+    }
+
+    @MainActor
+    private func dragBody(_ pager: XCUIElement, towardContents: Bool, isRTL: Bool) {
+        let movesRight = towardContents == isRTL
+        pager.coordinate(withNormalizedOffset: CGVector(dx: movesRight ? 0.25 : 0.75, dy: 0.5))
+            .press(forDuration: 0.05, thenDragTo:
+                pager.coordinate(withNormalizedOffset: CGVector(dx: movesRight ? 0.75 : 0.25, dy: 0.5)))
+    }
+}

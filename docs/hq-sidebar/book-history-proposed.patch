@@ -1,0 +1,29 @@
+--- a/Source/Features/Search/iOS/SearchComponents.swift
++++ b/Source/Features/Search/iOS/SearchComponents.swift
+@@ -7,6 +7,7 @@
+     @Environment(\.dismissSearch) var dismissSearch
+     var session: UnifiedSearchSessionController? = nil
+     @Bindable var viewModel: SearchViewModel
++    var showsGlobalHistory = true
+     @State var inputBarHeight: CGFloat = 0
+     @Binding var isVisible: Bool?
+     @State private var showingHelp: Bool = false
+@@ -30,7 +31,7 @@
+         Group {
+             if shouldShow {
+                 VStack(spacing: 0) {
+-                    if !viewModel.searchHistory.isEmpty {
++                    if showsGlobalHistory && !viewModel.searchHistory.isEmpty {
+                         historyHeader
+                         historyList
+                     }
+--- a/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift
++++ b/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift
+@@ -68,6 +68,7 @@
+             .overlay(alignment: .bottom) {
+                 SearchHistoryOverlay(
+                     viewModel: viewModel,
++                    showsGlobalHistory: false,
+                     isVisible: .constant(nil)
+                 )
+             }

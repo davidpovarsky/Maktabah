@@ -1,0 +1,16 @@
+{
+  "base": "27fbf51b181a8241befce226baec93296c4c33a4",
+  "scope_audit": [
+    {
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "unrelated_source_retained": "PASS"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "unrelated_source_retained": "PASS"
+    }
+  ],
+  "swift_frontend_parse": "PASS: two source files and prepared UI-test file",
+  "behavioral_runtime": "NOT_RUN",
+  "apple_sdk_typecheck": "NOT_RUN"
+}
