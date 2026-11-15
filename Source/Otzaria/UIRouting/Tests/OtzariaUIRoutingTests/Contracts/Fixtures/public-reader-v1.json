@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "requestId": "00000000-0000-4000-8000-000000000042",
+  "destination": "fixture.reader",
+  "backend": "otzaria",
+  "content": {
+    "sectionLocator": {
+      "backend": "otzaria",
+      "workKey": "book:103",
+      "position": {
+        "kind": "legacyLine",
+        "value": 42
+      }
+    },
+    "presentationMode": "sameTab"
+  },
+  "presentation": "currentTab"
+}

@@ -1,0 +1,81 @@
+Building for debugging...
+[0/18] Write swift-version-2807070033DA82CF.txt
+[1/18] Copying Fixtures
+[2/18] Copying Resources
+[3/18] Write sources
+[5/18] Copying Resources
+[6/18] Write sources
+[8/19] Emitting module OtzariaActionCore
+[9/33] Compiling OtzariaActionCore ActionJSON.swift
+[10/33] Compiling OtzariaActionCore ActionReferences.swift
+[11/33] Compiling OtzariaActionCore ActionRequest.swift
+[12/33] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[13/33] Compiling OtzariaActionCore ActionSearch.swift
+[14/33] Compiling OtzariaActionCore ActionWireCodec.swift
+[15/33] Compiling OtzariaActionCore ActionDeadline.swift
+[16/33] Compiling OtzariaActionCore ActionExecutor.swift
+[17/33] Compiling OtzariaActionCore ActionExecutionContext.swift
+[18/33] Compiling OtzariaActionCore ActionPolicy.swift
+[19/33] Compiling OtzariaActionCore ActionValidation.swift
+[20/33] Compiling OtzariaActionCore ActionPorts.swift
+[21/33] Compiling OtzariaActionCore ActionRegistry.swift
+[22/33] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[23/34] Wrapping AST for OtzariaActionCore for debugging
+[25/35] Emitting module OtzariaUIRouting
+[26/39] Compiling OtzariaUIRouting RouteSpec.swift
+[27/39] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[28/39] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[29/39] Compiling OtzariaUIRouting resource_bundle_accessor.swift
+[30/40] Wrapping AST for OtzariaUIRouting for debugging
+[32/41] Emitting module OtzariaUIRoutingTests
+[33/43] Compiling OtzariaUIRoutingTests GoldenAPITests.swift
+[34/43] Compiling OtzariaUIRoutingTests resource_bundle_accessor.swift
+[35/44] Wrapping AST for OtzariaUIRoutingTests for debugging
+[36/44] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[37/44] Write sources
+[39/45] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[40/47] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[41/47] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[42/48] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[43/48] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[44/48] Write sources
+[46/49] Emitting module OtzariaUIRoutingPackageTests
+[47/50] Compiling OtzariaUIRoutingPackageTests runner.swift
+[48/51] Wrapping AST for OtzariaUIRoutingPackageTests for debugging
+[49/51] Write Objects.LinkFileList
+[50/51] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (305.69s)
+Test Suite 'All tests' started at 2026-11-15 04:41:17.710
+
+Test Suite 'debug.xctest' started at 2026-11-15 04:41:17.741
+
+Test Suite 'GoldenAPITests' started at 2026-11-15 04:41:17.741
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' started at 2026-11-15 04:41:17.741
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' passed (0.048 seconds)
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' started at 2026-11-15 04:41:17.789
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' passed (0.256 seconds)
+
+Test Suite 'GoldenAPITests' passed at 2026-11-15 04:41:18.045
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.304 (0.304) seconds
+
+Test Suite 'debug.xctest' passed at 2026-11-15 04:41:18.045
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.304 (0.304) seconds
+
+Test Suite 'All tests' passed at 2026-11-15 04:41:18.046
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.304 (0.304) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.002 seconds.
+

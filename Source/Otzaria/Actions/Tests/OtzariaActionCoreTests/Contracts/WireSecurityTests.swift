@@ -4,6 +4,16 @@ import XCTest
 
 final class WireSecurityTests: XCTestCase {
     let prefix = #"{"apiVersion":1,"requestId":"00000000-0000-4000-8000-000000000001","action":"system.listBackends","arguments":{}}"#
+    func testBoundedGenericObjectIngressReusesExactParser() throws {
+        let object = try ActionWireCodec.decodeObject(Data(#"{"version":1,"revision":18446744073709551615,"fraction":1.00000000000000000000000000000000001,"text":"שלום"}"#.utf8))
+        XCTAssertEqual(object["revision"], .unsigned(UInt64.max))
+        guard case .number = object["fraction"] else { return XCTFail("fraction token provenance lost") }
+        XCTAssertEqual(object["text"], .string("שלום"))
+        for invalid in [#"{"x":1,"\u0078":2}"#, "[]", "true", #"{"revision":1e-999}"#] {
+            XCTAssertThrowsError(try ActionWireCodec.decodeObject(Data(invalid.utf8)))
+        }
+        XCTAssertThrowsError(try ActionWireCodec.decodeObject(Data(repeating: 32, count: 65_537)))
+    }
     func testDuplicateDecodedKeysRejected() throws {
         for json in [
             prefix.replacingOccurrences(of: #""action":"system.listBackends""#, with: #""action":"system.listBackends","action":"notes.saveDraft""#),

@@ -2,10 +2,17 @@ import Foundation
 
 public enum ActionWireCodec {
     public static let maxRequestBytes = 65_536
-    public static func decodeRequest(_ data: Data) throws -> ActionRequest {
+    /// Shared untrusted object ingress for sibling versioned contracts. This
+    /// provides grammar/duplicate/exact-number/resource checks, not authority or
+    /// application schema validation. Callers validate this same tree afterward.
+    public static func decodeObject(_ data: Data) throws -> ActionObject {
         guard data.count <= maxRequestBytes else { throw ActionContractError.inputTooLarge }
         var parser = StrictActionJSONParser(bytes: Array(data))
-        let value = try parser.parse()
+        guard let object = try parser.parse().object else { throw ActionContractError.invalid("$") }
+        return object
+    }
+    public static func decodeRequest(_ data: Data) throws -> ActionRequest {
+        let value = ActionJSON.object(try decodeObject(data))
         try ActionSchemaValidator.validate(value, schema: ActionRegistry.schema("action-request.v1.schema.json"))
         // Preserve arguments from this EXACT tree. Re-encoding an approximate
         // .number(1) and decoding again could erase its fractional-token origin
