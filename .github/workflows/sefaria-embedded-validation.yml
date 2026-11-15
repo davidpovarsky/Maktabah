@@ -153,6 +153,7 @@ jobs:
             build/hq-stage2/*.json
             build/hq-stage2/*.log
             build/hq-stage2/*.diff
+            build/hq-stage2/generated-Maktabah-project.pbxproj
             build/hq-stage2/*.xcprivacy
             build/hq-stage2/ExpoModulesProvider.swift
             build/hq-stage2/resolved-Podfile.lock
