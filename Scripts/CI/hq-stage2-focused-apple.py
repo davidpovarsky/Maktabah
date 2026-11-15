@@ -116,14 +116,55 @@ def restore(config, report):
                                  "jsbundle_sha256": config["resource_bundle_sha256"], "no_book_database_payload": True}
 
 
-def logged(command, filename, report):
+def logged(command, filename, report, cwd=None):
     report.setdefault("commands", []).append(command)
     path = OUT / filename
     with path.open("w", encoding="utf-8") as log:
-        result = subprocess.run(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
+        result = subprocess.run(command, cwd=cwd or ROOT, stdout=log, stderr=subprocess.STDOUT)
     print(f"command_exit={result.returncode} log={path.relative_to(ROOT)}", flush=True)
     print("\n".join(path.read_text(errors="replace").splitlines()[-100:]), flush=True)
     require(result.returncode == 0, "Focused command failed; inspect " + str(path.relative_to(ROOT)))
+
+
+def prepare_react_sources(config, report):
+    """Restore the real pinned native sources required by the existing Podfile."""
+    vendor = ROOT / "Vendor/SefariaMobile/Upstream"
+    logged(["git", "submodule", "update", "--init", "--depth", "1", "Vendor/SefariaMobile/Upstream"], "react-source-checkout.log", report)
+    require(capture("git", "-C", str(vendor), "rev-parse", "HEAD") == config["sefaria_gitlink"], "React upstream checkout drift")
+    npm_lock = vendor / "package-lock.json"
+    before = digest(npm_lock)
+    report["native_context"] = {"gitlink": config["sefaria_gitlink"], "npm_lock_sha256": before,
+                                "podfile_sha256": digest(ROOT / "Podfile"), "node": capture("node", "--version"),
+                                "cocoapods": capture("pod", "--version"), "ruby": capture("ruby", "--version")}
+    logged([sys.executable, "Scripts/CI/prepare-pinned-sharp-libvips.py"], "pinned-sharp-inputs.log", report)
+    logged(["npm", "ci", "--legacy-peer-deps"], "npm-ci.log", report, cwd=vendor)
+    require(digest(npm_lock) == before, "npm changed pinned source lock")
+    os.environ.update(PROJECT_ROOT=str(vendor), NODE_PATH=str(vendor / "node_modules"),
+                      RCT_NO_LAUNCH_PACKAGER="1", SKIP_BUNDLING="1", FAIL_ON_MISSING_BUNDLE="1",
+                      GOOGLE_SERVICES_FILE=str(ROOT / "Source/GoogleService-Info.plist"))
+    for link, target in [(ROOT / "node_modules", vendor / "node_modules"),
+                         (ROOT.parent / "node_modules", vendor / "node_modules"),
+                         *[(ROOT / name, vendor / name) for name in ["package.json", "app.json", "metro.config.js", "babel.config.js"]]]:
+        require(target.exists(), "Missing real React build input: " + str(target))
+        if link.exists() or link.is_symlink():
+            require(link.is_symlink() and link.resolve() == target.resolve(), "Occupied native input path: " + str(link))
+        else:
+            link.symlink_to(target, target_is_directory=target.is_dir())
+    for destination in [ROOT / "GoogleService-Info.plist", vendor / "ios/GoogleService-Info.plist"]:
+        shutil.copyfile(ROOT / "Source/GoogleService-Info.plist", destination)
+    logged(["chmod", "-R", "+x", str(vendor / "node_modules/.bin"), str(vendor / "node_modules/expo/bin")], "native-script-permissions.log", report)
+
+
+def install_real_pods(report):
+    logged(["pod", "install"], "pod-install.log", report)
+    require((ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata").is_file(), "Real Pods workspace missing")
+    require((ROOT / "Pods/Headers/Public/React-Core/React/RCTBridgeModule.h").is_file()
+            or any(p.is_file() for p in (ROOT / "Pods").rglob("RCTBridgeModule.h")), "Real React header was not restored")
+    report["native_context"]["pod_lock_sha256"] = digest(ROOT / "Podfile.lock")
+    report["native_context"]["generated_project_sha256"] = digest(ROOT / "Maktabah.xcodeproj/project.pbxproj")
+    report["native_context"]["workspace_sha256"] = digest(ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata")
+    (OUT / "generated-pods-project.diff").write_text(capture("git", "diff", "--", "Maktabah.xcodeproj/project.pbxproj") + "\n")
+    shutil.copyfile(ROOT / "Podfile.lock", OUT / "resolved-Podfile.lock")
 
 
 def main():
@@ -145,12 +186,14 @@ def main():
         report["sdk_path"] = capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-path")
         report["sdk_version"] = capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-version")
         report["developer_dir"] = os.environ.get("DEVELOPER_DIR") or capture("xcode-select", "-p")
+        prepare_react_sources(config, report)
         restore(config, report)
+        install_real_pods(report)
         for framework, header in [("Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework", "otzaria_search_engine.h"),
                                   ("Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework", "maktabah_zayit_search.h")]:
             logged(["bash", "Scripts/CI/verify-xcframework.sh", framework, header], header + ".log", report)
         logged([sys.executable, "Scripts/CI/verify-otzaria-xcode-project.py"], "target-membership.log", report)
-        common = ["-project", "Maktabah.xcodeproj", "-scheme", "Maktabah-iOS", "-clonedSourcePackagesDirPath", "build/SourcePackages"]
+        common = ["-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS", "-clonedSourcePackagesDirPath", "build/SourcePackages"]
         help_text = subprocess.run(["xcodebuild", "-help"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True).stdout
         require("-onlyUsePackageVersionsFromResolvedFile" in help_text, "Installed Xcode lacks pinned-only package resolution")
         logged(["xcodebuild", "-resolvePackageDependencies", *common, "-onlyUsePackageVersionsFromResolvedFile"], "resolve-packages.log", report)
@@ -159,7 +202,9 @@ def main():
         command = ["xcodebuild", "build", *common, "-configuration", "Debug", "-sdk", "iphonesimulator",
                    "-destination", "generic/platform=iOS Simulator", "-derivedDataPath", "build/hq-stage2/DerivedData",
                    "-disableAutomaticPackageResolution", "-jobs", "2", "-showBuildTimingSummary",
-                   "CODE_SIGNING_ALLOWED=NO", "CODE_SIGNING_REQUIRED=NO", "CODE_SIGN_IDENTITY="]
+                   "CODE_SIGNING_ALLOWED=NO", "CODE_SIGNING_REQUIRED=NO", "CODE_SIGN_IDENTITY=",
+                   "ARCHS=arm64", "ONLY_ACTIVE_ARCH=YES", "ENABLE_USER_SCRIPT_SANDBOXING=NO",
+                   "RCT_NO_LAUNCH_PACKAGER=1", "SKIP_BUNDLING=1", "FAIL_ON_MISSING_BUNDLE=1"]
         logged(command, "unsigned-app-build.log", report)
         require(pins(lock) == report["package_pins"], "Build changed committed package revisions")
         report["package_resolved_after_sha256"] = digest(lock)

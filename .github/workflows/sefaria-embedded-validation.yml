@@ -79,6 +79,13 @@ jobs:
         with:
           ref: ${{ inputs.hq_stage2_expected_sha }}
           fetch-depth: 0
+      - name: Use the existing pinned native dependency toolchain
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
       - name: Compile exact integrated app without signing
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -92,6 +99,8 @@ jobs:
           path: |
             build/hq-stage2/result.json
             build/hq-stage2/*.log
+            build/hq-stage2/generated-pods-project.diff
+            build/hq-stage2/resolved-Podfile.lock
           if-no-files-found: warn
 
   ui-sdk-check-only:
