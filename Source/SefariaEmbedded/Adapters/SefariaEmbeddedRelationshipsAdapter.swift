@@ -23,10 +23,14 @@ final class SefariaEmbeddedRelationshipsAdapter: LibraryRelationshipsProviding, 
             throw LibraryBackendError.invalidLocator
         }
         try Task.checkCancellation()
-        try await SefariaRuntimeManager.shared.ensureReady()
         let bridge = SefariaJSRPCBridge.shared
+        if await bridge.isTransportReady {
+            try await requireStableJSResources(epoch: await bridge.sessionEpoch)
+        }
+        try await SefariaRuntimeManager.shared.ensureReady()
         let epoch = await bridge.sessionEpoch
         guard await bridge.resourcesAreStable else { throw LibraryBackendError.staleRequest }
+        try await requireStableJSResources(epoch: epoch)
         let params = String(decoding: try JSONEncoder().encode(["ref": ActionJSON.string(ref), "online": .bool(true)]), as: UTF8.self)
         let response = try await bridge.call(method: "relationships.links", paramsJson: params, generation: epoch)
         let body = try Self.decodeResponse(response)
@@ -35,12 +39,23 @@ final class SefariaEmbeddedRelationshipsAdapter: LibraryRelationshipsProviding, 
         // establish this identity. Reuse the canonical strict decoder instead.
         let catalog = try Self.decodeResponse(await bridge.call(method: "catalog.toc", generation: epoch))
         let keys = try EmbeddedActionResponseProof.catalogWorkKeys(catalog)
+        try await requireStableJSResources(epoch: epoch)
         try Task.checkCancellation()
         guard await bridge.sessionEpoch == epoch, await bridge.resourcesAreStable else {
             throw LibraryBackendError.staleRequest
         }
         guard keys.contains(locator.workKey) else { throw LibraryBackendError.invalidLocator }
         return (body, keys)
+    }
+
+    private func requireStableJSResources(epoch: UInt64) async throws {
+        let nonce = UUID().uuidString
+        let params = String(decoding: try JSONEncoder().encode(["nonce": nonce]), as: UTF8.self)
+        let bridge = SefariaJSRPCBridge.shared
+        let response = try await bridge.call(method: "runtime.actionContract", paramsJson: params,
+            generation: epoch, timeoutMs: 2_000)
+        guard EmbeddedActionResponseProof.matchesRuntimeResourceProof(try Self.decodeResponse(response), nonce: nonce),
+              await bridge.sessionEpoch == epoch else { throw LibraryBackendError.staleRequest }
     }
 
     static func decodeResponse(_ response: SefariaRPCResponse) throws -> ActionJSON {

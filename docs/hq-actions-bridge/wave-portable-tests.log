@@ -10,78 +10,78 @@ Building for debugging...
 [9/12] Wrapping AST for OtzariaActionCore for debugging
 [10/12] Write Objects.LinkFileList
 [11/12] Linking OtzariaActionCorePackageTests.xctest
-Build complete! (41.11s)
-Test Suite 'Selected tests' started at 2026-11-15 14:37:55.582
+Build complete! (25.57s)
+Test Suite 'Selected tests' started at 2026-11-15 15:12:02.466
 
-Test Suite 'BackendSemanticsTests' started at 2026-11-15 14:37:55.589
+Test Suite 'BackendSemanticsTests' started at 2026-11-15 15:12:02.472
 
-Test Case 'BackendSemanticsTests.testActualEmbeddedHandlerFixtures' started at 2026-11-15 14:37:55.589
+Test Case 'BackendSemanticsTests.testActualEmbeddedHandlerFixtures' started at 2026-11-15 15:12:02.473
 
-Test Case 'BackendSemanticsTests.testActualEmbeddedHandlerFixtures' passed (0.084 seconds)
+Test Case 'BackendSemanticsTests.testActualEmbeddedHandlerFixtures' passed (0.04 seconds)
 
-Test Case 'BackendSemanticsTests.testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope' started at 2026-11-15 14:37:55.673
+Test Case 'BackendSemanticsTests.testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope' started at 2026-11-15 15:12:02.513
 
 Test Case 'BackendSemanticsTests.testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope' passed (0.001 seconds)
 
-Test Case 'BackendSemanticsTests.testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases' started at 2026-11-15 14:37:55.674
+Test Case 'BackendSemanticsTests.testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases' started at 2026-11-15 15:12:02.513
 
 Test Case 'BackendSemanticsTests.testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases' passed (0.001 seconds)
 
-Test Case 'BackendSemanticsTests.testEmbeddedReadinessIsPerOperationAndEpoch' started at 2026-11-15 14:37:55.675
+Test Case 'BackendSemanticsTests.testEmbeddedReadinessIsPerOperationAndEpoch' started at 2026-11-15 15:12:02.515
 
-Test Case 'BackendSemanticsTests.testEmbeddedReadinessIsPerOperationAndEpoch' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testEmbeddedReadinessIsPerOperationAndEpoch' passed (0.001 seconds)
 
-Test Case 'BackendSemanticsTests.testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim' started at 2026-11-15 14:37:55.675
+Test Case 'BackendSemanticsTests.testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim' started at 2026-11-15 15:12:02.515
 
-Test Case 'BackendSemanticsTests.testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim' passed (0.001 seconds)
 
-Test Case 'BackendSemanticsTests.testIgnoredModesAndSortsAreRejected' started at 2026-11-15 14:37:55.675
+Test Case 'BackendSemanticsTests.testIgnoredModesAndSortsAreRejected' started at 2026-11-15 15:12:02.516
 
-Test Case 'BackendSemanticsTests.testIgnoredModesAndSortsAreRejected' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testIgnoredModesAndSortsAreRejected' passed (0.001 seconds)
 
-Test Case 'BackendSemanticsTests.testInactiveBackendCannotBecomeAvailable' started at 2026-11-15 14:37:55.676
+Test Case 'BackendSemanticsTests.testInactiveBackendCannotBecomeAvailable' started at 2026-11-15 15:12:02.516
 
 Test Case 'BackendSemanticsTests.testInactiveBackendCannotBecomeAvailable' passed (0.0 seconds)
 
-Test Case 'BackendSemanticsTests.testInvocationGenerationEpochDeadlineAndCancellation' started at 2026-11-15 14:37:55.676
+Test Case 'BackendSemanticsTests.testInvocationGenerationEpochDeadlineAndCancellation' started at 2026-11-15 15:12:02.517
 
 Test Case 'BackendSemanticsTests.testInvocationGenerationEpochDeadlineAndCancellation' passed (0.001 seconds)
 
-Test Case 'BackendSemanticsTests.testLegacyDownloadedReadingDoesNotEnableOfflineSearch' started at 2026-11-15 14:37:55.677
+Test Case 'BackendSemanticsTests.testLegacyDownloadedReadingDoesNotEnableOfflineSearch' started at 2026-11-15 15:12:02.517
 
 Test Case 'BackendSemanticsTests.testLegacyDownloadedReadingDoesNotEnableOfflineSearch' passed (0.0 seconds)
 
-Test Case 'BackendSemanticsTests.testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback' started at 2026-11-15 14:37:55.677
+Test Case 'BackendSemanticsTests.testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback' started at 2026-11-15 15:12:02.518
 
-Test Case 'BackendSemanticsTests.testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback' passed (0.001 seconds)
 
-Test Case 'BackendSemanticsTests.testLoadedRuntimeContractRequiresExactSchemaNonceAndPositiveReadiness' started at 2026-11-15 14:37:55.678
+Test Case 'BackendSemanticsTests.testLoadedRuntimeContractRequiresExactSchemaNonceAndPositiveReadiness' started at 2026-11-15 15:12:02.518
 
 Test Case 'BackendSemanticsTests.testLoadedRuntimeContractRequiresExactSchemaNonceAndPositiveReadiness' passed (0.0 seconds)
 
-Test Case 'BackendSemanticsTests.testOtzariaScopeUsesOnlyProvenCanonicalBookFilters' started at 2026-11-15 14:37:55.678
+Test Case 'BackendSemanticsTests.testOtzariaScopeUsesOnlyProvenCanonicalBookFilters' started at 2026-11-15 15:12:02.519
 
-Test Case 'BackendSemanticsTests.testOtzariaScopeUsesOnlyProvenCanonicalBookFilters' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testOtzariaScopeUsesOnlyProvenCanonicalBookFilters' passed (0.001 seconds)
 
-Test Case 'BackendSemanticsTests.testRegistrationDoesNotProveReadiness' started at 2026-11-15 14:37:55.678
+Test Case 'BackendSemanticsTests.testRegistrationDoesNotProveReadiness' started at 2026-11-15 15:12:02.519
 
 Test Case 'BackendSemanticsTests.testRegistrationDoesNotProveReadiness' passed (0.0 seconds)
 
-Test Case 'BackendSemanticsTests.testSourceFeaturesSurviveWithoutEnablingStagedActions' started at 2026-11-15 14:37:55.679
+Test Case 'BackendSemanticsTests.testSourceFeaturesSurviveWithoutEnablingStagedActions' started at 2026-11-15 15:12:02.520
 
 Test Case 'BackendSemanticsTests.testSourceFeaturesSurviveWithoutEnablingStagedActions' passed (0.001 seconds)
 
-Test Case 'BackendSemanticsTests.testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing' started at 2026-11-15 14:37:55.680
+Test Case 'BackendSemanticsTests.testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing' started at 2026-11-15 15:12:02.521
 
-Test Case 'BackendSemanticsTests.testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing' passed (0.243 seconds)
 
-Test Suite 'BackendSemanticsTests' passed at 2026-11-15 14:37:55.681
+Test Suite 'BackendSemanticsTests' passed at 2026-11-15 15:12:02.765
 
-	 Executed 15 tests, with 0 failures (0 unexpected) in 0.091 (0.091) seconds
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.292 (0.292) seconds
 
-Test Suite 'Selected tests' passed at 2026-11-15 14:37:55.681
+Test Suite 'Selected tests' passed at 2026-11-15 15:12:02.765
 
-	 Executed 15 tests, with 0 failures (0 unexpected) in 0.091 (0.091) seconds
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.292 (0.292) seconds
 
 ◊ Test run started.
 

@@ -99,20 +99,23 @@ struct SefariaSearchResponseDTO: Decodable, Sendable {
     struct Hits: Decodable, Sendable {
         struct Total: Decodable, Sendable {
             let value: Int
+            let relation: String?
 
             enum CodingKeys: String, CodingKey {
-                case value
+                case value, relation
             }
 
             init(from decoder: Decoder) throws {
                 if let single = try? decoder.singleValueContainer(),
                    let integer = try? single.decode(Int.self), integer >= 0 {
                     self.value = integer
+                    self.relation = nil
                     return
                 }
                 if let container = try? decoder.container(keyedBy: CodingKeys.self),
                    let integer = try? container.decodeIfPresent(Int.self, forKey: .value), integer >= 0 {
                     self.value = integer
+                    self.relation = try container.decodeIfPresent(String.self, forKey: .relation)
                     return
                 }
                 throw DecodingError.dataCorrupted(.init(codingPath: decoder.codingPath,
