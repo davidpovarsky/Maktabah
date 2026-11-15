@@ -1,0 +1,22 @@
+{
+  "reviewer": "Dana / Security",
+  "execution_mode": "MAIN_SESSION",
+  "primary_uuid": "01a1dc86-01b1-71e3-b863-1b7f55ed21d3",
+  "reviewed_sha": "ba39471476a607c6b520742577db4b4d3c6ef613",
+  "assertions": 62,
+  "passed": 62,
+  "failed": 0,
+  "disposition": {
+    "API-01": "CLOSED_PORTABLE",
+    "API-02": "CLOSED_PORTABLE",
+    "ENG-01": "CLOSED_PORTABLE",
+    "ENG-02": "CLOSED_PORTABLE"
+  },
+  "scope": "Independent focused synthetic portable harness; not native/device/production",
+  "earlier_104_engine_cases_rerun": false,
+  "P_26_xctest_methods_rerun": false,
+  "artifact_sha256": "ee9e34eb0190d1ed15fde2c4d825c606a0709e7a52fe9f50bd430c70e8edb9c9",
+  "durable_review": "C:/Users/DAVID/Code/Codex-Agent-HQ/docs/otzaria/unified-actions/SECURITY_REVIEW_G1_20261115.md",
+  "artifact_source": "C:\\Users\\DAVID\\AppData\\Local\\Temp\\otzaria-actions-security-fixes-ba394714-me00ovic\\correction-observations.json",
+  "P_recording_action": "Verified delivered artifact count/pass flags and unchanged production-source hashes; no test execution or source edit"
+}

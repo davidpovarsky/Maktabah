@@ -29,7 +29,7 @@ Six bundled JSON resources exactly match frozen MANIFEST bytes/SHA256 (`results/
 
 ## Remaining gates / limitations
 
-- D's independent exact7060be46 review closed API-01/API-02 PORTABLE and found ENG-01/ENG-02 (102/104 synthetic engine cases passed). Those two local corrections now have26 passing P tests; independent D retest remains open. No native/device acceptance follows from either result set.
+- D's independent exact7060be46 review closed API-01/API-02 PORTABLE and found ENG-01/ENG-02 (102/104 synthetic engine cases passed). Correction ba394714 has26 passing P tests plus a separate62/62 focused independent D recheck: all four named findings CLOSED_PORTABLE. Earlier104 and P's26 were not rerun/relabelled by D. See `ENG_REVIEW_FIXES.md`; native/device/production acceptance remains open.
 - Real resolver and production state/search bridges in separately owned Resolver/** / Integration/**. Mock ports prove dispatch/contracts and fail-closed behavior, not live provider semantic correctness.
 - Real SQLite/Tantivy, Legacy network/offline, Embedded Hermes/RPC readiness/epoch and full corpus acceptance; actual original Maktabah/RN reader and scene acknowledgement. All NOT_RUN here.
 - Apple-platform SDK/compiler/native integration, AppIntents, deep/universal links, AI/guide/MCP transport, licensing review and physical iPad. No framework/app targets were touched or tested.

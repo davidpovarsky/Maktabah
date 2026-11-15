@@ -23,4 +23,14 @@ Regression matrix compares search advertisement with actual execution across six
 
 ## Scope / rollback / evidence
 
-Only P-owned ActionValidation.swift, ActionPolicy.swift and ActionExecutor.swift plus P mock/regression tests/evidence are changed. Initial status at this correction's start was clean at7060be46. No upstream/app/UI/Resolver/Integration/project/workflow/database change. Rollback is a scoped revert of this correction commit. EXECUTED_PASS:26 XCTest methods,0 failures with Swift6 strict concurrency, including three new regression methods. Final local results are recorded in `results/swift-tests.log` and `results/summary.json`; independent D retest of the correction remains a separate gate until reported.
+Only P-owned ActionValidation.swift, ActionPolicy.swift and ActionExecutor.swift plus P mock/regression tests/evidence are changed. Initial status at this correction's start was clean at7060be46. No upstream/app/UI/Resolver/Integration/project/workflow/database change. Rollback is a scoped revert of this correction commit. EXECUTED_PASS:26 XCTest methods,0 failures with Swift6 strict concurrency, including three new regression methods. Final local results are recorded in `results/swift-tests.log` and `results/summary.json`.
+
+## Independent correction gate delivered
+
+[דנה | SEC] [MAIN_SESSION], primary `01a1dc86-01b1-71e3-b863-1b7f55ed21d3`, independently inspected exact correction `ba39471476a607c6b520742577db4b4d3c6ef613` in a fresh external snapshot. Result: **62/62 focused external assertions PASS,0 failures**. ENG-01/ENG-02 are CLOSED_PORTABLE; API-01/API-02 retained regressions also pass. D verified all26 exported committed snapshot file hashes remained unchanged.
+
+The62 comprise5 original typed/wire/default/bound cases,15 present invalid search-number cases,7 resolver-limit cases,3 replay/fractional/rights cases,18 origin/backend combinations,3 missing-authority/device cases,4 scene cases,4 destination-receipt cases and3 exact fractional-token cases. D did not rerun or relabel the earlier104 engine cases or P's26 XCTest methods.
+
+Durable independent disposition: `C:\Users\DAVID\Code\Codex-Agent-HQ\docs\otzaria\unified-actions\SECURITY_REVIEW_G1_20261115.md`, section "Correction checkpoint ba394714". The delivered62 observation records are preserved locally in `results/independent-D-ba394714-observations.json`; provenance in `results/independent-D-review.json`. P verified the delivered artifact count/pass flags and unchanged production-source hashes without rerunning tests or modifying code.
+
+Only these named portable findings are closed. Real Resolver/Integration providers, native scene commit, data/auth/licensing, full corpus/Hermes, Apple compiler/app integration, physical iPad and116 historical planned acceptance cases remain NOT_RUN. The source task remains incomplete.

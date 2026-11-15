@@ -1,0 +1,346 @@
+[
+  {
+    "id" : "ENG01_typed_5_1_4",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG01_wire_5_1_4",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG01_unsigned_bounds_(0, 1, 0)",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG01_unsigned_bounds_(100000, 100, 100)",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG01_absent_defaults_0_20_0",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_offset_0",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_offset_1",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_offset_2",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_offset_3",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_offset_4",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_limit_0",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_limit_1",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_limit_2",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_limit_3",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_limit_4",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_wordDistance_0",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_wordDistance_1",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_wordDistance_2",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_wordDistance_3",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_invalid_present_wordDistance_4",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "id" : "ENG01_resolver_limit_one",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG01_resolver_limit_max",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_resolver_limit_zero",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_resolver_limit_over",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_resolver_limit_bool",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_resolver_limit_float",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_resolver_limit_null",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "id" : "ENG01_typed_wire_replay_once",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "code" : "invalid_arguments",
+    "id" : "ENG01_replay_equivalence_cannot_round_fraction",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "content_rights_required",
+    "id" : "ENG01_replay_equivalence_retains_rights",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "id" : "ENG02_origin_inApp_otzaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_appIntent_otzaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "code" : "origin_action_not_allowed",
+    "id" : "ENG02_origin_deepLink_otzaria",
+    "passed" : true,
+    "status" : "not_supported"
+  },
+  {
+    "id" : "ENG02_origin_internalAI_otzaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_guide_otzaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_mcp_otzaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_inApp_sefaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_appIntent_sefaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "code" : "origin_action_not_allowed",
+    "id" : "ENG02_origin_deepLink_sefaria",
+    "passed" : true,
+    "status" : "not_supported"
+  },
+  {
+    "id" : "ENG02_origin_internalAI_sefaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_guide_sefaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_mcp_sefaria",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_inApp_sefariaEmbedded",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_appIntent_sefariaEmbedded",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "code" : "origin_action_not_allowed",
+    "id" : "ENG02_origin_deepLink_sefariaEmbedded",
+    "passed" : true,
+    "status" : "not_supported"
+  },
+  {
+    "id" : "ENG02_origin_internalAI_sefariaEmbedded",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_guide_sefariaEmbedded",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "ENG02_origin_mcp_sefariaEmbedded",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "code" : "content_rights_required",
+    "id" : "ENG02_denied_no_rights",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "permission_denied",
+    "id" : "ENG02_denied_no_read_scope",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "device_offline",
+    "id" : "ENG02_denied_unpaired_mcp",
+    "passed" : true,
+    "status" : "unavailable"
+  },
+  {
+    "code" : "app_scene_unavailable",
+    "id" : "ENG02_scene_nil",
+    "passed" : true,
+    "status" : "requires_foreground"
+  },
+  {
+    "code" : "app_scene_unavailable",
+    "id" : "ENG02_scene_",
+    "passed" : true,
+    "status" : "requires_foreground"
+  },
+  {
+    "code" : "app_scene_unavailable",
+    "id" : "ENG02_scene_   ",
+    "passed" : true,
+    "status" : "requires_foreground"
+  },
+  {
+    "id" : "ENG02_scene_fixture-scene",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "id" : "API01_retained_correct",
+    "passed" : true,
+    "status" : "completed"
+  },
+  {
+    "code" : "invalid_backend_response",
+    "id" : "API01_retained_wrongSection",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_backend_response",
+    "id" : "API01_retained_wrongFocus",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "code" : "invalid_backend_response",
+    "id" : "API01_retained_wrongPresentation",
+    "passed" : true,
+    "status" : "failed"
+  },
+  {
+    "id" : "API02_retained_1.000000000000000000000000000000000000001",
+    "passed" : true,
+    "status" : "fixture_assertion"
+  },
+  {
+    "id" : "API02_retained_1e-999",
+    "passed" : true,
+    "status" : "fixture_assertion"
+  },
+  {
+    "id" : "API02_retained_9007199254740993.1",
+    "passed" : true,
+    "status" : "fixture_assertion"
+  }
+]
