@@ -1,0 +1,118 @@
+diff --git a/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift b/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift
+index 14858167..cc126a82 100644
+--- a/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift
++++ b/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift
+@@ -3,0 +4,2 @@ import UIKit
++import OSLog
++private let paletteInputTraceLogger = Logger(subsystem: "com.davidpovarsky.chavrusatext", category: "R27PaletteInput")
+@@ -99,0 +102,4 @@ public struct CommandPaletteView: View {
++        #if os(iOS)
++        .onAppear { paletteInputTraceLogger.info("stage=package.appear") }
++        .onDisappear { paletteInputTraceLogger.info("stage=package.disappear") }
++        #endif
+@@ -121 +127,4 @@ public struct CommandPaletteView: View {
+-                onSubmit: runSelection, onEscape: onDismiss,
++                onSubmit: runSelection, onEscape: {
++                    paletteInputTraceLogger.info("stage=package.dismiss.forward")
++                    onDismiss()
++                },
+@@ -302,0 +312 @@ private struct PaletteSearchTextField: UIViewRepresentable {
++        field.trace("input.update")
+@@ -310,0 +321 @@ private struct PaletteSearchTextField: UIViewRepresentable {
++        field.trace("input.dismantle")
+@@ -322,0 +334 @@ private struct PaletteSearchTextField: UIViewRepresentable {
++            (field as? PaletteTextField)?.trace("delegate.editingChanged")
+@@ -327,2 +339,8 @@ private struct PaletteSearchTextField: UIViewRepresentable {
+-        func textFieldDidBeginEditing(_ textField: UITextField) { parent.onFocusChange(true) }
+-        func textFieldDidEndEditing(_ textField: UITextField) { parent.onFocusChange(false) }
++        func textFieldDidBeginEditing(_ textField: UITextField) {
++            (textField as? PaletteTextField)?.trace("delegate.beginEditing")
++            parent.onFocusChange(true)
++        }
++        func textFieldDidEndEditing(_ textField: UITextField) {
++            (textField as? PaletteTextField)?.trace("delegate.endEditing")
++            parent.onFocusChange(false)
++        }
+@@ -329,0 +348 @@ private struct PaletteSearchTextField: UIViewRepresentable {
++            (textField as? PaletteTextField)?.trace("delegate.return")
+@@ -342,0 +362,10 @@ private final class PaletteTextField: UITextField {
++    // Diagnostic only: fixed stages and flags, never input/query/book content.
++    func trace(_ stage: String) {
++        let first = isFirstResponder
++        let mounted = window != nil
++        let keyWindow = window?.isKeyWindow ?? false
++        let requested = wantsFocus
++        let callback = onEscape != nil
++        paletteInputTraceLogger.info("stage=\(stage, privacy: .public) first=\(first, privacy: .public) mounted=\(mounted, privacy: .public) keyWindow=\(keyWindow, privacy: .public) wantsFocus=\(requested, privacy: .public) callback=\(callback, privacy: .public)")
++    }
++
+@@ -344,0 +374 @@ private final class PaletteTextField: UITextField {
++        trace("input.didMoveToWindow")
+@@ -347,0 +378,14 @@ private final class PaletteTextField: UITextField {
++    override func becomeFirstResponder() -> Bool {
++        trace("input.becomeFirstResponder.before")
++        let result = super.becomeFirstResponder()
++        trace("input.becomeFirstResponder.after")
++        return result
++    }
++
++    override func resignFirstResponder() -> Bool {
++        trace("input.resignFirstResponder.before")
++        let result = super.resignFirstResponder()
++        trace("input.resignFirstResponder.after")
++        return result
++    }
++
+@@ -354,0 +399 @@ private final class PaletteTextField: UITextField {
++        trace("input.keyCommands")
+@@ -365,0 +411 @@ private final class PaletteTextField: UITextField {
++            trace(action == #selector(escape(_:)) ? "input.validate.escape" : "input.validate.arrow")
+@@ -372,0 +419 @@ private final class PaletteTextField: UITextField {
++        trace(remaining.count != presses.count ? "input.pressesBegan.escape" : "input.pressesBegan.other")
+@@ -376,0 +424,10 @@ private final class PaletteTextField: UITextField {
++    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
++        trace(presses.contains { $0.key?.keyCode == .keyboardEscape } ? "input.pressesEnded.escape" : "input.pressesEnded.other")
++        super.pressesEnded(presses, with: event)
++    }
++
++    override func pressesCancelled(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
++        trace(presses.contains { $0.key?.keyCode == .keyboardEscape } ? "input.pressesCancelled.escape" : "input.pressesCancelled.other")
++        super.pressesCancelled(presses, with: event)
++    }
++
+@@ -377,0 +435 @@ private final class PaletteTextField: UITextField {
++        trace(text == "\u{1b}" ? "input.insertText.escape" : "input.insertText.other")
+@@ -384,0 +443 @@ private final class PaletteTextField: UITextField {
++        trace("input.dismiss.enter")
+@@ -386,0 +446 @@ private final class PaletteTextField: UITextField {
++        trace("input.dismiss.callback")
+@@ -387,0 +448 @@ private final class PaletteTextField: UITextField {
++        trace("input.dismiss.return")
+@@ -390 +451,4 @@ private final class PaletteTextField: UITextField {
+-    @objc private func escape(_ command: UIKeyCommand) { dismissFromKeyboard() }
++    @objc private func escape(_ command: UIKeyCommand) {
++        trace("input.action.escape")
++        dismissFromKeyboard()
++    }
+diff --git a/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift b/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+index 826d6e9d..53118d44 100644
+--- a/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
++++ b/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+@@ -2,0 +3,4 @@ import SwiftUI
++#if os(iOS)
++import OSLog
++private let libraryPaletteTraceLogger = Logger(subsystem: "com.davidpovarsky.chavrusatext", category: "R27PaletteInput")
++#endif
+@@ -33 +37,6 @@ struct LibraryCommandPaletteAdapter: View {
+-            onDismiss: onDismiss
++            onDismiss: {
++                #if os(iOS)
++                libraryPaletteTraceLogger.info("stage=adapter.dismiss.forward")
++                #endif
++                onDismiss()
++            }
+@@ -35,0 +45,4 @@ struct LibraryCommandPaletteAdapter: View {
++        #if os(iOS)
++        .onAppear { libraryPaletteTraceLogger.info("stage=adapter.appear") }
++        .onDisappear { libraryPaletteTraceLogger.info("stage=adapter.disappear") }
++        #endif

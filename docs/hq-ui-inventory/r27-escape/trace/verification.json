@@ -1,0 +1,71 @@
+{
+  "diagnostic_source_commit": "914fa87f5b93e2667571001cd0c762ef58589d88",
+  "base": "f886e629f8d718f5c55215d644ac939923bfc192",
+  "failed_native_checkout": "6a54a44f4f94499325970471424f2482d48f14f8",
+  "source_hashes": {
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift": {
+      "failed_base_lf_sha256": "c36591fa74faaad9e481d43ad748f565ebc26f81c33f2841d9db84756030a7b6",
+      "diagnostic_lf_sha256": "d04bb370070ac478ffdc8857197fdb8df0d1ca420a2ae75ed863af5771682d45"
+    },
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift": {
+      "failed_base_lf_sha256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239",
+      "diagnostic_lf_sha256": "db3c527cf6748a4ebf01ffa81a45fdf77cd0afdd52aaa8508460b5feb3c18782"
+    }
+  },
+  "commands": [
+    {
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios17.0",
+        "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+        "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+      ],
+      "exit_code": 0,
+      "output": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'"
+    },
+    {
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-macosx14.0",
+        "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+        "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+      ],
+      "exit_code": 0,
+      "output": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'MacOSX'"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "f886e629f8d718f5c55215d644ac939923bfc192",
+        "914fa87f5b93e2667571001cd0c762ef58589d88"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--reverse",
+        "--check",
+        "--unidiff-zero",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-sidebar-20261115\\docs\\hq-ui-inventory\\r27-escape\\trace\\source.patch"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "toolchain": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "diagnostic_Apple_SDK_builds_by_U": 0,
+  "native_UI_tests_by_U": 0,
+  "native_diagnostic_result": "PENDING_T_Q",
+  "native_previous_affected_case": "FAIL"
+}

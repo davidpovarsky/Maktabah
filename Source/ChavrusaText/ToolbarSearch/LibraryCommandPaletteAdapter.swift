@@ -1,5 +1,9 @@
 import CommandPalette
 import SwiftUI
+#if os(iOS)
+import OSLog
+private let libraryPaletteTraceLogger = Logger(subsystem: "com.davidpovarsky.chavrusatext", category: "R27PaletteInput")
+#endif
 
 struct LibraryCommandPaletteAdapter: View {
     @Bindable var manager: iOSNavigationManager
@@ -30,9 +34,18 @@ struct LibraryCommandPaletteAdapter: View {
             initialQuery: manager.libraryViewModel.searchQuery,
             autofocus: true,
             queryBinding: Bindable(manager.libraryViewModel).searchQuery,
-            onDismiss: onDismiss
+            onDismiss: {
+                #if os(iOS)
+                libraryPaletteTraceLogger.info("stage=adapter.dismiss.forward")
+                #endif
+                onDismiss()
+            }
         )
         .accessibilityIdentifier("reader-library-command-palette")
+        #if os(iOS)
+        .onAppear { libraryPaletteTraceLogger.info("stage=adapter.appear") }
+        .onDisappear { libraryPaletteTraceLogger.info("stage=adapter.disappear") }
+        #endif
     }
 }
 
