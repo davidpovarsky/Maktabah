@@ -165,6 +165,14 @@ def install_real_pods(report):
     report["native_context"]["workspace_sha256"] = digest(ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata")
     (OUT / "generated-pods-project.diff").write_text(capture("git", "diff", "--", "Maktabah.xcodeproj/project.pbxproj") + "\n")
     shutil.copyfile(ROOT / "Podfile.lock", OUT / "resolved-Podfile.lock")
+    # The generated workspace has its own SwiftPM lock location. Restore the
+    # exact committed project lock instead of allowing cached revisions to win.
+    committed_lock = ROOT / "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+    workspace_lock = ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+    workspace_lock.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(committed_lock, workspace_lock)
+    report["native_context"]["staged_workspace_package_lock_sha256"] = digest(workspace_lock)
+    require(pins(workspace_lock) == report["package_pins"], "Generated workspace pin drift")
 
 
 def verify_actual_sources(report):
@@ -228,6 +236,7 @@ def main():
         logged(["xcodebuild", "-resolvePackageDependencies", *common, "-onlyUsePackageVersionsFromResolvedFile"], "resolve-packages.log", report)
         lock = ROOT / "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
         require(pins(lock) == report["package_pins"], "Xcode changed committed package revisions")
+        require(pins(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved") == report["package_pins"], "Workspace changed committed package revisions")
         verify_actual_sources(report)
         command = ["xcodebuild", "build", *common, "-configuration", "Debug", "-sdk", "iphonesimulator",
                    "-destination", "generic/platform=iOS Simulator", "-derivedDataPath", "build/hq-stage2/DerivedData",
