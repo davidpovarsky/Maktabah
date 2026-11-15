@@ -19,7 +19,7 @@
     "Q ab23 native window/restore correction and U48d6 startup race correction"
   ],
   "test_correction": "021b5329b37d756604407e1256edf0001f708c3d",
-  "next_execution": "Only original9, all affected by startup path change per Q; fresh11-reader4 + phone4 + fresh11-window1 last; verified reuse0",
+  "next_execution": "Pending Q scoped Escape diagnosis/correction and8-pass change-impact audit. No new dispatch.",
   "ui_retest_run": 43681096257,
   "ui_retest_checked_sha": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
   "ui_retest_test_source_sha": "021b5329b37d756604407e1256edf0001f708c3d",
@@ -30,5 +30,9 @@
   "release_required_separate_prototype_oracles": 2,
   "prepared_sidebar_cases": "RTL/LTR remainNOT_RUN; required by release manifest, existing source read-only, target registration and genuine fixture paths pending Q execution contract",
   "ui_retest_os": "27.2 build24B8117",
-  "actual_negative_release_gate_latest": "Current guard refused actual failed UI run43681096257 before artifact download/distribution"
+  "actual_negative_release_gate_latest": "Current guard refused actual failed UI run43681096257 before artifact download/distribution",
+  "ui_third_run": 43688380348,
+  "ui_third_checked_sha": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+  "ui_third_result": "ACTUALLY_EXECUTED_8_PASS_1_FAIL_0_SKIP_OR_NOT_RUN",
+  "ui_third_remaining_failure": "Native window case line169: actual palette remains open after Escape; Inspector not reached; actual semantic full-size cleanup restored"
 }

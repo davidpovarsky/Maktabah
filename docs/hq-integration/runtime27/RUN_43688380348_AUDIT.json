@@ -1,0 +1,138 @@
+{
+  "run": 43688380348,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43688380348",
+  "artifact_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43688380348/artifacts/14153623222",
+  "artifact_bytes": 349319757,
+  "artifact_sha256_declared_by_GitHub": "74a57db4339fb7a6584a10b8a4bc767031c6a778768ff713e350c22c0f4dccc0",
+  "outer_zip_independently_hashed": false,
+  "checkout_sha": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+  "app_source_sha": "04b4d5f27e51d29508e8e0d4dcc8d3b07d405e4e",
+  "test_source_sha": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
+  "counts": {
+    "ui_passed": 8,
+    "ui_failed": 1,
+    "ui_not_run": 0,
+    "verified_reused_pass": 0
+  },
+  "cases": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "device": "ipad11",
+      "expected": "Normal bootstrap, genuine fixture book/title, real portrait-to-landscape geometry change, exact locator preservation",
+      "configuration_label": "11-reader",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "device": "ipad11",
+      "expected": "Actual Hebrew text entry+native submit+visible hittable exact submitted history row, existing native history helper",
+      "configuration_label": "11-reader",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "device": "ipad11",
+      "expected": "Real Legacy provider/TextKit, exact backend/work Genesis identity, real landscape transition and unchanged exact observed locator",
+      "configuration_label": "11-reader",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "device": "ipad11",
+      "expected": "Real embedded provider/TextKit, exact backend/work Genesis identity, real landscape transition and unchanged exact observed locator; unavailable is failure/not passed support",
+      "configuration_label": "11-reader",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "device": "iphone",
+      "expected": "Real fixture identity preserved after Home/activate and cold terminate/launch; setup scenario removed before cold relaunch, exact locator equality",
+      "configuration_label": "phone",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "device": "iphone",
+      "expected": "Actual Hebrew entry/native submit/visible hittable exact history row on conventional iPhone",
+      "configuration_label": "phone",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "device": "iphone",
+      "expected": "Real Legacy Genesis reader with actual iPhone geometry transition and locator preservation",
+      "configuration_label": "phone",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "device": "iphone",
+      "expected": "Real embedded Genesis reader with actual iPhone geometry transition and locator preservation; no fake backend",
+      "configuration_label": "phone",
+      "actual": "Passed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    }
+  ],
+  "remaining_failure": {
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "line": 169,
+    "failure": "Palette still visible after input.typeKey(Escape), exists==false waiter timed out",
+    "reached_before_failure": [
+      "real native window resize",
+      "wired original native bar bounds",
+      "actual fixture-title filtering and hittable result"
+    ],
+    "not_reached": [
+      "Inspector open/close",
+      "subsequent text/locator assertions"
+    ],
+    "cleanup": "Semantic WindowControls -> Zoom-button restored full landscape frame in teardown; final screenshot still shows actual palette open. Cleanup is not case PASS."
+  },
+  "offline_reaudit": "Actual raw11-reader4 and phone4 passed current strict verifier with expected device/OS. Reaudit does not execute UI again.",
+  "release_or_physical_acceptance": false,
+  "raw_file_sha256": {
+    "zip-members.json": "9dfeb0926df923fdf218ee4184070e5876c1a171da5627b1db923404e8fec707",
+    "artifacts\\faithful-ipad-matrix.json": "ffa66608d61d4fae38446ca45b925ba30b86267541b24b47b47a298eae978bd4",
+    "artifacts\\miniTest10-native-fixture-install-11-reader.json": "ba8f40a192ea423ab1cb43588d5abcad12d87b14b5059f64c46a12f7a55fde6b",
+    "artifacts\\miniTest10-native-fixture-install-11-window.json": "eec81de2e6722efea435bfd418722877127cd52719fb727c20a96164c4110ced",
+    "artifacts\\miniTest10-native-fixture-install-phone.json": "6e1d5e986d95de90e0d7943ee5927defd7f7924f8918ed50ffb27b522e90dd91",
+    "artifacts\\test-simulator-11-reader.log": "0ea22365c26e5346f09928ec437a6095bacfcf91fd181329126482a6705cc482",
+    "artifacts\\test-simulator-11-window.log": "173e7ba5f460e74142d2b54b937424ca100c2e28e6b5aebdfe778d7038e1f543",
+    "artifacts\\test-simulator-phone.log": "35d87b01f6c423ccad61239be3c55106676ee0217be096aed79e031051b30bb0",
+    "hq-stage2\\result.json": "9aaa578810f9361fe51c497a0ab5fdefaed598f528506acf977e56685131ccbb",
+    "artifacts\\runtime27\\fixture-oracle-11-reader.json": "74eed825b348d437f2c37a100dad49640f7800ba21e3684905d57757b90e4bb0",
+    "artifacts\\runtime27\\fixture-oracle-11-window.json": "e415c211c6fed170c4f3ce2f123d1ed8c5265f429f22a6917a29f822e07a974f",
+    "artifacts\\runtime27\\fixture-oracle-phone.json": "0f4bc6ac18c25ab1213c19de860c25ef7262e8905a0aa1272c3a9c3bdb99a9e2",
+    "artifacts\\runtime27\\result.json": "f9b8ed0a791ebb796eb2ced89939652f7ca573740d9058551a482765581e96ef",
+    "artifacts\\runtime27\\verified-11-reader.json": "eb538e148b8da0bf1c9f96b2a9774d02bf4522260dd7522337b1a99223031c7e",
+    "artifacts\\runtime27\\verified-11-reader.summary.json": "a40f6bcda153f42ed033f78a0ee13c691cfade7a7db581f6b6526ba3f83106ba",
+    "artifacts\\runtime27\\verified-11-reader.tests.json": "fc5c9b65b1e97cea5d1a6b022df08a4adefd49e82e14b6fac66c1de033ff8952",
+    "artifacts\\runtime27\\verified-11-window.json": "3e842fcdc155e1d7e4ecce81f51118800e0ed9498f69373593838494ca296ba6",
+    "artifacts\\runtime27\\verified-11-window.summary.json": "5f750d2c2a22700ff910494a539bfac7bc4fe4c3ca315492dc44f56fe71029f1",
+    "artifacts\\runtime27\\verified-11-window.tests.json": "109ec991a3c1de89578917f9d8fa97decf8230ca949390d3658ee5bb3fc0e666",
+    "artifacts\\runtime27\\verified-phone.json": "4d3fe14f88a8ba3438bdb7902e88a15cfee0dc2140fc668cf12a7ac4a35730d2",
+    "artifacts\\runtime27\\verified-phone.summary.json": "d3cfd0b825e2f81053d13883e22422c8a98efc9ff11967fbcb7acd5fc01a4698",
+    "artifacts\\runtime27\\verified-phone.tests.json": "43e057082f183c2138ec2d2aa20e3aff197e079ba3d286b5578111a0d4b252d1",
+    "artifacts\\visual-11-reader\\3C729EB4-877D-4FDB-BEE6-E5E9EAE30499.txt": "4ca02582028e0c7d3b1e2e5d3fce2f360861b77456cfdfa701663f93810088a9",
+    "artifacts\\visual-11-reader\\95F424A5-748D-425C-8012-0CCC2862A3AA.png": "ad3fcf5f71328c4780329755a35e1262a3841b91dc4478f1a152bbfaea77fa0a",
+    "artifacts\\visual-11-reader\\FAA73C47-CB6C-4C43-A907-A68F58C1FD98.png": "3b181e15a9c6b29b84b910061608806bb543996a172b716cb710b7813a1f7c7b",
+    "artifacts\\visual-11-reader\\manifest.json": "21de64dc37e1b7b7fec513d68dc8ae565eed688e6074f869ae9c8dcbd2ec4d07",
+    "artifacts\\visual-11-window\\0CA58DAD-C143-453A-8246-3477B88FF28B.txt": "42ec4e57b50ce2f5998e621766e7e10c50b3aa023224d1296cf9820571df9ed6",
+    "artifacts\\visual-11-window\\31998B26-C339-4B08-A994-79B647B4487F.png": "22e166f2d364354347840389d8de2a3eb3273370d8893f3ba1570caf8b978e81",
+    "artifacts\\visual-11-window\\4B722C31-EDCF-46B9-8563-6F8667049C58.txt": "35b91955a34312d8d290513ead75dc59071f450ce432408d60f1b8e5d081356c",
+    "artifacts\\visual-11-window\\6EBEA759-7C81-4390-9FBB-70CA28B8988B.png": "67affedda2a31d3ee83b39ad535090e483bf89fe4ef8f66632b4668cfb6068b4",
+    "artifacts\\visual-11-window\\A3D3C7F1-763C-41AB-8526-6644172475A5.txt": "27d909c308c483c7f220d8fe689802db1e2d891b3fc6d1a073d8fb3e707350f3",
+    "artifacts\\visual-11-window\\B7263F5A-2C1D-43AE-A826-E06D13FB060E.png": "67affedda2a31d3ee83b39ad535090e483bf89fe4ef8f66632b4668cfb6068b4",
+    "artifacts\\visual-11-window\\D4DDCFBD-D328-4916-8371-84590E5F6E26.png": "bed9817715db0109cdf32800e6c27a10b5b45afae260fbb67ba761b03a661f1f",
+    "artifacts\\visual-11-window\\E3E04290-1412-4BB1-9A9C-B20B57EA55C5.txt": "ef556a215192483011f7ce59fc73c0fc6b6d365cf372089302d5b566d48a4008",
+    "artifacts\\visual-11-window\\FC8183BB-6BDE-4144-8239-E57AAF8EDEA0.txt": "781dfcff96c28babdb73e5eaecc697d5af28b1a5275fb183d78d244fcb6acbb3",
+    "artifacts\\visual-11-window\\manifest.json": "8a9691d7dd3f718728c8d11d603647b5ce3ca027a9ab581ff6654c997405d4f2",
+    "artifacts\\visual-phone\\manifest.json": "07277b1cdb9f104933af468083b903005b16a1a853a2bc51e225b80662ffb388"
+  }
+}
