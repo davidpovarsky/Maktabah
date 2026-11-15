@@ -118,6 +118,7 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
             do { result = try await embeddedSearch(query, invocation) }
             catch { throw safe(error) }
             try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+            try await require("search.query", backend: query.backend, query: query, invocation: invocation)
             guard result.hits.allSatisfy({ $0.locator.backend == query.backend && works.workKeys.contains($0.locator.workKey) }) else {
                 throw ActionPortError.invalidResponse
             }

@@ -29,6 +29,52 @@ const inputs = [
   ['missing_everything', {}, {offset:0,limit:3}],
 ];
 (async () => {
+  const source = fs.readFileSync(path.join(root, file), 'utf8');
+  const contractStart = source.indexOf("case 'runtime.actionContract': {");
+  const contractEnd = source.indexOf("case 'diagnostic.echo':", contractStart);
+  assert(contractStart >= 0 && contractEnd > contractStart);
+  const contract = new Function('params', 'global', 'ChavrusaRPCFacade', `let result; switch ('runtime.actionContract') { ${source.slice(contractStart,contractEnd)} } return result;`);
+  const contractCall = (params, global, activeResourceOperations = 0) => contract(params, global, {activeResourceOperations});
+  const nonce = 'actual-handler-fixture-nonce';
+  const loaded = contractCall({nonce}, {Sefaria:{toc:[{title:'Genesis'}],search:{execute_query:()=>{throw Error('probe executed query');}}}});
+  assert.deepEqual(loaded, {contract:'chavrusa.actions.search-fidelity.v1', searchFidelitySchema:1, nonce, catalogReady:true, searchReady:true, resourcesStable:true});
+  assert.equal(contractCall({nonce}, {}).searchReady, false);
+  assert.equal(contractCall({nonce}, {Sefaria:{toc:[],search:{execute_query:true}}}).searchReady, false);
+  assert.equal(contractCall({nonce}, {Sefaria:{toc:[],search:{execute_query:()=>{}}}}).catalogReady, false);
+  assert.equal(contractCall({nonce}, {}, 1).resourcesStable, false);
+  console.log('PASS: actual runtime action-contract handler; read-only current catalog/search proof, absent/non-callable engine rejected');
+  // Execute the complete real dispatcher, including its finally cleanup. A
+  // remote operation can outlive a native timeout; discovery must still report
+  // busy until the JS operation actually settles.
+  const classSource = source.slice(source.indexOf('export class ChavrusaRPCFacade')).replace('export class ', 'class ');
+  let finishResource;
+  const downloadControl = {downloadUpdate:()=>new Promise((resolve,reject)=>{finishResource={resolve,reject};})};
+  const facade = new Function('global', 'DownloadControl', 'NativeModules', `${classSource}; return ChavrusaRPCFacade;`)(
+    {Sefaria:{toc:[{title:'Genesis'}],search:{execute_query:()=>{}}}}, downloadControl, {});
+  const envelope = method => ({protocolVersion:'1.0', requestID:method, method, paramsJson:JSON.stringify({nonce}), sessionGeneration:7});
+  const running = facade.handleNativeEnvelope(envelope('updates.download'));
+  assert.equal(facade.activeResourceOperations,1);
+  const busy = await facade.handleNativeEnvelope(envelope('runtime.actionContract'));
+  assert.equal(JSON.parse(busy.resultJson).resourcesStable,false);
+  finishResource.resolve({updated:true});
+  assert.equal((await running).status,'success');
+  assert.equal(facade.activeResourceOperations,0);
+  const failed = facade.handleNativeEnvelope(envelope('updates.download'));
+  finishResource.reject(new Error('fixture update failure'));
+  assert.equal((await failed).status,'error');
+  assert.equal(facade.activeResourceOperations,0);
+  console.log('PASS: complete actual JS dispatcher keeps resources busy until promise settles; success/error finally cleanup verified');
+  const link = {sourceRef:'Rashi on Genesis 1:1',he:'fixture',anchorRef:'Genesis 1:1'};
+  const actualRelated = {links:[link],topics:[]};
+  const relatedFacade = new Function('global','DownloadControl','NativeModules','OfflineOnline',`${classSource}; return ChavrusaRPCFacade;`)(
+    {Sefaria:{textTitleForRef:ref=>ref === link.sourceRef ? 'Rashi on Genesis' : null}}, {}, {}, {loadRelated:async()=>actualRelated});
+  const relatedResponse = await relatedFacade.handleNativeEnvelope(envelope('relationships.links'));
+  const related = JSON.parse(relatedResponse.resultJson);
+  assert.equal(related.links[0].sourceWorkKey,'Rashi on Genesis');
+  for (const key of Object.keys(link)) { assert.deepEqual(related.links[0][key],link[key]); }
+  assert.deepEqual(related.topics,[]);
+  assert.equal(actualRelated.links[0].sourceWorkKey,undefined,'original upstream payload must not be mutated');
+  console.log('PASS: actual related dispatcher preserves source fields and uses original engine work resolver without splitting refs');
   const results = [];
   for (const [name, payload, paging, group] of inputs) {
     const params = {query:'fixture',type:'text',field:'exact',sortType:'relevance',...paging};

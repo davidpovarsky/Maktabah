@@ -54,8 +54,25 @@ actor SefariaRuntimeManager {
     private var startupTask: Task<Void, any Error>?
     private var searchInitTask: Task<Void, any Error>?
     private var packagesInitTask: Task<Void, any Error>?
+    private var lifecycle: UInt64 = 0
+    private var readinessEpoch: UInt64?
 
     private init() {}
+
+    /// A cached flag from a prior Hermes instance is never live evidence.
+    func observedReadiness(for epoch: UInt64) async -> SefariaCapabilityReadiness {
+        guard state.isReady, readinessEpoch == epoch,
+              await SefariaJSRPCBridge.shared.sessionEpoch == epoch,
+              await SefariaJSRPCBridge.shared.resourcesAreStable else { return .init() }
+        return readiness
+    }
+
+    private func check(lifecycle expected: UInt64, epoch: UInt64) async throws {
+        try Task.checkCancellation()
+        guard lifecycle == expected, await SefariaJSRPCBridge.shared.sessionEpoch == epoch else {
+            throw SefariaRPCError(code: "STALE_GENERATION", message: "Runtime changed during initialization", retryable: true)
+        }
+    }
 
     /// Ensures the Sefaria runtime and catalog are bootstrapped and ready.
     /// Thread-safe single-flight: concurrent callers await the same in-flight startup.
@@ -65,6 +82,10 @@ actor SefariaRuntimeManager {
 
     /// Ensures host and catalog (TOC / index) are ready.
     func ensureCatalogReady(timeoutSeconds: Double = 25.0) async throws {
+        let epoch = await SefariaJSRPCBridge.shared.sessionEpoch
+        if let readinessEpoch, readinessEpoch != epoch {
+            resetState()
+        }
         if readiness.catalogReady && state == .ready {
             return
         }
@@ -74,16 +95,17 @@ actor SefariaRuntimeManager {
             return
         }
 
+        let operation = lifecycle
         let task = Task<Void, any Error> {
-            try await self.performBootstrap(timeoutSeconds: timeoutSeconds)
+            try await self.performBootstrap(timeoutSeconds: timeoutSeconds, lifecycle: operation)
         }
         self.startupTask = task
 
         do {
             try await task.value
-            self.startupTask = nil
+            if lifecycle == operation { self.startupTask = nil }
         } catch {
-            self.startupTask = nil
+            if lifecycle == operation { self.startupTask = nil }
             throw error
         }
     }
@@ -101,16 +123,17 @@ actor SefariaRuntimeManager {
             return
         }
 
+        let operation = lifecycle
         let task = Task<Void, any Error> {
-            try await self.performSearchInit()
+            try await self.performSearchInit(lifecycle: operation)
         }
         self.searchInitTask = task
 
         do {
             try await task.value
-            self.searchInitTask = nil
+            if lifecycle == operation { self.searchInitTask = nil }
         } catch {
-            self.searchInitTask = nil
+            if lifecycle == operation { self.searchInitTask = nil }
             throw error
         }
     }
@@ -128,16 +151,17 @@ actor SefariaRuntimeManager {
             return
         }
 
+        let operation = lifecycle
         let task = Task<Void, any Error> {
-            try await self.performPackagesInit()
+            try await self.performPackagesInit(lifecycle: operation)
         }
         self.packagesInitTask = task
 
         do {
             try await task.value
-            self.packagesInitTask = nil
+            if lifecycle == operation { self.packagesInitTask = nil }
         } catch {
-            self.packagesInitTask = nil
+            if lifecycle == operation { self.packagesInitTask = nil }
             throw error
         }
     }
@@ -149,7 +173,7 @@ actor SefariaRuntimeManager {
         try await ensurePackagesReady(timeoutSeconds: timeoutSeconds)
     }
 
-    private func performBootstrap(timeoutSeconds: Double) async throws {
+    private func performBootstrap(timeoutSeconds: Double, lifecycle expected: UInt64) async throws {
         state = .starting
 
         // 1. Ensure the React Native host factory has mounted the root view on MainActor
@@ -157,19 +181,25 @@ actor SefariaRuntimeManager {
             SefariaExpoLifecycleAdapter.shared.ensureHostStarted()
         }
 
+        try Task.checkCancellation()
+        guard lifecycle == expected else { throw CancellationError() }
         state = .bootstrapping
         let bridge = SefariaJSRPCBridge.shared
+        let epoch = await bridge.sessionEpoch
 
         // 2. Await verified JS bridge listener ready handshake
-        try await bridge.waitForReady(timeoutSeconds: timeoutSeconds)
+        try await bridge.waitForReady(timeoutSeconds: timeoutSeconds, expectedGeneration: epoch)
+        try await check(lifecycle: expected, epoch: epoch)
 
         // 3. Send runtime.initialize to JS (verifies live bidirectional Swift <-> Hermes communication)
         let initResponse = try await bridge.call(
             method: "runtime.initialize",
             paramsJson: nil,
+            generation: epoch,
             timeoutMs: Int(timeoutSeconds * 1000)
         )
 
+        try await check(lifecycle: expected, epoch: epoch)
         guard initResponse.isSuccess else {
             let errorMsg = initResponse.error?.message ?? "Sefaria.init() failed in JavaScript"
             state = .failed(message: errorMsg, retryable: true)
@@ -180,9 +210,11 @@ actor SefariaRuntimeManager {
         let tocResponse = try await bridge.call(
             method: "catalog.toc",
             paramsJson: nil,
+            generation: epoch,
             timeoutMs: 15000
         )
 
+        try await check(lifecycle: expected, epoch: epoch)
         guard tocResponse.isSuccess,
               let resultJson = tocResponse.resultJson,
               resultJson.contains("Genesis") || resultJson.contains("Bereshit") else {
@@ -194,35 +226,49 @@ actor SefariaRuntimeManager {
         // Host and catalog verified ready only after successful live JS handshake response and real Genesis TOC
         readiness.hostReady = true
         readiness.catalogReady = true
+        readinessEpoch = epoch
         state = .ready
 
         // 3. Eagerly trigger search and packages setup tasks in background
         if searchInitTask == nil {
-            searchInitTask = Task {
-                try await self.performSearchInit()
+            Task {
+                guard self.lifecycle == expected else { return }
+                try? await self.ensureSearchReady()
             }
         }
         if packagesInitTask == nil {
-            packagesInitTask = Task {
-                try await self.performPackagesInit()
+            Task {
+                guard self.lifecycle == expected else { return }
+                try? await self.ensurePackagesReady()
             }
         }
     }
 
-    private func performSearchInit() async throws {
+    private func performSearchInit(lifecycle expected: UInt64) async throws {
         let bridge = SefariaJSRPCBridge.shared
-        let response = try await bridge.call(method: "runtime.postInitSearch", paramsJson: nil, timeoutMs: 15000)
-        guard response.isSuccess else {
+        guard let epoch = readinessEpoch else { throw CancellationError() }
+        try await check(lifecycle: expected, epoch: epoch)
+        let response = try await bridge.call(method: "runtime.postInitSearch", paramsJson: nil, generation: epoch, timeoutMs: 15000)
+        try await check(lifecycle: expected, epoch: epoch)
+        guard response.isSuccess,
+              let proof = try? response.decodeResult(SearchInitProof.self), proof.searchReady else {
             let errorMsg = response.error?.message ?? "runtime.postInitSearch failed"
             throw SefariaRPCError(code: "SEARCH_INIT_FAILED", message: errorMsg, retryable: true)
         }
         readiness.searchReady = true
     }
 
-    private func performPackagesInit() async throws {
+    private struct SearchInitProof: Decodable { let searchReady: Bool }
+    private struct PackagesInitProof: Decodable { let packagesReady: Bool }
+
+    private func performPackagesInit(lifecycle expected: UInt64) async throws {
         let bridge = SefariaJSRPCBridge.shared
-        let response = try await bridge.call(method: "runtime.postInit", paramsJson: nil, timeoutMs: 30000)
-        guard response.isSuccess else {
+        guard let epoch = readinessEpoch else { throw CancellationError() }
+        try await check(lifecycle: expected, epoch: epoch)
+        let response = try await bridge.call(method: "runtime.postInit", paramsJson: nil, generation: epoch, timeoutMs: 30000)
+        try await check(lifecycle: expected, epoch: epoch)
+        guard response.isSuccess,
+              let proof = try? response.decodeResult(PackagesInitProof.self), proof.packagesReady else {
             let errorMsg = response.error?.message ?? "runtime.postInit failed"
             throw SefariaRPCError(code: "PACKAGES_INIT_FAILED", message: errorMsg, retryable: true)
         }
@@ -230,7 +276,13 @@ actor SefariaRuntimeManager {
     }
 
     /// Resets the runtime state after failure or during diagnostics.
-    func reset() {
+    func reset() async {
+        resetState()
+        _ = await SefariaJSRPCBridge.shared.bumpSessionEpoch()
+    }
+
+    private func resetState() {
+        lifecycle &+= 1
         startupTask?.cancel()
         searchInitTask?.cancel()
         packagesInitTask?.cancel()
@@ -238,10 +290,8 @@ actor SefariaRuntimeManager {
         searchInitTask = nil
         packagesInitTask = nil
         readiness = SefariaCapabilityReadiness()
+        readinessEpoch = nil
         state = .notStarted
-        Task {
-            await SefariaJSRPCBridge.shared.cancelAll(reason: "Runtime reset")
-        }
     }
 
     /// Sets capability readiness only with explicitly verified states.

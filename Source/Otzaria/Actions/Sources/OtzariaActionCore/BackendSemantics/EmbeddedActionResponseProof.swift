@@ -3,13 +3,37 @@ import Foundation
 /// Validates evidence emitted by the existing JS engine; never runs a search or
 /// constructs a missing source reference/count. Older bundles fail closed.
 public enum EmbeddedActionResponseProof {
+    /// Echo plus strict version/readiness proves the loaded facade implements
+    /// the response schema. It never certifies a count or a disk bundle hash.
+    public static func matchesRuntimeContract(_ body: ActionJSON, nonce: String) -> Bool {
+        guard let value = body.object else { return false }
+        return value["contract"]?.string == "chavrusa.actions.search-fidelity.v1"
+            && value["searchFidelitySchema"]?.integer == 1
+            && value["nonce"]?.string == nonce
+            && value["catalogReady"]?.boolean == true
+            && value["searchReady"]?.boolean == true
+            && value["resourcesStable"]?.boolean == true
+    }
+
     public static func catalogEntries(_ body: ActionJSON, invocation: ActionPortInvocation) throws -> [ActionCatalogEntry] {
+        try catalogEntries(body) {
+            try ActionBackendInvocationGuard.check(invocation, current: invocation.snapshot, target: .sefariaEmbedded)
+        }
+    }
+
+    /// The same strict source decoder serves native adapters without creating
+    /// a synthetic ActionBackendSnapshot or a second catalog parser.
+    public static func catalogWorkKeys(_ body: ActionJSON) throws -> Set<String> {
+        Set(try catalogEntries(body) { try Task.checkCancellation() }.map { $0.workRef.workKey })
+    }
+
+    private static func catalogEntries(_ body: ActionJSON, check: () throws -> Void) throws -> [ActionCatalogEntry] {
         guard let roots = body.array else { throw ActionPortError.invalidResponse }
         var pending = roots.reversed().map { ($0, 0) }, count = 0, entries: [ActionCatalogEntry] = []
         while let (node, depth) = pending.popLast() {
             count += 1
             guard count <= 100_000, depth <= 32, let item = node.object else { throw ActionPortError.invalidResponse }
-            try ActionBackendInvocationGuard.check(invocation, current: invocation.snapshot, target: .sefariaEmbedded)
+            try check()
             if let category = item["category"] {
                 guard let title = category.string, !title.isEmpty, let children = item["contents"]?.array else {
                     throw ActionPortError.invalidResponse

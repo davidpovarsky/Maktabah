@@ -184,6 +184,8 @@ actor BridgeFixtureProofGate {
         await gate.waitForStart(); await epoch.bump(); await gate.release()
         do { _ = try await waiting.value; fatalError("stale RPC epoch accepted") }
         catch { check(true, "Embedded RPC epoch change invalidates actual facade completion") }
-        print("PASS: \(assertions) Integration assertions using real app coordinator/models/protocols and real facade/identity bridge; providers are doubles")
+        try await runtimeChecks()
+        try await relationshipsChecks()
+        print("PASS: \(assertions) Integration assertions using real app coordinator/models/protocols, facade, RPC bridge and runtime manager; providers/transport are doubles, no Hermes or Apple UI")
     }
 }
