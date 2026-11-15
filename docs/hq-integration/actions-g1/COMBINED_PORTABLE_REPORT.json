@@ -1,0 +1,491 @@
+{
+  "phase_final": false,
+  "created_utc": "2026-11-15T12:36:11.246648+00:00",
+  "base": "3d6f90c90403a18e780ca37504da1c71285b219e",
+  "donors": {
+    "P_Core_UI02": "0c502e107f7d9f90611672f55fb0d65ff0ee61b2",
+    "I_Resolver": "4f6149a42725cdb6ad2a0a255cdf491ed7da2387",
+    "S_Backend": "4c929848f0063a8916b411643063f1343ee14c7a"
+  },
+  "intermediate_merge_commit": "a342198220365e708edcb1e994fc71f505869b5b",
+  "combined_commit": "b4843f1914f64bb10c6e589b90fd73a14d802536",
+  "combined_tree": "53df63ceca177ac3bc3b0096edbbbf8dbefb8db1",
+  "branch": "refs/heads/codex/otzaria-g1-coherent-20261115",
+  "package_trees": {
+    "Actions": "3862a1420137f98cb6cf6c04785bd4fc6f00e195",
+    "UIRouting": "78006679d61ca70bdf9520d28ef418e092a2ccca"
+  },
+  "source_path_intersections": {
+    "P_I": [],
+    "P_S": [],
+    "I_S": []
+  },
+  "snapshot_file_count": 56,
+  "snapshot_bytes": 526054,
+  "files": {
+    "Source/Otzaria/Actions/.gitignore": {
+      "bytes": 38,
+      "sha256": "9c13f7168bf62cd93b8e820e136cdf7e57c67ef9dbdeca817c72a217dd823a40"
+    },
+    "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift": {
+      "bytes": 7204,
+      "sha256": "caeee06f63a4d757457324ea77ff4f7ea9089b4701730d13aeac60efc6b5d7e4"
+    },
+    "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift": {
+      "bytes": 16707,
+      "sha256": "44f8a7de06b30455a0c8980f2de9131779afb3fa6ab737719a1967559dc42492"
+    },
+    "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift": {
+      "bytes": 10195,
+      "sha256": "1a8f0efce04009c28e1e859937a984e912ad3505fc7cf6a149c6b9782b76ca93"
+    },
+    "Source/Otzaria/Actions/Package.swift": {
+      "bytes": 426,
+      "sha256": "8202b60cf4de61dcacda7eeb3af9341d10e98e8eba27e3353c5790f02c7ab8d5"
+    },
+    "Source/Otzaria/Actions/README.md": {
+      "bytes": 3513,
+      "sha256": "22a9b7b1a31af78e52df84836f568335311b52e805656bd48d9a2f5a5aed23d6"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift": {
+      "bytes": 1651,
+      "sha256": "b45b86613217cb29b5a8ec1e7949e5c0596b667d9c4688eccaa54dd458c4057a"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift": {
+      "bytes": 1775,
+      "sha256": "82e9aaf357c02dc71b1fd1351cd9c66bdd8febf32a8601478e78dbb66ed629fc"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift": {
+      "bytes": 4813,
+      "sha256": "049d5c042b15047ead280b7a0346598be7e4403ad1aaa7b9b911170195ca3b3c"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift": {
+      "bytes": 9984,
+      "sha256": "1615ad518d7af50a2d6b11ec43ccab053165cfc8118ee5d7c684c44d5e002834"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift": {
+      "bytes": 7910,
+      "sha256": "f4ed0208e49d5ca10c7d9c40af2e3dcaf4c56f8137317eead40e7f01dcd4f6b5"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift": {
+      "bytes": 2676,
+      "sha256": "d3db8a15f38040009ebfc17500a09fab9a77278afb3e759548ea22dc60e1682a"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift": {
+      "bytes": 4637,
+      "sha256": "b5ae953b28a0f8d4ae4dbcf0a1cb815fc96249f79169a2c8799b0aaad6c41665"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift": {
+      "bytes": 6028,
+      "sha256": "e0ce60ba449fa879e9c807c8cfc52eac3854ed02d778bd7f1d73fdc6569571fd"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift": {
+      "bytes": 4658,
+      "sha256": "ea82447522e138106b85685578b38a203e918c5aea6c6370eb73b5e233a08930"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift": {
+      "bytes": 2396,
+      "sha256": "124e68c87b8598538befde637b4411095fd601981778eaba7eaf8ec9bddd2ea0"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": {
+      "bytes": 8600,
+      "sha256": "7e75bc7f7118c31fa0266094318163b8a1c0a91241b3a3adc830e12241539f4b"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift": {
+      "bytes": 3226,
+      "sha256": "9a627bb057d06f5210076d78732108ef220bd4799f3eb0216978b800c4455c28"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift": {
+      "bytes": 24647,
+      "sha256": "09eeb31f66855d6cb10bbb0ce4df77022e2cbf17d76fa3195311576d9489ecc9"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift": {
+      "bytes": 1691,
+      "sha256": "520115fea8796a74bf035451975d325f0e3cf5fdf03333533931e1ed66c4c155"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift": {
+      "bytes": 3389,
+      "sha256": "d0e696e8c0b41293727b5f24ba3aa4d3dde4b6e196b1ecc819b6db792c22c332"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift": {
+      "bytes": 8069,
+      "sha256": "eba3eeeb0964fd0f40287cad2eb3e41abf2c22653b5eef66e4dd4f3b3b6aa140"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift": {
+      "bytes": 4705,
+      "sha256": "d48bc33d2ddb6de85a91aaf9e26d0569b363f5cc6b9a0af926af1556077c4bdc"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift": {
+      "bytes": 1801,
+      "sha256": "803fd51600331564870422db344639f34009ec2859b0cb2de9102a68394c6659"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift": {
+      "bytes": 19397,
+      "sha256": "fa19781c9868f386e533ab3da55a63b7536448fd3077f85b12e778f10a620790"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json": {
+      "bytes": 45036,
+      "sha256": "21cf2f24255b9bae28fe4725d5394759ec12055e99e37f16fa7140cff755b503"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json": {
+      "bytes": 1571,
+      "sha256": "5bdd92a543111ede8dfd74c40a284477b26ecf237f1d02b18d7e8a87a76af677"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json": {
+      "bytes": 3859,
+      "sha256": "f4a25fdcd6aa05e16adaf990b9aa33b12fdc63c513163a23a86feec19ee5b724"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json": {
+      "bytes": 98009,
+      "sha256": "678d326932532f267a8a932c286e5cee4b4c982cc9f86ada6238ed532eee85ed"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json": {
+      "bytes": 36996,
+      "sha256": "e8fb0933325e6c32b52422405e1e4988052d4fd81daac2cff1c019e862ca8965"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json": {
+      "bytes": 10497,
+      "sha256": "939e20a96b34c82699e118d58a9674cd610301f4cf17f451ff9eb93e7ca504a3"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift": {
+      "bytes": 14493,
+      "sha256": "20937fe64692aca4ced5fd2878b7bc26a5ed70abdc5db9daabe681dd70e15c6a"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift": {
+      "bytes": 1020,
+      "sha256": "406787669cd5096a444b8f708c6f72b679c779ef04d53fae6bcd58930dfc362c"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift": {
+      "bytes": 8564,
+      "sha256": "831faddc864e44f411defc44df6b006fe16f17863ce59df9ddaf1613b41e3013"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift": {
+      "bytes": 19689,
+      "sha256": "7765f4b487c1e034718bf121650f33c08935dc9d6aebfa59eec0d05b1c3319aa"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift": {
+      "bytes": 7838,
+      "sha256": "d4301e22d08090d9af57e47712161f2425b12c1487cd1df74d62ffe5518f74f6"
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift": {
+      "bytes": 21886,
+      "sha256": "fb7b90e903fd818566d360f31d486b1f275b21f5fdbe442f8b16c59bd41de76c"
+    },
+    "Source/Otzaria/UIRouting/.gitignore": {
+      "bytes": 38,
+      "sha256": "9c13f7168bf62cd93b8e820e136cdf7e57c67ef9dbdeca817c72a217dd823a40"
+    },
+    "Source/Otzaria/UIRouting/Package.swift": {
+      "bytes": 613,
+      "sha256": "91d208e00b820d0e988ca883f3637c4a94b6129e799b91086d0316f60aa1ceaf"
+    },
+    "Source/Otzaria/UIRouting/README.md": {
+      "bytes": 1834,
+      "sha256": "a4bbf5c4feef8bbeeea6589261d873cc09b2a1ba73e89294167c0bdc47a8f46c"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift": {
+      "bytes": 4862,
+      "sha256": "af1cf746fab94dfe6fcff56cd5aed6535a701dc4e53d8c477be4adf4292b7f92"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift": {
+      "bytes": 6082,
+      "sha256": "822385647daaecd6d1bf5e2d02c363a73e0475ae495097ef3bf9dfeafbc9afa1"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift": {
+      "bytes": 7424,
+      "sha256": "fc51fc03e662debb2b2142939ce2dfe643aed6cf07f7b34bd7aea95d50e90300"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift": {
+      "bytes": 7013,
+      "sha256": "a1598d6a119bc4e470948bac77a0b70c88f4fbf2e71a2f124091d7b30eb28ed6"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift": {
+      "bytes": 2181,
+      "sha256": "ff8ea12676a2cba95f2832f80640b0b25de9d045a92b170da9a579f07c8c2ecb"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift": {
+      "bytes": 11731,
+      "sha256": "d3273043c5957969187965e15e6e94aca4983c5374c3b9327c561f9f657aaaf5"
+    },
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Resources/catalog-status.json": {
+      "bytes": 84,
+      "sha256": "abb75034cbbe247bb10bb485b0d7911cec47ebe0d8392bf999d2b31a61e2573d"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/CodecTests.swift": {
+      "bytes": 9003,
+      "sha256": "adae7d06599f7f46d8130e9200893e2d9bb05d82436bf6c790d3d0cc239d88e9"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/legacy-reader-v0.json": {
+      "bytes": 536,
+      "sha256": "4bba4ab163f66c3b905f3f886fb639ecf2115b89bb044d5299845a3ff4af91fd"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/private-reader-v1.json": {
+      "bytes": 594,
+      "sha256": "c9c8fef9ea85c8b036ac93a59b8b6857183471239ecaa4eb6bf297be2c8cd19b"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/public-reader-v1.json": {
+      "bytes": 403,
+      "sha256": "98aa0b19bf24dd512d2f342df940065b74b8465fadcf80b07eeb00a9edac54cb"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/GoldenAPITests.swift": {
+      "bytes": 1525,
+      "sha256": "0d2475b626147f34f3c12d8cf72a1a7f6084947a4bf365e52050a3343ec2d957"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/ScenePortTests.swift": {
+      "bytes": 12078,
+      "sha256": "ce772d7e2ca631846622e308d1b8fdd7899e3eec8183e8634b131406a05cc4bf"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/DiscoveryTests.swift": {
+      "bytes": 12274,
+      "sha256": "5685ab5943c7d7014febfa7b604cfd3198ccd66873092e65332d0bab5a20019f"
+    },
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/RegistryTests.swift": {
+      "bytes": 8718,
+      "sha256": "29c22a49e40e76c7bc73dbb2a5319b456f79b5d2c3d4168d35b06bdb0cbf6b89"
+    },
+    "docs/hq-actions-bridge/embedded-handler-fixtures.json": {
+      "bytes": 9467,
+      "sha256": "b8cd14b074f50f3be46a799e059125e1441b07b2682c8e32c7ad7c015f19d7e1"
+    }
+  },
+  "original_checkout": "3b2619bfe9392d26ea3b3be344430b1b48e7dba5",
+  "original_status": "",
+  "current_checkout_preserved": true,
+  "status_preserved": true,
+  "new_worktree_clone_external_dependency": false,
+  "tests_status": "SCOPED_PORTABLE_PACKAGE_COMPATIBILITY_PASS_FINAL_ADMISSION_PENDING_P_CORRECTION",
+  "portable_test_runs": [
+    {
+      "package": "Actions",
+      "command": [
+        "swift",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\snapshot\\Source\\Otzaria\\Actions",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\build",
+        "-j",
+        "1",
+        "-Xswiftc",
+        "-strict-concurrency=complete"
+      ],
+      "started_utc": "2026-11-15T12:36:34.564992+00:00",
+      "finished_utc": "2026-11-15T12:39:10.223339+00:00",
+      "exit_code": 1,
+      "xctest_executed": 56,
+      "xctest_failures": 1,
+      "log": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\Actions-strict-tests.log",
+      "log_sha256": "9f4e4a2bbce67328041a3405ca1097f109383f934b1a2435f561d8e2dbdb8444"
+    },
+    {
+      "package": "Actions",
+      "filter": "BackendSemanticsTests.testActualEmbeddedHandlerFixtures",
+      "command": [
+        "swift",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\snapshot\\Source\\Otzaria\\Actions",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\build",
+        "-j",
+        "1",
+        "-Xswiftc",
+        "-strict-concurrency=complete",
+        "--filter",
+        "BackendSemanticsTests.testActualEmbeddedHandlerFixtures"
+      ],
+      "started_utc": "2026-11-15T12:39:51.112490+00:00",
+      "finished_utc": "2026-11-15T12:39:54.346148+00:00",
+      "exit_code": 0,
+      "xctest_executed": 1,
+      "xctest_failures": 0,
+      "log": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\Actions-fixture-retest-strict-tests.log",
+      "log_sha256": "ed1f3472099f0f02b4380ce71eeb171a8590f8f33aa1d34563e1dc6a6bb4eb4d"
+    },
+    {
+      "package": "UIRouting",
+      "filter": null,
+      "command": [
+        "swift",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\snapshot\\Source\\Otzaria\\UIRouting",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\build",
+        "-j",
+        "1",
+        "-Xswiftc",
+        "-strict-concurrency=complete"
+      ],
+      "started_utc": "2026-11-15T12:39:54.348158+00:00",
+      "finished_utc": "2026-11-15T12:40:00.839151+00:00",
+      "exit_code": 0,
+      "xctest_executed": 56,
+      "xctest_failures": 0,
+      "log": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\UIRouting-strict-tests.log",
+      "log_sha256": "2ba7cc58e7703a4f628f17911468d1b0ba5fa36a367fc1760839c9a51b8bd5a0",
+      "actual_test_suites": "BackendSemanticsTests,CatalogActionResolverTests,ContractAPITests,EngineTests,WireSecurityTests",
+      "interpretation": "Actions56 actual PASS; invocation requested UIRouting but shared scratch retained the Actions build plan. This is NOT a UIRouting execution."
+    },
+    {
+      "package": "UIRouting",
+      "actual_test_suites": [
+        "CodecTests",
+        "DiscoveryTests",
+        "GoldenAPITests",
+        "RegistryTests",
+        "ScenePortTests"
+      ],
+      "command": [
+        "swift",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\snapshot\\Source\\Otzaria\\UIRouting",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\build",
+        "--disable-build-manifest-caching",
+        "-j",
+        "1",
+        "-Xswiftc",
+        "-strict-concurrency=complete"
+      ],
+      "started_utc": "2026-11-15T12:42:10.976236+00:00",
+      "finished_utc": "2026-11-15T12:42:45.556368+00:00",
+      "exit_code": 0,
+      "xctest_executed": 24,
+      "xctest_failures": 0,
+      "log": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\g1-coherent-0c502\\UIRouting-replanned-strict-tests.log",
+      "log_sha256": "20c146da3ce1c171cfbf5802c65698f6b059893bfe435e72e11f804b108920b1"
+    }
+  ],
+  "snapshot_export_correction": {
+    "initial_failure": "Only testActualEmbeddedHandlerFixtures failed: external committed fixture omitted from minimal export; production code compiled and55other cases passed",
+    "support_fixture": "docs/hq-actions-bridge/embedded-handler-fixtures.json",
+    "fixture_git_source": "b4843f1914f64bb10c6e589b90fd73a14d802536",
+    "bytes": 9467,
+    "sha256": "b8cd14b074f50f3be46a799e059125e1441b07b2682c8e32c7ad7c015f19d7e1",
+    "source_code_changed": false,
+    "rerun_scope": "Only failed fixture case; prior55 healthy cases retained as same-source observations"
+  },
+  "snapshot_hashes_unchanged": true,
+  "strict_swift_language_mode": "6",
+  "strict_concurrency": "complete",
+  "jobs": 1,
+  "test_scope": "Portable Swift6.3.3 Windows/strict-concurrency=complete/-j1 only. All56Actions and24UIRouting actual named tests passed on combined P/I/S source; known independent discovery gaps remain open.",
+  "final_free_bytes": 31543709696,
+  "UI02_review_boundary": {
+    "review_source": "HQ/ui-routing/SECURITY_INTERFACE_REVIEW_0C502E10_20261115.md",
+    "known_findings": "Captured generation/epoch binding across advertisement/host await and finite cancellation/deadline await responsibility gaps",
+    "owner": "P exclusive correction; final admission requires corrected reviewed immutable pin",
+    "native_or_final_freshness_acceptance": false
+  },
+  "evidence_complete": true,
+  "actual_Actions_passed": 56,
+  "actual_UIRouting_passed": 24,
+  "distinct_portable_test_cases_verified": 80,
+  "native_UI_tests": 0,
+  "Apple_factory_typecheck": "NOT_RUN",
+  "native_scene_registration_and_sink": "NOT_RUN",
+  "matching_Embedded_resource_and_epoch": "NOT_RUN",
+  "real_backend_readiness": "NOT_RUN",
+  "physical_device": "NOT_RUN",
+  "independent_final_UI02_acceptance": "P_CORRECTION_AND_REVIEW_PENDING",
+  "actual_case_ids": {
+    "Actions": [
+      "BackendSemanticsTests.testActualEmbeddedHandlerFixtures",
+      "BackendSemanticsTests.testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope",
+      "BackendSemanticsTests.testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases",
+      "BackendSemanticsTests.testEmbeddedReadinessIsPerOperationAndEpoch",
+      "BackendSemanticsTests.testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim",
+      "BackendSemanticsTests.testIgnoredModesAndSortsAreRejected",
+      "BackendSemanticsTests.testInactiveBackendCannotBecomeAvailable",
+      "BackendSemanticsTests.testInvocationGenerationEpochDeadlineAndCancellation",
+      "BackendSemanticsTests.testLegacyDownloadedReadingDoesNotEnableOfflineSearch",
+      "BackendSemanticsTests.testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback",
+      "BackendSemanticsTests.testOtzariaScopeUsesOnlyProvenCanonicalBookFilters",
+      "BackendSemanticsTests.testRegistrationDoesNotProveReadiness",
+      "BackendSemanticsTests.testSourceFeaturesSurviveWithoutEnablingStagedActions",
+      "BackendSemanticsTests.testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing",
+      "CatalogActionResolverTests.testBudgetsFailWithoutSearchingOnlyPrefix",
+      "CatalogActionResolverTests.testDeadlineAndCancellationBeforeAndDuringSourceAwait",
+      "CatalogActionResolverTests.testDeadlineExpiresAcrossEachAwaitAndUnknownRPCEpoch",
+      "CatalogActionResolverTests.testDuplicateTitlesEditionsAliasesAndLimitOne",
+      "CatalogActionResolverTests.testGenerationBackendAndEpochChangeAcrossEveryDataAwait",
+      "CatalogActionResolverTests.testLargeCatalogLastMatchAndDeadlineDuringActorScan",
+      "CatalogActionResolverTests.testMalformedAndCrossBackendInputsBeforeProvider",
+      "CatalogActionResolverTests.testMalformedReferenceCandidatesAndCandidateBudgetFailClosed",
+      "CatalogActionResolverTests.testMissingVersusUnavailableAndRedactedFailure",
+      "CatalogActionResolverTests.testReferenceAmbiguityIsStableCappedAndFullyValidated",
+      "CatalogActionResolverTests.testReferenceFidelityUnknownEmbeddedAndWrongWork",
+      "CatalogActionResolverTests.testRevisionIdentityAndOpaqueKeyOrderingAreNotConcatenated",
+      "CatalogActionResolverTests.testSourceNormalizationPreservesNikudAndCase",
+      "CatalogActionResolverTests.testSourceSubstitutionAndMalformedCatalogRejected",
+      "CatalogActionResolverTests.testThreeBackendsAndExactSectionFocus",
+      "ContractAPITests.testPositionKindValueMismatchRejected",
+      "ContractAPITests.testWirePositionAndSendableAPI",
+      "EngineTests.testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends",
+      "EngineTests.testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented",
+      "EngineTests.testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls",
+      "EngineTests.testCancellationDeadlineAndReplayBudget",
+      "EngineTests.testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason",
+      "EngineTests.testGenerationAndEmbeddedEpochChangesDiscardResults",
+      "EngineTests.testInactiveBackendRequiresSwitchWithoutCommandCalls",
+      "EngineTests.testInitialFiveAcrossAllThreeMockBackends",
+      "EngineTests.testOutputAndWorkScopeBudgets",
+      "EngineTests.testPaginationIdentityAndProviderErrors",
+      "EngineTests.testRightsOriginAndScopeFailClosed",
+      "EngineTests.testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange",
+      "EngineTests.testSemanticSupportAvailabilityAndRealZeroAreDistinct",
+      "EngineTests.testStagedCountWritesAndDiscoveryCannotAdvertiseThem",
+      "EngineTests.testTypedUnsignedResolutionLimitDoesNotDefault",
+      "EngineTests.testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay",
+      "EngineTests.testUIQueueSceneAndExactReceiptBinding",
+      "EngineTests.testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines",
+      "WireSecurityTests.testBoundedGenericObjectIngressReusesExactParser",
+      "WireSecurityTests.testByteDepthAndInvalidGrammarBudgets",
+      "WireSecurityTests.testDuplicateDecodedKeysRejected",
+      "WireSecurityTests.testEnvelopeTypeBoundsAndUnknownFields",
+      "WireSecurityTests.testExactNumericTokenClassificationBeforeFoundationCoercion",
+      "WireSecurityTests.testFrozenCatalogAndElevenExamplesProject",
+      "WireSecurityTests.testWireKeysDoNotAcquireUnicodeNormalizationAliases"
+    ],
+    "UIRouting": [
+      "CodecTests.testDuplicateExactNumberAndBoundedIngress",
+      "CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields",
+      "CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys",
+      "CodecTests.testPrivateAndPublicGoldenCodecs",
+      "CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend",
+      "CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths",
+      "CodecTests.testRenameRemovedUnknownAndFutureVersion",
+      "DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends",
+      "DiscoveryTests.testDeadlineRecheckedAfterHostAwait",
+      "DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive",
+      "DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility",
+      "DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait",
+      "GoldenAPITests.testGoldenPrivateAndPublicDTOs",
+      "GoldenAPITests.testIDsAndSendableContracts",
+      "RegistryTests.testAllBackendReferencesAndPresentationVariants",
+      "RegistryTests.testCompleteStateAndBoundedSelection",
+      "RegistryTests.testConflictingBackendsAndFocusNeverGuess",
+      "RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists",
+      "RegistryTests.testRegistryDefinitionFailsClosed",
+      "ScenePortTests.testCancellationIsRecheckedBeforeCommit",
+      "ScenePortTests.testEveryReceiptBindingAndObservedStateRequired",
+      "ScenePortTests.testExactAcknowledgementAllBackends",
+      "ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation",
+      "ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings"
+    ]
+  },
+  "snapshot_hashes_unchanged_after_all_tests": true,
+  "archive_filtering": {
+    "CRLF_export_only_files": 55,
+    "byte_exact_files": 1,
+    "proof": "RETENTION_PROOF.json",
+    "claim": "Actual compiler-input hashes and canonical Git hashes both retained; every file equal except recorded LF->CRLF export conversion."
+  },
+  "build_output_bytes": 428841503,
+  "R27_current_checkout_unchanged": true,
+  "no_new_clone_or_worktree": true,
+  "dependency_scope": "Existing two local package manifests only; no external package/dependency/corpus/native build downloaded",
+  "R27_results_inherited": 0
+}

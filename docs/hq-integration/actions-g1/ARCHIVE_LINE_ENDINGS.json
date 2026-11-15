@@ -1,0 +1,442 @@
+[
+  {
+    "path": "Source/Otzaria/Actions/.gitignore",
+    "git_bytes": 35,
+    "snapshot_bytes": 38,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "fbd5357ebfae65e60bc6a2a35c8c2a1b66215080e1b42aaafe2b43c233d18c3c",
+    "snapshot_sha256": "9c13f7168bf62cd93b8e820e136cdf7e57c67ef9dbdeca817c72a217dd823a40"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift",
+    "git_bytes": 7082,
+    "snapshot_bytes": 7204,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "7d06dbdac0433e23731bfd13fbb74eb249cf46cac71345853025eee671bf88f6",
+    "snapshot_sha256": "caeee06f63a4d757457324ea77ff4f7ea9089b4701730d13aeac60efc6b5d7e4"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+    "git_bytes": 16456,
+    "snapshot_bytes": 16707,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "b9cf98bfa6c8ce29fe466da4544a3a11f6d9ba72b4f47805fff841cd546076ae",
+    "snapshot_sha256": "44f8a7de06b30455a0c8980f2de9131779afb3fa6ab737719a1967559dc42492"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+    "git_bytes": 10046,
+    "snapshot_bytes": 10195,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "e9a2f7435530960b13fcd3c6efa4fcca01f0af8ff0f2f29e256113ade1d5e3fe",
+    "snapshot_sha256": "1a8f0efce04009c28e1e859937a984e912ad3505fc7cf6a149c6b9782b76ca93"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Package.swift",
+    "git_bytes": 414,
+    "snapshot_bytes": 426,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "cfdf287980b20713e864421ce5a6d4cf96fa589ecba4f1179e037e2bd35f0744",
+    "snapshot_sha256": "8202b60cf4de61dcacda7eeb3af9341d10e98e8eba27e3353c5790f02c7ab8d5"
+  },
+  {
+    "path": "Source/Otzaria/Actions/README.md",
+    "git_bytes": 3456,
+    "snapshot_bytes": 3513,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "c710336818740b4d2980e5b13ef6ed20b75a75955c3a72548a1f3bfc799dbd6d",
+    "snapshot_sha256": "22a9b7b1a31af78e52df84836f568335311b52e805656bd48d9a2f5a5aed23d6"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+    "git_bytes": 1618,
+    "snapshot_bytes": 1651,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+    "snapshot_sha256": "b45b86613217cb29b5a8ec1e7949e5c0596b667d9c4688eccaa54dd458c4057a"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+    "git_bytes": 1747,
+    "snapshot_bytes": 1775,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+    "snapshot_sha256": "82e9aaf357c02dc71b1fd1351cd9c66bdd8febf32a8601478e78dbb66ed629fc"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+    "git_bytes": 4725,
+    "snapshot_bytes": 4813,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+    "snapshot_sha256": "049d5c042b15047ead280b7a0346598be7e4403ad1aaa7b9b911170195ca3b3c"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+    "git_bytes": 9816,
+    "snapshot_bytes": 9984,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "e702e725423cb9c549f29c21c003b81c76f69b718b8b96bc1ebada664056efe3",
+    "snapshot_sha256": "1615ad518d7af50a2d6b11ec43ccab053165cfc8118ee5d7c684c44d5e002834"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+    "git_bytes": 7793,
+    "snapshot_bytes": 7910,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "ea4be9c6acf1d66474f85ca3e796992925af9d6a7d0a92cb1d454e1843fbfefd",
+    "snapshot_sha256": "f4ed0208e49d5ca10c7d9c40af2e3dcaf4c56f8137317eead40e7f01dcd4f6b5"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+    "git_bytes": 2619,
+    "snapshot_bytes": 2676,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+    "snapshot_sha256": "d3db8a15f38040009ebfc17500a09fab9a77278afb3e759548ea22dc60e1682a"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+    "git_bytes": 4544,
+    "snapshot_bytes": 4637,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "7c10bbf879c8d9917286e020816dfed8e259a6d9e1d5500f6056a61d4403b962",
+    "snapshot_sha256": "b5ae953b28a0f8d4ae4dbcf0a1cb815fc96249f79169a2c8799b0aaad6c41665"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+    "git_bytes": 5919,
+    "snapshot_bytes": 6028,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+    "snapshot_sha256": "e0ce60ba449fa879e9c807c8cfc52eac3854ed02d778bd7f1d73fdc6569571fd"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+    "git_bytes": 4589,
+    "snapshot_bytes": 4658,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+    "snapshot_sha256": "ea82447522e138106b85685578b38a203e918c5aea6c6370eb73b5e233a08930"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+    "git_bytes": 2353,
+    "snapshot_bytes": 2396,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+    "snapshot_sha256": "124e68c87b8598538befde637b4411095fd601981778eaba7eaf8ec9bddd2ea0"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+    "git_bytes": 8441,
+    "snapshot_bytes": 8600,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "a94dd85985f288edbd2e10b5a14b1731be25a8d25893e832e8515af63307cbdf",
+    "snapshot_sha256": "7e75bc7f7118c31fa0266094318163b8a1c0a91241b3a3adc830e12241539f4b"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+    "git_bytes": 3154,
+    "snapshot_bytes": 3226,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+    "snapshot_sha256": "9a627bb057d06f5210076d78732108ef220bd4799f3eb0216978b800c4455c28"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+    "git_bytes": 24304,
+    "snapshot_bytes": 24647,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "df37c550d7fbdbbc12eee780d7e210473dc341bfe47c0e475eb195c3b7d6ade5",
+    "snapshot_sha256": "09eeb31f66855d6cb10bbb0ce4df77022e2cbf17d76fa3195311576d9489ecc9"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+    "git_bytes": 1662,
+    "snapshot_bytes": 1691,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "64e370008c0650849be70c3263939c657fe830a14522c3b23aed248486293a1a",
+    "snapshot_sha256": "520115fea8796a74bf035451975d325f0e3cf5fdf03333533931e1ed66c4c155"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+    "git_bytes": 3344,
+    "snapshot_bytes": 3389,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "7b461d876aba4cb479247e369ef30fac040382ab86f434020c0e27ec16ab98cf",
+    "snapshot_sha256": "d0e696e8c0b41293727b5f24ba3aa4d3dde4b6e196b1ecc819b6db792c22c332"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+    "git_bytes": 7933,
+    "snapshot_bytes": 8069,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "19aefe3f90bec25f530ab59be9443b137ce1258c5dd106c12b555161f703c868",
+    "snapshot_sha256": "eba3eeeb0964fd0f40287cad2eb3e41abf2c22653b5eef66e4dd4f3b3b6aa140"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+    "git_bytes": 4622,
+    "snapshot_bytes": 4705,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "0451c7a98611a62ab4cb8285356db26ebcd8ce27e5dab5d77616516d596d72bc",
+    "snapshot_sha256": "d48bc33d2ddb6de85a91aaf9e26d0569b363f5cc6b9a0af926af1556077c4bdc"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+    "git_bytes": 1765,
+    "snapshot_bytes": 1801,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "4c762e686ba1c3f08e5ec0a05fa3dfc6194993f11dbc8b4f4f8b6144c078aafa",
+    "snapshot_sha256": "803fd51600331564870422db344639f34009ec2859b0cb2de9102a68394c6659"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+    "git_bytes": 19068,
+    "snapshot_bytes": 19397,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "fe0caa132eb587fba39aa3e4ff43041a41dfaf45f1c69323f80573e116ceb053",
+    "snapshot_sha256": "fa19781c9868f386e533ab3da55a63b7536448fd3077f85b12e778f10a620790"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json",
+    "git_bytes": 43332,
+    "snapshot_bytes": 45036,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+    "snapshot_sha256": "21cf2f24255b9bae28fe4725d5394759ec12055e99e37f16fa7140cff755b503"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json",
+    "git_bytes": 1510,
+    "snapshot_bytes": 1571,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+    "snapshot_sha256": "5bdd92a543111ede8dfd74c40a284477b26ecf237f1d02b18d7e8a87a76af677"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json",
+    "git_bytes": 3669,
+    "snapshot_bytes": 3859,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+    "snapshot_sha256": "f4a25fdcd6aa05e16adaf990b9aa33b12fdc63c513163a23a86feec19ee5b724"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json",
+    "git_bytes": 95749,
+    "snapshot_bytes": 98009,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+    "snapshot_sha256": "678d326932532f267a8a932c286e5cee4b4c982cc9f86ada6238ed532eee85ed"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json",
+    "git_bytes": 36033,
+    "snapshot_bytes": 36996,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+    "snapshot_sha256": "e8fb0933325e6c32b52422405e1e4988052d4fd81daac2cff1c019e862ca8965"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json",
+    "git_bytes": 10140,
+    "snapshot_bytes": 10497,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+    "snapshot_sha256": "939e20a96b34c82699e118d58a9674cd610301f4cf17f451ff9eb93e7ca504a3"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift",
+    "git_bytes": 14289,
+    "snapshot_bytes": 14493,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "04fb83757ba3e84b3907dd698f32d45c28c70a72531f86e8f7c59313d030d7ac",
+    "snapshot_sha256": "20937fe64692aca4ced5fd2878b7bc26a5ed70abdc5db9daabe681dd70e15c6a"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift",
+    "git_bytes": 1000,
+    "snapshot_bytes": 1020,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "e74b362654f3396f0274fee3a493110205384b5d8c498d25f181a30a4e2ec9df",
+    "snapshot_sha256": "406787669cd5096a444b8f708c6f72b679c779ef04d53fae6bcd58930dfc362c"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift",
+    "git_bytes": 8453,
+    "snapshot_bytes": 8564,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "aaa582a7d303444494bc988c9215c04ae14d5a8abfc63b0c35fdc04d29ae6cdd",
+    "snapshot_sha256": "831faddc864e44f411defc44df6b006fe16f17863ce59df9ddaf1613b41e3013"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift",
+    "git_bytes": 19429,
+    "snapshot_bytes": 19689,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "638580f65fb7f1436bb91ded515f94f66dda39ef1bcd2a0562d059898d083a84",
+    "snapshot_sha256": "7765f4b487c1e034718bf121650f33c08935dc9d6aebfa59eec0d05b1c3319aa"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift",
+    "git_bytes": 7735,
+    "snapshot_bytes": 7838,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "c2f575a0c8b224cca29b1715e372f6f0785a2df93c4ff85c7bc582fde189448c",
+    "snapshot_sha256": "d4301e22d08090d9af57e47712161f2425b12c1487cd1df74d62ffe5518f74f6"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift",
+    "git_bytes": 21559,
+    "snapshot_bytes": 21886,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "1f15fd47bab330d162740e1b0c197a2613311fb544e86bb668d0ba2cb13279ad",
+    "snapshot_sha256": "fb7b90e903fd818566d360f31d486b1f275b21f5fdbe442f8b16c59bd41de76c"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/.gitignore",
+    "git_bytes": 35,
+    "snapshot_bytes": 38,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "fbd5357ebfae65e60bc6a2a35c8c2a1b66215080e1b42aaafe2b43c233d18c3c",
+    "snapshot_sha256": "9c13f7168bf62cd93b8e820e136cdf7e57c67ef9dbdeca817c72a217dd823a40"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Package.swift",
+    "git_bytes": 600,
+    "snapshot_bytes": 613,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "fcad7da85e9301a9fe0fad3b3cb7189368383f9547b762a20ff23206ae740dc3",
+    "snapshot_sha256": "91d208e00b820d0e988ca883f3637c4a94b6129e799b91086d0316f60aa1ceaf"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/README.md",
+    "git_bytes": 1823,
+    "snapshot_bytes": 1834,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "689f7ec797fa2f956cdc935012bf9eb56039199d7e0dcf0f53045aa7ada31849",
+    "snapshot_sha256": "a4bbf5c4feef8bbeeea6589261d873cc09b2a1ba73e89294167c0bdc47a8f46c"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift",
+    "git_bytes": 4795,
+    "snapshot_bytes": 4862,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "58c3ac03799d3dbe6b83e2b617cde6c20f46169816f7f4a8caa1fa12b1166729",
+    "snapshot_sha256": "af1cf746fab94dfe6fcff56cd5aed6535a701dc4e53d8c477be4adf4292b7f92"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+    "git_bytes": 6006,
+    "snapshot_bytes": 6082,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "558ebf48d34f6d1a940858675ee5ce1f31add78e5418c00946b1782b06118063",
+    "snapshot_sha256": "822385647daaecd6d1bf5e2d02c363a73e0475ae495097ef3bf9dfeafbc9afa1"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift",
+    "git_bytes": 7294,
+    "snapshot_bytes": 7424,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "a39499cf8a88d6c10893812941346710558125934445a629822a53a85c53e3a9",
+    "snapshot_sha256": "fc51fc03e662debb2b2142939ce2dfe643aed6cf07f7b34bd7aea95d50e90300"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+    "git_bytes": 6915,
+    "snapshot_bytes": 7013,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "2a73af3cdc9d994d5083f4ccd4bb768931087b14f7e97bba9d507227d8168f42",
+    "snapshot_sha256": "a1598d6a119bc4e470948bac77a0b70c88f4fbf2e71a2f124091d7b30eb28ed6"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift",
+    "git_bytes": 2145,
+    "snapshot_bytes": 2181,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "7daff5adae5cd99748de376838e5f44fb4de438e0dbd0e4163ba47c0f73e2c8d",
+    "snapshot_sha256": "ff8ea12676a2cba95f2832f80640b0b25de9d045a92b170da9a579f07c8c2ecb"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+    "git_bytes": 11593,
+    "snapshot_bytes": 11731,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "8b1ff2491a8925bb6c15424644552205ea62390a0bfd938a69ce839c5521ef5d",
+    "snapshot_sha256": "d3273043c5957969187965e15e6e94aca4983c5374c3b9327c561f9f657aaaf5"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Resources/catalog-status.json",
+    "git_bytes": 79,
+    "snapshot_bytes": 84,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "3b33f3498fb32e5af369bf040b6478f225d2e872c689fbebf9a9095598e507b2",
+    "snapshot_sha256": "abb75034cbbe247bb10bb485b0d7911cec47ebe0d8392bf999d2b31a61e2573d"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/CodecTests.swift",
+    "git_bytes": 8889,
+    "snapshot_bytes": 9003,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "8c4caba0ec9167ae608bb535d489eb2cdd67beee51b9294bd874ca3dae70a49d",
+    "snapshot_sha256": "adae7d06599f7f46d8130e9200893e2d9bb05d82436bf6c790d3d0cc239d88e9"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/legacy-reader-v0.json",
+    "git_bytes": 519,
+    "snapshot_bytes": 536,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "3f9a59a703cce2d2bd4c1ec557fb7285077535e3ac5c3fd6d3565e7988e60327",
+    "snapshot_sha256": "4bba4ab163f66c3b905f3f886fb639ecf2115b89bb044d5299845a3ff4af91fd"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/private-reader-v1.json",
+    "git_bytes": 565,
+    "snapshot_bytes": 594,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "160f9e73c68be07d2b951a635a3724ecc9165004d9077281bbd75463e19111d7",
+    "snapshot_sha256": "c9c8fef9ea85c8b036ac93a59b8b6857183471239ecaa4eb6bf297be2c8cd19b"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/Fixtures/public-reader-v1.json",
+    "git_bytes": 385,
+    "snapshot_bytes": 403,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "748d3fc2268cd0b0104bfb185f39fa2ed21807734560cf9c2c33289f70eb6f29",
+    "snapshot_sha256": "98aa0b19bf24dd512d2f342df940065b74b8465fadcf80b07eeb00a9edac54cb"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/GoldenAPITests.swift",
+    "git_bytes": 1501,
+    "snapshot_bytes": 1525,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "b112cade7ce1f4c3818c08d77d90786466b24876ccdea8bdd632a701c2e67b99",
+    "snapshot_sha256": "0d2475b626147f34f3c12d8cf72a1a7f6084947a4bf365e52050a3343ec2d957"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/ScenePortTests.swift",
+    "git_bytes": 11943,
+    "snapshot_bytes": 12078,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "cc5274ce9d94479df24395bc25d711c62c60e7b4d35d567bcb673425a961beed",
+    "snapshot_sha256": "ce772d7e2ca631846622e308d1b8fdd7899e3eec8183e8634b131406a05cc4bf"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/DiscoveryTests.swift",
+    "git_bytes": 12120,
+    "snapshot_bytes": 12274,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "d55cc1e416422b0e01300eb6133b27c3da4cc2e563075656d99def4b65a67679",
+    "snapshot_sha256": "5685ab5943c7d7014febfa7b604cfd3198ccd66873092e65332d0bab5a20019f"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/RegistryTests.swift",
+    "git_bytes": 8622,
+    "snapshot_bytes": 8718,
+    "only_LF_to_CRLF": true,
+    "git_sha256": "09a134a371fbb05f849bd5388f0edfd8c631167a722b251f02febf8a54dfe7c7",
+    "snapshot_sha256": "29c22a49e40e76c7bc73dbb2a5319b456f79b5d2c3d4168d35b06bdb0cbf6b89"
+  }
+]

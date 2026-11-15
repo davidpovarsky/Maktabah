@@ -1,0 +1,110 @@
+Building for debugging...
+[0/16] Write swift-version-2807070033DA82CF.txt
+[1/17] Copying Fixtures
+[2/17] Copying Resources
+[3/17] Write sources
+[5/17] Copying Resources
+[7/17] Emitting module OtzariaUIRouting
+[8/24] Compiling OtzariaUIRouting UIRouteCodec.swift
+[9/24] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[10/24] Compiling OtzariaUIRouting RouteSpec.swift
+[11/24] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[12/24] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[13/24] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[14/24] Compiling OtzariaUIRouting resource_bundle_accessor.swift
+[15/25] Wrapping AST for OtzariaUIRouting for debugging
+[17/26] Emitting module OtzariaUIRoutingTests
+[18/32] Compiling OtzariaUIRoutingTests CodecTests.swift
+[19/32] Compiling OtzariaUIRoutingTests GoldenAPITests.swift
+[20/32] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+[21/32] Compiling OtzariaUIRoutingTests DiscoveryTests.swift
+[22/32] Compiling OtzariaUIRoutingTests RegistryTests.swift
+[23/32] Compiling OtzariaUIRoutingTests resource_bundle_accessor.swift
+[24/33] Wrapping AST for OtzariaUIRoutingTests for debugging
+[25/33] C:\Users\DAVID\Code\Maktabah-hq-integration-20261115\docs\hq-integration\.cache\g1-coherent-0c502\build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[26/33] Write sources
+[28/34] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[29/36] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[30/36] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[31/37] C:\Users\DAVID\Code\Maktabah-hq-integration-20261115\docs\hq-integration\.cache\g1-coherent-0c502\build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[32/37] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[33/37] Write sources
+[35/38] Emitting module OtzariaUIRoutingPackageTests
+[36/39] Compiling OtzariaUIRoutingPackageTests runner.swift
+[37/40] Wrapping AST for OtzariaUIRoutingPackageTests for debugging
+[38/40] Write Objects.LinkFileList
+[39/40] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (24.47s)
+Test Suite 'All tests' started at 2026-11-15 12:42:38.363
+Test Suite 'debug.xctest' started at 2026-11-15 12:42:38.393
+Test Suite 'CodecTests' started at 2026-11-15 12:42:38.393
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' started at 2026-11-15 12:42:38.393
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' passed (0.254 seconds)
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' started at 2026-11-15 12:42:38.647
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' passed (0.086 seconds)
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' started at 2026-11-15 12:42:38.733
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' passed (0.635 seconds)
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' started at 2026-11-15 12:42:39.368
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' passed (0.221 seconds)
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' started at 2026-11-15 12:42:39.589
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' passed (0.132 seconds)
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' started at 2026-11-15 12:42:39.721
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' passed (0.321 seconds)
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' started at 2026-11-15 12:42:40.041
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' passed (0.273 seconds)
+Test Suite 'CodecTests' passed at 2026-11-15 12:42:40.315
+	 Executed 7 tests, with 0 failures (0 unexpected) in 1.921 (1.921) seconds
+Test Suite 'DiscoveryTests' started at 2026-11-15 12:42:40.315
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' started at 2026-11-15 12:42:40.315
+Test Case 'DiscoveryTests.testActualCorePolicyDiscoverySixOriginsAllBackends' passed (0.249 seconds)
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' started at 2026-11-15 12:42:40.564
+Test Case 'DiscoveryTests.testDeadlineRecheckedAfterHostAwait' passed (0.046 seconds)
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' started at 2026-11-15 12:42:40.610
+Test Case 'DiscoveryTests.testFixturesInventoryAndEmptyNeverAdvertiseAsLive' passed (0.085 seconds)
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' started at 2026-11-15 12:42:40.695
+Test Case 'DiscoveryTests.testReadinessRightsSceneDeviceAndHostEligibility' passed (0.287 seconds)
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' started at 2026-11-15 12:42:40.982
+Test Case 'DiscoveryTests.testStaleSceneBackendDeadlineAndCancellationDuringHostWait' passed (0.074 seconds)
+Test Suite 'DiscoveryTests' passed at 2026-11-15 12:42:41.056
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.741 (0.741) seconds
+Test Suite 'GoldenAPITests' started at 2026-11-15 12:42:41.056
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' started at 2026-11-15 12:42:41.056
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' passed (0.106 seconds)
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' started at 2026-11-15 12:42:41.162
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' passed (0.0 seconds)
+Test Suite 'GoldenAPITests' passed at 2026-11-15 12:42:41.162
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.106 (0.106) seconds
+Test Suite 'RegistryTests' started at 2026-11-15 12:42:41.162
+Test Case 'RegistryTests.testAllBackendReferencesAndPresentationVariants' started at 2026-11-15 12:42:41.162
+Test Case 'RegistryTests.testAllBackendReferencesAndPresentationVariants' passed (2.113 seconds)
+Test Case 'RegistryTests.testCompleteStateAndBoundedSelection' started at 2026-11-15 12:42:43.276
+Test Case 'RegistryTests.testCompleteStateAndBoundedSelection' passed (0.355 seconds)
+Test Case 'RegistryTests.testConflictingBackendsAndFocusNeverGuess' started at 2026-11-15 12:42:43.631
+Test Case 'RegistryTests.testConflictingBackendsAndFocusNeverGuess' passed (0.351 seconds)
+Test Case 'RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists' started at 2026-11-15 12:42:43.982
+Test Case 'RegistryTests.testPrivateSearchReusesCoreSchemaAndDraftNeverPersists' passed (0.275 seconds)
+Test Case 'RegistryTests.testRegistryDefinitionFailsClosed' started at 2026-11-15 12:42:44.257
+Test Case 'RegistryTests.testRegistryDefinitionFailsClosed' passed (0.3 seconds)
+Test Suite 'RegistryTests' passed at 2026-11-15 12:42:44.558
+	 Executed 5 tests, with 0 failures (0 unexpected) in 3.395 (3.395) seconds
+Test Suite 'ScenePortTests' started at 2026-11-15 12:42:44.558
+Test Case 'ScenePortTests.testCancellationIsRecheckedBeforeCommit' started at 2026-11-15 12:42:44.558
+Test Case 'ScenePortTests.testCancellationIsRecheckedBeforeCommit' passed (0.053 seconds)
+Test Case 'ScenePortTests.testEveryReceiptBindingAndObservedStateRequired' started at 2026-11-15 12:42:44.611
+Test Case 'ScenePortTests.testEveryReceiptBindingAndObservedStateRequired' passed (0.059 seconds)
+Test Case 'ScenePortTests.testExactAcknowledgementAllBackends' started at 2026-11-15 12:42:44.670
+Test Case 'ScenePortTests.testExactAcknowledgementAllBackends' passed (0.204 seconds)
+Test Case 'ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation' started at 2026-11-15 12:42:44.874
+Test Case 'ScenePortTests.testPortQueueDoesNotCommitAndAcknowledgementMatchesObservation' passed (0.169 seconds)
+Test Case 'ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings' started at 2026-11-15 12:42:45.043
+Test Case 'ScenePortTests.testPrecommitDeadlineSceneGenerationEpochAndTargetBindings' passed (0.332 seconds)
+Test Suite 'ScenePortTests' passed at 2026-11-15 12:42:45.375
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.817 (0.817) seconds
+Test Suite 'debug.xctest' passed at 2026-11-15 12:42:45.375
+	 Executed 24 tests, with 0 failures (0 unexpected) in 6.98 (6.98) seconds
+Test Suite 'All tests' passed at 2026-11-15 12:42:45.375
+	 Executed 24 tests, with 0 failures (0 unexpected) in 6.98 (6.98) seconds
+◊ Test run started.
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+→ Target Platform: x86_64-unknown-windows-msvc
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
