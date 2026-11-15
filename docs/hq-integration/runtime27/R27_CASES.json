@@ -149,15 +149,31 @@
   ],
   "execution_groups": [
     {
-      "label": "11-window",
+      "label": "11-reader",
       "size": "11",
       "case_ids": [
-        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+      ]
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "case_ids": [
+        "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+        "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
       ]
     }
   ],
   "execution_case_ids": [
-    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
+    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -266,5 +282,6 @@
     "behavior": "Existing visible esc hint becomes real native standard Cancel button; same host presentation state",
     "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
     "native_status": "NOT_RUN"
-  }
+  },
+  "selected_scope_reason": "R readerPlainText shared preprocessing changed on all three backends; R lazy reader/service and I adjacent source fixes changed, S Embedded runtime changed. Execute six affected reader/rotation/restoration cases; GlobalHistory unchanged and U owns separate window/Inspector run. No full-release acceptance."
 }
