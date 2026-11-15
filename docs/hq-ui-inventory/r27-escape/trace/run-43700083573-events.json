@@ -1,0 +1,202 @@
+{
+  "run": 43700083573,
+  "checkout": "684f942e49753e445a102928dea8a0241d15d73b",
+  "actual_native_result": {
+    "passed": 0,
+    "failed": 1,
+    "failure_source_line": 164,
+    "failed_operation": "input.value after printable hardware-key positive control",
+    "Escape": "NOT_SENT",
+    "fixture_query": "NOT_REACHED",
+    "Inspector": "NOT_REACHED"
+  },
+  "trace_capture": {
+    "device_udid": "02CBD048-1ED2-456E-9A9A-0CD9EB84EEEE",
+    "command": [
+      "xcrun",
+      "simctl",
+      "spawn",
+      "02CBD048-1ED2-456E-9A9A-0CD9EB84EEEE",
+      "log",
+      "stream",
+      "--style",
+      "json",
+      "--level",
+      "debug",
+      "--predicate",
+      "subsystem == \"com.davidpovarsky.chavrusatext\" AND category == \"R27PaletteInput\""
+    ],
+    "maximum_seconds": 900,
+    "exit_code": 0,
+    "forced_stop": false,
+    "bytes": 56421,
+    "sha256": "25570403ab19ceda79819edb5f35d1fccbaededd8025940221fd71a3de560570",
+    "status": "RETAINED_RAW_STREAM",
+    "acceptance_effect": "NONE; require actual mount/edit markers before interpreting missing handlers"
+  },
+  "image_evidence": [
+    {
+      "path": "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah",
+      "bytes": 40512,
+      "sha256": "e77c986bb9e779bfba71ce3bdebc5de2a9f9ed3ed64108ef4abddef3ba94c957",
+      "matched_symbol_count": 0
+    },
+    {
+      "path": "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah.debug.dylib",
+      "bytes": 142836704,
+      "sha256": "f6af6da2d5a2be94c83b30185251f6bb3f84bcbc937140708de73632cf8c63e2",
+      "matched_symbol_count": 86
+    },
+    {
+      "path": "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/__preview.dylib",
+      "bytes": 16800,
+      "sha256": "f83708fd5c2cbaeedddaf295bfe1832e34648b1e2136bc150bf8edc82c2965e1",
+      "matched_symbol_count": 0
+    }
+  ],
+  "fixed_stage_events": [
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:29.570293+0000",
+      "message": "stage=input.update first=false mounted=false keyWindow=false wantsFocus=false callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:29.666927+0000",
+      "message": "stage=package.appear"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:29.667202+0000",
+      "message": "stage=adapter.appear"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:29.668038+0000",
+      "message": "stage=input.update first=false mounted=false keyWindow=false wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:29.700612+0000",
+      "message": "stage=input.didMoveToWindow first=false mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:29.700817+0000",
+      "message": "stage=input.becomeFirstResponder.before first=false mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:29.727659+0000",
+      "message": "stage=delegate.beginEditing first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:30.506021+0000",
+      "message": "stage=input.becomeFirstResponder.after first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:30.547749+0000",
+      "message": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:32.921502+0000",
+      "message": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:08:33.217621+0000",
+      "message": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.015465+0000",
+      "message": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.017519+0000",
+      "message": "stage=input.pressesBegan.other first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.021767+0000",
+      "message": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.022308+0000",
+      "message": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.129556+0000",
+      "message": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.271290+0000",
+      "message": "stage=delegate.editingChanged first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.444831+0000",
+      "message": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.536321+0000",
+      "message": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.612220+0000",
+      "message": "stage=input.keyCommands first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.614186+0000",
+      "message": "stage=input.pressesEnded.other first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:09:08.872357+0000",
+      "message": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:45.526534+0000",
+      "message": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:47.218537+0000",
+      "message": "stage=input.update first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:47.417982+0000",
+      "message": "stage=input.resignFirstResponder.before first=true mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:47.443233+0000",
+      "message": "stage=delegate.endEditing first=false mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:47.444013+0000",
+      "message": "stage=input.resignFirstResponder.after first=false mounted=true keyWindow=true wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:47.492009+0000",
+      "message": "stage=input.didMoveToWindow first=false mounted=false keyWindow=false wantsFocus=true callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:47.863017+0000",
+      "message": "stage=input.update first=false mounted=false keyWindow=false wantsFocus=false callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:48.901171+0000",
+      "message": "stage=input.didMoveToWindow first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:48.933327+0000",
+      "message": "stage=input.update first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:52.267884+0000",
+      "message": "stage=input.update first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:52.323590+0000",
+      "message": "stage=input.update first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    },
+    {
+      "timestamp_as_recorded_UTC": "2026-11-15 10:16:52.605866+0000",
+      "message": "stage=input.update first=false mounted=true keyWindow=true wantsFocus=false callback=true"
+    }
+  ],
+  "interpretation": "Actual hardware edit is proved by fixed input stages plus independent post-control screenshot/tree. Failed automatic UI-value assertion remains FAIL; Escape was not sent. Sampled app main thread is idle in mach_msg while runner waits in XCUIElement.value resolution. No source deadlock or exact framework cause is proved.",
+  "post_control_UI_observed": {
+    "field_has_actual_one_character_edit": true,
+    "keyboard_focused": true,
+    "filtered_commands": 5,
+    "automatic_value_assertion_completed": false
+  }
+}

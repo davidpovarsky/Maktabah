@@ -1,0 +1,91 @@
+59: Process:          Maktabah (ChavrusaText) [70486]
+60: UUID:             F1D4897B-C290-3093-A4B3-D18D3CB7BF42
+61: Path:             /Users/runner/Library/Developer/CoreSimulator/Devices/02CBD048-1ED2-456E-9A9A-0CD9EB84EEEE/data/Containers/Bundle/Application/937DF68E-075E-4FD8-B9D7-843B60086DA8/Maktabah.app/Maktabah
+62: Identifier:       com.davidpovarsky.chavrusatext
+63: Version:          1.0.0 (195)
+64: Is First Party:   No
+65: Beta Identifier:  CBDBB77F-71A5-5691-A68B-4F780A3E226D
+66: Shared Cache:     None
+67: Architecture:     arm64
+68: Parent:           launchd_sim [66828]
+69: Responsible:      launchd_sim [66828]
+70: UID:              501
+71: Memory Limit:     0MB
+72: Jetsam Priority:  180
+73: Footprint:        107.98 MB
+74: Time Since Fork:  329s
+75: Num samples:      275 (1-275)
+76: CPU Time:         <0.001s
+77: Num threads:      6
+78: Note:             3 idle work queue threads omitted
+79:
+80: Thread 0x2c8be    DispatchQueue "com.apple.main-thread"(1)    275 samples (1-275)    priority 47 (base 47)    last ran 0.322s ago
+81: <process frontmost, thread QoS user interactive (requested user interactive), process unclamped, jetsam priority 180 (requested 180, assertion 0), process memory limit 0MB, process received importance donation from SpringBoard [66834], process received importance donation from Maktabah-iOSUITests-Runner [70281], IO tier 0>
+82: 275  start + 6688 (dyld + 204416) [0x104a51e80] 1-275
+83: 275  start_sim + 20 (dyld + 66516) [0x1047a03d4] 1-275
+84: 275  __debug_main_executable_dylib_entry_point + 12 (MaktabahApp.swift in Maktabah.debug.dylib + 15116792) [0x10e99a9f8] 1-275
+85: 275  static MaktabahApp.$main() + 40 (<compiler-generated> in Maktabah.debug.dylib + 15102604) [0x10e99728c] 1-275
+86: 275  ??? [0x1c9b17394] 1-275
+87: 275  ??? [0x1c9d739c8] 1-275
+88: 275  ??? [0x1c9d73b4c] 1-275
+89: 275  ??? [0x1c543f4d4] 1-275
+90: 275  ??? [0x21d3c19ac] 1-275
+91: 275  ??? [0x1c01df4d4] 1-275
+92: 275  ??? [0x1c01e4674] 1-275
+93: 275  ??? [0x1c01e54a4] 1-275
+94: 275  mach_msg + 20 (libsystem_kernel.dylib + 3804) [0x1049b0edc] 1-275
+95: 275  mach_msg_overwrite + 484 (libsystem_kernel.dylib + 35928) [0x1049b8c58] 1-275
+96: 275  mach_msg2_trap + 8 (libsystem_kernel.dylib + 2908) [0x1049b0b5c] 1-275
+97: *275  ??? (kernel.release.vmapple + 232404) [0xfffffe0009ee4bd4] 1-275
+98:
+99: Thread 0x2cc14    DispatchQueue "AXBinaryMonitorQueue"(151)    275 samples (1-275)    priority 4 (base 4)    cpu time <0.001s    last ran 67.589s ago    runnable before first sample for 67.589s
+100: <process frontmost, thread QoS background (requested background, workloop servicer override background), process unclamped, jetsam priority 180 (requested 180, assertion 0), process memory limit 0MB, thread darwinbg, process received importance donation from SpringBoard [66834], process received importance donation from Maktabah-iOSUITests-Runner [70281], IO tier 2>
+101: 275  start_wqthread + 8 (libsystem_pthread.dylib + 6780) [0x1052f5a7c] 1-275
+102: 275  _pthread_wqthread + 288 (libsystem_pthread.dylib + 11388) [0x1052f6c7c] 1-275
+103: 275  ??? [0x1e673971c] 1-275
+104: 275  ??? [0x1e6739fd4] 1-275
+105: 275  ??? [0x1e672f0c8] 1-275
+106: 275  ??? [0x1e672e600] 1-275
+107: 275  ??? [0x1e673ffb8] 1-275
+108: 275  ??? [0x1e67256a0] 1-275
+109: 275  ??? [0x1c87dbe3c] 1-275
+110: 275  ??? [0x1c87dbd4c] 1-275
+111: 33   ??? [0x1c05d5120] 1-33
+112: 33   _platform_memmove + 256 (libsystem_platform.dylib + 15424) [0x10474bc40] 1-33
+113: *33   ??? (kernel.release.vmapple + 621020) [0xfffffe0009f439dc] (runnable) 1-33
+114: 242  _platform_strlen + 4 (libsystem_platform.dylib + 2596) [0x104748a24] 34-275
+115: *242  ??? (kernel.release.vmapple + 26028) [0xfffffe0009eb25ac] 34-275
+116: *242  ??? (kernel.release.vmapple + 1948300) [0xfffffe000a087a8c] 34-275
+117: *242  ??? (kernel.release.vmapple + 1951364) [0xfffffe000a088684] 34-275
+118: *242  ??? (kernel.release.vmapple + 1164668) [0xfffffe0009fc857c] 34-275
+119: *242  ??? (kernel.release.vmapple + 1547684) [0xfffffe000a025da4] 34-275
+120: *242  ??? (kernel.release.vmapple + 605220) [0xfffffe0009f3fc24] 34-275
+121: *242  ??? (kernel.release.vmapple + 609788) [0xfffffe0009f40dfc] (runnable) 34-275
+122:
+123: Thread 0x2d5a3    Thread name "com.apple.UIKit.inProcessAnimationManager"    275 samples (1-275)    priority 53 (base 53)    last ran 291.985s ago
+124: <process frontmost, process unclamped, jetsam priority 180 (requested 180, assertion 0), process memory limit 0MB, process received importance donation from SpringBoard [66834], process received importance donation from Maktabah-iOSUITests-Runner [70281], IO tier 0>
+70438: 275  @objc R27NativePadTests.testNormalBootstrapNativeWindowResizePaletteAndInspector() + 144 (<compiler-generated> in Maktabah-iOSUITests + 660728) [0x10a0a14f8] 1-275
+70439: 275  R27NativePadTests.testNormalBootstrapNativeWindowResizePaletteAndInspector() + 4524 (R27NativeInteractionAcceptanceTests.swift:164,41 in Maktabah-iOSUITests + 640200) [0x10a09c4c8] 1-275
+70440: 275  XCTUnwrap<A>(_:_:file:line:) + 156 (libXCTestSwiftSupport.dylib + 234704) [0x109aa94d0] 1-275
+70441: 275  _XCTRunThrowableBlock(_:) + 180 (libXCTestSwiftSupport.dylib + 231004) [0x109aa865c] 1-275
+70442: 275  _XCTRunThrowableBlockBridge + 28 (XCTestCore + 104976) [0x105889a10] 1-275
+70443: 275  thunk for @escaping @callee_guaranteed () -> () + 20 (libXCTestSwiftSupport.dylib + 268312) [0x109ab1818] 1-275
+70444: 275  <deduplicated_symbol> + 20 (libXCTestSwiftSupport.dylib + 194656) [0x109a9f860] 1-275
+70445: 275  closure #1 in _XCTRunThrowableBlock(_:) + 36 (libXCTestSwiftSupport.dylib + 231188) [0x109aa8714] 1-275
+70446: 275  partial apply for closure #1 in XCTUnwrap<A>(_:_:file:line:) + 20 (libXCTestSwiftSupport.dylib + 236412) [0x109aa9b7c] 1-275
+70447: 275  closure #1 in XCTUnwrap<A>(_:_:file:line:) + 96 (libXCTestSwiftSupport.dylib + 236332) [0x109aa9b2c] 1-275
+70448: 275  partial apply for implicit closure #16 in R27NativePadTests.testNormalBootstrapNativeWindowResizePaletteAndInspector() + 24 (<compiler-generated> in Maktabah-iOSUITests + 655256) [0x10a09ff98] 1-275
+70449: 275  implicit closure #16 in R27NativePadTests.testNormalBootstrapNativeWindowResizePaletteAndInspector() + 24 (<compiler-generated> in Maktabah-iOSUITests + 654996) [0x10a09fe94] 1-275
+70450: 275  -[XCUIElement value] + 20 (XCUIAutomation + 211320) [0x105ac3978] 1-275
+70451: 275  -[XCUIElement resolveOrRaiseTestFailure:error:] + 200 (XCUIAutomation + 208684) [0x105ac2f2c] 1-275
+70452: 275  -[XCTContext runInternalActivityNamed:block:] + 120 (XCTestCore + 35784) [0x105878bc8] 1-275
+70453: 275  -[XCTContext _runActivityNamed:type:block:] + 180 (XCTestCore + 40392) [0x105879dc8] 1-275
+70454: 275  __47-[XCUIElement resolveOrRaiseTestFailure:error:]_block_invoke + 1768 (XCUIAutomation + 210640) [0x105ac36d0] 1-275
+70455: 275  _XCUIFailWithError + 212 (XCUIAutomation + 110680) [0x105aab058] 1-275
+70456: 275  -[XCUIApplication diagnosticAttachmentsForError:] + 60 (XCUIAutomation + 53032) [0x105a9cf28] 1-275
+70457: 275  -[XCUIApplicationProcess diagnosticAttachmentsForError:] + 120 (XCUIAutomation + 98988) [0x105aa82ac] 1-275
+70458: 275  -[XCUIDevice spindumpAttachmentForProcessID:error:] + 204 (XCUIAutomation + 153496) [0x105ab5798] 1-275
+70459: 275  -[XCTFuture value] + 24 (XCTestCore + 464444) [0x1058e163c] 1-275
+70460: 275  -[XCTFuture _waitForFulfillmentSync:withCompletion:] + 832 (XCTestCore + 459588) [0x1058e0344] 1-275
+70461: 275  -[XCTWaiter waitForExpectations:timeout:enforceOrder:] + 108 (XCTestCore + 473732) [0x1058e3a84] 1-275
+70462: 275  -[XCTWaiter _waitForExpectations:timeout:enforceOrder:synchronously:completionHandler:] + 484 (XCTestCore + 474296) [0x1058e3cb8] 1-275
