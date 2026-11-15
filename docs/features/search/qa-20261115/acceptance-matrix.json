@@ -17296,5 +17296,21 @@
     "report": "SOURCE_REVIEW.md",
     "nativeCasesRun": 0,
     "physicalCasesRun": 0
+  },
+  "latestNativeExecution": {
+    "run": 43744659996,
+    "checkout": "fca92176d48017ee0cd22831a1ae31f40958eed9",
+    "applicationSourcePin": "c93b5a9d33fa09a8054f77eb280ce94472b68841",
+    "status": "APPLE_COMPILE_FAILED_UI18_NOT_RUN",
+    "ui": {
+      "PASS": 0,
+      "FAIL": 0,
+      "NOT_RUN": 18,
+      "globalSearchNOT_RUN": 7
+    },
+    "evidence": "native-43744659996-terminal.json",
+    "actualUIExecuted": 0,
+    "physicalExecuted": 0,
+    "fixOwner": "S; independent exact correction review pending"
   }
 }

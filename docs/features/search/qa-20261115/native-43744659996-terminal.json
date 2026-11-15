@@ -1,0 +1,92 @@
+{
+  "run": 43744659996,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43744659996",
+  "actualRemoteConclusion": "completed/failure",
+  "checkout": "fca92176d48017ee0cd22831a1ae31f40958eed9",
+  "applicationSourcePin": "c93b5a9d33fa09a8054f77eb280ce94472b68841",
+  "status": "APPLE_COMPILE_FAILED_UI18_NOT_RUN",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "sdk": "27.1",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "rootCause": "GlobalSearchPresentationCoordinator.swift:5:16 EnvironmentKey.defaultValue has non-Sendable type (() -> Void)? and is not concurrency-safe under actual Swift6 checks",
+  "compilerErrors": [
+    {
+      "line": 66810,
+      "text": "/Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Search/UI/GlobalSearchPresentationCoordinator.swift:5:16: error: static property 'defaultValue' is not concurrency-safe because non-'Sendable' type '(() -> Void)?' may have shared mutable state [#MutableGlobalVariable]"
+    },
+    {
+      "line": 66814,
+      "text": "   |                `- error: static property 'defaultValue' is not concurrency-safe because non-'Sendable' type '(() -> Void)?' may have shared mutable state [#MutableGlobalVariable]"
+    }
+  ],
+  "xcresultBundles": [],
+  "screenshots": [],
+  "fixOwner": "Existing S developer owns exact Search concurrency correction; I independently reviews and retains full matrix NOT_RUN",
+  "nextAction": "Prepare narrowly typed concurrency-safe native action; no blanket unsafe Sendable/concurrency suppression, no automatic native retry.",
+  "recordedUTC": "2026-11-15T18:41:45.335548+00:00",
+  "sourceArtifact": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\ci-monitor\\davidpovarsky__Maktabah\\43744659996\\TERMINAL_EVIDENCE_REVIEW.json",
+  "sourceArtifactSHA256": "df4c20e262adae19d41ad58dbdb627347952f51279859dcaf23af031f9ea88be",
+  "scope": "Read manager-delivered terminal evidence only; no GitHub poll/watch/retry/cancel/native dispatch by I",
+  "ui": {
+    "PASS": 0,
+    "FAIL": 0,
+    "NOT_RUN": 18,
+    "iPad11": 15,
+    "iPhone": 3,
+    "newGlobalSearchCasesNotRun": 7,
+    "readerAndNativeRouteCasesNotRun": 11,
+    "junitInterpretation": "18 infrastructure errors before UI execution, not18 failed UI assertions"
+  },
+  "selectedGlobalSearchCases": [
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+      "device": "ipad11",
+      "expected": "Actual native header geometry in Hebrew RTL; native field/controls bounds/hit targets",
+      "configuration_label": "11-reader",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+      "device": "ipad11",
+      "expected": "Actual native header geometry in English LTR; native field/controls bounds/hit targets",
+      "configuration_label": "11-reader",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+      "device": "ipad11",
+      "expected": "One real native editable field, genuine system clear, inline canonical history without submission",
+      "configuration_label": "11-reader",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+      "device": "ipad11",
+      "expected": "Real Otzaria advanced Form includes conditional positive/negative/grouping/linguistic controls",
+      "configuration_label": "11-reader",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+      "device": "ipad11",
+      "expected": "Exact/fuzzy show no ignored advanced Otzaria bindings",
+      "configuration_label": "11-reader",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+      "device": "ipad11",
+      "expected": "Options dismissal retains actual query and no submission state",
+      "configuration_label": "11-reader",
+      "actual": "NOT_RUN"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+      "device": "ipad11",
+      "expected": "Unsuppressed native header/history accessibility audit; not manual VoiceOver acceptance",
+      "configuration_label": "11-reader",
+      "actual": "NOT_RUN"
+    }
+  ],
+  "independentAcceptanceComplete": false
+}
