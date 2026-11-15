@@ -2,18 +2,9 @@ diff --git a/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift b/Source/Featur
 index 18a663ae..3b3d6f21 100644
 --- a/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
 +++ b/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
-@@ -19,6 +19,7 @@ struct iOSTOCView: View {
-     @State private var searchText = ""
-     @State private var expandedPaths: Set<ObjectIdentifier> = []
-     @Environment(\.dismiss) private var dismiss
+@@ -21,0 +22 @@ struct iOSTOCView: View {
 +    @Environment(\.readerSidebarOwnsToggle) private var sidebarOwnsToggle
- 
-     init(
-         tocViewModel: BookTOCViewModel,
-@@ -148,19 +149,21 @@ struct iOSTOCView: View {
-                         .searchable(text: $searchText, prompt: String(localized: "Search Contents"))
-                         .navigationBarTitleDisplayMode(.inline)
-                         .toolbar {
+@@ -151,6 +152,10 @@ struct iOSTOCView: View {
 -                            ToolbarItem(placement: .topBarLeading) {
 -                                Button {
 -                                    if let onClose {
@@ -30,38 +21,29 @@ index 18a663ae..3b3d6f21 100644
 +                                        }
 +                                    } label: {
 +                                        ContentsToggleIcon(isOpen: true)
-                                     }
+@@ -158,2 +163,3 @@ struct iOSTOCView: View {
 -                                } label: {
 -                                    ContentsToggleIcon(isOpen: true)
 +                                    .accessibilityLabel(String(localized: "Close Table of Contents"))
 +                                    .accessibilityIdentifier("toc-close")
 +                                    .help(String(localized: "Close Table of Contents"))
-                                 }
+@@ -161,3 +166,0 @@ struct iOSTOCView: View {
 -                                .accessibilityLabel(String(localized: "Close Table of Contents"))
 -                                .accessibilityIdentifier("toc-close")
 -                                .help(String(localized: "Close Table of Contents"))
-                             }
-                             ToolbarItem(placement: .principal) {
-                                 VStack(spacing: 1) {
 diff --git a/Source/UI/iOS/Views/iPadLayout.swift b/Source/UI/iOS/Views/iPadLayout.swift
 index e541d660..58d50560 100644
 --- a/Source/UI/iOS/Views/iPadLayout.swift
 +++ b/Source/UI/iOS/Views/iPadLayout.swift
-@@ -111,12 +111,12 @@ struct iPadLayout: View {
-                     iOSLibraryView()
-                         .navigationTitle(iOSTab.viewer.title)
-                         .toolbarGeneral(showSettings: $showSettings)
+@@ -113,0 +114,5 @@ struct iPadLayout: View {
 +                        .searchable(
 +                            text: Bindable(bManager.libraryViewModel).searchQuery,
 +                            placement: .navigationBarDrawer(displayMode: .always),
 +                            prompt: String(localized: "Search Library")
 +                        )
-                 }
+@@ -115,5 +119,0 @@ struct iPadLayout: View {
 -                .searchable(
 -                    text: Bindable(bManager.libraryViewModel).searchQuery,
 -                    placement: .toolbar,
 -                    prompt: String(localized: "Search Library")
 -                )
-                 .toolbarBackground(Color.appBackground, for: .navigationBar)
-                 .toolbarBackground(.visible, for: .navigationBar)
-                 .background(Color.appBackground)
