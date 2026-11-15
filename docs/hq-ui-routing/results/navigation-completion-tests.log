@@ -1,0 +1,138 @@
+[0/1] Planning build
+Building for debugging...
+[0/6] Write swift-version-2807070033DA82CF.txt
+[1/6] Write sources
+[3/6] Copying Resources
+[4/6] Write sources
+[6/7] Emitting module OtzariaActionCore
+[7/9] Compiling OtzariaActionCore ActionExecutor.swift
+[8/9] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[9/21] Compiling OtzariaActionCore ActionJSON.swift
+[10/21] Compiling OtzariaActionCore ActionReferences.swift
+[11/21] Compiling OtzariaActionCore ActionRequest.swift
+[12/21] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[13/21] Compiling OtzariaActionCore ActionSearch.swift
+[14/21] Compiling OtzariaActionCore ActionWireCodec.swift
+[15/21] Compiling OtzariaActionCore ActionDeadline.swift
+[16/21] Compiling OtzariaActionCore ActionExecutionContext.swift
+[17/21] Compiling OtzariaActionCore ActionPolicy.swift
+[18/21] Compiling OtzariaActionCore ActionValidation.swift
+[19/21] Compiling OtzariaActionCore ActionPorts.swift
+[20/21] Compiling OtzariaActionCore ActionRegistry.swift
+[22/23] Emitting module OtzariaUIRouting
+[23/24] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[25/34] Emitting module OtzariaUIRoutingTests
+[26/36] Compiling OtzariaUIRoutingTests NavigationAuthorizationTests.swift
+[27/36] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+[28/37] Wrapping AST for OtzariaUIRouting for debugging
+[29/37] Wrapping AST for OtzariaUIRoutingTests for debugging
+[30/37] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[31/38] Wrapping AST for OtzariaActionCore for debugging
+[32/38] Write sources
+[34/39] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[35/41] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[36/41] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[37/42] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\UIRouting\.build\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[38/43] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[39/43] Write sources
+[41/44] Emitting module OtzariaUIRoutingPackageTests
+[42/45] Compiling OtzariaUIRoutingPackageTests runner.swift
+[43/45] Write Objects.LinkFileList
+[44/45] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (88.57s)
+Test Suite 'Selected tests' started at 2026-11-15 15:12:10.543
+
+Test Suite 'NavigationAuthorizationTests' started at 2026-11-15 15:12:10.553
+
+Test Case 'NavigationAuthorizationTests.testCanonicalBackendAndNativeContextRemainSeparateSources' started at 2026-11-15 15:12:10.553
+
+Test Case 'NavigationAuthorizationTests.testCanonicalBackendAndNativeContextRemainSeparateSources' passed (0.304 seconds)
+
+Test Case 'NavigationAuthorizationTests.testCompletionRequiresGuardAndExactObservedReceiptWithoutRegrant' started at 2026-11-15 15:12:10.858
+
+Test Case 'NavigationAuthorizationTests.testCompletionRequiresGuardAndExactObservedReceiptWithoutRegrant' passed (0.492 seconds)
+
+Test Case 'NavigationAuthorizationTests.testCurrentSubjectScopeScenePairingAndMissingEpochRequiredAtPreparation' started at 2026-11-15 15:12:11.350
+
+Test Case 'NavigationAuthorizationTests.testCurrentSubjectScopeScenePairingAndMissingEpochRequiredAtPreparation' passed (0.952 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationAfterMutationDoNotBecomeCompletion' started at 2026-11-15 15:12:12.302
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationAfterMutationDoNotBecomeCompletion' passed (0.341 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationRecheckedSynchronously' started at 2026-11-15 15:12:12.644
+
+Test Case 'NavigationAuthorizationTests.testDeadlineAndCancellationRecheckedSynchronously' passed (0.326 seconds)
+
+Test Case 'NavigationAuthorizationTests.testDiscoveryPermissionIsSeparateFromExecutionPreparation' started at 2026-11-15 15:12:12.969
+
+Test Case 'NavigationAuthorizationTests.testDiscoveryPermissionIsSeparateFromExecutionPreparation' passed (0.434 seconds)
+
+Test Case 'NavigationAuthorizationTests.testEmptySemanticRoutesCannotSmuggleContentPrivateStateOrFakeActions' started at 2026-11-15 15:12:13.404
+
+Test Case 'NavigationAuthorizationTests.testEmptySemanticRoutesCannotSmuggleContentPrivateStateOrFakeActions' passed (0.635 seconds)
+
+Test Case 'NavigationAuthorizationTests.testEpochDriftAfterImmediateGuardCannotBecomeCompletedReceipt' started at 2026-11-15 15:12:14.039
+
+Test Case 'NavigationAuthorizationTests.testEpochDriftAfterImmediateGuardCannotBecomeCompletedReceipt' passed (0.19 seconds)
+
+Test Case 'NavigationAuthorizationTests.testFullCommandBindingAndTrustedSceneRevisionStillRequired' started at 2026-11-15 15:12:14.229
+
+Test Case 'NavigationAuthorizationTests.testFullCommandBindingAndTrustedSceneRevisionStillRequired' passed (0.19 seconds)
+
+Test Case 'NavigationAuthorizationTests.testLifetimeReplacementAndBackendGenerationEpochDriftFailClosed' started at 2026-11-15 15:12:14.419
+
+Test Case 'NavigationAuthorizationTests.testLifetimeReplacementAndBackendGenerationEpochDriftFailClosed' passed (0.942 seconds)
+
+Test Case 'NavigationAuthorizationTests.testMissingEmbeddedSynchronousProofDoesNotBlockOtherBackends' started at 2026-11-15 15:12:15.360
+
+Test Case 'NavigationAuthorizationTests.testMissingEmbeddedSynchronousProofDoesNotBlockOtherBackends' passed (0.779 seconds)
+
+Test Case 'NavigationAuthorizationTests.testMissingSynchronousFacetCannotUseASecondAuthority' started at 2026-11-15 15:12:16.140
+
+Test Case 'NavigationAuthorizationTests.testMissingSynchronousFacetCannotUseASecondAuthority' passed (0.397 seconds)
+
+Test Case 'NavigationAuthorizationTests.testPureNavigationAllThreeBackendsSixOriginsAndOneUse' started at 2026-11-15 15:12:16.537
+
+Test Case 'NavigationAuthorizationTests.testPureNavigationAllThreeBackendsSixOriginsAndOneUse' passed (3.126 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRawPreparationBindsInvocationSceneAndCannotBecomeReaderAuthority' started at 2026-11-15 15:12:19.663
+
+Test Case 'NavigationAuthorizationTests.testRawPreparationBindsInvocationSceneAndCannotBecomeReaderAuthority' passed (0.154 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderAcknowledgementRequiresConsumedGuardAndFreshPostSinkAuthority' started at 2026-11-15 15:12:19.817
+
+Test Case 'NavigationAuthorizationTests.testReaderAcknowledgementRequiresConsumedGuardAndFreshPostSinkAuthority' passed (0.183 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderCannotBypassResolverOrForgePreparationAndRevocationBeforeCommit' started at 2026-11-15 15:12:20.000
+
+Test Case 'NavigationAuthorizationTests.testReaderCannotBypassResolverOrForgePreparationAndRevocationBeforeCommit' passed (0.17 seconds)
+
+Test Case 'NavigationAuthorizationTests.testReaderStillUsesResolverSinkGuardAndExactReceiptAllBackends' started at 2026-11-15 15:12:20.169
+
+Test Case 'NavigationAuthorizationTests.testReaderStillUsesResolverSinkGuardAndExactReceiptAllBackends' passed (0.546 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRevocationAfterObservedMutationPreventsCompletion' started at 2026-11-15 15:12:20.716
+
+Test Case 'NavigationAuthorizationTests.testRevocationAfterObservedMutationPreventsCompletion' passed (1.803 seconds)
+
+Test Case 'NavigationAuthorizationTests.testRevokedOrChangedAuthorityNeverCommits' started at 2026-11-15 15:12:22.519
+
+Test Case 'NavigationAuthorizationTests.testRevokedOrChangedAuthorityNeverCommits' passed (1.437 seconds)
+
+Test Suite 'NavigationAuthorizationTests' passed at 2026-11-15 15:12:23.956
+
+	 Executed 19 tests, with 0 failures (0 unexpected) in 13.402 (13.402) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 15:12:23.956
+
+	 Executed 19 tests, with 0 failures (0 unexpected) in 13.402 (13.402) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.002 seconds.
+
