@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "recordedUTC": "2026-11-15T18:51:23.048452+00:00",
+  "purpose": "Attempted local read-only SDK declaration lookup requested for independent correction review",
+  "command": [
+    "apple-api",
+    "--local",
+    "--json",
+    "SwiftUI",
+    "EnvironmentKey",
+    "EnvironmentValues",
+    "Environment"
+  ],
+  "expectation": "local inspection, no remote workflow",
+  "actualCLIOutput": [
+    "https://github.com/davidpovarsky/apple-devtools/actions/runs/43748905494",
+    "{\"operation\":\"api\",\"repository\":\"davidpovarsky/Maktabah\",\"status\":\"dispatched\"}"
+  ],
+  "classification": "Unexpected remote toolkit API workflow dispatch despite supplied --local; disclosed boundary exception",
+  "runId": 43748905494,
+  "terminalStatus": "UNKNOWN_NOT_POLLED",
+  "managerNotifiedThread": "01a1df85-6013-7270-b48d-8e10222e95c6",
+  "notificationToolDeliverySucceeded": true,
+  "humanACK": "NOT_CLAIMED",
+  "additionalWatchers": 0,
+  "polled": false,
+  "cancelled": false,
+  "retried": false,
+  "usedAsSDKCompilerEvidence": false,
+  "usedAsUIEvidence": false,
+  "frozenProjectRunsUntouched": [
+    43736843778,
+    43744048646,
+    43744659996
+  ]
+}

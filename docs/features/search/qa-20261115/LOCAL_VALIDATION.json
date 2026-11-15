@@ -60,5 +60,15 @@
   "executableSourceWhitespaceExit": 0,
   "wholePacketWhitespaceExit": 2,
   "wholePacketWhitespaceReason": "raw console CR/spacing retained; no whole-packet whitespace PASS",
-  "uiTestFileGitBlobSHA256": "8414378841c72dbb99e4404f9eeaa2e5738b07700152fec82693c3cf1045da72"
+  "uiTestFileGitBlobSHA256": "8414378841c72dbb99e4404f9eeaa2e5738b07700152fec82693c3cf1045da72",
+  "concurrencyCorrectionReview": {
+    "sourceSHA": "09c24e5bcc494cb8795a936ca296a8b5ddc0b6a1",
+    "assertions": 6,
+    "strictSwift6CompileExit": 0,
+    "baselineExpectedRejectionExit": 1,
+    "missingActorHopExpectedRejectionExit": 1,
+    "appleSDK": "NOT_RUN",
+    "previous42Plus18ExactInputBlobsRetained": 16,
+    "evidence": "swift6-action-review/immutable-review-inputs.json"
+  }
 }

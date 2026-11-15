@@ -3,7 +3,7 @@
   "taskId": "1220546245946205",
   "specificationSHA256": "88d91318f0436aa98221acb688fa5245c466b53d3831149a87a8c393824bb100",
   "baselineSHA": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
-  "candidateSHA": "da186f456056fc5b9409de28fc7c989a2911cd1b",
+  "candidateSHA": "09c24e5bcc494cb8795a936ca296a8b5ddc0b6a1",
   "allowedExecutionStates": [
     "PASS",
     "FAIL",
@@ -17292,10 +17292,11 @@
   "candidateIdentityScope": "S immutable source pin only; integrated native candidate/test/app pin still required",
   "independentSourceReview": {
     "status": "SOURCE_REVIEWED_NATIVE_PENDING",
-    "sourceSHA": "da186f456056fc5b9409de28fc7c989a2911cd1b",
+    "sourceSHA": "09c24e5bcc494cb8795a936ca296a8b5ddc0b6a1",
     "report": "SOURCE_REVIEW.md",
     "nativeCasesRun": 0,
-    "physicalCasesRun": 0
+    "physicalCasesRun": 0,
+    "correctionReport": "CONCURRENCY_CORRECTION_REVIEW.md"
   },
   "latestNativeExecution": {
     "run": 43744659996,
@@ -17311,6 +17312,17 @@
     "evidence": "native-43744659996-terminal.json",
     "actualUIExecuted": 0,
     "physicalExecuted": 0,
-    "fixOwner": "S; independent exact correction review pending"
+    "fixOwner": "S corrected09c24e5b; I reviewed exact source/portable concurrency; corrected Apple compile pending"
+  },
+  "sourceCorrectionReview": {
+    "sourceSHA": "09c24e5bcc494cb8795a936ca296a8b5ddc0b6a1",
+    "status": "SOURCE_REVIEWED_APPLE_COMPILE_PENDING",
+    "independentPortableActionAssertions": 6,
+    "expectedRedRejected": true,
+    "missingActorHopRejected": true,
+    "appleSDKCompile": "NOT_RUN",
+    "nativeCasesRun": 0,
+    "physicalCasesRun": 0,
+    "report": "CONCURRENCY_CORRECTION_REVIEW.md"
   }
 }

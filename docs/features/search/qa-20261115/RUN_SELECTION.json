@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourcePin": "da186f456056fc5b9409de28fc7c989a2911cd1b",
+  "sourcePin": "09c24e5bcc494cb8795a936ca296a8b5ddc0b6a1",
   "class": "GlobalSearchNativeAcceptanceTests",
   "uiFile": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
   "nativeExecutionStatus": "NOT_RUN",
@@ -57,5 +57,6 @@
     "isolated disposable app/container and genuine installed miniTest10",
     "normal realUI bootstrap without bypass"
   ],
-  "skipPolicy": "No skips/optional passes. Select exact methods whose prerequisites are available; keep unselected matrix rows NOT_RUN."
+  "skipPolicy": "No skips/optional passes. Select exact methods whose prerequisites are available; keep unselected matrix rows NOT_RUN.",
+  "previousSourcePin": "da186f456056fc5b9409de28fc7c989a2911cd1b"
 }

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "utc": "2026-11-15T18:47:11.632126+00:00",
+  "candidate": "09c24e5bcc494cb8795a936ca296a8b5ddc0b6a1",
+  "execution": "unchanged S runner from byte-exact committed snapshot; read-only baseline git-show via process-local GIT_DIR; output captured in owned QA directory",
+  "inputGitBlobSHA256": {
+    "tools/global-search-action-swift6-tests.py": "c37dcb8ee5a5c25186558eeb2c16e277145e9db0eacd01af06cf7614bdf9904b",
+    "Source/ChavrusaText/Search/UI/GlobalSearchPresentationCoordinator.swift": "a2f4e8bb914d14af1f253c8fe87731095ebf3717251f8eda589efdb43c7f39c7",
+    "Source/UI/iOS/Views/iPadLayout.swift": "65d825e16e1bbfbf3222525d1d7a53aa0439fcf449a92e88570f0f546fa26d7d"
+  },
+  "appleSDKTypecheck": "NOT_RUN for corrected candidate",
+  "nativeCasesRun": 0,
+  "physicalCasesRun": 0,
+  "retainedPrevious42Plus18InputsUnchanged": [
+    "tools/global-search-presentation-tests.py",
+    "Tests/HQ/search/CombineFixture.swift",
+    "Tests/HQ/global-search/GlobalSearchPresentationFixtures.swift",
+    "Tests/HQ/global-search/GlobalSearchPagingFixtures.swift",
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+    "Source/Features/Search/iOS/SearchResultsListView.swift",
+    "Source/Features/Search/iOS/SearchModeView.swift",
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+    "Source/LibraryBackend/LibraryBackendModels.swift",
+    "Source/ZayitSearch/UnifiedSearchScope.swift",
+    "Source/ZayitSearch/UnifiedSearchPresentationPolicy.swift",
+    "Source/Otzaria/Search/OtzariaSearchMode.swift",
+    "Source/Otzaria/Search/OtzariaSearchModels.swift",
+    "Vendor/ZayitSearchPort/Swift/ZayitSearchModels.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchSessionPresentation.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift"
+  ],
+  "exitCode": 0,
+  "evidenceSHA256": {
+    "baseline-red.log": "d335e6e15a6f98ad4ba21c0880570b5ca840766bc7864846534d4b5ff8cd01a1",
+    "candidate-green.log": "5d269b16a1047cd1dee46dcd6ca52a3d33afa4b044bdf106cbad12da1749ee86",
+    "candidate-run.log": "41e17711638318f1d76854984874486268a4fe782181ba01724a1ac22fbdf36f",
+    "independent-driver.log": "9b39eba1594ca15b77edc0346d490399715ab7ae8bddc1fb64a9d619bc74db38",
+    "missing-actor-hop-rejected.log": "862f39e09af64f4f0e72b74db534a255086005bf622dbfca1200030a5c655c82",
+    "RESULT.json": "8a294056af90127c4f93dc1a3e597283b71119b99e00130a1488c64e8eb6ce91"
+  }
+}
