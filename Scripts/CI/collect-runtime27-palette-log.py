@@ -7,6 +7,60 @@ from pathlib import Path
 import subprocess
 import sys
 import uuid
+import signal
+import threading
+
+
+class PaletteLogStream:
+    """Capture nonpersistent info/debug events live, for at most 15 minutes."""
+    def __init__(self, udid, label):
+        self.udid = str(uuid.UUID(udid)).upper()
+        if label != "11-window":
+            raise ValueError("Only an owned R27 window stream is supported")
+        self.out = Path("build/artifacts/runtime27")
+        self.out.mkdir(parents=True, exist_ok=True)
+        self.path = self.out / "palette-input-11-window-stream.log"
+        self.errors = self.out / "palette-input-11-window-stream-stderr.log"
+        self.command = ["xcrun", "simctl", "spawn", self.udid, "log", "stream", "--style", "json",
+                        "--level", "debug", "--predicate",
+                        'subsystem == "com.davidpovarsky.chavrusatext" AND category == "R27PaletteInput"']
+
+    def start(self):
+        self.output = self.path.open("wb")
+        self.error_output = self.errors.open("wb")
+        self.process = subprocess.Popen(self.command, stdout=self.output, stderr=self.error_output)
+        self.timer = threading.Timer(900, self.interrupt)
+        self.timer.daemon = True
+        self.timer.start()
+        return self
+
+    def interrupt(self):
+        if self.process.poll() is None:
+            try:
+                self.process.send_signal(signal.SIGINT)
+            except ProcessLookupError:
+                pass
+
+    def stop(self):
+        self.timer.cancel()
+        self.interrupt()
+        forced = False
+        try:
+            self.process.wait(timeout=15)
+        except subprocess.TimeoutExpired:
+            forced = True
+            self.process.kill()
+            self.process.wait(timeout=10)
+        self.output.close()
+        self.error_output.close()
+        data = self.path.read_bytes()
+        report = {"device_udid": self.udid, "command": self.command, "maximum_seconds": 900,
+                  "exit_code": self.process.returncode, "forced_stop": forced,
+                  "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(),
+                  "status": "RETAINED_RAW_STREAM" if data else "EMPTY_CAPTURE_EVIDENCE_GAP",
+                  "acceptance_effect": "NONE; require actual mount/edit markers before interpreting missing handlers"}
+        (self.out / "palette-input-11-window-stream.json").write_text(json.dumps(report, indent=2) + "\n")
+        return report
 
 
 def main():
