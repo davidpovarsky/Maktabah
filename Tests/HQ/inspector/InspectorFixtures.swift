@@ -350,13 +350,22 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
     }
 
     @MainActor static func noteIdentityFixtures() async throws {
+        defer { BackendCoordinator.shared.activeBackendID = .otzaria }
+        for backend in [BackendID.otzaria, .sefaria, .sefariaEmbedded] {
+            try await noteIdentityFixture(backend)
+        }
+        print("PASS actual Notes identities on all3 backends: numeric persisted targets, unique same-timestamp drafts, nonnumeric draft guards, stable IDs across reload/body edit/persisted-count changes")
+    }
+
+    @MainActor static func noteIdentityFixture(_ backend: BackendID) async throws {
         let viewModel = ReaderViewModel(), session = NoteScopeFixture()
-        let locator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(0))
+        let locator = TextLocator(backend: backend, workKey: backend == .otzaria ? "book:1" : "Genesis",
+                                  position: backend == .otzaria ? .legacyLine(0) : .canonicalRef("Genesis 1:1"))
         viewModel.selectedSegmentLocator = locator
         session.readerViewModel = viewModel
-        BackendCoordinator.shared.activeBackendID = .otzaria
+        BackendCoordinator.shared.activeBackendID = backend
         AnnotationManager.shared.onLoad = {}
-        let selection = TorahInspectorSelection(providerID: "otzaria", canonicalRef: locator.persistenceKey, scope: .segment)
+        let selection = TorahInspectorSelection(providerID: backend.rawValue, canonicalRef: locator.persistenceKey, scope: .segment)
         let persisted = Annotation(id: 1, bkId: 1, contentId: 0, range: .init(location: 0, length: 4), rangeDiacritics: .init(location: 0, length: 4), colorHex: "#ffff00", type: .highlight, note: "persisted", createdAt: 1, context: "base", page: 1, part: 1, backendLocator: locator)
         var draftA = persisted, draftB = persisted
         draftA.id = nil; draftA.note = "draft-A"
@@ -379,7 +388,6 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         let edited = try await session.notes(for: selection)
         try expect(edited.filter { $0.note.hasPrefix("draft-") }.map(\.id) == draftIDs, "draft IDs do not depend on persisted count/order or draft body")
         AnnotationManager.shared.rows = []
-        print("PASS actual Notes identities: numeric persisted targets, unique same-timestamp drafts, nonnumeric draft guards, stable IDs across reload/body edit/persisted-count changes")
     }
 
     @MainActor static func notesLoadingFixtures() async throws {
