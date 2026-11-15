@@ -1,0 +1,851 @@
+[0/1] Planning build
+Building for debugging...
+[0/15] Write swift-version-2807070033DA82CF.txt
+[1/16] Write sources
+[4/14] Emitting module ChavrusaUIRoutingHost
+[5/17] Compiling ChavrusaUIRoutingHost NativeObservationDeadline.swift
+[6/17] Compiling ChavrusaUIRoutingHost NativeRouteURL.swift
+[7/17] Compiling ChavrusaUIRoutingHost NativeSceneDirectory.swift
+[8/18] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[10/19] Emitting module ChavrusaUIRoutingHostTests
+[11/21] Compiling ChavrusaUIRoutingHostTests NativeRouteURLTests.swift
+[12/21] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+[13/22] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[14/22] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[15/22] Write sources
+[17/23] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:21:81: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+19 |     @available(*, deprecated, message: "Not actually deprecated. Marked as deprecated to allow inclusion of deprecated tests (which test deprecated functionality) without warnings")
+
+20 |     static nonisolated(unsafe) let __allTests__NativeSceneDirectoryTests = [
+
+21 |         ("testAuthorityIsReadForEveryObservationAcrossThreeBackends", asyncTest(testAuthorityIsReadForEveryObservationAcrossThreeBackends)),
+
+   |                                                                                 |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                                 `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:22:83: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+20 |     static nonisolated(unsafe) let __allTests__NativeSceneDirectoryTests = [
+
+21 |         ("testAuthorityIsReadForEveryObservationAcrossThreeBackends", asyncTest(testAuthorityIsReadForEveryObservationAcrossThreeBackends)),
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+   |                                                                                   |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                                   `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:23:55: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+21 |         ("testAuthorityIsReadForEveryObservationAcrossThreeBackends", asyncTest(testAuthorityIsReadForEveryObservationAcrossThreeBackends)),
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+   |                                                       |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                       `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:24:64: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+   |                                                                |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:25:68: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+   |                                                                    |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                    `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:26:69: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+   |                                                                     |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                     `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:27:65: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+   |                                                                 |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                 `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:28:61: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+   |                                                             |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                             `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:29:79: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+   |                                                                               |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                               `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:30:77: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+   |                                                                             |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                             `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:31:62: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+   |                                                              |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                              `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+33 |         ("testTwoScenesAndStableReadOnlyRevisions", asyncTest(testTwoScenesAndStableReadOnlyRevisions))
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:32:85: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+   |                                                                                     |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                                     `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+33 |         ("testTwoScenesAndStableReadOnlyRevisions", asyncTest(testTwoScenesAndStableReadOnlyRevisions))
+
+34 |     ]
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:33:63: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+33 |         ("testTwoScenesAndStableReadOnlyRevisions", asyncTest(testTwoScenesAndStableReadOnlyRevisions))
+
+   |                                                               |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                               `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+34 |     ]
+
+35 | }
+
+
+
+[#SendingRisksDataRace]: <https://docs.swift.org/compiler/documentation/diagnostics/sending-risks-data-race>
+
+[18/25] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:21:81: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+19 |     @available(*, deprecated, message: "Not actually deprecated. Marked as deprecated to allow inclusion of deprecated tests (which test deprecated functionality) without warnings")
+
+20 |     static nonisolated(unsafe) let __allTests__NativeSceneDirectoryTests = [
+
+21 |         ("testAuthorityIsReadForEveryObservationAcrossThreeBackends", asyncTest(testAuthorityIsReadForEveryObservationAcrossThreeBackends)),
+
+   |                                                                                 |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                                 `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:22:83: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+20 |     static nonisolated(unsafe) let __allTests__NativeSceneDirectoryTests = [
+
+21 |         ("testAuthorityIsReadForEveryObservationAcrossThreeBackends", asyncTest(testAuthorityIsReadForEveryObservationAcrossThreeBackends)),
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+   |                                                                                   |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                                   `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:23:55: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+21 |         ("testAuthorityIsReadForEveryObservationAcrossThreeBackends", asyncTest(testAuthorityIsReadForEveryObservationAcrossThreeBackends)),
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+   |                                                       |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                       `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:24:64: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+   |                                                                |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:25:68: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+   |                                                                    |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                    `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:26:69: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+   |                                                                     |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                     `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:27:65: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+   |                                                                 |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                 `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:28:61: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+   |                                                             |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                             `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:29:79: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+   |                                                                               |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                               `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:30:77: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+   |                                                                             |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                             `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:31:62: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+   |                                                              |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                              `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+33 |         ("testTwoScenesAndStableReadOnlyRevisions", asyncTest(testTwoScenesAndStableReadOnlyRevisions))
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:32:85: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+   |                                                                                     |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                                     `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+33 |         ("testTwoScenesAndStableReadOnlyRevisions", asyncTest(testTwoScenesAndStableReadOnlyRevisions))
+
+34 |     ]
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:33:63: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+33 |         ("testTwoScenesAndStableReadOnlyRevisions", asyncTest(testTwoScenesAndStableReadOnlyRevisions))
+
+   |                                                               |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                               `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+34 |     ]
+
+35 | }
+
+
+
+[#SendingRisksDataRace]: <https://docs.swift.org/compiler/documentation/diagnostics/sending-risks-data-race>
+
+[19/25] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:21:81: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+19 |     @available(*, deprecated, message: "Not actually deprecated. Marked as deprecated to allow inclusion of deprecated tests (which test deprecated functionality) without warnings")
+
+20 |     static nonisolated(unsafe) let __allTests__NativeSceneDirectoryTests = [
+
+21 |         ("testAuthorityIsReadForEveryObservationAcrossThreeBackends", asyncTest(testAuthorityIsReadForEveryObservationAcrossThreeBackends)),
+
+   |                                                                                 |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                                 `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:22:83: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+20 |     static nonisolated(unsafe) let __allTests__NativeSceneDirectoryTests = [
+
+21 |         ("testAuthorityIsReadForEveryObservationAcrossThreeBackends", asyncTest(testAuthorityIsReadForEveryObservationAcrossThreeBackends)),
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+   |                                                                                   |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                                   `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:23:55: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+21 |         ("testAuthorityIsReadForEveryObservationAcrossThreeBackends", asyncTest(testAuthorityIsReadForEveryObservationAcrossThreeBackends)),
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+   |                                                       |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                       `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:24:64: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+22 |         ("testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission", asyncTest(testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission)),
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+   |                                                                |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:25:68: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+23 |         ("testDuplicateMountAndFiniteSceneAdmission", testDuplicateMountAndFiniteSceneAdmission),
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+   |                                                                    |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                    `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:26:69: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+24 |         ("testEmbeddedWithoutEpochFailsUnavailable", asyncTest(testEmbeddedWithoutEpochFailsUnavailable)),
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+   |                                                                     |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                     `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:27:65: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+25 |         ("testExpiredDeadlineDoesNotStartAuthorityRead", asyncTest(testExpiredDeadlineDoesNotStartAuthorityRead)),
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+   |                                                                 |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                 `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:28:61: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+26 |         ("testMissingSceneNeverFallsBackToAnotherWindow", asyncTest(testMissingSceneNeverFallsBackToAnotherWindow)),
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+   |                                                             |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                             `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:29:79: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+27 |         ("testNativeChangeDuringAuthorityAwaitFails", asyncTest(testNativeChangeDuringAuthorityAwaitFails)),
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+   |                                                                               |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                               `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:30:77: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+28 |         ("testNativeStateChangeAdvancesRevision", asyncTest(testNativeStateChangeAdvancesRevision)),
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+   |                                                                             |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                             `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:31:62: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+29 |         ("testNotMountedIsQueuedAndInventoryNeverBecomesSupported", asyncTest(testNotMountedIsQueuedAndInventoryNeverBecomesSupported)),
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+   |                                                              |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                              `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+33 |         ("testTwoScenesAndStableReadOnlyRevisions", asyncTest(testTwoScenesAndStableReadOnlyRevisions))
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:32:85: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+30 |         ("testOldLeaseCannotRemoveRemountedSceneOrReuseRevision", asyncTest(testOldLeaseCannotRemoveRemountedSceneOrReuseRevision)),
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+   |                                                                                     |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                                                     `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+33 |         ("testTwoScenesAndStableReadOnlyRevisions", asyncTest(testTwoScenesAndStableReadOnlyRevisions))
+
+34 |     ]
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\ChavrusaUIRoutingHostTests.swift:33:63: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+31 |         ("testRevocationAfterAuthorityAwaitFails", asyncTest(testRevocationAfterAuthorityAwaitFails)),
+
+32 |         ("testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount", asyncTest(testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount)),
+
+33 |         ("testTwoScenesAndStableReadOnlyRevisions", asyncTest(testTwoScenesAndStableReadOnlyRevisions))
+
+   |                                                               |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+
+   |                                                               `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+
+34 |     ]
+
+35 | }
+
+
+
+[#SendingRisksDataRace]: <https://docs.swift.org/compiler/documentation/diagnostics/sending-risks-data-race>
+
+[20/26] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[21/26] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[22/26] Write sources
+[24/27] Emitting module ChavrusaUIRoutingHostPackageTests
+[25/28] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[26/29] Wrapping AST for ChavrusaUIRoutingHostPackageTests for debugging
+[27/29] Write Objects.LinkFileList
+[28/29] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (171.21s)
+Test Suite 'All tests' started at 2026-11-15 14:36:20.707
+
+Test Suite 'debug.xctest' started at 2026-11-15 14:36:20.772
+
+Test Suite 'NativeRouteURLTests' started at 2026-11-15 14:36:20.772
+
+Test Case 'NativeRouteURLTests.testDebugSchemeIsExplicitAndReleaseDoesNotAcceptIt' started at 2026-11-15 14:36:20.772
+
+Test Case 'NativeRouteURLTests.testDebugSchemeIsExplicitAndReleaseDoesNotAcceptIt' passed (0.182 seconds)
+
+Test Case 'NativeRouteURLTests.testEmptyProductionRegistryDoesNotInstallFixtureRoutes' started at 2026-11-15 14:36:20.954
+
+Test Case 'NativeRouteURLTests.testEmptyProductionRegistryDoesNotInstallFixtureRoutes' passed (0.367 seconds)
+
+Test Case 'NativeRouteURLTests.testLegacyLinksAreDelegatedUnchanged' started at 2026-11-15 14:36:21.322
+
+Test Case 'NativeRouteURLTests.testLegacyLinksAreDelegatedUnchanged' passed (0.129 seconds)
+
+Test Case 'NativeRouteURLTests.testPrivateRestorationCannotEnterPublicURL' started at 2026-11-15 14:36:21.450
+
+Test Case 'NativeRouteURLTests.testPrivateRestorationCannotEnterPublicURL' passed (0.137 seconds)
+
+Test Case 'NativeRouteURLTests.testPublicHebrewReferenceRoundTripUsesCanonicalCodec' started at 2026-11-15 14:36:21.587
+
+Test Case 'NativeRouteURLTests.testPublicHebrewReferenceRoundTripUsesCanonicalCodec' passed (0.315 seconds)
+
+Test Case 'NativeRouteURLTests.testRejectsHostVersionPathAndCredentials' started at 2026-11-15 14:36:21.903
+
+Test Case 'NativeRouteURLTests.testRejectsHostVersionPathAndCredentials' passed (0.287 seconds)
+
+Test Case 'NativeRouteURLTests.testRejectsPaddingInvalidEncodingAndOversizedURL' started at 2026-11-15 14:36:22.190
+
+Test Case 'NativeRouteURLTests.testRejectsPaddingInvalidEncodingAndOversizedURL' passed (0.147 seconds)
+
+Test Case 'NativeRouteURLTests.testRejectsUnknownAndContradictoryParameters' started at 2026-11-15 14:36:22.337
+
+Test Case 'NativeRouteURLTests.testRejectsUnknownAndContradictoryParameters' passed (0.345 seconds)
+
+Test Suite 'NativeRouteURLTests' passed at 2026-11-15 14:36:22.682
+
+	 Executed 8 tests, with 0 failures (0 unexpected) in 1.909 (1.909) seconds
+
+Test Suite 'NativeSceneDirectoryTests' started at 2026-11-15 14:36:22.683
+
+Test Case 'NativeSceneDirectoryTests.testAuthorityIsReadForEveryObservationAcrossThreeBackends' started at 2026-11-15 14:36:22.683
+
+Test Case 'NativeSceneDirectoryTests.testAuthorityIsReadForEveryObservationAcrossThreeBackends' passed (0.006 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission' started at 2026-11-15 14:36:22.688
+
+Test Case 'NativeSceneDirectoryTests.testDeadlineCancelsCooperativeAuthorityAndReleasesAdmission' passed (0.048 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testDuplicateMountAndFiniteSceneAdmission' started at 2026-11-15 14:36:22.737
+
+Test Case 'NativeSceneDirectoryTests.testDuplicateMountAndFiniteSceneAdmission' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testEmbeddedWithoutEpochFailsUnavailable' started at 2026-11-15 14:36:22.737
+
+Test Case 'NativeSceneDirectoryTests.testEmbeddedWithoutEpochFailsUnavailable' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testExpiredDeadlineDoesNotStartAuthorityRead' started at 2026-11-15 14:36:22.739
+
+Test Case 'NativeSceneDirectoryTests.testExpiredDeadlineDoesNotStartAuthorityRead' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testMissingSceneNeverFallsBackToAnotherWindow' started at 2026-11-15 14:36:22.740
+
+Test Case 'NativeSceneDirectoryTests.testMissingSceneNeverFallsBackToAnotherWindow' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNativeChangeDuringAuthorityAwaitFails' started at 2026-11-15 14:36:22.741
+
+Test Case 'NativeSceneDirectoryTests.testNativeChangeDuringAuthorityAwaitFails' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNativeStateChangeAdvancesRevision' started at 2026-11-15 14:36:22.742
+
+Test Case 'NativeSceneDirectoryTests.testNativeStateChangeAdvancesRevision' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testNotMountedIsQueuedAndInventoryNeverBecomesSupported' started at 2026-11-15 14:36:22.743
+
+Test Case 'NativeSceneDirectoryTests.testNotMountedIsQueuedAndInventoryNeverBecomesSupported' passed (0.139 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testOldLeaseCannotRemoveRemountedSceneOrReuseRevision' started at 2026-11-15 14:36:22.882
+
+Test Case 'NativeSceneDirectoryTests.testOldLeaseCannotRemoveRemountedSceneOrReuseRevision' passed (0.003 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testRevocationAfterAuthorityAwaitFails' started at 2026-11-15 14:36:22.885
+
+Test Case 'NativeSceneDirectoryTests.testRevocationAfterAuthorityAwaitFails' passed (0.037 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount' started at 2026-11-15 14:36:22.922
+
+Test Case 'NativeSceneDirectoryTests.testSceneCloseDuringAuthorityAwaitFailsEvenAfterSameIDRemount' passed (0.001 seconds)
+
+Test Case 'NativeSceneDirectoryTests.testTwoScenesAndStableReadOnlyRevisions' started at 2026-11-15 14:36:22.923
+
+Test Case 'NativeSceneDirectoryTests.testTwoScenesAndStableReadOnlyRevisions' passed (0.001 seconds)
+
+Test Suite 'NativeSceneDirectoryTests' passed at 2026-11-15 14:36:22.924
+
+	 Executed 13 tests, with 0 failures (0 unexpected) in 0.241 (0.241) seconds
+
+Test Suite 'debug.xctest' passed at 2026-11-15 14:36:22.924
+
+	 Executed 21 tests, with 0 failures (0 unexpected) in 2.15 (2.15) seconds
+
+Test Suite 'All tests' passed at 2026-11-15 14:36:22.924
+
+	 Executed 21 tests, with 0 failures (0 unexpected) in 2.15 (2.15) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

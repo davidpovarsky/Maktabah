@@ -6,14 +6,18 @@ from pathlib import Path
 import subprocess
 import sys
 
+membership_code = 0
 if Path("Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift").is_file():
-    subprocess.run([sys.executable, "Scripts/CI/verify-otzaria-xcode-project.py"], check=True)
+    # Keep the membership gate failing, while still obtaining independent SDK
+    # compiler diagnostics for packages awaiting manager-owned app registration.
+    membership_code = subprocess.run([sys.executable, "Scripts/CI/verify-otzaria-xcode-project.py"]).returncode
 
 artifacts = Path("build/artifacts")
 artifacts.mkdir(parents=True, exist_ok=True)
 sdk = Path(subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], text=True).strip())
 platform = Path(subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-platform-path"], text=True).strip())
 version = subprocess.check_output(["xcodebuild", "-version"], text=True).strip()
+swift_version = subprocess.check_output(["xcrun", "swift", "--version"], text=True).strip()
 # Targeted read-only SDK evidence: current documentation introduces a VoiceOver
 # automation service, but its actual platform/Simulator availability must come
 # from this installed toolchain rather than an older Simulator guide.
@@ -40,12 +44,14 @@ ui_sources = ["Maktabah-iOSUITests/MaktabahUITestBase.swift", "Maktabah-iOSUITes
               "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
               "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
               "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift"]
+if Path("Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift").is_file():
+    ui_sources.append("Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift")
 compiler_options = command.copy()
 command.extend(ui_sources)
 result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 (artifacts / "ui-acceptance-typecheck.log").write_text(result.stdout, encoding="utf-8")
 report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
-          "xcode": version, "sdk": str(sdk), "target": "arm64-apple-ios18.6-simulator",
+          "xcode": version, "swift": swift_version, "sdk": str(sdk), "target": "arm64-apple-ios18.6-simulator",
           "status": "SDK_COMPILE_PASS" if result.returncode == 0 else "FAIL",
           "includesCodeGeneration": True,
           "warningCount": result.stdout.count("warning:"),
@@ -86,4 +92,38 @@ if all(path.is_file() for path in toolbar_sources):
     (artifacts / "toolbar-sdk-compile.json").write_text(json.dumps(toolbar_report, indent=2))
     print(json.dumps(toolbar_report, indent=2))
     print(toolbar_result.stdout)
-raise SystemExit(result.returncode or toolbar_code)
+# UI03/04 downstream package: compile the real sources and their actual Core /
+# UIRouting dependencies for the installed iOS SDK. Windows excludes UIKit and
+# AppIntents, so portable tests alone cannot validate these declarations.
+# This extends the existing manual SDK check; it changes no workflow triggers,
+# app target membership, deployment target, signing or runtime acceptance.
+native_host_code = 0
+native_host = Path("Source/ChavrusaText/UIRoutingHost")
+if (native_host / "Package.swift").is_file():
+    native_host_command = ["xcrun", "swift", "build", "--package-path", str(native_host),
+                           "--build-system", "native",
+                           "--triple", "arm64-apple-ios26.0-simulator", "--sdk", str(sdk),
+                           "-j", "2", "-v", "-Xswiftc", "-strict-concurrency=complete",
+                           "-Xswiftc", "-target", "-Xswiftc", "arm64-apple-ios26.0-simulator"]
+    native_host_result = subprocess.run(native_host_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    native_host_code = native_host_result.returncode
+    (artifacts / "native-routing-host-sdk.log").write_text(native_host_result.stdout, encoding="utf-8")
+    native_host_sources = [native_host / "Package.swift", *sorted((native_host / "Sources").rglob("*.swift"))]
+    native_host_report = {"sourceSHA": report["sourceSHA"], "xcode": version, "swift": swift_version, "sdk": str(sdk),
+                          "target": "arm64-apple-ios26.0-simulator", "command": native_host_command,
+                          "status": "SDK_COMPILE_PASS" if native_host_code == 0 else "BUILD_FAILED",
+                          "notRuntimeAcceptance": True, "nativeUITestsExecuted": 0,
+                          "sourceHashes": {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in native_host_sources}}
+    (artifacts / "native-routing-host-sdk.json").write_text(json.dumps(native_host_report, indent=2), encoding="utf-8")
+    # Retain the new evidence in the existing workflow's already-uploaded files.
+    report["nativeRoutingHost"] = native_host_report
+    (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    with (artifacts / "ui-acceptance-typecheck.log").open("a", encoding="utf-8") as output:
+        output.write("\n=== Native routing host SDK compilation ===\n" + native_host_result.stdout)
+    print(json.dumps(native_host_report, indent=2))
+    print(native_host_result.stdout)
+report["appMembershipStatus"] = "PASS" if membership_code == 0 else "FAIL"
+report["toolbarSDKStatus"] = "SDK_COMPILE_PASS" if toolbar_code == 0 else "BUILD_FAILED"
+report["aggregateSDKStatus"] = "PASS" if not (result.returncode or toolbar_code or native_host_code or membership_code) else "FAIL"
+(artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+raise SystemExit(result.returncode or toolbar_code or native_host_code or membership_code)

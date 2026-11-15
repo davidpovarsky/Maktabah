@@ -1,0 +1,1 @@
+error: unable to attach DB: error: accessing build database "C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\build.db": database is locked Possibly there are two concurrent builds running in the same filesystem location.

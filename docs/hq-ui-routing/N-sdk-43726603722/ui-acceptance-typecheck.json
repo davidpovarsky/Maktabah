@@ -1,0 +1,47 @@
+{
+  "sourceSHA": "f6c2c3da4842057e7fccf3b6ad50e4901f9e17a5",
+  "xcode": "Xcode 26.6\nBuild version 17F113",
+  "sdk": "/Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk",
+  "target": "arm64-apple-ios18.6-simulator",
+  "status": "FAIL",
+  "includesCodeGeneration": true,
+  "warningCount": 2160,
+  "notRuntimeAcceptance": true,
+  "nativeRoutingHost": {
+    "sourceSHA": "f6c2c3da4842057e7fccf3b6ad50e4901f9e17a5",
+    "xcode": "Xcode 26.6\nBuild version 17F113",
+    "sdk": "/Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk",
+    "target": "arm64-apple-ios26.0-simulator",
+    "command": [
+      "xcrun",
+      "swift",
+      "build",
+      "--package-path",
+      "Source/ChavrusaText/UIRoutingHost",
+      "--triple",
+      "arm64-apple-ios26.0-simulator",
+      "--sdk",
+      "/Applications/Xcode_26.6.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk",
+      "-j",
+      "2",
+      "-Xswiftc",
+      "-strict-concurrency=complete"
+    ],
+    "status": "BUILD_FAILED",
+    "notRuntimeAcceptance": true,
+    "nativeUITestsExecuted": 0,
+    "sourceHashes": {
+      "Source/ChavrusaText/UIRoutingHost/Package.swift": "609fef07a9a9dc2a4fc3747058c5a7a42e45bf07b80a77e34ecca81126a7944f",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift": "dd101e73718de3bfeb245d33799fb189bcd3a23b242f542dfdcdfb29cd833514",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift": "652b35b00f755868db71452ac607811da4ffdb10d2032a1324ff979fb78b8960",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift": "bf34c43c71d64c23d0b830cc5d793a61a70a68191ba965d439791a5bc944c47a",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeObservationDeadline.swift": "19f838d5dedadd19ef8aae0e8e34a149d0160113d571aafff350fe6c753825c1",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePresentationObserver.swift": "1d90db72e592c646f39e069100bf0c5ec9c848412c2529ee9c0f91b66c8a8022",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteInbox.swift": "c131bdbaa59a510b7ffb9127e34889128147dda9a9a33ae2dfd4298d7e2ce95c",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteURL.swift": "52ae321aa1d5b0caba8cb6f06df04bd96493492d478ed07d1dafc462fb5cee26",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneDirectory.swift": "5f8ed1b1fef743bb4f17e6fd6fa244659b1d1bfc06658dae1b41b6ab7efc63a1",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceState.swift": "aeef7deb1c948a5344542264e59b099c66bd6c53ab34d687bf415530db118a2e",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift": "328a483b37496c9b23c8df4d9ac7871a1c95e678660d55df405515f54dc59713"
+    }
+  }
+}

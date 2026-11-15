@@ -1,0 +1,203 @@
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	﻿2026-11-15T14:49:34.2332140Z Current runner version: '2.338.2'
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2353040Z ##[group]Runner Image Provisioner
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2353820Z Hosted Compute Agent
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2354290Z Version: 20261028.624
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2354930Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2355570Z Build Date: 2026-10-28T21:51:42Z
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2356100Z Worker ID: {014b8a9d-f8f1-4d3e-9368-a06d49bcde24}
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2356610Z Region: westus
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2356980Z Cloud: MacCloud
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2357350Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2358530Z ##[group]Operating System
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2358940Z macOS
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2359300Z 26.7.2
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2359650Z 25G332
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2360000Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2360460Z ##[group]Runner Image
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2360880Z Image: macos-26-arm64
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2361320Z Version: 20261102.0473.1
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2362200Z Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20261102.0473/images/macos/macos-26-arm64-Readme.md
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2363470Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20261102.0473
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2364280Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2365250Z ##[group]GITHUB_TOKEN Permissions
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2366890Z Actions: read
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2367360Z Contents: read
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2367790Z Metadata: read
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2368220Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2369920Z Secret source: Actions
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2370590Z Cache mode: write
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2371080Z Prepare workflow directory
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2694450Z Prepare all required actions
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.2729370Z Getting action download info
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.5296070Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:34.7976960Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0068070Z Complete job name: Focused SDK and workspace checks (no app/runtime acceptance)
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0702240Z ##[group]Run actions/checkout@v4
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0702890Z with:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0703240Z   repository: davidpovarsky/Maktabah
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0706000Z   token: ***
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0706310Z   ssh-strict: true
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0706640Z   ssh-user: git
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0706980Z   persist-credentials: true
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0707340Z   clean: true
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0707680Z   sparse-checkout-cone-mode: true
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0708050Z   fetch-depth: 1
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0708370Z   fetch-tags: false
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0708700Z   show-progress: true
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0709040Z   lfs: false
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0709360Z   submodules: false
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0709690Z   set-safe-directory: true
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0710060Z   allow-unsafe-pr-checkout: false
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.0710610Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.5586160Z Syncing repository: davidpovarsky/Maktabah
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.5588650Z ##[group]Getting Git version info
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.5589370Z Working directory is '/Users/runner/work/Maktabah/Maktabah'
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.5590520Z [command]/opt/homebrew/bin/git version
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6178490Z git version 2.56.0
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6190830Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6199540Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/5d5b535b-4141-4397-91c7-7cd95806f0e3/.gitconfig'
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6208090Z Temporarily overriding HOME='/Users/runner/work/_temp/5d5b535b-4141-4397-91c7-7cd95806f0e3' before making global git config changes
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6209330Z Adding repository directory to the temporary git global config as a safe directory
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6210470Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/Maktabah/Maktabah
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6317980Z Deleting the contents of '/Users/runner/work/Maktabah/Maktabah'
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6321930Z ##[group]Initializing the repository
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6325410Z [command]/opt/homebrew/bin/git init /Users/runner/work/Maktabah/Maktabah
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6562360Z hint: Using 'master' as the name for the initial branch. This default branch name
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6563320Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6564150Z hint: to use in all of your new repositories, which will suppress this warning,
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6564760Z hint: call:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6565110Z hint:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6565550Z hint: 	git config --global init.defaultBranch <name>
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6566140Z hint:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6566590Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6567280Z hint: 'development'. The just-created branch can be renamed via this command:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6567830Z hint:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6568280Z hint: 	git branch -m <name>
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6568670Z hint:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6569170Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6570010Z Initialized empty Git repository in /Users/runner/work/Maktabah/Maktabah/.git/
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6575640Z [command]/opt/homebrew/bin/git remote add origin https://github.com/davidpovarsky/Maktabah
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6656210Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6657220Z ##[group]Disabling automatic garbage collection
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6658460Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6764710Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6765310Z ##[group]Setting up auth
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6766070Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.6830950Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.7934710Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.8001280Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.8916310Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:35.9016130Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:36.0206940Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:36.0240540Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:36.0242560Z ##[group]Fetching the repository
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:36.0296820Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +2b05f7f21be27029898c90f8a80afddd21124207:refs/remotes/origin/codex/otzaria-ui-navigation-20261115
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.2321310Z From https://github.com/davidpovarsky/Maktabah
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.2325450Z  * [new ref]         2b05f7f21be27029898c90f8a80afddd21124207 -> origin/codex/otzaria-ui-navigation-20261115
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.2328230Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.2329170Z ##[group]Determining the checkout info
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.2330060Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.2330780Z [command]/opt/homebrew/bin/git sparse-checkout disable
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.2461350Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.2542110Z ##[group]Checking out the ref
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.2549200Z [command]/opt/homebrew/bin/git checkout --progress --force -B codex/otzaria-ui-navigation-20261115 refs/remotes/origin/codex/otzaria-ui-navigation-20261115
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.5056210Z Switched to a new branch 'codex/otzaria-ui-navigation-20261115'
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.5073000Z branch 'codex/otzaria-ui-navigation-20261115' set up to track 'origin/codex/otzaria-ui-navigation-20261115'.
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.5104050Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.5500510Z [command]/opt/homebrew/bin/git log -1 --format=%H
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.5533690Z 2b05f7f21be27029898c90f8a80afddd21124207
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.5776520Z ##[group]Run python3 Scripts/CI/typecheck-faithful-ui-tests.py
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.5777030Z ^[[36;1mpython3 Scripts/CI/typecheck-faithful-ui-tests.py^[[0m
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.5850500Z shell: /bin/bash -e {0}
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.5851310Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8900000Z Missing Maktabah-iOS project membership:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8901780Z   Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8903450Z   Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8904950Z   Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8906220Z   Source/Otzaria/Actions/Package.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8907780Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8909960Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8912080Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8914100Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8916110Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8917960Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8919740Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8921550Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8923280Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8925030Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8926720Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8928560Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8930480Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8932200Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8934210Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8935060Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8935730Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8936350Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8936930Z   Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8937610Z   Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8938330Z   Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8939020Z   Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8939650Z   Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8940210Z   Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8941150Z   Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8941660Z   Source/Otzaria/UIRouting/Package.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8942180Z   Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8942940Z   Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8944130Z   Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8945390Z   Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8945990Z   Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8946720Z   Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8947320Z   Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDiscoveryCancellationScope.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8948930Z   Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/CodecTests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8950950Z   Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/GoldenAPITests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8952420Z   Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/ScenePortTests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8954190Z   Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/DiscoveryReviewRegressionTests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8956040Z   Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/DiscoveryTests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.8957920Z   Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/RegistryTests.swift
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9558880Z Traceback (most recent call last):
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9568460Z   File "/Users/runner/work/Maktabah/Maktabah/Scripts/CI/typecheck-faithful-ui-tests.py", line 10, in <module>
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9571380Z     subprocess.run([sys.executable, "Scripts/CI/verify-otzaria-xcode-project.py"], check=True)
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9595190Z     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9596320Z   File "/opt/homebrew/Cellar/python@3.15/3.15.2/Frameworks/Python.framework/Versions/3.15/lib/python3.15/subprocess.py", line 692, in run
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9597180Z     raise CalledProcessError(retcode, process.args,
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9597680Z                              output=stdout, stderr=stderr)
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9598480Z subprocess.CalledProcessError: Command ['/opt/homebrew/opt/python@3.15/bin/python3.15', 'Scripts/CI/verify-otzaria-xcode-project.py'] returned non-zero exit status 1.
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9642040Z ##[error]Process completed with exit code 1.
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9729600Z ##[group]Run actions/upload-artifact@v4
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9729950Z with:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9730210Z   name: faithful-ui-sdk-check
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9731070Z   path: build/artifacts/ui-acceptance-typecheck.*
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	build/artifacts/xcuiautomation-voiceover-sdk.txt
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	build/artifacts/toolbar-sdk-compile.*
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	build/artifacts/workspace-compile.log
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	build/artifacts/workspace-test-results.log
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9732020Z   if-no-files-found: warn
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9732310Z   compression-level: 6
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9732580Z   overwrite: false
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9732840Z   include-hidden-files: false
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:37.9733210Z ##[endgroup]
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.1381320Z (node:1704) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.1382230Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.1407430Z ##[warning]No files were found with the provided path: build/artifacts/ui-acceptance-typecheck.*
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	build/artifacts/xcuiautomation-voiceover-sdk.txt
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	build/artifacts/toolbar-sdk-compile.*
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	build/artifacts/workspace-compile.log
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	build/artifacts/workspace-test-results.log. No artifacts will be uploaded.
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.1627550Z Post job cleanup.
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.2903750Z [command]/opt/homebrew/bin/git version
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.3006460Z git version 2.56.0
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.3517400Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/a497d895-3c8d-400b-959b-bd6fb53add67/.gitconfig'
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.3620510Z Temporarily overriding HOME='/Users/runner/work/_temp/a497d895-3c8d-400b-959b-bd6fb53add67' before making global git config changes
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.3723280Z Adding repository directory to the temporary git global config as a safe directory
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.3826870Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/Maktabah/Maktabah
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.4139940Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.4369390Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.5063320Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.5164940Z http.https://github.com/.extraheader
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.5242330Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.5375980Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.6473470Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.6780200Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:38.8117620Z Cleaning up orphan processes
+Focused SDK and workspace checks (no app/runtime acceptance)	UNKNOWN STEP	2026-11-15T14:49:39.2451870Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

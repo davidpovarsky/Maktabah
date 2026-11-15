@@ -1,0 +1,563 @@
+validate	Set up job	﻿2026-11-15T14:34:39.6365500Z Current runner version: '2.338.2'
+validate	Set up job	2026-11-15T14:34:39.6382090Z ##[group]Runner Image Provisioner
+validate	Set up job	2026-11-15T14:34:39.6382670Z Hosted Compute Agent
+validate	Set up job	2026-11-15T14:34:39.6383070Z Version: 20261028.624
+validate	Set up job	2026-11-15T14:34:39.6383490Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+validate	Set up job	2026-11-15T14:34:39.6383980Z Build Date: 2026-10-28T21:51:42Z
+validate	Set up job	2026-11-15T14:34:39.6384440Z Worker ID: {b80bb4ef-10cd-47b6-b6e5-fcf0e7ecacad}
+validate	Set up job	2026-11-15T14:34:39.6384920Z Region: westus
+validate	Set up job	2026-11-15T14:34:39.6385280Z Cloud: MacCloud
+validate	Set up job	2026-11-15T14:34:39.6385660Z ##[endgroup]
+validate	Set up job	2026-11-15T14:34:39.6386700Z ##[group]Operating System
+validate	Set up job	2026-11-15T14:34:39.6387110Z macOS
+validate	Set up job	2026-11-15T14:34:39.6387490Z 26.7.2
+validate	Set up job	2026-11-15T14:34:39.6387860Z 25G332
+validate	Set up job	2026-11-15T14:34:39.6388220Z ##[endgroup]
+validate	Set up job	2026-11-15T14:34:39.6388600Z ##[group]Runner Image
+validate	Set up job	2026-11-15T14:34:39.6388990Z Image: macos-26-arm64
+validate	Set up job	2026-11-15T14:34:39.6389400Z Version: 20261102.0473.1
+validate	Set up job	2026-11-15T14:34:39.6390180Z Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20261102.0473/images/macos/macos-26-arm64-Readme.md
+validate	Set up job	2026-11-15T14:34:39.6391340Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20261102.0473
+validate	Set up job	2026-11-15T14:34:39.6392010Z ##[endgroup]
+validate	Set up job	2026-11-15T14:34:39.6392770Z ##[group]GITHUB_TOKEN Permissions
+validate	Set up job	2026-11-15T14:34:39.6393950Z Contents: read
+validate	Set up job	2026-11-15T14:34:39.6394340Z Metadata: read
+validate	Set up job	2026-11-15T14:34:39.6394710Z ##[endgroup]
+validate	Set up job	2026-11-15T14:34:39.6396220Z Secret source: Actions
+validate	Set up job	2026-11-15T14:34:39.6396810Z Cache mode: write
+validate	Set up job	2026-11-15T14:34:39.6397280Z Prepare workflow directory
+validate	Set up job	2026-11-15T14:34:39.6664610Z Prepare all required actions
+validate	Set up job	2026-11-15T14:34:39.6712030Z Getting action download info
+validate	Set up job	2026-11-15T14:34:39.9766330Z Download action repository 'davidpovarsky/github-automation@main' (SHA:61b34ae6d31e94afb6ceb8a836742275c495b0e2)
+validate	Set up job	2026-11-15T14:34:40.5816570Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+validate	Set up job	2026-11-15T14:34:40.6880790Z Download action repository 'dtolnay/rust-toolchain@stable' (SHA:39008827e6b4319a349e9a42dfc90579dd25f1ca)
+validate	Set up job	2026-11-15T14:34:41.0538260Z Download action repository 'Swatinem/rust-cache@v2' (SHA:d1527c8f67ef9af357290475d4af4b0fab8f12e0)
+validate	Set up job	2026-11-15T14:34:41.5077080Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+validate	Set up job	2026-11-15T14:34:41.8753340Z Complete job name: validate
+validate	Live Activity · refresh	﻿2026-11-15T14:34:41.9332980Z ##[group]Run davidpovarsky/github-automation/live-refresh@main
+validate	Live Activity · refresh	2026-11-15T14:34:41.9334110Z with:
+validate	Live Activity · refresh	2026-11-15T14:34:41.9334380Z   event: refresh
+validate	Live Activity · refresh	2026-11-15T14:34:41.9334910Z   device_id: ***
+validate	Live Activity · refresh	2026-11-15T14:34:41.9335200Z   token: ***
+validate	Live Activity · refresh	2026-11-15T14:34:41.9337540Z   github_token: ***
+validate	Live Activity · refresh	2026-11-15T14:34:41.9337930Z ##[endgroup]
+validate	Run actions/checkout@v6	﻿2026-11-15T14:34:43.2773730Z ##[group]Run actions/checkout@v6
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2774170Z with:
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2774430Z   repository: davidpovarsky/apple-devtools
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2774780Z   path: .toolkit
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2777070Z   token: ***
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2777380Z   ssh-strict: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2777730Z   ssh-user: git
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2777960Z   persist-credentials: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2778250Z   clean: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2778460Z   sparse-checkout-cone-mode: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2778730Z   fetch-depth: 1
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2778990Z   fetch-tags: false
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2779260Z   show-progress: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2779550Z   lfs: false
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2779800Z   submodules: false
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2780070Z   set-safe-directory: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2780400Z   allow-unsafe-pr-checkout: false
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.2781350Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.4374840Z Syncing repository: davidpovarsky/apple-devtools
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.4376670Z ##[group]Getting Git version info
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.4377280Z Working directory is '/Users/runner/work/apple-devtools/apple-devtools/.toolkit'
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.4378110Z [command]/opt/homebrew/bin/git version
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5001530Z git version 2.56.0
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5014270Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5022360Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/816765b8-89fe-4682-9b76-e93d9cd64893/.gitconfig'
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5035860Z Temporarily overriding HOME='/Users/runner/work/_temp/816765b8-89fe-4682-9b76-e93d9cd64893' before making global git config changes
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5037830Z Adding repository directory to the temporary git global config as a safe directory
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5039580Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/apple-devtools/apple-devtools/.toolkit
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5175310Z ##[group]Determining repository object format
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5176090Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5176720Z ##[group]Initializing the repository
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5179970Z [command]/opt/homebrew/bin/git init /Users/runner/work/apple-devtools/apple-devtools/.toolkit
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5577510Z hint: Using 'master' as the name for the initial branch. This default branch name
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5580030Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5581520Z hint: to use in all of your new repositories, which will suppress this warning,
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5582500Z hint: call:
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5583160Z hint:
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5583890Z hint: 	git config --global init.defaultBranch <name>
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5584650Z hint:
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5585490Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5586740Z hint: 'development'. The just-created branch can be renamed via this command:
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5587890Z hint:
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5588540Z hint: 	git branch -m <name>
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5589170Z hint:
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5590030Z hint: Disable this message with "git config set advice.defaultBranchName false"
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5591900Z Initialized empty Git repository in /Users/runner/work/apple-devtools/apple-devtools/.toolkit/.git/
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5607570Z [command]/opt/homebrew/bin/git remote add origin https://github.com/davidpovarsky/apple-devtools
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5727760Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5729020Z ##[group]Disabling automatic garbage collection
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5730970Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5809940Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5811090Z ##[group]Setting up auth
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5811950Z Removing SSH command configuration
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5817430Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.5891260Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.7744320Z Removing HTTP extra header
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.7746410Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.7879370Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.9154450Z Removing includeIf entries pointing to credentials config files
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.9171470Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+validate	Run actions/checkout@v6	2026-11-15T14:34:43.9176690Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.0510900Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.0579180Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/apple-devtools/apple-devtools/.toolkit/.git.path /Users/runner/work/_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.0686130Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/apple-devtools/apple-devtools/.toolkit/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.0806390Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.toolkit/.git.path /github/runner_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.0871740Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.toolkit/.git/worktrees/*.path /github/runner_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.1020750Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.1022640Z ##[group]Fetching the repository
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.1024620Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +76652c014888cc49aa76fb1c3354f9322e351aa0:refs/remotes/origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7130600Z From https://github.com/davidpovarsky/apple-devtools
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7238440Z  * [new ref]         76652c014888cc49aa76fb1c3354f9322e351aa0 -> origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7461320Z [command]/opt/homebrew/bin/git branch --list --remote origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7526940Z   origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7648510Z [command]/opt/homebrew/bin/git rev-parse refs/remotes/origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7654690Z 76652c014888cc49aa76fb1c3354f9322e351aa0
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7659400Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7660640Z ##[group]Determining the checkout info
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7661920Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7662860Z [command]/opt/homebrew/bin/git sparse-checkout disable
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7669270Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7679140Z ##[group]Checking out the ref
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7679790Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7884240Z Switched to a new branch 'main'
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7903340Z branch 'main' set up to track 'origin/main'.
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.7936490Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.8078290Z [command]/opt/homebrew/bin/git log -1 --format=%H
+validate	Run actions/checkout@v6	2026-11-15T14:34:44.8191460Z 76652c014888cc49aa76fb1c3354f9322e351aa0
+validate	Live Activity · refresh	﻿2026-11-15T14:34:44.8378410Z ##[group]Run davidpovarsky/github-automation/live-refresh@main
+validate	Live Activity · refresh	2026-11-15T14:34:44.8378860Z with:
+validate	Live Activity · refresh	2026-11-15T14:34:44.8379040Z   event: refresh
+validate	Live Activity · refresh	2026-11-15T14:34:44.8379490Z   device_id: ***
+validate	Live Activity · refresh	2026-11-15T14:34:44.8379710Z   token: ***
+validate	Live Activity · refresh	2026-11-15T14:34:44.8382490Z   github_token: ***
+validate	Live Activity · refresh	2026-11-15T14:34:44.8382730Z ##[endgroup]
+validate	Run actions/checkout@v6	﻿2026-11-15T14:34:46.0128910Z ##[group]Run actions/checkout@v6
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0129300Z with:
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0129500Z   repository: davidpovarsky/Maktabah
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0129800Z   ref: main
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0130040Z   path: source
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0132620Z   token: ***
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0132860Z   ssh-strict: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0133190Z   ssh-user: git
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0133910Z   persist-credentials: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0134160Z   clean: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0134470Z   sparse-checkout-cone-mode: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0134750Z   fetch-depth: 1
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0134970Z   fetch-tags: false
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0135190Z   show-progress: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0135440Z   lfs: false
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0135660Z   submodules: false
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0135910Z   set-safe-directory: true
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0136220Z   allow-unsafe-pr-checkout: false
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.0136500Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2011640Z Syncing repository: davidpovarsky/Maktabah
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2013650Z ##[group]Getting Git version info
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2015090Z Working directory is '/Users/runner/work/apple-devtools/apple-devtools/source'
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2017570Z [command]/opt/homebrew/bin/git version
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2018620Z git version 2.56.0
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2021670Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2025260Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/d5e6c3dd-e613-4ee6-936c-b2332f97c9c3/.gitconfig'
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2122030Z Temporarily overriding HOME='/Users/runner/work/_temp/d5e6c3dd-e613-4ee6-936c-b2332f97c9c3' before making global git config changes
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2138060Z Adding repository directory to the temporary git global config as a safe directory
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2239870Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/apple-devtools/apple-devtools/source
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.2572870Z ##[group]Determining repository object format
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.5662440Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.5675660Z ##[group]Initializing the repository
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.5780460Z [command]/opt/homebrew/bin/git init /Users/runner/work/apple-devtools/apple-devtools/source
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6762800Z hint: Using 'master' as the name for the initial branch. This default branch name
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6777480Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6779210Z hint: to use in all of your new repositories, which will suppress this warning,
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6780550Z hint: call:
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6803940Z hint:
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6805450Z hint: 	git config --global init.defaultBranch <name>
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6806800Z hint:
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6807670Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6813170Z hint: 'development'. The just-created branch can be renamed via this command:
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6815390Z hint:
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6816030Z hint: 	git branch -m <name>
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6842270Z hint:
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6843630Z hint: Disable this message with "git config set advice.defaultBranchName false"
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.6888500Z Initialized empty Git repository in /Users/runner/work/apple-devtools/apple-devtools/source/.git/
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.7114180Z [command]/opt/homebrew/bin/git remote add origin https://github.com/davidpovarsky/Maktabah
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.9285080Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.9393770Z ##[group]Disabling automatic garbage collection
+validate	Run actions/checkout@v6	2026-11-15T14:34:46.9535870Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.0111970Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.0224680Z ##[group]Setting up auth
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.0327870Z Removing SSH command configuration
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.0397500Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.0596040Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.2369660Z Removing HTTP extra header
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.2472520Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.2524400Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.4589020Z Removing includeIf entries pointing to credentials config files
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.4621600Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.4704660Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.6299820Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.6460930Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/apple-devtools/apple-devtools/source/.git.path /Users/runner/work/_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.6536090Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/apple-devtools/apple-devtools/source/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.6663540Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/source/.git.path /github/runner_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.6782990Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/source/.git/worktrees/*.path /github/runner_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.6932980Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.6934050Z ##[group]Fetching the repository
+validate	Run actions/checkout@v6	2026-11-15T14:34:47.6939180Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4418610Z From https://github.com/davidpovarsky/Maktabah
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4419720Z  * [new branch]      main       -> origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4430980Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4431560Z ##[group]Determining the checkout info
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4444680Z [command]/opt/homebrew/bin/git branch --list --remote origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4564000Z   origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4573780Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4582650Z [command]/opt/homebrew/bin/git sparse-checkout disable
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4740860Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4836770Z ##[group]Checking out the ref
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.4844710Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.5854800Z Switched to a new branch 'main'
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.5861470Z branch 'main' set up to track 'origin/main'.
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.5874450Z ##[endgroup]
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.6039390Z [command]/opt/homebrew/bin/git log -1 --format=%H
+validate	Run actions/checkout@v6	2026-11-15T14:34:48.6224680Z baed775aa8b79704a7d2e2db22e48107d8f4b0d9
+validate	Live Activity · refresh	﻿2026-11-15T14:34:48.6634000Z ##[group]Run davidpovarsky/github-automation/live-refresh@main
+validate	Live Activity · refresh	2026-11-15T14:34:48.6638450Z with:
+validate	Live Activity · refresh	2026-11-15T14:34:48.6639560Z   event: refresh
+validate	Live Activity · refresh	2026-11-15T14:34:48.6640660Z   device_id: ***
+validate	Live Activity · refresh	2026-11-15T14:34:48.6642790Z   token: ***
+validate	Live Activity · refresh	2026-11-15T14:34:48.6646210Z   github_token: ***
+validate	Live Activity · refresh	2026-11-15T14:34:48.6646410Z ##[endgroup]
+validate	Focused Apple validation	﻿2026-11-15T14:34:49.8033990Z ##[group]Run bash "$GITHUB_WORKSPACE/.toolkit/macos/apple-authority.sh" "api"
+validate	Focused Apple validation	2026-11-15T14:34:49.8034650Z ^[[36;1mbash "$GITHUB_WORKSPACE/.toolkit/macos/apple-authority.sh" "api"^[[0m
+validate	Focused Apple validation	2026-11-15T14:34:49.8165420Z shell: /bin/bash -e {0}
+validate	Focused Apple validation	2026-11-15T14:34:49.8165680Z env:
+validate	Focused Apple validation	2026-11-15T14:34:49.8165920Z   APPLE_XCODE: stable
+validate	Focused Apple validation	2026-11-15T14:34:49.8166120Z   APPLE_SDK: iphonesimulator
+validate	Focused Apple validation	2026-11-15T14:34:49.8166340Z   APPLE_PATH: 
+validate	Focused Apple validation	2026-11-15T14:34:49.8167040Z   APPLE_SCHEME: 
+validate	Focused Apple validation	2026-11-15T14:34:49.8167780Z   APPLE_DESTINATION: 
+validate	Focused Apple validation	2026-11-15T14:34:49.8168240Z   APPLE_MODULE: AppIntents
+validate	Focused Apple validation	2026-11-15T14:34:49.8168540Z   APPLE_SYMBOL: IntentModes
+validate	Focused Apple validation	2026-11-15T14:34:49.8168750Z   APPLE_ONLY_TESTING: 
+validate	Focused Apple validation	2026-11-15T14:34:49.8168990Z   APPLE_TARGETS: 
+validate	Focused Apple validation	2026-11-15T14:34:49.8169160Z ##[endgroup]
+validate	Focused Apple validation	2026-11-15T14:36:21.4448200Z []
+validate	Focused Apple validation	2026-11-15T14:36:21.4453890Z []
+validate	Focused Apple validation	2026-11-15T14:36:21.4454730Z []
+validate	Focused Apple validation	2026-11-15T14:36:21.4455290Z []
+validate	Focused Apple validation	2026-11-15T14:36:21.4456460Z []
+validate	Focused Apple validation	2026-11-15T14:36:21.4457350Z [
+validate	Focused Apple validation	2026-11-15T14:36:21.4458060Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4462390Z     "title": "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4463380Z     "precise": "s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4463810Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4464270Z       "IntentModes"
+validate	Focused Apple validation	2026-11-15T14:36:21.4464960Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4465660Z     "availability": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4466770Z       {
+validate	Focused Apple validation	2026-11-15T14:36:21.4467170Z         "domain": "macOS",
+validate	Focused Apple validation	2026-11-15T14:36:21.4467800Z         "introduced": {
+validate	Focused Apple validation	2026-11-15T14:36:21.4468530Z           "major": 26,
+validate	Focused Apple validation	2026-11-15T14:36:21.4469230Z           "minor": 0
+validate	Focused Apple validation	2026-11-15T14:36:21.4470250Z         }
+validate	Focused Apple validation	2026-11-15T14:36:21.4473340Z       },
+validate	Focused Apple validation	2026-11-15T14:36:21.4474070Z       {
+validate	Focused Apple validation	2026-11-15T14:36:21.4475070Z         "domain": "watchOS",
+validate	Focused Apple validation	2026-11-15T14:36:21.4475840Z         "introduced": {
+validate	Focused Apple validation	2026-11-15T14:36:21.4476310Z           "major": 26,
+validate	Focused Apple validation	2026-11-15T14:36:21.4477150Z           "minor": 0
+validate	Focused Apple validation	2026-11-15T14:36:21.4478210Z         }
+validate	Focused Apple validation	2026-11-15T14:36:21.4478430Z       },
+validate	Focused Apple validation	2026-11-15T14:36:21.4479730Z       {
+validate	Focused Apple validation	2026-11-15T14:36:21.4480400Z         "domain": "iOS",
+validate	Focused Apple validation	2026-11-15T14:36:21.4481440Z         "introduced": {
+validate	Focused Apple validation	2026-11-15T14:36:21.4481900Z           "major": 26,
+validate	Focused Apple validation	2026-11-15T14:36:21.4482180Z           "minor": 0
+validate	Focused Apple validation	2026-11-15T14:36:21.4483980Z         }
+validate	Focused Apple validation	2026-11-15T14:36:21.4485100Z       },
+validate	Focused Apple validation	2026-11-15T14:36:21.4486880Z       {
+validate	Focused Apple validation	2026-11-15T14:36:21.4487790Z         "domain": "visionOS",
+validate	Focused Apple validation	2026-11-15T14:36:21.4488540Z         "introduced": {
+validate	Focused Apple validation	2026-11-15T14:36:21.4488980Z           "major": 26,
+validate	Focused Apple validation	2026-11-15T14:36:21.4489990Z           "minor": 0
+validate	Focused Apple validation	2026-11-15T14:36:21.4490400Z         }
+validate	Focused Apple validation	2026-11-15T14:36:21.4490870Z       },
+validate	Focused Apple validation	2026-11-15T14:36:21.4491830Z       {
+validate	Focused Apple validation	2026-11-15T14:36:21.4492290Z         "domain": "tvOS",
+validate	Focused Apple validation	2026-11-15T14:36:21.4493260Z         "introduced": {
+validate	Focused Apple validation	2026-11-15T14:36:21.4493650Z           "major": 26,
+validate	Focused Apple validation	2026-11-15T14:36:21.4494270Z           "minor": 0
+validate	Focused Apple validation	2026-11-15T14:36:21.4495310Z         }
+validate	Focused Apple validation	2026-11-15T14:36:21.4495830Z       }
+validate	Focused Apple validation	2026-11-15T14:36:21.4498760Z     ]
+validate	Focused Apple validation	2026-11-15T14:36:21.4499780Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4500410Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4501810Z     "title": "init(_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4549580Z     "precise": "s:s10SetAlgebraPsEyxqd__ncSTRd__7ElementQyd__ACRtzlufc::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4550430Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4550720Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4551870Z       "init(_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4552790Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4554110Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4554640Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4555580Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4556400Z     "title": "subtract(_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4557100Z     "precise": "s:s10SetAlgebraPsE8subtractyyxF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4557770Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4558880Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4559410Z       "subtract(_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4559900Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4563840Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4564800Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4565740Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4566130Z     "title": "isSubset(of:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4568380Z     "precise": "s:s10SetAlgebraPsE8isSubset2ofSbx_tF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4570400Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4571390Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4573270Z       "isSubset(of:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4574200Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4574640Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4575420Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4576390Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4577890Z     "title": "isSuperset(of:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4579830Z     "precise": "s:s10SetAlgebraPsE10isSuperset2ofSbx_tF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4580370Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4662990Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4663450Z       "isSuperset(of:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4663900Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4664230Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4664520Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4664750Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4664990Z     "title": "isDisjoint(with:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4665560Z     "precise": "s:s10SetAlgebraPsE10isDisjoint4withSbx_tF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4666110Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4666370Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4666630Z       "isDisjoint(with:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4666950Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4667270Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4667560Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4667950Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4668140Z     "title": "subtracting(_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4668620Z     "precise": "s:s10SetAlgebraPsE11subtractingyxxF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4669860Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4670110Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4670430Z       "subtracting(_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4670750Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4670950Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4671340Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4671530Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4671850Z     "title": "isEmpty",
+validate	Focused Apple validation	2026-11-15T14:36:21.4672360Z     "precise": "s:s10SetAlgebraPsE7isEmptySbvp::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4672840Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4672990Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4673150Z       "isEmpty"
+validate	Focused Apple validation	2026-11-15T14:36:21.4673860Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4674100Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4674280Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4674420Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4674600Z     "title": "isStrictSuperset(of:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4675040Z     "precise": "s:s10SetAlgebraPsE16isStrictSuperset2ofSbx_tF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4675540Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4675730Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4676110Z       "isStrictSuperset(of:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4676520Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4676730Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4676970Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4677280Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4677510Z     "title": "isStrictSubset(of:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4678140Z     "precise": "s:s10SetAlgebraPsE14isStrictSubset2ofSbx_tF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4678650Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4678850Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4679250Z       "isStrictSubset(of:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4679560Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4679710Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4680010Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4680240Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4680540Z     "title": "hashValue",
+validate	Focused Apple validation	2026-11-15T14:36:21.4681130Z     "precise": "s:SYsSHRzSH8RawValueSYRpzrlE04hashB0Sivp::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4681780Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4682140Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4682440Z       "hashValue"
+validate	Focused Apple validation	2026-11-15T14:36:21.4682830Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4683150Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4683440Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4683680Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4683820Z     "title": "hash(into:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4684490Z     "precise": "s:SYsSHRzSH8RawValueSYRpzrlE4hash4intoys6HasherVz_tF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4685070Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4685600Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4685760Z       "hash(into:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4686070Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4686350Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4686530Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4686690Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4687020Z     "title": "!=(_:_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4687430Z     "precise": "s:SQsE2neoiySbx_xtFZ::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4687970Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4688240Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4688470Z       "!=(_:_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4688710Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4689010Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4689280Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4689480Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4689630Z     "title": "init(arrayLiteral:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4690230Z     "precise": "s:s10SetAlgebraPs7ElementQz012ArrayLiteralC0RtzrlE05arrayE0xAFd_tcfc::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4690940Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4691110Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4691480Z       "init(arrayLiteral:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4691670Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4691860Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4692090Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4692350Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4692530Z     "title": "union(_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4692980Z     "precise": "s:s9OptionSetPsE5unionyxxF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4693520Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4693740Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4694020Z       "union(_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4694220Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4694700Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4695000Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4695250Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4695540Z     "title": "intersection(_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4695980Z     "precise": "s:s9OptionSetPsE12intersectionyxxF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4696530Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4696690Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4696890Z       "intersection(_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4697160Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4697300Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4697450Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4697630Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4697850Z     "title": "symmetricDifference(_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4698460Z     "precise": "s:s9OptionSetPsE19symmetricDifferenceyxxF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4698910Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4699210Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4699390Z       "symmetricDifference(_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4699600Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4699780Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4699940Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4700060Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4700260Z     "title": "contains(_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4700770Z     "precise": "s:s9OptionSetPs7ElementQzRszrlE8containsySbxF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4701280Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4701470Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4701670Z       "contains(_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4701920Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4702100Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4702320Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4702480Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4702660Z     "title": "insert(_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4703250Z     "precise": "s:s9OptionSetPs7ElementQzRszrlE6insertySb8inserted_x17memberAfterInserttxF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4703870Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4704050Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4704340Z       "insert(_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4704530Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4704710Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4704920Z   },
+validate	Focused Apple validation	2026-11-15T14:36:21.4705120Z   {
+validate	Focused Apple validation	2026-11-15T14:36:21.4705360Z     "title": "remove(_:)",
+validate	Focused Apple validation	2026-11-15T14:36:21.4705860Z     "precise": "s:s9OptionSetPs7ElementQzRszrlE6removeyxSgxF::SYNTHESIZED::s:10AppIntents11IntentModesV",
+validate	Focused Apple validation	2026-11-15T14:36:21.4706460Z     "path": [
+validate	Focused Apple validation	2026-11-15T14:36:21.4706660Z       "IntentModes",
+validate	Focused Apple validation	2026-11-15T14:36:21.4706920Z       "remove(_:)"
+validate	Focused Apple validation	2026-11-15T14:36:21.4707470Z     ],
+validate	Focused Apple validation	2026-11-15T14:36:21.4707670Z     "availability": null
+validate	Focused Apple validation	2026-11-15T14:36:21.4708060Z   }
+validate	Focused Apple validation	2026-11-15T14:36:21.4708220Z ]
+validate	Focused Apple validation	2026-11-15T14:36:21.4708400Z []
+validate	Focused Apple validation	2026-11-15T14:36:21.4708610Z []
+validate	Focused Apple validation	2026-11-15T14:36:21.4708720Z []
+validate	Focused Apple validation	2026-11-15T14:36:21.4708920Z []
+validate	Live Activity · refresh	﻿2026-11-15T14:36:21.4933310Z ##[group]Run davidpovarsky/github-automation/live-refresh@main
+validate	Live Activity · refresh	2026-11-15T14:36:21.4934330Z with:
+validate	Live Activity · refresh	2026-11-15T14:36:21.4934550Z   event: refresh
+validate	Live Activity · refresh	2026-11-15T14:36:21.4934850Z   device_id: ***
+validate	Live Activity · refresh	2026-11-15T14:36:21.4935050Z   token: ***
+validate	Live Activity · refresh	2026-11-15T14:36:21.4938600Z   github_token: ***
+validate	Live Activity · refresh	2026-11-15T14:36:21.4938890Z ##[endgroup]
+validate	Run actions/upload-artifact@v4	﻿2026-11-15T14:36:23.0275940Z ##[group]Run actions/upload-artifact@v4
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.0276350Z with:
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.0276640Z   name: apple-api-43725105427
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.0276950Z   path: source/.apple-devtools-logs
+validate	Run actions/upload-artifact@v4	.toolkit/.apple-devtools-logs
+validate	Run actions/upload-artifact@v4	
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.0277350Z   if-no-files-found: ignore
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.0277640Z   retention-days: 14
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.0277950Z   compression-level: 6
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.0278190Z   overwrite: false
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.0278490Z   include-hidden-files: false
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.0279420Z ##[endgroup]
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.3396160Z (node:2425) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.3405080Z (Use `node --trace-deprecation ...` to show where the warning was created)
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.3448890Z Multiple search paths detected. Calculating the least common ancestor of all paths
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.3455490Z The least common ancestor is /Users/runner/work/apple-devtools/apple-devtools. This will be the root directory of the artifact
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.3459910Z No files were found with the provided path: source/.apple-devtools-logs
+validate	Run actions/upload-artifact@v4	2026-11-15T14:36:23.3461300Z .toolkit/.apple-devtools-logs. No artifacts will be uploaded.
+validate	Post Run actions/checkout@v6	﻿2026-11-15T14:36:23.3782170Z Post job cleanup.
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:23.5637670Z [command]/opt/homebrew/bin/git version
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:23.6063710Z git version 2.56.0
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:23.6124160Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/adc20bf0-9f77-4869-9742-e353ce4823c4/.gitconfig'
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:23.6129520Z Temporarily overriding HOME='/Users/runner/work/_temp/adc20bf0-9f77-4869-9742-e353ce4823c4' before making global git config changes
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:23.6130510Z Adding repository directory to the temporary git global config as a safe directory
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:23.6143270Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/apple-devtools/apple-devtools/source
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:23.6431750Z Removing SSH command configuration
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:23.6439900Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:23.6615360Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.0076040Z Removing HTTP extra header
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.0084200Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.0275780Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2217740Z Removing includeIf entries pointing to credentials config files
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2223350Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2299020Z includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/source/.git.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2299820Z includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/source/.git/worktrees/*.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2300400Z includeif.gitdir:/github/workspace/source/.git.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2301010Z includeif.gitdir:/github/workspace/source/.git/worktrees/*.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2314680Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/source/.git.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2443340Z /Users/runner/work/_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2495630Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/source/.git.path /Users/runner/work/_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2647440Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/source/.git/worktrees/*.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2762830Z /Users/runner/work/_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2769830Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/source/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2854680Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/source/.git.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2954550Z /github/runner_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.2963730Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/source/.git.path /github/runner_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.3126670Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/source/.git/worktrees/*.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.3241800Z /github/runner_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.3255880Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/source/.git/worktrees/*.path /github/runner_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.3429330Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.5002380Z Removing credentials config '/Users/runner/work/_temp/git-credentials-065d905c-0e27-4dc8-9fa9-7530d173c3ac.config'
+validate	Post Run actions/checkout@v6	﻿2026-11-15T14:36:24.5328040Z Post job cleanup.
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.8138640Z [command]/opt/homebrew/bin/git version
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.8295020Z git version 2.56.0
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.8376610Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/36510291-329e-46d1-bec3-923a448cea21/.gitconfig'
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.8424750Z Temporarily overriding HOME='/Users/runner/work/_temp/36510291-329e-46d1-bec3-923a448cea21' before making global git config changes
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.8428890Z Adding repository directory to the temporary git global config as a safe directory
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.8432510Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/apple-devtools/apple-devtools/.toolkit
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.8562410Z Removing SSH command configuration
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.8566750Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:24.8705940Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.0790530Z Removing HTTP extra header
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.0810450Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.0949230Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.2580530Z Removing includeIf entries pointing to credentials config files
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.2591320Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.2688400Z includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/.toolkit/.git.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.2689300Z includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/.toolkit/.git/worktrees/*.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.2689970Z includeif.gitdir:/github/workspace/.toolkit/.git.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.2690480Z includeif.gitdir:/github/workspace/.toolkit/.git/worktrees/*.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.2707670Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/.toolkit/.git.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.2794430Z /Users/runner/work/_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.2814610Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/.toolkit/.git.path /Users/runner/work/_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3014910Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/.toolkit/.git/worktrees/*.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3106560Z /Users/runner/work/_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3126080Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/apple-devtools/apple-devtools/.toolkit/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3226640Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.toolkit/.git.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3329470Z /github/runner_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3339020Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.toolkit/.git.path /github/runner_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3478980Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.toolkit/.git/worktrees/*.path
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3559320Z /github/runner_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3571850Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.toolkit/.git/worktrees/*.path /github/runner_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.3723860Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+validate	Post Run actions/checkout@v6	2026-11-15T14:36:25.5319990Z Removing credentials config '/Users/runner/work/_temp/git-credentials-6927cf0e-a921-429e-955e-cf1716f21bd5.config'
+validate	Complete job	﻿2026-11-15T14:36:25.5512970Z Cleaning up orphan processes
+validate	Complete job	2026-11-15T14:36:26.8300410Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

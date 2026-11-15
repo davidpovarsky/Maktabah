@@ -1,0 +1,132 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/3] Write sources
+[4/5] Emitting module OtzariaActionCore
+[5/7] Compiling OtzariaActionCore ActionExecutor.swift
+[6/7] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[7/25] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[8/25] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[9/25] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[10/25] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[11/25] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[12/25] Compiling OtzariaActionCore ActionJSON.swift
+[13/25] Compiling OtzariaActionCore ActionReferences.swift
+[14/25] Compiling OtzariaActionCore ActionRequest.swift
+[15/25] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[16/25] Compiling OtzariaActionCore ActionSearch.swift
+[17/25] Compiling OtzariaActionCore ActionWireCodec.swift
+[18/25] Compiling OtzariaActionCore ActionDeadline.swift
+[19/25] Compiling OtzariaActionCore ActionExecutionContext.swift
+[20/25] Compiling OtzariaActionCore ActionPolicy.swift
+[21/25] Compiling OtzariaActionCore ActionValidation.swift
+[22/25] Compiling OtzariaActionCore ActionPorts.swift
+[23/25] Compiling OtzariaActionCore ActionRegistry.swift
+[24/25] Compiling OtzariaActionCore CatalogActionResolver.swift
+[25/27] Write sources
+[27/28] Emitting module OtzariaUIRouting
+[28/29] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[30/31] Emitting module ChavrusaUIRoutingHost
+[31/34] Compiling ChavrusaUIRoutingHost NativePresentationObserver.swift
+[32/34] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[33/34] Compiling ChavrusaUIRoutingHost NativeSurfaceState.swift
+[35/44] Emitting module ChavrusaUIRoutingHostTests
+[36/47] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+[37/47] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[38/47] Compiling ChavrusaUIRoutingHostTests NativeSurfaceStateTests.swift
+[39/48] Wrapping AST for OtzariaUIRouting for debugging
+[40/48] Wrapping AST for OtzariaActionCore for debugging
+[41/48] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[42/48] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[43/49] Write sources
+[45/50] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[46/52] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[47/52] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[48/53] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[49/54] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[50/54] Write sources
+[52/55] Emitting module ChavrusaUIRoutingHostPackageTests
+[53/56] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[54/56] Write Objects.LinkFileList
+[55/56] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (90.56s)
+Test Suite 'Selected tests' started at 2026-11-15 15:29:50.407
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' started at 2026-11-15 15:29:50.413
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testBackendChangeAfterDispatchPreservesEffectUncertainty' started at 2026-11-15 15:29:50.413
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testBackendChangeAfterDispatchPreservesEffectUncertainty' passed (0.157 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCancellationAfterDispatchNeverClaimsNoEffect' started at 2026-11-15 15:29:50.570
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCancellationAfterDispatchNeverClaimsNoEffect' passed (0.174 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalDeadlineExpiresDuringFinalSynchronousCompletionCheck' started at 2026-11-15 15:29:50.744
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:121: error: NativeSceneNavigationOrchestratorTests.testCanonicalDeadlineExpiresDuringFinalSynchronousCompletionCheck : failed - Final deadline drift completed: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: 5B34ACEB-DADA-4DE6-94D5-2145A490A560, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 5B34ACEB-DADA-4DE6-94D5-2145A490A560, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.otzaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.otzaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalDeadlineExpiresDuringFinalSynchronousCompletionCheck' failed (0.207 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalEpochDriftAfterFinalObservationIsRejected' started at 2026-11-15 15:29:50.951
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:107: error: NativeSceneNavigationOrchestratorTests.testCanonicalEpochDriftAfterFinalObservationIsRejected : failed - Final epoch drift completed: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: C0E791C6-8A1F-4F26-8203-72A866A05819, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: C0E791C6-8A1F-4F26-8203-72A866A05819, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.sefariaEmbedded), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.sefariaEmbedded, generation: 1, rpcEpoch: Optional(7)), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalEpochDriftAfterFinalObservationIsRejected' failed (0.175 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends' started at 2026-11-15 15:29:51.126
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:99: error: NativeSceneNavigationOrchestratorTests.testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends : failed - Final canonical drift completed: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: EB469D16-2A86-4CB1-BAC8-45E752F6354D, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: EB469D16-2A86-4CB1-BAC8-45E752F6354D, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.otzaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.otzaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:99: error: NativeSceneNavigationOrchestratorTests.testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends : failed - Final canonical drift completed: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: E298D414-8673-4AFF-87E7-8C157667422E, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: E298D414-8673-4AFF-87E7-8C157667422E, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.sefaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.sefaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:99: error: NativeSceneNavigationOrchestratorTests.testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends : failed - Final canonical drift completed: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: E165B730-6113-4403-9A57-5F510F9ECE7A, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: E165B730-6113-4403-9A57-5F510F9ECE7A, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.sefariaEmbedded), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.sefariaEmbedded, generation: 1, rpcEpoch: Optional(7)), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends' failed (0.457 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGuardThenExactVisibleReceipt' started at 2026-11-15 15:29:51.583
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalGuardThenExactVisibleReceipt' passed (0.113 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalReadinessLossAfterFinalObservationIsRejected' started at 2026-11-15 15:29:51.696
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeSceneNavigationOrchestratorTests.swift:114: error: NativeSceneNavigationOrchestratorTests.testCanonicalReadinessLossAfterFinalObservationIsRejected : failed - Final readiness loss completed: acknowledged(OtzariaUIRouting.UISceneReceipt(requestId: 3E6EFD8E-84EA-4884-B363-30D7D98D600C, route: OtzariaUIRouting.RouteSpec(version: 1, requestId: 3E6EFD8E-84EA-4884-B363-30D7D98D600C, destination: OtzariaUIRouting.UIDestinationID(rawValue: "native.settings"), backend: Optional(OtzariaActionCore.ActionBackendID.otzaria), content: nil, presentation: OtzariaUIRouting.PresentationSpec(kind: OtzariaUIRouting.PresentationSpec.Kind.sheet, tabID: nil), state: OtzariaUIRouting.UIStateSpec(version: 1, workspaceID: nil, profileID: nil, selectedItemID: nil, visibleComponents: [], expandedComponents: [], sidebarVisible: nil, inspectorVisible: nil, sheet: nil, scrollAnchor: nil, privateState: nil), focus: nil, scene: OtzariaUIRouting.SceneTarget(kind: OtzariaUIRouting.SceneTarget.Kind.specific, sceneID: Optional(OtzariaUIRouting.UIStableID(rawValue: "scene.A")), expectedRevision: Optional(2)), expectedBackendSnapshot: nil), backendSnapshot: OtzariaActionCore.ActionBackendSnapshot(backend: OtzariaActionCore.ActionBackendID.otzaria, generation: 1, rpcEpoch: nil), sceneID: OtzariaUIRouting.UIStableID(rawValue: "scene.A"), basedOnSceneRevision: 2, appliedSceneRevision: 3, coreReceipt: nil))
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testCanonicalReadinessLossAfterFinalObservationIsRejected' failed (0.08 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testForegroundLossInvalidatesContextAndOldLeaseCannotRemoveReplacement' started at 2026-11-15 15:29:51.776
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testForegroundLossInvalidatesContextAndOldLeaseCannotRemoveReplacement' passed (0.12 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testMissingCanonicalScopeNeverMutatesNativeUI' started at 2026-11-15 15:29:51.896
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testMissingCanonicalScopeNeverMutatesNativeUI' passed (0.101 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRepeatedRequestDoesNotDispatchAgainOrReuseOldCompletion' started at 2026-11-15 15:29:51.997
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRepeatedRequestDoesNotDispatchAgainOrReuseOldCompletion' passed (0.122 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRevocationDuringVisibleWaitCannotBecomeCompletion' started at 2026-11-15 15:29:52.119
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testRevocationDuringVisibleWaitCannotBecomeCompletion' passed (0.133 seconds)
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testWrongVisibleSurfaceDoesNotAcknowledgeSameRequest' started at 2026-11-15 15:29:52.252
+
+Test Case 'NativeSceneNavigationOrchestratorTests.testWrongVisibleSurfaceDoesNotAcknowledgeSameRequest' passed (0.153 seconds)
+
+Test Suite 'NativeSceneNavigationOrchestratorTests' failed at 2026-11-15 15:29:52.405
+
+	 Executed 12 tests, with 6 failures (0 unexpected) in 1.992 (1.992) seconds
+
+Test Suite 'Selected tests' failed at 2026-11-15 15:29:52.405
+
+	 Executed 12 tests, with 6 failures (0 unexpected) in 1.992 (1.992) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.002 seconds.
+
