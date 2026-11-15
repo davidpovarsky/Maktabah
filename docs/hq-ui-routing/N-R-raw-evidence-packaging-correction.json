@@ -1,0 +1,42 @@
+{
+  "previous_evidence": "eb3804a06573d21465831d31589f52d5abfe4cef",
+  "scope": "Evidence bytes only; six exact -text attributes; raw working logs preserved; source/results/methods unchanged; no rerun93",
+  "files": {
+    "N-R-actual-producer-initial-compile.log": {
+      "sha256": "41428ec4b2a9b53906b3edf33332d839d3b2cc47bd1bd5f6419383accf225e20",
+      "staged_git_blob": "806633be55974252904d64e928f0ae9c05367816",
+      "raw_bytes_preserved": true,
+      "prior_normalization_only": true
+    },
+    "N-R-actual-producer-second-compile.log": {
+      "sha256": "251393888abf7308f4b16843bcb72121a0b10fd6d9fc8f65fa994438655e4ec0",
+      "staged_git_blob": "37c1de1e52f5bf8f852fcd264515c1e6cb33d3bb",
+      "raw_bytes_preserved": true,
+      "prior_normalization_only": true
+    },
+    "N-R-actual-producer-initial-owner-fixture.log": {
+      "sha256": "ed8b4f2b3530b59842851b687cebb6976c30674fce97b36b8855ea5fd496ad13",
+      "staged_git_blob": "3dad096d016237d0b4ae122f74e182b4cd9982c8",
+      "raw_bytes_preserved": true,
+      "prior_normalization_only": true
+    },
+    "N-R-actual-producer-focused.log": {
+      "sha256": "e6d09d20abe7474d93d4462a899897b3e395e8fec5cbf91ebfc806420c33b012",
+      "staged_git_blob": "fc4a3aa014044e9fa0bc0e69d27ec221013b43a8",
+      "raw_bytes_preserved": true,
+      "prior_normalization_only": true
+    },
+    "N-R-actual-producer-joint-full.log": {
+      "sha256": "cd40ca22dd55e7fae4b5aad031fd20eb6ab257c98030b8ce71035760616fd48c",
+      "staged_git_blob": "daefc6f9c10c8df714a68bb655e3ff212e6c7eff",
+      "raw_bytes_preserved": true,
+      "prior_normalization_only": true
+    },
+    "N-R-actual-producer-inputs.json": {
+      "sha256": "566c86293614f13290ac8da974a1f00ab85202d7c2760c6ec58c027906c9c28a",
+      "staged_git_blob": "662792d6c7dc03347a5970dab02d04982a3b6927",
+      "raw_bytes_preserved": true,
+      "prior_normalization_only": true
+    }
+  }
+}

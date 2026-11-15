@@ -1,1 +1,7 @@
 Vendor/OtzariaSearchEngine/Resources/*.json binary
+docs/hq-ui-routing/N-R-actual-producer-initial-compile.log -text
+docs/hq-ui-routing/N-R-actual-producer-second-compile.log -text
+docs/hq-ui-routing/N-R-actual-producer-initial-owner-fixture.log -text
+docs/hq-ui-routing/N-R-actual-producer-focused.log -text
+docs/hq-ui-routing/N-R-actual-producer-joint-full.log -text
+docs/hq-ui-routing/N-R-actual-producer-inputs.json -text
