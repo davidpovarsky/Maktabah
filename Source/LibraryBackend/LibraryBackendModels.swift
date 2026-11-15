@@ -564,19 +564,28 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
 
 extension String {
     var readerPlainText: String {
-        replacingOccurrences(of: #"(?i)<br\s*/?>"#, with: "\n", options: .regularExpression)
-            .replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
-            .replacingOccurrences(of: "&nbsp;", with: " ")
-            .replacingOccurrences(of: "&thinsp;", with: "\u{2009}")
-            .replacingOccurrences(of: "&#8201;", with: "\u{2009}")
-            .replacingOccurrences(of: "&ensp;", with: "\u{2002}")
-            .replacingOccurrences(of: "&emsp;", with: "\u{2003}")
-            .replacingOccurrences(of: "&amp;", with: "&")
-            .replacingOccurrences(of: "&lt;", with: "<")
-            .replacingOccurrences(of: "&gt;", with: ">")
-            .replacingOccurrences(of: "&quot;", with: "\"")
-            .replacingOccurrences(of: #"\{[psפס]\}"#, with: "\n", options: .regularExpression)
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+        var value = self
+        // Preserve transformation order: decoded literal markup must not be
+        // stripped, and entities produced by later passes are not re-decoded.
+        if value.utf8.contains(0x3C) { // <
+            value = value.replacingOccurrences(of: #"(?i)<br\s*/?>"#, with: "\n", options: .regularExpression)
+                .replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
+        }
+        if value.utf8.contains(0x26) { // &
+            value = value.replacingOccurrences(of: "&nbsp;", with: " ")
+                .replacingOccurrences(of: "&thinsp;", with: "\u{2009}")
+                .replacingOccurrences(of: "&#8201;", with: "\u{2009}")
+                .replacingOccurrences(of: "&ensp;", with: "\u{2002}")
+                .replacingOccurrences(of: "&emsp;", with: "\u{2003}")
+                .replacingOccurrences(of: "&amp;", with: "&")
+                .replacingOccurrences(of: "&lt;", with: "<")
+                .replacingOccurrences(of: "&gt;", with: ">")
+                .replacingOccurrences(of: "&quot;", with: "\"")
+        }
+        if value.utf8.contains(0x7B) { // {
+            value = value.replacingOccurrences(of: #"\{[psפס]\}"#, with: "\n", options: .regularExpression)
+        }
+        return value.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 

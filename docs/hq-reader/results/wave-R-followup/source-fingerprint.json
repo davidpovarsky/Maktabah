@@ -1,0 +1,32 @@
+{
+  "base_sha": "fea866a005a636bb123504a0522fa7989b42c817",
+  "authority": "Windows Swift6.3.3 portable + read-only released miniTest10-v6 SQL/model fixtures, no Apple/native/physical acceptance",
+  "files": {
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": {
+      "sha256": "0349a880af25be8af5e2033dc8aa84cf1f9b52a0016c4b77b91df6e04474822f",
+      "git_blob": "9804af3a15b1cf3607201b24c0af3da02d188e1f"
+    },
+    "Source/LibraryBackend/LibraryBackendModels.swift": {
+      "sha256": "fbaa41d9d03c6539b6c8ed8aa608170bb1dd52f4b6f7cf207344d3ea6bb60978",
+      "git_blob": "0a2fb19bce041b334752816176dc68a39bbe3ea8"
+    },
+    "Tests/HQ/reader/ServiceTests.swift": {
+      "sha256": "f8707ed21f521d3640c555c211065d8b3822a0e4b5303e3e5224324edf8b230c",
+      "git_blob": "5e7ec037a9831d0181de63ca776f0d38f52aaa24"
+    },
+    "Tests/HQ/reader/RenderTests.swift": {
+      "sha256": "8a845f47ef7fc16748414049d3205cc378a59459c987ef8223df81c6619eb8aa",
+      "git_blob": "65e5e19a004b7d2d0961dc579996abefc5743612"
+    },
+    "tools/hq-reader-checks.py": {
+      "sha256": "5c6a4bbc1c79cac6cf06234b40a15d45f752ec7bc9029dcf7b0616833911e47b",
+      "git_blob": "743e3dea0dfcb878d5cd064961362cd2d6e2b327"
+    }
+  },
+  "runs": {
+    "service": "wave-R-followup: final service and service fixtures",
+    "bridge": "wave-R-followup: final service; unchanged bridge/adapter methods; neutral model was still baseline fea866a0 during this run",
+    "render": "wave-R-genuine-render-after: final neutral model and render fixtures, 6081 actual source rows and full output hash parity"
+  },
+  "reuse": "cache/bridge boundaries from fea866a0 where unchanged; no inherited native PASS"
+}

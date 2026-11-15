@@ -347,19 +347,15 @@ final class OtzariaReadingUnitService {
         let index = try bookIndex(bookId: bookId)
 
         // Root entry handling: identify roots with children and direct lines <= 3
-        var rootTitleLinesByRootId: [Int: [Int]] = [:]
-        for (entryId, entry) in index.entriesById where entry.parentId == nil {
+        var directRootLineCounts: [Int: Int] = [:]
+        for leafId in index.leafEntryByLineIndex.values {
             try Task.checkCancellation()
-            let children = index.childrenByParentId[entryId] ?? []
-            if !children.isEmpty {
-                let directLines = index.leafEntryByLineIndex.compactMap { lineIndex, leafId in
-                    leafId == entryId ? lineIndex : nil
-                }.sorted()
-                if !directLines.isEmpty && directLines.count <= 3 {
-                    rootTitleLinesByRootId[entryId] = directLines
-                }
+            if let entry = index.entriesById[leafId], entry.parentId == nil,
+               !(index.childrenByParentId[leafId]?.isEmpty ?? true) {
+                directRootLineCounts[leafId, default: 0] += 1
             }
         }
+        let rootTitleEntryIds = Set(directRootLineCounts.compactMap { $0.value <= 3 ? $0.key : nil })
 
         var orderedEntryIds: [Int] = []
         var lineIndicesByUnitId: [Int: [Int]] = [:]
@@ -367,7 +363,7 @@ final class OtzariaReadingUnitService {
 
         for (lineIndex, leafId) in index.leafEntryByLineIndex.sorted(by: { $0.key < $1.key }) {
             try Task.checkCancellation()
-            if rootTitleLinesByRootId[leafId] != nil {
+            if rootTitleEntryIds.contains(leafId) {
                 heldRootLinesByRootId[leafId, default: []].append(lineIndex)
                 continue
             }
@@ -486,10 +482,10 @@ final class OtzariaReadingUnitService {
     private func buildUnit(from summary: UnitSummary) throws -> OtzariaReadingUnit? {
         try Task.checkCancellation()
         let lines = try sourceLines(for: summary)
-        guard !lines.isEmpty else { return nil }
         guard lines.map(\.lineIndex) == summary.sourceLineIndices else {
             throw OtzariaReadingUnitError.inconsistentSourceLines
         }
+        guard !lines.isEmpty else { return nil }
         let html = lines.map(\.html).joined(separator: "\n")
         var plainSegments: [String] = []
         var lineAnchors: [OtzariaLineAnchor] = []
@@ -590,6 +586,8 @@ final class OtzariaReadingUnitService {
 
     private func mapSourceLine(_ row: SQLiteRow, decoder: OtzariaLineContentDecoder) throws -> SourceLine {
         try Task.checkCancellation()
+        // A missing LEFT JOIN payload is a broken source row, not empty text.
+        guard !row.isNull(at: 2) else { throw OtzariaReadingUnitError.inconsistentSourceLines }
         return SourceLine(
             id: row.int(at: 0),
             lineIndex: row.int(at: 1),

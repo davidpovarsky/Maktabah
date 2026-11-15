@@ -1,0 +1,4 @@
+render: PASS — actual UTF16 ranges, RTL/Arabic/combining/emoji, source/translation/both; 200-segment synthetic Windows p50=9.252548217773438ms max=11.92474365234375ms
+render-corpus: PASS book=103 sourceRows=2875 visibleSegments=2875 Windows-neutral-model-only p50=540.1096343994141ms max=570.8980560302734ms; no TextKit/iPad/Swift-ZSTD inference
+render-corpus: PASS book=28 sourceRows=2678 visibleSegments=2678 Windows-neutral-model-only p50=344.09141540527344ms max=489.95018005371094ms; no TextKit/iPad/Swift-ZSTD inference
+render-corpus: PASS book=3152 sourceRows=528 visibleSegments=528 Windows-neutral-model-only p50=197.0062255859375ms max=252.47955322265625ms; no TextKit/iPad/Swift-ZSTD inference

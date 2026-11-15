@@ -1,5 +1,11 @@
 # Private reader-lane follow-ups
 
+- The original `Reader+Content.swift` still constructs the neutral render model
+  synchronously after async section retrieval. R's normalization optimization
+  preserves full genuine book output by SHA256 and reduces portable work, but
+  does not move that callsite off MainActor. Profile the coherent Apple app;
+  only introduce a scoped upstream hook if actual native evidence requires it.
+
 - Line-mode metadata now uses bounded indexed row/neighbor queries (wave R,
   15 November). Paragraph/chapter still index the whole book; measure those
   modes on the full corpus before choosing an incremental index/window design.

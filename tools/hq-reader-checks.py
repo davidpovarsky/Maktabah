@@ -30,6 +30,8 @@ artifacts.mkdir(parents=True, exist_ok=True)
 selected = ["cache", "service", "bridge", "render", "sqlite"] if args.suite == "all" else [args.suite]
 if args.suite == "all" and args.database:
     selected.append("corpus")
+if args.suite == "render" and args.database:
+    selected = ["corpus", "render"]
 results = []
 
 def write_log(path, value):
@@ -56,6 +58,7 @@ def line_sql(source):
 
 with tempfile.TemporaryDirectory(prefix="hq-reader-") as directory:
     temp = Path(directory)
+    render_input = None
     unit = temp / "ReadingUnit.swift"
     unit.write_text((reading / "OtzariaReadingUnit.swift").read_text(encoding="utf-8").split("#if os(iOS)")[0], encoding="utf-8")
     cache = temp / "SideCache.swift"
@@ -87,6 +90,7 @@ with tempfile.TemporaryDirectory(prefix="hq-reader-") as directory:
             queries = line_sql(source)
             db = sqlite3.connect(path.as_uri() + "?mode=ro", uri=True)
             books = []
+            render_books = []
             for book_id in [103, 28, 3152]:
                 title = db.execute("SELECT title FROM book WHERE id = ?", [book_id]).fetchone()[0]
                 indices = [r[0] for r in db.execute("SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex", [book_id])]
@@ -107,10 +111,36 @@ with tempfile.TemporaryDirectory(prefix="hq-reader-") as directory:
                 assert not any("SCAN " in r[3] or "TEMP B-TREE" in r[3] for p in plans for r in p), plans
                 books.append({"book_id": book_id, "title": title, "source_rows": len(indices),
                               "queries_verified": count+1, "fixture_plans": plans})
+                if args.suite == "render":
+                    # Fixture preparation only, not the production Swift decoder.
+                    import zstandard
+                    dictionaries = [zstandard.ZstdCompressionDict(r[0]) for r in db.execute("SELECT dict FROM zstd_dict")]
+                    decoders = {d.dict_id(): zstandard.ZstdDecompressor(dict_data=d) for d in dictionaries}
+                    lines = []
+                    for line_id, line_index, he_ref, content in db.execute("""
+                        SELECT l.id, l.lineIndex, l.heRef, lc.content
+                        FROM line l LEFT JOIN line_content lc ON lc.id = l.id
+                        WHERE l.bookId = ? ORDER BY l.lineIndex
+                    """, [book_id]):
+                        assert content is not None
+                        if isinstance(content, bytes):
+                            frame = zstandard.get_frame_parameters(content)
+                            assert frame.content_size <= 16 * 1024 * 1024
+                            content = decoders[frame.dict_id].decompress(content).decode("utf-8")
+                        assert isinstance(content, str)
+                        lines.append({"id": line_id, "index": line_index, "heRef": he_ref, "text": content})
+                    assert [r["index"] for r in lines] == indices
+                    render_books.append({"bookID": book_id, "title": title, "lines": lines})
             db.close()
             evidence = {"profile": "miniTest10-v6", "database_sha256": digest,
                         "authority": "Python SQLite actual released corpus subset; SQL metadata only; no Swift decoder/UI/full-DB/iPad acceptance",
                         "sqlite_version": sqlite3.sqlite_version, "books": books}
+            if render_books:
+                render_input = temp / "genuine-render-input.json"
+                render_input.write_text(json.dumps(render_books, ensure_ascii=False), encoding="utf-8")
+                evidence["render_input"] = {"sha256": hashlib.sha256(render_input.read_bytes()).hexdigest(),
+                                            "bytes": render_input.stat().st_size,
+                                            "preparation": "Python zstandard fixture decoder; actual Swift neutral renderer tested separately"}
             (artifacts / "corpus-sql.json").write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             results.append({"suite": "corpus", "test_exit": 0, "authority": evidence["authority"],
                             "queries_verified": sum(b["queries_verified"] for b in books)})
@@ -182,7 +212,15 @@ with tempfile.TemporaryDirectory(prefix="hq-reader-") as directory:
             print(compile_result.stderr, flush=True)
             results.append({"suite": suite, "compile_exit": compile_result.returncode})
             continue
-        run = subprocess.run([str(executable)], capture_output=True, text=True, encoding="utf-8")
+        render_output = temp / "render-output"
+        render_output.mkdir(exist_ok=True)
+        command = [str(executable)] + ([str(render_input), str(render_output)] if suite == "render" and render_input else [])
+        run = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+        if suite == "render" and render_input and run.returncode == 0:
+            output_hashes = {p.stem: {"bytes": p.stat().st_size, "sha256": hashlib.sha256(p.read_bytes()).hexdigest()}
+                             for p in render_output.glob("*.txt")}
+            assert set(output_hashes) == {"103", "28", "3152"}
+            (artifacts / "render-corpus-output.json").write_text(json.dumps(output_hashes, indent=2) + "\n", encoding="utf-8")
         write_log(artifacts / f"{suite}-tests.log", run.stdout + run.stderr)
         print(run.stdout, end="", flush=True)
         if run.returncode:

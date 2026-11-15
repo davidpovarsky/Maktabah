@@ -65,6 +65,20 @@ import Foundation
             _ = try service.buildUnit(from: missing)
             failures.append("partial read must fail explicitly")
         } catch OtzariaReadingUnitError.inconsistentSourceLines {}
+        let absent = OtzariaReadingUnitDescriptor(id: "absent", bookId: 103, tocEntryId: nil, title: nil, level: nil,
+            startLineIndex: 99, endLineIndex: 99, sourceLineIndices: [99], heRef: nil)
+        do {
+            _ = try service.buildUnit(from: absent)
+            failures.append("fully missing requested source rows must fail explicitly, just like a partial read")
+        } catch OtzariaReadingUnitError.inconsistentSourceLines {}
+
+        let nullContentDB = SQLiteDatabase()
+        nullContentDB.lines[0][2] = nil
+        let nullContent = OtzariaReadingUnitService(database: nullContentDB)
+        do {
+            _ = try nullContent.firstReadingUnit(bookId: 103, mode: .line)
+            failures.append("missing joined line_content row must fail instead of rendering a blank source segment")
+        } catch OtzariaReadingUnitError.inconsistentSourceLines {}
 
         let cycleDB = SQLiteDatabase()
         cycleDB.entries = [[11, 12, "א", 1], [12, 11, "ב", 2]]
@@ -79,6 +93,19 @@ import Foundation
         for mode in [OtzariaUnitMode.paragraph, .chapter] {
             check(try roots.firstDescriptor(bookId: 103, mode: mode)?.sourceLineIndices == [0, 1], "root A lines isolated")
             check(try roots.nextDescriptor(bookId: 103, afterLineIndex: 1, mode: mode)?.sourceLineIndices == [2, 3], "root B lines isolated")
+        }
+        let titleDB = SQLiteDatabase()
+        titleDB.entries = rootsDB.entries
+        titleDB.lines = (0..<9).map { [1000 + $0, $0, "שורה", nil] }
+        titleDB.mappings = [(0,10),(1,10),(2,10),(3,11),(4,20),(5,20),(6,20),(7,20),(8,21)]
+        let titleService = OtzariaReadingUnitService(database: titleDB)
+        for mode in [OtzariaUnitMode.paragraph, .chapter] {
+            check(try titleService.firstDescriptor(bookId: 103, mode: mode)?.sourceLineIndices == [0,1,2,3],
+                "three direct root-title rows attach only to that root's child")
+            check(try titleService.nextDescriptor(bookId: 103, afterLineIndex: 3, mode: mode)?.sourceLineIndices == [4,5,6,7],
+                "four direct root rows remain their own semantic unit")
+            check(try titleService.nextDescriptor(bookId: 103, afterLineIndex: 7, mode: mode)?.sourceLineIndices == [8],
+                "child of a four-row root keeps all content and adjacency")
         }
 
         let chunkDB = SQLiteDatabase()
