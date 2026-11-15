@@ -24,12 +24,18 @@ final class OtzariaSearchIndexManager {
 }
 final class OtzariaSearchEngineBridge {
     static var constructions = 0
+    static var countEntered: DispatchSemaphore?
+    static var releaseCount: DispatchSemaphore?
     init(indexURL: URL) throws { Self.constructions += 1 }
     func close() {}
     func configureDictionaries(magic: URL?, translation: URL?, acronyms: URL?) throws -> [String: Bool] {
         ["translation": true, "acronyms": true]
     }
-    func documentCount() throws -> UInt64 { 125 }
+    func documentCount() throws -> UInt64 {
+        Self.countEntered?.signal()
+        Self.releaseCount?.wait()
+        return 125
+    }
     func search(_ request: OtzariaSearchRequest) throws -> OtzariaSearchPage { fatalError("not used") }
 }
 final class OtzariaMagicDictionaryManager {
@@ -58,16 +64,38 @@ enum OtzariaSearchSnippetRenderer { static func plainText(fromHTML value: String
         let identity = manager.identityURL(indexURL: root)
         try Data("identity".utf8).write(to: identity)
         let repository = OtzariaTantivySearchRepository.shared
+        let originalResource = repository.resourceObservation(databasePath: database.path)
         check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == nil, "unopened index must be unknown")
         check(OtzariaSearchEngineBridge.constructions == 0, "readiness must never construct a writer-capable engine")
         // Bundle resources are supplied by the runner beside this executable.
         _ = try repository.engine(databasePath: database.path)
         check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == 125, "matching live cached count is observed")
         let constructions = OtzariaSearchEngineBridge.constructions
+        let entered = DispatchSemaphore(value: 0), release = DispatchSemaphore(value: 0)
+        OtzariaSearchEngineBridge.countEntered = entered
+        OtzariaSearchEngineBridge.releaseCount = release
+        let countFinished = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            _ = repository.observedOpenIndexDocumentCount(databasePath: database.path)
+            countFinished.signal()
+        }
+        let began = entered.wait(timeout: .now() + 2) == .success
+        let witnessFinished = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+            _ = repository.resourceObservation(databasePath: database.path)
+            witnessFinished.signal()
+        }
+        let observedWithoutQueryLock = witnessFinished.wait(timeout: .now() + 2) == .success
+        release.signal()
+        _ = countFinished.wait(timeout: .now() + 2)
+        OtzariaSearchEngineBridge.countEntered = nil; OtzariaSearchEngineBridge.releaseCount = nil
+        check(began && observedWithoutQueryLock, "source witness must remain observable while FFI holds the repository query lock")
         try Data("replacement-index".utf8).write(to: meta)
         check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == nil, "replaced index metadata revokes cache evidence")
         check(OtzariaSearchEngineBridge.constructions == constructions, "readiness must not silently reopen after replacement")
         repository.invalidate(databasePath: database.path)
+        let invalidatedResource = repository.resourceObservation(databasePath: database.path)
+        check(invalidatedResource.revision > originalResource.revision, "source invalidation advances the true publication revision")
         _ = try repository.engine(databasePath: database.path)
         check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == 125, "explicit ordinary engine reopen can establish new evidence")
         OtzariaDataProfileRegistry.activeProfileID = "different-profile"
@@ -84,6 +112,12 @@ enum OtzariaSearchSnippetRenderer { static func plainText(fromHTML value: String
         repository.endExclusiveIndexing(databasePath: database.path)
         repository.closeAllEngines()
         check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == nil, "close all revokes all observations")
+        let beforeABA = repository.resourceObservation(databasePath: database.path)
+        repository.invalidate(databasePath: database.path)
+        repository.invalidate(databasePath: database.path)
+        let afterABA = repository.resourceObservation(databasePath: database.path)
+        check(afterABA.revision > beforeABA.revision && afterABA.fingerprint == beforeABA.fingerprint,
+            "A-to-B-to-A invalidation remains observable even when final disk bytes are identical")
         print("PASS: \(assertions) real-repository cached readiness assertions; FFI/storage dependencies are doubles")
     }
 }

@@ -11,6 +11,18 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     private let manager = OtzariaSearchIndexManager.shared
     private var engineCache: [String: OtzariaSearchEngineBridge] = [:]
     private var engineStamps: [String: OpenIndexStamp] = [:]
+    private var publicationRevision: UInt64 = 0
+    private let revisionLock = NSLock()
+
+    private func readPublicationRevision() -> UInt64 {
+        revisionLock.lock(); defer { revisionLock.unlock() }
+        return publicationRevision
+    }
+
+    private func advancePublicationRevision() {
+        revisionLock.lock(); defer { revisionLock.unlock() }
+        publicationRevision &+= 1
+    }
     private var indexingDatabasePaths: Set<String> = []
     private let lock = NSRecursiveLock()
 
@@ -60,7 +72,22 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         return count
     }
 
-    private struct OpenIndexStamp: Equatable {
+    /// Current source evidence, not an action generation or cached readiness.
+    /// Revision detects supported A -> B -> A invalidations between observations.
+    func resourceObservation(databasePath: String?) -> (revision: UInt64, fingerprint: Data?) {
+        // Synchronous commit guards must not wait behind a long FFI query.
+        // This lock protects the source revision only, never an engine/await.
+        let before = readPublicationRevision()
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys]
+        let fingerprint = databasePath.flatMap { path in
+            (try? openIndexStamp(databasePath: path)).flatMap { try? encoder.encode($0) }
+        }
+        let after = readPublicationRevision()
+        return (after, before == after ? fingerprint : nil)
+    }
+
+    private struct OpenIndexStamp: Codable, Equatable, Sendable {
         let profile: String
         let database: OtzariaIndexFingerprint
         let path: String
@@ -72,8 +99,16 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         let url = manager.indexURL(for: databasePath)
         return try OpenIndexStamp(profile: OtzariaDataProfileRegistry.activeProfileID,
             database: manager.currentFingerprint(databasePath: databasePath), path: url.path,
-            metadata: Data(contentsOf: url.appendingPathComponent("meta.json")),
-            identity: Data(contentsOf: manager.identityURL(indexURL: url)))
+            metadata: smallMetadata(at: url.appendingPathComponent("meta.json")),
+            identity: smallMetadata(at: manager.identityURL(indexURL: url)))
+    }
+
+    private func smallMetadata(at url: URL) throws -> Data {
+        let size = try FileManager.default.attributesOfItem(atPath: url.path)[.size] as? NSNumber
+        guard let size, size.uint64Value <= 1_048_576 else {
+            throw OtzariaSearchError.invalidEngineResponse("Search readiness metadata is missing or oversized")
+        }
+        return try Data(contentsOf: url)
     }
 
     @discardableResult
@@ -131,6 +166,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func invalidate(databasePath: String) {
         lock.lock()
         defer { lock.unlock() }
+        advancePublicationRevision()
         if let engine = engineCache[databasePath] {
             engine.close()
             engineCache[databasePath] = nil
@@ -146,6 +182,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func closeAllEngines() {
         lock.lock()
         defer { lock.unlock() }
+        advancePublicationRevision()
         for engine in engineCache.values {
             engine.close()
         }
@@ -157,6 +194,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func beginExclusiveIndexing(databasePath: String) {
         lock.lock()
         defer { lock.unlock() }
+        advancePublicationRevision()
         if let engine = engineCache[databasePath] {
             engine.close()
             engineCache[databasePath] = nil
@@ -169,6 +207,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func endExclusiveIndexing(databasePath: String) {
         lock.lock()
         defer { lock.unlock() }
+        advancePublicationRevision()
         if let engine = engineCache[databasePath] {
             engine.close()
             engineCache[databasePath] = nil
