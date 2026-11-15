@@ -65,6 +65,26 @@ def run_logged(command, name, timeout):
     return process.returncode
 
 
+def capture_palette_code_images(bundle, executable):
+    """Retain actual compiled-image provenance, including Xcode's debug dylib."""
+    evidence = {"acceptance_effect": "NONE; symbols do not establish UI behavior", "images": []}
+    for path in [bundle / executable, *sorted(bundle.glob("*.dylib"))]:
+        row = {"path": str(path.relative_to(ROOT)), "bytes": path.stat().st_size}
+        with path.open("rb") as stream:
+            row["sha256"] = hashlib.file_digest(stream, "sha256").hexdigest()
+        try:
+            result = subprocess.run(["xcrun", "nm", "-a", str(path)], capture_output=True, timeout=45)
+            matches = [line for line in result.stdout.decode("utf-8", errors="replace").splitlines()
+                       if "PaletteTextField" in line or "PaletteSearchTextField" in line]
+            row.update(nm_exit_code=result.returncode, matched_symbol_count=len(matches),
+                       bounded_matched_symbols=matches[:200], nm_stdout_sha256=hashlib.sha256(result.stdout).hexdigest())
+        except (OSError, subprocess.TimeoutExpired) as error:
+            row["symbol_capture_error"] = type(error).__name__
+        evidence["images"].append(row)
+    (OUT / "palette-compiled-images.json").write_text(json.dumps(evidence, indent=2) + "\n")
+    return evidence
+
+
 def collect_cases(report, contract):
     outcomes = []
     for group in execution_groups(contract):
@@ -168,7 +188,7 @@ def main():
         report["full_release_acceptance"] = False
         report["scope"] = contract["scope"]
         test_path = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
-        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "66fafb8a8464823abc1cd574fffb79b8a56870af47f33810e7b52bdf1ef944d9":
+        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "909a2f9b9a541b3638bd4ca1ee11d528f25aeae86e0d86a369996d5eed4ceb16":
             raise RuntimeError("Reviewed test source drift")
         report["test_source_commit"] = contract["source_test_commit"]
         subprocess.run(["git", "merge-base", "--is-ancestor", contract["source_test_commit"], "HEAD"], cwd=ROOT, check=True)
@@ -177,7 +197,8 @@ def main():
                                         for p in sorted((ROOT / "Maktabah-iOSUITests").glob("*.swift"))}
         report["helper_inputs_sha256"] = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in [
             "Scripts/CI/hq-stage2-focused-apple.py", "Scripts/CI/hq-stage2-focused-apple.inputs.json", "Scripts/CI/runtime27.py",
-            "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27-fixture-oracle.py", "tools/verify_xcresult_zero_skips.py"]}
+            "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27-fixture-oracle.py", "tools/verify_xcresult_zero_skips.py",
+            "Scripts/CI/collect-runtime27-palette-log.py"]}
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing", "--derived-data", "build/DerivedData"],
                       "build-for-testing-driver.log", 4200):
             raise RuntimeError("Real app/test build failed; UI cases NOT_RUN")
@@ -187,6 +208,8 @@ def main():
             info = plistlib.loads((bundle / "Info.plist").read_bytes())
             binary = bundle / info["CFBundleExecutable"]
             binaries[str(bundle.relative_to(ROOT))] = hashlib.sha256(binary.read_bytes()).hexdigest()
+            if bundle.name == "Maktabah.app":
+                report["palette_compiled_code_images"] = capture_palette_code_images(bundle, info["CFBundleExecutable"])
         test_bundle = products / "Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest"
         test_info = plistlib.loads((test_bundle / "Info.plist").read_bytes())
         binaries[str(test_bundle.relative_to(ROOT))] = hashlib.sha256((test_bundle / test_info["CFBundleExecutable"]).read_bytes()).hexdigest()

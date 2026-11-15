@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_test_commit": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
+  "source_test_commit": "c9295c85a51710e592dc2558e6edb5395b1ecca5",
   "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
   "app_source": "068920924e329573b07c7fa2b3c498364d0800de",
   "sole_executor_thread": "01a1dc86-0c7b-7ee3-a098-2b4004ed686d",
@@ -159,7 +159,7 @@
   "execution_case_ids": [
     "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector"
   ],
-  "prior_pass_reuse_state": "ELIGIBLE_Q_VERIFIED8_PENDING_NEW_RUNTIME_COMPATIBILITY",
+  "prior_pass_reuse_state": "Q_CERTIFIED8_RUN3_TO_RUN4; nextdiagnostic exactsource/helper compatibility review pending",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
   "application_correction": {
     "donor": "48d6d7b634e82b8cf4212018d3f089de60958bb5",
@@ -216,5 +216,7 @@
       "required_case_count": 9,
       "verified_reused_pass": 0
     }
-  ]
+  ],
+  "prior_test_source_commit": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
+  "diagnostic_purpose": "Establish same-input hardware typeKey positivecontrol and actualclear, then unchanged realEscape+Inspector+window assertions; capture immediatepostEscape and actualnative handlerdelivery, not another speculativebehaviorrewrite"
 }

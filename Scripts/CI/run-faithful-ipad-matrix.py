@@ -317,6 +317,13 @@ for index, scenario in enumerate(scenarios):
                 recording.terminate()
                 recording.wait(timeout=15)
             recording_log.close()
+        if runtime27_contract and label == "11-window":
+            try:
+                capture = subprocess.run([sys.executable, "Scripts/CI/collect-runtime27-palette-log.py", udid, label],
+                                         check=False, timeout=60)
+                device["paletteInputDiagnosticExitCode"] = capture.returncode
+            except subprocess.TimeoutExpired:
+                device["paletteInputDiagnosticExitCode"] = "TIMEOUT; no handler-delivery inference"
         (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
         subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
         # Delete only the disposable simulator created above, never a user's/default device.

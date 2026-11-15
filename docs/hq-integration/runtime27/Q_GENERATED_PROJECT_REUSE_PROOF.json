@@ -1,0 +1,59 @@
+{
+  "phase_final": false,
+  "reviewed_utc": "2026-11-15T09:31:07.753249+00:00",
+  "raw_generated_project_sha256": {
+    "43688380348": "ef065fc4e37bbd17e09f170320d60e80ab232400dfdecc2ea5e8493e9e7b6a2b",
+    "43696201794": "ea1ff67dc2847463fc33c34fd6da40f8f552d5caae9883bcb01a51adc8cdbfe6"
+  },
+  "Q_independent_actual_parser_executions": [
+    {
+      "run": 43688380348,
+      "exit_code": 0,
+      "stdout": "Parsed OpenStep format=openStep bytes=354573",
+      "Q_parsed_json_sha256": "3a26858da37850ae19254babe58f409fa2e307932548d9f579e4495b76d80744"
+    },
+    {
+      "run": 43696201794,
+      "exit_code": 0,
+      "stdout": "Parsed OpenStep format=openStep bytes=354573",
+      "Q_parsed_json_sha256": "5675b7a8d44bc33957e23129d1f2e01507c3e7750e4cdbd0c9fb9a3c071e9255"
+    }
+  ],
+  "object_count": 2206,
+  "uuid_mapping": {
+    "14767886B312022B3C5F472B": "DC73BDDA0D6522AA50CE5CA5",
+    "1C533124990FD705EB737B0B": "848F1F395B80357E45F8353A",
+    "74B32CD6A2386864F3551EB2": "ADE65263F02F8168A8159A59",
+    "B68C703BFE69611C5690A96A": "207E31B37EBD5F959270B2E0",
+    "B3D5EF793FEF03FD9AB96C69": "2F56274E3AE8EDD50A6678D9",
+    "D8CA916EC0FD44A79CC13902": "654B3C4C49AA99107F8B75AA",
+    "4146BC2775E654B3DA86CD45": "1C9287797255AC11055F08FD",
+    "BA56A6175E9242EAED5F77DF": "F4655489A3DAFD05CEC74F83",
+    "2AE50A2EA30E099CDCF4910F": "B693BBFAB6E2C70257C67E0D",
+    "30242D1E3E3C5F30C0E67070": "502299ACBF8316214B71A904",
+    "AA5FC03059E274A987AB4045": "192ACA2B4519F8BDC05E89D6",
+    "5364D96C889322808FEC1813": "52B7C5E306746B344B51044C",
+    "E3FA4A6CB3EAA3DD49F12DFB": "BC6BEC2B9587A757C42ED85A",
+    "949A00875321D0030F21B84B": "375896EED553143AC165901F",
+    "431E331486ED8D0A5A0901E8": "45BFD53829AC5C23A6A6E433"
+  },
+  "full_recursive_equality_after_ID_reference_bijection": true,
+  "ignored_fields": [],
+  "arrays_order_preserved": true,
+  "scope": "Native generated-project semantic compatibility, not UI test execution. Exact2project bytes hashmatch actual CIreports; Q independently reparsed both with existing Foundation OpenStep parser and checked entire graph, not only targets/settings subset.",
+  "reuse_decision": {
+    "prior_run": 43688380348,
+    "candidate_run": 43696201794,
+    "verified_reused_pass": 8,
+    "fresh_execution_pass": 0,
+    "fresh_execution_fail": 1,
+    "generated_project_pending_gap": "CLOSED; differences only15consistent objectUUIDrenames",
+    "proof_dependencies": [
+      "R27_CHANGE_IMPACT_75ea.json",
+      "R27_FROZEN_INPUT_REVIEW_6a54.json",
+      "R27_ATTEMPT_04_REVIEW.json"
+    ],
+    "still_required": "Actual Escape dismissal+Inspector closure; no phase PASS."
+  },
+  "native_UI_executions_in_this_check": 0
+}

@@ -1,0 +1,123 @@
+{
+  "run": 43696201794,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43696201794",
+  "artifact_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43696201794/artifacts/14155362586",
+  "artifact_bytes": 191687541,
+  "artifact_sha256_declared_by_GitHub": "e9d1eafe5ac4ba73e482d46f1d06d553ea40eda2ee8ea87fa8d18d6ebef8c24c",
+  "outer_zip_independently_hashed": false,
+  "checkout_sha": "6a54a44f4f94499325970471424f2482d48f14f8",
+  "app_source_sha": "068920924e329573b07c7fa2b3c498364d0800de",
+  "test_source_sha": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
+  "actual_counts": {
+    "ui_passed": 0,
+    "ui_failed": 1,
+    "ui_not_run": 0,
+    "ui_skipped": 0,
+    "eligible_prior_pass_pending_Q_compatibility": 8
+  },
+  "case_outcomes": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    }
+  ],
+  "SDK_compilation": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "failure": "Same actual Escape dismissal timeout at original test169; Inspector NOT_REACHED; no fresh UI PASS",
+  "forensic_compile_proof": {
+    "buildlog_sha256": "05757479f780d12605c06f8d6b7ced5e5f5d0a00a28a4a2840d34c00121d00eb",
+    "raw_lines": [
+      {
+        "line": 10601,
+        "text": "SwiftCompile normal arm64 Compiling\\ CommandPaletteModifier.swift,\\ CommandPaletteView.swift,\\ PaletteComponents.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift (in target 'CommandPalette' from project 'CommandPalette')"
+      },
+      {
+        "line": 10607,
+        "text": "SwiftCompile normal arm64 /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift (in target 'CommandPalette' from project 'CommandPalette')"
+      },
+      {
+        "line": 10705,
+        "text": "SwiftDriverJobDiscovery normal arm64 Compiling CommandPaletteModifier.swift, CommandPaletteView.swift, PaletteComponents.swift (in target 'CommandPalette' from project 'CommandPalette')"
+      },
+      {
+        "line": 50275,
+        "text": "SwiftCompile normal arm64 Compiling\\ AdaptiveTabContent.swift,\\ ScrollableTabBar.swift,\\ ScrollableTabBarDelegate.swift,\\ ScrollableTabBarLogger.swift,\\ StudyGroupsOverview.swift,\\ StudyProfileManagementView.swift,\\ StudyProfileMenu.swift,\\ LibraryCommandPaletteAdapter.swift,\\ ReaderToolbarActionAdapter.swift,\\ SafariToolbarSourcePort.swift,\\ iOSReaderSessionManager.swift,\\ iOSBookInfoAnchoredCard.swift,\\ iOSReaderWorkspaceView.swift,\\ MaktabahTorahInspectorAdapter.swift,\\ OtzariaInspectorRelationshipsProvider.swift,\\ OtzariaRelationshipClassifier.swift,\\ BackendAnnotationBridge.swift,\\ ReaderAnnotationRefreshCoordinator.swift,\\ ChavrusaTextLocalizationResolver.swift,\\ BackendNavigationAdapter.swift,\\ ReaderSessionRestoreCoordinator.swift,\\ SerializedSessionWriter.swift,\\ iOSTabBarVisibilityHost.swift,\\ ReaderPullNavigationStateMachine.swift,\\ ReaderSelectionRangeMapper.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarLogger.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift /Users/runner/work/Maktabah/Maktabah/Source/UI/iOS/Managers/iOSReaderSessionManager.swift /Users/runner/work/Maktabah/Maktabah/Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift /Users/runner/work/Maktabah/Maktabah/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Annotations/ReaderAnnotationRefreshCoordinator.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/Navigation/SerializedSessionWriter.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ReaderHost/iOSTabBarVisibilityHost.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift (in target 'Maktabah-iOS' from project 'Maktabah')"
+      },
+      {
+        "line": 50305,
+        "text": "SwiftCompile normal arm64 /Users/runner/work/Maktabah/Maktabah/Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift (in target 'Maktabah-iOS' from project 'Maktabah')"
+      },
+      {
+        "line": 50618,
+        "text": "SwiftDriverJobDiscovery normal arm64 Compiling AdaptiveTabContent.swift, ScrollableTabBar.swift, ScrollableTabBarDelegate.swift, ScrollableTabBarLogger.swift, StudyGroupsOverview.swift, StudyProfileManagementView.swift, StudyProfileMenu.swift, LibraryCommandPaletteAdapter.swift, ReaderToolbarActionAdapter.swift, SafariToolbarSourcePort.swift, iOSReaderSessionManager.swift, iOSBookInfoAnchoredCard.swift, iOSReaderWorkspaceView.swift, MaktabahTorahInspectorAdapter.swift, OtzariaInspectorRelationshipsProvider.swift, OtzariaRelationshipClassifier.swift, BackendAnnotationBridge.swift, ReaderAnnotationRefreshCoordinator.swift, ChavrusaTextLocalizationResolver.swift, BackendNavigationAdapter.swift, ReaderSessionRestoreCoordinator.swift, SerializedSessionWriter.swift, iOSTabBarVisibilityHost.swift, ReaderPullNavigationStateMachine.swift, ReaderSelectionRangeMapper.swift (in target 'Maktabah-iOS' from project 'Maktabah')"
+      }
+    ],
+    "app_binary_sha256": "dae681fe401bf6d15ad82df3ea67fb1dffba5a27f702fa7a82e645ecd44c54bc",
+    "previous_app_binary_sha256": "ce130a3606bd64e4f23a6e63fc32ac0a1f565fd9d71d75169a17d7b7399b0e3c",
+    "symbol_dump_available": false,
+    "binary_not_retained_in_existing_artifact": true
+  },
+  "generated_project_compatibility_proof": "GENERATED_PROJECT_RUN3_RUN4_EQUIVALENCE.json; byte-hash matched both raw CI records, all2206 objects exactly equal under15UUID bijection preserving arrays and every field; independent Q review pending",
+  "visuals": [
+    {
+      "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "name": "r27-final-native-screen_0_34368444-4BB9-4A95-B3C9-8373E06AE138.png",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43696201794-selective\\artifacts\\visual-11-window\\8F8BFA61-AF55-4D8D-91DA-C336DA1869CC.png",
+      "bytes": 1019218,
+      "sha256": "eb1f2cc437b6cba2cdc447cef5b1d23593868d65f7b19d6100eb5f89085700c2"
+    },
+    {
+      "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "name": "r27-final-native-hierarchy_0_0428B1B7-E0FF-4E7B-970D-5677E82BDF8C.txt",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43696201794-selective\\artifacts\\visual-11-window\\52A08DBC-1FF4-4ED2-90C0-28B178363EEE.txt",
+      "bytes": 21535,
+      "sha256": "96d450dc08521806e32698598ae58c8c2dbed631b617360d3a0bce927cde2215"
+    },
+    {
+      "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "name": "r27-native-fullscreen-restored-screen_0_5575C27A-4A65-4EB1-A1F5-3251508CCEFF.png",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43696201794-selective\\artifacts\\visual-11-window\\B7EBDAA6-28F7-4AB7-BE02-7E695291B5D2.png",
+      "bytes": 1019218,
+      "sha256": "eb1f2cc437b6cba2cdc447cef5b1d23593868d65f7b19d6100eb5f89085700c2"
+    },
+    {
+      "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "name": "r27-native-fullscreen-restored-hierarchy_0_7FA1F574-1F2E-4BE7-ADC9-67DA02126AEF.txt",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43696201794-selective\\artifacts\\visual-11-window\\535D7040-2738-4CF7-AE45-556C6E564A1B.txt",
+      "bytes": 21584,
+      "sha256": "391b06cfd167aa6d5757785ced051bae42cb9c67938a738ce82d813de537548a"
+    },
+    {
+      "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "name": "r27-real-narrow-palette-filtered-screen_0_D93B7310-5173-46AC-BE9C-0CF8CFED2479.png",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43696201794-selective\\artifacts\\visual-11-window\\66DFC112-AA1D-4289-8F86-877789371271.png",
+      "bytes": 2288399,
+      "sha256": "8658b31439cf11f68de241c43d04d308a180df06f943b664f337800c41f690e8"
+    },
+    {
+      "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "name": "r27-real-narrow-palette-filtered-hierarchy_0_4FAFC0F9-5A97-4E66-AA95-9F3C35B37A21.txt",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43696201794-selective\\artifacts\\visual-11-window\\F37E991B-03AA-41C7-AE37-A4CF83F335BC.txt",
+      "bytes": 29306,
+      "sha256": "2ccf28630baa4cc703f77173df58e47cc9474455160d9f88cc580573703a93a7"
+    },
+    {
+      "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "name": "r27-real-narrow-window-screen_0_1E515F3E-E729-47D2-A188-09C99D9C9606.png",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43696201794-selective\\artifacts\\visual-11-window\\7078F4B3-AA28-4740-9BA1-D6E31FD5CB7C.png",
+      "bytes": 3679864,
+      "sha256": "07fdf628aadf4be2f02efb19923df3d22ce726a89b2aad8accc4936261654701"
+    },
+    {
+      "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "name": "r27-real-narrow-window-hierarchy_0_DD1E1084-3C6A-4B87-91CE-91CCB3649814.txt",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-hq-integration-20261115\\docs\\hq-integration\\.cache\\run-43696201794-selective\\artifacts\\visual-11-window\\FCF6B2F7-9ED1-4855-86EE-A18229B13903.txt",
+      "bytes": 20268,
+      "sha256": "623ffbe991ad1812348c50f06b82960ff17a3dd5eab7c691e90268a1111886c0"
+    }
+  ],
+  "next_step": "Diagnostic-only handler trace +samehardware API positivecontrol, bounded simulator category logs and code-image provenance. No additional behavior rewrite or healthy-case rerun.",
+  "distribution_or_physical_acceptance": false
+}
