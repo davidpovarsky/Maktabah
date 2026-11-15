@@ -2,10 +2,10 @@
   "schema_version": 1,
   "source_test_commit": "c93b5a9d33fa09a8054f77eb280ce94472b68841",
   "application_base": "fe6f5fe5126a964bd76d3f308489e131a491fe36",
-  "app_source": "c93b5a9d33fa09a8054f77eb280ce94472b68841",
+  "app_source": "17414a0fd032918e01d8e2f1bfbcec2e33796c16",
   "sole_executor_thread": "01a1df85-6013-7270-b48d-8e10222e95c6",
   "independent_qa_thread": null,
-  "scope": "GLOBAL_SEARCH_SEVEN_REAL_NATIVE_CONTROLS_PLUS_SIX_READER_AND_FIVE_NATIVE_ROUTES_NOT_FULL_RELEASE",
+  "scope": "CURRENT_V1_GUARDS_AND_NATIVE_SEARCH_SENDABLE_CORRECTION_FOCUSED18_NOT_FULL_RELEASE",
   "native_cases_executed": 0,
   "required_nonzero_cases": 9,
   "expected_per_device": {
@@ -307,7 +307,7 @@
     "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
     "native_status": "NOT_RUN"
   },
-  "selected_scope_reason": "New independent I source packet selects seven no-query Global Search UI cases plus unchanged six Reader and five native-route regressions on affected combined app. Query/fault/paging/locator prerequisites, other backend capability cases, iPhone Search-specific checks, manual Stage Manager/VoiceOver and physical remain NOT_RUN. Existing actual miniTest10 Swift-to-Zayit warm/filter/reopen bootstrap remains unchanged.",
+  "selected_scope_reason": "Reviewed new compatible current-v1 source composition: original APIs with P authority bracketing and N live-driver/token guard, plus S MainActor/Sendable Search action correction. Manager independently passed Host58/UIRouting62 and6 language action cases; I reviewed the exact Search correction. Same exact7no-query Search+6Reader+5native URL cases have never executed on the prior failed candidate; original oracles remain unchanged. Future v2/Rproducer hook/observer/handlers are not activated.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
