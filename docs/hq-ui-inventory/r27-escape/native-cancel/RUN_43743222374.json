@@ -1,0 +1,94 @@
+{
+  "run_id": 43743222374,
+  "checkout_sha": "f3d5320b1a165e2f3e4879101c643cb4ef0b46cd",
+  "app_source": "90436e9db44f4ec5e7f07c8d088f95f83cbb7b28",
+  "test_source": "90436e9db44f4ec5e7f07c8d088f95f83cbb7b28",
+  "actual_device": {
+    "architecture": "arm64",
+    "deviceId": "AB5B4A2A-B191-47EC-9765-1B98483358AE",
+    "deviceName": "Faithful 11-inch e03a63bf",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "native_sdk_module_and_app_build": "ACTUAL_PASS",
+  "fresh_ui_pass": 0,
+  "fresh_ui_fail": 4,
+  "fresh_ui_skip": 0,
+  "actual_cases": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "device": "ipad11",
+      "expected": "Actual wired native toolbar bounds; genuine resized window; real filtered fixture-book result; Escape dismissal; real Inspector open/close; exact text/locator preserved; SpringBoard semantic Window Controls and measured full-size restore",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "device": "ipad11",
+      "expected": "Real normal bootstrap; independently derived fixture category paths; functional Library search empty/match/exclude/clear; fixed physical RTL body swipes;20body+20dot transitions; one native toggle and TOC-local title/search; actual reader object/source/offset/title/locator preservation; vertical scroll arbitration",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "device": "ipad11",
+      "expected": "Same genuine fixture/native reader and functional search/state oracles in English LTR; fixed physical LTR body swipes and preserved one native toggle/TOC ownership",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "device": "ipad11",
+      "expected": "RealUI/independent fixture; actual CloseButton removes input; down/up keys visibly change/restore selected result; actual empty-query full-window Escape removes input; reopen/type independently selected fixture title/visible hittable result; actual filtered full-window Escape removes input; exact locator retained.",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    }
+  ],
+  "failure_texts": [
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 1,
+      "testIdentifierString": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "testName": "testNormalBootstrapNativeWindowResizePaletteAndInspector()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Escape must remove the real input in the actual full native window",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 2,
+      "testIdentifierString": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "testName": "testNormalBootstrapPaletteKeyboardDispatchCalibration()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 3,
+      "testIdentifierString": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "testName": "testSidebarBodyPagingLTR()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed - Fixture path is missing: מסילת ישרים",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 4,
+      "testIdentifierString": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "testName": "testSidebarBodyPagingRTL()"
+    }
+  ],
+  "palette": "Original narrow filtered Escape and full empty Escape both FAIL. Close and down/up selection controls reached within failed calibration case. Unique priority field selector did not fix visible dismissal. Inspector assertions NOT_REACHED; no UIKit consumer or HID delivery cause established.",
+  "sidebar_ltr": "Exact matching/no-match filtering and fixture leaf passed; first body Library-to-TOC transition, TOC native title/search and one-toggle assertions passed. Reverse body swipe failed; final PNG815AF6FF and AXBFE3FF8D reviewed: actual TOC remains selected.",
+  "sidebar_rtl": "Exact matching query passed; fixture leaf missing before paging. PNG0F98DABB and AX1C5D4487 reviewed: software keyboard reduces list height and covers descendants. Move real Hide Keyboard action before hierarchy expansion, retaining all search/state oracles.",
+  "compatibility": "15 actual native context fields, all3fixture sets and complete2206generatedobjects equal after consistent15UUID remapping. See HEALTHY_NATIVE_COMPATIBILITY_43743222374.json. No fresh historical8 or prior2 UI passes claimed.",
+  "artifact": {
+    "id": 14175092487,
+    "bytes": 547973215,
+    "sha256": "41867f09221bac71be1f358b5e3c0ed814ed487a4080693ade8ce9c9cc4bbd26",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43743222374/artifacts/14175092487"
+  },
+  "acceptance": "OPEN; no MERGE_READY; physical iPad NOT_RUN"
+}

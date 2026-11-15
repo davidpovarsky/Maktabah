@@ -136,17 +136,22 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
         waitForCatalog { library.collectionViews.cells.count == 0 }
         replaceQuery(in: search, with: query)
         waitForCatalog { !self.bookLabel(excludedPath.last!, in: library).exists }
+        // Restore the real list's height before expanding the fixture path;
+        // the software keyboard can cover its child category and book.
+        if app.keyboards.firstMatch.exists {
+            let dismiss = app.buttons.matching(NSPredicate(format:
+                "label IN %@", ["Hide keyboard", "הסתרת המקלדת", "הסתר מקלדת"]))
+            XCTAssertTrue(dismiss.firstMatch.exists)
+            tap(dismiss.firstMatch)
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "count == 0"), object: app.keyboards
+            )], timeout: 15), .completed)
+        }
         try revealBook(at: matchPath, in: library)
         XCTAssertTrue(bookLabel(matchPath.last!, in: library).exists)
         XCTAssertFalse(bookLabel(excludedPath.last!, in: library).exists)
         XCTAssertEqual(search.value as? String, query)
         let librarySearchPrompt = search.placeholderValue
-        // Dismiss the keyboard without clearing the canonical query.
-        if app.keyboards.firstMatch.exists {
-            let dismiss = app.buttons.matching(NSPredicate(format:
-                "label IN %@", ["Hide keyboard", "הסתרת המקלדת", "הסתר מקלדת"]))
-            if dismiss.firstMatch.exists { tap(dismiss.firstMatch) }
-        }
 
         let title = app.staticTexts["reader-header-title"].label
         let locator = app.staticTexts["reader-current-locator"].label

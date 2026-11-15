@@ -100,6 +100,7 @@ for index, scenario in enumerate(scenarios):
     recording = None
     recording_log = None
     palette_log_stream = None
+    hid_comparison = None
 
     def phase(name, **details):
         device["phase"] = name
@@ -205,6 +206,11 @@ for index, scenario in enumerate(scenarios):
         environment = os.environ.copy()
         container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
         environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
+        if runtime27_contract and runtime27_contract.get("hid_comparison"):
+            tools = json.loads((artifacts / "runtime27/hid-tools.json").read_text())
+            hid_comparison = runpy.run_path("Scripts/CI/runtime27-hid.py")["HIDComparison"](
+                udid, container, label, tools, artifacts / "runtime27")
+            environment.update(hid_comparison.start())
         if runtime27_contract:
             environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](
                 udid, label, include_sidebar=any(case.startswith("Sidebar11201AcceptanceTests/") for case in selection)))
@@ -314,6 +320,8 @@ for index, scenario in enumerate(scenarios):
         # Retain a hard failure, but still execute the other required native
         # configurations so one device does not hide the iPhone/13-inch result.
     finally:
+        if hid_comparison is not None:
+            hid_comparison.stop()
         if palette_log_stream is not None:
             device["paletteInputStream"] = palette_log_stream.stop()
         if recording is not None:

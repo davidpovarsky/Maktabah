@@ -9,8 +9,7 @@ enum ReaderSidebarPolicy {
             && availableWidth >= max(minimumSidebarWidth, sidebarWidth) + max(minimumReaderWidth, readerWidth) + dividerAllowance
     }
 
-    /// nil leaves the active page alone. The page-control strip uses this
-    /// policy; the page body uses native paging and gesture arbitration.
+    /// nil leaves the active page alone, including vertical body scrolling.
     static func swipeSelectsContents(horizontal: Double, vertical: Double, isRTL: Bool) -> Bool? {
         guard horizontal.isFinite, vertical.isFinite,
               abs(horizontal) >= 44, abs(horizontal) > abs(vertical) * 1.25 else { return nil }
@@ -46,6 +45,10 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
                 .tag(ReaderSidebarPageCoordinator.Page.contents)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
+        // A TOC's native collection view can retain its horizontal pan. Use
+        // the same directional policy as the strip without claiming vertical
+        // gestures or replacing the native pager's transition.
+        .simultaneousGesture(sidebarSwipe)
         .animation(reduceMotion ? nil : .snappy, value: coordinator.page)
         .environment(\.readerSidebarOwnsToggle, true)
         .accessibilityElement(children: .contain)

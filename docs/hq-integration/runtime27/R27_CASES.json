@@ -5,11 +5,11 @@
   "app_source": "90436e9db44f4ec5e7f07c8d088f95f83cbb7b28",
   "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
   "independent_qa_thread": null,
-  "scope": "U_NONINSTRUMENTED_PRIORITY_FIELD_ESCAPE_AND_NATIVE_SIDEBAR_FOUR_CASES",
+  "scope": "U_GUARDED_SIDEBAR_BODY_AND_SEPARATE_NATIVE_HID_COMPARISON",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 14,
+  "required_nonzero_cases": 15,
   "expected_per_device": {
-    "ipad11": 10,
+    "ipad11": 11,
     "iphone": 4
   },
   "cases": [
@@ -96,6 +96,12 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "RealUI/independent fixture; actual CloseButton removes input; down/up keys visibly change/restore selected result; actual empty-query full-window Escape removes input; reopen/type independently selected fixture title/visible hittable result; actual filtered full-window Escape removes input; exact locator retained."
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Separate job-local pinned idb direct native HID on this owned disposable simulator. Real A/backspace visibly edit/clear production autofocus field; one Escape removes actual full empty input; genuine narrow resize and real fixture filtering; one Escape removes actual narrow filtered input; Inspector open/close, full text/exact locator and native window restoration. Original XCTest Escape case retained independently; transport ACK alone never UI acceptance."
     }
   ],
   "requirements": {
@@ -105,12 +111,13 @@
     "data_profile": "real native-installed miniTest10",
     "bootstrap": "realUI; never -smokeBypassBootstrap",
     "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
-    "scheduling": "One U-owned existing CI/build-for-testing; one fresh disposable11-inch simulator;4actual selected cases; historical8 and2priorSidebar cases not fresh. No GlobalSearch-owned hunks/other native runners touched."
+    "scheduling": "One U-owned existing manual CI; one fresh disposable11-inch simulator;7selected native cases. Original XCTest Escape case unchanged, separate HID comparison, exact reader rotation and all4Sidebar cases fresh. Historical8 not fresh; other lanes/runners untouched."
   },
   "required_test_environment": {
     "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
     "R27_EXPECTED_OTZARIA_BOOK_TITLE": "actual book.title from same selected real fixture row",
-    "FAITHFUL_VIEWPORT_DIRECTORY": "existing native app-data container/Documents hint; runner maps TEST_RUNNER_ prefix"
+    "FAITHFUL_VIEWPORT_DIRECTORY": "existing native app-data container/Documents hint; runner maps TEST_RUNNER_ prefix",
+    "R27_HID_TOKEN": "Ephemeral own-job request namespace; direct idb Unix socket bound exact disposable UDID; no default registry or app callback"
   },
   "fixture_oracle_sql": "SELECT l.sourceBookId, sourceLine.lineIndex, b.title FROM link l JOIN line sourceLine ON sourceLine.id=l.sourceLineId JOIN book b ON b.id=l.sourceBookId ORDER BY l.id LIMIT 1",
   "fixture_fallback": "If no link, same existing app scenario selects book1/line1; read title for book1 and record absence. Never synthesize text/data or choose a book from UI observation.",
@@ -183,17 +190,23 @@
       "size": "11",
       "case_ids": [
         "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
-        "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL"
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
       ]
     }
   ],
   "execution_case_ids": [
     "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
-    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-    "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL"
+    "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -348,5 +361,6 @@
     "oracle": "Unchanged R27 test includes real hardware Escape + both container/input disappearance + actual Inspector + source text/locator + measured window restore; Sidebar geometry includes native navbar while all catalog/paging/reader/state oracles retained",
     "native_status": "ACTUAL_2PASS_3FAIL_0SKIP_RUN_43733876827",
     "prior_failed_run": 43728847352
-  }
+  },
+  "hid_comparison": true
 }

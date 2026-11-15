@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 
 /// Real native app/fixtures with the existing black-box oracles. These cases
 /// intentionally do not claim new RouteSpec, AppIntent or Hanlin integration.
@@ -283,6 +284,127 @@ final class R27NativePadTests: R27NativeUIBase {
         XCTAssertFalse(palette.exists)
         recordWindowEvidence("r27-calibration-filtered-escape-dismissed")
         XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+    }
+
+    /// Separate delivery comparison. The original XCTest Escape case above
+    /// remains unchanged and independently required; this is not a retry.
+    @MainActor
+    func testNormalBootstrapPaletteHIDComparison() throws {
+        XCTAssertTrue(isPad)
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(scenario: "readerDetail")
+        let locator = try assertTarget(backend: "otzaria")
+        let text = try XCTUnwrap(app.textViews["reader-text"].value as? String)
+        let window = app.windows.firstMatch
+        let original = window.frame
+        XCTAssertGreaterThan(original.width, original.height)
+        let cleanup = R27WindowCleanup { [self] in restoreNativeWindow(to: original.size) }
+        addTeardownBlock { await cleanup.run() }
+        let launcher = app.navigationBars.buttons["reader-command-palette-launcher"]
+        let palette = app.otherElements["reader-library-command-palette"]
+        let inputs = app.textFields.matching(NSPredicate(
+            format: "placeholderValue == %@", "חפש ספר בספרייה…"
+        ))
+
+        // Use the production field's autofocus. A native HID A/backspace pair
+        // must visibly edit and clear it before one actual Escape is sent.
+        tapInWindow(launcher)
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        XCTAssertEqual(inputs.count, 1)
+        try sendNativeHID(.keyboardA)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in MainActor.assumeIsolated {
+                guard let value = inputs.firstMatch.value as? String else { return false }
+                return !value.isEmpty && value != inputs.firstMatch.placeholderValue
+            } }, object: nil
+        )], timeout: 15), .completed, "Actual HID A must visibly edit the production field")
+        let entered = try XCTUnwrap(inputs.firstMatch.value as? String)
+        XCTAssertFalse(entered.isEmpty)
+        XCTAssertNotEqual(entered, inputs.firstMatch.placeholderValue)
+        recordWindowEvidence("r27-hid-a-actually-edited-input")
+        try sendNativeHID(.keyboardDeleteOrBackspace)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in MainActor.assumeIsolated {
+                guard let value = inputs.firstMatch.value as? String else { return false }
+                return value.isEmpty || value == inputs.firstMatch.placeholderValue
+            } }, object: nil
+        )], timeout: 15), .completed, "Actual HID Backspace must visibly clear the production field")
+        let cleared = try XCTUnwrap(inputs.firstMatch.value as? String)
+        XCTAssertTrue(cleared.isEmpty || cleared == inputs.firstMatch.placeholderValue)
+        recordWindowEvidence("r27-hid-backspace-actually-cleared-input")
+        try sendNativeHID(.keyboardEscape)
+        recordWindowEvidence("r27-hid-full-empty-after-one-escape")
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "count == 0"), object: inputs
+        )], timeout: 15), .completed, "One genuine HID Escape must remove the real full-window input")
+        XCTAssertFalse(palette.exists)
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+        XCTAssertEqual(app.textViews["reader-text"].value as? String, text)
+
+        window.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1))
+            .withOffset(CGVector(dx: -12, dy: -12))
+            .press(forDuration: 0.5, thenDragTo: window.coordinate(withNormalizedOffset: CGVector(dx: 0.55, dy: 0.7)))
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in MainActor.assumeIsolated { window.frame.width < original.width - 80 } },
+            object: nil
+        )], timeout: 30), .completed)
+        recordWindowEvidence("r27-hid-actual-narrow-window")
+        tapInWindow(launcher)
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        XCTAssertEqual(inputs.count, 1)
+        let title = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        inputs.firstMatch.typeText(title)
+        XCTAssertEqual(inputs.firstMatch.value as? String, title)
+        let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", title)).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 15))
+        XCTAssertTrue(result.isHittable)
+        recordWindowEvidence("r27-hid-actual-narrow-filtered-fixture")
+        try sendNativeHID(.keyboardEscape)
+        recordWindowEvidence("r27-hid-narrow-filtered-after-one-escape")
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "count == 0"), object: inputs
+        )], timeout: 15), .completed, "One genuine HID Escape must remove the genuinely filtered narrow input")
+        XCTAssertFalse(palette.exists)
+        tapInWindow(app.buttons["reader-study-toggle"])
+        let inspector = app.descendants(matching: .any)["torah-inspector-panel"]
+        XCTAssertTrue(inspector.waitForExistence(timeout: 30))
+        XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].exists)
+        recordWindowEvidence("r27-hid-narrow-inspector-open")
+        tapInWindow(app.buttons["torah-inspector-close"])
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: inspector
+        )], timeout: 15), .completed)
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+        XCTAssertEqual(app.textViews["reader-text"].value as? String, text)
+        restoreNativeWindow(to: original.size)
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+        XCTAssertEqual(app.textViews["reader-text"].value as? String, text)
+    }
+
+    @MainActor
+    private func sendNativeHID(_ usage: UIKeyboardHIDUsage) throws {
+        let token = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_HID_TOKEN"],
+                                 "Job-local HID server is mandatory for this separate comparison")
+        let sidecar = try workspaceSidecarURL()
+        let container = sidecar.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let nonce = UUID().uuidString
+        let prefix = container.appendingPathComponent("Documents/r27-hid-\(token)-\(nonce)")
+        let request = URL(fileURLWithPath: prefix.path + ".request.json")
+        let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
+        let payload: [String: Any] = ["token": token, "nonce": nonce, "key": usage.rawValue]
+        try JSONSerialization.data(withJSONObject: payload).write(to: request, options: .atomic)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil
+        )], timeout: 20), .completed, "Real HID transport must acknowledge this exact request")
+        let response = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: ack)) as? [String: Any])
+        XCTAssertEqual(response["nonce"] as? String, nonce)
+        XCTAssertEqual(response["key"] as? Int, usage.rawValue)
+        XCTAssertEqual(response["delivered"] as? Bool, true, "Transport error: \(response)")
+        let attachment = XCTAttachment(data: try Data(contentsOf: ack), uniformTypeIdentifier: "public.json")
+        attachment.name = "r27-hid-transport-only-\(usage.rawValue)"
+        attachment.lifetime = .keepAlways
+        add(attachment)
     }
 
     @MainActor

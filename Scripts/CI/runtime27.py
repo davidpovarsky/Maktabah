@@ -309,7 +309,12 @@ def main():
         report["helper_inputs_sha256"] = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in [
             "Scripts/CI/hq-stage2-focused-apple.py", "Scripts/CI/hq-stage2-focused-apple.inputs.json", "Scripts/CI/runtime27.py",
             "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27-fixture-oracle.py", "tools/verify_xcresult_zero_skips.py",
-            "Scripts/CI/collect-runtime27-palette-log.py"]}
+            "Scripts/CI/collect-runtime27-palette-log.py", "Scripts/CI/runtime27-hid.py"]}
+        if contract.get("hid_comparison"):
+            if run_logged([sys.executable, "Scripts/CI/runtime27-hid.py", "prepare", "--out", str(OUT / "hid-tools.json")],
+                          "hid-prepare.log", 360):
+                raise RuntimeError("Isolated native HID tool preflight failed; comparison UI NOT_RUN")
+            report["idb"] = "PINNED_JOB_LOCAL_HID_COMPARISON_ORIGINAL_XCTEST_CASE_RETAINED"
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing", "--derived-data", "build/DerivedData"],
                       "build-for-testing-driver.log", 4200):
             raise RuntimeError("Real app/test build failed; UI cases NOT_RUN")
