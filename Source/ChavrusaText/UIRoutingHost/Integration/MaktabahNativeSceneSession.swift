@@ -92,6 +92,18 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         self.project = project
     }
     func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? { try project().surface(kind) }
+    func ownsWorkspace(_ workspace: StudyWorkspaceNavigationAdapter) -> Bool { (try? project().workspace) === workspace }
+    /// Passive independent evidence only. With the reader marker absent this
+    /// stays nil even if a reader model contains the requested destination.
+    func publicBindingPresentation() throws -> MaktabahNativePublicPresentation {
+        let readerID = UIDestinationID(rawValue: "native.reader")!
+        var reader: NativeSurfaceState?
+        if let evidence = visible[readerID], evidence.isVisible, evidence.sceneID == sceneID,
+           visibilityChecks[readerID]?() == evidence, let current = try project().surface(.reader),
+           current == evidence.surface { reader = current }
+        return .init(ready: mounted && foreground && isPresentationReady,
+            historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty, witnessedReader: reader)
+    }
     func observeVisibility(for destination: UIDestinationID, check: @escaping @MainActor () -> NativeSurfaceWitness.Evidence?) {
         visibilityChecks[destination] = check
     }

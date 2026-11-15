@@ -1,0 +1,14 @@
+{
+  "R_commit": "44f518fcccce6bd20127f39eea8462d7a7a9dd47",
+  "patch_sha256": "8a2b00758e180b66b746e991455e9f60eef96f72d3dbd720237bb3fbd6d1eb79",
+  "apply_check_exit": 0,
+  "actual_producer_block_exact_R44": true,
+  "existing_newer_startup_adoption_preserved": true,
+  "workspace_R_owned_files_written": false,
+  "temporary_review_snapshot": "C:\\Users\\DAVID\\.codex\\tmp\\nrdep-d21kd7oa",
+  "resulting_sources_sha256": {
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift": "f1d3ac031a21af1289b1a754d82b11a45ab99a14770cbe7671147af57978e1aa",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift": "4ff77cafc2541879b35887c9ed080edfc01cf43e1e22edc336e04596652eb6b6",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": "489576bb379db181891bc41b1c69d2ad90b3b33f515324814ce956a15bc16cc7"
+  }
+}

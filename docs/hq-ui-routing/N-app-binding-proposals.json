@@ -1,0 +1,29 @@
+{
+  "N_APP_BINDING_REGISTRATION_UNAPPLIED.diff": {
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "original_normalized_sha256": "e16ab6728b9d2e7892613d39a9597856139c5ba8413502f67ffe3a48df67596b",
+    "proposed_normalized_sha256": "4c5417c49158c726f7419cafc19eff41cedfa1c0f61fa6add745de783918781d",
+    "patch_sha256": "a900e753ebd024adcf90069120b99425e015c52c0bdcf66c087990ffe064b4f0",
+    "apply_check_exit": 0,
+    "gate": "Manager project writer only; also integrate R44 policy registration/dependency first",
+    "applied": false
+  },
+  "N_APP_BINDING_LIFECYCLE_UNAPPLIED.diff": {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+    "original_normalized_sha256": "03292865535b0941fd8bb8a047af3811f5203375b2947e2ee3c2f5d299b9886f",
+    "proposed_normalized_sha256": "60aa42c5228005dc177d7182cc63aa2f5490fd86bae8271d7ad2f9b7fcdf8bdb",
+    "patch_sha256": "60035d65f544487a8c360ae542d76b933c793d4c4e63816b8c790eb260b4fb82",
+    "apply_check_exit": 0,
+    "gate": "Manager application after new N sources; internal switch remains false; no public route/registry opt-in",
+    "applied": false
+  },
+  "N_APP_BINDING_LEGACY_READER_WITNESS_UNAPPLIED.diff": {
+    "path": "Source/UI/iOS/Views/iPadLayout.swift",
+    "original_normalized_sha256": "ca0aaaf9ec3578879fe847c5385d3da38ab6d42b52c0170cb762ea9578bec572",
+    "proposed_normalized_sha256": "53825a255bbb436faaf237b8e98876281f824ce31f6fc246b41bfbce3d96a000",
+    "patch_sha256": "8695e10c4cea62a391bc4f54412eea1d0988490dd95039a1cd9f3abe555860a8",
+    "apply_check_exit": 0,
+    "gate": "Protected exact one-hunk owner review required; passive witness only; other reader layouts remain unavailable without their own actual witness",
+    "applied": false
+  }
+}

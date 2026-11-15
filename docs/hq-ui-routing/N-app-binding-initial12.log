@@ -1,0 +1,96 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-2807070033DA82CF.txt
+[1/9] Write sources
+[3/10] Emitting module ChavrusaUIRoutingHostTests
+[4/19] Compiling ChavrusaUIRoutingHostTests ActualAppMethodBodies_ExplicitNativeBoundaries.swift
+[5/19] Compiling ChavrusaUIRoutingHostTests Actual_MaktabahNativePublicBindingAdapter.swift
+[6/19] Compiling ChavrusaUIRoutingHostTests NRActualProducerConsumerTests.swift
+[7/19] Compiling ChavrusaUIRoutingHostTests RActual_BackendSessionIntegrityRepair.swift
+[8/19] Compiling ChavrusaUIRoutingHostTests RActual_LibraryBackendModels.swift
+[9/19] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceMappingOwnership.swift
+[10/19] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceModels.swift
+[11/19] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspacePersistence.swift
+[12/19] Compiling ChavrusaUIRoutingHostTests RActual_StudyWorkspaceStore.swift
+[13/20] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[14/20] C:\Users\DAVID\.codex\tmp\njb-050\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[15/21] Write sources
+[17/22] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[18/24] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[19/24] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[20/25] C:\Users\DAVID\.codex\tmp\njb-050\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[21/26] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[22/26] Write sources
+[24/27] Emitting module ChavrusaUIRoutingHostPackageTests
+[25/28] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[26/28] Write Objects.LinkFileList
+[27/28] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (53.90s)
+Test Suite 'Selected tests' started at 2026-11-15 19:29:46.552
+
+Test Suite 'NActualAppBindingAdapterTests' started at 2026-11-15 19:29:46.589
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppAdapterExactRootReceiptAndNarrowCheckpointOnAllBackends' started at 2026-11-15 19:29:46.589
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppAdapterExactRootReceiptAndNarrowCheckpointOnAllBackends' passed (0.885 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppObserverRefusesCoreLastAwaitAfterExactReaderACK' started at 2026-11-15 19:29:47.474
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppObserverRefusesCoreLastAwaitAfterExactReaderACK' passed (0.995 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppObserverRevokesOriginalPreparationsAcrossSameTurnABA' started at 2026-11-15 19:29:48.469
+
+Test Case 'NActualAppBindingAdapterTests.testActualAppObserverRevokesOriginalPreparationsAcrossSameTurnABA' passed (0.343 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualCompositionFactoryDefaultsOffAndUsesOriginalLeaseWhenExplicit' started at 2026-11-15 19:29:48.813
+
+Test Case 'NActualAppBindingAdapterTests.testActualCompositionFactoryDefaultsOffAndUsesOriginalLeaseWhenExplicit' passed (0.107 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testActualSessionPresentationRequiresLiveIndependentReaderEvidence' started at 2026-11-15 19:29:48.920
+
+Test Case 'NActualAppBindingAdapterTests.testActualSessionPresentationRequiresLiveIndependentReaderEvidence' passed (0.083 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testBackendGetterCannotRevokeOriginalOwnerIntoSuccessfulBinding' started at 2026-11-15 19:29:49.003
+
+Test Case 'NActualAppBindingAdapterTests.testBackendGetterCannotRevokeOriginalOwnerIntoSuccessfulBinding' passed (0.065 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testCancelAndLateOldLeaseCannotTakeReplacementSceneOwner' started at 2026-11-15 19:29:49.068
+
+Test Case 'NActualAppBindingAdapterTests.testCancelAndLateOldLeaseCannotTakeReplacementSceneOwner' passed (0.065 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testReaderRequiresIndependentWitnessAndPreservesBothInspectorBooleans' started at 2026-11-15 19:29:49.133
+
+Test Case 'NActualAppBindingAdapterTests.testReaderRequiresIndependentWitnessAndPreservesBothInspectorBooleans' passed (0.141 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testReadyNotificationAdmissionIsNotRevokedByActualAppObserver' started at 2026-11-15 19:29:49.275
+
+Test Case 'NActualAppBindingAdapterTests.testReadyNotificationAdmissionIsNotRevokedByActualAppObserver' passed (0.213 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testRootNeverCopiesReaderInspectorOrBackgroundTarget' started at 2026-11-15 19:29:49.488
+
+Test Case 'NActualAppBindingAdapterTests.testRootNeverCopiesReaderInspectorOrBackgroundTarget' passed (0.082 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testUnhookedActualAdapterRefusesEvenSuccessfulStoreAndWitness' started at 2026-11-15 19:29:49.570
+
+Test Case 'NActualAppBindingAdapterTests.testUnhookedActualAdapterRefusesEvenSuccessfulStoreAndWitness' passed (0.282 seconds)
+
+Test Case 'NActualAppBindingAdapterTests.testUnsupportedShapesAndWrongCurrentReaderIdentityRefuseWithoutApply' started at 2026-11-15 19:29:49.852
+
+Test Case 'NActualAppBindingAdapterTests.testUnsupportedShapesAndWrongCurrentReaderIdentityRefuseWithoutApply' passed (0.062 seconds)
+
+Test Suite 'NActualAppBindingAdapterTests' passed at 2026-11-15 19:29:49.914
+
+	 Executed 12 tests, with 0 failures (0 unexpected) in 3.325 (3.325) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 19:29:49.914
+
+	 Executed 12 tests, with 0 failures (0 unexpected) in 3.325 (3.325) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

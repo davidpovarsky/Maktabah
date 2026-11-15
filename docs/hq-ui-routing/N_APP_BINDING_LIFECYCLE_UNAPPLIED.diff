@@ -1,0 +1,13 @@
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
+@@ -78,6 +78,10 @@
+                       sidebar: nil, workspace: workspace)
+             }
+             session = value
++            if let workspace, MaktabahNativeRoutingComposition.futurePublicBindingsEnabled {
++                try MaktabahNativeRoutingComposition.shared.configureFuturePublicBinding(
++                    session: value, manager: manager, workspace: workspace, enabled: true)
++            }
+             MaktabahNativeRoutingComposition.shared.installIntentDependency()
+         } catch {
+             manager.alertMessage = .init(title: "Navigation unavailable", message: "This window is not ready for navigation. Try again.")

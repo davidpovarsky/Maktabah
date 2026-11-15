@@ -1,0 +1,28 @@
+{
+  "N_P_package_source": "98e6c7b94fd5e4c06b83cdda57cd6c9d9f41db6e",
+  "R": "44f518fcccce6bd20127f39eea8462d7a7a9dd47",
+  "native_scope": "Exact app adapter; exact session presentation/composition factory methods; explicit native shells and proposed-hook manager double; NOT Apple/UIKit proof",
+  "inputs": {
+    "44f518fcccce6bd20127f39eea8462d7a7a9dd47:Source/LibraryBackend/LibraryBackendModels.swift": "c0fba93f1495b8859dea21d5747cc86062a4dab9dc41bd960daea6baf49c27ad",
+    "44f518fcccce6bd20127f39eea8462d7a7a9dd47:Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+    "44f518fcccce6bd20127f39eea8462d7a7a9dd47:Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift": "31191cc0c61f8b834a2aa24018a3b65051fdffad7abbb96d7b611efe8d4231c7",
+    "44f518fcccce6bd20127f39eea8462d7a7a9dd47:Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+    "44f518fcccce6bd20127f39eea8462d7a7a9dd47:Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift": "998002e7e974a1a03e46f83fe72ea8e22c7db4249bacd85f0e8fd1a29011983f",
+    "44f518fcccce6bd20127f39eea8462d7a7a9dd47:Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift": "893202bd779723b2a1e7f4ff641f54f7196a975c577406784c0303d0d4eabda4",
+    "44f518fcccce6bd20127f39eea8462d7a7a9dd47:Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": "b5b7a90faefc893c0e542d42f0a932fe9583708290328756ae7026a986eedb83",
+    "44f518fcccce6bd20127f39eea8462d7a7a9dd47:tools/workspace_mapping_native_boundary_fixture.swift": "6662cf9894a7ceafc4ddd9bc52ec55c8c8d3f1c7fef43aa8115d031dab8b9db6",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "14730380fb9a721ebb1743e88f540b8c1a4ed3609a1da6a926376e1283a3983d",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "47985a4db49e3c96dc6e7fc6741c23a338878274ae68f4cd346a1c75399bfb3d",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "2a9c24c826299497402cfa099a6060d9bfb3a469abfc7a29405f96021bf717c3",
+    "docs/hq-ui-routing/N_APP_BINDING_NATIVE_BOUNDARIES_20261115.swift": "3c253a15e46bf7d8e4416e2cf6fb414516aff5686a1a68b4b91b6129e3a76d19",
+    "docs/hq-ui-routing/N_R_ACTUAL_PRODUCER_CONSUMER_TESTS_20261115.swift": "faa7abc145c9dd78df046adce3d721276031f563101857fca3abd7c9a79e5f4e",
+    "docs/hq-ui-routing/N_APP_BINDING_ADAPTER_TESTS_20261115.swift": "cf300844b6ad185fc4b269c8ab65cc2c5a6fe4e95c6807f8a916ce9c589e6a86"
+  },
+  "extracted_session_method_sha256": "9a11982bdb556fc25b034f344b81ff97b2c981ec2b75306cf5480f1064017767",
+  "extracted_composition_method_sha256": "c64c1c7a94f027c53fc4ef0dc5fbd12b746b9ec6e2f27a09e76ac0c71920b469",
+  "extracted_workspace_identity_sha256": "fcb4661c53fce82fa96a3cb51c40338f8d1c9a3a3bc909a1f51e31dfe4cbd2ec",
+  "extracted_workspace_update_sha256": "c64654c42a0298c30b1528c47c82cf1b06eca088a5e646a4903ca9a78fcd7ebb",
+  "extracted_invalidate_context_sha256": "99180c33c4da236aacbb83fbbd82030f8e1ddd829092cd6c4c03690d7617cfeb",
+  "generated_boundaries_sha256": "9c6ce70561f26778b7672965b61a88959e313670eb720fed1b826fdb03f90016",
+  "prior_R_adapter_boundary_sha256": "42a03e2d115484f4a43d44abb925063ecb34673fed48fe27c55886cd3347f88c"
+}

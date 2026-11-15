@@ -61,7 +61,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
                           columnVisibility: bindings.columnVisibility.wrappedValue, settingsPresented: bindings.showSettings.wrappedValue,
                           sidebar: nil, workspace: workspace)
                 }
-                try? MaktabahNativeRoutingComposition.shared.invalidateContext(session)
+                try? MaktabahNativeRoutingComposition.shared.workspaceProjectionDidUpdate(session, workspace: workspace)
             }
             .onDisappear {
                 if let session { MaktabahNativeRoutingComposition.shared.unmount(session) }
