@@ -59,15 +59,18 @@ def collect_cases(report, contract):
     report["case_outcomes"] = outcomes
     for name, status in [("pass", "Passed"), ("fail", "Failed"), ("skip", "Skipped")]:
         report[f"executed_ui_{name}"] = sum(row["actual"] == status for row in outcomes)
-    report["ui_not_run"] = sum(row["actual"] not in ["Passed", "Failed", "Skipped"] for row in outcomes)
+    report["executed_ui_fail"] += sum(row["actual"] == "Expected Failure" for row in outcomes)
+    # Skipped cases performed no required UI acceptance and remain NOT_RUN in
+    # the owner-facing pass/fail/not-run partition. Retain their raw skip count.
+    report["ui_not_run"] = sum(row["actual"] not in ["Passed", "Failed", "Expected Failure"] for row in outcomes)
     junit = ET.Element("testsuite", name="R27 real native subset", tests=str(len(outcomes)),
                        failures=str(report["executed_ui_fail"]), skipped=str(report["executed_ui_skip"]),
-                       errors=str(report["ui_not_run"]))
+                       errors=str(sum(row["actual"] not in ["Passed", "Failed", "Expected Failure", "Skipped"] for row in outcomes)))
     for row in outcomes:
         suite, method = row["case_id"].split("/")
         case = ET.SubElement(junit, "testcase", classname=row["device"] + "." + suite, name=method)
         if row["actual"] != "Passed":
-            tag = "failure" if row["actual"] == "Failed" else "skipped" if row["actual"] == "Skipped" else "error"
+            tag = "failure" if row["actual"] in ["Failed", "Expected Failure"] else "skipped" if row["actual"] == "Skipped" else "error"
             ET.SubElement(case, tag, message=row["actual"]).text = row["expected"]
     ET.ElementTree(junit).write(OUT / "junit.xml", encoding="utf-8", xml_declaration=True)
     (OUT / "cases.html").write_text("<!doctype html><meta charset=utf-8><title>Actual R27 UI outcomes</title><table>" +

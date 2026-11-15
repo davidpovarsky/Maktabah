@@ -1,7 +1,7 @@
 {
   "scope": "LOCAL_GUARD_GATE_ORACLE_CHECKS_ONLY_UI_COUNT_ZERO",
   "parser_unittest_cases": 9,
-  "release_gate_unittest_cases": 7,
+  "release_gate_unittest_cases": 12,
   "fixture_oracle_unittest_cases": 4,
   "all_final_results": "PASS",
   "actual_probe_run": 43678599137,
@@ -19,5 +19,11 @@
     "future binary/NOT_RUN artifact retention"
   ],
   "test_correction": "021b5329b37d756604407e1256edf0001f708c3d",
-  "next_execution": "Necessary same9case real build-for-testing/UI retest; no prior UI pass to repeat"
+  "next_execution": "Necessary same9case real build-for-testing/UI retest; no prior UI pass to repeat",
+  "ui_retest_run": 43681096257,
+  "ui_retest_checked_sha": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
+  "ui_retest_test_source_sha": "021b5329b37d756604407e1256edf0001f708c3d",
+  "ui_retest_status": "PENDING_ACTUAL_OUTCOME_NO_UI_PASS_INFERRED",
+  "shipping_workflow_dispatched": false,
+  "prepared_input_checks": "Positive/negative portable fixtures and workflow ordering checks PASS; not a live signing run"
 }

@@ -8,6 +8,14 @@ import runpy
 import tempfile
 import unittest
 import xml.etree.ElementTree as ET
+import hashlib
+import subprocess
+import io
+import os
+import sys
+import zipfile
+from contextlib import redirect_stdout, redirect_stderr
+from unittest.mock import patch
 
 gate = runpy.run_path(str(Path(__file__).with_name("verify-runtime27-release-gate.py")))
 collect = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["collect_cases"]
@@ -104,6 +112,23 @@ class ReleaseGateTests(unittest.TestCase):
 
 
 class EvidenceClassificationTests(unittest.TestCase):
+    def test_skipped_and_expected_failure_never_become_ui_passes(self):
+        original = collect.__globals__["OUT"]
+        try:
+            with tempfile.TemporaryDirectory() as folder:
+                folder = Path(folder)
+                collect.__globals__["OUT"] = folder
+                contract = {"cases": [{"device": "ipad11", "case_id": "Native/testTap", "oracle": "real required action"}]}
+                for status, expected in [("Skipped", (0, 0, 1)), ("Expected Failure", (0, 1, 0))]:
+                    (folder / "verified-11.tests.json").write_text(json.dumps({"testNodes": [
+                        {"nodeType": "Test Suite", "name": "Native", "children": [
+                            {"nodeType": "Test Case", "name": "testTap()", "nodeIdentifier": "Native/testTap()", "result": status}]}]}))
+                    report = {}
+                    collect(report, contract)
+                    self.assertEqual((report["executed_ui_pass"], report["executed_ui_fail"], report["ui_not_run"]), expected)
+        finally:
+            collect.__globals__["OUT"] = original
+
     def test_missing_execution_is_not_an_executed_ui_failure(self):
         original = collect.__globals__["OUT"]
         try:
@@ -120,6 +145,67 @@ class EvidenceClassificationTests(unittest.TestCase):
                 self.assertEqual(junit.attrib["errors"], "1")
         finally:
             collect.__globals__["OUT"] = original
+
+
+class PreparedInputTests(unittest.TestCase):
+    """Dependency drift must block before signing; tool responses are fixtures."""
+    def setUp(self):
+        self.folder = tempfile.TemporaryDirectory()
+        self.addCleanup(self.folder.cleanup)
+        self.root = Path(self.folder.name)
+        self.function = gate["verify_prepared_inputs"]
+        self.old_root = self.function.__globals__["ROOT"]
+        self.function.__globals__["ROOT"] = self.root
+        self.addCleanup(lambda: self.function.__globals__.update(ROOT=self.old_root))
+        files = {"Podfile": b"pod source", "Podfile.lock": b"approved resolved pods", "Vendor/SefariaMobile/Upstream/package-lock.json": b"pinned npm",
+                 "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved": b"pinned swift",
+                 "Source/PrivacyInfo.xcprivacy": b"approved generated privacy", "Pods/ExpoModulesProvider.swift": b"approved generated expo"}
+        self.hashes = {}
+        for name, value in files.items():
+            destination = self.root / name
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(value)
+            self.hashes[name] = hashlib.sha256(value).hexdigest()
+        self.sha = "a" * 40
+        native = {"podfile_sha256": self.hashes["Podfile"], "pod_lock_sha256": self.hashes["Podfile.lock"],
+                  "npm_lock_sha256": self.hashes["Vendor/SefariaMobile/Upstream/package-lock.json"],
+                  "gitlink": "pinned-gitlink", "node": "v22.23.4", "cocoapods": "1.17.0",
+                  "generated_expo_providers": [{"path": "Pods/ExpoModulesProvider.swift", "sha256": self.hashes["Pods/ExpoModulesProvider.swift"]}]}
+        self.approval = self.root / "approval.json"
+        self.approval.write_text(json.dumps({"candidate_sha": self.sha, "tested_sha": self.sha, "tested_build_report": {
+            "native_context": native, "package_resolved_sha256": self.hashes["Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"],
+            "xcode": "Xcode 27.1", "generated_configuration": [{"path": "Source/PrivacyInfo.xcprivacy", "compiled_sha256": self.hashes["Source/PrivacyInfo.xcprivacy"]}]}}))
+        self.pod_version = "1.17.0"
+
+    def check(self):
+        def command(args, **kwargs):
+            if args == ["git", "rev-parse", "HEAD"]:
+                return self.sha
+            if args[0] == "git":
+                return "pinned-gitlink"
+            return {"xcodebuild": "Xcode 27.1", "node": "v22.23.4", "pod": self.pod_version}[args[0]]
+        def audit(report):
+            report.update(actual_source_inputs_verified=750, actual_package_checkouts={})
+        with patch.object(subprocess, "check_output", side_effect=command), patch.object(runpy, "run_path", return_value={"verify_actual_sources": audit}):
+            return self.function(self.approval)
+
+    def test_matching_prepared_context_reaches_existing_source_auditor(self):
+        self.assertEqual(self.check()["status"], "RELEASE_UI_INPUTS_PASS")
+
+    def test_changed_native_lock_and_provider_are_rejected(self):
+        for name in ["Podfile.lock", "Pods/ExpoModulesProvider.swift", "Source/PrivacyInfo.xcprivacy"]:
+            with self.subTest(name=name):
+                path = self.root / name
+                before = path.read_bytes()
+                path.write_bytes(b"unaccepted drift")
+                with self.assertRaises(ValueError):
+                    self.check()
+                path.write_bytes(before)
+
+    def test_changed_native_toolchain_rejected(self):
+        self.pod_version = "1.18.0"
+        with self.assertRaises(ValueError):
+            self.check()
 
     def test_only_named_actual_results_count(self):
         original = collect.__globals__["OUT"]
@@ -138,6 +224,40 @@ class EvidenceClassificationTests(unittest.TestCase):
                 self.assertEqual((report["executed_ui_pass"], report["executed_ui_fail"], report["ui_not_run"]), (0, 1, 1))
         finally:
             collect.__globals__["OUT"] = original
+
+
+class GateMainFailureTests(unittest.TestCase):
+    def test_post_verification_staging_error_cannot_leave_success_status(self):
+        # Valid ZIP/digest and nominal core PASS, then corrupt native lock:
+        # acceptance must still return nonzero and persist FAIL, never late-green.
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            manifest = root / "Scripts/CI/runtime27-release-manifest.json"
+            manifest.parent.mkdir(parents=True)
+            manifest.write_text("{}")
+            payload = io.BytesIO()
+            with zipfile.ZipFile(payload, "w") as archive:
+                archive.writestr("hq-stage2/result.json", json.dumps({"native_context": {"pod_lock_sha256": "wrong"}}))
+                archive.writestr("hq-stage2/resolved-Podfile.lock", "actual resolved lock")
+            data = payload.getvalue()
+            digest = hashlib.sha256(data).hexdigest()
+            sha = "a" * 40
+            run = {"head_sha": sha, "conclusion": "success"}
+            def api(path):
+                return {"artifacts": [{"id": 1, "name": "runtime27-evidence", "expired": False,
+                                       "digest": "sha256:" + digest}]} if "artifacts?" in path else run
+            def download(args, **kwargs):
+                kwargs["stdout"].write(data)
+                return subprocess.CompletedProcess(args, 0)
+            out = root / "gate.json"
+            globals_ = gate["main"].__globals__
+            with patch.dict(globals_, ROOT=root, api=api, verify=lambda *args, **kwargs: {"status": "RELEASE_UI_GATE_PASS"}), \
+                 patch.object(subprocess, "check_output", return_value=sha), patch.object(subprocess, "run", side_effect=download), \
+                 patch.dict(os.environ, GITHUB_REPOSITORY="davidpovarsky/Maktabah"), \
+                 patch.object(sys, "argv", ["gate", "--run", "123", "--expected-sha", sha, "--out", str(out)]), \
+                 redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                self.assertEqual(gate["main"](), 1)
+            self.assertEqual(json.loads(out.read_text())["status"], "FAIL")
 
 
 if __name__ == "__main__":
