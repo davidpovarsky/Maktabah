@@ -106,9 +106,23 @@ enum ActionValidation {
         return ActionSearchQuery(backend: backend, text: text, scopeWorkRefs: scopes,
             searchMode: args["searchMode"]?.string.flatMap(ActionSearchQuery.Mode.init(rawValue:)) ?? .phrase,
             matchMode: args["matchMode"]?.string.flatMap(ActionSearchQuery.Match.init(rawValue:)) ?? .exact,
-            wordDistance: Int(args["wordDistance"]?.integer ?? 0),
+            wordDistance: try integer(args, key: "wordDistance", default: 0, range: 0...100),
             sortOrder: args["sortOrder"]?.string.flatMap(ActionSearchQuery.Sort.init(rawValue:)) ?? .relevance,
-            offset: Int(args["offset"]?.integer ?? 0), limit: Int(args["limit"]?.integer ?? 20))
+            offset: try integer(args, key: "offset", default: 0, range: 0...100_000),
+            limit: try integer(args, key: "limit", default: 20, range: 1...100))
+    }
+    /// Only an absent argument selects the default. Both exact integer storage
+    /// cases preserve their value; invalid/present values never become defaults.
+    static func integer(_ args: ActionObject, key: String, default fallback: Int, range: ClosedRange<Int>) throws -> Int {
+        guard let value = args[key] else { return fallback }
+        let number: Int?
+        switch value {
+        case .integer(let signed): number = Int(exactly: signed)
+        case .unsigned(let unsigned): number = Int(exactly: unsigned)
+        default: number = nil
+        }
+        guard let number, range.contains(number) else { throw ActionContractError.invalid("$.arguments.\(key)") }
+        return number
     }
     static func nonempty(_ string: String, max: Int) -> Bool {
         !string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && string.unicodeScalars.count <= max

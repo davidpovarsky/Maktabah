@@ -67,7 +67,7 @@ public actor ActionExecutor {
             }
             let existing = ledger[key]
             if let existing {
-                guard existing.request == request, existing.authority == Authority(context) else { throw ActionEngineFailure(.failed, "request_replay_conflict") }
+                guard try equivalent(existing.request, request), existing.authority == Authority(context) else { throw ActionEngineFailure(.failed, "request_replay_conflict") }
                 guard existing.result != nil else { throw ActionEngineFailure(.unavailable, "request_in_progress") }
             } else {
                 guard ledger.count < capacity else { throw ActionEngineFailure(.unavailable, "request_ledger_full") }
@@ -173,7 +173,8 @@ public actor ActionExecutor {
         case "catalog.resolveWork":
             let ref = try request.arguments["workRef"]?.decoded(as: ActionWorkRef.self)
             if let ref { try ActionValidation.work(ref, backend: backend); try ActionPolicy.work(ref.workKey, backend: backend, context: context) }
-            let query = ActionResolveWorkQuery(backend: backend, query: request.arguments["query"]?.string, workRef: ref, limit: Int(request.arguments["limit"]?.integer ?? 25))
+            let query = ActionResolveWorkQuery(backend: backend, query: request.arguments["query"]?.string, workRef: ref,
+                limit: try ActionValidation.integer(request.arguments, key: "limit", default: 25, range: 1...25))
             if let text = query.query, !ActionValidation.nonempty(text, max: 512) { throw ActionContractError.invalid("query") }
             let resolution = try await resolver.resolveWork(query, invocation: invocation)
             try await recheck(snapshot, deadline: deadline)
@@ -208,8 +209,8 @@ public actor ActionExecutor {
         case "reader.open":
             let destination = try ActionValidation.destination(request.arguments)
             try ActionPolicy.work(destination.sectionLocator.workKey, backend: backend, context: context)
-            guard request.requestedPresentation != .headless, let scene = context.foregroundSceneID,
-                  ActionValidation.nonempty(scene, max: 256), let ui else { throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable") }
+            guard request.requestedPresentation != .headless, let scene = ActionPolicy.foregroundScene(context),
+                  let ui else { throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable") }
             let validated = try await resolver.validateDestination(destination, invocation: invocation)
             guard validated == destination else { throw ActionPortError.invalidResponse }
             try await recheck(snapshot, deadline: deadline)
@@ -296,10 +297,18 @@ public actor ActionExecutor {
               let operations = report["operations"]?.object else { return [] }
         return registry.descriptors.filter { descriptor in
             guard ActionRegistry.implemented.contains(descriptor.id), operations[descriptor.id]?.object?["availableNow"] == .bool(true) else { return false }
-            let scope: ActionScope = descriptor.riskTier == 0 ? .discovery : descriptor.riskTier == 1 ? .contentRead : .navigation
-            return context.scopes.contains(scope) && (descriptor.riskTier != 1 || context.contentRights.contains(backend))
-                && (descriptor.id != "reader.open" || (context.foregroundSceneID != nil && ui != nil))
+            guard (try? ActionPolicy.authorize(descriptor, context: context, backend: backend)) != nil else { return false }
+            return descriptor.id != "reader.open" || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
         }
+    }
+
+    private func equivalent(_ lhs: ActionRequest, _ rhs: ActionRequest) throws -> Bool {
+        if lhs == rhs { return true }
+        // Already-validated signed/unsigned storage for the same JSON integer
+        // must not turn a typed-to-wire retry into a different logical request.
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys]
+        return try encoder.encode(lhs) == encoder.encode(rhs)
     }
 
     private func checkedResult(_ result: ActionResult, request: ActionRequest, context: ActionExecutionContext) -> ActionResult {

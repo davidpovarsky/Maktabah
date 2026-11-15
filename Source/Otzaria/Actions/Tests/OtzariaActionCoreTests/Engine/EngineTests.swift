@@ -212,4 +212,49 @@ final class EngineTests: XCTestCase, @unchecked Sendable {
         XCTAssertEqual(counts.search, 8)
         XCTAssertLessThan(Date().timeIntervalSince(started), 3)
     }
+    func testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay() async throws {
+        for (offset, limit, distance): (UInt64, UInt64, UInt64) in [(5, 1, 4), (100_000, 100, 100), (0, 1, 0)] {
+            let typedPorts = MockPorts(), wirePorts = MockPorts()
+            let typedCore = try ActionExecutor(state: typedPorts, resolver: typedPorts, search: typedPorts)
+            let wireCore = try ActionExecutor(state: wirePorts, resolver: wirePorts, search: wirePorts)
+            let req = request(extra: ["offset": .unsigned(offset), "limit": .unsigned(limit), "wordDistance": .unsigned(distance)])
+            let bytes = try JSONEncoder().encode(req), ctx = context()
+            let typed = await typedCore.execute(req, context: ctx)
+            let wire = await wireCore.execute(data: bytes, context: ctx)
+            XCTAssertEqual(typed.status, .completed); XCTAssertEqual(wire, typed)
+            let observed = await typedPorts.lastSearchQuery, observedWire = await wirePorts.lastSearchQuery
+            XCTAssertEqual(observed?.offset, Int(offset)); XCTAssertEqual(observed?.limit, Int(limit)); XCTAssertEqual(observed?.wordDistance, Int(distance))
+            XCTAssertEqual(observedWire, observed)
+            let replay = await typedCore.execute(data: bytes, context: ctx)
+            XCTAssertEqual(replay, typed)
+            let counts = await typedPorts.counts(); XCTAssertEqual(counts.search, 1)
+        }
+    }
+    func testTypedUnsignedResolutionLimitDoesNotDefault() async throws {
+        let ports = MockPorts(), core = try ActionExecutor(state: ports, resolver: ports, search: ports)
+        let result = await core.execute(request("catalog.resolveWork", extra: ["query": .string("ambiguous"), "limit": .unsigned(3)]), context: context())
+        XCTAssertEqual(result.status, .needsDisambiguation); XCTAssertEqual(result.candidates?.count, 3)
+        let observed = await ports.lastWorkQuery; XCTAssertEqual(observed?.limit, 3)
+        for value: ActionJSON in [.unsigned(UInt64.max), .bool(true), .number(3)] {
+            let invalid = await core.execute(request(extra: ["offset": value]), context: context())
+            XCTAssertEqual(invalid.status, .failed)
+        }
+    }
+    func testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends() async throws {
+        for backend in ActionBackendID.allCases {
+            let ports = MockPorts(backend: backend), ui = await MockUI(ports: ports)
+            let core = try ActionExecutor(state: ports, resolver: ports, search: ports, ui: ui)
+            for origin in [ActionOrigin.inApp, .appIntent, .deepLink, .internalAI, .guide, .mcp] {
+                let ctx = ActionExecutionContext(subjectID: "origin-fixture", origin: origin, allowedBackends: [backend], contentRights: [backend],
+                    scopes: [.discovery, .contentRead, .navigation], foregroundSceneID: "fixture-scene", pairedDeviceAvailable: true)
+                let advertised = await core.advertisedActions(for: backend, context: ctx)
+                let result = await core.execute(request(backend: backend), context: ctx)
+                XCTAssertEqual(advertised.contains { $0.id == "search.query" }, result.status == .completed, "\(backend) \(origin)")
+                if origin == .deepLink { XCTAssertEqual(result.error?.code, "origin_action_not_allowed") }
+            }
+            let emptyScene = context(backend: backend, scene: " ")
+            let advertised = await core.advertisedActions(for: backend, context: emptyScene)
+            XCTAssertFalse(advertised.contains { $0.id == "reader.open" })
+        }
+    }
 }

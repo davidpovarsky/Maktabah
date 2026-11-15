@@ -13,6 +13,8 @@ actor MockPorts: ActionBackendStatePort, ActionResolverPort, ActionSearchPort {
     private(set) var assessments = 0
     private(set) var resolutions = 0
     private(set) var searches = 0
+    private(set) var lastSearchQuery: ActionSearchQuery?
+    private(set) var lastWorkQuery: ActionResolveWorkQuery?
     init(backend: ActionBackendID = .otzaria) { current = .init(backend: backend, generation: 1, rpcEpoch: backend == .sefariaEmbedded ? 3 : nil) }
     func configure(_ behavior: Behavior = .empty, supported: Bool = true, available: Bool = true, strictEmbedded: Bool = false) {
         self.behavior = behavior; self.supported = supported; self.available = available; self.strictEmbedded = strictEmbedded
@@ -35,6 +37,7 @@ actor MockPorts: ActionBackendStatePort, ActionResolverPort, ActionSearchPort {
     }
     func resolveWork(_ query: ActionResolveWorkQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionWorkRef> {
         resolutions += 1
+        lastWorkQuery = query
         if query.query == "ambiguous" {
             return .ambiguous((0..<30).map { ActionCandidate(ref: ["backend": .string(query.backend.rawValue), "workKey": .string("fixture:work:\($0)")], title: "Fixture \($0)", kind: .work) })
         }
@@ -59,6 +62,7 @@ actor MockPorts: ActionBackendStatePort, ActionResolverPort, ActionSearchPort {
     }
     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage {
         searches += 1
+        lastSearchQuery = query
         let zero = ActionSearchPage(hits: [], total: 0, precision: .exact)
         switch behavior {
         case .empty: return zero

@@ -21,7 +21,7 @@ Worktree `C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115`, branch `codex/
 
 Command: `swift test --package-path Source/Otzaria/Actions -j 1 -Xswiftc -strict-concurrency=complete`.
 
-EXECUTED_PASS:23 XCTest methods,0 failures (2 API,15 engine,6 wire/security tests), Swift6.3.3 Windows portable compiler/runtime with explicit synthetic backend/resolver/UI ports. No Apple SDK or app runtime. Final log and source hashes: `results/swift-tests.log`, `results/summary.json`.
+Original7060be46 checkpoint:23 XCTest methods PASS. After independent ENG-01/ENG-02 corrections: EXECUTED_PASS26 methods,0 failures (2 API,18 engine,6 wire/security tests), Swift6.3.3 Windows portable compiler/runtime with explicit synthetic backend/resolver/UI ports. No Apple SDK or app runtime. Final log and source hashes: `results/swift-tests.log`, `results/summary.json`. Exact corrections and separate D evidence: `ENG_REVIEW_FIXES.md`.
 
 Coverage includes all initial five operations on all three mocked targets; strict wire/descriptor/semantic gates;11 frozen example schema/DTO projections;29 catalog descriptors; exact-number attacks and integral positives; duplicates/escaped keys and exact wire property names despite Swift Unicode canonical equality; input/output limits; rights/origin/work scopes; backend mismatch before commands; metadata/readiness vs zero; actual continuation; ambiguity; redacted errors/candidates; generation/epoch drift; UI queued/missing scene/wrong UUID/wrong section/wrong focus/stale ACK; cancellation/deadline with controlled uncooperative providers; replay and admission/retention budgets. Eight uncooperative workers are retained at most, the ninth request is refused, and all8 deadlines return. Tests always release controlled blocked providers, leaving no indefinite test tasks.
 
@@ -29,7 +29,7 @@ Six bundled JSON resources exactly match frozen MANIFEST bytes/SHA256 (`results/
 
 ## Remaining gates / limitations
 
-- Independent D review of the executable checkpoint and retest of API-01/API-02; initial API-only external findings do not establish final executor acceptance.
+- D's independent exact7060be46 review closed API-01/API-02 PORTABLE and found ENG-01/ENG-02 (102/104 synthetic engine cases passed). Those two local corrections now have26 passing P tests; independent D retest remains open. No native/device acceptance follows from either result set.
 - Real resolver and production state/search bridges in separately owned Resolver/** / Integration/**. Mock ports prove dispatch/contracts and fail-closed behavior, not live provider semantic correctness.
 - Real SQLite/Tantivy, Legacy network/offline, Embedded Hermes/RPC readiness/epoch and full corpus acceptance; actual original Maktabah/RN reader and scene acknowledgement. All NOT_RUN here.
 - Apple-platform SDK/compiler/native integration, AppIntents, deep/universal links, AI/guide/MCP transport, licensing review and physical iPad. No framework/app targets were touched or tested.

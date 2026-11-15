@@ -5,7 +5,7 @@
   "command": "swift test --package-path Source/Otzaria/Actions -j 1 -Xswiftc -strict-concurrency=complete",
   "compiler": "Swift 6.3.3 Windows",
   "status": "EXECUTED_PASS",
-  "xctest_count": 23,
+  "xctest_count": 26,
   "failures": 0,
   "scope": "portable actual Core with explicit fake ports; frozen examples are schema projections",
   "native_app": "NOT_RUN",
@@ -19,11 +19,17 @@
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": "638588d56544d4a306c41235b80c45391980d66b2c6f13fea26ab91265bad80b",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift": "90e1daa8d0795461f521d1c75abbe1b6b88009e13c0ff5c80e32aa0962b4de00",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift": "df37c550d7fbdbbc12eee780d7e210473dc341bfe47c0e475eb195c3b7d6ade5",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift": "64e370008c0650849be70c3263939c657fe830a14522c3b23aed248486293a1a",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift": "687d2042739d3137158c51436ae3c315c73cdebca2639599f652bd558eee7792",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift": "fc457299d8187a5c4eb0722c3031de0c203926acb9e91082f32f9e4d485b08e4",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift": "7b461d876aba4cb479247e369ef30fac040382ab86f434020c0e27ec16ab98cf",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift": "19aefe3f90bec25f530ab59be9443b137ce1258c5dd106c12b555161f703c868",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift": "0451c7a98611a62ab4cb8285356db26ebcd8ce27e5dab5d77616516d596d72bc",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift": "4c762e686ba1c3f08e5ec0a05fa3dfc6194993f11dbc8b4f4f8b6144c078aafa"
-  }
+  },
+  "reviewed_parent": "7060be466425ad052faffeef21c309708ac0e506",
+  "corrections": [
+    "ENG-01",
+    "ENG-02"
+  ],
+  "independent_correction_retest": "NOT_RUN"
 }
