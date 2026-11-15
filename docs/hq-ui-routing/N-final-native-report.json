@@ -80,7 +80,7 @@
     "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneIdentity.swift": "c9920860a61c7edfd13b0412b08abe4849f7012d59a4a1eab89e034d7b3e5125",
     "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift": "f1b215c3b5836ec03159daf17eea72f519e4f5b914b1539aef39a243be50bff4",
     "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceState.swift": "aeef7deb1c948a5344542264e59b099c66bd6c53ab34d687bf415530db118a2e",
-    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift": "5e5bdd8991e1df622da43e4e7bc35fc833732f784ca847d0c90a342e6441316c",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift": "b63e0379af0b955e4b9d460948cf2bb9005d4c542fccadaba1a8d449c015cd68",
     "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift": "1c6963c266277fe04198d5291c6178bed1ca690d35647c1cead4f5be48e2c2ca",
     "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePresentationObserverTests.swift": "2538b3919efae9eb51c3fe67e2fda406fe138ea0128e5f65fb4128c05c218d1d",
     "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeRouteInboxTests.swift": "5c135d909490cb87940162ac235463242f0811c10ad97fb2e8475dd2cb739052",
@@ -92,17 +92,16 @@
   "app_integration_NOT_COMPILED_sha256": {
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift": "2b0f2f66e320ad9248bf373e17b09cfa820e54208732ea55e780517ab6b888a0",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "9dbb9ec2ca61340286a383992537e7738a5a25f40cbe8c7996423aa2908f1adb",
-    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "5769088a93b37313bf6701d2c81d0a2667f9ac61ed58f49db9bc6aa5526ce355",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "52717079ba329eb2e262ad0f03e43b5a6c67e68febd54dd68e4163bd6725994e",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "75527662a7ad8440cdbfb32cca282da17f64c56673743cb42655fc29b0483a78",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "7a0d3542de1de9cfa909df284e894dc81edb7eca5968f5ddfad86d35e7fca41c",
-    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "b65d2ef1ebf3a406f3678024298f1590251f12814c7efc7bfdd4536c78d16d93",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "dd27d741cc8a23dc34dea19a1580f68cd42c5130d85bcad07c7e01b87670c680",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift": "6a79fed35cf6549795202764257849ce485bdc3e988c444fdb6c586355779c31",
     "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "531bff11246330fd8458cdc3374edc859fd0c529e2c548a3e0f368de1f0bbe04"
   },
   "log_sha256": "0eb885190484a87605cf9124f385374077dbca3b9269aab0a3e67058970c2c11",
   "native_tests_executed": 0,
   "physical_tests_executed": 0,
-  "latest_UIKit_witness_and_UI_test_AppleSDK": "PENDING_NEW_SOURCE_CHECK",
   "prior_apple_package": {
     "source": "83ac528666d91a139bb0d010f7732144c60460c0",
     "run": 43731461025,
@@ -138,5 +137,34 @@
     ],
     "exitCode": 0,
     "notAppleSDKCompilation": true
+  },
+  "previous_UIKit_and_UITest_AppleSDK": {
+    "source": "21fd57377f94bade008a4a729aac488fe42c8da6",
+    "run": 43734119718,
+    "hostPackage": "SDK_COMPILE_PASS",
+    "UITestSources": "SDK_COMPILE_PASS",
+    "appIntegration": "NOT_COMPILED",
+    "nativeUITestsExecuted": 0,
+    "appMembership": "PASS",
+    "toolbar": "BUILD_FAILED",
+    "aggregate": "FAIL",
+    "xcode": "Xcode 27.1\nBuild version 27A9275",
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "/Applications/Xcode_27.1.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.1.sdk",
+    "aggregateUITestWarningCount": 2158,
+    "rawArtifactsSHA256": {
+      "toolbar-sdk-compile.json": "96014da7372929c15bb3d801104956809a446aacfea8f23548236750a365367d",
+      "toolbar-sdk-compile.log": "90b89a3a242d278fda9a8aa7a867c860729bb14b5c97eabc71cde815f42504ce",
+      "ui-acceptance-typecheck.json": "15c82b72eb7c23d33f96555db5568092d0d92f3a5ae61297626a9c4dfff14930",
+      "ui-acceptance-typecheck.log": "6b36935c2b06af0c680b039aeca5d0df8e02c53737a80b8d42511ffe39786c9d",
+      "xcuiautomation-voiceover-sdk.txt": "84145caca5aa765ae190a0a9cf63f71007ff449b9a4218ab259d6338ab621a3b"
+    }
+  },
+  "latest_live_UIKit_visibility_AppleSDK": "PENDING_NEW_SOURCE_CHECK",
+  "liveVisibilityPortable": {
+    "log_sha256": "338284fe5f2d0eb6396643808165590b28f5b408f40300570014ecd2b8b7ec4b",
+    "methods": 57,
+    "failures": 0,
+    "warnings": 0
   }
 }

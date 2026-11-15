@@ -13,7 +13,7 @@ Positive URL acceptance requires all of the following in the same real test:
 
 Cold entry first records Library/History absence, terminates the process, then opens the generated URL. Invalid version records its exact request/backend and must show the real error while History remains absent. Settings' system Intent/Siri journey remains separately NOT_RUN; package/type compilation is not that acceptance.
 
-The production witness now uses a transparent child UIViewController's **viewDidAppear completion**, real layout/foreground/window/modal ancestry, effective opacity and almost-full window intersection. SwiftUI onAppear, pre-animation layout, a requested model or AX presence alone cannot acknowledge completion. It adds no controls or altered visual layout.
+The production witness now uses a transparent child UIViewController's **viewDidAppear completion**, real layout/foreground/window/modal ancestry, effective opacity and almost-full window intersection. Every directory observation also synchronously re-reads this actual weak UIKit view and must match its prior appearance evidence; a later modal/window/opacity change cannot reuse a cached layout. SwiftUI onAppear, pre-animation layout, a requested model or AX presence alone cannot acknowledge completion. It adds no controls or altered visual layout.
 
 ## Manager-owned helper proposal
 

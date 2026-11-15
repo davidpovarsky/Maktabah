@@ -21,6 +21,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     private var lease: NativeSceneDirectory.Lease?
     private var command: UISceneCommand?
     private var visible: [UIDestinationID: NativeSurfaceWitness.Evidence] = [:]
+    @ObservationIgnored private var visibilityChecks: [UIDestinationID: @MainActor () -> NativeSurfaceWitness.Evidence?] = [:]
     var isPresentationReady: Bool { bindings.isPresentationReady }
 
     init(sceneID: UIStableID, directory: NativeSceneDirectory, bindings: MaktabahNativeSceneBindings,
@@ -37,7 +38,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             let projection = try project()
             var route: RouteSpec?
             var surface: NativeSurfaceState?
-            if let command, let evidence = visible[command.route.route.destination], evidence.isVisible,
+            if isPresentationReady, let command, let evidence = visible[command.route.route.destination], evidence.isVisible,
+               let currentEvidence = visibilityChecks[command.route.route.destination]?(), currentEvidence == evidence,
                evidence.sceneID == sceneID, evidence.submissionID == command.invocation.requestId,
                let kind = surfaceKind(command.route.route.destination), let current = try projection.surface(kind),
                current == evidence.surface {
@@ -90,6 +92,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         self.project = project
     }
     func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? { try project().surface(kind) }
+    func observeVisibility(for destination: UIDestinationID, check: @escaping @MainActor () -> NativeSurfaceWitness.Evidence?) {
+        visibilityChecks[destination] = check
+    }
     func windowLabel(number: Int) -> String {
         let projection = try? project()
         let names = [projection?.workspace?.profile?.name, projection?.workspace?.group?.name]
@@ -137,7 +142,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
 
     func unmount() {
         guard mounted else { return }
-        mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll()
+        mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
         if let lease { directory.unmount(lease) }
         lease = nil
     }
