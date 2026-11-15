@@ -159,9 +159,17 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
             XCTAssertFalse(libraryDot.isSelected)
             XCTAssertFalse(app.buttons["toc-close"].exists,
                            "The original split owns the sidebar toggle")
-            let toc = app.otherElements["toc-column"].firstMatch
+            // The actual native TOC is a CollectionView; its navigation
+            // title belongs to the surrounding NavigationBar, not its rows.
+            let toc = app.descendants(matching: .any)["toc-column"].firstMatch
             XCTAssertTrue(toc.waitForExistence(timeout: 15))
-            XCTAssertTrue(toc.staticTexts[language == "he" ? "תוכן עניינים" : "Table of Contents"].exists)
+            let column = sidebarColumnFrame(in: pager)
+            let titles = app.navigationBars.staticTexts.matching(NSPredicate(
+                format: "label == %@", language == "he" ? "תוכן עניינים" : "Table of Contents"
+            )).allElementsBoundByIndex.filter {
+                !$0.frame.isEmpty && column.insetBy(dx: -1, dy: 0).contains($0.frame)
+            }
+            XCTAssertEqual(titles.count, 1, "One actual native TOC title in this sidebar's NavigationBar")
             let tocSearch = try visibleSidebarSearch(in: pager)
             XCTAssertEqual(tocSearch.placeholderValue,
                            language == "he" ? "חיפוש בתוכן" : "Search Contents")
@@ -258,6 +266,9 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
             XCTAssertTrue(cleared.isEmpty || cleared == field.placeholderValue)
         }
         if !query.isEmpty {
+            // Clearing the native search can end editing on this OS. Refocus
+            // the actual now-empty field before the next genuine input event.
+            tap(field)
             field.typeText(query)
             XCTAssertEqual(field.value as? String, query,
                            "Functional filtering must exercise the exact intended query")
@@ -283,16 +294,21 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
         // UIKit places .navigationBarDrawer above the page body's AX bounds.
         // Observe the visible native field in this sidebar's horizontal column,
         // including its NavigationBar; keep offscreen/other-column fields out.
-        let body = pager.frame
-        let window = app.windows.firstMatch.frame
-        XCTAssertFalse(body.isEmpty)
-        let column = CGRect(x: body.minX, y: window.minY,
-                            width: body.width, height: window.height)
+        let column = sidebarColumnFrame(in: pager)
         let fields = app.searchFields.allElementsBoundByIndex.filter {
             !$0.frame.isEmpty && column.insetBy(dx: -1, dy: 0).contains($0.frame) && $0.isHittable
         }
         XCTAssertEqual(fields.count, 1, "One visible native search field in the actual sidebar column")
         return try XCTUnwrap(fields.first)
+    }
+
+    @MainActor
+    private func sidebarColumnFrame(in pager: XCUIElement) -> CGRect {
+        let body = pager.frame
+        let window = app.windows.firstMatch.frame
+        XCTAssertFalse(body.isEmpty)
+        return CGRect(x: body.minX, y: window.minY,
+                      width: body.width, height: window.height)
     }
 
     @MainActor

@@ -260,6 +260,28 @@ final class R27NativePadTests: R27NativeUIBase {
             predicate: NSPredicate(format: "count == 0"), object: input
         )], timeout: 15), .completed, "Escape must remove the real input in the actual full native window")
         XCTAssertFalse(palette.exists)
+        recordWindowEvidence("r27-calibration-empty-escape-dismissed")
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+
+        // Repeat with the same real filtered fixture query as the original
+        // narrow-window case, keeping empty/nonempty and width distinct.
+        tapInWindow(launcher)
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        XCTAssertEqual(input.count, 1)
+        tapInWindow(input.firstMatch)
+        let title = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        input.firstMatch.typeText(title)
+        XCTAssertEqual(input.firstMatch.value as? String, title)
+        let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", title)).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 15))
+        XCTAssertTrue(result.isHittable)
+        recordWindowEvidence("r27-calibration-full-window-filtered-fixture")
+        input.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "count == 0"), object: input
+        )], timeout: 15), .completed, "Escape must also remove the genuinely filtered input")
+        XCTAssertFalse(palette.exists)
+        recordWindowEvidence("r27-calibration-filtered-escape-dismissed")
         XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
     }
 

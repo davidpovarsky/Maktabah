@@ -1,0 +1,68 @@
+{
+  "run_id": 43737613337,
+  "checkout_sha": "648788e5ae2eecfab676bf5d7251b92510cd4519",
+  "test_source": "93408d356ef217567655a58045d82579da88f6d2",
+  "app_source": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+  "actual_device": {
+    "architecture": "arm64",
+    "deviceId": "4CC4F27F-94C2-4F4C-8946-23D79F7A4386",
+    "deviceName": "Faithful 11-inch ac66f7d4",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "native_sdk_module_and_app_build": "ACTUAL_PASS",
+  "fresh_ui_pass": 0,
+  "fresh_ui_fail": 3,
+  "fresh_ui_skip": 0,
+  "actual_cases": [
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "device": "ipad11",
+      "expected": "Real normal bootstrap; independently derived fixture category paths; functional Library search empty/match/exclude/clear; fixed physical RTL body swipes;20body+20dot transitions; one native toggle and TOC-local title/search; actual reader object/source/offset/title/locator preservation; vertical scroll arbitration",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "device": "ipad11",
+      "expected": "Same genuine fixture/native reader and functional search/state oracles in English LTR; fixed physical LTR body swipes and preserved one native toggle/TOC ownership",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "device": "ipad11",
+      "expected": "Existing realUI app and independently checked fixture; actual Close Button removes real input; actual down/up keys visibly change/restore selected result; then actual unmodified Escape removes full-window real input; real locator retained. Stop at actual failed stage, no synthetic callback.",
+      "configuration_label": "11-window",
+      "actual": "Failed"
+    }
+  ],
+  "failure_texts": [
+    "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Escape must remove the real input in the actual full native window",
+    "Failed to synthesize event: Neither element nor any descendant has keyboard focus. Event dispatch snapshot: SearchField, {{16.0, 140.0}, {288.0, 44.0}}, label: 'Search Library', placeholderValue: 'Search Library', value: Search Library",
+    "Failed to synthesize event: Neither element nor any descendant has keyboard focus. Event dispatch snapshot: SearchField, {{906.0, 140.0}, {288.0, 44.0}}, label: 'חיפוש בספרייה', placeholderValue: 'חיפוש בספרייה', value: חיפוש בספרייה"
+  ],
+  "calibration": {
+    "actual_close_button": "PASS_CONTROL; actual native input count zero, real title/text/locator retained, screenshotE5BE5D40 reviewed",
+    "actual_field_keycommand_down": "PASS_CONTROL; selected visible result changed from Bereishit to Berakhot; screenshotFE7644CC + AX4ABEEB51 reviewed",
+    "actual_field_keycommand_up": "PASS_CONTROL; selected result restored to Bereishit; screenshot044062B7 + AX8FA9021B reviewed",
+    "actual_full_window_escape": "FAIL; input/caret/10results remain visible; screenshotAB6BFDFD + AX6D4C6509 reviewed",
+    "acceptance_limit": "Controls passed within a FAILED named UI case; they are not counted as separate UI case passes. Failure does not require resize or a nonempty query: it also occurs in an actual full window with an empty query. UIKit/internal selector consumer not established."
+  },
+  "sidebar": {
+    "actual_native_clear": "The real Clear text / Hebrew clear action emptied the canonical field",
+    "failure": "Subsequent typeText failed because clear ended native keyboard focus; matching query and paging not reached",
+    "next_refinement": "Tap actual empty field again before typing and assert exact intended query. Also qualify TOC node independent of its native CollectionView role and verify actual NavigationBar title in same measured sidebar column; prior actual AX supports those locations. All functional search/state/paging counts retained."
+  },
+  "source_impact": "No production change fromrun3: app source remainsb907, Source tree exact. Actual15native-contextfields/3fixture sets/2206generatedobjects match baseline; report HEALTHY_NATIVE_COMPATIBILITY_43737613337.json. Two run3Sidebar passes remain dated, not fresh.",
+  "next_candidate": "Register Escape beside the now-calibrated field arrows using palette-specific selector and priority; field first-responder/own-key-window/non-nil-callback guard. Prior generic escape: descriptor had failed and selector collision remains unproved. No global/window interceptor, new controller or synthetic callback.",
+  "artifact": {
+    "id": 14173330321,
+    "bytes": 273295725,
+    "sha256": "34b4686e21e8a519f0efa0d8d1f503ac6b897c377d98f63ae097cb4e975f9b70",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/43737613337/artifacts/14173330321"
+  },
+  "acceptance": "OPEN; no MERGE_READY; physical iPad NOT_RUN"
+}

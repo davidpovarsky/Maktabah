@@ -97,3 +97,17 @@ Direct manager decision received in this Desktop chat; official API evidence is
 in QA_CORRECTIONS.md. No application source change follows from this decision.
 Physical iPad, VoiceOver/Dynamic Type, interrupted gestures, TOC selection and
 multi-scene continuity remain open until their own actual evidence exists.
+
+## Native calibration run43737613337
+
+Same app sourceb907, checkout648788e5/test93408d35: module/app build passed;
+actual named UI leaves 0PASS/3FAIL/0skip. The real Close Button removed input,
+and real down/up field UIKeyCommands visibly moved/restored selection. Escape
+still retained the empty palette in a full native window. These successful
+controls do not inflate the failed case count. Both search cases used the real
+clear Button successfully but the next typeText had no keyboard focus; matching
+and body paging remain unaccepted. Refocus the actual empty field before
+typing, keep exact query assertion, and qualify TOC CollectionView/title using
+the measured actual native hierarchy. The next production candidate adds one
+unique Escape action beside the verified field arrow commands. No inherited
+selector collision or private UIKit consumer is claimed.

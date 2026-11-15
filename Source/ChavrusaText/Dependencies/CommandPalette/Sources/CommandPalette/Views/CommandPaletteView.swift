@@ -362,10 +362,12 @@ private final class PaletteTextField: UITextField {
     }
 
     override var keyCommands: [UIKeyCommand]? {
-        // The visible SwiftUI cancel Button owns the Escape shortcut. Do not
-        // also register Escape on the focused field. Keep one registered
-        // Escape shortcut in the hosting responder chain.
+        // Native calibration verifies dispatch of these field-owned arrow
+        // commands while the SwiftUI cancel shortcut leaves the palette
+        // visible. Register Escape on the same first responder, using a
+        // palette-specific selector and priority over text/focus handling.
         let commands = [
+            UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags: [], action: #selector(dismissPaletteFromEscape(_:))),
             UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags: [], action: #selector(up(_:))),
             UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags: [], action: #selector(down(_:)))
         ]
@@ -374,6 +376,9 @@ private final class PaletteTextField: UITextField {
     }
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(dismissPaletteFromEscape(_:)) {
+            return isFirstResponder && window?.isKeyWindow == true && onEscape != nil
+        }
         if action == #selector(up(_:)) || action == #selector(down(_:)) {
             return isFirstResponder && window != nil
         }
@@ -399,6 +404,7 @@ private final class PaletteTextField: UITextField {
         onEscape?()
     }
 
+    @objc private func dismissPaletteFromEscape(_ command: UIKeyCommand) { dismissFromKeyboard() }
     @objc private func up(_ command: UIKeyCommand) { onUp?() }
     @objc private func down(_ command: UIKeyCommand) { onDown?() }
 }
