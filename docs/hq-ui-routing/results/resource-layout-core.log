@@ -1,0 +1,48 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-2807070033DA82CF.txt
+[1/13] Write sources
+[3/12] Emitting module OtzariaActionCoreTests
+[4/16] Compiling OtzariaActionCoreTests ContractAPITests.swift
+[5/16] Compiling OtzariaActionCoreTests WireSecurityTests.swift
+[6/16] Compiling OtzariaActionCoreTests EngineTests.swift
+[7/16] Compiling OtzariaActionCoreTests MockPorts.swift
+[8/17] Wrapping AST for OtzariaActionCoreTests for debugging
+[9/17] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageDiscoveredTests.derived\all-discovered-tests.swift
+[10/17] Write sources
+[12/18] Emitting module OtzariaActionCorePackageDiscoveredTests
+[13/20] Compiling OtzariaActionCorePackageDiscoveredTests OtzariaActionCoreTests.swift
+[14/20] Compiling OtzariaActionCorePackageDiscoveredTests all-discovered-tests.swift
+[15/21] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageTests.derived\runner.swift
+[16/21] Wrapping AST for OtzariaActionCorePackageDiscoveredTests for debugging
+[17/21] Write sources
+[19/22] Emitting module OtzariaActionCorePackageTests
+[20/23] Compiling OtzariaActionCorePackageTests runner.swift
+[21/24] Wrapping AST for OtzariaActionCorePackageTests for debugging
+[22/24] Write Objects.LinkFileList
+[23/24] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (116.88s)
+Test Suite 'Selected tests' started at 2026-11-15 15:24:33.224
+
+Test Suite 'WireSecurityTests' started at 2026-11-15 15:24:33.285
+
+Test Case 'WireSecurityTests.testFrozenCatalogAndElevenExamplesProject' started at 2026-11-15 15:24:33.285
+
+Test Case 'WireSecurityTests.testFrozenCatalogAndElevenExamplesProject' passed (0.532 seconds)
+
+Test Suite 'WireSecurityTests' passed at 2026-11-15 15:24:33.818
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.532 (0.532) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 15:24:33.818
+
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.532 (0.532) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.002 seconds.
+

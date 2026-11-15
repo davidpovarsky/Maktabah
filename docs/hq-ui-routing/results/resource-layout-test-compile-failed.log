@@ -1,0 +1,112 @@
+Building for debugging...
+[0/19] Write swift-version-2807070033DA82CF.txt
+[1/19] Copying examples.v1.json
+[2/19] Copying backend-capability-matrix.v1.json
+[3/19] Copying backend-acceptance-cases.v1.json
+[4/19] Copying action-result.v1.schema.json
+[5/19] Copying action-request.v1.schema.json
+[6/19] Copying action-catalog.v1.json
+[7/19] Write sources
+[10/20] Emitting module OtzariaActionCore
+[11/35] Compiling OtzariaActionCore ActionJSON.swift
+[12/35] Compiling OtzariaActionCore ActionReferences.swift
+[13/35] Compiling OtzariaActionCore ActionRequest.swift
+[14/35] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[15/35] Compiling OtzariaActionCore ActionSearch.swift
+[16/35] Compiling OtzariaActionCore ActionWireCodec.swift
+[17/35] Compiling OtzariaActionCore ActionDeadline.swift
+[18/35] Compiling OtzariaActionCore ActionExecutor.swift
+[19/35] Compiling OtzariaActionCore ActionExecutionContext.swift
+[20/35] Compiling OtzariaActionCore ActionPolicy.swift
+[21/35] Compiling OtzariaActionCore ActionValidation.swift
+[22/35] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[23/35] Compiling OtzariaActionCore ActionPorts.swift
+[24/35] Compiling OtzariaActionCore ActionRegistry.swift
+[25/35] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[26/36] Wrapping AST for OtzariaActionCore for debugging
+[28/37] Emitting module OtzariaActionCoreTests
+[29/41] Compiling OtzariaActionCoreTests ContractAPITests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Contracts\WireSecurityTests.swift:65:63: error: call can throw but is not marked with 'try'
+
+ 63 |                      "backend-acceptance-cases.v1.json", "backend-capability-matrix.v1.json", "examples.v1.json"] {
+
+ 64 |             let url = try XCTUnwrap(Bundle.module.url(forResource: name, withExtension: nil))
+
+ 65 |             XCTAssertEqual(try ActionRegistry.resource(name), Data(contentsOf: url))
+
+    |                                                               |- error: call can throw but is not marked with 'try'
+
+    |                                                               |- note: did you mean to use 'try'?
+
+    |                                                               |- note: did you mean to handle error as optional value?
+
+    |                                                               `- note: did you mean to disable error propagation?
+
+ 66 |             _ = try JSONDecoder().decode(ActionJSON.self, from: ActionRegistry.resource(name))
+
+ 67 |         }
+
+[30/41] Compiling OtzariaActionCoreTests WireSecurityTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Contracts\WireSecurityTests.swift:65:63: error: call can throw but is not marked with 'try'
+
+ 63 |                      "backend-acceptance-cases.v1.json", "backend-capability-matrix.v1.json", "examples.v1.json"] {
+
+ 64 |             let url = try XCTUnwrap(Bundle.module.url(forResource: name, withExtension: nil))
+
+ 65 |             XCTAssertEqual(try ActionRegistry.resource(name), Data(contentsOf: url))
+
+    |                                                               |- error: call can throw but is not marked with 'try'
+
+    |                                                               |- note: did you mean to use 'try'?
+
+    |                                                               |- note: did you mean to handle error as optional value?
+
+    |                                                               `- note: did you mean to disable error propagation?
+
+ 66 |             _ = try JSONDecoder().decode(ActionJSON.self, from: ActionRegistry.resource(name))
+
+ 67 |         }
+
+[31/41] Compiling OtzariaActionCoreTests EngineTests.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Contracts\WireSecurityTests.swift:65:63: error: call can throw but is not marked with 'try'
+
+ 63 |                      "backend-acceptance-cases.v1.json", "backend-capability-matrix.v1.json", "examples.v1.json"] {
+
+ 64 |             let url = try XCTUnwrap(Bundle.module.url(forResource: name, withExtension: nil))
+
+ 65 |             XCTAssertEqual(try ActionRegistry.resource(name), Data(contentsOf: url))
+
+    |                                                               |- error: call can throw but is not marked with 'try'
+
+    |                                                               |- note: did you mean to use 'try'?
+
+    |                                                               |- note: did you mean to handle error as optional value?
+
+    |                                                               `- note: did you mean to disable error propagation?
+
+ 66 |             _ = try JSONDecoder().decode(ActionJSON.self, from: ActionRegistry.resource(name))
+
+ 67 |         }
+
+[32/41] Compiling OtzariaActionCoreTests MockPorts.swift
+C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Contracts\WireSecurityTests.swift:65:63: error: call can throw but is not marked with 'try'
+
+ 63 |                      "backend-acceptance-cases.v1.json", "backend-capability-matrix.v1.json", "examples.v1.json"] {
+
+ 64 |             let url = try XCTUnwrap(Bundle.module.url(forResource: name, withExtension: nil))
+
+ 65 |             XCTAssertEqual(try ActionRegistry.resource(name), Data(contentsOf: url))
+
+    |                                                               |- error: call can throw but is not marked with 'try'
+
+    |                                                               |- note: did you mean to use 'try'?
+
+    |                                                               |- note: did you mean to handle error as optional value?
+
+    |                                                               `- note: did you mean to disable error propagation?
+
+ 66 |             _ = try JSONDecoder().decode(ActionJSON.self, from: ActionRegistry.resource(name))
+
+ 67 |         }
+
+error: fatalError

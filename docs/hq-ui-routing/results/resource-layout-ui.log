@@ -1,0 +1,102 @@
+[0/1] Planning build
+Building for debugging...
+[0/16] Write swift-version-2807070033DA82CF.txt
+[1/15] Copying Fixtures
+[2/15] Copying catalog-status.json
+[3/15] Write sources
+[6/16] Emitting module OtzariaUIRouting
+[7/24] Compiling OtzariaUIRouting UIRouteCodec.swift
+[8/24] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[9/24] Compiling OtzariaUIRouting RouteSpec.swift
+[10/24] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[11/24] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[12/24] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[13/24] Compiling OtzariaUIRouting UIDiscoveryCancellationScope.swift
+[14/24] Compiling OtzariaUIRouting resource_bundle_accessor.swift
+[15/25] Wrapping AST for OtzariaUIRouting for debugging
+[17/26] Emitting module OtzariaUIRoutingTests
+[18/34] Compiling OtzariaUIRoutingTests CodecTests.swift
+[19/34] Compiling OtzariaUIRoutingTests GoldenAPITests.swift
+[20/34] Compiling OtzariaUIRoutingTests NavigationAuthorizationTests.swift
+[21/34] Compiling OtzariaUIRoutingTests ScenePortTests.swift
+[22/34] Compiling OtzariaUIRoutingTests DiscoveryReviewRegressionTests.swift
+[23/34] Compiling OtzariaUIRoutingTests DiscoveryTests.swift
+[24/34] Compiling OtzariaUIRoutingTests RegistryTests.swift
+[25/34] Compiling OtzariaUIRoutingTests resource_bundle_accessor.swift
+[26/35] Wrapping AST for OtzariaUIRoutingTests for debugging
+[27/35] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageDiscoveredTests.derived\all-discovered-tests.swift
+[28/35] Write sources
+[30/36] Emitting module OtzariaUIRoutingPackageDiscoveredTests
+[31/38] Compiling OtzariaUIRoutingPackageDiscoveredTests OtzariaUIRoutingTests.swift
+[32/38] Compiling OtzariaUIRoutingPackageDiscoveredTests all-discovered-tests.swift
+[33/39] C:\Users\DAVID\Code\Maktabah-hq-actions-core-20261115\Source\Otzaria\Actions\.build\resource-layout-20261115\x86_64-unknown-windows-msvc\debug\OtzariaUIRoutingPackageTests.derived\runner.swift
+[34/39] Wrapping AST for OtzariaUIRoutingPackageDiscoveredTests for debugging
+[35/39] Write sources
+[37/40] Emitting module OtzariaUIRoutingPackageTests
+[38/41] Compiling OtzariaUIRoutingPackageTests runner.swift
+[39/42] Wrapping AST for OtzariaUIRoutingPackageTests for debugging
+[40/42] Write Objects.LinkFileList
+[41/42] Linking OtzariaUIRoutingPackageTests.xctest
+Build complete! (74.17s)
+Test Suite 'Selected tests' started at 2026-11-15 15:26:22.947
+
+Test Suite 'CodecTests' started at 2026-11-15 15:26:22.990
+
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' started at 2026-11-15 15:26:22.990
+
+Test Case 'CodecTests.testDuplicateExactNumberAndBoundedIngress' passed (0.719 seconds)
+
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' started at 2026-11-15 15:26:23.709
+
+Test Case 'CodecTests.testExactUnsignedRevisionsAndFractionalRestorationFields' passed (0.215 seconds)
+
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' started at 2026-11-15 15:26:23.924
+
+Test Case 'CodecTests.testNoArbitrarySelectorsPathsAuthorityOrUnknownKeys' passed (1.73 seconds)
+
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' started at 2026-11-15 15:26:25.653
+
+Test Case 'CodecTests.testPrivateAndPublicGoldenCodecs' passed (0.625 seconds)
+
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' started at 2026-11-15 15:26:26.279
+
+Test Case 'CodecTests.testPublicEncodingCannotBypassValidationAndNormalizesOnlyBackend' passed (0.307 seconds)
+
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' started at 2026-11-15 15:26:26.586
+
+Test Case 'CodecTests.testPublicRejectsPrivateStateRevisionsAndPaths' passed (0.721 seconds)
+
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' started at 2026-11-15 15:26:27.307
+
+Test Case 'CodecTests.testRenameRemovedUnknownAndFutureVersion' passed (0.595 seconds)
+
+Test Suite 'CodecTests' passed at 2026-11-15 15:26:27.902
+
+	 Executed 7 tests, with 0 failures (0 unexpected) in 4.912 (4.912) seconds
+
+Test Suite 'GoldenAPITests' started at 2026-11-15 15:26:27.902
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' started at 2026-11-15 15:26:27.903
+
+Test Case 'GoldenAPITests.testGoldenPrivateAndPublicDTOs' passed (0.002 seconds)
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' started at 2026-11-15 15:26:27.905
+
+Test Case 'GoldenAPITests.testIDsAndSendableContracts' passed (0.0 seconds)
+
+Test Suite 'GoldenAPITests' passed at 2026-11-15 15:26:27.905
+
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 15:26:27.905
+
+	 Executed 9 tests, with 0 failures (0 unexpected) in 4.914 (4.914) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.002 seconds.
+
