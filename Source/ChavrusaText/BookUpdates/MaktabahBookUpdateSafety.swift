@@ -17,7 +17,7 @@ enum MaktabahBookUpdateSafety {
 
         var errorDescription: String? {
             switch self {
-            case .unsupportedBackend: "Books Updates is available only for a compatible Maktabah library."
+            case .unsupportedBackend: "Maktabah Books Updates is unavailable for this library source. Its update catalog is not compatible with the selected library."
             case .missingFile: "The required update database is missing or inaccessible. No database was created."
             case .incompatibleSchema: "This library does not support Maktabah book updates."
             case .changedLibrary: "The library changed during the update. Reopen Books Updates before continuing."
@@ -37,8 +37,91 @@ enum MaktabahBookUpdateSafety {
         URL(fileURLWithPath: canonical(path)).absoluteString + (readOnly ? "?mode=ro" : "?mode=rw")
     }
 
+    /// Consumes the caller's connection on both success and failure. SQLite owns
+    /// WAL/SHM cleanup: a busy checkpoint must never be followed by file deletion.
+    /// This preserves recovery data; it does not make separate commits atomic.
+    static func checkpointAndClose(_ db: OpaquePointer, schemas: [String] = ["main", "fts_db"]) throws {
+        defer { sqlite3_close_v2(db) }
+        for schema in schemas {
+            let rc = sqlite3_wal_checkpoint_v2(db, schema, SQLITE_CHECKPOINT_TRUNCATE, nil, nil)
+            guard rc == SQLITE_OK else {
+                let detail = String(cString: sqlite3_errmsg(db))
+                throw NSError(domain: "MaktabahBookUpdateRecovery", code: Int(rc), userInfo: [
+                    NSLocalizedDescriptionKey: "Unable to checkpoint book update database \(schema) (SQLite \(rc): \(detail)). Recovery files were preserved.",
+                ])
+            }
+        }
+    }
+
+    /// Strict CSV decoding lives downstream; the original parser discards escaped quotes
+    /// and accepts quotes in unquoted fields. Reject a malformed batch before staging.
+    static func catalogRows(_ csv: String) throws -> [[String]] {
+        guard csv.utf8.count <= 8 * 1024 * 1024 else { throw Failure.malformedCatalog }
+        enum State { case start, unquoted, quoted, closed }
+        var state = State.start
+        var rows: [[String]] = []
+        var row: [String] = []
+        var field = ""
+        let input = csv.hasPrefix("\u{FEFF}") ? csv.dropFirst() : csv[...]
+        for char in input {
+            guard char != "\0" else { throw Failure.malformedCatalog }
+            if state == .quoted {
+                if char == "\"" { state = .closed } else { field.append(char) }
+                continue
+            }
+            if state == .closed, char == "\"" {
+                field.append("\"")
+                state = .quoted
+                continue
+            }
+            switch char {
+            case ";":
+                row.append(field); field = ""; state = .start
+            case "\n", "\r\n", "\r":
+                row.append(field)
+                rows.append(row)
+                guard rows.count <= 100_000 else { throw Failure.malformedCatalog }
+                row = []; field = ""; state = .start
+            case "\"":
+                guard state == .start else { throw Failure.malformedCatalog }
+                state = .quoted
+            default:
+                guard state != .closed else { throw Failure.malformedCatalog }
+                field.append(char)
+                state = .unquoted
+            }
+        }
+        guard state != .quoted else { throw Failure.malformedCatalog }
+        if !row.isEmpty || !field.isEmpty || state == .closed {
+            row.append(field)
+            rows.append(row)
+        }
+        guard rows.count <= 100_000 else { throw Failure.malformedCatalog }
+        return rows
+    }
+
     static func validateCatalogText(_ csv: String) throws {
-        guard csv.filter({ $0 == "\"" }).count.isMultiple(of: 2) else { throw Failure.malformedCatalog }
+        _ = try catalogRows(csv)
+    }
+
+    static func validateCatalogIDs(_ rows: [[String]]) throws {
+        var seen = Set<Int>()
+        for row in rows where !row.allSatisfy({ $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }) {
+            guard let first = row.first, let id = Int(first), id > 0,
+                  seen.insert(id).inserted else { throw Failure.malformedCatalog }
+        }
+    }
+
+    private static func validDownloadID(_ value: String) -> Bool {
+        !value.isEmpty && value.utf8.allSatisfy {
+            (65...90).contains($0) || (97...122).contains($0) || (48...57).contains($0) || $0 == 45 || $0 == 95
+        }
+    }
+
+    static func validateAuthorCatalogRow(_ columns: [String]) throws {
+        guard columns.count == 3, let id = Int(columns[0]), id > 0,
+              let version = Int64(columns[1]), version >= 0,
+              validDownloadID(columns[2]) else { throw Failure.malformedCatalog }
     }
 
     static func validateStagingCapacity(requiredBytes: Int64, availableBytes: Int64) throws {
@@ -52,11 +135,11 @@ enum MaktabahBookUpdateSafety {
     }
 
     static func validateCatalogRow(_ columns: [String]) throws {
-        guard columns.count >= 6,
+        guard columns.count == 6,
               let id = Int(columns[0]), id > 0,
               let category = Int(columns[1]), category >= 0,
               let version = Int64(columns[2]), version >= 0,
-              !columns[3].isEmpty,
+              validDownloadID(columns[3]),
               let size = Int64(columns[4]), size >= 0,
               !columns[5].trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { throw Failure.malformedCatalog }
     }
@@ -166,11 +249,19 @@ enum MaktabahBookUpdateSafety {
     }
 
     #if !HQ_UPDATES_FIXTURE
+    /// Exhaustive on purpose: adding a backend must not opt it into a foreign
+    /// catalog based on a saved raw string or usesNativeMaktabahDataPath.
+    static func supportsLegacyUpdates(_ backend: BackendID) -> Bool {
+        switch backend {
+        case .otzaria, .sefaria, .sefariaEmbedded: false
+        }
+    }
+
     @MainActor
     static var isMaktabahActive: Bool {
         // Otzaria also uses the legacy data path. That flag is not update ownership.
         // Current downstream-only BackendID cases intentionally all fail this gate.
-        BackendCoordinator.shared.activeBackendID.rawValue == "maktabah" && !BackendCoordinator.shared.isTransitioning
+        supportsLegacyUpdates(BackendCoordinator.shared.activeBackendID) && !BackendCoordinator.shared.isTransitioning
     }
 
     static func preflight() async throws -> Context {
@@ -192,6 +283,9 @@ enum MaktabahBookUpdateSafety {
     /// Synchronous check used immediately before original SQL opens/mutations.
     static func requireCurrent(_ expected: Context? = operationContext) throws {
         let backend = UserDefaults.standard.string(forKey: BackendCoordinator.selectionDefaultsKey)
+        guard let backend, let identity = BackendID(rawValue: backend), supportsLegacyUpdates(identity) else {
+            throw Failure.unsupportedBackend
+        }
         try validateLibrary(backend: backend, main: AppConfig.mainDatabasePath, special: AppConfig.specialDatabasePath)
         if let expected {
             guard AppConfig.mainDatabasePath.map(canonical) == expected.main,

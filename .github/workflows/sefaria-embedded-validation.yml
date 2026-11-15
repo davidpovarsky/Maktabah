@@ -34,6 +34,11 @@ on:
         required: true
         type: boolean
         default: false
+      books_updates_check_only:
+        description: Only run disposable Books Updates safety fixtures and Apple SDK typecheck; no app/device acceptance
+        required: false
+        type: boolean
+        default: false
       hq_stage2_focused:
         description: One unsigned integrated iOS app build with immutable prebuilt inputs; no runtime or data
         required: true
@@ -64,20 +69,44 @@ permissions:
   contents: read
 
 concurrency:
-  group: sefaria-embedded-val-${{ github.ref }}-${{ (inputs.runtime27_mode == 'probe' || inputs.runtime27_mode == 'ui') && 'runtime27' || inputs.hq_stage2_focused && 'hq-stage2-focused' || inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}-${{ inputs.ui_diagnostic_cases != '' && 'diagnostic' || 'matrix' }}
+  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.books_updates_check_only && 'books-updates' || (inputs.runtime27_mode == 'probe' || inputs.runtime27_mode == 'ui') && 'runtime27' || inputs.hq_stage2_focused && 'hq-stage2-focused' || inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}-${{ inputs.ui_diagnostic_cases != '' && 'diagnostic' || 'matrix' }}
   cancel-in-progress: true
 
 jobs:
+  books-updates-check-only:
+    name: Books Updates Apple safety checks (no app runtime acceptance)
+    if: ${{ inputs.books_updates_check_only }}
+    runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
+    timeout-minutes: 15
+    steps:
+      - name: Reject conflicting acceptance inputs
+        if: ${{ inputs.run_production_release || inputs.source_ref != '' || inputs.ui_sdk_check_only || inputs.hq_stage2_focused || inputs.runtime27_mode == 'probe' || inputs.runtime27_mode == 'ui' || inputs.ui_diagnostic_cases != '' }}
+        run: |
+          echo "::error::Books Updates checks cannot request other acceptance modes."
+          exit 1
+      - uses: actions/checkout@v4
+      - name: Verify actual update safety sources with disposable databases
+        run: python3 tools/hq-updates-test-apple.py
+      - name: Upload exact Apple safety evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: books-updates-apple-safety
+          include-hidden-files: true
+          path: |
+            Tests/HQ/updates/.build/hq-updates-apple-report.json
+            Tests/HQ/updates/.build/hq-updates-apple.log
+
   runtime27:
     name: R27 real UI environment and acceptance
-    if: ${{ inputs.runtime27_mode == 'probe' || inputs.runtime27_mode == 'ui' }}
+    if: ${{ !inputs.books_updates_check_only && (inputs.runtime27_mode == 'probe' || inputs.runtime27_mode == 'ui') }}
     runs-on: xcode-27
     timeout-minutes: 180
     steps:
       - name: Require isolated immutable runtime request
         env:
           REQUESTED_SHA: ${{ inputs.hq_stage2_expected_sha }}
-          CONFLICT: ${{ inputs.hq_stage2_focused || inputs.ui_sdk_check_only || inputs.run_production_release || inputs.source_ref != '' || inputs.ui_diagnostic_cases != '' }}
+          CONFLICT: ${{ inputs.books_updates_check_only || inputs.hq_stage2_focused || inputs.ui_sdk_check_only || inputs.run_production_release || inputs.source_ref != '' || inputs.ui_diagnostic_cases != '' }}
         run: |
           [[ "$REQUESTED_SHA" =~ ^[a-f0-9]{40}$ ]] || { echo "::error::R27 requires an exact checkout SHA"; exit 1; }
           [[ "$CONFLICT" == false ]] || { echo "::error::R27 cannot combine unrelated modes"; exit 1; }
@@ -162,7 +191,7 @@ jobs:
 
   hq-stage2-focused:
     name: Focused unsigned Maktabah-iOS (no runtime or data)
-    if: ${{ inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
+    if: ${{ !inputs.books_updates_check_only && inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 40
     steps:
@@ -211,7 +240,7 @@ jobs:
 
   ui-sdk-check-only:
     name: Focused SDK and workspace checks (no app/runtime acceptance)
-    if: ${{ inputs.ui_sdk_check_only && !inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
+    if: ${{ !inputs.books_updates_check_only && inputs.ui_sdk_check_only && !inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 15
     steps:
@@ -239,7 +268,7 @@ jobs:
 
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
-    if: ${{ !inputs.ui_sdk_check_only && !inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
+    if: ${{ !inputs.books_updates_check_only && !inputs.ui_sdk_check_only && !inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 360
 
