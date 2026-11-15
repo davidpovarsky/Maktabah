@@ -1,2 +1,4 @@
 # Preserve console evidence byte-for-byte, including native Windows line endings.
 *.log -text
+# Preserve the emitted concurrency result JSON measured in its raw evidence manifest.
+swift6-action-review/*.json -text
