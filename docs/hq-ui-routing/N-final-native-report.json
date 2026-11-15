@@ -93,7 +93,7 @@
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift": "2b0f2f66e320ad9248bf373e17b09cfa820e54208732ea55e780517ab6b888a0",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "9dbb9ec2ca61340286a383992537e7738a5a25f40cbe8c7996423aa2908f1adb",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "5769088a93b37313bf6701d2c81d0a2667f9ac61ed58f49db9bc6aa5526ce355",
-    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "86197231af4c2abcb1364804c940c2a818bf96260fe7448bf30dc2315e4ccef8",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "75527662a7ad8440cdbfb32cca282da17f64c56673743cb42655fc29b0483a78",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "7a0d3542de1de9cfa909df284e894dc81edb7eca5968f5ddfad86d35e7fca41c",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "b65d2ef1ebf3a406f3678024298f1590251f12814c7efc7bfdd4536c78d16d93",
     "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift": "6a79fed35cf6549795202764257849ce485bdc3e988c444fdb6c586355779c31",
@@ -120,5 +120,23 @@
     "docs\\hq-ui-routing\\N_PROPOSED_NATIVE_HOOKS.diff": "f70489d7105315e3d478d68cd09f2f2ecd069ed6d4615efb213a8b61a245214b",
     "docs\\hq-ui-routing\\N_PROPOSED_NATIVE_LOG_RETENTION.diff": "21ff3b8ba00b194a49bfee7e90f3e71c00b4d70b7b4749c48edc50d109eb843e",
     "docs\\hq-ui-routing\\N_PROPOSED_PACKAGE_REGISTRATION.diff": "468a37902370fc19a0a40b7ffb9fb6a9a0670872aca0500bc4b5d0e31719f01a"
+  },
+  "appIntegrationSyntaxParse": {
+    "command": [
+      "swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios26.0-simulator",
+      "Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeIntents.swift",
+      "Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeRoutingComposition.swift",
+      "Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeRoutingHost.swift",
+      "Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeSceneBindings.swift",
+      "Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeSceneProjection.swift",
+      "Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeSceneSession.swift",
+      "Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeURLHandler.swift"
+    ],
+    "exitCode": 0,
+    "notAppleSDKCompilation": true
   }
 }
