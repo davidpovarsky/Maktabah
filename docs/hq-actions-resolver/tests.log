@@ -1,0 +1,99 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/4] Write sources
+[3/4] Emitting module OtzariaActionCoreTests
+[4/5] Compiling OtzariaActionCoreTests CatalogActionResolverTests.swift
+[5/12] C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageDiscoveredTests.derived\all-discovered-tests.swift
+[6/13] Wrapping AST for OtzariaActionCoreTests for debugging
+[7/13] Write sources
+[9/14] Emitting module OtzariaActionCorePackageDiscoveredTests
+[10/16] Compiling OtzariaActionCorePackageDiscoveredTests OtzariaActionCoreTests.swift
+[11/16] Compiling OtzariaActionCorePackageDiscoveredTests all-discovered-tests.swift
+[12/17] C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageTests.derived\runner.swift
+[13/18] Wrapping AST for OtzariaActionCorePackageDiscoveredTests for debugging
+[14/18] Write sources
+[16/19] Emitting module OtzariaActionCorePackageTests
+[17/20] Compiling OtzariaActionCorePackageTests runner.swift
+[18/20] Write Objects.LinkFileList
+[19/20] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (22.41s)
+Test Suite 'Selected tests' started at 2026-11-15 03:05:57.001
+
+Test Suite 'CatalogActionResolverTests' started at 2026-11-15 03:05:57.004
+
+Test Case 'CatalogActionResolverTests.testBudgetsFailWithoutSearchingOnlyPrefix' started at 2026-11-15 03:05:57.004
+
+Test Case 'CatalogActionResolverTests.testBudgetsFailWithoutSearchingOnlyPrefix' passed (0.003 seconds)
+
+Test Case 'CatalogActionResolverTests.testDeadlineAndCancellationBeforeAndDuringSourceAwait' started at 2026-11-15 03:05:57.007
+
+Test Case 'CatalogActionResolverTests.testDeadlineAndCancellationBeforeAndDuringSourceAwait' passed (0.001 seconds)
+
+Test Case 'CatalogActionResolverTests.testDeadlineExpiresAcrossEachAwaitAndUnknownRPCEpoch' started at 2026-11-15 03:05:57.008
+
+Test Case 'CatalogActionResolverTests.testDeadlineExpiresAcrossEachAwaitAndUnknownRPCEpoch' passed (0.001 seconds)
+
+Test Case 'CatalogActionResolverTests.testDuplicateTitlesEditionsAliasesAndLimitOne' started at 2026-11-15 03:05:57.008
+
+Test Case 'CatalogActionResolverTests.testDuplicateTitlesEditionsAliasesAndLimitOne' passed (0.009 seconds)
+
+Test Case 'CatalogActionResolverTests.testGenerationBackendAndEpochChangeAcrossEveryDataAwait' started at 2026-11-15 03:05:57.017
+
+Test Case 'CatalogActionResolverTests.testGenerationBackendAndEpochChangeAcrossEveryDataAwait' passed (0.001 seconds)
+
+Test Case 'CatalogActionResolverTests.testLargeCatalogLastMatchAndDeadlineDuringActorScan' started at 2026-11-15 03:05:57.018
+
+Test Case 'CatalogActionResolverTests.testLargeCatalogLastMatchAndDeadlineDuringActorScan' passed (0.065 seconds)
+
+Test Case 'CatalogActionResolverTests.testMalformedAndCrossBackendInputsBeforeProvider' started at 2026-11-15 03:05:57.082
+
+Test Case 'CatalogActionResolverTests.testMalformedAndCrossBackendInputsBeforeProvider' passed (0.0 seconds)
+
+Test Case 'CatalogActionResolverTests.testMalformedReferenceCandidatesAndCandidateBudgetFailClosed' started at 2026-11-15 03:05:57.083
+
+Test Case 'CatalogActionResolverTests.testMalformedReferenceCandidatesAndCandidateBudgetFailClosed' passed (0.001 seconds)
+
+Test Case 'CatalogActionResolverTests.testMissingVersusUnavailableAndRedactedFailure' started at 2026-11-15 03:05:57.084
+
+Test Case 'CatalogActionResolverTests.testMissingVersusUnavailableAndRedactedFailure' passed (0.0 seconds)
+
+Test Case 'CatalogActionResolverTests.testReferenceAmbiguityIsStableCappedAndFullyValidated' started at 2026-11-15 03:05:57.084
+
+Test Case 'CatalogActionResolverTests.testReferenceAmbiguityIsStableCappedAndFullyValidated' passed (0.006 seconds)
+
+Test Case 'CatalogActionResolverTests.testReferenceFidelityUnknownEmbeddedAndWrongWork' started at 2026-11-15 03:05:57.090
+
+Test Case 'CatalogActionResolverTests.testReferenceFidelityUnknownEmbeddedAndWrongWork' passed (0.0 seconds)
+
+Test Case 'CatalogActionResolverTests.testRevisionIdentityAndOpaqueKeyOrderingAreNotConcatenated' started at 2026-11-15 03:05:57.091
+
+Test Case 'CatalogActionResolverTests.testRevisionIdentityAndOpaqueKeyOrderingAreNotConcatenated' passed (0.001 seconds)
+
+Test Case 'CatalogActionResolverTests.testSourceNormalizationPreservesNikudAndCase' started at 2026-11-15 03:05:57.091
+
+Test Case 'CatalogActionResolverTests.testSourceNormalizationPreservesNikudAndCase' passed (0.002 seconds)
+
+Test Case 'CatalogActionResolverTests.testSourceSubstitutionAndMalformedCatalogRejected' started at 2026-11-15 03:05:57.093
+
+Test Case 'CatalogActionResolverTests.testSourceSubstitutionAndMalformedCatalogRejected' passed (0.0 seconds)
+
+Test Case 'CatalogActionResolverTests.testThreeBackendsAndExactSectionFocus' started at 2026-11-15 03:05:57.094
+
+Test Case 'CatalogActionResolverTests.testThreeBackendsAndExactSectionFocus' passed (0.001 seconds)
+
+Test Suite 'CatalogActionResolverTests' passed at 2026-11-15 03:05:57.095
+
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.09 (0.09) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 03:05:57.095
+
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.09 (0.09) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
