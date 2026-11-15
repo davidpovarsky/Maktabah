@@ -1,0 +1,11 @@
+{
+  "test_source": "850bdddfc8f2f3a70baf796ed50ff5771131c914",
+  "app_source_unchanged": "c42e537ca9e2b22d7693b9a935386314ebbf73ce",
+  "original_window_oracles": "All current canonical UI oracles/timeouts unchanged after removing only declared added input-method-commit block. Existing genuineHIDA/oneEscape, actual pointer-clear/filter/Inspector/text/locator/resize/restore assertions retained.",
+  "input_method_refinement": "NativeA/Backspace pair first clears actual composing input and native chooser; independent original XCTestA then actual pointer-owned Clear Button remain required. No Escape retry or synthetic callback.",
+  "cleanup": "Only failed-test cleanup closes remaining real palette/candidate via nativeBackspace/actualCloseButton before systemWindowControls; actual input-count0 and original measuredfullscreen postcondition still required.",
+  "isolation": "Same7namedcases; sequential11-reader5 and11-window2 disposable devices, one job/build/watcher. Reader cases independent of any narrow-window cleanup failure; no test retry.",
+  "historical8_and_launch": "Exact method bodies and launch override retained; no fresh pass inferred.",
+  "privacy": "Private sendNativeHID helper exactly matches corrected78e97d25.14local boundary checks retained; no extra native request for privacy. This native request addresses actual input-method/window-isolation failures and unaccepted body paging.",
+  "native_status": "PENDING; physical iPad NOT_RUN"
+}
