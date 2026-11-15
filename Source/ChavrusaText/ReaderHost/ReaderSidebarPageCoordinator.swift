@@ -119,6 +119,12 @@ struct Exact9401WorkspaceLifecycle: ViewModifier {
                     if let workspace {
                         StudyWorkspaceCheckpointObserver(manager: manager, workspace: workspace)
                     }
+                    #if DEBUG
+                    // The original iPad split uses this scene-lived adapter;
+                    // ChavrusaReaderHost is not mounted on that path. Reuse the
+                    // existing read-only observer at the actual active host.
+                    ReaderViewportAcceptanceObserver().frame(width: 0, height: 0).accessibilityHidden(true)
+                    #endif
                 }
             }
             .task(id: sceneID) {

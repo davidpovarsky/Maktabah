@@ -9,7 +9,7 @@ This manager-owned branch starts at frozen native candidate `0436775d85893225005
 - Canonical workspace reference storage replaces the lifecycle's stored optional reference through exactly three downstream hunks. R and U explicitly released those hunks to the manager. The actual mount and refresh closures read the same weak source; synchronous replacement invalidates the original lease before publication, including equal-selection replacement and ABA.
 - Three new app source files have exact reference/group/build-file/Sources edges in the existing iOS target. Six new PBX definitions introduce no duplicate IDs; the five preexisting duplicate IDs are unchanged. This is static graph validation, not Xcode parsing or compilation.
 
-The lifecycle file in base043 lacks U's later six-line debug viewport observer. This change does not delete that block from U's preserved branch. Its separate source/dependency handoff is pending; no whole-file substitution was made.
+After U's exact dependency handoff `03030e7fd7c1cda60b46da3ac2bcddc97e9e382b`, the six-line DEBUG viewport observer mount was added separately. Its three existing declaration/dependency blobs already match base043; no dependency or protected wrapper was changed. Removing only those six lines reconstructs the manager's three owner hunks byte-for-byte. The observer starts no timer without the report environment and remains disabled in Release. U's historical run43733876827 recorded two named UI passes and three failures on its own source; these are preserved as historical evidence, not acceptance of this composition. No whole-file substitution was made.
 
 ## Actual manager verification
 
