@@ -1,0 +1,7 @@
+{
+  "source_head": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
+  "adapter_sha256": "bb1c8a9980e0751ddf39f6ca341bf2472beaf3c9640f0f1be98252fa9c97e679",
+  "executed": "real adapter control flow + real models/store/JSON persistence; controlled actor-port doubles",
+  "native_UI_tests_executed": 0,
+  "exit_code": 1
+}

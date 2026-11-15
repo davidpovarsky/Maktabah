@@ -88,8 +88,9 @@ final class StudyWorkspaceNavigationAdapter {
         let previousBackend = BackendCoordinator.shared.activeBackendID
         let previousGroup = liveGroupID
         let previousGeneration = BackendCoordinator.shared.generation
+        let previousSelection = selection
         guard let target = store.snapshot?.groups.first(where: { $0.id == id }) else { throw StudyWorkspaceError.invalidMembership }
-        let requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
+        var requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
         let desiredBackend = StudyWorkspaceProjectionPolicy.backend(restoring: restoringBackend, requestedID: requested,
                                                                    documents: target.tabs, fallback: previousBackend)
         let documents = target.tabs.filter { $0.backend == desiredBackend }
@@ -101,7 +102,7 @@ final class StudyWorkspaceNavigationAdapter {
             }
             // Every document is resolved against the target catalog while the
             // outgoing reader and committed backend are still intact.
-            let staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
+            var staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
                 let resolved = try ChavrusaTextTargetBackendBookResolver.shared.resolveBook(
                     id: document.session.bookId,
                     backendLocator: document.session.backendLocator?.workKey ?? document.session.locator?.workKey,
@@ -114,10 +115,32 @@ final class StudyWorkspaceNavigationAdapter {
                 return try hydrate(document)
             }
             try await BackendCoordinator.shared.commitCheckedAsync(desiredBackend, beforeCommit: {
+                var startupDocuments: [ReaderDocumentTab]?
+                if restoringBackend != nil, previousGroup == nil {
+                    try Task.checkCancellation()
+                    guard BackendCoordinator.shared.activeBackendID == previousBackend,
+                          BackendCoordinator.shared.generation == previousGeneration else {
+                        throw BackendTransitionError.transitionSuperseded
+                    }
+                    guard selection == previousSelection else { throw StudyWorkspaceError.invalidMembership }
+                    // A native open can finish while the initial empty restore awaits
+                    // its catalog/backend. Adopt those live instances at the last
+                    // throwing boundary, before publication can overwrite them.
+                    if previousTabs.isEmpty, target.tabs.isEmpty, desiredBackend == previousBackend,
+                       !manager.openTabs.isEmpty {
+                        staged = manager.openTabs
+                        requested = manager.activeTabId
+                        startupDocuments = capture(staged, backend: desiredBackend)
+                    }
+                }
                 let outgoingDocuments = capture(previousTabs, backend: previousBackend)
                 try store.transaction { value in
                     guard let current = value.groups.first(where: { $0.id == id }), current.tabs == target.tabs,
                           current.profileID == target.profileID else { throw StudyWorkspaceError.invalidMembership }
+                    if let startupDocuments, let index = value.groups.firstIndex(where: { $0.id == id }) {
+                        value.groups[index].tabs = startupDocuments
+                        value.groups[index].activeTabID = (staged.first(where: { $0.id == requested }) ?? staged.first)?.id
+                    }
                     if let previousGroup,
                        let index = value.groups.firstIndex(where: { $0.id == previousGroup }) {
                         let merged = StudyWorkspaceProjectionPolicy.merging(live: outgoingDocuments,

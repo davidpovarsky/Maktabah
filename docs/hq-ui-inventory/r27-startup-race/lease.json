@@ -1,0 +1,17 @@
+{
+  "owner_thread": "01a1dc8a-c7c4-7080-8a49-d61dd056fa47",
+  "owner": "U / Maya",
+  "exact_production_path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+  "base": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
+  "branch": "codex/otzaria-r27-workspace-race-20261115",
+  "authority": "Existing R27 authorization to fix genuine runtime defects through original source owners; exact adjacent downstream lease extension",
+  "verification": "No path owner or broad Source/ChavrusaText/** owner found in current leases/lanes; scoped git status clean in root/T/U worktrees",
+  "exclusive": true,
+  "scope": "Initial startup concurrent live-tab preservation across attach/catalog await; preserve same scene/backend/generation and actual VM/active UUID; retain intentional empty-group behavior",
+  "owned_regression_evidence": "docs/hq-ui-inventory/r27-startup-race/**",
+  "no_broad_rewrite": true,
+  "integration_owner": "01a1dc86-0c7b-7ee3-a098-2b4004ed686d",
+  "qa_owner": "01a1dc8b-f9bd-7d63-a628-7ad3d06196e8",
+  "runtime_causality": "Pending affected T/Q runtime retest; deterministic source race reported reproduced",
+  "existing_UI01_work_preserved": true
+}

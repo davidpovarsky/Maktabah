@@ -1,0 +1,40 @@
+{
+  "source_commit": "48d6d7b634e82b8cf4212018d3f089de60958bb5",
+  "source_base": "ceaf655fcdad64fdadfaf969d443237dab71a7d5",
+  "changed_production_paths": [
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"
+  ],
+  "adapter_assertions": {
+    "baseline_pass": 108,
+    "baseline_fail": 114,
+    "corrected_pass": 222,
+    "corrected_fail": 0
+  },
+  "existing_workspace_contracts_pass": 61,
+  "native_UI_tests_executed_by_U": 0,
+  "native_R27_prior_result": {
+    "passed": 5,
+    "failed": 4,
+    "run": 43681096257,
+    "new_patch_runtime": "PENDING_T_Q"
+  },
+  "artifact_hash_normalization": "UTF-8 text with CRLF normalized to LF",
+  "artifact_lf_sha256": {
+    "baseline-expanded-compile.log": "642d8b80588c0315c59a8a1cde0e0e9cc2a93bbe16895a82c5ad3fb231de82fe",
+    "baseline-expanded-report.json": "09790aa2b94f738480cf2447cd5f6a23d4208d38d6f2d7b222484cb3a6a1a729",
+    "baseline-expanded-results.log": "88646be851afa1b13a3b4a78f1c0ef17f4214f4941518bacbeca410babbd2672",
+    "baseline-report.json": "6381d742c509bb2feae707930141f8aaf797c7e9207d254923ad8ab106d6e2f7",
+    "baseline-results.log": "c3b0be23603142d9a5c0f16166a0e3d70759cb048274ef5149558c226bc95b2f",
+    "compile.log": "8adfa129a7f7ba7ae1771e0391afd58296585b5a95227af4c29c963e5a03e8c3",
+    "DIAGNOSIS.md": "83a68d3b91d323eca2d04af5fbc690bdbb12222ebb875a61a6be53a257098868",
+    "FixturePorts.swift": "a4ea009668eb58bec85e0d515f2f058c5ae72f199d64e8b30127637d9a527449",
+    "lease.json": "38dad152c8021f021e7d3fdfe460ab9e132f81e7728b497f756b4d80c9dd0790",
+    "Regression.swift": "ac443c3442ad82a2453ef2acaf626d07012f96d5a705d9a5ce8e17b93b107c12",
+    "report.json": "4842d04ef98b39a1e4e266294dd693c2128648ff04a475d3152258d81edf7df6",
+    "results.log": "f2848e9342fadbb4482deb8fc5a8810276462f660b1f268bb9b95a234ffa67b6",
+    "run_regression.py": "0f3a7fd69906ba333ab7b2f4be7494130e753054248d7373baad935ef36e09de",
+    "source.patch": "e42cb7cdca3fbe1aa7c43d6753594038ceea76f16b99ccb511be779060f6cc33",
+    "workspace-compile.log": "f23bad586f02c2ba815017a280a14e2cd545c75b794b98925842000f76661c16",
+    "workspace-test-results.log": "71f9defc8636f7dc20853da70f92b4b6ce953fbef398575fb9e3b773e337fb8b"
+  }
+}
