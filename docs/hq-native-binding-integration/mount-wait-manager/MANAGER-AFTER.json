@@ -1,0 +1,18 @@
+{
+  "exit": 0,
+  "final": [
+    "7",
+    "0"
+  ],
+  "warnings": 0,
+  "passedMethods": [
+    "NMountWaitTests.testCancellationBeforeEntryRefusesEvenAlreadyMountedScene",
+    "NMountWaitTests.testCancellationBetweenEntryCheckAndContinuationNeverQueues",
+    "NMountWaitTests.testDuplicateAmbiguousAndFiniteCapacityRefuseWithoutStealingWaiters",
+    "NMountWaitTests.testExactAlreadyMountedManagerReturnsWithoutWaiter",
+    "NMountWaitTests.testMountResumesOnlyMatchingManagerAndCleansLedger",
+    "NMountWaitTests.testOldCancellationTaskCannotRemoveOrResumeReplacementToken",
+    "NMountWaitTests.testQueuedCancellationResumesAndRemovesItsOwnWaiter"
+  ],
+  "rawSHA256": "77bd6465ff482383ba9b9a822cf33e962a7cc3b4103621674e728163ed0ca6ce"
+}

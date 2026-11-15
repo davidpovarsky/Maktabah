@@ -1,0 +1,14 @@
+{
+  "compileExit": 1,
+  "uniqueActualMethodErrorSites": [
+    [
+      "ActualWaitForMount_ExplicitNativeBoundary.swift:101:33",
+      "reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit"
+    ],
+    [
+      "ActualWaitForMount_ExplicitNativeBoundary.swift:102:17",
+      "reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit"
+    ]
+  ],
+  "executedTests": 0
+}

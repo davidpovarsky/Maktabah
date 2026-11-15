@@ -1,0 +1,45 @@
+[0/1] Planning build
+Building for debugging...
+[0/14] Write swift-version-2807070033DA82CF.txt
+[1/11] Write sources
+[3/12] Emitting module ChavrusaUIRoutingHostTests
+[4/14] Compiling ChavrusaUIRoutingHostTests ActualWaitForMount_ExplicitNativeBoundary.swift
+[5/14] Compiling ChavrusaUIRoutingHostTests NMountWaitTests.swift
+[6/15] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[7/15] C:\Users\DAVID\Code\.nb-app-manager\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[8/15] Write sources
+[10/16] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[11/18] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[12/18] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[13/19] C:\Users\DAVID\Code\.nb-app-manager\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[14/19] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[15/19] Write sources
+[17/20] Emitting module ChavrusaUIRoutingHostPackageTests
+[18/21] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[19/21] Write Objects.LinkFileList
+[20/21] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (29.58s)
+Test Suite 'Selected tests' started at 2026-11-15 21:04:42.312
+Test Suite 'NMountWaitTests' started at 2026-11-15 21:04:42.344
+Test Case 'NMountWaitTests.testCancellationBeforeEntryRefusesEvenAlreadyMountedScene' started at 2026-11-15 21:04:42.344
+Test Case 'NMountWaitTests.testCancellationBeforeEntryRefusesEvenAlreadyMountedScene' passed (0.007 seconds)
+Test Case 'NMountWaitTests.testCancellationBetweenEntryCheckAndContinuationNeverQueues' started at 2026-11-15 21:04:42.352
+Test Case 'NMountWaitTests.testCancellationBetweenEntryCheckAndContinuationNeverQueues' passed (0.0 seconds)
+Test Case 'NMountWaitTests.testDuplicateAmbiguousAndFiniteCapacityRefuseWithoutStealingWaiters' started at 2026-11-15 21:04:42.352
+Test Case 'NMountWaitTests.testDuplicateAmbiguousAndFiniteCapacityRefuseWithoutStealingWaiters' passed (0.002 seconds)
+Test Case 'NMountWaitTests.testExactAlreadyMountedManagerReturnsWithoutWaiter' started at 2026-11-15 21:04:42.354
+Test Case 'NMountWaitTests.testExactAlreadyMountedManagerReturnsWithoutWaiter' passed (0.0 seconds)
+Test Case 'NMountWaitTests.testMountResumesOnlyMatchingManagerAndCleansLedger' started at 2026-11-15 21:04:42.354
+Test Case 'NMountWaitTests.testMountResumesOnlyMatchingManagerAndCleansLedger' passed (0.001 seconds)
+Test Case 'NMountWaitTests.testOldCancellationTaskCannotRemoveOrResumeReplacementToken' started at 2026-11-15 21:04:42.355
+Test Case 'NMountWaitTests.testOldCancellationTaskCannotRemoveOrResumeReplacementToken' passed (0.001 seconds)
+Test Case 'NMountWaitTests.testQueuedCancellationResumesAndRemovesItsOwnWaiter' started at 2026-11-15 21:04:42.356
+Test Case 'NMountWaitTests.testQueuedCancellationResumesAndRemovesItsOwnWaiter' passed (0.001 seconds)
+Test Suite 'NMountWaitTests' passed at 2026-11-15 21:04:42.356
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.012 (0.012) seconds
+Test Suite 'Selected tests' passed at 2026-11-15 21:04:42.356
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.012 (0.012) seconds
+◊ Test run started.
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+→ Target Platform: x86_64-unknown-windows-msvc
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.

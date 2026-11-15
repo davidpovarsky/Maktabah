@@ -1,0 +1,96 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-2807070033DA82CF.txt
+[1/13] Write sources
+[3/10] Emitting module ChavrusaUIRoutingHostTests
+[4/12] Compiling ChavrusaUIRoutingHostTests ActualWaitForMount_ExplicitNativeBoundary.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:101:33: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+ 98 |             }
+
+ 99 |         } onCancel: { [weak self] in
+
+100 |             Task { @MainActor in
+
+    |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+101 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+    |                                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+    |                                 `- note: reference 'self.' explicitly
+
+102 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+103 |             }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:102:17: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+ 98 |             }
+
+ 99 |         } onCancel: { [weak self] in
+
+100 |             Task { @MainActor in
+
+    |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+101 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+102 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+    |                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+    |                 `- note: reference 'self.' explicitly
+
+103 |             }
+
+104 |         }
+
+[5/12] Compiling ChavrusaUIRoutingHostTests NMountWaitTests.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:101:33: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+ 98 |             }
+
+ 99 |         } onCancel: { [weak self] in
+
+100 |             Task { @MainActor in
+
+    |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+101 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+    |                                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+    |                                 `- note: reference 'self.' explicitly
+
+102 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+103 |             }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:102:17: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+ 98 |             }
+
+ 99 |         } onCancel: { [weak self] in
+
+100 |             Task { @MainActor in
+
+    |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+101 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+102 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+    |                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+    |                 `- note: reference 'self.' explicitly
+
+103 |             }
+
+104 |         }
+
+error: fatalError

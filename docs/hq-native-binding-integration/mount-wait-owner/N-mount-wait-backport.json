@@ -1,0 +1,17 @@
+{
+  "base": "0436775d85893225005f29baf0aa3a20d7b88317",
+  "base_source_git_blob": "075b89a58331b1e5cce4b137de54ce9b169bc143",
+  "production_path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+  "patch": "N_043_MOUNT_WAIT_EXPLICIT_SELF_UNAPPLIED.diff",
+  "patch_sha256": "17da2d4acddcbc0d297e76883fbcec75da22733dfbc1a9fee966f2b825144e2f",
+  "git_apply_check_exit": 0,
+  "separate_candidate_98_apply_check_exit": 0,
+  "changed_lines": 2,
+  "only_change": "self. prefix for two mountWaiters accesses inside nested MainActor cancellation Task",
+  "before_complete_method_sha256": "a4957401effc6ca6f94b9330d0caee802711fbc3980c0ba0fa66347443531d60",
+  "after_complete_method_sha256": "b18897207e52e1ae2009aadc8dd7ba77ec899a1b70836d4b5403ea09c2148476",
+  "complete_future_and_frozen_methods_match_before_and_after": true,
+  "new_public_API_or_v2_in_backport": false,
+  "manager_or_frozen_tree_modified": false,
+  "native_SDK_retry": "NOT_REQUESTED_NOT_RUN"
+}

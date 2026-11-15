@@ -6,3 +6,7 @@ docs/hq-native-binding-integration/*.json -text whitespace=-blank-at-eol
 
 # Exact portable native-hook verification artifacts.
 docs/hq-native-binding-integration/approved-hook-checks/** -text whitespace=-blank-at-eol
+
+# Exact compiler correction source receipts and portable execution.
+docs/hq-native-binding-integration/mount-wait-owner/** -text whitespace=-blank-at-eol
+docs/hq-native-binding-integration/mount-wait-manager/** -text whitespace=-blank-at-eol

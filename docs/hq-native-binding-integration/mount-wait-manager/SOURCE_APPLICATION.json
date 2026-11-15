@@ -1,0 +1,9 @@
+{
+  "ownerPacket": "0b3def76cdfa5b48ec183c2b886f0e0a7f98c7ee",
+  "patchSHA256": "17da2d4acddcbc0d297e76883fbcec75da22733dfbc1a9fee966f2b825144e2f",
+  "ownerRawLogsAndInputHashesVerified": true,
+  "appliedSourceBlob": "bbed5237fecc5cc7fc753b84ff0df9ae5b3259e5",
+  "sourceDiff": "2added/2removed: onlyselfprefixes",
+  "managerStrictCheck": "PENDING",
+  "noNativeRunOrRetry": true
+}

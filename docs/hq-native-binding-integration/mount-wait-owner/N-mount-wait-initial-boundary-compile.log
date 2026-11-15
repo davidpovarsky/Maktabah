@@ -1,0 +1,160 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-2807070033DA82CF.txt
+[1/13] Write sources
+[3/10] Emitting module ChavrusaUIRoutingHostTests
+[4/12] Compiling ChavrusaUIRoutingHostTests ActualWaitForMount_ExplicitNativeBoundary.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:47:41: error: main actor-isolated property 'mountWaiters' cannot be accessed from outside of the actor
+
+45 |         let clock = SystemActionClock()
+
+46 |         try await NativeObservationDeadline.run(until: clock.now() + 5_000_000_000, clock: clock) { [self] in
+
+47 |             for await _ in changes { if mountWaiters.count == count { return } }
+
+   |                                         `- error: main actor-isolated property 'mountWaiters' cannot be accessed from outside of the actor
+
+48 |             throw ActionPortError.unavailable
+
+49 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:63:46: error: main actor-isolated property 'primed' cannot be accessed from outside of the actor
+
+61 |         let clock = SystemActionClock()
+
+62 |         try await NativeObservationDeadline.run(until: clock.now() + 5_000_000_000, clock: clock) { [self] in
+
+63 |             for await _ in primeChanges { if primed[manager] != nil { return } }
+
+   |                                              `- error: main actor-isolated property 'primed' cannot be accessed from outside of the actor
+
+64 |             throw ActionPortError.unavailable
+
+65 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:87:33: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+84 |             }
+
+85 |         } onCancel: { [weak self] in
+
+86 |             Task { @MainActor in
+
+   |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+87 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+   |                                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+   |                                 `- note: reference 'self.' explicitly
+
+88 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+89 |             }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:88:17: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+84 |             }
+
+85 |         } onCancel: { [weak self] in
+
+86 |             Task { @MainActor in
+
+   |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+87 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+88 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+   |                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+   |                 `- note: reference 'self.' explicitly
+
+89 |             }
+
+90 |         }
+
+[5/12] Compiling ChavrusaUIRoutingHostTests NMountWaitTests.swift
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:47:41: error: main actor-isolated property 'mountWaiters' cannot be accessed from outside of the actor
+
+45 |         let clock = SystemActionClock()
+
+46 |         try await NativeObservationDeadline.run(until: clock.now() + 5_000_000_000, clock: clock) { [self] in
+
+47 |             for await _ in changes { if mountWaiters.count == count { return } }
+
+   |                                         `- error: main actor-isolated property 'mountWaiters' cannot be accessed from outside of the actor
+
+48 |             throw ActionPortError.unavailable
+
+49 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:63:46: error: main actor-isolated property 'primed' cannot be accessed from outside of the actor
+
+61 |         let clock = SystemActionClock()
+
+62 |         try await NativeObservationDeadline.run(until: clock.now() + 5_000_000_000, clock: clock) { [self] in
+
+63 |             for await _ in primeChanges { if primed[manager] != nil { return } }
+
+   |                                              `- error: main actor-isolated property 'primed' cannot be accessed from outside of the actor
+
+64 |             throw ActionPortError.unavailable
+
+65 |         }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:87:33: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+84 |             }
+
+85 |         } onCancel: { [weak self] in
+
+86 |             Task { @MainActor in
+
+   |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+87 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+   |                                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+   |                                 `- note: reference 'self.' explicitly
+
+88 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+89 |             }
+
+
+
+C:\Users\DAVID\.codex\tmp\n-joint-d931-050\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\ActualWaitForMount_ExplicitNativeBoundary.swift:88:17: error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+84 |             }
+
+85 |         } onCancel: { [weak self] in
+
+86 |             Task { @MainActor in
+
+   |                  `- note: capture 'self' explicitly to enable implicit 'self' in this closure
+
+87 |                 guard let self, mountWaiters[managerID]?.token == token else { return }
+
+88 |                 mountWaiters.removeValue(forKey: managerID)?.continuation.resume(throwing: CancellationError())
+
+   |                 |- error: reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit
+
+   |                 `- note: reference 'self.' explicitly
+
+89 |             }
+
+90 |         }
+
+error: fatalError

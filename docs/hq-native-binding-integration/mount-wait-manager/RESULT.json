@@ -1,0 +1,26 @@
+{
+  "ownerPacket": "0b3def76cdfa5b48ec183c2b886f0e0a7f98c7ee",
+  "managerOriginalErrors": [
+    [
+      "ActualWaitForMount_ExplicitNativeBoundary.swift:101:33",
+      "reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit"
+    ],
+    [
+      "ActualWaitForMount_ExplicitNativeBoundary.swift:102:17",
+      "reference to property 'mountWaiters' in closure requires explicit use of 'self' to make capture semantics explicit"
+    ]
+  ],
+  "managerActualFocusedMethods": 7,
+  "failures": 0,
+  "compilerWarnings": 0,
+  "sameBoundaryTestsAndWaiterType": true,
+  "completeMethodBeforeSHA256": "a4957401effc6ca6f94b9330d0caee802711fbc3980c0ba0fa66347443531d60",
+  "completeMethodAfterSHA256": "b18897207e52e1ae2009aadc8dd7ba77ec899a1b70836d4b5403ea09c2148476",
+  "rawHashes": {
+    "MANAGER-BEFORE.log": "3e9b34e183cdba831aac94c292f5c0543fc1435315018405f9ed4395880d707c",
+    "MANAGER-AFTER.log": "77bd6465ff482383ba9b9a822cf33e962a7cc3b4103621674e728163ed0ca6ce"
+  },
+  "nativeSDK": "NOT_RUN",
+  "wholePrevious115NotRerunOrRecounted": true,
+  "sourceChange": "2selfprefixes only; native FoundationTask semantics with explicit registration/replacement ledger shells"
+}
