@@ -1,0 +1,31 @@
+[
+  {
+    "suite": "cache",
+    "compile_exit": 0,
+    "test_exit": 0,
+    "compile_and_test_seconds": 11.081
+  },
+  {
+    "suite": "service",
+    "compile_exit": 0,
+    "test_exit": 0,
+    "compile_and_test_seconds": 12.124
+  },
+  {
+    "suite": "bridge",
+    "compile_exit": 0,
+    "test_exit": 0,
+    "compile_and_test_seconds": 21.951
+  },
+  {
+    "suite": "render",
+    "compile_exit": 0,
+    "test_exit": 0,
+    "compile_and_test_seconds": 9.092
+  },
+  {
+    "suite": "sqlite",
+    "test_exit": 0,
+    "authority": "Python SQLite in-memory fixture, not production plan/performance"
+  }
+]

@@ -45,10 +45,12 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
 
     func section(at locator: TextLocator) async throws -> LibraryTextSection {
         #if os(iOS)
-        let backgroundTask = Task.detached(priority: .userInitiated) { () -> LibraryTextSection in
+        let backgroundTask = Task.detached(priority: .userInitiated) { () -> (section: LibraryTextSection, generation: UInt64, mode: OtzariaUnitMode) in
             try Task.checkCancellation()
             guard locator.backend == .otzaria,
                   case .legacyLine(let line) = locator.position else { throw LibraryBackendError.invalidLocator }
+            let bridge = OtzariaMaktabahBridge.shared
+            let generation = try bridge.withDatabase { _ in bridge.generationSnapshot() }
             let bookID: Int?
             if locator.workKey.hasPrefix("book:"),
                let parsed = Int(locator.workKey.dropFirst("book:".count)) {
@@ -68,9 +70,13 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
                 : OtzariaMaktabahBridge.shared.getReadingUnit(bookId: bookID, containingLineIndex: line, mode: mode) {
                 let previous = OtzariaMaktabahBridge.shared.getPreviousReadingUnitDescriptor(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode)
                 let next = OtzariaMaktabahBridge.shared.getNextReadingUnitDescriptor(bookId: bookID, afterLineIndex: unit.endLineIndex, mode: mode)
-                return OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next)
+                try Task.checkCancellation()
+                guard generation == bridge.generationSnapshot(), mode == bridge.currentReadingUnitMode else { throw CancellationError() }
+                return (OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next), generation, mode)
             }
 
+            try Task.checkCancellation()
+            guard generation == bridge.generationSnapshot() else { throw CancellationError() }
             let content = line == 0
                 ? OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookID)
                 : OtzariaMaktabahBridge.shared.getContent(bookId: bookID, contentId: line)
@@ -78,38 +84,41 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
             let current = TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine(content.id))
             let previous = OtzariaMaktabahBridge.shared.getPreviousContent(bookId: bookID, before: content.id)
             let next = OtzariaMaktabahBridge.shared.getNextContent(bookId: bookID, after: content.id)
-            // Split into per-paragraph segments for granular selection when reading units are unavailable.
-            let paragraphs = content.nash.components(separatedBy: "\n").enumerated().compactMap { offset, text -> LibraryTextSegment? in
-                let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !trimmed.isEmpty else { return nil }
-                let segLocator = TextLocator(backend: .otzaria, workKey: locator.workKey,
-                    position: .legacyLine(content.id + offset))
-                return .init(locator: segLocator, heRef: content.heRef, primaryText: trimmed, translation: nil)
-            }
-            let segments = paragraphs.isEmpty
-                ? [LibraryTextSegment(locator: current, heRef: content.heRef, primaryText: content.nash, translation: nil)]
-                : paragraphs
-            return LibraryTextSection(locator: current, displayRef: content.heRef ?? "\(content.id)",
+            // Newlines inside a SQLite row are not additional SQLite line IDs.
+            let segments = [LibraryTextSegment(locator: current, heRef: content.heRef, primaryText: content.nash, translation: nil)]
+            try Task.checkCancellation()
+            guard generation == bridge.generationSnapshot(), mode == bridge.currentReadingUnitMode else { throw CancellationError() }
+            return (LibraryTextSection(locator: current, displayRef: content.heRef ?? "\(content.id)",
                 heRef: content.heRef,
                 segments: segments,
                 previous: previous.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
                 next: next.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
-                versions: [], links: [], origin: .offline)
+                versions: [], links: [], origin: .offline), generation, mode)
         }
 
-        return try await withTaskCancellationHandler(
+        let result = try await withTaskCancellationHandler(
             operation: { try await backgroundTask.value },
             onCancel: { backgroundTask.cancel() }
         )
+        try Task.checkCancellation()
+        let bridge = OtzariaMaktabahBridge.shared
+        guard result.generation == bridge.generationSnapshot(), result.mode == bridge.currentReadingUnitMode else { throw CancellationError() }
+        return result.section
         #else
         throw LibraryBackendError.capabilityUnavailable
         #endif
     }
 
     func normalizedLocator(for input: String) async throws -> TextLocator {
-        let pieces = input.split(separator: "|", maxSplits: 1).map(String.init)
-        guard let bookID = Int(pieces[0]) else { throw LibraryBackendError.invalidLocator }
-        let line = pieces.count == 2 ? Int(pieces[1]) ?? 0 : 0
+        let pieces = input.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
+        guard let first = pieces.first, let bookID = Int(first), bookID > 0 else { throw LibraryBackendError.invalidLocator }
+        let line: Int
+        if pieces.count == 2 {
+            guard let parsed = Int(pieces[1]), parsed >= 0 else { throw LibraryBackendError.invalidLocator }
+            line = parsed
+        } else {
+            line = 0
+        }
         return TextLocator(backend: .otzaria, workKey: "book:\(bookID)", position: .legacyLine(line))
     }
 

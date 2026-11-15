@@ -25,7 +25,7 @@ extension OtzariaMaktabahBridge {
         let start = Date()
         otzariaLog("getReadingUnit start bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue)")
 
-        let unit = withReadingUnitService { service -> OtzariaReadingUnit? in
+        let unit = withCachedReadingUnit { service -> OtzariaReadingUnit? in
             do {
                 return try service.readingUnit(bookId: bookId, containingLineIndex: lineIndex, mode: mode)
             } catch {
@@ -33,10 +33,6 @@ extension OtzariaMaktabahBridge {
                 return nil
             }
         } ?? nil
-
-        if let unit {
-            cacheReadingUnit(unit, mode: mode)
-        }
 
         otzariaLog("getReadingUnit done bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(otzariaUnitSummary(unit)) durationMs=\(otzariaElapsedMs(start))")
         return unit
@@ -46,7 +42,7 @@ extension OtzariaMaktabahBridge {
         let start = Date()
         otzariaLog("getFirstReadingUnit start bookId=\(bookId) mode=\(mode.storageValue)")
 
-        let unit = withReadingUnitService { service -> OtzariaReadingUnit? in
+        let unit = withCachedReadingUnit { service -> OtzariaReadingUnit? in
             do {
                 return try service.firstReadingUnit(bookId: bookId, mode: mode)
             } catch {
@@ -63,7 +59,7 @@ extension OtzariaMaktabahBridge {
         let start = Date()
         otzariaLog("getNextReadingUnit start bookId=\(bookId) afterLineIndex=\(lineIndex) mode=\(mode.storageValue)")
 
-        let unit = withReadingUnitService { service -> OtzariaReadingUnit? in
+        let unit = withCachedReadingUnit { service -> OtzariaReadingUnit? in
             do {
                 return try service.nextReadingUnit(bookId: bookId, afterLineIndex: lineIndex, mode: mode)
             } catch {
@@ -80,7 +76,7 @@ extension OtzariaMaktabahBridge {
         let start = Date()
         otzariaLog("getPreviousReadingUnit start bookId=\(bookId) beforeLineIndex=\(lineIndex) mode=\(mode.storageValue)")
 
-        let unit = withReadingUnitService { service -> OtzariaReadingUnit? in
+        let unit = withCachedReadingUnit { service -> OtzariaReadingUnit? in
             do {
                 return try service.previousReadingUnit(bookId: bookId, beforeLineIndex: lineIndex, mode: mode)
             } catch {
@@ -119,8 +115,6 @@ extension OtzariaMaktabahBridge {
 
     func makeBookContent(from unit: OtzariaReadingUnit) -> BookContent {
         otzariaLog("makeBookContent \(otzariaUnitSummary(unit)) plainChars=\(unit.plainText.count) htmlChars=\(unit.html.count)")
-        cacheReadingUnit(unit)
-
         return BookContent(
             id: unit.startLineIndex,
             nash: unit.plainText,
