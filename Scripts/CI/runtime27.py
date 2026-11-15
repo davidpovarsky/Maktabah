@@ -22,8 +22,9 @@ OUT = ROOT / "build/artifacts/runtime27"
 
 def execution_groups(contract):
     """Exact nonzero affected scope; every group owns a fresh disposable sim."""
-    cases = {row["case_id"]: row for row in contract["cases"]}
-    if len(cases) != len(contract["cases"]):
+    rows = contract["cases"] + contract.get("supplemental_cases", [])
+    cases = {row["case_id"]: row for row in rows}
+    if len(cases) != len(rows):
         raise ValueError("Duplicated full-phase UI case declaration")
     selected = contract.get("execution_case_ids", list(cases))
     if (not selected or len(selected) != len(set(selected)) or not set(selected) <= cases.keys()
@@ -180,7 +181,7 @@ def collect_cases(report, contract):
         if tree_path.exists():
             for node in json.loads(tree_path.read_text()).get("testNodes", []):
                 visit(node)
-        for case in contract["cases"]:
+        for case in contract["cases"] + contract.get("supplemental_cases", []):
             if case["case_id"] in group["case_ids"]:
                 outcomes.append({"case_id": case["case_id"], "device": device, "expected": case["oracle"],
                                  "configuration_label": label,
@@ -279,6 +280,7 @@ def main():
         expected_count = sum(len(group["case_ids"]) for group in groups)
         report["execution_groups"] = groups
         report["full_phase_case_ids"] = [case["case_id"] for case in contract["cases"]]
+        report["supplemental_case_ids"] = [case["case_id"] for case in contract.get("supplemental_cases", [])]
         report["requested_ui_case_count"] = expected_count
         report["prior_pass_reuse"] = "Historical eight cases require exact compatibility proof; never counted as new execution"
         report["case_manifest_sha256"] = hashlib.sha256(contract_path.read_bytes()).hexdigest()
@@ -320,7 +322,9 @@ def main():
         collect_cases(report, contract)
         if code or report["executed_ui_pass"] != expected_count or report["executed_ui_fail"] or report["executed_ui_skip"]:
             raise RuntimeError("Required real UI subset failed, skipped or did not completely execute")
-        report["status"] = "EXECUTED_PASS" if expected_count == len(contract["cases"]) else "SELECTED_UI_EXECUTED_PASS"
+        selected = {identity for group in groups for identity in group["case_ids"]}
+        full_phase = {case["case_id"] for case in contract["cases"]}
+        report["status"] = "EXECUTED_PASS" if selected == full_phase else "SELECTED_UI_EXECUTED_PASS"
         return 0
     except KeyboardInterrupt as error:
         report.update(status="INTERRUPTED_UI_UNVERIFIED", error=str(error) or "External interruption")

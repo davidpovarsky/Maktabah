@@ -17,6 +17,10 @@ Potential improvements, features, optimizations, or architectural ideas.
 ## Discoveries & Tips
 
 - Books Updates must authorize a typed registered backend at every synchronous file/network/cleanup entry. A saved raw `maktabah` preference and `usesNativeMaktabahDataPath` do not establish ownership. The three current backends are explicitly unavailable; separate archive/FTS/author/main commits still require a genuine native recovery contract before any future enabling. The updater now leaves WAL/SHM cleanup to SQLite and propagates checkpoint errors before its integration-cache publication. Disposable safety fixtures cannot establish full native update acceptance.
+- Zayit's lexical cache must retain the selected expansion, not all candidate groups in HashMap order. Otherwise the warm lookup can choose another lemma and an identical query scoped to its own first-hit book can return zero. A real v32 C ABI reproduction and a public 64-token SQLite ambiguity regression cover this. It requires a matching rebuilt runtime binary, not an index/schema rebuild or user-package reset.
+
+- `LibrarySearchPage.total: Int` alone cannot establish genuine zero after source mapping: raw rows may have been dropped and an Elasticsearch total may be a lower bound. Preserve optional raw-hit/mapping/relation evidence at the existing provider boundary. Legacy Action zero requires explicit source `eq`, zero raw rows and complete mapping; absent precision stays unknown.
+
 - Action discovery must avoid `OtzariaTantivySearchRepository.engine`/`documentCount` when the engine is unopened: construction may write an index. Use `observedOpenIndexDocumentCount` with its profile/database/meta/identity stamp, then combine it with canonical artifact/engine and expected production count validation. A cached successful query alone does not establish current installed-index readiness.
 
 - The exact-9401 blob gate passed the 11001 sidebar even though TOC navigation ownership was missing. The native-sidebar repair now adds composition mutations alongside blob identity: inactive navigation trees must be unmounted, the original TOC must own its stack/search, and the existing public split must request a visible native toggle and width-qualified tiling. Page drag is confined to the page-control strip so it cannot compete with native edge/list gestures. These checks remain static; physical iPad geometry and reader continuity still require owner acceptance.
@@ -92,6 +96,8 @@ Useful technical discoveries, undocumented behavior, shortcuts, implementation t
 
 
 ## Experiments / Investigations
+
+- Zayit applies its base-book score factor after collecting/skipping raw TopDocs, so changing limit20 to50 can change which document rises to the front. Keep query/near/offset/limit identical for restoration identity acceptance. Investigate global ranking before TopDocs separately against upstream behavior; the v32 cold-oracle-limit log captures the observed page-size dependence. No runtime ranking rewrite was included in the cache fix.
 
 Things worth testing or researching before deciding whether to implement them.
 

@@ -271,3 +271,209 @@ fn create_lexical_fixture(path: &Path) {
     )
     .expect("create lexical schema");
 }
+
+#[test]
+#[ignore = "Requires explicitly reconstructed and SHA256-verified isolated production v32 fixture"]
+fn production_v32_queries_and_paging_through_real_c_abi() {
+    use maktabah_zayit_search::{ffi::*, models::SearchPage};
+    use std::collections::HashMap;
+    let root = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../..")
+        .canonicalize()
+        .unwrap();
+    let fixture = root
+        .join("build/hq-search-v32-fixture-20261115")
+        .canonicalize()
+        .unwrap();
+    let marker = Path::new(
+        &std::env::var("MAKTABAH_V32_FIXTURE_READY").expect("explicit fixture marker required"),
+    )
+    .canonicalize()
+    .unwrap();
+    assert_eq!(marker, fixture.join("fixture-ready.json"));
+    let ready: serde_json::Value =
+        serde_json::from_slice(&std::fs::read(&marker).unwrap()).unwrap();
+    let manifest: serde_json::Value = serde_json::from_slice(
+        &std::fs::read(root.join("docs/hq-search/manifests/zayit-search-manifest.json")).unwrap(),
+    )
+    .unwrap();
+    assert_eq!(ready["manifestIdentity"], manifest["artifactIdentity"]);
+    let path = |key: &str| {
+        let path = Path::new(ready[key].as_str().unwrap())
+            .canonicalize()
+            .unwrap();
+        assert!(
+            path.starts_with(&fixture),
+            "production test may only open its isolated fixture"
+        );
+        path.to_string_lossy().into_owned()
+    };
+    let paths = DataPaths {
+        seforim_db: path("database"),
+        lexical_db: path("lexical"),
+        index_dir: path("index"),
+    };
+    let db = Connection::open_with_flags(
+        &paths.seforim_db,
+        rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY,
+    )
+    .unwrap();
+    let has_file_path = {
+        let mut columns = db.prepare("PRAGMA table_info(book)").unwrap();
+        let names = columns
+            .query_map([], |row| row.get::<_, String>(1))
+            .unwrap()
+            .collect::<Result<Vec<_>, _>>()
+            .unwrap();
+        names.iter().any(|name| name == "filePath")
+    };
+    let key_projection = if has_file_path {
+        "COALESCE(NULLIF(b.filePath,''),'book:'||b.id)"
+    } else {
+        "'book:'||b.id"
+    };
+    let identity_sql = format!("SELECT l.bookId,l.lineIndex,{key_projection} FROM line l JOIN book b ON b.id=l.bookId WHERE l.id=?1");
+    let mut report = serde_json::json!({"kind":"REAL_PRODUCTION_V32_SQLITE_INDEX_C_ABI", "artifactIdentity":manifest["artifactIdentity"],
+        "result":"IN_PROGRESS_NOT_A_PASS", "totalSemantics":"raw matching index documents, not occurrence counts", "databaseHasFilePathColumn":has_file_path, "queries":[], "paging":[]});
+    let report_path = root.join("docs/hq-search/wave-v32-real-ffi.json");
+    std::fs::write(&report_path, serde_json::to_vec_pretty(&report).unwrap()).unwrap();
+    unsafe {
+        let encoded = CString::new(serde_json::to_string(&paths).unwrap()).unwrap();
+        let opened = ffi_json(mzayit_engine_create(encoded.as_ptr()));
+        let id = opened["engine_id"]
+            .as_u64()
+            .unwrap_or_else(|| panic!("real production engine open failed: {opened}"));
+        for text in ["משה", "שלום", "בראשית", "לחתוך צנון בסכין בשרי"]
+        {
+            let query = SearchRequest {
+                query: text.into(),
+                near: 5,
+                offset: 0,
+                limit: 50,
+                filters: SearchFilters::default(),
+            };
+            let input = CString::new(serde_json::to_string(&query).unwrap()).unwrap();
+            let raw = ffi_json(mzayit_engine_search(id, input.as_ptr()));
+            let page: SearchPage = serde_json::from_value(raw.clone())
+                .unwrap_or_else(|error| panic!("production search failed: {raw}; {error}"));
+            assert!(
+                !page.hits.is_empty(),
+                "known corpus Hebrew query returned no results: {text}"
+            );
+            let selected = page.hits[0].book_id;
+            let filtered = SearchRequest {
+                filters: SearchFilters {
+                    book_ids: vec![selected],
+                    ..SearchFilters::default()
+                },
+                ..query.clone()
+            };
+            let input = CString::new(serde_json::to_string(&filtered).unwrap()).unwrap();
+            let scoped: SearchPage =
+                serde_json::from_value(ffi_json(mzayit_engine_search(id, input.as_ptr()))).unwrap();
+            report["queries"].as_array_mut().unwrap().push(serde_json::json!({"query":text,"near":5,"offset":0,"limit":50,"total":page.total_hits,"returned":page.hits.len(),"firstBook":selected,"filteredReturned":scoped.hits.len(),"sample":page.hits.first()}));
+            std::fs::write(&report_path, serde_json::to_vec_pretty(&report).unwrap()).unwrap();
+            assert!(!scoped.hits.is_empty(), "same query lost its own matching source book: query={text}, selectedBook={selected}, unfilteredTotal={}, filteredTotal={}", page.total_hits, scoped.total_hits);
+            assert!(scoped.hits.iter().all(|hit| hit.book_id == selected));
+            let input = CString::new(serde_json::to_string(&query).unwrap()).unwrap();
+            let repeated: SearchPage =
+                serde_json::from_value(ffi_json(mzayit_engine_search(id, input.as_ptr()))).unwrap();
+            assert_eq!(
+                repeated.total_hits, page.total_hits,
+                "warm query changed the matching corpus for {text}"
+            );
+            assert_eq!(
+                repeated
+                    .hits
+                    .iter()
+                    .map(|hit| hit.line_id)
+                    .collect::<Vec<_>>(),
+                page.hits.iter().map(|hit| hit.line_id).collect::<Vec<_>>(),
+                "warm query changed stable first-page IDs for {text}"
+            );
+        }
+        let mut identities = HashMap::new();
+        let mut first_page_ids = Vec::new();
+        let mut paging_total = None;
+        for offset in [0, 50, 100] {
+            let query = SearchRequest {
+                query: "משה".into(),
+                near: 0,
+                offset,
+                limit: 50,
+                filters: SearchFilters::default(),
+            };
+            let input = CString::new(serde_json::to_string(&query).unwrap()).unwrap();
+            let page: SearchPage =
+                serde_json::from_value(ffi_json(mzayit_engine_search(id, input.as_ptr()))).unwrap();
+            assert_eq!(page.hits.len(), 50);
+            assert!(page.total_hits > 150 && !page.is_last_page);
+            if offset == 0 {
+                first_page_ids = page.hits.iter().map(|hit| hit.line_id).collect();
+                paging_total = Some(page.total_hits);
+            } else {
+                assert_eq!(
+                    Some(page.total_hits),
+                    paging_total,
+                    "paging changed the selected lexical meaning"
+                );
+            }
+            for hit in &page.hits {
+                let (book, line, key): (i64, i32, String) = db
+                    .query_row(&identity_sql, [hit.line_id], |row| {
+                        Ok((row.get(0)?, row.get(1)?, row.get(2)?))
+                    })
+                    .unwrap();
+                assert_eq!(
+                    (hit.book_id, hit.line_index, hit.stable_book_key.as_str()),
+                    (book, line, key.as_str())
+                );
+                if let Some(old) = identities.insert(hit.line_id, (book, line, key.clone())) {
+                    assert_eq!(old, (book, line, key));
+                }
+                assert!(!hit.snippet_html.is_empty());
+                assert!(!hit.matched_terms.is_empty());
+            }
+            report["paging"].as_array_mut().unwrap().push(serde_json::json!({"query":"משה","near":0,"limit":50,"offset":offset,"returned":page.hits.len(),"total":page.total_hits,"lastPage":page.is_last_page}));
+        }
+        assert!(
+            identities.len() > 100,
+            "150 source rows must provide over 100 distinct genuine corpus locators"
+        );
+        report["uniqueVerifiedLineIDs"] = serde_json::json!(identities.len());
+        mzayit_engine_destroy(id);
+        let reopened = ffi_json(mzayit_engine_create(encoded.as_ptr()));
+        let reopened_id = reopened["engine_id"]
+            .as_u64()
+            .expect("production index must reopen without rebuild");
+        let reopened_request = SearchRequest {
+            query: "משה".into(),
+            near: 0,
+            offset: 0,
+            limit: 50,
+            filters: SearchFilters::default(),
+        };
+        let input = CString::new(serde_json::to_string(&reopened_request).unwrap()).unwrap();
+        let page: SearchPage =
+            serde_json::from_value(ffi_json(mzayit_engine_search(reopened_id, input.as_ptr())))
+                .unwrap();
+        assert!(!page.hits.is_empty());
+        assert_eq!(
+            Some(page.total_hits),
+            paging_total,
+            "engine reopen changed the matching corpus"
+        );
+        assert_eq!(
+            page.hits.iter().map(|hit| hit.line_id).collect::<Vec<_>>(),
+            first_page_ids,
+            "engine reopen changed stable first-page IDs"
+        );
+        mzayit_engine_destroy(reopened_id);
+    }
+    report["result"] = serde_json::json!("EXECUTED_PASS");
+    std::fs::write(
+        root.join("docs/hq-search/wave-v32-real-ffi.json"),
+        serde_json::to_vec_pretty(&report).unwrap(),
+    )
+    .unwrap();
+}

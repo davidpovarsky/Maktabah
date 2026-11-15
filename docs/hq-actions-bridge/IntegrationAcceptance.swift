@@ -155,6 +155,11 @@ actor BridgeFixtureProofGate {
         let legacyRequest = await providers[.sefaria]!.lastRequest
         check(legacyRequest?.filters == ["Tanakh/Torah/Genesis"] && legacyRequest?.scopeWorkKeys == [],
               "Legacy bounded source filter prevents remote postfilter loop")
+        do {
+            _ = try ActionLibraryProjection.searchPage(.init(hits: [], total: 0, nextOffset: nil),
+                query: .init(backend: .sefaria, text: "fixture"), works: [])
+            fatalError("unproven Legacy empty page accepted")
+        } catch { check(true, "Legacy projection cannot infer genuine zero from missing source precision/mapping evidence") }
         coordinator.select(.sefariaEmbedded)
         let embeddedProvider = providers[.sefariaEmbedded]!
         let textProof: ActionJSON = .object(["textContent": .object([
@@ -210,6 +215,7 @@ actor BridgeFixtureProofGate {
         try await runtimeChecks()
         try await relationshipsChecks()
         try await resourceChecks(coordinator: coordinator, provider: providers[.otzaria]!)
+        try await legacySourceChecks()
         print("PASS: \(assertions) Integration assertions using real app coordinator/models/protocols, facade, RPC bridge and runtime manager; providers/transport are doubles, no Hermes or Apple UI")
     }
 }

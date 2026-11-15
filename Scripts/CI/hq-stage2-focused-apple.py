@@ -38,6 +38,26 @@ def pins(path):
     return {p["identity"]: p["state"]["revision"] for p in json.loads(path.read_text())["pins"]}
 
 
+def zayit_build_plan(config):
+    """Only the reviewed downstream lexical fix may replace a baseline binary."""
+    rebuild = config.get("rebuild_zayit_framework", False)
+    require(type(rebuild) is bool, "Zayit rebuild mode must be boolean")
+    root = "Vendor/ZayitSearchPort/Rust"
+    changed = capture("git", "diff", "--name-only", config["engine_producer_sha"], "HEAD", "--", root).splitlines()
+    compiled = [path for path in changed if not path.startswith(root + "/tests/")]
+    if rebuild:
+        require(compiled == [root + "/src/magic_dictionary_index.rs"], "Unreviewed Zayit production source overlay")
+    else:
+        require(not compiled, "Changed Zayit production source requires a matching rebuilt framework")
+    script = "Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh"
+    require(not capture("git", "diff", "--name-only", config["engine_producer_sha"], "HEAD", "--", script),
+            "Unreviewed Zayit build script change")
+    return {"mode": "REBUILD_EXACT_REVIEWED_RUST" if rebuild else "UNCHANGED_PRODUCTION_PREBUILT",
+            "source_tree": capture("git", "rev-parse", "HEAD:" + root),
+            "baseline_producer_sha": config["engine_producer_sha"], "changed_paths": changed,
+            "build_script": script, "build_script_git_blob": capture("git", "rev-parse", "HEAD:" + script)}
+
+
 def preflight(config):
     result = {"checkout_sha": capture("git", "rev-parse", "HEAD"), "application_source_sha": config["application_source_sha"],
               "validator_sha256": digest(Path(__file__)), "inputs_sha256": digest(INPUTS),
@@ -52,6 +72,10 @@ def preflight(config):
     for path, expected_tree in config["engine_trees"].items():
         require(capture("git", "rev-parse", config["engine_producer_sha"] + ":" + path) == expected_tree,
                 "Prebuilt engine producer source differs: " + path)
+        if path != "Vendor/ZayitSearchPort/Rust":
+            require(capture("git", "rev-parse", "HEAD:" + path) == expected_tree,
+                    "Unreviewed prebuilt engine source drift: " + path)
+    result["zayit_framework"] = zayit_build_plan(config)
     require(capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile/Upstream") == config["sefaria_gitlink"], "Sefaria pin drift")
     resource_tree = capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile")
     overlays = config.get("embedded_js_overlay_paths", [])
@@ -91,7 +115,9 @@ def restore(config, report):
                            cwd=ROOT, stdout=output, check=True, timeout=600)
         actual = digest(archive)
         require(actual == item["sha256"], "Artifact ZIP digest mismatch: " + item["name"])
-        report["artifact_inputs"].append({**item, "verified_sha256": actual})
+        role = ("BASELINE_ONLY_REBUILT_BEFORE_LINK" if item.get("destination") == "Vendor/ZayitSearchPort/build"
+                and report["zayit_framework"]["mode"] == "REBUILD_EXACT_REVIEWED_RUST" else "PINNED_INPUT")
+        report["artifact_inputs"].append({**item, "verified_sha256": actual, "role": role})
         with zipfile.ZipFile(archive) as zipped:
             if "tar" in item:
                 matches = [n for n in zipped.namelist() if PurePosixPath(n).name == item["tar"]]
@@ -137,6 +163,51 @@ def logged(command, filename, report, cwd=None):
     print(f"command_exit={result.returncode} log={path.relative_to(ROOT)}", flush=True)
     print("\n".join(path.read_text(errors="replace").splitlines()[-100:]), flush=True)
     require(result.returncode == 0, "Focused command failed; inspect " + str(path.relative_to(ROOT)))
+
+
+def rebuild_matching_zayit_framework(report):
+    plan = report["zayit_framework"]
+    if plan["mode"] != "REBUILD_EXACT_REVIEWED_RUST":
+        return
+    plan["rustc"] = capture("rustc", "-Vv")
+    plan["cargo"] = capture("cargo", "-V")
+    plan["rustup"] = capture("rustup", "--version")
+    plan["free_bytes_before"] = shutil.disk_usage(ROOT).free
+    lock = ROOT / "Vendor/ZayitSearchPort/Rust/Cargo.lock"
+    lock_before = digest(lock)
+    build = checked_path(ROOT / "Vendor/ZayitSearchPort", "build")
+    baseline = checked_path(OUT, "zayit-prebuilt-baseline")
+    require(build.is_dir() and not build.is_symlink() and not baseline.exists(), "Expected fresh Zayit baseline staging")
+    # Preserve the verified old framework. The unchanged production script owns
+    # a fresh disposable output path and must not inherit the baseline library.
+    build.rename(baseline)
+    plan["preserved_baseline"] = str(baseline.relative_to(ROOT))
+    logged(["cargo", "metadata", "--locked", "--no-deps", "--format-version", "1", "--manifest-path",
+            "Vendor/ZayitSearchPort/Rust/Cargo.toml"], "zayit-locked-metadata.log", report)
+    logged(["bash", plan["build_script"]], "matching-zayit-framework.log", report)
+    require(digest(lock) == lock_before, "Zayit build changed the committed dependency lock")
+    require(capture("git", "rev-parse", "HEAD:Vendor/ZayitSearchPort/Rust") == plan["source_tree"], "Zayit build source drift")
+    framework = build / "MaktabahZayitSearch.xcframework"
+    require(framework.is_dir() and (framework / "Info.plist").is_file(), "Matching Zayit framework was not produced")
+    files = sorted(path for path in framework.rglob("*") if path.is_file())
+    require(sum(path.suffix == ".a" for path in files) == 2 and not any(path.is_symlink() for path in framework.rglob("*")),
+            "Unexpected matching Zayit framework layout")
+    plan["built_files_sha256"] = {str(path.relative_to(ROOT)): digest(path) for path in files}
+    plan["cargo_lock_sha256"] = lock_before
+    # Retain the actual newly built slices for later source-qualified reuse.
+    retained = checked_path(OUT, "rebuilt-zayit")
+    retained.mkdir()
+    archive = retained / "MaktabahZayitSearch.xcframework.tar"
+    with tarfile.open(archive, "w") as packed:
+        packed.add(framework, arcname=framework.name)
+    plan["retained_archive"] = str(archive.relative_to(ROOT))
+    plan["retained_archive_sha256"] = digest(archive)
+    plan["status"] = "BUILT_FROM_EXACT_REVIEWED_SOURCE_NOT_YET_APP_ACCEPTANCE"
+
+
+def verify_selected_zayit_files(report):
+    for name, expected in report["zayit_framework"].get("built_files_sha256", {}).items():
+        require(digest(ROOT / name) == expected, "Selected Zayit framework changed before/after app link: " + name)
 
 
 def prepare_react_sources(config, report):
@@ -339,6 +410,7 @@ def main():
         report["developer_dir"] = os.environ.get("DEVELOPER_DIR") or capture("xcode-select", "-p")
         prepare_react_sources(config, report)
         restore(config, report)
+        rebuild_matching_zayit_framework(report)
         prepare_matching_embedded_bundle(config, report)
         install_real_pods(report)
         for framework, header in [("Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework", "otzaria_search_engine.h"),
@@ -353,6 +425,7 @@ def main():
         require(pins(lock) == report["package_pins"], "Xcode changed committed package revisions")
         require(pins(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved") == report["package_pins"], "Workspace changed committed package revisions")
         verify_actual_sources(report)
+        verify_selected_zayit_files(report)
         derived_data = checked_path(ROOT / "build", str(Path(args.derived_data).relative_to("build")))
         signing = (["CODE_SIGNING_ALLOWED=YES", "CODE_SIGNING_REQUIRED=YES", "CODE_SIGN_IDENTITY=-"] if args.build_for_testing
                    else ["CODE_SIGNING_ALLOWED=NO", "CODE_SIGNING_REQUIRED=NO", "CODE_SIGN_IDENTITY="])
@@ -363,6 +436,7 @@ def main():
                    "ARCHS=arm64", "ONLY_ACTIVE_ARCH=YES", "ENABLE_USER_SCRIPT_SANDBOXING=NO",
                    "RCT_NO_LAUNCH_PACKAGER=1", "SKIP_BUNDLING=1", "FAIL_ON_MISSING_BUNDLE=1"]
         logged(command, "simulator-build-for-testing.log" if args.build_for_testing else "unsigned-app-build.log", report)
+        verify_selected_zayit_files(report)
         built_bundle = derived_data / "Build/Products/Debug-iphonesimulator/Maktabah.app/main.jsbundle"
         require(built_bundle.is_file(), "Built app has no Embedded bundle")
         require(digest(built_bundle) == report["resource_inputs"]["jsbundle_sha256"], "Built app copied a nonmatching Embedded bundle")

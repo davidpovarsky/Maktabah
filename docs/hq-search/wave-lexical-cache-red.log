@@ -1,0 +1,21 @@
+   Compiling maktabah_zayit_search v0.2.0 (C:\Users\DAVID\Code\Maktabah-hq-search-20261115\Vendor\ZayitSearchPort\Rust)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.11s
+     Running unittests src\lib.rs (Vendor\ZayitSearchPort\Rust\target\debug\deps\maktabah_zayit_search-1395e35c8fad4102.exe)
+
+running 1 test
+
+thread 'magic_dictionary_index::tests::repeated_ambiguous_lookup_retains_the_selected_base_meaning' (15072) panicked at src\magic_dictionary_index.rs:232:17:
+assertion `left == right` failed: warm lexical cache changed the selected meaning for מילה0
+  left: Some(Expansion { surface: ["חלופה0"], variants: ["מילה0"], base: ["אחר0"] })
+ right: Some(Expansion { surface: ["מילה0"], variants: [], base: ["מילה0"] })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test magic_dictionary_index::tests::repeated_ambiguous_lookup_retains_the_selected_base_meaning ... FAILED
+
+failures:
+
+failures:
+    magic_dictionary_index::tests::repeated_ambiguous_lookup_retains_the_selected_base_meaning
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 4 filtered out; finished in 2.13s
+
+error: test failed, to rerun pass `--lib`

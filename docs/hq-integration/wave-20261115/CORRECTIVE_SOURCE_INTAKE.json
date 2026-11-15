@@ -1,0 +1,78 @@
+{
+  "source_pin": "10a93f99818925db39e1844c4a97055e8551c08f",
+  "source_tree": "35f3fedddf6c21a17fb3b180eeee76bac847bca7",
+  "integrated_packets": {
+    "P": "996a7ba0f32948f55485a89a1f9f2a98cc968364",
+    "S": "946d61eea648db1f3ca33e60edd724e99790ab2e",
+    "I": "c7b52c6f7c13bdb3bd5c6dd6eadbf48074408715",
+    "Search_compressed_evidence": "012701db3b473914cfb0c7c97fc4f649389ad1fd"
+  },
+  "manager_checks": {
+    "pre_P_0164": {
+      "backend_semantics_methods": 15,
+      "Inspector_groups": 14,
+      "exit": 0
+    },
+    "fresh_resource_Core": {
+      "methods": 16,
+      "includes": "15 BackendSemantics plus frozen-contract resource layout/JSON method",
+      "exit": 0
+    },
+    "actual_app_provider_boundary": {
+      "assertions": 100,
+      "compile_exit": 0,
+      "run_exit": 0,
+      "Core_objects": "fresh coherent-resource-layout-20261115, not preserved old default cache",
+      "providers_transport": "explicit doubles; actual RemoteStore/HTTPClient/RPC/coordinator sources"
+    },
+    "UI_completion_codec": {
+      "methods": 28,
+      "includes": "19 NavigationAuthorization plus7Codec plus2GoldenAPI",
+      "failures": 0,
+      "exit": 0,
+      "native_effects": "synthetic driver; not UIKit/Hermes"
+    }
+  },
+  "raw_evidence": [
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\S_I_COMBINED_0164_CORE.log",
+      "sha256": "b4ef67bc07bdd62ceb875282b680d9c49218b09c47cdca481f5aab00a621bc1b"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\S_I_COMBINED_0164_INSPECTOR.log",
+      "sha256": "6b475c69e306523c35d1894b31a8bae05552609d8cfc6915c25631b560fa7e76"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\P_S_COMBINED_RESOURCE_CORE.log",
+      "sha256": "271f33e1b30ffb076b662bb857cdf2c05f8efdb82993e50b77f11fadf955e120"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\combined-provider-10a93f99\\compile.log",
+      "sha256": "f06763c49d16ca960a33144bb0e1bf681d530382b6da407c2974242aa5f6ae54"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\combined-provider-10a93f99\\run.log",
+      "sha256": "fb06e3ceba8c09bb1118553eb57446d5ada29015a19dc72fc4356e8150fb947a"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\combined-provider-10a93f99\\result.json",
+      "sha256": "fd41ecf8f798929c9f41591fe4aae7c042fd87273e787263af6ea3ca0b730db8"
+    },
+    {
+      "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\P_S_COMBINED_UI_COMPLETION.log",
+      "sha256": "812460028e22e1ef4f2a2f6fc1f58a39f0727f05a3cb99dea6f9938a1c5d39e7"
+    }
+  ],
+  "review_limits": {
+    "native": "NOT_RUN_AFTER_FIX",
+    "historical_native43727696309": "BUILD_FAILED;0UIpass/0UIfail/6NOT_RUN",
+    "N": "d337c608 proposal reviewed; completion correction before application",
+    "P_followup": "Final reader completion must follow shared last backend await; repro requested",
+    "fullDB": "S reconstruction ongoing; compressed payload evidence is not installation/query acceptance",
+    "physical": "NOT_RUN",
+    "functional_tasks": "OPEN"
+  },
+  "cache_repair": "faaea0e4: package manifest identities plusv2 prefix; prior caches retained; triggers/modes/test/release steps unchanged",
+  "payload_evidence_hash_convention": "summary reportSHA matches preserved working CRLF JSON; toolSHA matches exact012701db committed Git bytes, not later S working file",
+  "source_scope_reuse": "I fixture/service source unchanged between0164 and10a; its14groups retained, not reexecuted afterP-only changes"
+}

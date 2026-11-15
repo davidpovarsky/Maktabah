@@ -15,7 +15,7 @@ enum ActionLiveBackendBridge {
 
     static func make(coordinator: BackendCoordinator,
                      otzariaSearchReadiness: (@Sendable (ActionBackendSnapshot) async -> ActionReadinessEvidence)? = nil,
-                     legacyNetwork: @escaping @Sendable () async -> ActionReadinessEvidence = { .unknown }) -> ActionBackendCoordinatorFacade {
+                     legacyNetwork: (@Sendable () async -> ActionReadinessEvidence)? = nil) -> ActionBackendCoordinatorFacade {
         ActionBackendCoordinatorFacade(coordinator: coordinator,
             epoch: { await SefariaJSRPCBridge.shared.sessionEpoch },
             currentEpoch: { SefariaJSRPCBridge.shared.currentSessionEpoch },
@@ -47,7 +47,11 @@ enum ActionLiveBackendBridge {
                         else { result.search = proofs.2 }
                     } else { result.search = .unavailable }
                 case .sefaria:
-                    result.network = await legacyNetwork()
+                    if let legacyNetwork { result.network = await legacyNetwork() }
+                    else {
+                        let available = try? await SefariaBackend.shared.remote.observeSearchService()
+                        result.network = available == true ? .ready : .unavailable
+                    }
                     let installed = await SefariaBackend.shared.packages.installedWorkKeys()
                     result.catalog = result.network.isReady || !installed.isEmpty ? .ready : .unknown
                     result.references = result.catalog

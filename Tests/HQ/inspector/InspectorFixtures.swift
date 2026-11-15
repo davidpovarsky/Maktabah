@@ -20,6 +20,7 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         if only == "scope" { try await noteScopeFixtures(); return }
         if only == "tap" { try await tapFixtures(); return }
         if only == "notes" { try await notesLoadingFixtures(); return }
+        if only == "note-identity" { try await noteIdentityFixtures(); return }
         if only == "selection" { try await selectionFixtures(); return }
         if only == "document" { try await documentFixtures(); return }
         if only == "gate" { try await sourceGateFixtures(); return }
@@ -142,6 +143,7 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         try await noteScopeFixtures()
         try await tapFixtures()
         try await notesLoadingFixtures()
+        try await noteIdentityFixtures()
         try await selectionFixtures()
         try await documentFixtures()
         try await sourceGateFixtures()
@@ -188,9 +190,31 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
 
     static func corpusFixtures() throws {
         for bookID in [28, 103, 3152] {
-            let indexes = try bridge().database.fetch(query: "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex", parameters: [bookID]) { $0.int(at: 0) }
+            let catalog = bridge().database
+            let indexes = try catalog.fetch(query: "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex", parameters: [bookID]) { $0.int(at: 0) }
             try expect(!indexes.isEmpty, "digest-pinned source book exists")
-            for (name, window) in [("all", indexes), ("first", [indexes[0]]), ("middle", [indexes[indexes.count / 2]]), ("last", [indexes[indexes.count - 1]])] {
+            var windows = [("all", indexes), ("first", [indexes[0]]), ("middle", [indexes[indexes.count / 2]]), ("last", [indexes[indexes.count - 1]])]
+            // Genuine direct TOC membership, not line-range arithmetic or a
+            // duplicate of Reader's unit/ancestor grouping implementation.
+            let nodes = try catalog.fetch(query: """
+                SELECT te.id, tt.text, MIN(l.lineIndex)
+                FROM tocEntry te JOIN tocText tt ON tt.id = te.textId
+                JOIN line_toc lt ON lt.tocEntryId = te.id JOIN line l ON l.id = lt.lineId
+                WHERE te.bookId = ? AND te.parentId IS NOT NULL
+                  AND NOT EXISTS (SELECT 1 FROM tocEntry child WHERE child.parentId = te.id)
+                GROUP BY te.id, tt.text ORDER BY MIN(l.lineIndex), te.id
+                """, parameters: [bookID]) { (id: $0.int(at: 0), title: $0.string(at: 1) ?? "") }
+            try expect(!nodes.isEmpty, "genuine source has mapped TOC leaves")
+            for (slot, offset) in [("first", 0), ("middle", (nodes.count - 1) / 2), ("last", nodes.count - 1)] {
+                let node = nodes[offset]
+                let members = try catalog.fetch(query: """
+                    SELECT DISTINCT l.lineIndex FROM line_toc lt JOIN line l ON l.id = lt.lineId
+                    WHERE l.bookId = ? AND lt.tocEntryId = ? ORDER BY l.lineIndex
+                    """, parameters: [bookID, node.id]) { $0.int(at: 0) }
+                try expect(!members.isEmpty, "source TOC member set is nonempty")
+                windows.append(("direct-TOC-\(slot)-\(node.id)-\(node.title)", members))
+            }
+            for (name, window) in windows {
                 let bridge = bridge()
                 bridge.database.splitContent = true
                 let expected = try bridge.database.corpusExpectedLinks(bookID: bookID, indexes: window)
@@ -323,6 +347,47 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
             try expect(session.selection(sefariaLocator: nil, otzariaLine: nil) == nil, "missing section remains absent")
         }
         print("PASS actual selection + Notes: Sefaria/Embedded provider, exact section/segment, foreign backend/work isolation, stale/missing section")
+    }
+
+    @MainActor static func noteIdentityFixtures() async throws {
+        defer { BackendCoordinator.shared.activeBackendID = .otzaria }
+        for backend in [BackendID.otzaria, .sefaria, .sefariaEmbedded] {
+            try await noteIdentityFixture(backend)
+        }
+        print("PASS actual Notes identities on all3 backends: numeric persisted targets, unique same-timestamp drafts, nonnumeric draft guards, stable IDs across reload/body edit/persisted-count changes")
+    }
+
+    @MainActor static func noteIdentityFixture(_ backend: BackendID) async throws {
+        let viewModel = ReaderViewModel(), session = NoteScopeFixture()
+        let locator = TextLocator(backend: backend, workKey: backend == .otzaria ? "book:1" : "Genesis",
+                                  position: backend == .otzaria ? .legacyLine(0) : .canonicalRef("Genesis 1:1"))
+        viewModel.selectedSegmentLocator = locator
+        session.readerViewModel = viewModel
+        BackendCoordinator.shared.activeBackendID = backend
+        AnnotationManager.shared.onLoad = {}
+        let selection = TorahInspectorSelection(providerID: backend.rawValue, canonicalRef: locator.persistenceKey, scope: .segment)
+        let persisted = Annotation(id: 1, bkId: 1, contentId: 0, range: .init(location: 0, length: 4), rangeDiacritics: .init(location: 0, length: 4), colorHex: "#ffff00", type: .highlight, note: "persisted", createdAt: 1, context: "base", page: 1, part: 1, backendLocator: locator)
+        var draftA = persisted, draftB = persisted
+        draftA.id = nil; draftA.note = "draft-A"
+        draftB.id = nil; draftB.note = "draft-B"
+        AnnotationManager.shared.rows = [persisted]
+        viewModel.currentAnnotations = [draftA, draftB]
+        let notes = try await session.notes(for: selection)
+        try expect(notes.count == 3 && Set(notes.map(\.id)).count == 3, "persisted and same-timestamp unsaved notes require distinct UI identities")
+        let persistedID = notes.first { $0.note == "persisted" }?.id
+        try expect(persistedID == "1" && Int64(persistedID ?? "") == persisted.id, "persisted ID remains the existing open/delete target")
+        let draftIDs = notes.filter { $0.note.hasPrefix("draft-") }.map(\.id)
+        try expect(draftIDs.count == 2 && draftIDs.allSatisfy { Int64($0) == nil }, "unsaved UI identity must never become a persisted open/delete target")
+        let repeated = try await session.notes(for: selection)
+        try expect(repeated.filter { $0.note.hasPrefix("draft-") }.map(\.id) == draftIDs, "unchanged local drafts retain UI identities")
+        var secondPersisted = persisted
+        secondPersisted.id = 2; secondPersisted.note = "another persisted"
+        AnnotationManager.shared.rows = [persisted, secondPersisted]
+        draftA.note = "draft-edited"
+        viewModel.currentAnnotations = [draftA, draftB]
+        let edited = try await session.notes(for: selection)
+        try expect(edited.filter { $0.note.hasPrefix("draft-") }.map(\.id) == draftIDs, "draft IDs do not depend on persisted count/order or draft body")
+        AnnotationManager.shared.rows = []
     }
 
     @MainActor static func notesLoadingFixtures() async throws {

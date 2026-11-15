@@ -101,11 +101,27 @@ enum ActionLibraryProjection {
         }
         // The Embedded JS facade can synthesize an empty array/count on invalid
         // upstream data. Until it exposes provenance, this is not verified zero.
-        if query.backend == .sefariaEmbedded, page.hits.isEmpty { throw ActionPortError.unavailable }
+        if let source = page.sourceEvidence {
+            guard ActionAppIdentityBridge.actionBackend(source.backend) == query.backend,
+                  source.allRowsMapped, source.rawHitCount == page.hits.count else { throw ActionPortError.invalidResponse }
+        }
+        if query.backend == .sefaria, page.hits.isEmpty {
+            guard let source = page.sourceEvidence, source.rawHitCount == 0,
+                  source.totalRelation == "eq", page.total <= query.offset, page.nextOffset == nil else {
+                throw ActionPortError.unavailable
+            }
+        } else if query.backend == .sefariaEmbedded, page.hits.isEmpty {
+            throw ActionPortError.unavailable
+        }
         let allowed = Set(query.scopeWorkRefs.map(\.workKey))
         var seen = Set<String>()
         let hits = try page.hits.compactMap { hit -> ActionSearchHit? in
             let ref = try ActionAppIdentityBridge.actionRef(hit.locator)
+            if case .canonicalRef(let value) = ref.position {
+                guard value == ref.workKey || value.hasPrefix(ref.workKey + " ") || value.hasPrefix(ref.workKey + ", ") else {
+                    throw ActionPortError.invalidResponse
+                }
+            }
             guard ref.backend == query.backend, allowed.isEmpty || allowed.contains(ref.workKey) else {
                 throw ActionPortError.invalidResponse
             }

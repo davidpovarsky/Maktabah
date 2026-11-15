@@ -1,0 +1,32 @@
+{
+  "source_pin": "8cff79f5b83f3d46537bc77df398e4d2c0521d6c",
+  "packet": "945b483f0b01fe6722c0bd0dd864d8fe249cd973",
+  "prior_source_checkpoint": "9b21ae05d4551cd5dc0c687d059f734c062f9312",
+  "baseline_engine_blob": "8653a846965f54aac37ae0376d79e0788f140787",
+  "review": "Acknowledged reader retains preparation until after shared last backend await; then synchronous canonical backend plus native-authority completion check. No later readiness await.",
+  "owner_evidence": {
+    "baseline_methods": 1,
+    "baseline_failed_assertions": 2,
+    "corrected_navigation_methods": 20,
+    "legacy_core_methods": 2,
+    "failures": 0,
+    "immutable_source_blobs_verified": 44,
+    "raw_logs_verified": 3
+  },
+  "manager_evidence": {
+    "command": "swift test --package-path Source/Otzaria/UIRouting --scratch-path Source/Otzaria/Actions/.build/coherent-resource-layout-20261115 -j 1 -Xswiftc -strict-concurrency=complete --filter NavigationAuthorizationTests",
+    "methods": 20,
+    "failures": 0,
+    "exit": 0,
+    "log": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-manager-wave-20261115\\P_FINAL_AWAIT_COMBINED_8cff79f5.log",
+    "sha256": "6b601be88a09e7641c8e7664d1d0519aef793d3ecc15ecfefa1464c9ece0401d"
+  },
+  "limits": [
+    "Windows Swift6.3.3, synthetic authorities/effect, not UIKit or physical evidence",
+    "Owner and manager runs overlap coverage; not40unique scenarios",
+    "Post-effect failure does not prove rollback or absence of effect",
+    "N must keep borrowed reader admission active through full Core action result; correction requested",
+    "Existing 9b21 checkpoint evidence retains its historical scopes; no repeat of unaffected provider/Inspector/corpus checks",
+    "Matching rebuilt Zayit framework pending accepted S Rust fix; no new native run"
+  ]
+}

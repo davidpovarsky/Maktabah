@@ -6,12 +6,18 @@ public enum EmbeddedActionResponseProof {
     /// Echo plus strict version/readiness proves the loaded facade implements
     /// the response schema. It never certifies a count or a disk bundle hash.
     public static func matchesRuntimeContract(_ body: ActionJSON, nonce: String) -> Bool {
+        guard matchesRuntimeResourceProof(body, nonce: nonce), let value = body.object else { return false }
+        return value["catalogReady"]?.boolean == true && value["searchReady"]?.boolean == true
+    }
+
+    /// Direct reading/relationships need resource stability without requiring a
+    /// search engine. Always inspect the actual JS promise counter with a fresh
+    /// nonce: a native timeout does not stop an underlying JS resource operation.
+    public static func matchesRuntimeResourceProof(_ body: ActionJSON, nonce: String) -> Bool {
         guard let value = body.object else { return false }
         return value["contract"]?.string == "chavrusa.actions.search-fidelity.v1"
             && value["searchFidelitySchema"]?.integer == 1
             && value["nonce"]?.string == nonce
-            && value["catalogReady"]?.boolean == true
-            && value["searchReady"]?.boolean == true
             && value["resourcesStable"]?.boolean == true
     }
 

@@ -7,9 +7,13 @@ actor RuntimeFixtureTransport: SefariaJSTransport {
     var holdMethod: String?
     var held: SefariaRPCEnvelope?
     var waiter: CheckedContinuation<Void, Never>?
+    var jsResourceBusy = false
+    var makeBusyAfterRelated = false
+    var relatedCalls = 0
 
     func setSearchReady(_ value: Bool) { searchReady = value }
     func hold(_ method: String) { holdMethod = method; held = nil }
+    func setBusyAfterRelated(_ value: Bool) { makeBusyAfterRelated = value; jsResourceBusy = false }
     func waitForHeldRequest() async {
         if held != nil { return }
         await withCheckedContinuation { waiter = $0 }
@@ -17,6 +21,7 @@ actor RuntimeFixtureTransport: SefariaJSTransport {
     func sendToJS(jsonString: String) async throws {
         let envelope = try JSONDecoder().decode(SefariaRPCEnvelope.self, from: Data(jsonString.utf8))
         if envelope.method == holdMethod {
+            if ["downloads.install", "downloads.remove", "updates.download"].contains(envelope.method) { jsResourceBusy = true }
             held = envelope; waiter?.resume(); waiter = nil
             return
         }
@@ -26,11 +31,20 @@ actor RuntimeFixtureTransport: SefariaJSTransport {
         case "catalog.toc": body = "[{\"title\":\"Genesis\"}]"
         case "runtime.postInitSearch": body = "{\"searchReady\":\(searchReady)}"
         case "runtime.postInit": body = "{\"packagesReady\":false}"
+        case "runtime.actionContract":
+            struct Params: Decodable { let nonce: String }
+            let nonce = try JSONDecoder().decode(Params.self, from: Data((envelope.paramsJson ?? "{}").utf8)).nonce
+            body = "{\"contract\":\"chavrusa.actions.search-fidelity.v1\",\"searchFidelitySchema\":1,\"nonce\":\"\(nonce)\",\"resourcesStable\":\(!jsResourceBusy),\"catalogReady\":true,\"searchReady\":false}"
+        case "relationships.links":
+            relatedCalls += 1
+            if makeBusyAfterRelated { jsResourceBusy = true }
+            body = "{\"links\":[],\"topics\":[]}"
         default: body = "{}"
         }
         try await deliver(envelope, body: body)
     }
     func release() async throws {
+        jsResourceBusy = false
         if let held { try await deliver(held, body: "{}") }
         held = nil; holdMethod = nil
     }

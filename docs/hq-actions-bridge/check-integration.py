@@ -22,6 +22,15 @@ files = [
     "Source/LibraryBackend/LibraryBackendModels.swift",
     "Source/LibraryBackend/LibraryBackendProtocols.swift",
     "Source/LibraryBackend/BackendCoordinator.swift",
+    "Source/Sefaria/Domain/SefariaModels.swift",
+    "Source/Sefaria/Domain/SefariaNavigationParser.swift",
+    "Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+    "Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+    "Source/Sefaria/Network/SefariaNetworkConfiguration.swift",
+    "Source/Sefaria/Network/SefariaHTTPClient.swift",
+    "Source/Sefaria/Network/SefariaDTOs.swift",
+    "Source/Sefaria/Network/SefariaRemoteStore.swift",
+    "Source/Sefaria/Cache/SefariaDiskCache.swift",
     "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift",
     "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
     "Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
@@ -32,6 +41,7 @@ files = [
     "docs/hq-actions-bridge/RuntimeAcceptance.swift",
     "docs/hq-actions-bridge/RelationshipsAcceptance.swift",
     "docs/hq-actions-bridge/ResourceAcceptance.swift",
+    "docs/hq-actions-bridge/LegacySourceAcceptance.swift",
     "docs/hq-actions-bridge/IntegrationAcceptance.swift",
 ]
 with tempfile.TemporaryDirectory(prefix="hq-actions-integration-") as folder:

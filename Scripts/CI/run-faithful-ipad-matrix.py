@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Real black-box acceptance on disposable 11/13-inch iPadOS 27 simulators."""
 import json
+import hashlib
 import os
 import re
 import runpy
@@ -252,6 +253,27 @@ for index, scenario in enumerate(scenarios):
         if code == 0 and device["executedXCTestCount"] < minimum_count:
             raise SystemExit("Expected black-box XCTest cases were not actually executed")
         device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
+        if any(case == "NativeRoutingAcceptanceTests" or case.startswith("NativeRoutingAcceptanceTests/") for case in selection):
+            native_dir = artifacts / f"native-routing-logs-{label}"
+            native_dir.mkdir(parents=True, exist_ok=True)
+            native_log_report = {"udid": udid, "label": label, "bundleID": "com.davidpovarsky.chavrusatext",
+                                 "collectedAt": datetime.now(timezone.utc).isoformat(), "status": "MISSING"}
+            try:
+                actual_container = Path(subprocess.check_output(
+                    ["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"],
+                    text=True, timeout=45).strip())
+                actual_log = actual_container / "Documents/OtzariaLogs/otzaria-reader.log"
+                native_log_report["actualContainer"] = str(actual_container)
+                if actual_log.is_file():
+                    retained_log = native_dir / "otzaria-reader.log"
+                    shutil.copyfile(actual_log, retained_log)
+                    native_log_report.update(status="RETAINED", bytes=retained_log.stat().st_size,
+                                             sha256=hashlib.sha256(retained_log.read_bytes()).hexdigest(),
+                                             artifact=str(retained_log.relative_to(artifacts)))
+            except Exception as error:
+                native_log_report.update(status="COLLECTION_ERROR", error=str(error))
+            (native_dir / "collection.json").write_text(json.dumps(native_log_report, indent=2) + "\n")
+            device["nativeRoutingLog"] = native_log_report
         viewport_reports = artifacts / f"viewport-reports-{label}"
         viewport_reports.mkdir(parents=True, exist_ok=True)
         # XCTest can relocate the installed data container. Collect only the

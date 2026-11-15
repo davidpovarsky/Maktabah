@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "source_test_commit": "15ed01259d4b41864a53db76c0060c25393d75ef",
-  "application_base": "2a197282bfdf475655d13feee81c3cf5cf6cecac",
-  "app_source": "40e642349814568ccae4437cb914f01f0c12420b",
-  "sole_executor_thread": "01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
+  "application_base": "fe6f5fe5126a964bd76d3f308489e131a491fe36",
+  "app_source": "4dae2dac23b51f504e1722d24a90028cc4caa690",
+  "sole_executor_thread": "01a1df85-6013-7270-b48d-8e10222e95c6",
   "independent_qa_thread": null,
-  "scope": "U_NATIVE_CANCEL_CANDIDATE_ONE_REAL_WINDOW_CASE_NOT_FULL_RELEASE",
+  "scope": "SINGLE_MANAGER_COHERENT_SIX_READER_PLUS_FIVE_NATIVE_ROUTE_CASES_NOT_FULL_RELEASE",
   "native_cases_executed": 0,
   "required_nonzero_cases": 9,
   "expected_per_device": {
@@ -75,7 +75,7 @@
     "data_profile": "real native-installed miniTest10",
     "bootstrap": "realUI; never -smokeBypassBootstrap",
     "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
-    "scheduling": "One U-owned CI path/build-for-testing and one watcher; no competing suite"
+    "scheduling": "One single-manager coherent CI path/build-for-testing and one bounded watcher for this six-Reader selection; U retains its separate window/Inspector source lane"
   },
   "required_test_environment": {
     "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
@@ -154,7 +154,12 @@
       "case_ids": [
         "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
         "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
-        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+        "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
       ]
     },
     {
@@ -173,7 +178,12 @@
     "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
     "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
     "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
-    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+    "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+    "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -283,5 +293,37 @@
     "oracle": "Every retained Qad790 assertion plus app-wide actual input disappearance and post-wait native screenshot",
     "native_status": "NOT_RUN"
   },
-  "selected_scope_reason": "R readerPlainText shared preprocessing changed on all three backends; R lazy reader/service and I adjacent source fixes changed, S Embedded runtime changed. Execute six affected reader/rotation/restoration cases; GlobalHistory unchanged and U owns separate window/Inspector run. No full-release acceptance."
+  "selected_scope_reason": "Six affected Reader cases retained; five new real native History URL/receipt/invalid-version cases supplement the original nine without replacing or weakening their oracles. Settings system Intent, full release and physical acceptance remain separate. Existing native miniTest10 INSTALL_SEARCH=1 bootstrap also verifies actual Swift-to-rebuilt-Zayit warm/filter/reopen consistency before the selected UI cases.",
+  "supplemental_cases": [
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL, Library present/History absent beforehand, real visible History plus exactly one request/backend/actual-workspace-scene canonical receipt, generation/Embedded epoch and increasing revisions; screenshots/tree/raw log retained"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL, Library present/History absent beforehand, real visible History plus exactly one request/backend/actual-workspace-scene canonical receipt, generation/Embedded epoch and increasing revisions; screenshots/tree/raw log retained"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL, Library present/History absent beforehand, real visible History plus exactly one request/backend/actual-workspace-scene canonical receipt, generation/Embedded epoch and increasing revisions; screenshots/tree/raw log retained"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL, Library present/History absent beforehand, real visible History plus exactly one request/backend/actual-workspace-scene canonical receipt, generation/Embedded epoch and increasing revisions; screenshots/tree/raw log retained"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual system URL rejection, visible error and no History navigation"
+    }
+  ]
 }

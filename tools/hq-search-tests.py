@@ -5,11 +5,13 @@ import subprocess
 import tempfile
 import time
 import argparse
+import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument("--otzaria-baseline", help="Compile the full view model from this Git ref for an expected red regression run")
 parser.add_argument("--cached-readiness-only", action="store_true", help="Run only the whole-repository readiness regression")
+parser.add_argument("--bootstrap-search-only", action="store_true", help="Run the exact bootstrap search method with boundary doubles; no native/FFI acceptance")
 options = parser.parse_args()
 
 
@@ -21,6 +23,23 @@ def run(args, cwd):
         print(result.stderr, end="", flush=True)
     if result.returncode:
         raise SystemExit(result.returncode)
+
+
+if options.bootstrap_search_only:
+    source = (ROOT / "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift").read_text(encoding="utf-8-sig")
+    start = source.index("    @MainActor\n    private static func populateSearchState(")
+    method = source[start:source.index("\n    private static func runDictionaryChecks()", start)]
+    print("Actual leased bootstrap method SHA256: " + hashlib.sha256(method.encode()).hexdigest(), flush=True)
+    with tempfile.TemporaryDirectory(prefix="otzaria-bootstrap-search-fixture-") as name:
+        temp = Path(name)
+        wrapper = temp / "BootstrapSearchMethod.swift"
+        wrapper.write_text("import Foundation\n@MainActor enum BootstrapSearchFixtureRunner {\n" + method + "\nstatic func run(_ report: inout Report) async throws { try await populateSearchState(&report, databaseURL: URL(fileURLWithPath: \"/explicit-fixture-db\"), lexicalURL: URL(fileURLWithPath: \"/explicit-fixture-lexical\")) }\n}\n", encoding="utf-8")
+        executable = temp / ("bootstrap-search.exe" if os.name == "nt" else "bootstrap-search")
+        run(["swiftc", "-swift-version", "6", "-strict-concurrency=complete", "-parse-as-library",
+             str(ROOT / "Vendor/ZayitSearchPort/Swift/ZayitSearchModels.swift"), str(wrapper),
+             str(ROOT / "Tests/HQ/search/BootstrapSearchAcceptanceFixtures.swift"), "-o", str(executable)], temp)
+        run([str(executable)], temp)
+    raise SystemExit(0)
 
 
 with tempfile.TemporaryDirectory(prefix="otzaria-search-fixture-") as name:

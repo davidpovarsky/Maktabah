@@ -4,14 +4,8 @@
   "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
   "databaseUnchanged": true,
   "sqlite": "3.45.3",
-  "python": "3.12.5",
-  "pythonZstandard": "0.25.0",
-  "zstdVersion": [
-    1,
-    5,
-    7
-  ],
-  "sourceHead": "8cc9c6752763de742d2c1ceef3c407a87eb002c7",
+  "decoder": "Python zstandard dictionary boundary, not production Swift decoder",
+  "sourceHead": "a9bc4ffdb65d39d2240e782f6539903906eb63f8",
   "sourceSHA256": {
     "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
     "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift": "42c0f319f3483278c201d1f6a63878c0e94fd63bf30a4a1a6bd69a743aec3fc1",
@@ -19,9 +13,19 @@
     "Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift": "97197c59f64f96073bae1b99154dbef788464a1485d80e9c68a9494cb0534ae5",
     "Source/Otzaria/Reading/OtzariaCategoryPathResolver.swift": "ba469fd3bda902397b4170ffe79d341591354e737bae3b6845ce1e8d099d759f"
   },
-  "queries": 88,
-  "metadataQueries": 26,
+  "python": "3.12.5",
+  "pythonZstandard": "0.25.0",
+  "zstdVersion": [
+    1,
+    5,
+    7
+  ],
+  "sourceHashEncoding": "UTF-8 production text with universal newlines, matching compiled fixture input",
+  "queries": 178,
+  "metadataQueries": 35,
   "metadataDecodedFrames": 0,
-  "decodedFrames": 27,
-  "metadataLineIndexSearches": 26
+  "decodedFrames": 90,
+  "metadataLineIndexSearches": 35,
+  "unindexedLinkScans": [],
+  "rawAuditSHA256": "516954b183981964510b441630cf9603360a58df15b9ed7fc48abfe9ed1bf46e"
 }

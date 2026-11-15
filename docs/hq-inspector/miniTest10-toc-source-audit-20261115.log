@@ -1,0 +1,25 @@
+Source: working tree; case: corpus
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-66aguq03\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-66aguq03\inspector-fixtures.exp
+
+PASS miniTest10 book=28 scope=all lines=2678 relationships=1238 visibleSnippets=8 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=28 scope=first lines=1 relationships=0 visibleSnippets=0 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=28 scope=middle lines=1 relationships=0 visibleSnippets=0 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=28 scope=last lines=1 relationships=4 visibleSnippets=4 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=28 scope=direct-TOC-first-600-פרק א lines=7 relationships=12 visibleSnippets=8 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=28 scope=direct-TOC-middle-674-פרק עה lines=12 relationships=6 visibleSnippets=6 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=28 scope=direct-TOC-last-749-פרק קנ lines=7 relationships=5 visibleSnippets=5 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=103 scope=all lines=2875 relationships=1460 visibleSnippets=8 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=103 scope=first lines=1 relationships=0 visibleSnippets=0 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=103 scope=middle lines=1 relationships=0 visibleSnippets=0 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=103 scope=last lines=1 relationships=0 visibleSnippets=0 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=103 scope=direct-TOC-first-1558-דף ב. lines=15 relationships=16 visibleSnippets=8 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=103 scope=direct-TOC-middle-1620-דף לג. lines=38 relationships=21 visibleSnippets=8 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=103 scope=direct-TOC-last-1682-דף סד. lines=16 relationships=12 visibleSnippets=8 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=3152 scope=all lines=528 relationships=255 visibleSnippets=8 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=3152 scope=first lines=1 relationships=0 visibleSnippets=0 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=3152 scope=middle lines=1 relationships=0 visibleSnippets=0 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=3152 scope=last lines=1 relationships=0 visibleSnippets=0 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=3152 scope=direct-TOC-first-297503-פרק א lines=55 relationships=14 visibleSnippets=8 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=3152 scope=direct-TOC-middle-297508-פרק ו lines=31 relationships=28 visibleSnippets=8 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+PASS miniTest10 book=3152 scope=direct-TOC-last-297514-פרק יב lines=41 relationships=3 visibleSnippets=3 exact row/set oracle, grouping, lazy dictionary decode, last-source point parity
+{"report": "C:\\Users\\DAVID\\Code\\Maktabah-hq-inspector-20261115\\docs\\hq-inspector\\miniTest10-source-audit-20261115.json", "metadataQueries": 35, "decodedFrames": 90, "databaseUnchanged": true}

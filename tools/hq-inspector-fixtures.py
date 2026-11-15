@@ -122,10 +122,28 @@ def corpus_oracle():
     print(json.dumps({"rows": sorted(expected)}))
 
 
+def write_corpus_report(report):
+    import zstandard
+    report.update(python=sys.version.split()[0], pythonZstandard=zstandard.__version__, zstdVersion=list(zstandard.ZSTD_VERSION),
+                  sourceHashEncoding="UTF-8 production text with universal newlines, matching compiled fixture input")
+    target = ROOT / "docs/hq-inspector/miniTest10-source-audit-20261115.json"
+    target.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    metadata = [q for q in report["queries"] if "WITH win" in q["sql"]]
+    summary = {key: value for key, value in report.items() if key != "queries"}
+    summary.update(queries=len(report["queries"]), metadataQueries=len(metadata),
+                   metadataDecodedFrames=sum(q["decodedFrames"] for q in metadata),
+                   decodedFrames=sum(q["decodedFrames"] for q in report["queries"]),
+                   metadataLineIndexSearches=sum(any("SEARCH line USING COVERING INDEX idx_line_book_index" in step[3] for step in q["plan"]) for q in metadata),
+                   unindexedLinkScans=sorted({step[3] for q in metadata for step in q["plan"] if "SCAN " in step[3] and "link" in step[3].lower()}),
+                   rawAuditSHA256=hashlib.sha256(target.read_bytes()).hexdigest())
+    (target.parent / "miniTest10-source-summary-20261115.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"report": str(target), "metadataQueries": summary["metadataQueries"], "decodedFrames": summary["decodedFrames"], "databaseUnchanged": report["databaseUnchanged"]}))
+
+
 def run():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-ref", help="Read production source from a Git commit for a regression baseline")
-    parser.add_argument("--case", choices=["all", "scope", "tap", "notes", "selection", "document", "gate", "corpus"], default="all")
+    parser.add_argument("--case", choices=["all", "scope", "tap", "notes", "note-identity", "selection", "document", "gate", "corpus"], default="all")
     parser.add_argument("--database", type=Path, help="Digest-pinned miniTest10 copy under this worktree's build directory; corpus case only")
     args = parser.parse_args()
     def production(path):
@@ -248,9 +266,7 @@ def run():
                           "Source/Otzaria/Reading/OtzariaLinkedSourceGrouping.swift",
                           "Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift",
                           "Source/Otzaria/Reading/OtzariaCategoryPathResolver.swift"]}}
-            target = ROOT / "docs/hq-inspector/miniTest10-source-audit-20261115.json"
-            target.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-            print(json.dumps({"report": str(target), "metadataQueries": sum("WITH win" in q["sql"] for q in queries), "decodedFrames": sum(q["decodedFrames"] for q in queries), "databaseUnchanged": True}))
+            write_corpus_report(report)
 
 
 if __name__ == "__main__":

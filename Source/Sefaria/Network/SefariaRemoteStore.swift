@@ -13,6 +13,9 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     private var relatedTasksBySection: [String: Task<[SefariaRelationshipLinkDTO], Error>] = [:]
     private var activeSession: BooleanSearchSession?
     private var activeSessionKey: BooleanSearchSessionKey?
+    private var searchServiceObservation: (available: Bool, until: UInt64)?
+    private var searchServiceProbe: Task<Bool, Error>?
+    private var searchServiceGeneration: UInt64 = 0
 
     init(
         configuration: SefariaNetworkConfiguration = .production,
@@ -22,6 +25,44 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         self.configuration = configuration
         self.client = client
         self.cache = cache
+    }
+
+    /// A bounded, read-only observation of the actual existing search endpoint.
+    /// It does not reset UI search sessions, write a disk cache, use user query
+    /// text, or infer availability from generic connectivity/downloaded books.
+    func observeSearchService() async throws -> Bool {
+        try Task.checkCancellation()
+        let now = DispatchTime.now().uptimeNanoseconds
+        if let observation = searchServiceObservation, now < observation.until { return observation.available }
+        let generation = searchServiceGeneration
+        if let probe = searchServiceProbe {
+            let value = try await probe.value
+            try Task.checkCancellation()
+            guard generation == searchServiceGeneration else { throw LibraryBackendError.staleRequest }
+            return value
+        }
+        let url = try configuration.apiURL(path: "/api/search-wrapper")
+        var options = LibrarySearchOptions()
+        options.matchMode = .exact; options.wordDistance = 0
+        let body = SefariaSearchBody(query: "maktabah_readiness_" + UUID().uuidString,
+            start: 0, size: 1, options: options)
+        let probe = Task { [client] in
+            let response = try await client.post(SefariaSearchResponseDTO.self, url: url, body: body,
+                timeoutInterval: 2, maxAttempts: 1)
+            return response.hits.hits.count <= 1
+        }
+        searchServiceProbe = probe
+        do {
+            let available = try await probe.value
+            guard generation == searchServiceGeneration else { throw LibraryBackendError.staleRequest }
+            searchServiceProbe = nil
+            searchServiceObservation = (available, DispatchTime.now().uptimeNanoseconds + 5_000_000_000)
+            try Task.checkCancellation()
+            return available
+        } catch {
+            if generation == searchServiceGeneration { searchServiceProbe = nil }
+            throw error
+        }
     }
 
     func catalog(forceRefresh: Bool) async throws -> [LibraryCatalogNode] {
@@ -177,13 +218,26 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             filters: request.filters,
             options: request.options
         ))
-        let hits = mapSearchHits(response.hits.hits)
+        let page = try projectSearchResponse(response, request: request)
         hydrateCatalogInBackgroundIfNeeded()
+        return page
+    }
+
+    /// Preserve actual source evidence at the existing provider boundary.
+    /// No second provider, query, catalog parser or action-wire DTO is created.
+    func projectSearchResponse(_ response: SefariaSearchResponseDTO, request: LibrarySearchRequest) throws -> LibrarySearchPage {
+        let hits = mapSearchHits(response.hits.hits)
         let receivedCount = response.hits.hits.count
-        let next = receivedCount > 0 && request.offset + receivedCount < response.hits.total.value
-            ? request.offset + receivedCount
-            : nil
-        return LibrarySearchPage(hits: hits, total: response.hits.total.value, nextOffset: next)
+        guard hits.count == receivedCount else {
+            throw LibraryBackendError.invalidResponse("A search source row has no usable work identity")
+        }
+        let consumed = request.offset.addingReportingOverflow(receivedCount)
+        guard !consumed.overflow else { throw LibraryBackendError.invalidResponse("Search cursor overflow") }
+        let next = receivedCount > 0 && (response.hits.total.relation != "eq" || consumed.partialValue < response.hits.total.value)
+            ? consumed.partialValue : nil
+        return LibrarySearchPage(hits: hits, total: response.hits.total.value, nextOffset: next,
+            sourceEvidence: .init(backend: .sefaria, rawHitCount: receivedCount,
+                allRowsMapped: hits.count == receivedCount, totalRelation: response.hits.total.relation))
     }
 
     private func searchWithinWorksFallback(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
@@ -664,6 +718,10 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     }
 
     func clearTransientState() {
+        searchServiceGeneration &+= 1
+        searchServiceProbe?.cancel()
+        searchServiceProbe = nil
+        searchServiceObservation = nil
         knownTitles.removeAll()
         sectionRefByReference.removeAll()
         relatedRowsBySection.removeAll()
