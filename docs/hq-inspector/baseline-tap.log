@@ -1,0 +1,4 @@
+Source: df2a21941afa46da716387fce9de620865d2a151; case: tap
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-bks0yxoe\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-bks0yxoe\inspector-fixtures.exp
+
+FAIL FixtureError(message: "tap does not schedule duplicate eager fetch")

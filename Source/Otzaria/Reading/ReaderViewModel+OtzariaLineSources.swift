@@ -39,6 +39,8 @@ extension ReaderViewModel {
     func didTapReaderText(at characterIndex: Int) {
         if let mapping = backendRenderModel?.renderedSegment(at: characterIndex) {
             guard mapping.locator.backend == BackendCoordinator.shared.activeBackendID else { return }
+            otzariaSourcesLoadTask?.cancel()
+            otzariaSourcesLoadTask = nil
             if readerInspectorVisible,
                selectedSegmentLocator?.persistenceKey == mapping.locator.persistenceKey {
                 closeReaderInspector()
@@ -98,36 +100,20 @@ extension ReaderViewModel {
             return
         }
 
+        otzariaSourcesLoadTask?.cancel()
+        otzariaSourcesLoadTask = nil
         otzariaSelectedLineAnchor = anchor
         selectedSegmentLocator = locator
         readerInspectorVisible = true
-        otzariaSourcesIsLoading = true
+        otzariaLinkedSources = []
+        otzariaSourcesIsLoading = false
         otzariaSourcesError = nil
 
         OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria resolved lineId=\(anchor.id) lineIndex=\(anchor.lineIndex) heRef=\(anchor.heRef ?? "")")
 
-        otzariaSourcesLoadTask?.cancel()
-        otzariaSourcesLoadTask = Task { @MainActor [weak self] in
-            do {
-                let links = try await Task.detached(priority: .userInitiated) {
-                    try OtzariaMaktabahBridge.shared.fetchLinksForLine(anchor)
-                }.value
-
-                guard !Task.isCancelled else { return }
-                guard let self, self.otzariaSelectedLineAnchor?.id == anchor.id else { return }
-                self.otzariaLinkedSources = links
-                self.otzariaSourcesIsLoading = false
-                self.otzariaSourcesError = nil
-                OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria links loaded lineId=\(anchor.id) count=\(links.count)")
-            } catch {
-                guard !Task.isCancelled else { return }
-                guard let self, self.otzariaSelectedLineAnchor?.id == anchor.id else { return }
-                self.otzariaLinkedSources = []
-                self.otzariaSourcesIsLoading = false
-                self.otzariaSourcesError = error.localizedDescription
-                OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria links failed lineId=\(anchor.id) error=\(error.localizedDescription)")
-            }
-        }
+        // The shared inspector owns metadata loading, retry and visible-snippet
+        // hydration. A second eager fetch here decoded every commentary even
+        // though no reader consumes otzariaLinkedSources anymore.
     }
 
     func closeReaderInspector() {
