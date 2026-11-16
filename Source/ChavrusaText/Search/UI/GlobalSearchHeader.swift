@@ -23,6 +23,7 @@ struct GlobalSearchHeader: View {
                 .accessibilityIdentifier("global-search-options")
                 .popover(isPresented: $session.showsAdvancedOptions) {
                     GlobalSearchAdvancedOptionsContent(session: session)
+                        .frame(idealWidth: 420, idealHeight: 620)
                         .presentationCompactAdaptation(.sheet)
                         .presentationDetents([.large])
                 }

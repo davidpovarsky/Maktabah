@@ -3,6 +3,13 @@ import XCTest
 /// Actual system URL entry + existing UI. These require the manager-applied
 /// native registration packet. No smoke bypass or synthetic scene receipt.
 final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
+    // The original iOSHistoryView owns this localized navigation title
+    // (Library.xcstrings/historyAndFavorites), including on the iPad History tab.
+    @MainActor private var history: XCUIElement { app.navigationBars["History & Favorites"] }
+    override func tearDownWithError() throws {
+        if app != nil { capture("native-route-final") }
+        try super.tearDownWithError()
+    }
     @MainActor private func configure(_ backend: String) {
         app.launchArguments = ["-OtzariaDataProfile", "miniTest10", "-preferredBackend", backend,
             "-ChavrusaTextFaithfulReaderUIEnabled", "YES", "-studyWorkspaceTestingNamespace", workspaceNamespace,
@@ -73,12 +80,12 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
     @MainActor private func warm(_ backend: String) throws {
         configure(backend); app.launch()
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40), "Real library/scene did not mount")
-        XCTAssertFalse(app.navigationBars["History"].exists, "History must be absent before the URL entry")
+        XCTAssertFalse(history.exists, "History must be absent before the URL entry")
         capture("native-route-before-" + backend)
         let request = UUID()
         try invocation(request, backend: backend, mode: "warm")
         app.open(try historyURL(backend, request: request))
-        XCTAssertTrue(app.navigationBars["History"].waitForExistence(timeout: 20), "Exact History surface was not displayed")
+        XCTAssertTrue(history.waitForExistence(timeout: 20), "Exact History surface was not displayed")
         XCTAssertFalse(app.alerts["Unable to open link"].exists)
         try requireNativeReceipt(request, backend: backend)
         capture("native-route-after-" + backend)
@@ -93,12 +100,12 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
     func testColdHistoryURLWaitsForActualSceneMount() throws {
         configure("otzaria"); app.launch()
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
-        XCTAssertFalse(app.navigationBars["History"].exists)
+        XCTAssertFalse(history.exists)
         capture("native-cold-before")
         app.terminate()
         let request = UUID(); try invocation(request, backend: "otzaria", mode: "cold")
         app.open(try historyURL("otzaria", request: request))
-        XCTAssertTrue(app.navigationBars["History"].waitForExistence(timeout: 40), "Cold URL did not await the real mounted native scene")
+        XCTAssertTrue(history.waitForExistence(timeout: 40), "Cold URL did not await the real mounted native scene")
         XCTAssertFalse(app.alerts["Unable to open link"].exists)
         try requireNativeReceipt(request, backend: "otzaria")
         capture("native-cold-after")
@@ -107,13 +114,13 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
     func testUnknownURLVersionShowsErrorWithoutNavigatingToHistory() throws {
         configure("otzaria"); app.launch()
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
-        XCTAssertFalse(app.navigationBars["History"].exists)
+        XCTAssertFalse(history.exists)
         capture("native-invalid-before")
         let request = UUID(); try invocation(request, backend: "otzaria", mode: "invalid_version")
         let valid = try historyURL("otzaria", request: request)
         app.open(try XCTUnwrap(URL(string: valid.absoluteString.replacingOccurrences(of: "/v1/", with: "/v2/"))))
         XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 15))
-        XCTAssertFalse(app.navigationBars["History"].exists)
+        XCTAssertFalse(history.exists)
         capture("native-invalid-after")
     }
 }

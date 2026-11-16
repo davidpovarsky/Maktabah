@@ -23,7 +23,15 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func element(_ id: String) -> XCUIElement {
-        app.descendants(matching: .any).matching(identifier: id).firstMatch
+        // Use the actual native roles for the large root/list queries. An
+        // untyped descendant snapshot during bootstrap timed out before the
+        // accessibility audit could even start on the original candidate.
+        switch id {
+        case "global-search-screen", "global-search-header": return app.otherElements[id].firstMatch
+        case "global-search-history", "global-search-options-content": return app.collectionViews[id].firstMatch
+        default: break
+        }
+        return app.descendants(matching: .any).matching(identifier: id).firstMatch
     }
 
     @MainActor
@@ -54,18 +62,17 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(["he", "en"].contains(language))
         launchWithTier(.realUI, backend: backend,
                        extraArgs: ["-preferredBackend", backend, "-smokeBackend", backend,
-                                   "-studyWorkspaceTestingNamespace", workspaceNamespace],
+                                   "-studyWorkspaceTestingNamespace", workspaceNamespace,
+                                   "-lastSelectedTab", "0"],
                        language: language, locale: language == "he" ? "he_IL" : "en_US")
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
-        if !element("global-search-header").exists {
-            let tab = findTabButton(hebrew: "חיפוש", english: "Search")
-            guard tab.waitForExistence(timeout: 60) else {
-                XCTFail("Normal bootstrap did not expose the real Search tab")
-                throw SetupError.missing("Search tab")
-            }
-            XCTAssertTrue(tab.isHittable)
-            tab.tap()
+        let tab = findTabButton(hebrew: "חיפוש", english: "Search")
+        guard tab.waitForExistence(timeout: 60) else {
+            XCTFail("Normal bootstrap did not expose the real Search tab")
+            throw SetupError.missing("Search tab")
         }
+        XCTAssertTrue(tab.isHittable)
+        tab.tap()
         try require("global-search-screen", timeout: 40)
         try require("global-search-header")
         try require("global-search-history")

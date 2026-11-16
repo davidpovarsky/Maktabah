@@ -36,6 +36,7 @@ struct GlobalSearchAdvancedOptionsContent: View {
                         .accessibilityIdentifier("global-search-options-validation")
                 }
             }
+            .accessibilityIdentifier("global-search-options-content")
             .navigationTitle("אפשרויות חיפוש")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -45,7 +46,6 @@ struct GlobalSearchAdvancedOptionsContent: View {
                 }
             }
         }
-        .accessibilityIdentifier("global-search-options-content")
     }
 
     private var otzariaOptions: some View {
