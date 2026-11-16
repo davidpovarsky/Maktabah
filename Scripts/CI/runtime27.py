@@ -247,6 +247,8 @@ def main():
         report["sdk"] = capture(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"], "sdk.txt").strip()
         if not report["sdk"].startswith("27."):
             raise RuntimeError("Installed simulator SDK is not27.x")
+        capture(["xcrun", "simctl", "help", "io"], "simctl-io-help.txt")
+        capture(["xcrun", "simctl", "help", "ui"], "simctl-ui-help.txt")
         for kind in ("summary", "tests", "test-details", "activities"):
             capture(["xcrun", "xcresulttool", "get", "test-results", kind, "--help"], f"xcresult-{kind}-help.txt")
             if kind in ("summary", "tests"):
@@ -274,6 +276,36 @@ def main():
             return 0
         if report["mode"] != "ui":
             raise RuntimeError("Unknown runtime mode")
+        # Fail cheap on the exact owned native component before restoring/building
+        # the full app. This is real SDK module compilation, never runtime acceptance.
+        sdk_path = capture(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], "sdk-path.txt").strip()
+        palette_sources = sorted((ROOT / "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette").rglob("*.swift"))
+        palette_command = ["xcrun", "swiftc", "-emit-module", "-parse-as-library", "-swift-version", "6", "-module-name", "CommandPalette",
+                           "-sdk", sdk_path, "-target", "arm64-apple-ios27.0-simulator",
+                           "-emit-module-path", str(OUT / "CommandPalette.swiftmodule"), *map(str, palette_sources)]
+        report["palette_sdk_compile"] = {"command": palette_command, "native_ui_passes": 0}
+        palette_code = run_logged(palette_command, "palette-sdk-compile.log", 180)
+        report["palette_sdk_compile"]["exit_code"] = palette_code
+        if palette_code:
+            raise RuntimeError("Owned palette component did not compile with actual Apple SDK")
+        # Compile the exact downstream UIKit adapter early, without app mocks
+        # or a second UI harness. Full real app/test compilation still follows.
+        sidebar_path = ROOT / "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"
+        sidebar = sidebar_path.read_text()
+        policy = sidebar.split("#if canImport(SwiftUI)", 1)[0]
+        adapter = sidebar[sidebar.index("private struct ReaderSidebarSplitConfiguration:"):sidebar.rindex("#endif")]
+        sidebar_sdk_source = OUT / "ReaderSidebarSplit.swift"
+        sidebar_sdk_source.write_text(policy + "\nimport SwiftUI\nimport UIKit\n" + adapter)
+        sidebar_command = ["xcrun", "swiftc", "-emit-module", "-parse-as-library", "-swift-version", "6",
+                           "-module-name", "ReaderSidebarSplit", "-sdk", sdk_path,
+                           "-target", "arm64-apple-ios27.0-simulator",
+                           "-emit-module-path", str(OUT / "ReaderSidebarSplit.swiftmodule"), str(sidebar_sdk_source)]
+        report["sidebar_sdk_compile"] = dict(command=sidebar_command, native_ui_passes=0,
+            original_source_sha256=hashlib.sha256(sidebar_path.read_bytes()).hexdigest())
+        sidebar_code = run_logged(sidebar_command, "sidebar-sdk-compile.log", 180)
+        report["sidebar_sdk_compile"]["exit_code"] = sidebar_code
+        if sidebar_code:
+            raise RuntimeError("Owned sidebar adapter did not compile with actual Apple SDK")
         contract_path = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
         contract = json.loads(contract_path.read_text())
         groups = execution_groups(contract)
@@ -287,7 +319,7 @@ def main():
         report["full_release_acceptance"] = False
         report["scope"] = contract["scope"]
         test_path = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
-        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "bee9297b0ba4c9cef30d39ebb34a534d3941c933118eafb84c283cd224d33b3b":
+        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc":
             raise RuntimeError("Reviewed test source drift")
         report["test_source_commit"] = contract["source_test_commit"]
         subprocess.run(["git", "merge-base", "--is-ancestor", contract["source_test_commit"], "HEAD"], cwd=ROOT, check=True)
@@ -297,7 +329,12 @@ def main():
         report["helper_inputs_sha256"] = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in [
             "Scripts/CI/hq-stage2-focused-apple.py", "Scripts/CI/hq-stage2-focused-apple.inputs.json", "Scripts/CI/runtime27.py",
             "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27-fixture-oracle.py", "tools/verify_xcresult_zero_skips.py",
-            "Scripts/CI/collect-runtime27-palette-log.py"]}
+            "Scripts/CI/collect-runtime27-palette-log.py", "Scripts/CI/runtime27-hid.py", "Scripts/CI/runtime27-fixture-recovery.py"]}
+        if contract.get("hid_comparison"):
+            if run_logged([sys.executable, "Scripts/CI/runtime27-hid.py", "prepare", "--out", str(OUT / "hid-tools.json")],
+                          "hid-prepare.log", 360):
+                raise RuntimeError("Isolated native HID tool preflight failed; comparison UI NOT_RUN")
+            report["idb"] = "PINNED_JOB_LOCAL_HID_COMPARISON_ORIGINAL_XCTEST_CASE_RETAINED"
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing", "--derived-data", "build/DerivedData"],
                       "build-for-testing-driver.log", 4200):
             raise RuntimeError("Real app/test build failed; UI cases NOT_RUN")

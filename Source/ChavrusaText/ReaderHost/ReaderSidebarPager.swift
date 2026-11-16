@@ -9,8 +9,7 @@ enum ReaderSidebarPolicy {
             && availableWidth >= max(minimumSidebarWidth, sidebarWidth) + max(minimumReaderWidth, readerWidth) + dividerAllowance
     }
 
-    /// nil leaves the active page alone. The page-control strip uses this
-    /// policy; the page body uses native paging and gesture arbitration.
+    /// nil leaves the active page alone, including vertical body scrolling.
     static func swipeSelectsContents(horizontal: Double, vertical: Double, isRTL: Bool) -> Bool? {
         guard horizontal.isFinite, vertical.isFinite,
               abs(horizontal) >= 44, abs(horizontal) > abs(vertical) * 1.25 else { return nil }
@@ -31,9 +30,11 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     @Environment(iOSNavigationManager.self) private var navigationManager
 
     var body: some View {
-        // Keep both original NavigationStacks at stable identities. The native
-        // pager owns horizontal dragging across the body and its transition;
-        // changing pages never changes the sibling reader's identity.
+        // Native tabs retain each original NavigationStack and its search
+        // controller. A page-style TabView also writes selection after its own
+        // pan transition; that raced the body recognizer, especially in RTL,
+        // and left the outgoing search controller on the selected page.
+        // The scoped body recognizer is the single horizontal selection writer.
         TabView(selection: $coordinator.page) {
             library(coordinator.page == .library)
                 .accessibilityHidden(coordinator.page != .library)
@@ -45,12 +46,13 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
                 .accessibilityHidden(coordinator.page != .contents)
                 .tag(ReaderSidebarPageCoordinator.Page.contents)
         }
-        .tabViewStyle(.page(indexDisplayMode: .never))
+        .tabViewStyle(.tabBarOnly)
+        .toolbar(.hidden, for: .tabBar)
         .animation(reduceMotion ? nil : .snappy, value: coordinator.page)
         .environment(\.readerSidebarOwnsToggle, true)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-sidebar-pager")
-        .background { ReaderSidebarSplitConfiguration() }
+        .background { ReaderSidebarSplitConfiguration(onBodySwipe: selectPage) }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             HStack(spacing: 0) {
                 pageButton(.library, title: "ספרייה")
@@ -70,15 +72,17 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     private var sidebarSwipe: some Gesture {
         DragGesture(minimumDistance: 24)
             .onEnded { value in
-                guard let selectsContents = ReaderSidebarPolicy.swipeSelectsContents(
-                    horizontal: Double(value.translation.width),
-                    vertical: Double(value.translation.height),
-                    isRTL: layoutDirection == .rightToLeft
-                ) else { return }
-                withAnimation(reduceMotion ? nil : .snappy) {
-                    coordinator.page = selectsContents ? .contents : .library
-                }
+                selectPage(horizontal: Double(value.translation.width), vertical: Double(value.translation.height))
             }
+    }
+
+    private func selectPage(horizontal: Double, vertical: Double) {
+        guard let selectsContents = ReaderSidebarPolicy.swipeSelectsContents(
+            horizontal: horizontal, vertical: vertical, isRTL: layoutDirection == .rightToLeft
+        ) else { return }
+        withAnimation(reduceMotion ? nil : .snappy) {
+            coordinator.page = selectsContents ? .contents : .library
+        }
     }
 
     private func pageButton(_ page: ReaderSidebarPageCoordinator.Page, title: String) -> some View {
@@ -100,11 +104,16 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
 /// Configure the public ancestor of the original NavigationSplitView. This
 /// attachment creates no split, navigation controller, reader or toolbar item.
 private struct ReaderSidebarSplitConfiguration: UIViewControllerRepresentable {
+    let onBodySwipe: @MainActor (Double, Double) -> Void
+
     func makeUIViewController(context: Context) -> ReaderSidebarSplitConfigurationController {
-        ReaderSidebarSplitConfigurationController()
+        let controller = ReaderSidebarSplitConfigurationController()
+        controller.onBodySwipe = onBodySwipe
+        return controller
     }
 
     func updateUIViewController(_ controller: ReaderSidebarSplitConfigurationController, context: Context) {
+        controller.onBodySwipe = onBodySwipe
         controller.configureExistingSplit()
     }
 
@@ -113,8 +122,11 @@ private struct ReaderSidebarSplitConfiguration: UIViewControllerRepresentable {
     }
 }
 
-private final class ReaderSidebarSplitConfigurationController: UIViewController {
+private final class ReaderSidebarSplitConfigurationController: UIViewController, UIGestureRecognizerDelegate {
+    var onBodySwipe: (@MainActor (Double, Double) -> Void)?
     private weak var configuredSplit: UISplitViewController?
+    private weak var bodySwipeHost: UIView?
+    private lazy var bodyPan = UIPanGestureRecognizer(target: self, action: #selector(bodyPanEnded(_:)))
     private var originalBehavior: UISplitViewController.SplitBehavior?
     private var originalButtonVisibility: UISplitViewController.DisplayModeButtonVisibility?
 
@@ -148,6 +160,7 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController 
             originalBehavior = split.preferredSplitBehavior
             originalButtonVisibility = split.displayModeButtonVisibility
         }
+        configureBodySwipe(in: split)
 
         let availableWidth = split.view.safeAreaLayoutGuide.layoutFrame.width
         let primaryWidth = split.viewController(for: .primary)?.viewIfLoaded?.bounds.width ?? 0
@@ -179,6 +192,8 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController 
     }
 
     func restoreConfiguration() {
+        bodySwipeHost?.removeGestureRecognizer(bodyPan)
+        bodySwipeHost = nil
         if let split = configuredSplit {
             if let originalBehavior { split.preferredSplitBehavior = originalBehavior }
             if let originalButtonVisibility { split.displayModeButtonVisibility = originalButtonVisibility }
@@ -186,6 +201,47 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController 
         configuredSplit = nil
         originalBehavior = nil
         originalButtonVisibility = nil
+    }
+
+    private func configureBodySwipe(in split: UISplitViewController) {
+        guard let host = split.viewController(for: .primary)?.viewIfLoaded,
+              view.isDescendant(of: host), bodySwipeHost !== host else { return }
+        bodySwipeHost?.removeGestureRecognizer(bodyPan)
+        bodyPan.maximumNumberOfTouches = 1
+        bodyPan.delegate = self
+        host.addGestureRecognizer(bodyPan)
+        bodySwipeHost = host
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard gestureRecognizer === bodyPan, view.window != nil else { return false }
+        // The representable is the existing TabView's background. Restrict
+        // the ancestor recognizer to that actual body, excluding the reader
+        // and surrounding NavigationBar/search controls.
+        return !view.isHidden && view.alpha > 0 && view.bounds.contains(touch.location(in: view))
+    }
+
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard gestureRecognizer === bodyPan else { return false }
+        let velocity = bodyPan.velocity(in: view)
+        // Fail before beginning a vertical pan, leaving native list scrolling
+        // and its touch cancellation behavior in charge of that interaction.
+        return velocity.x.isFinite && velocity.y.isFinite && abs(velocity.x) > abs(velocity.y) * 1.25
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard gestureRecognizer === bodyPan, let host = bodySwipeHost,
+              let otherView = otherGestureRecognizer.view else { return false }
+        // Both gestures stay in this primary column. Do not alter the native
+        // TabView/collection recognizers or any window/reader recognizer.
+        return otherView === host || otherView.isDescendant(of: host)
+    }
+
+    @objc private func bodyPanEnded(_ sender: UIPanGestureRecognizer) {
+        guard sender.state == .ended, view.window != nil else { return }
+        let translation = sender.translation(in: view)
+        onBodySwipe?(Double(translation.x), Double(translation.y))
     }
 }
 #endif

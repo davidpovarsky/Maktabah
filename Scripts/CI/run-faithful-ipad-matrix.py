@@ -101,6 +101,7 @@ for index, scenario in enumerate(scenarios):
     recording = None
     recording_log = None
     palette_log_stream = None
+    hid_comparison = None
 
     def phase(name, **details):
         device["phase"] = name
@@ -175,6 +176,23 @@ for index, scenario in enumerate(scenarios):
             except subprocess.CalledProcessError:
                 fixture_report = artifacts / f"miniTest10-native-fixture-install-{label}.json"
                 failure = json.loads(fixture_report.read_text()) if fixture_report.is_file() else {}
+                termination_report = artifacts / f"miniTest10-native-fixture-termination-{label}.json"
+                termination = json.loads(termination_report.read_text()) if termination_report.is_file() else {}
+                recover_cleanup = runpy.run_path("Scripts/CI/runtime27-fixture-recovery.py")["verified_fixture_cleanup_timeout"]
+                if recover_cleanup(failure, termination, fixture_attempt):
+                    # Run43750733453 installed the genuine hashed fixture, then
+                    # simctl terminate timed out. Preserve that failure and
+                    # prove the exact owned simulator is idle before reboot.
+                    # No failed installer/test is retried or counted as passed.
+                    shutil.copyfile(fixture_report, artifacts / f"miniTest10-native-fixture-install-{label}-before-reboot.json")
+                    shutil.copyfile(termination_report, artifacts / f"miniTest10-native-fixture-termination-{label}-before-reboot.json")
+                    phase("RECOVERING_VERIFIED_FIXTURE_CLEANUP_TIMEOUT", udid=udid)
+                    assert device["udid"] == udid
+                    subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
+                    subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
+                    subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
+                    device["fixtureCleanupRecovery"] = "OWNED_SHUTDOWN_VERIFIED_AND_REBOOTED; ALL_UI_STILL_REQUIRED"
+                    break
                 errors = failure.get("errors") or []
                 transient_download = (failure.get("phase") == "install" and bool(errors)
                     and all(re.search(r"\bHTTP (502|503|504)\b", str(error)) for error in errors))
@@ -206,8 +224,14 @@ for index, scenario in enumerate(scenarios):
         environment = os.environ.copy()
         container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
         environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
+        if runtime27_contract and runtime27_contract.get("hid_comparison") and scenario.get("hid_comparison", True):
+            tools = json.loads((artifacts / "runtime27/hid-tools.json").read_text())
+            hid_comparison = runpy.run_path("Scripts/CI/runtime27-hid.py")["HIDComparison"](
+                udid, container, label, tools, artifacts / "runtime27")
+            environment.update(hid_comparison.start())
         if runtime27_contract:
-            environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](udid, label))
+            environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](
+                udid, label, include_sidebar=any(case.startswith("Sidebar11201AcceptanceTests/") for case in selection)))
             recording_log = (artifacts / f"runtime27/recording-{label}.log").open("w")
             recording = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(artifacts / f"runtime27/native-{label}.mp4")],
                                          stdout=recording_log, stderr=subprocess.STDOUT)
@@ -217,6 +241,8 @@ for index, scenario in enumerate(scenarios):
         with (artifacts / f"test-simulator-{label}.log").open("w") as log:
             process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
             for line in process.stdout:
+                if hid_comparison is not None:
+                    line = hid_comparison.redact_evidence(line)
                 log.write(line)
                 log.flush()
                 print(line, end="", flush=True)
@@ -335,6 +361,8 @@ for index, scenario in enumerate(scenarios):
         # Retain a hard failure, but still execute the other required native
         # configurations so one device does not hide the iPhone/13-inch result.
     finally:
+        if hid_comparison is not None:
+            hid_comparison.stop()
         if palette_log_stream is not None:
             device["paletteInputStream"] = palette_log_stream.stop()
         if recording is not None:

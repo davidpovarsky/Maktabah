@@ -1,0 +1,100 @@
+[
+  {
+    "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "2398bd9b92ac475a9371f1463dfad9c83c58d042c40db7da6c19fb65f7c9a541",
+    "donorSHA256": "0dcc367b84b6619842c61fbe280aef5867eaa6e2567126b0d717048145ed63f5",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "f1187c0030e53b7b30cf6ba21b7c1633d2c87605302726f34ec96b210176611e",
+    "donorSHA256": "0aeaf779e901813d4059b9117cc73416657da4916b23a4c2a31a118cae4dc18d",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "db3c527cf6748a4ebf01ffa81a45fdf77cd0afdd52aaa8508460b5feb3c18782",
+    "donorSHA256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "82e618702804f7d9c0c270c62c2537e301816285261c810530448295986527f6",
+    "donorSHA256": "afcb63e7b3da86bdef079afd10b30642980ecbb075df26ff1c1445e046763800",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "bee9297b0ba4c9cef30d39ebb34a534d3941c933118eafb84c283cd224d33b3b",
+    "donorSHA256": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "donorSHA256": "bde5eaafa0df6c151d403ad780c84f3c349af5a573324764b7ab998aa5062765",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "ee07570b990d1b6a8426e284d8e4745c6d4ff9f6ea7277e721dbe2deb44b39e1",
+    "donorSHA256": "d42443d2c2d40486ee3e63e2658808ea221d58a1c68835295ef577380a4bc7c8",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Scripts/CI/runtime27.py",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "9d5b4aa41cbf48308ee43f2196f922705a30a0b22dbf097bd2d4823add2be3ee",
+    "donorSHA256": "cee8d153ea1239d9af43487fc19925227a7ee10f10b7d8a88e5f061a02ef3903",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Scripts/CI/runtime27-fixture-oracle.py",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "c579fe356a38ca5431fc29d32a9193619ad2f930043dca8bdb805f0154c3f9f4",
+    "donorSHA256": "2074f88466aa25199b6f845973312e914878a04dd034dc9795b90826dcca465e",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Scripts/CI/test-runtime27-fixture-oracle.py",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "bf9defc7edad2c09720de011f29dfe94c1dc176d11d5b516e75f77a76cdd691d",
+    "donorSHA256": "ca6e0f1b600f4601c5cf35453a735c2ba195978c220235f56df7f96608839c97",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Scripts/CI/runtime27-fixture-recovery.py",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "donorSHA256": "979538e00397575fb07d8844fdf41065349fb6e24809d94a81445ee24c02ec58",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Scripts/CI/test-runtime27-fixture-recovery.py",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "donorSHA256": "d08f922c4a0a6b8f4ba1ebcdb0fc1b29c5bca2bc73466f7bd53bb0b5d9fa008f",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Scripts/CI/runtime27-hid.py",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "donorSHA256": "7488ccd1d101b5ae455815906b06f5671ca820eaabc18c6ef4b92c492e2172b0",
+    "decision": "ACCEPTED"
+  },
+  {
+    "path": "Scripts/CI/test-runtime27-hid.py",
+    "base": "739e29704db988630764c091ff6237974502294f",
+    "oursSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "donorSHA256": "55331d080ade96946fd1fa817af437c64128dd1f1a9d94fe873712de79fb114d",
+    "decision": "ACCEPTED"
+  }
+]

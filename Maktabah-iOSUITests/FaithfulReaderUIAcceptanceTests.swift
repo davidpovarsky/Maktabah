@@ -53,6 +53,8 @@ final class SafariPrototypeReferenceTests: XCTestCase {
 class FaithfulReaderUIBase: MaktabahUITestBase {
     let workspaceNamespace = UUID().uuidString
     private var viewportURL: URL?
+    var readerTestTier: TestTier { .smoke }
+    var readerAdditionalLaunchArguments: [String] { [] }
     struct Viewport: Codable {
         struct Presentation: Codable {
             let wantsOverview: Bool; let isViewLoaded: Bool; let isInWindow: Bool
@@ -72,11 +74,11 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             URL(fileURLWithPath: $0).appendingPathComponent("faithful-\(scenario)-" + UUID().uuidString).path
         }
         viewportURL = prefix.map { URL(fileURLWithPath: $0 + ".viewport.json") }
-        launchWithTier(.smoke, scenario: scenario, backend: backend, extraArgs: [
+        launchWithTier(readerTestTier, scenario: scenario, backend: backend, extraArgs: [
             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
             "-studyWorkspaceTestingNamespace", workspaceNamespace,
             "-textViewBackgroundColorLight", String(background)
-        ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []), language: language, locale: language == "he" ? "he_IL" : "en_US",
+        ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []) + readerAdditionalLaunchArguments, language: language, locale: language == "he" ? "he_IL" : "en_US",
         extraEnvironment: prefix.map { ["CHAVRUSA_READER_VIEWPORT_REPORT": $0] } ?? [:])
         dismissAlertsIfNeeded()
     }
@@ -155,6 +157,29 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertEqual((custom.exists ? 1 : 0) + native.count, 1,
                        "Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden")
         return custom.exists ? custom : native.firstMatch
+    }
+    func exerciseOriginalBottomTOCAction() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let libraryPage = app.buttons["reader-sidebar-page-0"]
+        if !libraryPage.exists || !libraryPage.frame.intersects(app.frame) {
+            tap(readerSidebarToggle())
+        }
+        tap(libraryPage)
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let readerWidth = app.textViews["reader-text"].frame.width
+        tap(app.buttons["reader-more-menu"])
+        tap(app.buttons["reader-toc-toggle"])
+        let contentsPage = app.buttons["reader-sidebar-page-1"]
+        let selected = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isSelected == true"), object: contentsPage)
+        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 15), .completed,
+                       "The original TOC action must select Contents, rather than hiding an open Library page")
+        XCTAssertTrue(app.descendants(matching: .any)["toc-column"].exists)
+        XCTAssertTrue(app.frame.contains(contentsPage.frame), "Contents must actually remain on screen")
+        XCTAssertEqual(app.textViews["reader-text"].frame.width, readerWidth, accuracy: 1)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
+        capture("candidate-original-bottom-toc-action")
     }
     func capture(_ name: String, windowed: Bool = false) {
         let application = app!
@@ -797,27 +822,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     }
 
     func testOriginalBottomTOCActionOpensContentsFromLibraryPage() {
-        XCUIDevice.shared.orientation = .landscapeLeft
-        launchReader()
-        assertReaderHasText()
-        let libraryPage = app.buttons["reader-sidebar-page-0"]
-        if !libraryPage.exists || !libraryPage.frame.intersects(app.frame) {
-            tap(readerSidebarToggle())
-        }
-        tap(libraryPage)
-        let originalLocator = app.staticTexts["reader-current-locator"].label
-        let readerWidth = app.textViews["reader-text"].frame.width
-        tap(app.buttons["reader-more-menu"])
-        tap(app.buttons["reader-toc-toggle"])
-        let contentsPage = app.buttons["reader-sidebar-page-1"]
-        let selected = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isSelected == true"), object: contentsPage)
-        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 15), .completed,
-                       "The original TOC action must select Contents, rather than hiding an open Library page")
-        XCTAssertTrue(app.descendants(matching: .any)["toc-column"].exists)
-        XCTAssertTrue(app.frame.contains(contentsPage.frame), "Contents must actually remain on screen")
-        XCTAssertEqual(app.textViews["reader-text"].frame.width, readerWidth, accuracy: 1)
-        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
-        capture("candidate-original-bottom-toc-action")
+        exerciseOriginalBottomTOCAction()
     }
 
     @MainActor
