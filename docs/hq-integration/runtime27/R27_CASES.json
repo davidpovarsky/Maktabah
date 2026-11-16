@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "source_test_commit": "2f2560bba668b2aaf4a0e176a0549d68e8a168a8",
+  "source_test_commit": "12bc0d7e69e3ab249e689858eaf18f7a3de5a31d",
   "application_base": "0436775d85893225005f29baf0aa3a20d7b88317",
-  "app_source": "2f2560bba668b2aaf4a0e176a0549d68e8a168a8",
+  "app_source": "12bc0d7e69e3ab249e689858eaf18f7a3de5a31d",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "SINGLE_AGENT_PHASE1_FOCUSED_ROOT_CAUSE_4_NOT_FINAL_ACCEPTANCE",
+  "scope": "SINGLE_AGENT_PHASE1_ORIGINAL18_PLUS_U6_AND_NATIVE_SECURITY3_NOT_RELEASE",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 4,
+  "required_nonzero_cases": 27,
   "expected_per_device": {
-    "ipad11": 4,
-    "iphone": 0
+    "ipad11": 24,
+    "iphone": 3
   },
   "cases": [
     {
@@ -151,19 +151,79 @@
       "label": "11-reader",
       "size": "11",
       "case_ids": [
+        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
         "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+        "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+        "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+        "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+        "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
         "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+        "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+        "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+        "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL"
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+        "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+        "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison"
+      ],
+      "hid_comparison": true
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "case_ids": [
+        "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+        "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
       ],
       "hid_comparison": false
     }
   ],
   "execution_case_ids": [
+    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
     "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+    "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+    "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+    "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+    "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+    "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
     "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-    "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL"
+    "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+    "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+    "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+    "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -264,13 +324,13 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
-    "source": "2f2560bba668b2aaf4a0e176a0549d68e8a168a8",
-    "implementation": "Live render projection; native isolated sidebar stacks with single selection owner; finite regular-width popover; fixed visibility diagnostics",
+    "source": "12bc0d7e69e3ab249e689858eaf18f7a3de5a31d",
+    "implementation": "Live native render projection; original native body paging/vertical arbitration with explicit RTL order; native options Form sheet; secure calibrated HID/window isolation; exact History title and AX bootstrap queries",
     "public_enabled": false,
     "native_status": "NOT_RUN",
     "automatic_retry": false
   },
-  "selected_scope_reason": "921 focused4 executed0PASS4FAIL. History witness first appeared only after the5s deadline with no pending submission; refresh actual render projection on native binding changes without revoking workspace authority. Sidebar original native search/global tabs restored but page selection still rolled back; retain original stacks in native programmatic page container with dataSource nil (public Apple API), no competing selection callbacks. Options is visually420x620 yet AX ancestor is zero-sized; use finite regular-width root and retain compact system sheet. Same4 unchanged method oracles, no receipt/visibility/deadline relaxation. This probe does not replace final27 or original18 acceptance.",
+  "selected_scope_reason": "Phase1 coherent original18 plus U6 and native foreground/backend/replay3 on one rebuilt app/test source. Warm Otzaria History passed exact canonical receipt in Native357 after refreshing render projection, without changing visibility/authority/5s budget. Retain original native page container as sole body gesture writer; explicit physical page order restores RTL while each original NavigationStack keeps its language direction. Reject competing custom body pan and isolated-host experiment after actual native title/state failures. Standard native options Form sheet removes popover zero-frame AX ancestor. Same original UI method oracles including unsuppressed audit and20body+20dot transitions per language; no test-source changes since918, no skips, engine/data changes or public-v2 activation. Current original Reader6/Search7/History5 and U6/security3 must execute; prior differently pinned runs are not reused as this acceptance.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -429,7 +489,7 @@
       }
     }
   ],
-  "hid_comparison": false,
+  "hid_comparison": true,
   "phase1_original_18_case_ids": [
     "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
     "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
