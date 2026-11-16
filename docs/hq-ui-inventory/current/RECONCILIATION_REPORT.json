@@ -223,8 +223,8 @@
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
       "anchor": "page == .library ? navigationManager.libraryViewModel.searchQuery : coordinator.contentsQuery",
       "old_blob": "58d505603a44e1b476b448738540a8604cb183b9",
-      "current_blob": "48db2b187d31eb5c0ba6604c62f5ecba354463c8",
-      "line": 95
+      "current_blob": "74c1350f63369c802f4bd5f79bdda45ea9683a20",
+      "line": 101
     },
     {
       "path": "Source/LibraryBackend/LibraryBackendModels.swift",
@@ -272,15 +272,15 @@
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
       "anchor": "struct ReaderSidebarPager",
       "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
-      "current_blob": "48db2b187d31eb5c0ba6604c62f5ecba354463c8",
+      "current_blob": "74c1350f63369c802f4bd5f79bdda45ea9683a20",
       "line": 25
     },
     {
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
       "anchor": "configureExistingSplit",
       "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
-      "current_blob": "48db2b187d31eb5c0ba6604c62f5ecba354463c8",
-      "line": 232
+      "current_blob": "74c1350f63369c802f4bd5f79bdda45ea9683a20",
+      "line": 244
     },
     {
       "path": "Source/Features/Search/iOS/SearchModeView.swift",
@@ -388,5 +388,5 @@
       "line": 637
     }
   ],
-  "source_sha": "3f421eb7dc40739de365cd6e93b3f085b7bec321"
+  "source_sha": "949a3871d0f5bb8378e67c9aa4a44442cac610ed"
 }
