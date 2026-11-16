@@ -1,0 +1,8 @@
+{
+  "mode": "AFTER_WORKING_SOURCE",
+  "source": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+  "sourceSHA256": "b83370ecf46923df02d73ca26f6e1173a7dc248568f43e089d9c779c883c8da2",
+  "completeMethodSHA256": "bc338e4594d685a8cd6d85091dde2141bef57df475d235dac408a723385c0f9c",
+  "testsSHA256": "30344eefc4d3d5ac1fe048ec6b2bf222b325c7ecec723abc08be037d3afe2f5f",
+  "boundary": "Real Foundation Tasks/continuations/MainActor; native registration/foreground delivery explicit shell. No Apple/UIKit claim."
+}

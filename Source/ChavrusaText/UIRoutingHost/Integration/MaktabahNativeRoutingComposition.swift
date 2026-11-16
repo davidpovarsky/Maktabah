@@ -71,7 +71,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
             }
             try orchestrator.register(session)
             scenes[sceneID] = .init(managerID: ObjectIdentifier(manager), session: session, lease: lease, windowNumber: windowNumber)
-            mountWaiters.removeValue(forKey: ObjectIdentifier(manager))?.continuation.resume(returning: sceneID)
+            if foreground {
+                mountWaiters.removeValue(forKey: ObjectIdentifier(manager))?.continuation.resume(returning: sceneID)
+            }
             return session
         } catch { session.unmount(); authority.unmount(lease); throw error }
     }
@@ -81,9 +83,11 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         contexts.removeValue(forKey: session.sceneID)
         try session.nativeStateChanged()
         if !value { session.presentation.revoke() }
+        else { mountWaiters.removeValue(forKey: entry.managerID)?.continuation.resume(returning: session.sceneID) }
     }
     func unmount(_ session: MaktabahNativeSceneSession) {
         guard let entry = scenes[session.sceneID], entry.session === session else { return }
+        mountWaiters.removeValue(forKey: entry.managerID)?.continuation.resume(throwing: UIRouteError(.staleState, "scene_lifetime_changed"))
         entry.publicBinding?.cancel()
         orchestrator.unregister(session); session.unmount(); authority.unmount(entry.lease); scenes.removeValue(forKey: session.sceneID)
         contexts.removeValue(forKey: session.sceneID)
@@ -189,8 +193,11 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     private func waitForMount(managerID: ObjectIdentifier) async throws -> UIStableID {
         try Task.checkCancellation()
         let existing = scenes.values.filter { $0.managerID == managerID }
-        if existing.count == 1, let value = existing.first { return value.session.sceneID }
-        guard existing.isEmpty, mountWaiters[managerID] == nil, mountWaiters.count < 16 else { throw UIRouteError(.unavailable, "native_mount_admission_rejected") }
+        if existing.count == 1, let value = existing.first, value.session.foreground { return value.session.sceneID }
+        // A system URL can arrive after mount but before scenePhase becomes
+        // active. Await only this manager's activation, within the original
+        // URL deadline; never pick a different foreground window or re-admit.
+        guard existing.count <= 1, mountWaiters[managerID] == nil, mountWaiters.count < 16 else { throw UIRouteError(.unavailable, "native_mount_admission_rejected") }
         let token = UUID()
         return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in

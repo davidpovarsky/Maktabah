@@ -22,7 +22,7 @@ enum MaktabahNativeURLHandler {
             } catch {
                 // Fixed error category only; never export the incoming URL,
                 // its private payload, or an arbitrary Error description.
-                let category = (error as? UIRouteError)?.code ?? "native_link_not_acknowledged"
+                let category = (error as? UIRouteError)?.code ?? (error as? NativeIntentOutcome)?.code ?? "native_link_not_acknowledged"
                 OtzariaFileLogger.shared.log("[NativeNavigationFailure] code=\(category)")
                 let message = (error as? NativeIntentOutcome)?.errorDescription ?? "This link could not be displayed in the selected library and window."
                 manager.alertMessage = .init(title: "Unable to open link", message: message)

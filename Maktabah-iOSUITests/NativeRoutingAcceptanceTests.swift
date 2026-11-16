@@ -123,4 +123,59 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(history.exists)
         capture("native-invalid-after")
     }
+
+    @MainActor
+    func testHistoryURLAfterBackgroundRequiresActualVisibleReceipt() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        XCUIDevice.shared.press(.home)
+        app.activate()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        XCTAssertFalse(history.exists)
+        let request = UUID()
+        try invocation(request, backend: "otzaria", mode: "post_background")
+        app.open(try historyURL("otzaria", request: request))
+        XCTAssertTrue(history.waitForExistence(timeout: 20))
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try requireNativeReceipt(request, backend: "otzaria")
+    }
+
+    @MainActor
+    func testWrongBackendURLCannotNavigateOrIssueNativeReceipt() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let request = UUID()
+        try invocation(request, backend: "sefaria", mode: "backend_denied")
+        app.open(try historyURL("sefaria", request: request))
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15))
+        XCTAssertTrue(alert.staticTexts["Select the requested library in Maktabah before continuing."].exists)
+        XCTAssertFalse(history.exists)
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let text = try String(contentsOf: log, encoding: .utf8)
+        XCTAssertFalse(text.contains("[NativeNavigationReceipt] request=" + request.uuidString),
+                       "A refused backend must never produce a completion receipt")
+        alert.buttons.firstMatch.tap()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 20))
+    }
+
+    @MainActor
+    func testReplayCannotIssueSecondNativeReceipt() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let request = UUID(), url = try historyURL("otzaria", request: request)
+        try invocation(request, backend: "otzaria", mode: "replay")
+        app.open(url)
+        XCTAssertTrue(history.waitForExistence(timeout: 20))
+        try requireNativeReceipt(request, backend: "otzaria")
+        app.open(url)
+        XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 15))
+        XCTAssertTrue(history.exists)
+        // The original exact-one receipt oracle also rejects a second ACK.
+        try requireNativeReceipt(request, backend: "otzaria")
+    }
 }

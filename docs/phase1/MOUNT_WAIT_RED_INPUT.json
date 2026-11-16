@@ -1,0 +1,8 @@
+{
+  "mode": "BEFORE_41cb",
+  "source": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+  "sourceSHA256": "8cbe7f0a2c710344467e27f85d3a52bfd7619e40efa901e7fadd126136eaf24c",
+  "completeMethodSHA256": "b18897207e52e1ae2009aadc8dd7ba77ec899a1b70836d4b5403ea09c2148476",
+  "testsSHA256": "30344eefc4d3d5ac1fe048ec6b2bf222b325c7ecec723abc08be037d3afe2f5f",
+  "boundary": "Real Foundation Tasks/continuations/MainActor; native registration/foreground delivery explicit shell. No Apple/UIKit claim."
+}
