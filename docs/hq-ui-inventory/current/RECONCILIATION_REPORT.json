@@ -104,6 +104,7 @@
     "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
     "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
     "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+    "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
     "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
     "Source/Features/Search/ViewModel/SearchViewModel.swift",
     "Source/Features/Search/iOS/SearchModeView.swift",
@@ -187,7 +188,7 @@
       "path": "Source/UI/iOS/Views/iPadLayout.swift",
       "anchor": "NavigationSplitView(",
       "old_blob": "58d505603a44e1b476b448738540a8604cb183b9",
-      "current_blob": "7268aeec79c448c9fc452a2169c42fc50a8030f6",
+      "current_blob": "9d0fd7dfd604e7e631957534e126ba956db69905",
       "line": 106
     },
     {
@@ -219,11 +220,11 @@
       "line": 141
     },
     {
-      "path": "Source/UI/iOS/Views/iPadLayout.swift",
-      "anchor": "Bindable(bManager.libraryViewModel).searchQuery",
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+      "anchor": "page == .library ? navigationManager.libraryViewModel.searchQuery : coordinator.contentsQuery",
       "old_blob": "58d505603a44e1b476b448738540a8604cb183b9",
-      "current_blob": "7268aeec79c448c9fc452a2169c42fc50a8030f6",
-      "line": 116
+      "current_blob": "48db2b187d31eb5c0ba6604c62f5ecba354463c8",
+      "line": 95
     },
     {
       "path": "Source/LibraryBackend/LibraryBackendModels.swift",
@@ -233,18 +234,53 @@
       "line": 6
     },
     {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "anchor": "struct iOSTOCView",
+      "old_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
+      "current_blob": "42287267c7d73858fa58c0da52baab863a2f0ac9",
+      "line": 11
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "anchor": "$searchText",
+      "old_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
+      "current_blob": "42287267c7d73858fa58c0da52baab863a2f0ac9",
+      "line": 150
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "anchor": "Picker(\"Structure\"",
+      "old_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
+      "current_blob": "42287267c7d73858fa58c0da52baab863a2f0ac9",
+      "line": 103
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "anchor": "scrollSelected(proxy:",
+      "old_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
+      "current_blob": "42287267c7d73858fa58c0da52baab863a2f0ac9",
+      "line": 186
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "anchor": "expandedPaths",
+      "old_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
+      "current_blob": "42287267c7d73858fa58c0da52baab863a2f0ac9",
+      "line": 20
+    },
+    {
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
       "anchor": "struct ReaderSidebarPager",
       "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
-      "current_blob": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
+      "current_blob": "48db2b187d31eb5c0ba6604c62f5ecba354463c8",
       "line": 25
     },
     {
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
       "anchor": "configureExistingSplit",
       "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
-      "current_blob": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
-      "line": 126
+      "current_blob": "48db2b187d31eb5c0ba6604c62f5ecba354463c8",
+      "line": 232
     },
     {
       "path": "Source/Features/Search/iOS/SearchModeView.swift",
@@ -292,8 +328,8 @@
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
       "anchor": "struct Exact9401WorkspaceLifecycle",
       "old_blob": "ac7bf051cf9288ffa5b37ccb59f04d7969272d12",
-      "current_blob": "4bbe2347d162b5aebad118476405e7f087e5e00a",
-      "line": 103
+      "current_blob": "956ebb145ae173346d0b23487a3f78c3cc04d2d7",
+      "line": 104
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
@@ -352,5 +388,5 @@
       "line": 637
     }
   ],
-  "source_sha": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6"
+  "source_sha": "3f421eb7dc40739de365cd6e93b3f085b7bec321"
 }

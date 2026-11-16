@@ -92,6 +92,10 @@ def main(source):
         # Explicit semantic moves, reviewed against the current source. Never
         # replace an unresolved anchor with an arbitrary matching line.
         replacements = {
+            ("Source/UI/iOS/Views/iPadLayout.swift", "Bindable(bManager.libraryViewModel).searchQuery"):
+                ("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift", "page == .library ? navigationManager.libraryViewModel.searchQuery : coordinator.contentsQuery"),
+            ("Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift", '.searchable(text: $searchText, prompt: String(localized: "Search Contents"))'):
+                ("Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift", ".modifier(ReaderSidebarContentsSearch(text: $searchText))"),
             ("Source/Features/Search/iOS/SearchModeView.swift", "focusBinding: $isSearchFieldFocused"):
                 ("Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift", 'field.accessibilityIdentifier = "global-search-query"'),
             ("Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift", "providerID: BackendID.sefaria.rawValue"):
