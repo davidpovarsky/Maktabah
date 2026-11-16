@@ -12,6 +12,7 @@ enum ChavrusaTextReaderUI {
 final class ReaderSidebarPageCoordinator {
     enum Page: Int, CaseIterable, Identifiable { case library, contents; var id: Int { rawValue } }
     var page: Page = .library
+    var contentsQuery = ""
     var requestsLibrary = false
     func showContents() { page = .contents }
     func showLibrary() { page = .library; requestsLibrary.toggle() }

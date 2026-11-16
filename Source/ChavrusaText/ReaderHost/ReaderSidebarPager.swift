@@ -9,8 +9,8 @@ enum ReaderSidebarPolicy {
             && availableWidth >= max(minimumSidebarWidth, sidebarWidth) + max(minimumReaderWidth, readerWidth) + dividerAllowance
     }
 
-    /// nil leaves the active page alone. Only the page-control strip uses this
-    /// policy; the body keeps native paging and vertical gesture arbitration.
+    /// nil leaves the active page alone; vertical native scrolling stays with
+    /// the original list. Body and page-control strip share this direction rule.
     static func swipeSelectsContents(horizontal: Double, vertical: Double, isRTL: Bool) -> Bool? {
         guard horizontal.isFinite, vertical.isFinite,
               abs(horizontal) >= 44, abs(horizontal) > abs(vertical) * 1.25 else { return nil }
@@ -29,6 +29,7 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     @Environment(\.layoutDirection) private var layoutDirection
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(iOSNavigationManager.self) private var navigationManager
+    @Environment(\.readerSidebarUsesSharedSearch) private var usesSharedSearch
 
     var body: some View {
         // Retain the original native page container and NavigationStacks.
@@ -49,6 +50,10 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
         .environment(\.readerSidebarOwnsToggle, true)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-sidebar-pager")
+        .modifier(ReaderSidebarSearchSurface(isEnabled: usesSharedSearch,
+            query: activeSearchQuery, contentsQuery: $coordinator.contentsQuery,
+            prompt: coordinator.page == .library ? String(localized: "Search Library") : String(localized: "Search Contents")))
+        .onChange(of: activeContentsReaderID) { _, _ in coordinator.contentsQuery = "" }
         .background { ReaderSidebarSplitConfiguration(onBodySwipe: selectPage) }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             HStack(spacing: 0) {
@@ -82,6 +87,18 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
             ?? navigationManager.openTabs.first?.id
     }
 
+    private var activeSearchQuery: Binding<String> {
+        // Retain the page owning this binding, so a late old native callback
+        // cannot write the other page's query after a page transition.
+        let page = coordinator.page, readerID = activeContentsReaderID
+        return Binding(get: {
+            page == .library ? navigationManager.libraryViewModel.searchQuery : coordinator.contentsQuery
+        }, set: { value in
+            if page == .library { navigationManager.libraryViewModel.searchQuery = value }
+            else if activeContentsReaderID == readerID { coordinator.contentsQuery = value }
+        })
+    }
+
     private var sidebarSwipe: some Gesture {
         DragGesture(minimumDistance: 24)
             .onEnded { value in
@@ -113,6 +130,92 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
         .accessibilityIdentifier("reader-sidebar-page-\(page.rawValue)")
     }
 }
+
+// BEGIN SELF-CONTAINED SIDEBAR SEARCH ADAPTERS
+private struct ReaderSidebarUsesSharedSearchKey: EnvironmentKey {
+    static let defaultValue = false
+}
+
+private struct ReaderSidebarContentsQueryKey: EnvironmentKey {
+    static var defaultValue: Binding<String>? { nil }
+}
+
+extension EnvironmentValues {
+    /// Enabled only by the reviewed original sidebar composition hook. Other
+    /// Library/TOC presentations retain their existing independent search.
+    var readerSidebarUsesSharedSearch: Bool {
+        get { self[ReaderSidebarUsesSharedSearchKey.self] }
+        set { self[ReaderSidebarUsesSharedSearchKey.self] = newValue }
+    }
+    var readerSidebarContentsQuery: Binding<String>? {
+        get { self[ReaderSidebarContentsQueryKey.self] }
+        set { self[ReaderSidebarContentsQueryKey.self] = newValue }
+    }
+}
+
+/// One native UISearchController for the original split's paged sidebar.
+/// Query storage remains in the original Library model / scene coordinator;
+/// this modifier does not implement filtering or create a second text field.
+struct ReaderSidebarSearchSurface: ViewModifier {
+    let isEnabled: Bool
+    @Binding var query: String
+    let contentsQuery: Binding<String>
+    let prompt: String
+
+    func body(content: Content) -> some View {
+        if isEnabled {
+            content
+                .environment(\.readerSidebarContentsQuery, contentsQuery)
+                .searchable(text: $query,
+                            placement: .navigationBarDrawer(displayMode: .always),
+                            prompt: Text(prompt))
+        } else {
+            content
+        }
+    }
+}
+
+/// Bridge the TOC's original private filter state without replacing its list,
+/// nodes, matching algorithm or standalone-sheet behavior. Sidebar context is
+/// fixed for this view's lifetime; changing pages does not replace its content.
+struct ReaderSidebarContentsSearch: ViewModifier {
+    @Binding var text: String
+    @Environment(\.readerSidebarContentsQuery) private var sidebarQuery
+
+    func body(content: Content) -> some View {
+        if let sidebarQuery {
+            content
+                .onChange(of: sidebarQuery.wrappedValue, initial: true) { _, value in
+                    if text != value { text = value }
+                }
+                .onChange(of: text) { _, value in
+                    if sidebarQuery.wrappedValue != value { sidebarQuery.wrappedValue = value }
+                }
+        } else {
+            content.searchable(text: $text, prompt: String(localized: "Search Contents"))
+        }
+    }
+}
+
+/// Native semantic title/subtitle avoids the custom principal title's duplicate
+/// accessibility representation observed in the real iOS27 navigation bar.
+@available(iOS 26.0, *)
+struct ReaderContentsNavigationTitle: ViewModifier {
+    let bookTitle: String?
+    @Environment(\.readerSidebarUsesSharedSearch) private var usesSharedSearch
+
+    func body(content: Content) -> some View {
+        if usesSharedSearch {
+            content
+                .navigationTitle(Text(String(localized: "Table of Contents")))
+                .navigationSubtitle(bookTitle ?? "")
+                .navigationBarTitleDisplayMode(.inline)
+        } else {
+            content
+        }
+    }
+}
+// END SELF-CONTAINED SIDEBAR SEARCH ADAPTERS
 
 /// Configure the public ancestor of the original NavigationSplitView. This
 /// attachment creates no split, navigation controller, reader or toolbar item.

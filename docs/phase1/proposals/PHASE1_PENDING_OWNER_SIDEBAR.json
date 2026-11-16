@@ -1,0 +1,33 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_APPROVED_NOT_APPLIED",
+  "sourceHead": "e83c5e85ca17959adfda23f70a41ef7e8381a723",
+  "scope": "Two exact protected file diffs only; all behavior in existing downstream ReaderSidebarPager.swift. No project/engine/data change.",
+  "patchSHA256": "4fc4058cfa0f233830fb54b386baa388b6a437d999a2ebf421e27bc327d55a42",
+  "files": [
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "currentGitBlob": "7268aeec79c448c9fc452a2169c42fc50a8030f6",
+      "originalSHA256": "08dc0eaf75d36029e46b2ca8a81ab32825f71d10b1bf2470bf463e3965308382",
+      "proposedSHA256": "150d0554ab44b0587364e75dc9bb1d98e4b6c7cd83ec479b62a59c750b2400ff"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "currentGitBlob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
+      "originalSHA256": "c035c2b51665b32f6bf3ded27ff7903ae2d7c6e9485087c003ac0857b056da80",
+      "proposedSHA256": "6330874e885c4fd193ede4938d34f54c42e88e54b7ddd3d95eba1c45ab70aa3f"
+    }
+  ],
+  "actualNativeEvidence": "43844345630: body pans now select pages, but RTL returns Library with TOC search; LTR shows one visible TOC title represented by two AX StaticText nodes. Actual screenshot/AX retained in evidence/probee83-selective.",
+  "rejectedAlternatives": [
+    "Competing simultaneous pans rolled selection back",
+    "Nested tab controller hid global tabs",
+    "Isolated hosting kept wrong Library navbar/search",
+    "Keeping both original searchable modifiers retains the TOC controller after Library return",
+    "UIKit view-tree/search-controller override would fight SwiftUI ownership and risk bindings/state"
+  ],
+  "proposedBehavior": "One native searchable owned by the original sidebar, bound to original canonical Library query or scene-local TOC query. Preserve original TOC filtering/list, standalone search/principal title and reader instances. Sidebar uses native semantic title/subtitle instead of duplicated principal AX title.",
+  "securityAndRegression": "No new parser/authority/provider, no original engine or DB change. Per-page binding ownership prevents stale callbacks writing the other query. Standalone TOC/iPhone keeps original search/title with flag false. Native original18+U6+security3 must pass before acceptance.",
+  "rollback": "Revert only these exact hooks, returning the shared-search environment flag to its false default. Frozen493 and all producer trees retained.",
+  "requiredPolicy": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md section1: explicit owner permission for exact file/hunk before editing.",
+  "approval": null
+}

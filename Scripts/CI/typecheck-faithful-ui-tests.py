@@ -64,6 +64,31 @@ report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], tex
 print(json.dumps(report, indent=2))
 print(result.stdout)
 
+# Compile the actual new sidebar search/title adapters as an independent
+# SwiftUI module. It uses no app/model stubs and runs no native UI methods.
+native_search_code = 0
+native_search_path = Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift")
+native_search_marker = "// BEGIN SELF-CONTAINED SIDEBAR SEARCH ADAPTERS"
+if native_search_path.is_file() and native_search_marker in native_search_path.read_text():
+    native_search_source = "import SwiftUI\n" + native_search_path.read_text().split(native_search_marker, 1)[1].split("// END SELF-CONTAINED SIDEBAR SEARCH ADAPTERS", 1)[0]
+    native_search_component = Path("build/ReaderSidebarNativeSearchSDK.swift")
+    native_search_component.write_text(native_search_source, encoding="utf-8")
+    native_search_command = compiler_options.copy()
+    native_search_command[native_search_command.index("-module-name") + 1] = "ReaderSidebarNativeSearchSDK"
+    native_search_command[native_search_command.index("-o") + 1] = "build/ReaderSidebarNativeSearchSDK.o"
+    native_search_command[native_search_command.index("-target") + 1] = "arm64-apple-ios26.2-simulator"
+    native_search_command.append(str(native_search_component))
+    native_search_result = subprocess.run(native_search_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    native_search_code = native_search_result.returncode
+    (artifacts / "sidebar-native-search-sdk.log").write_text(native_search_result.stdout, encoding="utf-8")
+    report["sidebarNativeSearch"] = {"sourceSHA": report["sourceSHA"], "command": native_search_command,
+        "sourceSHA256": hashlib.sha256(native_search_path.read_bytes()).hexdigest(),
+        "componentSHA256": hashlib.sha256(native_search_source.encode()).hexdigest(),
+        "status": "SDK_COMPILE_PASS" if native_search_code == 0 else "BUILD_FAILED",
+        "notRuntimeAcceptance": True, "nativeUITestsExecuted": 0}
+    print(json.dumps(report["sidebarNativeSearch"], indent=2))
+    print(native_search_result.stdout)
+
 # Compile the actual self-contained native sidebar containers before a full
 # app build. They need only SwiftUI/UIKit: no app/model stand-ins or harness.
 sidebar_code = 0
@@ -153,6 +178,6 @@ if (native_host / "Package.swift").is_file():
     print(native_host_result.stdout)
 report["appMembershipStatus"] = "PASS" if membership_code == 0 else "FAIL"
 report["toolbarSDKStatus"] = "SDK_COMPILE_PASS" if toolbar_code == 0 else "BUILD_FAILED"
-report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code) else "FAIL"
+report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code) else "FAIL"
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
-raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code)
+raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code)

@@ -62,7 +62,9 @@ struct GlobalSearchHeader: View {
             }
             .font(.subheadline)
             .buttonStyle(.plain)
-            .foregroundStyle(.secondary)
+            // These are enabled actions on the app's tinted background, not
+            // secondary metadata. Keep the native dynamic primary contrast.
+            .foregroundStyle(.primary)
         }
         .padding(.horizontal)
         .padding(.vertical, 8)

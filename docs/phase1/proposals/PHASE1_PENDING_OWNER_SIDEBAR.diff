@@ -1,0 +1,80 @@
+--- a/Source/UI/iOS/Views/iPadLayout.swift
++++ b/Source/UI/iOS/Views/iPadLayout.swift
+@@ -111,13 +111,8 @@
+                 NavigationStack {
+                     iOSLibraryView()
+                         .navigationTitle(iOSTab.viewer.title)
+                         .toolbarGeneral(showSettings: $showSettings)
+-                        .searchable(
+-                            text: Bindable(bManager.libraryViewModel).searchQuery,
+-                            placement: .navigationBarDrawer(displayMode: .always),
+-                            prompt: String(localized: "Search Library")
+-                        )
+                 }
+                 .toolbarBackground(Color.appBackground, for: .navigationBar)
+                 .toolbarBackground(.visible, for: .navigationBar)
+                 .background(Color.appBackground)
+@@ -127,8 +122,9 @@
+                 activeReaderTableOfContents
+                     .accessibilityElement(children: .contain)
+                     .accessibilityIdentifier("toc-column")
+             }
++            .environment(\.readerSidebarUsesSharedSearch, true)
+         } detail: {
+             iOSReaderTabView(
+                 columnVisibility: $columnVisibility,
+                 preferredCompactColumn: $preferredLibraryCompactColumn
+--- a/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
++++ b/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift
+@@ -19,8 +19,9 @@
+     @State private var searchText = ""
+     @State private var expandedPaths: Set<ObjectIdentifier> = []
+     @Environment(\.dismiss) private var dismiss
+     @Environment(\.readerSidebarOwnsToggle) private var sidebarOwnsToggle
++    @Environment(\.readerSidebarUsesSharedSearch) private var sidebarUsesSharedSearch
+ 
+     init(
+         tocViewModel: BookTOCViewModel,
+         selectedId: Int?,
+@@ -145,10 +146,11 @@
+                                     expandedPaths: $expandedPaths
+                                 )
+                             }
+                         }
+-                        .searchable(text: $searchText, prompt: String(localized: "Search Contents"))
++                        .modifier(ReaderSidebarContentsSearch(text: $searchText))
+                         .navigationBarTitleDisplayMode(.inline)
++                        .modifier(ReaderContentsNavigationTitle(bookTitle: bookTitle))
+                         .toolbar {
+                             if !sidebarOwnsToggle {
+                                 ToolbarItem(placement: .topBarLeading) {
+                                     Button {
+@@ -164,17 +166,19 @@
+                                     .accessibilityIdentifier("toc-close")
+                                     .help(String(localized: "Close Table of Contents"))
+                                 }
+                             }
+-                            ToolbarItem(placement: .principal) {
+-                                VStack(spacing: 1) {
+-                                    Text(String(localized: "Table of Contents"))
+-                                        .font(.headline)
+-                                    if let bookTitle, !bookTitle.isEmpty {
+-                                        Text(bookTitle)
+-                                            .font(.caption2)
+-                                            .foregroundStyle(.secondary)
+-                                            .lineLimit(1)
++                            if !sidebarUsesSharedSearch {
++                                ToolbarItem(placement: .principal) {
++                                    VStack(spacing: 1) {
++                                        Text(String(localized: "Table of Contents"))
++                                            .font(.headline)
++                                        if let bookTitle, !bookTitle.isEmpty {
++                                            Text(bookTitle)
++                                                .font(.caption2)
++                                                .foregroundStyle(.secondary)
++                                                .lineLimit(1)
++                                        }
+                                     }
+                                 }
+                             }
+                         }

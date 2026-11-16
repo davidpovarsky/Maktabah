@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 
 /// Actual system URL entry + existing UI. These require the manager-applied
 /// native registration packet. No smoke bypass or synthetic scene receipt.
@@ -33,6 +34,31 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
     @MainActor private func capture(_ name: String) {
         let tree = XCTAttachment(string: app.debugDescription); tree.name = name + "-hierarchy"; tree.lifetime = .keepAlways; add(tree)
         let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); image.name = name + "-screen"; image.lifetime = .keepAlways; add(image)
+    }
+    @MainActor private func targetProcessIdentifier() throws -> String {
+        let first = app.debugDescription.split(separator: "\n").first.map(String.init) ?? ""
+        let marker = try XCTUnwrap(first.range(of: "pid: "))
+        let value = String(first[marker.upperBound...].prefix(while: { $0.isNumber }))
+        XCTAssertFalse(value.isEmpty, "Require the actual native target process identity")
+        return value
+    }
+    @MainActor private func openInExistingProcess(_ url: URL) throws {
+        // Xcode27.1's XCUIApplication.open actually launched a NEW target PID
+        // on every call in43844345630. Deliver through the real iOS system
+        // from the Runner instead; warm/replay must retain the original app.
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let originalPID = try targetProcessIdentifier()
+        let delivered = XCTestExpectation(description: "Real system URL delivery")
+        UIApplication.shared.open(url, options: [:]) { accepted in
+            XCTAssertTrue(accepted, "The iOS system must accept the actual URL")
+            delivered.fulfill()
+        }
+        XCTAssertEqual(XCTWaiter.wait(for: [delivered], timeout: 15), .completed)
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let actualPID = try targetProcessIdentifier()
+        XCTAssertEqual(actualPID, originalPID, "A warm URL must not restart the target app")
+        let proof = XCTAttachment(string: "beforePID=\(originalPID) afterPID=\(actualPID)")
+        proof.name = "actual-warm-system-url-process-identity"; proof.lifetime = .keepAlways; add(proof)
     }
     private func invocation(_ request: UUID, backend: String, mode: String) throws {
         let data = try JSONSerialization.data(withJSONObject: ["request": request.uuidString, "backend": backend,
@@ -91,7 +117,7 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         capture("native-route-before-" + backend)
         let request = UUID()
         try invocation(request, backend: backend, mode: "warm")
-        app.open(try historyURL(backend, request: request))
+        try openInExistingProcess(historyURL(backend, request: request))
         XCTAssertTrue(history.waitForExistence(timeout: 20), "Exact History surface was not displayed")
         XCTAssertFalse(app.alerts["Unable to open link"].exists)
         try requireNativeReceipt(request, backend: backend)
@@ -125,7 +151,7 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         capture("native-invalid-before")
         let request = UUID(); try invocation(request, backend: "otzaria", mode: "invalid_version")
         let valid = try historyURL("otzaria", request: request)
-        app.open(try XCTUnwrap(URL(string: valid.absoluteString.replacingOccurrences(of: "/v1/", with: "/v2/"))))
+        try openInExistingProcess(XCTUnwrap(URL(string: valid.absoluteString.replacingOccurrences(of: "/v1/", with: "/v2/"))))
         XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 15))
         XCTAssertFalse(history.exists)
         capture("native-invalid-after")
@@ -141,7 +167,7 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(history.exists)
         let request = UUID()
         try invocation(request, backend: "otzaria", mode: "post_background")
-        app.open(try historyURL("otzaria", request: request))
+        try openInExistingProcess(historyURL("otzaria", request: request))
         XCTAssertTrue(history.waitForExistence(timeout: 20))
         XCTAssertFalse(app.alerts["Unable to open link"].exists)
         try requireNativeReceipt(request, backend: "otzaria")
@@ -153,7 +179,7 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
         let request = UUID()
         try invocation(request, backend: "sefaria", mode: "backend_denied")
-        app.open(try historyURL("sefaria", request: request))
+        try openInExistingProcess(historyURL("sefaria", request: request))
         let alert = app.alerts["Unable to open link"]
         XCTAssertTrue(alert.waitForExistence(timeout: 15))
         XCTAssertTrue(alert.staticTexts["Select the requested library in Maktabah before continuing."].exists)
@@ -176,10 +202,10 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
         let request = UUID(), url = try historyURL("otzaria", request: request)
         try invocation(request, backend: "otzaria", mode: "replay")
-        app.open(url)
+        try openInExistingProcess(url)
         XCTAssertTrue(history.waitForExistence(timeout: 20))
         try requireNativeReceipt(request, backend: "otzaria")
-        app.open(url)
+        try openInExistingProcess(url)
         XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 15))
         XCTAssertTrue(history.exists)
         // The original exact-one receipt oracle also rejects a second ACK.
