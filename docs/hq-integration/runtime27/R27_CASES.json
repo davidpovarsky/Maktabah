@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "source_test_commit": "c93b5a9d33fa09a8054f77eb280ce94472b68841",
+  "source_test_commit": "e98ad95c9dfeff7814e30e5bc9791e18f0f45275",
   "application_base": "0436775d85893225005f29baf0aa3a20d7b88317",
-  "app_source": "d1d90611c839dd0638fa936447f0b6587375e319",
-  "sole_executor_thread": "01a1df85-6013-7270-b48d-8e10222e95c6",
-  "independent_qa_thread": "01a1df8b-4498-76c1-8cca-cd5c11120b7a",
-  "scope": "REVIEWED_INACTIVE_NATIVE_BINDING_OWNER_APPROVED_HOOKS_SEARCH_FOCUSED18_NOT_FULL_RELEASE",
+  "app_source": "e98ad95c9dfeff7814e30e5bc9791e18f0f45275",
+  "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
+  "independent_qa_thread": null,
+  "scope": "SINGLE_AGENT_PHASE1_ORIGINAL18_PLUS_U6_NATIVE_ACCEPTANCE_NOT_RELEASE",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 18,
+  "required_nonzero_cases": 24,
   "expected_per_device": {
-    "ipad11": 15,
+    "ipad11": 21,
     "iphone": 3
   },
   "cases": [
@@ -75,7 +75,7 @@
     "data_profile": "real native-installed miniTest10",
     "bootstrap": "realUI; never -smokeBypassBootstrap",
     "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
-    "scheduling": "One single-manager coherent CI path/build-for-testing and one bounded watcher for this six-Reader selection; U retains its separate window/Inspector source lane"
+    "scheduling": "One developer, one coherent source/build, fresh owned reader/window/phone simulators; old chats remain STOPPED"
   },
   "required_test_environment": {
     "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
@@ -165,8 +165,22 @@
         "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
         "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
         "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
-        "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit"
-      ]
+        "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison"
+      ],
+      "hid_comparison": true
     },
     {
       "label": "phone",
@@ -175,7 +189,8 @@
         "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
         "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
         "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
-      ]
+      ],
+      "hid_comparison": false
     }
   ],
   "execution_case_ids": [
@@ -196,7 +211,13 @@
     "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
     "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
     "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
-    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit"
+    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+    "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+    "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -297,16 +318,13 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
-    "source": "d1d90611c839dd0638fa936447f0b6587375e319",
-    "manager_integrated_N_packet": "0b3def76cdfa5b48ec183c2b886f0e0a7f98c7ee",
-    "owner_approval": "Explicit human approval exact2protectedhooks; applied71b80eea",
-    "implementation": "Scoped inactive P/N/R contracts; actual canonical workspace owner; preserved v1 guards and GlobalSearch; N2selfprefix compiler correction; exact2approvednativehooks; U6DEBUGobserver mount only",
-    "oracle": "Exact original18 selected methods unchanged; no fabricated queries/data/readiness or fault control",
-    "native_status": "NOT_RUN until this reviewed source executes",
+    "source": "e98ad95c9dfeff7814e30e5bc9791e18f0f45275",
+    "implementation": "U secure HID and native tab selection; bounded native search options; exact original History title; bootstrap AX synchronization; fixed diagnostic categories only",
     "public_enabled": false,
+    "native_status": "NOT_RUN",
     "automatic_retry": false
   },
-  "selected_scope_reason": "New reviewed immutable composition after actual native437522 compile failure: exact two explicit-self corrections, owner-approved exact NativeManager/Reader witness hooks, reconciled R startup/producer and accepted inactive P/N binding source. Manager actual Host85/UIRouting85 and separate app115 portable suites,7 cancellation methods and7 actual hook assertions have bounded declared scopes. Same exact7 no-query GlobalSearch+6Reader+5nativeURL cases and original oracles remain unchanged; all18 were NOT_RUN on prior043. Public-v2 defaultOFF/no handler, content, newTab or reservation activation. No HID provider/U native-pan merge. This is a new source validation, not an automatic rerun.",
+  "selected_scope_reason": "Phase1 product popover/body-paging changes and precise native query repairs after preserved493 RED evidence. Original18 plus six U cases; no skips, no engine/data/oracle weakening. Same SHA for app and tests.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -386,6 +404,36 @@
       "status": "NOT_RUN",
       "oracle": "Unsuppressed native header/history accessibility audit; not manual VoiceOver acceptance",
       "prerequisite": "Genuine installed miniTest10, normal realUI bootstrap, isolated disposable simulator app; no invented query/provider trace"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real normal bootstrap; independently derived fixture category paths; functional Library search empty/match/exclude/clear; fixed physical RTL body swipes;20body+20dot transitions; one native toggle and TOC-local title/search; actual reader object/source/offset/title/locator preservation; vertical scroll arbitration"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Same genuine fixture/native reader and functional search/state oracles in English LTR; fixed physical LTR body swipes and preserved one native toggle/TOC ownership"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "RealUI exact fixture work; native TOC page survives Home/activate and measured portrait/landscape changes; one native toggle; original TextKit object/source/offset, actual text/title/locator preserved; retained before/after screenshots+hierarchy"
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Unmodified shared original bottom TOC action helper through realUI normal bootstrap, actual sidebar Contents selection, no modal TOC, exact real fixture work/backend and retained title"
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Separate job-local pinned idb direct native HID on this owned disposable simulator. Real A/backspace visibly edit/clear production autofocus field; one Escape removes actual full empty input; genuine narrow resize and real fixture filtering; one Escape removes actual narrow filtered input; Inspector open/close, full text/exact locator and native window restoration. Original XCTest Escape case retained independently; transport ACK alone never UI acceptance."
     }
   ],
   "manager_native_review_history": [
@@ -416,5 +464,26 @@
         ]
       }
     }
+  ],
+  "hid_comparison": true,
+  "phase1_original_18_case_ids": [
+    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+    "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+    "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+    "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+    "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+    "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+    "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit"
   ]
 }
