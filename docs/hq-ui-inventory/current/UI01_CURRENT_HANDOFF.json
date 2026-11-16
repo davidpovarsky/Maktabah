@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_sha": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+  "source_sha": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
   "original_inventory_commit": "0b19ded4265ae0f0b6d05571b1c23b7bb3d423f8",
   "original_source_sha": "2918825be8c5cc8ecee53d57e1f48ca51779cab4",
   "thread_uuid": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
@@ -48,7 +48,7 @@
         "source_line": "WindowGroup {",
         "sha256": "1954ba44e312863a2a9c82641eb295365c8294ce86330e5c9e9a862780eb2647",
         "git_blob": "465c81c9af7c75136898e0afe92fb80b35178d7c",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "MaktabahApp / scenePhase",
@@ -147,7 +147,7 @@
         "source_line": "case viewer = 0",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager / iOSTab",
@@ -246,7 +246,7 @@
         "source_line": "case search = 3",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager / iOSTab",
@@ -345,7 +345,7 @@
         "source_line": "case author = 4",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager / iOSTab",
@@ -444,7 +444,7 @@
         "source_line": "case annotations = 5",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager / iOSTab",
@@ -543,7 +543,7 @@
         "source_line": "case history = 6",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager / iOSTab",
@@ -642,7 +642,7 @@
         "source_line": "NavigationSplitView(",
         "sha256": "08dc0eaf75d36029e46b2ca8a81ab32825f71d10b1bf2470bf463e3965308382",
         "git_blob": "7268aeec79c448c9fc452a2169c42fc50a8030f6",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager / columnVisibility",
@@ -741,7 +741,7 @@
         "source_line": "struct iPhoneLayout: View {",
         "sha256": "1fdb40046c5947008291898ffff067e9938435c1b70295ac605d5212bf255f97",
         "git_blob": "af61bf91b0fae6a48f3907ef97877996ef4ec8f1",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager",
@@ -840,7 +840,7 @@
         "source_line": ".sheet(isPresented: $showSettings) {",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSMainView.showSettings / SettingsViewModel",
@@ -938,7 +938,7 @@
         "source_line": ".sheet(item: $bManager.selectedBookForInfo) { book in",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager.selectedBookForInfo",
@@ -1044,7 +1044,7 @@
         "source_line": ".alert(item: $navigationManager.alertMessage) { item in",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager.alertMessage",
@@ -1142,7 +1142,7 @@
         "source_line": "BootstrapSourceSelectionView { source in",
         "sha256": "84ee4b1a8b087e11a168c1016e4bf08584340d0304b2378447a2394ac0f8c24e",
         "git_blob": "4e83e198c1e60eea59035b8161c0cae089ad15f3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSBootstrapManager",
@@ -1241,7 +1241,7 @@
         "source_line": "BootstrapSefariaConfirmationView(",
         "sha256": "84ee4b1a8b087e11a168c1016e4bf08584340d0304b2378447a2394ac0f8c24e",
         "git_blob": "4e83e198c1e60eea59035b8161c0cae089ad15f3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSBootstrapManager",
@@ -1340,7 +1340,7 @@
         "source_line": "CoreDownloadProgressView(",
         "sha256": "84ee4b1a8b087e11a168c1016e4bf08584340d0304b2378447a2394ac0f8c24e",
         "git_blob": "4e83e198c1e60eea59035b8161c0cae089ad15f3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSBootstrapManager",
@@ -1439,7 +1439,7 @@
         "source_line": ".fileImporter(",
         "sha256": "84ee4b1a8b087e11a168c1016e4bf08584340d0304b2378447a2394ac0f8c24e",
         "git_blob": "4e83e198c1e60eea59035b8161c0cae089ad15f3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSBootstrapManager",
@@ -1538,7 +1538,7 @@
         "source_line": ".sheet(isPresented: $showWelcomeScreen) {",
         "sha256": "84ee4b1a8b087e11a168c1016e4bf08584340d0304b2378447a2394ac0f8c24e",
         "git_blob": "4e83e198c1e60eea59035b8161c0cae089ad15f3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSBootstrapManager",
@@ -1637,7 +1637,7 @@
         "source_line": "struct iOSCoreUpdateProgressOverlayView: View {",
         "sha256": "8796c1063148288136ca6dfa90984889f2611eeed9d89485602ba10393f26044",
         "git_blob": "edb6bf84cc24263d4ce11c352be98506d27d4571",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSBootstrapManager / CoreDownloadProgressState",
@@ -1735,7 +1735,7 @@
         "source_line": "libraryVC(viewModel: viewModel)",
         "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
         "git_blob": "46f202177491274e37e140326913cfcbf716883b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel / LibraryViewControllerWrapper",
@@ -1843,7 +1843,7 @@
         "source_line": "text: Bindable(bManager.libraryViewModel).searchQuery,",
         "sha256": "08dc0eaf75d36029e46b2ca8a81ab32825f71d10b1bf2470bf463e3965308382",
         "git_blob": "7268aeec79c448c9fc452a2169c42fc50a8030f6",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel.searchQuery",
@@ -1942,7 +1942,7 @@
         "source_line": "func toggleCategory(_ item: LibraryItem) {",
         "sha256": "677ab3eaebd39d7bf9797b28f706145ad4f05e121be5297fd28acc5e41a869f3",
         "git_blob": "39f01f0a3c86cce8b75a137aa8d5a535b5764957",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSHierarchicalCollectionViewController.expandedCategories",
@@ -2040,7 +2040,7 @@
         "source_line": "override func didSelectBook(_ book: BooksData) {",
         "sha256": "08b97830305cc4843538be98a83e8aa0d3e65f7629e26b7eba4cbe97873acec2",
         "git_blob": "5030d1fc30ebcb63e24820c8559c1728f9a7773c",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel / iOSNavigationManager",
@@ -2148,7 +2148,7 @@
         "source_line": "private func groupByMenu(viewModel: LibraryViewModel) -> some View {",
         "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
         "git_blob": "46f202177491274e37e140326913cfcbf716883b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel.viewMode",
@@ -2246,7 +2246,7 @@
         "source_line": "Button { viewModel.viewMode = .author } label: {",
         "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
         "git_blob": "46f202177491274e37e140326913cfcbf716883b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel.viewMode",
@@ -2344,7 +2344,7 @@
         "source_line": "viewModel.enterSelectionMode()",
         "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
         "git_blob": "46f202177491274e37e140326913cfcbf716883b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel.selectedBookIds",
@@ -2442,7 +2442,7 @@
         "source_line": "private func downloadedFilterToggle(viewModel: LibraryViewModel) -> some View {",
         "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
         "git_blob": "46f202177491274e37e140326913cfcbf716883b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel.showOnlyDownloaded",
@@ -2540,7 +2540,7 @@
         "source_line": "private func optionsMenu(viewModel: LibraryViewModel) -> some View {",
         "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
         "git_blob": "46f202177491274e37e140326913cfcbf716883b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel",
@@ -2636,7 +2636,7 @@
         "source_line": "let infoAction = makeBookInfoAction(for: book)",
         "sha256": "08b97830305cc4843538be98a83e8aa0d3e65f7629e26b7eba4cbe97873acec2",
         "git_blob": "5030d1fc30ebcb63e24820c8559c1728f9a7773c",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel / selectedBookForInfo",
@@ -2742,7 +2742,7 @@
         "source_line": ".sheet(isPresented: $viewModel.showingImportSheet) {",
         "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
         "git_blob": "46f202177491274e37e140326913cfcbf716883b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel",
@@ -2841,7 +2841,7 @@
         "source_line": ".sheet(isPresented: $viewModel.showingUpdateSheet) {",
         "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
         "git_blob": "46f202177491274e37e140326913cfcbf716883b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel",
@@ -2940,7 +2940,7 @@
         "source_line": ".alert(.Library.deleteDownload, isPresented: $viewModel.showingDeleteConfirmation) {",
         "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
         "git_blob": "46f202177491274e37e140326913cfcbf716883b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel",
@@ -3039,7 +3039,7 @@
         "source_line": ".sheet(isPresented: $viewModel.showBookPicker) {",
         "sha256": "3d98223a9635402722b6f380fd00b6da3be8c46c723a7c3adc84a065fe1ca6a9",
         "git_blob": "e8406b418b0ac9ac245dd17366ed171e0de16982",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookImportViewModel",
@@ -3138,7 +3138,7 @@
         "source_line": ".sheet(isPresented: $viewModel.showAuthorPicker) {",
         "sha256": "3d98223a9635402722b6f380fd00b6da3be8c46c723a7c3adc84a065fe1ca6a9",
         "git_blob": "e8406b418b0ac9ac245dd17366ed171e0de16982",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookImportViewModel",
@@ -3237,7 +3237,7 @@
         "source_line": "isPresented: $viewModel.showFilePicker,",
         "sha256": "3d98223a9635402722b6f380fd00b6da3be8c46c723a7c3adc84a065fe1ca6a9",
         "git_blob": "e8406b418b0ac9ac245dd17366ed171e0de16982",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookImportViewModel",
@@ -3336,7 +3336,7 @@
         "source_line": "Picker(\"\", selection: $viewModel.categoryId) {",
         "sha256": "3d98223a9635402722b6f380fd00b6da3be8c46c723a7c3adc84a065fe1ca6a9",
         "git_blob": "e8406b418b0ac9ac245dd17366ed171e0de16982",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookImportViewModel",
@@ -3435,7 +3435,7 @@
         "source_line": "struct OfflineImportFormView: View {",
         "sha256": "3d98223a9635402722b6f380fd00b6da3be8c46c723a7c3adc84a065fe1ca6a9",
         "git_blob": "e8406b418b0ac9ac245dd17366ed171e0de16982",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookImportViewModel",
@@ -3534,7 +3534,7 @@
         "source_line": "struct UpdateView: View {",
         "sha256": "c7d346a72915374c40709f1089cfc0cdc31429399992a73f351704a60a13f013",
         "git_blob": "d8162f600dbc177362c6cb53152e99c5aa2a0153",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookUpdateViewModel",
@@ -3632,7 +3632,7 @@
         "source_line": "struct AuthorModeView: View {",
         "sha256": "71742cab4448ee0b8ff8970bbf92526db74874694f0bfe599d5a1406f088da3e",
         "git_blob": "d2038859d9b91e9b6eb8db3eda380fdef6b03bc2",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "NarratorViewModel / OtzariaAuthorsModeView",
@@ -3739,7 +3739,7 @@
         "source_line": "struct iOSRowiSidebarView: UIViewControllerRepresentable {",
         "sha256": "b7cfba084546b5fd050e8fe0c828086d1165ecd9f9de04ca56828eca8c84f29b",
         "git_blob": "fbf1c1ca01ea05ed905c46a6d23150b29fc358f1",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "NarratorViewModel",
@@ -3837,7 +3837,7 @@
         "source_line": "struct iOSRowiReaderView: View {",
         "sha256": "71742cab4448ee0b8ff8970bbf92526db74874694f0bfe599d5a1406f088da3e",
         "git_blob": "d2038859d9b91e9b6eb8db3eda380fdef6b03bc2",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "NarratorViewModel.currentRowi",
@@ -3935,7 +3935,7 @@
         "source_line": "struct iOSReaderView: View {",
         "sha256": "dfe8260afcbea2131f88da68a90374ff1fbdf1d5e11af68dbd0b4f62f95fdaba",
         "git_blob": "67146db4a47746c8412a8ee7d8b16328ff951e19",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel / iOSNavigationManager.ReaderTab",
@@ -4043,7 +4043,7 @@
         "source_line": "viewModel.fetchSelectedRange = { [weak textView] in",
         "sha256": "2f1008f8396086daa90b8da98a4ebcc8727625fb17349210cae384a2c4b1bfd1",
         "git_blob": "23cd37e5897b51b9d19839a089d8d3f4a0abc597",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel / TextKit coordinator",
@@ -4150,7 +4150,7 @@
         "source_line": "sefariaLocator: viewModel.selectedSegmentLocator,",
         "sha256": "32322d10685b04a40a844070acd9373529a2a44f30bcea41830e8e8d3b27711f",
         "git_blob": "005860a415963af2fbcdd90028b6bae75a87e4a7",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel / MaktabahTorahInspectorSession",
@@ -4249,7 +4249,7 @@
         "source_line": "var onAddAnnotation: ((NSRange, AnnotationMode, String, UIColor) -> Void)?",
         "sha256": "2f1008f8396086daa90b8da98a4ebcc8727625fb17349210cae384a2c4b1bfd1",
         "git_blob": "23cd37e5897b51b9d19839a089d8d3f4a0abc597",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "TextKit coordinator / ReaderViewModel",
@@ -4348,7 +4348,7 @@
         "source_line": "public enum Direction: Equatable, Sendable {",
         "sha256": "9560a855867ef42a15e0304ca45e770a6ae1c824ec4ba7b598be35760db7bad5",
         "git_blob": "4840c75a7598da8da4115d232651a4462e663749",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderPullNavigationStateMachine / ReaderBackendPagingCoordinator",
@@ -4455,7 +4455,7 @@
         "source_line": "struct iOSReaderNavigationPopoverView: View {",
         "sha256": "59212349bc82314c6487248f9b7cbc051ea2f95a44482e665559bbf845f35441",
         "git_blob": "e7fdeeada1226cf42552b3b4484234e44d478293",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel.navigationItems",
@@ -4562,7 +4562,7 @@
         "source_line": "viewModel.navigateToNavigationItem(at: commitIdx)",
         "sha256": "59212349bc82314c6487248f9b7cbc051ea2f95a44482e665559bbf845f35441",
         "git_blob": "e7fdeeada1226cf42552b3b4484234e44d478293",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel.currentNavigationIndex",
@@ -4668,7 +4668,7 @@
         "source_line": "showingSearch = true",
         "sha256": "82b7b64d21cfdd6a2f8dd8bbfd94bf95a81da218c37a6f81d378f399c6e13b9a",
         "git_blob": "de504b55304909dc804606aa7e4b3c80a52f5bc5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel / local presentation state",
@@ -4767,7 +4767,7 @@
         "source_line": "showingAnnotationsList = true",
         "sha256": "82b7b64d21cfdd6a2f8dd8bbfd94bf95a81da218c37a6f81d378f399c6e13b9a",
         "git_blob": "de504b55304909dc804606aa7e4b3c80a52f5bc5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel / local presentation state",
@@ -4866,7 +4866,7 @@
         "source_line": "showingOptions = true",
         "sha256": "82b7b64d21cfdd6a2f8dd8bbfd94bf95a81da218c37a6f81d378f399c6e13b9a",
         "git_blob": "de504b55304909dc804606aa7e4b3c80a52f5bc5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel / local presentation state",
@@ -4965,7 +4965,7 @@
         "source_line": "var onShowTableOfContents: (() -> Void)? = nil",
         "sha256": "82b7b64d21cfdd6a2f8dd8bbfd94bf95a81da218c37a6f81d378f399c6e13b9a",
         "git_blob": "de504b55304909dc804606aa7e4b3c80a52f5bc5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel / local presentation state",
@@ -5072,7 +5072,7 @@
         "source_line": "struct iOSReaderBottomToolbarView: View {",
         "sha256": "82b7b64d21cfdd6a2f8dd8bbfd94bf95a81da218c37a6f81d378f399c6e13b9a",
         "git_blob": "de504b55304909dc804606aa7e4b3c80a52f5bc5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel",
@@ -5170,7 +5170,7 @@
         "source_line": "struct iOSBookInfoView: View {",
         "sha256": "685c42f915f7cf92cb0a025c1072eb97b88276c4fb49b08e1768f73e7965435a",
         "git_blob": "e0f142882d8dc0c4cf88523fb4cffacba23b5c1a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BooksData / LibraryWorkMetadata",
@@ -5276,7 +5276,7 @@
         "source_line": "struct iOSBookInfoCardView: View {",
         "sha256": "e8c716628fac03a9d32272967d5679df9c22e88aaf86652de55676aea20d0d59",
         "git_blob": "6e6a82550001100fb806a4e1639c4963ccbf72b6",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BooksData / selectedBookForInfo",
@@ -5382,7 +5382,7 @@
         "source_line": "ThemeSection(\"Typography\") {",
         "sha256": "be1f4c9c3898367d5e85c2ffef65776ed219db4ac31fd3c5d9b95bb00729d56c",
         "git_blob": "38e7aac91d54b9aa60a02307eea6a16921f7a6c5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "TextViewState / ReaderViewModel / UserFontManager",
@@ -5481,7 +5481,7 @@
         "source_line": "ThemeSection(\"Fonts\") {",
         "sha256": "be1f4c9c3898367d5e85c2ffef65776ed219db4ac31fd3c5d9b95bb00729d56c",
         "git_blob": "38e7aac91d54b9aa60a02307eea6a16921f7a6c5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "TextViewState / ReaderViewModel / UserFontManager",
@@ -5580,7 +5580,7 @@
         "source_line": "private var readerTextModeBinding: Binding<LibraryReaderTextMode> {",
         "sha256": "be1f4c9c3898367d5e85c2ffef65776ed219db4ac31fd3c5d9b95bb00729d56c",
         "git_blob": "38e7aac91d54b9aa60a02307eea6a16921f7a6c5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "TextViewState / ReaderViewModel / UserFontManager",
@@ -5679,7 +5679,7 @@
         "source_line": "ThemeSection(\"Display\") {",
         "sha256": "be1f4c9c3898367d5e85c2ffef65776ed219db4ac31fd3c5d9b95bb00729d56c",
         "git_blob": "38e7aac91d54b9aa60a02307eea6a16921f7a6c5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "TextViewState / ReaderViewModel / UserFontManager",
@@ -5778,7 +5778,7 @@
         "source_line": "ThemeSection(\"Background\") {",
         "sha256": "be1f4c9c3898367d5e85c2ffef65776ed219db4ac31fd3c5d9b95bb00729d56c",
         "git_blob": "38e7aac91d54b9aa60a02307eea6a16921f7a6c5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "TextViewState / ReaderViewModel / UserFontManager",
@@ -5877,7 +5877,7 @@
         "source_line": "case sefariaEmbedded",
         "sha256": "212a0f2ebef2580134f60c7027006cfe201c96a484e65f43732fedf778406a49",
         "git_blob": "db623b1b2ecae4a55953786a5ac2154355a5308e",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BackendCoordinator / version providers",
@@ -5984,7 +5984,7 @@
         "source_line": "struct iOSTOCView: View {",
         "sha256": "c035c2b51665b32f6bf3ded27ff7903ae2d7c6e9485087c003ac0857b056da80",
         "git_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookTOCViewModel / local search and expansion",
@@ -6093,7 +6093,7 @@
         "source_line": ".searchable(text: $searchText, prompt: String(localized: \"Search Contents\"))",
         "sha256": "c035c2b51665b32f6bf3ded27ff7903ae2d7c6e9485087c003ac0857b056da80",
         "git_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookTOCViewModel / local search and expansion",
@@ -6202,7 +6202,7 @@
         "source_line": "Picker(\"Structure\", selection: Binding(",
         "sha256": "c035c2b51665b32f6bf3ded27ff7903ae2d7c6e9485087c003ac0857b056da80",
         "git_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookTOCViewModel / local search and expansion",
@@ -6311,7 +6311,7 @@
         "source_line": "scrollSelected(proxy: proxy)",
         "sha256": "c035c2b51665b32f6bf3ded27ff7903ae2d7c6e9485087c003ac0857b056da80",
         "git_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookTOCViewModel / local search and expansion",
@@ -6420,7 +6420,7 @@
         "source_line": "@State private var expandedPaths: Set<ObjectIdentifier> = []",
         "sha256": "c035c2b51665b32f6bf3ded27ff7903ae2d7c6e9485087c003ac0857b056da80",
         "git_blob": "3b3d6f217105d7d03e754028a8d5e2f4305910fd",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookTOCViewModel / local search and expansion",
@@ -6529,7 +6529,7 @@
         "source_line": "struct TOCNodeRow: View {",
         "sha256": "eba9f7a7af26b135f7385caec47be7153856a649187010607a2f95c849a8c312",
         "git_blob": "9b924357f80454eac037f8ab48454dd07ce69a66",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookTOCViewModel / ReaderViewModel",
@@ -6629,13 +6629,13 @@
       "screen_section_component": "Library/TOC sidebar selection",
       "source": {
         "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
-        "line": 24,
+        "line": 25,
         "anchor": "struct ReaderSidebarPager",
         "occurrence": 1,
         "source_line": "struct ReaderSidebarPager<Library: View, Contents: View>: View {",
-        "sha256": "b744e4a93f404e02684747e06ee95639b3916bb647d7bf289f354cb6aadb7040",
-        "git_blob": "b438773ac33169a3c54134ebdc866f61b101096c",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "sha256": "9322c3dc4edc33bffea5a8ee01ee394d46bac94ce9631dd09a062613c89095fa",
+        "git_blob": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderSidebarPageCoordinator.page",
@@ -6727,13 +6727,13 @@
       "screen_section_component": "Native sidebar visibility",
       "source": {
         "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
-        "line": 117,
+        "line": 126,
         "anchor": "configureExistingSplit",
         "occurrence": 1,
         "source_line": "controller.configureExistingSplit()",
-        "sha256": "b744e4a93f404e02684747e06ee95639b3916bb647d7bf289f354cb6aadb7040",
-        "git_blob": "b438773ac33169a3c54134ebdc866f61b101096c",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "sha256": "9322c3dc4edc33bffea5a8ee01ee394d46bac94ce9631dd09a062613c89095fa",
+        "git_blob": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "NavigationSplitView / columnVisibility",
@@ -6832,7 +6832,7 @@
         "source_line": "private func inspectorPanel(",
         "sha256": "32322d10685b04a40a844070acd9373529a2a44f30bcea41830e8e8d3b27711f",
         "git_blob": "005860a415963af2fbcdd90028b6bae75a87e4a7",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "MaktabahTorahInspectorSession / ReaderViewModel",
@@ -6940,7 +6940,7 @@
         "source_line": "private var compactStudyPanel: some View {",
         "sha256": "32322d10685b04a40a844070acd9373529a2a44f30bcea41830e8e8d3b27711f",
         "git_blob": "005860a415963af2fbcdd90028b6bae75a87e4a7",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "MaktabahTorahInspectorSession / ReaderViewModel",
@@ -7048,7 +7048,7 @@
         "source_line": "@State private var selectedTool: TorahStudyTool = .commentaries",
         "sha256": "32322d10685b04a40a844070acd9373529a2a44f30bcea41830e8e8d3b27711f",
         "git_blob": "005860a415963af2fbcdd90028b6bae75a87e4a7",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "MaktabahTorahInspectorSession / ReaderViewModel",
@@ -7156,7 +7156,7 @@
         "source_line": "private var useWideLayout: Bool {",
         "sha256": "32322d10685b04a40a844070acd9373529a2a44f30bcea41830e8e8d3b27711f",
         "git_blob": "005860a415963af2fbcdd90028b6bae75a87e4a7",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "MaktabahTorahInspectorSession / ReaderViewModel",
@@ -7264,7 +7264,7 @@
         "source_line": "struct OtzariaReaderSourcesInspectorHost: View {",
         "sha256": "9c13c47027445dbc75929ccde2204cb8663d59b07f0df85ff998dfdef8aeecd9",
         "git_blob": "a89ca4e0b5459d170ec3bdb20fbdfb34c2361384",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel / TorahInspector session",
@@ -7371,7 +7371,7 @@
         "source_line": "struct OtzariaLineSourcesInspectorView: View {",
         "sha256": "69c67308895908bb5aefab441f12a32100a53344eae99ea581412c49fcf4b5ca",
         "git_blob": "b0ccc49838265adc3ccc88a74e18e25a9141c6bc",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ReaderViewModel.otzariaSelectedLineAnchor",
@@ -7478,7 +7478,7 @@
         "source_line": "if let sel = inspectorSession.selection(",
         "sha256": "32322d10685b04a40a844070acd9373529a2a44f30bcea41830e8e8d3b27711f",
         "git_blob": "005860a415963af2fbcdd90028b6bae75a87e4a7",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "MaktabahTorahInspectorSession / relationships providers",
@@ -8410,7 +8410,7 @@
         "source_line": "private var annotationEditor: some View {",
         "sha256": "32322d10685b04a40a844070acd9373529a2a44f30bcea41830e8e8d3b27711f",
         "git_blob": "005860a415963af2fbcdd90028b6bae75a87e4a7",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "MaktabahTorahInspectorSession / editingAnnotation",
@@ -8518,7 +8518,7 @@
         "source_line": "iOSAutoDirectionTextView(text: $noteText, onCreated: { self.editorTextView = $0 })",
         "sha256": "a5c93fe52cab121a4f48da58c59427267ad1e6086510844b2fe9d4db9ceeeb86",
         "git_blob": "6770977ce0d4594884dd0ceca61864b341545ee4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "editingAnnotation / AnnotationStore host callbacks",
@@ -8618,7 +8618,7 @@
         "source_line": "ThemeSection(\"Tags (comma separated)\") {",
         "sha256": "a5c93fe52cab121a4f48da58c59427267ad1e6086510844b2fe9d4db9ceeeb86",
         "git_blob": "6770977ce0d4594884dd0ceca61864b341545ee4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "editingAnnotation / AnnotationStore host callbacks",
@@ -8718,7 +8718,7 @@
         "source_line": "ThemeSection(\"Style\") {",
         "sha256": "a5c93fe52cab121a4f48da58c59427267ad1e6086510844b2fe9d4db9ceeeb86",
         "git_blob": "6770977ce0d4594884dd0ceca61864b341545ee4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "editingAnnotation / AnnotationStore host callbacks",
@@ -8818,7 +8818,7 @@
         "source_line": "private func saveAnnotation() {",
         "sha256": "a5c93fe52cab121a4f48da58c59427267ad1e6086510844b2fe9d4db9ceeeb86",
         "git_blob": "6770977ce0d4594884dd0ceca61864b341545ee4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "editingAnnotation / AnnotationStore host callbacks",
@@ -8926,7 +8926,7 @@
         "source_line": "private func deleteAnnotation(_ id: Int64) {",
         "sha256": "a5c93fe52cab121a4f48da58c59427267ad1e6086510844b2fe9d4db9ceeeb86",
         "git_blob": "6770977ce0d4594884dd0ceca61864b341545ee4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "editingAnnotation / AnnotationStore host callbacks",
@@ -9026,7 +9026,7 @@
         "source_line": "Button(role: .cancel, action: { dismiss() }) {",
         "sha256": "a5c93fe52cab121a4f48da58c59427267ad1e6086510844b2fe9d4db9ceeeb86",
         "git_blob": "6770977ce0d4594884dd0ceca61864b341545ee4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "editingAnnotation / AnnotationStore host callbacks",
@@ -9126,7 +9126,7 @@
         "source_line": "struct AnnotationListView: View {",
         "sha256": "5abf543369a471e39e33b075b45427988f4677715e606809b53681b4d60c4f95",
         "git_blob": "3d38295b67ebc0ab087e80e74cf7c61f39835e26",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "AnnotationViewModel / AnnotationCoordinator",
@@ -9225,7 +9225,7 @@
         "source_line": "Picker(\"Group By\", selection: $viewModel.groupingMode) {",
         "sha256": "5abf543369a471e39e33b075b45427988f4677715e606809b53681b4d60c4f95",
         "git_blob": "3d38295b67ebc0ab087e80e74cf7c61f39835e26",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "AnnotationViewModel",
@@ -9325,7 +9325,7 @@
         "source_line": "isImporting = true",
         "sha256": "5abf543369a471e39e33b075b45427988f4677715e606809b53681b4d60c4f95",
         "git_blob": "3d38295b67ebc0ab087e80e74cf7c61f39835e26",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "AnnotationViewModel",
@@ -9425,7 +9425,7 @@
         "source_line": "exportAnnotations()",
         "sha256": "5abf543369a471e39e33b075b45427988f4677715e606809b53681b4d60c4f95",
         "git_blob": "3d38295b67ebc0ab087e80e74cf7c61f39835e26",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "AnnotationViewModel",
@@ -9525,7 +9525,7 @@
         "source_line": "struct iOSBookAnnotationsView: View {",
         "sha256": "e97623b694d3df46fbc648258f337d4d7c5af16bca7b1c81710036f557856c5b",
         "git_blob": "a485fa8df7f5b8f6cfa567cf3f895b07957b6de5",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "BookAnnotationsViewModel",
@@ -9624,7 +9624,7 @@
         "source_line": "func importOverwriteConfirmation(",
         "sha256": "5abf543369a471e39e33b075b45427988f4677715e606809b53681b4d60c4f95",
         "git_blob": "3d38295b67ebc0ab087e80e74cf7c61f39835e26",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "AnnotationViewModel / pendingImportAnnotations",
@@ -9723,7 +9723,7 @@
         "source_line": "struct SearchModeView: View {",
         "sha256": "ff58883e3a9abd67289757dc6ebdd95083c9d329689fd7b61cab130de5b64eac",
         "git_blob": "ab9688a22482fe08cf546cccbc7a9871d95c3977",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / SearchViewModel",
@@ -9834,7 +9834,7 @@
         "source_line": "field.accessibilityIdentifier = \"global-search-query\"",
         "sha256": "ef3144ec8c4e4ecbc96524c211a463f5bd774232c9b246e8d685ac505a7c623a",
         "git_blob": "5874079c725d664c56f1812cd1706d42cc1afb0e",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object",
         "historical_anchor": {
           "path": "Source/Features/Search/iOS/SearchModeView.swift",
@@ -9936,7 +9936,7 @@
         "source_line": "struct SearchHistoryOverlay: View {",
         "sha256": "5794722c91e6b3b11dd1f803f89526b70a886682da99d1f0e3fe1643b8b8b41b",
         "git_blob": "8e18d27ce9395acd700da328574f6a70cc842d80",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SearchViewModel.searchHistory",
@@ -10034,7 +10034,7 @@
         "source_line": "Button(action: { session.showsBookFilterSheet = true }) {",
         "sha256": "5794722c91e6b3b11dd1f803f89526b70a886682da99d1f0e3fe1643b8b8b41b",
         "git_blob": "8e18d27ce9395acd700da328574f6a70cc842d80",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / SearchViewModel.selectedBookIds",
@@ -10141,7 +10141,7 @@
         "source_line": "class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {",
         "sha256": "f4fc969da25d4a6c4997aa0661c378cc7013455e0f4662ecb3a0c514ac94e8a9",
         "git_blob": "05254df866e1f6a866e2807a8a5ed49561273b22",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SearchViewModel.displayedCategories",
@@ -10248,7 +10248,7 @@
         "source_line": "struct UnifiedSearchAdvancedOptionsButton: View {",
         "sha256": "5794722c91e6b3b11dd1f803f89526b70a886682da99d1f0e3fe1643b8b8b41b",
         "git_blob": "8e18d27ce9395acd700da328574f6a70cc842d80",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController",
@@ -10357,7 +10357,7 @@
         "source_line": "Button(action: { showingHelp = true }) {",
         "sha256": "5794722c91e6b3b11dd1f803f89526b70a886682da99d1f0e3fe1643b8b8b41b",
         "git_blob": "8e18d27ce9395acd700da328574f6a70cc842d80",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / SearchViewModel",
@@ -10453,7 +10453,7 @@
         "source_line": "struct SearchResultsListView: View {",
         "sha256": "68de873ac09b141c1ecc3e2323707bacf1975f34a04c9e169f385c42d149ac87",
         "git_blob": "d8b91be607657bc47476ebe91e013ca7c222c7a1",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / SearchHitResolver",
@@ -10560,7 +10560,7 @@
         "source_line": ".contextMenu {",
         "sha256": "68de873ac09b141c1ecc3e2323707bacf1975f34a04c9e169f385c42d149ac87",
         "git_blob": "d8b91be607657bc47476ebe91e013ca7c222c7a1",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SearchResultItem / native clipboard",
@@ -10658,7 +10658,7 @@
         "source_line": "struct UnifiedSearchPagingFeedbackView: View {",
         "sha256": "283187b972bb95656bfcb8a43173b2701dc11a31fe97f63df4d6670ad2fad0e0",
         "git_blob": "5983d641372c0c8142fb156677dbd0da79f027a3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController.nextOffset",
@@ -10765,7 +10765,7 @@
         "source_line": "struct UnifiedSearchFeedbackView: View {",
         "sha256": "283187b972bb95656bfcb8a43173b2701dc11a31fe97f63df4d6670ad2fad0e0",
         "git_blob": "5983d641372c0c8142fb156677dbd0da79f027a3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController.integrationState",
@@ -10864,7 +10864,7 @@
         "source_line": "struct iOSBookSearchView: View {",
         "sha256": "e0824c0aaa4ab90272b2fa23ab43afc840ca597376645a3b80a31832e501d839",
         "git_blob": "e934ec3df44fe008d9d4eee42ce8474b88208c60",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SearchViewModel.selectedBookIds",
@@ -10973,7 +10973,7 @@
         "source_line": "struct LibraryCommandPaletteAdapter: View {",
         "sha256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239",
         "git_blob": "826d6e9d7e98d78ff2b612e692ae03f2f87417aa",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "LibraryViewModel / iOSNavigationManager",
@@ -11080,7 +11080,7 @@
         "source_line": "struct iOSResultWriterView: View {",
         "sha256": "d6f09685bbdaa06ac283ab72faef4dd6205caecf19280a0cd175bd6e4b421779",
         "git_blob": "4d5f9f9821d85af239bcba6f5be32eda9da5fe1a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ResultsViewModel",
@@ -11180,7 +11180,7 @@
         "source_line": "struct iOSSavedResultsView: View {",
         "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
         "git_blob": "67bbfd7e636e76d9e7ea10a9792a928cba4c8f10",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ResultsViewModel / FolderNode / ResultNode",
@@ -11280,7 +11280,7 @@
         "source_line": ".navigationDestination(for: FolderNode.self) { folder in",
         "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
         "git_blob": "67bbfd7e636e76d9e7ea10a9792a928cba4c8f10",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ResultsViewModel / FolderNode / ResultNode",
@@ -11380,7 +11380,7 @@
         "source_line": ".searchable(text: $searchText, prompt: \"Search globally\")",
         "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
         "git_blob": "67bbfd7e636e76d9e7ea10a9792a928cba4c8f10",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ResultsViewModel / FolderNode / ResultNode",
@@ -11480,7 +11480,7 @@
         "source_line": ".sheet(item: $itemToMove) { target in",
         "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
         "git_blob": "67bbfd7e636e76d9e7ea10a9792a928cba4c8f10",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ResultsViewModel / FolderNode / ResultNode",
@@ -11580,7 +11580,7 @@
         "source_line": "\"Delete Folder\",",
         "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
         "git_blob": "67bbfd7e636e76d9e7ea10a9792a928cba4c8f10",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ResultsViewModel / FolderNode / ResultNode",
@@ -11680,7 +11680,7 @@
         "source_line": "itemToRename?.alertTitle ?? \"\",",
         "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
         "git_blob": "67bbfd7e636e76d9e7ea10a9792a928cba4c8f10",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ResultsViewModel / FolderNode / ResultNode",
@@ -11780,7 +11780,7 @@
         "source_line": "struct iOSMoveItemView: View {",
         "sha256": "70410b975035e78e2df7899a42fb1825208b01a2a229a7a217699f33f518e66f",
         "git_blob": "15b0422814b567f1c61931a59ef87a73fbc96e91",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ResultsViewModel",
@@ -11879,7 +11879,7 @@
         "source_line": "struct FlatFolderNode: Identifiable {",
         "sha256": "4672a67dbdbed887907ddd7d94ecffc3fb7595705b91007af2fb1b57bd9c31f9",
         "git_blob": "0da3021cfbffde24f9be729a04c7c435d408ed78",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "ResultsViewModel",
@@ -11977,7 +11977,7 @@
         "source_line": "struct iOSHistoryView: View {",
         "sha256": "8709b20177dfcaefb9530cd76b65097617d77fe13b3773a284189295908e5b40",
         "git_blob": "c73881eec9f6e4bd66c565ffec22ec0139f2f52a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "HistoryViewModel",
@@ -12076,7 +12076,7 @@
         "source_line": "struct HistorySection: View {",
         "sha256": "d2e99d3248ef7026fc704e842486e6c92e96e166d4871c6020d3a72841d0205c",
         "git_blob": "21022a084704123bdeed259cfa547008c6dddfc2",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "HistoryViewModel / iOSNavigationManager",
@@ -12182,7 +12182,7 @@
         "source_line": "struct iOSAddFavoriteSheet: View {",
         "sha256": "8709b20177dfcaefb9530cd76b65097617d77fe13b3773a284189295908e5b40",
         "git_blob": "c73881eec9f6e4bd66c565ffec22ec0139f2f52a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "HistoryViewModel.favoriteBookIds",
@@ -12280,7 +12280,7 @@
         "source_line": "struct FavoritesSection: View {",
         "sha256": "d2e99d3248ef7026fc704e842486e6c92e96e166d4871c6020d3a72841d0205c",
         "git_blob": "21022a084704123bdeed259cfa547008c6dddfc2",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "HistoryViewModel",
@@ -12386,7 +12386,7 @@
         "source_line": "struct iOSReaderTabView: View {",
         "sha256": "07b97c18906f58c02e9759f65e903f307438de3ebcf3dfd7818524486fe99ff6",
         "git_blob": "21968285d3de6fc1fa1dd1614084c3e1a099436b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager.openTabs / activeTabId",
@@ -12494,7 +12494,7 @@
         "source_line": "struct iOSReaderTabsPopoverView: View {",
         "sha256": "8dcd96b7be9d2ffd0c42e3712d299db8ca4750657475b1e1bb3aa8b659222668",
         "git_blob": "546f817602ca092cca3b3ffcfe8e402e4166878b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "iOSNavigationManager.showingTabsList",
@@ -12593,7 +12593,7 @@
         "source_line": "struct StudyGroupsOverview: View {",
         "sha256": "c0fc974da17ea1d97135991e7d87ba98c5731814c90e54fadf04754d91a69b5c",
         "git_blob": "43717b123e6b7206b4466b1179a151fbcd2acd19",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "StudyWorkspaceNavigationAdapter",
@@ -12693,7 +12693,7 @@
         "source_line": "struct DocumentTabsHost: UIViewControllerRepresentable {",
         "sha256": "d14385b39380ba303ef46e535ab3758279088a3e7c47bd44cf4d1a2ca6e761cb",
         "git_blob": "35700c9c55628a48bf735a59a4503e18212285bd",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "StudyWorkspaceNavigationAdapter / iOSNavigationManager",
@@ -12792,7 +12792,7 @@
         "source_line": "private var profileMenu: some View {",
         "sha256": "2d475e4c4ea5ce7260979e0171ac78d03a05edfd6efbf1ab58b81e7ddfcf1982",
         "git_blob": "4d354e9f9b07cb4a2a000b2d7a75d4615d2313aa",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "StudyWorkspaceNavigationAdapter",
@@ -12891,7 +12891,7 @@
         "source_line": "struct StudyProfileManagementView: View {",
         "sha256": "b0f990b98ea518d8a8e1c79c83f57f87b335baa54f2ba4baff87b7825ccc5013",
         "git_blob": "4944f15040668da468e3399888ed0fe97f31f573",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "StudyWorkspaceNavigationAdapter / StudyWorkspaceStore",
@@ -12991,7 +12991,7 @@
         "source_line": ".sheet(item: $editing) { profile in profileEditor(profile) }",
         "sha256": "b0f990b98ea518d8a8e1c79c83f57f87b335baa54f2ba4baff87b7825ccc5013",
         "git_blob": "4944f15040668da468e3399888ed0fe97f31f573",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "StudyWorkspaceNavigationAdapter / StudyWorkspaceStore",
@@ -13091,7 +13091,7 @@
         "source_line": "private struct StudyGroupManagementView: View {",
         "sha256": "b0f990b98ea518d8a8e1c79c83f57f87b335baa54f2ba4baff87b7825ccc5013",
         "git_blob": "4944f15040668da468e3399888ed0fe97f31f573",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "StudyWorkspaceNavigationAdapter / StudyWorkspaceStore",
@@ -13191,7 +13191,7 @@
         "source_line": "Button(\"מחיקת פרופיל\", role: .destructive) {",
         "sha256": "b0f990b98ea518d8a8e1c79c83f57f87b335baa54f2ba4baff87b7825ccc5013",
         "git_blob": "4944f15040668da468e3399888ed0fe97f31f573",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "StudyWorkspaceNavigationAdapter / StudyWorkspaceStore",
@@ -13291,7 +13291,7 @@
         "source_line": "struct Exact9401WorkspaceLifecycle: ViewModifier {",
         "sha256": "c6dee8097ef897f1ca42096401b4514d70e98f2eb43d2564516c1d6258c8d2bc",
         "git_blob": "4bbe2347d162b5aebad118476405e7f087e5e00a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "StudyWorkspaceNavigationAdapter.sceneID",
@@ -13390,7 +13390,7 @@
         "source_line": "struct SettingsView: View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -13489,7 +13489,7 @@
         "source_line": "private var librarySourceSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -13596,7 +13596,7 @@
         "source_line": "NavigationLink(\"Manage Offline Library\") {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -13703,7 +13703,7 @@
         "source_line": "private var databaseModeSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -13802,7 +13802,7 @@
         "source_line": "private var searchSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -13901,7 +13901,7 @@
         "source_line": "private var libraryStorageSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14000,7 +14000,7 @@
         "source_line": "private var annotationsSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14099,7 +14099,7 @@
         "source_line": "get: { viewModel.useICloud },",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14198,7 +14198,7 @@
         "source_line": "private var appearanceSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14297,7 +14297,7 @@
         "source_line": "NavigationLink(\"Search Data\") {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14396,7 +14396,7 @@
         "source_line": "NavigationLink(\"Zayit Search Credits\") {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14495,7 +14495,7 @@
         "source_line": "private var searchIndexSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14594,7 +14594,7 @@
         "source_line": "private var optimizationSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14693,7 +14693,7 @@
         "source_line": "private var updatesSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14792,7 +14792,7 @@
         "source_line": "private var downloadsSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SettingsViewModel / BackendCoordinator / FtsMigrationManager",
@@ -14891,7 +14891,7 @@
         "source_line": "let profileID: String",
         "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348",
         "git_blob": "ca907a0e58b3674950375c8e523293a833d25bf8",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "OtzariaDataProfile / OS accessibility and locale",
@@ -14987,7 +14987,7 @@
         "source_line": "private var appearanceSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "OtzariaDataProfile / OS accessibility and locale",
@@ -15083,7 +15083,7 @@
         "source_line": "private var appearanceSection: some View {",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5",
         "git_blob": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "OtzariaDataProfile / OS accessibility and locale",
@@ -15179,7 +15179,7 @@
         "source_line": "struct OfflineLibraryManagementView: View {",
         "sha256": "4f3263f18091b82f2be1b261fe6a8b6750c1e19d4e303f6452ddf91516f91cea",
         "git_blob": "87b64bbb9137ab2c4348e763a7b491c6c803f75d",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "OfflineLibraryManagementViewModel / BackendCoordinator.offlineProvider",
@@ -15286,7 +15286,7 @@
         "source_line": "Section(\"Sefaria Packages\") {",
         "sha256": "4f3263f18091b82f2be1b261fe6a8b6750c1e19d4e303f6452ddf91516f91cea",
         "git_blob": "87b64bbb9137ab2c4348e763a7b491c6c803f75d",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "OfflineLibraryManagementViewModel",
@@ -15393,7 +15393,7 @@
         "source_line": "ToolbarItem(placement: .primaryAction) { Button(\"Apply\") { model.apply() }.disabled(model.isWorking) }",
         "sha256": "4f3263f18091b82f2be1b261fe6a8b6750c1e19d4e303f6452ddf91516f91cea",
         "git_blob": "87b64bbb9137ab2c4348e763a7b491c6c803f75d",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "OfflineLibraryManagementViewModel",
@@ -15500,7 +15500,7 @@
         "source_line": "Button(\"Check for Updates\") { model.checkForUpdates() }",
         "sha256": "4f3263f18091b82f2be1b261fe6a8b6750c1e19d4e303f6452ddf91516f91cea",
         "git_blob": "87b64bbb9137ab2c4348e763a7b491c6c803f75d",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "OfflineLibraryManagementViewModel",
@@ -15607,7 +15607,7 @@
         "source_line": "Button(\"Update Downloaded Library\") { model.update() }",
         "sha256": "4f3263f18091b82f2be1b261fe6a8b6750c1e19d4e303f6452ddf91516f91cea",
         "git_blob": "87b64bbb9137ab2c4348e763a7b491c6c803f75d",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "OfflineLibraryManagementViewModel",
@@ -15714,7 +15714,7 @@
         "source_line": "Button(\"Cancel\", role: .destructive) { model.cancel() }",
         "sha256": "4f3263f18091b82f2be1b261fe6a8b6750c1e19d4e303f6452ddf91516f91cea",
         "git_blob": "87b64bbb9137ab2c4348e763a7b491c6c803f75d",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "OfflineLibraryManagementViewModel",
@@ -15821,7 +15821,7 @@
         "source_line": "struct SearchDataView: View {",
         "sha256": "283187b972bb95656bfcb8a43173b2701dc11a31fe97f63df4d6670ad2fad0e0",
         "git_blob": "5983d641372c0c8142fb156677dbd0da79f027a3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SearchDataView / OtzariaSearchIndexManager / ZayitSearchArtifactService",
@@ -15920,7 +15920,7 @@
         "source_line": "Button(\"הורד והתקן רכיבים חסרים\") {",
         "sha256": "283187b972bb95656bfcb8a43173b2701dc11a31fe97f63df4d6670ad2fad0e0",
         "git_blob": "5983d641372c0c8142fb156677dbd0da79f027a3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SearchDataInstallPlanner / OtzariaTextSearchViewModel / ZayitSearchDataController",
@@ -16018,7 +16018,7 @@
         "source_line": "struct SearchDiagnosticsView: View {",
         "sha256": "283187b972bb95656bfcb8a43173b2701dc11a31fe97f63df4d6670ad2fad0e0",
         "git_blob": "5983d641372c0c8142fb156677dbd0da79f027a3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController",
@@ -16116,7 +16116,7 @@
         "source_line": "case history(bkId: Int, contentId: Int?)",
         "sha256": "328054d86c8c51b8f7f40ba17a592bd3162e9b8dbd9ee6a112dcb405cc126e13",
         "git_blob": "ed3b743a20ce15cf0455d3dbc4bf3a2515e69db6",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "WidgetDeepLink / iOSMainView.handleOpenURL",
@@ -16215,7 +16215,7 @@
         "source_line": "case annotation(id: Int64)",
         "sha256": "328054d86c8c51b8f7f40ba17a592bd3162e9b8dbd9ee6a112dcb405cc126e13",
         "git_blob": "ed3b743a20ce15cf0455d3dbc4bf3a2515e69db6",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "WidgetDeepLink / iOSMainView.handleOpenURL",
@@ -16314,7 +16314,7 @@
         "source_line": "struct HistoryConfigurationIntent: WidgetConfigurationIntent {",
         "sha256": "89420e0e20e777cf3e4476bfe3b4bc0aeb2cfcbd66e7b93ce08e218e0a14f684",
         "git_blob": "7b5626ddec998c2a6f4c4c93230e107ee2792c14",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "WidgetKit providers",
@@ -16410,7 +16410,7 @@
         "source_line": "struct iOSMainView: View {",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Future UIRouting/host ports; respective assigned owners",
@@ -16508,7 +16508,7 @@
         "source_line": "struct iOSMainView: View {",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Future UIRouting/host ports; respective assigned owners",
@@ -16606,7 +16606,7 @@
         "source_line": "struct iOSMainView: View {",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Future UIRouting/host ports; respective assigned owners",
@@ -16704,7 +16704,7 @@
         "source_line": "struct iOSMainView: View {",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Future UIRouting/host ports; respective assigned owners",
@@ -16802,7 +16802,7 @@
         "source_line": "struct iOSMainView: View {",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Future UIRouting/host ports; respective assigned owners",
@@ -16900,7 +16900,7 @@
         "source_line": "struct iOSMainView: View {",
         "sha256": "70caa8ea50b4e8717a096824bbfab5a8968caa7dec86554ff5a58d2a99366235",
         "git_blob": "d71fd38912710378d385d2658fd4e676017f937b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Future UIRouting/host ports; respective assigned owners",
@@ -16998,7 +16998,7 @@
         "source_line": "struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {",
         "sha256": "b6d75d5796b2806e563e90ffa526ca6a336213c2d611114b064225a8c2308e25",
         "git_blob": "d6755c1a51afff26b82e52c8f58e885467ed45e6",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Historical downstream feature models",
@@ -17094,7 +17094,7 @@
         "source_line": "struct OtzariaRootSplitView: View {",
         "sha256": "5c389b37570beee98b6c3771e19bdd9ed51b989955f3ca41343ae9670d0dc404",
         "git_blob": "b37124cfe4120057a0619cf342b543492f104917",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Historical downstream feature models",
@@ -17190,7 +17190,7 @@
         "source_line": "struct OtzariaIntegratedLibraryView: View {",
         "sha256": "e6c839c3c881abffa3771eb7a5398102311df58f36b5b83974902ff1807d10b1",
         "git_blob": "9ba8787c2672352ecc121b21640a08324ea0b24a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Historical downstream feature models",
@@ -17286,7 +17286,7 @@
         "source_line": "struct OtzariaReaderView: View {",
         "sha256": "8ca71d5d756ea375edbab030b7b8865b9c3b0ad4aa888d3b3187f00cc0e0e303",
         "git_blob": "a2992f766c0cef10c4d198cbc4bc585d584c131d",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Historical downstream feature models",
@@ -17382,7 +17382,7 @@
         "source_line": "struct OtzariaReaderSettingsView: View {",
         "sha256": "41f40ec2c6c1415703bc58fc989943560a23830472f0b21f0722a2e18be3aa7b",
         "git_blob": "70471480e83442c56af2f4bb9954c7dbe649fb02",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Historical downstream feature models",
@@ -17478,7 +17478,7 @@
         "source_line": "struct OtzariaTextSearchView: View {",
         "sha256": "0286f2802bdf7c11f09b0d0f4b7c763d97302f9f157af58f6a77626457827888",
         "git_blob": "3886b7dd00b44d1954d6f801b80045c2737b14e3",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Historical downstream feature models",
@@ -17574,7 +17574,7 @@
         "source_line": "struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {",
         "sha256": "c01993a30c3580d8fe0bd34d88797bfd9f21ae101b058577fcb67fc4741ea29b",
         "git_blob": "a37c1df1138f96ae1ed1a214abfa9339604c60bf",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SefariaExpoLifecycleAdapter / ReactNativeFactory",
@@ -17670,7 +17670,7 @@
         "source_line": "func ensureHostStarted() {",
         "sha256": "2792d42f3531f7753e6de12ce27fb5cab87ca75be6711b8d99e241e5283e7d83",
         "git_blob": "5b57b725a661f58bf133812328e36a30fe44c33b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SefariaRuntimeManager / SefariaExpoLifecycleAdapter",
@@ -17769,7 +17769,7 @@
         "source_line": "case 'catalog.root':",
         "sha256": "a79d71a3ccd96831818e35625eb28479d8b876b08c67d951cf46f836a47c7a6e",
         "git_blob": "5faa35d1e28431c40937b26840cb97127ba82dc4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "SefariaJSRPCBridge / ChavrusaRPCFacade",
@@ -17869,7 +17869,7 @@
         "source_line": "if (props?.renderFullUI) {",
         "sha256": "cf839401d7b4a576094a19efe0407d9c10098e907ecdbe8a1c37b6f87284ad8a",
         "git_blob": "3d736ec0312cf622694e079f45ac31ee9de00941",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "GlobalStateContext / ReaderApp",
@@ -22390,7 +22390,7 @@
         "source_line": "struct ContentsToggleIcon: View {",
         "sha256": "32322d10685b04a40a844070acd9373529a2a44f30bcea41830e8e8d3b27711f",
         "git_blob": "005860a415963af2fbcdd90028b6bae75a87e4a7",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Existing UI implementation",
@@ -22486,7 +22486,7 @@
         "source_line": "import SwiftUI",
         "sha256": "ce9187fce4ddc518a62e973f93aa28b4d898be1071a813873b37744188008687",
         "git_blob": "4e6130513cd141d2712adb0d9d23e94f64838145",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Existing UI implementation",
@@ -22582,7 +22582,7 @@
         "source_line": "class ListContentView: UIView, UIContentView {",
         "sha256": "a038184979074ab3744e2954349a2fdc4d3814865f3eee51e3463d2a83213bcd",
         "git_blob": "c009dfc4c93281f2e3fecbc04c17925ab06de837",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Existing UI implementation",
@@ -22678,7 +22678,7 @@
         "source_line": "enum ReaderNavigationDisplayPolicy {",
         "sha256": "7b03ca345a7527bdb8a32604136a8f88fdbe7fcc82d503557122ea527551c640",
         "git_blob": "5a0cd0ee4eaf48256d5150aee0516805e5741a2c",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Existing UI implementation",
@@ -22774,7 +22774,7 @@
         "source_line": "struct DonationSheetView: View {",
         "sha256": "061bcfdd377df8394833320f38a0f9eef57c21a828b28b888a825074bd0f3644",
         "git_blob": "1c0bbdf6a49acca188bc35abe688fc4d9b9210e9",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "DonationManager",
@@ -22870,7 +22870,7 @@
         "line": 155,
         "source_line": "Button(action: onDismiss) {",
         "sha256": "0aeaf779e901813d4059b9117cc73416657da4916b23a4c2a31a118cae4dc18d",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "Exact9401ViewerToolbar.isPresented / existing onDismiss",
@@ -22969,7 +22969,7 @@
         "line": 16,
         "source_line": ".accessibilityIdentifier(\"global-search-sefaria-match\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23069,7 +23069,7 @@
         "line": 18,
         "source_line": ".accessibilityIdentifier(\"global-search-sefaria-distance\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23169,7 +23169,7 @@
         "line": 36,
         "source_line": ".accessibilityIdentifier(\"global-search-options-validation\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23269,7 +23269,7 @@
         "line": 39,
         "source_line": ".accessibilityIdentifier(\"global-search-options-content\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23369,7 +23369,7 @@
         "line": 45,
         "source_line": ".accessibilityIdentifier(\"global-search-options-done\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23469,7 +23469,7 @@
         "line": 55,
         "source_line": ".accessibilityIdentifier(\"global-search-positive-scope\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23569,7 +23569,7 @@
         "line": 58,
         "source_line": ".accessibilityIdentifier(\"global-search-distance\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23669,7 +23669,7 @@
         "line": 63,
         "source_line": ".accessibilityIdentifier(\"global-search-word-match\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23769,7 +23769,7 @@
         "line": 66,
         "source_line": ".accessibilityIdentifier(\"global-search-word-count\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23869,7 +23869,7 @@
         "line": 71,
         "source_line": ".accessibilityIdentifier(\"global-search-negative-query\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -23969,7 +23969,7 @@
         "line": 74,
         "source_line": ".accessibilityIdentifier(\"global-search-negative-scope\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24069,7 +24069,7 @@
         "line": 77,
         "source_line": ".accessibilityIdentifier(\"global-search-negative-distance\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24169,7 +24169,7 @@
         "line": 82,
         "source_line": "Toggle(\"קידומות\", isOn: $session.otzariaEnablesPrefixes)",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24269,7 +24269,7 @@
         "line": 83,
         "source_line": "Toggle(\"סיומות\", isOn: $session.otzariaEnablesSuffixes)",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24369,7 +24369,7 @@
         "line": 84,
         "source_line": "Toggle(\"כתיב מלא וחסר\", isOn: $session.otzariaEnablesSpellingVariants)",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24469,7 +24469,7 @@
         "line": 85,
         "source_line": "Toggle(\"ארמית\", isOn: $session.otzariaEnablesAramaic)",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24569,7 +24569,7 @@
         "line": 86,
         "source_line": "Toggle(\"התעלמות מגרשיים וראשי תיבות\", isOn: $session.otzariaIgnoresQuotes)",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24669,7 +24669,7 @@
         "line": 89,
         "source_line": "Toggle(\"התאמת ניקוד\", isOn: $session.otzariaMatchNikud)",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24769,7 +24769,7 @@
         "line": 90,
         "source_line": "Toggle(\"התאמת טעמים\", isOn: $session.otzariaMatchTaamim)",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24869,7 +24869,7 @@
         "line": 94,
         "source_line": ".accessibilityIdentifier(\"global-search-spacing\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -24969,7 +24969,7 @@
         "line": 96,
         "source_line": ".accessibilityIdentifier(\"global-search-alternatives\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25069,7 +25069,7 @@
         "line": 106,
         "source_line": ".accessibilityIdentifier(\"global-search-grouping\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25169,7 +25169,7 @@
         "line": 133,
         "source_line": ".accessibilityIdentifier(\"global-search-zayit-match\")",
         "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25269,7 +25269,7 @@
         "line": 19,
         "source_line": ".accessibilityIdentifier(\"global-search-rerun\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25369,7 +25369,7 @@
         "line": 21,
         "source_line": ".accessibilityIdentifier(\"global-search-dirty\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25469,7 +25469,7 @@
         "line": 26,
         "source_line": ".accessibilityIdentifier(\"global-search-cancel\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25569,7 +25569,7 @@
         "line": 28,
         "source_line": ".accessibilityIdentifier(\"global-search-loading\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25669,7 +25669,7 @@
         "line": 36,
         "source_line": ".accessibilityIdentifier(\"global-search-cancelled\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25769,7 +25769,7 @@
         "line": 43,
         "source_line": ".accessibilityIdentifier(\"global-search-filter-empty\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25869,7 +25869,7 @@
         "line": 75,
         "source_line": "Button(\"נסה שוב\", action: onSubmit).accessibilityIdentifier(\"global-search-retry\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -25969,7 +25969,7 @@
         "line": 80,
         "source_line": ".accessibilityIdentifier(\"global-search-error\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26069,7 +26069,7 @@
         "line": 86,
         "source_line": ".accessibilityIdentifier(\"global-search-index-status\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26169,7 +26169,7 @@
         "line": 88,
         "source_line": ".accessibilityIdentifier(\"global-search-missing-index\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26269,7 +26269,7 @@
         "line": 92,
         "source_line": ".accessibilityIdentifier(\"global-search-empty\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26369,7 +26369,7 @@
         "line": 105,
         "source_line": ".accessibilityIdentifier(\"global-search-page-retry\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26469,7 +26469,7 @@
         "line": 108,
         "source_line": ".accessibilityIdentifier(\"global-search-page-error\")",
         "sha256": "6eef34c604b1657aebc9dcd3accc1729a3cd696a4b8ff8fb52dd820393849976",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26565,11 +26565,11 @@
         "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
         "anchor": ".accessibilityIdentifier(\"global-search-options\")",
         "occurrence": 1,
-        "git_blob": "575e6f3117b3a45e5fa0ea1f1f8a94926f71bfe3",
+        "git_blob": "1be8b112968006b9cd737892910c502b7f26c143",
         "line": 23,
         "source_line": ".accessibilityIdentifier(\"global-search-options\")",
-        "sha256": "3d42b9fcb15e523c19480f4a02476f61307ef96ee6e50c9de906719723474870",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "sha256": "8af97be988036a935b6ff575cc32d3457cc43255ce3497870b84e2b00090869c",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26665,11 +26665,11 @@
         "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
         "anchor": ".accessibilityIdentifier(\"global-search-books\")",
         "occurrence": 1,
-        "git_blob": "575e6f3117b3a45e5fa0ea1f1f8a94926f71bfe3",
-        "line": 39,
+        "git_blob": "1be8b112968006b9cd737892910c502b7f26c143",
+        "line": 40,
         "source_line": ".accessibilityIdentifier(\"global-search-books\")",
-        "sha256": "3d42b9fcb15e523c19480f4a02476f61307ef96ee6e50c9de906719723474870",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "sha256": "8af97be988036a935b6ff575cc32d3457cc43255ce3497870b84e2b00090869c",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26765,11 +26765,11 @@
         "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
         "anchor": ".accessibilityIdentifier(\"global-search-mode\")",
         "occurrence": 1,
-        "git_blob": "575e6f3117b3a45e5fa0ea1f1f8a94926f71bfe3",
-        "line": 56,
+        "git_blob": "1be8b112968006b9cd737892910c502b7f26c143",
+        "line": 57,
         "source_line": ".accessibilityIdentifier(\"global-search-mode\")",
-        "sha256": "3d42b9fcb15e523c19480f4a02476f61307ef96ee6e50c9de906719723474870",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "sha256": "8af97be988036a935b6ff575cc32d3457cc43255ce3497870b84e2b00090869c",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26865,11 +26865,11 @@
         "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
         "anchor": ".accessibilityIdentifier(\"global-search-header\")",
         "occurrence": 1,
-        "git_blob": "575e6f3117b3a45e5fa0ea1f1f8a94926f71bfe3",
-        "line": 67,
+        "git_blob": "1be8b112968006b9cd737892910c502b7f26c143",
+        "line": 68,
         "source_line": ".accessibilityIdentifier(\"global-search-header\")",
-        "sha256": "3d42b9fcb15e523c19480f4a02476f61307ef96ee6e50c9de906719723474870",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "sha256": "8af97be988036a935b6ff575cc32d3457cc43255ce3497870b84e2b00090869c",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -26969,7 +26969,7 @@
         "line": 37,
         "source_line": ".accessibilityIdentifier(\"global-search-history-clear\")",
         "sha256": "3687d11438b54cac5257c7206c75b33cff041c8072f6a0c404625d8a1ce95023",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27069,7 +27069,7 @@
         "line": 47,
         "source_line": ".accessibilityIdentifier(\"global-search-history\")",
         "sha256": "3687d11438b54cac5257c7206c75b33cff041c8072f6a0c404625d8a1ce95023",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27169,7 +27169,7 @@
         "line": 15,
         "source_line": ".accessibilityIdentifier(\"global-search-count\")",
         "sha256": "22c7bb2e08f96a5c62174fd082effd286f1d70e7244c857844bece4acc4e81f4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27269,7 +27269,7 @@
         "line": 28,
         "source_line": ".accessibilityIdentifier(\"global-search-result-filter-toggle\")",
         "sha256": "22c7bb2e08f96a5c62174fd082effd286f1d70e7244c857844bece4acc4e81f4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27369,7 +27369,7 @@
         "line": 37,
         "source_line": "Toggle(\"סדר הפוך\", isOn: $session.sefariaReverseSort)",
         "sha256": "22c7bb2e08f96a5c62174fd082effd286f1d70e7244c857844bece4acc4e81f4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27469,7 +27469,7 @@
         "line": 49,
         "source_line": ".accessibilityIdentifier(\"global-search-sort\")",
         "sha256": "22c7bb2e08f96a5c62174fd082effd286f1d70e7244c857844bece4acc4e81f4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27569,7 +27569,7 @@
         "line": 63,
         "source_line": ".accessibilityIdentifier(\"global-search-result-filter\")",
         "sha256": "22c7bb2e08f96a5c62174fd082effd286f1d70e7244c857844bece4acc4e81f4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27669,7 +27669,7 @@
         "line": 69,
         "source_line": ".accessibilityIdentifier(\"global-search-result-filter-done\")",
         "sha256": "22c7bb2e08f96a5c62174fd082effd286f1d70e7244c857844bece4acc4e81f4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27769,7 +27769,7 @@
         "line": 77,
         "source_line": ".accessibilityIdentifier(\"global-search-results-header\")",
         "sha256": "22c7bb2e08f96a5c62174fd082effd286f1d70e7244c857844bece4acc4e81f4",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27869,7 +27869,7 @@
         "line": 14,
         "source_line": ".accessibilityIdentifier(\"global-search-saved\")",
         "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -27969,7 +27969,7 @@
         "line": 19,
         "source_line": ".accessibilityIdentifier(\"global-search-save\")",
         "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -28069,7 +28069,7 @@
         "line": 26,
         "source_line": ".accessibilityIdentifier(\"global-search-data\")",
         "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -28169,7 +28169,7 @@
         "line": 33,
         "source_line": ".accessibilityIdentifier(\"global-search-reset\")",
         "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -28269,7 +28269,7 @@
         "line": 35,
         "source_line": ".accessibilityIdentifier(\"global-search-more\")",
         "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "owning_view_model": "UnifiedSearchSessionController / original SearchViewModel",
@@ -28473,8 +28473,8 @@
     },
     {
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
-      "sha256": "b744e4a93f404e02684747e06ee95639b3916bb647d7bf289f354cb6aadb7040",
-      "git_blob": "b438773ac33169a3c54134ebdc866f61b101096c",
+      "sha256": "9322c3dc4edc33bffea5a8ee01ee394d46bac94ce9631dd09a062613c89095fa",
+      "git_blob": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
       "disposition": "mapped_semantic_surfaces",
       "reason": "Direct curated source anchors",
       "semantic_ids": [
@@ -31299,15 +31299,15 @@
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
       "anchor": "struct ReaderSidebarPager",
       "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
-      "current_blob": "b438773ac33169a3c54134ebdc866f61b101096c",
-      "line": 24
+      "current_blob": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
+      "line": 25
     },
     {
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
       "anchor": "configureExistingSplit",
       "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
-      "current_blob": "b438773ac33169a3c54134ebdc866f61b101096c",
-      "line": 117
+      "current_blob": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
+      "line": 126
     },
     {
       "path": "Source/Features/Search/iOS/SearchModeView.swift",
@@ -31424,7 +31424,7 @@
       "source_line": "capabilities: [.catalog, .reading, .navigation, .search, .authors, .links, .workMetadata],",
       "sha256": "8e27e4b827a117d11e17e86cd22d0a8fca98bc94b1fda942d745883b433f6168",
       "git_blob": "bd3f3a27709198a179cec84d626459848d4b5de2",
-      "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+      "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
       "storage": "immutable_git_object"
     },
     "sefaria": {
@@ -31435,7 +31435,7 @@
       "source_line": "capabilities: [.catalog, .reading, .navigation, .search, .links, .versions, .offlineLibrary, .workMetadata],",
       "sha256": "55a2cd1c479b5251ef5f7d3036d157e677c9268d8990be4ffa196047011642f2",
       "git_blob": "3d80d8568cc852cc5b4c295cb6282702b053d90f",
-      "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+      "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
       "storage": "immutable_git_object"
     },
     "sefariaEmbedded": {
@@ -31446,7 +31446,7 @@
       "source_line": "capabilities: [.catalog, .reading, .navigation, .search, .links, .versions, .offlineLibrary, .workMetadata],",
       "sha256": "f2a0c9c31a276231b9f69e5cc5536a98bb77132f0d01f244c8c65a5d2d53b326",
       "git_blob": "328be747f191b14f0dd34f9f201f38fceec43b2a",
-      "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+      "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
       "storage": "immutable_git_object"
     }
   },
@@ -31462,7 +31462,7 @@
         "source_line": "providerID: section.locator.backend.rawValue,",
         "sha256": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e",
         "git_blob": "71b8ab4ff1da5d37b2f41c4360f08603dd3cd26c",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object",
         "historical_anchor": {
           "path": "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
@@ -31482,7 +31482,7 @@
         "source_line": "struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {",
         "sha256": "c01993a30c3580d8fe0bd34d88797bfd9f21ae101b058577fcb67fc4741ea29b",
         "git_blob": "a37c1df1138f96ae1ed1a214abfa9339604c60bf",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "detail": "No construction call found in Source. Runtime bootstrap is a hidden window; upstream React state and RPC success do not prove visible native destination or focus."
@@ -31498,7 +31498,7 @@
         "source_line": "for scene in UIApplication.shared.connectedScenes {",
         "sha256": "2792d42f3531f7753e6de12ce27fb5cab87ca75be6711b8d99e241e5283e7d83",
         "git_blob": "5b57b725a661f58bf133812328e36a30fe44c33b",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "detail": "Existing lifecycle chooses a foreground/first scene, not the requested trusted scene+revision. Future multi-window route must not reuse this as exact-target receipt."
@@ -31514,7 +31514,7 @@
         "source_line": "case let .folder(node): ObjectIdentifier(node)",
         "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
         "git_blob": "67bbfd7e636e76d9e7ea10a9792a928cba4c8f10",
-        "source_revision": "277184b7c8702b9de16bc4a1a72164293514b4aa",
+        "source_revision": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6",
         "storage": "immutable_git_object"
       },
       "detail": "MoveTarget uses ObjectIdentifier internally; future route IDs must resolve stable persisted folder/result identity and rights, never expose object pointers."
@@ -31692,14 +31692,14 @@
       "Source/ChavrusaText/ReaderHost/ReaderNavigationChromeState.swift": "135f75bfdd1d28df0341f82ff4315e09d4fa4e0d",
       "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift": "f11dc1ae25e99267ce53278b3b66cbd9f98c34fe",
       "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": "4bbe2347d162b5aebad118476405e7f087e5e00a",
-      "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift": "b438773ac33169a3c54134ebdc866f61b101096c",
+      "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
       "Source/ChavrusaText/ReaderHost/iOSTabBarVisibilityHost.swift": "4ab87d87b579e956fd8c2037d4fcfa36b5012c57",
       "Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift": "4840c75a7598da8da4115d232651a4462e663749",
       "Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift": "5eb92b8cad2b405833dd33cadfbb65638ea5b588",
       "Source/ChavrusaText/Search/ReaderSearchContextCoordinator.swift": "5afdddc4cec30e379574181c3a1df9421c478ed8",
       "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift": "a235ee027d35d8832f1a4c0e4d64b9abb94e93b7",
       "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift": "543b90e0aea58d71cdbe9738fb8f6a5ef392c14c",
-      "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift": "575e6f3117b3a45e5fa0ea1f1f8a94926f71bfe3",
+      "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift": "1be8b112968006b9cd737892910c502b7f26c143",
       "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift": "cbe1ad7febe5d439de1bc11f71b26b77afc32172",
       "Source/ChavrusaText/Search/UI/GlobalSearchPresentationCoordinator.swift": "865f5db7ce6fe0e086ec4c99741f8f6d9e684afe",
       "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift": "b310ecc3b2ad680a0c25f5c8c4ced5bd2a3560ee",
@@ -31742,10 +31742,10 @@
       "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift": "b18bfcc6c8f4b59ac4c63ac2b8c2deca0348ad32",
       "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "04ce0bcb0c6f03646c8221b2f597227ad9a2b130",
       "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "d4cdb0c27d5845d0306ad74bc27250cfab76383c",
-      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "6c4d255ae948811bc7cce4d82f35209581f84709",
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "1f1f5f190e21004bfda936c73bd0b1dbd78437f7",
       "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "8029e3500b4ada12a400c03196767d25652c1354",
       "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "e912ecdb2ea89816b1c78a19194434fbbc5f30b9",
-      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "df0e1ceb7254f9dcdcf57bb30e6109875d225a5f",
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "0b1997016548ff12b05159a9a6bbb02926e5c56a",
       "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift": "8994f0de81ab2c1cf07e9b20d5977455bd094188",
       "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift": "ef338b73b558acab9aae9e975880b66d96a08d40",
       "Source/ChavrusaText/UIRoutingHost/Package.swift": "f7e27fada6560b963985c742c6bb4ddfff30b6d9",
@@ -31763,7 +31763,7 @@
       "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneIdentity.swift": "598cc1a4d7194ebafa527f818e1cb81123fdc8ac",
       "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift": "968ef1e5e75447a7fdaf7adf5f35382af0779a75",
       "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceState.swift": "d5824069eca8ef2e32d0306f0b264739b2acc228",
-      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift": "0f87e80f82c94d3c6cae76c4d656ee04131f2b67",
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift": "d3ef8763b0848f337feca782e39f69b5234e6fe0",
       "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeBindingSourceObservationTests.swift": "fcb239d8943386fa2e61a6dd79af4c6011a871ee",
       "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift": "b9dfad8c74810a376391015e2935ca0dbe0bf258",
       "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePresentationObserverTests.swift": "fd4a8c376d6285eb99976dd255abb92773526900",

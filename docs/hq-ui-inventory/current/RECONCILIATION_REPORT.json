@@ -236,15 +236,15 @@
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
       "anchor": "struct ReaderSidebarPager",
       "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
-      "current_blob": "b438773ac33169a3c54134ebdc866f61b101096c",
-      "line": 24
+      "current_blob": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
+      "line": 25
     },
     {
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
       "anchor": "configureExistingSplit",
       "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
-      "current_blob": "b438773ac33169a3c54134ebdc866f61b101096c",
-      "line": 117
+      "current_blob": "0dbd5ff7940da8f02b3012f257f8c0eb585109be",
+      "line": 126
     },
     {
       "path": "Source/Features/Search/iOS/SearchModeView.swift",
@@ -352,5 +352,5 @@
       "line": 637
     }
   ],
-  "source_sha": "277184b7c8702b9de16bc4a1a72164293514b4aa"
+  "source_sha": "9e32246739134770cadd2f7d70c4cc61ae9e1eb6"
 }
