@@ -7,7 +7,14 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
     // (Library.xcstrings/historyAndFavorites), including on the iPad History tab.
     @MainActor private var history: XCUIElement { app.navigationBars["History & Favorites"] }
     override func tearDownWithError() throws {
-        if app != nil { capture("native-route-final") }
+        // XCTest teardown is nonisolated. Retain its standard thread-safe
+        // diagnostics directly, as the existing Search teardown does.
+        if let app {
+            let tree = XCTAttachment(string: app.debugDescription)
+            tree.name = "native-route-final-hierarchy"; tree.lifetime = .keepAlways; add(tree)
+            let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+            screen.name = "native-route-final-screen"; screen.lifetime = .keepAlways; add(screen)
+        }
         try super.tearDownWithError()
     }
     @MainActor private func configure(_ backend: String) {
