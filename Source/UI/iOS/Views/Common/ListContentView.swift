@@ -81,6 +81,7 @@ class ListContentView: UIView, UIContentView {
 
         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         label.textAlignment = .natural
+        label.adjustsFontForContentSizeCategory = true
 
         leadingIcon.setContentHuggingPriority(.required, for: .horizontal)
         leadingIcon.contentMode = .scaleAspectFit
@@ -139,8 +140,11 @@ class ListContentView: UIView, UIContentView {
             } else {
                 label.font = UIFont.systemFont(ofSize: config.font.pointSize, weight: .regular)
             }
+            if let baseFont = label.font {
+                label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont, compatibleWith: traitCollection)
+            }
             label.textColor = config.isDownloaded ? .secondaryLabel : .label
-            label.numberOfLines = 1
+            label.numberOfLines = 0
             label.semanticContentAttribute = config.text.isParagraphRTL
                 ? .forceRightToLeft
                 : .forceLeftToRight

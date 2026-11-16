@@ -108,11 +108,8 @@ struct iPadLayout: View {
             preferredCompactColumn: $preferredLibraryCompactColumn
         ) {
             ReaderSidebarPager(coordinator: sidebar) { isActive in
-                NavigationStack {
-                    iOSLibraryView()
-                        .navigationTitle(iOSTab.viewer.title)
-                        .toolbarGeneral(showSettings: $showSettings)
-                }
+                iOSLibraryView()
+                    .toolbarGeneral(showSettings: $showSettings)
                 .toolbarBackground(Color.appBackground, for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
                 .background(Color.appBackground)
@@ -148,7 +145,7 @@ struct iPadLayout: View {
                 selectedId: selectedTOCNode(for: tab.viewModel)?.id,
                 bookTitle: tab.book.book,
                 onClose: closeTableOfContents,
-                embedsNavigationStack: true,
+                embedsNavigationStack: false,
                 onSelect: { id in
                     tab.viewModel.didSelectTOCNode(id: id)
                     if horizontalSizeClass == .compact { closeTableOfContents() }
@@ -160,15 +157,11 @@ struct iPadLayout: View {
                 }
             }
         } else {
-            NavigationStack {
-                ContentUnavailableView(
-                    String(localized: "No Table of Contents"),
-                    systemImage: "list.bullet.rectangle",
-                    description: Text("Select a book to read")
-                )
-                .navigationTitle(String(localized: "Table of Contents"))
-                .navigationBarTitleDisplayMode(.inline)
-            }
+            ContentUnavailableView(
+                String(localized: "No Table of Contents"),
+                systemImage: "list.bullet.rectangle",
+                description: Text("Select a book to read")
+            )
             .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
             .background(Color.appBackground)
         }
