@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "58de5c653b4787070778b4c4465cc6354a1fcddb",
+  "source_test_commit": "2f2560bba668b2aaf4a0e176a0549d68e8a168a8",
   "application_base": "0436775d85893225005f29baf0aa3a20d7b88317",
-  "app_source": "58de5c653b4787070778b4c4465cc6354a1fcddb",
+  "app_source": "2f2560bba668b2aaf4a0e176a0549d68e8a168a8",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "SINGLE_AGENT_PHASE1_FOCUSED_ROOT_CAUSE_4_NOT_FINAL_ACCEPTANCE",
@@ -264,13 +264,13 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
-    "source": "58de5c653b4787070778b4c4465cc6354a1fcddb",
-    "implementation": "Original page navigation/search/top-level tabs retained; only direct page scroll disabled; native witness flags and typed wait error diagnostics",
+    "source": "2f2560bba668b2aaf4a0e176a0549d68e8a168a8",
+    "implementation": "Live render projection; native isolated sidebar stacks with single selection owner; finite regular-width popover; fixed visibility diagnostics",
     "public_enabled": false,
     "native_status": "NOT_RUN",
     "automatic_retry": false
   },
-  "selected_scope_reason": "918 actual iPad22 yielded7PASS15FAIL before external cancellation; no terminal runtime result or phone/window acceptance. Restore original native page container after observed nested-tab toolbar regression; retain same4 root-cause oracles and add fixed visibility/wait diagnostics, no receipt guard changed. This4-case probe does not replace final27 or original18 acceptance.",
+  "selected_scope_reason": "921 focused4 executed0PASS4FAIL. History witness first appeared only after the5s deadline with no pending submission; refresh actual render projection on native binding changes without revoking workspace authority. Sidebar original native search/global tabs restored but page selection still rolled back; retain original stacks in native programmatic page container with dataSource nil (public Apple API), no competing selection callbacks. Options is visually420x620 yet AX ancestor is zero-sized; use finite regular-width root and retain compact system sheet. Same4 unchanged method oracles, no receipt/visibility/deadline relaxation. This probe does not replace final27 or original18 acceptance.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
