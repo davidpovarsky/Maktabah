@@ -18,6 +18,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Xcode27.1 `XCUIApplication.open` restarted the target PID for nominal warm/replay URLs in Native43844345630; two receipts therefore belonged to separate process lifetimes. The background XCTest Runner's `UIApplication.open` was rejected in43863125434. The Phase1 owned `simctl openurl` fixture retains strict actual same-PID and original canonical receipt/UI checks; its real Native validation remains pending. Do not add persistent replay storage to compensate for a cold-launching warm fixture (2026-11-16).
+
 - Global Search's loaded book-title filter must disable the original result-row `onAppear` prefetch while keeping explicit Load More, including zero matches. Otherwise rendering a filtered five-row projection triggers an unintended backend page request. The default-true `automaticallyLoadsMore` list argument preserves existing callers (2026-11-15).
 - Otzaria's blank custom-spacing text must map to an empty dictionary. A dictionary containing `"0-1": ""` makes the upstream gap resolver fall back to zero instead of the configured global distance. Preserve empty positional entries only when an actual custom expression is supplied (2026-11-15).
 
