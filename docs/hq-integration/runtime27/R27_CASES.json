@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "source_test_commit": "e98ad95c9dfeff7814e30e5bc9791e18f0f45275",
+  "source_test_commit": "d3bd53e50641cfdf3558e4306c3489f6e7708fab",
   "application_base": "0436775d85893225005f29baf0aa3a20d7b88317",
-  "app_source": "e98ad95c9dfeff7814e30e5bc9791e18f0f45275",
+  "app_source": "d3bd53e50641cfdf3558e4306c3489f6e7708fab",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "SINGLE_AGENT_PHASE1_ORIGINAL18_PLUS_U6_NATIVE_ACCEPTANCE_NOT_RELEASE",
+  "scope": "SINGLE_AGENT_PHASE1_ORIGINAL18_PLUS_U6_AND_NATIVE_SECURITY3_NOT_RELEASE",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 24,
+  "required_nonzero_cases": 27,
   "expected_per_device": {
-    "ipad11": 21,
+    "ipad11": 24,
     "iphone": 3
   },
   "cases": [
@@ -169,7 +169,10 @@
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
         "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
-        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
+        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+        "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+        "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt"
       ],
       "hid_comparison": false
     },
@@ -197,9 +200,6 @@
     "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
     "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
     "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
-    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
-    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
-    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
     "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
     "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
     "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
@@ -212,12 +212,18 @@
     "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
     "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
     "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
     "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
     "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
     "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
-    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
+    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+    "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+    "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+    "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -318,13 +324,13 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
-    "source": "e98ad95c9dfeff7814e30e5bc9791e18f0f45275",
+    "source": "d3bd53e50641cfdf3558e4306c3489f6e7708fab",
     "implementation": "U secure HID and native tab selection; bounded native search options; exact original History title; bootstrap AX synchronization; fixed diagnostic categories only",
     "public_enabled": false,
     "native_status": "NOT_RUN",
     "automatic_retry": false
   },
-  "selected_scope_reason": "Phase1 product popover/body-paging changes and precise native query repairs after preserved493 RED evidence. Original18 plus six U cases; no skips, no engine/data/oracle weakening. Same SHA for app and tests.",
+  "selected_scope_reason": "Phase1 original18 plus U6 and native foreground/backend/replay3. Previous41cb native24 build stopped at XCTest teardown actor-isolation error before UI; corrected complete Native test sources and Host package now SDK compiled on d3bd53. Exact-owner inactive-scene waiter regression RED1/GREEN9; original URL budget preserved. No skips, engine/data/oracle weakening. Same SHA for app and tests.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -434,6 +440,24 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Separate job-local pinned idb direct native HID on this owned disposable simulator. Real A/backspace visibly edit/clear production autofocus field; one Escape removes actual full empty input; genuine narrow resize and real fixture filtering; one Escape removes actual narrow filtered input; Inspector open/close, full text/exact locator and native window restoration. Original XCTest Escape case retained independently; transport ACK alone never UI acceptance."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native foreground/backend refusal/replay outcome and exact canonical receipt log; no synthetic completion"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native foreground/backend refusal/replay outcome and exact canonical receipt log; no synthetic completion"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native foreground/backend refusal/replay outcome and exact canonical receipt log; no synthetic completion"
     }
   ],
   "manager_native_review_history": [
@@ -470,9 +494,6 @@
     "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
     "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
     "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
-    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
-    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
-    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
     "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
     "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
     "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
@@ -484,6 +505,9 @@
     "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
     "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
     "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
-    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit"
+    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
   ]
 }
