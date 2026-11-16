@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "source_test_commit": "3925f8da2891e24ff35bbac7bedc8ab66a84f5c8",
+  "source_test_commit": "1b3e8bd6f988874fe5143dacd2880214f39b2109",
   "application_base": "0436775d85893225005f29baf0aa3a20d7b88317",
-  "app_source": "3925f8da2891e24ff35bbac7bedc8ab66a84f5c8",
+  "app_source": "1b3e8bd6f988874fe5143dacd2880214f39b2109",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "SINGLE_AGENT_PHASE1_SIX_ACTUAL_NATIVE_FAILURES_ROOT_CAUSE_NOT_FINAL",
+  "scope": "SINGLE_AGENT_PHASE1_ORIGINAL18_PLUS_U6_AND_NATIVE_SECURITY3_NOT_RELEASE",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 6,
+  "required_nonzero_cases": 27,
   "expected_per_device": {
-    "ipad11": 6,
-    "iphone": 0
+    "ipad11": 24,
+    "iphone": 3
   },
   "cases": [
     {
@@ -151,23 +151,79 @@
       "label": "11-reader",
       "size": "11",
       "case_ids": [
-        "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
-        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
-        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
         "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+        "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+        "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+        "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+        "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+        "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+        "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+        "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+        "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL"
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+        "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+        "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison"
+      ],
+      "hid_comparison": true
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "case_ids": [
+        "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+        "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
       ],
       "hid_comparison": false
     }
   ],
   "execution_case_ids": [
-    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
-    "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
-    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
     "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+    "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+    "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+    "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+    "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+    "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+    "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
     "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-    "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL"
+    "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+    "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+    "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+    "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -268,13 +324,13 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
-    "source": "3925f8da2891e24ff35bbac7bedc8ab66a84f5c8",
-    "implementation": "Accessible header targets; bounded remount replay tombstones; scoped exclusive body pan; fixed lifecycle diagnostics",
+    "source": "1b3e8bd6f988874fe5143dacd2880214f39b2109",
+    "implementation": "Owner-approved single native sidebar search/title; primary contrast/44pt actions; genuine same-PID system URL delivery; original render/foreground authority and secure HID/window fixes",
     "public_enabled": false,
     "native_status": "NOT_RUN",
     "automatic_retry": false
   },
-  "selected_scope_reason": "Native43832239945 executed22 methods:16PASS6FAIL. Audit element screenshot identifies undersized books label; minimum44-point targets now apply to both plain header actions. Native remount erased process request ledger; preserve terminal dispatch IDs with revoked token and retain the original rejection/receipt oracles. Actual37 focused portable Core/host lifetime tests pass including new three-backend remount regression. Sidebar native programmatic dots pass but body pans fail; dynamic horizontal gesture priority replaces competing simultaneous writers without disabling any list, changing page stacks, or weakening20body/20dot assertions. Fixed DEBUG lifecycle PID/mount/foreground diagnostics investigate genuine Legacy blank-reader and mount-timeout failures; engines/DBs untouched. This focused6 run cannot satisfy final27 acceptance.",
+  "selected_scope_reason": "Phase1 newest-source original18 + U6 + native-security3, one coherent app/test candidate. Native438443 proved XCUIApplication.open restarted the target on every nominal warm call; genuine UIKit system delivery now asserts unchanged actual target PID while keeping visible rejection and exact-one canonical receipt oracles. Cold terminate+open remains intentional. Books/mode labels have44pt targets and dynamic primary contrast after genuine hit-area/contrast audit failures. Original native pager/stacks retain explicit RTL order with exclusive directional pan. Exact owner-approved patch4fc4058c applied only to iPadLayout and iOSTOCView: one native sidebar search binds canonical Library and scene-local TOC queries; native title/subtitle replaces duplicate principal AX only in shared sidebar. Standalone TOC and all engines/data unchanged. All20body+20dot transitions, strict query/title/viewport/receipt/audit assertions retained. Prior differently pinned passes are historical only; full27 must actually execute on this source.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -433,7 +489,7 @@
       }
     }
   ],
-  "hid_comparison": false,
+  "hid_comparison": true,
   "phase1_original_18_case_ids": [
     "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
     "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
