@@ -36,6 +36,8 @@ struct GlobalSearchHeader: View {
                 } label: {
                     Label(session.selectedBookIds.isEmpty ? "כל הספרים" : "\(session.selectedBookIds.count) ספרים נבחרו",
                           systemImage: "book")
+                        .frame(minWidth: 44, minHeight: 44)
+                        .contentShape(Rectangle())
                 }
                 .accessibilityIdentifier("global-search-books")
                 Spacer(minLength: 8)
@@ -51,6 +53,8 @@ struct GlobalSearchHeader: View {
                     }
                 } label: {
                     Label(session.scope.title, systemImage: "chevron.down")
+                        .frame(minWidth: 44, minHeight: 44)
+                        .contentShape(Rectangle())
                 }
                 .accessibilityLabel("שיטת חיפוש")
                 .accessibilityValue(session.scope.title)

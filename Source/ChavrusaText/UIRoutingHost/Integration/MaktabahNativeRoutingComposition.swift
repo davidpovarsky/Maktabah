@@ -71,6 +71,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
             }
             try orchestrator.register(session)
             scenes[sceneID] = .init(managerID: ObjectIdentifier(manager), session: session, lease: lease, windowNumber: windowNumber)
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[NativeSceneLifecycle] event=mount pid=\(ProcessInfo.processInfo.processIdentifier) foreground=\(foreground)")
+            #endif
             if foreground {
                 mountWaiters.removeValue(forKey: ObjectIdentifier(manager))?.continuation.resume(returning: sceneID)
             }
@@ -78,6 +81,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         } catch { session.unmount(); authority.unmount(lease); throw error }
     }
     func setForeground(_ value: Bool, session: MaktabahNativeSceneSession) throws {
+        #if DEBUG
+        OtzariaFileLogger.shared.log("[NativeSceneLifecycle] event=foreground pid=\(ProcessInfo.processInfo.processIdentifier) foreground=\(value)")
+        #endif
         guard let entry = scenes[session.sceneID], entry.session === session else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
         try authority.setForeground(value, lease: entry.lease); session.foreground = value
         contexts.removeValue(forKey: session.sceneID)
@@ -87,6 +93,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     }
     func unmount(_ session: MaktabahNativeSceneSession) {
         guard let entry = scenes[session.sceneID], entry.session === session else { return }
+        #if DEBUG
+        OtzariaFileLogger.shared.log("[NativeSceneLifecycle] event=unmount pid=\(ProcessInfo.processInfo.processIdentifier)")
+        #endif
         mountWaiters.removeValue(forKey: entry.managerID)?.continuation.resume(throwing: UIRouteError(.staleState, "scene_lifetime_changed"))
         entry.publicBinding?.cancel()
         orchestrator.unregister(session); session.unmount(); authority.unmount(entry.lease); scenes.removeValue(forKey: session.sceneID)
@@ -171,6 +180,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         let scheme = "maktabah"
         #endif
         guard case .route(let route) = try NativeRouteURL.decode(url, scheme: scheme, registry: registry) else { return nil }
+        #if DEBUG
+        OtzariaFileLogger.shared.log("[NativeSceneLifecycle] event=url pid=\(ProcessInfo.processInfo.processIdentifier)")
+        #endif
         let end = deadline(), managerID = ObjectIdentifier(manager)
         let exactSceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
             try await waitForMount(managerID: managerID)
@@ -193,6 +205,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     private func waitForMount(managerID: ObjectIdentifier) async throws -> UIStableID {
         try Task.checkCancellation()
         let existing = scenes.values.filter { $0.managerID == managerID }
+        #if DEBUG
+        OtzariaFileLogger.shared.log("[NativeSceneLifecycle] event=await-mount pid=\(ProcessInfo.processInfo.processIdentifier) matches=\(existing.count) foreground=\(existing.first?.session.foreground == true)")
+        #endif
         if existing.count == 1, let value = existing.first, value.session.foreground { return value.session.sceneID }
         // A system URL can arrive after mount but before scenePhase becomes
         // active. Await only this manager's activation, within the original

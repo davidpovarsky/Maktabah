@@ -31,7 +31,7 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
         var dispatched: Bool
         var active: Bool
         var acknowledged: Bool
-        let token: UUID
+        var token: UUID
     }
     private var dispatches: [UUID: Dispatch] = [:]
     private struct ReaderExecution: Sendable {
@@ -55,7 +55,14 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
     public func unregister(_ driver: any NativeSceneDriver) {
         guard let current = drivers[driver.sceneID], current === driver else { return }
         drivers.removeValue(forKey: driver.sceneID)
-        dispatches = dispatches.filter { $0.value.command.scene.sceneID != driver.sceneID }
+        // Detach retires the original effect; it must not erase its request ID.
+        // SwiftUI can remount the same UIKit session during URL activation.
+        // Keep the bounded process ledger so that remount cannot dispatch a
+        // completed/uncertain request again, including with a replacement driver.
+        for id in Array(dispatches.keys) where dispatches[id]?.command.scene.sceneID == driver.sceneID {
+            dispatches[id]?.active = false
+            dispatches[id]?.token = UUID()
+        }
         if var execution = readerExecutions[driver.sceneID], execution.driver === driver {
             // Retire the original call until its owner finishes; do not let a
             // replacement call borrow its slot or let late cleanup erase it.

@@ -66,6 +66,19 @@ import OtzariaUIRouting
         guard case .staleState = duplicate else { return XCTFail("Reused completion") }
         XCTAssertEqual(f.driver.applied, 1)
     }
+    func testRemountCannotEraseCompletedRequestOrIssueSecondReceipt() async throws {
+        for backend in ActionBackendID.allCases {
+            let f = try await fixture(backendID: backend)
+            guard case .acknowledged = try await f.orchestrator.commit(f.command, context: f.context) else {
+                return XCTFail("The first real Core-authorized dispatch must complete")
+            }
+            f.orchestrator.unregister(f.driver)
+            try f.orchestrator.register(f.driver)
+            let replay = try await f.orchestrator.commit(f.command, context: f.context)
+            guard case .staleState = replay else { return XCTFail("Remount replay completed: \(replay)") }
+            XCTAssertEqual(f.driver.applied, 1)
+        }
+    }
     func testCancellationAfterDispatchNeverClaimsNoEffect() async throws {
         let f = try await fixture(), (stream, signal) = AsyncStream<Void>.makeStream(bufferingPolicy: .bufferingNewest(1))
         f.driver.wait = true; f.driver.afterApply = { signal.yield(()) }
