@@ -64,12 +64,19 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             .onChange(of: workspace?.selection) { _, _ in
                 refreshProjection()
             }
+            // Bindings captured at mount can retain their render-time value
+            // during a later SwiftUI graph evaluation. Refresh the projection
+            // used by the actual destination marker after native UI changes.
+            // The route's own mutation must not revoke its admitted authority.
+            .onChange(of: selectedTab) { _, _ in refreshProjection(workspaceChanged: false) }
+            .onChange(of: showSettings) { _, _ in refreshProjection(workspaceChanged: false) }
+            .onChange(of: columnVisibility) { _, _ in refreshProjection(workspaceChanged: false) }
             .onDisappear {
                 if let session { MaktabahNativeRoutingComposition.shared.unmount(session) }
                 session = nil
             }
     }
-    private func refreshProjection() {
+    private func refreshProjection(workspaceChanged: Bool = true) {
         guard let session else { mountIfReady(); return }
         let bindings = bindings
         let source = session.workspaceProjectionSource.flatMap { $0.isAuthoritative ? $0 : nil }
@@ -79,7 +86,11 @@ struct MaktabahNativeRoutingHost: ViewModifier {
                   columnVisibility: bindings.columnVisibility.wrappedValue, settingsPresented: bindings.showSettings.wrappedValue,
                   sidebar: nil, workspace: workspace)
         })
-        try? MaktabahNativeRoutingComposition.shared.workspaceProjectionDidUpdate(session, workspace: workspace)
+        if workspaceChanged {
+            try? MaktabahNativeRoutingComposition.shared.workspaceProjectionDidUpdate(session, workspace: workspace)
+        } else {
+            try? session.nativeStateChanged()
+        }
     }
     private func mountIfReady() {
         guard ready, session == nil, let id = UIStableID(rawValue: sceneID) else { return }

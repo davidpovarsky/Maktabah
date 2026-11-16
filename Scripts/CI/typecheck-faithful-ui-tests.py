@@ -63,6 +63,31 @@ report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], tex
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 print(json.dumps(report, indent=2))
 print(result.stdout)
+
+# Compile the actual self-contained native sidebar containers before a full
+# app build. They need only SwiftUI/UIKit: no app/model stand-ins or harness.
+sidebar_code = 0
+sidebar_path = Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift")
+if sidebar_path.is_file() and "private struct ReaderSidebarPages<" in sidebar_path.read_text():
+    sidebar = sidebar_path.read_text()
+    component = sidebar.split("#if canImport(SwiftUI)", 1)[0] + "\nimport SwiftUI\nimport UIKit\n"
+    component += sidebar[sidebar.index("private struct ReaderSidebarPages<"):sidebar.rindex("#endif")]
+    component_path = Path("build/Phase1SidebarAdapter.swift")
+    component_path.write_text(component)
+    sidebar_command = compiler_options.copy()
+    sidebar_command[sidebar_command.index("-module-name") + 1] = "Phase1SidebarSDK"
+    sidebar_command[sidebar_command.index("-o") + 1] = "build/Phase1SidebarSDK.o"
+    sidebar_command.append(str(component_path))
+    sidebar_result = subprocess.run(sidebar_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    sidebar_code = sidebar_result.returncode
+    report["sidebarAdapterSDK"] = {"sourceSHA": report["sourceSHA"],
+        "status": "SDK_COMPILE_PASS" if sidebar_code == 0 else "BUILD_FAILED",
+        "scope": "Actual ReaderSidebarPages and ReaderSidebarSplitConfiguration; no app/model stubs; no native UI methods",
+        "sourceSHA256": hashlib.sha256(sidebar_path.read_bytes()).hexdigest(), "command": sidebar_command}
+    with (artifacts / "ui-acceptance-typecheck.log").open("a", encoding="utf-8") as output:
+        output.write("\n=== Exact native sidebar adapter SDK compilation ===\n" + sidebar_result.stdout)
+    print(json.dumps(report["sidebarAdapterSDK"], indent=2))
+    print(sidebar_result.stdout)
 toolbar_sources = [Path("Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift"),
                    Path("Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift"),
                    Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"),
@@ -128,6 +153,6 @@ if (native_host / "Package.swift").is_file():
     print(native_host_result.stdout)
 report["appMembershipStatus"] = "PASS" if membership_code == 0 else "FAIL"
 report["toolbarSDKStatus"] = "SDK_COMPILE_PASS" if toolbar_code == 0 else "BUILD_FAILED"
-report["aggregateSDKStatus"] = "PASS" if not (result.returncode or toolbar_code or native_host_code or membership_code) else "FAIL"
+report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code) else "FAIL"
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
-raise SystemExit(result.returncode or toolbar_code or native_host_code or membership_code)
+raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code)

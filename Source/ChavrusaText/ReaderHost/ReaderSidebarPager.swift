@@ -30,23 +30,17 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     @Environment(iOSNavigationManager.self) private var navigationManager
 
     var body: some View {
-        // Keep the original page container and each native NavigationStack.
-        // A nested tab-bar controller consumes their search toolbar and its
-        // visibility preference also hides the application's top-level tabs.
-        // Only the page container's own horizontal scroll is disabled below;
-        // the scoped recognizer remains the single body selection writer.
-        TabView(selection: $coordinator.page) {
-            library(coordinator.page == .library)
-                .accessibilityHidden(coordinator.page != .library)
-                .tag(ReaderSidebarPageCoordinator.Page.library)
-            contents(coordinator.page == .contents)
+        // Each original NavigationStack keeps its own native search/toolbar.
+        // A native page controller with no data source never writes selection
+        // back over the scoped gesture; it also avoids nesting a tab bar.
+        ReaderSidebarPages(showsContents: coordinator.page == .contents,
+            library: library(coordinator.page == .library)
+                .accessibilityHidden(coordinator.page != .library),
+            contents: contents(coordinator.page == .contents)
                 // Node IDs are book-local. Recreate only the TOC's local
                 // search/expansion/scroll state when its reader changes.
                 .id(activeContentsReaderID)
-                .accessibilityHidden(coordinator.page != .contents)
-                .tag(ReaderSidebarPageCoordinator.Page.contents)
-        }
-        .tabViewStyle(.page(indexDisplayMode: .never))
+                .accessibilityHidden(coordinator.page != .contents))
         .animation(reduceMotion ? nil : .snappy, value: coordinator.page)
         .environment(\.readerSidebarOwnsToggle, true)
         .accessibilityElement(children: .contain)
@@ -100,6 +94,46 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     }
 }
 
+/// Retain the original SwiftUI NavigationStacks in distinct native hosts.
+/// SwiftUI's page-style TabView can report an outgoing selection during its
+/// transition; a nested tab-bar TabView consumes the original split toolbar.
+/// UIPageViewController's public programmatic API needs neither competing
+/// callbacks nor changes to any native List/TOC scroll recognizer.
+private struct ReaderSidebarPages<Library: View, Contents: View>: UIViewControllerRepresentable {
+    let showsContents: Bool
+    let library: Library
+    let contents: Contents
+
+    @MainActor final class Coordinator {
+        let library = UIHostingController(rootView: AnyView(EmptyView()))
+        let contents = UIHostingController(rootView: AnyView(EmptyView()))
+    }
+
+    func makeCoordinator() -> Coordinator { Coordinator() }
+
+    func makeUIViewController(context: Context) -> UIPageViewController {
+        let controller = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        // Public contract: nil disables gesture-driven page navigation.
+        // https://developer.apple.com/documentation/uikit/uipageviewcontroller/datasource
+        controller.dataSource = nil
+        controller.view.backgroundColor = .clear
+        updateUIViewController(controller, context: context)
+        return controller
+    }
+
+    func updateUIViewController(_ controller: UIPageViewController, context: Context) {
+        let owner = context.coordinator
+        // Forward the existing scene's environment, including the actual
+        // navigation manager, workspace, direction, theme and Dynamic Type.
+        owner.library.rootView = AnyView(library.environment(\.self, context.environment))
+        owner.contents.rootView = AnyView(contents.environment(\.self, context.environment))
+        let target = showsContents ? owner.contents : owner.library
+        guard controller.viewControllers?.first !== target else { return }
+        let direction: UIPageViewController.NavigationDirection = showsContents ? .forward : .reverse
+        controller.setViewControllers([target], direction: direction, animated: false)
+    }
+}
+
 /// Configure the public ancestor of the original NavigationSplitView. This
 /// attachment creates no split, navigation controller, reader or toolbar item.
 private struct ReaderSidebarSplitConfiguration: UIViewControllerRepresentable {
@@ -125,8 +159,6 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
     var onBodySwipe: (@MainActor (Double, Double) -> Void)?
     private weak var configuredSplit: UISplitViewController?
     private weak var bodySwipeHost: UIView?
-    private weak var pageScrollView: UIScrollView?
-    private var pageScrollWasEnabled: Bool?
     private lazy var bodyPan = UIPanGestureRecognizer(target: self, action: #selector(bodyPanEnded(_:)))
     private var originalBehavior: UISplitViewController.SplitBehavior?
     private var originalButtonVisibility: UISplitViewController.DisplayModeButtonVisibility?
@@ -162,7 +194,6 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
             originalButtonVisibility = split.displayModeButtonVisibility
         }
         configureBodySwipe(in: split)
-        configurePageScroll(in: split)
 
         let availableWidth = split.view.safeAreaLayoutGuide.layoutFrame.width
         let primaryWidth = split.viewController(for: .primary)?.viewIfLoaded?.bounds.width ?? 0
@@ -194,8 +225,6 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
     }
 
     func restoreConfiguration() {
-        if let pageScrollView, let pageScrollWasEnabled { pageScrollView.isScrollEnabled = pageScrollWasEnabled }
-        pageScrollView = nil; pageScrollWasEnabled = nil
         bodySwipeHost?.removeGestureRecognizer(bodyPan)
         bodySwipeHost = nil
         if let split = configuredSplit {
@@ -215,26 +244,6 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
         bodyPan.delegate = self
         host.addGestureRecognizer(bodyPan)
         bodySwipeHost = host
-    }
-
-    private func configurePageScroll(in split: UISplitViewController) {
-        guard let primary = split.viewController(for: .primary) else { return }
-        @MainActor func pageContainer(_ controller: UIViewController) -> UIPageViewController? {
-            if let page = controller as? UIPageViewController { return page }
-            for child in controller.children {
-                if let page = pageContainer(child) { return page }
-            }
-            return nil
-        }
-        // The primary owns this sidebar's one page container. Inspect only its
-        // immediate scroll view; the original List/TOC vertical scroll views
-        // live inside its child controllers and must remain enabled.
-        guard let page = pageContainer(primary),
-              let scroll = page.viewIfLoaded?.subviews.compactMap({ $0 as? UIScrollView }).first,
-              pageScrollView !== scroll else { return }
-        if let pageScrollView, let pageScrollWasEnabled { pageScrollView.isScrollEnabled = pageScrollWasEnabled }
-        pageScrollView = scroll; pageScrollWasEnabled = scroll.isScrollEnabled
-        scroll.isScrollEnabled = false
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {

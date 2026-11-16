@@ -3,6 +3,7 @@ import SwiftUI
 struct GlobalSearchHeader: View {
     @Bindable var session: UnifiedSearchSessionController
     @Environment(\.globalSearchBookChooser) private var showBookSidebar
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     let onSubmit: () -> Void
 
     var body: some View {
@@ -23,7 +24,11 @@ struct GlobalSearchHeader: View {
                 .accessibilityIdentifier("global-search-options")
                 .popover(isPresented: $session.showsAdvancedOptions) {
                     GlobalSearchAdvancedOptionsContent(session: session)
-                        .frame(idealWidth: 420, idealHeight: 620)
+                        // A finite regular-width root also gives the native
+                        // popover's accessibility container an actual viewport.
+                        // Compact presentations keep the system sheet's size.
+                        .frame(width: horizontalSizeClass == .regular ? 420 : nil,
+                               height: horizontalSizeClass == .regular ? 620 : nil)
                         .presentationCompactAdaptation(.sheet)
                         .presentationDetents([.large])
                 }
