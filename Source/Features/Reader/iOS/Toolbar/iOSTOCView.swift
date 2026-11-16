@@ -20,6 +20,7 @@ struct iOSTOCView: View {
     @State private var expandedPaths: Set<ObjectIdentifier> = []
     @Environment(\.dismiss) private var dismiss
     @Environment(\.readerSidebarOwnsToggle) private var sidebarOwnsToggle
+    @Environment(\.readerSidebarUsesSharedSearch) private var sidebarUsesSharedSearch
 
     init(
         tocViewModel: BookTOCViewModel,
@@ -146,8 +147,9 @@ struct iOSTOCView: View {
                                 )
                             }
                         }
-                        .searchable(text: $searchText, prompt: String(localized: "Search Contents"))
+                        .modifier(ReaderSidebarContentsSearch(text: $searchText))
                         .navigationBarTitleDisplayMode(.inline)
+                        .modifier(ReaderContentsNavigationTitle(bookTitle: bookTitle))
                         .toolbar {
                             if !sidebarOwnsToggle {
                                 ToolbarItem(placement: .topBarLeading) {
@@ -165,15 +167,17 @@ struct iOSTOCView: View {
                                     .help(String(localized: "Close Table of Contents"))
                                 }
                             }
-                            ToolbarItem(placement: .principal) {
-                                VStack(spacing: 1) {
-                                    Text(String(localized: "Table of Contents"))
-                                        .font(.headline)
-                                    if let bookTitle, !bookTitle.isEmpty {
-                                        Text(bookTitle)
-                                            .font(.caption2)
-                                            .foregroundStyle(.secondary)
-                                            .lineLimit(1)
+                            if !sidebarUsesSharedSearch {
+                                ToolbarItem(placement: .principal) {
+                                    VStack(spacing: 1) {
+                                        Text(String(localized: "Table of Contents"))
+                                            .font(.headline)
+                                        if let bookTitle, !bookTitle.isEmpty {
+                                            Text(bookTitle)
+                                                .font(.caption2)
+                                                .foregroundStyle(.secondary)
+                                                .lineLimit(1)
+                                        }
                                     }
                                 }
                             }
