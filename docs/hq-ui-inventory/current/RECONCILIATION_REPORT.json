@@ -135,6 +135,7 @@
     "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
     "Source/UI/iOS/MaktabahApp.swift",
     "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+    "Source/UI/iOS/Views/Common/ListContentView.swift",
     "Source/UI/iOS/Views/iOSMainView.swift",
     "Source/UI/iOS/Views/iPadLayout.swift",
     "Source/UI/iOS/Views/iPhoneLayout.swift",
@@ -188,7 +189,7 @@
       "path": "Source/UI/iOS/Views/iPadLayout.swift",
       "anchor": "NavigationSplitView(",
       "old_blob": "58d505603a44e1b476b448738540a8604cb183b9",
-      "current_blob": "9d0fd7dfd604e7e631957534e126ba956db69905",
+      "current_blob": "f03f6f85045afc3f73961894782c4cd3c0f24aa1",
       "line": 106
     },
     {
@@ -381,6 +382,13 @@
       "line": 179
     },
     {
+      "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "anchor": "class ListContentView",
+      "old_blob": "c009dfc4c93281f2e3fecbc04c17925ab06de837",
+      "current_blob": "df6e248cee2391caf0a9c193c2ec343ce5ab2f45",
+      "line": 32
+    },
+    {
       "path": "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
       "anchor": "providerID: section.locator.backend.rawValue",
       "old_blob": "64323245347b5132f0c44291b2580a6c74fcf15b",
@@ -388,5 +396,5 @@
       "line": 637
     }
   ],
-  "source_sha": "949a3871d0f5bb8378e67c9aa4a44442cac610ed"
+  "source_sha": "ca0a7a3ff961bfd2152b51739c27411c5f29b85c"
 }
