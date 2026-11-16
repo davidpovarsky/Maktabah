@@ -44,16 +44,45 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
     }
     @MainActor private func openInExistingProcess(_ url: URL) throws {
         // Xcode27.1's XCUIApplication.open actually launched a NEW target PID
-        // on every call in43844345630. Deliver through the real iOS system
-        // from the Runner instead; warm/replay must retain the original app.
+        // on every call in43844345630. The background Runner's UIApplication
+        // open was rejected in43863125434. Ask the owned host to run real
+        // simctl openurl; its ACK proves transport only, never UI completion.
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
         let originalPID = try targetProcessIdentifier()
-        let delivered = XCTestExpectation(description: "Real system URL delivery")
-        UIApplication.shared.open(url, options: [:]) { accepted in
-            XCTAssertTrue(accepted, "The iOS system must accept the actual URL")
-            delivered.fulfill()
+        let token = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_URL_TOKEN"])
+        let udid = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_URL_UDID"])
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let nonce = UUID().uuidString
+        let prefix = parent.appendingPathComponent(container).appendingPathComponent("Documents/r27-url-\(token)-\(nonce)")
+        let request = URL(fileURLWithPath: prefix.path + ".request.json")
+        let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
+        do {
+            let payload = ["token": token, "nonce": nonce, "udid": udid, "url": url.absoluteString]
+            try JSONSerialization.data(withJSONObject: payload).write(to: request, options: .atomic)
+        } catch {
+            XCTFail("Could not write owned system URL request")
+            return
         }
-        XCTAssertEqual(XCTWaiter.wait(for: [delivered], timeout: 15), .completed)
+        let delivered = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil
+        )], timeout: 20)
+        XCTAssertEqual(delivered, .completed, "Owned system URL transport must acknowledge the exact request")
+        guard delivered == .completed, let bytes = try? Data(contentsOf: ack),
+              let response = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+              Set(response.keys) == ["udid", "transport", "delivered", "nonce", "time"],
+              String(decoding: bytes, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil else {
+            XCTFail("System URL acknowledgement must have the exact credential-free schema")
+            return
+        }
+        XCTAssertEqual(response["nonce"] as? String, nonce)
+        XCTAssertEqual(response["udid"] as? String, udid)
+        XCTAssertEqual(response["transport"] as? String, "simctl-system-openurl")
+        XCTAssertEqual(response["delivered"] as? Bool, true)
+        let transport = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+        transport.name = "actual-system-url-transport-only"; transport.lifetime = .keepAlways; add(transport)
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
         let actualPID = try targetProcessIdentifier()
         XCTAssertEqual(actualPID, originalPID, "A warm URL must not restart the target app")

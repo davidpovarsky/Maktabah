@@ -32,7 +32,7 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     @Environment(\.readerSidebarUsesSharedSearch) private var usesSharedSearch
 
     var body: some View {
-        // Retain the original native page container and NavigationStacks.
+        // One native navigation owner contains the original page bodies.
         // The scoped directional recognizer below arbitrates body paging:
         // horizontal drags select once; vertical drags stay with the real list.
         TabView(selection: $coordinator.page) {
@@ -52,7 +52,9 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
         .accessibilityIdentifier("reader-sidebar-pager")
         .modifier(ReaderSidebarSearchSurface(isEnabled: usesSharedSearch,
             query: activeSearchQuery, contentsQuery: $coordinator.contentsQuery,
-            prompt: coordinator.page == .library ? String(localized: "Search Library") : String(localized: "Search Contents")))
+            prompt: coordinator.page == .library ? String(localized: "Search Library") : String(localized: "Search Contents"),
+            title: coordinator.page == .library ? String(localized: "Library") : String(localized: "Table of Contents"),
+            subtitle: coordinator.page == .contents ? activeContentsBookTitle : ""))
         .onChange(of: activeContentsReaderID) { _, _ in coordinator.contentsQuery = "" }
         .background { ReaderSidebarSplitConfiguration(onBodySwipe: selectPage) }
         .safeAreaInset(edge: .bottom, spacing: 0) {
@@ -85,6 +87,10 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     private var activeContentsReaderID: UUID? {
         navigationManager.openTabs.first(where: { $0.id == navigationManager.activeTabId })?.id
             ?? navigationManager.openTabs.first?.id
+    }
+
+    private var activeContentsBookTitle: String {
+        navigationManager.openTabs.first(where: { $0.id == activeContentsReaderID })?.book.book ?? ""
     }
 
     private var activeSearchQuery: Binding<String> {
@@ -161,14 +167,21 @@ struct ReaderSidebarSearchSurface: ViewModifier {
     @Binding var query: String
     let contentsQuery: Binding<String>
     let prompt: String
+    let title: String
+    let subtitle: String
 
     func body(content: Content) -> some View {
         if isEnabled {
-            content
-                .environment(\.readerSidebarContentsQuery, contentsQuery)
-                .searchable(text: $query,
-                            placement: .navigationBarDrawer(displayMode: .always),
-                            prompt: Text(prompt))
+            NavigationStack {
+                content
+                    .environment(\.readerSidebarContentsQuery, contentsQuery)
+                    .navigationTitle(Text(title))
+                    .navigationSubtitle(subtitle)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .searchable(text: $query,
+                                placement: .navigationBarDrawer(displayMode: .always),
+                                prompt: Text(prompt))
+            }
         } else {
             content
         }
@@ -206,10 +219,9 @@ struct ReaderContentsNavigationTitle: ViewModifier {
 
     func body(content: Content) -> some View {
         if usesSharedSearch {
+            // The single sidebar navigation owner projects the active title.
+            // Hidden pager children must not compete for its navigation item.
             content
-                .navigationTitle(Text(String(localized: "Table of Contents")))
-                .navigationSubtitle(bookTitle ?? "")
-                .navigationBarTitleDisplayMode(.inline)
         } else {
             content
         }

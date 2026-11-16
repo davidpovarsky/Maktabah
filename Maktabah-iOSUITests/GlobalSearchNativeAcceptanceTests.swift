@@ -463,6 +463,15 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     func testHeaderAndHistoryNativeAccessibilityAudit() throws {
         try launchSearch()
-        try app.performAccessibilityAudit()
+        try app.performAccessibilityAudit { issue in
+            // Keep every system-reported failure. Attach its element while
+            // the audit is active, before transient trait-change AX expires.
+            let detail = XCTAttachment(string: issue.compactDescription + "\n" + issue.detailedDescription
+                + "\nelement=" + (issue.element?.debugDescription ?? "unavailable"))
+            detail.name = "actual-unfiltered-accessibility-issue"
+            detail.lifetime = .keepAlways
+            self.add(detail)
+            return false
+        }
     }
 }

@@ -10,7 +10,15 @@ def state():
     inventory = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "-j"], text=True, timeout=45))
     return next((device["state"] for devices in inventory["devices"].values() for device in devices
                  if device["udid"].upper() == udid), None)
-if state() == "Shutdown":
+try:
+    initial_state = state()
+except subprocess.TimeoutExpired:
+    #43863125434 timed out in this read-only inventory after the window UI
+    # had passed. Still request shutdown of ONLY our exact owned simulator,
+    # then require an actual final state; never kill CoreSimulator globally.
+    print("Initial Simulator inventory timed out; requesting exact owned shutdown")
+    initial_state = None
+if initial_state == "Shutdown":
     print("Validation Simulator is already shut down")
 else:
     result = subprocess.run(["xcrun", "simctl", "shutdown", udid], capture_output=True, text=True, timeout=180)

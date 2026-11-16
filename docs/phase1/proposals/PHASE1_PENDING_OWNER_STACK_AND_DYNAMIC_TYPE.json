@@ -1,0 +1,33 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_APPLIED_NOT_APPROVED",
+  "sourceHead": "51e2b7aab8d7374a013ae7685dd82e86759a8443",
+  "upstreamProvenance": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "patchSHA256": "bacd3db43a194e9ae7ecb4ee2ccfc3f7ad462798c61c7b2e1dea85d4456fec2c",
+  "files": [
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "originalGitBlob": "9d0fd7dfd604e7e631957534e126ba956db69905",
+      "originalSHA256": "150d0554ab44b0587364e75dc9bb1d98e4b6c7cd83ec479b62a59c750b2400ff",
+      "proposedSHA256": "1426ef3f6894e2a3c031f971152f1f60872b0fd6b833b4b0231f5b283297108c"
+    },
+    {
+      "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "originalGitBlob": "c009dfc4c93281f2e3fecbc04c17925ab06de837",
+      "originalSHA256": "a038184979074ab3744e2954349a2fdc4d3814865f3eee51e3463d2a83213bcd",
+      "proposedSHA256": "084f8d15e37655bf5ccd42cbdc9e308ecddd9c1cfc399a12d58089737ec8f2b1"
+    }
+  ],
+  "evidence": "43863125434: both Sidebar methods find zero visible native search fields. Shared searchable was outside both child NavigationStacks. Accessibility audit reports non-scaling UILabel; visible Search sidebar uses ListContentView, whose font is fixed and adjustsFontForContentSizeCategory was absent. No audit waiver or sole-cause/PASS claim.",
+  "behavior": "Use one downstream-owned native NavigationStack for the pager. Original Library and TOC bodies use that owner, with unchanged list/reader/filter engines. Root owns active title/subtitle and one searchable. Enable native UIFontMetrics scaling and multiline row labels for existing user-selected base fonts.",
+  "rejectedAlternatives": [
+    "Keeping child stacks leaves shared searchable without a navigation owner or introduces nested navigation bars",
+    "UIKit navigation/search controller view-tree overrides fight SwiftUI ownership",
+    "External UILabel tree mutation or hiding/excluding book-filter cells would bypass original ownership and audit",
+    "New duplicate list implementation replaces original collection/state"
+  ],
+  "tests": "Exact original Sidebar LTR/RTL 20body+20dot transitions, functional queries, title/toggle/viewport assertions and unfiltered native accessibility audit remain required. SDK compile and fresh Native run before acceptance.",
+  "scope": "Only these exact2 files/hunks. First approved4fc patch remains preserved. No iOSTOCView future hunks, engines, DBs, project, signing, release, main or Phase2.",
+  "rollback": "Revert only this frozen correction; retained original493 and producer worktrees provide recovery. No user-data mutation.",
+  "review": "Sole primary developer, no independent QA. Re-review exact hunks at next upstream sync.",
+  "approval": null
+}

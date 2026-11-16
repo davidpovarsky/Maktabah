@@ -102,6 +102,7 @@ for index, scenario in enumerate(scenarios):
     recording_log = None
     palette_log_stream = None
     hid_comparison = None
+    native_url_delivery = None
 
     def phase(name, **details):
         device["phase"] = name
@@ -224,6 +225,10 @@ for index, scenario in enumerate(scenarios):
         environment = os.environ.copy()
         container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
         environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
+        if any(case.startswith("NativeRoutingAcceptanceTests/") for case in selection):
+            native_url_delivery = runpy.run_path("Scripts/CI/runtime27-url-delivery.py")["NativeURLDelivery"](
+                udid, container, label, artifacts / "runtime27")
+            environment.update(native_url_delivery.start())
         if runtime27_contract and runtime27_contract.get("hid_comparison") and scenario.get("hid_comparison", True):
             tools = json.loads((artifacts / "runtime27/hid-tools.json").read_text())
             hid_comparison = runpy.run_path("Scripts/CI/runtime27-hid.py")["HIDComparison"](
@@ -243,6 +248,8 @@ for index, scenario in enumerate(scenarios):
             for line in process.stdout:
                 if hid_comparison is not None:
                     line = hid_comparison.redact_evidence(line)
+                if native_url_delivery is not None:
+                    line = native_url_delivery.redact_evidence(line)
                 log.write(line)
                 log.flush()
                 print(line, end="", flush=True)
@@ -361,6 +368,8 @@ for index, scenario in enumerate(scenarios):
         # Retain a hard failure, but still execute the other required native
         # configurations so one device does not hide the iPhone/13-inch result.
     finally:
+        if native_url_delivery is not None:
+            native_url_delivery.stop()
         if hid_comparison is not None:
             hid_comparison.stop()
         if palette_log_stream is not None:
@@ -381,11 +390,20 @@ for index, scenario in enumerate(scenarios):
             except subprocess.TimeoutExpired:
                 device["paletteInputDiagnosticExitCode"] = "TIMEOUT; no handler-delivery inference"
         (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
-        subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
-        # Delete only the disposable simulator created above, never a user's/default device.
-        subprocess.run(["xcrun", "simctl", "delete", udid], check=True, capture_output=True, timeout=120)
+        try:
+            subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=300)
+            # Delete only the disposable simulator created above, never a user's/default device.
+            subprocess.run(["xcrun", "simctl", "delete", udid], check=True, capture_output=True, timeout=120)
+            device["ownedSimulatorCleanup"] = "PASS"
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as error:
+            device["ownedSimulatorCleanup"] = "FAIL"
+            device["ownedSimulatorCleanupError"] = type(error).__name__
+            # Retain the failure and simulator, and attempt the remaining
+            # independent configurations. Cleanup must not hide phone cases.
+        (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
 
-failed = [device["label"] for device in report["devices"] if device["status"] != "EXECUTED_PASS"]
+failed = [device["label"] for device in report["devices"]
+          if device["status"] != "EXECUTED_PASS" or device.get("ownedSimulatorCleanup") != "PASS"]
 if failed:
     raise SystemExit(f"Native acceptance failed for {failed}; see per-device logs and the complete matrix. Release is prohibited.")
 if diagnostic_cases:

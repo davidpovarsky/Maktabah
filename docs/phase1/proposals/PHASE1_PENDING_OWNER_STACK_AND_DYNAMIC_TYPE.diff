@@ -1,0 +1,79 @@
+--- a/Source/UI/iOS/Views/iPadLayout.swift
++++ b/Source/UI/iOS/Views/iPadLayout.swift
+@@ -107,13 +107,10 @@
+             columnVisibility: $columnVisibility,
+             preferredCompactColumn: $preferredLibraryCompactColumn
+         ) {
+             ReaderSidebarPager(coordinator: sidebar) { isActive in
+-                NavigationStack {
+-                    iOSLibraryView()
+-                        .navigationTitle(iOSTab.viewer.title)
+-                        .toolbarGeneral(showSettings: $showSettings)
+-                }
++                iOSLibraryView()
++                    .toolbarGeneral(showSettings: $showSettings)
+                 .toolbarBackground(Color.appBackground, for: .navigationBar)
+                 .toolbarBackground(.visible, for: .navigationBar)
+                 .background(Color.appBackground)
+                 .accessibilityElement(children: .contain)
+@@ -147,9 +144,9 @@
+                 tocViewModel: tab.viewModel.tocViewModel,
+                 selectedId: selectedTOCNode(for: tab.viewModel)?.id,
+                 bookTitle: tab.book.book,
+                 onClose: closeTableOfContents,
+-                embedsNavigationStack: true,
++                embedsNavigationStack: false,
+                 onSelect: { id in
+                     tab.viewModel.didSelectTOCNode(id: id)
+                     if horizontalSizeClass == .compact { closeTableOfContents() }
+                 }
+@@ -159,17 +156,13 @@
+                     tab.viewModel.loadTOC(book: tab.book)
+                 }
+             }
+         } else {
+-            NavigationStack {
+-                ContentUnavailableView(
+-                    String(localized: "No Table of Contents"),
+-                    systemImage: "list.bullet.rectangle",
+-                    description: Text("Select a book to read")
+-                )
+-                .navigationTitle(String(localized: "Table of Contents"))
+-                .navigationBarTitleDisplayMode(.inline)
+-            }
++            ContentUnavailableView(
++                String(localized: "No Table of Contents"),
++                systemImage: "list.bullet.rectangle",
++                description: Text("Select a book to read")
++            )
+             .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
+             .background(Color.appBackground)
+         }
+     }
+--- a/Source/UI/iOS/Views/Common/ListContentView.swift
++++ b/Source/UI/iOS/Views/Common/ListContentView.swift
+@@ -80,8 +80,9 @@
+         mainStack.semanticContentAttribute = .unspecified
+ 
+         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+         label.textAlignment = .natural
++        label.adjustsFontForContentSizeCategory = true
+ 
+         leadingIcon.setContentHuggingPriority(.required, for: .horizontal)
+         leadingIcon.contentMode = .scaleAspectFit
+         checkboxButton.setContentHuggingPriority(.required, for: .horizontal)
+@@ -138,10 +139,13 @@
+                 label.font = config.font
+             } else {
+                 label.font = UIFont.systemFont(ofSize: config.font.pointSize, weight: .regular)
+             }
++            if let baseFont = label.font {
++                label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont, compatibleWith: traitCollection)
++            }
+             label.textColor = config.isDownloaded ? .secondaryLabel : .label
+-            label.numberOfLines = 1
++            label.numberOfLines = 0
+             label.semanticContentAttribute = config.text.isParagraphRTL
+                 ? .forceRightToLeft
+                 : .forceLeftToRight
+ 
