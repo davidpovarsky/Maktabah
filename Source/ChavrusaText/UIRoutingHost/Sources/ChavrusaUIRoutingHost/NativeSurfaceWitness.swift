@@ -18,13 +18,16 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
     public let report: @MainActor (Evidence) -> Void
     public let observeVisibility: @MainActor (@escaping @MainActor () -> Evidence?) -> Void
     public let submissionID: UUID?
+    public let diagnose: @MainActor (String) -> Void
     @Environment(\.scenePhase) private var scenePhase
 
     public init(surface: NativeSurfaceState, submissionID: UUID? = nil,
                 observeVisibility: @escaping @MainActor (@escaping @MainActor () -> Evidence?) -> Void = { _ in },
+                diagnose: @escaping @MainActor (String) -> Void = { _ in },
                 report: @escaping @MainActor (Evidence) -> Void) {
         self.surface = surface; self.submissionID = submissionID; self.report = report
         self.observeVisibility = observeVisibility
+        self.diagnose = diagnose
     }
 
     public func makeUIViewController(context: Context) -> MarkerController { MarkerController() }
@@ -32,13 +35,14 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
         _ = scenePhase
         let view = controller.marker
         view.surface = surface; view.report = report; view.submissionID = submissionID
+        view.diagnose = diagnose
         observeVisibility { [weak view] in view?.currentEvidence() }
         view.setNeedsLayout()
     }
     public static func dismantleUIViewController(_ controller: MarkerController, coordinator: ()) {
         let view = controller.marker
         view.hasAppeared = false
-        view.publish(visible: false); view.report = nil; view.surface = nil
+        view.publish(visible: false); view.report = nil; view.diagnose = nil; view.surface = nil
     }
 
     /// Native appearance completion is required: SwiftUI onAppear and a
@@ -63,6 +67,8 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
         private var previous: Evidence?
         private var lastScene: UIStableID?
         fileprivate var hasAppeared = false
+        fileprivate var diagnose: (@MainActor (String) -> Void)?
+        private var previousDiagnostic: String?
 
         public override init(frame: CGRect) {
             super.init(frame: frame)
@@ -80,7 +86,9 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
         /// A previously visible layout is not proof after a modal/window change.
         fileprivate func currentEvidence() -> Evidence? {
             guard let window, let scene = window.windowScene,
-                  let surface, let id = UIStableID(rawValue: scene.session.persistentIdentifier) else { return nil }
+                  let surface, let id = UIStableID(rawValue: scene.session.persistentIdentifier) else {
+                diagnostic("attached=0 appeared=\(hasAppeared)"); return nil
+            }
             let target = convert(bounds, to: window), intersection = target.intersection(window.bounds)
             let area = target.width * target.height
             var visible = hasAppeared && scene.activationState == .foregroundActive && !window.isHidden
@@ -98,7 +106,12 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
             var top = window.rootViewController
             while let presented = top?.presentedViewController { top = presented }
             if let top, top !== window.rootViewController, !isDescendant(of: top.view) { visible = false }
+            diagnostic("attached=1 appeared=\(hasAppeared) activation=\(scene.activationState.rawValue) bounds=\(!bounds.isEmpty) contained=\(!intersection.isNull && intersection.width * intersection.height >= area * 0.98) alpha=\(effectiveAlpha >= 0.95) modal=\(top !== window.rootViewController) visible=\(visible) pending=\(submissionID != nil)")
             return Evidence(sceneID: id, surface: surface, isVisible: visible, submissionID: submissionID)
+        }
+        private func diagnostic(_ value: String) {
+            guard value != previousDiagnostic else { return }
+            previousDiagnostic = value; diagnose?(value)
         }
         fileprivate func publish(visible: Bool) {
             guard let surface, let id = lastScene else { return }

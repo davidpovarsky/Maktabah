@@ -30,11 +30,11 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     @Environment(iOSNavigationManager.self) private var navigationManager
 
     var body: some View {
-        // Native tabs retain each original NavigationStack and its search
-        // controller. A page-style TabView also writes selection after its own
-        // pan transition; that raced the body recognizer, especially in RTL,
-        // and left the outgoing search controller on the selected page.
-        // The scoped body recognizer is the single horizontal selection writer.
+        // Keep the original page container and each native NavigationStack.
+        // A nested tab-bar controller consumes their search toolbar and its
+        // visibility preference also hides the application's top-level tabs.
+        // Only the page container's own horizontal scroll is disabled below;
+        // the scoped recognizer remains the single body selection writer.
         TabView(selection: $coordinator.page) {
             library(coordinator.page == .library)
                 .accessibilityHidden(coordinator.page != .library)
@@ -46,8 +46,7 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
                 .accessibilityHidden(coordinator.page != .contents)
                 .tag(ReaderSidebarPageCoordinator.Page.contents)
         }
-        .tabViewStyle(.tabBarOnly)
-        .toolbar(.hidden, for: .tabBar)
+        .tabViewStyle(.page(indexDisplayMode: .never))
         .animation(reduceMotion ? nil : .snappy, value: coordinator.page)
         .environment(\.readerSidebarOwnsToggle, true)
         .accessibilityElement(children: .contain)
@@ -126,6 +125,8 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
     var onBodySwipe: (@MainActor (Double, Double) -> Void)?
     private weak var configuredSplit: UISplitViewController?
     private weak var bodySwipeHost: UIView?
+    private weak var pageScrollView: UIScrollView?
+    private var pageScrollWasEnabled: Bool?
     private lazy var bodyPan = UIPanGestureRecognizer(target: self, action: #selector(bodyPanEnded(_:)))
     private var originalBehavior: UISplitViewController.SplitBehavior?
     private var originalButtonVisibility: UISplitViewController.DisplayModeButtonVisibility?
@@ -161,6 +162,7 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
             originalButtonVisibility = split.displayModeButtonVisibility
         }
         configureBodySwipe(in: split)
+        configurePageScroll(in: split)
 
         let availableWidth = split.view.safeAreaLayoutGuide.layoutFrame.width
         let primaryWidth = split.viewController(for: .primary)?.viewIfLoaded?.bounds.width ?? 0
@@ -192,6 +194,8 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
     }
 
     func restoreConfiguration() {
+        if let pageScrollView, let pageScrollWasEnabled { pageScrollView.isScrollEnabled = pageScrollWasEnabled }
+        pageScrollView = nil; pageScrollWasEnabled = nil
         bodySwipeHost?.removeGestureRecognizer(bodyPan)
         bodySwipeHost = nil
         if let split = configuredSplit {
@@ -211,6 +215,26 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
         bodyPan.delegate = self
         host.addGestureRecognizer(bodyPan)
         bodySwipeHost = host
+    }
+
+    private func configurePageScroll(in split: UISplitViewController) {
+        guard let primary = split.viewController(for: .primary) else { return }
+        @MainActor func pageContainer(_ controller: UIViewController) -> UIPageViewController? {
+            if let page = controller as? UIPageViewController { return page }
+            for child in controller.children {
+                if let page = pageContainer(child) { return page }
+            }
+            return nil
+        }
+        // The primary owns this sidebar's one page container. Inspect only its
+        // immediate scroll view; the original List/TOC vertical scroll views
+        // live inside its child controllers and must remain enabled.
+        guard let page = pageContainer(primary),
+              let scroll = page.viewIfLoaded?.subviews.compactMap({ $0 as? UIScrollView }).first,
+              pageScrollView !== scroll else { return }
+        if let pageScrollView, let pageScrollWasEnabled { pageScrollView.isScrollEnabled = pageScrollWasEnabled }
+        pageScrollView = scroll; pageScrollWasEnabled = scroll.isScrollEnabled
+        scroll.isScrollEnabled = false
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {

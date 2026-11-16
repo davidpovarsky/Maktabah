@@ -109,7 +109,12 @@ struct MaktabahNativeRoutingSurface: ViewModifier {
         content.background {
             if let session, let state = try? session.surface(kind) {
                 NativeSurfaceWitness(surface: state, submissionID: session.submissionID,
-                    observeVisibility: { session.observeVisibility(for: state.destination, check: $0) }) { session.observe($0) }
+                    observeVisibility: { session.observeVisibility(for: state.destination, check: $0) },
+                    diagnose: { flags in
+                        #if DEBUG
+                        OtzariaFileLogger.shared.log("[NativeSurfaceWitness] destination=\(state.destination.rawValue) \(flags)")
+                        #endif
+                    }) { session.observe($0) }
                     .allowsHitTesting(false).accessibilityHidden(true)
             }
         }

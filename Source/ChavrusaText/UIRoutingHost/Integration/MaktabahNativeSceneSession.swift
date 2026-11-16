@@ -83,7 +83,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func apply(_ command: UISceneCommand) throws { try bindings.apply(command) }
 
     func waitUntilVisible(_ command: UISceneCommand) async throws -> NativeSurfaceState {
-        try await presentation.wait(for: command).surface
+        do { return try await presentation.wait(for: command).surface }
+        catch {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[NativePresentationWait] code=\((error as? UIRouteError)?.code ?? (error is CancellationError ? "cancelled" : "unavailable")) mounted=\(mounted) foreground=\(foreground) ready=\(isPresentationReady)")
+            #endif
+            throw error
+        }
     }
 
     func nativeStateChanged() throws {
@@ -139,6 +145,12 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
 
     func observe(_ evidence: NativeSurfaceWitness.Evidence) {
         guard mounted, evidence.sceneID == sceneID else { return }
+        #if DEBUG
+        if evidence.submissionID != nil {
+            let matches = command.map { evidence.surface.observedRoute(for: $0, backend: $0.invocation.snapshot) == $0.route.route } ?? false
+            OtzariaFileLogger.shared.log("[NativeSurfaceObservation] destination=\(evidence.surface.destination.rawValue) visible=\(evidence.isVisible) matches=\(matches)")
+        }
+        #endif
         let prior = visible[evidence.surface.destination]
         if evidence.isVisible { visible[evidence.surface.destination] = evidence }
         else { visible.removeValue(forKey: evidence.surface.destination) }
