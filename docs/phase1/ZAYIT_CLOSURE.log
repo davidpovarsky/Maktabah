@@ -1,0 +1,13 @@
+test_build_script_change_is_not_implicitly_approved (__main__.SourceClosureTests.test_build_script_change_is_not_implicitly_approved) ... ok
+test_changed_runtime_cannot_use_the_old_binary (__main__.SourceClosureTests.test_changed_runtime_cannot_use_the_old_binary) ... ok
+test_exact_reviewed_runtime_change_selects_rebuild (__main__.SourceClosureTests.test_exact_reviewed_runtime_change_selects_rebuild) ... ok
+test_failed_build_preserves_baseline_and_has_no_success (__main__.SourceClosureTests.test_failed_build_preserves_baseline_and_has_no_success) ... ok
+test_only_new_output_is_fingerprinted_and_later_tampering_fails (__main__.SourceClosureTests.test_only_new_output_is_fingerprinted_and_later_tampering_fails) ... ok
+test_prebuilt_allows_only_uncompiled_test_changes (__main__.SourceClosureTests.test_prebuilt_allows_only_uncompiled_test_changes) ... ok
+test_rebuild_is_not_a_truthy_string_or_an_empty_overlay (__main__.SourceClosureTests.test_rebuild_is_not_a_truthy_string_or_an_empty_overlay) ... ok
+test_unreviewed_runtime_or_dependency_change_fails (__main__.SourceClosureTests.test_unreviewed_runtime_or_dependency_change_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.129s
+
+OK

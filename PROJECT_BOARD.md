@@ -8,6 +8,8 @@ Do not turn this into a duplicate issue tracker or a dump of temporary thoughts.
 
 Quick captures that still need classification.
 
+- Before a future upstream sync, re-establish provenance: on 2026-11-16 the actual bismillah-100/Maktabah remote HEAD/main was d46af139b3a265399c16d87f5923acd8e3444024, force-updated from retained46e893c6 and with no merge base against the native493 lineage. Phase1 fetched objects for read-only ownership verification and performed no upstream merge. Do not treat the former upstream/main ref as current authority or resolve this history change by reset/ours/theirs.
+
 - ChavrusaText production sources have explicit Xcode membership; only MaktabahTests is synchronized. Real standalone SDK/component compilation can pass while the actual app cannot find a newly added type (Native42528226791). Keep the existing Sources-phase verifier in the early faithful SDK check; the overview bridge now has explicit iOS-only membership. No synchronized-group migration is needed.
 
 ## Ideas & Opportunities

@@ -63,6 +63,9 @@ def main(source):
     local = {p: b for p, b in entries.items() if p.endswith(EXTENSIONS)
              and p.startswith(("Source/", "Vendor/SefariaMobile/Integration/"))}
     cache = blobs(local.values())
+    registry_source = cache[local["Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift"]].decode()
+    declaration = next(line for line in registry_source.splitlines() if "static let implemented:" in line)
+    implemented = set(re.findall(r'"([a-zA-Z.]+)"', declaration))
     old_files = {f["path"]: f for f in old_scan["files"]}
     external = [f for f in old_scan["files"] if "git_object_path" in f]
     for dep in (old_scan["embedded_source"], old_scan["inspector_dependency"]):
@@ -86,6 +89,19 @@ def main(source):
     suite_data = blobs([entries[p] for p in suite_paths])
 
     def refresh(ref):
+        # Explicit semantic moves, reviewed against the current source. Never
+        # replace an unresolved anchor with an arbitrary matching line.
+        replacements = {
+            ("Source/Features/Search/iOS/SearchModeView.swift", "focusBinding: $isSearchFieldFocused"):
+                ("Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift", 'field.accessibilityIdentifier = "global-search-query"'),
+            ("Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift", "providerID: BackendID.sefaria.rawValue"):
+                ("Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift", "providerID: section.locator.backend.rawValue"),
+        }
+        replacement = replacements.get((ref["path"], ref["anchor"]))
+        if replacement:
+            ref["historical_anchor"] = {"path": ref["path"], "anchor": ref["anchor"]}
+            ref["path"], ref["anchor"] = replacement
+            ref["occurrence"] = 1
         path = ref["path"]
         old_blob = ref["git_blob"]
         blob = local.get(path, old_files[path]["git_blob"] if path in old_files else None)
@@ -112,9 +128,9 @@ def main(source):
         suite["sha256"] = hashlib.sha256(suite_data[entries[suite["path"]]]).hexdigest()
         if row.get("linked_semantic_action"):
             action = row["linked_semantic_action"]
-            action.update(catalog_present=False, core_v1_implemented=False,
+            action.update(catalog_present=True, core_v1_implemented=action.get("id") in implemented,
                           historical_catalog_revision=previous["source_sha"],
-                          note="Historical proposed mapping only. ActionCore is absent from this runtime tree; N must use P's corrected accepted UI02 contract.")
+                          note="Core is present in the current tree. A catalog implementation does not install this UI route or grant native capabilities.")
     close = copy.deepcopy(next(r for r in rows if r["id"] == "inventory.v1.search.command-palette"))
     close.update(id="inventory.v1.search.command-palette.close", screen_section_component="Visible palette Cancel action",
                  owning_view_model="Exact9401ViewerToolbar.isPresented / existing onDismiss",
@@ -128,6 +144,36 @@ def main(source):
         "relationship": "Focused actual native window/input/Inspector oracle; acceptance recorded separately by exact run", "execution": "NOT_RUN"}
     rows.append(close)
     assert len(rows) == 228 and len({r["id"] for r in rows}) == 228
+    # New downstream Search controls are real source surfaces. Inventory IDs
+    # are documentation, never registry entries or native receipt witnesses.
+    template = next(r for r in rows if r["id"] == "inventory.v1.search.input-focus")
+    seen = set()
+    for path in sorted(p for p in local if p.startswith("Source/ChavrusaText/Search/UI/")):
+        for line in cache[local[path]].decode("utf-8-sig").splitlines():
+            match = re.search(r'accessibilityIdentifier(?:\(| = )"(global-search-[^"\\]+)"', line)
+            toggle = re.search(r'Toggle\("[^"]+", isOn: \$session\.(\w+)\)', line)
+            if not match and not toggle:
+                continue
+            stable = match[1] if match else "toggle-" + toggle[1]
+            if stable in seen or stable == "global-search-query":
+                continue
+            seen.add(stable)
+            row = copy.deepcopy(template)
+            row.update(id="inventory.v1.search.native." + stable, screen_section_component=stable,
+                owning_view_model="UnifiedSearchSessionController / original SearchViewModel",
+                inputs=["exactScene", "backend", "currentQueryAndConfiguration"],
+                visible_state="Conditional original native control or state; inspect source conditions",
+                linked_semantic_action=None,
+                note="Actual source control; no public route installed and no native execution inferred from inventory.")
+            row["source"] = dict(path=path, anchor=line.strip(), occurrence=1, git_blob=local[path])
+            refresh(row["source"])
+            row["tests"]["candidate_existing_suite"] = {
+                "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+                "sha256": hashlib.sha256(git("show", source + ":Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift")).hexdigest(),
+                "relationship": "Source-specific acceptance methods; seven no-query methods selected for phase1; remaining cases deferred to phase2",
+                "execution": "NOT_RUN_BY_INVENTORY"}
+            rows.append(row)
+    assert len({r["id"] for r in rows}) == len(rows)
     assert all(set(r["backends"]) == {"otzaria", "sefaria", "sefariaEmbedded"} for r in rows)
     old_local = {p: f["git_blob"] for p, f in old_files.items() if "git_object_path" not in f}
     dispositions = copy.deepcopy(previous["file_dispositions"])
@@ -151,11 +197,12 @@ def main(source):
     refresh_nested(capabilities)
     refresh_nested(caveats)
     result = dict(schema_version=1, source_sha=source, original_inventory_commit=ORIGINAL,
-        original_source_sha=previous["source_sha"], thread_uuid="01a1df8a-3373-79e3-b7fa-f6a06cc8b578",
-        source_task="1220542479938540", registry_registration="PROPOSED_IDS_NOT_REGISTERED",
-        linked_catalog={**previous["linked_catalog"], "present_in_runtime_source": False,
-                        "historical_revision": previous["source_sha"], "implemented_core_ids": [],
-                        "required_current_contract": "P corrected UI02 handoff; do not copy old ActionCore into U"},
+        original_source_sha=previous["source_sha"], thread_uuid="01a1e20f-d054-7523-8b89-7f523fbf54d2",
+        source_task="1220542479938540", registry_registration="INVENTORY_IDS_NOT_REGISTERED; installed native.history/currentTab and native.settings/sheet only",
+        linked_catalog={**previous["linked_catalog"], "present_in_runtime_source": True,
+                        "historical_revision": previous["source_sha"],
+                        "implemented_core_ids": sorted(implemented),
+                        "required_current_contract": "Current canonical Core/UIRouting/Host; only native.history/currentTab and native.settings/sheet are installed; future public-v2 remains disabled"},
         embedded_source=old_scan["embedded_source"], inspector_dependency=old_scan["inspector_dependency"],
         semantic_surfaces=rows, file_dispositions=dispositions, changed_semantic_anchors=changes,
         backend_capability_sources=capabilities, source_caveats=caveats,
@@ -165,7 +212,8 @@ def main(source):
             "changed_paths": sorted(p for p in local if p in old_local and local[p] != old_local[p]),
             "current_local_file_blobs": local},
         summary={"retained_rows_reconciled": 227, "new_visible_cancel_row": 1,
-                 "semantic_surfaces": len(rows), "source_anchor_validation": "EXECUTED_PASS",
+                 "semantic_surfaces": len(rows), "new_native_search_surfaces": len(rows)-228,
+                 "source_anchor_validation": "EXECUTED_PASS",
                  "semantic_reconciliation": "MAIN_SESSION_NO_INDEPENDENT_REVIEWER",
                  "native_route_acceptance": "NOT_RUN", "physical_ipad": "NOT_RUN"})
     (HERE/"UI01_CURRENT_HANDOFF.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")

@@ -1,48 +1,356 @@
 {
   "retained_rows_reconciled": 227,
   "new_visible_cancel_row": 1,
-  "semantic_surfaces": 228,
+  "semantic_surfaces": 282,
+  "new_native_search_surfaces": 54,
   "source_anchor_validation": "EXECUTED_PASS",
   "semantic_reconciliation": "MAIN_SESSION_NO_INDEPENDENT_REVIEWER",
   "native_route_acceptance": "NOT_RUN",
   "physical_ipad": "NOT_RUN",
-  "local_code_files": 574,
+  "local_code_files": 672,
   "external_pinned_files_verified": 176,
-  "all_code_files_verified": 750,
-  "added_paths": [],
-  "removed_paths": [
+  "all_code_files_verified": 848,
+  "added_paths": [
+    "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchPresentationCoordinator.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchSessionPresentation.swift",
+    "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+    "Source/ChavrusaText/UIRoutingHost/Package.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeBindingSourceObservation.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeNavigationAuthority.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeObservationDeadline.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePresentationObserver.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderPlanBudget.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteInbox.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteURL.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneDirectory.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneIdentity.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceState.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeBindingSourceObservationTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePresentationObserverTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePublicPreparedCommitTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeReaderPlanBudgetTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeRouteInboxTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeRouteURLTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSceneDirectoryTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSceneNavigationOrchestratorTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSurfaceStateTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/Phase1ForegroundMountBoundary.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/Phase1ForegroundMountTests.swift",
+    "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift",
+    "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+    "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift",
+    "Source/Otzaria/UIRouting/Package.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/PublicNavigationV2Codec.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/PublicNavigationLocalBinding.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDiscoveryCancellationScope.swift",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/CodecTests.swift",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/PublicNavigationV2Tests.swift",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Contracts/GoldenAPITests.swift",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/NavigationAuthorizationTests.swift",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/PublicNavigationLocalBindingTests.swift",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/ScenePortTests.swift",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/DiscoveryReviewRegressionTests.swift",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/DiscoveryTests.swift",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Registry/RegistryTests.swift"
+  ],
+  "removed_paths": [],
+  "changed_paths": [
+    "Source/ChavrusaText/BookUpdates/MaktabahBookUpdateSafety.swift",
+    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+    "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+    "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+    "Source/Features/Search/ViewModel/SearchViewModel.swift",
+    "Source/Features/Search/iOS/SearchModeView.swift",
+    "Source/Features/Search/iOS/SearchResultsListView.swift",
+    "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+    "Source/LibraryBackend/BackendCoordinator.swift",
+    "Source/LibraryBackend/LibraryBackendModels.swift",
     "Source/Otzaria/Actions/Package.swift",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
-    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
-    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift",
     "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift",
-    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift",
-    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift"
-  ],
-  "changed_paths": [
-    "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
-    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
-    "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+    "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift",
+    "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift",
+    "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+    "Source/Otzaria/Reading/OtzariaMaktabahBridge+LineAnchors.swift",
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+    "Source/Otzaria/Search/OtzariaSearchIndexManager.swift",
+    "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+    "Source/Sefaria/Network/SefariaDTOs.swift",
+    "Source/Sefaria/Network/SefariaHTTPClient.swift",
+    "Source/Sefaria/Network/SefariaRemoteStore.swift",
+    "Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift",
+    "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+    "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+    "Source/UI/iOS/MaktabahApp.swift",
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+    "Source/UI/iOS/Views/iOSMainView.swift",
+    "Source/UI/iOS/Views/iPadLayout.swift",
+    "Source/UI/iOS/Views/iPhoneLayout.swift",
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+    "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
   ],
   "changed_semantic_anchors": [
+    {
+      "path": "Source/UI/iOS/MaktabahApp.swift",
+      "anchor": "WindowGroup {",
+      "old_blob": "996834b33338b243437ca7811ff659fa0ec46cb0",
+      "current_blob": "465c81c9af7c75136898e0afe92fb80b35178d7c",
+      "line": 87
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "case viewer = 0",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 4
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "case search = 3",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 7
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "case author = 4",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 8
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "case annotations = 5",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 9
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "case history = 6",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 10
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "anchor": "NavigationSplitView(",
+      "old_blob": "58d505603a44e1b476b448738540a8604cb183b9",
+      "current_blob": "7268aeec79c448c9fc452a2169c42fc50a8030f6",
+      "line": 106
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "anchor": "struct iPhoneLayout",
+      "old_blob": "b6692b114311ee389e9548ff557887194bdb3e05",
+      "current_blob": "af61bf91b0fae6a48f3907ef97877996ef4ec8f1",
+      "line": 12
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": ".sheet(isPresented: $showSettings)",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 111
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": ".sheet(item: $bManager.selectedBookForInfo)",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 134
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": ".alert(item: $navigationManager.alertMessage)",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 141
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "anchor": "Bindable(bManager.libraryViewModel).searchQuery",
+      "old_blob": "58d505603a44e1b476b448738540a8604cb183b9",
+      "current_blob": "7268aeec79c448c9fc452a2169c42fc50a8030f6",
+      "line": 116
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "anchor": "case sefariaEmbedded",
+      "old_blob": "d5ba71b45447d640ee979da51fc5effafc84aa13",
+      "current_blob": "db623b1b2ecae4a55953786a5ac2154355a5308e",
+      "line": 6
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+      "anchor": "struct ReaderSidebarPager",
+      "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
+      "current_blob": "b438773ac33169a3c54134ebdc866f61b101096c",
+      "line": 24
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+      "anchor": "configureExistingSplit",
+      "old_blob": "3ff767d3d18954ceab90576ea9850b34a46b9791",
+      "current_blob": "b438773ac33169a3c54134ebdc866f61b101096c",
+      "line": 117
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "anchor": "struct SearchModeView",
+      "old_blob": "e09fe2e341ef756c51d0dc9784ce9c19a9ed2043",
+      "current_blob": "ab9688a22482fe08cf546cccbc7a9871d95c3977",
+      "line": 3
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "anchor": "field.accessibilityIdentifier = \"global-search-query\"",
+      "old_blob": "e09fe2e341ef756c51d0dc9784ce9c19a9ed2043",
+      "current_blob": "5874079c725d664c56f1812cd1706d42cc1afb0e",
+      "line": 17
+    },
+    {
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "anchor": "class ",
+      "old_blob": "ad057e54c475dd7bbe5134c2e83f4ef47b484d80",
+      "current_blob": "05254df866e1f6a866e2807a8a5ed49561273b22",
+      "line": 6
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "anchor": "struct SearchResultsListView",
+      "old_blob": "34c3d6a711d81404f8ed7a9edd9a872e5a5d77c9",
+      "current_blob": "d8b91be607657bc47476ebe91e013ca7c222c7a1",
+      "line": 13
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "anchor": ".contextMenu {",
+      "old_blob": "34c3d6a711d81404f8ed7a9edd9a872e5a5d77c9",
+      "current_blob": "d8b91be607657bc47476ebe91e013ca7c222c7a1",
+      "line": 108
+    },
     {
       "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
       "anchor": "struct LibraryCommandPaletteAdapter",
       "old_blob": "c9aee7e586b096b81ccea6ac3c8e12471556063c",
-      "current_blob": "53118d44034c71dff28b1b9ed79612179872955f",
-      "line": 8
+      "current_blob": "826d6e9d7e98d78ff2b612e692ae03f2f87417aa",
+      "line": 4
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "anchor": "struct Exact9401WorkspaceLifecycle",
+      "old_blob": "ac7bf051cf9288ffa5b37ccb59f04d7969272d12",
+      "current_blob": "4bbe2347d162b5aebad118476405e7f087e5e00a",
+      "line": 103
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "struct iOSMainView",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 78
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "struct iOSMainView",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 78
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "struct iOSMainView",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 78
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "struct iOSMainView",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 78
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "struct iOSMainView",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 78
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "anchor": "struct iOSMainView",
+      "old_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "current_blob": "d71fd38912710378d385d2658fd4e676017f937b",
+      "line": 78
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "anchor": "case 'catalog.root'",
+      "old_blob": "646a2acad39ca67c81dc88d4aef82f045a39ab35",
+      "current_blob": "5faa35d1e28431c40937b26840cb97127ba82dc4",
+      "line": 179
+    },
+    {
+      "path": "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+      "anchor": "providerID: section.locator.backend.rawValue",
+      "old_blob": "64323245347b5132f0c44291b2580a6c74fcf15b",
+      "current_blob": "71b8ab4ff1da5d37b2f41c4360f08603dd3cd26c",
+      "line": 637
     }
   ],
-  "source_sha": "5afdefdf7fae792eeb7a828dc9157e8cecab7f93"
+  "source_sha": "277184b7c8702b9de16bc4a1a72164293514b4aa"
 }

@@ -1,0 +1,40 @@
+{
+  "checkout_sha": "41cb39e3df7ee8e8d942d2f12d961efad83a41b7",
+  "application_source_sha": "e98ad95c9dfeff7814e30e5bc9791e18f0f45275",
+  "validator_sha256": "1c56336d053f1834f3ff6da3788d836c2c260ce48bb840e2660ae76b6f1c765c",
+  "inputs_sha256": "6118ed804ab19a4c900b79d5d38aa4a51acac9ca28c0c4367f399466e1a3387f",
+  "workflow_sha256": "e4ec1741156585fd1cac712286f05af8fdef8f80b8120cae2f7503b886cf2da9",
+  "project_sha256": "631a0f0712b679288b65bda69ea102a28abec3f57d266bb78f4d4996e170ff7e",
+  "application_trees": {
+    "Source": "4c138bc6396c72cbc66fc52a525c64cf69fd7fa6",
+    "Vendor": "cd543975eadf99ff8385a0a478d137a7d4b55035",
+    "Maktabah.xcodeproj": "9abc23ee0feab18b211c85a0e2293fbc5bdce178"
+  },
+  "zayit_framework": {
+    "mode": "REBUILD_EXACT_REVIEWED_RUST",
+    "source_tree": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+    "baseline_producer_sha": "41c278ac67f0c03e19270ed65b891b242a1a3f2e",
+    "changed_paths": [
+      "Vendor/ZayitSearchPort/Rust/src/magic_dictionary_index.rs",
+      "Vendor/ZayitSearchPort/Rust/tests/fixture_index_search.rs"
+    ],
+    "build_script": "Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh",
+    "build_script_git_blob": "a4f123b144b236fc1ec691060cf144e3e9da2cf9"
+  },
+  "embedded_bundle_build": {
+    "mode": "REBUILD_EXACT_REVIEWED_JS",
+    "overlay_paths": [
+      "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+    ],
+    "source_tree": "1a0e21666586f417186b6218049e03fc1cc232fd"
+  },
+  "package_resolved_sha256": "7af0561c2eb28caa4de4ea569f5c9826242bb67f345747034f845d63e40e0356",
+  "package_pins": {
+    "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+    "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+    "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+    "torahinspectorkit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+    "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+    "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+  }
+}

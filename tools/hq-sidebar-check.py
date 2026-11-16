@@ -13,7 +13,7 @@ files = [
     "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
     "Source/UI/iOS/Views/iPadLayout.swift",
     "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
-    "Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift",
+    "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
 ]
 subprocess.run(["swiftc", "-frontend", "-parse", *files], cwd=root, check=True)
 with tempfile.TemporaryDirectory(prefix="hq-sidebar-parse-") as directory:
