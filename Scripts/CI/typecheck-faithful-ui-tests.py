@@ -68,10 +68,10 @@ print(result.stdout)
 # app build. They need only SwiftUI/UIKit: no app/model stand-ins or harness.
 sidebar_code = 0
 sidebar_path = Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift")
-if sidebar_path.is_file() and "private struct ReaderSidebarPages<" in sidebar_path.read_text():
+if sidebar_path.is_file() and "private struct ReaderSidebarSplitConfiguration:" in sidebar_path.read_text():
     sidebar = sidebar_path.read_text()
     component = sidebar.split("#if canImport(SwiftUI)", 1)[0] + "\nimport SwiftUI\nimport UIKit\n"
-    component += sidebar[sidebar.index("private struct ReaderSidebarPages<"):sidebar.rindex("#endif")]
+    component += sidebar[sidebar.index("private struct ReaderSidebarSplitConfiguration:"):sidebar.rindex("#endif")]
     component_path = Path("build/Phase1SidebarAdapter.swift")
     component_path.write_text(component)
     sidebar_command = compiler_options.copy()
@@ -82,7 +82,7 @@ if sidebar_path.is_file() and "private struct ReaderSidebarPages<" in sidebar_pa
     sidebar_code = sidebar_result.returncode
     report["sidebarAdapterSDK"] = {"sourceSHA": report["sourceSHA"],
         "status": "SDK_COMPILE_PASS" if sidebar_code == 0 else "BUILD_FAILED",
-        "scope": "Actual ReaderSidebarPages and ReaderSidebarSplitConfiguration; no app/model stubs; no native UI methods",
+        "scope": "Actual ReaderSidebarSplitConfiguration; no app/model stubs; no native UI methods",
         "sourceSHA256": hashlib.sha256(sidebar_path.read_bytes()).hexdigest(), "command": sidebar_command}
     with (artifacts / "ui-acceptance-typecheck.log").open("a", encoding="utf-8") as output:
         output.write("\n=== Exact native sidebar adapter SDK compilation ===\n" + sidebar_result.stdout)

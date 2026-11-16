@@ -3,7 +3,6 @@ import SwiftUI
 struct GlobalSearchHeader: View {
     @Bindable var session: UnifiedSearchSessionController
     @Environment(\.globalSearchBookChooser) private var showBookSidebar
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     let onSubmit: () -> Void
 
     var body: some View {
@@ -22,14 +21,11 @@ struct GlobalSearchHeader: View {
                 .buttonBorderShape(.circle)
                 .accessibilityLabel("אפשרויות חיפוש")
                 .accessibilityIdentifier("global-search-options")
-                .popover(isPresented: $session.showsAdvancedOptions) {
+                .sheet(isPresented: $session.showsAdvancedOptions) {
                     GlobalSearchAdvancedOptionsContent(session: session)
-                        // A finite regular-width root also gives the native
-                        // popover's accessibility container an actual viewport.
-                        // Compact presentations keep the system sheet's size.
-                        .frame(width: horizontalSizeClass == .regular ? 420 : nil,
-                               height: horizontalSizeClass == .regular ? 620 : nil)
-                        .presentationCompactAdaptation(.sheet)
+                        // The native form sheet owns a real scroll viewport.
+                        // A popover's zero-sized accessibility ancestor made
+                        // the visible Form impossible to scroll through AX.
                         .presentationDetents([.large])
                 }
             }

@@ -293,7 +293,7 @@ def main():
         sidebar_path = ROOT / "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"
         sidebar = sidebar_path.read_text()
         policy = sidebar.split("#if canImport(SwiftUI)", 1)[0]
-        adapter = sidebar[sidebar.index("private struct ReaderSidebarPages<"):sidebar.rindex("#endif")]
+        adapter = sidebar[sidebar.index("private struct ReaderSidebarSplitConfiguration:"):sidebar.rindex("#endif")]
         sidebar_sdk_source = OUT / "ReaderSidebarSplit.swift"
         sidebar_sdk_source.write_text(policy + "\nimport SwiftUI\nimport UIKit\n" + adapter)
         sidebar_command = ["xcrun", "swiftc", "-emit-module", "-parse-as-library", "-swift-version", "6",
