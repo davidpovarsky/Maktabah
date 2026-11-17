@@ -56,15 +56,20 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    private func launchSearch(backend: String? = nil, language: String? = nil) throws {
+    private func launchSearch(backend: String? = nil, language: String? = nil, readerUnitMode: String? = nil) throws {
         let backend = backend ?? environment["GLOBAL_SEARCH_TEST_BACKEND"] ?? "otzaria"
         let language = language ?? environment["GLOBAL_SEARCH_TEST_LANGUAGE"] ?? "he"
         XCTAssertTrue(["otzaria", "sefaria", "sefariaEmbedded"].contains(backend))
         XCTAssertTrue(["he", "en"].contains(language))
+        // An explicit original reader preference is only used by the line-mode
+        // search-to-reader case; it does not replace data, search or bootstrap.
+        let readerArguments = readerUnitMode.map {
+            ["-otzaria_reader_unit_mode", $0, "-ChavrusaTextFaithfulReaderUIEnabled", "YES"]
+        } ?? []
         launchWithTier(.realUI, backend: backend,
                        extraArgs: ["-preferredBackend", backend, "-smokeBackend", backend,
                                    "-studyWorkspaceTestingNamespace", workspaceNamespace,
-                                   "-lastSelectedTab", "0"],
+                                   "-lastSelectedTab", "0"] + readerArguments,
                        language: language, locale: language == "he" ? "he_IL" : "en_US")
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         let tab = findTabButton(hebrew: "חיפוש", english: "Search")
@@ -523,8 +528,8 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    private func launchExplicitZayitFlexibleSearch() throws {
-        try launchSearch(backend: "otzaria")
+    private func launchExplicitZayitFlexibleSearch(readerUnitMode: String? = nil) throws {
+        try launchSearch(backend: "otzaria", readerUnitMode: readerUnitMode)
         try chooseMode("zayit")
         XCTAssertEqual(try require("global-search-mode").value as? String, "זית")
         try openOptions()
@@ -581,6 +586,41 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(element("global-search-sort").exists)
         let evidence = XCTAttachment(string: "Actual observed stable ID: \(row.identifier)\nIndependent SQL [lineID,bookID,lineIndex]: \(canonical)\nOracle SHA256: \(zayitMetadataSHA256)")
         evidence.name = "zayit-observed-row-independent-canonical-identity"
+        evidence.lifetime = .keepAlways
+        add(evidence)
+    }
+
+    @MainActor
+    func testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine() throws {
+        let metadata = try canonicalZayitMetadata()
+        try launchExplicitZayitFlexibleSearch(readerUnitMode: "line")
+        try submit("בראשית")
+        let row = try firstOriginalRow()
+        let canonical = try requireCanonicalZayitRow(row, metadata: metadata)
+        // Choose the actual engine row, then derive its expected native identity
+        // from the independent sealed SQL tuple. No expected ranking is invented.
+        let expected = "otzaria|book:\(canonical[1])|line:\(canonical[2])"
+        let expectedTitle = try XCTUnwrap(metadata.books[String(canonical[1])])
+        let stableID = String(row.identifier.dropFirst("search-result-preview-toggle-".count))
+        row.tap()
+        try require("search-result-expanded-preview-" + stableID)
+        let open = try require("search-result-open-" + stableID)
+        for _ in 0..<6 {
+            if open.isHittable { break }
+            try require("global-search-results").swipeUp()
+        }
+        XCTAssertTrue(open.isHittable, "The original result Open control must be reachable")
+        open.tap()
+        assertReaderHasText()
+        XCTAssertEqual(try require("reader-current-locator").label, expected)
+        XCTAssertTrue(try require("reader-header-title").label.contains(expectedTitle))
+        let rendered = try XCTUnwrap(getRenderedHighlightSnapshot(),
+            "Require diagnostics from the actual original TextKit view")
+        XCTAssertEqual(rendered.locator, expected)
+        XCTAssertGreaterThan(rendered.searchHighlightCount, 0,
+            "The search terms must be highlighted in the rendered original reader")
+        let evidence = XCTAttachment(string: "Observed engine row: \(stableID)\nIndependent expected line-mode locator: \(expected)\nActual rendered locator: \(rendered.locator ?? "<missing>")\nMetadata SHA256: \(zayitMetadataSHA256)")
+        evidence.name = "zayit-real-search-to-reader-independent-source-line"
         evidence.lifetime = .keepAlways
         add(evidence)
     }
