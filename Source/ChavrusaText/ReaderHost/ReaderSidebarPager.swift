@@ -16,6 +16,14 @@ enum ReaderSidebarPolicy {
               abs(horizontal) >= 44, abs(horizontal) > abs(vertical) * 1.25 else { return nil }
         return isRTL ? horizontal > 0 : horizontal < 0
     }
+
+    /// Avoids trapping on finite values outside `Int` bounds in debug breadcrumbs.
+    static func debugRounded(_ value: Double) -> String {
+        if let rounded = Int(exactly: value.rounded()) {
+            return String(rounded)
+        }
+        return String(describing: value)
+    }
 }
 
 #if canImport(SwiftUI) && canImport(UIKit)
@@ -56,7 +64,8 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
             title: coordinator.page == .library ? String(localized: "Library") : String(localized: "Table of Contents"),
             subtitle: coordinator.page == .contents ? activeContentsBookTitle : ""))
         .onChange(of: activeContentsReaderID) { _, _ in coordinator.contentsQuery = "" }
-        .background { ReaderSidebarSplitConfiguration(onBodySwipe: selectPage) }
+        .background { splitConfigurationBackground }
+        .modifier(ReaderSidebarPageDiagnosticObserver(page: coordinator.page))
         .safeAreaInset(edge: .bottom, spacing: 0) {
             HStack(spacing: 0) {
                 pageButton(.library, title: "ספרייה")
@@ -112,10 +121,27 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
             }
     }
 
+    private var splitConfigurationBackground: some View {
+        #if DEBUG
+        ReaderSidebarSplitConfiguration(onBodySwipe: selectPage, onDiagnostic: ReaderSidebarDebugLog.log)
+        #else
+        ReaderSidebarSplitConfiguration(onBodySwipe: selectPage)
+        #endif
+    }
+
     private func selectPage(horizontal: Double, vertical: Double) {
-        guard let selectsContents = ReaderSidebarPolicy.swipeSelectsContents(
-            horizontal: horizontal, vertical: vertical, isRTL: layoutDirection == .rightToLeft
-        ) else { return }
+        let isRTL = layoutDirection == .rightToLeft
+        let selectsContents = ReaderSidebarPolicy.swipeSelectsContents(
+            horizontal: horizontal, vertical: vertical, isRTL: isRTL
+        )
+        #if DEBUG
+        let current = coordinator.page == .library ? "library" : "contents"
+        let target = selectsContents.map { $0 ? "contents" : "library" } ?? "nil"
+        let dx = ReaderSidebarPolicy.debugRounded(horizontal)
+        let dy = ReaderSidebarPolicy.debugRounded(vertical)
+        ReaderSidebarDebugLog.log("swipeDecision page=\(current) isRTL=\(isRTL) dx=\(dx) dy=\(dy) target=\(target)")
+        #endif
+        guard let selectsContents else { return }
         withAnimation(reduceMotion ? nil : .snappy) {
             coordinator.page = selectsContents ? .contents : .library
         }
@@ -134,6 +160,30 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
         .accessibilityLabel(title)
         .accessibilityAddTraits(coordinator.page == page ? .isSelected : [])
         .accessibilityIdentifier("reader-sidebar-page-\(page.rawValue)")
+    }
+}
+
+private enum ReaderSidebarDebugLog {
+    #if DEBUG
+    @MainActor static func log(_ message: String) {
+        OtzariaFileLogger.shared.log("[ReaderSidebarPager] \(message)")
+    }
+    #endif
+}
+
+private struct ReaderSidebarPageDiagnosticObserver: ViewModifier {
+    let page: ReaderSidebarPageCoordinator.Page
+
+    func body(content: Content) -> some View {
+        #if DEBUG
+        content.onChange(of: page) { oldPage, newPage in
+            let from = oldPage == .library ? "library" : "contents"
+            let to = newPage == .library ? "library" : "contents"
+            ReaderSidebarDebugLog.log("pageChanged from=\(from) to=\(to)")
+        }
+        #else
+        content
+        #endif
     }
 }
 
@@ -233,14 +283,24 @@ struct ReaderContentsNavigationTitle: ViewModifier {
 /// attachment creates no split, navigation controller, reader or toolbar item.
 private struct ReaderSidebarSplitConfiguration: UIViewControllerRepresentable {
     let onBodySwipe: @MainActor (Double, Double) -> Void
+    #if DEBUG
+    var onDiagnostic: (@MainActor (String) -> Void)? = nil
+    #endif
+
     func makeUIViewController(context: Context) -> ReaderSidebarSplitConfigurationController {
         let controller = ReaderSidebarSplitConfigurationController()
         controller.onBodySwipe = onBodySwipe
+        #if DEBUG
+        controller.onDiagnostic = onDiagnostic
+        #endif
         return controller
     }
 
     func updateUIViewController(_ controller: ReaderSidebarSplitConfigurationController, context: Context) {
         controller.onBodySwipe = onBodySwipe
+        #if DEBUG
+        controller.onDiagnostic = onDiagnostic
+        #endif
         controller.configureExistingSplit()
     }
 
@@ -251,6 +311,9 @@ private struct ReaderSidebarSplitConfiguration: UIViewControllerRepresentable {
 
 private final class ReaderSidebarSplitConfigurationController: UIViewController, UIGestureRecognizerDelegate {
     var onBodySwipe: (@MainActor (Double, Double) -> Void)?
+    #if DEBUG
+    var onDiagnostic: (@MainActor (String) -> Void)?
+    #endif
     private weak var bodySwipeHost: UIView?
     private lazy var bodyPan = UIPanGestureRecognizer(target: self, action: #selector(bodyPanEnded(_:)))
     private weak var configuredSplit: UISplitViewController?
@@ -287,6 +350,9 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
             originalBehavior = split.preferredSplitBehavior
             originalButtonVisibility = split.displayModeButtonVisibility
         }
+        #if DEBUG
+        var attachedHost: UIView?
+        #endif
         if let primary = split.viewController(for: .primary)?.viewIfLoaded,
            view.isDescendant(of: primary), bodySwipeHost !== primary {
             bodySwipeHost?.removeGestureRecognizer(bodyPan)
@@ -294,6 +360,9 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
             bodyPan.delegate = self
             primary.addGestureRecognizer(bodyPan)
             bodySwipeHost = primary
+            #if DEBUG
+            attachedHost = primary
+            #endif
         }
 
         let availableWidth = split.view.safeAreaLayoutGuide.layoutFrame.width
@@ -311,6 +380,11 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
             isCompact: split.traitCollection.horizontalSizeClass == .compact,
             readerWidth: Double(readerWidth)
         )
+        #if DEBUG
+        if let attachedHost {
+            onDiagnostic?("attach host=\(Self.debugTypeName(attachedHost)) viewBounds=\(Self.debugRounded(view.bounds.width))x\(Self.debugRounded(view.bounds.height)) hostBounds=\(Self.debugRounded(attachedHost.bounds.width))x\(Self.debugRounded(attachedHost.bounds.height)) collapsed=\(split.isCollapsed) tiles=\(tiles)")
+        }
+        #endif
         let behavior = tiles ? UISplitViewController.SplitBehavior.tile : (originalBehavior ?? .automatic)
         if split.preferredSplitBehavior != behavior {
             split.preferredSplitBehavior = behavior
@@ -326,6 +400,11 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
     }
 
     func restoreConfiguration() {
+        #if DEBUG
+        if bodySwipeHost != nil || configuredSplit != nil {
+            onDiagnostic?("restore hadHost=\(bodySwipeHost != nil) hadSplit=\(configuredSplit != nil)")
+        }
+        #endif
         bodySwipeHost?.removeGestureRecognizer(bodyPan)
         bodySwipeHost = nil
         if let split = configuredSplit {
@@ -338,15 +417,32 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        guard gestureRecognizer === bodyPan, view.window != nil else { return false }
+        guard gestureRecognizer === bodyPan else { return false }
+        guard view.window != nil else {
+            #if DEBUG
+            onDiagnostic?("shouldReceive eligible=false hasWindow=false")
+            #endif
+            return false
+        }
         // Exclude native navigation/search controls, page dots and the reader.
-        return !view.isHidden && view.alpha > 0 && view.bounds.contains(touch.location(in: view))
+        let location = touch.location(in: view)
+        let inBounds = view.bounds.contains(location)
+        let eligible = !view.isHidden && view.alpha > 0 && inBounds
+        #if DEBUG
+        onDiagnostic?("shouldReceive eligible=\(eligible) hasWindow=true hidden=\(view.isHidden) alphaPositive=\(view.alpha > 0) inBounds=\(inBounds) loc=\(Self.debugRounded(location.x)),\(Self.debugRounded(location.y)) bounds=\(Self.debugRounded(view.bounds.width))x\(Self.debugRounded(view.bounds.height)) touchView=\(Self.debugTypeName(touch.view))")
+        #endif
+        return eligible
     }
 
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard gestureRecognizer === bodyPan else { return false }
         let velocity = bodyPan.velocity(in: view)
-        return velocity.x.isFinite && velocity.y.isFinite && abs(velocity.x) > abs(velocity.y) * 1.25
+        let allowed = velocity.x.isFinite && velocity.y.isFinite && abs(velocity.x) > abs(velocity.y) * 1.25
+        #if DEBUG
+        let dir = !velocity.x.isFinite ? "nonFinite" : (velocity.x > 0 ? "right" : (velocity.x < 0 ? "left" : "zero"))
+        onDiagnostic?("shouldBegin allowed=\(allowed) vx=\(Self.debugRounded(velocity.x)) vy=\(Self.debugRounded(velocity.y)) dir=\(dir)")
+        #endif
+        return allowed
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
@@ -356,13 +452,47 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
         // Dynamic failure priority, rather than simultaneous recognition:
         // the page/list pan waits for this horizontal-only recognizer to fail.
         // No scroll view is disabled and no permanent dependency is installed.
-        return otherView === host || otherView.isDescendant(of: host)
+        let inHost = otherView === host || otherView.isDescendant(of: host)
+        #if DEBUG
+        if otherGestureRecognizer !== bodyPan {
+            onDiagnostic?("requireFail result=\(inHost) other=\(Self.debugTypeName(otherGestureRecognizer)) otherView=\(Self.debugTypeName(otherView)) inHost=\(inHost) enabled=\(otherGestureRecognizer.isEnabled) state=\(Self.debugStateName(otherGestureRecognizer.state))")
+        }
+        #endif
+        return inHost
     }
 
     @objc private func bodyPanEnded(_ sender: UIPanGestureRecognizer) {
+        #if DEBUG
+        if sender.state != .changed {
+            let translation = sender.translation(in: view)
+            onDiagnostic?("panState state=\(Self.debugStateName(sender.state)) hasWindow=\(view.window != nil) dx=\(Self.debugRounded(translation.x)) dy=\(Self.debugRounded(translation.y))")
+        }
+        #endif
         guard sender.state == .ended, view.window != nil else { return }
         let translation = sender.translation(in: view)
         onBodySwipe?(Double(translation.x), Double(translation.y))
     }
+
+    #if DEBUG
+    private static func debugRounded(_ value: CGFloat) -> String {
+        ReaderSidebarPolicy.debugRounded(Double(value))
+    }
+
+    private static func debugTypeName(_ object: Any?) -> String {
+        object.map { String(describing: type(of: $0)) } ?? "nil"
+    }
+
+    private static func debugStateName(_ state: UIGestureRecognizer.State) -> String {
+        switch state {
+        case .possible: "possible"
+        case .began: "began"
+        case .changed: "changed"
+        case .ended: "ended"
+        case .cancelled: "cancelled"
+        case .failed: "failed"
+        @unknown default: "unknown(\(state.rawValue))"
+        }
+    }
+    #endif
 }
 #endif
