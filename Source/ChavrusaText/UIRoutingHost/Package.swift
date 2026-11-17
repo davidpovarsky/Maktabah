@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "ChavrusaUIRoutingHost",
-    platforms: [.iOS("26.0")],
+    platforms: [.iOS("27.0")],
     products: [.library(name: "ChavrusaUIRoutingHost", targets: ["ChavrusaUIRoutingHost"])],
     dependencies: [.package(path: "../../Otzaria/UIRouting"), .package(path: "../../Otzaria/Actions")],
     targets: [

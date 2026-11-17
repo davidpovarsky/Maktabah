@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "OtzariaUIRouting",
-    platforms: [.iOS("26.0")],
+    platforms: [.iOS("27.0")],
     products: [.library(name: "OtzariaUIRouting", targets: ["OtzariaUIRouting"])],
     dependencies: [.package(path: "../Actions")],
     targets: [
