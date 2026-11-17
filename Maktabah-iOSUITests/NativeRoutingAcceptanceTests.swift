@@ -27,6 +27,11 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         screen.name = name + "-screen"; screen.lifetime = .keepAlways; add(screen)
     }
 
+    private static func matchesExpectedSpringBoardOpenTitle(_ alert: XCUIElement) -> Bool {
+        expectedSpringBoardOpenTitles.contains(alert.label)
+            || expectedSpringBoardOpenTitles.contains { alert.staticTexts[$0].exists }
+    }
+
     private func cleanupLeftoverSpringBoardOpenAlertsInTeardown() {
         let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
         let initialCount = springboard.alerts.count
@@ -35,22 +40,28 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         var cancelledCount = 0
         for _ in 0..<8 {
             let alerts = springboard.alerts.allElementsBoundByIndex
-            guard let alert = alerts.first else { break }
-            let titleMatches = Self.expectedSpringBoardOpenTitles.contains(alert.label)
-                || Self.expectedSpringBoardOpenTitles.contains { alert.staticTexts[$0].exists }
-            guard titleMatches else { break }
+            let beforeCount = alerts.count
+            guard let alert = alerts.first, Self.matchesExpectedSpringBoardOpenTitle(alert) else { break }
             let cancelMatches = alert.buttons.matching(NSPredicate(format: "label == %@", "Cancel")).allElementsBoundByIndex
             guard cancelMatches.count == 1, let cancelButton = cancelMatches.first,
                   cancelButton.exists, cancelButton.isHittable else { break }
             cancelButton.tap()
             let reduced = XCTNSPredicateExpectation(
-                predicate: NSPredicate(format: "count < %d", alerts.count),
+                predicate: NSPredicate(format: "count < %d", beforeCount),
                 object: springboard.alerts
             )
-            _ = XCTWaiter.wait(for: [reduced], timeout: 5)
+            guard XCTWaiter.wait(for: [reduced], timeout: 5) == .completed else { break }
             cancelledCount += 1
+            if springboard.alerts.count == 0 {
+                let nextAppeared = XCTNSPredicateExpectation(
+                    predicate: NSPredicate(format: "count > 0"),
+                    object: springboard.alerts
+                )
+                _ = XCTWaiter.wait(for: [nextAppeared], timeout: 0.5)
+            }
         }
-        XCTFail("Leftover SpringBoard alert(s) remained at teardown (initialCount=\(initialCount), cancelledChavrusaPrompts=\(cancelledCount))")
+        let remainingCount = springboard.alerts.count
+        XCTFail("Leftover SpringBoard alert(s) remained at teardown (initialCount=\(initialCount), cancelledChavrusaPrompts=\(cancelledCount), remainingCount=\(remainingCount))")
     }
 
     override func tearDownWithError() throws {
@@ -90,6 +101,25 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         return value
     }
     @MainActor private func confirmSpringBoardOpenDialog(springboard: XCUIApplication) throws {
+        // Allow SpringBoard's presentation transition to settle briefly before failing
+        // closed on transient !isHittable, without approving unexpected or ambiguous alerts.
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                let sb = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+                let alerts = sb.alerts.allElementsBoundByIndex
+                guard alerts.count == 1, let alert = alerts.first,
+                      Self.matchesExpectedSpringBoardOpenTitle(alert) else {
+                    return false
+                }
+                let openMatches = alert.buttons.matching(NSPredicate(format: "label == %@", "Open")).allElementsBoundByIndex
+                guard openMatches.count == 1, let openButton = openMatches.first else {
+                    return false
+                }
+                return openButton.exists && openButton.isHittable
+            }
+        }, object: nil)
+        _ = XCTWaiter.wait(for: [settled], timeout: 2)
+
         let alerts = springboard.alerts.allElementsBoundByIndex
         guard alerts.count == 1, let alert = alerts.first else {
             captureSystemDialogEvidence("ambiguous-springboard-alerts", springboard: springboard)
@@ -97,9 +127,7 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
             throw SystemURLConfirmationError.unexpectedOrAmbiguousDialog
         }
         let alertTitle = alert.label
-        let titleMatches = Self.expectedSpringBoardOpenTitles.contains(alertTitle)
-            || Self.expectedSpringBoardOpenTitles.contains { alert.staticTexts[$0].exists }
-        guard titleMatches else {
+        guard Self.matchesExpectedSpringBoardOpenTitle(alert) else {
             captureSystemDialogEvidence("unexpected-springboard-alert", springboard: springboard)
             XCTFail("Unexpected SpringBoard alert '\(alertTitle)' during system URL delivery")
             throw SystemURLConfirmationError.unexpectedOrAmbiguousDialog

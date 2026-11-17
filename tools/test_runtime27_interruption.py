@@ -87,6 +87,8 @@ def _build_matrix_driver(root: Path, behavior: dict) -> Path:
                     handle.write(json.dumps({"kind": kind, **payload}) + "\\n")
 
             created_counter = 0
+            deleted_udids = set()
+            state = {"booted": False, "passed_once": False, "matrix_writes": 0, "faulted": False}
 
             class FakeStream:
                 def __init__(self, lines):
@@ -148,6 +150,8 @@ def _build_matrix_driver(root: Path, behavior: dict) -> Path:
                         self._terminated = True
                 def terminate(self):
                     log_event("popen_terminate", role=self.role, pid=self.pid)
+                    if self.role == "recording" and not BEHAVIOR.get("recording_exit_on_terminate", True):
+                        return
                     self._terminated = True
                 def kill(self):
                     log_event("popen_kill", role=self.role, pid=self.pid)
@@ -201,6 +205,8 @@ def _build_matrix_driver(root: Path, behavior: dict) -> Path:
                         signal.raise_signal(signal.SIGINT)
                     return subprocess.CompletedProcess(cmd, 0, stdout="", stderr="")
                 if "collect-runtime27-palette-log.py" in " ".join(cmd_list):
+                    if BEHAVIOR.get("interrupt_at") == "palette_log_collect":
+                        signal.raise_signal(signal.SIGINT)
                     return subprocess.CompletedProcess(cmd, 0, stdout="", stderr="")
                 if "shutdown-faithful-simulator.py" in " ".join(cmd_list):
                     if BEHAVIOR.get("second_signal_in_shutdown"):
@@ -214,9 +220,13 @@ def _build_matrix_driver(root: Path, behavior: dict) -> Path:
                         raise OSError("simctl shutdown missing")
                     return subprocess.CompletedProcess(cmd, 0, stdout="", stderr="")
                 if cmd_list[:3] == ["xcrun", "simctl", "delete"]:
+                    target_udid = cmd_list[3] if len(cmd_list) > 3 else ""
+                    if BEHAVIOR.get("fail_duplicate_delete") and target_udid in deleted_udids:
+                        raise subprocess.CalledProcessError(1, cmd, stderr="Unable to delete already-deleted device")
                     err = BEHAVIOR.get("delete_error")
                     if err == "called_process_error":
                         raise subprocess.CalledProcessError(1, cmd)
+                    deleted_udids.add(target_udid)
                     return subprocess.CompletedProcess(cmd, 0, stdout="", stderr="")
                 if cmd_list[:4] == ["xcrun", "simctl", "help", "ui"]:
                     return subprocess.CompletedProcess(cmd, 0, stdout="content_size accessibility-extra-extra-extra-large\\n", stderr="")
@@ -295,7 +305,96 @@ def _build_matrix_driver(root: Path, behavior: dict) -> Path:
             for lbl in ("11-window", "phone", "11", "13", "13-large-text"):
                 (ROOT / "build" / "artifacts" / f"result-{lbl}.xcresult").mkdir(parents=True, exist_ok=True)
 
-            runpy.run_path(str(ROOT / "Scripts" / "CI" / "run-faithful-ipad-matrix.py"), run_name="__main__")
+            orig_write_text = Path.write_text
+            orig_fdopen = os.fdopen
+            orig_dumps = json.dumps
+
+            def _should_fault_matrix_write(text):
+                mode = BEHAVIOR.get("write_fault_mode")
+                if not mode:
+                    return False
+                if mode == "mid_write_oserror_persistent":
+                    return state["matrix_writes"] >= 1
+                if mode == "normal_cleanup_pre_delete_oserror":
+                    return (not state["faulted"]) and ('"EXECUTED_PASS"' in text) and ('"ownedSimulatorCleanup"' not in text)
+                return False
+
+            def hooked_dumps(obj, *args, **kwargs):
+                text = orig_dumps(obj, *args, **kwargs)
+                if (
+                    BEHAVIOR.get("interrupt_at") == "after_normal_delete"
+                    and isinstance(obj, dict)
+                    and obj.get("devices")
+                    and obj["devices"][0].get("ownedSimulatorCleanup") == "PASS"
+                    and not state["faulted"]
+                ):
+                    state["faulted"] = True
+                    signal.raise_signal(signal.SIGINT)
+                return text
+
+            def hooked_write_text(self, data, *args, **kwargs):
+                if self.name == "faithful-ipad-matrix.json":
+                    if _should_fault_matrix_write(data):
+                        state["faulted"] = True
+                        orig_write_text(self, '{"truncated":', *args, **kwargs)
+                        raise OSError("simulated matrix write error")
+                    state["matrix_writes"] += 1
+                return orig_write_text(self, data, *args, **kwargs)
+
+            class FaultingStream:
+                def __init__(self, inner):
+                    self._inner = inner
+                def write(self, data):
+                    if _should_fault_matrix_write(data):
+                        state["faulted"] = True
+                        self._inner.write('{"truncated":')
+                        self._inner.flush()
+                        raise OSError("simulated atomic temp write error")
+                    return self._inner.write(data)
+                def __getattr__(self, attr):
+                    return getattr(self._inner, attr)
+                def __enter__(self):
+                    self._inner.__enter__()
+                    return self
+                def __exit__(self, exc_type, exc, tb):
+                    return self._inner.__exit__(exc_type, exc, tb)
+
+            def hooked_fdopen(fd, *args, **kwargs):
+                stream = orig_fdopen(fd, *args, **kwargs)
+                if BEHAVIOR.get("write_fault_mode") in ("mid_write_oserror_persistent", "normal_cleanup_pre_delete_oserror"):
+                    if state["matrix_writes"] >= 1 or BEHAVIOR.get("write_fault_mode") == "normal_cleanup_pre_delete_oserror":
+                        return FaultingStream(stream)
+                return stream
+
+            orig_replace = Path.replace
+            def hooked_replace(self, target):
+                res = orig_replace(self, target)
+                if Path(target).name == "faithful-ipad-matrix.json":
+                    state["matrix_writes"] += 1
+                return res
+
+            json.dumps = hooked_dumps
+            Path.write_text = hooked_write_text
+            os.fdopen = hooked_fdopen
+            Path.replace = hooked_replace
+
+            if BEHAVIOR.get("interrupt_at") == "post_udid_pre_inner_try":
+                def _trace_udid(frame, event, arg):
+                    if event == "line" and frame.f_code.co_name == "main" and frame.f_code.co_filename.endswith("run-faithful-ipad-matrix.py"):
+                        if frame.f_locals.get("udid") is not None:
+                            sys.settrace(None)
+                            signal.raise_signal(signal.SIGTERM)
+                    return _trace_udid
+                sys.settrace(_trace_udid)
+
+            try:
+                runpy.run_path(str(ROOT / "Scripts" / "CI" / "run-faithful-ipad-matrix.py"), run_name="__main__")
+            finally:
+                sys.settrace(None)
+                json.dumps = orig_dumps
+                Path.write_text = orig_write_text
+                os.fdopen = orig_fdopen
+                Path.replace = orig_replace
             """
         ),
         encoding="utf-8",
@@ -410,6 +509,8 @@ class MatrixInterruptionRegressionTests(unittest.TestCase):
             ("recording_timeout_and_second_signal", {
                 "interrupt_at": "xcodebuild_sigint",
                 "recording_wait_error": "timeout",
+                "recording_exit_on_sigint": False,
+                "recording_exit_on_terminate": False,
                 "second_signal_in_shutdown": True,
                 "shutdown_error": "timeout",
             }),
@@ -429,6 +530,107 @@ class MatrixInterruptionRegressionTests(unittest.TestCase):
                 self.assertTrue(dev.get("ownedSimulatorCleanupError"))
                 palette_collect = [e for e in events if e["kind"] == "run" and "collect-runtime27-palette-log.py" in " ".join(e["cmd"])]
                 self.assertEqual(palette_collect, [], "Slow 60s palette log show must be skipped on interruption")
+                if behavior_name == "helper_oserror_and_shutdown_fail":
+                    cleanup_errors = dev.get("cleanupErrors") or {}
+                    self.assertIn("palette_log_stream", cleanup_errors)
+                    self.assertIn("OSError", cleanup_errors["palette_log_stream"])
+                elif behavior_name == "recording_timeout_and_second_signal":
+                    rec_kills = [e for e in events if e["kind"] == "popen_kill" and e["role"] == "recording"]
+                    self.assertEqual(len(rec_kills), 1, f"Recording timeout must escalate to kill(): {events}")
+
+    def test_late_normal_teardown_interruption_is_idempotent_and_preserves_prior_results(self):
+        # Case A: interrupted during 60s palette diagnostic AFTER helpers already stopped normally.
+        with self.subTest(case="interrupt_during_palette_diagnostic"), tempfile.TemporaryDirectory() as tmp:
+            root = _create_sandbox(Path(tmp), scenarios_mode="manifest")
+            env = {"FAITHFUL_RUNTIME27_MANIFEST": str(root / "docs" / "hq-integration" / "runtime27" / "R27_CASES.json")}
+            proc, events, matrix = self._run_driver(root, env, {"interrupt_at": "palette_log_collect"})
+
+            self.assertEqual(proc.returncode, 130, f"stderr={proc.stderr}")
+            self.assertEqual(matrix.get("status"), "INTERRUPTED_UI_UNVERIFIED")
+            self.assertEqual(len(matrix["devices"]), 1)
+            dev = matrix["devices"][0]
+            self.assertEqual(dev["status"], "INTERRUPTED")
+            self.assertEqual(dev.get("paletteInputDiagnosticExitCode"), "SKIPPED_ON_INTERRUPTION")
+            self.assertEqual(dev.get("ownedSimulatorCleanup"), "PASS")
+            stream_stops = [e for e in events if e["kind"] == "palette_stream_stop"]
+            self.assertEqual(len(stream_stops), 1, "Already-stopped palette stream must not be stopped twice")
+            rec_signals = [e for e in events if e["kind"] in ("popen_signal", "popen_terminate") and e["role"] == "recording"]
+            self.assertEqual(len(rec_signals), 1, "Already-stopped recording must not be signaled twice")
+
+        # Case B: interrupted AFTER palette diagnostic recorded 0 and owned sim already deleted.
+        with self.subTest(case="interrupt_after_normal_delete"), tempfile.TemporaryDirectory() as tmp:
+            root = _create_sandbox(Path(tmp), scenarios_mode="manifest")
+            env = {"FAITHFUL_RUNTIME27_MANIFEST": str(root / "docs" / "hq-integration" / "runtime27" / "R27_CASES.json")}
+            proc, events, matrix = self._run_driver(
+                root, env, {"interrupt_at": "after_normal_delete", "fail_duplicate_delete": True}
+            )
+
+            self.assertEqual(proc.returncode, 130, f"stderr={proc.stderr}")
+            self.assertEqual(matrix.get("status"), "INTERRUPTED_UI_UNVERIFIED")
+            self.assertEqual(len(matrix["devices"]), 1)
+            dev = matrix["devices"][0]
+            self.assertEqual(dev["status"], "INTERRUPTED")
+            self.assertEqual(dev.get("paletteInputDiagnosticExitCode"), 0,
+                             "Prior paletteInputDiagnosticExitCode must not be overwritten on late interruption")
+            self.assertEqual(dev.get("ownedSimulatorCleanup"), "PASS",
+                             "Already-deleted UDID must not re-run delete or degrade PASS to FAIL")
+            stream_stops = [e for e in events if e["kind"] == "palette_stream_stop"]
+            self.assertEqual(len(stream_stops), 1)
+            shutdowns = [e for e in events if e["kind"] == "run" and "shutdown-faithful-simulator.py" in " ".join(e["cmd"])]
+            deletes = [e for e in events if e["kind"] == "run" and e["cmd"][:3] == ["xcrun", "simctl", "delete"]]
+            self.assertEqual(len(shutdowns), 1)
+            self.assertEqual(len(deletes), 1)
+
+    def test_interruption_right_after_udid_return_before_boot_cleans_up_owned_simulator(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _create_sandbox(Path(tmp), scenarios_mode="manifest")
+            env = {"FAITHFUL_RUNTIME27_MANIFEST": str(root / "docs" / "hq-integration" / "runtime27" / "R27_CASES.json")}
+            proc, events, matrix = self._run_driver(root, env, {"interrupt_at": "post_udid_pre_inner_try"})
+
+            self.assertEqual(proc.returncode, 130, f"stderr={proc.stderr}")
+            self.assertIsNotNone(matrix)
+            self.assertEqual(matrix.get("status"), "INTERRUPTED_UI_UNVERIFIED")
+            created = [e["udid"] for e in events if e["kind"] == "created_udid"]
+            self.assertEqual(len(created), 1)
+            owned_udid = created[0]
+            shutdowns = [e for e in events if e["kind"] == "run" and "shutdown-faithful-simulator.py" in " ".join(e["cmd"])]
+            deletes = [e for e in events if e["kind"] == "run" and e["cmd"][:3] == ["xcrun", "simctl", "delete"]]
+            self.assertEqual(len(shutdowns), 1, f"Known UDID {owned_udid} must be shut down on post-create interruption: {events}")
+            self.assertEqual(len(deletes), 1, f"Known UDID {owned_udid} must be deleted on post-create interruption: {events}")
+            self.assertIn(owned_udid, shutdowns[0]["cmd"])
+            self.assertIn(owned_udid, deletes[0]["cmd"])
+            self.assertLessEqual(shutdowns[0]["timeout"], 10)
+            self.assertLessEqual(deletes[0]["timeout"], 10)
+
+    def test_atomic_matrix_receipt_write_preserves_prior_json_and_never_bypasses_cleanup_or_promotes_pass(self):
+        with self.subTest(case="mid_write_fault_preserves_prior_valid_json"), tempfile.TemporaryDirectory() as tmp:
+            root = _create_sandbox(Path(tmp), scenarios_mode="manifest")
+            env = {"FAITHFUL_RUNTIME27_MANIFEST": str(root / "docs" / "hq-integration" / "runtime27" / "R27_CASES.json")}
+            proc, events, matrix = self._run_driver(root, env, {"write_fault_mode": "mid_write_oserror_persistent"})
+
+            self.assertNotEqual(proc.returncode, 0, "Write failure must never exit 0 / promote PASS")
+            self.assertIsNotNone(matrix, "Prior valid faithful-ipad-matrix.json must stay readable and valid JSON")
+            self.assertEqual(matrix["devices"][0]["phase"], "BOOTING")
+            leftover_tmps = list((root / "build" / "artifacts").glob("*faithful-ipad-matrix*.tmp*"))
+            self.assertEqual(leftover_tmps, [], f"Atomic write failure must clean up temp files: {leftover_tmps}")
+            created = [e["udid"] for e in events if e["kind"] == "created_udid"]
+            shutdowns = [e for e in events if e["kind"] == "run" and "shutdown-faithful-simulator.py" in " ".join(e["cmd"])]
+            deletes = [e for e in events if e["kind"] == "run" and e["cmd"][:3] == ["xcrun", "simctl", "delete"]]
+            self.assertGreaterEqual(len(created), 1)
+            self.assertEqual(len(shutdowns), len(created), "Write failure must not bypass owned simulator shutdown")
+            self.assertEqual(len(deletes), len(created), "Write failure must not bypass owned simulator delete")
+
+        with self.subTest(case="normal_cleanup_write_failure_runs_cleanup_and_fails_nonzero"), tempfile.TemporaryDirectory() as tmp:
+            root = _create_sandbox(Path(tmp), scenarios_mode="manifest")
+            env = {"FAITHFUL_RUNTIME27_MANIFEST": str(root / "docs" / "hq-integration" / "runtime27" / "R27_CASES.json")}
+            proc, events, matrix = self._run_driver(root, env, {"write_fault_mode": "normal_cleanup_pre_delete_oserror"})
+
+            self.assertNotEqual(proc.returncode, 0, "Receipt write failure in normal cleanup must not silently promote PASS")
+            shutdowns = [e for e in events if e["kind"] == "run" and "shutdown-faithful-simulator.py" in " ".join(e["cmd"])]
+            deletes = [e for e in events if e["kind"] == "run" and e["cmd"][:3] == ["xcrun", "simctl", "delete"]]
+            self.assertTrue(shutdowns and deletes, f"Normal-cleanup receipt write error must not bypass simulator cleanup: {events}")
+            if matrix and matrix.get("devices"):
+                self.assertNotEqual(matrix["devices"][0].get("status"), "EXECUTED_PASS")
 
     def test_normal_path_cleanup_and_failure_continuation_remain_unchanged(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -507,49 +709,13 @@ class Runtime27SupervisorInterruptionTests(unittest.TestCase):
                     os.environ["RUNTIME27_MODE"] = "ui"
                     os.environ["EXPECTED_CHECKOUT_SHA"] = "0" * 40
 
-                    # Create dummy inputs required by runtime27 before matrix
-                    for p in [
-                        "Scripts/CI/hq-stage2-focused-apple.py",
-                        "Scripts/CI/hq-stage2-focused-apple.inputs.json",
-                        "Scripts/CI/runtime27-fixture-oracle.py",
-                        "Scripts/CI/collect-runtime27-palette-log.py",
-                        "Scripts/CI/runtime27-hid.py",
-                        "Scripts/CI/runtime27-fixture-recovery.py",
-                        "Scripts/CI/runtime27-url-delivery.py",
-                        "Scripts/CI/shutdown-faithful-simulator.py",
-                    ]:
-                        target = ROOT / p
-                        target.parent.mkdir(parents=True, exist_ok=True)
-                        if not target.exists():
-                            target.write_text("# stub\\n", encoding="utf-8")
-
-                    palette_dir = ROOT / "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette"
-                    palette_dir.mkdir(parents=True, exist_ok=True)
-                    (palette_dir / "Dummy.swift").write_text("// stub\\n", encoding="utf-8")
-
-                    sidebar_file = ROOT / "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"
-                    sidebar_file.parent.mkdir(parents=True, exist_ok=True)
-                    sidebar_file.write_text("#if canImport(SwiftUI)\\nprivate struct ReaderSidebarSplitConfiguration: {}\\n#endif\\n", encoding="utf-8")
-
-                    pinned_test = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
-                    pinned_test.parent.mkdir(parents=True, exist_ok=True)
-                    # Note: runtime27 checks exact sha256; test run_logged + collect_cases + main interruption directly!
-
-                    def fake_collect_cases(report, contract):
-                        raise KeyboardInterrupt("signal during collect_cases")
-
                     rt.OUT.mkdir(parents=True, exist_ok=True)
-                    marker = None
                     try:
                         with unittest.mock.patch.object(rt.subprocess, "Popen", return_value=FakeChild()):
-                            with unittest.mock.patch.object(rt, "collect_cases", side_effect=fake_collect_cases):
-                                try:
-                                    rt.run_logged(["python3", "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 10)
-                                except KeyboardInterrupt:
-                                    pass
-                                # Test main's finally when collect_cases raises KeyboardInterrupt!
-                                report = {"status": "INTERRUPTED_UI_UNVERIFIED", "mode": "ui"}
-                                # Simulate main's finally behavior via direct call to write_interrupted_result or main
+                            try:
+                                rt.run_logged(["python3", "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 10)
+                            except KeyboardInterrupt:
+                                pass
                     finally:
                         sys.platform = orig_platform
 
@@ -1236,6 +1402,59 @@ class Runtime27SupervisorInterruptionTests(unittest.TestCase):
             self.assertEqual(result["status"], "EXECUTED_PASS")
             self.assertNotIn("interrupted", result)
             self.assertFalse((root / "build/artifacts/runtime27/native-matrix-driver.log.interrupted.json").exists())
+
+    def test_runtime27_unsignaled_supervisor_propagates_matrix_exit_130(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = _create_sandbox(Path(tmp), scenarios_mode="manifest")
+            driver_body = """
+            class MatrixInterruptedChild:
+                pid = 94001
+                def __init__(self, is_matrix):
+                    self.is_matrix = is_matrix
+                    self.returncode = 130 if is_matrix else 0
+                def poll(self): return self.returncode
+                def wait(self, timeout=None):
+                    if self.is_matrix:
+                        matrix_path = ROOT / "build/artifacts/faithful-ipad-matrix.json"
+                        matrix_path.parent.mkdir(parents=True, exist_ok=True)
+                        matrix_path.write_text(json.dumps({
+                            "status": "INTERRUPTED_UI_UNVERIFIED",
+                            "interrupted": True,
+                            "devices": [{"label": "11-window", "status": "INTERRUPTED"}],
+                        }), encoding="utf-8")
+                    return self.returncode
+
+            _ctrl = [None]
+            def fake_popen(cmd, *args, **kwargs):
+                h = signal.getsignal(signal.SIGTERM)
+                if getattr(h, "__self__", None) is not None:
+                    _ctrl[0] = h.__self__
+                is_matrix = any("run-faithful-ipad-matrix.py" in str(x) for x in cmd)
+                return MatrixInterruptedChild(is_matrix)
+
+            with unittest.mock.patch.object(rt, "capture", side_effect=fake_capture), \\
+                 unittest.mock.patch.object(rt.subprocess, "Popen", side_effect=fake_popen), \\
+                 unittest.mock.patch.object(rt, "capture_palette_code_images", return_value={"images": []}), \\
+                 unittest.mock.patch.object(rt.urllib.request, "urlopen", return_value=type("R", (), {"read": lambda self: b"skill"})()), \\
+                 unittest.mock.patch.object(rt.subprocess, "run", return_value=subprocess.CompletedProcess([], 0)), \\
+                 unittest.mock.patch.object(rt.hashlib, "sha256", side_effect=fake_sha256), \\
+                 unittest.mock.patch.object(Path, "read_bytes", fake_read_bytes):
+                code = rt.main()
+
+            (ROOT / "_observed.json").write_text(json.dumps({
+                "code": code,
+                "ctrl_interrupted": _ctrl[0].interrupted if _ctrl[0] is not None else None,
+            }), encoding="utf-8")
+            sys.exit(code)
+            """
+            proc = self._run_main_harness(root, driver_body)
+            self.assertEqual(proc.returncode, 130, f"stderr={proc.stderr}")
+            observed = json.loads((root / "_observed.json").read_text(encoding="utf-8"))
+            self.assertEqual(observed["code"], 130)
+            self.assertIs(observed["ctrl_interrupted"], False)
+            result = json.loads((root / "build/artifacts/runtime27/result.json").read_text(encoding="utf-8"))
+            self.assertEqual(result["status"], "INTERRUPTED_UI_UNVERIFIED")
+            self.assertEqual(result["error"], "Matrix execution interrupted")
 
 
 if __name__ == "__main__":

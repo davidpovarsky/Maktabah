@@ -76,9 +76,9 @@ def main():
 
         def write_matrix_report():
             if report is not None:
-                (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
+                runtime27_interruption.write_json_atomic(artifacts / "faithful-ipad-matrix.json", report)
 
-        def create_compatible_ipad(size):
+        def create_compatible_ipad(size, on_created=None):
             candidates = [value for value in device_types if
                           (bool(re.search(r"iPhone-[0-9]+(?:-|$)", value["identifier"])) if size == "phone" else "iPad Pro" in value["name"] and f"{size}-inch" in value["name"])]
             # Use a numbered conventional iPhone for the existing compact-phone gate.
@@ -100,7 +100,10 @@ def main():
                     result = subprocess.run(["xcrun", "simctl", "create", f"Faithful {size}-inch {uuid.uuid4().hex[:8]}",
                                              device_type["identifier"], runtime["identifier"]], text=True, capture_output=True, timeout=90)
                     if result.returncode == 0:
-                        return result.stdout.strip(), device_type, runtime, failures
+                        created_udid = result.stdout.strip()
+                        if created_udid and on_created is not None:
+                            on_created(created_udid)
+                        return created_udid, device_type, runtime, failures
                     failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
             raise SystemExit(f"No compatible {size}-inch iPad Pro / iPadOS 27 pair: {json.dumps(failures)}")
 
@@ -112,24 +115,18 @@ def main():
             if controller.interrupted:
                 break
             size, label = scenario["size"], scenario["label"]
-            try:
-                udid, device_type, runtime, failures = create_compatible_ipad(size)
-            except KeyboardInterrupt as error:
-                controller.mark_interrupted(error)
-                report["status"] = "INTERRUPTED_UI_UNVERIFIED"
-                report["interrupted"] = True
-                report["interruptedPhase"] = "BEFORE_SIMULATOR_CREATED"
-                report["error"] = f"{type(error).__name__}: {error}"
-                write_matrix_report()
-                break
-            device = {"size": size, "label": label, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
-            report["devices"].append(device)
+            udid = None
+            device = None
             recording = None
             recording_log = None
             palette_log_stream = None
             hid_comparison = None
             native_url_delivery = None
             active_xcodebuild = None
+
+            def _record_created_udid(value):
+                nonlocal udid
+                udid = value
 
             def phase(name, **details):
                 device["phase"] = name
@@ -184,22 +181,38 @@ def main():
 
             def mark_device_interrupted(error):
                 controller.mark_interrupted(error)
-                if device.get("status") != "INTERRUPTED":
-                    device["interruptedPhase"] = device.get("phase")
-                device["status"] = "INTERRUPTED"
-                device["error"] = f"{type(error).__name__}: {error}"
-                if isinstance(device.get("largeText"), dict) and device["largeText"].get("status") != "EXECUTED_PASS":
-                    device["largeText"]["status"] = "INTERRUPTED"
+                if device is not None:
+                    if device.get("status") != "INTERRUPTED":
+                        device["interruptedPhase"] = device.get("phase")
+                    device["status"] = "INTERRUPTED"
+                    device["error"] = f"{type(error).__name__}: {error}"
+                    if isinstance(device.get("largeText"), dict) and device["largeText"].get("status") != "EXECUTED_PASS":
+                        device["largeText"]["status"] = "INTERRUPTED"
+                else:
+                    report.setdefault("interruptedPhase", "BEFORE_SIMULATOR_CREATED" if udid is None else "AFTER_SIMULATOR_CREATED")
+                    report["error"] = f"{type(error).__name__}: {error}"
                 report["status"] = "INTERRUPTED_UI_UNVERIFIED"
                 report["interrupted"] = True
 
             def run_interrupted_cleanup():
-                controller.cleanup_active = True
-                try:
-                    device["status"] = "INTERRUPTED"
-                    if isinstance(device.get("largeText"), dict) and device["largeText"].get("status") != "EXECUTED_PASS":
-                        device["largeText"]["status"] = "INTERRUPTED"
-                    device.setdefault("ownedSimulatorCleanup", "PENDING")
+                nonlocal device, active_xcodebuild, native_url_delivery, hid_comparison, palette_log_stream, recording, recording_log
+                with controller.cleanup_scope():
+                    if udid is not None and device is None:
+                        device = {
+                            "size": size,
+                            "label": label,
+                            "udid": udid,
+                            "status": "INTERRUPTED",
+                            "interruptedPhase": "AFTER_SIMULATOR_CREATED",
+                        }
+                        report["devices"].append(device)
+                    if device is not None:
+                        device["status"] = "INTERRUPTED"
+                        if isinstance(device.get("largeText"), dict) and device["largeText"].get("status") != "EXECUTED_PASS":
+                            device["largeText"]["status"] = "INTERRUPTED"
+                        device.setdefault("ownedSimulatorCleanup", "PENDING")
+                    elif udid is None:
+                        report.setdefault("interruptedPhase", "BEFORE_SIMULATOR_CREATED")
                     report["status"] = "INTERRUPTED_UI_UNVERIFIED"
                     report["interrupted"] = True
                     try:
@@ -214,19 +227,23 @@ def main():
                             lambda: runtime27_interruption.stop_owned_subprocess(active_xcodebuild, prefer_sigint=True),
                             cleanup_errors,
                         )
+                        active_xcodebuild = None
                     if native_url_delivery is not None:
                         runtime27_interruption.run_isolated_cleanup_step(
                             "native_url_delivery", native_url_delivery.stop, cleanup_errors
                         )
+                        native_url_delivery = None
                     if hid_comparison is not None:
                         runtime27_interruption.run_isolated_cleanup_step(
                             "hid_comparison", hid_comparison.stop, cleanup_errors
                         )
+                        hid_comparison = None
                     if palette_log_stream is not None:
                         stream_report = runtime27_interruption.run_isolated_cleanup_step(
                             "palette_log_stream", palette_log_stream.stop, cleanup_errors
                         )
-                        if stream_report is not None:
+                        palette_log_stream = None
+                        if stream_report is not None and device is not None:
                             device["paletteInputStream"] = stream_report
                     if recording is not None:
                         runtime27_interruption.run_isolated_cleanup_step(
@@ -234,43 +251,50 @@ def main():
                             lambda: runtime27_interruption.stop_owned_subprocess(recording, prefer_sigint=True),
                             cleanup_errors,
                         )
+                        recording = None
                     if recording_log is not None:
                         runtime27_interruption.run_isolated_cleanup_step("recording_log", recording_log.close, cleanup_errors)
-                    if runtime27_contract and label == "11-window":
-                        device["paletteInputDiagnosticExitCode"] = "SKIPPED_ON_INTERRUPTION"
-                    if cleanup_errors:
-                        device["cleanupErrors"] = cleanup_errors
+                        recording_log = None
+                    if device is not None:
+                        if runtime27_contract and label == "11-window":
+                            device.setdefault("paletteInputDiagnosticExitCode", "SKIPPED_ON_INTERRUPTION")
+                        if cleanup_errors:
+                            device["cleanupErrors"] = cleanup_errors
                     try:
                         write_matrix_report()
                     except OSError:
                         pass
 
-                    try:
-                        subprocess.run(
-                            [sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid],
-                            check=True,
-                            timeout=runtime27_interruption.INTERRUPTED_SIM_SHUTDOWN_TIMEOUT,
-                        )
-                        # Delete only the disposable simulator created above, never a user's/default device.
-                        subprocess.run(
-                            ["xcrun", "simctl", "delete", udid],
-                            check=True,
-                            capture_output=True,
-                            timeout=runtime27_interruption.INTERRUPTED_SIM_DELETE_TIMEOUT,
-                        )
-                        device["ownedSimulatorCleanup"] = "PASS"
-                    except (subprocess.SubprocessError, OSError, KeyboardInterrupt) as cleanup_error:
-                        device["ownedSimulatorCleanup"] = "FAIL"
-                        device["ownedSimulatorCleanupError"] = type(cleanup_error).__name__
-                    finally:
+                    if udid is not None and (device is None or device.get("ownedSimulatorCleanup") != "PASS"):
                         try:
-                            write_matrix_report()
-                        except OSError:
-                            pass
-                finally:
-                    controller.cleanup_active = False
+                            subprocess.run(
+                                [sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid],
+                                check=True,
+                                timeout=runtime27_interruption.INTERRUPTED_SIM_SHUTDOWN_TIMEOUT,
+                            )
+                            # Delete only the disposable simulator created above, never a user's/default device.
+                            subprocess.run(
+                                ["xcrun", "simctl", "delete", udid],
+                                check=True,
+                                capture_output=True,
+                                timeout=runtime27_interruption.INTERRUPTED_SIM_DELETE_TIMEOUT,
+                            )
+                            if device is not None:
+                                device["ownedSimulatorCleanup"] = "PASS"
+                        except (subprocess.SubprocessError, OSError, KeyboardInterrupt) as cleanup_error:
+                            if device is not None:
+                                device["ownedSimulatorCleanup"] = "FAIL"
+                                device["ownedSimulatorCleanupError"] = type(cleanup_error).__name__
+                        finally:
+                            try:
+                                write_matrix_report()
+                            except OSError:
+                                pass
 
             try:
+                udid, device_type, runtime, failures = create_compatible_ipad(size, on_created=_record_created_udid)
+                device = {"size": size, "label": label, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
+                report["devices"].append(device)
                 phase("BOOTING", udid=udid)
                 subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
                 subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
@@ -480,12 +504,21 @@ def main():
                     raise SystemExit(f"Native UI acceptance failed: {missing_suites}; acceptance status {code}; actual xcodebuild status {device['xcodebuildExitCode']}")
             except KeyboardInterrupt as error:
                 mark_device_interrupted(error)
-                phase("INTERRUPTED", error=device["error"])
+                if device is not None:
+                    try:
+                        phase("INTERRUPTED", error=device["error"])
+                    except OSError:
+                        pass
             except (Exception, SystemExit) as error:
+                if device is None:
+                    raise
                 device["status"] = "FAIL"
                 device["error"] = f"{type(error).__name__}: {error}"
                 device["failedPhase"] = device.get("phase")
-                phase("FAILED", error=device["error"])
+                try:
+                    phase("FAILED", error=device["error"])
+                except OSError as write_error:
+                    device["matrixReportWriteError"] = f"{type(write_error).__name__}: {write_error}"
                 try:
                     subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, label], check=False, timeout=150)
                 except subprocess.TimeoutExpired:
@@ -495,14 +528,17 @@ def main():
             finally:
                 if controller.interrupted:
                     run_interrupted_cleanup()
-                else:
+                elif udid is not None:
                     try:
                         if native_url_delivery is not None:
                             native_url_delivery.stop()
+                            native_url_delivery = None
                         if hid_comparison is not None:
                             hid_comparison.stop()
+                            hid_comparison = None
                         if palette_log_stream is not None:
                             device["paletteInputStream"] = palette_log_stream.stop()
+                            palette_log_stream = None
                         if recording is not None:
                             recording.send_signal(signal.SIGINT)
                             try:
@@ -510,7 +546,10 @@ def main():
                             except subprocess.TimeoutExpired:
                                 recording.terminate()
                                 recording.wait(timeout=15)
+                            recording = None
+                        if recording_log is not None:
                             recording_log.close()
+                            recording_log = None
                         if runtime27_contract and label == "11-window":
                             try:
                                 diagnostic = subprocess.run([sys.executable, "Scripts/CI/collect-runtime27-palette-log.py", udid, label],
@@ -518,7 +557,13 @@ def main():
                                 device["paletteInputDiagnosticExitCode"] = diagnostic.returncode
                             except subprocess.TimeoutExpired:
                                 device["paletteInputDiagnosticExitCode"] = "TIMEOUT; no handler-delivery inference"
-                        write_matrix_report()
+                        report_write_error = None
+                        try:
+                            write_matrix_report()
+                        except OSError as write_error:
+                            report_write_error = write_error
+                            device["status"] = "FAIL"
+                            device["matrixReportWriteError"] = f"{type(write_error).__name__}: {write_error}"
                         try:
                             subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=300)
                             # Delete only the disposable simulator created above, never a user's/default device.
@@ -530,6 +575,8 @@ def main():
                             # Retain the failure and simulator, and attempt the remaining
                             # independent configurations. Cleanup must not hide phone cases.
                         write_matrix_report()
+                        if report_write_error is not None:
+                            raise report_write_error
                     except KeyboardInterrupt as error:
                         mark_device_interrupted(error)
                         run_interrupted_cleanup()
@@ -539,7 +586,10 @@ def main():
         if controller.interrupted:
             report["status"] = "INTERRUPTED_UI_UNVERIFIED"
             report["interrupted"] = True
-            write_matrix_report()
+            try:
+                write_matrix_report()
+            except OSError:
+                pass
             return 130
 
         failed = [device["label"] for device in report["devices"]
@@ -553,19 +603,19 @@ def main():
         return 0
     except KeyboardInterrupt as error:
         controller.mark_interrupted(error)
-        if report is not None:
-            report["status"] = "INTERRUPTED_UI_UNVERIFIED"
-            report["interrupted"] = True
-            report["error"] = f"{type(error).__name__}: {error}"
-            (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
-        else:
-            (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps({
-                "status": "INTERRUPTED_UI_UNVERIFIED",
-                "interrupted": True,
-                "interruptedPhase": "PRE_REPORT_SETUP",
-                "devices": [],
-                "error": f"{type(error).__name__}: {error}",
-            }, indent=2))
+        payload = report if report is not None else {
+            "status": "INTERRUPTED_UI_UNVERIFIED",
+            "interrupted": True,
+            "interruptedPhase": "PRE_REPORT_SETUP",
+            "devices": [],
+        }
+        payload["status"] = "INTERRUPTED_UI_UNVERIFIED"
+        payload["interrupted"] = True
+        payload["error"] = f"{type(error).__name__}: {error}"
+        try:
+            runtime27_interruption.write_json_atomic(artifacts / "faithful-ipad-matrix.json", payload)
+        except OSError as write_error:
+            print(f"Failed writing interrupted matrix report: {write_error}", file=sys.stderr)
         return 130
     finally:
         controller.restore()
