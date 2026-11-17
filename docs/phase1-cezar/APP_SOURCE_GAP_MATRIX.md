@@ -17,6 +17,9 @@ Source pinned to `4065feef11bd5a8997ea34364516468105778688`; the O1-A report mer
 
 ## Frozen scope and remaining evidence
 
+- Additional reader triage: `Reader+Content.swift:116-190` resolves the requested destination, cancels the prior task, fences completion by request token and ignores cancellation/stale-request errors. `OtzariaGenericBackendAdapter.swift:46-118` can throw `invalidLocator` for invalid input/book identity or a missing fallback content row. `OtzariaReadingUnitService.swift:207-214` writes its `readingUnit` log **after** throwing descriptor/unit construction completes. Consequently, a missing `line:523` log does not prove the lookup was never entered and does not identify restoration as the cause. Record entry/error stages before proposing a reader/backend mutation.
+- Rotation triage: `FaithfulReaderUIAcceptanceTests.swift:184-221` checks real orientation and toolbar hittability, but returns early when the reader is not hittable. The existing Legacy PASS remains its recorded XCTest outcome; it must not be promoted to proof of full visible toolbar parity. Do not weaken the failing Otzaria/Embedded assertions to mimic that early return.
+
 - Protected originals `iPadLayout.swift`, `iOSTOCView.swift`, `ListContentView.swift`: exact approved hashes retained, no changes.
 - Reader/TOC rendering and original bottom toolbar are not declared regression-free by this preliminary pass. Rotation failures and the `invalidLocator` path still need bounded investigation; no protected-reader approval is inferred.
 - No native API signature/SDK acceptance claim is made from Windows source inspection.
