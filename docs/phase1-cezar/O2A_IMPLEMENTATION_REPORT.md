@@ -140,3 +140,42 @@ Executed with `C:\Users\DAVID\AppData\Local\Programs\Python\Python312\python.exe
 2. Live iOS 27 Simulator execution of `NativeRoutingAcceptanceTests` confirming SpringBoard `"Open in \u{201C}ChavrusaText\u{201D}?"` / `"Open"` UI delivery and same-PID warm routing receipts (`NOT_RUN`).
 3. Live macOS POSIX `SIGINT`/`SIGTERM` process-group signaling of `xcodebuild` / `simctl` runners via `runtime27.py` and `run-faithful-ipad-matrix.py` (`NOT_RUN`).
 4. Live reproduction and root-cause triage of `#22`/`#23` (`book:3891|line:523` `invalidLocator`) from the newly added `#if DEBUG` `[OtzariaGenericBackendAdapter]` logs (`NOT_RUN`).
+
+---
+
+## 7. Fix Round 1 — Timeout/Signal Cleanup Propagation (`#5`)
+
+- **Round 1 Fix Base SHA:** `6fcae66429845fdddaff6a83a7e12671a22785bc`
+- **Round 1 Code & Test Commit SHA:** `7d713dc3f66b097a86863d33c8dfd1eced37664a` (`O2-A round 1: propagate InterruptController into runtime27.run_logged timeout cleanup`)
+- **Report Commit:** Recorded at `HEAD` on `cez/c5124cd6` immediately above `7d713dc3f66b097a86863d33c8dfd1eced37664a` and reported in the final Cezar report.
+- **Changed Files in Round 1 (`6fcae664..HEAD`):**
+  1. `Scripts/CI/runtime27_interruption.py` — Updated `InterruptController._handle_signal` so the first external signal arriving while `cleanup_active` is `True` truthfully records `interrupted=True`, `signal_number`, and `signal_name` (without falsely incrementing `repeat_signals` or raising `KeyboardInterrupt` during cleanup), while subsequent signals increment `repeat_signals` and return without aborting cleanup; added `InterruptController.cleanup_scope()` (preserving/restoring prior `cleanup_active` state) and `InterruptController.apply_metadata(target)`.
+  2. `Scripts/CI/runtime27.py` — Updated `run_logged(command, name, timeout, interrupt_controller=None)` (preserving 3-argument standalone compatibility) to refuse spawning a new child if `interrupt_controller.interrupted` is already `True`, guard the `except BaseException:` owned cleanup block (`stop_owned_process_group` / `stop_owned_subprocess` and `.interrupted.json` persistence) with `cleanup_scope()`, mark synthetic `KeyboardInterrupt` via `mark_interrupted`, and record truthful interruption metadata via `apply_metadata(marker)`. Wired `interrupt_controller=controller` into all 5 `run_logged(...)` calls inside `main()`, guarded `main()`'s `finally:` with `controller.cleanup_scope()`, and recorded `controller.apply_metadata(report)` onto `result.json` while keeping timeout failures non-PASS (`status="FAIL"`, `returncode=1`).
+  3. `tools/test_runtime27_interruption.py` — Added `Runtime27SupervisorInterruptionTests` regressions exercising the real `main()` -> `InterruptController` -> `run_logged` -> `stop_owned_process_group` wiring across `TimeoutExpired` + first `SIGTERM`/`SIGINT` + repeat signal during cleanup, `TimeoutExpired` without signal, already-interrupted cleanup + repeat signal, pre-existing `cleanup_active=True` preservation, pre-interrupted child-spawn refusal, standalone 3-arg compatibility, and unchanged normal-path `EXECUTED_PASS` wiring (plus `interrupt_controller=None` on `fake_run_logged` in Test 7 to match the real signature).
+  4. `docs/phase1-cezar/O2A_IMPLEMENTATION_REPORT.md` — Appended this Round 1 record.
+- No Swift/native test files, `Scripts/CI/run-faithful-ipad-matrix.py`, or deferred minor review findings were modified in Round 1.
+
+### 7.1 Round 1 Pre-Repair RED Reproduction (`6fcae664` production scripts)
+
+Executed with `C:\Users\DAVID\AppData\Local\Programs\Python\Python312\python.exe` against unmodified `Scripts/CI/runtime27.py` and `Scripts/CI/runtime27_interruption.py` from `6fcae664`:
+
+- Focused new tests command:
+  `python.exe tools/test_runtime27_interruption.py -v Runtime27SupervisorInterruptionTests.test_runtime27_main_timeout_cleanup_handles_first_sigterm_sigint_and_repeat_signals Runtime27SupervisorInterruptionTests.test_runtime27_main_timeout_without_signal_and_already_interrupted_paths`
+  -> `Ran 2 tests in 2.024s` -> `FAILED (failures=5)`:
+  - `case='sigterm_then_repeat_sigint'`: `AssertionError: False is not True : sigterm_then_repeat_sigint: main/controller must set cleanup_active=True during run_logged timeout cleanup`
+  - `case='sigint_then_repeat_sigterm'`: `AssertionError: False is not True : sigint_then_repeat_sigterm: main/controller must set cleanup_active=True during run_logged timeout cleanup`
+  - `case='timeout_without_signal'`: `AssertionError: False is not True` (`cleanup_active_during_kill` was `False`)
+  - `case='already_interrupted_during_wait_plus_repeat_signal'`: `AssertionError: False is not True` (`cleanup_active_before_repeat` was `False`)
+  - `case='preexisting_cleanup_active_and_preinterrupted_and_standalone'`: `TypeError: run_logged() got an unexpected keyword argument 'interrupt_controller'`
+
+### 7.2 Round 1 Post-Repair GREEN Verification (`7d713dc3f66b097a86863d33c8dfd1eced37664a`)
+
+Executed with `C:\Users\DAVID\AppData\Local\Programs\Python\Python312\python.exe`:
+
+- `python.exe -m py_compile Scripts/CI/runtime27_interruption.py Scripts/CI/runtime27.py Scripts/CI/run-faithful-ipad-matrix.py tools/test_runtime27_interruption.py` -> exit `0`
+- `python.exe tools/test_runtime27_interruption.py -v` -> `Ran 9 tests in 11.780s` -> `OK` (exit `0`; all 7 prior tests + both new `main/controller/run_logged` suites)
+- `python.exe tools/test_verify_xcresult_zero_skips.py -v` -> `Ran 10 tests in 0.479s` -> `OK` (exit `0`)
+- `python.exe tools/verify_upstream_boundary.py --base 1472fdea2aa61f4c4c830822758ea75a8c76e08b --head 7d713dc3f66b097a86863d33c8dfd1eced37664a` -> `Boundary Verification Result: PASS` (`Changes detected: 7, Violations: 0, Warnings: 0`)
+- `git diff --name-status 6fcae66429845fdddaff6a83a7e12671a22785bc 7d713dc3f66b097a86863d33c8dfd1eced37664a` -> `M Scripts/CI/runtime27.py`, `M Scripts/CI/runtime27_interruption.py`, `M tools/test_runtime27_interruption.py` (`git diff --check` exit `0`)
+- Pinned LF SHA-256 unchanged (`R27NativeInteractionAcceptanceTests.swift` = `d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc`, `R27_CASES.json` = `d6ebe07d681e54440f58ce1b8b4945075f7047c8bce0b3a76fa98fd6fcf06875`).
+- Native Apple SDK / iOS Simulator / live macOS POSIX process-group execution remain `NOT_RUN` on Windows.
