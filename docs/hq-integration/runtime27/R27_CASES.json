@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "source_test_commit": "9a3e498d50084f146ab815ecc2e79356b8d81569",
+  "source_test_commit": "5f3fc88677136d03c035b4858ce5fc3d02802e76",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "9a3e498d50084f146ab815ecc2e79356b8d81569",
+  "app_source": "5f3fc88677136d03c035b4858ce5fc3d02802e76",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_PHASE1_REQUIRED27_PLUS_PHASE2_NATIVE_SEARCH10_AND_PHASE3_PHONE_ROUTING3",
+  "scope": "CONTINUATION_PHASE1_REQUIRED27_PLUS_PHASE2_NATIVE_SEARCH11_AND_PHASE3_PHONE_ROUTING3",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 40,
+  "required_nonzero_cases": 41,
   "expected_per_device": {
-    "ipad11": 34,
+    "ipad11": 35,
     "iphone": 6
   },
   "cases": [
@@ -182,7 +182,8 @@
         "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
         "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
         "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
-        "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls"
+        "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+        "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"
       ],
       "hid_comparison": false
     },
@@ -249,7 +250,8 @@
     "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
     "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
     "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
-    "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt"
+    "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+    "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -562,6 +564,12 @@
       "device": "iphone",
       "status": "NOT_RUN",
       "oracle": "Original same-process system URL, visible History and exact real scene receipt/refusal oracle on iPhone."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native Zayit result and original preview/Open controls; independent sealed SQL lineID/bookID/lineIndex; original explicit line-reading preference; exact native reader and rendered TextKit locator, canonical title and actual search highlight."
     }
   ],
   "manager_native_review_history": [
@@ -658,7 +666,8 @@
       "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
       "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
       "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
-      "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls"
+      "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+      "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"
     ],
     "phase3_supplemental_case_ids": [
       "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
@@ -672,6 +681,8 @@
       "בראשית": 135,
       "אמר": 5760
     },
-    "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results."
+    "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
+    "executor": "Current sole developer continuation; no subagents or resumed prior agents",
+    "native_status": "NOT_RUN on this candidate; earlier independent immutable first27 run is still pending"
   }
 }
