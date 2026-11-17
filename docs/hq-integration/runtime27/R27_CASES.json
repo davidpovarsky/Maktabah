@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "source_test_commit": "d9ab40fbfa9d357dc07af8afbc847f6d7a4bbc1b",
-  "application_base": "0436775d85893225005f29baf0aa3a20d7b88317",
-  "app_source": "d9ab40fbfa9d357dc07af8afbc847f6d7a4bbc1b",
+  "source_test_commit": "9a3e498d50084f146ab815ecc2e79356b8d81569",
+  "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
+  "app_source": "9a3e498d50084f146ab815ecc2e79356b8d81569",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "SINGLE_AGENT_PHASE1_ORIGINAL18_PLUS_U6_AND_NATIVE_SECURITY3_NOT_RELEASE",
+  "scope": "CONTINUATION_PHASE1_REQUIRED27_PLUS_PHASE2_NATIVE_SEARCH10_AND_PHASE3_PHONE_ROUTING3",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 27,
+  "required_nonzero_cases": 40,
   "expected_per_device": {
-    "ipad11": 24,
-    "iphone": 3
+    "ipad11": 34,
+    "iphone": 6
   },
   "cases": [
     {
@@ -172,7 +172,17 @@
         "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
         "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
         "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
-        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt"
+        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+        "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+        "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+        "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+        "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+        "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+        "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+        "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+        "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+        "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+        "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls"
       ],
       "hid_comparison": false
     },
@@ -191,7 +201,10 @@
       "case_ids": [
         "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
         "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
-        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation"
+        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt"
       ],
       "hid_comparison": false
     }
@@ -223,7 +236,20 @@
     "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
     "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
     "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
-    "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt"
+    "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+    "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+    "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+    "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+    "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+    "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+    "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+    "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+    "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+    "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+    "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -458,6 +484,84 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Actual native foreground/backend refusal/replay outcome and exact canonical receipt log; no synthetic completion"
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual native source/index and original UI assertions; independent installed-fixture DB/hash/query evidence."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original same-process system URL, visible History and exact real scene receipt/refusal oracle on iPhone."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original same-process system URL, visible History and exact real scene receipt/refusal oracle on iPhone."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original same-process system URL, visible History and exact real scene receipt/refusal oracle on iPhone."
     }
   ],
   "manager_native_review_history": [
@@ -541,5 +645,33 @@
   ],
   "previous_native_run": "43822275294",
   "previous_completed_methods": 5,
-  "source_qualified_completion": "Only valid if actual app source pin, all product trees and exact UI test sources equal82; frozen82 raw results remain unchanged"
+  "source_qualified_completion": "Only valid if actual app source pin, all product trees and exact UI test sources equal82; frozen82 raw results remain unchanged",
+  "continuation": {
+    "phase1_required_full_case_ids_unchanged": true,
+    "phase2_supplemental_case_ids": [
+      "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+      "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+      "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+      "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+      "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+      "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+      "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+      "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+      "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+      "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls"
+    ],
+    "phase3_supplemental_case_ids": [
+      "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+      "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+      "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt"
+    ],
+    "reused_native_passes": 0,
+    "historical_native_evidence": "Preserved only on its original app/test/fixture/context. First continuation run44185317875 remains an independent immutable27-case observation.",
+    "query_candidate_artifact_sha256": "da066b440d54ca6015fc7387c00d36d7df0648e3f25f4d95be98750ba38cc5a3",
+    "source_row_matches": {
+      "בראשית": 135,
+      "אמר": 5760
+    },
+    "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results."
+  }
 }

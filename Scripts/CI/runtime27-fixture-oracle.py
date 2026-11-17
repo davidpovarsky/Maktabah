@@ -31,7 +31,24 @@ def sidebar_paths(connection):
     return result
 
 
-def derive_oracle(udid, size, include_sidebar=False):
+def canonical_search_candidates(database_sha256):
+    path = Path("Tests/HQ/search/canonical-miniTest10-query-candidates.json")
+    raw = path.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != "da066b440d54ca6015fc7387c00d36d7df0648e3f25f4d95be98750ba38cc5a3":
+        raise RuntimeError("Independent search-query source evidence changed")
+    evidence = json.loads(raw)
+    if (evidence["databaseSHA256"] != database_sha256
+            or evidence["profileID"] != "miniTest10" or evidence["profileVersion"] != 6
+            or evidence["sourceRows"] != 18879):
+        raise RuntimeError("Query candidates do not belong to this actual installed fixture")
+    for key in ("GLOBAL_SEARCH_TEST_QUERY", "GLOBAL_SEARCH_PAGING_QUERY"):
+        row = evidence["queries"][key]
+        if not row["query"].strip() or row["matching_source_rows"] <= 100:
+            raise RuntimeError("Search candidate is not supported by actual source rows")
+    return evidence
+
+
+def derive_oracle(udid, size, include_sidebar=False, include_search=False):
     report_path = Path(f"build/artifacts/miniTest10-native-fixture-install-{size}.json")
     installed = json.loads(report_path.read_text())
     if (installed.get("passed") is not True or installed.get("profileID") != "miniTest10"
@@ -58,6 +75,7 @@ def derive_oracle(udid, size, include_sidebar=False):
             raise RuntimeError("Actual fixture cannot resolve the app's independently selected book")
         schema = connection.execute("PRAGMA user_version").fetchone()[0]
         sidebar = sidebar_paths(connection) if include_sidebar else None
+        search = canonical_search_candidates(before) if include_search else None
     if hashlib.sha256(database.read_bytes()).hexdigest() != before:
         raise RuntimeError("Read-only oracle unexpectedly changed the DB")
     evidence = {"database_path": str(database), "database_sha256": before, "schema": schema,
@@ -66,11 +84,14 @@ def derive_oracle(udid, size, include_sidebar=False):
                 "expected_compressed_sha256": installed["expectedSHA256"], "sql": sql,
                 "selected": {"sourceBookId": selected[0], "lineIndex": selected[1], "title": selected[2]},
                 "fallback_book1_because_no_link": fallback, "ui_observation_used": False,
-                "sidebar_catalog_paths": sidebar}
+                "sidebar_catalog_paths": sidebar, "search_query_source_evidence": search}
     Path(f"build/artifacts/runtime27/fixture-oracle-{size}.json").write_text(json.dumps(evidence, indent=2) + "\n")
     environment = {"TEST_RUNNER_R27_EXPECTED_OTZARIA_WORK_KEY": f"book:{selected[0]}",
                    "TEST_RUNNER_R27_EXPECTED_OTZARIA_BOOK_TITLE": selected[2]}
     if sidebar:
         environment.update({"TEST_RUNNER_" + key: json.dumps(value["path"], ensure_ascii=False)
                             for key, value in sidebar.items()})
+    if search:
+        environment.update({"TEST_RUNNER_" + key: value["query"]
+                            for key, value in search["queries"].items()})
     return environment

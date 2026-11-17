@@ -13,3 +13,5 @@ docs/hq-native-binding-integration/mount-wait-manager/** -text whitespace=-blank
 
 # Sealed independent SQL metadata; preserve exact UITest oracle bytes.
 Maktabah-iOSUITests/canonical-miniTest10-metadata.json -text
+
+Tests/HQ/search/canonical-miniTest10-query-candidates.json -text

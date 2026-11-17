@@ -1,0 +1,104 @@
+{
+  "kind": "INDEPENDENT_CANONICAL_SOURCE_QUERY_CANDIDATES_NOT_ENGINE_RANKING_OR_READINESS",
+  "profileID": "miniTest10",
+  "profileVersion": 6,
+  "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "databaseBytes": 15470592,
+  "sourceRows": 18879,
+  "sql": "SELECT l.id,l.bookId,l.lineIndex,lc.content FROM line l JOIN line_content lc ON lc.id=l.id ORDER BY l.id",
+  "preparation": "Read-only Python SQLite and real source zstd_dict; strip HTML and Unicode Mn for lexical substring candidate discovery. Counts are source candidate rows, not search engine results.",
+  "queries": {
+    "GLOBAL_SEARCH_TEST_QUERY": {
+      "query": "בראשית",
+      "matching_source_rows": 135,
+      "sample_canonical_rows": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2634912,
+          3764,
+          252
+        ],
+        [
+          2634913,
+          3764,
+          253
+        ],
+        [
+          2634920,
+          3764,
+          260
+        ],
+        [
+          2634924,
+          3764,
+          264
+        ],
+        [
+          2635003,
+          3764,
+          343
+        ],
+        [
+          2635130,
+          3764,
+          470
+        ],
+        [
+          2635202,
+          3764,
+          542
+        ]
+      ]
+    },
+    "GLOBAL_SEARCH_PAGING_QUERY": {
+      "query": "אמר",
+      "matching_source_rows": 5760,
+      "sample_canonical_rows": [
+        [
+          1915787,
+          3163,
+          2
+        ],
+        [
+          1915911,
+          3163,
+          126
+        ],
+        [
+          1915993,
+          3163,
+          208
+        ],
+        [
+          1916068,
+          3163,
+          283
+        ],
+        [
+          1916113,
+          3163,
+          328
+        ],
+        [
+          2634663,
+          3764,
+          3
+        ],
+        [
+          2634667,
+          3764,
+          7
+        ],
+        [
+          2634686,
+          3764,
+          26
+        ]
+      ]
+    }
+  }
+}

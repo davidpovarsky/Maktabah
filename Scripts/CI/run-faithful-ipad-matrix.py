@@ -380,7 +380,9 @@ def main():
                     environment.update(hid_comparison.start())
                 if runtime27_contract:
                     environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](
-                        udid, label, include_sidebar=any(case.startswith("Sidebar11201AcceptanceTests/") for case in selection)))
+                        udid, label,
+                        include_sidebar=any(case.startswith("Sidebar11201AcceptanceTests/") for case in selection),
+                        include_search=any(case.startswith("GlobalSearchNativeAcceptanceTests/") for case in selection)))
                     recording_log = (artifacts / f"runtime27/recording-{label}.log").open("w")
                     recording = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(artifacts / f"runtime27/native-{label}.mp4")],
                                                  stdout=recording_log, stderr=subprocess.STDOUT)
