@@ -131,3 +131,54 @@ Verified untouched at `63906e196e2b7870d84fbdab26102d7dbeeae233`:
    - `Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR`: **`Contents -> Library` swipe remains unfixed** (O2-B adds `#if DEBUG` diagnostics only); live runtime `[ReaderSidebarPager]` logs must be captured in `otzaria-reader.log` to isolate the Swipe 2 failure before any repair.
    - `Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL` & `testSidebarSceneStateSurvivesBackgroundAndRotation`: previously blocked at startup `invalidLocator`, unexecuted on `63906e19`.
 4. **O2-A & Full 27-Case Native Matrix (`NOT_RUN` / `OPEN`):** Alert-free `original_reader6` Pad/Phone, warm/security URL delivery, `11-window`, HID comparison, and coherent final `runtime27` zero-skip acceptance remain `NOT_RUN`. **Phase 1 remains `NOT READY`.**
+
+---
+
+## 6. Fix Round 1 Scoped Re-Review (`63906e19..4763202b`)
+
+- **Reviewers / Roles:** `רוני (roni) | QA & Evidence` + `מיה (maya) | Native UX` + `דנה (dana) | Security & Privacy` (`MAIN_SESSION`; read-only inspection of `cez/335b7590`; zero nested subagents)
+- **Prior Baseline Preserved:** Sections 1–5 (`bb69d98e49d7bcf79c62b5096fc3cc33bde8f791`) remain intact as historical review record.
+- **Round 1 Delta Reviewed:** `63906e196e2b7870d84fbdab26102d7dbeeae233..4763202b80701182bca34fa55e6c3192e7df5339`
+  - Code & test fix commit: `a316f0167d62a57e505c0f99c2e8694414d6e0de` (`O2-B round 1: non-trapping debugRounded formatting and numeric regressions`)
+  - Report commit: `4763202b80701182bca34fa55e6c3192e7df5339` (`O2-B round 1: update report with non-trapping evidence and Minor #2 fix`)
+- **Reference Specification:** `87f5c476:docs/phase1-cezar/O2B_FIX_ROUND1.md`, `docs/phase1-cezar/O2B_WORK_PACKET.md`, and frozen package `O2B_REREVIEW_6390_4763.md`
+
+### 6.1 Round 1 Verdicts & Finding Disposition
+
+| Axis / Finding | Status / Verdict | Basis |
+|---|---|---|
+| **Round 1 Spec-Compliance Verdict (`63906e19..4763202b`)** | **`approve`** *(portable/source scope only; native Apple SDK / UI / AX / body-paging gates remain `NOT_RUN` / `OPEN`)* | Strictly confined to 4 of the 6 authorized O2-B paths; repairs both `selectPage` `dx`/`dy` and controller `debugRounded` through real `ReaderSidebarPolicy.debugRounded` without mutating gesture/layout/delegate/Release behavior or standalone SDK extraction slices; includes real-production RED->GREEN tests and keeps native gates honestly `NOT_RUN` / `OPEN`. |
+| **Round 1 Code-Quality Verdict (`63906e19..4763202b`)** | **`approve`** *(0 new Critical, Important, or Minor findings)* | Non-trapping `Int(exactly: value.rounded())` with `String(describing: value)` fallback eliminates the `Double`/`CGFloat` trap across all integer boundaries, extremes, `NaN`, and infinities while preserving ordinary rounding, `#if DEBUG` emission isolation, and content-free logging. |
+| **Combined Branch Verdicts (`63eea420..4763202b`)** | **Spec: `approve` \| Code-Quality: `approve`** *(Minor #3 deferred)* | Eligible for local manager-branch integration and whole-branch review (with Minor #3 tracked in ledger); **body paging remains unfixed and Phase 1 remains `NOT READY`**. |
+| **Important Finding #1** (`ReaderSidebarPager.swift:132-133, 469-472`) | **`ADDRESSED`** | Both production sites now call `ReaderSidebarPolicy.debugRounded(_:)` (`:21-26`), and `rg -n 'Int\(|rounded\('` confirms no remaining `Int(value.rounded())` site in `ReaderSidebarPager.swift`. |
+| **Minor Finding #2** (`O2B_IMPLEMENTATION_REPORT.md:52`) | **`ADDRESSED`** | Line 52 now accurately documents that continuous `UIPanGestureRecognizer` target-action (`bodyPanEnded(_:)`) logs `began`, `ended`, `cancelled` and does not emit `.failed` directly from `.possible`. |
+| **Minor Finding #3** (`tools/test_o2b_native_ux.py:28-37, 55-75, 114-122`) | **`DEFERRED`** | Explicitly outside Round 1 scope per `O2B_FIX_ROUND1.md`; retained in ledger for final whole-branch review. |
+
+### 6.2 Scope & Boundary Verification (`63906e19..4763202b` & `63eea420..4763202b`)
+
+- `git -C <impl> diff --name-status 63906e19..4763202b`: exact 4 authorized paths only (`M Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift`, `M docs/phase1-cezar/O2B_IMPLEMENTATION_REPORT.md`, `M tools/test_native_sidebar_policy.swift`, `M tools/test_o2b_native_ux.py`).
+- `git -C <impl> diff --name-status 63eea420..4763202b`: exact original 5/6 allowed O2-B paths (`ReaderSidebarPageCoordinator.swift` and all protected/O2-A/UI-test/manifest/script paths unchanged).
+- `git -C <impl> diff --check 63906e19..4763202b`: exit `0`.
+- `python.exe tools/verify_upstream_boundary.py`:
+  - `--base 63906e19 --head 4763202b` -> **`PASS`** (`Changes detected: 4, Violations: 0, Warnings: 0`).
+  - `--base 63eea420 --head 4763202b` -> **`PASS`** (`Changes detected: 5, Violations: 0, Warnings: 0`).
+
+### 6.3 Technical Verification of Fix & Regression Quality
+
+1. **Non-Trapping Production Formatter & Call Sites (`ReaderSidebarPager.swift:20-26, 140-141, 477-479`):**
+   - `ReaderSidebarPolicy.debugRounded(_ value: Double) -> String` uses `Int(exactly: value.rounded())` with `String(describing: value)` fallback.
+   - Verified boundary behavior across: `0.0`/`-0.0` (`"0"`), `+/-0.4` (`"0"`), `+/-0.5` (`"1"`/`"-1"`), `+/-1.5` (`"2"`/`"-2"`), `43.6` (`"44"`), `-120.2` (`"-120"`), `Double(Int.max).nextDown` (exact `Int`), `Double(Int.max)` (`2^63` -> fallback without trap), `Double(Int.min)` (`-2^63` -> `Int.min` string), `Double(Int.min).nextDown` / `-1e20` / `+/-Double.greatestFiniteMagnitude` / `.nan` / `+/-.infinity` (all fallback cleanly without trapping).
+   - Both `selectPage` (`:140-141`, inside `#if DEBUG`) and `ReaderSidebarSplitConfigurationController.debugRounded(_:)` (`:477-479`, inside `#if DEBUG`) delegate to `ReaderSidebarPolicy.debugRounded`.
+2. **Standalone SDK Slice Compatibility, `#if DEBUG` Isolation & Release Invariance:**
+   - `ReaderSidebarPolicy.debugRounded` resides in the `ReaderSidebarPolicy` section (`:20-26`) before `#if canImport(SwiftUI) && canImport(UIKit)` (`:29`), using only Swift stdlib (`Double`, `Int(exactly:)`, `.rounded()`, `String`).
+   - Standalone `ReaderSidebarSplit.swift` extraction (`Scripts/CI/runtime27.py:268-277`, `Scripts/CI/typecheck-faithful-ui-tests.py:95-115`) includes `ReaderSidebarPolicy` and `ReaderSidebarSplitConfiguration*` with zero extra imports or app dependencies (`OtzariaFileLogger`, `iOSNavigationManager`, `ReaderSidebarPageCoordinator`). `ReaderSidebarNativeSearchSDK` (`:189-279`) is untouched.
+   - All log emissions (`ReaderSidebarDebugLog.log`, `onDiagnostic?`, `OtzariaFileLogger.shared.log`, `ReaderSidebarPageDiagnosticObserver` `.onChange`, controller `debugRounded`) remain strictly `#if DEBUG`-gated and content-free; `ReaderSidebarPolicy.debugRounded` itself performs no I/O and is unused in `!DEBUG` builds. Gesture, layout, delegate arbitration, and `canTile` / `swipeSelectsContents` semantics are unchanged.
+3. **Production-Path Regression Tests (`tools/test_native_sidebar_policy.swift:44-65`, `tools/test_o2b_native_ux.py:237-377`):**
+   - `tools/test_native_sidebar_policy.swift` adds 20 assertions (35 -> 55 total) directly calling `ReaderSidebarPolicy.debugRounded(_:)`.
+   - `test_diagnostic_number_formatting_never_traps_and_preserves_rounding` extracts `policy_src`, the `let dx = ...` / `let dy = ...` lines from `selectPage`'s `#if DEBUG` block, and the body of `ReaderSidebarSplitConfigurationController.debugRounded(_:)` directly from `ReaderSidebarPager.swift`, compiles with `swiftc -parse-as-library -D DEBUG`, and runs both `selectPage` (44 cases including mixed extreme+ordinary pairs) and `debugRounded` (20 cases). On `63906e19`, this exact extraction failed (`rc=3221225501`); on `a316f016` / `4763202b`, it passes (`5/5 OK`). *(Note: `typealias CGFloat = Double` maps Apple `CGFloat` to `Double` for portable Windows execution; real Apple `CoreGraphics.CGFloat` / `SwiftUI` / `UIKit` SDK compilation remains `NOT_RUN`.)*
+
+### 6.4 Checks & Remaining `NOT_RUN` Native Gates
+
+- **Directly Verified by This Reviewer on `4763202b`:** `git diff --name-status` (exact 4 paths in `6390..4763`; exact 5 paths in `63ee..4763`), `git diff --check` (`exit=0`), `verify_upstream_boundary.py` (`PASS` on both `6390..4763` and `63ee..4763`), and `rg -n 'Int\(|rounded\('` on `ReaderSidebarPager.swift` (only line 22 `Int(exactly: value.rounded())`).
+- **Cited Parent Checks on Exact `4763202b` (Not Redundantly Re-Run):** `tools/test_o2b_native_ux.py -v` (`5/5 PASS`, `3.642s`), `tools/hq-sidebar-check.py` (`55` compiled `ReaderSidebarPolicy` assertions + `5` Swift frontend parses including `#if true` pager Apple branch + clean diff, with verified Windows `SDKROOT`). *(Implementation report also records `a316f016` `swiftc -D DEBUG` policy `55` assertions PASS and `global-search-presentation-tests.py` `42+18` PASS.)*
+- **Unchanged `NOT_RUN` / `OPEN` Native Gates (Same as Section 5.3):** Real macOS/Xcode 27 `SwiftUI`/`UIKit` SDK compilation (`ReaderSidebarSplit`, `ReaderSidebarNativeSearchSDK`, `Maktabah.app`), History AX contrast audit (`testHeaderAndHistoryNativeAccessibilityAudit`), `Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR` (`Contents -> Library` swipe remains **unfixed**, diagnostics only), `testSidebarBodyPagingRTL`, `testSidebarSceneStateSurvivesBackgroundAndRotation`, and the full 27-case matrix remain `NOT_RUN` / `OPEN`. **Phase 1 remains `NOT READY`.**
