@@ -53,5 +53,8 @@ Authority: original Phase 1 brief and owner continuation; O1-A/O1-B evidence, cu
 
 - O1-A report retained locally, lifecycle failed/cancelled recovery preserved.
 - O1-B completed successfully; all 23 fingerprint rows independently checked. Two report inferences corrected by the manager before O2.
-- O2-A: pending dispatch; base is the manager's committed packet tip.
+- O2-A candidate `6fcae66429845fdddaff6a83a7e12671a22785bc`, base `1472fdea2aa61f4c4c830822758ea75a8c76e08b`: parent portable interruption 7/7 and result-guard 10/10 PASS; no implementation merge.
+- Independent O2-A review `5e3d8b74d200314acbf4a77b92554b5709918dc2`: source/portable spec PASS, quality PASS with six Minor findings, no Apple/native acceptance.
+- **Ruling — O2-A finding #5 is load-bearing for this task:** the manager safely reproduced first-SIGTERM interruption of timeout cleanup on exact `6fcae664`. `O2A_TIMEOUT_SIGNAL_REPRO.py` in manager Assets starts no process or real signal and records only `cleanup_started`, never `cleanup_completed`. Treat this as an Important gap against the owned-cleanup requirement; fix round 1 returns to the original implementer, then scoped re-review. This is code rework, not a provider retry. No A code merge before that gate.
+- O2-A deferred Minor findings for the final whole-branch reviewer: #1 immediate Open hittability check; #2 teardown retry/count on timeout; #3 repeated normal-cleanup handles; #4 tiny post-UDID pre-inner-try interval; #6 dead test setup/coverage omissions. Preserve the independent report and reassess these explicitly; do not silently discard or expand this fix into unrelated polish.
 - O2-B, reviews, native acceptance: pending.
