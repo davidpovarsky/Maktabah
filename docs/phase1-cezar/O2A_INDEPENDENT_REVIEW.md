@@ -164,3 +164,55 @@ Within the constraints of wrapping a top-level runner in `main()` and isolating 
 2. **Live iOS 27 Simulator Routing & SpringBoard UI Acceptance (`NOT_RUN`):** Executing `NativeRoutingAcceptanceTests` (`#4, #5, #6, #7, #8, #25, #26, #27`) to prove `"Open in “ChavrusaText”?"` / `"Open"` confirmation, same-PID warm delivery, refusal UI, replay guard, and exact-one `[NativeNavigationReceipt]` under `4065feef`/`6fcae664`.
 3. **Live macOS POSIX Process-Group Signaling (`NOT_RUN`):** Real `os.killpg` / `SIGTERM` / `SIGINT` cancellation of live `xcodebuild` / `simctl` / `CoreSimulator` runners via `runtime27.py` and `run-faithful-ipad-matrix.py` (off-group `CoreSimulator` agents remain explicitly `"NOT_INDEPENDENTLY_VERIFIED"`).
 4. **Live `#22/#23` `book:3891|line:523` `invalidLocator` Reproduction (`NOT_RUN`):** Capturing the new `#if DEBUG` `[OtzariaGenericBackendAdapter]` stage breadcrumbs on iOS 27 Simulator to establish root cause before any reader/backend repair.
+
+---
+
+## 7. Round 1 Fix Scoped Re-Review (`6fcae664..285510ef`)
+
+- **Reviewers / Roles:** `רוני (roni) | QA & Evidence` + `דנה (dana) | Security & Privacy` (`MAIN_SESSION`; read-only inspection of `cez/c5124cd6`; zero nested agents)
+- **Round 1 Delta Reviewed:** `6fcae66429845fdddaff6a83a7e12671a22785bc..285510ef2627a5d1d570f04ff1c23c803d91593d`
+  - Code & test repair commit: `7d713dc3f66b097a86863d33c8dfd1eced37664a`
+  - Verification report commit: `285510ef2627a5d1d570f04ff1c23c803d91593d`
+- **Reference Manager Packet:** `95f810fe:docs/phase1-cezar/O2A_FIX_ROUND1.md`, `95f810fe:docs/phase1-cezar/O2_EXECUTION_PLAN.md`, and `O2A_REREVIEW_6fca_2855.md`
+- **Prior Baseline Preserved:** Sections 1–6 above (`5e3d8b74d200314acbf4a77b92554b5709918dc2`) remain intact. Deferred Minor findings `#1`, `#2`, `#3`, `#4`, and `#6` were explicitly excluded from Round 1 scope and remain deferred for final whole-branch review.
+
+### 7.1 Round 1 Verdict Summary
+
+- **Round 1 Spec-Compliance Verdict (`6fcae664..285510ef` vs `O2A_FIX_ROUND1.md` & `O2A_WORK_PACKET.md`):** **`PASS`** (portable/source scope only; Apple SDK / UI / live POSIX process-group execution gates remain `NOT_RUN`).
+- **Round 1 Code-Quality Verdict (`6fcae664..285510ef`):** **`PASS`**.
+- **Finding #5 Status:** **`ADDRESSED`** (verified on `285510ef2627a5d1d570f04ff1c23c803d91593d`; `0` new Critical, Important, or Minor findings introduced in this delta).
+
+### 7.2 Scope, Path, and Boundary Verification (`6fcae664..285510ef`)
+
+- `git -C <impl> diff --name-status 6fcae66429845fdddaff6a83a7e12671a22785bc..285510ef2627a5d1d570f04ff1c23c803d91593d`: exact 4 authorized paths only (`M Scripts/CI/runtime27.py`, `M Scripts/CI/runtime27_interruption.py`, `M docs/phase1-cezar/O2A_IMPLEMENTATION_REPORT.md`, `M tools/test_runtime27_interruption.py`).
+- `git -C <impl> diff --check 6fcae66429845fdddaff6a83a7e12671a22785bc..285510ef2627a5d1d570f04ff1c23c803d91593d`: exit `0` (whitespace clean).
+- `python.exe tools/verify_upstream_boundary.py` (executed inside implementation worktree):
+  - `--base 6fcae66429845fdddaff6a83a7e12671a22785bc --head 285510ef2627a5d1d570f04ff1c23c803d91593d`: **`PASS`** (`Changes detected: 4, Violations: 0, Warnings: 0`, exit `0`).
+  - `--base 1472fdea2aa61f4c4c830822758ea75a8c76e08b --head 285510ef2627a5d1d570f04ff1c23c803d91593d`: **`PASS`** (`Changes detected: 7, Violations: 0, Warnings: 0`, exit `0`).
+- `git -C <impl> diff --name-status 1472fdea..285510ef -- Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift docs/hq-integration/runtime27/R27_CASES.json`: empty diff (pinned files untouched).
+- `python.exe -m py_compile Scripts/CI/runtime27_interruption.py Scripts/CI/runtime27.py tools/test_runtime27_interruption.py`: exit `0`.
+- `rg -n 'run_logged|InterruptController|cleanup_active|cleanup_scope|apply_metadata|mark_interrupted'` across `Scripts/CI` and `tools`: confirmed all 5 production calls to `run_logged` in `Scripts/CI/runtime27.py` pass `interrupt_controller=controller` and zero other production callers exist.
+
+### 7.3 Finding #5 Verification Evidence & Cross-Caller Audit
+
+1. **First & Repeat Signal Handling Without Aborting Cleanup (`Scripts/CI/runtime27_interruption.py:51-85`):**
+   - `InterruptController._handle_signal` (`:73-85`) checks `if self.interrupted: self.repeat_signals += 1; return` first, then records `self.interrupted = True`, `self.signal_number`, and `self.signal_name` **before** checking `if self.cleanup_active: return`. Thus a first `SIGTERM`/`SIGINT` arriving during `cleanup_active=True` neither raises `KeyboardInterrupt` out of `stop_owned_process_group` nor miscounts itself as a repeat signal, while subsequent signals increment `repeat_signals` and return without aborting cleanup.
+   - `cleanup_scope()` (`:51-59`) uses `@contextlib.contextmanager` to snapshot `previous = self.cleanup_active`, set `self.cleanup_active = True`, and restore `self.cleanup_active = previous` in `finally:` (preserving outer `cleanup_active=True` when nested).
+   - `apply_metadata(target)` (`:61-71`) populates `interrupted`, `signal_number`, `signal_name`, and `repeat_signals` (if non-zero) only when `self.interrupted` is `True`, keeping non-interrupted receipts clean.
+2. **Production `main` -> `controller` -> `run_logged` Propagation (`Scripts/CI/runtime27.py:71-118`, `262-377`):**
+   - `run_logged(command, name, timeout, interrupt_controller=None)` (`:71-75`) preserves 3-argument standalone compatibility and raises `KeyboardInterrupt` before opening `OUT / name` or calling `subprocess.Popen` if `interrupt_controller.interrupted` is already `True`.
+   - On `except BaseException as error:` (`:82-118`), synthetic/direct `KeyboardInterrupt` triggers `interrupt_controller.mark_interrupted(error)` (`:86-87`), owned cleanup (`stop_owned_process_group` / `stop_owned_subprocess` and `.interrupted.json` creation + `apply_metadata(marker)` + persistence) runs inside `with guard:` (`interrupt_controller.cleanup_scope()` or `contextlib.nullcontext()`), and the original exception re-raises at `:118`.
+   - `main()` passes `interrupt_controller=controller` at all 5 `run_logged` calls (`:262`, `:280`, `:310-311`, `:314-315`, `:334`), wraps its `finally:` collection/report block in `with controller.cleanup_scope():` (`:360`), calls `controller.apply_metadata(report)` (`:372`), and retains `status="FAIL"` / `returncode=1` when `TimeoutExpired` occurred before/during cleanup while keeping normal non-signal execution (`EXECUTED_PASS`) unchanged.
+   - Verified compatibility with `Scripts/CI/run-faithful-ipad-matrix.py`: all calls to `run_interrupted_cleanup()` (`:497`, `:535`, where `controller.cleanup_active = True` is set at `:197`) occur only after `controller.interrupted` is already `True` via `mark_device_interrupted` / `except KeyboardInterrupt:`, so repeat-signal suppression in the matrix runner is unchanged.
+3. **Regression Test Quality (`tools/test_runtime27_interruption.py:665-1242`):**
+   - Existing Test 7 (`:665`) updates `fake_run_logged` strictly to match the new optional `interrupt_controller=None` parameter without relaxing any assertion.
+   - New `Runtime27SupervisorInterruptionTests` regressions exercise real `rt.main()`, `InterruptController.install()`, `rt.run_logged(..., interrupt_controller=controller)`, and `stop_owned_process_group` wiring across: (a) `TimeoutExpired` + first `SIGTERM`/`SIGINT` + repeat signal reaching `SIGKILL` escalation and `GONE_CHECKED` while preserving `status="FAIL"` (`exit 1`) plus `interrupted=True`/signal fields on both `.interrupted.json` and `result.json` and restoring `cleanup_active=False` + original signal handlers; (b) `TimeoutExpired` without signal; (c) signal during `wait()` + repeat signal during cleanup (`INTERRUPTED_UI_UNVERIFIED`, `exit 130`); (d) pre-existing `cleanup_active=True` preservation, already-interrupted `Popen` skip (`exit 130`), and 3-arg compatibility; and (e) unchanged normal `EXECUTED_PASS` path.
+
+### 7.4 Round 1 Test Evidence & Unchanged Native Gates
+
+- **Parent-Executed Portable Checks on Exact `285510ef` (Cited from `O2A_REREVIEW_6fca_2855.md`, Not Re-Run Redundantly):**
+  - `python.exe tools/test_runtime27_interruption.py`: **9/9 PASS** (`11.712s`; portable/mocked OS boundaries).
+  - `python.exe tools/test_verify_xcresult_zero_skips.py`: **10/10 PASS** (`0.616s`).
+- **Remaining Deferred Items & `NOT_RUN` Native Platform Gates:**
+  - Previously documented Minor findings `#1`, `#2`, `#3`, `#4`, and `#6` (Section 3) remain deferred for final whole-branch review.
+  - All 4 Apple/macOS/live POSIX gates listed in Section 6.3 remain `NOT_RUN` on Windows.
