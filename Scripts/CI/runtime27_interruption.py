@@ -6,10 +6,13 @@ simulator UDIDs. Never executes generic process kills or asserts complete
 external CoreSimulator agent cleanup from Python-side teardown alone.
 """
 import contextlib
+import json
 import os
+from pathlib import Path
 import signal
 import subprocess
 import sys
+import tempfile
 import time
 
 INTERRUPTED_PROCESS_GRACE_SECONDS = 1.0
@@ -201,3 +204,24 @@ def run_isolated_cleanup_step(name, action, errors):
     except (Exception, KeyboardInterrupt) as error:
         errors[name] = f"{type(error).__name__}: {error}"
         return None
+
+
+def write_json_atomic(target_path, payload, indent=2):
+    """Write JSON to a same-directory temporary sibling and atomically replace target."""
+    target = Path(target_path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    data = json.dumps(payload, indent=indent) + "\n"
+    fd, tmp_name = tempfile.mkstemp(prefix=f".{target.name}.", suffix=".tmp", dir=str(target.parent))
+    tmp_path = Path(tmp_name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(data)
+            handle.flush()
+            os.fsync(handle.fileno())
+        tmp_path.replace(target)
+    except BaseException:
+        try:
+            tmp_path.unlink(missing_ok=True)
+        except OSError:
+            pass
+        raise

@@ -11,9 +11,11 @@ Explicit scope limits (Windows host):
 
 from __future__ import annotations
 
+import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -25,15 +27,116 @@ HEADER_FILE = ROOT / "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift"
 PAGER_FILE = ROOT / "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"
 POLICY_RUNNER = ROOT / "Scripts/CI/test-native-sidebar-policy.py"
 
-WINDOWS_SDK_CANDIDATE = Path(
-    r"C:\Users\DAVID\AppData\Local\Programs\Swift\Platforms\6.3.3\Windows.platform\Developer\SDKs\Windows.sdk"
-)
+
+def _parse_version_tuple(text: str) -> tuple[int, ...]:
+    match = re.search(r"(\d+(?:\.\d+)*)", text)
+    if not match:
+        return ()
+    return tuple(int(part) for part in match.group(1).split("."))
+
+
+def _swift_compiler_info(swiftc_path: str | None = None) -> tuple[str | None, str | None, list[Path]]:
+    exe = swiftc_path or shutil.which("swiftc")
+    if not exe:
+        return None, None, []
+    platforms_roots: list[Path] = []
+    exe_path = Path(exe).resolve()
+    for ancestor in exe_path.parents:
+        candidate = ancestor / "Platforms"
+        if candidate.is_dir() and candidate not in platforms_roots:
+            platforms_roots.append(candidate)
+    try:
+        res = subprocess.run([exe, "-print-target-info"], capture_output=True, text=True, timeout=15)
+        if res.returncode == 0:
+            info = json.loads(res.stdout)
+            ver = _parse_version_tuple(info.get("compilerVersion", ""))
+            tag = info.get("swiftCompilerTag")
+            return (".".join(map(str, ver)) if ver else None), tag, platforms_roots
+    except (OSError, subprocess.SubprocessError, ValueError):
+        pass
+    try:
+        res = subprocess.run([exe, "--version"], capture_output=True, text=True, timeout=15)
+        if res.returncode == 0:
+            ver = _parse_version_tuple(res.stdout)
+            return (".".join(map(str, ver)) if ver else None), None, platforms_roots
+    except (OSError, subprocess.SubprocessError):
+        pass
+    return None, None, platforms_roots
+
+
+def discover_windows_sdk(
+    env: dict[str, str] | None = None,
+    swiftc_path: str | None = None,
+    extra_platforms_roots: list[Path] | None = None,
+    compiler_override: tuple[str | None, str | None] | None = None,
+) -> Path | None:
+    """Locate an existing compatible Windows SDK without personal paths or installs."""
+    lookup_env = os.environ if env is None else env
+    if compiler_override is not None:
+        compiler_ver, compiler_tag = compiler_override
+        roots: list[Path] = []
+    else:
+        compiler_ver, compiler_tag, roots = _swift_compiler_info(swiftc_path)
+    compiler_tuple = _parse_version_tuple(compiler_ver or "")
+
+    candidate_roots: list[Path] = list(extra_platforms_roots or []) + roots
+    if extra_platforms_roots is None:
+        for env_key, rel in (
+            ("LOCALAPPDATA", Path("Programs") / "Swift" / "Platforms"),
+            ("ProgramFiles", Path("Swift") / "Platforms"),
+        ):
+            base = lookup_env.get(env_key)
+            if base:
+                candidate_roots.append(Path(base) / rel)
+
+    seen_roots: set[Path] = set()
+    candidates: list[tuple[tuple[int, tuple[int, ...]], Path]] = []
+    for platforms_dir in candidate_roots:
+        if not platforms_dir.is_dir():
+            continue
+        resolved_root = platforms_dir.resolve()
+        if resolved_root in seen_roots:
+            continue
+        seen_roots.add(resolved_root)
+        for sdk in platforms_dir.glob("*/Windows.platform/Developer/SDKs/Windows.sdk"):
+            if not sdk.is_dir() or not (sdk / "usr").is_dir():
+                continue
+            settings_path = sdk / "SDKSettings.json"
+            settings = {}
+            if settings_path.is_file():
+                try:
+                    settings = json.loads(settings_path.read_text(encoding="utf-8"))
+                except (OSError, ValueError):
+                    settings = {}
+            sdk_ver_str = str(settings.get("Version") or sdk.parents[3].name)
+            sdk_tuple = _parse_version_tuple(sdk_ver_str)
+            toolchains = settings.get("Toolchains") or []
+            if compiler_tag and compiler_tag in toolchains:
+                rank = 4
+            elif compiler_tuple and sdk_tuple == compiler_tuple:
+                rank = 3
+            elif compiler_tuple and len(sdk_tuple) >= 2 and sdk_tuple[:2] == compiler_tuple[:2]:
+                rank = 2
+            elif compiler_tuple and len(sdk_tuple) >= 1 and sdk_tuple[:1] == compiler_tuple[:1]:
+                rank = 1
+            elif not compiler_tuple:
+                rank = 1
+            else:
+                continue
+            candidates.append(((rank, sdk_tuple), sdk))
+
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: item[0], reverse=True)
+    return candidates[0][1]
 
 
 def swift_env() -> dict[str, str]:
     env = os.environ.copy()
-    if os.name == "nt" and not env.get("SDKROOT") and WINDOWS_SDK_CANDIDATE.is_dir():
-        env["SDKROOT"] = str(WINDOWS_SDK_CANDIDATE)
+    if os.name == "nt" and not env.get("SDKROOT"):
+        discovered = discover_windows_sdk(env=env)
+        if discovered is not None:
+            env["SDKROOT"] = str(discovered)
     return env
 
 
@@ -52,23 +155,180 @@ def extract_brace_block(text: str, marker: str) -> str:
     raise AssertionError(f"Unbalanced braces after {marker!r}")
 
 
+def _strip_swift_comment(line: str) -> str:
+    in_string = False
+    escaped = False
+    for i, ch in enumerate(line):
+        if escaped:
+            escaped = False
+            continue
+        if ch == "\\" and in_string:
+            escaped = True
+            continue
+        if ch == '"':
+            in_string = not in_string
+            continue
+        if not in_string and ch == "/" and i + 1 < len(line) and line[i + 1] == "/":
+            return line[:i]
+    return line
+
+
+def _parse_swift_cond(expr: str):
+    """Parse minimal Swift #if boolean syntax into a conservative AST."""
+    tokens: list[str] = []
+    i = 0
+    n = len(expr)
+    while i < n:
+        ch = expr[i]
+        if ch.isspace():
+            i += 1
+        elif expr.startswith("&&", i) or expr.startswith("||", i):
+            tokens.append(expr[i : i + 2])
+            i += 2
+        elif ch in "!()":
+            tokens.append(ch)
+            i += 1
+        else:
+            start = i
+            paren_depth = 0
+            while i < n:
+                c = expr[i]
+                if c == "(":
+                    paren_depth += 1
+                    i += 1
+                elif c == ")" and paren_depth > 0:
+                    paren_depth -= 1
+                    i += 1
+                elif paren_depth == 0 and (
+                    c.isspace() or c in "!()" or expr.startswith("&&", i) or expr.startswith("||", i)
+                ):
+                    break
+                else:
+                    i += 1
+            tokens.append(expr[start:i])
+
+    pos = 0
+
+    def parse_or():
+        nonlocal pos
+        node = parse_and()
+        while pos < len(tokens) and tokens[pos] == "||":
+            pos += 1
+            node = ("or", node, parse_and())
+        return node
+
+    def parse_and():
+        nonlocal pos
+        node = parse_unary()
+        while pos < len(tokens) and tokens[pos] == "&&":
+            pos += 1
+            node = ("and", node, parse_unary())
+        return node
+
+    def parse_unary():
+        nonlocal pos
+        if pos < len(tokens) and tokens[pos] == "!":
+            pos += 1
+            return ("not", parse_unary())
+        if pos < len(tokens) and tokens[pos] == "(":
+            pos += 1
+            inner = parse_or()
+            if pos >= len(tokens) or tokens[pos] != ")":
+                return ("unknown",)
+            pos += 1
+            return inner
+        if pos >= len(tokens):
+            return ("unknown",)
+        tok = tokens[pos]
+        pos += 1
+        if tok == "DEBUG":
+            return ("debug",)
+        if tok == "true":
+            return ("lit", True)
+        if tok == "false":
+            return ("lit", False)
+        return ("unknown",)
+
+    if not tokens:
+        return ("unknown",)
+    ast = parse_or()
+    if pos != len(tokens):
+        return ("unknown",)
+    return ast
+
+
+def _eval_cond_3val(node, debug_val: bool):
+    """Evaluate AST in 3-valued logic: True, False, or None (unknown)."""
+    kind = node[0]
+    if kind == "lit":
+        return node[1]
+    if kind == "debug":
+        return debug_val
+    if kind == "unknown":
+        return None
+    if kind == "not":
+        val = _eval_cond_3val(node[1], debug_val)
+        return None if val is None else (not val)
+    if kind == "and":
+        left = _eval_cond_3val(node[1], debug_val)
+        if left is False:
+            return False
+        right = _eval_cond_3val(node[2], debug_val)
+        if right is False:
+            return False
+        if left is True and right is True:
+            return True
+        return None
+    if kind == "or":
+        left = _eval_cond_3val(node[1], debug_val)
+        if left is True:
+            return True
+        right = _eval_cond_3val(node[2], debug_val)
+        if right is True:
+            return True
+        if left is False and right is False:
+            return False
+        return None
+    return None
+
+
+def _branch_proven_debug_only(node) -> tuple[bool, bool]:
+    """Return (is_debug_only, is_possibly_active)."""
+    in_release = _eval_cond_3val(node, False)
+    in_debug = _eval_cond_3val(node, True)
+    possibly_active = (in_release is not False) or (in_debug is not False)
+    debug_only = (in_release is False) and (in_debug is not False)
+    return debug_only, possibly_active
+
+
 def line_in_debug_guard(lines: list[str], target_line_idx: int) -> bool:
-    stack: list[tuple[str, bool]] = []
+    # Each stack frame holds: (current_branch_ast, prior_branches_false_ast, saw_else)
+    stack: list[tuple[tuple, tuple, bool]] = []
     for idx, raw in enumerate(lines):
-        stripped = raw.strip()
         if idx == target_line_idx:
-            return any(is_debug for _, is_debug in stack)
-        if stripped.startswith("#if "):
-            cond = stripped[4:].strip()
-            stack.append((cond, "DEBUG" in cond and "!" not in cond))
-        elif stripped.startswith("#elseif "):
+            states = [_branch_proven_debug_only(branch_ast) for branch_ast, _, _ in stack]
+            return all(active for _, active in states) and any(debug_only for debug_only, _ in states)
+        stripped = _strip_swift_comment(raw).strip()
+        if stripped.startswith("#if ") or stripped.startswith("#if("):
+            cond = _parse_swift_cond(stripped[3:].strip())
+            stack.append((cond, ("not", cond), False))
+        elif stripped.startswith("#elseif ") or stripped.startswith("#elseif("):
             if stack:
-                cond = stripped[8:].strip()
-                stack[-1] = (cond, "DEBUG" in cond and "!" not in cond)
+                _, prior_false, saw_else = stack[-1]
+                if saw_else:
+                    stack[-1] = (("lit", False), ("lit", False), True)
+                else:
+                    cond = _parse_swift_cond(stripped[7:].strip())
+                    branch_ast = ("and", prior_false, cond)
+                    next_prior_false = ("and", prior_false, ("not", cond))
+                    stack[-1] = (branch_ast, next_prior_false, False)
         elif stripped == "#else":
             if stack:
-                cond, was_debug = stack[-1]
-                stack[-1] = (f"!({cond})", not was_debug)
+                _, prior_false, saw_else = stack[-1]
+                if saw_else:
+                    stack[-1] = (("lit", False), ("lit", False), True)
+                else:
+                    stack[-1] = (prior_false, ("lit", False), True)
         elif stripped.startswith("#endif"):
             if stack:
                 stack.pop()
@@ -119,6 +379,7 @@ class O2BNativeUXContractsTests(unittest.TestCase):
             '"panState ',
             '"swipeDecision ',
             '"pageChanged ',
+            '"restore ',
         ):
             matched_lines = [i for i, line in enumerate(lines) if marker in line]
             self.assertTrue(matched_lines, f"Missing expected sidebar diagnostic marker: {marker!r}")
@@ -374,6 +635,87 @@ struct O2BNumericDiagnosticRegressionHarness {{
                         f"STDOUT: {run_res.stdout}\nSTDERR: {run_res.stderr}",
                     )
                     self.assertIn("PASS:", run_res.stdout)
+
+    def test_debug_guard_parser_is_conservative(self) -> None:
+        positive = [
+            ("plain_debug", ["#if DEBUG", "emit()", "#endif"], 1),
+            ("ios_and_debug", ["#if os(iOS) && DEBUG", "emit()", "#endif"], 1),
+            ("debug_and_ios", ["#if DEBUG && os(iOS)", "emit()", "#endif"], 1),
+            ("negated_debug_else", ["#if !DEBUG", "prod()", "#else", "emit()", "#endif"], 3),
+            ("elseif_debug", ["#if FEATURE_X", "feat()", "#elseif DEBUG", "emit()", "#endif"], 3),
+            ("nested_uikit_then_debug", ["#if canImport(UIKit)", "#if DEBUG", "emit()", "#endif", "#endif"], 2),
+            (
+                "nested_debug_then_uikit_else",
+                ["#if DEBUG", "#if canImport(UIKit)", "a()", "#else", "emit()", "#endif", "#endif"],
+                4,
+            ),
+        ]
+        for label, lines, idx in positive:
+            with self.subTest(case=label):
+                self.assertTrue(line_in_debug_guard(lines, idx), f"{label} must be treated as DEBUG-only")
+
+        negative = [
+            ("non_debug_else", ["#if canImport(UIKit)", "a()", "#else", "b()", "#endif"], 3),
+            ("negated_debug_branch", ["#if !DEBUG", "prod()", "#endif"], 1),
+            ("debug_else_branch", ["#if DEBUG", "dbg()", "#else", "prod()", "#endif"], 3),
+            ("debug_or_feature", ["#if DEBUG || FEATURE_X", "both()", "#endif"], 1),
+            ("feature_or_debug", ["#if FEATURE_X || DEBUG", "both()", "#endif"], 1),
+            ("false_and_debug", ["#if false && DEBUG", "dead()", "#endif"], 1),
+            ("debug_and_false", ["#if DEBUG && false", "dead()", "#endif"], 1),
+            ("debug_and_not_debug", ["#if DEBUG && !DEBUG", "dead()", "#endif"], 1),
+            ("ios_and_not_debug_else", ["#if os(iOS) && !DEBUG", "a()", "#else", "b()", "#endif"], 3),
+            ("nested_debug_then_false", ["#if DEBUG", "#if false", "dead()", "#endif", "#endif"], 2),
+            ("nested_uikit_ios_else", ["#if canImport(UIKit)", "#if os(iOS)", "a()", "#else", "b()", "#endif", "#endif"], 4),
+        ]
+        for label, lines, idx in negative:
+            with self.subTest(case=label):
+                self.assertFalse(line_in_debug_guard(lines, idx), f"{label} must NOT be treated as DEBUG-only")
+
+    def test_swift_env_honors_sdkroot_and_has_no_personal_paths(self) -> None:
+        self_src = Path(__file__).read_text(encoding="utf-8")
+        self.assertIsNone(
+            re.search(r"Users[/\\][A-Za-z0-9._-]+[/\\]AppData", self_src, re.IGNORECASE),
+            "Test helper must not embed a personal Windows user path",
+        )
+
+        saved_sdkroot = os.environ.get("SDKROOT")
+        try:
+            os.environ["SDKROOT"] = r"C:\custom\Explicit.sdk"
+            env = swift_env()
+            self.assertEqual(env["SDKROOT"], r"C:\custom\Explicit.sdk")
+
+            if os.name == "nt":
+                os.environ.pop("SDKROOT", None)
+                env = swift_env()
+                self.assertTrue(env.get("SDKROOT"), "Portable Windows SDK discovery must resolve existing SDK")
+                self.assertTrue(Path(env["SDKROOT"]).is_dir())
+        finally:
+            if saved_sdkroot is None:
+                os.environ.pop("SDKROOT", None)
+            else:
+                os.environ["SDKROOT"] = saved_sdkroot
+
+        with tempfile.TemporaryDirectory(prefix="o2b-sdk-discovery-") as tmp_dir:
+            platforms = Path(tmp_dir) / "Platforms"
+            for ver, tag in (("5.10.1", "swift-5.10.1-RELEASE"), ("6.3.3", "swift-6.3.3-RELEASE")):
+                sdk = platforms / ver / "Windows.platform" / "Developer" / "SDKs" / "Windows.sdk"
+                (sdk / "usr").mkdir(parents=True)
+                (sdk / "SDKSettings.json").write_text(
+                    json.dumps({"Version": ver, "Toolchains": [tag]}), encoding="utf-8"
+                )
+            matched = discover_windows_sdk(
+                extra_platforms_roots=[platforms],
+                compiler_override=("6.3.3", "swift-6.3.3-RELEASE"),
+            )
+            self.assertEqual(
+                matched,
+                platforms / "6.3.3" / "Windows.platform" / "Developer" / "SDKs" / "Windows.sdk",
+            )
+            incompatible = discover_windows_sdk(
+                extra_platforms_roots=[platforms],
+                compiler_override=("7.0.0", "swift-7.0.0-RELEASE"),
+            )
+            self.assertIsNone(incompatible, "Incompatible major SDK version must not be selected")
 
 
 if __name__ == "__main__":
