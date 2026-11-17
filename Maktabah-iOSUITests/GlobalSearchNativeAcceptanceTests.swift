@@ -1,4 +1,5 @@
 import XCTest
+import CryptoKit
 
 /// Real application only. See qa-20261115/TEST_DESIGN.md for destination,
 /// fixture, held-provider and independent operation-trace requirements.
@@ -473,5 +474,182 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
             self.add(detail)
             return false
         }
+    }
+
+    // Separate future selection. These methods explicitly select Zayit through
+    // the existing native UI; backend=otzaria alone still means Advanced above.
+    // Recorded full-v32 totals/ranking are deliberately not UI expectations.
+    private struct ZayitCanonicalMetadata: Decodable {
+        let kind: String
+        let profileID: String
+        let profileVersion: Int
+        let databaseSHA256: String
+        let sourcePacketSHA256: String
+        let books: [String: String]
+        let rows: [[Int]]
+    }
+
+    private let zayitMetadataSHA256 = "c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b"
+
+    private func canonicalZayitMetadata() throws -> ZayitCanonicalMetadata {
+        let path = try XCTUnwrap(environment["GLOBAL_SEARCH_ZAYIT_CANONICAL_FIXTURE"],
+                                "Runner must supply the byte-sealed independent canonical metadata file")
+        guard path == "test-bundle:canonical-miniTest10-metadata.json" else {
+            XCTFail("Future runner must deliver the sealed metadata as a UITest bundle resource")
+            throw SetupError.missing("canonical metadata test-bundle delivery")
+        }
+        let testBundle = Bundle(for: GlobalSearchNativeAcceptanceTests.self)
+        let url = try XCTUnwrap(testBundle.url(forResource: "canonical-miniTest10-metadata", withExtension: "json"),
+                                "Metadata must be inside the installed test bundle, not a guessed host path")
+        let bytes = try Data(contentsOf: url)
+        let hash = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
+        XCTAssertEqual(hash, zayitMetadataSHA256, "Do not accept a fabricated or normalized oracle file")
+        guard hash == zayitMetadataSHA256 else { throw SetupError.missing("sealed canonical metadata hash") }
+        let delivery = XCTAttachment(string: "Read by UITest process from installed test bundle\nBundle: \(testBundle.bundleIdentifier ?? "<unknown>")\nURL: \(url.absoluteString)\nActual bytes: \(bytes.count)\nActual SHA256: \(hash)\nMetadata delivery only; no app/index readiness established")
+        delivery.name = "zayit-canonical-metadata-test-process-read"
+        delivery.lifetime = .keepAlways
+        add(delivery)
+        let metadata = try JSONDecoder().decode(ZayitCanonicalMetadata.self, from: bytes)
+        XCTAssertEqual(metadata.kind, "CANONICAL_MINITEST10_METADATA_NOT_ENGINE_RESULTS_OR_READINESS")
+        XCTAssertEqual(metadata.profileID, "miniTest10")
+        XCTAssertEqual(metadata.profileVersion, 6)
+        XCTAssertEqual(metadata.databaseSHA256, "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef")
+        XCTAssertEqual(metadata.sourcePacketSHA256, "702e89a066c27084f72c03ff826a1bf72328ef6ccf05f34aae70ef553cf13709")
+        XCTAssertEqual(metadata.rows.count, 18879)
+        XCTAssertEqual(metadata.books.count, 10)
+        // This seals the independent oracle, not the installed app/index.
+        // The manager must separately verify the actual installed profile pair.
+        return metadata
+    }
+
+    @MainActor
+    private func launchExplicitZayitFlexibleSearch() throws {
+        try launchSearch(backend: "otzaria")
+        try chooseMode("zayit")
+        XCTAssertEqual(try require("global-search-mode").value as? String, "זית")
+        try openOptions()
+        let picker = try revealOption("global-search-zayit-match")
+        picker.tap()
+        // Actual existing Picker option label; no added production selector.
+        let flexibleLabel = "גמיש — מרחק 5 מילים"
+        let flexible = app.buttons[flexibleLabel]
+        XCTAssertTrue(flexible.waitForExistence(timeout: 15))
+        flexible.tap()
+        eventually("Native Zayit Picker must visibly select its existing flexible/near5 mode") {
+            let selected = self.element("global-search-zayit-match")
+            return selected.value as? String == flexibleLabel || selected.label.contains(flexibleLabel)
+        }
+        try dismissOptions()
+        XCTAssertEqual(element("global-search-mode").value as? String, "זית")
+        XCTAssertEqual(element("global-search-books").label, "כל הספרים",
+                       "Require the actual all-books scope of the installed ten-book profile")
+    }
+
+    @MainActor
+    private func requireCanonicalZayitRow(_ row: XCUIElement,
+                                          metadata: ZayitCanonicalMetadata) throws -> [Int] {
+        let prefix = "search-result-preview-toggle-zayit:miniTest10:"
+        XCTAssertTrue(row.identifier.hasPrefix(prefix), "Actual native row must belong to Zayit and the required profile")
+        let lineID = try XCTUnwrap(Int(row.identifier.dropFirst(prefix.count)))
+        let canonical = try XCTUnwrap(metadata.rows.first { $0.first == lineID },
+                                      "Observed engine line ID must exist in independently decoded canonical SQL")
+        XCTAssertEqual(canonical.count, 3)
+        XCTAssertNotNil(metadata.books[String(canonical[1])])
+        XCTAssertGreaterThanOrEqual(canonical[2], 0)
+        return canonical
+    }
+
+    @MainActor
+    private func actualLoadedProjection() throws -> (matched: Int, loaded: Int) {
+        let label = try require("global-search-count").label
+        let numbers = label.split { !$0.isNumber }.compactMap { Int($0) }
+        XCTAssertGreaterThanOrEqual(numbers.count, 2, "Require actual filtered-of-loaded presentation")
+        guard numbers.count >= 2 else { throw SetupError.missing("filtered loaded count") }
+        XCTAssertGreaterThanOrEqual(numbers[1], numbers[0])
+        return (numbers[0], numbers[1])
+    }
+
+    @MainActor
+    func testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow() throws {
+        let metadata = try canonicalZayitMetadata()
+        try launchExplicitZayitFlexibleSearch()
+        try submit("בראשית") // Positive full-v32 candidate; installed mini index still a real prerequisite.
+        let row = try firstOriginalRow()
+        let canonical = try requireCanonicalZayitRow(row, metadata: metadata)
+        XCTAssertEqual(try queryField().value as? String, "בראשית")
+        XCTAssertEqual(element("global-search-mode").value as? String, "זית")
+        XCTAssertFalse(element("global-search-sort").exists)
+        let evidence = XCTAttachment(string: "Actual observed stable ID: \(row.identifier)\nIndependent SQL [lineID,bookID,lineIndex]: \(canonical)\nOracle SHA256: \(zayitMetadataSHA256)")
+        evidence.name = "zayit-observed-row-independent-canonical-identity"
+        evidence.lifetime = .keepAlways
+        add(evidence)
+    }
+
+    @MainActor
+    func testZayitLoadedTitleSubstringUsesActualMountedProjection() throws {
+        let metadata = try canonicalZayitMetadata()
+        try launchExplicitZayitFlexibleSearch()
+        try submit("בראשית")
+        let original = try firstOriginalRow()
+        _ = try requireCanonicalZayitRow(original, metadata: metadata)
+        let originalID = original.identifier
+        eventually("Initial native request/paging must finish before measuring the local projection") {
+            !self.element("global-search-loading").exists && !self.element("global-search-cancel").exists
+        }
+        let loadedBefore = try unfilteredLoadedCount()
+        let booksBefore = try require("global-search-books").label
+        try require("global-search-result-filter-toggle").tap()
+        let filter = try require("global-search-result-filter")
+        filter.tap()
+        filter.typeText("ברכות\n")
+        let actual = try actualLoadedProjection()
+        XCTAssertEqual(actual.loaded, loadedBefore)
+        XCTAssertGreaterThan(actual.matched, 0, "Actual mounted page must supply a positive projection before accepting this case")
+        let mounted = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@",
+                                                       "search-result-preview-toggle-")).allElementsBoundByIndex.filter(\.isHittable)
+        XCTAssertFalse(mounted.isEmpty)
+        for row in mounted {
+            let canonical = try requireCanonicalZayitRow(row, metadata: metadata)
+            let title = try XCTUnwrap(metadata.books[String(canonical[1])])
+            XCTAssertTrue(title.contains("ברכות"), "Substring includes both ברכות and משנה ברכות where actually loaded")
+        }
+        XCTAssertEqual(try queryField().value as? String, "בראשית")
+        XCTAssertEqual(element("global-search-mode").value as? String, "זית")
+        XCTAssertEqual(element("global-search-books").label, booksBefore)
+        XCTAssertFalse(element("global-search-dirty").exists)
+        XCTAssertFalse(element("global-search-loading").exists)
+        // Never assert the retained full-index first50 count11 against this List.
+        try require("global-search-result-filter-done").tap()
+        for _ in 0..<8 {
+            if app.buttons[originalID].exists { break }
+            try require("global-search-results").swipeDown()
+        }
+        XCTAssertTrue(app.buttons[originalID].exists)
+        XCTAssertEqual(try unfilteredLoadedCount(), loadedBefore)
+    }
+
+    @MainActor
+    func testZayitZeroMatchProjectionRetainsRealExplicitPaging() throws {
+        let metadata = try canonicalZayitMetadata()
+        try launchExplicitZayitFlexibleSearch()
+        try submit("אמר")
+        _ = try requireCanonicalZayitRow(firstOriginalRow(), metadata: metadata)
+        _ = try applyNoMatchFilter()
+        let before = try actualLoadedProjection()
+        XCTAssertEqual(before.matched, 0)
+        let more = loadMoreButton()
+        XCTAssertTrue(more.waitForExistence(timeout: 30), "Require actual installed-index hasMore after native prefetch")
+        XCTAssertTrue(more.isHittable)
+        more.tap()
+        eventually("Actual Zayit explicit page must increase loaded count with no matching titles", timeout: 90) {
+            let numbers = self.element("global-search-count").label.split { !$0.isNumber }.compactMap { Int($0) }
+            return numbers.count >= 2 && numbers[0] == 0 && numbers[1] > before.loaded
+        }
+        XCTAssertEqual(try queryField().value as? String, "אמר")
+        XCTAssertEqual(element("global-search-mode").value as? String, "זית")
+        XCTAssertTrue(element("global-search-filter-empty").exists)
+        XCTAssertFalse(element("global-search-page-error").exists)
+        XCTAssertFalse(element("global-search-dirty").exists)
+        // Provider request/cursor/cancellation traces remain separate prerequisites.
     }
 }

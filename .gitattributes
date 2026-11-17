@@ -10,3 +10,6 @@ docs/hq-native-binding-integration/approved-hook-checks/** -text whitespace=-bla
 # Exact compiler correction source receipts and portable execution.
 docs/hq-native-binding-integration/mount-wait-owner/** -text whitespace=-blank-at-eol,-blank-at-eof
 docs/hq-native-binding-integration/mount-wait-manager/** -text whitespace=-blank-at-eol,-blank-at-eof
+
+# Sealed independent SQL metadata; preserve exact UITest oracle bytes.
+Maktabah-iOSUITests/canonical-miniTest10-metadata.json -text

@@ -385,6 +385,25 @@ def audit_generated_privacy(report, original_blob):
         "all_original_reasons_retained": True, "added_reasons": added})
 
 
+def verify_zayit_test_metadata(report, test_bundle=None):
+    """Seal source and Xcode-built resource; never modify a signed test bundle."""
+    name = "canonical-miniTest10-metadata.json"
+    expected = "c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b"
+    source = ROOT / "Maktabah-iOSUITests" / name
+    require(source.is_file() and source.stat().st_size == 349131 and digest(source) == expected,
+            "Canonical Zayit test metadata source differs from the sealed handoff")
+    receipt = report.setdefault("zayit_test_metadata", {
+        "source": str(source.relative_to(ROOT)), "sha256": expected, "bytes": 349131,
+        "native_process_read": "NOT_RUN; requires XCTest attachment from the installed bundle"})
+    if test_bundle is not None:
+        resource = test_bundle / name
+        require(resource.is_file() and resource.read_bytes() == source.read_bytes(),
+                "Xcode did not package exact canonical Zayit metadata in the UITest bundle")
+        receipt["built_resource"] = str(resource.relative_to(ROOT))
+        receipt["built_resource_sha256"] = digest(resource)
+    return receipt
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--preflight-only", action="store_true", help="Source/input closure only; no SDK or downloads")
@@ -402,6 +421,8 @@ def main():
         report.update(scope="SIMULATOR_BUILD_FOR_REAL_UI", signing="SIMULATOR_AD_HOC_ONLY")
     try:
         report.update(preflight(config))
+        if args.build_for_testing:
+            verify_zayit_test_metadata(report)
         require(sys.platform == "darwin", "Actual Apple check requires macOS/Xcode")
         report["xcode"] = capture("xcodebuild", "-version")
         report["swift"] = capture("xcrun", "swiftc", "--version")
@@ -437,6 +458,9 @@ def main():
                    "RCT_NO_LAUNCH_PACKAGER=1", "SKIP_BUNDLING=1", "FAIL_ON_MISSING_BUNDLE=1"]
         logged(command, "simulator-build-for-testing.log" if args.build_for_testing else "unsigned-app-build.log", report)
         verify_selected_zayit_files(report)
+        if args.build_for_testing:
+            verify_zayit_test_metadata(report, derived_data /
+                "Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest")
         built_bundle = derived_data / "Build/Products/Debug-iphonesimulator/Maktabah.app/main.jsbundle"
         require(built_bundle.is_file(), "Built app has no Embedded bundle")
         require(digest(built_bundle) == report["resource_inputs"]["jsbundle_sha256"], "Built app copied a nonmatching Embedded bundle")

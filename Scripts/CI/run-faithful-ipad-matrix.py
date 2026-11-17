@@ -365,6 +365,10 @@ def main():
                 environment = os.environ.copy()
                 container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
                 environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
+                if any(case.startswith("GlobalSearchNativeAcceptanceTests/testZayit") for case in selection):
+                    environment["TEST_RUNNER_GLOBAL_SEARCH_ZAYIT_CANONICAL_FIXTURE"] = (
+                        "test-bundle:canonical-miniTest10-metadata.json")
+                    device["canonicalZayitMetadataDelivery"] = "test-bundle; native read attachment required"
                 if any(case.startswith("NativeRoutingAcceptanceTests/") for case in selection):
                     native_url_delivery = runpy.run_path("Scripts/CI/runtime27-url-delivery.py")["NativeURLDelivery"](
                         udid, container, label, artifacts / "runtime27")
