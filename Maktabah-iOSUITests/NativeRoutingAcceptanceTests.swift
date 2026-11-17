@@ -4,9 +4,55 @@ import UIKit
 /// Actual system URL entry + existing UI. These require the manager-applied
 /// native registration packet. No smoke bypass or synthetic scene receipt.
 final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
+    private enum SystemURLConfirmationError: Error {
+        case unexpectedOrAmbiguousDialog
+        case missingOpenAction
+        case dialogDidNotDismiss
+    }
+
+    private static let expectedSpringBoardOpenTitles: Set<String> = [
+        "Open in \u{201C}ChavrusaText\u{201D}?",
+        "Open in \"ChavrusaText\"?",
+    ]
+
     // The original iOSHistoryView owns this localized navigation title
     // (Library.xcstrings/historyAndFavorites), including on the iPad History tab.
     @MainActor private var history: XCUIElement { app.navigationBars["History & Favorites"] }
+
+    private func captureSystemDialogEvidence(_ name: String, springboard: XCUIApplication) {
+        let appDescription = app?.debugDescription ?? "app=nil"
+        let tree = XCTAttachment(string: "APP\n\(appDescription)\nSPRINGBOARD\n\(springboard.debugDescription)")
+        tree.name = name + "-hierarchy"; tree.lifetime = .keepAlways; add(tree)
+        let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        screen.name = name + "-screen"; screen.lifetime = .keepAlways; add(screen)
+    }
+
+    private func cleanupLeftoverSpringBoardOpenAlertsInTeardown() {
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let initialCount = springboard.alerts.count
+        guard initialCount > 0 else { return }
+        captureSystemDialogEvidence("native-route-teardown-springboard", springboard: springboard)
+        var cancelledCount = 0
+        for _ in 0..<8 {
+            let alerts = springboard.alerts.allElementsBoundByIndex
+            guard let alert = alerts.first else { break }
+            let titleMatches = Self.expectedSpringBoardOpenTitles.contains(alert.label)
+                || Self.expectedSpringBoardOpenTitles.contains { alert.staticTexts[$0].exists }
+            guard titleMatches else { break }
+            let cancelMatches = alert.buttons.matching(NSPredicate(format: "label == %@", "Cancel")).allElementsBoundByIndex
+            guard cancelMatches.count == 1, let cancelButton = cancelMatches.first,
+                  cancelButton.exists, cancelButton.isHittable else { break }
+            cancelButton.tap()
+            let reduced = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "count < %d", alerts.count),
+                object: springboard.alerts
+            )
+            _ = XCTWaiter.wait(for: [reduced], timeout: 5)
+            cancelledCount += 1
+        }
+        XCTFail("Leftover SpringBoard alert(s) remained at teardown (initialCount=\(initialCount), cancelledChavrusaPrompts=\(cancelledCount))")
+    }
+
     override func tearDownWithError() throws {
         // XCTest teardown is nonisolated. Retain its standard thread-safe
         // diagnostics directly, as the existing Search teardown does.
@@ -16,6 +62,7 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
             let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
             screen.name = "native-route-final-screen"; screen.lifetime = .keepAlways; add(screen)
         }
+        cleanupLeftoverSpringBoardOpenAlertsInTeardown()
         try super.tearDownWithError()
     }
     @MainActor private func configure(_ backend: String) {
@@ -42,6 +89,42 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(value.isEmpty, "Require the actual native target process identity")
         return value
     }
+    @MainActor private func confirmSpringBoardOpenDialog(springboard: XCUIApplication) throws {
+        let alerts = springboard.alerts.allElementsBoundByIndex
+        guard alerts.count == 1, let alert = alerts.first else {
+            captureSystemDialogEvidence("ambiguous-springboard-alerts", springboard: springboard)
+            XCTFail("Expected exactly one SpringBoard Open-in confirmation alert, found \(alerts.count)")
+            throw SystemURLConfirmationError.unexpectedOrAmbiguousDialog
+        }
+        let alertTitle = alert.label
+        let titleMatches = Self.expectedSpringBoardOpenTitles.contains(alertTitle)
+            || Self.expectedSpringBoardOpenTitles.contains { alert.staticTexts[$0].exists }
+        guard titleMatches else {
+            captureSystemDialogEvidence("unexpected-springboard-alert", springboard: springboard)
+            XCTFail("Unexpected SpringBoard alert '\(alertTitle)' during system URL delivery")
+            throw SystemURLConfirmationError.unexpectedOrAmbiguousDialog
+        }
+        let openMatches = alert.buttons.matching(NSPredicate(format: "label == %@", "Open")).allElementsBoundByIndex
+        guard openMatches.count == 1, let openButton = openMatches.first,
+              openButton.exists, openButton.isHittable else {
+            captureSystemDialogEvidence("missing-springboard-open-button", springboard: springboard)
+            XCTFail("Expected unique hittable 'Open' action on SpringBoard confirmation alert")
+            throw SystemURLConfirmationError.missingOpenAction
+        }
+        openButton.tap()
+        let dismissed = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "count == 0"),
+            object: springboard.alerts
+        )
+        let dismissResult = XCTWaiter.wait(for: [dismissed], timeout: 10)
+        if dismissResult != .completed {
+            captureSystemDialogEvidence("springboard-open-alert-stuck", springboard: springboard)
+            XCTFail("SpringBoard Open-in confirmation remained visible after tapping Open")
+            throw SystemURLConfirmationError.dialogDidNotDismiss
+        }
+        let confirmed = XCTAttachment(string: "confirmedAlert=\(alertTitle) action=Open")
+        confirmed.name = "actual-system-open-confirmation"; confirmed.lifetime = .keepAlways; add(confirmed)
+    }
     @MainActor private func openInExistingProcess(_ url: URL) throws {
         // Xcode27.1's XCUIApplication.open actually launched a NEW target PID
         // on every call in43844345630. The background Runner's UIApplication
@@ -49,6 +132,13 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         // simctl openurl; its ACK proves transport only, never UI completion.
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
         let originalPID = try targetProcessIdentifier()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        if springboard.alerts.count > 0 {
+            captureSystemDialogEvidence("preexisting-springboard-alert", springboard: springboard)
+            XCTFail("Unexpected SpringBoard alert present before system URL delivery")
+            throw SystemURLConfirmationError.unexpectedOrAmbiguousDialog
+        }
+        let hadHistoryBefore = history.exists
         let token = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_URL_TOKEN"])
         let udid = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_URL_UDID"])
         let sidecar = try workspaceSidecarURL().standardizedFileURL
@@ -83,6 +173,19 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(response["delivered"] as? Bool, true)
         let transport = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
         transport.name = "actual-system-url-transport-only"; transport.lifetime = .keepAlways; add(transport)
+        let dialogOrDirectDelivery = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                let sb = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+                let targetApp = XCUIApplication(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+                return sb.alerts.count > 0
+                    || targetApp.alerts["Unable to open link"].exists
+                    || (!hadHistoryBefore && targetApp.navigationBars["History & Favorites"].exists)
+            }
+        }, object: nil)
+        _ = XCTWaiter.wait(for: [dialogOrDirectDelivery], timeout: 10)
+        if springboard.alerts.count > 0 {
+            try confirmSpringBoardOpenDialog(springboard: springboard)
+        }
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
         let actualPID = try targetProcessIdentifier()
         XCTAssertEqual(actualPID, originalPID, "A warm URL must not restart the target app")

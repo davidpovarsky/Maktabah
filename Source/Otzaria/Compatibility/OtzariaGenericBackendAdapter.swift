@@ -45,67 +45,124 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
 
     func section(at locator: TextLocator) async throws -> LibraryTextSection {
         #if os(iOS)
+        #if DEBUG
+        let debugPositionKind: String
+        switch locator.position {
+        case .legacyLine: debugPositionKind = "legacyLine"
+        case .canonicalRef: debugPositionKind = "canonicalRef"
+        }
+        let debugWorkKeyKind: String = locator.workKey.hasPrefix("book:")
+            ? "bookPrefix"
+            : (Int(locator.workKey) != nil ? "numeric" : "stableKey")
+        Self.debugLog("stage=enter backend=\(locator.backend.rawValue) positionKind=\(debugPositionKind) workKeyKind=\(debugWorkKeyKind)")
+        #endif
         let backgroundTask = Task.detached(priority: .userInitiated) { () -> (section: LibraryTextSection, generation: UInt64, mode: OtzariaUnitMode) in
-            try Task.checkCancellation()
-            guard locator.backend == .otzaria,
-                  case .legacyLine(let line) = locator.position, line >= 0 else { throw LibraryBackendError.invalidLocator }
-            let bridge = OtzariaMaktabahBridge.shared
-            let generation = try bridge.withDatabase { _ in bridge.generationSnapshot() }
-            let bookID: Int?
-            if locator.workKey.hasPrefix("book:"),
-               let parsed = Int(locator.workKey.dropFirst("book:".count)) {
-                bookID = parsed
-            } else if let parsed = Int(locator.workKey) {
-                bookID = parsed
-            } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: locator.workKey, expectedBookId: 0) {
-                bookID = resolved.id
-            } else {
-                bookID = nil
-            }
-            guard let bookID, bookID > 0 else { throw LibraryBackendError.invalidLocator }
-
-            let mode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
-            // The legacy optional bridge methods log and erase SQL/decode errors.
-            // Preserve those errors here so a failed chapter cannot appear as a
-            // successful single-row fallback or as the last navigation unit.
-            let loaded = try bridge.withCachedReadingUnit { service in
-                try line == 0
-                    ? service.firstReadingUnit(bookId: bookID, mode: mode)
-                    : service.readingUnit(bookId: bookID, containingLineIndex: line, mode: mode)
-            }
-            if let unit = loaded {
-                let adjacent = bridge.withReadingUnitService { service in
-                    Result {
-                        (try service.previousDescriptor(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode),
-                         try service.nextDescriptor(bookId: bookID, afterLineIndex: unit.endLineIndex, mode: mode))
-                    }
-                }
-                guard let adjacent else { throw CancellationError() }
-                let (previous, next) = try adjacent.get()
+            do {
                 try Task.checkCancellation()
-                guard generation == bridge.generationSnapshot(), mode == bridge.currentReadingUnitMode else { throw CancellationError() }
-                return (OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next), generation, mode)
-            }
+                guard locator.backend == .otzaria,
+                      case .legacyLine(let line) = locator.position, line >= 0 else {
+                    #if DEBUG
+                    Self.debugLog("stage=reject_locator errorCategory=invalidLocator backend=\(locator.backend.rawValue) positionKind=\(debugPositionKind)")
+                    #endif
+                    throw LibraryBackendError.invalidLocator
+                }
+                let bridge = OtzariaMaktabahBridge.shared
+                let generation = try bridge.withDatabase { _ in bridge.generationSnapshot() }
+                let bookID: Int?
+                if locator.workKey.hasPrefix("book:"),
+                   let parsed = Int(locator.workKey.dropFirst("book:".count)) {
+                    bookID = parsed
+                } else if let parsed = Int(locator.workKey) {
+                    bookID = parsed
+                } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: locator.workKey, expectedBookId: 0) {
+                    bookID = resolved.id
+                } else {
+                    bookID = nil
+                }
+                guard let bookID, bookID > 0 else {
+                    #if DEBUG
+                    Self.debugLog("stage=reject_book_id errorCategory=invalidLocator workKeyKind=\(debugWorkKeyKind) lineIndex=\(line)")
+                    #endif
+                    throw LibraryBackendError.invalidLocator
+                }
 
-            try Task.checkCancellation()
-            guard generation == bridge.generationSnapshot() else { throw CancellationError() }
-            let content = line == 0
-                ? OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookID)
-                : OtzariaMaktabahBridge.shared.getContent(bookId: bookID, contentId: line)
-            guard let content else { throw LibraryBackendError.invalidLocator }
-            let current = TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine(content.id))
-            let previous = OtzariaMaktabahBridge.shared.getPreviousContent(bookId: bookID, before: content.id)
-            let next = OtzariaMaktabahBridge.shared.getNextContent(bookId: bookID, after: content.id)
-            // Newlines inside a SQLite row are not additional SQLite line IDs.
-            let segments = [LibraryTextSegment(locator: current, heRef: content.heRef, primaryText: content.nash, translation: nil)]
-            try Task.checkCancellation()
-            guard generation == bridge.generationSnapshot(), mode == bridge.currentReadingUnitMode else { throw CancellationError() }
-            return (LibraryTextSection(locator: current, displayRef: content.heRef ?? "\(content.id)",
-                heRef: content.heRef,
-                segments: segments,
-                previous: previous.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
-                next: next.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
-                versions: [], links: [], origin: .offline), generation, mode)
+                let mode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
+                // The legacy optional bridge methods log and erase SQL/decode errors.
+                // Preserve those errors here so a failed chapter cannot appear as a
+                // successful single-row fallback or as the last navigation unit.
+                let loaded = try bridge.withCachedReadingUnit { service in
+                    try line == 0
+                        ? service.firstReadingUnit(bookId: bookID, mode: mode)
+                        : service.readingUnit(bookId: bookID, containingLineIndex: line, mode: mode)
+                }
+                if let unit = loaded {
+                    let adjacent = bridge.withReadingUnitService { service in
+                        Result {
+                            (try service.previousDescriptor(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode),
+                             try service.nextDescriptor(bookId: bookID, afterLineIndex: unit.endLineIndex, mode: mode))
+                        }
+                    }
+                    guard let adjacent else {
+                        #if DEBUG
+                        Self.debugLog("stage=adjacent_stale errorCategory=cancellation bookId=\(bookID) lineIndex=\(line)")
+                        #endif
+                        throw CancellationError()
+                    }
+                    let (previous, next) = try adjacent.get()
+                    try Task.checkCancellation()
+                    guard generation == bridge.generationSnapshot(), mode == bridge.currentReadingUnitMode else {
+                        #if DEBUG
+                        Self.debugLog("stage=unit_fence_stale errorCategory=cancellation bookId=\(bookID) lineIndex=\(line)")
+                        #endif
+                        throw CancellationError()
+                    }
+                    #if DEBUG
+                    Self.debugLog("stage=unit_hit bookId=\(bookID) lineIndex=\(line) mode=\(mode.storageValue)")
+                    #endif
+                    return (OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next), generation, mode)
+                }
+
+                #if DEBUG
+                Self.debugLog("stage=unit_nil bookId=\(bookID) lineIndex=\(line) mode=\(mode.storageValue) cancelled=\(Task.isCancelled) genMatch=\(generation == bridge.generationSnapshot())")
+                #endif
+                try Task.checkCancellation()
+                guard generation == bridge.generationSnapshot() else { throw CancellationError() }
+                let content = line == 0
+                    ? OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookID)
+                    : OtzariaMaktabahBridge.shared.getContent(bookId: bookID, contentId: line)
+                guard let content else {
+                    #if DEBUG
+                    Self.debugLog("stage=fallback_nil errorCategory=invalidLocator bookId=\(bookID) lineIndex=\(line) mode=\(mode.storageValue)")
+                    #endif
+                    throw LibraryBackendError.invalidLocator
+                }
+                let current = TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine(content.id))
+                let previous = OtzariaMaktabahBridge.shared.getPreviousContent(bookId: bookID, before: content.id)
+                let next = OtzariaMaktabahBridge.shared.getNextContent(bookId: bookID, after: content.id)
+                // Newlines inside a SQLite row are not additional SQLite line IDs.
+                let segments = [LibraryTextSegment(locator: current, heRef: content.heRef, primaryText: content.nash, translation: nil)]
+                try Task.checkCancellation()
+                guard generation == bridge.generationSnapshot(), mode == bridge.currentReadingUnitMode else {
+                    #if DEBUG
+                    Self.debugLog("stage=fallback_fence_stale errorCategory=cancellation bookId=\(bookID) lineIndex=\(line)")
+                    #endif
+                    throw CancellationError()
+                }
+                #if DEBUG
+                Self.debugLog("stage=fallback_hit bookId=\(bookID) lineIndex=\(line)")
+                #endif
+                return (LibraryTextSection(locator: current, displayRef: content.heRef ?? "\(content.id)",
+                    heRef: content.heRef,
+                    segments: segments,
+                    previous: previous.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
+                    next: next.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
+                    versions: [], links: [], origin: .offline), generation, mode)
+            } catch {
+                #if DEBUG
+                Self.debugLog("stage=background_error errorCategory=\(Self.debugErrorCategory(error))")
+                #endif
+                throw error
+            }
         }
 
         let result = try await withTaskCancellationHandler(
@@ -114,12 +171,47 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         )
         try Task.checkCancellation()
         let bridge = OtzariaMaktabahBridge.shared
-        guard result.generation == bridge.generationSnapshot(), result.mode == bridge.currentReadingUnitMode else { throw CancellationError() }
+        guard result.generation == bridge.generationSnapshot(), result.mode == bridge.currentReadingUnitMode else {
+            #if DEBUG
+            Self.debugLog("stage=outer_fence_stale errorCategory=cancellation")
+            #endif
+            throw CancellationError()
+        }
         return result.section
         #else
         throw LibraryBackendError.capabilityUnavailable
         #endif
     }
+
+    #if os(iOS) && DEBUG
+    private static func debugLog(_ message: String) {
+        OtzariaFileLogger.shared.log("[OtzariaGenericBackendAdapter] \(message)")
+    }
+
+    private static func debugErrorCategory(_ error: Error) -> String {
+        if error is CancellationError { return "cancellation" }
+        if let backendError = error as? LibraryBackendError {
+            switch backendError {
+            case .invalidLocator: return "invalidLocator"
+            case .staleRequest: return "staleRequest"
+            case .capabilityUnavailable: return "capabilityUnavailable"
+            case .unavailableOffline: return "unavailableOffline"
+            case .unsupportedSchema: return "unsupportedSchema"
+            case .invalidResponse: return "invalidResponse"
+            case .httpStatus: return "httpStatus"
+            case .corruptData: return "corruptData"
+            case .insufficientDiskSpace: return "insufficientDiskSpace"
+            }
+        }
+        if let readingUnitError = error as? OtzariaReadingUnitError {
+            switch readingUnitError {
+            case .inconsistentSourceLines: return "inconsistentSourceLines"
+            }
+        }
+        let nsError = error as NSError
+        return "nsError:\(nsError.domain):\(nsError.code)"
+    }
+    #endif
 
     func normalizedLocator(for input: String) async throws -> TextLocator {
         let pieces = input.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
