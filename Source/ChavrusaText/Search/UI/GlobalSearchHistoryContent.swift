@@ -28,7 +28,10 @@ struct GlobalSearchHistoryContent: View {
                 }
             } header: {
                 HStack {
+                    // Section headers in plain Lists default to subdued contrast
+                    // against Color.appBackground; keep dynamic primary contrast.
                     Text("חיפושים אחרונים")
+                        .foregroundStyle(.primary)
                     Spacer()
                     if !viewModel.searchHistory.isEmpty {
                         Button("נקה הכול") {

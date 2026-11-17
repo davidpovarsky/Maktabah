@@ -28,6 +28,14 @@ struct NativeSidebarPolicyTests {
             check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: .nan, vertical: 0, isRTL: isRTL) == nil, "Invalid gesture rejected")
         }
         check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: 50, vertical: 40, isRTL: false) == nil, "Diagonal boundary remains untouched")
+        check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: 44, vertical: 0, isRTL: false) == false, "Exact LTR return threshold selects library")
+        check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: -44, vertical: 0, isRTL: false) == true, "Exact LTR forward threshold selects contents")
+        check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: 44, vertical: 0, isRTL: true) == true, "Exact RTL forward threshold selects contents")
+        check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: -44, vertical: 0, isRTL: true) == false, "Exact RTL return threshold selects library")
+        check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: 51, vertical: 40, isRTL: false) == false, "Horizontal return just past 1.25 ratio selects library")
+        check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: 51, vertical: 40, isRTL: true) == true, "Horizontal forward just past 1.25 ratio selects contents")
+        check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: 60, vertical: .nan, isRTL: false) == nil, "Non-finite vertical translation rejected")
+        check(ReaderSidebarPolicy.swipeSelectsContents(horizontal: .infinity, vertical: 0, isRTL: false) == nil, "Infinite horizontal translation rejected")
         // Rotation and scene reattachment evaluate current geometry; the policy
         // stores no visibility/page/reader state that could reopen or reset it.
         check(ReaderSidebarPolicy.canTile(availableWidth: 1024, sidebarWidth: 320, isCompact: false), "Wide launch")
