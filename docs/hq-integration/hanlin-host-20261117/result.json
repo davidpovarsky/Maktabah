@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "exit_code": 0,
+  "hanlin_sha": "bff3364d64f43b1d5235ead2b6e8f3756e890eed",
+  "adapter_sha256": "202d0facb55bcfec0a76ffce90e46e9dab3e211ddda35abb4db0d0eb0bcc44fd",
+  "inputs": 54,
+  "command": [
+    "swift",
+    "test",
+    "--scratch-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-continuation-20261117\\build\\hh",
+    "-j",
+    "1",
+    "-Xswiftc",
+    "-strict-concurrency=complete"
+  ],
+  "boundary": "Actual frozen SDK Contracts + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No SDK AgentCore, app, provider, native UI or device acceptance.",
+  "expected_tests": [
+    "testBackgroundNavigationIsDenied",
+    "testCancellationDuringAuthorityLookupNeverReachesCore",
+    "testCanonicalSchemaRejectionNeverBecomesCompleted",
+    "testCatalogIsExactReadOnlyProjectionAndBackendQualified",
+    "testContentRightsAreRequiredToDiscoverContentActions",
+    "testContextRevocationDuringReadSuppressesResult",
+    "testExplicitCancellationReachesOriginalCoreTask",
+    "testForeignProviderAndStaleCatalogAreRejected",
+    "testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts",
+    "testMutationGuaranteeIsRejectedBeforeDispatch",
+    "testOutputLimitAndExpiredDeadlineAreEnforced",
+    "testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected",
+    "testRealCoreExecutionPreservesGenerationBeyondDoublePrecision",
+    "testReplayDoesNotExecuteAgain"
+  ],
+  "passed_tests": [
+    "testBackgroundNavigationIsDenied",
+    "testCancellationDuringAuthorityLookupNeverReachesCore",
+    "testCanonicalSchemaRejectionNeverBecomesCompleted",
+    "testCatalogIsExactReadOnlyProjectionAndBackendQualified",
+    "testContentRightsAreRequiredToDiscoverContentActions",
+    "testContextRevocationDuringReadSuppressesResult",
+    "testExplicitCancellationReachesOriginalCoreTask",
+    "testForeignProviderAndStaleCatalogAreRejected",
+    "testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts",
+    "testMutationGuaranteeIsRejectedBeforeDispatch",
+    "testOutputLimitAndExpiredDeadlineAreEnforced",
+    "testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected",
+    "testRealCoreExecutionPreservesGenerationBeyondDoublePrecision",
+    "testReplayDoesNotExecuteAgain"
+  ],
+  "warnings": 0,
+  "count_verification": "Parsed retained final execution log; no new execution",
+  "log_provenance": {
+    "raw_sha256": "4422a5f760891b6daf057a9ad044033834d6b026ba60e245627ff8fd14942c1b",
+    "raw_bytes": 5227,
+    "canonical_raw_path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\hanlin-host-contracts\\swift-test.log",
+    "repository_transcript_sha256": "57c8d9584050bfc861f2a4770565eeb7ec2dfb990513d335fc59a406e8ea58e7",
+    "repository_transcript_bytes": 5129,
+    "normalization": "CRLF/CR to LF only; original raw log retained unchanged"
+  }
+}
