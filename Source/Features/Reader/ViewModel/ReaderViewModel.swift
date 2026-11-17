@@ -353,14 +353,7 @@ class ReaderViewModel: ViewModelBase {
 
     @MainActor
     func setReaderTextMode(_ mode: LibraryReaderTextMode) {
-        TextViewState.shared.setReaderTextMode(mode)
-        guard let section = backendSection else { return }
-        let renderModel = MaktabahBackendAdapter.renderModel(from: section, preferredMode: mode)
-        backendRenderModel = renderModel
-        selectedSegmentLocator = nil
-        let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
-        if let bookID = currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
-        updateContentState(with: content)
+        MaktabahBackendAdapter.setReaderTextMode(mode, reader: self)
     }
     #endif
 }

@@ -142,14 +142,12 @@ extension ReaderViewModel {
                 guard self.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: self.currentBook?.backendLocator) else {
                     return
                 }
-                self.backendSection = section
-                let renderModel = MaktabahBackendAdapter.renderModel(
-                    from: section,
-                    preferredMode: TextViewState.shared.readerTextMode
-                )
+                let renderModel = try await MaktabahBackendAdapter.preparedRenderModel(from: section)
+                try Task.checkCancellation()
                 guard self.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: self.currentBook?.backendLocator) else {
                     return
                 }
+                self.backendSection = section
                 self.backendRenderModel = renderModel
                 let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
                 if let bookID = self.currentBook?.id {

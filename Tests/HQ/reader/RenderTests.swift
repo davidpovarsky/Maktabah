@@ -8,7 +8,7 @@ import Foundation
         let lines: [Line]
     }
 
-    static func main() throws {
+    static func main() async throws {
         let normalizationCases = [
             ("  plain שָׁלוֹם 😀  ", "plain שָׁלוֹם 😀"),
             ("<BR />א<br>ב", "א\nב"),
@@ -35,6 +35,8 @@ import Foundation
             ], links: [], origin: .offline)
         for mode in [LibraryReaderTextMode.source, .translation, .both] {
             let rendered = LibraryReaderRenderModel(section: section, preferredMode: mode)
+            let prepared = try await LibraryReaderRenderModel.prepare(section: section, preferredMode: mode)
+            precondition(prepared == rendered, "background preprocessing preserves exact text, metadata and UTF16/RTL mappings")
             let ns = rendered.text as NSString
             for mapping in rendered.renderedSegments {
                 precondition(NSMaxRange(mapping.range) <= ns.length)
@@ -50,6 +52,16 @@ import Foundation
                     if let translation = mapping.segment.translation { precondition(selected.contains(translation.readerPlainText)) }
                 }
             }
+        }
+        let cancelled = Task {
+            withUnsafeCurrentTask { $0?.cancel() }
+            return try await LibraryReaderRenderModel.prepare(section: section, preferredMode: .both)
+        }
+        do {
+            _ = try await cancelled.value
+            preconditionFailure("cancelled preprocessing must not publish a partial or complete model")
+        } catch is CancellationError {
+            print("render-async: PASS — exact parity for all modes; already-cancelled request rejected")
         }
         // Fixed synthetic workload, cheap local timing only; no iPad/UI claim.
         var samples: [Double] = []

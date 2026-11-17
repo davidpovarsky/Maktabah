@@ -93,6 +93,53 @@ enum MaktabahBackendAdapter {
         LibraryReaderRenderModel(section: section, preferredMode: preferredMode)
     }
 
+    /// Re-read the existing preference after suspension: a mode changed while
+    /// a large chapter was preparing must not publish an obsolete rendering.
+    static func preparedRenderModel(from section: LibraryTextSection) async throws -> LibraryReaderRenderModel {
+        while true {
+            try Task.checkCancellation()
+            let mode = TextViewState.shared.readerTextMode
+            let model = try await LibraryReaderRenderModel.prepare(section: section, preferredMode: mode)
+            if TextViewState.shared.readerTextMode == mode { return model }
+        }
+    }
+
+    #if os(iOS)
+    static func setReaderTextMode(_ mode: LibraryReaderTextMode, reader: ReaderViewModel) {
+        TextViewState.shared.setReaderTextMode(mode)
+        // The in-flight section load observes this preference before publishing.
+        // Never replace its destination with the previously displayed section.
+        if case .loading = reader.state { return }
+        guard let section = reader.backendSection else { return }
+        reader.backendLoadTask?.cancel()
+        let token = reader.contentLoadCoordinator.beginRequest(
+            backend: section.locator.backend, workKey: section.locator.workKey,
+            sectionLocator: section.locator)
+        reader.backendLoadTask = Task { @MainActor [weak reader] in
+            guard let reader else { return }
+            defer {
+                if reader.contentLoadCoordinator.isTokenActive(token) { reader.backendLoadTask = nil }
+            }
+            do {
+                let model = try await preparedRenderModel(from: section)
+                try Task.checkCancellation()
+                guard reader.contentLoadCoordinator.canApplyContent(
+                    token: token, currentBookLocator: reader.currentBook?.backendLocator) else { return }
+                reader.backendRenderModel = model
+                reader.selectedSegmentLocator = nil
+                let content = content(from: section, renderModel: model)
+                if let bookID = reader.currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
+                reader.updateContentState(with: content)
+            } catch is CancellationError {
+                return
+            } catch {
+                guard reader.contentLoadCoordinator.isTokenActive(token) else { return }
+                reader.state = .error(error.localizedDescription)
+            }
+        }
+    }
+    #endif
+
     static func content(from section: LibraryTextSection, renderModel: LibraryReaderRenderModel) -> BookContent {
         let id = LegacyIdentityRegistry.shared.id(for: section.locator)
         let displayRef = renderModel.mode == .translation

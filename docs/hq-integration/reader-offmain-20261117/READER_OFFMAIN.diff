@@ -1,0 +1,169 @@
+diff --git a/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift b/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift
+index 37d284f6..9c345f84 100644
+--- a/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift
++++ b/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift
+@@ -142,14 +142,12 @@ extension ReaderViewModel {
+                 guard self.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: self.currentBook?.backendLocator) else {
+                     return
+                 }
+-                self.backendSection = section
+-                let renderModel = MaktabahBackendAdapter.renderModel(
+-                    from: section,
+-                    preferredMode: TextViewState.shared.readerTextMode
+-                )
++                let renderModel = try await MaktabahBackendAdapter.preparedRenderModel(from: section)
++                try Task.checkCancellation()
+                 guard self.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: self.currentBook?.backendLocator) else {
+                     return
+                 }
++                self.backendSection = section
+                 self.backendRenderModel = renderModel
+                 let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
+                 if let bookID = self.currentBook?.id {
+diff --git a/Source/Features/Reader/ViewModel/ReaderViewModel.swift b/Source/Features/Reader/ViewModel/ReaderViewModel.swift
+index 9844fc45..ba4d6fba 100644
+--- a/Source/Features/Reader/ViewModel/ReaderViewModel.swift
++++ b/Source/Features/Reader/ViewModel/ReaderViewModel.swift
+@@ -353,14 +353,7 @@ class ReaderViewModel: ViewModelBase {
+ 
+     @MainActor
+     func setReaderTextMode(_ mode: LibraryReaderTextMode) {
+-        TextViewState.shared.setReaderTextMode(mode)
+-        guard let section = backendSection else { return }
+-        let renderModel = MaktabahBackendAdapter.renderModel(from: section, preferredMode: mode)
+-        backendRenderModel = renderModel
+-        selectedSegmentLocator = nil
+-        let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
+-        if let bookID = currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
+-        updateContentState(with: content)
++        MaktabahBackendAdapter.setReaderTextMode(mode, reader: self)
+     }
+     #endif
+ }
+diff --git a/Source/LibraryBackend/LibraryBackendModels.swift b/Source/LibraryBackend/LibraryBackendModels.swift
+index db623b1b..fe2fbcb9 100644
+--- a/Source/LibraryBackend/LibraryBackendModels.swift
++++ b/Source/LibraryBackend/LibraryBackendModels.swift
+@@ -457,6 +457,25 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
+     let capabilities: LibraryReaderCapabilities
+     let renderedSegments: [LibraryRenderedSegment]
+ 
++    /// Pure Foundation preprocessing runs outside the UI actor. UIKit/TextKit
++    /// mutation stays with the original reader after its request-token fence.
++    nonisolated static func prepare(
++        section: LibraryTextSection, preferredMode: LibraryReaderTextMode
++    ) async throws -> LibraryReaderRenderModel {
++        try Task.checkCancellation()
++        let task = Task.detached(priority: .userInitiated) {
++            try Task.checkCancellation()
++            let model = LibraryReaderRenderModel(section: section, preferredMode: preferredMode)
++            try Task.checkCancellation()
++            return model
++        }
++        return try await withTaskCancellationHandler {
++            let model = try await task.value
++            try Task.checkCancellation()
++            return model
++        } onCancel: { task.cancel() }
++    }
++
+     init(section: LibraryTextSection, preferredMode: LibraryReaderTextMode) {
+         let hasSource = section.segments.contains { !$0.sourceText.readerPlainText.isEmpty }
+         let hasTranslation = section.segments.contains { !($0.translation?.readerPlainText ?? "").isEmpty }
+diff --git a/Source/LibraryBackend/MaktabahBackendAdapter.swift b/Source/LibraryBackend/MaktabahBackendAdapter.swift
+index c068e269..1c7b291b 100644
+--- a/Source/LibraryBackend/MaktabahBackendAdapter.swift
++++ b/Source/LibraryBackend/MaktabahBackendAdapter.swift
+@@ -93,6 +93,53 @@ enum MaktabahBackendAdapter {
+         LibraryReaderRenderModel(section: section, preferredMode: preferredMode)
+     }
+ 
++    /// Re-read the existing preference after suspension: a mode changed while
++    /// a large chapter was preparing must not publish an obsolete rendering.
++    static func preparedRenderModel(from section: LibraryTextSection) async throws -> LibraryReaderRenderModel {
++        while true {
++            try Task.checkCancellation()
++            let mode = TextViewState.shared.readerTextMode
++            let model = try await LibraryReaderRenderModel.prepare(section: section, preferredMode: mode)
++            if TextViewState.shared.readerTextMode == mode { return model }
++        }
++    }
++
++    #if os(iOS)
++    static func setReaderTextMode(_ mode: LibraryReaderTextMode, reader: ReaderViewModel) {
++        TextViewState.shared.setReaderTextMode(mode)
++        // The in-flight section load observes this preference before publishing.
++        // Never replace its destination with the previously displayed section.
++        if case .loading = reader.state { return }
++        guard let section = reader.backendSection else { return }
++        reader.backendLoadTask?.cancel()
++        let token = reader.contentLoadCoordinator.beginRequest(
++            backend: section.locator.backend, workKey: section.locator.workKey,
++            sectionLocator: section.locator)
++        reader.backendLoadTask = Task { @MainActor [weak reader] in
++            guard let reader else { return }
++            defer {
++                if reader.contentLoadCoordinator.isTokenActive(token) { reader.backendLoadTask = nil }
++            }
++            do {
++                let model = try await preparedRenderModel(from: section)
++                try Task.checkCancellation()
++                guard reader.contentLoadCoordinator.canApplyContent(
++                    token: token, currentBookLocator: reader.currentBook?.backendLocator) else { return }
++                reader.backendRenderModel = model
++                reader.selectedSegmentLocator = nil
++                let content = content(from: section, renderModel: model)
++                if let bookID = reader.currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
++                reader.updateContentState(with: content)
++            } catch is CancellationError {
++                return
++            } catch {
++                guard reader.contentLoadCoordinator.isTokenActive(token) else { return }
++                reader.state = .error(error.localizedDescription)
++            }
++        }
++    }
++    #endif
++
+     static func content(from section: LibraryTextSection, renderModel: LibraryReaderRenderModel) -> BookContent {
+         let id = LegacyIdentityRegistry.shared.id(for: section.locator)
+         let displayRef = renderModel.mode == .translation
+diff --git a/Tests/HQ/reader/RenderTests.swift b/Tests/HQ/reader/RenderTests.swift
+index 65e5e19a..8f25a8b8 100644
+--- a/Tests/HQ/reader/RenderTests.swift
++++ b/Tests/HQ/reader/RenderTests.swift
+@@ -8,7 +8,7 @@ import Foundation
+         let lines: [Line]
+     }
+ 
+-    static func main() throws {
++    static func main() async throws {
+         let normalizationCases = [
+             ("  plain שָׁלוֹם 😀  ", "plain שָׁלוֹם 😀"),
+             ("<BR />א<br>ב", "א\nב"),
+@@ -35,6 +35,8 @@ import Foundation
+             ], links: [], origin: .offline)
+         for mode in [LibraryReaderTextMode.source, .translation, .both] {
+             let rendered = LibraryReaderRenderModel(section: section, preferredMode: mode)
++            let prepared = try await LibraryReaderRenderModel.prepare(section: section, preferredMode: mode)
++            precondition(prepared == rendered, "background preprocessing preserves exact text, metadata and UTF16/RTL mappings")
+             let ns = rendered.text as NSString
+             for mapping in rendered.renderedSegments {
+                 precondition(NSMaxRange(mapping.range) <= ns.length)
+@@ -51,6 +53,16 @@ import Foundation
+                 }
+             }
+         }
++        let cancelled = Task {
++            withUnsafeCurrentTask { $0?.cancel() }
++            return try await LibraryReaderRenderModel.prepare(section: section, preferredMode: .both)
++        }
++        do {
++            _ = try await cancelled.value
++            preconditionFailure("cancelled preprocessing must not publish a partial or complete model")
++        } catch is CancellationError {
++            print("render-async: PASS — exact parity for all modes; already-cancelled request rejected")
++        }
+         // Fixed synthetic workload, cheap local timing only; no iPad/UI claim.
+         var samples: [Double] = []
+         for _ in 0..<5 {

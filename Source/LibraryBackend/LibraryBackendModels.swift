@@ -457,6 +457,25 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
     let capabilities: LibraryReaderCapabilities
     let renderedSegments: [LibraryRenderedSegment]
 
+    /// Pure Foundation preprocessing runs outside the UI actor. UIKit/TextKit
+    /// mutation stays with the original reader after its request-token fence.
+    nonisolated static func prepare(
+        section: LibraryTextSection, preferredMode: LibraryReaderTextMode
+    ) async throws -> LibraryReaderRenderModel {
+        try Task.checkCancellation()
+        let task = Task.detached(priority: .userInitiated) {
+            try Task.checkCancellation()
+            let model = LibraryReaderRenderModel(section: section, preferredMode: preferredMode)
+            try Task.checkCancellation()
+            return model
+        }
+        return try await withTaskCancellationHandler {
+            let model = try await task.value
+            try Task.checkCancellation()
+            return model
+        } onCancel: { task.cancel() }
+    }
+
     init(section: LibraryTextSection, preferredMode: LibraryReaderTextMode) {
         let hasSource = section.segments.contains { !$0.sourceText.readerPlainText.isEmpty }
         let hasTranslation = section.segments.contains { !($0.translation?.readerPlainText ?? "").isEmpty }

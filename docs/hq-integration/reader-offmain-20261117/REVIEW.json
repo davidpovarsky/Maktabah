@@ -1,0 +1,32 @@
+{
+  "patch_id": "CONTINUATION_20261117_READER_OFFMAIN",
+  "paths": [
+    "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+    "Source/Features/Reader/ViewModel/ReaderViewModel.swift"
+  ],
+  "downstream_paths": [
+    "Source/LibraryBackend/LibraryBackendModels.swift",
+    "Source/LibraryBackend/MaktabahBackendAdapter.swift"
+  ],
+  "base_commit": "cf1c756c1b71681800095641f4798ae4a85df575",
+  "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "authorization_scope": "Current owner explicitly instructs completion of all three phases including Reader performance, all builds/tests, ordinary continuation push and TestFlight after real gates. Phase-wide authorization; not a claim of prior exact-hunk review.",
+  "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+  "patch_digest_sha256": "831f2340406582aa8e2aa262a74b458fa80f046e8e04318621b6c685e9d1c43f",
+  "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
+  "necessity": "The two existing original Reader call sites synchronously normalize whole sections on MainActor. Delegate them to the existing downstream adapter; pure Foundation preprocessing runs in a cancellable detached task. Preserve token/current-book and mode guards before publication.",
+  "rejected_alternatives": [
+    "No new reader or parallel render engine.",
+    "Changing only the downstream initializer cannot make a synchronous original call await its result.",
+    "Dispatching UIKit/TextKit to a background thread would violate UI isolation."
+  ],
+  "tests": {
+    "portable": "PASS on actual miniTest10 v6 data: 6081 source rows, exact all-mode text/metadata/UTF16 parity, already-cancelled request rejection; evidence reader-offmain/summary.json",
+    "apple_compilation": "NOT_RUN for these new source changes",
+    "native_runtime": "NOT_RUN for these new source changes",
+    "physical_device": "NOT_RUN"
+  },
+  "rollback": "Revert the continuation Reader-offmain commit only. No database, WAL/SHM, original worktree, original text engines, or historical branches are altered.",
+  "review": "Sole authorized developer review. No subagent or independent QA claim.",
+  "re_review": "Review these two narrow hooks against the next upstream update."
+}
