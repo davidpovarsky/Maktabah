@@ -18,6 +18,13 @@ import time
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "build/artifacts/runtime27"
+_SCRIPTS_CI_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPTS_CI_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_CI_DIR)
+
+import runtime27_interruption
+
+stop_owned_process_group = runtime27_interruption.stop_owned_process_group
 
 
 def execution_groups(contract):
@@ -60,41 +67,6 @@ def capture(command, name):
     return result.stdout
 
 
-def stop_owned_process_group(process, grace_seconds=5, kill_wait_seconds=2):
-    """Observe the created group independently of its Python leader's exit."""
-    pgid = process.pid
-
-    def alive():
-        process.poll()  # Reap the leader if it exited; children may still exist.
-        try:
-            os.killpg(pgid, 0)
-            return True
-        except ProcessLookupError:
-            return False
-
-    def send(kind):
-        try:
-            os.killpg(pgid, kind)
-        except ProcessLookupError:
-            pass
-
-    def wait_gone(seconds):
-        end = time.monotonic() + seconds
-        while alive():
-            if time.monotonic() >= end:
-                return False
-            time.sleep(0.05)
-        return True
-
-    send(signal.SIGINT)
-    gone = wait_gone(grace_seconds)
-    if not gone:
-        send(getattr(signal, "SIGKILL", signal.SIGTERM))
-        gone = wait_gone(kill_wait_seconds)
-    return {"owned_pgid": pgid, "group_state": "GONE_CHECKED" if gone else "STILL_PRESENT_UNVERIFIED",
-            "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED"}
-
-
 def run_logged(command, name, timeout):
     with (OUT / name).open("w") as output:
         owned_group = sys.platform == "darwin"
@@ -117,23 +89,14 @@ def run_logged(command, name, timeout):
                     marker["cleanup"] = stop_owned_process_group(process)
                 except OSError as cleanup_error:
                     marker["cleanup"] = {"error": type(cleanup_error).__name__, "state": "UNVERIFIED"}
-                marker_path.write_text(json.dumps(marker, indent=2) + "\n")
             elif process.poll() is None:
-                try:
-                    process.terminate()
-                except ProcessLookupError:
-                    pass
-                try:
-                    process.wait(timeout=5)
-                except subprocess.TimeoutExpired:
-                    try:
-                        process.kill()
-                    except ProcessLookupError:
-                        pass
-                    try:
-                        process.wait(timeout=2)
-                    except subprocess.TimeoutExpired:
-                        pass  # Keep the original interruption, never claim cleanup completed.
+                marker["cleanup"] = runtime27_interruption.stop_owned_subprocess(
+                    process, grace_seconds=5, kill_wait_seconds=2
+                )
+            try:
+                marker_path.write_text(json.dumps(marker, indent=2) + "\n")
+            except OSError:
+                pass
             raise
     if process.returncode:
         print("\n".join((OUT / name).read_text(errors="replace").splitlines()[-60:]), flush=True)
@@ -162,6 +125,7 @@ def capture_palette_code_images(bundle, executable):
 
 def collect_cases(report, contract):
     outcomes = []
+    case_id_fn = runpy.run_path(str(ROOT / 'tools/verify_xcresult_zero_skips.py'))['case_id']
     for group in execution_groups(contract):
         label = group["label"]
         device = {"11": "ipad11", "13": "ipad13", "phone": "iphone"}[group["size"]]
@@ -174,7 +138,7 @@ def collect_cases(report, contract):
             if node.get("nodeType") == "Test Suite":
                 suite = node["name"].split(".")[-1]
             if node.get("nodeType") == "Test Case":
-                identity = runpy.run_path(str(ROOT / 'tools/verify_xcresult_zero_skips.py'))['case_id'](node.get('nodeIdentifier') or f"{suite}/{node['name']}")
+                identity = case_id_fn(node.get('nodeIdentifier') or f"{suite}/{node['name']}")
                 found[identity] = node.get("result", "unknown")
             for child in node.get("children", []):
                 visit(child, suite)
@@ -212,18 +176,11 @@ def main():
     report = {"status": "FAIL", "executed_ui_pass": 0, "executed_ui_fail": 0,
               "mode": os.environ.get("RUNTIME27_MODE"), "idb": "NOT_USED_XCUITEST_DRIVER",
               "maestro": "NOT_USED_NO_SELECTED_FLOW", "distribution": False}
+    controller = runtime27_interruption.InterruptController()
     try:
         if sys.platform != "darwin":
             raise RuntimeError("R27 execution requires real macOS/Xcode")
-        interrupt_received = False
-        def interrupted(signum, frame):
-            nonlocal interrupt_received
-            if interrupt_received:
-                return  # Already stopping owned work within the bounded grace.
-            interrupt_received = True
-            raise KeyboardInterrupt(f"External signal {signum}; UI acceptance remains unverified")
-        signal.signal(signal.SIGINT, interrupted)
-        signal.signal(signal.SIGTERM, interrupted)
+        controller.install()
         report["checkout_sha"] = capture(["git", "rev-parse", "HEAD"], "checkout.txt").strip()
         if report["checkout_sha"] != os.environ.get("EXPECTED_CHECKOUT_SHA"):
             raise RuntimeError("Unexpected checkout")
@@ -328,9 +285,9 @@ def main():
                                         for p in sorted((ROOT / "Maktabah-iOSUITests").glob("*.swift"))}
         report["helper_inputs_sha256"] = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in [
             "Scripts/CI/hq-stage2-focused-apple.py", "Scripts/CI/hq-stage2-focused-apple.inputs.json", "Scripts/CI/runtime27.py",
-            "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27-fixture-oracle.py", "tools/verify_xcresult_zero_skips.py",
-            "Scripts/CI/collect-runtime27-palette-log.py", "Scripts/CI/runtime27-hid.py", "Scripts/CI/runtime27-fixture-recovery.py",
-            "Scripts/CI/runtime27-url-delivery.py", "Scripts/CI/shutdown-faithful-simulator.py"]}
+            "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27_interruption.py", "Scripts/CI/runtime27-fixture-oracle.py",
+            "tools/verify_xcresult_zero_skips.py", "Scripts/CI/collect-runtime27-palette-log.py", "Scripts/CI/runtime27-hid.py",
+            "Scripts/CI/runtime27-fixture-recovery.py", "Scripts/CI/runtime27-url-delivery.py", "Scripts/CI/shutdown-faithful-simulator.py"]}
         if contract.get("hid_comparison"):
             if run_logged([sys.executable, "Scripts/CI/runtime27-hid.py", "prepare", "--out", str(OUT / "hid-tools.json")],
                           "hid-prepare.log", 360):
@@ -358,6 +315,15 @@ def main():
         # Native app installer, exact disposable-device lifecycle, existing tests.
         code = run_logged([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 5400)
         collect_cases(report, contract)
+        matrix_path = ROOT / "build/artifacts/faithful-ipad-matrix.json"
+        if code and matrix_path.is_file():
+            try:
+                matrix_report = json.loads(matrix_path.read_text())
+                if matrix_report.get("status") == "INTERRUPTED_UI_UNVERIFIED":
+                    report.update(status="INTERRUPTED_UI_UNVERIFIED", error="Matrix execution interrupted")
+                    return 130
+            except (OSError, ValueError):
+                pass
         if code or report["executed_ui_pass"] != expected_count or report["executed_ui_fail"] or report["executed_ui_skip"]:
             raise RuntimeError("Required real UI subset failed, skipped or did not completely execute")
         selected = {identity for group in groups for identity in group["case_ids"]}
@@ -365,6 +331,7 @@ def main():
         report["status"] = "EXECUTED_PASS" if selected == full_phase else "SELECTED_UI_EXECUTED_PASS"
         return 0
     except KeyboardInterrupt as error:
+        controller.mark_interrupted(error)
         report.update(status="INTERRUPTED_UI_UNVERIFIED", error=str(error) or "External interruption")
         return 130
     except Exception as error:
@@ -372,13 +339,22 @@ def main():
         print(str(error), file=sys.stderr)
         return 1
     finally:
-        if report["mode"] == "ui" and "case_outcomes" not in report:
+        controller.cleanup_active = True
+        try:
+            if report["mode"] == "ui" and "case_outcomes" not in report:
+                try:
+                    collect_cases(report, json.loads((ROOT / "docs/hq-integration/runtime27/R27_CASES.json").read_text()))
+                except BaseException as error:
+                    if isinstance(error, KeyboardInterrupt):
+                        controller.mark_interrupted(error)
+                        report["status"] = "INTERRUPTED_UI_UNVERIFIED"
+                    report["case_collection_error"] = f"{type(error).__name__}: {error}"
+        finally:
             try:
-                collect_cases(report, json.loads((ROOT / "docs/hq-integration/runtime27/R27_CASES.json").read_text()))
-            except Exception as error:
-                report["case_collection_error"] = str(error)
-        (OUT / "result.json").write_text(json.dumps(report, indent=2) + "\n")
-        print(json.dumps({key: report.get(key) for key in ("status", "checkout_sha", "sdk", "error")}, indent=2))
+                (OUT / "result.json").write_text(json.dumps(report, indent=2) + "\n")
+                print(json.dumps({key: report.get(key) for key in ("status", "checkout_sha", "sdk", "error")}, indent=2))
+            finally:
+                controller.restore()
 
 
 if __name__ == "__main__":
