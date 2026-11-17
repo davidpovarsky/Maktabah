@@ -434,7 +434,7 @@ def main():
                 if code == 0 and device["executedXCTestCount"] < minimum_count:
                     raise SystemExit("Expected black-box XCTest cases were not actually executed")
                 device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
-                if any(case == "NativeRoutingAcceptanceTests" or case.startswith("NativeRoutingAcceptanceTests/") for case in selection):
+                if any(case.split("/", 1)[0] in ("NativeRoutingAcceptanceTests", "NativeRoutingPhoneAcceptanceTests") for case in selection):
                     native_dir = artifacts / f"native-routing-logs-{label}"
                     native_dir.mkdir(parents=True, exist_ok=True)
                     native_log_report = {"udid": udid, "label": label, "bundleID": "com.davidpovarsky.chavrusatext",
