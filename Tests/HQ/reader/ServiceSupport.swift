@@ -13,12 +13,13 @@ final class SQLiteDatabase {
     var lines: [[Any?]] = [[100, 0, "שָׁלוֹם 😀", "א"], [101, 1, "English e\u{301}", "ב"], [102, 2, "ג", "ג"]]
     var sourceFetches = 0
     var metadataRows = 0
+    var indexFetches = 0
     var sourceError: Error?
     var onFetch: (() throws -> Void)?
     func fetch<T>(query: String, parameters: [Any] = [], mapping: (SQLiteRow) throws -> T) throws -> [T] {
         try onFetch?()
         let rows: [[Any?]]
-        if query.contains("FROM tocEntry te") { rows = entries }
+        if query.contains("FROM tocEntry te") { indexFetches += 1; rows = entries }
         else if query.contains("FROM line_toc lt") { rows = mappings.map { [$0.0, $0.1] } }
         else if query.contains("SELECT l.lineIndex,") && query.contains("LIMIT 1") {
             let indices = lines.compactMap { $0[1] as? Int }.sorted()

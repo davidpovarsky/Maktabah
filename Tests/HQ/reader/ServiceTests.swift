@@ -125,6 +125,10 @@ import Foundation
         let state = Mirror(reflecting: oversized)
         check(state.children.first(where: { $0.label == "indexCacheCost" })?.value as? Int == 0, "oversized index not retained")
         check(state.children.first(where: { $0.label == "summariesCacheCost" })?.value as? Int == 0, "oversized summaries not retained")
+        check(oversizedDB.indexFetches == 1, "oversized paragraph must load its metadata index once")
+        check(try oversized.firstDescriptor(bookId: 103, mode: .chapter)?.sourceLineIndices == [0, 1, 2],
+            "uncached chapter retains all exact source rows")
+        check(oversizedDB.indexFetches == 2, "oversized chapter must reuse its already-loaded metadata index")
 
         let cancelDB = SQLiteDatabase()
         let cancelService = OtzariaReadingUnitService(database: cancelDB)

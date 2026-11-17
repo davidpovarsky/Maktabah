@@ -316,7 +316,7 @@ final class OtzariaReadingUnitService {
             log("paragraph fallback no line_toc mappings bookId=\(bookId)")
             return try lineSummaries(bookId: bookId)
         }
-        return try tocSummaries(bookId: bookId, mode: .paragraph, includeDescendants: false, entryIdForLeaf: { leafId in leafId })
+        return try tocSummaries(bookId: bookId, mode: .paragraph, includeDescendants: false, index: index, entryIdForLeaf: { leafId in leafId })
     }
 
     private func chapterSummaries(bookId: Int) throws -> [UnitSummary] {
@@ -326,7 +326,7 @@ final class OtzariaReadingUnitService {
             return try paragraphSummaries(bookId: bookId)
         }
 
-        let summaries = try tocSummaries(bookId: bookId, mode: .chapter, includeDescendants: true) { leafId in
+        let summaries = try tocSummaries(bookId: bookId, mode: .chapter, includeDescendants: true, index: index) { leafId in
             chapterEntryId(forLeaf: leafId, index: index)
         }
         guard !summaries.isEmpty else {
@@ -340,12 +340,12 @@ final class OtzariaReadingUnitService {
         bookId: Int,
         mode: OtzariaUnitMode,
         includeDescendants: Bool,
+        index: BookIndex,
         entryIdForLeaf: (Int) -> Int
     ) throws -> [UnitSummary] {
         let interval = OtzariaPerformanceTelemetry.shared.begin("ReadingUnitService.tocSummaries")
         defer { interval.end(extra: "bookId=\(bookId) mode=\(mode.storageValue)") }
-        let index = try bookIndex(bookId: bookId)
-
+        // Reuse the caller's index even when its cost exceeds the retention budget.
         // Root entry handling: identify roots with children and direct lines <= 3
         var directRootLineCounts: [Int: Int] = [:]
         for leafId in index.leafEntryByLineIndex.values {
