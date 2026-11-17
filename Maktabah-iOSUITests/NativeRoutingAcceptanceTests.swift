@@ -3,7 +3,7 @@ import UIKit
 
 /// Actual system URL entry + existing UI. These require the manager-applied
 /// native registration packet. No smoke bypass or synthetic scene receipt.
-final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
+class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
     private enum SystemURLConfirmationError: Error {
         case unexpectedOrAmbiguousDialog
         case missingOpenAction
@@ -370,5 +370,28 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(history.exists)
         // The original exact-one receipt oracle also rejects a second ACK.
         try requireNativeReceipt(request, backend: "otzaria")
+    }
+}
+
+
+// Reuse the full system-entry, same-process, real visible-surface and canonical
+// receipt/refusal oracles. No phone-specific shortcut bypasses scene validation.
+final class NativeRoutingPhoneAcceptanceTests: NativeRoutingAcceptanceTests {
+    @MainActor
+    func testPhoneWarmHistoryUsesActualForegroundScene() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try testWarmHistoryURLUsesOtzariaNativeScene()
+    }
+
+    @MainActor
+    func testPhoneColdHistoryWaitsForActualSceneMount() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try testColdHistoryURLWaitsForActualSceneMount()
+    }
+
+    @MainActor
+    func testPhoneWrongBackendCannotNavigateOrIssueReceipt() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try testWrongBackendURLCannotNavigateOrIssueNativeReceipt()
     }
 }

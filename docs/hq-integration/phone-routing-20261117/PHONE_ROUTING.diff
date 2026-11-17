@@ -1,0 +1,93 @@
+diff --git a/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift b/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift
+index 42583811..2bf3550c 100644
+--- a/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift
+@@ -3,7 +3,7 @@ import UIKit
+ 
+ /// Actual system URL entry + existing UI. These require the manager-applied
+ /// native registration packet. No smoke bypass or synthetic scene receipt.
+-final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
++class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
+     private enum SystemURLConfirmationError: Error {
+         case unexpectedOrAmbiguousDialog
+         case missingOpenAction
+@@ -372,3 +372,26 @@ final class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
+         try requireNativeReceipt(request, backend: "otzaria")
+     }
+ }
++
++
++// Reuse the full system-entry, same-process, real visible-surface and canonical
++// receipt/refusal oracles. No phone-specific shortcut bypasses scene validation.
++final class NativeRoutingPhoneAcceptanceTests: NativeRoutingAcceptanceTests {
++    @MainActor
++    func testPhoneWarmHistoryUsesActualForegroundScene() throws {
++        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
++        try testWarmHistoryURLUsesOtzariaNativeScene()
++    }
++
++    @MainActor
++    func testPhoneColdHistoryWaitsForActualSceneMount() throws {
++        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
++        try testColdHistoryURLWaitsForActualSceneMount()
++    }
++
++    @MainActor
++    func testPhoneWrongBackendCannotNavigateOrIssueReceipt() throws {
++        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
++        try testWrongBackendURLCannotNavigateOrIssueNativeReceipt()
++    }
++}
+diff --git a/Scripts/CI/run-faithful-ipad-matrix.py b/Scripts/CI/run-faithful-ipad-matrix.py
+index 6039f81e..463e4513 100644
+--- a/Scripts/CI/run-faithful-ipad-matrix.py
++++ b/Scripts/CI/run-faithful-ipad-matrix.py
+@@ -107,7 +107,7 @@ def main():
+                     failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
+             raise SystemExit(f"No compatible {size}-inch iPad Pro / iPadOS 27 pair: {json.dumps(failures)}")
+ 
+-        phone_case_prefix = ("FaithfulReaderIPhoneTests/", "R27NativePhoneTests/")
++        phone_case_prefix = ("FaithfulReaderIPhoneTests/", "R27NativePhoneTests/", "NativeRoutingPhoneAcceptanceTests/")
+         diagnostic_sizes = (["11"] if any(not case.startswith(phone_case_prefix) for case in diagnostic_cases) else [])
+         diagnostic_sizes += ["phone"] if any(case.startswith(phone_case_prefix) for case in diagnostic_cases) else []
+         scenarios = runtime27_groups or [{"size": size, "label": size} for size in (diagnostic_sizes if diagnostic_cases else ["11", "13", "phone"])]
+@@ -369,7 +369,7 @@ def main():
+                     environment["TEST_RUNNER_GLOBAL_SEARCH_ZAYIT_CANONICAL_FIXTURE"] = (
+                         "test-bundle:canonical-miniTest10-metadata.json")
+                     device["canonicalZayitMetadataDelivery"] = "test-bundle; native read attachment required"
+-                if any(case.startswith("NativeRoutingAcceptanceTests/") for case in selection):
++                if any(case.startswith(("NativeRoutingAcceptanceTests/", "NativeRoutingPhoneAcceptanceTests/")) for case in selection):
+                     native_url_delivery = runpy.run_path("Scripts/CI/runtime27-url-delivery.py")["NativeURLDelivery"](
+                         udid, container, label, artifacts / "runtime27")
+                     environment.update(native_url_delivery.start())
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
+index 1f1f5f19..1953b2aa 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
+@@ -32,7 +32,13 @@ struct MaktabahNativeRoutingHost: ViewModifier {
+     @Environment(\.maktabahNativeWorkspaceOwner) private var workspaceOwner
+     @State private var sceneID = ""
+     @State private var session: MaktabahNativeSceneSession?
+-    private var ready: Bool { MaktabahApp.isIpad && (!ChavrusaTextReaderUI.isEnabled || workspace?.attached == true) && !sceneID.isEmpty }
++    // Global History/Settings use the actual foreground scene on both form factors.
++    // iPad's mounted workspace remains mandatory; compact content/workspace routes
++    // are not advertised by this current global-destination registry.
++    private var ready: Bool {
++        (!MaktabahApp.isIpad || !ChavrusaTextReaderUI.isEnabled || workspace?.attached == true)
++            && !sceneID.isEmpty
++    }
+     private var bindings: MaktabahNativeSceneBindings {
+         .init(manager: manager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings)
+     }
+diff --git a/Source/UI/iOS/Views/iPhoneLayout.swift b/Source/UI/iOS/Views/iPhoneLayout.swift
+index af61bf91..a457907b 100644
+--- a/Source/UI/iOS/Views/iPhoneLayout.swift
++++ b/Source/UI/iOS/Views/iPhoneLayout.swift
+@@ -144,6 +144,7 @@ struct iPhoneLayout: View {
+     private var historyTabContent: some View {
+         NavigationStack {
+             iOSHistoryView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .history))
+                 .navigationTitle(iOSTab.history.title)
+                 .adaptiveReaderPush(
+                     item: $bManager.selectedBook,

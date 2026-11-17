@@ -1,0 +1,20 @@
+{
+  "patch_id": "CONTINUATION_20261117_PHONE_GLOBAL_ROUTING",
+  "paths": [
+    "Source/UI/iOS/Views/iPhoneLayout.swift"
+  ],
+  "downstream_paths": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift"
+  ],
+  "base_commit": "4d0c865a1563e2e6d9dcf1fb9c8bef815539b231",
+  "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "authorization_scope": "Current explicit all-three-phase implementation instruction includes native scene routing, iOS App Intents and deep links; phase-wide authorization, not an unseen exact-hunk approval.",
+  "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+  "patch_digest_sha256": "9edad8a25250ac5d50238e274022f4dc011c54529b999fe48a71bf6c716e6eff",
+  "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
+  "necessity": "The native scene host was iPad-only although installed in the shared main view. Mount global History/Settings for the actual iPhone scene and add the same passive History surface witness used by iPad.",
+  "scope_limit": "Only already-supported global History/Settings. No reader/content/workspace-specific destination is advertised or enabled. No new URL parser, execution engine, permission system or synthetic receipt.",
+  "tests": "Three real iPhone XCTest wrappers retain all original visible History, same-PID, scene receipt and backend-refusal oracles. Native result pending.",
+  "rollback": "Revert this continuation phone-routing commit only; original phone layout and current iPad gates otherwise unchanged.",
+  "review": "Sole developer; preserve historical native evidence, no PASS transfer."
+}

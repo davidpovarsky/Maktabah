@@ -107,7 +107,7 @@ def main():
                     failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
             raise SystemExit(f"No compatible {size}-inch iPad Pro / iPadOS 27 pair: {json.dumps(failures)}")
 
-        phone_case_prefix = ("FaithfulReaderIPhoneTests/", "R27NativePhoneTests/")
+        phone_case_prefix = ("FaithfulReaderIPhoneTests/", "R27NativePhoneTests/", "NativeRoutingPhoneAcceptanceTests/")
         diagnostic_sizes = (["11"] if any(not case.startswith(phone_case_prefix) for case in diagnostic_cases) else [])
         diagnostic_sizes += ["phone"] if any(case.startswith(phone_case_prefix) for case in diagnostic_cases) else []
         scenarios = runtime27_groups or [{"size": size, "label": size} for size in (diagnostic_sizes if diagnostic_cases else ["11", "13", "phone"])]
@@ -369,7 +369,7 @@ def main():
                     environment["TEST_RUNNER_GLOBAL_SEARCH_ZAYIT_CANONICAL_FIXTURE"] = (
                         "test-bundle:canonical-miniTest10-metadata.json")
                     device["canonicalZayitMetadataDelivery"] = "test-bundle; native read attachment required"
-                if any(case.startswith("NativeRoutingAcceptanceTests/") for case in selection):
+                if any(case.startswith(("NativeRoutingAcceptanceTests/", "NativeRoutingPhoneAcceptanceTests/")) for case in selection):
                     native_url_delivery = runpy.run_path("Scripts/CI/runtime27-url-delivery.py")["NativeURLDelivery"](
                         udid, container, label, artifacts / "runtime27")
                     environment.update(native_url_delivery.start())
