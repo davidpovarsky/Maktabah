@@ -1,5 +1,7 @@
 # Native CI Archaeology & Forensics Report (`43863125434`, `43883029218`, `43891893650`)
 
+> **Manager qualification after independent O1-B:** the recorded case outcomes remain verified, but Cluster D is **CONTAMINATED / UNVERIFIED**, not a proven `d9ab40fb` product regression. Seven pending system URL prompts contaminated the subsequent rotation cases; no alert-free rerun exists. Current-v1 app URL intake is in `iOSMainView.swift`, not `MaktabahApp.swift`. `runtime27.py` already installs signal handlers and owned process-group teardown. See `O1B_INDEPENDENT_SOURCE_AUDIT.md` and `MANAGER_EVIDENCE_REVIEW.md`; recommendations below do not authorize duplicate cleanup or protected edits.
+
 - **Report Path:** `docs/phase1-cezar/CI_NATIVE_FORENSICS.md`
 - **Logical Role & Execution Mode:** `רוני (roni) | QA & Evidence` (`MAIN_SESSION`; read-only product audit on unit `O1-A PROBE_UNKNOWN`, child run `19efbb02-ad93-42f1-9d3c-71af01b63955`)
 - **Worktree / Branch / Base SHA:** Branch `cez/19efbb02`, base `4065feef11bd5a8997ea34364516468105778688` (clean checkout of `codex/otzaria-phase1-consolidated-20261116`; zero source/test/script/workflow edits performed)

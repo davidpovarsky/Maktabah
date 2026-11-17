@@ -59,6 +59,8 @@ This manager executed **zero new native tests**. These are verified existing CI 
 
 ## Lifecycle and next gate
 
+Independent O1-B subsequently completed successfully in Cezar at `d52355a748af9349da7c3ed148630a81efeff9e5`. `verify_o1b_report.py` checks all 23 table rows, source/base/child equality, upstream membership, unchanged product trees and the pinned UI test hash. Its rotation-contamination qualification is adopted without rewriting recorded XCTest counts. The manager rejected and corrected its wrapper-log inference (the generic adapter directly calls the service) and downgraded its teardown root-cause claim to a hypothesis requiring reproduction. These corrections appear in the current O1-B report; the original commit remains retained.
+
 The child delivered a report but Cezar recorded failures, including individual quota errors. Latest readback showed QUEUED / `continue-4` pending, no running step. No exact run/conversation process match was found; other live AGY/Python processes were left untouched. This is not proof of process death and no cancellation/resume/retry was issued.
 
 Evidence retention is accepted; successful child/parent execution lifecycle is **not** claimed. No replacement worker may be dispatched merely to work around this state or its quota.
