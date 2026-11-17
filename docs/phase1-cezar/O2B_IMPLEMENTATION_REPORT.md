@@ -49,7 +49,7 @@ Changes are strictly confined to 5 of the 6 writable paths authorized by `docs/p
     - `shouldReceive` (once per touch down): `eligible`, `hasWindow`, `hidden`, `alphaPositive`, `inBounds`, integer `loc`, `bounds`, and `touchView` class name.
     - `shouldBegin` (once per recognition check): `allowed`, rounded `vx`/`vy`, direction (`left`/`right`/`zero`/`nonFinite`).
     - `requireFail` (only when `otherGestureRecognizer !== bodyPan && otherGestureRecognizer is UIPanGestureRecognizer`): `result`, `other` recognizer class, `otherView` class, `inHost`, `enabled`, `state`.
-    - `panState` (in `bodyPanEnded`, explicitly skipping `sender.state == .changed`): logs `began`, `ended`, `cancelled`, `failed` with `hasWindow` and integer `dx`/`dy`.
+    - `panState` (in `bodyPanEnded`, explicitly skipping `sender.state == .changed`): logs continuous target-action states (`began`, `ended`, `cancelled`) with `hasWindow` and non-trapping `dx`/`dy`. A continuous `UIPanGestureRecognizer` target-action does not emit `.failed` directly from `.possible` (pre-recognition rejection is observed via `shouldReceive`/`shouldBegin`/`requireFail`, while `debugStateName` formats all `UIGestureRecognizer.State` cases exhaustively for both `requireFail` and `panState`).
   - All breadcrumbs are `#if DEBUG`-gated, content-free (zero search queries, book titles, text payloads, URLs, or accessibility labels), and never log `.changed` events.
 
 ---
@@ -106,3 +106,40 @@ Windows cannot typecheck `SwiftUI`/`UIKit`, compile `Maktabah.app`, or execute i
    - `Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL` (previously blocked at startup `invalidLocator`, unverified).
    - `Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation` (previously blocked at startup `invalidLocator`, unverified).
 4. **O2-A / Full 27-Case Matrix (`OPEN` / `NOT_RUN`):** Warm/security URL routing, alert-free rotation (`#1`–`#3`), `11-window`, `phone`, and final zero-skip `runtime27` acceptance remain `NOT_RUN`. **Phase 1 is NOT READY.**
+
+---
+
+## 6. Fix Round 1 — Non-Trapping Diagnostic Number Formatting
+
+- **Round 1 Fix Base SHA:** `63906e196e2b7870d84fbdab26102d7dbeeae233`
+- **Round 1 Code & Test Commit SHA:** `a316f0167d62a57e505c0f99c2e8694414d6e0de` (`O2-B round 1: non-trapping debugRounded formatting and numeric regressions`)
+- **Report Commit:** Recorded at `HEAD` on `cez/335b7590` immediately above `a316f0167d62a57e505c0f99c2e8694414d6e0de` and reported in `cez task report`
+- **Changed Files in Round 1 (`63906e19..HEAD`):**
+  1. `Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift` — Added `ReaderSidebarPolicy.debugRounded(_ value: Double) -> String` using `Int(exactly: value.rounded())` with `String(describing: value)` fallback (`policy` section, zero extra imports so standalone SDK extraction slices remain self-contained), and updated both `selectPage` (`dx`/`dy`) and `ReaderSidebarSplitConfigurationController.debugRounded(_ value: CGFloat)` to delegate to it inside `#if DEBUG`. Preserved ordinary rounding, content-free logging, `#if DEBUG` isolation of all diagnostic emissions, and untouched paging/gesture/layout/delegate logic (`ReaderSidebarPageCoordinator.swift` left untouched).
+  2. `tools/test_native_sidebar_policy.swift` — Appended 20 assertions (35 -> 55 total) exercising `ReaderSidebarPolicy.debugRounded(_:)` across ordinary positive/negative fractional values (`0.0`, `-0.0`, `0.4`, `-0.4`, `0.5`, `-0.5`, `1.5`, `-1.5`, `43.6`, `-120.2`), `Double(Int.max).nextDown`, `Double(Int.max)`, `Double(Int.min)`, `Double(Int.min).nextDown`, `-1e20`, `+/-Double.greatestFiniteMagnitude`, `.nan`, and `+/-.infinity`.
+  3. `tools/test_o2b_native_ux.py` — Added `test_diagnostic_number_formatting_never_traps_and_preserves_rounding`, which compiles and executes in Swift 6 (`-D DEBUG`) the actual `selectPage` `dx`/`dy` formatting statements and controller `debugRounded(_:)` implementation extracted directly from `ReaderSidebarPager.swift` across all ordinary, integer-boundary, out-of-range, greatest-finite, NaN, and infinity cases.
+  4. `docs/phase1-cezar/O2B_IMPLEMENTATION_REPORT.md` — Corrected Minor #2 wording (`bodyPanEnded` continuous target-action states) and appended this Fix Round 1 record. Minor #3 (`line_in_debug_guard` parser/SDK fallback) remains explicitly deferred per `O2B_FIX_ROUND1.md`.
+
+### 6.1 Round 1 Pre-Repair RED Reproduction (`63906e19` production expressions)
+
+Command (run with `tools/test_o2b_native_ux.py` against unmodified `ReaderSidebarPager.swift` from `63906e19`):
+`python.exe tools\test_o2b_native_ux.py -v`
+- Result: `Ran 5 tests in 10.869s` -> `FAILED (failures=2)`
+  - `(path='selectPage')`: `FAIL` (`rc=3221225501`, `Swift/IntegerTypes.swift:8841: Fatal error: Double value cannot be converted to Int because the result would be greater than Int.max`)
+  - `(path='debugRounded')`: `FAIL` (`rc=3221225501`, `Swift/IntegerTypes.swift:8841: Fatal error: Double value cannot be converted to Int because the result would be greater than Int.max`)
+
+### 6.2 Round 1 Post-Repair GREEN Verification (`a316f0167d62a57e505c0f99c2e8694414d6e0de`)
+
+Executed with `C:\Users\DAVID\AppData\Local\Programs\Python\Python312\python.exe` and Swift `6.3.3` (`SDKROOT=C:\Users\DAVID\AppData\Local\Programs\Swift\Platforms\6.3.3\Windows.platform\Developer\SDKs\Windows.sdk`):
+
+- `python.exe -m py_compile tools\test_o2b_native_ux.py` -> exit `0`
+- `python.exe tools\test_o2b_native_ux.py -v` -> `Ran 5 tests in 3.413s` -> `OK` (exit `0`; both `selectPage` and `debugRounded` formatted all 20 scalar vectors + asymmetric pairs cleanly without trap, plus history contrast contract, `#if DEBUG`/content-free guards, standalone `ReaderSidebarSplit.swift`/`ReaderSidebarNativeSearchSDK.swift` extraction and Swift 6 syntax parse in Release and `-D DEBUG`, and portable policy test)
+- `python.exe Scripts\CI\test-native-sidebar-policy.py` -> exit `0` (`PASS: 55 actual sidebar width/RTL/gesture policy assertions; no device UI claim`)
+- Compiled portable policy binary under `-D DEBUG` (`swiftc -D DEBUG -parse-as-library ReaderSidebarPager.swift tools/test_native_sidebar_policy.swift`) -> exit `0` (`PASS: 55 actual sidebar width/RTL/gesture policy assertions; no device UI claim`)
+- `python.exe tools\hq-sidebar-check.py` -> exit `0` (`PASS: 55 actual sidebar width/RTL/gesture policy assertions; no device UI claim` / `PASS: five changed/prepared Swift files parsed, including the pager Apple branch; diff whitespace clean` / `NOT_RUN: Apple typecheck, app build, simulator/device, gesture arbitration and visual acceptance`)
+- `python.exe tools\verify_upstream_boundary.py --base 63eea4200420972344c22334149dc33a663c2ef1 --head HEAD` -> `Boundary Verification Result: PASS` (`Changes detected: 5, Violations: 0, Warnings: 0`)
+- `python.exe tools\global-search-presentation-tests.py` -> exit `0` (`PASS: 42 ...` + `PASS: 18 ...`, `native NOT_RUN`)
+- `python.exe tools\test_verify_xcresult_zero_skips.py -v` -> `Ran 10 tests in 0.503s` -> `OK`
+- `python.exe tools\test_runtime27_interruption.py -v` -> `Ran 9 tests in 11.605s` -> `OK`
+- Protected/frozen LF SHA-256 hashes verified unchanged against `4065feef` (`iPadLayout.swift`, `iOSTOCView.swift`, `ListContentView.swift`, `ReaderSidebarPageCoordinator.swift`, `R27NativeInteractionAcceptanceTests.swift`, `R27_CASES.json`).
+- Apple SDK typecheck, `Maktabah.app` build, History AX contrast audit (`testHeaderAndHistoryNativeAccessibilityAudit`), sidebar body paging LTR/RTL, scene state / rotation, and the full 27-case matrix remain `OPEN` / `NOT_RUN`. **Phase 1 is NOT READY.**
