@@ -68,8 +68,8 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
         .modifier(ReaderSidebarPageDiagnosticObserver(page: coordinator.page))
         .safeAreaInset(edge: .bottom, spacing: 0) {
             HStack(spacing: 0) {
-                pageButton(.library, title: "ספרייה")
-                pageButton(.contents, title: "תוכן עניינים")
+                pageButton(.library, title: String(localized: "Library"))
+                pageButton(.contents, title: String(localized: "Table of Contents"))
             }
             .foregroundStyle(.secondary)
             .contentShape(Rectangle())
