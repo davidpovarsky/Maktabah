@@ -5,6 +5,7 @@ Stops only explicitly owned process groups, subprocesses, and disposable
 simulator UDIDs. Never executes generic process kills or asserts complete
 external CoreSimulator agent cleanup from Python-side teardown alone.
 """
+import contextlib
 import os
 import signal
 import subprocess
@@ -47,8 +48,30 @@ class InterruptController:
         if error is not None and self.signal_name is None:
             self.signal_name = type(error).__name__
 
+    @contextlib.contextmanager
+    def cleanup_scope(self):
+        """Guard cleanup work while preserving and restoring prior cleanup state."""
+        previous = self.cleanup_active
+        self.cleanup_active = True
+        try:
+            yield self
+        finally:
+            self.cleanup_active = previous
+
+    def apply_metadata(self, target):
+        """Record truthful interruption metadata onto a marker or report dict."""
+        if not self.interrupted:
+            return
+        target["interrupted"] = True
+        if self.signal_number is not None:
+            target["signal_number"] = self.signal_number
+        if self.signal_name is not None:
+            target["signal_name"] = self.signal_name
+        if self.repeat_signals:
+            target["repeat_signals"] = self.repeat_signals
+
     def _handle_signal(self, signum, _frame):
-        if self.interrupted or self.cleanup_active:
+        if self.interrupted:
             self.repeat_signals += 1
             return
         self.interrupted = True
@@ -57,6 +80,8 @@ class InterruptController:
             self.signal_name = signal.Signals(signum).name
         except ValueError:
             self.signal_name = str(signum)
+        if self.cleanup_active:
+            return
         raise KeyboardInterrupt(f"External signal {signum}; UI acceptance remains unverified")
 
 

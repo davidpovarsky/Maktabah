@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """R27 tool probe and integration into the existing native UI execution path."""
+import contextlib
 import hashlib
 import json
 import os
@@ -67,7 +68,11 @@ def capture(command, name):
     return result.stdout
 
 
-def run_logged(command, name, timeout):
+def run_logged(command, name, timeout, interrupt_controller=None):
+    if interrupt_controller is not None and interrupt_controller.interrupted:
+        raise KeyboardInterrupt(
+            f"External signal {interrupt_controller.signal_name or interrupt_controller.signal_number or ''}; skipping {name}".strip()
+        )
     with (OUT / name).open("w") as output:
         owned_group = sys.platform == "darwin"
         process = subprocess.Popen(command, cwd=ROOT, stdout=output, stderr=subprocess.STDOUT,
@@ -78,25 +83,38 @@ def run_logged(command, name, timeout):
             # GitHub cancellation previously killed this supervisor while its
             # native child continued through artifact upload. Stop only the
             # process group created here; never another runner's work.
-            marker = {
-                "status": "INTERRUPTED_CHILD_UNVERIFIED", "exception": type(error).__name__,
-                "owned_process_group": process.pid if owned_group else None,
-                "acceptance_effect": "NONE; interrupted UI results require complete independent validation"}
-            marker_path = OUT / (name + ".interrupted.json")
-            marker_path.write_text(json.dumps(marker, indent=2) + "\n")
-            if owned_group:
+            if isinstance(error, KeyboardInterrupt) and interrupt_controller is not None:
+                interrupt_controller.mark_interrupted(error)
+            guard = (
+                interrupt_controller.cleanup_scope()
+                if interrupt_controller is not None
+                else contextlib.nullcontext()
+            )
+            with guard:
+                marker = {
+                    "status": "INTERRUPTED_CHILD_UNVERIFIED", "exception": type(error).__name__,
+                    "owned_process_group": process.pid if owned_group else None,
+                    "acceptance_effect": "NONE; interrupted UI results require complete independent validation"}
+                marker_path = OUT / (name + ".interrupted.json")
                 try:
-                    marker["cleanup"] = stop_owned_process_group(process)
-                except OSError as cleanup_error:
-                    marker["cleanup"] = {"error": type(cleanup_error).__name__, "state": "UNVERIFIED"}
-            elif process.poll() is None:
-                marker["cleanup"] = runtime27_interruption.stop_owned_subprocess(
-                    process, grace_seconds=5, kill_wait_seconds=2
-                )
-            try:
-                marker_path.write_text(json.dumps(marker, indent=2) + "\n")
-            except OSError:
-                pass
+                    marker_path.write_text(json.dumps(marker, indent=2) + "\n")
+                except OSError:
+                    pass
+                if owned_group:
+                    try:
+                        marker["cleanup"] = stop_owned_process_group(process)
+                    except OSError as cleanup_error:
+                        marker["cleanup"] = {"error": type(cleanup_error).__name__, "state": "UNVERIFIED"}
+                elif process.poll() is None:
+                    marker["cleanup"] = runtime27_interruption.stop_owned_subprocess(
+                        process, grace_seconds=5, kill_wait_seconds=2
+                    )
+                if interrupt_controller is not None:
+                    interrupt_controller.apply_metadata(marker)
+                try:
+                    marker_path.write_text(json.dumps(marker, indent=2) + "\n")
+                except OSError:
+                    pass
             raise
     if process.returncode:
         print("\n".join((OUT / name).read_text(errors="replace").splitlines()[-60:]), flush=True)
@@ -241,7 +259,7 @@ def main():
                            "-sdk", sdk_path, "-target", "arm64-apple-ios27.0-simulator",
                            "-emit-module-path", str(OUT / "CommandPalette.swiftmodule"), *map(str, palette_sources)]
         report["palette_sdk_compile"] = {"command": palette_command, "native_ui_passes": 0}
-        palette_code = run_logged(palette_command, "palette-sdk-compile.log", 180)
+        palette_code = run_logged(palette_command, "palette-sdk-compile.log", 180, interrupt_controller=controller)
         report["palette_sdk_compile"]["exit_code"] = palette_code
         if palette_code:
             raise RuntimeError("Owned palette component did not compile with actual Apple SDK")
@@ -259,7 +277,7 @@ def main():
                            "-emit-module-path", str(OUT / "ReaderSidebarSplit.swiftmodule"), str(sidebar_sdk_source)]
         report["sidebar_sdk_compile"] = dict(command=sidebar_command, native_ui_passes=0,
             original_source_sha256=hashlib.sha256(sidebar_path.read_bytes()).hexdigest())
-        sidebar_code = run_logged(sidebar_command, "sidebar-sdk-compile.log", 180)
+        sidebar_code = run_logged(sidebar_command, "sidebar-sdk-compile.log", 180, interrupt_controller=controller)
         report["sidebar_sdk_compile"]["exit_code"] = sidebar_code
         if sidebar_code:
             raise RuntimeError("Owned sidebar adapter did not compile with actual Apple SDK")
@@ -290,11 +308,11 @@ def main():
             "Scripts/CI/runtime27-fixture-recovery.py", "Scripts/CI/runtime27-url-delivery.py", "Scripts/CI/shutdown-faithful-simulator.py"]}
         if contract.get("hid_comparison"):
             if run_logged([sys.executable, "Scripts/CI/runtime27-hid.py", "prepare", "--out", str(OUT / "hid-tools.json")],
-                          "hid-prepare.log", 360):
+                          "hid-prepare.log", 360, interrupt_controller=controller):
                 raise RuntimeError("Isolated native HID tool preflight failed; comparison UI NOT_RUN")
             report["idb"] = "PINNED_JOB_LOCAL_HID_COMPARISON_ORIGINAL_XCTEST_CASE_RETAINED"
         if run_logged([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--build-for-testing", "--derived-data", "build/DerivedData"],
-                      "build-for-testing-driver.log", 4200):
+                      "build-for-testing-driver.log", 4200, interrupt_controller=controller):
             raise RuntimeError("Real app/test build failed; UI cases NOT_RUN")
         products = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator"
         binaries = {}
@@ -313,7 +331,7 @@ def main():
         os.environ["FAITHFUL_RUNTIME27_MANIFEST"] = str(contract_path)
         os.environ["VALIDATING_BASELINE"] = "false"
         # Native app installer, exact disposable-device lifecycle, existing tests.
-        code = run_logged([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 5400)
+        code = run_logged([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 5400, interrupt_controller=controller)
         collect_cases(report, contract)
         matrix_path = ROOT / "build/artifacts/faithful-ipad-matrix.json"
         if code and matrix_path.is_file():
@@ -339,22 +357,23 @@ def main():
         print(str(error), file=sys.stderr)
         return 1
     finally:
-        controller.cleanup_active = True
-        try:
-            if report["mode"] == "ui" and "case_outcomes" not in report:
-                try:
-                    collect_cases(report, json.loads((ROOT / "docs/hq-integration/runtime27/R27_CASES.json").read_text()))
-                except BaseException as error:
-                    if isinstance(error, KeyboardInterrupt):
-                        controller.mark_interrupted(error)
-                        report["status"] = "INTERRUPTED_UI_UNVERIFIED"
-                    report["case_collection_error"] = f"{type(error).__name__}: {error}"
-        finally:
+        with controller.cleanup_scope():
             try:
-                (OUT / "result.json").write_text(json.dumps(report, indent=2) + "\n")
-                print(json.dumps({key: report.get(key) for key in ("status", "checkout_sha", "sdk", "error")}, indent=2))
+                if report["mode"] == "ui" and "case_outcomes" not in report:
+                    try:
+                        collect_cases(report, json.loads((ROOT / "docs/hq-integration/runtime27/R27_CASES.json").read_text()))
+                    except BaseException as error:
+                        if isinstance(error, KeyboardInterrupt):
+                            controller.mark_interrupted(error)
+                            report["status"] = "INTERRUPTED_UI_UNVERIFIED"
+                        report["case_collection_error"] = f"{type(error).__name__}: {error}"
             finally:
-                controller.restore()
+                try:
+                    controller.apply_metadata(report)
+                    (OUT / "result.json").write_text(json.dumps(report, indent=2) + "\n")
+                    print(json.dumps({key: report.get(key) for key in ("status", "checkout_sha", "sdk", "error")}, indent=2))
+                finally:
+                    controller.restore()
 
 
 if __name__ == "__main__":
