@@ -61,3 +61,4 @@ Authority: original Phase 1 brief and owner continuation; O1-A/O1-B evidence, cu
 - Parent re-ran on the actual merged branch: interruption 9/9 PASS (10.437s), existing result-guard 10/10 PASS (0.446s), merge diff whitespace PASS. This clears the local source gate, **not** Apple SDK/UI/live macOS acceptance.
 - O2-B: next frozen packet `O2B_WORK_PACKET.md`; implementer is the fifth unique task, followed by review sixth and whole-branch review seventh, reserving the eighth slot.
 - Native acceptance and deferred findings: still open.
+- Read-only native source-availability check: GitHub returned HTTP 422 for locally merged O2-A `9c484269…`; the existing runtime27 workflow requires checkout of the exact requested SHA. `NATIVE_EXECUTION_GATE.md` records why old-source runs, SDK lookups, a push, or an alternate source-upload route cannot be silently substituted under the current constraints.
