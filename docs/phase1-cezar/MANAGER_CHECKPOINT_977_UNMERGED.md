@@ -1,5 +1,7 @@
 # Manager checkpoint — quota-blocked scoped review, candidate retained
 
+> **Historical checkpoint, superseded:** native recovery later produced verified scoped report `401a96ee…`; `977` was then merged locally at `4671b0c9…`, with merged-source tests/preflight PASS. See `FINAL_MANAGER_RESULT.md` for current state. Failed Cezar lifecycle is preserved; Phase 1 still NOT READY. The original unmerged checkpoint below is retained as history.
+
 **Phase 1 NOT READY / incomplete. No final source-integration approval or native acceptance.**
 
 ## Exact recovery identity and source

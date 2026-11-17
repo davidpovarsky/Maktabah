@@ -2,6 +2,8 @@
 
 This is a read-only gate check, not a native test result.
 
+**Current source checkpoint:** final correction `977a02a1…` is independently source-approved by committed review `401a96ee…` and locally merged at `4671b0c91354a19d3f1c981e6ebf9c25209a8d01`. Its real source-only preflight and 53 focused portable tests PASS on the merged branch. GitHub lookup of this exact merged SHA also returned HTTP 422. The source-pin/scoped-review blockers are cleared locally; native/product/owner gates below are not.
+
 - The active repository already provides `.github/workflows/sefaria-embedded-validation.yml`.
 - Its `runtime27` job runs on `xcode-27`, requires an exact 40-character `hq_stage2_expected_sha`, rejects nonempty `source_ref` and diagnostic-case overrides, and checks out that exact SHA (`:100-116`).
 - The owner requires local-only work/no push and forbids manually launching paid CI. No workflow, trigger, checkout guard, or publishing route was changed to bypass those constraints.
