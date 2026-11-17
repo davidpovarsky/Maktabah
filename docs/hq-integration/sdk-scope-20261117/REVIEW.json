@@ -1,0 +1,16 @@
+{
+  "run": "44201962404",
+  "result": "SDK_AGGREGATE_FAIL",
+  "root_cause": "Standalone toolbar list included whole app-composed sidebar files but not app dependencies; used obsolete iOS18.6 triple. Actual UI-test compilation itself passed before toolbar step.",
+  "fix": "Use iOS27 SDK triple throughout; retain entire self-contained toolbar/tab sources and exact split/search adapters; explicit full sidebar files REQUIRES_FULL_APP_BUILD with source hashes. Actual app/build-for-testing gate and every UI assertion unchanged.",
+  "no_compiler_model_doubles": true,
+  "prior_app_build": "44192993868 application9a3e498 UNSIGNED_APP_BUILD_PASS; not new-head acceptance",
+  "script_sha256": "28d9eaa49d584dc4c366e6589d58e55041afb5c9eec50995bbb04495b0398726",
+  "at": "2026-11-17T23:53:55.671405+00:00",
+  "actual_test_compiler": {
+    "source_sha": "c59a00a1c4ca9e5c448ff4965b90b38939db5525",
+    "status": "SDK_COMPILE_PASS",
+    "warnings": 2298,
+    "native_ui_tests_executed": 0
+  }
+}

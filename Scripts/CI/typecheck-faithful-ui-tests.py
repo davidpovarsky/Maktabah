@@ -33,7 +33,7 @@ for frameworks in [platform / "Developer/Library/Frameworks", sdk / "Developer/L
 command = ["xcrun", "swiftc", "-c", "-whole-module-optimization", "-o", "build/UIAcceptanceCheck.o",
            "-module-name", "Maktabah_iOSUITests", "-swift-version", "6", "-enable-testing",
            "-D", "DEBUG", "-module-alias", "Testing=_Testing_Unavailable",
-           "-target", "arm64-apple-ios18.6-simulator", "-sdk", str(sdk),
+           "-target", "arm64-apple-ios27.0-simulator", "-sdk", str(sdk),
            "-Isystem", str(platform / "Developer/usr/lib"),
            "-F", str(platform / "Developer/Library/Frameworks"), "-F", str(sdk / "Developer/Library/Frameworks"),
            "-module-cache-path", "build/UIAcceptanceModuleCache"]
@@ -55,11 +55,12 @@ command.extend(ui_sources)
 result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 (artifacts / "ui-acceptance-typecheck.log").write_text(result.stdout, encoding="utf-8")
 report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
-          "xcode": version, "swift": swift_version, "sdk": str(sdk), "target": "arm64-apple-ios18.6-simulator",
+          "xcode": version, "swift": swift_version, "sdk": str(sdk), "target": "arm64-apple-ios27.0-simulator",
           "status": "SDK_COMPILE_PASS" if result.returncode == 0 else "FAIL",
           "includesCodeGeneration": True,
           "warningCount": result.stdout.count("warning:"),
-          "notRuntimeAcceptance": True}
+          "sourceHashes": {path: hashlib.sha256(Path(path).read_bytes()).hexdigest() for path in ui_sources},
+          "notRuntimeAcceptance": True, "nativeUITestsExecuted": 0}
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 print(json.dumps(report, indent=2))
 print(result.stdout)
@@ -76,7 +77,7 @@ if native_search_path.is_file() and native_search_marker in native_search_path.r
     native_search_command = compiler_options.copy()
     native_search_command[native_search_command.index("-module-name") + 1] = "ReaderSidebarNativeSearchSDK"
     native_search_command[native_search_command.index("-o") + 1] = "build/ReaderSidebarNativeSearchSDK.o"
-    native_search_command[native_search_command.index("-target") + 1] = "arm64-apple-ios26.2-simulator"
+    native_search_command[native_search_command.index("-target") + 1] = "arm64-apple-ios27.0-simulator"
     native_search_command.append(str(native_search_component))
     native_search_result = subprocess.run(native_search_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     native_search_code = native_search_result.returncode
@@ -115,8 +116,6 @@ if sidebar_path.is_file() and "private struct ReaderSidebarSplitConfiguration:" 
     print(sidebar_result.stdout)
 toolbar_sources = [Path("Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift"),
                    Path("Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift"),
-                   Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"),
-                   Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"),
                    Path("Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift"),
                    Path("MaktabahTests/ReaderOverviewPresentationTests.swift")]
 # Include the real self-contained UIKit source port when checking a focused
@@ -128,6 +127,23 @@ toolbar_sources.extend(tabs_port / name for name in [
     "TabFlareBackgroundController.swift", "TabFlaredBackgroundView.swift", "ReaderBookTabsModel.swift",
     "ReaderTabFadeOutLabel.swift", "TabSwitcherPagePort.swift",
 ])
+# These two full files now contain real application composition/lifecycle
+# dependencies. They cannot be honestly compiled as standalone UIKit sources.
+# Their self-contained search/split portions are compiled above, without
+# substitutes; full-file compilation remains mandatory in the existing actual
+# app/build-for-testing gate. Keep exact hashes and that boundary in evidence.
+app_composed_sidebar_sources = [
+    Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"),
+    Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"),
+]
+report["appComposedSidebar"] = {
+    "scope": "Full source belongs to actual app compilation, not this standalone SDK module",
+    "status": "REQUIRES_FULL_APP_BUILD",
+    "standaloneCoverage": ["exact native search/title adapters", "exact native split configuration"],
+    "appMembershipGate": "verify-otzaria-xcode-project.py",
+    "sourceHashes": {str(path): hashlib.sha256(path.read_bytes()).hexdigest()
+                     for path in app_composed_sidebar_sources if path.is_file()},
+}
 toolbar_code = 0
 if all(path.is_file() for path in toolbar_sources):
     # Compile the real self-contained app components, not substitute stubs.
@@ -156,15 +172,15 @@ native_host = Path("Source/ChavrusaText/UIRoutingHost")
 if (native_host / "Package.swift").is_file():
     native_host_command = ["xcrun", "swift", "build", "--package-path", str(native_host),
                            "--build-system", "native",
-                           "--triple", "arm64-apple-ios26.0-simulator", "--sdk", str(sdk),
+                           "--triple", "arm64-apple-ios27.0-simulator", "--sdk", str(sdk),
                            "-j", "2", "-v", "-Xswiftc", "-strict-concurrency=complete",
-                           "-Xswiftc", "-target", "-Xswiftc", "arm64-apple-ios26.0-simulator"]
+                           "-Xswiftc", "-target", "-Xswiftc", "arm64-apple-ios27.0-simulator"]
     native_host_result = subprocess.run(native_host_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     native_host_code = native_host_result.returncode
     (artifacts / "native-routing-host-sdk.log").write_text(native_host_result.stdout, encoding="utf-8")
     native_host_sources = [native_host / "Package.swift", *sorted((native_host / "Sources").rglob("*.swift"))]
     native_host_report = {"sourceSHA": report["sourceSHA"], "xcode": version, "swift": swift_version, "sdk": str(sdk),
-                          "target": "arm64-apple-ios26.0-simulator", "command": native_host_command,
+                          "target": "arm64-apple-ios27.0-simulator", "command": native_host_command,
                           "status": "SDK_COMPILE_PASS" if native_host_code == 0 else "BUILD_FAILED",
                           "notRuntimeAcceptance": True, "nativeUITestsExecuted": 0,
                           "sourceHashes": {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in native_host_sources}}
