@@ -16,6 +16,14 @@ enum ReaderSidebarPolicy {
               abs(horizontal) >= 44, abs(horizontal) > abs(vertical) * 1.25 else { return nil }
         return isRTL ? horizontal > 0 : horizontal < 0
     }
+
+    /// Avoids trapping on finite values outside `Int` bounds in debug breadcrumbs.
+    static func debugRounded(_ value: Double) -> String {
+        if let rounded = Int(exactly: value.rounded()) {
+            return String(rounded)
+        }
+        return String(describing: value)
+    }
 }
 
 #if canImport(SwiftUI) && canImport(UIKit)
@@ -129,8 +137,8 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
         #if DEBUG
         let current = coordinator.page == .library ? "library" : "contents"
         let target = selectsContents.map { $0 ? "contents" : "library" } ?? "nil"
-        let dx = horizontal.isFinite ? String(Int(horizontal.rounded())) : String(describing: horizontal)
-        let dy = vertical.isFinite ? String(Int(vertical.rounded())) : String(describing: vertical)
+        let dx = ReaderSidebarPolicy.debugRounded(horizontal)
+        let dy = ReaderSidebarPolicy.debugRounded(vertical)
         ReaderSidebarDebugLog.log("swipeDecision page=\(current) isRTL=\(isRTL) dx=\(dx) dy=\(dy) target=\(target)")
         #endif
         guard let selectsContents else { return }
@@ -467,8 +475,7 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
 
     #if DEBUG
     private static func debugRounded(_ value: CGFloat) -> String {
-        let number = Double(value)
-        return number.isFinite ? String(Int(number.rounded())) : String(describing: value)
+        ReaderSidebarPolicy.debugRounded(Double(value))
     }
 
     private static func debugTypeName(_ object: Any?) -> String {

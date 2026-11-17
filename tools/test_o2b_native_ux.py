@@ -227,8 +227,153 @@ class O2BNativeUXContractsTests(unittest.TestCase):
             text=True,
             timeout=45,
         )
-        self.assertEqual(res.returncode, 0, f"Portable sidebar policy failed:\n{res.stdout}\n{res.stderr}")
+        self.assertEqual(
+            res.returncode,
+            0,
+            f"Portable sidebar policy failed:\n{res.stdout}\n{res.stderr}",
+        )
         self.assertIn("PASS:", res.stdout)
+
+    def test_diagnostic_number_formatting_never_traps_and_preserves_rounding(self) -> None:
+        pager_src = PAGER_FILE.read_text(encoding="utf-8")
+        policy_src = pager_src.split("#if canImport(SwiftUI)", 1)[0]
+
+        select_body = extract_brace_block(
+            pager_src, "private func selectPage(horizontal: Double, vertical: Double)"
+        )
+        debug_match = re.search(r"#if\s+DEBUG\b(.*?)#endif", select_body, re.DOTALL)
+        self.assertIsNotNone(debug_match, "selectPage must contain #if DEBUG diagnostic block")
+        select_debug = debug_match.group(1)
+
+        dx_match = re.search(r"^\s*let dx = .+$", select_debug, re.MULTILINE)
+        dy_match = re.search(r"^\s*let dy = .+$", select_debug, re.MULTILINE)
+        self.assertIsNotNone(dx_match, "selectPage #if DEBUG block must define dx")
+        self.assertIsNotNone(dy_match, "selectPage #if DEBUG block must define dy")
+        dx_stmt = dx_match.group(0).strip()
+        dy_stmt = dy_match.group(0).strip()
+
+        controller_body = extract_brace_block(
+            pager_src, "private final class ReaderSidebarSplitConfigurationController:"
+        )
+        sig = "private static func debugRounded(_ value: CGFloat) -> String"
+        debug_rounded_body = extract_brace_block(controller_body, sig)
+        debug_rounded_fn = (
+            "static func debugRounded(_ value: CGFloat) -> String {\n"
+            + debug_rounded_body
+            + "\n}"
+        )
+
+        swift_harness = f"""import Foundation
+
+{policy_src}
+
+typealias CGFloat = Double
+
+enum ControllerDebugHarness {{
+{debug_rounded_fn}
+}}
+
+func formatSelectPagePair(_ horizontal: Double, _ vertical: Double) -> (String, String) {{
+    {dx_stmt}
+    {dy_stmt}
+    return (dx, dy)
+}}
+
+@main
+struct O2BNumericDiagnosticRegressionHarness {{
+    static func main() {{
+        let mode = CommandLine.arguments.dropFirst().first ?? ""
+        func verify(_ path: String, _ actual: String, _ expected: String, _ label: String) {{
+            precondition(actual == expected, "\\(path) [\\(label)]: expected \\(expected), got \\(actual)")
+        }}
+
+        let cases: [(String, Double, String)] = [
+            ("zero", 0.0, "0"),
+            ("neg-zero", -0.0, "0"),
+            ("pos-down", 0.4, "0"),
+            ("neg-down", -0.4, "0"),
+            ("pos-half", 0.5, "1"),
+            ("neg-half", -0.5, "-1"),
+            ("pos-1.5", 1.5, "2"),
+            ("neg-1.5", -1.5, "-2"),
+            ("pos-43.6", 43.6, "44"),
+            ("neg-120.2", -120.2, "-120"),
+            ("int-max-nextDown", Double(Int.max).nextDown, Int(exactly: Double(Int.max).nextDown.rounded()).map(String.init)!),
+            ("double-int-max", Double(Int.max), String(describing: Double(Int.max))),
+            ("double-int-min", Double(Int.min), String(Int.min)),
+            ("double-int-min-nextDown", Double(Int.min).nextDown, String(describing: Double(Int.min).nextDown)),
+            ("neg-out-of-range", -1e20, String(describing: -1e20)),
+            ("pos-greatestFinite", Double.greatestFiniteMagnitude, String(describing: Double.greatestFiniteMagnitude)),
+            ("neg-greatestFinite", -Double.greatestFiniteMagnitude, String(describing: -Double.greatestFiniteMagnitude)),
+            ("nan", .nan, String(describing: Double.nan)),
+            ("pos-inf", .infinity, String(describing: Double.infinity)),
+            ("neg-inf", -.infinity, String(describing: -Double.infinity)),
+        ]
+
+        switch mode {{
+        case "selectPage":
+            for (label, value, expected) in cases {{
+                let (dx, dy) = formatSelectPagePair(value, value)
+                verify("selectPage.dx", dx, expected, label)
+                verify("selectPage.dy", dy, expected, label)
+            }}
+            let (mixedX, mixedY) = formatSelectPagePair(43.6, Double.greatestFiniteMagnitude)
+            verify("selectPage.dx", mixedX, "44", "mixed-x")
+            verify("selectPage.dy", mixedY, String(describing: Double.greatestFiniteMagnitude), "mixed-y")
+            let (mixedX2, mixedY2) = formatSelectPagePair(-Double.greatestFiniteMagnitude, -120.2)
+            verify("selectPage.dx", mixedX2, String(describing: -Double.greatestFiniteMagnitude), "mixed-x2")
+            verify("selectPage.dy", mixedY2, "-120", "mixed-y2")
+            print("PASS: selectPage formatted \\(cases.count * 2 + 4) cases without trap")
+        case "debugRounded":
+            for (label, value, expected) in cases {{
+                let actual = ControllerDebugHarness.debugRounded(CGFloat(value))
+                verify("debugRounded", actual, expected, label)
+            }}
+            print("PASS: debugRounded formatted \\(cases.count) cases without trap")
+        default:
+            preconditionFailure("Unknown mode: \\(mode)")
+        }}
+    }}
+}}
+"""
+        env = swift_env()
+        with tempfile.TemporaryDirectory(prefix="o2b-numeric-") as tmp_dir:
+            tmp = Path(tmp_dir)
+            src = tmp / "O2BNumericDiagnosticRegressionHarness.swift"
+            exe = tmp / ("o2b_numeric.exe" if os.name == "nt" else "o2b_numeric")
+            src.write_text(swift_harness, encoding="utf-8")
+
+            compile_res = subprocess.run(
+                ["swiftc", "-parse-as-library", "-D", "DEBUG", str(src), "-o", str(exe)],
+                cwd=ROOT,
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=45,
+            )
+            self.assertEqual(
+                compile_res.returncode,
+                0,
+                f"Numeric regression harness failed to compile:\n{compile_res.stdout}\n{compile_res.stderr}",
+            )
+
+            for mode in ("selectPage", "debugRounded"):
+                with self.subTest(path=mode):
+                    run_res = subprocess.run(
+                        [str(exe), mode],
+                        cwd=ROOT,
+                        env=env,
+                        capture_output=True,
+                        text=True,
+                        timeout=30,
+                    )
+                    self.assertEqual(
+                        run_res.returncode,
+                        0,
+                        f"{mode} formatting trapped or failed (rc={run_res.returncode}):\n"
+                        f"STDOUT: {run_res.stdout}\nSTDERR: {run_res.stderr}",
+                    )
+                    self.assertIn("PASS:", run_res.stdout)
 
 
 if __name__ == "__main__":
