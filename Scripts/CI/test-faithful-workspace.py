@@ -13,6 +13,7 @@ sources = [value for value in re.findall(r'\$\{REPO_ROOT\}/([^"\r\n]+\.swift)', 
 sources += ["Source/ChavrusaText/ReaderHost/ReaderNavigationChromeState.swift",
             "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
             "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+            "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
             "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
             "Source/ChavrusaText/Navigation/ReaderNavigationDisplayPolicy.swift",
             "tools/test_faithful_study_workspace.swift"]
@@ -24,7 +25,7 @@ with tempfile.TemporaryDirectory(prefix="faithful-workspace-tests-") as director
         ("workspace-compile.log", ["swiftc", "-parse-as-library", *[str(root / path) for path in sources], "-o", str(executable)]),
         ("workspace-test-results.log", [str(executable)]),
     ]:
-        result = subprocess.run(command, cwd=root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        result = subprocess.run(command, cwd=root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace")
         (artifacts / name).write_text(result.stdout, encoding="utf-8")
         print(result.stdout, end="", flush=True)
         result.check_returncode()
