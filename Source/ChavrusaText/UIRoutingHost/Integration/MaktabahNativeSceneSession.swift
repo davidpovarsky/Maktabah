@@ -41,25 +41,28 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         guard nativeSearchField === field else { return }
         if retainedSearchField === field { presentation.revoke() }
         nativeSearchField = nil
+        // Ownership invalidation is synchronous even if the SwiftUI graph has
+        // not rendered yet, including detach/reattach ABA during Core awaits.
+        try? nativeStateChanged()
         scheduleSearchFieldObservation()
     }
 
     func searchFieldStateDidChange(_ field: UISearchTextField) {
         guard nativeSearchField === field else { return }
+        try? nativeStateChanged()
         scheduleSearchFieldObservation()
     }
 
     private func scheduleSearchFieldObservation() {
-        // UIKit attachment can happen inside updateUIView. Publish the graph
-        // invalidation on the next MainActor turn, but always re-read UIKit
-        // synchronously when validating or completing the original command.
+        // UIKit attachment can happen inside updateUIView. Only the graph
+        // notification is deferred; the original directory revision has already
+        // changed synchronously above. Never defer authority invalidation.
         guard !searchFieldUpdateScheduled else { return }
         searchFieldUpdateScheduled = true
         Task { @MainActor [weak self] in
             guard let self else { return }
             searchFieldUpdateScheduled = false
             searchFieldRevision &+= 1
-            try? nativeStateChanged()
         }
     }
 

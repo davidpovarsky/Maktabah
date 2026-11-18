@@ -1249,12 +1249,12 @@ extension NativeRoutingAcceptanceTests {
     private func requireSearchComponentReceipt(before: Set<String>) throws {
         try requirePublicRootReceipt("native.search", before: before)
         let native = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
-        let pairs = native.split(separator: " ", maxSplits: 2)[2].split(separator: " ")
-        let fields = Dictionary(uniqueKeysWithValues: pairs.map {
-            let value = $0.split(separator: "=", maxSplits: 1)
-            return (String(value[0]), String(value[1]))
-        })
-        let request = try XCTUnwrap(fields["request"]), scene = try XCTUnwrap(fields["scene"])
+        // The original helper above validates every field and duplicate.
+        // Extract only the two correlation fields without trapping on a broken
+        // diagnostic line after an XCTest assertion has already failed.
+        let fields = native.split(separator: " ")
+        let request = String(try XCTUnwrap(fields.first(where: { $0.hasPrefix("request=") })).dropFirst(8))
+        let scene = String(try XCTUnwrap(fields.first(where: { $0.hasPrefix("scene=") })).dropFirst(6))
         let sidecar = try workspaceSidecarURL().standardizedFileURL
         let parent = try workspaceContainerParent().standardizedFileURL
         XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))

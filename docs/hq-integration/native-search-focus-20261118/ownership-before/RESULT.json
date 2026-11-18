@@ -1,0 +1,25 @@
+{
+  "observed_at": "2026-11-18T22:14:16.019959+00:00",
+  "source_ref": "2507cc2d504983e18be2af1eb5e00875da9cdec3",
+  "source_sha256": "f68cd8044e7a2f731ef21167d0bcd8f44f8ec1dc2adf185658f37cce328658d9",
+  "actual_methods_sha256": "10462a0aca62c285e269b2962e05d86910bab7f639cda5a14957427cf7c053dd",
+  "fixture_sha256": "f06711179179e06619233e9bf82e701e1ae0db260b8d8b7482823869523b283e",
+  "compile_exit": 0,
+  "test_exit": 1,
+  "warnings": 0,
+  "passed": [
+    "same_owner_update_is_passive",
+    "foreign_detach_is_passive"
+  ],
+  "failed": [
+    "attach_revokes_before_return",
+    "aba_is_visible_before_swiftui_turn",
+    "foreign_callback_is_passive",
+    "current_native_callback_revokes_before_return",
+    "retained_owner_replacement_revokes_immediately",
+    "retained_owner_detach_revokes_immediately",
+    "swiftui_graph_refresh_does_not_defer_or_repeat_authority"
+  ],
+  "status": "FAIL",
+  "boundary": "Exact original app ownership methods, real Swift6/MainActor scheduling, explicit UIKit/presentation/directory revision boundary doubles; not actual UIKit, Core grant or Native acceptance."
+}

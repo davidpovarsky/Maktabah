@@ -1,0 +1,101 @@
+{
+  "observed_at": "2026-11-18T22:17:33.388938+00:00",
+  "previous_local_source": "2507cc2d504983e18be2af1eb5e00875da9cdec3",
+  "finding": "The initial unpushed component implementation deferred directory invalidation until the SwiftUI graph turn. A field detach/replace/ABA during a Core preparation await must invalidate the original scene revision synchronously.",
+  "fix": "The original nativeStateChanged/directory.invalidate now runs synchronously on exact field attachment, native callbacks and detach. Only the observable graph notification remains deferred. Existing original Core and native directory code are unchanged.",
+  "same_oracles": {
+    "before": {
+      "pass": 3,
+      "fail": 6
+    },
+    "after": {
+      "pass": 9,
+      "fail": 0
+    },
+    "fixture_sha256": "308c1224caa1c66f2af4eab12b4697c961cbf4a2f284aecff0a220248c70cefb"
+  },
+  "boundary": "Exact original app ownership methods, real Swift6/MainActor scheduling, explicit UIKit/presentation/directory revision boundary doubles; not actual UIKit, Core grant or Native acceptance.",
+  "initial_harness_attempt": "Preserved ownership-before/after used a coupled expected count for the foreign callback control. Corrected both runs to compare its own observed pre-call revision; no product change between the two after runs. Initial complete fixtures and logs retained.",
+  "additional_regression": "24 original Core-prepared/native directory XCTest PASS, including synchronous ABA during awaits; actual source package binaries unchanged from 14-test build.",
+  "native_status": "All 5 new actual UIKit/system cases NOT_RUN. No Apple typecheck or app runtime claimed.",
+  "source_hashes": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "53d51e0af33117b966e1f53299e2622f997d77060dea71e806ea85029d4962c7",
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "2f133337eb8c8fb17e6b2fc355e85ad5b1116e3d0ebcd1247608c10407793a7a",
+    "Tests/HQ/navigation/NativeSearchFieldOwnerFixtures.swift": "308c1224caa1c66f2af4eab12b4697c961cbf4a2f284aecff0a220248c70cefb",
+    "tools/hq-native-search-field-ownership.py": "be2f04696815fcd1cb5ed7a9d4ece3e11e4d573c2318d6e6022b99d276d27a3c"
+  },
+  "log_copies": {
+    "ownership-before/compile.log": {
+      "raw_sha256": "365349f06a7fffadb54a22e83737569e63dbf346657d7e7ffcf906dbd9a539f6",
+      "copy_sha256": "0c76c4c18ee125b4234a81c3a35d537ffd05959f0c7dc0fef7ebd5453c088436"
+    },
+    "ownership-before/ExactOwnershipMethods.swift": {
+      "raw_sha256": "2dc07342ff4c7bea1c0c2c6bd157bdaa7ac831a1f1c812b86bb3a10f8a20a773",
+      "copy_sha256": "2dc07342ff4c7bea1c0c2c6bd157bdaa7ac831a1f1c812b86bb3a10f8a20a773"
+    },
+    "ownership-before/RESULT.json": {
+      "raw_sha256": "a9040e6c66b91a2627498aece08dff3d949cdf50bdba9597bb49b2b404487898",
+      "copy_sha256": "a9040e6c66b91a2627498aece08dff3d949cdf50bdba9597bb49b2b404487898"
+    },
+    "ownership-before/tests.log": {
+      "raw_sha256": "57a48f578d2e4642bc1b719f2dc12927a636b087dd3178e9069eba9f963f952c",
+      "copy_sha256": "d07d5923635a14cf683c349591918d9b1acb7e4424cdc693c142bbc7902ef8ed"
+    },
+    "ownership-after/compile.log": {
+      "raw_sha256": "de1119c064d10113d91a007afc59e8ecaaa10cb3a2ed4802ad914b4c654f4951",
+      "copy_sha256": "df7bc5bad4edeb92e15aa9a4633fb6792ae01fdf6fcfb8e2ad79807070b58c5a"
+    },
+    "ownership-after/ExactOwnershipMethods.swift": {
+      "raw_sha256": "89501fe12b91095ca39bf24207d4722811c98279ac786ff79cb85caf2febd1f0",
+      "copy_sha256": "89501fe12b91095ca39bf24207d4722811c98279ac786ff79cb85caf2febd1f0"
+    },
+    "ownership-after/RESULT.json": {
+      "raw_sha256": "6717606e9a53fa2b1250d9c002a0017be610438bc149afa4f7ee88881c998542",
+      "copy_sha256": "6717606e9a53fa2b1250d9c002a0017be610438bc149afa4f7ee88881c998542"
+    },
+    "ownership-after/tests.log": {
+      "raw_sha256": "c5e4e01e7dc1fa10ba3245706a7d7420d1265546b62e52b9dada84493aaa1007",
+      "copy_sha256": "100fec4797fbbb53b6331760cca68768afa1c70aec7c5864ff7bdaecb9d4d7f4"
+    },
+    "ownership-before-corrected/compile.log": {
+      "raw_sha256": "694df49fe665f552a25ce085dbfb6175a32222021c12b588fd9ea68f8aa124e2",
+      "copy_sha256": "593e13e3a9ab379334be9df618423bb7a8e08f1b91375c4513609a67af5992fe"
+    },
+    "ownership-before-corrected/ExactOwnershipMethods.swift": {
+      "raw_sha256": "32820084423020848a2dc04e7e447d62843c88ff4d18bc032ac9d944606b45b8",
+      "copy_sha256": "32820084423020848a2dc04e7e447d62843c88ff4d18bc032ac9d944606b45b8"
+    },
+    "ownership-before-corrected/RESULT.json": {
+      "raw_sha256": "a87c35d75c77a49b21ea054025b9e449e6c9637230d401d0ac5f59496aa75354",
+      "copy_sha256": "a87c35d75c77a49b21ea054025b9e449e6c9637230d401d0ac5f59496aa75354"
+    },
+    "ownership-before-corrected/tests.log": {
+      "raw_sha256": "85a088f5e30dde5a86aa75d65a495703df506e8a27c33385195ad821f28748fd",
+      "copy_sha256": "9c7fbe1827b72784819b9eb4793894835d778f74e7099ace3dee8da8eda6ac9b"
+    },
+    "ownership-after-corrected/compile.log": {
+      "raw_sha256": "cfc58bf98656d7f45ba3360484bf463493cc5782e3e975584b40c87050877e30",
+      "copy_sha256": "fe6f5830e13c90da7f318c5097f952257288c9ebf9501af47ae6556c5c51e10c"
+    },
+    "ownership-after-corrected/ExactOwnershipMethods.swift": {
+      "raw_sha256": "52807829e80f341900b9cec7ba11b936423e8cafddf0dff4cfbc2b9f3f0dc606",
+      "copy_sha256": "52807829e80f341900b9cec7ba11b936423e8cafddf0dff4cfbc2b9f3f0dc606"
+    },
+    "ownership-after-corrected/RESULT.json": {
+      "raw_sha256": "ce89be8d9d724339b10dfc80076317c89278c3de27be5be114da93f03827f5cd",
+      "copy_sha256": "ce89be8d9d724339b10dfc80076317c89278c3de27be5be114da93f03827f5cd"
+    },
+    "ownership-after-corrected/tests.log": {
+      "raw_sha256": "c5e4e01e7dc1fa10ba3245706a7d7420d1265546b62e52b9dada84493aaa1007",
+      "copy_sha256": "100fec4797fbbb53b6331760cca68768afa1c70aec7c5864ff7bdaecb9d4d7f4"
+    },
+    "core-directory-regression/RESULT.json": {
+      "raw_sha256": "5c515fa17e09621b17d9144b1f6f71f0a029ed97cc4816fad98e562c3243327f",
+      "copy_sha256": "5c515fa17e09621b17d9144b1f6f71f0a029ed97cc4816fad98e562c3243327f"
+    },
+    "core-directory-regression/tests.log": {
+      "raw_sha256": "e52622b08105ed228cc63f3eafb42dfdc3613e4db2794788f68ef93d423bce21",
+      "copy_sha256": "ab4348e34ea6a6eb163663d4a3d9ae18b7ef6e5be427b281b664b7c8633198b9"
+    }
+  }
+}

@@ -16,3 +16,11 @@ The optional component focus observation is read from the retained original cont
 - A separate NativeFocusReceipt contains only the original canonical request/scene and fixed component ID. Existing native receipt fields/oracles are untouched; no private input is logged.
 
 The complete original raw portable logs and receipts remain in the canonical continuation evidence folder. Committed log copies only normalize trailing whitespace.
+
+## Synchronous ownership fence before publishing
+
+Review of the initial local component commit2507cc2d found that the scene-directory revision was deferred with the SwiftUI graph update. The final implementation invalidates that original revision synchronously on attachment, detach, replacement/ABA and native callbacks. Only rendering notification is deferred. This uses the existing native directory and original Core precommit/completion checks.
+
+The same nine ownership race controls gave 3PASS/6FAIL on2507cc2d and 9PASS on the correction. They execute the exact four original app methods and real Swift MainActor scheduling with explicit UIKit/presentation/directory-revision doubles. They do not execute real UIKit or Core grants. The initial two evidence runs are retained; one foreign-callback assertion was made independent of the preceding ABA control before running the corrected identical oracle on both versions.
+
+Another24 existing original native-directory/Core-prepared package tests passed, including ABA during an await, owner replacement and final completion guards. No existing oracle was weakened. The five new real iPad/iPhone/system cases remain pending.

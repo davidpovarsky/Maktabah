@@ -1,0 +1,10 @@
+PASS attach_revokes_before_return
+PASS same_owner_update_is_passive
+PASS foreign_detach_is_passive
+PASS aba_is_visible_before_swiftui_turn
+PASS foreign_callback_is_passive
+PASS current_native_callback_revokes_before_return
+PASS retained_owner_replacement_revokes_immediately
+PASS retained_owner_detach_revokes_immediately
+PASS swiftui_graph_refresh_does_not_defer_or_repeat_authority
+TOTAL 9 PASS 9 FAIL 0
