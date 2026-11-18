@@ -31,7 +31,13 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 chrome: chrome,
                 selectedTool: $selectedTool,
                 onClose: {
+                    #if DEBUG
+                    OtzariaFileLogger.shared.log("[NativeInspector] originalClose invoked visible=\(viewModel.readerInspectorVisible)")
+                    #endif
                     viewModel.closeReaderInspector()
+                    #if DEBUG
+                    OtzariaFileLogger.shared.log("[NativeInspector] originalClose returned visible=\(viewModel.readerInspectorVisible)")
+                    #endif
                 },
                 onOpenInNewTab: { selection in
                     guard let locator = inspectorSession.locator(for: selection) else { return }

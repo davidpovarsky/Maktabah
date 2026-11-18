@@ -590,18 +590,68 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         add(evidence)
     }
 
+    private struct ZayitReaderLineOracle: Decodable {
+        struct Row: Decodable {
+            let id: Int
+            let bookId: Int
+            let lineIndex: Int
+            let plainText: String
+            let plainSHA256: String
+        }
+        let profileID: String
+        let profileVersion: Int
+        let databaseSHA256: String
+        let rows: [Row]
+    }
+
     @MainActor
     func testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine() throws {
+        try assertZayitReaderSourceLine(lineID: 1)
+    }
+
+    @MainActor
+    func testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight() throws {
+        try assertZayitReaderSourceLine(lineID: 2634912)
+    }
+
+    @MainActor
+    private func assertZayitReaderSourceLine(lineID: Int) throws {
         let metadata = try canonicalZayitMetadata()
+        let bundle = Bundle(for: GlobalSearchNativeAcceptanceTests.self)
+        let url = try XCTUnwrap(bundle.url(forResource: "canonical-miniTest10-reader-lines", withExtension: "json"))
+        let bytes = try Data(contentsOf: url)
+        let oracleHash = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
+        let expectedHash = "9a623ea8805cc9a3c945c3ba05e48842a63b06805599ddc5e6ba18f599284b17"
+        XCTAssertEqual(oracleHash, expectedHash, "The exact SQL source-text oracle must be in the installed test bundle")
+        guard oracleHash == expectedHash else { throw SetupError.missing("canonical Reader source hash") }
+        let oracle = try JSONDecoder().decode(ZayitReaderLineOracle.self, from: bytes)
+        XCTAssertEqual(oracle.profileID, metadata.profileID)
+        XCTAssertEqual(oracle.profileVersion, metadata.profileVersion)
+        XCTAssertEqual(oracle.databaseSHA256, metadata.databaseSHA256)
+        let source = try XCTUnwrap(oracle.rows.first { $0.id == lineID })
+        XCTAssertFalse(source.plainText.isEmpty)
+        XCTAssertEqual(SHA256.hash(data: Data(source.plainText.utf8)).map { String(format: "%02x", $0) }.joined(),
+                       source.plainSHA256)
+        let delivery = XCTAttachment(string: "Actual installed oracle URL: \(url.absoluteString)\nBytes: \(bytes.count)\nSHA256: \(oracleHash)\nSource line ID: \(lineID)")
+        delivery.name = "zayit-canonical-reader-source-test-process-read"
+        delivery.lifetime = .keepAlways
+        add(delivery)
+
         try launchExplicitZayitFlexibleSearch(readerUnitMode: "line")
         try submit("בראשית")
-        let row = try firstOriginalRow()
+        _ = try firstOriginalRow() // Require a completed real engine result list.
+        let stableID = "zayit:miniTest10:\(lineID)"
+        let row = app.buttons["search-result-preview-toggle-" + stableID]
+        for _ in 0..<8 {
+            if row.exists && row.isHittable { break }
+            try require("global-search-results").swipeUp()
+        }
+        XCTAssertTrue(row.waitForExistence(timeout: 15))
+        XCTAssertTrue(row.isHittable)
         let canonical = try requireCanonicalZayitRow(row, metadata: metadata)
-        // Choose the actual engine row, then derive its expected native identity
-        // from the independent sealed SQL tuple. No expected ranking is invented.
+        XCTAssertEqual(canonical, [source.id, source.bookId, source.lineIndex])
         let expected = "otzaria|book:\(canonical[1])|line:\(canonical[2])"
         let expectedTitle = try XCTUnwrap(metadata.books[String(canonical[1])])
-        let stableID = String(row.identifier.dropFirst("search-result-preview-toggle-".count))
         row.tap()
         try require("search-result-expanded-preview-" + stableID)
         let open = try require("search-result-open-" + stableID)
@@ -611,7 +661,23 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         }
         XCTAssertTrue(open.isHittable, "The original result Open control must be reachable")
         open.tap()
-        assertReaderHasText()
+        let textView = app.textViews["reader-text"]
+        XCTAssertTrue(textView.waitForExistence(timeout: 60))
+        // The genuine line-zero source is a six-letter title. A generic
+        // >30-character paragraph heuristic rejects correct source content.
+        // Compare the full actual TextKit text with independently sealed SQL,
+        // stripping only presentation bidi controls and outer whitespace.
+        let directionControls: Set<UInt32> = [0x200E, 0x200F, 0x202A, 0x202B, 0x202C, 0x202D, 0x202E,
+                                             0x2066, 0x2067, 0x2068, 0x2069]
+        func canonicalText(_ value: String) -> String {
+            value.unicodeScalars.filter { !directionControls.contains($0.value) }
+                .map(String.init).joined().trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        eventually("The original TextKit view must contain the exact independently decoded source line", timeout: 30) {
+            guard let actual = textView.value as? String else { return false }
+            return canonicalText(actual) == source.plainText
+        }
+        if source.lineIndex > 0 { assertReaderHasText() }
         XCTAssertEqual(try require("reader-current-locator").label, expected)
         XCTAssertTrue(try require("reader-header-title").label.contains(expectedTitle))
         let rendered = try XCTUnwrap(getRenderedHighlightSnapshot(),
@@ -619,7 +685,7 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(rendered.locator, expected)
         XCTAssertGreaterThan(rendered.searchHighlightCount, 0,
             "The search terms must be highlighted in the rendered original reader")
-        let evidence = XCTAttachment(string: "Observed engine row: \(stableID)\nIndependent expected line-mode locator: \(expected)\nActual rendered locator: \(rendered.locator ?? "<missing>")\nMetadata SHA256: \(zayitMetadataSHA256)")
+        let evidence = XCTAttachment(string: "Observed engine row: \(stableID)\nIndependent expected line-mode locator: \(expected)\nActual rendered locator: \(rendered.locator ?? "<missing>")\nMetadata SHA256: \(zayitMetadataSHA256)\nReader source SHA256: \(source.plainSHA256)")
         evidence.name = "zayit-real-search-to-reader-independent-source-line"
         evidence.lifetime = .keepAlways
         add(evidence)

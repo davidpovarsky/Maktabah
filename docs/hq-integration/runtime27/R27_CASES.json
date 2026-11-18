@@ -5,7 +5,7 @@
   "app_source": "90db0a52ff169a40ff1ae13e509c41873277bd87",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3",
+  "scope": "CONTINUATION_REQUIRED27_SEARCH12_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3",
   "native_cases_executed": 0,
   "required_nonzero_cases": 53,
   "expected_per_device": {
@@ -148,17 +148,9 @@
   ],
   "execution_groups": [
     {
-      "label": "11-reader",
+      "label": "11-search",
       "size": "11",
       "case_ids": [
-        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
-        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
-        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
-        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
-        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
-        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
-        "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
-        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
         "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
         "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
         "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
@@ -166,13 +158,6 @@
         "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
         "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
         "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
-        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
-        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
-        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
-        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
-        "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
-        "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
-        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
         "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
         "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
         "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
@@ -184,6 +169,25 @@
         "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
         "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
         "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+        "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-reader",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+        "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+        "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+        "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
         "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
         "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
         "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
@@ -193,6 +197,17 @@
         "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
         "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
         "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-sidebar",
+      "size": "11",
+      "case_ids": [
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
       ],
       "hid_comparison": false
     },
@@ -275,7 +290,8 @@
     "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
     "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
     "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
-    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader"
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+    "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -666,6 +682,12 @@
       "device": "iphone",
       "status": "NOT_RUN",
       "oracle": "Actual iPhone and original compact workspace owner, real system v2 URL and sealed source metadata; same exact current/new-tab/refusal oracles as iPad. Original NavigationStack reader marker, exact TextKit focused line and full Core receipt; new-tab return uses original compact overview cell."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real Zayit engine row2634912 in miniTest10, exact independently decoded SQL source text, canonical line252, original TextKit highlight and locator. Companion original row1 explicitly verifies zero-based line0."
     }
   ],
   "manager_native_review_history": [
@@ -835,6 +857,18 @@
       "status": "SOURCE_IMPLEMENTED_APP_SDK_NATIVE_PENDING",
       "scope": "Expose existing original compact workspace through the same authoritative owner, passive original NavigationStack reader marker; no new store, navigation stack or permission engine",
       "sha": "90db0a52ff169a40ff1ae13e509c41873277bd87"
+    },
+    "native_execution_partition": {
+      "reason": "Run44207959071 spent4086.583s in the RTL Sidebar test and hit the global150-minute ceiling before phone xcresult verification. Use distinct fresh owned simulator groups, unchanged full-case coverage and no retries.",
+      "case_count": 54,
+      "per_group": {
+        "11-search": 19,
+        "11-reader": 20,
+        "11-sidebar": 4,
+        "11-window": 2,
+        "phone": 9
+      },
+      "prior_result_retained": true
     }
   }
 }

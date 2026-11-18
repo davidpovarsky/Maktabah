@@ -361,6 +361,13 @@ def main():
                            "-parallel-testing-enabled", "NO",
                            "-destination", f"platform=iOS Simulator,id={udid}", "-derivedDataPath", "build/DerivedData",
                            "-resultBundlePath", str(result)]
+                if runtime27_contract:
+                    # A stalled AX query consumed68 minutes in run44207959071.
+                    # Native XCTest must fail and retain that case, then permit
+                    # later required cases to execute; never retry to obtainPASS.
+                    command.extend(["-test-timeouts-enabled", "YES",
+                                    "-default-test-execution-time-allowance", "600",
+                                    "-maximum-test-execution-time-allowance", "600"])
                 command.extend(f"-only-testing:Maktabah-iOSUITests/{suite}" for suite in selection)
                 environment = os.environ.copy()
                 container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()

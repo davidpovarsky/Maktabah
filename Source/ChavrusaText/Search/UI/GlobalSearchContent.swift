@@ -18,6 +18,7 @@ struct GlobalSearchContent<Results: View>: View {
                         .disabled(session.optionsValidationMessage != nil || session.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                         .accessibilityIdentifier("global-search-rerun")
                 }
+                .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("global-search-dirty")
             } else if session.isSearching {
                 VStack(spacing: 12) {
@@ -33,6 +34,7 @@ struct GlobalSearchContent<Results: View>: View {
                     Button("חפש מחדש", action: onSubmit)
                         .accessibilityIdentifier("global-search-rerun")
                 }
+                .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("global-search-cancelled")
             } else if !session.results.isEmpty {
                 VStack(spacing: 0) {
@@ -77,6 +79,7 @@ private struct GlobalSearchEmptyFeedback: View {
                         Button("נתוני חיפוש") { session.showsSearchDataSheet = true }
                     }
                 }
+                .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("global-search-error")
             } else if session.packageMissing {
                 ContentUnavailableView {
@@ -85,6 +88,7 @@ private struct GlobalSearchEmptyFeedback: View {
                     Button("נתוני חיפוש") { session.showsSearchDataSheet = true }
                         .accessibilityIdentifier("global-search-index-status")
                 }
+                .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("global-search-missing-index")
             } else {
                 ContentUnavailableView("לא נמצאו תוצאות", systemImage: "magnifyingglass",

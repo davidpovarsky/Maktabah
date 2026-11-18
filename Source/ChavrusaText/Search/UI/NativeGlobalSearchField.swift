@@ -103,6 +103,22 @@ private final class GlobalSearchTextField: UISearchTextField {
         setNeedsLayout()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // UISearchTextField creates its placeholder UILabel lazily. Its font
+        // must retain Dynamic Type metadata as well as tracking visual size;
+        // updating attributedPlaceholder alone leaves that native label opted
+        // out of the system accessibility text-size audit.
+        guard let placeholder, let bodyFont = font else { return }
+        var descendants = subviews
+        while let view = descendants.popLast() {
+            descendants.append(contentsOf: view.subviews)
+            guard let label = view as? UILabel, label.text == placeholder else { continue }
+            label.adjustsFontForContentSizeCategory = true
+            if label.font != bodyFont { label.font = bodyFont }
+        }
+    }
+
     override var intrinsicContentSize: CGSize {
         let size = super.intrinsicContentSize
         return CGSize(width: size.width, height: max(44, max(size.height, ceil(font?.lineHeight ?? 0) + 20)))

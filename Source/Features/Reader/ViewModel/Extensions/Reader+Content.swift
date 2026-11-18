@@ -56,6 +56,10 @@ extension ReaderViewModel {
                     hasExplicitLocator = true
                 } else if locator.backend == .otzaria {
                     target = TextLocator(backend: locator.backend, workKey: locator.workKey, position: .legacyLine(initialContentId))
+                    // The original database uses zero-based line indices. An
+                    // explicit search/TOC line 0 is content, not an unspecified
+                    // work root to replace with the first navigation heading.
+                    hasExplicitLocator = true
                 }
             } else {
                 if LibraryReadingUnitPolicy.isWorkRoot(locator),

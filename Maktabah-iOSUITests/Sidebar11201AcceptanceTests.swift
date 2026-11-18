@@ -239,11 +239,37 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func revealBook(at path: [String], in library: XCUIElement) throws {
+        // Native evidence found another visible category named "אחרונים".
+        // Target each complete independently supplied fixture path; do not tap
+        // the first leaf-name match in a different expanded branch.
+        func cell(at index: Int) throws -> XCUIElement {
+            let components = path.prefix(index + 1).enumerated().map { offset, title in
+                [offset + 1 == path.count ? "book" : "category", title, "0"]
+            }
+            let identifier = "library-tree-path-" + (try JSONEncoder().encode(components)).base64EncodedString()
+            let matches = library.collectionViews.cells.matching(identifier: identifier)
+            XCTAssertLessThanOrEqual(matches.count, 1, "A complete catalog occurrence must be unique")
+            return matches.firstMatch
+        }
         for (index, title) in path.enumerated() {
-            let label = bookLabel(title, in: library)
-            XCTAssertTrue(label.waitForExistence(timeout: 15), "Fixture path is missing: \(title)")
-            if index + 1 < path.count && !bookLabel(path[index + 1], in: library).exists {
-                tap(label) // Category ancestor only; never open the leaf book.
+            let target = try cell(at: index)
+            // Scroll the actual original list when expansion places the child
+            // outside its viewport. Never activate the leaf book.
+            if index == 0 {
+                for _ in 0..<4 {
+                    if target.exists && target.isHittable { break }
+                    library.collectionViews.firstMatch.swipeDown()
+                }
+            }
+            for _ in 0..<6 {
+                if target.exists && target.isHittable { break }
+                library.collectionViews.firstMatch.swipeUp()
+            }
+            XCTAssertTrue(target.waitForExistence(timeout: 15), "Fixture path is missing: \(title)")
+            XCTAssertTrue(target.staticTexts[title].exists, "Canonical cell must retain the real title")
+            XCTAssertTrue(target.isHittable, "Canonical catalog occurrence must be visible")
+            if index + 1 < path.count && !(try cell(at: index + 1)).exists {
+                target.tap()
             }
         }
     }
