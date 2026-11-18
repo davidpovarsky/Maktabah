@@ -1,6 +1,9 @@
 import Combine
 import Foundation
 import Observation
+#if DEBUG
+import CryptoKit
+#endif
 import SwiftUI
 #if canImport(UIKit)
 import UIKit
@@ -96,6 +99,9 @@ final class UnifiedSearchSessionController {
 
     init() {
         setupObservers()
+        #if DEBUG
+        installNativeSearchPageObservation()
+        #endif
     }
 
     private func setupObservers() {
@@ -108,6 +114,9 @@ final class UnifiedSearchSessionController {
                     self.errorMessage = self.otzaria.errorMessage
                     self.hasMore = self.otzaria.hasMore
                     self.isLoadingMore = self.otzaria.isLoadingMore
+                    #if DEBUG
+                    self.recordNativePublishedSearchResults()
+                    #endif
                 }
             }
         }.store(in: &cancellables)
@@ -129,10 +138,127 @@ final class UnifiedSearchSessionController {
                     }
                     self.hasMore = self.zayitSession.model.hasMore
                     self.isLoadingMore = self.zayitSession.model.isLoadingMore
+                    #if DEBUG
+                    self.recordNativePublishedSearchResults()
+                    #endif
                 }
             }
         }.store(in: &cancellables)
     }
+
+    #if DEBUG
+    private let nativeSearchObservationID = UUID()
+    #if os(iOS)
+    @ObservationIgnored
+    #endif
+    private var nativePublishedSearchBytes: Data?
+
+    /// Explicit disposable-fixture diagnostics. Release builds contain no hook.
+    /// Request query fields are hashed; only fixture provider metadata is retained.
+    /// No observer can alter a result or supply a response.
+    private var nativeSearchObservationNamespace: String? {
+        guard UserDefaults.standard.bool(forKey: "GlobalSearchNativeTraceEnabled"),
+              OtzariaDataProfileRegistry.activeProfileID == "miniTest10",
+              let value = UserDefaults.standard.string(forKey: "studyWorkspaceTestingNamespace"),
+              UUID(uuidString: value) != nil else { return nil }
+        return value
+    }
+
+    private func nativeJSONObject<T: Encodable>(_ value: T) throws -> Any {
+        try JSONSerialization.jsonObject(with: JSONEncoder().encode(value))
+    }
+
+    private func nativeResultObservation(_ item: SearchResultItem) -> [String: Any] {
+        ["id": item.id, "bookID": item.bookId, "bookTitle": item.bookTitle,
+         "lineIndex": item.page, "locator": item.backendLocator?.persistenceKey ?? "",
+         "reference": item.locationDisplayText ?? "",
+         "highlightTerms": item.highlightTerms ?? [],
+         "snippetSHA256": SHA256.hash(data: Data(item.attributedText.string.utf8))
+            .map { String(format: "%02x", $0) }.joined()]
+    }
+
+    private func nativeRequestObservation<T: Encodable>(_ request: T, query: String) throws -> [String: Any] {
+        guard var object = try nativeJSONObject(request) as? [String: Any] else {
+            throw CocoaError(.coderInvalidValue)
+        }
+        object.removeValue(forKey: "query")
+        object["querySHA256"] = SHA256.hash(data: Data(query.utf8)).map { String(format: "%02x", $0) }.joined()
+        return object
+    }
+
+    private func installNativeSearchPageObservation() {
+        zayitSession.model.nativePageObserver = { [weak self] request, page, accumulated, nextOffset in
+            guard let self, self.nativeSearchObservationNamespace != nil else { return }
+            do {
+                try self.writeNativeSearchObservation([
+                    "event": "provider", "engine": "zayit",
+                    "request": self.nativeRequestObservation(request, query: request.query),
+                    "page": self.nativeJSONObject(page),
+                    "accumulatedSource": self.nativeJSONObject(accumulated),
+                    "nextOffset": nextOffset
+                ])
+            } catch { NSLog("[GlobalSearchNativeObservation] page observation failed: %@", String(describing: error)) }
+        }
+        otzaria.nativePageObserver = { [weak self] request, page, records, consumed in
+            guard let self, self.nativeSearchObservationNamespace != nil else { return }
+            do {
+                let retained = try records.map { record in
+                    ["metadata": try self.nativeJSONObject(record.metadata),
+                     "item": self.nativeResultObservation(record.item)] as [String: Any]
+                }
+                try self.writeNativeSearchObservation([
+                    "event": "provider", "engine": "otzaria",
+                    "request": self.nativeRequestObservation(request, query: request.query),
+                    "page": self.nativeJSONObject(page), "retainedRecords": retained,
+                    "nextOffset": consumed
+                ])
+            } catch { NSLog("[GlobalSearchNativeObservation] page observation failed: %@", String(describing: error)) }
+        }
+    }
+
+    private func recordNativePublishedSearchResults() {
+        guard nativeSearchObservationNamespace != nil, acceptsEngineUpdates, !resultsAreDirty,
+              !isSearching, !isLoadingMore, !results.isEmpty else { return }
+        let event: [String: Any] = [
+            "event": "published", "engine": scope == .zayit ? "zayit" : "otzaria",
+            "items": results.map(nativeResultObservation),
+            "hasMore": hasMore, "submissionRevision": submissionRevision,
+            "searchGeneration": searchGeneration
+        ]
+        do {
+            let bytes = try JSONSerialization.data(withJSONObject: event, options: [.sortedKeys])
+            guard nativePublishedSearchBytes != bytes else { return }
+            try writeNativeSearchObservation(event)
+            nativePublishedSearchBytes = bytes
+        } catch { NSLog("[GlobalSearchNativeObservation] UI observation failed: %@", String(describing: error)) }
+    }
+
+    private func writeNativeSearchObservation(_ event: [String: Any]) throws {
+        guard let namespace = nativeSearchObservationNamespace else { return }
+        var record = event
+        record["schemaVersion"] = 1
+        record["namespace"] = namespace
+        record["sessionID"] = nativeSearchObservationID.uuidString
+        record["submissionRevision"] = submissionRevision
+        record["searchGeneration"] = searchGeneration
+        record["backendGeneration"] = BackendCoordinator.shared.generation
+        record["profileID"] = OtzariaDataProfileRegistry.activeProfileID
+        let directory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+                                                     appropriateFor: nil, create: true)
+            .appendingPathComponent("OtzariaLogs", isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        let file = directory.appendingPathComponent("search-native-" + namespace + ".jsonl")
+        if !FileManager.default.fileExists(atPath: file.path) { try Data().write(to: file, options: .atomic) }
+        let size = (try FileManager.default.attributesOfItem(atPath: file.path)[.size] as? NSNumber)?.intValue ?? 0
+        guard size < 8 * 1024 * 1024 else { throw CocoaError(.fileWriteOutOfSpace) }
+        var bytes = try JSONSerialization.data(withJSONObject: record, options: [.sortedKeys])
+        bytes.append(10)
+        let handle = try FileHandle(forWritingTo: file)
+        defer { try? handle.close() }
+        try handle.seekToEnd()
+        try handle.write(contentsOf: bytes)
+    }
+    #endif
 
     // MARK: - Backend Awareness
 

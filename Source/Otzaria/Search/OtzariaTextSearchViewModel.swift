@@ -44,6 +44,11 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         return false
     }
 
+    #if DEBUG
+    /// Observes the original engine and retained metadata after a real commit.
+    var nativePageObserver: ((OtzariaSearchRequest, OtzariaSearchPage, [ResultRecord], Int) -> Void)?
+    #endif
+
     private let repository = OtzariaTantivySearchRepository.shared
     private let indexingService = OtzariaSearchIndexingService.shared
     private let artifactService = OtzariaSearchArtifactService.shared
@@ -473,6 +478,9 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                         return
                     }
                     try self.store(page: page, items: items, replacing: true)
+                    #if DEBUG
+                    self.nativePageObserver?(request, page, self.searchRecords, self.resultStore.consumedCount)
+                    #endif
                     self.isSearching = false
                 }
             } catch {
@@ -519,6 +527,9 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                         return
                     }
                     try self.store(page: page, items: items, replacing: false)
+                    #if DEBUG
+                    self.nativePageObserver?(nextRequest, page, self.searchRecords, self.resultStore.consumedCount)
+                    #endif
                     self.errorMessage = nil
                     self.isLoadingMore = false
                 }

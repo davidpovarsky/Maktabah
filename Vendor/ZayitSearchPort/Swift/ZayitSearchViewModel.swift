@@ -11,6 +11,11 @@ final class ZayitSearchViewModel: ObservableObject {
     @Published var configured = false
     @Published var filters = ZayitSearchFilters()
 
+    #if DEBUG
+    /// Passive observation of real accepted provider pages; never supplies data.
+    var nativePageObserver: ((ZayitSearchRequest, ZayitSearchPage, [ZayitSearchHit], Int) -> Void)?
+    #endif
+
     private let repository: ZayitSearchRepository
     private var generation = 0
     private var searchTask: Task<Void, Never>?
@@ -99,6 +104,9 @@ final class ZayitSearchViewModel: ObservableObject {
                 nextOffset = request.offset + page.hits.count
                 totalHits = page.totalHits
                 hasMore = !page.isLastPage && !page.hits.isEmpty
+                #if DEBUG
+                nativePageObserver?(request, page, hits, nextOffset)
+                #endif
             } catch {
                 guard currentGeneration == generation, !Task.isCancelled else { return }
                 errorMessage = error.localizedDescription

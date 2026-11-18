@@ -1,0 +1,56 @@
+{
+  "status": "METADATA_HANDOFF_ACCEPTED",
+  "task": "1220548031990416",
+  "created_at": "2026-11-18T14:11:06.302818+00:00",
+  "run": 44207959071,
+  "checkout_sha": "f2f27e92e6c949b2dd4ef83c7438b049a1b898cf",
+  "app_test_source_sha": "a686e1fde69b866a37991a0d11ec79193fbd7dbd",
+  "artifact_id": 14394344856,
+  "source_and_built_resource": {
+    "source": "Maktabah-iOSUITests/canonical-miniTest10-metadata.json",
+    "sha256": "c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b",
+    "bytes": 349131,
+    "native_process_read": "NOT_RUN; requires XCTest attachment from the installed bundle",
+    "built_resource": "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest/canonical-miniTest10-metadata.json",
+    "built_resource_sha256": "c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b"
+  },
+  "actual_installed_resource_sha256": "c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b",
+  "actual_installed_resource_bytes": 349131,
+  "cases": [
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+      "native_case_outcome": "Failed",
+      "metadata_read": "VERIFIED",
+      "attachment": "artifacts/visual-11-reader/C6FDDB19-3642-443C-B577-F606A6020D5D.txt",
+      "attachment_sha256": "1838a4df8abac6a66f7a54a34684ca9dbb9f7e1f0c8cc07bd4a630dc88c0042b",
+      "zip_crc_verified": true
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+      "native_case_outcome": "Passed",
+      "metadata_read": "VERIFIED",
+      "attachment": "artifacts/visual-11-reader/7D25E637-60C9-4C74-91DD-C6DE168D61C6.txt",
+      "attachment_sha256": "1838a4df8abac6a66f7a54a34684ca9dbb9f7e1f0c8cc07bd4a630dc88c0042b",
+      "zip_crc_verified": true
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+      "native_case_outcome": "Passed",
+      "metadata_read": "VERIFIED",
+      "attachment": "artifacts/visual-11-reader/FCC77D92-DF38-4FF7-8785-7ACC5A57A4BA.txt",
+      "attachment_sha256": "1838a4df8abac6a66f7a54a34684ca9dbb9f7e1f0c8cc07bd4a630dc88c0042b",
+      "zip_crc_verified": true
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+      "native_case_outcome": "Passed",
+      "metadata_read": "VERIFIED",
+      "attachment": "artifacts/visual-11-reader/8892D431-4651-4482-9FEC-B31B0BCF0D6E.txt",
+      "attachment_sha256": "1838a4df8abac6a66f7a54a34684ca9dbb9f7e1f0c8cc07bd4a630dc88c0042b",
+      "zip_crc_verified": true
+    }
+  ],
+  "accepted_scope": "Exact sealed metadata packaged in built .xctest, read by actual installed UITest process with actual URL/hash attachments and three original selected Zayit tests passed.",
+  "not_accepted": "No overall app/search/Reader/release acceptance; Reader opening failed separately and has subsequent source fixes. Metadata alone never proves index readiness.",
+  "archive_scope": "Selective HTTP206 ZIP member CRC and SHA verified; no whole ZIP checksum claim."
+}

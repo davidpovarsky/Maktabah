@@ -56,7 +56,7 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    private func launchSearch(backend: String? = nil, language: String? = nil, readerUnitMode: String? = nil) throws {
+    private func launchSearch(backend: String? = nil, language: String? = nil, readerUnitMode: String? = nil, recordNativePages: Bool = false) throws {
         let backend = backend ?? environment["GLOBAL_SEARCH_TEST_BACKEND"] ?? "otzaria"
         let language = language ?? environment["GLOBAL_SEARCH_TEST_LANGUAGE"] ?? "he"
         XCTAssertTrue(["otzaria", "sefaria", "sefariaEmbedded"].contains(backend))
@@ -69,7 +69,7 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         launchWithTier(.realUI, backend: backend,
                        extraArgs: ["-preferredBackend", backend, "-smokeBackend", backend,
                                    "-studyWorkspaceTestingNamespace", workspaceNamespace,
-                                   "-lastSelectedTab", "0"] + readerArguments,
+                                   "-lastSelectedTab", "0"] + readerArguments + (recordNativePages ? ["-GlobalSearchNativeTraceEnabled", "YES"] : []),
                        language: language, locale: language == "he" ? "he_IL" : "en_US")
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         let tab = findTabButton(hebrew: "חיפוש", english: "Search")
@@ -528,8 +528,8 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    private func launchExplicitZayitFlexibleSearch(readerUnitMode: String? = nil) throws {
-        try launchSearch(backend: "otzaria", readerUnitMode: readerUnitMode)
+    private func launchExplicitZayitFlexibleSearch(readerUnitMode: String? = nil, recordNativePages: Bool = false) throws {
+        try launchSearch(backend: "otzaria", readerUnitMode: readerUnitMode, recordNativePages: recordNativePages)
         try chooseMode("zayit")
         XCTAssertEqual(try require("global-search-mode").value as? String, "זית")
         try openOptions()
@@ -758,4 +758,236 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(element("global-search-dirty").exists)
         // Provider request/cursor/cancellation traces remain separate prerequisites.
     }
+
+    // Full native page evidence: the observer sees completed original provider
+    // pages and the actual published UI model. It cannot provide or replace data.
+    @MainActor
+    func testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata() throws {
+        try assertNativePages(engine: "zayit", minimumPages: 3, minimumRows: 150)
+    }
+
+    @MainActor
+    func testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred() throws {
+        try assertNativePages(engine: "otzaria", minimumPages: 2, minimumRows: 200)
+    }
+
+    private func nativeSearchObservationURL() throws -> URL {
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        return parent.appendingPathComponent(container)
+            .appendingPathComponent("Documents/OtzariaLogs/search-native-" + workspaceNamespace + ".jsonl")
+    }
+
+    private func nativeSearchObservations(at url: URL) throws -> [[String: Any]] {
+        let text = try String(contentsOf: url, encoding: .utf8)
+        return try text.split(separator: "\n").map {
+            try XCTUnwrap(JSONSerialization.jsonObject(with: Data($0.utf8)) as? [String: Any])
+        }
+    }
+
+    private func canonicalObservationBytes(_ value: Any) throws -> Data {
+        try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys])
+    }
+
+    @MainActor
+    private func assertNativePages(engine: String, minimumPages: Int, minimumRows: Int) throws {
+        let metadata = try canonicalZayitMetadata() // Same independently sealed original DB.
+        if engine == "zayit" {
+            try launchExplicitZayitFlexibleSearch(readerUnitMode: "line", recordNativePages: true)
+        } else {
+            try launchSearch(backend: "otzaria", readerUnitMode: "line", recordNativePages: true)
+        }
+        try submit("אמר")
+        let originalID = try firstOriginalRow().identifier
+        _ = try applyNoMatchFilter() // Stops automatic prefetch through an actual user control.
+        let url = try nativeSearchObservationURL()
+        for _ in 0..<5 {
+            let before = try actualLoadedProjection()
+            XCTAssertEqual(before.matched, 0)
+            let events = (try? nativeSearchObservations(at: url)) ?? []
+            let pages = events.filter { $0["event"] as? String == "provider" && $0["engine"] as? String == engine }
+            if pages.count >= minimumPages && before.loaded >= minimumRows { break }
+            let more = loadMoreButton()
+            XCTAssertTrue(more.waitForExistence(timeout: 30), "The original engine must offer another real page")
+            XCTAssertTrue(more.isHittable)
+            more.tap()
+            eventually("A real next page must increase the native loaded count without an error", timeout: 90) {
+                guard !self.element("global-search-page-error").exists,
+                      let projection = try? self.actualLoadedProjection() else { return false }
+                return projection.matched == 0 && projection.loaded > before.loaded
+            }
+        }
+        eventually("The committed original UI model and actual loaded count must agree", timeout: 30) {
+            guard !self.element("global-search-cancel").exists,
+                  let projection = try? self.actualLoadedProjection(),
+                  let events = try? self.nativeSearchObservations(at: url),
+                  let last = events.last(where: { $0["event"] as? String == "published" && $0["engine"] as? String == engine }),
+                  let items = last["items"] as? [[String: Any]] else { return false }
+            return items.count == projection.loaded && items.count >= minimumRows
+        }
+        let events = try nativeSearchObservations(at: url)
+        let selected = events.filter { $0["engine"] as? String == engine }
+        XCTAssertFalse(selected.isEmpty)
+        XCTAssertEqual(Set(selected.compactMap { $0["sessionID"] as? String }).count, 1)
+        XCTAssertEqual(Set(selected.compactMap { ($0["searchGeneration"] as? NSNumber)?.intValue }).count, 1)
+        for event in selected {
+            XCTAssertEqual(event["namespace"] as? String, workspaceNamespace)
+            XCTAssertEqual(event["profileID"] as? String, metadata.profileID)
+            XCTAssertEqual((event["schemaVersion"] as? NSNumber)?.intValue, 1)
+            XCTAssertEqual((event["submissionRevision"] as? NSNumber)?.intValue, 1,
+                           "Explicit paging must not silently resubmit or substitute the query")
+        }
+        let pages = selected.filter { $0["event"] as? String == "provider" }
+        XCTAssertGreaterThanOrEqual(pages.count, minimumPages)
+        let expectedQueryHash = SHA256.hash(data: Data("אמר".utf8)).map { String(format: "%02x", $0) }.joined()
+        let canonicalRows = Dictionary(uniqueKeysWithValues: metadata.rows.map { ($0[0], $0) })
+        let canonicalPositions = Set(metadata.rows.map { "\($0[1]):\($0[2])" })
+        var expectedOffset = 0
+        var sourceByID: [String: [String: Any]] = [:]
+        var sourceOrder: [String] = []
+        var retainedItemByID: [String: [String: Any]] = [:]
+        var laterPageIDs: [String] = []
+        for (pageIndex, event) in pages.enumerated() {
+            let request = try XCTUnwrap(event["request"] as? [String: Any])
+            XCTAssertEqual(request["querySHA256"] as? String, expectedQueryHash)
+            XCTAssertNil(request["query"], "The diagnostic must not export query text")
+            XCTAssertEqual((request["offset"] as? NSNumber)?.intValue, expectedOffset)
+            XCTAssertEqual((request["limit"] as? NSNumber)?.intValue, engine == "zayit" ? 50 : 100)
+            let page = try XCTUnwrap(event["page"] as? [String: Any])
+            let rows = try XCTUnwrap(page[engine == "zayit" ? "hits" : "results"] as? [[String: Any]])
+            XCTAssertFalse(rows.isEmpty)
+            XCTAssertLessThanOrEqual(rows.count, engine == "zayit" ? 50 : 100)
+            for row in rows {
+                let id: String
+                let book: Int
+                let line: Int
+                let title: String
+                if engine == "zayit" {
+                    let lineID = try XCTUnwrap((row["line_id"] as? NSNumber)?.intValue)
+                    let canonical = try XCTUnwrap(canonicalRows[lineID])
+                    book = try XCTUnwrap((row["book_id"] as? NSNumber)?.intValue)
+                    line = try XCTUnwrap((row["line_index"] as? NSNumber)?.intValue)
+                    title = try XCTUnwrap(row["book_title"] as? String)
+                    XCTAssertEqual([lineID, book, line], canonical)
+                    id = "zayit:miniTest10:\(lineID)"
+                } else {
+                    let path = try XCTUnwrap(row["filePath"] as? String)
+                    XCTAssertTrue(path.hasPrefix("otzaria-book:"))
+                    book = try XCTUnwrap(Int(path.dropFirst("otzaria-book:".count)))
+                    line = try XCTUnwrap((row["segment"] as? NSNumber)?.intValue)
+                    let rawID = try XCTUnwrap((row["id"] as? NSNumber)?.uint64Value)
+                    title = try XCTUnwrap(row["title"] as? String)
+                    XCTAssertTrue(canonicalPositions.contains("\(book):\(line)"))
+                    id = "otzaria:\(path):\(rawID):\(line)"
+                }
+                XCTAssertEqual(title, metadata.books[String(book)])
+                if sourceByID[id] == nil {
+                    sourceByID[id] = row
+                    sourceOrder.append(id)
+                    if pageIndex > 0 { laterPageIDs.append(id) }
+                } else {
+                    XCTAssertEqual(try canonicalObservationBytes(try XCTUnwrap(sourceByID[id])),
+                                   try canonicalObservationBytes(row),
+                                   "A repeated engine identity cannot change its original metadata")
+                }
+            }
+            expectedOffset += rows.count
+            XCTAssertEqual((event["nextOffset"] as? NSNumber)?.intValue, expectedOffset,
+                           "Cursor must consume actual raw engine rows, including any duplicate identities")
+            if engine == "zayit" {
+                let accumulated = try XCTUnwrap(event["accumulatedSource"] as? [[String: Any]])
+                XCTAssertEqual(accumulated.count, sourceOrder.count)
+                for (id, retained) in zip(sourceOrder, accumulated) {
+                    XCTAssertEqual(try canonicalObservationBytes(try XCTUnwrap(sourceByID[id])),
+                                   try canonicalObservationBytes(retained),
+                                   "Earlier pages must retain every original provider field")
+                }
+            } else {
+                let retained = try XCTUnwrap(event["retainedRecords"] as? [[String: Any]])
+                XCTAssertEqual(retained.count, sourceOrder.count)
+                for (id, record) in zip(sourceOrder, retained) {
+                    XCTAssertEqual(try canonicalObservationBytes(try XCTUnwrap(sourceByID[id])),
+                                   try canonicalObservationBytes(try XCTUnwrap(record["metadata"])),
+                                   "Metadata must remain paired with its original identity after every page")
+                    let item = try XCTUnwrap(record["item"] as? [String: Any])
+                    XCTAssertEqual(item["id"] as? String, id)
+                    if let prior = retainedItemByID[id] {
+                        XCTAssertEqual(try canonicalObservationBytes(item), try canonicalObservationBytes(prior))
+                    }
+                    retainedItemByID[id] = item
+                }
+            }
+        }
+        let published = try XCTUnwrap(selected.last { $0["event"] as? String == "published" })
+        let items = try XCTUnwrap(published["items"] as? [[String: Any]])
+        let ids = try items.map { try XCTUnwrap($0["id"] as? String) }
+        XCTAssertEqual(ids, sourceOrder, "The original UI must publish the real accumulated provider order")
+        XCTAssertEqual(Set(ids).count, ids.count, "No duplicate identity may appear in the real UI model")
+        XCTAssertGreaterThanOrEqual(ids.count, minimumRows)
+        for item in items {
+            let id = try XCTUnwrap(item["id"] as? String)
+            let raw = try XCTUnwrap(sourceByID[id])
+            let book = try XCTUnwrap((item["bookID"] as? NSNumber)?.intValue)
+            let line = try XCTUnwrap((item["lineIndex"] as? NSNumber)?.intValue)
+            XCTAssertTrue(canonicalPositions.contains("\(book):\(line)"))
+            XCTAssertEqual(item["bookTitle"] as? String, metadata.books[String(book)])
+            XCTAssertEqual(item["locator"] as? String, "otzaria|book:\(book)|line:\(line)")
+            XCTAssertEqual(item["reference"] as? String, raw["reference"] as? String ?? "")
+            if engine == "zayit" {
+                XCTAssertEqual(item["highlightTerms"] as? [String], raw["matched_terms"] as? [String])
+                XCTAssertEqual((raw["book_id"] as? NSNumber)?.intValue, book)
+                XCTAssertEqual((raw["line_index"] as? NSNumber)?.intValue, line)
+            } else {
+                XCTAssertEqual(try canonicalObservationBytes(item),
+                               try canonicalObservationBytes(try XCTUnwrap(retainedItemByID[id])))
+            }
+        }
+        let evidence = XCTAttachment(data: try Data(contentsOf: url), uniformTypeIdentifier: "public.plain-text")
+        evidence.name = "actual-" + engine + "-provider-pages-and-native-published-results"
+        evidence.lifetime = .keepAlways
+        add(evidence)
+        XCTAssertEqual(try queryField().value as? String, "אמר")
+        XCTAssertFalse(element("global-search-page-error").exists)
+        XCTAssertFalse(element("global-search-dirty").exists)
+        try require("global-search-result-filter-done").tap()
+        XCTAssertEqual(try unfilteredLoadedCount(), items.count)
+        XCTAssertTrue(ids.contains(String(originalID.dropFirst("search-result-preview-toggle-".count))))
+
+        // Open a genuine later-page result, using independently sealed SQL for
+        // its expected book/line rather than trusting the UI's own title.
+        let chosenID = try XCTUnwrap(laterPageIDs.first { id in
+            guard let raw = sourceByID[id] else { return false }
+            let snippet = raw[engine == "zayit" ? "snippet_html" : "text"] as? String ?? ""
+            return snippet.count > 100
+        })
+        let chosen = try XCTUnwrap(items.first { $0["id"] as? String == chosenID })
+        let book = try XCTUnwrap((chosen["bookID"] as? NSNumber)?.intValue)
+        let line = try XCTUnwrap((chosen["lineIndex"] as? NSNumber)?.intValue)
+        let row = app.buttons["search-result-preview-toggle-" + chosenID]
+        for _ in 0..<24 {
+            if row.exists && row.isHittable { break }
+            try require("global-search-results").swipeUp()
+        }
+        XCTAssertTrue(row.exists)
+        XCTAssertTrue(row.isHittable, "An actual later-page result must remain reachable")
+        row.tap()
+        try require("search-result-expanded-preview-" + chosenID)
+        let open = try require("search-result-open-" + chosenID)
+        for _ in 0..<6 {
+            if open.isHittable { break }
+            try require("global-search-results").swipeUp()
+        }
+        XCTAssertTrue(open.isHittable)
+        open.tap()
+        assertReaderHasText()
+        let expectedLocator = "otzaria|book:\(book)|line:\(line)"
+        XCTAssertEqual(try require("reader-current-locator").label, expectedLocator)
+        XCTAssertTrue(try require("reader-header-title").label.contains(try XCTUnwrap(metadata.books[String(book)])))
+        let rendered = try XCTUnwrap(getRenderedHighlightSnapshot())
+        XCTAssertEqual(rendered.locator, expectedLocator)
+        XCTAssertGreaterThan(rendered.searchHighlightCount, 0)
+    }
+
 }

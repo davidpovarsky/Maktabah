@@ -5,11 +5,11 @@
   "app_source": "1a90fc3ef7d6c30dcb1ce6df2aa2c4fd6a502855",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_REQUIRED27_SEARCH12_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3",
+  "scope": "CONTINUATION_REQUIRED27_SEARCH14_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 54,
+  "required_nonzero_cases": 56,
   "expected_per_device": {
-    "ipad11": 45,
+    "ipad11": 47,
     "iphone": 9
   },
   "cases": [
@@ -169,7 +169,9 @@
         "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
         "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
         "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
-        "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"
+        "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+        "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+        "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
       ],
       "hid_comparison": false
     },
@@ -291,7 +293,9 @@
     "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
     "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
     "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
-    "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"
+    "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+    "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+    "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -688,6 +692,18 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Real Zayit engine row2634912 in miniTest10, exact independently decoded SQL source text, canonical line252, original TextKit highlight and locator. Companion original row1 explicitly verifies zero-based line0."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original Zayit provider offset0/50/100+,150+ published unique rows, every raw/retained field stable against sealed canonical SQL and UI model, original later-page Reader exact locator/highlight; no provider doubles."
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original Otzaria engine offset0/100+,200+ published unique rows, metadata remains paired with every accumulated stable identity, canonical SQL and native UI agreement; original later-page Reader exact locator/highlight."
     }
   ],
   "manager_native_review_history": [
@@ -786,7 +802,9 @@
       "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
       "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
       "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
-      "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"
+      "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+      "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+      "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
     ],
     "phase3_supplemental_case_ids": [
       "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
@@ -807,7 +825,7 @@
     },
     "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
     "executor": "Current sole developer continuation; no subagents or resumed prior agents",
-    "native_status": "NOT_RUN on this54-case candidate. Previous run44207959071 failed/timed out:35 xcresult-verified,28PASS,7FAIL;6 phone outcomes unverified. No historical PASS reused.",
+    "native_status": "Native54 c0599822 remains independently active; new56 candidate is SOURCE_ONLY pending actual SDK/app/Native. No historical passes reused.",
     "canonical_reader_source": {
       "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
       "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
@@ -861,9 +879,9 @@
     },
     "native_execution_partition": {
       "reason": "Run44207959071 spent4086.583s in the RTL Sidebar test and hit the global150-minute ceiling before phone xcresult verification. Use distinct fresh owned simulator groups, unchanged full-case coverage and no retries.",
-      "case_count": 54,
+      "case_count": 56,
       "per_group": {
-        "11-search": 19,
+        "11-search": 21,
         "11-reader": 20,
         "11-sidebar": 4,
         "11-window": 2,
@@ -884,6 +902,15 @@
       "error": "Swift throwing RHS of short-circuit && requires try on complete expression; replaced with explicit nested control flow",
       "source_sha": "1a90fc3ef7d6c30dcb1ce6df2aa2c4fd6a502855",
       "changed_oracle": false
+    },
+    "native_page_evidence": {
+      "scope": "Two actual provider/UI/Reader paging cases; explicit DEBUG-only miniTest10 UUID-scoped read-only observation, no fake responses or action",
+      "case_ids": [
+        "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+        "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
+      ],
+      "status": "SOURCE_ADDED_NOT_RUN",
+      "privacy": "No raw request.query field; full fixture provider metadata included only with explicit test flag; all hooks compiled out of Release"
     }
   }
 }
