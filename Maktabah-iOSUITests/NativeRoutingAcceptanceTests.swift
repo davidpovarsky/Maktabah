@@ -1071,3 +1071,160 @@ extension NativeRoutingPhoneAcceptanceTests {
         try runPhoneLibraryRootPreservesOriginalReader()
     }
 }
+
+
+// Real Apple system invocation, source-owned Core entities, original Reader owner.
+// These cases never invoke perform directly or replace a source/scene/receipt.
+extension NativeRoutingAcceptanceTests {
+    private struct SystemReaderOracle: Decodable {
+        struct Row: Decodable {
+            let id: Int; let bookId: Int; let lineIndex: Int
+            let plainText: String; let plainSHA256: String
+        }
+        let profileID: String; let profileVersion: Int; let databaseSHA256: String
+        let rows: [Row]
+    }
+    private func systemReaderOracle(lineID: Int) throws -> SystemReaderOracle.Row {
+        let url = try XCTUnwrap(Bundle(for: NativeRoutingAcceptanceTests.self)
+            .url(forResource: "canonical-miniTest10-reader-lines", withExtension: "json"))
+        let data = try Data(contentsOf: url)
+        let digest = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+        XCTAssertEqual(digest, "9a623ea8805cc9a3c945c3ba05e48842a63b06805599ddc5e6ba18f599284b17")
+        let original = try JSONDecoder().decode(SystemReaderOracle.self, from: data)
+        XCTAssertEqual(original.profileID, "miniTest10"); XCTAssertEqual(original.profileVersion, 6)
+        XCTAssertEqual(original.databaseSHA256, "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef")
+        let row = try XCTUnwrap(original.rows.first { $0.id == lineID })
+        XCTAssertEqual(SHA256.hash(data: Data(row.plainText.utf8)).map { String(format: "%02x", $0) }.joined(), row.plainSHA256)
+        let evidence = XCTAttachment(string: "Installed original SQL oracle: \(url.absoluteString)\nSHA256: \(digest)\nSource row: \(row.id), book: \(row.bookId), line: \(row.lineIndex)")
+        evidence.name = "system-book-intent-independent-source"; evidence.lifetime = .keepAlways; add(evidence)
+        return row
+    }
+    private func systemEntityIdentifier(_ fields: [String: Any], kind: String) throws -> String {
+        let data = try JSONSerialization.data(withJSONObject: fields, options: [.sortedKeys])
+        return "maktabah.\(kind).v1." + data.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+    }
+    @MainActor private func requireSystemReaderSource(_ row: SystemReaderOracle.Row) throws {
+        let expected = "otzaria|book:\(row.bookId)|line:\(row.lineIndex)"
+        let text = app.textViews["reader-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 45))
+        let controls: Set<UInt32> = [0x200E, 0x200F, 0x202A, 0x202B, 0x202C, 0x202D, 0x202E, 0x2066, 0x2067, 0x2068, 0x2069]
+        let rendered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = text.value as? String else { return false }
+            let plain = actual.unicodeScalars.filter { !controls.contains($0.value) }.map(String.init)
+                .joined().trimmingCharacters(in: .whitespacesAndNewlines)
+            return plain == row.plainText
+                && self.app.staticTexts["reader-current-locator"].label == expected
+                && self.getRenderedHighlightSnapshot()?.locator == expected
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [rendered], timeout: 30), .completed,
+                       "The original TextKit text and exact source locator must both match independent SQL")
+        XCTAssertGreaterThan(text.frame.width, 80); XCTAssertGreaterThan(text.frame.height, 80)
+        XCTAssertGreaterThan(try XCTUnwrap(getRenderedHighlightSnapshot()).segmentSelectionCount, 0)
+    }
+    @MainActor func runSystemBookIntent(namedChapter: Bool, expectedPad: Bool = true) async throws {
+        let row = try systemReaderOracle(lineID: namedChapter ? 2 : 2634912)
+        let metadata = try readerSourceMetadata()
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let original = try actualReaderWorkspace().current()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let books = try await system.entities["NativeBookEntity"].entities(matching: try XCTUnwrap(metadata.books[String(row.bookId)]))
+        XCTAssertEqual(books.count, 1, "Book must resolve through original Core and the installed actual catalog")
+        let windows = try await system.entities["NativeDestinationEntity"].entities(matching: "Library")
+        XCTAssertEqual(windows.count, 1)
+        let book = try XCTUnwrap(books.first), window = try XCTUnwrap(windows.first)
+        let before = try actualNativeReceiptLines()
+        if namedChapter {
+            // Apple resolves the typed source name using the location entity's
+            // dependency on this selected book. This exercises the original TOC.
+            XCTAssertEqual(row.bookId, 1); XCTAssertEqual(row.lineIndex, 1); XCTAssertEqual(row.plainText, "פרק א")
+            _ = try await system.intents["OpenBookAtLocationIntent"]
+                .makeIntent(book: book, location: row.plainText, window: window, newTab: true).run()
+        } else {
+            let id = try systemEntityIdentifier(["backend": "otzaria", "workKey": "book:\(row.bookId)",
+                "position": ["kind": "legacyLine", "value": row.lineIndex]], kind: "location")
+            let location = system.entities["NativeBookLocationEntity"].makeReference(identifier: id)
+            XCUIDevice.shared.press(.home)
+            _ = try await system.intents["OpenBookAtLocationIntent"]
+                .makeIntent(book: book, location: location, window: window, newTab: true).run()
+        }
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        try requireSystemReaderSource(row)
+        XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(try XCTUnwrap(metadata.books[String(row.bookId)])))
+        try requireNewSystemIntentReceipt(destination: "native.reader", presentation: "newTab", before: before)
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.actualReaderWorkspace().current() else { return false }
+            return current.0.tabs.count == original.0.tabs.count + 1 && current.1 != original.1
+        }, object: nil)
+        let savedResult = await XCTWaiter.fulfillment(of: [saved], timeout: 15)
+        XCTAssertEqual(savedResult, .completed)
+        let current = try actualReaderWorkspace().current()
+        XCTAssertEqual(current.0.id, original.0.id); XCTAssertEqual(current.0.profileID, original.0.profileID)
+        XCTAssertEqual(try XCTUnwrap(current.0.tabs.first { $0.session.id == current.1 }).session.bookId, row.bookId)
+        for old in original.0.tabs {
+            let retained = try XCTUnwrap(current.0.tabs.first { $0.session.id == old.session.id })
+            XCTAssertEqual(retained.session.bookId, old.session.bookId); XCTAssertEqual(retained.backend, old.backend)
+        }
+        capture(namedChapter ? "system-book-intent-original-named-chapter" : "system-book-intent-original-source-after-background")
+        if expectedPad {
+            let tab = app.descendants(matching: .any).matching(identifier: "reader-document-tab-" + original.1.uuidString).firstMatch
+            XCTAssertTrue(tab.isHittable); tab.tap()
+        } else {
+            let overview = app.buttons["reader-open-tabs-button"]
+            XCTAssertTrue(overview.waitForExistence(timeout: 10)); XCTAssertTrue(overview.isHittable); overview.tap()
+            let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + original.1.uuidString }
+            let cell = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
+            XCTAssertTrue(cell.firstMatch.waitForExistence(timeout: 10)); XCTAssertEqual(cell.count, 1)
+            XCTAssertTrue(cell.firstMatch.isHittable); cell.firstMatch.tap()
+        }
+        try requireReaderLocator(originalLocator)
+        XCTAssertEqual(try actualNativeReceiptLines().count, before.count + 1)
+        try attachWorkspaceSnapshot("system-book-intent-original-reader-returned")
+    }
+    @MainActor func testSystemBookIntentResolvesNamedChapterThroughOriginalCore() async throws {
+        try await runSystemBookIntent(namedChapter: true)
+    }
+    @MainActor func testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader() async throws {
+        try await runSystemBookIntent(namedChapter: false)
+    }
+    @MainActor private func refuseSystemBookIntent(stale: Bool) async throws {
+        let row = try systemReaderOracle(lineID: 2634912)
+        _ = try launchCurrentCanonicalReader()
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let original = try actualReaderWorkspace().current(), before = try actualNativeReceiptLines()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let id = try systemEntityIdentifier(["backend": "otzaria", "workKey": "book:\(stale ? row.bookId : 1)"], kind: "work")
+        let book = system.entities["NativeBookEntity"].makeReference(identifier: id)
+        let sourceID = try systemEntityIdentifier(["backend": "otzaria", "workKey": "book:\(row.bookId)",
+            "position": ["kind": "legacyLine", "value": stale ? 999_999_999 : row.lineIndex]], kind: "location")
+        let location = system.entities["NativeBookLocationEntity"].makeReference(identifier: sourceID)
+        let windows = try await system.entities["NativeDestinationEntity"].entities(matching: "Library")
+        XCTAssertEqual(windows.count, 1)
+        let window = try XCTUnwrap(windows.first)
+        var refused = false
+        do {
+            _ = try await system.intents["OpenBookAtLocationIntent"]
+                .makeIntent(book: book, location: location, window: window, newTab: true).run()
+        } catch {
+            refused = true
+            let evidence = XCTAttachment(string: String(describing: error))
+            evidence.name = "system-book-intent-explicit-source-refusal"; evidence.lifetime = .keepAlways; add(evidence)
+        }
+        XCTAssertTrue(refused, "A stale or different-book source entity must not execute")
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        try requirePreservedOriginalWorkspace(original)
+        try requireReaderLocator(originalLocator)
+    }
+    @MainActor func testSystemBookIntentRejectsDifferentBookLocationWithoutMutation() async throws {
+        try await refuseSystemBookIntent(stale: false)
+    }
+    @MainActor func testSystemBookIntentRejectsMissingSourceWithoutMutation() async throws {
+        try await refuseSystemBookIntent(stale: true)
+    }
+}
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testPhoneSystemBookIntentUsesOriginalReaderOwner() async throws {
+        try await runSystemBookIntent(namedChapter: false, expectedPad: false)
+    }
+}

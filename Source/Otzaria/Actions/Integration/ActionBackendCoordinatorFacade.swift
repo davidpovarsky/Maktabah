@@ -198,9 +198,29 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         if query.text == nil, let work = query.workRef {
             guard works.workKeys.contains(work.workKey) else { return .notFound }
             if query.backend == .otzaria {
-                guard work.workKey.hasPrefix("book:"), let book = Int(work.workKey.dropFirst(5)), book > 0,
-                      let line = Int64(input), line >= 0, Int(exactly: line) != nil else { return .notFound }
-                input = "\(book)|\(line)"
+                guard work.workKey.hasPrefix("book:"), let book = Int(work.workKey.dropFirst(5)), book > 0 else { return .notFound }
+                if let line = Int64(input) {
+                    guard line >= 0, Int(exactly: line) != nil else { return .notFound }
+                    input = "\(book)|\(line)"
+                } else {
+                    guard let sourceWork = works.works.first(where: { $0.locator.workKey == work.workKey }) else {
+                        return .notFound
+                    }
+                    let nodes: [LibraryTOCNode]
+                    do { nodes = try await coordinator.tableOfContents(for: sourceWork) }
+                    catch { throw safe(error) }
+                    try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+                    let section = input
+                    let task = Task.detached {
+                        let entries = try ActionLibraryProjection.sourceSections(nodes, invocation: invocation)
+                        return try CatalogActionResolver.sourceSectionCandidates(section: section, work: work,
+                            entries: entries, invocation: invocation)
+                    }
+                    let result = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
+                    try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+                    try await require("catalog.resolveReference", backend: query.backend, invocation: invocation)
+                    return result
+                }
             } else if input != work.workKey, !input.hasPrefix(work.workKey + " ") {
                 input = work.workKey + " " + input
             }

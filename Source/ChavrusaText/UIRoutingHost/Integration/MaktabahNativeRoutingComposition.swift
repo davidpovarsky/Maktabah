@@ -223,9 +223,18 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
             try await waitForMount(managerID: ObjectIdentifier(manager))
         }
-        guard let entry = scenes[sceneID], entry.managerID == ObjectIdentifier(manager),
+        return try await open(public: intent, sceneID: sceneID, managerID: ObjectIdentifier(manager),
+                              expectedSnapshot: nil, origin: origin, until: end)
+    }
+    private func open(public intent: PublicNavigationSpecV2, sceneID: UIStableID, managerID: ObjectIdentifier,
+                      expectedSnapshot: ActionBackendSnapshot?, origin: ActionOrigin,
+                      until end: UInt64) async throws -> UISceneAcknowledgement {
+        guard let entry = scenes[sceneID], entry.managerID == managerID,
               entry.session.foreground, let binding = entry.publicBinding else { return .requiresForeground }
         let snapshot = try backend.currentBackendSnapshot()
+        guard expectedSnapshot == nil || expectedSnapshot == snapshot else {
+            throw UIRouteError(.staleState, "intent_source_generation_changed")
+        }
         if let requested = intent.backend, requested != snapshot.backend { return .requiresBackendSwitch(requested) }
         guard contexts[sceneID] == nil else { throw UIRouteError(.unavailable, "native_scene_busy") }
         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: snapshot, deadlineUptimeNanoseconds: end)
@@ -354,10 +363,61 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         }
         return values
     }
+    /// System entity metadata executes only the original Core catalog actions.
+    /// The observation carries the exact backend/generation/RPC epoch to native
+    /// commit; it is not an authority and cannot be used to fabricate a receipt.
+    private func readerIntentMetadata(_ request: ActionRequest) async throws -> NativeReaderIntentService.CoreObservation {
+        guard ["catalog.resolveWork", "catalog.resolveReference"].contains(request.action) else {
+            throw UIRouteError(.notSupported, "intent_metadata_action_not_supported")
+        }
+        let snapshot = try backend.currentBackendSnapshot()
+        if let requested = request.expectedBackend, requested != snapshot.backend {
+            throw UIRouteError(.requiresBackendSwitch, "backend_selection_required")
+        }
+        let request = ActionRequest(requestId: request.requestId, action: request.action, arguments: request.arguments,
+            expectedBackend: snapshot.backend, expectedGeneration: snapshot.generation, requestedPresentation: .headless)
+        let context = ActionExecutionContext(subjectID: "maktabah.intent.metadata", origin: .appIntent,
+            allowedBackends: [snapshot.backend], scopes: [.discovery])
+        let result = await core.execute(request, context: context)
+        try Task.checkCancellation()
+        guard try backend.currentBackendSnapshot() == snapshot else {
+            throw UIRouteError(.staleState, "intent_source_generation_changed")
+        }
+        return .init(result: result, snapshot: snapshot)
+    }
+    private func openReaderIntent(_ request: NativeReaderIntentService.OpenRequest) async throws -> UISceneAcknowledgement {
+        // Re-resolve the explicit user-selected window. Never pick a first scene
+        // or open another one when a cached system entity has become stale.
+        let windows = try await destinations().filter {
+            $0.destination.rawValue == "native.library" && $0.id == request.windowIdentifier
+        }
+        guard windows.count == 1, let window = windows.first, let entry = scenes[window.sceneID],
+              entry.session.foreground, entry.session.mounted else {
+            throw UIRouteError(.staleState, "intent_window_no_longer_available")
+        }
+        guard window.backend == request.locator.backend,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "intent_source_generation_changed")
+        }
+        // Use R's ORIGINAL bounded-section/focus resolver, then the existing
+        // public binder and Core reader.open with the original retained owner.
+        let native = try ActionAppIdentityBridge.appLocator(request.locator)
+        let resolved = ReaderDestinationResolver.resolve(locator: native)
+        let content = ActionReaderDestination(sectionLocator: try ActionAppIdentityBridge.actionRef(resolved.sectionLocator),
+            focusLocator: try resolved.focusLocator.map(ActionAppIdentityBridge.actionRef),
+            presentationMode: request.newTab ? .newTab : .sameTab)
+        let intent = PublicNavigationSpecV2(destination: UIDestinationID(rawValue: "native.reader")!,
+            backend: window.backend, content: content, presentation: request.newTab ? .newTab : .currentTab)
+        return try await open(public: intent, sceneID: window.sceneID, managerID: entry.managerID,
+            expectedSnapshot: request.expectedSnapshot, origin: .appIntent, until: deadline())
+    }
     func installIntentDependency() {
         guard !intentsInstalled else { return }
         let service = NativeIntentService(discover: { [self] in try await destinations() }, navigate: { [self] in try await open(destination: $0) })
         AppDependencyManager.shared.add(dependency: service)
+        let readerService = NativeReaderIntentService(execute: { [self] in try await readerIntentMetadata($0) },
+            navigate: { [self] in try await openReaderIntent($0) })
+        AppDependencyManager.shared.add(dependency: readerService)
         intentsInstalled = true
     }
     func currentScene(sceneID: UIStableID, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UISceneSnapshot {

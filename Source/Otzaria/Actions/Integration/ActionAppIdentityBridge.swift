@@ -94,6 +94,24 @@ enum ActionLibraryProjection {
         return order.compactMap { byKey[$0] }
     }
 
+    /// Flatten only original provider TOC identities. Matching remains in the
+    /// canonical Core resolver; the app adapter does not infer chapter numbers.
+    static func sourceSections(_ roots: [LibraryTOCNode], invocation: ActionPortInvocation) throws -> [ActionSourceSectionEntry] {
+        guard roots.count <= 100_000 else { throw ActionPortError.unavailable }
+        var pending = roots.reversed().map { ($0, 0) }
+        var entries: [ActionSourceSectionEntry] = []
+        while let (node, depth) = pending.popLast() {
+            try ActionBackendInvocationGuard.check(invocation, current: invocation.snapshot, target: invocation.snapshot.backend)
+            guard depth <= 64, entries.count + pending.count + 1 <= 100_000,
+                  node.children.count <= 100_000 - entries.count - pending.count - 1 else {
+                throw ActionPortError.unavailable
+            }
+            entries.append(.init(locator: try ActionAppIdentityBridge.actionRef(node.locator), title: node.title))
+            pending.append(contentsOf: node.children.reversed().map { ($0, depth + 1) })
+        }
+        return entries
+    }
+
     static func searchPage(_ page: LibrarySearchPage, query: ActionSearchQuery, works: [LibraryWork]) throws -> ActionSearchPage {
         guard page.hits.count <= query.limit, page.total >= 0 else { throw ActionPortError.invalidResponse }
         if let next = page.nextOffset {

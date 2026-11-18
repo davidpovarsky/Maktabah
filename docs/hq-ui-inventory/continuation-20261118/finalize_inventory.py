@@ -62,7 +62,7 @@ def main(source):
             "required":["iOS/iPadOS27 exact scene/backend/visible state/receipt","cancel/stale ownership/refusal"],"runtime":"NOT_RUN_ON_THIS_SOURCE"}
         for backend,b in row["backends"].items():
             b.update(route="SOURCE_WIRED_CONDITIONAL",native_receipt="NOT_RUN_ON_THIS_SOURCE",reason=limits)
-        row["suitability"].update(app_intent="installed_foreground_gated" if dest!="reader" else "not_advertised_reader_intent_unfinished",
+        row["suitability"].update(app_intent="installed_foreground_gated" if dest!="reader" else "source_wired_core_reader_intent_native_pending",
             deep_link="canonical_"+version+"_identity_only",hanlin="thin_existing_SDK_adapter_only_not_app_registered")
         rows.append(row)
         for alias in aliases:
@@ -91,8 +91,19 @@ def main(source):
             inputs=["fresh registered backend-qualified root entity", "exact foreground scene"],
             visible_state="The chosen original native root is independently visible and acknowledged",
             public_versions="NOT_APPLICABLE_SYSTEM_INTENT",
-            note="App metadata and foreground service installed for eligible Library/TOC/History/Search/Annotations/Settings; actual Siri/Shortcuts invocation NOT_RUN; Reader content is not advertised")
+            note="App metadata and foreground service installed for eligible Library/TOC/History/Search/Annotations/Settings; actual Siri/Shortcuts invocation NOT_RUN; separate source-wired Book/Location intent uses original Core and Reader owner")
         rows.append(r)
+    reader_intent=copy.deepcopy(newtab)
+    reader_intent.update(id="inventory.v1.native.reader-intent",screen_section_component="Open source book at chapter or passage / original Reader",
+        source=ref("Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntents.swift","public struct OpenBookAtLocationIntent: AppIntent"),
+        owning_view_model="NativeReaderIntentService / original ActionExecutor catalog resolver / original source TOC / original R reader owner",
+        inputs=["Stable backend-qualified NativeBookEntity and NativeBookLocationEntity", "Exact user-selected existing Library window", "Explicit newTab or currentTab"],
+        public_versions="NOT_APPLICABLE_SYSTEM_INTENT",
+        dependencies_and_requirements="Original Core resolves source work and section; all ambiguity remains selectable; cached IDs revalidated; backend/generation/RPC epoch checked through original binder; original Native reader.open alone commits; no source title is used as permission",
+        note="AppIntent source and original composition installed; Apple SDK/actual system UI tests pending; spoken Siri, Spotlight and physical device acceptance remain separate")
+    reader_intent["tests"]["case_plan_id"]="UI01.native.reader-intent"
+    reader_intent["tests"]["required"]=["Named original TOC chapter through system resolution", "Cached source after background and original tab return", "Wrong-book/missing-source refusal", "Original compact phone owner"]
+    rows.append(reader_intent)
     byid={r["id"]:r for r in rows}
     byid["inventory.v1.app.scene"]["note"]="Real MaktabahNativeRoutingHost mounts using actual UIKit scene identity and original workspace lifecycle; exact target is retained by NativeSceneDirectory. Root Library/TOC/History/Search/Annotations/Settings and current/new-tab Reader on original phone/iPad owners; native validation remains pending."
     for r in rows:
@@ -169,6 +180,13 @@ def main(source):
         {"case":"Phone new Reader tab","registry_id":"native.reader","presentation":"newTab","input":"Known different source book, original phone owner reservation","expected":"New original tab with all prior identities retained; original overview cell returns to previous exact locator"},
         {"case":"Phone cross-book sameTab refusal","registry_id":"native.reader","presentation":"currentTab","input":"Known different source book while currentTab is explicitly requested","expected":"No replacement or acknowledgement; original compact Reader retained"},
         {"case":"Stale scene/owner/backend","registry_id":"native.reader","input":"Invoke after actual owner or backend changes; never inject authority fields into public JSON","expected":"Original live-ownership fence rejects, no success receipt"}
+    ]
+    examples["current_native_examples"] += [
+        {"case":"System book/named chapter","registry_id":"native.reader","presentation":"newTab","input":"Original Core book entity, actual source TOC title and exact Library window through Apple AppIntentsTesting","expected":"Exact independent SQL text/locator, original new tab and canonical receipt; return to retained original Reader"},
+        {"case":"System cached source/background","registry_id":"native.reader","presentation":"newTab","input":"Stable source-qualified location ID revalidated by Core after background","expected":"Exact original source TextKit text and selection; prior tab identities and original reading position retained"},
+        {"case":"System wrong-book refusal","registry_id":"native.reader","input":"Location belonging to another selected book","expected":"System refuses without native receipt, tab or original Reader change"},
+        {"case":"System missing-source refusal","registry_id":"native.reader","input":"Canonical-shaped ID with a nonexistent source line","expected":"Original Core source validation refuses; no invented location, successful intent or tab mutation"},
+        {"case":"Phone system Reader ownership","registry_id":"native.reader","presentation":"newTab","input":"Real system book/location intent after background on compact phone","expected":"Original phone Reader and exact source; original overview returns to retained prior tab"}
     ]
     examples["current_native_execution"]="NOT_RUN_ON_THIS_SOURCE"
     scan=dict(schema_version=1,source_sha=source,embedded_source=old["embedded_source"],

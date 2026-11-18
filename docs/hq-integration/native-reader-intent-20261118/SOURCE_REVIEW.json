@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-11-18T16:08:15.215735+00:00",
+  "status": "SOURCE_REVIEWED_APPLE_AND_NATIVE_PENDING",
+  "source_checks": {
+    "Core_XCTest": 67,
+    "Host_XCTest": 110,
+    "real_app_integration_assertions_with_provider_doubles": 106,
+    "new_core_tests": 6,
+    "new_host_tests": 10
+  },
+  "native_ui_tests_executed_for_this_source": 0,
+  "new_native_cases": 5,
+  "selected_native_cases": 65,
+  "old27_unchanged": true,
+  "reviewer": "Owner-authorized sole continuation developer; no independent reviewer",
+  "source_files_sha256": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "83e5dbd56e42fdce48f14d6ece593f19b54836774ea35a87c98b21edc59bc6c2",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift": "827f1160986abd9b80def9f7fed84e9737f07330beba4f37fffb4eeae351281b",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "c90910d4c7698c145e03569349c7f3a22c2b41176ab4dc371142121721ed207c",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift": "a81f036bd8e34e87ceda31919e8e9f05970731dd64968f2e91b043931a8965ad",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntents.swift": "0cde73dd6584d44dc1de0fd33386b59e16c503453a9b5f8670097cb7b6370c02",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeReaderIntentServiceTests.swift": "967a608c5c93b652458c5ad8460c90aa30bc75e4ec4dbeaf544add535ee8a3fd",
+    "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift": "bd78a3f63e300164551411227835e108923729bbd83ed82cfea05e0e5d3dd433",
+    "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift": "3e9d5a910e04a02d4794ea11247bcadaa92865df1304a86745a82aafdf9dbcc9",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift": "79f55666020cfdaf794f90260d600d3c2b4dbc437ccb78c48390b7ca93611cd1",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift": "a5e860fd7db2626b209b3961d1d481767fe78e692913f17c58500f68c86b2735",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogSourceSectionsTests.swift": "502c9445d753960caa233d1b3f290a2eab8517e2080a44f592121f76eb087254",
+    "docs/hq-actions-bridge/IntegrationAcceptance.swift": "180de99befdbccfc65c0f28c4c6354a016d4b5d40c9089fb9c4058438b8a53c7"
+  },
+  "canonical_evidence_directory": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\reader-intent-20261118",
+  "ci_scope_note": "Native60 44335820129 remains running against prior07b/8e35, not this change",
+  "apple_reference_urls": [
+    "https://developer.apple.com/documentation/appintents/intentparameterdependency",
+    "https://developer.apple.com/documentation/appintentstesting/testing-your-app-intents-code"
+  ]
+}

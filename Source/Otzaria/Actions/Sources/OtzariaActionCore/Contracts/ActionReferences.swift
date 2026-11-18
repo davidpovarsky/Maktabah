@@ -91,3 +91,34 @@ public struct ActionCatalogEntry: Sendable, Equatable {
         self.workRef = workRef; self.title = title; self.aliases = aliases; self.kind = kind; self.provenance = provenance
     }
 }
+
+
+/// A section title and locator read from the selected work's original TOC.
+/// This is source data, not an existence proof or a navigation grant.
+public struct ActionSourceSectionEntry: Sendable, Equatable {
+    public let locator: ActionTextRef
+    public let title: String
+    public init(locator: ActionTextRef, title: String) {
+        self.locator = locator; self.title = title
+    }
+}
+
+/// The same conservative name normalization used by the canonical catalog
+/// resolver. No transliteration, numerical conversion or inferred references.
+enum ActionSourceName {
+    static func normalize(_ value: String, field: String) throws -> String {
+        guard !value.isEmpty, value.utf8.count <= 512 * 8, value.count <= 512,
+              !value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              !value.unicodeScalars.contains(where: {
+                  CharacterSet.controlCharacters.contains($0) && !CharacterSet.whitespacesAndNewlines.contains($0)
+              }) else { throw ActionContractError.invalid(field) }
+        let quoted = value.precomposedStringWithCanonicalMapping.map { character -> Character in
+            switch character {
+            case "\u{05f3}", "\u{2018}", "\u{2019}": return "'"
+            case "\u{05f4}", "\u{201c}", "\u{201d}": return "\""
+            default: return character
+            }
+        }
+        return String(quoted).split(whereSeparator: { $0.isWhitespace }).joined(separator: " ")
+    }
+}

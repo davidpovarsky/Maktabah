@@ -7,6 +7,8 @@ import OtzariaActionCore
 actor BridgeFixtureProvider: LibraryCatalogProviding, LibraryTextProviding, LibraryNavigationProviding, LibrarySearchProviding {
     let backend: BackendID
     var lastRequest: LibrarySearchRequest?
+    var toc: [LibraryTOCNode] = []
+    var lastTOCWork: String?
     var badScope = false
     var hold = false
     var started = false
@@ -32,7 +34,10 @@ actor BridgeFixtureProvider: LibraryCatalogProviding, LibraryTextProviding, Libr
         guard input != "missing" else { throw LibraryBackendError.invalidLocator }
         return locator()
     }
-    func tableOfContents(for work: LibraryWork) -> [LibraryTOCNode] { [] }
+    func tableOfContents(for work: LibraryWork) -> [LibraryTOCNode] {
+        lastTOCWork = work.locator.workKey; return toc
+    }
+    func setTOC(_ nodes: [LibraryTOCNode]) { toc = nodes }
     func search(_ request: LibrarySearchRequest) async -> LibrarySearchPage {
         lastRequest = request
         if hold {
@@ -131,6 +136,31 @@ actor BridgeFixtureProofGate {
             _ = try await bridge.validate(.init(backend: .otzaria, workKey: "book:7", position: .legacyLine(99)), invocation: first)
             fatalError("nonexistent ref accepted")
         } catch { check(true, "known work alone cannot prove nonexistent section") }
+        // The real coordinator and facade read the original navigation port.
+        // The canonical resolver still validates the selected source line.
+        let tocProvider = providers[.otzaria]!
+        let chapterNode = LibraryTOCNode(locator: await tocProvider.locator(), title: "פרק א", children: [])
+        await tocProvider.setTOC([.init(locator: await tocProvider.locator(), title: "ספר", children: [chapterNode])])
+        let sourceResolver = CatalogActionResolver(data: bridge, state: bridge)
+        let chapterQuery = ActionResolveReferenceQuery(backend: .otzaria,
+            workRef: .init(backend: .otzaria, workKey: "book:7"), section: " \nפרק   א ")
+        check(try await sourceResolver.resolveReference(chapterQuery, invocation: invocation(bridge)) == .unique(ref),
+              "named section comes from original nested TOC and receives actual source validation")
+        check(await tocProvider.lastTOCWork == "book:7", "TOC request retains exactly the resolved catalog work")
+        check(try await sourceResolver.resolveReference(.init(backend: .otzaria, workRef: chapterQuery.workRef, section: "פרק 1"),
+              invocation: invocation(bridge)) == .notFound, "no inferred Hebrew chapter number")
+        check(try await sourceResolver.resolveReference(.init(backend: .otzaria, workRef: chapterQuery.workRef, section: "42"),
+              invocation: invocation(bridge)) == .unique(ref), "existing explicit numerical line contract unchanged")
+        let other = LibraryTOCNode(locator: await tocProvider.locator(43), title: "פרק א", children: [])
+        await tocProvider.setTOC([chapterNode, other])
+        if case .ambiguous(let candidates) = try await bridge.referenceCandidates(chapterQuery, invocation: invocation(bridge)) {
+            check(candidates.count == 2, "different source locations with the same section title stay ambiguous")
+        } else { fatalError("same-title sections collapsed to a first match") }
+        do {
+            _ = try await sourceResolver.resolveReference(chapterQuery, invocation: invocation(bridge))
+            fatalError("TOC metadata was mistaken for an existence proof")
+        } catch { check(true, "original resolver rejects the candidate absent from the actual source section") }
+        await tocProvider.setTOC([])
         await providers[.otzaria]!.setBadScope(true)
         do { _ = try await bridge.search(query, invocation: first); fatalError("wrong scope accepted") }
         catch { check(true, "out-of-scope provider hit rejected") }

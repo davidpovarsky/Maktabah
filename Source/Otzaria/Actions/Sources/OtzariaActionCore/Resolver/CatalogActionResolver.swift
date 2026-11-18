@@ -280,16 +280,7 @@ public actor CatalogActionResolver: ActionResolverPort {
     }
 
     private func normalizedName(_ value: String, field: String) throws -> String {
-        try requireText(value, maximum: 512, field: field)
-        let nfc = value.precomposedStringWithCanonicalMapping
-        let quoted = nfc.map { character -> Character in
-            switch character {
-            case "\u{05f3}", "\u{2018}", "\u{2019}": return "'"
-            case "\u{05f4}", "\u{201c}", "\u{201d}": return "\""
-            default: return character
-            }
-        }
-        return String(quoted).split(whereSeparator: { $0.isWhitespace }).joined(separator: " ")
+        try ActionSourceName.normalize(value, field: field)
     }
 
     private func match(_ query: String, entry: ActionCatalogEntry) throws -> ActionCandidate.Confidence? {
