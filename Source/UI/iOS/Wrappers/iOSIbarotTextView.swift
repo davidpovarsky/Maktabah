@@ -709,6 +709,21 @@ struct iOSIbarotTextView: UIViewRepresentable {
         viewModel.fetchSelectedRange = { [weak textView] in
             textView?.selectedRange
         }
+        viewModel.isNativeReaderTextVisible = { [weak textView, weak viewModel, weak coordinator = context.coordinator] sceneID, sourceRange in
+            guard let textView, let viewModel, let coordinator,
+                  coordinator.parent.viewModel === viewModel,
+                  let key = coordinator.lastRenderKey,
+                  key.bookId == viewModel.currentBook?.id,
+                  key.contentId == viewModel.currentContentId,
+                  let rendered = textView.currentRenderResult,
+                  !textView.isRestoringScroll else { return false }
+            return ReaderNativeTextVisibility.isVisible(
+                textView: textView, sceneID: sceneID,
+                expectedSource: viewModel.contentText, renderedSource: rendered.sourceText,
+                renderedText: rendered.attributedString.string, sourceRange: sourceRange,
+                displayedRange: { rendered.displayedRange(forSourceRange: $0) }
+            )
+        }
     }
 
     private func resolveRenderedContent(

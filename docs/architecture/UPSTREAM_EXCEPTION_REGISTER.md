@@ -66,3 +66,8 @@ Exact patch, hashes, necessity, alternatives, source pin and rollback: [REVIEW.j
 ## 2026-11-17 — iPhone global native destinations
 
 The current three-phase owner instruction authorizes native routing integration. One additive original iPhone History modifier supplies the same passive visible-surface witness already used by iPad; the downstream scene host now mounts the real iPhone scene for the existing global History/Settings registry. iPad workspace gates and all authority/receipt/refusal checks remain. Content/workspace-specific destinations remain unsupported. Exact patch, source pin, necessity, limits and rollback: [phone-routing review](../hq-integration/phone-routing-20261117/REVIEW.json). Three supplemental phone tests reuse the complete original system-entry and receipt oracles; native acceptance remains pending.
+
+
+## 2026-11-18 — Passive original TextKit reader evidence
+
+The current all-three-phase instruction includes native Reader/ActionCore integration. Two original hooks add only a weak-reference callback from the existing iOSIbarotTextView to its existing ReaderViewModel. Downstream native routing reads the original renderer, actual UITextView text, live foreground scene, viewport and exact focused glyph before acknowledging a reader surface. It does not scroll, select, replace the renderer, install a second policy or mutate data. Exact patch, authorization scope, proof limits and rollback: [native reader witness review](../hq-integration/native-reader-witness-20261118/REVIEW.json). Actual app compilation and native acceptance remain pending; no public route/sink activation is implied.

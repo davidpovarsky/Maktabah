@@ -45,7 +45,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                let currentEvidence = visibilityChecks[command.route.route.destination]?(), currentEvidence == evidence,
                evidence.sceneID == sceneID, evidence.submissionID == command.invocation.requestId,
                let kind = surfaceKind(command.route.route.destination), let current = try projection.surface(kind),
-               current == evidence.surface {
+               current == evidence.surface,
+               kind != .reader || projection.hasRenderedReaderEvidence(sceneID: sceneID) {
                 surface = current
                 route = current.observedRoute(for: command, backend: command.invocation.snapshot)
             }
@@ -109,7 +110,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         var reader: NativeSurfaceState?
         if let evidence = visible[readerID], evidence.isVisible, evidence.sceneID == sceneID,
            visibilityChecks[readerID]?() == evidence, let current = try project().surface(.reader),
-           current == evidence.surface { reader = current }
+           current == evidence.surface,
+           try project().hasRenderedReaderEvidence(sceneID: sceneID) { reader = current }
         return .init(ready: mounted && foreground && isPresentationReady,
             historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty, witnessedReader: reader)
     }
@@ -145,6 +147,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
 
     func observe(_ evidence: NativeSurfaceWitness.Evidence) {
         guard mounted, evidence.sceneID == sceneID else { return }
+        if evidence.isVisible, evidence.surface.destination.rawValue == "native.reader",
+           (try? project().hasRenderedReaderEvidence(sceneID: sceneID)) != true {
+            if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
+            return
+        }
         #if DEBUG
         if evidence.submissionID != nil {
             let matches = command.map { evidence.surface.observedRoute(for: $0, backend: $0.invocation.snapshot) == $0.route.route } ?? false

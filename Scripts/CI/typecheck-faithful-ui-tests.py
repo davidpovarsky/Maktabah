@@ -163,6 +163,32 @@ if all(path.is_file() for path in toolbar_sources):
     (artifacts / "toolbar-sdk-compile.json").write_text(json.dumps(toolbar_report, indent=2))
     print(json.dumps(toolbar_report, indent=2))
     print(toolbar_result.stdout)
+# Exact self-contained passive reader TextKit witness, with no app/model stubs.
+reader_visibility_code = 0
+reader_visibility_path = Path("Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift")
+reader_visibility_marker = "// BEGIN SELF-CONTAINED NATIVE READER TEXT VISIBILITY"
+if reader_visibility_path.is_file() and reader_visibility_marker in reader_visibility_path.read_text():
+    reader_visibility_source = "import UIKit\n" + reader_visibility_path.read_text().split(reader_visibility_marker, 1)[1].split("// END SELF-CONTAINED NATIVE READER TEXT VISIBILITY", 1)[0]
+    reader_visibility_component = Path("build/NativeReaderTextVisibilitySDK.swift")
+    reader_visibility_component.write_text(reader_visibility_source, encoding="utf-8")
+    reader_visibility_command = compiler_options.copy()
+    reader_visibility_command[reader_visibility_command.index("-module-name") + 1] = "NativeReaderTextVisibilitySDK"
+    reader_visibility_command[reader_visibility_command.index("-o") + 1] = "build/NativeReaderTextVisibilitySDK.o"
+    reader_visibility_command.append(str(reader_visibility_component))
+    reader_visibility_result = subprocess.run(reader_visibility_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    reader_visibility_code = reader_visibility_result.returncode
+    report["nativeReaderTextVisibilitySDK"] = {
+        "sourceSHA": report["sourceSHA"], "status": "SDK_COMPILE_PASS" if reader_visibility_code == 0 else "BUILD_FAILED",
+        "sourceSHA256": hashlib.sha256(reader_visibility_path.read_bytes()).hexdigest(),
+        "componentSHA256": hashlib.sha256(reader_visibility_source.encode()).hexdigest(),
+        "notRuntimeAcceptance": True, "nativeUITestsExecuted": 0,
+        "command": reader_visibility_command
+    }
+    with (artifacts / "ui-acceptance-typecheck.log").open("a", encoding="utf-8") as output:
+        output.write("\n=== Actual native reader TextKit witness SDK compilation ===\n" + reader_visibility_result.stdout)
+    print(json.dumps(report["nativeReaderTextVisibilitySDK"], indent=2))
+    print(reader_visibility_result.stdout)
+
 # UI03/04 downstream package: compile the real sources and their actual Core /
 # UIRouting dependencies for the installed iOS SDK. Windows excludes UIKit and
 # AppIntents, so portable tests alone cannot validate these declarations.
@@ -195,6 +221,6 @@ if (native_host / "Package.swift").is_file():
     print(native_host_result.stdout)
 report["appMembershipStatus"] = "PASS" if membership_code == 0 else "FAIL"
 report["toolbarSDKStatus"] = "SDK_COMPILE_PASS" if toolbar_code == 0 else "BUILD_FAILED"
-report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code) else "FAIL"
+report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code) else "FAIL"
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
-raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code)
+raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code)

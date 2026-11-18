@@ -1,6 +1,7 @@
 #if os(iOS)
 import Foundation
 import SwiftUI
+import UIKit
 import OtzariaActionCore
 import OtzariaUIRouting
 import ChavrusaUIRoutingHost
@@ -71,7 +72,6 @@ struct MaktabahNativeSceneProjection {
         case .reader:
             guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer,
                   let tab = activeTab, let destination = tab.viewModel.currentDestination,
-                  destination.focusLocator == nil,
                   let actual = tab.viewModel.backendSection?.locator,
                   actual == destination.sectionLocator,
                   actual.backend == BackendCoordinator.shared.activeBackendID,
@@ -81,11 +81,97 @@ struct MaktabahNativeSceneProjection {
                 focusLocator: try destination.focusLocator.map(ActionAppIdentityBridge.actionRef), presentationMode: .sameTab)
             let actualState = UIStateSpec(workspaceID: state.workspaceID, profileID: state.profileID,
                                           inspectorVisible: tab.viewModel.readerInspectorVisible)
-            // Selection/highlight/scroll require the original TextKit witness.
-            // Model destination alone must not certify those variants.
+            // This describes model state only. The scene session separately
+            // requires its original TextKit text/viewport witness before an
+            // observation can acknowledge this content or focused segment.
             return .init(destination: id("native.reader"), presentation: .init(kind: .currentTab, tabID: stable(tab.id)),
                          content: content, state: actualState, focus: nil)
         }
     }
+
+    /// Independently read the original rendered view. NativeSurfaceWitness
+    /// separately proves container visibility, presentation and scene ownership.
+    func hasRenderedReaderEvidence(sceneID: UIStableID) -> Bool {
+        guard let tab = activeTab, let section = tab.viewModel.backendSection,
+              let destination = tab.viewModel.currentDestination,
+              section.locator == destination.sectionLocator,
+              section.locator.backend == BackendCoordinator.shared.activeBackendID,
+              tab.book.backendLocator?.workKey == section.locator.workKey,
+              let observe = tab.viewModel.isNativeReaderTextVisible else { return false }
+        let sourceRange: NSRange?
+        if let focus = destination.focusLocator {
+            guard focus.backend == section.locator.backend,
+                  focus.workKey == section.locator.workKey,
+                  let range = tab.viewModel.backendRenderModel?.renderedSegment(for: focus)?.visualRange else { return false }
+            sourceRange = range
+        } else { sourceRange = nil }
+        return observe(sceneID.rawValue, sourceRange)
+    }
 }
+
+// BEGIN SELF-CONTAINED NATIVE READER TEXT VISIBILITY
+/// Read-only proof from the existing UITextView, with its original renderer's
+/// source-to-display mapping. It never scrolls, selects, mutates or renders text.
+@MainActor
+enum ReaderNativeTextVisibility {
+    static func isVisible(textView: UITextView, sceneID: String,
+                          expectedSource: String, renderedSource: String, renderedText: String,
+                          sourceRange: NSRange?, displayedRange: (NSRange) -> NSRange) -> Bool {
+        guard !expectedSource.isEmpty, !renderedText.isEmpty,
+              (expectedSource as NSString).isEqual(to: renderedSource),
+              (renderedText as NSString).isEqual(to: textView.textStorage.string),
+              let window = textView.window, let scene = window.windowScene,
+              scene.session.persistentIdentifier == sceneID,
+              scene.activationState == .foregroundActive,
+              !textView.isHidden, textView.alpha > 0,
+              textView.bounds.width > 1, textView.bounds.height > 1 else { return false }
+        var ancestor = textView.superview
+        while let current = ancestor {
+            guard !current.isHidden, current.alpha > 0 else { return false }
+            ancestor = current.superview
+        }
+        let viewport = textView.bounds.inset(by: textView.adjustedContentInset)
+        guard !viewport.isEmpty,
+              textView.convert(viewport, to: window).intersects(window.bounds) else { return false }
+        let glyphs: NSRange
+        if let sourceRange {
+            let sourceLength = (renderedSource as NSString).length
+            guard valid(sourceRange, length: sourceLength) else { return false }
+            let range = displayedRange(sourceRange)
+            guard valid(range, length: textView.textStorage.length) else { return false }
+            // Require the focus's first rendered glyph in the actual viewport;
+            // a model range or a distant part of a long paragraph is insufficient.
+            let first = NSRange(location: range.location, length: 1)
+            textView.layoutManager.ensureLayout(forCharacterRange: first)
+            glyphs = textView.layoutManager.glyphRange(forCharacterRange: first, actualCharacterRange: nil)
+        } else {
+            // Non-focused reads also require a real glyph in the viewport.
+            // UIKit returns a range whose first/last glyph intersects this rect.
+            let containerViewport = viewport.offsetBy(dx: -textView.textContainerInset.left,
+                                                       dy: -textView.textContainerInset.top)
+            let visible = textView.layoutManager.glyphRange(forBoundingRect: containerViewport, in: textView.textContainer)
+            guard visible.length > 0 else { return false }
+            glyphs = NSRange(location: visible.location, length: 1)
+        }
+        guard glyphs.length > 0 else { return false }
+        let rect = textView.layoutManager.boundingRect(forGlyphRange: glyphs, in: textView.textContainer)
+            .offsetBy(dx: textView.textContainerInset.left, dy: textView.textContainerInset.top)
+        guard !rect.isEmpty, rect.origin.x.isFinite, rect.origin.y.isFinite,
+              rect.width.isFinite, rect.height.isFinite else { return false }
+        guard viewport.insetBy(dx: -1, dy: -1).intersects(rect),
+              textView.convert(rect, to: window).intersects(window.bounds) else { return false }
+        var clippingAncestor = textView.superview
+        while let current = clippingAncestor {
+            if current.clipsToBounds && !textView.convert(rect, to: current).intersects(current.bounds) { return false }
+            clippingAncestor = current.superview
+        }
+        return true
+    }
+
+    private static func valid(_ range: NSRange, length: Int) -> Bool {
+        range.location != NSNotFound && range.location >= 0 && range.length > 0
+            && range.location <= length && range.length <= length - range.location
+    }
+}
+// END SELF-CONTAINED NATIVE READER TEXT VISIBILITY
 #endif

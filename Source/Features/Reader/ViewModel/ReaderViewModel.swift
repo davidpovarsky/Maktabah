@@ -154,6 +154,10 @@ class ReaderViewModel: ViewModelBase {
     var fetchScrollPosition: (() -> CGPoint?)?
     @ObservationIgnored
     var fetchSelectedRange: (() -> NSRange?)?
+    /// Supplied only by this model's actual original TextKit view. A model
+    /// locator alone cannot attest rendered text or a visible focused segment.
+    @ObservationIgnored
+    var isNativeReaderTextVisible: (@MainActor (String, NSRange?) -> Bool)?
     var isPopoverPresented: Bool = false
     #endif
 

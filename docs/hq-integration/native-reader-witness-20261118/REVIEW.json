@@ -1,0 +1,14 @@
+{
+  "base_sha": "f2f27e92e6c949b2dd4ef83c7438b049a1b898cf",
+  "authorization": "Current owner all-three-phase native Reader/ActionCore/App Intents integration instruction; phase-wide authorization, not an unseen exact-hunk approval",
+  "original_paths": [
+    "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+    "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift"
+  ],
+  "patch_sha256": "c5ff6249a7449510c58f7290e34aa81362faa2737bff93a0055ee3e5b926e450",
+  "effect": "Only passive weak-reference TextKit visibility callback; no replacement renderer, scrolling, selection or DB operation",
+  "evidence": "Exact original ArabicRenderResult source/display mapping + live original UITextView text, viewport, same actual foreground window scene and first focused glyph; model destination alone cannot authorize receipt",
+  "acceptance": "SOURCE_IMPLEMENTED_APP_COMPILE_AND_NATIVE_PENDING",
+  "remaining": "Actual Core reader sink, canonical local target preparation, tab/presentation ownership/reservations, source delivery, Siri/Shortcuts/URL and full runtime acceptance remain separate; public-v2 stays disabled",
+  "rollback": "Revert this dedicated continuation commit; no data migration or original worktree changes"
+}

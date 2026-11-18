@@ -1,0 +1,41 @@
+diff --git a/Source/Features/Reader/ViewModel/ReaderViewModel.swift b/Source/Features/Reader/ViewModel/ReaderViewModel.swift
+index ba4d6fba..fc81bba6 100644
+--- a/Source/Features/Reader/ViewModel/ReaderViewModel.swift
++++ b/Source/Features/Reader/ViewModel/ReaderViewModel.swift
+@@ -154,6 +154,10 @@ class ReaderViewModel: ViewModelBase {
+     var fetchScrollPosition: (() -> CGPoint?)?
+     @ObservationIgnored
+     var fetchSelectedRange: (() -> NSRange?)?
++    /// Supplied only by this model's actual original TextKit view. A model
++    /// locator alone cannot attest rendered text or a visible focused segment.
++    @ObservationIgnored
++    var isNativeReaderTextVisible: (@MainActor (String, NSRange?) -> Bool)?
+     var isPopoverPresented: Bool = false
+     #endif
+ 
+diff --git a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+index 23cd37e5..32e7d310 100644
+--- a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
++++ b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+@@ -709,6 +709,21 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         viewModel.fetchSelectedRange = { [weak textView] in
+             textView?.selectedRange
+         }
++        viewModel.isNativeReaderTextVisible = { [weak textView, weak viewModel, weak coordinator = context.coordinator] sceneID, sourceRange in
++            guard let textView, let viewModel, let coordinator,
++                  coordinator.parent.viewModel === viewModel,
++                  let key = coordinator.lastRenderKey,
++                  key.bookId == viewModel.currentBook?.id,
++                  key.contentId == viewModel.currentContentId,
++                  let rendered = textView.currentRenderResult,
++                  !textView.isRestoringScroll else { return false }
++            return ReaderNativeTextVisibility.isVisible(
++                textView: textView, sceneID: sceneID,
++                expectedSource: viewModel.contentText, renderedSource: rendered.sourceText,
++                renderedText: rendered.attributedString.string, sourceRange: sourceRange,
++                displayedRange: { rendered.displayedRange(forSourceRange: $0) }
++            )
++        }
+     }
+ 
+     private func resolveRenderedContent(

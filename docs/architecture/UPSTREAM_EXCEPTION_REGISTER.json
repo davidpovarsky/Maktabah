@@ -272,6 +272,20 @@
       "tests": "Three real iPhone XCTest wrappers retain all original visible History, same-PID, scene receipt and backend-refusal oracles. Native result pending.",
       "rollback": "Revert this continuation phone-routing commit only; original phone layout and current iPad gates otherwise unchanged.",
       "review": "Sole developer; preserve historical native evidence, no PASS transfer."
+    },
+    {
+      "patch_id": "CONTINUATION_20261118_NATIVE_READER_TEXT_WITNESS",
+      "paths": [
+        "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+        "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift"
+      ],
+      "base_commit": "f2f27e92e6c949b2dd4ef83c7438b049a1b898cf",
+      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+      "authorization_scope": "Current owner all-three-phase native Reader/ActionCore/App Intents integration instruction; phase-wide authorization, not an unseen exact-hunk approval",
+      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
+      "patch_digest_sha256": "c5ff6249a7449510c58f7290e34aa81362faa2737bff93a0055ee3e5b926e450",
+      "scope_and_rollback": "docs/hq-integration/native-reader-witness-20261118/REVIEW.json",
+      "review": "Sole developer, no independent reviewer claim; exact original renderer/view retained"
     }
   ]
 }
