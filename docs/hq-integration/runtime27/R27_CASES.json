@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "240053fb01139a6695f7d876bf80a1542940696c",
+  "source_test_commit": "3f16e26d95c37398ae7bd58d19a2bc9134e12343",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "240053fb01139a6695f7d876bf80a1542940696c",
+  "app_source": "3f16e26d95c37398ae7bd58d19a2bc9134e12343",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3",
@@ -769,6 +769,11 @@
       "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
       "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
     ],
-    "system_app_intent_boundary": "Apple iOS27 AppIntentsTesting infrastructure plus original UIKit/native receipt; not Siri voice, Spotlight donation or Shortcuts editor acceptance. No testing-only app intent or bypass. Same signing-team runtime requirement remains enforced by Apple."
+    "system_app_intent_boundary": "Apple iOS27 AppIntentsTesting infrastructure plus original UIKit/native receipt; not Siri voice, Spotlight donation or Shortcuts editor acceptance. No testing-only app intent or bypass. Same signing-team runtime requirement remains enforced by Apple.",
+    "system_app_intents_source": {
+      "sha": "3f16e26d95c37398ae7bd58d19a2bc9134e12343",
+      "status": "SOURCE_ADDED_SDK_AND_NATIVE_PENDING",
+      "scope": "Three original system App Intent execution cases via Apple AppIntentsTesting; current native matrix48"
+    }
   }
 }
