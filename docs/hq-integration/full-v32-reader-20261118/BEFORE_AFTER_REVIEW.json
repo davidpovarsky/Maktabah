@@ -1,0 +1,381 @@
+{
+  "status": "EXACT_FULL_V32_READER_PARITY_PASS_NOT_UI",
+  "observed_at": "2026-11-18T20:44:14.857441+00:00",
+  "baseline_parent": "470f7c78db2d6886a46da5c09cfce50c89b9994a",
+  "source_changed": [
+    "Source/Otzaria/Core/String+OtzariaText.swift"
+  ],
+  "source_sha256": "cedfea7dfaa72bab082831282bd90fd003aff487d6736a340f9d9b51176e3323",
+  "database_sha256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "unit_cases": 36,
+  "navigation_cases": 18,
+  "source_row_appearances": 170587,
+  "text_parity_strings": 174789,
+  "text_parity_edges": 11,
+  "text_output_sha256": "e05f364b25715166093a0b32a49bfa26690359d086f9bee7c14538aa59515170",
+  "timing_scope": "One cold and one warm request per case; unoptimized Swift6.3.3 Windows; not UI, p95 or physical acceptance.",
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "cases": [
+    {
+      "case": "103-chapter-0",
+      "source_rows": 16,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f",
+      "before_cold_ms": 69.48089599609375,
+      "before_warm_ms": 12.13836669921875,
+      "after_cold_ms": 33.443450927734375,
+      "after_warm_ms": 1.2054443359375
+    },
+    {
+      "case": "103-chapter-1437",
+      "source_rows": 29,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906",
+      "before_cold_ms": 77.14080810546875,
+      "before_warm_ms": 14.926910400390625,
+      "after_cold_ms": 31.446456909179688,
+      "after_warm_ms": 2.1610260009765625
+    },
+    {
+      "case": "103-line-0",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "6ee0e80d53f0b90cdac8a9b263a9dd23001c5d5ab363e7f06aea9c96533718e6",
+      "before_cold_ms": 91.21894836425781,
+      "before_warm_ms": 0.60272216796875,
+      "after_cold_ms": 30.801773071289062,
+      "after_warm_ms": 0.293731689453125
+    },
+    {
+      "case": "103-line-1437",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "79d0f74ca657de8ca9304723a3e7cb19456971a0d1255ad64727353e1e5930c4",
+      "before_cold_ms": 9.019851684570312,
+      "before_warm_ms": 0.9708404541015625,
+      "after_cold_ms": 4.03594970703125,
+      "after_warm_ms": 0.2193450927734375
+    },
+    {
+      "case": "103-paragraph-0",
+      "source_rows": 16,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f",
+      "before_cold_ms": 66.45965576171875,
+      "before_warm_ms": 8.264541625976562,
+      "after_cold_ms": 60.37139892578125,
+      "after_warm_ms": 1.6269683837890625
+    },
+    {
+      "case": "103-paragraph-1437",
+      "source_rows": 29,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906",
+      "before_cold_ms": 70.76072692871094,
+      "before_warm_ms": 19.807815551757812,
+      "after_cold_ms": 29.232025146484375,
+      "after_warm_ms": 2.4929046630859375
+    },
+    {
+      "case": "28-chapter-0",
+      "source_rows": 8,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7",
+      "before_cold_ms": 57.018280029296875,
+      "before_warm_ms": 4.077911376953125,
+      "after_cold_ms": 29.077529907226562,
+      "after_warm_ms": 1.52587890625
+    },
+    {
+      "case": "28-chapter-1339",
+      "source_rows": 73,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a",
+      "before_cold_ms": 75.75416564941406,
+      "before_warm_ms": 24.00970458984375,
+      "after_cold_ms": 31.847000122070312,
+      "after_warm_ms": 4.962921142578125
+    },
+    {
+      "case": "28-line-0",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "e885332e883585b9ce161734d44a96a307362455fc6a4a2a75473f02a4f49cf6",
+      "before_cold_ms": 14.135360717773438,
+      "before_warm_ms": 0.644683837890625,
+      "after_cold_ms": 4.2324066162109375,
+      "after_warm_ms": 0.247955322265625
+    },
+    {
+      "case": "28-line-1339",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "2b1fa60e1dce956fd693ae2888aa332b9d50b73954a9d0a1f09a23ac4086c5f2",
+      "before_cold_ms": 6.6852569580078125,
+      "before_warm_ms": 0.4730224609375,
+      "after_cold_ms": 3.7841796875,
+      "after_warm_ms": 0.194549560546875
+    },
+    {
+      "case": "28-paragraph-0",
+      "source_rows": 8,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7",
+      "before_cold_ms": 48.60877990722656,
+      "before_warm_ms": 2.7980804443359375,
+      "after_cold_ms": 43.12705993652344,
+      "after_warm_ms": 1.8711090087890625
+    },
+    {
+      "case": "28-paragraph-1339",
+      "source_rows": 73,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a",
+      "before_cold_ms": 61.565399169921875,
+      "before_warm_ms": 16.74652099609375,
+      "after_cold_ms": 35.30693054199219,
+      "after_warm_ms": 5.451202392578125
+    },
+    {
+      "case": "3152-chapter-0",
+      "source_rows": 57,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7",
+      "before_cold_ms": 69.64683532714844,
+      "before_warm_ms": 57.529449462890625,
+      "after_cold_ms": 20.965576171875,
+      "after_warm_ms": 12.300491333007812
+    },
+    {
+      "case": "3152-chapter-264",
+      "source_rows": 31,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e",
+      "before_cold_ms": 55.4046630859375,
+      "before_warm_ms": 42.018890380859375,
+      "after_cold_ms": 17.635345458984375,
+      "after_warm_ms": 10.211944580078125
+    },
+    {
+      "case": "3152-line-0",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "e661b45a46d70c2dea7fff88d15614b3db9508d8255e8cc39e073c22acd90a00",
+      "before_cold_ms": 6.44683837890625,
+      "before_warm_ms": 0.38909912109375,
+      "after_cold_ms": 4.4841766357421875,
+      "after_warm_ms": 0.2231597900390625
+    },
+    {
+      "case": "3152-line-264",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "24abc18238f23061eaeffd512925e5ae0773aa2ef9836618db1b2544ca53bf6f",
+      "before_cold_ms": 25.098800659179688,
+      "before_warm_ms": 1.7852783203125,
+      "after_cold_ms": 5.11932373046875,
+      "after_warm_ms": 0.5741119384765625
+    },
+    {
+      "case": "3152-paragraph-0",
+      "source_rows": 57,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7",
+      "before_cold_ms": 88.93203735351562,
+      "before_warm_ms": 70.04165649414062,
+      "after_cold_ms": 51.77497863769531,
+      "after_warm_ms": 14.904022216796875
+    },
+    {
+      "case": "3152-paragraph-264",
+      "source_rows": 31,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e",
+      "before_cold_ms": 52.00004577636719,
+      "before_warm_ms": 42.545318603515625,
+      "after_cold_ms": 18.487930297851562,
+      "after_warm_ms": 9.670257568359375
+    },
+    {
+      "case": "5869-chapter-0",
+      "source_rows": 8,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "d4285ccd21352142a2d263dbd02537ceb683b5ead4e469871eba6a07cbe41c4d",
+      "before_cold_ms": 2202.1141052246094,
+      "before_warm_ms": 1.8062591552734375,
+      "after_cold_ms": 1949.9702453613281,
+      "after_warm_ms": 0.736236572265625
+    },
+    {
+      "case": "5869-chapter-95380",
+      "source_rows": 110196,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "4907b66a5de99f5753f3fb4d750204ae802a9563705a58ccbf46e5b3fc6340d9",
+      "before_cold_ms": 47154.12712097168,
+      "before_warm_ms": 43416.07475280762,
+      "after_cold_ms": 16391.68357849121,
+      "after_warm_ms": 17448.70376586914
+    },
+    {
+      "case": "5869-line-0",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "493031a60c133362a238a8a22d7aaa3acd67d7d7585cc8f33ccfb28e266c5ac4",
+      "before_cold_ms": 5.7086944580078125,
+      "before_warm_ms": 0.431060791015625,
+      "after_cold_ms": 17.787933349609375,
+      "after_warm_ms": 0.2803802490234375
+    },
+    {
+      "case": "5869-line-95380",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "0152529025c87f0dd5ad6009544b6af020c4a3fd2aac2e9b6701524b3a3b3855",
+      "before_cold_ms": 5.86700439453125,
+      "before_warm_ms": 1.3141632080078125,
+      "after_cold_ms": 22.1405029296875,
+      "after_warm_ms": 0.5474090576171875
+    },
+    {
+      "case": "5869-paragraph-0",
+      "source_rows": 8,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "d4285ccd21352142a2d263dbd02537ceb683b5ead4e469871eba6a07cbe41c4d",
+      "before_cold_ms": 1851.7036437988281,
+      "before_warm_ms": 1.750946044921875,
+      "after_cold_ms": 1866.1746978759766,
+      "after_warm_ms": 0.736236572265625
+    },
+    {
+      "case": "5869-paragraph-95380",
+      "source_rows": 1192,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "09c35bdf2465aad0d6fb7c6ac4e1908f46bc017be525ec797f7b0bc68016735e",
+      "before_cold_ms": 2585.5178833007812,
+      "before_warm_ms": 385.88714599609375,
+      "after_cold_ms": 2039.6385192871094,
+      "after_warm_ms": 141.0808563232422
+    },
+    {
+      "case": "6049-chapter-0",
+      "source_rows": 30435,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "6220dbe0926d583c5e1249eb58b29cdde5194e784f736c5d1c55cd6360559a5d",
+      "before_cold_ms": 18322.36099243164,
+      "before_warm_ms": 18595.4532623291,
+      "after_cold_ms": 6739.774703979492,
+      "after_warm_ms": 4980.093002319336
+    },
+    {
+      "case": "6049-chapter-68098",
+      "source_rows": 7519,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "cb20ec4928bcc590e7da01eb3cb15aba452ed518adfb7cc52f90aa45aa6d1916",
+      "before_cold_ms": 5281.337738037109,
+      "before_warm_ms": 3332.5576782226562,
+      "after_cold_ms": 2913.4597778320312,
+      "after_warm_ms": 1109.292984008789
+    },
+    {
+      "case": "6049-line-0",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "d7dc24e6b24a8e3b5340e31edf9d4cae92be260a3aacd73436f5d3ecb7e76867",
+      "before_cold_ms": 31.429290771484375,
+      "before_warm_ms": 0.728607177734375,
+      "after_cold_ms": 26.220321655273438,
+      "after_warm_ms": 0.3719329833984375
+    },
+    {
+      "case": "6049-line-68098",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "e2fafad3a52206aeaab4edd83bdcffaaea8838e08640a46b08959c1dfc97692d",
+      "before_cold_ms": 31.948089599609375,
+      "before_warm_ms": 1.03759765625,
+      "after_cold_ms": 5.3920745849609375,
+      "after_warm_ms": 0.3108978271484375
+    },
+    {
+      "case": "6049-paragraph-0",
+      "source_rows": 4,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "802a96f948e0991bcd490076f6ba2268a7ae8862435d0e8f96f7a0261c135ae3",
+      "before_cold_ms": 4036.3693237304688,
+      "before_warm_ms": 4253.007888793945,
+      "after_cold_ms": 1852.8156280517578,
+      "after_warm_ms": 2065.143585205078
+    },
+    {
+      "case": "6049-paragraph-68098",
+      "source_rows": 4,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "b70b598cc731c3538fad0b136c42a7f9ddd68822b6c57b8843c1e6e42a7e3c29",
+      "before_cold_ms": 4134.986877441406,
+      "before_warm_ms": 3519.519805908203,
+      "after_cold_ms": 1653.8047790527344,
+      "after_warm_ms": 1755.0468444824219
+    },
+    {
+      "case": "6050-chapter-0",
+      "source_rows": 10703,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "7a3d942fcf4f2a4c3d08c53084bbd87ade3c51c163ec7da7906ce66c5110b759",
+      "before_cold_ms": 7475.275039672852,
+      "before_warm_ms": 6416.812896728516,
+      "after_cold_ms": 2395.3094482421875,
+      "after_warm_ms": 1868.65234375
+    },
+    {
+      "case": "6050-chapter-45427",
+      "source_rows": 10055,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "02237813e34d0c3389064bcb0ce53fde52df33785124bd221b353dae74c40a2e",
+      "before_cold_ms": 7498.003005981445,
+      "before_warm_ms": 6949.821472167969,
+      "after_cold_ms": 2438.9190673828125,
+      "after_warm_ms": 1549.6273040771484
+    },
+    {
+      "case": "6050-line-0",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "19f96fefe15036cd1b479eca0e2336d376aa903409c49af2614a71f16963dd4e",
+      "before_cold_ms": 6.8836212158203125,
+      "before_warm_ms": 0.537872314453125,
+      "after_cold_ms": 4.245758056640625,
+      "after_warm_ms": 0.476837158203125
+    },
+    {
+      "case": "6050-line-45427",
+      "source_rows": 1,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "b5b2145ed3857db0b29c8ff10d560b208edf149e2d5a67ecaa4b16f2b61cbc85",
+      "before_cold_ms": 21.379470825195312,
+      "before_warm_ms": 0.762939453125,
+      "after_cold_ms": 6.763458251953125,
+      "after_warm_ms": 0.396728515625
+    },
+    {
+      "case": "6050-paragraph-0",
+      "source_rows": 4,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "6fb993f08a86a992e8440375ccfad0181282bfe42273d9dc7bbf769919a3af46",
+      "before_cold_ms": 3250.194549560547,
+      "before_warm_ms": 3317.4209594726562,
+      "after_cold_ms": 1134.5386505126953,
+      "after_warm_ms": 1077.3582458496094
+    },
+    {
+      "case": "6050-paragraph-45427",
+      "source_rows": 19,
+      "metadata_and_utf16_anchors_exact": true,
+      "html_sha256": "d2c453687b3b11f5ca4f213e608ceca5a63d66fb4552bd5066e06d1e2ba1c13b",
+      "before_cold_ms": 2547.8153228759766,
+      "before_warm_ms": 2844.5701599121094,
+      "after_cold_ms": 1232.2101593017578,
+      "after_warm_ms": 1319.3645477294922
+    }
+  ]
+}

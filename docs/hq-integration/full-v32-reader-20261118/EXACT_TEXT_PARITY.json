@@ -1,0 +1,35 @@
+{
+  "observed_at": "2026-11-18T20:37:46.296390+00:00",
+  "baseline_ref": "470f7c78db2d6886a46da5c09cfce50c89b9994a",
+  "original_file_sha256": "f6a1c17014be6a806290d106ecd4d53f3a8d942d676edd7d5763094d5613b63b",
+  "original_method_sha256": "6c6a289668cc5891de333f4c17b4985c785d2e8e47be20cf6459ef49f0d5065f",
+  "optimized_file_sha256": "cedfea7dfaa72bab082831282bd90fd003aff487d6736a340f9d9b51176e3323",
+  "fixture_sha256": "1fa85b9cb71b8495bc3e10ab1a60f1014ebd5a49c73fe0555953a0f5eeb28cd0",
+  "input_sha256": "b2dac218bc6e7b42d98d68fd01b3a2790694aef9fc02cde775f9fbe5853337d6",
+  "input_bytes": 65427129,
+  "actual_source_strings": 174789,
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\ptp-b16a952a2dc1",
+  "compile_exit": 0,
+  "database_sha256_before": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "execute_exit": 0,
+  "parity": {
+    "actual_source_strings": 174789,
+    "baseline_ms": [
+      90291.13578796387
+    ],
+    "edge_cases": 11,
+    "native_ui_executed": 0,
+    "optimized_ms": [
+      15461.33041381836
+    ],
+    "physical_device_executed": 0,
+    "status": "EXACT_TEXT_PARITY_PASS_NOT_UI",
+    "timing_passes": 1
+  },
+  "baseline_output_sha256": "e05f364b25715166093a0b32a49bfa26690359d086f9bee7c14538aa59515170",
+  "optimized_output_sha256": "e05f364b25715166093a0b32a49bfa26690359d086f9bee7c14538aa59515170",
+  "database_sha256_after": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "status": "EXACT_REAL_SOURCE_NORMALIZATION_PARITY_PASS"
+}

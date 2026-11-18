@@ -3,34 +3,40 @@ import Foundation
 extension String {
     var otsariaPlainText: String {
         var text = self
-            .replacingOccurrences(of: "<br>", with: "\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "<br/>", with: "\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "<br />", with: "\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "</p>", with: "\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "</h1>", with: "\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "</h2>", with: "\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "</h3>", with: "\n", options: .caseInsensitive)
-            .replacingOccurrences(of: "</h4>", with: "\n", options: .caseInsensitive)
-
-        text = text.replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
-
-        let entities: [(String, String)] = [
-            ("&nbsp;", " "),
-            ("&quot;", "\""),
-            ("&apos;", "'"),
-            ("&#39;", "'"),
-            ("&lt;", "<"),
-            ("&gt;", ">"),
-            ("&amp;", "&")
-        ]
-
-        for (source, replacement) in entities {
-            text = text.replacingOccurrences(of: source, with: replacement)
+        // Preserve the existing transformation order. Most TOC/source rows are
+        // already plain text, so do not run every replacement/regex on them.
+        if text.utf8.contains(0x3C) { // <
+            text = text
+                .replacingOccurrences(of: "<br>", with: "\n", options: .caseInsensitive)
+                .replacingOccurrences(of: "<br/>", with: "\n", options: .caseInsensitive)
+                .replacingOccurrences(of: "<br />", with: "\n", options: .caseInsensitive)
+                .replacingOccurrences(of: "</p>", with: "\n", options: .caseInsensitive)
+                .replacingOccurrences(of: "</h1>", with: "\n", options: .caseInsensitive)
+                .replacingOccurrences(of: "</h2>", with: "\n", options: .caseInsensitive)
+                .replacingOccurrences(of: "</h3>", with: "\n", options: .caseInsensitive)
+                .replacingOccurrences(of: "</h4>", with: "\n", options: .caseInsensitive)
+            text = text.replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
         }
 
-        return text
-            .replacingOccurrences(of: #"\n{3,}"#, with: "\n\n", options: .regularExpression)
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+        if text.utf8.contains(0x26) { // &
+            let entities: [(String, String)] = [
+                ("&nbsp;", " "),
+                ("&quot;", "\""),
+                ("&apos;", "'"),
+                ("&#39;", "'"),
+                ("&lt;", "<"),
+                ("&gt;", ">"),
+                ("&amp;", "&")
+            ]
+            for (source, replacement) in entities {
+                text = text.replacingOccurrences(of: source, with: replacement)
+            }
+        }
+
+        if text.utf8.contains(0x0A) { // newline
+            text = text.replacingOccurrences(of: #"\n{3,}"#, with: "\n\n", options: .regularExpression)
+        }
+        return text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     var otsariaLooksLikeHTMLHeading: Bool {

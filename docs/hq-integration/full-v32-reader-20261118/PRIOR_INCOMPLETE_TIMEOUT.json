@@ -1,0 +1,15 @@
+{
+  "observed_at": "2026-11-18T20:37:00.102646+00:00",
+  "status": "INCOMPLETE_TIMEOUT_NO_PASS",
+  "job": "job_d68f03fd8ca6",
+  "source_files": {
+    "Source/Otzaria/Core/String+OtzariaText.swift": "9cdedb8b581ef987c506a16704a930d284eba0be8974693f44af33fa9693ecca",
+    "Tests/HQ/reader/PlainTextParity.swift": "214016579d9db5dc0c15e100307a321d09f7722dd27693b086afebb1bcd56e25",
+    "tools/hq-reader-plaintext-parity.py": "59777b53046d99ee6c07238e004fbd4d1175650a8d8e6b9f7d59d4bd47e89c9b"
+  },
+  "input": "build/ptp-7059fd83ac48/input.json",
+  "actual_source_strings": 174789,
+  "input_bytes": 65427129,
+  "limit_seconds": 300,
+  "note": "Three timing repetitions timed out before final equivalence receipt. No result awarded. The next attempt retains every source string/edge oracle and uses one comparison pass plus cheaper UTF8 trigger scans."
+}

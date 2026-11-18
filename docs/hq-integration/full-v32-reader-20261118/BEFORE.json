@@ -1,0 +1,710 @@
+{
+  "observed_at": "2026-11-18T20:22:38.633343+00:00",
+  "source_sha": "470f7c78db2d6886a46da5c09cfce50c89b9994a",
+  "source_files": {
+    "Source/Core/Database/SQLiteDatabase.swift": "a600973b402956d946c727def2c1fe1ada011f623a2da9db19ddb26e3c6e5a1e",
+    "Source/Core/Database/ZstdShim.swift": "371ae8bf15c4e8dd07a4123895f7069e9decb8977696136c003db593fc7df5df",
+    "Source/Otzaria/Core/OtzariaSQLiteError.swift": "6bd3e09a0530a95d5e73f2da8282438a4512a5df18c376a5f6db328b9e1167d7",
+    "Source/Otzaria/Core/OtzariaSQLiteStatement.swift": "59f7f6ddae0b16c7da14de60b7c2661906d57d716c8a095ef5d6f2a32f09044d",
+    "Source/Otzaria/Core/String+OtzariaText.swift": "3a191be28a34bd9e2a50a701c4e4212ea38656a9c02c05e6844ddf47c7ad813d",
+    "Source/Otzaria/Data/OtzariaSchema.swift": "12794224860af9fa965b60cf837bb6d57b0d416cc7e91f3eca402691634cb92a",
+    "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift": "f2216f5e7c59921ca2cba4496fffdf7500f3ca661fc8c41bf5a385608766c6a4",
+    "Source/Otzaria/Reading/OtzariaReadingUnit.swift": "1a653a83de0df5c00c55ad74006b3cb76b810c2a3369bcc161e5f4a1960d03de",
+    "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift": "51b928839fb9cc9edbf6ad5a00da7fe02aa28d3d31d7ce07d9d3cb86f40da9d9",
+    "Source/Otzaria/Reading/OtzariaLineAnchor.swift": "02086e3eb5fd605f041ab801270c6ff3adcf2bf118aa167517ce5f805741a049",
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "023e943248fc409e3e687bdd42ab4e955ecdf1157135bc2f060dffe3e6fcb490",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "f2f62c6f9fe76442560bdd2be08320d9e6db3edd79849a4451cead2c63382bab",
+    "Tests/HQ/reader/FullSourceReaderAcceptance.swift": "e1b1a34e7258bd953f8c20a3ffc80734f9a71156246032ac645ae78ca3e1b807"
+  },
+  "host": "Windows-11-10.0.26300-SP0",
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "source_pin": {
+    "repository": "Otzaria/SeforimLibrary",
+    "releaseTag": "v32-20261010190601",
+    "releaseID": 409213893,
+    "assetID": 629048655,
+    "assetName": "seforim-schema6.db.zst",
+    "assetBytes": 1850679582,
+    "assetSHA256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+    "databaseBytes": 3821240320,
+    "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
+  },
+  "source_pin_file_sha256": "07923bbb68aeb9dff7d3982007e789d5a4ab955dbc1ef3954fa4e8c04bacd822",
+  "database_sha256_before": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "books": [
+    {
+      "id": 103,
+      "title": "ברכות",
+      "lineCount": 2875,
+      "first": 0,
+      "middle": 1437,
+      "last": 2874,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 1437,
+          "previous": 1436,
+          "next": 1438
+        },
+        {
+          "index": 2874,
+          "previous": 2873,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "title": "תהילים",
+      "lineCount": 2678,
+      "first": 0,
+      "middle": 1339,
+      "last": 2677,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 1339,
+          "previous": 1338,
+          "next": 1340
+        },
+        {
+          "index": 2677,
+          "previous": 2676,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 3152,
+      "title": "דרשות הר\"ן",
+      "lineCount": 528,
+      "first": 0,
+      "middle": 264,
+      "last": 527,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 264,
+          "previous": 263,
+          "next": 265
+        },
+        {
+          "index": 527,
+          "previous": 526,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 5869,
+      "title": "דור המלקטים על אורח חיים",
+      "lineCount": 190760,
+      "first": 0,
+      "middle": 95380,
+      "last": 190759,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 95380,
+          "previous": 95379,
+          "next": 95381
+        },
+        {
+          "index": 190759,
+          "previous": 190758,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 6049,
+      "title": "אספקלריה אותיות א - מ",
+      "lineCount": 136196,
+      "first": 0,
+      "middle": 68098,
+      "last": 136195,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 68098,
+          "previous": 68097,
+          "next": 68099
+        },
+        {
+          "index": 136195,
+          "previous": 136194,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 6050,
+      "title": "אספקלריה אותיות נ - ת",
+      "lineCount": 90854,
+      "first": 0,
+      "middle": 45427,
+      "last": 90853,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 45427,
+          "previous": 45426,
+          "next": 45428
+        },
+        {
+          "index": 90853,
+          "previous": 90852,
+          "next": null
+        }
+      ]
+    }
+  ],
+  "zstd": {
+    "path": "C:\\Program Files\\Git\\mingw64\\bin\\libzstd.dll",
+    "sha256": "b13d4f30b93c96823473d742dda0075f7334cba03a40c33d8a7dc282e37b1500",
+    "version": "1.5.7"
+  },
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\fr32-115bca7f0fab",
+  "boundaries": [
+    "logging/signpost no-ops only",
+    "unused legacy SQLite compressed-column API fails if called; original dictionary decoder is executed"
+  ],
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "-I",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\fr32-115bca7f0fab",
+    "-L",
+    "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Core\\Database\\SQLiteDatabase.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Core\\Database\\ZstdShim.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Otzaria\\Core\\OtzariaSQLiteError.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Otzaria\\Core\\OtzariaSQLiteStatement.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Otzaria\\Core\\String+OtzariaText.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Otzaria\\Data\\OtzariaSchema.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Otzaria\\Data\\OtzariaBookSchemaCompatibility.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Otzaria\\Reading\\OtzariaReadingUnit.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Otzaria\\Reading\\OtzariaReadingUnitDescriptor.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Otzaria\\Reading\\OtzariaLineAnchor.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Otzaria\\Reading\\OtzariaReadingUnitService.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Tests\\HQ\\sqlite\\UnusedZstdBoundary.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Tests\\HQ\\reader\\FullSourceReaderAcceptance.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\fr32-115bca7f0fab\\zstd.lib",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\fr32-115bca7f0fab\\full-reader.exe"
+  ],
+  "compile_exit": 0,
+  "execute_exit": 0,
+  "swift_reader": {
+    "cases": [
+      {
+        "case": "103-line-0",
+        "cold_ms": 91.21894836425781,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 0.60272216796875
+      },
+      {
+        "case": "103-line-1437",
+        "cold_ms": 9.019851684570312,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 0.9708404541015625
+      },
+      {
+        "case": "103-paragraph-0",
+        "cold_ms": 66.45965576171875,
+        "source_rows": 16,
+        "status": "PASS",
+        "warm_ms": 8.264541625976562
+      },
+      {
+        "case": "103-paragraph-1437",
+        "cold_ms": 70.76072692871094,
+        "source_rows": 29,
+        "status": "PASS",
+        "warm_ms": 19.807815551757812
+      },
+      {
+        "case": "103-chapter-0",
+        "cold_ms": 69.48089599609375,
+        "source_rows": 16,
+        "status": "PASS",
+        "warm_ms": 12.13836669921875
+      },
+      {
+        "case": "103-chapter-1437",
+        "cold_ms": 77.14080810546875,
+        "source_rows": 29,
+        "status": "PASS",
+        "warm_ms": 14.926910400390625
+      },
+      {
+        "case": "28-line-0",
+        "cold_ms": 14.135360717773438,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 0.644683837890625
+      },
+      {
+        "case": "28-line-1339",
+        "cold_ms": 6.6852569580078125,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 0.4730224609375
+      },
+      {
+        "case": "28-paragraph-0",
+        "cold_ms": 48.60877990722656,
+        "source_rows": 8,
+        "status": "PASS",
+        "warm_ms": 2.7980804443359375
+      },
+      {
+        "case": "28-paragraph-1339",
+        "cold_ms": 61.565399169921875,
+        "source_rows": 73,
+        "status": "PASS",
+        "warm_ms": 16.74652099609375
+      },
+      {
+        "case": "28-chapter-0",
+        "cold_ms": 57.018280029296875,
+        "source_rows": 8,
+        "status": "PASS",
+        "warm_ms": 4.077911376953125
+      },
+      {
+        "case": "28-chapter-1339",
+        "cold_ms": 75.75416564941406,
+        "source_rows": 73,
+        "status": "PASS",
+        "warm_ms": 24.00970458984375
+      },
+      {
+        "case": "3152-line-0",
+        "cold_ms": 6.44683837890625,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 0.38909912109375
+      },
+      {
+        "case": "3152-line-264",
+        "cold_ms": 25.098800659179688,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 1.7852783203125
+      },
+      {
+        "case": "3152-paragraph-0",
+        "cold_ms": 88.93203735351562,
+        "source_rows": 57,
+        "status": "PASS",
+        "warm_ms": 70.04165649414062
+      },
+      {
+        "case": "3152-paragraph-264",
+        "cold_ms": 52.00004577636719,
+        "source_rows": 31,
+        "status": "PASS",
+        "warm_ms": 42.545318603515625
+      },
+      {
+        "case": "3152-chapter-0",
+        "cold_ms": 69.64683532714844,
+        "source_rows": 57,
+        "status": "PASS",
+        "warm_ms": 57.529449462890625
+      },
+      {
+        "case": "3152-chapter-264",
+        "cold_ms": 55.4046630859375,
+        "source_rows": 31,
+        "status": "PASS",
+        "warm_ms": 42.018890380859375
+      },
+      {
+        "case": "5869-line-0",
+        "cold_ms": 5.7086944580078125,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 0.431060791015625
+      },
+      {
+        "case": "5869-line-95380",
+        "cold_ms": 5.86700439453125,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 1.3141632080078125
+      },
+      {
+        "case": "5869-paragraph-0",
+        "cold_ms": 1851.7036437988281,
+        "source_rows": 8,
+        "status": "PASS",
+        "warm_ms": 1.750946044921875
+      },
+      {
+        "case": "5869-paragraph-95380",
+        "cold_ms": 2585.5178833007812,
+        "source_rows": 1192,
+        "status": "PASS",
+        "warm_ms": 385.88714599609375
+      },
+      {
+        "case": "5869-chapter-0",
+        "cold_ms": 2202.1141052246094,
+        "source_rows": 8,
+        "status": "PASS",
+        "warm_ms": 1.8062591552734375
+      },
+      {
+        "case": "5869-chapter-95380",
+        "cold_ms": 47154.12712097168,
+        "source_rows": 110196,
+        "status": "PASS",
+        "warm_ms": 43416.07475280762
+      },
+      {
+        "case": "6049-line-0",
+        "cold_ms": 31.429290771484375,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 0.728607177734375
+      },
+      {
+        "case": "6049-line-68098",
+        "cold_ms": 31.948089599609375,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 1.03759765625
+      },
+      {
+        "case": "6049-paragraph-0",
+        "cold_ms": 4036.3693237304688,
+        "source_rows": 4,
+        "status": "PASS",
+        "warm_ms": 4253.007888793945
+      },
+      {
+        "case": "6049-paragraph-68098",
+        "cold_ms": 4134.986877441406,
+        "source_rows": 4,
+        "status": "PASS",
+        "warm_ms": 3519.519805908203
+      },
+      {
+        "case": "6049-chapter-0",
+        "cold_ms": 18322.36099243164,
+        "source_rows": 30435,
+        "status": "PASS",
+        "warm_ms": 18595.4532623291
+      },
+      {
+        "case": "6049-chapter-68098",
+        "cold_ms": 5281.337738037109,
+        "source_rows": 7519,
+        "status": "PASS",
+        "warm_ms": 3332.5576782226562
+      },
+      {
+        "case": "6050-line-0",
+        "cold_ms": 6.8836212158203125,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 0.537872314453125
+      },
+      {
+        "case": "6050-line-45427",
+        "cold_ms": 21.379470825195312,
+        "source_rows": 1,
+        "status": "PASS",
+        "warm_ms": 0.762939453125
+      },
+      {
+        "case": "6050-paragraph-0",
+        "cold_ms": 3250.194549560547,
+        "source_rows": 4,
+        "status": "PASS",
+        "warm_ms": 3317.4209594726562
+      },
+      {
+        "case": "6050-paragraph-45427",
+        "cold_ms": 2547.8153228759766,
+        "source_rows": 19,
+        "status": "PASS",
+        "warm_ms": 2844.5701599121094
+      },
+      {
+        "case": "6050-chapter-0",
+        "cold_ms": 7475.275039672852,
+        "source_rows": 10703,
+        "status": "PASS",
+        "warm_ms": 6416.812896728516
+      },
+      {
+        "case": "6050-chapter-45427",
+        "cold_ms": 7498.003005981445,
+        "source_rows": 10055,
+        "status": "PASS",
+        "warm_ms": 6949.821472167969
+      }
+    ],
+    "native_ui_executed": 0,
+    "navigation_cases": 18,
+    "physical_device_executed": 0,
+    "source_readonly": true,
+    "sqlite_version": "3.53.4",
+    "status": "ACTUAL_SWIFT_READER_SOURCE_PASS_NOT_UI"
+  },
+  "database_sha256_after": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "independent_python_sqlite_zstd_oracles": [
+    {
+      "case": "103-chapter-0",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "103-chapter-1437",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "103-line-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 19,
+      "sha256": "6ee0e80d53f0b90cdac8a9b263a9dd23001c5d5ab363e7f06aea9c96533718e6"
+    },
+    {
+      "case": "103-line-1437",
+      "verified_rows": 1,
+      "decoded_source_bytes": 168,
+      "sha256": "79d0f74ca657de8ca9304723a3e7cb19456971a0d1255ad64727353e1e5930c4"
+    },
+    {
+      "case": "103-paragraph-0",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "103-paragraph-1437",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "28-chapter-0",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "28-chapter-1339",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "28-line-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 21,
+      "sha256": "e885332e883585b9ce161734d44a96a307362455fc6a4a2a75473f02a4f49cf6"
+    },
+    {
+      "case": "28-line-1339",
+      "verified_rows": 1,
+      "decoded_source_bytes": 114,
+      "sha256": "2b1fa60e1dce956fd693ae2888aa332b9d50b73954a9d0a1f09a23ac4086c5f2"
+    },
+    {
+      "case": "28-paragraph-0",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "28-paragraph-1339",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "3152-chapter-0",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "3152-chapter-264",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "3152-line-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 27,
+      "sha256": "e661b45a46d70c2dea7fff88d15614b3db9508d8255e8cc39e073c22acd90a00"
+    },
+    {
+      "case": "3152-line-264",
+      "verified_rows": 1,
+      "decoded_source_bytes": 1133,
+      "sha256": "24abc18238f23061eaeffd512925e5ae0773aa2ef9836618db1b2544ca53bf6f"
+    },
+    {
+      "case": "3152-paragraph-0",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "3152-paragraph-264",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "5869-chapter-0",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1681,
+      "sha256": "d4285ccd21352142a2d263dbd02537ceb683b5ead4e469871eba6a07cbe41c4d"
+    },
+    {
+      "case": "5869-chapter-95380",
+      "verified_rows": 110196,
+      "decoded_source_bytes": 30583708,
+      "sha256": "4907b66a5de99f5753f3fb4d750204ae802a9563705a58ccbf46e5b3fc6340d9"
+    },
+    {
+      "case": "5869-line-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 53,
+      "sha256": "493031a60c133362a238a8a22d7aaa3acd67d7d7585cc8f33ccfb28e266c5ac4"
+    },
+    {
+      "case": "5869-line-95380",
+      "verified_rows": 1,
+      "decoded_source_bytes": 667,
+      "sha256": "0152529025c87f0dd5ad6009544b6af020c4a3fd2aac2e9b6701524b3a3b3855"
+    },
+    {
+      "case": "5869-paragraph-0",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1681,
+      "sha256": "d4285ccd21352142a2d263dbd02537ceb683b5ead4e469871eba6a07cbe41c4d"
+    },
+    {
+      "case": "5869-paragraph-95380",
+      "verified_rows": 1192,
+      "decoded_source_bytes": 339191,
+      "sha256": "09c35bdf2465aad0d6fb7c6ac4e1908f46bc017be525ec797f7b0bc68016735e"
+    },
+    {
+      "case": "6049-chapter-0",
+      "verified_rows": 30435,
+      "decoded_source_bytes": 13571869,
+      "sha256": "6220dbe0926d583c5e1249eb58b29cdde5194e784f736c5d1c55cd6360559a5d"
+    },
+    {
+      "case": "6049-chapter-68098",
+      "verified_rows": 7519,
+      "decoded_source_bytes": 2938563,
+      "sha256": "cb20ec4928bcc590e7da01eb3cb15aba452ed518adfb7cc52f90aa45aa6d1916"
+    },
+    {
+      "case": "6049-line-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 46,
+      "sha256": "d7dc24e6b24a8e3b5340e31edf9d4cae92be260a3aacd73436f5d3ecb7e76867"
+    },
+    {
+      "case": "6049-line-68098",
+      "verified_rows": 1,
+      "decoded_source_bytes": 148,
+      "sha256": "e2fafad3a52206aeaab4edd83bdcffaaea8838e08640a46b08959c1dfc97692d"
+    },
+    {
+      "case": "6049-paragraph-0",
+      "verified_rows": 4,
+      "decoded_source_bytes": 210,
+      "sha256": "802a96f948e0991bcd490076f6ba2268a7ae8862435d0e8f96f7a0261c135ae3"
+    },
+    {
+      "case": "6049-paragraph-68098",
+      "verified_rows": 4,
+      "decoded_source_bytes": 475,
+      "sha256": "b70b598cc731c3538fad0b136c42a7f9ddd68822b6c57b8843c1e6e42a7e3c29"
+    },
+    {
+      "case": "6050-chapter-0",
+      "verified_rows": 10703,
+      "decoded_source_bytes": 5446060,
+      "sha256": "7a3d942fcf4f2a4c3d08c53084bbd87ade3c51c163ec7da7906ce66c5110b759"
+    },
+    {
+      "case": "6050-chapter-45427",
+      "verified_rows": 10055,
+      "decoded_source_bytes": 5063360,
+      "sha256": "02237813e34d0c3389064bcb0ce53fde52df33785124bd221b353dae74c40a2e"
+    },
+    {
+      "case": "6050-line-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 46,
+      "sha256": "19f96fefe15036cd1b479eca0e2336d376aa903409c49af2614a71f16963dd4e"
+    },
+    {
+      "case": "6050-line-45427",
+      "verified_rows": 1,
+      "decoded_source_bytes": 28,
+      "sha256": "b5b2145ed3857db0b29c8ff10d560b208edf149e2d5a67ecaa4b16f2b61cbc85"
+    },
+    {
+      "case": "6050-paragraph-0",
+      "verified_rows": 4,
+      "decoded_source_bytes": 210,
+      "sha256": "6fb993f08a86a992e8440375ccfad0181282bfe42273d9dc7bbf769919a3af46"
+    },
+    {
+      "case": "6050-paragraph-45427",
+      "verified_rows": 19,
+      "decoded_source_bytes": 18730,
+      "sha256": "d2c453687b3b11f5ca4f213e608ceca5a63d66fb4552bd5066e06d1e2ba1c13b"
+    }
+  ],
+  "status": "ACTUAL_FULL_V32_SWIFT_READER_PASS_NOT_UI"
+}
