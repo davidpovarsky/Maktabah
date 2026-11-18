@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "1a90fc3ef7d6c30dcb1ce6df2aa2c4fd6a502855",
+  "source_test_commit": "87b37a1309aee69350868cb37846037dd6b52479",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "1a90fc3ef7d6c30dcb1ce6df2aa2c4fd6a502855",
+  "app_source": "87b37a1309aee69350868cb37846037dd6b52479",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "CONTINUATION_REQUIRED27_SEARCH14_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3",
@@ -910,7 +910,8 @@
         "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
       ],
       "status": "SOURCE_ADDED_NOT_RUN",
-      "privacy": "No raw request.query field; full fixture provider metadata included only with explicit test flag; all hooks compiled out of Release"
+      "privacy": "No raw request.query field; full fixture provider metadata included only with explicit test flag; all hooks compiled out of Release",
+      "source_sha": "87b37a1309aee69350868cb37846037dd6b52479"
     }
   }
 }

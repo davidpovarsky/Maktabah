@@ -138,6 +138,7 @@
     "Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift",
     "Source/Otzaria/Search/OtzariaSearchIndexManager.swift",
     "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
     "Source/Sefaria/Network/SefariaDTOs.swift",
     "Source/Sefaria/Network/SefariaHTTPClient.swift",
     "Source/Sefaria/Network/SefariaRemoteStore.swift",
@@ -444,5 +445,5 @@
       "line": 637
     }
   ],
-  "source_sha": "1a90fc3ef7d6c30dcb1ce6df2aa2c4fd6a502855"
+  "source_sha": "87b37a1309aee69350868cb37846037dd6b52479"
 }
