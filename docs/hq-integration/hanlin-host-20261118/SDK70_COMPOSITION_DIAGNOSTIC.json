@@ -1,0 +1,175 @@
+{
+  "observed_at": "2026-11-18T23:39:36.317312+00:00",
+  "run": "44410374583",
+  "head": "392b8a105a90e2ad589391a74c1a6bc009af868f",
+  "application_source": "c91db4508bf7a9146b20642df514ac4103b3520a",
+  "xcode": "Xcode 27.2\nBuild version 27B52",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+  "aggregate": "FAIL",
+  "ui_test_codegen": "PASS",
+  "declarations": 70,
+  "ui_warning_count": 2298,
+  "native_host_package": "SDK_COMPILE_PASS",
+  "actual_sqlite": {
+    "observed_at": "2026-11-18T23:21:06.812252+00:00",
+    "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "source_sha": "392b8a105a90e2ad589391a74c1a6bc009af868f",
+    "source_files": {
+      "Source/Core/Database/SQLiteDatabase.swift": "71f08664bd5a7c99cca3d5a7d4fa28e318a0c03c8d3c59b1cb184215be6c6169",
+      "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+      "Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift": "cc68a18f5e97f68886df4c24bfb5f22fd4c9b6af51c22417ecc528e3bccb10d2"
+    },
+    "command": [
+      "/usr/bin/swiftc",
+      "-parse-as-library",
+      "-swift-version",
+      "6",
+      "-Xfrontend",
+      "-strict-concurrency=complete",
+      "-sdk",
+      "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk",
+      "/Users/runner/work/Maktabah/Maktabah/Source/Core/Database/SQLiteDatabase.swift",
+      "/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+      "/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift",
+      "-o",
+      "/Users/runner/work/Maktabah/Maktabah/build/artifacts/sqlite-source/owned-fixture-bf5a3940-bfa3-4437-a7f7-2402e08ac5fe/sqlite-acceptance"
+    ],
+    "compile_exit": 0,
+    "owned_fixture": "/Users/runner/work/Maktabah/Maktabah/build/artifacts/sqlite-source/owned-fixture-bf5a3940-bfa3-4437-a7f7-2402e08ac5fe",
+    "real_source_readonly_count": 0,
+    "native_ui_executed": 0,
+    "physical_device_executed": 0,
+    "sqlite_is_real": true,
+    "zstd_boundary_is_unexecuted": true,
+    "execute_exit": 0,
+    "actual_sqlite": {
+      "cases": [
+        {
+          "name": "successful_rows_and_genuine_zero",
+          "passed": true
+        },
+        {
+          "name": "all_supported_binding_types_keep_values",
+          "passed": true
+        },
+        {
+          "name": "step_error_before_first_row_is_not_empty_success",
+          "passed": true
+        },
+        {
+          "name": "step_error_after_first_row_is_not_partial_success",
+          "passed": true
+        },
+        {
+          "name": "same_cached_query_recovers_after_step_failure",
+          "passed": true
+        },
+        {
+          "name": "actual_sqlite_interrupt_never_returns_partial_rows",
+          "passed": true
+        },
+        {
+          "name": "cached_statement_recovers_after_interrupt",
+          "passed": true
+        },
+        {
+          "name": "out_of_range_int_bind_cannot_succeed",
+          "passed": true
+        },
+        {
+          "name": "out_of_range_int64_bind_cannot_succeed",
+          "passed": true
+        },
+        {
+          "name": "out_of_range_double_bind_cannot_succeed",
+          "passed": true
+        },
+        {
+          "name": "out_of_range_text_bind_cannot_succeed",
+          "passed": true
+        },
+        {
+          "name": "out_of_range_null_bind_cannot_succeed",
+          "passed": true
+        },
+        {
+          "name": "unsupported_bind_type_still_fails_without_poisoning_cache",
+          "passed": true
+        },
+        {
+          "name": "mapping_error_is_preserved_and_statement_is_reset",
+          "passed": true
+        },
+        {
+          "name": "cached_schema_change_error_is_not_empty_success",
+          "passed": true
+        },
+        {
+          "name": "transaction_rolls_back_when_a_read_fails",
+          "passed": true
+        },
+        {
+          "name": "actual_writer_lock_is_not_empty_success",
+          "passed": true
+        },
+        {
+          "name": "read_under_writer_lock_recovers_after_rollback",
+          "passed": true
+        },
+        {
+          "name": "readonly_connection_rejects_writes",
+          "passed": true
+        },
+        {
+          "name": "serialized_concurrent_reads_preserve_entire_results",
+          "passed": true
+        }
+      ],
+      "decompressorExecuted": false,
+      "nativeUIExecuted": 0,
+      "originalDatabaseWrapper": "Source/Core/Database/SQLiteDatabase.swift",
+      "physicalDeviceExecuted": 0,
+      "sqliteVersion": "3.54.0"
+    },
+    "status": "EXECUTED_PASS_ACTUAL_SQLITE"
+  },
+  "verified_source_files": 23,
+  "source_hashes": {
+    "Maktabah-iOSUITests/MaktabahUITestBase.swift": "c57157447416afbb5477928719e3d1af8373af76df0274ce85a558a37336461a",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "afcb63e7b3da86bdef079afd10b30642980ecbb075df26ff1c1445e046763800",
+    "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift": "6560cb3026ce1dd621e7a76ac6876857485fd096453eeb0cc8c5c9f5b9993654",
+    "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+    "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift": "a79b4b0b78bf0e1e22f070d4558fc3d692f70c199012a5cd6e85043ea2530562",
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "2f133337eb8c8fb17e6b2fc355e85ad5b1116e3d0ebcd1247608c10407793a7a",
+    "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift": "185df9cdb80033f553c6abe097722eb686663fa4a6a43f2861c43be2879fc566",
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc",
+    "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift": "6699ad09ce7531050e42a84f54348b3e505bacc4d582545ac9e58b5157786af5",
+    "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift": "b4fbe3a253bea61d95014dcdc85eea9ac0ec47ff199250e8ca4bffeb28bfc3a9",
+    "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift": "80651917d8e10fc1ba8ec2a73af060bb61d68e0193dfda85b1c2e0a456470076",
+    "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift": "6eed61dc4d43ab7064cc84773b2a09f6a670a8cd4e87b1de12061daaced00c63",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift": "e28b7db9b430281b99463014b0e44956c89ec8d7cb52d83771d518b297f1feb6",
+    "MaktabahTests/ReaderOverviewPresentationTests.swift": "70acea5c7e07df8a73c72ec6cf26aed17490a308db9f515dd173cf53220ca8d9",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift": "8ae46e5812f2782c0a5a197b62f4ec39d504ae68f75dc9be7779a3b440fbcbf0",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift": "8a2162616db8a5ecb15bc81d2fc0f7ac866007377aeb10f855bde79d4e48f503",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift": "6a7eafe79c6b684b6386f2a112640ffdb18bf980ffa49e7902cb1b90fca2c6d1",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderBookTabsModel.swift": "2d840c41bba11a4239107f58e68277d9404c578e27d00e9a2b4197eb07989049",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift": "d31ad0679e524d537cfcecfb241574d3ada9e8d0dcb010458dbf162186a78042",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765"
+  },
+  "errors": [
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift:7:18: error: cannot convert value of type 'KeyPath<Root, Value>' to expected argument type 'Value.Type'",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift:7:6: error: generic parameter 'Value' could not be inferred",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift:7:18: error: cannot infer key path type from context; consider explicitly specifying a root type",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift:49:41: error: cannot find type 'MaktabahNativeSceneSession' in scope",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift:52:67: error: cannot find type 'MaktabahNativeSceneSession' in scope",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift:53:44: error: argument type '_' expected to be an instance of a class or class-constrained type"
+  ],
+  "root_cause": "Standalone UIKit compilation included NativeGlobalSearchField after it acquired actual app Scene/Environment dependencies. Original UI-test code generation and 70 declarations succeeded; no Native execution.",
+  "correction": "Compile exact original self-contained UIKit field and retain full source hash; full representable/coordinator remains required in actual app/build-for-testing, without owner substitutes.",
+  "boundary": "0Native executions. Actual SDK compile coverage is scoped to immutable392/c91. Later Hanlin composition not accepted."
+}

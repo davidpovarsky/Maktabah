@@ -87,7 +87,7 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
 // The XCTest instance has no stored mutable test state; every fixture is an actor.
 // No UI/main-thread work occurs in this portable contract suite.
 final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
-    private func setup(rights: Bool = true, foreground: Bool = true) async throws
+    private func setup(rights: Bool = true, foreground: Bool = true, nativeSceneID: String? = nil) async throws
         -> (Fixture, OtzariaHanlinHostAdapter, HanlinHostSession, HanlinHostCatalog) {
         let scene = UUID()
         let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture-only",
@@ -96,7 +96,7 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
         let execution = ActionExecutionContext(subjectID: "fixture-only", origin: .internalAI,
             allowedBackends: [.otzaria], contentRights: rights ? [.otzaria] : [],
             scopes: [.discovery, .contentRead, .navigation],
-            foregroundSceneID: foreground ? scene.uuidString : nil, maxResultBytes: 65_536)
+            foregroundSceneID: foreground ? (nativeSceneID ?? scene.uuidString) : nil, maxResultBytes: 65_536)
         let binding = OtzariaHanlinBinding(context: context, executionContext: execution,
             backend: .init(backend: .otzaria, generation: 9_007_199_254_740_993),
             catalogRevision: .init(7), availableReadActions: ActionRegistry.implemented.union(["notes.save"]))
@@ -278,6 +278,23 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
         do { _ = try await adapter.open(destination); XCTFail("Foreign receipt accepted") }
         catch let error as HanlinHostError { XCTAssertEqual(error, .resultMismatch) }
     }
+    func testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID() async throws {
+        let (_, adapter, session, _) = try await setup(nativeSceneID: "original-native-scene-owner")
+        let result = try await adapter.open(.init(context: session.context, objectReference: "native.history"))
+        // Exact same authority seam returns queued, never an invented UI receipt.
+        XCTAssertFalse(result.presentationAcknowledged)
+        guard case .queued(_, let context) = result else { return XCTFail("Unexpected presentation receipt") }
+        XCTAssertEqual(context, session.context)
+    }
+
+    func testEmptyNativeForegroundIdentityIsDenied() async throws {
+        let (_, adapter, session, _) = try await setup(nativeSceneID: "")
+        do {
+            _ = try await adapter.open(.init(context: session.context, objectReference: "native.history"))
+            XCTFail("Empty native scene identity accepted")
+        } catch let error as HanlinHostError { XCTAssertEqual(error, .denied) }
+    }
+
     func testBackgroundNavigationIsDenied() async throws {
         let (_, adapter, session, _) = try await setup(foreground: false)
         do { _ = try await adapter.open(.init(context: session.context, objectReference: "native.history")); XCTFail("Background navigation accepted") }

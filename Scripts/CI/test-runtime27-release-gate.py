@@ -22,6 +22,15 @@ collect = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["collect
 groups = runpy.run_path(str(Path(__file__).with_name("runtime27.py")))["execution_groups"]
 
 
+def dependency_fixture():
+    # Deliberately synthetic evidence for gate mutation tests, never Native PASS.
+    return {"package_pins": {"fixture-" + str(i): format(i, "040x") for i in range(9)},
+            "package_resolved_sha256": "fixture-lock",
+            "hanlin_sdk_source": {"sha": "c" * 40, "verified_files": 1,
+                                  "git_blobs": {"fixture-only.swift": "d" * 40},
+                                  "manifest_sha256": {"fixture-only-package": "e" * 64}}}
+
+
 class ReleaseGateTests(unittest.TestCase):
     def setUp(self):
         self.folder = tempfile.TemporaryDirectory()
@@ -41,9 +50,15 @@ class ReleaseGateTests(unittest.TestCase):
                        "summary_path": "summary.json", "tests_path": "tests.json", "log_path": "test.log", "data_evidence_path": "data.json"}
         self.result = {"status": "EXECUTED_PASS", "checkout_sha": self.sha, "full_release_acceptance": True,
                        "release_manifest_sha256": "manifest", "scope": "full-release-ui", "configurations": [self.actual]}
+        self.required_inputs = dependency_fixture()
+        self.sdk_before = copy.deepcopy(self.required_inputs["hanlin_sdk_source"])
+        self.sdk_after = copy.deepcopy(self.sdk_before)
         self.build = {"status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS", "checkout_sha": self.sha, "application_trees": self.trees,
-                      "actual_source_inputs_verified": 750, "actual_package_checkouts": {str(i): {"head": str(i), "status": "CLEAN"} for i in range(6)},
-                      "package_pins": {str(i): str(i) for i in range(6)}}
+                      "actual_source_inputs_verified": 750,
+                      "actual_package_checkouts": {name: {"head": revision, "status": "CLEAN"} for name, revision in self.required_inputs["package_pins"].items()},
+                      "package_pins": copy.deepcopy(self.required_inputs["package_pins"]),
+                      "package_resolved_sha256": self.required_inputs["package_resolved_sha256"],
+                      "hanlin_gitlink": self.sdk_before["sha"], "hanlin_sdk_source": copy.deepcopy(self.sdk_before)}
         self.summary = {"result": "Passed", "totalTestCount": 1, "passedTests": 1, "failedTests": 0, "skippedTests": 0,
                         "expectedFailures": 0, "testFailures": []}
         self.tree = {"devices": [{"deviceId": "owned", "osVersion": "27.0"}], "testNodes": [
@@ -56,15 +71,65 @@ class ReleaseGateTests(unittest.TestCase):
 
     def check(self):
         for path, value in [("artifacts/runtime27/result.json", self.result), ("hq-stage2/result.json", self.build),
+                            ("hq-stage2/hanlin-sdk-inputs.json", self.sdk_before), ("hq-stage2/hanlin-sdk-inputs-after.json", self.sdk_after),
                             ("summary.json", self.summary), ("tests.json", self.tree), ("data.json", self.data)]:
             destination = self.root / path
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_text(json.dumps(value))
         (self.root / "test.log").write_text(self.log)
-        return gate["verify"](self.run, self.root, self.sha, self.manifest, "manifest", self.trees, self.now)
+        return gate["verify"](self.run, self.root, self.sha, self.manifest, "manifest", self.trees, self.now, required_inputs=self.required_inputs)
 
     def test_complete_positive_fixture(self):
         self.assertEqual(self.check()["required_ui_passed"], 1)
+
+    def test_same_count_self_consistent_foreign_revision_is_rejected(self):
+        self.build["package_pins"]["fixture-0"] = "f" * 40
+        self.build["actual_package_checkouts"]["fixture-0"]["head"] = "f" * 40
+        with self.assertRaisesRegex(ValueError, "committed lock"):
+            self.check()
+
+    def test_legacy_six_pins_cannot_replace_current_nine(self):
+        for name in ["fixture-6", "fixture-7", "fixture-8"]:
+            self.build["package_pins"].pop(name)
+            self.build["actual_package_checkouts"].pop(name)
+        with self.assertRaisesRegex(ValueError, "committed lock"):
+            self.check()
+
+    def test_extra_checkout_and_missing_checkout_are_rejected(self):
+        original = copy.deepcopy(self.build["actual_package_checkouts"])
+        self.build["actual_package_checkouts"]["foreign"] = {"head": "f" * 40, "status": "CLEAN"}
+        with self.assertRaisesRegex(ValueError, "unexpected actual"):
+            self.check()
+        self.build["actual_package_checkouts"] = original
+        self.build["actual_package_checkouts"].pop("fixture-8")
+        with self.assertRaisesRegex(ValueError, "unexpected actual"):
+            self.check()
+
+    def test_sdk_revision_source_and_post_build_drift_are_rejected(self):
+        for attribute, field, replacement in [
+            ("sdk_before", "sha", "f" * 40),
+            ("sdk_after", "git_blobs", {}),
+            ("sdk_after", "manifest_sha256", {}),
+        ]:
+            with self.subTest(attribute=attribute, field=field):
+                target = getattr(self, attribute)
+                previous = target[field]
+                target[field] = replacement
+                with self.assertRaisesRegex(ValueError, "SDK source proof"):
+                    self.check()
+                target[field] = previous
+        self.build["hanlin_sdk_source"]["sha"] = "f" * 40
+        with self.assertRaisesRegex(ValueError, "Hanlin source"):
+            self.check()
+
+    def test_unaccepted_lock_bytes_and_sdk_gitlink_are_rejected(self):
+        for key, value in [("package_resolved_sha256", "foreign"), ("hanlin_gitlink", "f" * 40)]:
+            with self.subTest(key=key):
+                previous = self.build[key]
+                self.build[key] = value
+                with self.assertRaises(ValueError):
+                    self.check()
+                self.build[key] = previous
 
     def test_prototype_oracle_never_inflates_native_ui_count(self):
         self.required["required_oracle_cases"] = ["Prototype/testTap"]
@@ -114,12 +179,12 @@ class ReleaseGateTests(unittest.TestCase):
         candidate = "b" * 40
         proof = {"kind": "DOCUMENTATION_ONLY_DESCENDANT", "tested_sha": self.sha, "candidate_sha": candidate,
                  "changed_paths": ["docs/hq-integration/runtime27/REPORT.md"]}
-        accepted = gate["verify"](self.run, self.root, candidate, self.manifest, "manifest", self.trees, self.now, proof)
+        accepted = gate["verify"](self.run, self.root, candidate, self.manifest, "manifest", self.trees, self.now, proof, required_inputs=self.required_inputs)
         self.assertEqual(accepted["tested_checkout_sha"], self.sha)
         self.assertEqual(accepted["checkout_sha"], candidate)
         proof["changed_paths"] = ["Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"]
         with self.assertRaises(ValueError):
-            gate["verify"](self.run, self.root, candidate, self.manifest, "manifest", self.trees, self.now, proof)
+            gate["verify"](self.run, self.root, candidate, self.manifest, "manifest", self.trees, self.now, proof, required_inputs=self.required_inputs)
 
 
 class EvidenceClassificationTests(unittest.TestCase):
@@ -247,9 +312,12 @@ class PreparedInputTests(unittest.TestCase):
                   "npm_lock_sha256": self.hashes["Vendor/SefariaMobile/Upstream/package-lock.json"],
                   "gitlink": "pinned-gitlink", "node": "v22.23.4", "cocoapods": "1.17.0",
                   "generated_expo_providers": [{"path": "Pods/ExpoModulesProvider.swift", "sha256": self.hashes["Pods/ExpoModulesProvider.swift"]}]}
+        self.dependencies = dependency_fixture()
+        self.actual_dependencies = copy.deepcopy(self.dependencies)
         self.approval = self.root / "approval.json"
         self.approval.write_text(json.dumps({"candidate_sha": self.sha, "tested_sha": self.sha, "tested_build_report": {
             "native_context": native, "package_resolved_sha256": self.hashes["Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"],
+            "package_pins": self.dependencies["package_pins"], "hanlin_sdk_source": self.dependencies["hanlin_sdk_source"],
             "xcode": "Xcode 27.1", "generated_configuration": [{"path": "Source/PrivacyInfo.xcprivacy", "compiled_sha256": self.hashes["Source/PrivacyInfo.xcprivacy"]}]}}))
         self.pod_version = "1.17.0"
 
@@ -262,7 +330,8 @@ class PreparedInputTests(unittest.TestCase):
             return {"xcodebuild": "Xcode 27.1", "node": "v22.23.4", "pod": self.pod_version}[args[0]]
         def audit(report):
             report.update(actual_source_inputs_verified=750, actual_package_checkouts={})
-        with patch.object(subprocess, "check_output", side_effect=command), patch.object(runpy, "run_path", return_value={"verify_actual_sources": audit}):
+        with patch.object(subprocess, "check_output", side_effect=command), patch.object(runpy, "run_path", return_value={"verify_actual_sources": audit}), \
+             patch.dict(self.function.__globals__, candidate_dependency_requirements=lambda: self.actual_dependencies):
             return self.function(self.approval)
 
     def test_matching_prepared_context_reaches_existing_source_auditor(self):
@@ -277,6 +346,15 @@ class PreparedInputTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     self.check()
                 path.write_bytes(before)
+
+    def test_original_sdk_or_pinned_package_drift_before_signing_is_rejected(self):
+        for key in ["package_pins", "hanlin_sdk_source"]:
+            with self.subTest(key=key):
+                before = self.actual_dependencies[key]
+                self.actual_dependencies[key] = {}
+                with self.assertRaisesRegex(ValueError, "original package sources"):
+                    self.check()
+                self.actual_dependencies[key] = before
 
     def test_changed_native_toolchain_rejected(self):
         self.pod_version = "1.18.0"
@@ -327,7 +405,7 @@ class GateMainFailureTests(unittest.TestCase):
                 return subprocess.CompletedProcess(args, 0)
             out = root / "gate.json"
             globals_ = gate["main"].__globals__
-            with patch.dict(globals_, ROOT=root, api=api, verify=lambda *args, **kwargs: {"status": "RELEASE_UI_GATE_PASS"}), \
+            with patch.dict(globals_, ROOT=root, api=api, candidate_dependency_requirements=lambda: {}, verify=lambda *args, **kwargs: {"status": "RELEASE_UI_GATE_PASS"}), \
                  patch.object(subprocess, "check_output", return_value=sha), patch.object(subprocess, "run", side_effect=download), \
                  patch.dict(os.environ, GITHUB_REPOSITORY="davidpovarsky/Maktabah"), \
                  patch.object(sys, "argv", ["gate", "--run", "123", "--expected-sha", sha, "--out", str(out)]), \

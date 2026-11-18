@@ -33,7 +33,7 @@ def read(root, relative):
     return path
 
 
-def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, now=None, reuse_proof=None):
+def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, now=None, reuse_proof=None, *, required_inputs):
     require(manifest.get("full_release_acceptance_required") is True and manifest.get("configurations"), "Missing full release requirements")
     require(re.fullmatch(r"[a-f0-9]{40}", expected_sha) is not None, "Missing exact candidate SHA")
     require(run.get("status") == "completed" and run.get("conclusion") == "success", "UI acceptance run did not complete successfully")
@@ -57,11 +57,23 @@ def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, n
     build = json.loads(read(root, "hq-stage2/result.json").read_text())
     require(build.get("status") == "SIMULATOR_BUILD_FOR_REAL_UI_PASS" and build.get("checkout_sha") == tested_sha, "Missing actual matching app/test build")
     require(build.get("application_trees") == application_trees, "Application/dependency project fingerprints changed")
-    require(build.get("actual_source_inputs_verified", 0) > 0 and len(build.get("actual_package_checkouts", {})) == 6,
-            "Missing actual app/package input audit")
-    for package, revision in build.get("package_pins", {}).items():
-        require(build["actual_package_checkouts"].get(package) == {"head": revision, "status": "CLEAN"}, "Actual pinned package source mismatch")
-    require(len(build.get("package_pins", {})) == 6, "Missing package revision manifest")
+    expected_pins = required_inputs["package_pins"]
+    require(expected_pins and build.get("package_pins") == expected_pins,
+            "Package revisions do not match the candidate's committed lock")
+    require(build.get("package_resolved_sha256") == required_inputs["package_resolved_sha256"],
+            "Package lock bytes do not match the accepted candidate")
+    require(build.get("actual_source_inputs_verified", 0) > 0
+            and set(build.get("actual_package_checkouts", {})) == set(expected_pins),
+            "Missing or unexpected actual app/package inputs")
+    for package, revision in expected_pins.items():
+        require(build["actual_package_checkouts"][package] == {"head": revision, "status": "CLEAN"},
+                "Actual pinned package source mismatch")
+    expected_sdk = required_inputs["hanlin_sdk_source"]
+    require(build.get("hanlin_gitlink") == expected_sdk["sha"] and build.get("hanlin_sdk_source") == expected_sdk,
+            "Original Hanlin source does not match the candidate")
+    for name in ["hanlin-sdk-inputs.json", "hanlin-sdk-inputs-after.json"]:
+        require(json.loads(read(root, "hq-stage2/" + name).read_text()) == expected_sdk,
+                "Missing or changed original SDK source proof: " + name)
     required_configs = {row["id"]: row for row in manifest["configurations"]}
     configs = result.get("configurations", [])
     require(len(configs) == len(required_configs) and {row.get("id") for row in configs} == required_configs.keys(),
@@ -129,10 +141,29 @@ def sha256(path):
         return hashlib.file_digest(source, "sha256").hexdigest()
 
 
+def candidate_dependency_requirements():
+    # Read the committed lock, not a mutable/cache-generated replacement.
+    path = "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+    raw = subprocess.check_output(["git", "show", "HEAD:" + path], cwd=ROOT)
+    rows = json.loads(raw)["pins"]
+    package_pins = {row["identity"]: row["state"]["revision"] for row in rows}
+    require(bool(package_pins) and len(package_pins) == len(rows)
+            and all(re.fullmatch(r"[a-f0-9]{40}", revision) for revision in package_pins.values()),
+            "Invalid or duplicate candidate package revisions")
+    sdk_pin = subprocess.check_output(["git", "rev-parse", "HEAD:Vendor/HanlinSDK"], cwd=ROOT, text=True).strip()
+    original = runpy.run_path(str(ROOT / "Scripts/CI/prepare-hanlin-sdk.py"))
+    sdk_source = original["verify"](sdk_pin)
+    return {"package_pins": package_pins, "package_resolved_sha256": hashlib.sha256(raw).hexdigest(),
+            "hanlin_sdk_source": sdk_source}
+
+
 def verify_prepared_inputs(approved_path):
     approved = json.loads(approved_path.read_text())
     build = copy.deepcopy(approved["tested_build_report"])
     native = build["native_context"]
+    expected_dependencies = candidate_dependency_requirements()
+    require(build.get("package_pins") == expected_dependencies["package_pins"] and build.get("hanlin_sdk_source") == expected_dependencies["hanlin_sdk_source"],
+            "Prepared original package sources differ from accepted UI inputs")
     require(subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip() == approved["candidate_sha"], "Candidate moved after UI gate")
     for path, expected in [("Podfile", native["podfile_sha256"]), ("Podfile.lock", native["pod_lock_sha256"]),
                            ("Vendor/SefariaMobile/Upstream/package-lock.json", native["npm_lock_sha256"]),
@@ -155,7 +186,7 @@ def verify_prepared_inputs(approved_path):
     helper["verify_actual_sources"](build)
     return {"status": "RELEASE_UI_INPUTS_PASS", "checkout_sha": approved["candidate_sha"],
             "tested_checkout_sha": approved["tested_sha"], "actual_source_inputs_verified": build["actual_source_inputs_verified"],
-            "actual_package_checkouts": build["actual_package_checkouts"]}
+            "actual_package_checkouts": build["actual_package_checkouts"], "hanlin_sdk_sha": expected_dependencies["hanlin_sdk_source"]["sha"]}
 
 
 def main():
@@ -203,7 +234,8 @@ def main():
             manifest_sha = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
             trees = {path: subprocess.check_output(["git", "rev-parse", "HEAD:" + path], text=True).strip()
                      for path in ["Source", "Vendor", "Maktabah.xcodeproj"]}
-            verified = verify(run, destination, args.expected_sha, manifest, manifest_sha, trees, reuse_proof=reuse)
+            verified = verify(run, destination, args.expected_sha, manifest, manifest_sha, trees, reuse_proof=reuse,
+                              required_inputs=candidate_dependency_requirements())
             build = json.loads(read(destination, "hq-stage2/result.json").read_text())
             lock = read(destination, "hq-stage2/resolved-Podfile.lock")
             require(sha256(lock) == build["native_context"]["pod_lock_sha256"], "UI Podfile.lock bytes missing/mismatched")
@@ -215,7 +247,7 @@ def main():
             (args.out.parent / "runtime27-approved-inputs.json").write_text(json.dumps({"candidate_sha": args.expected_sha,
                 "tested_sha": run["head_sha"], "tested_build_report": build}, indent=2) + "\n")
             report.update(verified, acceptance_run=args.run, artifact_id=artifact["id"], artifact_zip_sha256=digest)
-    except (ValueError, KeyError, OSError, subprocess.SubprocessError) as error:
+    except (ValueError, KeyError, OSError, RuntimeError, subprocess.SubprocessError) as error:
         report.update(status="FAIL", error=str(error))
         print("::error::" + str(error), file=sys.stderr)
     finally:

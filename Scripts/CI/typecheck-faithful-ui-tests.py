@@ -132,7 +132,6 @@ if sidebar_path.is_file() and "private struct ReaderSidebarSplitConfiguration:" 
 toolbar_sources = [Path("Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift"),
                    Path("Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift"),
                    Path("Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift"),
-                   Path("Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift"),
                    Path("MaktabahTests/ReaderOverviewPresentationTests.swift")]
 # Include the real self-contained UIKit source port when checking a focused
 # correction such as the original UIFontDescriptor factories. No app/model
@@ -159,6 +158,28 @@ report["appComposedSidebar"] = {
     "appMembershipGate": "verify-otzaria-xcode-project.py",
     "sourceHashes": {str(path): hashlib.sha256(path.read_bytes()).hexdigest()
                      for path in app_composed_sidebar_sources if path.is_file()},
+}
+# The original search field now participates in the real native scene lifetime.
+# Compile its exact self-contained UIKit control here; the representable and
+# coordinator require the actual app composition and must pass the full
+# build/build-for-testing gate. No substitute Scene/Environment owner is used.
+native_field_path = Path("Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift")
+native_field = native_field_path.read_text(encoding="utf-8")
+native_field_marker = "private final class GlobalSearchTextField: UISearchTextField {"
+if native_field.count(native_field_marker) != 1:
+    raise RuntimeError("Expected one actual native UIKit search control")
+native_field_component = Path("build/NativeGlobalSearchUIKitControl.swift")
+native_field_bytes = ("import UIKit\n" + native_field[native_field.index(native_field_marker):]).encode()
+native_field_component.write_bytes(native_field_bytes)
+toolbar_sources.append(native_field_component)
+report["appComposedGlobalSearchField"] = {
+    "scope": "Actual representable/coordinator require the original native Scene and Environment owner",
+    "status": "REQUIRES_FULL_APP_BUILD",
+    "standaloneCoverage": "Exact original GlobalSearchTextField UIKit control, with no source substitutions",
+    "appMembershipGate": "verify-otzaria-xcode-project.py",
+    "sourceHashes": {str(native_field_path): hashlib.sha256(native_field_path.read_bytes()).hexdigest()},
+    "componentSHA256": hashlib.sha256(native_field_bytes).hexdigest(),
+    "nativeUITestsExecuted": 0,
 }
 toolbar_code = 0
 if all(path.is_file() for path in toolbar_sources):

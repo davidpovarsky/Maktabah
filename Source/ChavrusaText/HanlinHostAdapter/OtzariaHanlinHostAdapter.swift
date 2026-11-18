@@ -179,9 +179,13 @@ public actor OtzariaHanlinHostAdapter: HanlinHostIntegration {
     public func open(_ destination: HanlinHostDestination) async throws -> HanlinHostNavigationResult {
         let binding = try await checkedBinding(destination.context)
         guard binding.executionContext.scopes.contains(.navigation),
-              binding.executionContext.foregroundSceneID == destination.context.sceneID.uuidString else {
+              let nativeSceneID = binding.executionContext.foregroundSceneID,
+              !nativeSceneID.isEmpty, nativeSceneID.utf8.count <= 256 else {
             throw HanlinHostError.denied
         }
+        // Native session identifiers are opaque strings, independent of the SDK
+        // scene UUID. The trusted authority binds both lifetimes and the SAME
+        // native registry/Core validates its real scene before any UI effect.
         // The existing scene owner performs its canonical final precommit/receipt
         // checks. This adapter cannot manufacture a native acknowledgment.
         let result = try await authority.open(destination, binding: binding)

@@ -1,0 +1,16 @@
+{
+  "time": "2026-11-18T23:16:36.936117+00:00",
+  "status": "PASS",
+  "guard_tests": 23,
+  "guard_failures": 0,
+  "actual_committed_package_pins": 9,
+  "sdk_sha": "080d1a2b264ead9e3f9df690f2dd0d3e81ebd07e",
+  "actual_original_sdk_files": 422,
+  "source_sha256": {
+    "Scripts/CI/verify-runtime27-release-gate.py": "918bd5751f35d4a5f4a6615d670d378e6b787d0a9c79c4cd5476691ddfb9193c",
+    "Scripts/CI/test-runtime27-release-gate.py": "0253b2ce63ebafcc55f133514975555bf5a93956fbe3fd54994774a920f6315b",
+    "Scripts/CI/prepare-hanlin-sdk.py": "46efe94ae4fb6107f4e2af45056937c98899f5eb430b2ff7072d1c5cad8aaedf"
+  },
+  "test_log_sha256": "5840f9c1b439ba1043787e072fa31e5c650046073ffaea0247498b1710aa74be",
+  "boundary": "Guard tests use synthetic UI/tool fixtures. Real source identity read succeeded;0Native,0signing,0distribution."
+}
