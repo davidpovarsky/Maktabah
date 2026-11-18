@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "a686e1fde69b866a37991a0d11ec79193fbd7dbd",
+  "source_test_commit": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "a686e1fde69b866a37991a0d11ec79193fbd7dbd",
+  "app_source": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "CONTINUATION_PHASE1_REQUIRED27_PLUS_PHASE2_NATIVE_SEARCH11_AND_PHASE3_PHONE_ROUTING3",
@@ -653,7 +653,7 @@
   ],
   "previous_native_run": "43822275294",
   "previous_completed_methods": 5,
-  "source_qualified_completion": "Only valid if actual app source pin, all product trees and exact UI test sources equal82; frozen82 raw results remain unchanged",
+  "source_qualified_completion": "No Native acceptance transferred. Any new execution must match this exact app Source/Vendor/project tree and exact test source. Prior f2/a686 Native run is independent historical evidence.",
   "continuation": {
     "phase1_required_full_case_ids_unchanged": true,
     "phase2_supplemental_case_ids": [
@@ -683,6 +683,12 @@
     },
     "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
     "executor": "Current sole developer continuation; no subagents or resumed prior agents",
-    "native_status": "NOT_RUN on this candidate; earlier independent immutable first27 run is still pending"
+    "native_status": "NOT_RUN on this candidate; earlier independent immutable first27 run is still pending",
+    "canonical_reader_source": {
+      "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
+      "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
+      "status": "SOURCE_IMPLEMENTED_NATIVE_PENDING",
+      "acceptance_limit": "The current 41 methods predate this Reader integration; new Reader native cases must be added. Existing methods/oracles unchanged."
+    }
   }
 }
