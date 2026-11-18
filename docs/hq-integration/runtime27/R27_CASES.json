@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "2a18db289d725abacbb079d97d840f5130daab0b",
+  "source_test_commit": "19b5cba46e664692bae6ddcdfca5eccacba8b3c6",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "2a18db289d725abacbb079d97d840f5130daab0b",
+  "app_source": "19b5cba46e664692bae6ddcdfca5eccacba8b3c6",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original27 plus actual source-qualified continuation cases; 65 required Native cases, 54iPad27 +11iPhone27, zero skips; app/system/physical/release gates remain distinct.",
@@ -1027,6 +1027,15 @@
       "source_sha": "2a18db289d725abacbb079d97d840f5130daab0b",
       "scope": "Fork-only Debug passive storage excluded through let reference; no provider/result/oracle change",
       "status": "SOURCE_SYNTAX_ONLY_APP_NATIVE_PENDING"
+    },
+    "native65_environment_followup": {
+      "source_sha": "19b5cba46e664692bae6ddcdfca5eccacba8b3c6",
+      "prior_run": "44350271039",
+      "required": 65,
+      "actual_executed": 0,
+      "native_status": "NOT_RUN_ON_NEW_SOURCE",
+      "scope": "Exact SQLite two-hunk error propagation; matched installed SDK/runtime pair and complete fixture/diagnostic label allowlists; test names and oracles unchanged",
+      "review": "docs/hq-integration/native65-runtime-20261118/REVIEW.json"
     }
   }
 }
