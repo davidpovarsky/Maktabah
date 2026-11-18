@@ -1,0 +1,104 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write swift-version-2807070033DA82CF.txt
+[1/6] Write sources
+[4/6] Emitting module ChavrusaUIRoutingHost
+[5/7] Compiling ChavrusaUIRoutingHost NativeIntentService.swift
+[6/8] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[8/15] Emitting module ChavrusaUIRoutingHostTests
+[9/16] Compiling ChavrusaUIRoutingHostTests NativeIntentServiceTests.swift
+[10/17] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[11/17] C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\nsf\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[12/18] Write sources
+[14/19] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[15/21] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[16/21] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[17/22] C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\nsf\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[18/23] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[19/23] Write sources
+[21/24] Emitting module ChavrusaUIRoutingHostPackageTests
+[22/25] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[23/25] Write Objects.LinkFileList
+[24/25] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (26.50s)
+Test Suite 'Selected tests' started at 2026-11-18 22:04:02.813
+
+Test Suite 'NativeIntentServiceTests' started at 2026-11-18 22:04:02.838
+
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' started at 2026-11-18 22:04:02.838
+
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' passed (0.006 seconds)
+
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' started at 2026-11-18 22:04:02.845
+
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' passed (0.0 seconds)
+
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' started at 2026-11-18 22:04:02.845
+
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' passed (0.0 seconds)
+
+Test Case 'NativeIntentServiceTests.testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID' started at 2026-11-18 22:04:02.845
+
+Test Case 'NativeIntentServiceTests.testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID' passed (0.0 seconds)
+
+Test Case 'NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow' started at 2026-11-18 22:04:02.846
+
+Test Case 'NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow' passed (0.0 seconds)
+
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' started at 2026-11-18 22:04:02.846
+
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' passed (0.0 seconds)
+
+Test Case 'NativeIntentServiceTests.testUnavailableComponentEntityCannotReuseVisibleRootAuthority' started at 2026-11-18 22:04:02.847
+
+Test Case 'NativeIntentServiceTests.testUnavailableComponentEntityCannotReuseVisibleRootAuthority' passed (0.0 seconds)
+
+Test Suite 'NativeIntentServiceTests' passed at 2026-11-18 22:04:02.847
+
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.008 (0.008) seconds
+
+Test Suite 'NativePresentationObserverTests' started at 2026-11-18 22:04:02.847
+
+Test Case 'NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation' started at 2026-11-18 22:04:02.847
+
+Test Case 'NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation' passed (0.093 seconds)
+
+Test Case 'NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation' started at 2026-11-18 22:04:02.940
+
+Test Case 'NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation' passed (0.081 seconds)
+
+Test Case 'NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost' started at 2026-11-18 22:04:03.021
+
+Test Case 'NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost' passed (0.061 seconds)
+
+Test Case 'NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest' started at 2026-11-18 22:04:03.081
+
+Test Case 'NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest' passed (0.106 seconds)
+
+Test Case 'NativePresentationObserverTests.testSearchComponentAcceptsExactIndependentFocusProjection' started at 2026-11-18 22:04:03.188
+
+Test Case 'NativePresentationObserverTests.testSearchComponentAcceptsExactIndependentFocusProjection' passed (0.064 seconds)
+
+Test Case 'NativePresentationObserverTests.testSearchComponentCannotAcknowledgeUnfocusedNativeSurface' started at 2026-11-18 22:04:03.252
+
+Test Case 'NativePresentationObserverTests.testSearchComponentCannotAcknowledgeUnfocusedNativeSurface' passed (0.095 seconds)
+
+Test Case 'NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored' started at 2026-11-18 22:04:03.347
+
+Test Case 'NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored' passed (0.047 seconds)
+
+Test Suite 'NativePresentationObserverTests' passed at 2026-11-18 22:04:03.393
+
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.546 (0.546) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-18 22:04:03.393
+
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.554 (0.554) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.

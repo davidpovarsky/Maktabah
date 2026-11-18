@@ -69,8 +69,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
             .init(id: id("native.search"), title: "Search".localized, implementation: .implemented,
-                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
-                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], anchors: [id("native.search.query")],
+                  requiredCoreActions: [], allowsPublicRoute: true,
+                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab, components: [id("native.search.query")])])),
             .init(id: id("native.annotations"), title: "Annotations".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
@@ -205,6 +206,14 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         guard let entry = scenes[destination.sceneID], entry.session.foreground else { return .requiresForeground }
         let snapshot = try backend.currentBackendSnapshot()
         guard snapshot.backend == destination.backend else { return .requiresBackendSwitch(destination.backend) }
+        if let component = destination.component {
+            // The same live system entity uses the same public binder and
+            // original Core fence as a component deep link. No second intent
+            // executor, deferred focus or caller-supplied authority is added.
+            return try await open(public: .init(destination: destination.destination, backend: destination.backend,
+                presentation: .currentTab, component: component), sceneID: destination.sceneID,
+                managerID: entry.managerID, expectedSnapshot: snapshot, origin: .appIntent, until: deadline())
+        }
         let context = context(sceneID: destination.sceneID, origin: .appIntent, snapshot: snapshot)
         try issue(context, sceneID: destination.sceneID)
         defer { finish(context, sceneID: destination.sceneID) }
@@ -360,6 +369,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
             let descriptors = try await registry.discover(scene: scene, context: context, invocation: invocation, core: core, host: self)
             let windowLabel = entry.session.windowLabel(number: entry.windowNumber)
             values += descriptors.map { .init(backend: snapshot.backend, destination: $0.id, title: $0.title + " — " + windowLabel, sceneID: id) }
+            if let binding = entry.publicBinding {
+                let variants = try await registry.discoverPublicV2(scene: scene, context: context, invocation: invocation,
+                                                                  core: core, host: binding)
+                for variant in variants where variant.destination.rawValue == "native.search"
+                    && variant.presentation == .currentTab && variant.component?.rawValue == "native.search.query" {
+                    values.append(.init(backend: snapshot.backend, destination: variant.destination,
+                        title: "Search field".localized + " — " + windowLabel, sceneID: id, component: variant.component))
+                }
+            }
         }
         return values
     }
@@ -438,6 +456,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         guard case .acknowledged(let receipt) = result else { return }
         // Only validated native acknowledgement reaches here. No private query,
         // note text, selected text or model arguments enter diagnostic logs.
+        if receipt.route.destination.rawValue == "native.search",
+           receipt.route.focus == FocusSpec(kind: .component, anchor: UIDestinationID(rawValue: "native.search.query")!) {
+            OtzariaFileLogger.shared.log("[NativeFocusReceipt] request=\(receipt.requestId) scene=\(receipt.sceneID.rawValue) component=native.search.query")
+        }
         OtzariaFileLogger.shared.log("[NativeNavigationReceipt] request=\(receipt.requestId) scene=\(receipt.sceneID.rawValue) backend=\(receipt.backendSnapshot.backend.rawValue) generation=\(receipt.backendSnapshot.generation) epoch=\(receipt.backendSnapshot.rpcEpoch.map(String.init) ?? "none") revision=\(receipt.basedOnSceneRevision)->\(receipt.appliedSceneRevision) destination=\(receipt.route.destination.rawValue) presentation=\(receipt.route.presentation.kind.rawValue)")
     }
 }

@@ -1,0 +1,25 @@
+{
+  "base": "c8cab4d086e61004d8cb4d06ab858c73dc3555f6",
+  "dirty_source_hashes": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "8de0bd86eb8e10513080821eaa938069d5ba43ac18b903d1790afc23a676f855",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift": "58414a3d73558b47dc108c333fba28a43dfaeca0b73920128d2da647e52d8d1a",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "0f9190012bc1f0a37a49dc554879e32539e509d55ef6e5334a369f0c8c33a9ba",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "75490255309f5452c0cac94e94058c6238f50da55fc43d22725c7bebc6a4055d",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "f68cd8044e7a2f731ef21167d0bcd8f44f8ec1dc2adf185658f37cce328658d9",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePresentationObserverTests.swift": "ae43391e37641bf3d60c34df04dfe2d9229c819e9d39b4c92f88e77ddf21fb0f"
+  },
+  "command": [
+    "swift",
+    "test",
+    "--package-path",
+    "Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\nsf",
+    "-j",
+    "1",
+    "-Xswiftc",
+    "-strict-concurrency=complete",
+    "--filter",
+    "NativePresentationObserverTests"
+  ]
+}

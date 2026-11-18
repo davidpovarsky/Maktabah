@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-11-18T22:04:03.509304+00:00",
+  "status": "PASS",
+  "exit_code": 0,
+  "expected": [
+    "NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog",
+    "NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed",
+    "NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors",
+    "NativeIntentServiceTests.testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID",
+    "NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow",
+    "NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged",
+    "NativeIntentServiceTests.testUnavailableComponentEntityCannotReuseVisibleRootAuthority",
+    "NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation",
+    "NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation",
+    "NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost",
+    "NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest",
+    "NativePresentationObserverTests.testSearchComponentAcceptsExactIndependentFocusProjection",
+    "NativePresentationObserverTests.testSearchComponentCannotAcknowledgeUnfocusedNativeSurface",
+    "NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored"
+  ],
+  "passed": [
+    "NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog",
+    "NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed",
+    "NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors",
+    "NativeIntentServiceTests.testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID",
+    "NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow",
+    "NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged",
+    "NativeIntentServiceTests.testUnavailableComponentEntityCannotReuseVisibleRootAuthority",
+    "NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation",
+    "NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation",
+    "NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost",
+    "NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest",
+    "NativePresentationObserverTests.testSearchComponentAcceptsExactIndependentFocusProjection",
+    "NativePresentationObserverTests.testSearchComponentCannotAcknowledgeUnfocusedNativeSurface",
+    "NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored"
+  ],
+  "warnings": 0,
+  "boundary": "Actual original NativeIntentService/NativePresentationObserver/Core/UIRouting packages; explicit catalog, navigation and native projection fixtures. Not AppIntents.framework system invocation, UIKit app compilation or Native acceptance."
+}

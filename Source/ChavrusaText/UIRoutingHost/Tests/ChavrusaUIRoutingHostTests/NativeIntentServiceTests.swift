@@ -5,6 +5,43 @@ import OtzariaUIRouting
 @testable import ChavrusaUIRoutingHost
 
 @MainActor final class NativeIntentServiceTests: XCTestCase, @unchecked Sendable {
+    func testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID() async throws {
+        let root = NativeIntentService.Destination(backend: .otzaria, destination: UIDestinationID(rawValue: "native.search")!,
+            title: "Search", sceneID: UIStableID(rawValue: "scene.A")!)
+        let component = NativeIntentService.Destination(backend: .otzaria, destination: root.destination,
+            title: "Search field", sceneID: root.sceneID, component: UIDestinationID(rawValue: "native.search.query")!)
+        let state = IntentTestState()
+        let service = NativeIntentService(discover: { [root, component] }, navigate: { target in
+            state.selectedScene = target.sceneID; state.selectedComponent = target.component
+            return .requiresForeground
+        })
+        XCTAssertEqual(root.id, "otzaria:scene.A:native.search")
+        XCTAssertNotEqual(root.id, component.id)
+        let matches = try await service.destinations(matching: "Search field")
+        XCTAssertEqual(matches, [component])
+        _ = try await service.open(identifier: component.id)
+        XCTAssertEqual(state.selectedScene, root.sceneID)
+        XCTAssertEqual(state.selectedComponent, component.component)
+    }
+
+    func testUnavailableComponentEntityCannotReuseVisibleRootAuthority() async throws {
+        let root = NativeIntentService.Destination(backend: .otzaria, destination: UIDestinationID(rawValue: "native.search")!,
+            title: "Search", sceneID: UIStableID(rawValue: "scene.A")!)
+        let component = NativeIntentService.Destination(backend: .otzaria, destination: root.destination,
+            title: "Search field", sceneID: root.sceneID, component: UIDestinationID(rawValue: "native.search.query")!)
+        let state = IntentTestState()
+        let service = NativeIntentService(discover: { state.available ? [root, component] : [root] },
+            navigate: { target in state.calls += 1; state.selectedComponent = target.component; return .requiresForeground })
+        let cached = try await service.destinations(identifiers: [component.id])
+        XCTAssertEqual(cached, [component])
+        state.available = false
+        do { _ = try await service.open(identifier: component.id); XCTFail("A visible root does not authorize a missing control") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.code, "intent_entity_no_longer_available") }
+        XCTAssertEqual(state.calls, 0)
+        _ = try await service.open(identifier: root.id)
+        XCTAssertEqual(state.calls, 1); XCTAssertNil(state.selectedComponent)
+    }
+
     func testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog() async throws {
         let id = UIDestinationID(rawValue: "native.history")!
         let service = NativeIntentService(discover: { [
@@ -57,4 +94,4 @@ import OtzariaUIRouting
         XCTAssertEqual(state.selectedScene, b.sceneID)
     }
 }
-@MainActor private final class IntentTestState { var available = true; var calls = 0; var selectedScene: UIStableID? }
+@MainActor private final class IntentTestState { var available = true; var calls = 0; var selectedScene: UIStableID?; var selectedComponent: UIDestinationID? }

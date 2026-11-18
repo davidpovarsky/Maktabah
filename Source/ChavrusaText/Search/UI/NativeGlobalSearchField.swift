@@ -4,6 +4,7 @@ import UIKit
 /// A native search field placed in content: `.searchable` would create another navigation field.
 struct NativeGlobalSearchField: UIViewRepresentable {
     @Binding var text: String
+    @Environment(\.maktabahNativeRoutingSession) private var nativeSession
     let onSubmit: () -> Void
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
@@ -11,6 +12,9 @@ struct NativeGlobalSearchField: UIViewRepresentable {
     func makeUIView(context: Context) -> UISearchTextField {
         let field = GlobalSearchTextField()
         field.delegate = context.coordinator
+        field.nativeAttachmentDidChange = { [weak coordinator = context.coordinator] field in
+            coordinator?.nativeStateChanged(field)
+        }
         field.addTarget(context.coordinator, action: #selector(Coordinator.changed(_:)), for: .editingChanged)
         field.setSearchPlaceholder(String(localized: "Search Books", defaultValue: "חיפוש בטקסט הספרים"))
         field.accessibilityLabel = field.placeholder
@@ -27,6 +31,7 @@ struct NativeGlobalSearchField: UIViewRepresentable {
 
     func updateUIView(_ field: UISearchTextField, context: Context) {
         context.coordinator.parent = self
+        context.coordinator.bindNativeField(field, session: nativeSession)
         if field.text != text, field.markedTextRange == nil { field.text = text }
     }
 
@@ -35,7 +40,41 @@ struct NativeGlobalSearchField: UIViewRepresentable {
                height: max(44, uiView.intrinsicContentSize.height))
     }
 
-    final class Coordinator: NSObject, UITextFieldDelegate {
+    static func dismantleUIView(_ field: UISearchTextField, coordinator: Coordinator) {
+        coordinator.unbindNativeField(field)
+        (field as? GlobalSearchTextField)?.nativeAttachmentDidChange = nil
+    }
+
+    @MainActor final class Coordinator: NSObject, UITextFieldDelegate {
+        private weak var nativeSession: MaktabahNativeSceneSession?
+        private weak var nativeField: UISearchTextField?
+
+        func bindNativeField(_ field: UISearchTextField, session: MaktabahNativeSceneSession?) {
+            guard nativeField !== field || nativeSession !== session else { return }
+            if let previous = nativeField { nativeSession?.detachSearchField(previous) }
+            nativeField = field; nativeSession = session
+            session?.attachSearchField(field)
+        }
+
+        func unbindNativeField(_ field: UISearchTextField) {
+            guard nativeField === field else { return }
+            nativeSession?.detachSearchField(field)
+            nativeField = nil; nativeSession = nil
+        }
+
+        func nativeStateChanged(_ field: UISearchTextField) {
+            guard nativeField === field else { return }
+            nativeSession?.searchFieldStateDidChange(field)
+        }
+
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            if let field = textField as? UISearchTextField { nativeStateChanged(field) }
+        }
+
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            if let field = textField as? UISearchTextField { nativeStateChanged(field) }
+        }
+
         var parent: NativeGlobalSearchField
         init(_ parent: NativeGlobalSearchField) { self.parent = parent }
 
@@ -61,6 +100,7 @@ struct NativeGlobalSearchField: UIViewRepresentable {
 /// body font. UISearchTextField's internal placeholder label can otherwise keep
 /// its earlier font while the surrounding SwiftUI layout changes Dynamic Type.
 private final class GlobalSearchTextField: UISearchTextField {
+    var nativeAttachmentDidChange: (@MainActor (UISearchTextField) -> Void)?
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureDynamicType()
@@ -88,6 +128,7 @@ private final class GlobalSearchTextField: UISearchTextField {
     override func didMoveToWindow() {
         super.didMoveToWindow()
         updateScaledTypography()
+        nativeAttachmentDidChange?(self)
     }
 
     private func updateScaledTypography() {

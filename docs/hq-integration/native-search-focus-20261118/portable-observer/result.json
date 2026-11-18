@@ -1,0 +1,25 @@
+{
+  "observed_at": "2026-11-18T22:00:39.856020+00:00",
+  "status": "PASS",
+  "exit_code": 0,
+  "expected": [
+    "testAdmissionCannotOverwritePendingPresentation",
+    "testDeadlineCleansNativeContinuationAndReservation",
+    "testNativeEvidenceArrivingBeforeWaitIsNotLost",
+    "testRevokedEvidenceCannotFinishLaterRequest",
+    "testSearchComponentAcceptsExactIndependentFocusProjection",
+    "testSearchComponentCannotAcknowledgeUnfocusedNativeSurface",
+    "testWrongSceneRequestAndFullProjectionAreIgnored"
+  ],
+  "passed": [
+    "testAdmissionCannotOverwritePendingPresentation",
+    "testDeadlineCleansNativeContinuationAndReservation",
+    "testNativeEvidenceArrivingBeforeWaitIsNotLost",
+    "testRevokedEvidenceCannotFinishLaterRequest",
+    "testSearchComponentAcceptsExactIndependentFocusProjection",
+    "testSearchComponentCannotAcknowledgeUnfocusedNativeSurface",
+    "testWrongSceneRequestAndFullProjectionAreIgnored"
+  ],
+  "warnings": 0,
+  "boundary": "Actual shared NativePresentationObserver/Core/UIRouting package; explicit focused/unfocused surface fixtures. Does not compile or run app UIKit adapter, and is not Native UI acceptance."
+}

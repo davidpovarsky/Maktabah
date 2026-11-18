@@ -10,6 +10,7 @@ struct MaktabahNativePublicPresentation {
     let historyRootAvailable: Bool
     let tableOfContentsAvailable: Bool
     let witnessedReader: NativeSurfaceState?
+    var searchFieldAvailable: Bool = false
 }
 
 /// App-target adapter over immutable R44 producer APIs. Not an executor, cache,
@@ -86,7 +87,12 @@ struct MaktabahNativePublicPresentation {
     private enum Shape { case library, tableOfContents, history, search, annotations, settings, reader }
     private func shape(destination: UIDestinationID, presentation: PublicNavigationSpecV2.Presentation,
                        component: UIDestinationID?, hasContent: Bool) throws -> Shape {
-        guard component == nil else { throw UIRouteError(.notSupported, "public_component_not_installed") }
+        if let component {
+            guard destination.rawValue == "native.search", presentation == .currentTab,
+                  component.rawValue == "native.search.query", !hasContent else {
+                throw UIRouteError(.notSupported, "public_component_not_installed")
+            }
+        }
         switch (destination.rawValue, presentation, hasContent) {
         case ("native.library", .currentTab, false): return .library
         case ("native.reader.toc", .currentTab, false): return .tableOfContents
@@ -111,6 +117,9 @@ struct MaktabahNativePublicPresentation {
         guard intent.backend.map({ $0 == snapshot.backend }) ?? true else { throw ActionPortError.staleState }
         let visible = try presentation()
         guard visible.ready else { throw UIRouteError(.unavailable, "native_presentation_in_progress") }
+        if intent.component != nil, !visible.searchFieldAvailable {
+            throw UIRouteError(.unavailable, "native_search_field_not_visible")
+        }
         let tab: UIPublicNavigationObservedID
         let inspector: Bool?
         switch shape {
@@ -208,6 +217,7 @@ struct MaktabahNativePublicPresentation {
         guard current == scene else { throw ActionPortError.staleState }
         let visible = try presentation()
         let ready = visible.ready
+            && (variant.component == nil || visible.searchFieldAvailable)
             && (variant.destination.rawValue != "native.reader" || variant.presentation == .newTab || visible.witnessedReader != nil)
             && (variant.destination.rawValue != "native.history" || visible.historyRootAvailable)
             && (variant.destination.rawValue != "native.reader.toc" || visible.tableOfContentsAvailable)

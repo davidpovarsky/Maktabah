@@ -16,6 +16,45 @@ import OtzariaUIRouting
         let route = command.route.route
         return .init(destination: route.destination, presentation: route.presentation, content: route.content, state: route.state, focus: route.focus)
     }
+    private func searchFocusCommand(deadline: UInt64 = UInt64.max) throws -> UISceneCommand {
+        let destination = UIDestinationID(rawValue: "native.search")!
+        let component = UIDestinationID(rawValue: "native.search.query")!
+        let registry = try UIDestinationRegistry(descriptors: [
+            .init(id: destination, title: "Search", implementation: .implemented,
+                  supportedBackends: [.otzaria], presentations: [.currentTab], anchors: [component])
+        ])
+        let snapshot = ActionBackendSnapshot(backend: .otzaria, generation: 7)
+        let route = RouteSpec(destination: destination, backend: .otzaria,
+                              focus: .init(kind: .component, anchor: component))
+        return try UISceneCommand(route: registry.validate(route),
+            invocation: .init(requestId: route.requestId, snapshot: snapshot, deadlineUptimeNanoseconds: deadline),
+            scene: .init(sceneID: UIStableID(rawValue: "scene.A")!, revision: 10, backendSnapshot: snapshot))
+    }
+
+    func testSearchComponentCannotAcknowledgeUnfocusedNativeSurface() async throws {
+        let clock = ObserverTestClock(), command = try searchFocusCommand(deadline: 100)
+        let observer = NativePresentationObserver(sceneID: command.scene.sceneID, clock: clock)
+        try observer.begin(command)
+        observer.report(.init(sceneID: command.scene.sceneID, submissionID: command.invocation.requestId,
+            surface: .init(destination: UIDestinationID(rawValue: "native.search")!, presentation: .init(),
+                           content: nil, state: .init(), focus: nil)))
+        do { _ = try await observer.wait(for: command); XCTFail("Visible Search alone cannot certify component focus") }
+        catch { XCTAssertTrue(error is CancellationError || (error as? UIRouteError)?.status == .cancelled) }
+        XCTAssertNil(observer.submissionID); XCTAssertEqual(observer.pendingWaiterCount, 0)
+    }
+
+    func testSearchComponentAcceptsExactIndependentFocusProjection() async throws {
+        let command = try searchFocusCommand(), observer = NativePresentationObserver(sceneID: command.scene.sceneID)
+        try observer.begin(command)
+        let observed = NativeSurfaceState(destination: UIDestinationID(rawValue: "native.search")!,
+            presentation: .init(), content: nil, state: .init(),
+            focus: .init(kind: .component, anchor: UIDestinationID(rawValue: "native.search.query")!))
+        observer.report(.init(sceneID: command.scene.sceneID, submissionID: command.invocation.requestId, surface: observed))
+        let completed = try await observer.wait(for: command)
+        XCTAssertEqual(completed.surface, observed)
+        observer.end(requestID: command.invocation.requestId)
+    }
+
     func testNativeEvidenceArrivingBeforeWaitIsNotLost() async throws {
         let command = try command(), observer = NativePresentationObserver(sceneID: command.scene.sceneID)
         try observer.begin(command)

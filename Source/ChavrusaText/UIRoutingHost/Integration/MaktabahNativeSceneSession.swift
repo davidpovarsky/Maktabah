@@ -1,6 +1,7 @@
 #if os(iOS)
 import Foundation
 import Observation
+import UIKit
 import OtzariaActionCore
 import OtzariaUIRouting
 import ChavrusaUIRoutingHost
@@ -22,6 +23,54 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     private var lease: NativeSceneDirectory.Lease?
     private var command: UISceneCommand?
     var readerBinding: MaktabahNativeReaderBinding?
+    @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
+    @ObservationIgnored private var retainedSearchField: UISearchTextField?
+    @ObservationIgnored private var searchFieldUpdateScheduled = false
+    private var searchFieldRevision: UInt64 = 0
+
+    // This is the original scene-owned UIKit control, installed by its existing
+    // representable. No lookup through global windows or runtime class names.
+    func attachSearchField(_ field: UISearchTextField) {
+        guard nativeSearchField !== field else { return }
+        if retainedSearchField != nil { presentation.revoke() }
+        nativeSearchField = field
+        searchFieldStateDidChange(field)
+    }
+
+    func detachSearchField(_ field: UISearchTextField) {
+        guard nativeSearchField === field else { return }
+        if retainedSearchField === field { presentation.revoke() }
+        nativeSearchField = nil
+        scheduleSearchFieldObservation()
+    }
+
+    func searchFieldStateDidChange(_ field: UISearchTextField) {
+        guard nativeSearchField === field else { return }
+        scheduleSearchFieldObservation()
+    }
+
+    private func scheduleSearchFieldObservation() {
+        // UIKit attachment can happen inside updateUIView. Publish the graph
+        // invalidation on the next MainActor turn, but always re-read UIKit
+        // synchronously when validating or completing the original command.
+        guard !searchFieldUpdateScheduled else { return }
+        searchFieldUpdateScheduled = true
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            searchFieldUpdateScheduled = false
+            searchFieldRevision &+= 1
+            try? nativeStateChanged()
+        }
+    }
+
+    private var searchFieldAvailable: Bool {
+        guard mounted, foreground, isPresentationReady, let field = nativeSearchField,
+              (try? project().surface(.search)) != nil,
+              let evidence = visibilityChecks[NativeSearchFieldVisibility.destination]?(),
+              evidence.isVisible, evidence.sceneID == sceneID,
+              evidence.surface.destination == NativeSearchFieldVisibility.destination else { return false }
+        return NativeSearchFieldVisibility.isVisible(field, in: sceneID)
+    }
     private var visible: [UIDestinationID: NativeSurfaceWitness.Evidence] = [:]
     @ObservationIgnored private var visibilityChecks: [UIDestinationID: @MainActor () -> NativeSurfaceWitness.Evidence?] = [:]
     var isPresentationReady: Bool { bindings.isPresentationReady }
@@ -49,7 +98,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             if isPresentationReady, let command, let evidence = visible[command.route.route.destination], evidence.isVisible,
                let currentEvidence = visibilityChecks[command.route.route.destination]?(), currentEvidence == evidence,
                evidence.sceneID == sceneID, evidence.submissionID == command.invocation.requestId,
-               let kind = surfaceKind(command.route.route.destination), let current = try projection.surface(kind),
+               let kind = surfaceKind(command.route.route.destination), let current = try self.surface(kind),
                current == evidence.surface,
                kind != .reader || projection.hasRenderedReaderEvidence(sceneID: sceneID) {
                 surface = current
@@ -63,7 +112,17 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     /// Core grant before invoking any native binding/model mutation afterwards.
     func beginObservation(_ value: UISceneCommand) throws {
         guard mounted, lease != nil, value.scene.sceneID == sceneID else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
+        let field: UISearchTextField?
+        if value.route.route.focus != nil {
+            guard value.route.route.destination == NativeSearchFieldVisibility.destination,
+                  value.route.route.focus == NativeSearchFieldVisibility.focus,
+                  searchFieldAvailable, let original = nativeSearchField else {
+                throw UIRouteError(.unavailable, "native_search_field_not_visible")
+            }
+            field = original
+        } else { field = nil }
         try presentation.begin(value)
+        retainedSearchField = field
         command = value; submissionID = value.invocation.requestId
     }
 
@@ -102,7 +161,14 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             try readerBinding.validate()
             return
         }
-        guard route.content == nil, route.focus == nil, route.presentation.tabID == nil,
+        if let focus = route.focus {
+            guard route.destination == NativeSearchFieldVisibility.destination,
+                  focus == NativeSearchFieldVisibility.focus, searchFieldAvailable,
+                  retainedSearchField == nil || retainedSearchField === nativeSearchField else {
+                throw UIRouteError(.unavailable, "native_search_field_not_visible")
+            }
+        }
+        guard route.content == nil, route.presentation.tabID == nil,
               route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID) else {
             throw UIRouteError(.notSupported, "native_surface_variant_not_installed")
         }
@@ -118,6 +184,20 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func apply(_ command: UISceneCommand) throws {
+        if command.route.route.focus != nil {
+            // Focus only an ALREADY VISIBLE original field. A caller first
+            // opens the Search root through this same orchestrator, then
+            // requests its component; no deferred mutation borrows a grant.
+            try validateSurface(command)
+            guard let field = retainedSearchField, nativeSearchField === field,
+                  field.isFirstResponder || field.becomeFirstResponder(),
+                  nativeSearchField === field, field.isFirstResponder,
+                  NativeSearchFieldVisibility.isVisible(field, in: sceneID) else {
+                throw UIRouteError(.unavailable, "native_search_focus_not_applied")
+            }
+            searchFieldStateDidChange(field)
+            return
+        }
         if command.route.route.destination.rawValue == "native.reader" {
             guard let readerBinding else { throw UIRouteError(.unavailable, "native_reader_owner_missing") }
             try readerBinding.apply { try bindings.apply(command, reservedTab: readerBinding.reservedTab) }
@@ -156,7 +236,23 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func updateProjection(_ project: @escaping @MainActor () throws -> MaktabahNativeSceneProjection) {
         self.project = project
     }
-    func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? { try project().surface(kind) }
+    func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? {
+        guard let state = try project().surface(kind) else { return nil }
+        // Root navigation does not request or report keyboard focus. For the
+        // registered component, the optional focus facet is projected ONLY
+        // from the same retained, visible UIKit field's actual responder state.
+        // The incoming anchor is never copied into native evidence.
+        guard state.destination == NativeSearchFieldVisibility.destination,
+              command?.route.route.focus != nil else { return state }
+        _ = searchFieldRevision
+        let actual: FocusSpec?
+        if let field = retainedSearchField, nativeSearchField === field, field.isFirstResponder,
+           NativeSearchFieldVisibility.isVisible(field, in: sceneID) {
+            actual = NativeSearchFieldVisibility.focus
+        } else { actual = nil }
+        return .init(destination: state.destination, presentation: state.presentation,
+            content: state.content, state: state.state, focus: actual)
+    }
     func usesWorkspaceOwner(_ owner: MaktabahNativeWorkspaceOwner) -> Bool { workspaceProjectionSource?.uses(owner) == true }
     /// Passive independent evidence only. With the reader marker absent this
     /// stays nil even if a reader model contains the requested destination.
@@ -169,7 +265,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
            try project().hasRenderedReaderEvidence(sceneID: sceneID) { reader = current }
         return .init(ready: mounted && foreground && isPresentationReady,
             historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty,
-            tableOfContentsAvailable: bindings.isRootAvailable(.tableOfContents), witnessedReader: reader)
+            tableOfContentsAvailable: bindings.isRootAvailable(.tableOfContents), witnessedReader: reader,
+            searchFieldAvailable: searchFieldAvailable)
     }
     func observeVisibility(for destination: UIDestinationID, check: @escaping @MainActor () -> NativeSurfaceWitness.Evidence?) {
         visibilityChecks[destination] = check
@@ -228,12 +325,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         presentation.end(requestID: requestID); submissionID = nil
         // Keep only the independently observed surface. Clear private request
         // metadata after its owner has validated the complete visible receipt.
-        command = nil
+        command = nil; retainedSearchField = nil
     }
 
     func unmount() {
         guard mounted else { return }
         mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
+        nativeSearchField = nil; retainedSearchField = nil
         if let lease { directory.unmount(lease) }
         lease = nil
     }
@@ -249,6 +347,36 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         case "native.settings": .settings
         default: nil
         }
+    }
+}
+
+/// Geometry and responder ownership belong to UIKit, independently of route
+/// metadata. Only the control explicitly supplied by its own representable is
+/// inspected; walking its actual ancestors does not discover arbitrary views.
+@MainActor private enum NativeSearchFieldVisibility {
+    static let destination = UIDestinationID(rawValue: "native.search")!
+    static let focus = FocusSpec(kind: .component, anchor: UIDestinationID(rawValue: "native.search.query")!)
+
+    static func isVisible(_ field: UISearchTextField, in expectedScene: UIStableID) -> Bool {
+        guard field.isEnabled, field.canBecomeFirstResponder,
+              let window = field.window, window.isKeyWindow, !window.isHidden,
+              let scene = window.windowScene, scene.activationState == .foregroundActive,
+              scene.session.persistentIdentifier == expectedScene.rawValue else { return false }
+        let target = field.convert(field.bounds, to: window)
+        let intersection = target.intersection(window.bounds), area = target.width * target.height
+        guard !target.isEmpty, area.isFinite, area > 0, !intersection.isNull,
+              intersection.width * intersection.height >= area * 0.98 else { return false }
+        var current: UIView? = field
+        var alpha: CGFloat = 1
+        while let view = current {
+            guard !view.isHidden else { return false }
+            alpha *= view.alpha; current = view.superview
+        }
+        guard alpha >= 0.95 else { return false }
+        var top = window.rootViewController
+        while let presented = top?.presentedViewController { top = presented }
+        if let top, top !== window.rootViewController, !field.isDescendant(of: top.view) { return false }
+        return true
     }
 }
 #endif

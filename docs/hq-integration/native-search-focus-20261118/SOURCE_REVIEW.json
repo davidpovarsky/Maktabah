@@ -1,0 +1,47 @@
+{
+  "observed_at": "2026-11-18T22:07:34.785260+00:00",
+  "parent": "c8cab4d086e61004d8cb4d06ab858c73dc3555f6",
+  "scope": "Register original scene-owned native.search.query focus and expose same live component through existing App Intent. No new navigation or permission pipeline.",
+  "precondition": "Open the Search root first; only already visible original field in exact foreground/key window is eligible. No deferred UI effect after the Core guard.",
+  "native_receipt": "Original Core authorizeCommit and complete receipt + live UIKit isFirstResponder, retained field identity, original screen witness, scene/foreground/modal/geometry checks. No input/query content in logs.",
+  "portable": "7 observer and 14 combined observer/entity assertions PASS; component/catalog/native-surface fixtures explicit. UIKit and AppIntents.framework NOT_RUN.",
+  "native_cases_added": [
+    "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+    "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+    "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
+  ],
+  "native_status": "5 new cases NOT_RUN, preserve original65 and phase1 original27 unchanged",
+  "localization": {
+    "path": "Source\\Localizable.xcstrings",
+    "authorization": "Owner latest explicit authorization for all required corrections/changes; additive localization only, no prior translation or original engine changed.",
+    "previous_sha256": "226dbec511a473181bdc07d920c2cb3572071904687f7ab5224c34b6dc6a9299",
+    "current_sha256": "23b072b19dee78745beab61ca90396429f3feedc9885d9b664c5a8dc2aa3679f",
+    "all_previous_keys_and_values_unchanged": true,
+    "new_key": "Search field"
+  },
+  "inputs": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "82bb7da097137af3cb4f9d7ce0c114f373bd2b16fd2ea656f1964027d8583a8a",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift": "e28b7db9b430281b99463014b0e44956c89ec8d7cb52d83771d518b297f1feb6",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "0f9190012bc1f0a37a49dc554879e32539e509d55ef6e5334a369f0c8c33a9ba",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "7213a9d8911cf468e22459f837adc6bd5b2506e969a6fed793be06e1dad7a85d",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "f68cd8044e7a2f731ef21167d0bcd8f44f8ec1dc2adf185658f37cce328658d9",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift": "434ce3dfd8b97fcd3e17120acbf5f64be74eaf410078b482f8b6f8576d815ef6",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift": "65c3414f6c3d8f09eb652c3e958603a4775bbe18b27cc52707a0c015e9c7b658",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePresentationObserverTests.swift": "ae43391e37641bf3d60c34df04dfe2d9229c819e9d39b4c92f88e77ddf21fb0f",
+    "Source/Localizable.xcstrings": "23b072b19dee78745beab61ca90396429f3feedc9885d9b664c5a8dc2aa3679f"
+  },
+  "log_copies": {
+    "portable-observer": {
+      "raw_sha256": "37f7d7ffc630a29c2fdca8766e9d0eb54988a26c82379c7fadbb6b9dd67a5e6c",
+      "committed_sha256": "0deccba56f2d6be5b258e97222c9d3f9a8ce92bbe1042cf160419d4f6487412c",
+      "normalization": "Trailing whitespace and blank EOF lines only; complete raw log retained canonically."
+    },
+    "portable-system-entity": {
+      "raw_sha256": "c333d82ef421791d305ae6bcac6fc7676fefe4ec3bc482e9655d668d3ca1b845",
+      "committed_sha256": "4cac3c6b38a6d3c555eb4bd80c3e111ac4aa2a03aad034775a8059c24da968f0",
+      "normalization": "Trailing whitespace and blank EOF lines only; complete raw log retained canonically."
+    }
+  }
+}

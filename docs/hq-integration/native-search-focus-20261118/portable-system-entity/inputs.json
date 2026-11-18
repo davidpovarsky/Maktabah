@@ -1,0 +1,27 @@
+{
+  "base": "c8cab4d086e61004d8cb4d06ab858c73dc3555f6",
+  "dirty_source_hashes": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "82bb7da097137af3cb4f9d7ce0c114f373bd2b16fd2ea656f1964027d8583a8a",
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift": "e28b7db9b430281b99463014b0e44956c89ec8d7cb52d83771d518b297f1feb6",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "0f9190012bc1f0a37a49dc554879e32539e509d55ef6e5334a369f0c8c33a9ba",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "7213a9d8911cf468e22459f837adc6bd5b2506e969a6fed793be06e1dad7a85d",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "f68cd8044e7a2f731ef21167d0bcd8f44f8ec1dc2adf185658f37cce328658d9",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift": "434ce3dfd8b97fcd3e17120acbf5f64be74eaf410078b482f8b6f8576d815ef6",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift": "65c3414f6c3d8f09eb652c3e958603a4775bbe18b27cc52707a0c015e9c7b658",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePresentationObserverTests.swift": "ae43391e37641bf3d60c34df04dfe2d9229c819e9d39b4c92f88e77ddf21fb0f"
+  },
+  "command": [
+    "swift",
+    "test",
+    "--package-path",
+    "Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\nsf",
+    "-j",
+    "1",
+    "-Xswiftc",
+    "-strict-concurrency=complete",
+    "--filter",
+    "Native(PresentationObserver|IntentService)Tests"
+  ]
+}

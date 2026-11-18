@@ -11,10 +11,15 @@ public final class NativeIntentService {
         public let destination: UIDestinationID
         public let title: String
         public let sceneID: UIStableID
-        public var id: String { backend.rawValue + ":" + sceneID.rawValue + ":" + destination.rawValue }
-        public init(backend: ActionBackendID, destination: UIDestinationID, title: String, sceneID: UIStableID) {
+        public let component: UIDestinationID?
+        public var id: String {
+            let root = backend.rawValue + ":" + sceneID.rawValue + ":" + destination.rawValue
+            return component.map { root + ":" + $0.rawValue } ?? root
+        }
+        public init(backend: ActionBackendID, destination: UIDestinationID, title: String, sceneID: UIStableID,
+                    component: UIDestinationID? = nil) {
             self.backend = backend; self.destination = destination; self.title = title
-            self.sceneID = sceneID
+            self.sceneID = sceneID; self.component = component
         }
     }
     public typealias Discover = @MainActor @Sendable () async throws -> [Destination]

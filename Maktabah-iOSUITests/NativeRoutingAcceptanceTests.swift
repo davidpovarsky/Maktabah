@@ -1228,3 +1228,167 @@ extension NativeRoutingPhoneAcceptanceTests {
         try await runSystemBookIntent(namedChapter: false, expectedPad: false)
     }
 }
+
+
+// The component borrows the already visible, scene-owned UISearchTextField.
+// Actual keyboard input without another tap proves responder ownership;
+// the canonical receipt alone is not the acceptance oracle.
+extension NativeRoutingAcceptanceTests {
+    private func publicSearchComponentURL(_ component: String = "native.search.query") throws -> URL {
+        let payload: [String: Any] = [
+            "version": 2, "destination": "native.search", "backend": "otzaria",
+            "presentation": "currentTab", "component": component
+        ]
+        let data = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        let token = data.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v2/native.search?route=\(token)"))
+    }
+
+    @MainActor
+    private func requireSearchComponentReceipt(before: Set<String>) throws {
+        try requirePublicRootReceipt("native.search", before: before)
+        let native = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        let pairs = native.split(separator: " ", maxSplits: 2)[2].split(separator: " ")
+        let fields = Dictionary(uniqueKeysWithValues: pairs.map {
+            let value = $0.split(separator: "=", maxSplits: 1)
+            return (String(value[0]), String(value[1]))
+        })
+        let request = try XCTUnwrap(fields["request"]), scene = try XCTUnwrap(fields["scene"])
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let text = try String(contentsOf: log, encoding: .utf8)
+        let exact = "[NativeFocusReceipt] request=\(request) scene=\(scene) component=native.search.query"
+        XCTAssertEqual(text.split(separator: "\n").filter { $0.hasSuffix(exact) }.count, 1,
+                       "The same original Core receipt must include the verified component")
+        let evidence = XCTAttachment(string: text)
+        evidence.name = "actual-search-first-responder-receipt"; evidence.lifetime = .keepAlways; add(evidence)
+    }
+
+    @MainActor
+    fileprivate func runOriginalSearchComponentFocus(expectedPad: Bool) throws {
+        configure("otzaria"); app.launch()
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom == .pad, expectedPad)
+        if expectedPad { XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40)) }
+        else { requireOriginalPhoneLibrary() }
+        let first = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: first))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(first, destination: "native.search")
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        let originalQuery = "בראשית"
+        field.tap(); field.typeText(originalQuery)
+        XCTAssertEqual(field.value as? String, originalQuery)
+        let historyRequest = UUID()
+        try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+        XCTAssertTrue(history.waitForExistence(timeout: 20))
+        try requireNativeReceipt(historyRequest, backend: "otzaria")
+        let returnRequest = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: returnRequest))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(returnRequest, destination: "native.search")
+        XCTAssertEqual(field.value as? String, originalQuery)
+        let keyboardGone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
+                                                     object: app.keyboards.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [keyboardGone], timeout: 10), .completed,
+                       "The test must start with the actual field unfocused")
+        let before = try actualNativeReceiptLines(), url = try publicSearchComponentURL()
+        XCTAssertFalse(url.absoluteString.contains(originalQuery))
+        try openInExistingProcess(url)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10))
+        XCTAssertEqual(field.value as? String, originalQuery, "Focusing must not change or submit private input")
+        try requireSearchComponentReceipt(before: before)
+        // Do not tap the field here. Type through the system's current responder.
+        app.typeText(" בדיקה")
+        XCTAssertEqual(field.value as? String, originalQuery + " בדיקה")
+        XCTAssertTrue(app.otherElements["global-search-history"].exists)
+        XCTAssertFalse(app.otherElements["global-search-loading"].exists)
+        capture("native-search-component-actual-keyboard")
+    }
+
+    @MainActor
+    func testSystemAppIntentFocusesOriginalSearchComponent() async throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let request = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: request))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(request, destination: "native.search")
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        XCTAssertFalse(app.keyboards.firstMatch.exists)
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let entities = try await system.entities["NativeDestinationEntity"].entities(matching: "Search field")
+        XCTAssertEqual(entities.count, 1, "Only the live field in this exact original scene may be discovered")
+        let entity = try XCTUnwrap(entities.first), before = try actualNativeReceiptLines()
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: entity).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10))
+        try requireSearchComponentReceipt(before: before)
+        app.typeText("בראשית")
+        XCTAssertEqual(field.value as? String, "בראשית")
+        XCTAssertTrue(app.otherElements["global-search-history"].exists)
+        XCTAssertFalse(app.otherElements["global-search-loading"].exists)
+        capture("system-intent-original-search-first-responder")
+    }
+
+    @MainActor
+    func testPublicV2SearchQueryFocusUsesOriginalFirstResponder() throws {
+        try runOriginalSearchComponentFocus(expectedPad: true)
+    }
+
+    @MainActor
+    func testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField() throws {
+        _ = try launchCurrentCanonicalReader()
+        let title = app.staticTexts["reader-header-title"].label
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSearchComponentURL())
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15))
+        XCTAssertEqual(try actualNativeReceiptLines(), before, "An absent field cannot acknowledge focus")
+        alert.buttons.firstMatch.tap()
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertFalse(app.otherElements["global-search-screen"].exists)
+        capture("native-search-component-unavailable-preserves-reader")
+    }
+
+    @MainActor
+    func testPublicV2UnknownSearchComponentCannotFocusOrSubmit() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let root = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: root))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(root, destination: "native.search")
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        let originalValue = field.value as? String
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSearchComponentURL("native.search.unregistered"))
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15))
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        alert.buttons.firstMatch.tap()
+        XCTAssertEqual(field.value as? String, originalValue)
+        XCTAssertFalse(app.keyboards.firstMatch.exists)
+        XCTAssertTrue(app.otherElements["global-search-history"].exists)
+        XCTAssertFalse(app.otherElements["global-search-loading"].exists)
+        capture("native-search-component-unknown-denied")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor
+    func testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder() throws {
+        try runOriginalSearchComponentFocus(expectedPad: false)
+    }
+}

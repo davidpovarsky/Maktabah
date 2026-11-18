@@ -1,0 +1,146 @@
+Building for debugging...
+[0/24] Write swift-version-2807070033DA82CF.txt
+[1/24] Copying catalog-status.json
+[2/24] Write sources
+[3/24] Copying examples.v1.json
+[4/24] Copying backend-capability-matrix.v1.json
+[5/24] Copying backend-acceptance-cases.v1.json
+[6/24] Copying action-result.v1.schema.json
+[7/24] Copying action-request.v1.schema.json
+[8/24] Copying action-catalog.v1.json
+[9/24] Write sources
+[13/25] Emitting module OtzariaActionCore
+[14/47] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[15/47] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[16/47] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[17/47] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[18/47] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[19/47] Compiling OtzariaActionCore ActionJSON.swift
+[20/47] Compiling OtzariaActionCore ActionReferences.swift
+[21/47] Compiling OtzariaActionCore ActionRequest.swift
+[22/47] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[23/47] Compiling OtzariaActionCore ActionSearch.swift
+[24/47] Compiling OtzariaActionCore ActionWireCodec.swift
+[25/47] Compiling OtzariaActionCore ActionDeadline.swift
+[26/47] Compiling OtzariaActionCore ActionExecutor.swift
+[27/47] Compiling OtzariaActionCore ActionExecutionContext.swift
+[28/47] Compiling OtzariaActionCore ActionPolicy.swift
+[29/47] Compiling OtzariaActionCore ActionValidation.swift
+[30/47] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[31/47] Compiling OtzariaActionCore ActionPorts.swift
+[32/47] Compiling OtzariaActionCore ActionRegistry.swift
+[33/47] Compiling OtzariaActionCore CatalogActionResolver+SourceSections.swift
+[34/47] Compiling OtzariaActionCore CatalogActionResolver.swift
+[35/47] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[36/48] Wrapping AST for OtzariaActionCore for debugging
+[38/49] Emitting module OtzariaUIRouting
+[39/61] Compiling OtzariaUIRouting PublicNavigationV2Codec.swift
+[40/61] Compiling OtzariaUIRouting UIRouteCodec.swift
+[41/61] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[42/61] Compiling OtzariaUIRouting PublicNavigationV2.swift
+[43/61] Compiling OtzariaUIRouting RouteSpec.swift
+[44/61] Compiling OtzariaUIRouting PublicNavigationLocalBinding.swift
+[45/61] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[46/61] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[47/61] Compiling OtzariaUIRouting UIDestinationPublicNavigationV2.swift
+[48/61] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[49/61] Compiling OtzariaUIRouting UIDiscoveryCancellationScope.swift
+[50/61] Compiling OtzariaUIRouting resource_bundle_accessor.swift
+[51/62] Wrapping AST for OtzariaUIRouting for debugging
+[53/63] Emitting module ChavrusaUIRoutingHost
+[54/81] Compiling ChavrusaUIRoutingHost NativeBindingSourceObservation.swift
+[55/81] Compiling ChavrusaUIRoutingHost NativeDestinationIntents.swift
+[56/81] Compiling ChavrusaUIRoutingHost NativeIntentOutcome.swift
+[57/81] Compiling ChavrusaUIRoutingHost NativeIntentService.swift
+[58/81] Compiling ChavrusaUIRoutingHost NativeNavigationAuthority.swift
+[59/81] Compiling ChavrusaUIRoutingHost NativeObservationDeadline.swift
+[60/81] Compiling ChavrusaUIRoutingHost NativePresentationObserver.swift
+[61/81] Compiling ChavrusaUIRoutingHost NativePublicNavigationURLV2.swift
+[62/81] Compiling ChavrusaUIRoutingHost NativeReaderIntentService.swift
+[63/81] Compiling ChavrusaUIRoutingHost NativeReaderIntents.swift
+[64/81] Compiling ChavrusaUIRoutingHost NativeReaderPlanBudget.swift
+[65/81] Compiling ChavrusaUIRoutingHost NativeRouteInbox.swift
+[66/81] Compiling ChavrusaUIRoutingHost NativeRouteURL.swift
+[67/81] Compiling ChavrusaUIRoutingHost NativeSceneDirectory.swift
+[68/81] Compiling ChavrusaUIRoutingHost NativeSceneIdentity.swift
+[69/81] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[70/81] Compiling ChavrusaUIRoutingHost NativeSurfaceState.swift
+[71/81] Compiling ChavrusaUIRoutingHost NativeSurfaceWitness.swift
+[72/82] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[74/83] Emitting module ChavrusaUIRoutingHostTests
+[75/97] Compiling ChavrusaUIRoutingHostTests NativeBindingSourceObservationTests.swift
+[76/97] Compiling ChavrusaUIRoutingHostTests NativeIntentServiceTests.swift
+[77/97] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+[78/97] Compiling ChavrusaUIRoutingHostTests NativePublicNavigationURLV2Tests.swift
+[79/97] Compiling ChavrusaUIRoutingHostTests NativePublicPreparedCommitTests.swift
+[80/97] Compiling ChavrusaUIRoutingHostTests NativeReaderIntentServiceTests.swift
+[81/97] Compiling ChavrusaUIRoutingHostTests NativeReaderPlanBudgetTests.swift
+[82/97] Compiling ChavrusaUIRoutingHostTests NativeRouteInboxTests.swift
+[83/97] Compiling ChavrusaUIRoutingHostTests NativeRouteURLTests.swift
+[84/97] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+[85/97] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[86/97] Compiling ChavrusaUIRoutingHostTests NativeSurfaceStateTests.swift
+[87/97] Compiling ChavrusaUIRoutingHostTests Phase1ForegroundMountBoundary.swift
+[88/97] Compiling ChavrusaUIRoutingHostTests Phase1ForegroundMountTests.swift
+[89/98] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[90/98] C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\nsf\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[91/98] Write sources
+[93/99] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[94/101] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[95/101] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[96/102] C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\nsf\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[97/102] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[98/102] Write sources
+[100/103] Emitting module ChavrusaUIRoutingHostPackageTests
+[101/104] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[102/105] Wrapping AST for ChavrusaUIRoutingHostPackageTests for debugging
+[103/105] Write Objects.LinkFileList
+[104/105] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (212.26s)
+Test Suite 'Selected tests' started at 2026-11-18 22:00:39.009
+
+Test Suite 'NativePresentationObserverTests' started at 2026-11-18 22:00:39.073
+
+Test Case 'NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation' started at 2026-11-18 22:00:39.073
+
+Test Case 'NativePresentationObserverTests.testAdmissionCannotOverwritePendingPresentation' passed (0.113 seconds)
+
+Test Case 'NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation' started at 2026-11-18 22:00:39.186
+
+Test Case 'NativePresentationObserverTests.testDeadlineCleansNativeContinuationAndReservation' passed (0.152 seconds)
+
+Test Case 'NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost' started at 2026-11-18 22:00:39.339
+
+Test Case 'NativePresentationObserverTests.testNativeEvidenceArrivingBeforeWaitIsNotLost' passed (0.048 seconds)
+
+Test Case 'NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest' started at 2026-11-18 22:00:39.387
+
+Test Case 'NativePresentationObserverTests.testRevokedEvidenceCannotFinishLaterRequest' passed (0.106 seconds)
+
+Test Case 'NativePresentationObserverTests.testSearchComponentAcceptsExactIndependentFocusProjection' started at 2026-11-18 22:00:39.493
+
+Test Case 'NativePresentationObserverTests.testSearchComponentAcceptsExactIndependentFocusProjection' passed (0.049 seconds)
+
+Test Case 'NativePresentationObserverTests.testSearchComponentCannotAcknowledgeUnfocusedNativeSurface' started at 2026-11-18 22:00:39.542
+
+Test Case 'NativePresentationObserverTests.testSearchComponentCannotAcknowledgeUnfocusedNativeSurface' passed (0.101 seconds)
+
+Test Case 'NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored' started at 2026-11-18 22:00:39.643
+
+Test Case 'NativePresentationObserverTests.testWrongSceneRequestAndFullProjectionAreIgnored' passed (0.042 seconds)
+
+Test Suite 'NativePresentationObserverTests' passed at 2026-11-18 22:00:39.686
+
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.612 (0.612) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-18 22:00:39.686
+
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.612 (0.612) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
