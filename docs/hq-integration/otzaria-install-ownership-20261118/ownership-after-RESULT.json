@@ -1,0 +1,73 @@
+{
+  "observed_at": "2026-11-18T21:13:46.521568+00:00",
+  "source_ref": "dcdf1ebe044f2c3ba268111c88ddae235772c1bb",
+  "source_sha256": {
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactService.swift": "4700a442634b99aed60ebc3a8467d6d01fbee277ece015f598e9e51ece993c72",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactDownloader.swift": "0d30eae925ca64c2e15b23af49b95b77a57651b820f68112d08a02f50a215cc0",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift": "497595f70f98417622ad38cd0951ea74e39eaaa0d7fea439572371ca6d90b2bd",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift": "bd0615f1375b4d5be8b25ce35259a3d35b454638737f91c870c24e0134a48062",
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": "4fdcbec75a5e0c659889cca1ac67dbd339a4c38d50b9f951e94ded3049508995"
+  },
+  "fixture_sha256": "cc9e43f88fcf95ad37ccfe47108e4d3d69bebc21a95cb2499b221c3ec0e6ec79",
+  "manifest_sha256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\oio-eff02838147f",
+  "original_vm_recovery_line": "await artifactService.recoverInterruptedInstallation(databasePath: path, profileID: profile)",
+  "generated_service_sha256": "33b3cda4a8f91f50a030cf3a248f80e17b7445805573261b06f875c9d9be803f",
+  "boundaries": [
+    "Original complete service except context provider/storage authority method",
+    "Exact downloader partial-file observation/cleanup methods, real filesystem",
+    "Controlled async transfer/installer, no real archive or engine",
+    "Actual VM recovery invocation and exact installer recovery body; no UI/Combine pipeline",
+    "Capacity/provenance/logging context are explicit test doubles"
+  ],
+  "native_ui_executed": 0,
+  "real_network_executed": 0,
+  "real_engine_executed": 0,
+  "compile_exit": 0,
+  "execute_exit": 0,
+  "cases": {
+    "cases": [
+      {
+        "name": "availability retains all existing partial downloads",
+        "status": "PASS"
+      },
+      {
+        "name": "admitted operation reaches controlled transfer",
+        "status": "PASS"
+      },
+      {
+        "name": "status recovery preserves active staging",
+        "status": "PASS"
+      },
+      {
+        "name": "second installation is refused before second transfer",
+        "status": "PASS"
+      },
+      {
+        "name": "active staging retains its first owner",
+        "status": "PASS"
+      },
+      {
+        "name": "cancelled admitted operation finishes",
+        "status": "PASS"
+      },
+      {
+        "name": "recovery returns after operation finishes",
+        "status": "PASS"
+      },
+      {
+        "name": "prior final fixture remains unchanged",
+        "status": "PASS"
+      }
+    ],
+    "failed": 0,
+    "first": "CancellationError()",
+    "native_ui_executed": 0,
+    "passed": 8,
+    "real_engine_executed": 0,
+    "real_network_executed": 0,
+    "second": "operationInProgress",
+    "total": 8
+  },
+  "status": "CONTROL_OWNERSHIP_PASS_NOT_NATIVE"
+}

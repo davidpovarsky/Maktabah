@@ -1,0 +1,74 @@
+{
+  "observed_at": "2026-11-18T21:15:22.404159+00:00",
+  "source_ref": "dcdf1ebe044f2c3ba268111c88ddae235772c1bb",
+  "original_source_sha256": "adb8ba2696b1a26cce7acad3efa1c5fd53b8829886652abf5bf66d1d55632fd5",
+  "delegate_sha256": "1691526c4541374335dc5a9d5d01ef7b4dd3896d0255dc97341fc1cc6a6f19cc",
+  "fixture_sha256": "4a08f1c365045de5f9bd40621e7677a5758290e479c9ce5aebb57a65cdc78f38",
+  "generated_sha256": "2659270f9409a527169423f6e49028f3c31b9230ee6fc3053a5f04160a794b43",
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\odc-a4d521c962c8",
+  "compile_exit": 0,
+  "compiler": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "language_mode": 5,
+  "boundaries": [
+    "Exact delegate/enum body; two error DTO cases supplied by harness",
+    "Actual URLSession + held loopback HTTP; no response body released during cancellation assertion",
+    "Terminal callback-before-run case is explicitly injected",
+    "Windows FoundationNetworking Swift5 language mode, not Apple concurrency/build acceptance"
+  ],
+  "native_ui_executed": 0,
+  "archive_verified": false,
+  "engine_opened": false,
+  "execute_exit": 1,
+  "cases": {
+    "actual_http_case": true,
+    "archive_verified": false,
+    "cases": [
+      {
+        "name": "actual URLSession reaches held HTTP server",
+        "status": "PASS"
+      },
+      {
+        "name": "caller cancellation aborts held network before release",
+        "status": "FAIL"
+      },
+      {
+        "name": "terminal callback before continuation is retained",
+        "status": "FAIL"
+      },
+      {
+        "name": "already terminal delegate does not start a request",
+        "status": "FAIL"
+      },
+      {
+        "name": "pre-cancelled caller returns promptly",
+        "status": "FAIL"
+      },
+      {
+        "name": "pre-cancelled caller starts no network request",
+        "status": "FAIL"
+      }
+    ],
+    "engine_opened": false,
+    "failed": 5,
+    "held_cancellation_seconds": 2.022554397583008,
+    "native_ui_executed": 0,
+    "passed": 1,
+    "terminal_ordering_case": "injected callback, not real network completion",
+    "total": 6
+  },
+  "actual_http_requests": [
+    {
+      "path": "held",
+      "started_at": 1795036523.0637357
+    },
+    {
+      "path": "early",
+      "started_at": 1795036525.1299696
+    },
+    {
+      "path": "precancel",
+      "started_at": 1795036525.658435
+    }
+  ],
+  "status": "FAILED"
+}

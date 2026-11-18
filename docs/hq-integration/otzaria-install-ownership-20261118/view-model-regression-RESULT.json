@@ -1,0 +1,10 @@
+{
+  "observed_at": "2026-11-18T21:24:36.429320+00:00",
+  "exit_code": 0,
+  "source_sha256": {
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": "4fdcbec75a5e0c659889cca1ac67dbd339a4c38d50b9f951e94ded3049508995",
+    "Tests/HQ/search/OtzariaViewModelFixtures.swift": "d3150be3979338edc1e7f9fe19b3ed5c3cb33231f11792ec7569c07afab457f8",
+    "tools/hq-search-tests.py": "03847a6fe2292594d2d5888280ca3aa61b2c5ad83691a5fab09d82f0a247aa28"
+  },
+  "boundary": "Portable whole original VM/repository source with boundary doubles, no native UI or real search engine"
+}

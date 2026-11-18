@@ -1,0 +1,73 @@
+{
+  "observed_at": "2026-11-18T21:10:44.775546+00:00",
+  "source_ref": "dcdf1ebe044f2c3ba268111c88ddae235772c1bb",
+  "source_sha256": {
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactService.swift": "697eb8a016d06be221c6818a993524af0bd6f125e0e05c3aea03ca6808a0a3c0",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactDownloader.swift": "adb8ba2696b1a26cce7acad3efa1c5fd53b8829886652abf5bf66d1d55632fd5",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift": "ce3ea340ad549d9410454e57717f295615dc1da75cca54f1b6e4e6691c32255c",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift": "3eba2959faaaf9df13a92d3ecc931ade9cd6a9e4316c662cd23d371f4681c923",
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": "d957369e7d7b9c530999a339c290500f19992681cf10d0d037edcf8e8aa4bc44"
+  },
+  "fixture_sha256": "cc9e43f88fcf95ad37ccfe47108e4d3d69bebc21a95cb2499b221c3ec0e6ec79",
+  "manifest_sha256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\oio-014ac0f5d776",
+  "original_vm_recovery_line": "OtzariaSearchArtifactInstaller().recover(databasePath: path, storage: storage)",
+  "generated_service_sha256": "7e105219799795795349f3ad4ae2db098128dabc206b8bcb4cdd94b7c9f83bca",
+  "boundaries": [
+    "Original complete service except context provider/storage authority method",
+    "Exact downloader partial-file observation/cleanup methods, real filesystem",
+    "Controlled async transfer/installer, no real archive or engine",
+    "Actual VM recovery invocation and exact installer recovery body; no UI/Combine pipeline",
+    "Capacity/provenance/logging context are explicit test doubles"
+  ],
+  "native_ui_executed": 0,
+  "real_network_executed": 0,
+  "real_engine_executed": 0,
+  "compile_exit": 0,
+  "execute_exit": 1,
+  "cases": {
+    "cases": [
+      {
+        "name": "availability retains all existing partial downloads",
+        "status": "FAIL"
+      },
+      {
+        "name": "admitted operation reaches controlled transfer",
+        "status": "PASS"
+      },
+      {
+        "name": "status recovery preserves active staging",
+        "status": "FAIL"
+      },
+      {
+        "name": "second installation is refused before second transfer",
+        "status": "FAIL"
+      },
+      {
+        "name": "active staging retains its first owner",
+        "status": "FAIL"
+      },
+      {
+        "name": "cancelled admitted operation finishes",
+        "status": "PASS"
+      },
+      {
+        "name": "recovery returns after operation finishes",
+        "status": "PASS"
+      },
+      {
+        "name": "prior final fixture remains unchanged",
+        "status": "PASS"
+      }
+    ],
+    "failed": 4,
+    "first": "CancellationError()",
+    "native_ui_executed": 0,
+    "passed": 4,
+    "real_engine_executed": 0,
+    "real_network_executed": 0,
+    "second": "cancelled",
+    "total": 8
+  },
+  "status": "FAILED"
+}

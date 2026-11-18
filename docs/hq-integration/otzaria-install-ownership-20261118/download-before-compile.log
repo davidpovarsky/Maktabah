@@ -1,0 +1,31 @@
+C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\odc-a4d521c962c8\Delegate.swift:18:17: warning: stored property 'handle' of 'Sendable'-conforming class 'OtzariaArtifactDownloadDelegate' is mutable; this is an error in the Swift 6 language mode
+
+ 16 |     private let expectedBytes: Int64
+
+ 17 |     private let progress: @Sendable (Int64) -> Void
+
+ 18 |     private var handle: FileHandle?
+
+    |                 `- warning: stored property 'handle' of 'Sendable'-conforming class 'OtzariaArtifactDownloadDelegate' is mutable; this is an error in the Swift 6 language mode
+
+ 19 |     private var received: Int64
+
+ 20 |     private var continuation: CheckedContinuation<OtzariaArtifactDownloadOutcome, Error>?
+
+
+
+C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\odc-a4d521c962c8\Delegate.swift:69:37: warning: result of call to 'createFile(atPath:contents:attributes:)' is unused [#no-usage]
+
+ 67 |             }
+
+ 68 |             if requestedOffset == 0 {
+
+ 69 |                 FileManager.default.createFile(atPath: outputURL.path, contents: nil)
+
+    |                                     `- warning: result of call to 'createFile(atPath:contents:attributes:)' is unused [#no-usage]
+
+ 70 |             }
+
+ 71 |             handle = try FileHandle(forWritingTo: outputURL)
+
+   Creating library C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\odc-a4d521c962c8\download.lib and object C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\odc-a4d521c962c8\download.exp

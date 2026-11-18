@@ -1,0 +1,15 @@
+C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\oio-014ac0f5d776\Boundary.swift:125:5: warning: initialization of immutable value 'profile' was never used; consider replacing with assignment to '_' or removing it [#no-usage]
+
+123 | enum FixtureReadiness {
+
+124 | static func recover(service:OtzariaSearchArtifactService,path:String,storage:OtzariaSearchArtifactStorage) async {
+
+125 | let profile=OtzariaDataProfileRegistry.activeProfileID
+
+    |     `- warning: initialization of immutable value 'profile' was never used; consider replacing with assignment to '_' or removing it [#no-usage]
+
+126 | OtzariaSearchArtifactInstaller().recover(databasePath: path, storage: storage)
+
+127 | }
+
+   Creating library C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\oio-014ac0f5d776\ownership.lib and object C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\oio-014ac0f5d776\ownership.exp

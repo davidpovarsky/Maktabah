@@ -9,6 +9,7 @@ actor OtzariaSearchArtifactService {
     private let downloader = OtzariaSearchArtifactDownloader()
     private let installer = OtzariaSearchArtifactInstaller()
     private var activeArtifact: OtzariaResolvedSearchArtifact?
+    private var installTask: Task<UInt64, Error>?
 
     func checkAvailability(databasePath: String) async throws -> OtzariaSearchArtifactAvailability {
         let context = try context(databasePath: databasePath)
@@ -21,7 +22,6 @@ actor OtzariaSearchArtifactService {
         let storage = try OtzariaSearchArtifactStorage()
         try storage.prepare()
         let workspace = storage.workspaceURL(artifactIdentity: artifact.manifest.artifactIdentity)
-        await downloader.prepareStreamingWorkspace(manifest: artifact.manifest, workspaceURL: workspace)
         let downloaded = await downloader.existingBytes(
             manifest: artifact.manifest,
             workspaceURL: workspace
@@ -44,26 +44,61 @@ actor OtzariaSearchArtifactService {
         databasePath: String,
         progress: @escaping ProgressHandler
     ) async throws -> UInt64 {
+        guard installTask == nil else { throw OtzariaSearchArtifactError.operationInProgress }
+        try Task.checkCancellation()
+        let profile = OtzariaDataProfileRegistry.activeProfileID
+        let fingerprint = try OtzariaSearchIndexManager.shared.currentFingerprint(databasePath: databasePath)
+        let validateContext: @Sendable () throws -> Void = {
+            try Task.checkCancellation()
+            guard profile == OtzariaDataProfileRegistry.activeProfileID,
+                  try OtzariaSearchIndexManager.shared.currentFingerprint(databasePath: databasePath) == fingerprint else {
+                throw OtzariaSearchArtifactError.incompatible("active database/profile changed during installation")
+            }
+        }
+        let task = Task {
+            try await self.performInstall(databasePath: databasePath,
+                validateContext: validateContext, progress: progress)
+        }
+        installTask = task
+        defer { installTask = nil }
+        return try await withTaskCancellationHandler(
+            operation: { try await task.value },
+            onCancel: { task.cancel() }
+        )
+    }
+
+    private func performInstall(
+        databasePath: String,
+        validateContext: @escaping @Sendable () throws -> Void,
+        progress: @escaping ProgressHandler
+    ) async throws -> UInt64 {
         OtzariaIndexFileLogger.log("[ArtifactService] install requested for database: \(databasePath)")
         do {
+            try validateContext()
             let availability = try await checkAvailability(databasePath: databasePath)
-            OtzariaIndexFileLogger.log("[ArtifactService] availability checked: free=\(availability.availableFreeBytes), required=\(availability.requiredFreeBytes)")
-            guard availability.availableFreeBytes >= availability.requiredFreeBytes else {
-                throw OtzariaSearchArtifactError.insufficientStorage(
-                    required: availability.requiredFreeBytes,
-                    available: availability.availableFreeBytes
-                )
-            }
+            try validateContext()
             let artifact = availability.artifact
             let storage = try OtzariaSearchArtifactStorage()
             let workspace = storage.workspaceURL(artifactIdentity: artifact.manifest.artifactIdentity)
+            // Only the admitted installer may retire partial streaming files.
+            await downloader.prepareStreamingWorkspace(manifest: artifact.manifest, workspaceURL: workspace)
+            let downloaded = await downloader.existingBytes(manifest: artifact.manifest, workspaceURL: workspace)
+            try validateContext()
+            let required = OtzariaSearchArtifactPolicy.requiredInstallCapacity(
+                manifest: artifact.manifest, alreadyDownloadedBytes: downloaded,
+                existingFinalBytes: directorySize(OtzariaSearchIndexManager.shared.indexURL(for: databasePath)))
+            let available = storage.availableCapacity()
+            guard available >= required else {
+                throw OtzariaSearchArtifactError.insufficientStorage(required: required, available: available)
+            }
             let partDownloader = downloader
-            progress(.init(stage: .downloading, completedBytes: availability.downloadedBytes,
+            progress(.init(stage: .downloading, completedBytes: downloaded,
                            totalBytes: artifact.manifest.lexicalArtifact.packagedBytes))
             let count = try await installer.installStreaming(
                 artifact: artifact,
                 databasePath: databasePath,
                 storage: storage,
+                validateContext: validateContext,
                 downloadPart: { part in
                     let base = artifact.manifest.lexicalArtifact.parts
                         .prefix { $0.assetName != part.assetName }
@@ -95,7 +130,19 @@ actor OtzariaSearchArtifactService {
     }
 
     func cancel() async {
-        await downloader.cancel()
+        installTask?.cancel()
+    }
+
+    /// A status refresh must never remove another window's admitted staging.
+    /// Await its completion; the active installer owns its rollback/cleanup.
+    func recoverInterruptedInstallation(databasePath: String, profileID: String) async {
+        if let task = installTask {
+            _ = try? await task.value
+            return
+        }
+        guard profileID == OtzariaDataProfileRegistry.activeProfileID,
+              let storage = try? OtzariaSearchArtifactStorage() else { return }
+        installer.recover(databasePath: databasePath, storage: storage)
     }
 }
 

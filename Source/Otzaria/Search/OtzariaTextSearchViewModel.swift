@@ -105,8 +105,8 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
             )
             if interrupted {
                 status = .checkingPackage
-                Task.detached(priority: .utility) {
-                    OtzariaSearchArtifactInstaller().recover(databasePath: path, storage: storage)
+                Task.detached(priority: .utility) { [artifactService] in
+                    await artifactService.recoverInterruptedInstallation(databasePath: path, profileID: profile)
                     await MainActor.run {
                         guard self.statusGeneration == generation,
                               path == OtzariaMaktabahBridge.shared.databasePath,

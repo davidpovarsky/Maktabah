@@ -1,0 +1,27 @@
+FAIL profile: rejected before any extraction
+PASS profile: admitted prior bytes preserved
+FAIL profile: unrelated profile bytes preserved
+PASS profile: admitted staging removed
+FAIL fingerprint: rejected before any extraction
+FAIL fingerprint: admitted prior bytes preserved
+PASS fingerprint: unrelated profile bytes preserved
+PASS fingerprint: admitted staging removed
+FAIL cancellation: rejected before any extraction
+PASS cancellation: admitted prior bytes preserved
+PASS cancellation: unrelated profile bytes preserved
+PASS cancellation: admitted staging removed
+PASS staging-count: injected count error is surfaced
+FAIL staging-count: every opened engine is closed
+PASS staging-count: admitted prior bytes restored
+PASS staging-count: unrelated profile bytes preserved
+PASS staging-count: admitted staging removed
+PASS promotion-count: injected count error is surfaced
+FAIL promotion-count: every opened engine is closed
+PASS promotion-count: admitted prior bytes restored
+PASS promotion-count: unrelated profile bytes preserved
+PASS promotion-count: admitted staging removed
+PASS success: validated count returned
+PASS success: trusted manifest atomically promoted
+PASS success: both validation handles closed
+PASS success: unrelated profile bytes preserved
+PASS success: admitted staging removed

@@ -1,0 +1,175 @@
+{
+  "observed_at": "2026-11-18T21:28:18.502840+00:00",
+  "baseline": "dcdf1ebe044f2c3ba268111c88ddae235772c1bb",
+  "ownership": {
+    "before": {
+      "passed": 4,
+      "failed": 4
+    },
+    "after": {
+      "passed": 8,
+      "failed": 0
+    }
+  },
+  "network": {
+    "before": {
+      "passed": 1,
+      "failed": 5
+    },
+    "after": {
+      "passed": 6,
+      "failed": 0
+    },
+    "held_http_cancel_seconds": 0.034576416015625
+  },
+  "installer": {
+    "before": {
+      "passed": 20,
+      "failed": 7
+    },
+    "after": {
+      "passed": 27,
+      "failed": 0
+    }
+  },
+  "view_model_and_repository": {
+    "assertions": 205,
+    "passed": 205,
+    "real_engine": false,
+    "ui": false
+  },
+  "baseline_harness_compile_failure": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-install-ownership-20261118\\before\\RESULT.json",
+  "manifest_provenance": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\OTZARIA_MINI_MANIFEST_FOR_CONTROL_REVIEW_20261118.json",
+  "manifest_relocation": "The exact verified 4467-byte public manifest was copied into the committed fixture path; its SHA and all assertions are unchanged.",
+  "native_executed": 0,
+  "real_search_engine_executed": 0,
+  "source_sha256": {
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactService.swift": "4700a442634b99aed60ebc3a8467d6d01fbee277ece015f598e9e51ece993c72",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift": "497595f70f98417622ad38cd0951ea74e39eaaa0d7fea439572371ca6d90b2bd",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactDownloader.swift": "d7b4871ea1715d427a89e7ecb6b6b9c1eb210bdf2324b7e9ad47524bba95aac2",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift": "bd0615f1375b4d5be8b25ce35259a3d35b454638737f91c870c24e0134a48062",
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": "4fdcbec75a5e0c659889cca1ac67dbd339a4c38d50b9f951e94ded3049508995"
+  },
+  "evidence": [
+    {
+      "file": "ownership-before-RESULT.json",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-install-ownership-20261118\\before-executed\\RESULT.json",
+      "raw_sha256": "bc47818ede4627bdb959d8c609edf58846fc596c6f64318b6c5ddf032ada5e51",
+      "committed_sha256": "bc47818ede4627bdb959d8c609edf58846fc596c6f64318b6c5ddf032ada5e51"
+    },
+    {
+      "file": "ownership-before-compile.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-install-ownership-20261118\\before-executed\\compile.log",
+      "raw_sha256": "273d869a4d01270a02d8fb8efd3be42751a3182c7ababe124ba6f1627aa2e538",
+      "committed_sha256": "887cfc1469a535fc34a5553f349a55aa0bfd829242464c5268e3b0a0ebc2fc23"
+    },
+    {
+      "file": "ownership-before-tests.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-install-ownership-20261118\\before-executed\\tests.log",
+      "raw_sha256": "927a381bdff0844ec885fcf511c613309019293ee19e1252d4a1b5a8f855e2a7",
+      "committed_sha256": "927a381bdff0844ec885fcf511c613309019293ee19e1252d4a1b5a8f855e2a7"
+    },
+    {
+      "file": "ownership-after-RESULT.json",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-install-ownership-20261118\\after\\RESULT.json",
+      "raw_sha256": "a54b92144bf040f3bfa6a825e13b53d1e658e8290963f74eb137e73897f4bed3",
+      "committed_sha256": "a54b92144bf040f3bfa6a825e13b53d1e658e8290963f74eb137e73897f4bed3"
+    },
+    {
+      "file": "ownership-after-compile.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-install-ownership-20261118\\after\\compile.log",
+      "raw_sha256": "5330c2cd2c3c2a53794d52aaaf9c86cd69e03cd21bc7f39ea6f033483e596a20",
+      "committed_sha256": "a069051ede742e7a3eac26a83fb05526d557deccb86150aef5564d4beef2ef89"
+    },
+    {
+      "file": "ownership-after-tests.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-install-ownership-20261118\\after\\tests.log",
+      "raw_sha256": "6c62b10e47cf64a4b20547ed5816406d310a32338a3a8cc842d526b8a691704f",
+      "committed_sha256": "6c62b10e47cf64a4b20547ed5816406d310a32338a3a8cc842d526b8a691704f"
+    },
+    {
+      "file": "download-before-RESULT.json",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-download-cancellation-20261118\\before\\RESULT.json",
+      "raw_sha256": "030fc50e228147ecfcabc0641cdf846826de8979e9ee81b39b8c57be3e729de6",
+      "committed_sha256": "030fc50e228147ecfcabc0641cdf846826de8979e9ee81b39b8c57be3e729de6"
+    },
+    {
+      "file": "download-before-compile.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-download-cancellation-20261118\\before\\compile.log",
+      "raw_sha256": "a9e1304449fd18631235e4b47112406d634836b47f3b742b65d07b65d9e33000",
+      "committed_sha256": "ef842159c5b32a4e82a1f733bc3eb966e4a8aa5513fd31d60236eed7787c055a"
+    },
+    {
+      "file": "download-before-tests.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-download-cancellation-20261118\\before\\tests.log",
+      "raw_sha256": "4e6445999f6f8118be388682dd5eae2d796c10cd3f533dba85a79206daf31efa",
+      "committed_sha256": "4e6445999f6f8118be388682dd5eae2d796c10cd3f533dba85a79206daf31efa"
+    },
+    {
+      "file": "download-after-RESULT.json",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-download-cancellation-20261118\\after\\RESULT.json",
+      "raw_sha256": "d1e562a0479b20f487ae84decedf2a4e224043da9676e63b0907f84e23e19cdc",
+      "committed_sha256": "d1e562a0479b20f487ae84decedf2a4e224043da9676e63b0907f84e23e19cdc"
+    },
+    {
+      "file": "download-after-compile.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-download-cancellation-20261118\\after\\compile.log",
+      "raw_sha256": "ce382e57ec671bd490a8ae37cf46d5c3d00025cc5a429073bed4c5f31401c71f",
+      "committed_sha256": "44eac590dba8a1da3d12966924ce8dcc945c4039d1148c92c7024216c4901f96"
+    },
+    {
+      "file": "download-after-tests.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-download-cancellation-20261118\\after\\tests.log",
+      "raw_sha256": "a2692afd82e95ac4736addb39a9aba10427f330146a730f7bb9618e8c2028f13",
+      "committed_sha256": "a2692afd82e95ac4736addb39a9aba10427f330146a730f7bb9618e8c2028f13"
+    },
+    {
+      "file": "installer-before-RESULT.json",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-installer-fences-20261118\\before\\RESULT.json",
+      "raw_sha256": "1a9e0cb9c462c980bfade8ede0cae1a7d17596590cd7d8391582a6591a560c56",
+      "committed_sha256": "1a9e0cb9c462c980bfade8ede0cae1a7d17596590cd7d8391582a6591a560c56"
+    },
+    {
+      "file": "installer-before-compile.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-installer-fences-20261118\\before\\compile.log",
+      "raw_sha256": "44b64d3280874e05759e056c26bfd4f508fc4c82ceb532c6643826f27e373ee2",
+      "committed_sha256": "e3a6c6aaa294b6fa4cbdd4dd5d33379c829b8ce34265113f1cccf8df24eb3e1e"
+    },
+    {
+      "file": "installer-before-tests.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-installer-fences-20261118\\before\\tests.log",
+      "raw_sha256": "b60abe11fd3ab51c7b3d46cae5636fbfc710e92896f26a73fa9a5139896a34a0",
+      "committed_sha256": "b60abe11fd3ab51c7b3d46cae5636fbfc710e92896f26a73fa9a5139896a34a0"
+    },
+    {
+      "file": "installer-after-RESULT.json",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-installer-fences-20261118\\after\\RESULT.json",
+      "raw_sha256": "d805ec3cca754ff2d5a126235b1f941c2f3adfcda18dc63aee501d915c8d7530",
+      "committed_sha256": "d805ec3cca754ff2d5a126235b1f941c2f3adfcda18dc63aee501d915c8d7530"
+    },
+    {
+      "file": "installer-after-compile.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-installer-fences-20261118\\after\\compile.log",
+      "raw_sha256": "6860fbe9e9054f1ed6ac5523703e417d18bf40ca7052639e0bba5e2ab3558801",
+      "committed_sha256": "379591154d68978c6436f8f25ec7ce6e85bb0e38de7c7e31c60a01c8fd0af474"
+    },
+    {
+      "file": "installer-after-tests.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-installer-fences-20261118\\after\\tests.log",
+      "raw_sha256": "ffbef83dcf8e271d8c7c3b62d6f15be6920621c3584c1a1b49f7a0bf13474701",
+      "committed_sha256": "ffbef83dcf8e271d8c7c3b62d6f15be6920621c3584c1a1b49f7a0bf13474701"
+    },
+    {
+      "file": "view-model-regression-RESULT.json",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-install-ownership-20261118\\view-model-regression\\RESULT.json",
+      "raw_sha256": "42ab616203bd383155049de0af495bd19246f49a6b116dda04b3bfd80b71967a",
+      "committed_sha256": "42ab616203bd383155049de0af495bd19246f49a6b116dda04b3bfd80b71967a"
+    },
+    {
+      "file": "view-model-regression-tests.log",
+      "source": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\otzaria-install-ownership-20261118\\view-model-regression\\tests.log",
+      "raw_sha256": "e23cefd9694e82819d1a32d4171a05f8d25a5e1e82b25fe5e19af758dd209802",
+      "committed_sha256": "fa617d0c2adf253d74b995c41c412824c0d65587309798a512c8674bf5a25d92"
+    }
+  ]
+}

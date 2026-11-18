@@ -1,0 +1,6 @@
+PASS actual URLSession reaches held HTTP server
+PASS caller cancellation aborts held network before release
+PASS terminal callback before continuation is retained
+PASS already terminal delegate does not start a request
+PASS pre-cancelled caller returns promptly
+PASS pre-cancelled caller starts no network request

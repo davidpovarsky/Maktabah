@@ -58,6 +58,7 @@ actor OtzariaSearchArtifactService {
     }
     func checkAvailability(databasePath: String) throws -> OtzariaSearchArtifactAvailability { throw FixtureError.expected }
     func cancel() {}
+    func recoverInterruptedInstallation(databasePath: String, profileID: String) async {}
 }
 enum FixtureOtzariaError: LocalizedError {
     case page, currentQuery

@@ -1,0 +1,15 @@
+C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\odc-bb9b50630b4e\Delegate.swift:98:37: warning: result of call to 'createFile(atPath:contents:attributes:)' is unused [#no-usage]
+
+ 96 |             }
+
+ 97 |             if requestedOffset == 0 {
+
+ 98 |                 FileManager.default.createFile(atPath: outputURL.path, contents: nil)
+
+    |                                     `- warning: result of call to 'createFile(atPath:contents:attributes:)' is unused [#no-usage]
+
+ 99 |             }
+
+100 |             handle = try FileHandle(forWritingTo: outputURL)
+
+   Creating library C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\odc-bb9b50630b4e\download.lib and object C:\Users\DAVID\Code\Maktabah-native-owner-20261118\build\odc-bb9b50630b4e\download.exp

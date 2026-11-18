@@ -1,0 +1,141 @@
+{
+  "observed_at": "2026-11-18T21:26:56.775470+00:00",
+  "source_ref": "dcdf1ebe044f2c3ba268111c88ddae235772c1bb",
+  "installer_source_sha256": "497595f70f98417622ad38cd0951ea74e39eaaa0d7fea439572371ca6d90b2bd",
+  "installer_body_sha256": "83c5e21c6a3faf27d2e33661be7e6a40fe4f15f780ca6cf222822741a3333287",
+  "invocation_sha256": "2ca274c4ac6f877a6a9506e083576d475eab4b42f92c45aff1147e1db8ab74d5",
+  "fixture_sha256": "08111b01da71817d208e39d022f278d66890d2cbf667d9910f7ebb393c354223",
+  "manifest_sha256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+  "context_capture_sha256": "00fa86499c891ed43138c2cb993e72b338c2289da2df82fac079371fa47c6aa5",
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\oif-7cd934be30ea",
+  "compile_exit": 0,
+  "language_mode": 6,
+  "boundaries": [
+    "Whole original installer methods unchanged; storage-capacity wrapper not compiled",
+    "Actual filesystem creation/move/rollback and original relative-path validation",
+    "Engine, extraction, transfer, fingerprint/profile and repository are explicit failure-injection doubles",
+    "New source receives exact context capture from original service; baseline has no fence parameter",
+    "Official unmodified manifest metadata only; no actual compressed payload/index/engine query or UI"
+  ],
+  "execute_exit": 0,
+  "cases": {
+    "cases": [
+      {
+        "name": "profile: rejected before any extraction",
+        "status": "PASS"
+      },
+      {
+        "name": "profile: admitted prior bytes preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "profile: unrelated profile bytes preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "profile: admitted staging removed",
+        "status": "PASS"
+      },
+      {
+        "name": "fingerprint: rejected before any extraction",
+        "status": "PASS"
+      },
+      {
+        "name": "fingerprint: admitted prior bytes preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "fingerprint: unrelated profile bytes preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "fingerprint: admitted staging removed",
+        "status": "PASS"
+      },
+      {
+        "name": "cancellation: rejected before any extraction",
+        "status": "PASS"
+      },
+      {
+        "name": "cancellation: admitted prior bytes preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "cancellation: unrelated profile bytes preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "cancellation: admitted staging removed",
+        "status": "PASS"
+      },
+      {
+        "name": "staging-count: injected count error is surfaced",
+        "status": "PASS"
+      },
+      {
+        "name": "staging-count: every opened engine is closed",
+        "status": "PASS"
+      },
+      {
+        "name": "staging-count: admitted prior bytes restored",
+        "status": "PASS"
+      },
+      {
+        "name": "staging-count: unrelated profile bytes preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "staging-count: admitted staging removed",
+        "status": "PASS"
+      },
+      {
+        "name": "promotion-count: injected count error is surfaced",
+        "status": "PASS"
+      },
+      {
+        "name": "promotion-count: every opened engine is closed",
+        "status": "PASS"
+      },
+      {
+        "name": "promotion-count: admitted prior bytes restored",
+        "status": "PASS"
+      },
+      {
+        "name": "promotion-count: unrelated profile bytes preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "promotion-count: admitted staging removed",
+        "status": "PASS"
+      },
+      {
+        "name": "success: validated count returned",
+        "status": "PASS"
+      },
+      {
+        "name": "success: trusted manifest atomically promoted",
+        "status": "PASS"
+      },
+      {
+        "name": "success: both validation handles closed",
+        "status": "PASS"
+      },
+      {
+        "name": "success: unrelated profile bytes preserved",
+        "status": "PASS"
+      },
+      {
+        "name": "success: admitted staging removed",
+        "status": "PASS"
+      }
+    ],
+    "failed": 0,
+    "native_ui_executed": 0,
+    "passed": 27,
+    "real_extraction": false,
+    "real_file_moves": true,
+    "real_search_engine": false,
+    "total": 27
+  },
+  "status": "ACTUAL_INSTALLER_CONTROL_PASS_NOT_ENGINE"
+}

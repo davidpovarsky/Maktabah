@@ -1,0 +1,8 @@
+PASS availability retains all existing partial downloads
+PASS admitted operation reaches controlled transfer
+PASS status recovery preserves active staging
+PASS second installation is refused before second transfer
+PASS active staging retains its first owner
+PASS cancelled admitted operation finishes
+PASS recovery returns after operation finishes
+PASS prior final fixture remains unchanged

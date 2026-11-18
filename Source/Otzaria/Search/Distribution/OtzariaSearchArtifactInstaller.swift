@@ -71,7 +71,10 @@ struct OtzariaSearchArtifactInstaller: Sendable {
     ) throws -> UInt64 {
         let manager = OtzariaSearchIndexManager.shared
         let fileManager = FileManager.default
-        let stagingURL = storage.stagingURL(databasePath: databasePath)
+        try Task.checkCancellation()
+        let finalURL = manager.indexURL(for: databasePath)
+        let previousURL = manager.previousIndexURL(for: databasePath)
+        let stagingURL = finalURL.appendingPathExtension("installing")
         OtzariaIndexFileLogger.log("[Installer] Starting installation for database: \(databasePath), artifact: \(artifact.manifest.artifactIdentity)")
         if fileManager.fileExists(atPath: stagingURL.path) {
             try fileManager.removeItem(at: stagingURL)
@@ -166,7 +169,7 @@ struct OtzariaSearchArtifactInstaller: Sendable {
             }
             try writeTrustedManifest(artifact.manifest, to: stagingURL)
             OtzariaIndexFileLogger.log("[Installer] Promoting staging directory to final location...")
-            try promote(stagingURL: stagingURL, databasePath: databasePath)
+            try promote(stagingURL: stagingURL, databasePath: databasePath, finalURL: finalURL, previousURL: previousURL)
             OtzariaIndexFileLogger.log("[Installer] Installation successfully finished with \(count) documents.")
             return count
         } catch is CancellationError {
@@ -190,12 +193,17 @@ struct OtzariaSearchArtifactInstaller: Sendable {
         artifact: OtzariaResolvedSearchArtifact,
         databasePath: String,
         storage: OtzariaSearchArtifactStorage,
+        validateContext: @escaping @Sendable () throws -> Void = { try Task.checkCancellation() },
         downloadPart: @escaping @Sendable (OtzariaSearchArtifactManifest.Part) async throws -> URL,
         progress: @escaping @Sendable (_ extracted: Int64, _ total: Int64) -> Void
     ) async throws -> UInt64 {
         let manager = OtzariaSearchIndexManager.shared
         let fileManager = FileManager.default
-        let stagingURL = storage.stagingURL(databasePath: databasePath)
+        try validateContext()
+        // Keep the exact admitted profile's destinations across async downloads.
+        let finalURL = manager.indexURL(for: databasePath)
+        let previousURL = manager.previousIndexURL(for: databasePath)
+        let stagingURL = finalURL.appendingPathExtension("installing")
         OtzariaIndexFileLogger.log("[Installer] Starting streaming installation for database: \(databasePath), artifact: \(artifact.manifest.artifactIdentity)")
         if fileManager.fileExists(atPath: stagingURL.path) { try fileManager.removeItem(at: stagingURL) }
         try fileManager.createDirectory(at: stagingURL, withIntermediateDirectories: true)
@@ -207,6 +215,7 @@ struct OtzariaSearchArtifactInstaller: Sendable {
             for part in artifact.manifest.lexicalArtifact.parts {
                 try Task.checkCancellation()
                 let archiveURL = try await downloadPart(part)
+                try validateContext()
                 let destination = stagingURL.appendingPathComponent(part.destinationPath)
                 guard OtzariaSearchArtifactPolicy.validateSafeRelativePath(part.destinationPath) else {
                     throw OtzariaSearchArtifactError.invalidPartPath(part.destinationPath)
@@ -241,6 +250,7 @@ struct OtzariaSearchArtifactInstaller: Sendable {
                 try fileManager.removeItem(at: archiveURL)
             }
 
+            try validateContext()
             let build = try OtzariaSearchEngineBridge.buildInfo()
             let fingerprint = try manager.currentFingerprint(databasePath: databasePath)
             let identity = OtzariaIndexBuildIdentity(
@@ -261,7 +271,9 @@ struct OtzariaSearchArtifactInstaller: Sendable {
             }
             OtzariaIndexFileLogger.log("[Installer] Compatibility verified. Opening engine bridge at \(stagingURL.path)...")
             let engine = try OtzariaSearchEngineBridge(indexURL: stagingURL)
-            let count = try engine.documentCount()
+            let count: UInt64
+            do { count = try engine.documentCount() }
+            catch { engine.close(); throw error }
             engine.close()
             OtzariaIndexFileLogger.log("[Installer] Engine document count verified: \(count)")
             guard count == artifact.manifest.lexicalArtifact.documentCount else {
@@ -271,7 +283,7 @@ struct OtzariaSearchArtifactInstaller: Sendable {
             }
             try writeTrustedManifest(artifact.manifest, to: stagingURL)
             OtzariaIndexFileLogger.log("[Installer] Promoting staging directory to final location...")
-            try promote(stagingURL: stagingURL, databasePath: databasePath)
+            try promote(stagingURL: stagingURL, databasePath: databasePath, finalURL: finalURL, previousURL: previousURL, validateContext: validateContext)
             OtzariaIndexFileLogger.log("[Installer] Streaming installation successfully finished with \(count) documents.")
             return count
         } catch is CancellationError {
@@ -299,18 +311,20 @@ struct OtzariaSearchArtifactInstaller: Sendable {
 }
 
 private extension OtzariaSearchArtifactInstaller {
-    func promote(stagingURL: URL, databasePath: String) throws {
-        let manager = OtzariaSearchIndexManager.shared
+    func promote(stagingURL: URL, databasePath: String, finalURL: URL, previousURL: URL,
+                 validateContext: @Sendable () throws -> Void = { try Task.checkCancellation() }) throws {
+        try validateContext()
         let fileManager = FileManager.default
-        let final = manager.indexURL(for: databasePath)
-        let previous = manager.previousIndexURL(for: databasePath)
+        let final = finalURL
+        let previous = previousURL
         OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
         if fileManager.fileExists(atPath: previous.path) { try fileManager.removeItem(at: previous) }
         if fileManager.fileExists(atPath: final.path) { try fileManager.moveItem(at: final, to: previous) }
         do {
             try fileManager.moveItem(at: stagingURL, to: final)
             let engine = try OtzariaSearchEngineBridge(indexURL: final)
-            _ = try engine.documentCount()
+            do { _ = try engine.documentCount() }
+            catch { engine.close(); throw error }
             engine.close()
             if fileManager.fileExists(atPath: previous.path) { try fileManager.removeItem(at: previous) }
             OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)

@@ -232,19 +232,23 @@ private extension OtzariaSearchArtifactDownloader {
     }
 }
 
-private enum OtzariaArtifactDownloadOutcome {
+private enum OtzariaArtifactDownloadOutcome: Sendable {
     case complete
     case restart
 }
 
-private final class OtzariaArtifactDownloadDelegate: NSObject, URLSessionDataDelegate, URLSessionTaskDelegate {
+// URLSession calls the file/progress callbacks on the serial delegate queue created
+// above. Only completion registration crosses that queue; completionLock owns it.
+private final class OtzariaArtifactDownloadDelegate: NSObject, URLSessionDataDelegate, URLSessionTaskDelegate, @unchecked Sendable {
     private let outputURL: URL
     private let requestedOffset: Int64
     private let expectedBytes: Int64
     private let progress: @Sendable (Int64) -> Void
     private var handle: FileHandle?
     private var received: Int64
+    private let completionLock = NSLock()
     private var continuation: CheckedContinuation<OtzariaArtifactDownloadOutcome, Error>?
+    private var completionResult: Result<OtzariaArtifactDownloadOutcome, Error>?
     private var outcome: OtzariaArtifactDownloadOutcome?
     private var terminalError: Error?
 
@@ -262,10 +266,35 @@ private final class OtzariaArtifactDownloadDelegate: NSObject, URLSessionDataDel
     }
 
     func run(task: URLSessionDataTask) async throws -> OtzariaArtifactDownloadOutcome {
-        try await withCheckedThrowingContinuation { continuation in
-            self.continuation = continuation
-            task.resume()
+        try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                completionLock.lock()
+                if let result = completionResult {
+                    completionLock.unlock()
+                    continuation.resume(with: result)
+                    return
+                }
+                self.continuation = continuation
+                completionLock.unlock()
+                task.resume()
+            }
+        } onCancel: {
+            task.cancel()
         }
+    }
+
+    private func finish(_ result: Result<OtzariaArtifactDownloadOutcome, Error>) {
+        completionLock.lock()
+        guard completionResult == nil else {
+            completionLock.unlock()
+            return
+        }
+        completionResult = result
+        let waiting = continuation
+        continuation = nil
+        completionLock.unlock()
+        waiting?.resume(with: result)
     }
 
     func urlSession(
@@ -328,22 +357,20 @@ private final class OtzariaArtifactDownloadDelegate: NSObject, URLSessionDataDel
         try? handle?.synchronize()
         try? handle?.close()
         handle = nil
-        let continuation = continuation
-        self.continuation = nil
         if let terminalError {
-            continuation?.resume(throwing: terminalError)
+            finish(.failure(terminalError))
         } else if let outcome {
-            continuation?.resume(returning: outcome)
+            finish(.success(outcome))
         } else if let error {
-            continuation?.resume(throwing: error)
+            finish(.failure(error))
         } else if received == expectedBytes {
-            continuation?.resume(returning: .complete)
+            finish(.success(.complete))
         } else {
-            continuation?.resume(throwing: OtzariaSearchArtifactError.sizeMismatch(
+            finish(.failure(OtzariaSearchArtifactError.sizeMismatch(
                 asset: outputURL.lastPathComponent,
                 expected: expectedBytes,
                 actual: received
-            ))
+            )))
         }
     }
 }

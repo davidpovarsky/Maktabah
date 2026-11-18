@@ -93,6 +93,7 @@ struct OtzariaResolvedSearchArtifact: Equatable, Sendable {
 
 enum OtzariaSearchArtifactError: LocalizedError, Equatable, Sendable {
     case unavailable
+    case operationInProgress
     case malformedManifest(String)
     case incompatible(String)
     case missingPart(String)
@@ -110,6 +111,8 @@ enum OtzariaSearchArtifactError: LocalizedError, Equatable, Sendable {
         switch self {
         case .unavailable:
             return NSLocalizedString("חבילת חיפוש Otzaria תואמת אינה זמינה כעת.", comment: "")
+        case .operationInProgress:
+            return NSLocalizedString("התקנת אינדקס חיפוש כבר מתבצעת. המתן לסיומה או בטל אותה.", comment: "")
         case .malformedManifest:
             return NSLocalizedString("חבילת חיפוש Otzaria לא תקינה.", comment: "")
         case .incompatible:
@@ -163,7 +166,7 @@ enum OtzariaSearchArtifactError: LocalizedError, Equatable, Sendable {
             return NSLocalizedString("חבילה זו עלולה להיות פגומה. נסה להוריד מחדש.", comment: "")
         case .malformedManifest:
             return NSLocalizedString("חבילה זו אינה תקינה. נסה לעדכן את האפליקציה.", comment: "")
-        case .cancelled, .missingPart:
+        case .cancelled, .missingPart, .operationInProgress:
             return nil
         }
     }
