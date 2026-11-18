@@ -196,14 +196,14 @@
       "path": "Source/UI/iOS/Views/iPadLayout.swift",
       "anchor": "NavigationSplitView(",
       "old_blob": "58d505603a44e1b476b448738540a8604cb183b9",
-      "current_blob": "f03f6f85045afc3f73961894782c4cd3c0f24aa1",
+      "current_blob": "916f8623ad5625dcb550d7e58e3eff0718281afe",
       "line": 106
     },
     {
       "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
       "anchor": "struct iPhoneLayout",
       "old_blob": "b6692b114311ee389e9548ff557887194bdb3e05",
-      "current_blob": "a457907bbe64a9e94efa9c901e66520efc5831ff",
+      "current_blob": "19dfa329e5283714dd732c83dd127418fa7967a7",
       "line": 12
     },
     {
@@ -417,5 +417,5 @@
       "line": 637
     }
   ],
-  "source_sha": "d2bc52b961aad72ff0c204175030a54d94e21353"
+  "source_sha": "240053fb01139a6695f7d876bf80a1542940696c"
 }

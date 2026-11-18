@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "d2bc52b961aad72ff0c204175030a54d94e21353",
+  "source_test_commit": "240053fb01139a6695f7d876bf80a1542940696c",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "d2bc52b961aad72ff0c204175030a54d94e21353",
+  "app_source": "240053fb01139a6695f7d876bf80a1542940696c",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2",
@@ -731,6 +731,11 @@
     "native_global_root_cases": [
       "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
       "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
-    ]
+    ],
+    "native_global_roots_source": {
+      "sha": "240053fb01139a6695f7d876bf80a1542940696c",
+      "scope": "Original Search and Annotations roots, foreground global Intents discovery, retained private query and nonmutating annotation navigation",
+      "status": "SOURCE_IMPLEMENTED_NATIVE_PENDING"
+    }
   }
 }

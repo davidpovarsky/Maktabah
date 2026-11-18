@@ -74,6 +74,9 @@ def main(source):
         r.update(id="inventory.v1.native."+kind,screen_section_component=title,source=ref(path,anchor),
             owning_view_model="NativeIntentService / original registered NativeDestinationEntityQuery",
             installed_registry_id=None,linked_semantic_action=None,
+            inputs=["fresh registered backend-qualified root entity", "exact foreground scene"],
+            visible_state="The chosen original native root is independently visible and acknowledged",
+            public_versions="NOT_APPLICABLE_SYSTEM_INTENT",
             note="App metadata and foreground service installed for eligible History/Search/Annotations/Settings; actual Siri/Shortcuts invocation NOT_RUN; Reader content is not advertised")
         rows.append(r)
     byid={r["id"]:r for r in rows}
@@ -137,6 +140,8 @@ def main(source):
     examples["registered"]=False
     examples["current_native_examples"]=[
         {"case":"History public v1/v2","registry_id":"native.history","presentation":"currentTab","input":"Use canonical original NativeRouteURL or NativePublicNavigationURLV2 encoder and active backend; no private search text","expected":"Exact foreground History visible plus original native receipt"},
+        {"case":"Search root","registry_id":"native.search","presentation":"currentTab","input":"Canonical public v1/v2 root with current backend, no query payload","expected":"Original Search root and exact native receipt; original private query retained without submitting"},
+        {"case":"Annotations root","registry_id":"native.annotations","presentation":"currentTab","input":"Canonical public v1/v2 root with current backend, no note/draft/mutation payload","expected":"Original Annotations root and exact native receipt; no import/export/delete request"},
         {"case":"Settings public v2","registry_id":"native.settings","presentation":"sheet","input":"Use canonical NativePublicNavigationURLV2 encoder; current backend; root only","expected":"Actual Settings sheet visible; no backend/settings writes"},
         {"case":"Reader positive","registry_id":"native.reader","presentation":"currentTab","input":"Current iPad active book, known source line from independently hashed fixture, explicit section and focus, sameTab; use canonical v2 codec","expected":"Original TextKit glyph at exact source line and original full Core completion receipt"},
         {"case":"Reader other-book/current-only refusal","registry_id":"native.reader","presentation":"currentTab","input":"A different known fixture book while current-only binding is installed","expected":"No acknowledgement or mutation; explicit unsupported route"},
@@ -169,7 +174,7 @@ def main(source):
     lines=["# UI surface inventory — continuation 2026-11-18","",
         "Source: "+source+". This is the G0 source inventory. A supported row means source wiring, never a native PASS.","",
         "Owner/review: "+OWNER+". The owner explicitly requested solo execution; no independent QA was represented.","",
-        f"{len(rows)} semantic rows, {len(files)} immutable source files, {len(candidate_paths)} lexical candidates, {len(dispositions)} file dispositions, 27 retained manual scenarios and five current native scenarios.","",
+        f"{len(rows)} semantic rows, {len(files)} immutable source files, {len(candidate_paths)} lexical candidates, {len(dispositions)} file dispositions, 27 retained manual scenarios and seven current native scenarios.","",
         "## Installed native scope","",
         "History/Search/Annotations/current tab and Settings/root sheet are connected to the original foreground scene orchestrator. Phone roots pop the original selectedBook presentation while retaining its tab/model. Reader/public-v2 is connected to the original ActionCore for the current iPad book and tab, with original TextKit visibility. Reader cross-book/new-tab/phone content, component destinations, and Siri Reader invocation remain unfinished. Inventory IDs are not installed registry IDs.","",
         "Native, Siri and physical-device execution is reported separately against the exact tested commit; this document does not award any native pass.","",
@@ -189,11 +194,11 @@ def main(source):
         lines.append("")
     lines+=["## Source caveats",""]
     for c in d["source_caveats"]:lines+=["- "+c["id"]+": "+c["status"]+". "+c["detail"]]
-    lines+=["","## Manual examples","", "UI_ROUTE_EXAMPLES.json retains all 27 per-backend manual plans and adds canonical History, Settings, current-book Reader, other-book refusal and stale-owner scenarios. They are plans, not execution evidence.",""]
+    lines+=["","## Manual examples","", "UI_ROUTE_EXAMPLES.json retains all 27 per-backend manual plans and adds canonical History, Search, Annotations, Settings, current-book Reader, other-book refusal and stale-owner scenarios. They are plans, not execution evidence.",""]
     (HERE/"UI_SURFACE_INVENTORY.md").write_text("\n".join(lines),encoding="utf-8")
     report=dict(source_sha=source,source_files_verified=len(files),semantic_anchors_verified=len(rows),
         lexical_candidates=len(candidate_paths),file_dispositions=len(dispositions),unclassified_candidates=0,
-        new_paths_classified=len(d["source_census"]["added_paths"]),manual_semantic_examples=27,current_native_plans=5,
+        new_paths_classified=len(d["source_census"]["added_paths"]),manual_semantic_examples=27,current_native_plans=7,
         status="SOURCE_DOCUMENT_VALIDATION_PASS",review_owner=OWNER,native_runtime_tests_executed=0,
         physical_device_tests_executed=0,scope_exclusion="No source-document check certifies app/provider/UI/Siri/physical runtime")
     report["artifact_sha256"]={n:hashlib.sha256((HERE/n).read_bytes()).hexdigest() for n in ["SOURCE_SCAN.json","UI_ROUTE_COVERAGE.json","UI_SURFACE_INVENTORY.md","UI_ROUTE_EXAMPLES.json"]}
