@@ -1,0 +1,28 @@
+{
+  "prior_run": 44335820129,
+  "prior_checkout_sha": "07b596b87ea84eb0d16f35e1699c7141e8ad46cf",
+  "prior_source_sha": "8e35c7d9bebbdd93933686f35b4dead9e3f22994",
+  "prior_status": "APP_BUILD_FAILED_60_NATIVE_NOT_RUN",
+  "executed_pass": 0,
+  "executed_fail": 0,
+  "not_run": 60,
+  "actual_error": "Apple Swift6.4 @ObservationIgnored on a conditionally attributed Debug property conflicts with enclosing @Observable macro; unexpected getter/init accessor",
+  "file": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+  "ownership": "DOWNSTREAM_OWNED_FORK_ONLY",
+  "provenance": {
+    "upstream_head": "d46af139b3a265399c16d87f5923acd8e3444024",
+    "upstream_namespace_tree": "absent",
+    "upstream_symbol_search": "no matches",
+    "introduced_by": "20f44a736985cb69ee5be729f811eeb2d72650ac",
+    "introduced_name": "Implement UnifiedSearchSessionController and attach to iOSNavigationManager"
+  },
+  "scope": "Replace only passive Debug publication-dedup storage with let reference to a MainActor-owned nested holder. Original event values, metadata, observers, original engines, queries and acceptance assertions are unchanged. No code exists in Release.",
+  "approval_boundary": "Only this verified fork-owned file is changed. Rejected upstream SQLite changes and exception register remain untouched.",
+  "patch_sha256": "c0ef2de75e505568c680c2b2d2446a057e31112f4b12c70af770315459272ac2",
+  "artifact_sha256": "3335fe296a85f57c3f1bd7028dd3d64a420a0b34b11a3eef3bcbf481ad11498a",
+  "zip_bytes": 39454930,
+  "artifact_full_crc_verified": true,
+  "new_app_native_status": "NOT_RUN",
+  "reviewer": "Sole developer; no independent reviewer",
+  "rollback": "Revert only this fork-owned Debug storage change; no user data changes"
+}

@@ -148,10 +148,13 @@ final class UnifiedSearchSessionController {
 
     #if DEBUG
     private let nativeSearchObservationID = UUID()
-    #if os(iOS)
-    @ObservationIgnored
-    #endif
-    private var nativePublishedSearchBytes: Data?
+    // A let reference is excluded from Observation on every build. A
+    // conditionally attached @ObservationIgnored conflicted with @Observable
+    // expansion in the actual Apple Swift6.4 Debug build.
+    @MainActor private final class NativePublicationObservation {
+        var bytes: Data?
+    }
+    private let nativePublicationObservation = NativePublicationObservation()
 
     /// Explicit disposable-fixture diagnostics. Release builds contain no hook.
     /// Request query fields are hashed; only fixture provider metadata is retained.
@@ -227,9 +230,9 @@ final class UnifiedSearchSessionController {
         ]
         do {
             let bytes = try JSONSerialization.data(withJSONObject: event, options: [.sortedKeys])
-            guard nativePublishedSearchBytes != bytes else { return }
+            guard nativePublicationObservation.bytes != bytes else { return }
             try writeNativeSearchObservation(event)
-            nativePublishedSearchBytes = bytes
+            nativePublicationObservation.bytes = bytes
         } catch { NSLog("[GlobalSearchNativeObservation] UI observation failed: %@", String(describing: error)) }
     }
 
