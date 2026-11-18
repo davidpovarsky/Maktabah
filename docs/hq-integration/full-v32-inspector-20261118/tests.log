@@ -1,0 +1,3 @@
+PASS actual Inspector berakhot-500-lines relationships=10361 metadata=2035.3012084960938ms full=2242.7139282226562ms
+PASS actual Inspector berakhot-401-sparse-lines relationships=8247 metadata=1628.1375885009766ms full=2013.467788696289ms
+PASS actual Inspector tehillim-100-lines relationships=4608 metadata=1010.9672546386719ms full=799.8828887939453ms

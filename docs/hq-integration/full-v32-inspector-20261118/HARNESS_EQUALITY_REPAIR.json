@@ -1,0 +1,9 @@
+{
+  "reason": "Isolated actual Swift6.3.3 Foundation reproduction: NSDictionary same dictionary=false; independently equal=false; exact canonical JSON=true.",
+  "old_fixture_sha256": "a456e26245030b71dcd891dfbac189a79828f8cc444c1a7f171864f6fa763810",
+  "new_fixture_sha256": "4abcf8af4c91b7dd6140a35e89ed76327adb5a6451ff59d2d0bc675fbb8b15ae",
+  "changed_production_files": [],
+  "oracles": "All fields retained; equality uses exact canonical bytes. No omitted fields beyond original intentionally different content.",
+  "diagnostic": "FOUNDATION_EQUALITY_DIAGNOSTIC.log",
+  "prior_status": "FAILED_HARNESS_COMPARISON_NOT_PRODUCT_ACCEPTANCE"
+}

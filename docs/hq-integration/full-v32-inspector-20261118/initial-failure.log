@@ -1,0 +1,13 @@
+main/FullSourceInspectorAcceptance.swift:123: Precondition failed
+Current stack trace:
+0    swiftCore.dll                      0x00007ffd35dbe730 swift_reportError + 94
+1    swiftCore.dll                      0x00007ffd35e5dc00 swift_stdlib_reportFatalErrorInFile + 132
+2    swiftCore.dll                      0x00007ffd35a973e0 StaticString.withUTF8Buffer<A>(_:) + 1028
+3    swiftCore.dll                      0x00007ffd35a967b0 _assertionFailure(_:_:file:line:flags:) + 262
+4    full-inspector.exe                 0x00007ff733515980 type metadata accessor for OtzariaReadingUnitDescriptor + 123018
+5    swift_Concurrency.dll              0x00007ffd752e2cb0 UnimplementedTaskExecutor.__deallocating_deinit + 25902
+6    swift_Concurrency.dll              0x00007ffd752e9d60 swift_job_run + 114
+7    full-inspector.exe                 0x00007ff733539cd0 main + 125
+8    full-inspector.exe                 0x00007ff73354ebe0 type metadata accessor for OtzariaLineSourcesService + 2783
+9    KERNEL32.DLL                       0x00007ffe05bfdd90 BaseThreadInitThunk + 23
+10   ntdll.dll                          0x00007ffe05e99c30 RtlUserThreadStart + 44

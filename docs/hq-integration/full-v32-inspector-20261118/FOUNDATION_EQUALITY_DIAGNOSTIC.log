@@ -1,0 +1,5 @@
+Creating library build\eq-b68fee22f5\compare.lib and object build\eq-b68fee22f5\compare.exp
+
+NSDictionary same dictionary = false
+NSDictionary independently equal dictionary = false
+Exact canonical JSON equality = true
