@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_test_commit": "a190bbf0017e5f7ad5f79b09f0e8e03cab64fa52",
+  "source_test_commit": "a50b0b2bc420aba2dd9d2845edce0ef64b57ca30",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
   "app_source": "a190bbf0017e5f7ad5f79b09f0e8e03cab64fa52",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
@@ -133,7 +133,7 @@
   ],
   "reused_ui_passes": 0,
   "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
-  "previous_manifest_sha256": "a50e9b70543fe0098c640cbfc67bcad067dc47859bf0820c271c51662ef8d113",
+  "previous_manifest_sha256": "8db2795994b914dac4f78982af29ed4af216fc9d6b34c5e9c6c8618280e75aa0",
   "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
   "affected_execution_groups": [
     "11-reader",
@@ -1037,5 +1037,6 @@
       "scope": "Exact SQLite two-hunk error propagation; matched installed SDK/runtime pair and complete fixture/diagnostic label allowlists; test names and oracles unchanged",
       "review": "docs/hq-integration/native65-runtime-20261118/REVIEW.json"
     }
-  }
+  },
+  "application_source_sha": "a50b0b2bc420aba2dd9d2845edce0ef64b57ca30"
 }

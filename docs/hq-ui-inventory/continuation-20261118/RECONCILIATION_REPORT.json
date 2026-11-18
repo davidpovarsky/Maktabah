@@ -144,6 +144,10 @@
     "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
     "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
     "Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactDownloader.swift",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactService.swift",
     "Source/Otzaria/Search/OtzariaSearchIndexManager.swift",
     "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
     "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
@@ -454,5 +458,5 @@
       "line": 637
     }
   ],
-  "source_sha": "a190bbf0017e5f7ad5f79b09f0e8e03cab64fa52"
+  "source_sha": "a50b0b2bc420aba2dd9d2845edce0ef64b57ca30"
 }
