@@ -1,0 +1,31 @@
+{
+  "observed_at": "2026-11-18T20:15:27.439378+00:00",
+  "run": 44383455367,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44383455367",
+  "status": "SUCCESS",
+  "checkout_sha": "2d31ba096bae1136f52a6dff97727d86d7dfc93e",
+  "app_source_sha": "19b5cba46e664692bae6ddcdfca5eccacba8b3c6",
+  "sdk_status": "PASS",
+  "selected_ui_declarations": 65,
+  "selected_toolchain": {
+    "developer_dir": "/Applications/Xcode_27.2.app/Contents/Developer",
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "xcode_version": "27.2",
+    "sdk_version": "27.2",
+    "app_intents_testing": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/AppIntentsTesting.framework/AppIntentsTesting",
+    "runtime_identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-2"
+  },
+  "macos_actual_sqlite_cases": 20,
+  "macos_actual_sqlite_failures": 0,
+  "macos_sqlite_version": "3.54.0",
+  "workspace_checks_pass": 61,
+  "warnings": 2298,
+  "native_ui_executed": 0,
+  "artifact": {
+    "id": 14465779024,
+    "bytes": 121645,
+    "sha256": "5d8670b91c5560142ef06e4ebd72f8ecd6af26a06fa728d7d79e2ce34f17cbd0",
+    "zip_crc_verified": true
+  },
+  "evidence_path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\sdk-2d31"
+}

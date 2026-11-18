@@ -1,0 +1,19 @@
+PASS absent package is not installed
+FAIL status creates no installation directories
+FAIL status preserves in-progress staging
+PASS official valid package passes status
+PASS official valid package passes discovery
+PASS corrupt-metadata status rejects damaged package
+FAIL corrupt-metadata discovery rejects damaged package
+PASS missing-index status rejects damaged package
+FAIL missing-index discovery rejects damaged package
+FAIL missing-segment status rejects damaged package
+FAIL missing-segment discovery rejects damaged package
+FAIL truncated-segment status rejects damaged package
+FAIL truncated-segment discovery rejects damaged package
+FAIL malformed-tantivy-meta status rejects damaged package
+FAIL malformed-tantivy-meta discovery rejects damaged package
+FAIL offset-gap status rejects damaged package
+FAIL offset-gap discovery rejects damaged package
+FAIL unsafe-part-path status rejects damaged package
+FAIL unsafe-part-path discovery rejects damaged package

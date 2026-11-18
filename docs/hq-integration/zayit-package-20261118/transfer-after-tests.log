@@ -1,0 +1,7 @@
+PASS actual URLSession request reaches held HTTP server
+PASS status during actual transfer preserves staging
+PASS second installation is rejected before another download
+PASS remove refuses to race active installation
+PASS original installed index survives rejected removal
+PASS cancel aborts held URLSession before response release
+PASS cancelled operation cannot report successful promotion

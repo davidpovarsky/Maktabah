@@ -1,0 +1,120 @@
+{
+  "observed_at": "2026-11-18T20:03:34.058002+00:00",
+  "source_ref": "2d31ba096bae1136f52a6dff97727d86d7dfc93e",
+  "source_file_sha256": "e77c5a9dcea2448476dd09d5234e5a2f5b6383e5e51b19619a2c3507f40f7189",
+  "exact_method_sha256": {
+    "status": "42b5a5aad367fe881348e62346d599f1340f2396b80ddc3f58a49fb21de12952",
+    "discover": "87b8a28f3f62f3931b407c9b41296270b0fedd38a5509f5403a16283f1a48486",
+    "installedManifest": "64534289156502784c8e875e8b74c46f87536e5372183109d1fbc9480743ff8d",
+    "validateStaging": "682a958de96bd370a4f4baa99401b518dd2c23e3e636c8a274eb594e823c6cbc"
+  },
+  "test_source_sha256": "75b54154a1b56f8459ad8ed8adc46ce55aec9207ce7b50d5b67a2e129356e5c9",
+  "official_manifest_sha256": "3c7dd1358954ac8a026dcdb575b404afe1ea2d37a6aebe0523cc5617fc47bc7d",
+  "actual_index_files": {
+    "e0cf5a85509741e38dc48ca6bb5814f8.fast": "71a89df9561fe1b9b79d632aa477cf800549f474c4c2166dafca8801a9e70279",
+    "e0cf5a85509741e38dc48ca6bb5814f8.fieldnorm": "b9b43e6751e732c8600416c8c905f65c5b2364199e22864d752cd311586a4111",
+    "e0cf5a85509741e38dc48ca6bb5814f8.idx": "dbe38f41e6b1665793f4023397e4a89b2f731706d0d50fde0bf90e928d9163bc",
+    "e0cf5a85509741e38dc48ca6bb5814f8.pos": "058290657ca84aaf5036594bc970dd22373d576f81d783e180e7449ef625ebba",
+    "e0cf5a85509741e38dc48ca6bb5814f8.store": "648043cc1a59847ba6f663cd293573e3e9f7aa076a33f1229fd244686312b851",
+    "e0cf5a85509741e38dc48ca6bb5814f8.term": "b7920baa804273f80e9fc2162d376002b7d4f861c879ae5f740f97504d64cede",
+    "meta.json": "2c48e2381b503f86a4c0fe5eb7ea6780bf1e6952707d87db804737ccd303f093",
+    "zayit-index-metadata.json": "3bf2d4b8823a36ad5c89f617865ef7cada2e673f43b10ba24e18bd8b9c10dc8e"
+  },
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\zrf-cfdc71e68e1a",
+  "compile_exit": 0,
+  "native_ui_executed": 0,
+  "real_engine_queries_executed": 0,
+  "boundaries": [
+    "Exact unmodified production status/discover/installedManifest/validateStaging method bodies",
+    "Exact production manifest/state/error declarations and storage prepare/cleanup methods",
+    "Fixture roots/lock/backup attribute, DB compatibility and network discovery are explicit doubles",
+    "Real official hashed miniTest10-v6 index bytes copied into unique owned test directories"
+  ],
+  "execute_exit": 1,
+  "cases": {
+    "cases": [
+      {
+        "name": "absent package is not installed",
+        "status": "PASS"
+      },
+      {
+        "name": "status creates no installation directories",
+        "status": "FAIL"
+      },
+      {
+        "name": "status preserves in-progress staging",
+        "status": "FAIL"
+      },
+      {
+        "name": "official valid package passes status",
+        "status": "PASS"
+      },
+      {
+        "name": "official valid package passes discovery",
+        "status": "PASS"
+      },
+      {
+        "name": "corrupt-metadata status rejects damaged package",
+        "status": "PASS"
+      },
+      {
+        "name": "corrupt-metadata discovery rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "missing-index status rejects damaged package",
+        "status": "PASS"
+      },
+      {
+        "name": "missing-index discovery rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "missing-segment status rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "missing-segment discovery rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "truncated-segment status rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "truncated-segment discovery rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "malformed-tantivy-meta status rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "malformed-tantivy-meta discovery rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "offset-gap status rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "offset-gap discovery rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "unsafe-part-path status rejects damaged package",
+        "status": "FAIL"
+      },
+      {
+        "name": "unsafe-part-path discovery rejects damaged package",
+        "status": "FAIL"
+      }
+    ],
+    "engine_query_executed": 0,
+    "failed": 14,
+    "native_ui_executed": 0,
+    "passed": 5,
+    "total": 19
+  },
+  "status": "FAILED"
+}

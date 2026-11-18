@@ -1,0 +1,134 @@
+{
+  "observed_at": "2026-11-18T19:59:33.575594+00:00",
+  "host": "Windows-11-10.0.26300-SP0",
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "source_sha": "2d31ba096bae1136f52a6dff97727d86d7dfc93e",
+  "source_files": {
+    "Source/Core/Database/SQLiteDatabase.swift": "a600973b402956d946c727def2c1fe1ada011f623a2da9db19ddb26e3c6e5a1e",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "f2f62c6f9fe76442560bdd2be08320d9e6db3edd79849a4451cead2c63382bab",
+    "Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift": "69cabdac1a501cf36227795f5ef768a0de1d691c2d627bb41cbfc1d0a7a492b6"
+  },
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "-I",
+    "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\sqlite-source-20261118\\after-full-v32\\owned-fixture-479d2637-e868-4a7d-9c93-2d3ae0126fd5",
+    "-L",
+    "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Source\\Core\\Database\\SQLiteDatabase.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Tests\\HQ\\sqlite\\UnusedZstdBoundary.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Tests\\HQ\\sqlite\\SQLiteDatabaseAcceptance.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\sqlite-source-20261118\\after-full-v32\\owned-fixture-479d2637-e868-4a7d-9c93-2d3ae0126fd5\\sqlite-acceptance.exe"
+  ],
+  "compile_exit": 0,
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\sqlite-source-20261118\\after-full-v32\\owned-fixture-479d2637-e868-4a7d-9c93-2d3ae0126fd5",
+  "real_source_readonly_count": 2,
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "sqlite_is_real": true,
+  "zstd_boundary_is_unexecuted": true,
+  "execute_exit": 0,
+  "actual_sqlite": {
+    "cases": [
+      {
+        "name": "successful_rows_and_genuine_zero",
+        "passed": true
+      },
+      {
+        "name": "all_supported_binding_types_keep_values",
+        "passed": true
+      },
+      {
+        "name": "step_error_before_first_row_is_not_empty_success",
+        "passed": true
+      },
+      {
+        "name": "step_error_after_first_row_is_not_partial_success",
+        "passed": true
+      },
+      {
+        "name": "same_cached_query_recovers_after_step_failure",
+        "passed": true
+      },
+      {
+        "name": "actual_sqlite_interrupt_never_returns_partial_rows",
+        "passed": true
+      },
+      {
+        "name": "cached_statement_recovers_after_interrupt",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_int_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_int64_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_double_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_text_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_null_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "unsupported_bind_type_still_fails_without_poisoning_cache",
+        "passed": true
+      },
+      {
+        "name": "mapping_error_is_preserved_and_statement_is_reset",
+        "passed": true
+      },
+      {
+        "name": "cached_schema_change_error_is_not_empty_success",
+        "passed": true
+      },
+      {
+        "name": "transaction_rolls_back_when_a_read_fails",
+        "passed": true
+      },
+      {
+        "name": "actual_writer_lock_is_not_empty_success",
+        "passed": true
+      },
+      {
+        "name": "read_under_writer_lock_recovers_after_rollback",
+        "passed": true
+      },
+      {
+        "name": "readonly_connection_rejects_writes",
+        "passed": true
+      },
+      {
+        "name": "serialized_concurrent_reads_preserve_entire_results",
+        "passed": true
+      },
+      {
+        "name": "actual_readonly_source_0",
+        "passed": true
+      },
+      {
+        "name": "actual_readonly_source_1",
+        "passed": true
+      }
+    ],
+    "decompressorExecuted": false,
+    "nativeUIExecuted": 0,
+    "originalDatabaseWrapper": "Source/Core/Database/SQLiteDatabase.swift",
+    "physicalDeviceExecuted": 0,
+    "sqliteVersion": "3.53.4"
+  },
+  "status": "EXECUTED_PASS_ACTUAL_SQLITE"
+}

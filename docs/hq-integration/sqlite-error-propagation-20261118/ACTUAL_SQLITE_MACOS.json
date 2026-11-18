@@ -1,0 +1,124 @@
+{
+  "observed_at": "2026-11-18T20:11:52.449079+00:00",
+  "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "source_sha": "2d31ba096bae1136f52a6dff97727d86d7dfc93e",
+  "source_files": {
+    "Source/Core/Database/SQLiteDatabase.swift": "71f08664bd5a7c99cca3d5a7d4fa28e318a0c03c8d3c59b1cb184215be6c6169",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift": "cc68a18f5e97f68886df4c24bfb5f22fd4c9b6af51c22417ecc528e3bccb10d2"
+  },
+  "command": [
+    "/usr/bin/swiftc",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "-sdk",
+    "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk",
+    "/Users/runner/work/Maktabah/Maktabah/Source/Core/Database/SQLiteDatabase.swift",
+    "/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+    "/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift",
+    "-o",
+    "/Users/runner/work/Maktabah/Maktabah/build/artifacts/sqlite-source/owned-fixture-50dce616-e5b7-4395-8b50-bd17fa43a7f1/sqlite-acceptance"
+  ],
+  "compile_exit": 0,
+  "owned_fixture": "/Users/runner/work/Maktabah/Maktabah/build/artifacts/sqlite-source/owned-fixture-50dce616-e5b7-4395-8b50-bd17fa43a7f1",
+  "real_source_readonly_count": 0,
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "sqlite_is_real": true,
+  "zstd_boundary_is_unexecuted": true,
+  "execute_exit": 0,
+  "actual_sqlite": {
+    "cases": [
+      {
+        "name": "successful_rows_and_genuine_zero",
+        "passed": true
+      },
+      {
+        "name": "all_supported_binding_types_keep_values",
+        "passed": true
+      },
+      {
+        "name": "step_error_before_first_row_is_not_empty_success",
+        "passed": true
+      },
+      {
+        "name": "step_error_after_first_row_is_not_partial_success",
+        "passed": true
+      },
+      {
+        "name": "same_cached_query_recovers_after_step_failure",
+        "passed": true
+      },
+      {
+        "name": "actual_sqlite_interrupt_never_returns_partial_rows",
+        "passed": true
+      },
+      {
+        "name": "cached_statement_recovers_after_interrupt",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_int_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_int64_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_double_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_text_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_null_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "unsupported_bind_type_still_fails_without_poisoning_cache",
+        "passed": true
+      },
+      {
+        "name": "mapping_error_is_preserved_and_statement_is_reset",
+        "passed": true
+      },
+      {
+        "name": "cached_schema_change_error_is_not_empty_success",
+        "passed": true
+      },
+      {
+        "name": "transaction_rolls_back_when_a_read_fails",
+        "passed": true
+      },
+      {
+        "name": "actual_writer_lock_is_not_empty_success",
+        "passed": true
+      },
+      {
+        "name": "read_under_writer_lock_recovers_after_rollback",
+        "passed": true
+      },
+      {
+        "name": "readonly_connection_rejects_writes",
+        "passed": true
+      },
+      {
+        "name": "serialized_concurrent_reads_preserve_entire_results",
+        "passed": true
+      }
+    ],
+    "decompressorExecuted": false,
+    "nativeUIExecuted": 0,
+    "originalDatabaseWrapper": "Source/Core/Database/SQLiteDatabase.swift",
+    "physicalDeviceExecuted": 0,
+    "sqliteVersion": "3.54.0"
+  },
+  "status": "EXECUTED_PASS_ACTUAL_SQLITE"
+}

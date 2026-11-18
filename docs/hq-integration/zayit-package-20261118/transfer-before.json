@@ -1,0 +1,79 @@
+{
+  "observed_at": "2026-11-18T20:08:39.193262+00:00",
+  "source_ref": "2d31ba096bae1136f52a6dff97727d86d7dfc93e",
+  "source_sha256": "e77c5a9dcea2448476dd09d5234e5a2f5b6383e5e51b19619a2c3507f40f7189",
+  "test_sha256": "c3d4f56bf307db1040b6eb34c91206a9267bc7ec22dfcc29281fdaf7928385ed",
+  "methods_sha256": {
+    "status": "42b5a5aad367fe881348e62346d599f1340f2396b80ddc3f58a49fb21de12952",
+    "installedManifest": "64534289156502784c8e875e8b74c46f87536e5372183109d1fbc9480743ff8d",
+    "validateStaging": "682a958de96bd370a4f4baa99401b518dd2c23e3e636c8a274eb594e823c6cbc",
+    "install": "cd008f535d75516481f93c6d456dc3744829c96d7000177d0812579fc374e48c",
+    "cancel": "28740bba550ec2c3876e1d8008d88ef0ed0caaa9dde6e95b0d876665df30921f",
+    "remove": "d73caeebbfddf7b100e2aee7f4062905ffbbba7b9c86a8f26de6985bffdea577",
+    "download": "3acc163518f3f06ce52807368af125123a5e7454d724f9b5df470bf5e02d1e5b",
+    "checkCancellation": "5a1fad57ec0a6c40587d83a3ad44df2f97655ee1a83549be898a43ffb113fb8d",
+    "fileSize": "3a621d53f06855a8d9a074cc4156985e953a51226c58755cd2c9bd7f74934aeb"
+  },
+  "compile_exit": 0,
+  "native_ui_executed": 0,
+  "real_urlsession": true,
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\ztf-c72c7c119a60",
+  "boundaries": [
+    "Exact original selected method bodies; real local HTTP connection and filesystem",
+    "Provider resolution, lexical DB authority, capacity, backup attribute and storage lock are explicit doubles",
+    "Archive verification must receive cancellation; extraction/promotion fail immediately if unexpectedly called"
+  ],
+  "execute_exit": 1,
+  "cases": {
+    "cancellation_observation_seconds": 2.0319976806640625,
+    "cases": [
+      {
+        "name": "actual URLSession request reaches held HTTP server",
+        "status": "PASS"
+      },
+      {
+        "name": "status during actual transfer preserves staging",
+        "status": "FAIL"
+      },
+      {
+        "name": "second installation is rejected before another download",
+        "status": "FAIL"
+      },
+      {
+        "name": "remove refuses to race active installation",
+        "status": "FAIL"
+      },
+      {
+        "name": "original installed index survives rejected removal",
+        "status": "FAIL"
+      },
+      {
+        "name": "cancel aborts held URLSession before response release",
+        "status": "FAIL"
+      },
+      {
+        "name": "cancelled operation cannot report successful promotion",
+        "status": "PASS"
+      }
+    ],
+    "failed": 5,
+    "first_outcome": "cancelled",
+    "native_ui_executed": 0,
+    "passed": 2,
+    "second_outcome": "cancelled",
+    "total": 7
+  },
+  "actual_http_requests": [
+    {
+      "request": 1,
+      "asset": "zayit-index-0000.zst",
+      "started_at": 1795032519.5788379
+    },
+    {
+      "request": 2,
+      "asset": "zayit-index-0000.zst",
+      "started_at": 1795032519.6835756
+    }
+  ],
+  "status": "FAILED"
+}

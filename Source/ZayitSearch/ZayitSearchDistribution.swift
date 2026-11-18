@@ -98,6 +98,7 @@ enum ZayitSearchDistributionError: LocalizedError, Sendable {
     case extractionFailed(String)
     case validationFailed(String)
     case cancelled
+    case operationInProgress
 
     var errorDescription: String? {
         switch self {
@@ -114,6 +115,7 @@ enum ZayitSearchDistributionError: LocalizedError, Sendable {
         case .extractionFailed(let detail): "The Zayit index could not be extracted: \(detail)"
         case .validationFailed(let detail): "The Zayit index failed validation: \(detail)"
         case .cancelled: "The Zayit download was cancelled and can be resumed later."
+        case .operationInProgress: "A Zayit installation is already in progress. Cancel it before replacing or removing the index."
         }
     }
 
@@ -204,14 +206,14 @@ actor ZayitSearchArtifactService {
 
     typealias Progress = @Sendable (ZayitSearchPackageState) -> Void
 
-    private var activeTask: URLSessionDataTask?
+    private var installTask: Task<Void, Error>?
     private var cancelled = false
 
     func status(databaseURL: URL?) async -> ZayitSearchPackageState {
         do {
             let storage = try ZayitSearchArtifactStorage()
-            try storage.prepare()
-            storage.cleanupOrphans()
+            // Observation must not erase another suspended installation's staging
+            // or recovery files. Mutation/recovery belongs to explicit install/remove.
             guard let databaseURL else { return .incompatible("Seforim DB is not installed") }
             let installed = try installedManifest(storage: storage)
             guard let installed else { return .notInstalled }
@@ -231,10 +233,14 @@ actor ZayitSearchArtifactService {
     func discover(databaseURL: URL) async throws -> ZayitSearchPackageState {
         let artifact = try await resolveArtifact(matching: databaseURL)
         let storage = try ZayitSearchArtifactStorage()
-        try storage.prepare()
         if let installed = try installedManifest(storage: storage) {
-            if installed.artifactIdentity == artifact.manifest.artifactIdentity,
-               FileManager.default.fileExists(atPath: storage.finalIndex.path) {
+            do {
+                try validateCompatibility(installed, databaseURL: databaseURL)
+                try validateStaging(storage.finalIndex, manifest: installed)
+            } catch {
+                return .repairRequired(error.localizedDescription)
+            }
+            if installed.artifactIdentity == artifact.manifest.artifactIdentity {
                 return .ready(installed)
             }
             return .updateAvailable(
@@ -249,8 +255,36 @@ actor ZayitSearchArtifactService {
     }
 
     func install(databaseURL: URL, lexicalDatabaseURL: URL, progress: @escaping Progress) async throws {
+        guard installTask == nil else { throw ZayitSearchDistributionError.operationInProgress }
+        try Task.checkCancellation()
         cancelled = false
+        let task = Task {
+            try await performInstall(
+                databaseURL: databaseURL, lexicalDatabaseURL: lexicalDatabaseURL, progress: progress
+            )
+        }
+        installTask = task
+        defer { installTask = nil }
+        do {
+            try await withTaskCancellationHandler {
+                try await task.value
+            } onCancel: {
+                task.cancel()
+            }
+        } catch {
+            if cancelled || Task.isCancelled || error is CancellationError {
+                throw ZayitSearchDistributionError.cancelled
+            }
+            throw error
+        }
+    }
+
+    private func performInstall(
+        databaseURL: URL, lexicalDatabaseURL: URL, progress: @escaping Progress
+    ) async throws {
+        try checkCancellation()
         let artifact = try await resolveArtifact(matching: databaseURL)
+        try checkCancellation()
         try validateLexicalDatabase(artifact.manifest, url: lexicalDatabaseURL)
         let storage = try ZayitSearchArtifactStorage()
         try storage.prepare()
@@ -263,7 +297,9 @@ actor ZayitSearchArtifactService {
             throw ZayitSearchDistributionError.insufficientStorage(required: required, available: available)
         }
 
-        try? FileManager.default.removeItem(at: storage.installingIndex)
+        // Only the admitted installation may recover leftovers and create staging.
+        // Read-only status/discovery must never delete a suspended transfer's files.
+        storage.cleanupOrphans()
         try FileManager.default.createDirectory(at: storage.installingIndex, withIntermediateDirectories: true)
         var downloaded: Int64 = 0
         var extracted: Int64 = 0
@@ -279,16 +315,19 @@ actor ZayitSearchArtifactService {
                 try await download(part, from: remote, to: local) { received in
                     progress(.downloading(completed: baseDownloaded + received, total: artifact.manifest.packagedBytes))
                 }
+                try checkCancellation()
                 try verify(local, part: part)
                 downloaded += part.packagedBytes
                 let baseExtracted = extracted
                 try extract(part, archive: local, root: storage.installingIndex) { consumed in
                     progress(.installing(completed: baseExtracted + consumed, total: artifact.manifest.extractedBytes))
                 }
+                try checkCancellation()
                 extracted += part.uncompressedBytes
                 try FileManager.default.removeItem(at: local)
             }
             try validateStaging(storage.installingIndex, manifest: artifact.manifest)
+            try checkCancellation()
             try promote(storage: storage, manifest: artifact.manifest)
             progress(.ready(artifact.manifest))
         } catch {
@@ -300,10 +339,11 @@ actor ZayitSearchArtifactService {
 
     func cancel() {
         cancelled = true
-        activeTask?.cancel()
+        installTask?.cancel()
     }
 
     func remove() throws {
+        guard installTask == nil else { throw ZayitSearchDistributionError.operationInProgress }
         let storage = try ZayitSearchArtifactStorage()
         try? FileManager.default.removeItem(at: storage.finalIndex)
         try? FileManager.default.removeItem(at: storage.previousIndex)
@@ -522,6 +562,61 @@ private extension ZayitSearchArtifactService {
     }
 
     func validateStaging(_ url: URL, manifest: ZayitSearchArtifactManifest) throws {
+        // Check the actual installed output of every declared compressed part.
+        // Metadata presence alone cannot prove that Tantivy's segments survived.
+        guard !manifest.parts.isEmpty, manifest.parts.count <= 100_000,
+              manifest.extractedBytes > 0 else {
+            throw ZayitSearchDistributionError.validationFailed("empty or unbounded index layout")
+        }
+        let root = url.standardizedFileURL.resolvingSymlinksInPath()
+        let grouped = Dictionary(grouping: manifest.parts, by: \.destinationPath)
+        var total: Int64 = 0
+        for (path, parts) in grouped {
+            guard OtzariaSearchArtifactPolicy.validateSafeRelativePath(path) else {
+                throw ZayitSearchDistributionError.unsafePath(path)
+            }
+            var length: Int64 = 0
+            for part in parts.sorted(by: { $0.destinationOffset < $1.destinationOffset }) {
+                let (end, overflow) = length.addingReportingOverflow(part.uncompressedBytes)
+                guard part.destinationOffset == length, part.uncompressedBytes > 0, !overflow else {
+                    throw ZayitSearchDistributionError.validationFailed("noncontiguous or invalid index part: " + path)
+                }
+                length = end
+            }
+            if ["meta.json", "zayit-index-metadata.json"].contains(path),
+               length > 16 * 1_024 * 1_024 {
+                throw ZayitSearchDistributionError.validationFailed("index metadata exceeds bounded size")
+            }
+            let destination = url.appendingPathComponent(path).standardizedFileURL
+            let resolved = destination.resolvingSymlinksInPath()
+            guard resolved.pathComponents.starts(with: root.pathComponents),
+                  resolved.pathComponents.count > root.pathComponents.count else {
+                throw ZayitSearchDistributionError.unsafePath(path)
+            }
+            let attributes = try FileManager.default.attributesOfItem(atPath: destination.path)
+            guard attributes[.type] as? FileAttributeType == .typeRegular,
+                  (attributes[.size] as? NSNumber)?.int64Value == length else {
+                throw ZayitSearchDistributionError.validationFailed("missing or truncated index file: " + path)
+            }
+            let (nextTotal, overflow) = total.addingReportingOverflow(length)
+            guard !overflow else {
+                throw ZayitSearchDistributionError.validationFailed("index layout size overflow")
+            }
+            total = nextTotal
+        }
+        guard total == manifest.extractedBytes else {
+            throw ZayitSearchDistributionError.validationFailed("index output size differs from manifest")
+        }
+        // Tantivy still performs its real engine open before session readiness.
+        // This inexpensive package check also rejects a malformed meta.json.
+        let metaData = try Data(contentsOf: url.appendingPathComponent("meta.json"))
+        guard metaData.count <= 16 * 1_024 * 1_024,
+              let meta = try JSONSerialization.jsonObject(with: metaData) as? [String: Any],
+              let schema = meta["schema"] as? [[String: Any]], !schema.isEmpty,
+              let segments = meta["segments"] as? [[String: Any]],
+              manifest.counts.documents == 0 || !segments.isEmpty else {
+            throw ZayitSearchDistributionError.validationFailed("invalid Tantivy index metadata")
+        }
         guard FileManager.default.fileExists(atPath: url.appendingPathComponent("meta.json").path),
               FileManager.default.fileExists(atPath: url.appendingPathComponent("zayit-index-metadata.json").path) else {
             throw ZayitSearchDistributionError.validationFailed("Tantivy metadata is missing")
