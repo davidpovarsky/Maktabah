@@ -61,12 +61,13 @@ def main():
             runtime27_groups = runpy.run_path("Scripts/CI/runtime27.py")["execution_groups"](runtime27_contract)
             diagnostic_cases = [value for group in runtime27_groups for value in group["case_ids"]]
         if diagnostic_cases:
-            verify_selection = runpy.run_path("Scripts/CI/verify-faithful-xctest.py")["verify"]
-            declarations = verify_selection("", diagnostic_cases)["suites"]
-            if (len(set(diagnostic_cases)) != len(diagnostic_cases)
+            selection = runpy.run_path("Scripts/CI/verify-faithful-xctest.py")["validate_selections"](diagnostic_cases)
+            if (selection["status"] != "DECLARATIONS_MATCH"
+                    or len(set(diagnostic_cases)) != len(diagnostic_cases)
                     or any(not re.fullmatch(r"\w+/test\w+", item) for item in diagnostic_cases)
-                    or any(len(value["expected"]) != 1 for value in declarations)):
-                raise SystemExit("Every diagnostic selection must name one declared, unique Suite/testMethod")
+                    or any(len(value["expected"]) != 1 for value in selection["suites"])):
+                raise SystemExit("Every diagnostic selection must name one declared, unique Suite/testMethod: "
+                                 + json.dumps(selection))
         app_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
         report = {"appSHA": app_sha, "testSHA": os.environ.get("GITHUB_SHA"), "baseline": baseline,
                   "configuration": "Debug", "dataProfile": "miniTest10", "devices": [],

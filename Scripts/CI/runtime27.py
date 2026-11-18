@@ -290,6 +290,13 @@ def main():
         report["full_phase_case_ids"] = [case["case_id"] for case in contract["cases"]]
         report["supplemental_case_ids"] = [case["case_id"] for case in contract.get("supplemental_cases", [])]
         report["requested_ui_case_count"] = expected_count
+        selected_cases = [case for group in groups for case in group["case_ids"]]
+        declaration_report = runpy.run_path(str(ROOT / "Scripts/CI/verify-faithful-xctest.py"))["validate_selections"](
+            selected_cases, ROOT / "Maktabah-iOSUITests")
+        (OUT / "selected-test-declarations.json").write_text(json.dumps(declaration_report, indent=2))
+        report["declaration_preflight"] = {"status": declaration_report["status"], "runtime_passes": 0}
+        if declaration_report["status"] != "DECLARATIONS_MATCH":
+            raise RuntimeError("Required Swift XCTest declarations do not match; see selected-test-declarations.json")
         report["prior_pass_reuse"] = "Historical eight cases require exact compatibility proof; never counted as new execution"
         report["case_manifest_sha256"] = hashlib.sha256(contract_path.read_bytes()).hexdigest()
         report["full_release_acceptance"] = False
@@ -306,7 +313,8 @@ def main():
             "Scripts/CI/hq-stage2-focused-apple.py", "Scripts/CI/hq-stage2-focused-apple.inputs.json", "Scripts/CI/runtime27.py",
             "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27_interruption.py", "Scripts/CI/runtime27-fixture-oracle.py",
             "tools/verify_xcresult_zero_skips.py", "Scripts/CI/collect-runtime27-palette-log.py", "Scripts/CI/runtime27-hid.py",
-            "Scripts/CI/runtime27-fixture-recovery.py", "Scripts/CI/runtime27-url-delivery.py", "Scripts/CI/shutdown-faithful-simulator.py"]}
+            "Scripts/CI/runtime27-fixture-recovery.py", "Scripts/CI/runtime27-url-delivery.py", "Scripts/CI/shutdown-faithful-simulator.py",
+            "Scripts/CI/verify-faithful-xctest.py"]}
         if contract.get("hid_comparison"):
             if run_logged([sys.executable, "Scripts/CI/runtime27-hid.py", "prepare", "--out", str(OUT / "hid-tools.json")],
                           "hid-prepare.log", 360, interrupt_controller=controller):

@@ -2,6 +2,7 @@
 """Cheap real-SDK compile of self-contained tests, including SIL isolation checks."""
 import json
 import hashlib
+import runpy
 from pathlib import Path
 import subprocess
 import sys
@@ -61,6 +62,20 @@ report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], tex
           "warningCount": result.stdout.count("warning:"),
           "sourceHashes": {path: hashlib.sha256(Path(path).read_bytes()).hexdigest() for path in ui_sources},
           "notRuntimeAcceptance": True, "nativeUITestsExecuted": 0}
+# Validate the exact selected declarations with this actual Apple Swift
+# frontend too. Syntax/declaration evidence never grants a Native execution.
+contract = json.loads(Path("docs/hq-integration/runtime27/R27_CASES.json").read_text())
+groups = runpy.run_path("Scripts/CI/runtime27.py")["execution_groups"](contract)
+selected = [case for group in groups for case in group["case_ids"]]
+declaration_report = runpy.run_path("Scripts/CI/verify-faithful-xctest.py")["validate_selections"](selected)
+declaration_tests = subprocess.run([sys.executable, "Scripts/CI/test-verify-faithful-xctest.py"],
+                                   capture_output=True, text=True, timeout=120)
+declaration_code = int(declaration_report["status"] != "DECLARATIONS_MATCH" or declaration_tests.returncode != 0)
+report["nativeDeclarationPreflight"] = {"selectedCount": len(selected), "declarations": declaration_report,
+    "compilerRegressionExitCode": declaration_tests.returncode, "nativeUITestsExecuted": 0}
+with (artifacts / "ui-acceptance-typecheck.log").open("a", encoding="utf-8") as output:
+    output.write("\nCompiler declaration regression checks (not Native):\n"
+                 + declaration_tests.stdout + declaration_tests.stderr)
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 print(json.dumps(report, indent=2))
 print(result.stdout)
@@ -221,6 +236,6 @@ if (native_host / "Package.swift").is_file():
     print(native_host_result.stdout)
 report["appMembershipStatus"] = "PASS" if membership_code == 0 else "FAIL"
 report["toolbarSDKStatus"] = "SDK_COMPILE_PASS" if toolbar_code == 0 else "BUILD_FAILED"
-report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code) else "FAIL"
+report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code) else "FAIL"
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
-raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code)
+raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code)

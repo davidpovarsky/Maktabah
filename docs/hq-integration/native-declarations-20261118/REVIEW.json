@@ -1,0 +1,22 @@
+{
+  "run": 44320497938,
+  "candidate_sha": "c0599822410b95509cf92d2fe5cf202a0a263e2c",
+  "source_sha": "1a90fc3ef7d6c30dcb1ce6df2aa2c4fd6a502855",
+  "status": "FAILED_BEFORE_NATIVE_CASE_EXECUTION",
+  "build_for_testing": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "requested": 54,
+  "executed": 0,
+  "pass": 0,
+  "fail": 0,
+  "skip": 0,
+  "not_run": 54,
+  "diagnosis": "verify-faithful-xctest.py source regex missed extensions after another class and same-line actor attributes. Driver refused12 selected declarations. Native assertions were not executed.",
+  "artifact_id": 14437841710,
+  "archive_bytes": 39474024,
+  "archive_sha256": "b7650bdf7edd66eb81aad1af0324d2162d78b4ea6ea5c3261920cc424309971b",
+  "whole_archive_and_member_crcs_verified": true,
+  "original_log_sha256": "d61c2db4a27cab0d316e5f6a4c7c0f4d82cc77e89f36c81b1320e41ea8b98344",
+  "fix": "Use the actual installed Swift frontend to parse every source file and exact class/extension method ownership, fail closed on unknown/duplicate declarations; validate before build and in SDK workflow.",
+  "native_pass_reuse": false,
+  "source_only_regressions": "8 actual Swift compiler fixture/log gate tests passed locally;0Native"
+}
