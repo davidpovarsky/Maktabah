@@ -165,7 +165,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     }
     func installPublicBindingIfReady(session: MaktabahNativeSceneSession, manager: iOSNavigationManager,
                                      workspace: StudyWorkspaceNavigationAdapter?, owner: MaktabahNativeWorkspaceOwner?) throws {
-        guard futurePublicBindingsEnabled, scenes[session.sceneID]?.publicBinding == nil,
+        guard Self.futurePublicBindingsEnabled, scenes[session.sceneID]?.publicBinding == nil,
               let workspace, let owner, workspace.mappingOwnershipObservation()?.coverage == .liveNativeSetters else { return }
         _ = try configureFuturePublicBinding(session: session, manager: manager, workspace: workspace,
                                               workspaceOwner: owner, enabled: true)
