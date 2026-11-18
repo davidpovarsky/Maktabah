@@ -82,7 +82,11 @@ def dispatch_request(request, token, udid, seen, run=subprocess.run, now=time.ti
                         capture_output=True, timeout=12, check=False)
         result["delivered"] = completed.returncode == 0
         if not result["delivered"]:
-            result["error"] = "System URL transport failed"
+            result["error"] = f"System URL transport exited with code {int(completed.returncode)}"
+    except subprocess.TimeoutExpired:
+        result["error"] = "System URL transport timed out"
+    except OSError:
+        result["error"] = "System URL transport could not start" if validated else "System URL request rejected"
     except Exception:
         # No raw URL, private filename, credentials, argv or subprocess stderr.
         result["error"] = "System URL transport failed" if validated else "System URL request rejected"

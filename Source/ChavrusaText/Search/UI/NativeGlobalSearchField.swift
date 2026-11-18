@@ -9,17 +9,15 @@ struct NativeGlobalSearchField: UIViewRepresentable {
     func makeCoordinator() -> Coordinator { Coordinator(self) }
 
     func makeUIView(context: Context) -> UISearchTextField {
-        let field = UISearchTextField()
+        let field = GlobalSearchTextField()
         field.delegate = context.coordinator
         field.addTarget(context.coordinator, action: #selector(Coordinator.changed(_:)), for: .editingChanged)
-        field.placeholder = String(localized: "Search Books", defaultValue: "חיפוש בטקסט הספרים")
+        field.setSearchPlaceholder(String(localized: "Search Books", defaultValue: "חיפוש בטקסט הספרים"))
         field.accessibilityLabel = field.placeholder
         field.accessibilityIdentifier = "global-search-query"
         field.returnKeyType = .search
         field.enablesReturnKeyAutomatically = true
         field.clearButtonMode = .whileEditing
-        field.font = .preferredFont(forTextStyle: .body)
-        field.adjustsFontForContentSizeCategory = true
         field.textAlignment = .natural
         field.autocorrectionType = .no
         field.setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -56,5 +54,57 @@ struct NativeGlobalSearchField: UIViewRepresentable {
             parent.text = ""
             return true
         }
+    }
+}
+
+/// Keep both editable text and its native placeholder on the current trait's
+/// body font. UISearchTextField's internal placeholder label can otherwise keep
+/// its earlier font while the surrounding SwiftUI layout changes Dynamic Type.
+private final class GlobalSearchTextField: UISearchTextField {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureDynamicType()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configureDynamicType()
+    }
+
+    private func configureDynamicType() {
+        adjustsFontForContentSizeCategory = true
+        registerForTraitChanges([UITraitPreferredContentSizeCategory.self]) {
+            (field: GlobalSearchTextField, _: UITraitCollection) in
+            field.updateScaledTypography()
+        }
+        updateScaledTypography()
+    }
+
+    func setSearchPlaceholder(_ value: String) {
+        placeholder = value
+        updateScaledTypography()
+    }
+
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        updateScaledTypography()
+    }
+
+    private func updateScaledTypography() {
+        let bodyFont = UIFont.preferredFont(forTextStyle: .body, compatibleWith: traitCollection)
+        font = bodyFont
+        if let placeholder {
+            attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
+                .font: bodyFont,
+                .foregroundColor: UIColor.placeholderText
+            ])
+        }
+        invalidateIntrinsicContentSize()
+        setNeedsLayout()
+    }
+
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(width: size.width, height: max(44, max(size.height, ceil(font?.lineHeight ?? 0) + 20)))
     }
 }

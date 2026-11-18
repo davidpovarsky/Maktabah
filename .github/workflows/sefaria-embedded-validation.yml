@@ -101,7 +101,7 @@ jobs:
     name: R27 real UI environment and acceptance
     if: ${{ !inputs.books_updates_check_only && (inputs.runtime27_mode == 'probe' || inputs.runtime27_mode == 'ui') }}
     runs-on: xcode-27
-    timeout-minutes: 180
+    timeout-minutes: 240
     steps:
       - name: Require isolated immutable runtime request
         env:

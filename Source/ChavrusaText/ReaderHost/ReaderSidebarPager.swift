@@ -315,6 +315,8 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
     var onDiagnostic: (@MainActor (String) -> Void)?
     #endif
     private weak var bodySwipeHost: UIView?
+    private weak var bodyTouchWindow: UIWindow?
+    private var bodyTouchOrigin: CGPoint?
     private lazy var bodyPan = UIPanGestureRecognizer(target: self, action: #selector(bodyPanEnded(_:)))
     private weak var configuredSplit: UISplitViewController?
     private var originalBehavior: UISplitViewController.SplitBehavior?
@@ -407,6 +409,8 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
         #endif
         bodySwipeHost?.removeGestureRecognizer(bodyPan)
         bodySwipeHost = nil
+        bodyTouchOrigin = nil
+        bodyTouchWindow = nil
         if let split = configuredSplit {
             if let originalBehavior { split.preferredSplitBehavior = originalBehavior }
             if let originalButtonVisibility { split.displayModeButtonVisibility = originalButtonVisibility }
@@ -418,7 +422,7 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         guard gestureRecognizer === bodyPan else { return false }
-        guard view.window != nil else {
+        guard let window = view.window else {
             #if DEBUG
             onDiagnostic?("shouldReceive eligible=false hasWindow=false")
             #endif
@@ -428,6 +432,14 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
         let location = touch.location(in: view)
         let inBounds = view.bounds.contains(location)
         let eligible = !view.isHidden && view.alpha > 0 && inBounds
+        // UIKit may defer this pan behind a native TOC row recognizer until
+        // lift-off. Its began/end callbacks can then both report zero
+        // translation. Keep the actual touch-down in a stable window space;
+        // recognition, direction and minimum-distance guards still apply.
+        if eligible {
+            bodyTouchOrigin = touch.location(in: window)
+            bodyTouchWindow = window
+        }
         #if DEBUG
         onDiagnostic?("shouldReceive eligible=\(eligible) hasWindow=true hidden=\(view.isHidden) alphaPositive=\(view.alpha > 0) inBounds=\(inBounds) loc=\(Self.debugRounded(location.x)),\(Self.debugRounded(location.y)) bounds=\(Self.debugRounded(view.bounds.width))x\(Self.debugRounded(view.bounds.height)) touchView=\(Self.debugTypeName(touch.view))")
         #endif
@@ -468,9 +480,20 @@ private final class ReaderSidebarSplitConfigurationController: UIViewController,
             onDiagnostic?("panState state=\(Self.debugStateName(sender.state)) hasWindow=\(view.window != nil) dx=\(Self.debugRounded(translation.x)) dy=\(Self.debugRounded(translation.y))")
         }
         #endif
-        guard sender.state == .ended, view.window != nil else { return }
-        let translation = sender.translation(in: view)
-        onBodySwipe?(Double(translation.x), Double(translation.y))
+        guard sender.state == .ended || sender.state == .cancelled || sender.state == .failed else { return }
+        defer {
+            bodyTouchOrigin = nil
+            bodyTouchWindow = nil
+        }
+        guard sender.state == .ended,
+              let window = bodyTouchWindow, view.window === window,
+              let origin = bodyTouchOrigin else { return }
+        let end = sender.location(in: window)
+        let displacement = CGPoint(x: end.x - origin.x, y: end.y - origin.y)
+        #if DEBUG
+        onDiagnostic?("bodyDisplacement dx=\(Self.debugRounded(displacement.x)) dy=\(Self.debugRounded(displacement.y))")
+        #endif
+        onBodySwipe?(Double(displacement.x), Double(displacement.y))
     }
 
     #if DEBUG

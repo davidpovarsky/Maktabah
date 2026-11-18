@@ -117,6 +117,7 @@ if sidebar_path.is_file() and "private struct ReaderSidebarSplitConfiguration:" 
 toolbar_sources = [Path("Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift"),
                    Path("Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift"),
                    Path("Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift"),
+                   Path("Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift"),
                    Path("MaktabahTests/ReaderOverviewPresentationTests.swift")]
 # Include the real self-contained UIKit source port when checking a focused
 # correction such as the original UIFontDescriptor factories. No app/model
