@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "source_test_commit": "a50b0b2bc420aba2dd9d2845edce0ef64b57ca30",
+  "source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
   "app_source": "a190bbf0017e5f7ad5f79b09f0e8e03cab64fa52",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original27 plus actual source-qualified continuation cases; 65 required Native cases, 54iPad27 +11iPhone27, zero skips; app/system/physical/release gates remain distinct.",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 65,
+  "required_nonzero_cases": 70,
   "expected_per_device": {
-    "ipad11": 54,
-    "iphone": 11
+    "ipad11": 58,
+    "iphone": 12
   },
   "cases": [
     {
@@ -133,7 +133,7 @@
   ],
   "reused_ui_passes": 0,
   "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
-  "previous_manifest_sha256": "8db2795994b914dac4f78982af29ed4af216fc9d6b34c5e9c6c8618280e75aa0",
+  "previous_manifest_sha256": "0abc6802a15e0768cb0ead5ffed058edbe9841567c125e8d62ff5f60d24b0fb9",
   "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
   "affected_execution_groups": [
     "11-reader",
@@ -205,7 +205,11 @@
         "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
         "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
         "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
-        "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation"
+        "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+        "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+        "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+        "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent"
       ],
       "hid_comparison": false
     },
@@ -243,7 +247,8 @@
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
-        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner"
+        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
       ],
       "hid_comparison": false
     }
@@ -313,7 +318,12 @@
     "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
     "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
     "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
-    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner"
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+    "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+    "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+    "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -776,6 +786,36 @@
       "device": "iphone",
       "status": "NOT_RUN",
       "oracle": "Actual compact phone background system intent opens the exact source in the original Reader owner and returns to the original retained tab."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original UIKit field already visible; unchanged private query; one canonical component receipt and real system typing without another tap."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Component unavailable outside actual Search surface; original Reader tab/book/location preserved and no native receipt."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Unknown component refused by original public registry; no keyboard focus, search submission, input mutation or native receipt."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual Apple AppIntentsTesting invokes existing OpenNativeDestinationIntent and live component entity; original UIKit field receives real keyboard input."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Actual compact iPhone UI: same original scene-owned Search field, private query preserved, canonical receipt and typing without another tap."
     }
   ],
   "manager_native_review_history": [
@@ -895,7 +935,12 @@
       "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
       "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
       "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
-      "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner"
+      "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+      "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+      "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
     ],
     "reused_native_passes": 0,
     "historical_native_evidence": "Preserved only on its original app/test/fixture/context. First continuation run44185317875 remains an independent immutable27-case observation.",
@@ -906,7 +951,7 @@
     },
     "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
     "executor": "Current sole developer continuation; no subagents or resumed prior agents",
-    "native_status": "NOT_RUN_FOR_NEW_SOURCE; Native60 failed before UI in original Debug Observation storage; no UI case executed.",
+    "native_status": "NOT_RUN_FOR_CURRENT_SOURCE; earlier Native65 run44383462276 remains separately in progress at immutable2d31ba09/appsource19b5cba4.",
     "canonical_reader_source": {
       "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
       "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
@@ -960,13 +1005,13 @@
     },
     "native_execution_partition": {
       "reason": "Run44207959071 spent4086.583s in the RTL Sidebar test and hit the global150-minute ceiling before phone xcresult verification. Use distinct fresh owned simulator groups, unchanged full-case coverage and no retries.",
-      "case_count": 65,
+      "case_count": 70,
       "per_group": {
         "11-search": 21,
-        "11-reader": 27,
+        "11-reader": 31,
         "11-sidebar": 4,
         "11-window": 2,
-        "phone": 11
+        "phone": 12
       },
       "prior_result_retained": true
     },
@@ -1036,7 +1081,23 @@
       "native_status": "NOT_RUN_ON_NEW_SOURCE",
       "scope": "Exact SQLite two-hunk error propagation; matched installed SDK/runtime pair and complete fixture/diagnostic label allowlists; test names and oracles unchanged",
       "review": "docs/hq-integration/native65-runtime-20261118/REVIEW.json"
+    },
+    "previous_native_status_before_search_focus": "NOT_RUN_FOR_NEW_SOURCE; Native60 failed before UI in original Debug Observation storage; no UI case executed.",
+    "native_search_focus_source": {
+      "sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
+      "status": "SOURCE_IMPLEMENTED_APP_SDK_NATIVE_PENDING",
+      "scope": "Original visible UISearchTextField component via same PublicV2/Core/native receipt and existing App Intent entity",
+      "precondition": "Search root must already be visible in exact foreground key window; no deferred focus effect",
+      "portable_contract_tests": 14,
+      "native_case_ids": [
+        "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+        "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+        "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
+      ],
+      "ownership_fence": "Original directory revision invalidated synchronously; actual method controls3PASS6FAIL→9PASS;24 original directory/Core-prepared regressionsPASS; Native pending"
     }
   },
-  "application_source_sha": "a50b0b2bc420aba2dd9d2845edce0ef64b57ca30"
+  "application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a"
 }

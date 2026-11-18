@@ -1,5 +1,5 @@
 {
-  "source_sha": "a50b0b2bc420aba2dd9d2845edce0ef64b57ca30",
+  "source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
   "source_files_verified": 856,
   "semantic_anchors_verified": 293,
   "lexical_candidates": 278,
@@ -7,16 +7,16 @@
   "unclassified_candidates": 0,
   "new_paths_classified": 88,
   "manual_semantic_examples": 27,
-  "current_native_plans": 21,
+  "current_native_plans": 24,
   "status": "SOURCE_DOCUMENT_VALIDATION_PASS",
   "review_owner": "Sole owner-authorized continuation agent; source/semantic self-review, no independent reviewer",
   "native_runtime_tests_executed": 0,
   "physical_device_tests_executed": 0,
   "scope_exclusion": "No source-document check certifies app/provider/UI/Siri/physical runtime",
   "artifact_sha256": {
-    "SOURCE_SCAN.json": "93503d448c6fd52959cde5ecfe3b87e7e7ca05ad31e42e3e1f17e995b1fc8865",
-    "UI_ROUTE_COVERAGE.json": "47a46fea0ab0726b4c5f4f3c86520fb1c659964aa3eaf22e44c3d2880c0caad5",
-    "UI_SURFACE_INVENTORY.md": "ba0967ef0f8dd3608196a0d8813b0eb9d491918342f3835dcd975fb7f126c3e8",
-    "UI_ROUTE_EXAMPLES.json": "494ce3a99738a2a6cd3b4e3cbecb0a973a97903978b9060b28ea16e98ed39a8a"
+    "SOURCE_SCAN.json": "6a96347b2fc132a0568b7a1b903fed14ab780149d9c7acc761ba4450f1e753d8",
+    "UI_ROUTE_COVERAGE.json": "b8dcaa3672913fd8cb68d8a5a6abc4f315d794b9e8d9f15be1e67d609d395615",
+    "UI_SURFACE_INVENTORY.md": "1ad4b8a666f67915b21667072c45b25cc74b323df7aff5e45d8ed270c4d820d9",
+    "UI_ROUTE_EXAMPLES.json": "1e26b37d8f7dbcfad15054260fe5661f600cf9b2de96c97088fbcbacc5c7fb35"
   }
 }

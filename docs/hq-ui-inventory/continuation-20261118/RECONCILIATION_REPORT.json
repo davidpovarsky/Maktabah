@@ -356,8 +356,8 @@
       "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
       "anchor": "field.accessibilityIdentifier = \"global-search-query\"",
       "old_blob": "e09fe2e341ef756c51d0dc9784ce9c19a9ed2043",
-      "current_blob": "f41f76439734b61efbfac1943447c62dd995b349",
-      "line": 17
+      "current_blob": "5f5f22eeea9e04889f2bd278d32d819b313380c2",
+      "line": 21
     },
     {
       "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
@@ -458,5 +458,5 @@
       "line": 637
     }
   ],
-  "source_sha": "a50b0b2bc420aba2dd9d2845edce0ef64b57ca30"
+  "source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a"
 }

@@ -105,6 +105,30 @@ def main(source):
     reader_intent["tests"]["required"]=["Named original TOC chapter through system resolution", "Cached source after background and original tab return", "Wrong-book/missing-source refusal", "Original compact phone owner"]
     rows.append(reader_intent)
     byid={r["id"]:r for r in rows}
+    focus=byid["inventory.v1.search.input-focus"]
+    focus_limits="Only the already visible original UISearchTextField in the exact foreground/key scene; original Core guard and retained control identity; actual UIKit responder plus original surface receipt; open Search root first; no queued focus, query edit or search submission"
+    focus.update(owning_view_model="UnifiedSearchSessionController.query / original UISearchTextField / MaktabahNativeSceneSession retained field",
+        inputs=["Canonical public v2 component native.search.query or current live NativeDestinationEntity"],
+        visible_state="Original visible field is UIKit first responder; actual keyboard input without another tap",
+        installed_registry_id="native.search",installed_component_id="native.search.query",public_versions="v2",
+        dependencies_and_requirements=focus_limits,status="supported",route_implementation="SOURCE_WIRED_NATIVE_ACCEPTANCE_PENDING",
+        note=focus_limits+"; Native execution NOT_RUN on this source")
+    focus["supporting_sources"]=[
+        ref(comp,'components: [id("native.search.query")]'),
+        ref("Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift","field.isFirstResponder || field.becomeFirstResponder()")]
+    focus["suitability"].update(app_intent="same_original_intent_live_component_entity_foreground_gated",
+        deep_link="canonical_v2_registered_component_already_visible_only",
+        guide="same_registry_named_component_focus_no_coordinate_taps_no_guide_engine_claim")
+    for b in focus["backends"].values():b.update(route="SOURCE_WIRED_CONDITIONAL",native_receipt="NOT_RUN_ON_THIS_SOURCE",reason=focus_limits)
+    focus["tests"]={"case_plan_id":"UI01.native.search-query-focus","source_validation":"Original control and fixed registry anchor; no runtime class discovery",
+        "candidate_existing_suite":{"path":"Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "sha256":hashlib.sha256(m.git("show",source+":Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift")).hexdigest(),
+            "relationship":"Five real native cases, execution pending","execution":"NOT_RUN_ON_THIS_SOURCE"},
+        "required":["Actual keyboard input without tap on iPad and iPhone","Unknown/absent control refusal and prior Reader preservation","Existing out-of-process system App Intent","RTL/LTR and accessibility"],
+        "runtime":"NOT_RUN_ON_THIS_SOURCE"}
+    for key in ["inventory.v1.native.foreground-intent","inventory.v1.native.shortcut"]:
+        byid[key]["inputs"]=["Fresh backend/scene-qualified root or currently eligible component entity","Exact foreground scene"]
+        byid[key]["note"] += "; visible Search query component is source-wired through the same existing intent and public binder; native/system acceptance pending"
     byid["inventory.v1.app.scene"]["note"]="Real MaktabahNativeRoutingHost mounts using actual UIKit scene identity and original workspace lifecycle; exact target is retained by NativeSceneDirectory. Root Library/TOC/History/Search/Annotations/Settings and current/new-tab Reader on original phone/iPad owners; native validation remains pending."
     for r in rows:
         r["independent_review"]="NOT_CLAIMED_SOLE_AGENT_OWNER_INSTRUCTION"
@@ -153,7 +177,7 @@ def main(source):
         "all_new_paths_classified":set(d["source_census"]["added_paths"])<=set(dispositions),
         "semantic_areas":dict(collections.Counter(r["area"] for r in rows)),
         "status_meaning":"supported means source-wired only; runtime_evidence and native_receipt remain authoritative for execution"}
-    d["summary"].update(semantic_surfaces=len(rows),new_native_contract_surfaces=8,
+    d["summary"].update(semantic_surfaces=len(rows),new_native_contract_surfaces=9,
         source_coverage_review="EXECUTED_PASS_SOLE_AGENT",lexical_candidates=len(candidate_paths),
         file_dispositions=len(dispositions),new_paths_classified=len(d["source_census"]["added_paths"]))
     examples=m.original("UI_ROUTE_EXAMPLES.json")
@@ -187,6 +211,11 @@ def main(source):
         {"case":"System wrong-book refusal","registry_id":"native.reader","input":"Location belonging to another selected book","expected":"System refuses without native receipt, tab or original Reader change"},
         {"case":"System missing-source refusal","registry_id":"native.reader","input":"Canonical-shaped ID with a nonexistent source line","expected":"Original Core source validation refuses; no invented location, successful intent or tab mutation"},
         {"case":"Phone system Reader ownership","registry_id":"native.reader","presentation":"newTab","input":"Real system book/location intent after background on compact phone","expected":"Original phone Reader and exact source; original overview returns to retained prior tab"}
+    ]
+    examples["current_native_examples"] += [
+        {"case":"Visible Search query component on iPad and iPhone","registry_id":"native.search","component":"native.search.query","presentation":"currentTab","input":"Canonical v2 component after original Search root is visibly mounted; no private query","expected":"Same original UIKit field becomes first responder, private input unchanged, real keyboard typing without another tap and canonical component receipt"},
+        {"case":"Unavailable or unknown Search component","registry_id":"native.search","component":"native.search.query","input":"Known component outside visible Search, or unknown component in Search","expected":"Refusal with no native receipt, no query submission or replacement of original Reader"},
+        {"case":"System Search field focus","registry_id":"native.search","component":"native.search.query","input":"Live NativeDestinationEntity for Search field through existing OpenNativeDestinationIntent and Apple AppIntentsTesting","expected":"Original field receives real keyboard input and same Core-validated native component receipt; a stale entity cannot reuse a root's eligibility"}
     ]
     examples["current_native_execution"]="NOT_RUN_ON_THIS_SOURCE"
     scan=dict(schema_version=1,source_sha=source,embedded_source=old["embedded_source"],
