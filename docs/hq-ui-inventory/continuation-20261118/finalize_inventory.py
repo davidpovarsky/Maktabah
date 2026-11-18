@@ -35,6 +35,8 @@ def main(source):
             git_blob=local[path],sha256=hashlib.sha256(raw).hexdigest(),source_revision=source,storage="immutable_git_object")
     comp="Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
     routes=[
+        ("library","Native original Library/current tab",'.init(id: id("native.library")',"currentTab","v1_and_v2","Original same scene Library page on iPad or original compact NavigationStack root on iPhone; retains existing Reader/tab and private library query; no search submission or data write",["inventory.v1.tab.library","inventory.v1.library.catalog"]),
+        ("reader.toc","Native original TOC/current tab",'.init(id: id("native.reader.toc")',"currentTab","v1_and_v2","iPad only; exact selected original Reader, matching active backend/book section, loaded nonempty original TOC with no failure; same original sidebar coordinator and independent visible witness; private TOC filter retained",["inventory.v1.toc.contents"]),
         ("history","Native History/current tab",'.init(id: id("native.history")',"currentTab","v1_and_v2","Current backend, foreground exact scene, empty global History search, no implicit backend switch",["inventory.v1.tab.history","inventory.v1.history.list"]),
         ("search","Native Global Search/current tab",'.init(id: id("native.search")',"currentTab","v1_and_v2","Original Search root, original capability availability and current foreground scene; retains private query, never submits it or encodes it in a public URL",["inventory.v1.tab.search"]),
         ("annotations","Native Annotations/current tab",'.init(id: id("native.annotations")',"currentTab","v1_and_v2","Original Annotations root in current foreground scene; no draft/import/export/delete or annotation write action",["inventory.v1.tab.annotations","inventory.v1.annotations.list"]),
@@ -89,10 +91,10 @@ def main(source):
             inputs=["fresh registered backend-qualified root entity", "exact foreground scene"],
             visible_state="The chosen original native root is independently visible and acknowledged",
             public_versions="NOT_APPLICABLE_SYSTEM_INTENT",
-            note="App metadata and foreground service installed for eligible History/Search/Annotations/Settings; actual Siri/Shortcuts invocation NOT_RUN; Reader content is not advertised")
+            note="App metadata and foreground service installed for eligible Library/TOC/History/Search/Annotations/Settings; actual Siri/Shortcuts invocation NOT_RUN; Reader content is not advertised")
         rows.append(r)
     byid={r["id"]:r for r in rows}
-    byid["inventory.v1.app.scene"]["note"]="Real MaktabahNativeRoutingHost mounts using actual UIKit scene identity and original workspace lifecycle; exact target is retained by NativeSceneDirectory. Root History/Search/Annotations/Settings and current/new-tab Reader on original phone/iPad owners; native validation remains pending."
+    byid["inventory.v1.app.scene"]["note"]="Real MaktabahNativeRoutingHost mounts using actual UIKit scene identity and original workspace lifecycle; exact target is retained by NativeSceneDirectory. Root Library/TOC/History/Search/Annotations/Settings and current/new-tab Reader on original phone/iPad owners; native validation remains pending."
     for r in rows:
         r["independent_review"]="NOT_CLAIMED_SOLE_AGENT_OWNER_INSTRUCTION"
         r["source_review_owner"]=OWNER
@@ -151,6 +153,10 @@ def main(source):
     examples["source_sha"]=source
     examples["registered"]=False
     examples["current_native_examples"]=[
+        {"case":"Library public root and private query","registry_id":"native.library","presentation":"currentTab","input":"Canonical v2 root with current backend; no private query or tab/scene fields","expected":"Original Library visible and canonical receipt; original Reader/workspace and private Library query survive History/back"},
+        {"case":"TOC original selected Reader","registry_id":"native.reader.toc","presentation":"currentTab","input":"Canonical v2 root while the exact original iPad Reader has loaded matching TOC","expected":"Original TOC rows and actual receipt; Reader/locator and private TOC filter survive Library/back"},
+        {"case":"TOC no-reader refusal","registry_id":"native.reader.toc","presentation":"currentTab","input":"Same canonical root without an original selected Reader/TOC","expected":"Explicit refusal; no receipt or substitute Reader; original Library preserved"},
+        {"case":"Phone original Library","registry_id":"native.library","presentation":"currentTab","input":"Canonical v2 root from original compact Reader","expected":"Actual Library NavigationStack root; original selected workspace Reader owner/tab/book preserved"},
         {"case":"History public v1/v2","registry_id":"native.history","presentation":"currentTab","input":"Use canonical original NativeRouteURL or NativePublicNavigationURLV2 encoder and active backend; no private search text","expected":"Exact foreground History visible plus original native receipt"},
         {"case":"Search root","registry_id":"native.search","presentation":"currentTab","input":"Canonical public v1/v2 root with current backend, no query payload","expected":"Original Search root and exact native receipt; original private query retained without submitting"},
         {"case":"Annotations root","registry_id":"native.annotations","presentation":"currentTab","input":"Canonical public v1/v2 root with current backend, no note/draft/mutation payload","expected":"Original Annotations root and exact native receipt; no import/export/delete request"},
@@ -191,9 +197,9 @@ def main(source):
     lines=["# UI surface inventory — continuation 2026-11-18","",
         "Source: "+source+". This is the G0 source inventory. A supported row means source wiring, never a native PASS.","",
         "Owner/review: "+OWNER+". The owner explicitly requested solo execution; no independent QA was represented.","",
-        f"{len(rows)} semantic rows, {len(files)} immutable source files, {len(candidate_paths)} lexical candidates, {len(dispositions)} file dispositions, 27 retained manual scenarios and twelve current native scenarios.","",
+        f"{len(rows)} semantic rows, {len(files)} immutable source files, {len(candidate_paths)} lexical candidates, {len(dispositions)} file dispositions, 27 retained manual scenarios and {len(examples['current_native_examples'])} current native scenarios.","",
         "## Installed native scope","",
-        "History/Search/Annotations/current tab and Settings/root sheet are connected to the original foreground scene orchestrator. Phone roots pop the original selectedBook presentation while retaining its tab/model. Reader/public-v2 is connected to the original ActionCore for the current phone/iPad book and tab, with original TextKit visibility. An R-owned newTab reservation now opens an original additional Reader tab, with canonical Core and actual TextKit visibility; sameTab cross-book remains refused. Phone content uses the original compact owner and passive NavigationStack witness. Rich component destinations and Siri Reader invocation remain unfinished. Inventory IDs are not installed registry IDs.","",
+        "Library/TOC/History/Search/Annotations/current tab and Settings/root sheet are connected to the original foreground scene orchestrator. Phone roots pop the original selectedBook presentation while retaining its tab/model. Reader/public-v2 is connected to the original ActionCore for the current phone/iPad book and tab, with original TextKit visibility. An R-owned newTab reservation now opens an original additional Reader tab, with canonical Core and actual TextKit visibility; sameTab cross-book remains refused. Phone content uses the original compact owner and passive NavigationStack witness. Rich component destinations and Siri Reader invocation remain unfinished. Inventory IDs are not installed registry IDs.","",
         "Native, Siri and physical-device execution is reported separately against the exact tested commit; this document does not award any native pass.","",
         "## Registry maintenance","",
         "1. On every UI or navigation change, run reconcile.py followed by finalize_inventory.py against the full immutable code SHA.","2. Review new/removed source paths, changed anchors, native descriptor rules, backend capability conditions and privacy fields. Add or migrate stable IDs only for meaningful destinations.","3. Every new lexical UI candidate must have a semantic mapping or a reviewed non-route disposition. Decorative components and test fixtures must never become public actions.","4. Public changes must use the existing Core/UI Registry versioned codecs, resolver and native authority. Do not encode scene/workspace identifiers, grants, queries, drafts or selection text in a public link.","5. Retain historic inventories. Record exact compile/native/device receipts separately and re-run affected real acceptance before marking runtime support.","",
@@ -211,11 +217,11 @@ def main(source):
         lines.append("")
     lines+=["## Source caveats",""]
     for c in d["source_caveats"]:lines+=["- "+c["id"]+": "+c["status"]+". "+c["detail"]]
-    lines+=["","## Manual examples","", "UI_ROUTE_EXAMPLES.json retains all 27 per-backend manual plans and adds canonical History, Search, Annotations, Settings, current-book Reader, sameTab other-book refusal, two newTab ownership scenarios, three phone content scenarios and stale-owner scenarios. They are plans, not execution evidence.",""]
+    lines+=["","## Manual examples","", "UI_ROUTE_EXAMPLES.json retains all 27 per-backend manual plans and adds canonical Library/TOC roots, unavailable TOC refusal, compact Library preservation, History, Search, Annotations, Settings, current-book Reader, sameTab other-book refusal, two newTab ownership scenarios, three phone content scenarios and stale-owner scenarios. They are plans, not execution evidence.",""]
     (HERE/"UI_SURFACE_INVENTORY.md").write_text("\n".join(lines),encoding="utf-8")
     report=dict(source_sha=source,source_files_verified=len(files),semantic_anchors_verified=len(rows),
         lexical_candidates=len(candidate_paths),file_dispositions=len(dispositions),unclassified_candidates=0,
-        new_paths_classified=len(d["source_census"]["added_paths"]),manual_semantic_examples=27,current_native_plans=12,
+        new_paths_classified=len(d["source_census"]["added_paths"]),manual_semantic_examples=27,current_native_plans=len(examples['current_native_examples']),
         status="SOURCE_DOCUMENT_VALIDATION_PASS",review_owner=OWNER,native_runtime_tests_executed=0,
         physical_device_tests_executed=0,scope_exclusion="No source-document check certifies app/provider/UI/Siri/physical runtime")
     report["artifact_sha256"]={n:hashlib.sha256((HERE/n).read_bytes()).hexdigest() for n in ["SOURCE_SCAN.json","UI_ROUTE_COVERAGE.json","UI_SURFACE_INVENTORY.md","UI_ROUTE_EXAMPLES.json"]}

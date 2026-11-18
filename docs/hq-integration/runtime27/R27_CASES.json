@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "87b37a1309aee69350868cb37846037dd6b52479",
+  "source_test_commit": "8e35c7d9bebbdd93933686f35b4dead9e3f22994",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "87b37a1309aee69350868cb37846037dd6b52479",
+  "app_source": "8e35c7d9bebbdd93933686f35b4dead9e3f22994",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "CONTINUATION_REQUIRED27_SEARCH14_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3__LIBRARY_TOC_ROOTS4",
@@ -958,13 +958,15 @@
     "native_sidebar_roots_source": {
       "status": "SOURCE_IMPLEMENTED_SDK_APP_NATIVE_PENDING",
       "scope": "Same original scene-owned ReaderSidebarPageCoordinator; Library/TOC currentTab roots plus compact Library. Exact original selected loaded TOC required.",
-      "acceptance_limit": "Four Native cases NOT_RUN; no new public schema, private query/tab data in URL or permissions owner."
+      "acceptance_limit": "Four Native cases NOT_RUN; no new public schema, private query/tab data in URL or permissions owner.",
+      "sha": "8e35c7d9bebbdd93933686f35b4dead9e3f22994"
     },
     "native_declaration_fix": {
       "prior_run": 44320497938,
       "prior_native_executed": 0,
       "prior_build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
-      "fix": "Actual Swift frontend class/extension declarations; exact ownership; prebuild plus actual SDK check. Same required UI/PASS/zero-skip gates."
+      "fix": "Actual Swift frontend class/extension declarations; exact ownership; prebuild plus actual SDK check. Same required UI/PASS/zero-skip gates.",
+      "source_sha": "1346c080b62d52f62ec43a69123c06c41f9701aa"
     }
   }
 }

@@ -168,71 +168,71 @@
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "case viewer = 0",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 4
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "case search = 3",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 7
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "case author = 4",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 8
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "case annotations = 5",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 9
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "case history = 6",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 10
     },
     {
       "path": "Source/UI/iOS/Views/iPadLayout.swift",
       "anchor": "NavigationSplitView(",
       "old_blob": "58d505603a44e1b476b448738540a8604cb183b9",
-      "current_blob": "916f8623ad5625dcb550d7e58e3eff0718281afe",
+      "current_blob": "08ff07228abcf0047d1aeef2e8349f390d07be2d",
       "line": 106
     },
     {
       "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
       "anchor": "struct iPhoneLayout",
       "old_blob": "b6692b114311ee389e9548ff557887194bdb3e05",
-      "current_blob": "19dfa329e5283714dd732c83dd127418fa7967a7",
+      "current_blob": "0f62ae7d935deb63b93c787d8f1d2177b1e4c471",
       "line": 12
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": ".sheet(isPresented: $showSettings)",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
-      "line": 111
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
+      "line": 113
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": ".sheet(item: $bManager.selectedBookForInfo)",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
-      "line": 134
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
+      "line": 136
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": ".alert(item: $navigationManager.alertMessage)",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
-      "line": 141
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
+      "line": 143
     },
     {
       "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
@@ -385,42 +385,42 @@
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "struct iOSMainView",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 78
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "struct iOSMainView",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 78
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "struct iOSMainView",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 78
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "struct iOSMainView",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 78
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "struct iOSMainView",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 78
     },
     {
       "path": "Source/UI/iOS/Views/iOSMainView.swift",
       "anchor": "struct iOSMainView",
       "old_blob": "d601e433fd214b772469e228c1877a518977913c",
-      "current_blob": "91410b42f7abe3ade784197d48a1482a65094843",
+      "current_blob": "5911bf238bad0b6bcc7ef527e2725cf0b9467abd",
       "line": 78
     },
     {
@@ -445,5 +445,5 @@
       "line": 637
     }
   ],
-  "source_sha": "87b37a1309aee69350868cb37846037dd6b52479"
+  "source_sha": "8e35c7d9bebbdd93933686f35b4dead9e3f22994"
 }
