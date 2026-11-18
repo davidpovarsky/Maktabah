@@ -5,11 +5,11 @@
   "app_source": "240053fb01139a6695f7d876bf80a1542940696c",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2",
+  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 45,
+  "required_nonzero_cases": 48,
   "expected_per_device": {
-    "ipad11": 39,
+    "ipad11": 42,
     "iphone": 6
   },
   "cases": [
@@ -187,7 +187,10 @@
         "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
         "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
         "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
-        "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
+        "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
       ],
       "hid_comparison": false
     },
@@ -259,7 +262,10 @@
     "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
     "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
     "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
-    "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
+    "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -602,6 +608,24 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Real system URL in same app PID opens the original Annotations screen and one exact current-scene canonical receipt; no draft/import/export/write action is requested."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual Apple AppIntentsTesting out-of-process entity query + original installed OpenNativeDestinationIntent opens the actual Settings sheet and emits exactly one canonical current-scene receipt."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual Apple AppIntentsTesting invocation foregrounds the background app and opens original Search with a real editable field plus exactly one native receipt."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual Apple AppIntentsTesting passes an unknown entity to the original intent; system/host refuses without a new native receipt or navigation. Positive system-intent cases are separately required."
     }
   ],
   "manager_native_review_history": [
@@ -706,7 +730,10 @@
       "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
       "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
       "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
-      "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
+      "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
     ],
     "reused_native_passes": 0,
     "historical_native_evidence": "Preserved only on its original app/test/fixture/context. First continuation run44185317875 remains an independent immutable27-case observation.",
@@ -736,6 +763,12 @@
       "sha": "240053fb01139a6695f7d876bf80a1542940696c",
       "scope": "Original Search and Annotations roots, foreground global Intents discovery, retained private query and nonmutating annotation navigation",
       "status": "SOURCE_IMPLEMENTED_NATIVE_PENDING"
-    }
+    },
+    "system_app_intent_cases": [
+      "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
+    ],
+    "system_app_intent_boundary": "Apple iOS27 AppIntentsTesting infrastructure plus original UIKit/native receipt; not Siri voice, Spotlight donation or Shortcuts editor acceptance. No testing-only app intent or bypass. Same signing-team runtime requirement remains enforced by Apple."
   }
 }

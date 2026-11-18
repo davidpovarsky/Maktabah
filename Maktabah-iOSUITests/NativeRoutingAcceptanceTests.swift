@@ -1,4 +1,5 @@
 import XCTest
+import AppIntentsTesting
 import CryptoKit
 import UIKit
 
@@ -687,5 +688,115 @@ extension NativeRoutingAcceptanceTests {
             try requireNativeReceipt(request, backend: backend)
         }
         capture("native-phone-route-after")
+    }
+}
+
+
+// These use Apple's iOS27 out-of-process App Intents infrastructure. They do
+// not call perform() directly, import app internals or add a testing-only intent.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    private func actualNativeReceiptLines() throws -> Set<String> {
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        guard FileManager.default.fileExists(atPath: log.path) else { return [] }
+        return Set(try String(contentsOf: log, encoding: .utf8).split(separator: "\n")
+            .filter { $0.contains(" [NativeNavigationReceipt] ") }.map(String.init))
+    }
+
+    @MainActor
+    private func requireNewSystemIntentReceipt(destination: String, presentation: String, before: Set<String>) throws {
+        let after = try actualNativeReceiptLines(), added = after.subtracting(before)
+        XCTAssertTrue(before.isSubset(of: after), "Original receipt evidence must not be replaced")
+        XCTAssertEqual(added.count, 1, "One system invocation must produce exactly one new native receipt")
+        let line = try XCTUnwrap(added.first), parts = line.split(separator: " ", maxSplits: 2)
+        XCTAssertEqual(parts.count, 3)
+        guard parts.count == 3 else { return }
+        XCTAssertEqual(parts[1], "[NativeNavigationReceipt]")
+        var fields: [String: String] = [:]
+        for item in parts[2].split(separator: " ") {
+            let pair = item.split(separator: "=", maxSplits: 1)
+            XCTAssertEqual(pair.count, 2)
+            guard pair.count == 2 else { return }
+            XCTAssertNil(fields[String(pair[0])], "No duplicate receipt field is accepted")
+            fields[String(pair[0])] = String(pair[1])
+        }
+        XCTAssertEqual(Set(fields.keys), ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"])
+        XCTAssertNotNil(fields["request"].flatMap(UUID.init(uuidString:)))
+        XCTAssertEqual(fields["destination"], destination)
+        XCTAssertEqual(fields["presentation"], presentation)
+        XCTAssertEqual(fields["backend"], "otzaria")
+        XCTAssertEqual(fields["epoch"], "none")
+        XCTAssertNotNil(fields["generation"].flatMap(UInt64.init))
+        let revisions = try XCTUnwrap(fields["revision"]?.components(separatedBy: "->"))
+        XCTAssertEqual(revisions.count, 2)
+        guard revisions.count == 2 else { return }
+        XCTAssertGreaterThan(try XCTUnwrap(UInt64(revisions[1])), try XCTUnwrap(UInt64(revisions[0])))
+        let sidecar = try workspaceSidecarURL()
+        let workspace = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: sidecar)) as? [String: Any])
+        let scenes = try XCTUnwrap(workspace["scenes"] as? [String: Any])
+        XCTAssertNotNil(scenes[try XCTUnwrap(fields["scene"])], "Receipt must name this app's actual scene")
+        let attachment = XCTAttachment(string: line)
+        attachment.name = "actual-system-intent-native-receipt-\(destination)"
+        attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    @MainActor
+    func testSystemAppIntentSettingsShowsOriginalSheetAndReceipt() async throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let matches = try await system.entities["NativeDestinationEntity"].entities(matching: "Settings")
+        XCTAssertEqual(matches.count, 1, "Real entity query must resolve one eligible exact current scene")
+        let destination = try XCTUnwrap(matches.first), before = try actualNativeReceiptLines()
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: destination).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 15))
+        try requireNewSystemIntentReceipt(destination: "native.settings", presentation: "sheet", before: before)
+        capture("system-intent-original-settings-sheet")
+    }
+
+    @MainActor
+    func testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen() async throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let matches = try await system.entities["NativeDestinationEntity"].entities(matching: "Search")
+        XCTAssertEqual(matches.count, 1)
+        let destination = try XCTUnwrap(matches.first), before = try actualNativeReceiptLines()
+        XCUIDevice.shared.press(.home)
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: destination).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 15))
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.exists && (field.elementType == .searchField || field.elementType == .textField))
+        try requireNewSystemIntentReceipt(destination: "native.search", presentation: "currentTab", before: before)
+        capture("system-intent-search-after-background")
+    }
+
+    @MainActor
+    func testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement() async throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let invalid = system.entities["NativeDestinationEntity"].makeReference(identifier: "not-a-registered-native-entity")
+        let before = try actualNativeReceiptLines()
+        var rejected = false
+        do {
+            _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: invalid).run()
+        } catch {
+            rejected = true
+            let evidence = XCTAttachment(string: String(describing: error))
+            evidence.name = "actual-system-intent-unknown-entity-error"
+            evidence.lifetime = .keepAlways; add(evidence)
+        }
+        XCTAssertTrue(rejected, "An unknown system entity must never complete")
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        XCTAssertTrue(app.otherElements["library-column"].exists)
+        XCTAssertFalse(history.exists)
+        capture("system-intent-unknown-entity-refusal")
     }
 }
