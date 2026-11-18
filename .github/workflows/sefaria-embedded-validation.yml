@@ -201,6 +201,7 @@ jobs:
           path: |
             build/artifacts/
             build/hq-stage2/*.json
+            build/hq-stage2/*Package.resolved
             build/hq-stage2/*.log
             build/hq-stage2/*.diff
             build/hq-stage2/generated-Maktabah-project.pbxproj
@@ -215,7 +216,7 @@ jobs:
     name: Focused unsigned Maktabah-iOS (no runtime or data)
     if: ${{ !inputs.books_updates_check_only && inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
-    timeout-minutes: 40
+    timeout-minutes: 60
     steps:
       - name: Reject unrelated validation modes
         if: ${{ inputs.ui_sdk_check_only || inputs.run_production_release || inputs.source_ref != '' || inputs.run_simulator_tests || inputs.ui_diagnostic_cases != '' }}
@@ -268,6 +269,8 @@ jobs:
             build/hq-stage2/generated-pods-project.diff
             build/hq-stage2/resolved-Podfile.lock
             build/hq-stage2/actual-source-inputs.json
+            build/hq-stage2/hanlin-sdk-inputs*.json
+            build/hq-stage2/*Package.resolved
             build/hq-stage2/generated-privacy.diff
             build/hq-stage2/privacy-*.xcprivacy
             build/hq-stage2/ExpoModulesProvider.swift

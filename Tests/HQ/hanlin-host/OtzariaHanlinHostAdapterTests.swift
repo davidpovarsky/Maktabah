@@ -8,6 +8,7 @@ import OtzariaActionCore
 private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchPort, OtzariaHanlinHostAuthority {
     var binding: OtzariaHanlinBinding
     var reads = 0
+    var unavailableActions = Set<String>()
     var hold = false
     var entered = false
     var blocked: CheckedContinuation<Void, Never>?
@@ -31,7 +32,10 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
             hold = false; entered = true
             await withCheckedContinuation { blocked = $0 }
         }
-        return .init(id: backend, operations: [:])
+        let names = ActionRegistry.implemented.union(["notes.save", "search.countOccurrences"])
+        return .init(id: backend, operations: Dictionary(uniqueKeysWithValues: names.map {
+            ($0, .init(registered: true, supported: true, availableNow: !unavailableActions.contains($0)))
+        }))
     }
     func assess(action: String, arguments: ActionObject, invocation: ActionPortInvocation) async throws -> ActionCapabilityAssessment {
         .init(registered: true, supported: true, availableNow: true)
@@ -45,6 +49,8 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
             objectReference: destination.objectReference, blockReference: destination.blockReference) }
         return .queued(requestID: destination.requestID, context: destination.context)
     }
+    func resetReads() { reads = 0 }
+    func setUnavailable(_ actions: Set<String>) { unavailableActions = actions }
     func setHold() { hold = true }
     func setAuthorityHold() { holdAuthority = true }
     func waitForAuthority() async throws {
@@ -98,7 +104,11 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
         let core = try ActionExecutor(state: fixture, resolver: fixture, search: fixture)
         let adapter = try OtzariaHanlinHostAdapter(core: core, authority: fixture)
         let session = HanlinHostSession(conversationID: UUID(), context: context)
-        return (fixture, adapter, session, try await adapter.catalog(for: context))
+        let catalog = try await adapter.catalog(for: context)
+        // Admission/discovery is observed separately from the execution-count
+        // assertions below; those still prove malformed/replayed calls do not execute.
+        await fixture.resetReads()
+        return (fixture, adapter, session, catalog)
     }
     private func invocation(_ session: HanlinHostSession, _ catalog: HanlinHostCatalog,
                             raw: String? = "{}", outputLimit: Int = 65_536,
@@ -126,9 +136,47 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
         XCTAssertFalse(catalog.tools.contains { $0.route.logicalToolID.localToolID.rawValue.contains("reader") })
         XCTAssertTrue(catalog.tools.allSatisfy { $0.originalInputSchemaJSON != nil })
     }
-    func testContentRightsAreRequiredToDiscoverContentActions() async throws {
+    func testContentRightsHideSearchButPreserveCanonicalMetadataActions() async throws {
         let (_, _, _, catalog) = try await setup(rights: false)
+        // ActionCore declares both catalog actions risk tier zero. Content
+        // rights protect search content, not the original public work metadata.
+        XCTAssertEqual(Set(catalog.tools.map { $0.route.logicalToolID.localToolID.rawValue }),
+                       ["system.list-backends", "catalog.resolve-work", "catalog.resolve-reference"])
+    }
+
+    func testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights() async throws {
+        let (fixture, _, session, catalog) = try await setup(rights: false)
+        let core = try ActionExecutor(state: fixture, resolver: fixture, search: fixture)
+        let binding = try await fixture.current(for: session)
+        let original = await core.advertisedActions(for: binding.backend.backend, context: binding.executionContext)
+        let names = ["system.listBackends": "system.list-backends",
+                     "catalog.resolveWork": "catalog.resolve-work",
+                     "catalog.resolveReference": "catalog.resolve-reference",
+                     "search.query": "search.query"]
+        let expected = Set(original.compactMap { names[$0.id] })
+        XCTAssertEqual(expected, ["system.list-backends", "catalog.resolve-work", "catalog.resolve-reference"])
+        XCTAssertEqual(Set(catalog.tools.map { $0.route.logicalToolID.localToolID.rawValue }), expected)
+    }
+
+    func testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        await fixture.setUnavailable(["catalog.resolveWork", "catalog.resolveReference", "search.query"])
+        let catalog = try await adapter.catalog(for: session.context)
         XCTAssertEqual(catalog.tools.map { $0.route.logicalToolID.localToolID.rawValue }, ["system.list-backends"])
+        XCTAssertFalse(catalog.tools.contains { $0.route.logicalToolID.localToolID.rawValue.contains("save") })
+        XCTAssertFalse(catalog.tools.contains { $0.route.logicalToolID.localToolID.rawValue.contains("count") })
+    }
+
+    func testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        await fixture.setHold()
+        let work = Task { try await adapter.catalog(for: session.context) }
+        do { try await fixture.waitForRead() }
+        catch { work.cancel(); await fixture.release(); throw error }
+        await fixture.changeGeneration()
+        await fixture.release()
+        do { _ = try await work.value; XCTFail("Revoked catalog escaped the original host authority") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .staleContext) }
     }
     func testRealCoreExecutionPreservesGenerationBeyondDoublePrecision() async throws {
         let (fixture, adapter, session, catalog) = try await setup()

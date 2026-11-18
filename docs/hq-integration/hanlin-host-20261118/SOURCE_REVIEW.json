@@ -1,0 +1,34 @@
+{
+  "time": "2026-11-18T22:56:09.938924+00:00",
+  "status": "PASS",
+  "before": {
+    "passed": 13,
+    "failed": 4,
+    "adapter_sha256": "4b0f9e3eae39b47e1805770e3c98ad44aa5290b7e5688312b7e36327416a9e8e"
+  },
+  "after": {
+    "passed": 17,
+    "failed": 0,
+    "warnings": 0,
+    "adapter_sha256": "d0fb6d338029366093a66bdbbaa609ea048cf572dfa467f73b62d162373425e6"
+  },
+  "fixed_failures": [
+    "testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait",
+    "testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions",
+    "testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights",
+    "testContentRightsHideSearchButPreserveCanonicalMetadataActions"
+  ],
+  "same_fixture_sha256": "2272a676a611cbd101833f353c7916da9ee2cc5f9670c4fd847b53c89531fd02",
+  "all_56_inputs_verified": true,
+  "only_changed_executable_input": "Sources/OtzariaHanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+  "current_adapter_sha256": "0b4e822679d78199c85ac1a08db6e24803298aa70e4b784919abc120dde7f0ac",
+  "post_run_difference": "Documentation comment only; all non-documentation source text matches tested after adapter",
+  "sdk_source_sha": "8c10ebd066826511e4d20d0c763491764eb44a95",
+  "sdk_runtime_contracts_unchanged_at": "080d1a2b264ead9e3f9df690f2dd0d3e81ebd07e",
+  "boundary": "Actual frozen SDK Contracts + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No SDK AgentCore, app, provider, native UI or device acceptance.",
+  "sdk_compatibility_changed_paths": [
+    "PROJECT_BOARD.md",
+    "Packages/HanlinAgentSDK/OTZARIA_CONSUMER_COMPATIBILITY.md",
+    "Packages/HanlinPlatform/Package.swift"
+  ]
+}

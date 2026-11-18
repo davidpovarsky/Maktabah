@@ -1,0 +1,53 @@
+{
+  "expected_tests": [
+    "testBackgroundNavigationIsDenied",
+    "testCancellationDuringAuthorityLookupNeverReachesCore",
+    "testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait",
+    "testCanonicalSchemaRejectionNeverBecomesCompleted",
+    "testCatalogIsExactReadOnlyProjectionAndBackendQualified",
+    "testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions",
+    "testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights",
+    "testContentRightsHideSearchButPreserveCanonicalMetadataActions",
+    "testContextRevocationDuringReadSuppressesResult",
+    "testExplicitCancellationReachesOriginalCoreTask",
+    "testForeignProviderAndStaleCatalogAreRejected",
+    "testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts",
+    "testMutationGuaranteeIsRejectedBeforeDispatch",
+    "testOutputLimitAndExpiredDeadlineAreEnforced",
+    "testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected",
+    "testRealCoreExecutionPreservesGenerationBeyondDoublePrecision",
+    "testReplayDoesNotExecuteAgain"
+  ],
+  "passed_tests": [
+    "testBackgroundNavigationIsDenied",
+    "testCancellationDuringAuthorityLookupNeverReachesCore",
+    "testCanonicalSchemaRejectionNeverBecomesCompleted",
+    "testCatalogIsExactReadOnlyProjectionAndBackendQualified",
+    "testContextRevocationDuringReadSuppressesResult",
+    "testExplicitCancellationReachesOriginalCoreTask",
+    "testForeignProviderAndStaleCatalogAreRejected",
+    "testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts",
+    "testMutationGuaranteeIsRejectedBeforeDispatch",
+    "testOutputLimitAndExpiredDeadlineAreEnforced",
+    "testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected",
+    "testRealCoreExecutionPreservesGenerationBeyondDoublePrecision",
+    "testReplayDoesNotExecuteAgain"
+  ],
+  "warnings": 0,
+  "status": "FAIL",
+  "exit_code": 1,
+  "hanlin_sha": "8c10ebd066826511e4d20d0c763491764eb44a95",
+  "adapter_sha256": "4b0f9e3eae39b47e1805770e3c98ad44aa5290b7e5688312b7e36327416a9e8e",
+  "inputs": 56,
+  "command": [
+    "swift",
+    "test",
+    "--scratch-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\hh",
+    "-j",
+    "1",
+    "-Xswiftc",
+    "-strict-concurrency=complete"
+  ],
+  "boundary": "Actual frozen SDK Contracts + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No SDK AgentCore, app, provider, native UI or device acceptance."
+}

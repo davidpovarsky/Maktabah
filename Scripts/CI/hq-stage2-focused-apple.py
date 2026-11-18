@@ -76,6 +76,8 @@ def preflight(config):
             require(capture("git", "rev-parse", "HEAD:" + path) == expected_tree,
                     "Unreviewed prebuilt engine source drift: " + path)
     result["zayit_framework"] = zayit_build_plan(config)
+    require(capture("git", "rev-parse", "HEAD:Vendor/HanlinSDK") == config["hanlin_gitlink"], "Hanlin SDK pin drift")
+    result["hanlin_gitlink"] = config["hanlin_gitlink"]
     require(capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile/Upstream") == config["sefaria_gitlink"], "Sefaria pin drift")
     resource_tree = capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile")
     overlays = config.get("embedded_js_overlay_paths", [])
@@ -94,6 +96,21 @@ def preflight(config):
     result["package_resolved_sha256"] = digest(lock)
     result["package_pins"] = pins(lock)
     return result
+
+
+def prepare_original_hanlin(config, report, *, verify_only=False):
+    suffix = "-after" if verify_only else ""
+    proof = OUT / ("hanlin-sdk-inputs" + suffix + ".json")
+    command = [sys.executable, "Scripts/CI/prepare-hanlin-sdk.py",
+               "--sha", config["hanlin_gitlink"], "--output", str(proof)]
+    if verify_only:
+        command.append("--verify-only")
+    logged(command, "hanlin-sdk" + suffix + ".log", report)
+    evidence = json.loads(proof.read_text())
+    if verify_only:
+        require(evidence == report["hanlin_sdk_source"], "Original Hanlin source changed during Apple compilation")
+    else:
+        report["hanlin_sdk_source"] = evidence
 
 
 def checked_path(base, name):
@@ -429,6 +446,7 @@ def main():
         report["sdk_path"] = capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-path")
         report["sdk_version"] = capture("xcrun", "--sdk", "iphonesimulator", "--show-sdk-version")
         report["developer_dir"] = os.environ.get("DEVELOPER_DIR") or capture("xcode-select", "-p")
+        prepare_original_hanlin(config, report)
         prepare_react_sources(config, report)
         restore(config, report)
         rebuild_matching_zayit_framework(report)
@@ -445,6 +463,8 @@ def main():
         lock = ROOT / "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
         require(pins(lock) == report["package_pins"], "Xcode changed committed package revisions")
         require(pins(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved") == report["package_pins"], "Workspace changed committed package revisions")
+        shutil.copyfile(lock, OUT / "resolved-Package.resolved")
+        shutil.copyfile(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved", OUT / "workspace-Package.resolved")
         verify_actual_sources(report)
         verify_selected_zayit_files(report)
         derived_data = checked_path(ROOT / "build", str(Path(args.derived_data).relative_to("build")))
@@ -467,6 +487,7 @@ def main():
         report["built_app_embedded_bundle_sha256"] = digest(built_bundle)
         require(pins(lock) == report["package_pins"], "Build changed committed package revisions")
         report["package_resolved_after_sha256"] = digest(lock)
+        prepare_original_hanlin(config, report, verify_only=True)
         report["status"] = "SIMULATOR_BUILD_FOR_REAL_UI_PASS" if args.build_for_testing else "UNSIGNED_APP_BUILD_PASS"
         return 0
     except Exception as error:

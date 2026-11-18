@@ -1,3 +1,16 @@
+## Current continuation correction — 2026-11-18
+
+The historical intake below is preserved. Original Hanlin8c10 includes
+Packages/HanlinPresentationSDK with ChatUI, ChatView, MorphComposer and Markdown.
+The missing-ChatUI/root-package premise is superseded: original nested packages
+are consumable together. The continuation registers original HostContracts and
+PlatformContracts plus the existing adapter through the full HanlinSDK submodule,
+with a narrow dependency-compatibility commit080d1a2b. See
+../hq-integration/hanlin-host-20261118/README.md for the17-test canonical catalog
+repair, exact input evidence and remaining real app/model/native gates.
+Scene identifiers remain separate authorities; the original no-reinterpretation,
+freshness, route-receipt and exact-number rules below still apply.
+
 # Hanlin preview357d consumer boundary — documentation only
 
 Reviewed at the next UI02 checkpoint: HQ `docs/otzaria/ui-routing/HANLIN_CONTRACT_REVIEW_357D_20261115.md`, delivered by the existing dispatcher. This records the consumer implications of that review; it is not an independent SDK source review or live integration acceptance.

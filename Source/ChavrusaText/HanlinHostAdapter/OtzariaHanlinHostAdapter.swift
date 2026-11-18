@@ -35,7 +35,8 @@ public protocol OtzariaHanlinHostAuthority: Sendable {
 
 /// Compatible with the real Hanlin HostIntegration contract. No chat, agent loop,
 /// credentials, MCP transport, persistence or new business/permission engine.
-/// App target registration is blocked on an importable, pinned Hanlin SDK release.
+/// The app links the original pinned SDK packages; runtime authority is supplied
+/// only by its actual scene owner. Package linkage is not native acceptance.
 public actor OtzariaHanlinHostAdapter: HanlinHostIntegration {
     public nonisolated let apiVersion = HanlinAPIVersion(major: 1, minor: 0)
     private let core: ActionExecutor
@@ -72,8 +73,11 @@ public actor OtzariaHanlinHostAdapter: HanlinHostIntegration {
 
     public func catalog(for context: HanlinHostContext) async throws -> HanlinHostCatalog {
         let binding = try await checkedBinding(context)
-        let catalog = try makeCatalog(binding)
-        // A projection is not a permission grant. Recheck after any host await.
+        // Policy and current backend readiness belong to the SAME original Core.
+        // A local name allowlist is only this transport's read-only surface.
+        let advertised = await core.advertisedActions(for: binding.backend.backend, context: binding.executionContext)
+        let catalog = try makeCatalog(binding, advertised: Set(advertised.map(\.id)))
+        // A projection is not a permission grant. Recheck after the Core await.
         guard try await checkedBinding(context) == binding else { throw HanlinHostError.staleContext }
         return catalog
     }
@@ -201,7 +205,7 @@ public actor OtzariaHanlinHostAdapter: HanlinHostIntegration {
               value.executionContext.maxResultBytes > 0 else { throw HanlinHostError.denied }
     }
 
-    private func makeCatalog(_ binding: OtzariaHanlinBinding) throws -> HanlinHostCatalog {
+    private func makeCatalog(_ binding: OtzariaHanlinBinding, advertised: Set<String>? = nil) throws -> HanlinHostCatalog {
         let backendName: String
         switch binding.backend.backend {
         case .otzaria: backendName = "otzaria"
@@ -213,12 +217,11 @@ public actor OtzariaHanlinHostAdapter: HanlinHostIntegration {
         var tools: [HanlinHostTool] = []
         for (wireName, action) in Self.names.sorted(by: { $0.key < $1.key }) {
             guard binding.availableReadActions.contains(action),
+                  advertised?.contains(action) ?? true,
                   ActionRegistry.implemented.contains(action),
                   let descriptor = registry.descriptor(for: action), !descriptor.mutatesUserData else { continue }
-            if action != "system.listBackends" {
-                guard binding.executionContext.scopes.contains(.contentRead),
-                      binding.executionContext.contentRights.contains(binding.backend.backend) else { continue }
-            }
+            // Execution still uses Core's original schema/policy/readiness checks.
+            // Do not reinterpret metadata risk tiers as a parallel permission policy.
             let logical = HanlinLogicalToolID(providerInstanceID: provider,
                 localToolID: try HanlinToolID(validating: wireName))
             let schemaBytes = try JSONEncoder().encode(descriptor.argumentsSchema)
