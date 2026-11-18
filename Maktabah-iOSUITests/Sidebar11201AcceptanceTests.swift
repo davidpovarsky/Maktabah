@@ -268,8 +268,9 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
             XCTAssertTrue(target.waitForExistence(timeout: 15), "Fixture path is missing: \(title)")
             XCTAssertTrue(target.staticTexts[title].exists, "Canonical cell must retain the real title")
             XCTAssertTrue(target.isHittable, "Canonical catalog occurrence must be visible")
-            if index + 1 < path.count && !(try cell(at: index + 1)).exists {
-                target.tap()
+            if index + 1 < path.count {
+                let child = try cell(at: index + 1)
+                if !child.exists { target.tap() }
             }
         }
     }
