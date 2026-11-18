@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "3f16e26d95c37398ae7bd58d19a2bc9134e12343",
+  "source_test_commit": "b1cb406eca38bbb2fd09eeb6a262750869904916",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "3f16e26d95c37398ae7bd58d19a2bc9134e12343",
+  "app_source": "b1cb406eca38bbb2fd09eeb6a262750869904916",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2",
@@ -760,7 +760,7 @@
     },
     "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
     "executor": "Current sole developer continuation; no subagents or resumed prior agents",
-    "native_status": "NOT_RUN on this candidate; immutable prior native41 run44207959071 is independent and still in progress at root-source intake.",
+    "native_status": "NOT_RUN on this50-case candidate; native41 run44207959071 remains separate immutable evidence.",
     "canonical_reader_source": {
       "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
       "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
@@ -796,10 +796,11 @@
       "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
     ],
     "native_new_tab_source": {
-      "status": "LOCAL_SOURCE_IMPLEMENTED_NATIVE_PENDING",
+      "status": "SOURCE_IMPLEMENTED_APP_SDK_NATIVE_PENDING",
       "scope": "R-owned actual ReaderTab reservation through original Core, original new-tab presenter and independent TextKit witness",
       "source_branch": "codex/otzaria-native-reader-owner-20261118",
-      "acceptance_limit": "Two actual Native new-tab cases NOT_RUN; phone content/richer components and device validation remain separate."
+      "acceptance_limit": "Two actual Native new-tab cases NOT_RUN; phone content/richer components and device validation remain separate.",
+      "sha": "b1cb406eca38bbb2fd09eeb6a262750869904916"
     }
   }
 }
