@@ -82,6 +82,7 @@ struct iOSMainView: View {
     @State private var selectedTab: iOSTab = .viewer
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var showSettings = false
+    @State private var sidebar = ReaderSidebarPageCoordinator()
     @State private var sefariaEmbeddedAcceptanceResult: String?
     @Bindable var donationManager = DonationManager.shared
 
@@ -94,7 +95,8 @@ struct iOSMainView: View {
                     bManager: bManager,
                     selectedTab: $selectedTab,
                     columnVisibility: $columnVisibility,
-                    showSettings: $showSettings
+                    showSettings: $showSettings,
+                    sidebar: sidebar
                 )
             } else {
                 iPhoneLayout(
@@ -170,7 +172,7 @@ struct iOSMainView: View {
                 .opacity(0.02)
                 .allowsHitTesting(false)
         }
-        .modifier(MaktabahNativeRoutingHost(manager: navigationManager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings))
+        .modifier(MaktabahNativeRoutingHost(manager: navigationManager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings, sidebar: MaktabahApp.isIpad ? sidebar : nil))
         .modifier(CompactStudyWorkspaceHostModifier(manager: navigationManager))
         #if DEBUG
         .task {

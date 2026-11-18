@@ -67,15 +67,26 @@ struct MaktabahNativeSceneProjection {
             // Opening a root never submits a query, creates a draft or writes data.
             return .init(destination: id(root.rawValue), presentation: .init(), content: nil, state: state, focus: nil)
         case .library, .tableOfContents:
-            guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer,
-                  let sidebar else { return nil }
-            let requestedPage: ReaderSidebarPageCoordinator.Page = surface == .library ? .library : .contents
-            guard sidebar.page == requestedPage, columnVisibility == .all || columnVisibility == .doubleColumn else { return nil }
+            guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer else { return nil }
+            if let sidebar {
+                let page: ReaderSidebarPageCoordinator.Page = surface == .library ? .library : .contents
+                guard sidebar.page == page,
+                      columnVisibility == .all || columnVisibility == .doubleColumn else { return nil }
+                if surface == .tableOfContents {
+                    guard MaktabahNativeSceneBindings.hasOriginalTableOfContents(manager) else { return nil }
+                }
+            } else {
+                // Original compact Library is a NavigationStack root; its
+                // pushed Reader must be gone before this surface can be visible.
+                guard surface == .library, !MaktabahApp.isIpad, manager.selectedBook == nil else { return nil }
+            }
             let destination = surface == .library ? "native.library" : "native.reader.toc"
-            let visible = UIStateSpec(workspaceID: state.workspaceID, profileID: state.profileID,
-                                      sidebarVisible: true, inspectorVisible: activeTab?.viewModel.readerInspectorVisible)
-            return .init(destination: id(destination), presentation: .init(kind: .sidebar, tabID: stable(activeTab?.id)),
-                         content: nil, state: visible, focus: nil)
+            // Public v2 already defines currentTab roots. No new wire format,
+            // private tab identity, or guessed sidebar state is introduced.
+            // The exact original page plus its independent UIKit witness must
+            // actually be visible before it can acknowledge this root.
+            return .init(destination: id(destination), presentation: .init(),
+                         content: nil, state: state, focus: nil)
         case .reader:
             guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer,
                   let tab = activeTab, let destination = tab.viewModel.currentDestination,

@@ -11,13 +11,13 @@ struct iPadLayout: View {
     @Binding var selectedTab: iOSTab
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @Binding var showSettings: Bool
+    @Bindable var sidebar: ReaderSidebarPageCoordinator
 
     @State private var showingAddFavorites = false
     @State private var preferredLibraryCompactColumn: NavigationSplitViewColumn = .detail
     @AppStorage("lastSelectedTab") private var savedSelectedTab: iOSTab = .viewer
     @StateObject private var historyViewModel = HistoryViewModel.shared
     @StateObject private var backendCoordinator = BackendCoordinator.shared
-    @State private var sidebar = ReaderSidebarPageCoordinator()
     @State private var searchPresentation = GlobalSearchPresentationCoordinator()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
@@ -115,10 +115,12 @@ struct iPadLayout: View {
                 .background(Color.appBackground)
                 .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("library-column")
+                .modifier(MaktabahNativeRoutingSurface(kind: .library))
             } contents: { isActive in
                 activeReaderTableOfContents
                     .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("toc-column")
+                    .modifier(MaktabahNativeRoutingSurface(kind: .tableOfContents))
             }
             .environment(\.readerSidebarUsesSharedSearch, true)
         } detail: {

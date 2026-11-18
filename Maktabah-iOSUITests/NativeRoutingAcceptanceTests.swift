@@ -923,3 +923,151 @@ extension NativeRoutingPhoneAcceptanceTests {
         try runCurrentReaderOtherBookRefusal(expectedPad: false)
     }
 }
+
+
+// Real existing Library / TOC surfaces, entered through the original public
+// parser and Core authorization. No input query or private owner IDs are in URLs.
+extension NativeRoutingAcceptanceTests {
+    private func publicSidebarRootURL(_ destination: String) throws -> URL {
+        XCTAssertTrue(["native.library", "native.reader.toc"].contains(destination))
+        let payload: [String: Any] = ["version": 2, "destination": destination,
+                                     "backend": "otzaria", "presentation": "currentTab"]
+        let data = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        let token = data.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v2/\(destination)?route=\(token)"))
+    }
+
+    @MainActor
+    private func requirePublicRootReceipt(_ destination: String, before: Set<String>) throws {
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = try? self.actualNativeReceiptLines() else { return false }
+            return before.isSubset(of: actual) && actual.subtracting(before).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 15), .completed,
+                       "The actual original UIKit surface must acknowledge through Core")
+        try requireNewSystemIntentReceipt(destination: destination, presentation: "currentTab", before: before)
+    }
+
+    private func requirePreservedOriginalWorkspace(_ original: (ReaderWorkspaceSnapshot.Group, UUID)) throws {
+        let current = try actualReaderWorkspace().current()
+        XCTAssertEqual(current.0.id, original.0.id)
+        XCTAssertEqual(current.0.profileID, original.0.profileID)
+        XCTAssertEqual(current.1, original.1, "Opening a root must not replace the selected original Reader owner")
+        XCTAssertEqual(current.0.tabs.map(\.session.id), original.0.tabs.map(\.session.id))
+        XCTAssertEqual(current.0.tabs.map(\.backend), original.0.tabs.map(\.backend))
+        XCTAssertEqual(current.0.tabs.map(\.session.bookId), original.0.tabs.map(\.session.bookId))
+    }
+
+    @MainActor private func originalVisibleSidebarSearch() throws -> XCUIElement {
+        let pager = app.descendants(matching: .any).matching(identifier: "reader-sidebar-pager").firstMatch
+        XCTAssertTrue(pager.waitForExistence(timeout: 10))
+        let column = CGRect(x: pager.frame.minX, y: app.windows.firstMatch.frame.minY,
+                            width: pager.frame.width, height: app.windows.firstMatch.frame.height)
+        let fields = app.searchFields.allElementsBoundByIndex.filter {
+            !$0.frame.isEmpty && column.insetBy(dx: -1, dy: 0).contains($0.frame) && $0.isHittable
+        }
+        XCTAssertEqual(fields.count, 1, "Use the original native field belonging to the actual sidebar")
+        return try XCTUnwrap(fields.first)
+    }
+
+    @MainActor func testPublicV2LibraryPreservesPrivateQueryAndOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader()
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        var before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.library"))
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.library", before: before)
+        let field = try originalVisibleSidebarSearch(), privateQuery = "בראשית"
+        field.tap(); field.typeText(privateQuery)
+        XCTAssertEqual(field.value as? String, privateQuery)
+        let historyRequest = UUID()
+        try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+        XCTAssertTrue(history.waitForExistence(timeout: 15))
+        try requireNativeReceipt(historyRequest, backend: "otzaria")
+        before = try actualNativeReceiptLines()
+        let root = try publicSidebarRootURL("native.library")
+        XCTAssertFalse(root.absoluteString.contains(privateQuery))
+        try openInExistingProcess(root)
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.library", before: before)
+        XCTAssertEqual(try originalVisibleSidebarSearch().value as? String, privateQuery)
+        try requirePreservedOriginalWorkspace(original)
+        try requireReaderLocator(locator)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("native-library-root-original-reader-and-private-query")
+    }
+
+    @MainActor func testPublicV2TOCPreservesPrivateFilterAndOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader()
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        var before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.reader.toc"))
+        let toc = app.descendants(matching: .any).matching(identifier: "toc-column").firstMatch
+        XCTAssertTrue(toc.waitForExistence(timeout: 15))
+        let row = toc.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "toc-row-")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 15))
+        XCTAssertTrue(row.isHittable, "An actual original TOC row must be rendered")
+        try requirePublicRootReceipt("native.reader.toc", before: before)
+        let privateFilter = row.label
+        XCTAssertFalse(privateFilter.isEmpty)
+        let field = try originalVisibleSidebarSearch()
+        field.tap(); field.typeText(privateFilter)
+        XCTAssertEqual(field.value as? String, privateFilter)
+        before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.library"))
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.library", before: before)
+        before = try actualNativeReceiptLines()
+        let root = try publicSidebarRootURL("native.reader.toc")
+        XCTAssertFalse(root.absoluteString.contains(privateFilter))
+        try openInExistingProcess(root)
+        XCTAssertTrue(toc.waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.reader.toc", before: before)
+        XCTAssertEqual(try originalVisibleSidebarSearch().value as? String, privateFilter)
+        XCTAssertTrue(toc.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "toc-row-")).firstMatch.exists)
+        try requirePreservedOriginalWorkspace(original)
+        try requireReaderLocator(locator)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("native-toc-root-original-reader-and-private-filter")
+    }
+
+    @MainActor func testPublicV2TOCWithoutOriginalReaderCannotAcknowledge() throws {
+        XCTAssertTrue(isPad)
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        XCTAssertFalse(app.staticTexts["reader-current-locator"].exists)
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.reader.toc"))
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15), "No original selected Reader/TOC must be an explicit refusal")
+        XCTAssertEqual(try actualNativeReceiptLines(), before, "An unavailable TOC cannot produce a visible receipt")
+        alert.buttons.firstMatch.tap()
+        XCTAssertTrue(app.otherElements["library-column"].exists)
+        XCTAssertFalse(app.staticTexts["reader-current-locator"].exists)
+        capture("native-toc-without-original-reader-refused")
+    }
+
+    @MainActor func runPhoneLibraryRootPreservesOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: false)
+        let original = try actualReaderWorkspace().current()
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.library"))
+        requireOriginalPhoneLibrary(timeout: 15)
+        XCTAssertFalse(app.staticTexts["reader-current-locator"].exists,
+                       "The original phone NavigationStack must pop its visible Reader")
+        try requirePublicRootReceipt("native.library", before: before)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try attachWorkspaceSnapshot("native-phone-library-preserved-original-reader-owner")
+        capture("native-phone-original-library-root")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testPhonePublicV2LibraryPreservesOriginalReaderOwner() throws {
+        try runPhoneLibraryRootPreservesOriginalReader()
+    }
+}

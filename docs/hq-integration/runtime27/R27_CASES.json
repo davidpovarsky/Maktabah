@@ -5,12 +5,12 @@
   "app_source": "87b37a1309aee69350868cb37846037dd6b52479",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_REQUIRED27_SEARCH14_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3",
+  "scope": "CONTINUATION_REQUIRED27_SEARCH14_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3__LIBRARY_TOC_ROOTS4",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 56,
+  "required_nonzero_cases": 60,
   "expected_per_device": {
-    "ipad11": 47,
-    "iphone": 9
+    "ipad11": 50,
+    "iphone": 10
   },
   "cases": [
     {
@@ -198,7 +198,10 @@
         "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
         "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
         "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
-        "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
+        "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+        "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+        "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+        "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge"
       ],
       "hid_comparison": false
     },
@@ -234,7 +237,8 @@
         "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
-        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader"
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner"
       ],
       "hid_comparison": false
     }
@@ -295,7 +299,11 @@
     "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
     "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
     "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
-    "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
+    "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+    "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -704,6 +712,30 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Actual original Otzaria engine offset0/100+,200+ published unique rows, metadata remains paired with every accumulated stable identity, canonical SQL and native UI agreement; original later-page Reader exact locator/highlight."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original Library public-v2; private native search survives History/back; original selected Reader/tab/group/profile and rendered locator preserved."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original selected Reader TOC/public-v2: original visible rows, retained private filter after Library/back, unchanged Reader/locator and native receipt."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Fresh real workspace without original selected Reader: public-v2 TOC refuses, emits no receipt and retains original Library."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original phone NavigationStack pops visible Reader through public-v2/Core; preserves its original selected workspace tab/book and requires native receipt."
     }
   ],
   "manager_native_review_history": [
@@ -814,7 +846,11 @@
       "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
       "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
       "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
-      "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
+      "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+      "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+      "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+      "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner"
     ],
     "reused_native_passes": 0,
     "historical_native_evidence": "Preserved only on its original app/test/fixture/context. First continuation run44185317875 remains an independent immutable27-case observation.",
@@ -825,7 +861,7 @@
     },
     "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
     "executor": "Current sole developer continuation; no subagents or resumed prior agents",
-    "native_status": "Native54 c0599822 remains independently active; new56 candidate is SOURCE_ONLY pending actual SDK/app/Native. No historical passes reused.",
+    "native_status": "Native54 c0599822 build-for-testing PASS but0UI: source regex missed extension/inline-attribute declarations. Compiler-driven exact declaration preflight now added before expensive builds. Current60 NOT_RUN.",
     "canonical_reader_source": {
       "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
       "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
@@ -879,13 +915,13 @@
     },
     "native_execution_partition": {
       "reason": "Run44207959071 spent4086.583s in the RTL Sidebar test and hit the global150-minute ceiling before phone xcresult verification. Use distinct fresh owned simulator groups, unchanged full-case coverage and no retries.",
-      "case_count": 56,
+      "case_count": 60,
       "per_group": {
         "11-search": 21,
-        "11-reader": 20,
+        "11-reader": 23,
         "11-sidebar": 4,
         "11-window": 2,
-        "phone": 9
+        "phone": 10
       },
       "prior_result_retained": true
     },
@@ -909,9 +945,26 @@
         "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
         "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
       ],
-      "status": "SOURCE_ADDED_NOT_RUN",
+      "status": "ACTUAL_SDK_PASS_44324131904_NATIVE_NOT_RUN",
       "privacy": "No raw request.query field; full fixture provider metadata included only with explicit test flag; all hooks compiled out of Release",
       "source_sha": "87b37a1309aee69350868cb37846037dd6b52479"
+    },
+    "native_sidebar_root_cases": [
+      "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+      "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+      "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner"
+    ],
+    "native_sidebar_roots_source": {
+      "status": "SOURCE_IMPLEMENTED_SDK_APP_NATIVE_PENDING",
+      "scope": "Same original scene-owned ReaderSidebarPageCoordinator; Library/TOC currentTab roots plus compact Library. Exact original selected loaded TOC required.",
+      "acceptance_limit": "Four Native cases NOT_RUN; no new public schema, private query/tab data in URL or permissions owner."
+    },
+    "native_declaration_fix": {
+      "prior_run": 44320497938,
+      "prior_native_executed": 0,
+      "prior_build_status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+      "fix": "Actual Swift frontend class/extension declarations; exact ownership; prebuild plus actual SDK check. Same required UI/PASS/zero-skip gates."
     }
   }
 }

@@ -25,6 +25,10 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     private var visible: [UIDestinationID: NativeSurfaceWitness.Evidence] = [:]
     @ObservationIgnored private var visibilityChecks: [UIDestinationID: @MainActor () -> NativeSurfaceWitness.Evidence?] = [:]
     var isPresentationReady: Bool { bindings.isPresentationReady }
+    func isRootAvailable(_ destination: UIDestinationID) -> Bool {
+        guard let root = MaktabahNativeRootDestination(rawValue: destination.rawValue) else { return false }
+        return bindings.isRootAvailable(root)
+    }
 
     init(sceneID: UIStableID, directory: NativeSceneDirectory, bindings: MaktabahNativeSceneBindings,
          workspaceSource: MaktabahNativeWorkspaceProjectionSource? = nil,
@@ -105,9 +109,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         switch route.destination.rawValue {
         case "native.settings":
             guard route.presentation.kind == .sheet else { throw UIRouteError(.notSupported, "settings_presentation_not_installed") }
-        case "native.history", "native.search", "native.annotations":
-            guard route.presentation.kind == .currentTab,
-                  MaktabahNativeRootDestination(rawValue: route.destination.rawValue)?.isAvailable == true else {
+        case "native.library", "native.reader.toc", "native.history", "native.search", "native.annotations":
+            guard route.presentation.kind == .currentTab, isRootAvailable(route.destination) else {
                 throw UIRouteError(.notSupported, "native_root_presentation_unavailable")
             }
         default: throw UIRouteError(.notSupported, "native_surface_not_installed")
@@ -165,7 +168,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
            current == evidence.surface,
            try project().hasRenderedReaderEvidence(sceneID: sceneID) { reader = current }
         return .init(ready: mounted && foreground && isPresentationReady,
-            historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty, witnessedReader: reader)
+            historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty,
+            tableOfContentsAvailable: bindings.isRootAvailable(.tableOfContents), witnessedReader: reader)
     }
     func observeVisibility(for destination: UIDestinationID, check: @escaping @MainActor () -> NativeSurfaceWitness.Evidence?) {
         visibilityChecks[destination] = check
@@ -179,7 +183,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func prepare(_ route: PublicRouteSpec, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
-        guard MaktabahNativeRootDestination(rawValue: route.destination.rawValue)?.isAvailable == true,
+        guard isRootAvailable(route.destination),
               route.content == nil, route.presentation == .currentTab else {
             throw UIRouteError(.notSupported, "public_native_variant_not_installed")
         }
@@ -190,7 +194,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func prepare(destination: UIDestinationID, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
-        guard destination.rawValue == "native.settings" || MaktabahNativeRootDestination(rawValue: destination.rawValue)?.isAvailable == true else { throw UIRouteError(.notSupported, "native_surface_not_installed") }
+        guard destination.rawValue == "native.settings" || isRootAvailable(destination) else { throw UIRouteError(.notSupported, "native_surface_not_installed") }
         let identity = try project().identity()
         return RouteSpec(requestId: invocation.requestId, destination: destination, backend: invocation.snapshot.backend,
             presentation: .init(kind: destination.rawValue == "native.settings" ? .sheet : .currentTab),

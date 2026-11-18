@@ -8,6 +8,7 @@ import ChavrusaUIRoutingHost
 struct MaktabahNativePublicPresentation {
     let ready: Bool
     let historyRootAvailable: Bool
+    let tableOfContentsAvailable: Bool
     let witnessedReader: NativeSurfaceState?
 }
 
@@ -82,11 +83,13 @@ struct MaktabahNativePublicPresentation {
         guard live.active, live.lifetimeID == lease.lifetimeID else { throw UIRouteError(.staleState, "public_binding_lifetime_changed") }
         return live
     }
-    private enum Shape { case history, search, annotations, settings, reader }
+    private enum Shape { case library, tableOfContents, history, search, annotations, settings, reader }
     private func shape(destination: UIDestinationID, presentation: PublicNavigationSpecV2.Presentation,
                        component: UIDestinationID?, hasContent: Bool) throws -> Shape {
         guard component == nil else { throw UIRouteError(.notSupported, "public_component_not_installed") }
         switch (destination.rawValue, presentation, hasContent) {
+        case ("native.library", .currentTab, false): return .library
+        case ("native.reader.toc", .currentTab, false): return .tableOfContents
         case ("native.history", .currentTab, false): return .history
         case ("native.search", .currentTab, false):
             guard MaktabahNativeRootDestination.search.isAvailable else { throw UIRouteError(.notSupported, "native_search_unavailable") }
@@ -114,7 +117,10 @@ struct MaktabahNativePublicPresentation {
         case .history:
             guard visible.historyRootAvailable else { throw UIRouteError(.unavailable, "history_root_unavailable") }
             tab = .absent; inspector = nil
-        case .settings, .search, .annotations: tab = .absent; inspector = nil
+        case .tableOfContents:
+            guard visible.tableOfContentsAvailable else { throw UIRouteError(.unavailable, "native_toc_unavailable") }
+            tab = .absent; inspector = nil
+        case .library, .settings, .search, .annotations: tab = .absent; inspector = nil
         case .reader:
             guard let wanted = intent.content else { throw ActionPortError.notSupported }
             _ = try MaktabahNativeReaderBinding.appDestination(wanted)
@@ -204,6 +210,7 @@ struct MaktabahNativePublicPresentation {
         let ready = visible.ready
             && (variant.destination.rawValue != "native.reader" || variant.presentation == .newTab || visible.witnessedReader != nil)
             && (variant.destination.rawValue != "native.history" || visible.historyRootAvailable)
+            && (variant.destination.rawValue != "native.reader.toc" || visible.tableOfContentsAvailable)
         return .init(sceneID: current.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
             supported: true, ready: ready, allowed: true)
     }

@@ -86,6 +86,7 @@ struct iPhoneLayout: View {
     private var viewerTabContent: some View {
         NavigationStack {
             iOSLibraryView()
+                .modifier(MaktabahNativeRoutingSurface(kind: .library))
                 .navigationTitle(iOSTab.viewer.title)
                 .adaptiveReaderPush(
                     item: $bManager.selectedBook,

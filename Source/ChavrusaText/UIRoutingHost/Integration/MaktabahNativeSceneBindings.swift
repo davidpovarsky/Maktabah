@@ -7,16 +7,24 @@ import ChavrusaUIRoutingHost
 /// Finite existing top-level tabs. Availability delegates to the original UI
 /// capability rules; this contains no resolver, search engine or write action.
 @MainActor enum MaktabahNativeRootDestination: String, CaseIterable {
+    case library = "native.library"
+    case tableOfContents = "native.reader.toc"
     case history = "native.history"
     case search = "native.search"
     case annotations = "native.annotations"
 
     var tab: iOSTab {
-        switch self { case .history: .history; case .search: .search; case .annotations: .annotations }
+        switch self {
+        case .library, .tableOfContents: .viewer
+        case .history: .history
+        case .search: .search
+        case .annotations: .annotations
+        }
     }
     var isAvailable: Bool {
         tab.isAvailable(for: BackendCoordinator.shared.activeCapabilities)
             && (self != .history || HistoryViewModel.shared.searchText.isEmpty)
+            && (self != .tableOfContents || MaktabahApp.isIpad)
     }
 }
 
@@ -27,6 +35,27 @@ struct MaktabahNativeSceneBindings {
     let selectedTab: Binding<iOSTab>
     let columnVisibility: Binding<NavigationSplitViewVisibility>
     let showSettings: Binding<Bool>
+    let sidebar: ReaderSidebarPageCoordinator?
+
+    func isRootAvailable(_ root: MaktabahNativeRootDestination) -> Bool {
+        root.isAvailable && (root != .tableOfContents
+            || (sidebar != nil && Self.hasOriginalTableOfContents(manager)))
+    }
+
+    /// Read only the actual selected original Reader and TOC. Do not substitute
+    /// a first tab, open a book, load a different corpus or clear a private filter.
+    static func hasOriginalTableOfContents(_ manager: iOSNavigationManager) -> Bool {
+        guard let id = manager.activeTabId,
+              let tab = manager.openTabs.first(where: { $0.id == id }),
+              let book = tab.book.backendLocator,
+              let section = tab.viewModel.backendSection?.locator,
+              book.backend == BackendCoordinator.shared.activeBackendID,
+              section.backend == book.backend, section.workKey == book.workKey,
+              !tab.viewModel.tocViewModel.isLoading,
+              tab.viewModel.tocViewModel.loadFailure == nil,
+              !tab.viewModel.tocViewModel.tocNodes.isEmpty else { return false }
+        return true
+    }
 
     var isPresentationReady: Bool {
         !DonationManager.shared.showDonationSheet && manager.selectedBookForInfo == nil
@@ -36,10 +65,18 @@ struct MaktabahNativeSceneBindings {
     func apply(_ command: UISceneCommand, reservedTab: iOSNavigationManager.ReaderTab? = nil) throws {
         switch command.route.route.destination.rawValue {
         case "native.settings": showSettings.wrappedValue = true
-        case "native.history", "native.search", "native.annotations":
+        case "native.library", "native.reader.toc", "native.history", "native.search", "native.annotations":
             guard let root = MaktabahNativeRootDestination(rawValue: command.route.route.destination.rawValue),
-                  root.isAvailable else { throw UIRouteError(.notSupported, "native_root_unavailable") }
+                  isRootAvailable(root) else { throw UIRouteError(.notSupported, "native_root_unavailable") }
             showSettings.wrappedValue = false
+            if root == .library {
+                sidebar?.showLibrary()
+                columnVisibility.wrappedValue = .all
+            } else if root == .tableOfContents {
+                guard let sidebar else { throw UIRouteError(.unavailable, "native_sidebar_unavailable") }
+                sidebar.showContents()
+                columnVisibility.wrappedValue = .all
+            }
             // The original phone stacks share this optional navigation item.
             // Pop the presented reader without closing its tab or replacing
             // its model; original onDisappear persists the reading position.

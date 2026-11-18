@@ -27,6 +27,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
     @Binding var selectedTab: iOSTab
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @Binding var showSettings: Bool
+    let sidebar: ReaderSidebarPageCoordinator?
     @Environment(\.scenePhase) private var phase
     @Environment(\.exact9401Workspace) private var workspace
     @Environment(\.maktabahNativeWorkspaceOwner) private var workspaceOwner
@@ -39,11 +40,11 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             && !sceneID.isEmpty
     }
     private var bindings: MaktabahNativeSceneBindings {
-        .init(manager: manager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings)
+        .init(manager: manager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings, sidebar: sidebar)
     }
     private var projection: MaktabahNativeSceneProjection {
         .init(manager: manager, selectedTab: selectedTab, columnVisibility: columnVisibility,
-              settingsPresented: showSettings, sidebar: nil, workspace: workspace)
+              settingsPresented: showSettings, sidebar: sidebar, workspace: workspace)
     }
     func body(content: Content) -> some View {
         content
@@ -76,6 +77,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             .onChange(of: selectedTab) { _, _ in refreshProjection(workspaceChanged: false) }
             .onChange(of: showSettings) { _, _ in refreshProjection(workspaceChanged: false) }
             .onChange(of: columnVisibility) { _, _ in refreshProjection(workspaceChanged: false) }
+            .onChange(of: sidebar?.page) { _, _ in refreshProjection(workspaceChanged: false) }
             .onDisappear {
                 if let session { MaktabahNativeRoutingComposition.shared.unmount(session) }
                 session = nil
@@ -89,7 +91,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
         session.updateProjection(source.projection { workspace in
             .init(manager: bindings.manager, selectedTab: bindings.selectedTab.wrappedValue,
                   columnVisibility: bindings.columnVisibility.wrappedValue, settingsPresented: bindings.showSettings.wrappedValue,
-                  sidebar: nil, workspace: workspace)
+                  sidebar: bindings.sidebar, workspace: workspace)
         })
         if workspaceChanged {
             try? MaktabahNativeRoutingComposition.shared.workspaceProjectionDidUpdate(session, workspace: workspace)
@@ -108,7 +110,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
                 workspaceSource: source, project: source.projection { workspace in
                 .init(manager: bindings.manager, selectedTab: bindings.selectedTab.wrappedValue,
                       columnVisibility: bindings.columnVisibility.wrappedValue, settingsPresented: bindings.showSettings.wrappedValue,
-                      sidebar: nil, workspace: workspace)
+                      sidebar: bindings.sidebar, workspace: workspace)
             })
             session = value
             try MaktabahNativeRoutingComposition.shared.installPublicBindingIfReady(

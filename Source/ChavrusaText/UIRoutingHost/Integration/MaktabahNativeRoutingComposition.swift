@@ -59,6 +59,12 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         orchestrator = try NativeSceneNavigationOrchestrator(core: core, backend: backend, authority: authority, directory: directory)
         func id(_ value: String) -> UIDestinationID { UIDestinationID(rawValue: value)! }
         registry = try UIDestinationRegistry(descriptors: [
+            .init(id: id("native.library"), title: "Library".localized, implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
+                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
+            .init(id: id("native.reader.toc"), title: "Table of Contents".localized, implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
+                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
             .init(id: id("native.history"), title: "History".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
@@ -360,7 +366,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UIRouteEligibility {
         let current = try await directory.currentScene(sceneID: scene.sceneID, context: context, invocation: invocation)
         guard current == scene, let entry = scenes[scene.sceneID] else { throw UIRouteError(.staleState, "scene_or_backend_changed") }
-        let supported = descriptor.id.rawValue == "native.settings" || MaktabahNativeRootDestination(rawValue: descriptor.id.rawValue)?.isAvailable == true
+        let supported = descriptor.id.rawValue == "native.settings" || entry.session.isRootAvailable(descriptor.id)
         return .init(sceneID: scene.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
                      supported: supported, ready: entry.session.foreground && entry.session.mounted && entry.session.isPresentationReady, allowed: true)
     }
