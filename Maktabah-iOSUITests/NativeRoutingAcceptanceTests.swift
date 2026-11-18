@@ -424,8 +424,8 @@ extension NativeRoutingAcceptanceTests {
         return metadata
     }
 
-    @MainActor private func launchCurrentCanonicalReader() throws -> String {
-        XCTAssertTrue(isPad, "Current Reader binding requires the actual iPad workspace; never skip")
+    @MainActor private func launchCurrentCanonicalReader(expectedPad: Bool = true) throws -> String {
+        XCTAssertEqual(isPad, expectedPad, "Require the declared actual form factor and its original workspace; never skip")
         launchWithTier(.realUI, scenario: "reader", backend: "otzaria",
             extraArgs: ["-preferredBackend", "otzaria", "-smokeBackend", "otzaria",
                         "-ChavrusaTextFaithfulReaderUIEnabled", "YES", "-otzaria_reader_unit_mode", "line",
@@ -503,7 +503,10 @@ extension NativeRoutingAcceptanceTests {
 
     @MainActor
     func testPublicV2CurrentReaderShowsTwoCanonicalSourceLines() throws {
-        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader()
+        try runCurrentReaderSourceLines(expectedPad: true)
+    }
+    @MainActor func runCurrentReaderSourceLines(expectedPad: Bool) throws {
+        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
         let bookID = try XCTUnwrap(Int(work.replacingOccurrences(of: "book:", with: "")))
         let rows = metadata.rows.filter { $0.count == 3 && $0[1] == bookID && $0[2] > 0 }
         XCTAssertGreaterThan(rows.count, 10, "Require two independently known nonzero source lines")
@@ -527,7 +530,10 @@ extension NativeRoutingAcceptanceTests {
 
     @MainActor
     func testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge() throws {
-        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader()
+        try runCurrentReaderOtherBookRefusal(expectedPad: true)
+    }
+    @MainActor func runCurrentReaderOtherBookRefusal(expectedPad: Bool) throws {
+        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
         let bookID = try XCTUnwrap(Int(work.replacingOccurrences(of: "book:", with: "")))
         let other = try XCTUnwrap(metadata.rows.first { $0.count == 3 && $0[1] != bookID && $0[2] > 0 })
         let before = try readerReceiptLines(), locator = app.staticTexts["reader-current-locator"].label
@@ -577,8 +583,8 @@ extension NativeRoutingAcceptanceTests {
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, expected)
         XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, expected)
     }
-    @MainActor private func runNewTabReader(sameBook: Bool) throws {
-        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader()
+    @MainActor func runNewTabReader(sameBook: Bool, expectedPad: Bool = true) throws {
+        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
         let currentBookID = try XCTUnwrap(Int(work.replacingOccurrences(of: "book:", with: "")))
         let source = try XCTUnwrap(metadata.rows.first {
             $0.count == 3 && $0[2] > 0 && (sameBook ? $0[1] == currentBookID : $0[1] != currentBookID)
@@ -613,10 +619,21 @@ extension NativeRoutingAcceptanceTests {
         capture(sameBook ? "native-new-tab-same-book-distinct-owner" : "native-new-tab-other-book")
         // Return through the original native tab control. No debug navigation
         // or direct model mutation can stand in for the old reading state.
-        let originalTab = app.descendants(matching: .any)
-            .matching(identifier: "reader-document-tab-" + originalTabID.uuidString).firstMatch
-        XCTAssertTrue(originalTab.waitForExistence(timeout: 10)); XCTAssertTrue(originalTab.isHittable)
-        originalTab.tap()
+        if expectedPad {
+            let originalTab = app.descendants(matching: .any)
+                .matching(identifier: "reader-document-tab-" + originalTabID.uuidString).firstMatch
+            XCTAssertTrue(originalTab.waitForExistence(timeout: 10)); XCTAssertTrue(originalTab.isHittable)
+            originalTab.tap()
+        } else {
+            let overview = app.buttons["reader-open-tabs-button"]
+            XCTAssertTrue(overview.waitForExistence(timeout: 10)); XCTAssertTrue(overview.isHittable)
+            overview.tap()
+            let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + originalTabID.uuidString }
+            let originals = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
+            XCTAssertTrue(originals.firstMatch.waitForExistence(timeout: 10))
+            XCTAssertEqual(originals.count, 1); XCTAssertTrue(originals.firstMatch.isHittable)
+            originals.firstMatch.tap()
+        }
         try requireReaderLocator(originalLocator)
         XCTAssertEqual(try readerReceiptLines().count, beforeReceipts.count + 1)
         try attachWorkspaceSnapshot("native-new-tab-returned-to-original")
@@ -888,5 +905,21 @@ extension NativeRoutingAcceptanceTests {
         XCTAssertTrue(app.otherElements["library-column"].exists)
         XCTAssertFalse(history.exists)
         capture("system-intent-unknown-entity-refusal")
+    }
+}
+
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testPhonePublicV2CurrentReaderShowsCanonicalSourceLines() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try runCurrentReaderSourceLines(expectedPad: false)
+    }
+    @MainActor func testPhonePublicV2NewTabPreservesOriginalReader() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try runNewTabReader(sameBook: false, expectedPad: false)
+    }
+    @MainActor func testPhonePublicV2OtherBookCannotReplaceCurrentReader() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try runCurrentReaderOtherBookRefusal(expectedPad: false)
     }
 }

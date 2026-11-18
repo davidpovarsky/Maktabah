@@ -5,7 +5,8 @@ import SwiftUI
 /// the reader's later checkpoints.
 struct CompactStudyWorkspaceHostModifier: ViewModifier {
     let manager: iOSNavigationManager
-    @State private var workspace: StudyWorkspaceNavigationAdapter?
+    @State private var workspaceOwner = MaktabahNativeWorkspaceOwner()
+    private var workspace: StudyWorkspaceNavigationAdapter? { workspaceOwner.current }
     @State private var sceneID = ""
     @State private var showsOverview = false
     @Environment(\.scenePhase) private var scenePhase
@@ -25,7 +26,8 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .modifier(Exact9401WorkspaceLifecycle(manager: manager))
+            .modifier(Exact9401WorkspaceLifecycle(manager: manager,
+                compactWorkspaceOwner: Self.isEnabled ? workspaceOwner : nil))
             .background {
                 if Self.isEnabled {
                     ReaderSceneIdentityReader { sceneID = $0 }
@@ -42,7 +44,7 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
                 guard Self.isEnabled, workspace == nil, !sceneID.isEmpty else { return }
                 manager.restoreSessionIfNeeded()
                 let adapter = StudyWorkspaceNavigationAdapter(sceneID: sceneID, store: .forCurrentProcess())
-                workspace = adapter
+                do { try workspaceOwner.replace(with: adapter) } catch { return }
                 await adapter.attach(manager)
             }
             .onChange(of: manager.openTabs.map(\.id)) { _, _ in workspace?.synchronize(manager) }

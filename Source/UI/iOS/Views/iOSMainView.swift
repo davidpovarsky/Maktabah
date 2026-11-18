@@ -224,6 +224,7 @@ extension View {
                 initialContentId: manager.selectedContentId
             )
             .id(tab?.id)
+            .modifier(MaktabahNativeRoutingSurface(kind: .reader))
         }
     }
 

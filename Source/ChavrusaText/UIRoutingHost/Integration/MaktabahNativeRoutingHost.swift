@@ -32,11 +32,10 @@ struct MaktabahNativeRoutingHost: ViewModifier {
     @Environment(\.maktabahNativeWorkspaceOwner) private var workspaceOwner
     @State private var sceneID = ""
     @State private var session: MaktabahNativeSceneSession?
-    // Global History/Search/Annotations/Settings use the actual foreground scene on both form factors.
-    // iPad's mounted workspace remains mandatory; compact content/workspace routes
-    // are not advertised by this current global-destination registry.
+    // Both layouts expose their original scene-lived workspace owner. Wait
+    // for that actual adapter before mounting content-capable navigation.
     private var ready: Bool {
-        (!MaktabahApp.isIpad || !ChavrusaTextReaderUI.isEnabled || workspace?.attached == true)
+        (!ChavrusaTextReaderUI.isEnabled || workspace?.attached == true)
             && !sceneID.isEmpty
     }
     private var bindings: MaktabahNativeSceneBindings {

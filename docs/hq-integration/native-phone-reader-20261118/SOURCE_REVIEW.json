@@ -1,0 +1,16 @@
+{
+  "utc": "2026-11-18T03:29:59.563789+00:00",
+  "base": "3ad80c9abfc765b4c22da0ce2253cd7d36b46836",
+  "reviewer": "sole developer; no subagents or independent QA",
+  "native_status": "NOT_RUN",
+  "syntax": "PASS iOS27 target; Windows parser only, no Apple SDK",
+  "source_hashes": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "4bb6d805d355f4dae81a0a75b9ee1b480b182ae519c162b3af56f8688f13bb34",
+    "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift": "6b958a73ea6ba0bab20084740f177ffb263768b4ab9379e1d0ea88b9c2e72136",
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": "f57a71a2812baa814122ec51f4ca01bf34dd4f00dc265cd9b06bcd351de25d30",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "913a7865ecbcbbc3a3a9631e7b7bb3e832dc5849488a3cd70b72cc6619c548d9",
+    "Source/Features/Reader/iOS/iOSReaderView.swift": "049aadf4ab142b4e460a2c98aa80070b40b02d97a2ebe8cb41a868e082beaa08",
+    "Source/UI/iOS/Views/iOSMainView.swift": "460d07f1051e6c19114ae62315f4e055928265797bdad45d116dc645bbf54b88",
+    "docs/hq-integration/runtime27/R27_CASES.json": "c2193de2563209031cf287862e275e2c42d9cf42c41f3b7b1a42b66e9dbf6c52"
+  }
+}

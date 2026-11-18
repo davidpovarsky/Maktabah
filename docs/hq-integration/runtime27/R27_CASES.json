@@ -5,12 +5,12 @@
   "app_source": "b1cb406eca38bbb2fd09eeb6a262750869904916",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2",
+  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 50,
+  "required_nonzero_cases": 53,
   "expected_per_device": {
     "ipad11": 44,
-    "iphone": 6
+    "iphone": 9
   },
   "cases": [
     {
@@ -214,7 +214,10 @@
         "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
         "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
         "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
-        "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt"
+        "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader"
       ],
       "hid_comparison": false
     }
@@ -269,7 +272,10 @@
     "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
     "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
     "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
-    "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -642,6 +648,24 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Actual same-process system v2 newTab URL, sealed source DB metadata, original rendered TextKit exact line/highlight/title and one full-Core receipt; actual persisted group gains exactly one unique original tab, every prior tab identity/book/backend is retained, original native tab control returns to prior exact reader locator."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Actual iPhone and original compact workspace owner, real system v2 URL and sealed source metadata; same exact current/new-tab/refusal oracles as iPad. Original NavigationStack reader marker, exact TextKit focused line and full Core receipt; new-tab return uses original compact overview cell."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Actual iPhone and original compact workspace owner, real system v2 URL and sealed source metadata; same exact current/new-tab/refusal oracles as iPad. Original NavigationStack reader marker, exact TextKit focused line and full Core receipt; new-tab return uses original compact overview cell."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Actual iPhone and original compact workspace owner, real system v2 URL and sealed source metadata; same exact current/new-tab/refusal oracles as iPad. Original NavigationStack reader marker, exact TextKit focused line and full Core receipt; new-tab return uses original compact overview cell."
     }
   ],
   "manager_native_review_history": [
@@ -801,6 +825,15 @@
       "source_branch": "codex/otzaria-native-reader-owner-20261118",
       "acceptance_limit": "Two actual Native new-tab cases NOT_RUN; phone content/richer components and device validation remain separate.",
       "sha": "b1cb406eca38bbb2fd09eeb6a262750869904916"
+    },
+    "native_phone_reader_cases": [
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader"
+    ],
+    "native_phone_reader_source": {
+      "status": "LOCAL_SOURCE_APP_SDK_NATIVE_PENDING",
+      "scope": "Expose existing original compact workspace through the same authoritative owner, passive original NavigationStack reader marker; no new store, navigation stack or permission engine"
     }
   }
 }

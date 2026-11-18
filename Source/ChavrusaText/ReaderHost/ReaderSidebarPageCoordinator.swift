@@ -100,9 +100,11 @@ struct Exact9401ViewerToolbar: ViewModifier {
 }
 
 /// Mounted by the already scene-lived main-view modifier, outside the global
-/// tabs. The iPhone keeps its existing independent compact implementation.
+/// tabs. The iPhone keeps its existing compact implementation and exposes that
+/// same owner to routing; it never creates a second adapter/store for routing.
 struct Exact9401WorkspaceLifecycle: ViewModifier {
     let manager: iOSNavigationManager
+    var compactWorkspaceOwner: MaktabahNativeWorkspaceOwner? = nil
     @State private var workspaceOwner = MaktabahNativeWorkspaceOwner()
     private var workspace: StudyWorkspaceNavigationAdapter? { workspaceOwner.current }
     @State private var sceneID = ""
@@ -110,8 +112,8 @@ struct Exact9401WorkspaceLifecycle: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .environment(\.exact9401Workspace, workspace)
-            .environment(\.maktabahNativeWorkspaceOwner, workspaceOwner)
+            .environment(\.exact9401Workspace, MaktabahApp.isIpad ? workspace : compactWorkspaceOwner?.current)
+            .environment(\.maktabahNativeWorkspaceOwner, MaktabahApp.isIpad ? workspaceOwner : compactWorkspaceOwner)
             .background {
                 if MaktabahApp.isIpad {
                     ReaderSceneIdentityReader { sceneID = $0 }

@@ -1,0 +1,55 @@
+diff --git a/Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift b/Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift
+index cef2dad2..257c5d1e 100644
+--- a/Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift
++++ b/Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift
+@@ -8 +8,2 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
+-    @State private var workspace: StudyWorkspaceNavigationAdapter?
++    @State private var workspaceOwner = MaktabahNativeWorkspaceOwner()
++    private var workspace: StudyWorkspaceNavigationAdapter? { workspaceOwner.current }
+@@ -28 +29,2 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
+-            .modifier(Exact9401WorkspaceLifecycle(manager: manager))
++            .modifier(Exact9401WorkspaceLifecycle(manager: manager,
++                compactWorkspaceOwner: Self.isEnabled ? workspaceOwner : nil))
+@@ -45 +47 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
+-                workspace = adapter
++                do { try workspaceOwner.replace(with: adapter) } catch { return }
+diff --git a/Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift b/Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift
+index 956ebb14..2bde874d 100644
+--- a/Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift
++++ b/Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift
+@@ -103 +103,2 @@ struct Exact9401ViewerToolbar: ViewModifier {
+-/// tabs. The iPhone keeps its existing independent compact implementation.
++/// tabs. The iPhone keeps its existing compact implementation and exposes that
++/// same owner to routing; it never creates a second adapter/store for routing.
+@@ -105,0 +107 @@ struct Exact9401WorkspaceLifecycle: ViewModifier {
++    var compactWorkspaceOwner: MaktabahNativeWorkspaceOwner? = nil
+@@ -113,2 +115,2 @@ struct Exact9401WorkspaceLifecycle: ViewModifier {
+-            .environment(\.exact9401Workspace, workspace)
+-            .environment(\.maktabahNativeWorkspaceOwner, workspaceOwner)
++            .environment(\.exact9401Workspace, MaktabahApp.isIpad ? workspace : compactWorkspaceOwner?.current)
++            .environment(\.maktabahNativeWorkspaceOwner, MaktabahApp.isIpad ? workspaceOwner : compactWorkspaceOwner)
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
+index 29af6ae0..6f6ba89d 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
+@@ -35,3 +35,2 @@ struct MaktabahNativeRoutingHost: ViewModifier {
+-    // Global History/Search/Annotations/Settings use the actual foreground scene on both form factors.
+-    // iPad's mounted workspace remains mandatory; compact content/workspace routes
+-    // are not advertised by this current global-destination registry.
++    // Both layouts expose their original scene-lived workspace owner. Wait
++    // for that actual adapter before mounting content-capable navigation.
+@@ -39 +38 @@ struct MaktabahNativeRoutingHost: ViewModifier {
+-        (!MaktabahApp.isIpad || !ChavrusaTextReaderUI.isEnabled || workspace?.attached == true)
++        (!ChavrusaTextReaderUI.isEnabled || workspace?.attached == true)
+diff --git a/Source/Features/Reader/iOS/iOSReaderView.swift b/Source/Features/Reader/iOS/iOSReaderView.swift
+index 67146db4..a6bfea69 100644
+--- a/Source/Features/Reader/iOS/iOSReaderView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderView.swift
+@@ -161,0 +162 @@ struct iOSReaderView: View {
++                    .accessibilityIdentifier("reader-open-tabs-button")
+diff --git a/Source/UI/iOS/Views/iOSMainView.swift b/Source/UI/iOS/Views/iOSMainView.swift
+index d71fd389..91410b42 100644
+--- a/Source/UI/iOS/Views/iOSMainView.swift
++++ b/Source/UI/iOS/Views/iOSMainView.swift
+@@ -226,0 +227 @@ extension View {
++            .modifier(MaktabahNativeRoutingSurface(kind: .reader))
