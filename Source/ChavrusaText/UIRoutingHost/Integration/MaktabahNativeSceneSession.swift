@@ -63,11 +63,16 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         command = value; submissionID = value.invocation.requestId
     }
 
-    func retainReader(_ content: ActionReaderDestination, revoke: @escaping @MainActor () -> Void) throws -> MaktabahNativeReaderBinding {
-        guard readerBinding == nil, let tabID = try project().identity().activeTabID else {
-            throw UIRouteError(.unavailable, "current_reader_target_unavailable")
+    func retainReader(_ content: ActionReaderDestination, requestID: UUID,
+                      revoke: @escaping @MainActor () -> Void) throws -> MaktabahNativeReaderBinding {
+        guard readerBinding == nil else { throw UIRouteError(.unavailable, "reader_binding_busy") }
+        let identity = try project().identity()
+        let workspace = try workspaceProjectionSource?.read()
+        if content.presentationMode == .newTab, workspaceProjectionSource?.isAuthoritative != true {
+            throw UIRouteError(.unavailable, "new_reader_workspace_unavailable")
         }
-        let retained = try MaktabahNativeReaderBinding(manager: bindings.manager, tabID: tabID, content: content, revoke: revoke)
+        let retained = try MaktabahNativeReaderBinding(manager: bindings.manager,
+            currentTabID: identity.activeTabID, workspace: workspace, requestID: requestID, content: content, revoke: revoke)
         readerBinding = retained
         return retained
     }
@@ -83,12 +88,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
               route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
         if route.destination.rawValue == "native.reader" {
-            guard let content = route.content, content.presentationMode == .sameTab,
-                  route.presentation.kind == .currentTab,
-                  route.presentation.tabID == identity.activeTabID, route.focus == nil,
+            guard let content = route.content, let readerBinding, readerBinding.accepts(content),
+                  route.presentation.kind == (readerBinding.isNewTab ? .newTab : .currentTab),
+                  route.presentation.tabID == readerBinding.targetTabID, route.focus == nil,
                   route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID,
-                                              inspectorVisible: identity.state.inspectorVisible),
-                  let readerBinding else { throw UIRouteError(.notSupported, "native_reader_variant_not_installed") }
+                                              inspectorVisible: readerBinding.inspectorVisible) else {
+                throw UIRouteError(.notSupported, "native_reader_variant_not_installed")
+            }
             try readerBinding.validate()
             return
         }
@@ -111,7 +117,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func apply(_ command: UISceneCommand) throws {
         if command.route.route.destination.rawValue == "native.reader" {
             guard let readerBinding else { throw UIRouteError(.unavailable, "native_reader_owner_missing") }
-            try readerBinding.apply { try bindings.apply(command) }
+            try readerBinding.apply { try bindings.apply(command, reservedTab: readerBinding.reservedTab) }
         } else { try bindings.apply(command) }
     }
 

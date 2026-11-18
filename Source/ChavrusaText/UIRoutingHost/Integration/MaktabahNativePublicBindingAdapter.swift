@@ -93,7 +93,7 @@ struct MaktabahNativePublicPresentation {
             return .search
         case ("native.annotations", .currentTab, false): return .annotations
         case ("native.settings", .sheet, false): return .settings
-        case ("native.reader", .currentTab, true): return .reader
+        case ("native.reader", .currentTab, true), ("native.reader", .newTab, true): return .reader
         default: throw UIRouteError(.notSupported, "public_binding_variant_not_installed")
         }
     }
@@ -116,23 +116,53 @@ struct MaktabahNativePublicPresentation {
             tab = .absent; inspector = nil
         case .settings, .search, .annotations: tab = .absent; inspector = nil
         case .reader:
-            guard let wanted = intent.content, wanted.presentationMode == .sameTab,
-                  let witnessed = visible.witnessedReader, witnessed.destination == intent.destination,
-                  witnessed.presentation.kind == .currentTab, let currentContent = witnessed.content,
-                  currentContent.sectionLocator.backend == wanted.sectionLocator.backend,
-                  currentContent.sectionLocator.workKey == wanted.sectionLocator.workKey, witnessed.focus == nil,
-                  let actualInspector = witnessed.state.inspectorVisible,
-                  witnessed.state.workspaceID?.rawValue == initial.projection.groupID.uuidString,
-                  witnessed.state.profileID?.rawValue == initial.projection.profileID.uuidString,
-                  let selected = initial.projection.activeTabID, let target = initial.projection.targets[selected],
-                  let stable = UIStableID(rawValue: selected.uuidString), witnessed.presentation.tabID == stable,
-                  target.readerOwner != nil, target.backend.rawValue == snapshot.backend.rawValue,
-                  target.backend.rawValue == wanted.sectionLocator.backend.rawValue,
-                  target.workKey == wanted.sectionLocator.workKey else {
-                throw UIRouteError(.unavailable, "current_reader_binding_unavailable")
-            }
+            guard let wanted = intent.content else { throw ActionPortError.notSupported }
             _ = try MaktabahNativeReaderBinding.appDestination(wanted)
-            tab = .present(stable); inspector = actualInspector
+            if intent.presentation == .newTab {
+                guard wanted.presentationMode == .newTab, let workspace,
+                      let reservation = try? workspace.reservedNativeReader(requestID: requestId),
+                      reservation.policy.source === source, reservation.policy.owner == owner,
+                      reservation.policy.scene == sceneID.rawValue,
+                      reservation.policy.epoch == initial.epoch,
+                      reservation.policy.target.target.backend.rawValue == snapshot.backend.rawValue,
+                      reservation.policy.target.target.backend.rawValue == wanted.sectionLocator.backend.rawValue,
+                      reservation.policy.target.target.workKey == wanted.sectionLocator.workKey,
+                      let stable = UIStableID(rawValue: reservation.tab.id.uuidString) else {
+                    throw UIRouteError(.unavailable, "new_reader_binding_unavailable")
+                }
+                let actualInspector = reservation.tab.viewModel.readerInspectorVisible
+                if reservation.policy.phase == .committed {
+                    guard let witnessed = visible.witnessedReader, witnessed.destination == intent.destination,
+                          witnessed.presentation.kind == .newTab, witnessed.presentation.tabID == stable,
+                          witnessed.content == wanted, witnessed.focus == nil,
+                          witnessed.state.inspectorVisible == actualInspector,
+                          witnessed.state.workspaceID?.rawValue == initial.projection.groupID.uuidString,
+                          witnessed.state.profileID?.rawValue == initial.projection.profileID.uuidString else {
+                        throw UIRouteError(.unavailable, "new_reader_not_rendered")
+                    }
+                } else if reservation.policy.phase != .reserved {
+                    throw UIRouteError(.unavailable, "new_reader_publication_in_progress")
+                }
+                tab = .present(stable); inspector = actualInspector
+            } else {
+                guard wanted.presentationMode == .sameTab,
+                      let witnessed = visible.witnessedReader, witnessed.destination == intent.destination,
+                      witnessed.presentation.kind == .currentTab, let currentContent = witnessed.content,
+                      currentContent.sectionLocator.backend == wanted.sectionLocator.backend,
+                      currentContent.sectionLocator.workKey == wanted.sectionLocator.workKey, witnessed.focus == nil,
+                      let actualInspector = witnessed.state.inspectorVisible,
+                      witnessed.state.workspaceID?.rawValue == initial.projection.groupID.uuidString,
+                      witnessed.state.profileID?.rawValue == initial.projection.profileID.uuidString,
+                      let selected = initial.projection.activeTabID, let target = initial.projection.targets[selected],
+                      let stable = UIStableID(rawValue: selected.uuidString), witnessed.presentation.tabID == stable,
+                      target.readerOwner != nil, target.backend.rawValue == snapshot.backend.rawValue,
+                      target.backend.rawValue == wanted.sectionLocator.backend.rawValue,
+                      target.workKey == wanted.sectionLocator.workKey else {
+                    throw UIRouteError(.unavailable, "current_reader_binding_unavailable")
+                }
+                _ = try MaktabahNativeReaderBinding.appDestination(wanted)
+                tab = .present(stable); inspector = actualInspector
+            }
         }
         let current = try directory.synchronousScene(sceneID: sceneID, context: admitted.context, backend: snapshot)
         let final = try mapping(), finalBackend = try backend.currentBackendSnapshot(), finalAuthority = try liveAuthority()
@@ -171,7 +201,8 @@ struct MaktabahNativePublicPresentation {
         let current = try await currentScene(sceneID: scene.sceneID, context: context, invocation: invocation)
         guard current == scene else { throw ActionPortError.staleState }
         let visible = try presentation()
-        let ready = visible.ready && (variant.destination.rawValue != "native.reader" || visible.witnessedReader != nil)
+        let ready = visible.ready
+            && (variant.destination.rawValue != "native.reader" || variant.presentation == .newTab || visible.witnessedReader != nil)
             && (variant.destination.rawValue != "native.history" || visible.historyRootAvailable)
         return .init(sceneID: current.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
             supported: true, ready: ready, allowed: true)

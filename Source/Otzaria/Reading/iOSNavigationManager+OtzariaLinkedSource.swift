@@ -49,20 +49,32 @@ extension iOSNavigationManager {
     }
 
     private func openBookInNewTab(_ book: BooksData, destination: LibraryReaderDestination) {
+        let initialContentId = LegacyIdentityRegistry.shared.id(for: destination.sectionLocator)
+        let tab = ReaderTab(id: UUID(), book: book, initialContentId: initialContentId,
+                            viewModel: ReaderViewModel(book: book))
+        _ = presentPreparedNativeReaderTab(tab, destination: destination)
+    }
+
+    /// Original linked-source presentation reused by the scene's Core-gated
+    /// reservation. Construction alone never loads or opens a book.
+    @discardableResult
+    func presentPreparedNativeReaderTab(_ tab: ReaderTab, destination: LibraryReaderDestination) -> Bool {
+        guard destination.sectionLocator.backend == BackendCoordinator.shared.activeBackendID,
+              tab.book.backendLocator?.backend == destination.sectionLocator.backend,
+              tab.book.backendLocator?.workKey == destination.sectionLocator.workKey,
+              tab.viewModel.currentBook === tab.book,
+              !openTabs.contains(where: { $0.id == tab.id }) else { return false }
         switchToMode(.viewer)
         if let activeId = activeTabId,
            let currentTab = openTabs.first(where: { $0.id == activeId }) {
             currentTab.viewModel.saveCurrentState()
         }
-
-        let viewModel = ReaderViewModel(book: book)
-        viewModel.loadBackendContent(destination)
-        let initialContentId = LegacyIdentityRegistry.shared.id(for: destination.sectionLocator)
-        let newTab = ReaderTab(id: UUID(), book: book, initialContentId: initialContentId, viewModel: viewModel)
-        openTabs.append(newTab)
-        activeTabId = newTab.id
-        selectedContentId = initialContentId
-        selectedBook = book
+        tab.viewModel.loadBackendContent(destination)
+        openTabs.append(tab)
+        activeTabId = tab.id
+        selectedContentId = tab.initialContentId
+        selectedBook = tab.book
+        return true
     }
 
     private func openBookInNewTab(_ book: BooksData, initialContentId: Int?) {

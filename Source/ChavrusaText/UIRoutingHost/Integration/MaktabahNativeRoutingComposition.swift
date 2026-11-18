@@ -72,9 +72,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
                   supportedBackends: ActionBackendID.allCases, presentations: [.sheet], requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
             .init(id: id("native.reader"), title: "Reader".localized, implementation: .implemented,
-                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab],
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab, .newTab],
                   requiredCoreActions: ["reader.open"], requiresContent: true,
-                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab)]))
+                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab), .init(presentation: .newTab)]))
         ])
         readerSink.deliver = { [weak self] command in
             guard let self else { throw ActionPortError.unavailable }
@@ -210,8 +210,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         record(result)
         return result
     }
-    /// Current-tab public content stays within the already selected original
-    /// Reader. Cross-book/new-tab reservations are not advertised by this host.
+    /// Public content uses the original current Reader or R's exact new-tab
+    /// reservation. Core still authorizes the one native mutation.
     func open(public intent: PublicNavigationSpecV2, manager: iOSNavigationManager,
               origin: ActionOrigin = .deepLink, until end: UInt64) async throws -> UISceneAcknowledgement {
         let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
@@ -221,19 +221,22 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
               entry.session.foreground, let binding = entry.publicBinding else { return .requiresForeground }
         let snapshot = try backend.currentBackendSnapshot()
         if let requested = intent.backend, requested != snapshot.backend { return .requiresBackendSwitch(requested) }
-        let context = context(sceneID: sceneID, origin: origin, snapshot: snapshot)
-        try issue(context, sceneID: sceneID)
-        defer { finish(context, sceneID: sceneID) }
-        let admitted = try authority.admit(context: context, sceneID: sceneID)
-        defer { authority.release(admitted) }
+        guard contexts[sceneID] == nil else { throw UIRouteError(.unavailable, "native_scene_busy") }
+        let invocation = ActionPortInvocation(requestId: UUID(), snapshot: snapshot, deadlineUptimeNanoseconds: end)
+        // Reserve actual native ownership before issuing/admitting authority;
+        // R advances its epoch and invalidates any older mapping context.
         let retainedReader = try intent.content.map { content in
-            try entry.session.retainReader(content) { [weak self, weak session = entry.session] in
+            try entry.session.retainReader(content, requestID: invocation.requestId) { [weak self, weak session = entry.session] in
                 guard let self, let session else { return }
                 try? invalidateContext(session)
             }
         }
         defer { if let retainedReader { entry.session.releaseReader(retainedReader) } }
-        let invocation = ActionPortInvocation(requestId: UUID(), snapshot: snapshot, deadlineUptimeNanoseconds: end)
+        let context = context(sceneID: sceneID, origin: origin, snapshot: snapshot)
+        try issue(context, sceneID: sceneID)
+        defer { finish(context, sceneID: sceneID) }
+        let admitted = try authority.admit(context: context, sceneID: sceneID)
+        defer { authority.release(admitted) }
         let scene = try await directory.currentScene(sceneID: sceneID, context: context, invocation: invocation)
         let plan = try await registry.bindPublicV2(intent, scene: scene, context: context, invocation: invocation, core: core, host: binding)
         let result: UISceneAcknowledgement

@@ -5,7 +5,7 @@ import Observation
 /// and are deliberately absent from Codable persistence and public wire DTOs.
 enum StudyWorkspaceMappingChangeReason: String, Hashable, Sendable {
     case availability, selection, profileMembership, groupMembership
-    case tabMembership, targetIdentity, backend, ownerLifetime, epochExhausted
+    case tabMembership, targetIdentity, backend, ownerLifetime, epochExhausted, readerReservation
 }
 
 struct StudyWorkspaceMappingEpoch: Equatable, Sendable {
@@ -200,4 +200,119 @@ enum StudyWorkspaceMappingPolicy {
         }
         return result
     }
+}
+
+
+/// A scene-owner reservation is mapping data, never a navigation permission.
+/// Core's original grant remains mandatory at the actual synchronous apply.
+/// Only two exact native publications are owned: append this new tab, then
+/// activate this same tab. Every other transition invalidates the reservation.
+@MainActor
+final class StudyWorkspaceReaderReservation {
+    enum Phase: Equatable { case reserved, applying, committed, invalid, released }
+    let requestID: UUID
+    let source: StudyWorkspaceMappingSource
+    let epoch: StudyWorkspaceMappingEpoch
+    let owner: ObjectIdentifier
+    let scene: String
+    let target: StudyWorkspaceNativeMappingTab
+    let original: StudyWorkspaceMappingProjection
+    let originalWorkspace: StudyWorkspaceMappingProjection
+    let tabsPublished: StudyWorkspaceMappingProjection
+    let committed: StudyWorkspaceMappingProjection
+    let persisted: StudyWorkspaceMappingProjection
+    private(set) var phase: Phase = .reserved
+    private var step = 0
+    private var pending: (step: Int, projection: StudyWorkspaceMappingProjection)?
+    var isPublishing: Bool { pending != nil }
+
+    init(requestID: UUID, observation: StudyWorkspaceMappingObservation,
+         workspace: StudyWorkspaceMappingProjection, target: StudyWorkspaceNativeMappingTab) throws {
+        guard observation.coverage == .liveNativeSetters,
+              observation.source.event.phase == .available,
+              observation.source.event.epoch == observation.epoch,
+              observation.projection.profileID == workspace.profileID,
+              observation.projection.groupID == workspace.groupID,
+              observation.projection.profileIDs == workspace.profileIDs,
+              observation.projection.groupIDs == workspace.groupIDs,
+              observation.projection.targets[target.id] == nil,
+              workspace.targets[target.id] == nil, target.target.readerOwner != nil,
+              target.target.workKey?.isEmpty == false,
+              observation.projection.targets.values.allSatisfy({ $0.backend == target.target.backend }) else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        self.requestID = requestID; source = observation.source; epoch = observation.epoch
+        owner = observation.owner; scene = observation.scene; self.target = target
+        original = observation.projection; originalWorkspace = workspace
+        var next = observation.projection.targets; next[target.id] = target.target
+        tabsPublished = Self.replacing(observation.projection, targets: next, active: observation.projection.activeTabID)
+        committed = Self.replacing(observation.projection, targets: next, active: target.id)
+        // The original checkpoint merges this backend's exact native tabs with
+        // preserved documents from other backends. UI object IDs stay private.
+        var saved = workspace.targets.filter { $0.value.backend != target.target.backend }
+        for (id, native) in next {
+            saved[id] = .init(backend: native.backend, bookID: native.bookID,
+                             workKey: native.workKey, readerOwner: nil)
+        }
+        persisted = Self.replacing(workspace, targets: saved, active: target.id)
+    }
+
+    private static func replacing(_ original: StudyWorkspaceMappingProjection,
+                                  targets: [UUID: StudyWorkspaceMappingTarget], active: UUID?) -> StudyWorkspaceMappingProjection {
+        .init(profileID: original.profileID, groupID: original.groupID,
+              profileIDs: original.profileIDs, groupIDs: original.groupIDs,
+              activeTabID: active, targets: targets)
+    }
+    private var fresh: Bool {
+        source.event.phase == .available && source.event.epoch == epoch
+            && phase != .invalid && phase != .released
+    }
+    private var expected: StudyWorkspaceMappingProjection {
+        step == 0 ? original : step == 1 ? tabsPublished : committed
+    }
+    func matches(_ observation: StudyWorkspaceMappingObservation) -> Bool {
+        fresh && pending == nil && observation.source === source && observation.epoch == epoch
+            && observation.owner == owner && observation.scene == scene
+            && observation.coverage == .liveNativeSetters && observation.projection == expected
+    }
+    func beginApply(_ observation: StudyWorkspaceMappingObservation) throws {
+        guard phase == .reserved, step == 0, matches(observation) else {
+            invalidate(); throw StudyWorkspaceError.invalidMembership
+        }
+        phase = .applying
+    }
+    func permitsTabsPublication(from before: StudyWorkspaceMappingProjection?,
+                                to after: StudyWorkspaceMappingProjection?) -> Bool {
+        guard fresh, phase == .applying, step == 0, pending == nil,
+              before == original, after == tabsPublished else { invalidate(); return false }
+        pending = (1, tabsPublished); return true
+    }
+    func permitsSelectionPublication(from before: StudyWorkspaceMappingProjection?,
+                                     to after: StudyWorkspaceMappingProjection?) -> Bool {
+        guard fresh, phase == .applying, step == 1, pending == nil,
+              before == tabsPublished, after == committed else { invalidate(); return false }
+        pending = (2, committed); return true
+    }
+    /// Called by the real didSet hook, after publication, not from desired args.
+    func didPublish(actual: StudyWorkspaceMappingProjection?) -> Bool {
+        guard fresh, let pending, actual == pending.projection else { invalidate(); return false }
+        step = pending.step; self.pending = nil
+        if step == 2 { phase = .committed }
+        return true
+    }
+    func finishApply(_ observation: StudyWorkspaceMappingObservation) throws {
+        guard phase == .committed, step == 2, matches(observation) else {
+            invalidate(); throw StudyWorkspaceError.invalidMembership
+        }
+    }
+    /// A later normal checkpoint may persist only the same already committed
+    /// native target. This never permits a user group/profile/tab mutation.
+    func permitsCheckpoint(from before: StudyWorkspaceMappingProjection?,
+                           to after: StudyWorkspaceMappingProjection?,
+                           actual: StudyWorkspaceMappingObservation) -> Bool {
+        phase == .committed && matches(actual) && after == persisted
+            && (before == originalWorkspace || before == persisted)
+    }
+    func invalidate() { phase = .invalid; pending = nil }
+    func release() { phase = .released; pending = nil }
 }

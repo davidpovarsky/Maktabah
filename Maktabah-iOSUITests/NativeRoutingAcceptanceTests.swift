@@ -441,12 +441,13 @@ extension NativeRoutingAcceptanceTests {
         return work
     }
 
-    private func readerURL(bookID: Int, lineIndex: Int) throws -> URL {
+    private func readerURL(bookID: Int, lineIndex: Int, newTab: Bool = false) throws -> URL {
         let ref: [String: Any] = ["backend": "otzaria", "workKey": "book:\(bookID)",
                                   "position": ["kind": "legacyLine", "value": lineIndex]]
         let bytes = try JSONSerialization.data(withJSONObject: ["version": 2, "destination": "native.reader",
-            "backend": "otzaria", "presentation": "currentTab",
-            "content": ["sectionLocator": ref, "focusLocator": ref, "presentationMode": "sameTab"]], options: [.sortedKeys])
+            "backend": "otzaria", "presentation": newTab ? "newTab" : "currentTab",
+            "content": ["sectionLocator": ref, "focusLocator": ref,
+                        "presentationMode": newTab ? "newTab" : "sameTab"]], options: [.sortedKeys])
         let token = bytes.base64EncodedString().replacingOccurrences(of: "+", with: "-")
             .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
         return try XCTUnwrap(URL(string: "maktabah-debug://action/v2/native.reader?route=" + token))
@@ -466,7 +467,7 @@ extension NativeRoutingAcceptanceTests {
             .map(String.init).filter { $0.contains("[NativeNavigationReceipt]") && $0.contains("destination=native.reader ") }
     }
 
-    @MainActor private func requireNewReaderReceipt(after before: [String]) throws {
+    @MainActor private func requireNewReaderReceipt(after before: [String], presentation: String = "currentTab") throws {
         let observed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             let actual = (try? self.readerReceiptLines()) ?? []
             return actual.count == before.count + 1 && Array(actual.prefix(before.count)) == before
@@ -487,7 +488,7 @@ extension NativeRoutingAcceptanceTests {
         XCTAssertEqual(Set(fields.keys), ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"])
         XCTAssertNotNil(fields["request"].flatMap(UUID.init(uuidString:)))
         XCTAssertEqual(fields["backend"], "otzaria"); XCTAssertEqual(fields["epoch"], "none")
-        XCTAssertEqual(fields["destination"], "native.reader"); XCTAssertEqual(fields["presentation"], "currentTab")
+        XCTAssertEqual(fields["destination"], "native.reader"); XCTAssertEqual(fields["presentation"], presentation)
         XCTAssertNotNil(fields["generation"].flatMap(UInt64.init))
         let revisions = try XCTUnwrap(fields["revision"]).components(separatedBy: "->")
         XCTAssertEqual(revisions.count, 2)
@@ -540,6 +541,95 @@ extension NativeRoutingAcceptanceTests {
         XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, rendered.locator)
         capture("native-core-reader-cross-book-refusal")
     }
+
+    private struct ReaderWorkspaceSnapshot: Decodable {
+        struct Document: Decodable {
+            struct Session: Decodable { let id: UUID; let bookId: Int }
+            let backend: String
+            let session: Session
+        }
+        struct Group: Decodable {
+            let id: UUID; let profileID: UUID
+            let activeTabID: UUID?; let tabs: [Document]
+        }
+        struct Scene: Decodable {
+            let profileID: UUID; let groupID: UUID
+            let activeTabIDsByGroup: [UUID: UUID]?
+        }
+        let groups: [Group]; let scenes: [String: Scene]
+        let lastActiveSceneID: String?
+        func current() throws -> (Group, UUID) {
+            let scene = try XCTUnwrap(scenes[try XCTUnwrap(lastActiveSceneID)])
+            let group = try XCTUnwrap(groups.first { $0.id == scene.groupID && $0.profileID == scene.profileID })
+            return (group, try XCTUnwrap(scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID))
+        }
+    }
+    private func actualReaderWorkspace() throws -> ReaderWorkspaceSnapshot {
+        try JSONDecoder().decode(ReaderWorkspaceSnapshot.self, from: Data(contentsOf: workspaceSidecarURL()))
+    }
+    @MainActor private func requireReaderLocator(_ expected: String) throws {
+        let observation = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            self.app.staticTexts["reader-current-locator"].label == expected
+                && self.getRenderedHighlightSnapshot()?.locator == expected
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [observation], timeout: 15), .completed)
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, expected)
+        XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, expected)
+    }
+    @MainActor private func runNewTabReader(sameBook: Bool) throws {
+        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader()
+        let currentBookID = try XCTUnwrap(Int(work.replacingOccurrences(of: "book:", with: "")))
+        let source = try XCTUnwrap(metadata.rows.first {
+            $0.count == 3 && $0[2] > 0 && (sameBook ? $0[1] == currentBookID : $0[1] != currentBookID)
+        })
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let (beforeGroup, originalTabID) = try actualReaderWorkspace().current()
+        XCTAssertEqual(try XCTUnwrap(beforeGroup.tabs.first { $0.session.id == originalTabID }).session.bookId, currentBookID)
+        let beforeReceipts = try readerReceiptLines()
+        try attachWorkspaceSnapshot("native-new-tab-before")
+        try openInExistingProcess(readerURL(bookID: source[1], lineIndex: source[2], newTab: true))
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        let expected = "otzaria|book:\(source[1])|line:\(source[2])"
+        try requireReaderLocator(expected)
+        XCTAssertGreaterThan(try XCTUnwrap(getRenderedHighlightSnapshot()).segmentSelectionCount, 0)
+        XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(try XCTUnwrap(metadata.books[String(source[1])])))
+        try requireNewReaderReceipt(after: beforeReceipts, presentation: "newTab")
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let (group, selected) = try? self.actualReaderWorkspace().current() else { return false }
+            return group.tabs.count == beforeGroup.tabs.count + 1 && selected != originalTabID
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 15), .completed)
+        let (afterGroup, newTabID) = try actualReaderWorkspace().current()
+        XCTAssertEqual(afterGroup.id, beforeGroup.id); XCTAssertEqual(afterGroup.profileID, beforeGroup.profileID)
+        XCTAssertEqual(afterGroup.tabs.count, beforeGroup.tabs.count + 1)
+        XCTAssertNotEqual(newTabID, originalTabID)
+        XCTAssertEqual(try XCTUnwrap(afterGroup.tabs.first { $0.session.id == newTabID }).session.bookId, source[1])
+        for original in beforeGroup.tabs {
+            let preserved = try XCTUnwrap(afterGroup.tabs.first { $0.session.id == original.session.id })
+            XCTAssertEqual(preserved.backend, original.backend)
+            XCTAssertEqual(preserved.session.bookId, original.session.bookId)
+        }
+        capture(sameBook ? "native-new-tab-same-book-distinct-owner" : "native-new-tab-other-book")
+        // Return through the original native tab control. No debug navigation
+        // or direct model mutation can stand in for the old reading state.
+        let originalTab = app.descendants(matching: .any)
+            .matching(identifier: "reader-document-tab-" + originalTabID.uuidString).firstMatch
+        XCTAssertTrue(originalTab.waitForExistence(timeout: 10)); XCTAssertTrue(originalTab.isHittable)
+        originalTab.tap()
+        try requireReaderLocator(originalLocator)
+        XCTAssertEqual(try readerReceiptLines().count, beforeReceipts.count + 1)
+        try attachWorkspaceSnapshot("native-new-tab-returned-to-original")
+        capture("native-new-tab-original-reader-restored")
+    }
+
+    @MainActor func testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader() throws {
+        try runNewTabReader(sameBook: false)
+    }
+    @MainActor func testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab() throws {
+        try runNewTabReader(sameBook: true)
+    }
+
 }
 
 

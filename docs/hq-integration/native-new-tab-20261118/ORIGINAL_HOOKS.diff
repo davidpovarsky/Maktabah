@@ -1,0 +1,592 @@
+diff --git a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift
+index 5ba997af..99d267d3 100644
+--- a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift
++++ b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift
+@@ -8 +8 @@ enum StudyWorkspaceMappingChangeReason: String, Hashable, Sendable {
+-    case tabMembership, targetIdentity, backend, ownerLifetime, epochExhausted
++    case tabMembership, targetIdentity, backend, ownerLifetime, epochExhausted, readerReservation
+@@ -203,0 +204,115 @@ enum StudyWorkspaceMappingPolicy {
++
++
++/// A scene-owner reservation is mapping data, never a navigation permission.
++/// Core's original grant remains mandatory at the actual synchronous apply.
++/// Only two exact native publications are owned: append this new tab, then
++/// activate this same tab. Every other transition invalidates the reservation.
++@MainActor
++final class StudyWorkspaceReaderReservation {
++    enum Phase: Equatable { case reserved, applying, committed, invalid, released }
++    let requestID: UUID
++    let source: StudyWorkspaceMappingSource
++    let epoch: StudyWorkspaceMappingEpoch
++    let owner: ObjectIdentifier
++    let scene: String
++    let target: StudyWorkspaceNativeMappingTab
++    let original: StudyWorkspaceMappingProjection
++    let originalWorkspace: StudyWorkspaceMappingProjection
++    let tabsPublished: StudyWorkspaceMappingProjection
++    let committed: StudyWorkspaceMappingProjection
++    let persisted: StudyWorkspaceMappingProjection
++    private(set) var phase: Phase = .reserved
++    private var step = 0
++    private var pending: (step: Int, projection: StudyWorkspaceMappingProjection)?
++    var isPublishing: Bool { pending != nil }
++
++    init(requestID: UUID, observation: StudyWorkspaceMappingObservation,
++         workspace: StudyWorkspaceMappingProjection, target: StudyWorkspaceNativeMappingTab) throws {
++        guard observation.coverage == .liveNativeSetters,
++              observation.source.event.phase == .available,
++              observation.source.event.epoch == observation.epoch,
++              observation.projection.profileID == workspace.profileID,
++              observation.projection.groupID == workspace.groupID,
++              observation.projection.profileIDs == workspace.profileIDs,
++              observation.projection.groupIDs == workspace.groupIDs,
++              observation.projection.targets[target.id] == nil,
++              workspace.targets[target.id] == nil, target.target.readerOwner != nil,
++              target.target.workKey?.isEmpty == false,
++              observation.projection.targets.values.allSatisfy({ $0.backend == target.target.backend }) else {
++            throw StudyWorkspaceError.invalidMembership
++        }
++        self.requestID = requestID; source = observation.source; epoch = observation.epoch
++        owner = observation.owner; scene = observation.scene; self.target = target
++        original = observation.projection; originalWorkspace = workspace
++        var next = observation.projection.targets; next[target.id] = target.target
++        tabsPublished = Self.replacing(observation.projection, targets: next, active: observation.projection.activeTabID)
++        committed = Self.replacing(observation.projection, targets: next, active: target.id)
++        // The original checkpoint merges this backend's exact native tabs with
++        // preserved documents from other backends. UI object IDs stay private.
++        var saved = workspace.targets.filter { $0.value.backend != target.target.backend }
++        for (id, native) in next {
++            saved[id] = .init(backend: native.backend, bookID: native.bookID,
++                             workKey: native.workKey, readerOwner: nil)
++        }
++        persisted = Self.replacing(workspace, targets: saved, active: target.id)
++    }
++
++    private static func replacing(_ original: StudyWorkspaceMappingProjection,
++                                  targets: [UUID: StudyWorkspaceMappingTarget], active: UUID?) -> StudyWorkspaceMappingProjection {
++        .init(profileID: original.profileID, groupID: original.groupID,
++              profileIDs: original.profileIDs, groupIDs: original.groupIDs,
++              activeTabID: active, targets: targets)
++    }
++    private var fresh: Bool {
++        source.event.phase == .available && source.event.epoch == epoch
++            && phase != .invalid && phase != .released
++    }
++    private var expected: StudyWorkspaceMappingProjection {
++        step == 0 ? original : step == 1 ? tabsPublished : committed
++    }
++    func matches(_ observation: StudyWorkspaceMappingObservation) -> Bool {
++        fresh && pending == nil && observation.source === source && observation.epoch == epoch
++            && observation.owner == owner && observation.scene == scene
++            && observation.coverage == .liveNativeSetters && observation.projection == expected
++    }
++    func beginApply(_ observation: StudyWorkspaceMappingObservation) throws {
++        guard phase == .reserved, step == 0, matches(observation) else {
++            invalidate(); throw StudyWorkspaceError.invalidMembership
++        }
++        phase = .applying
++    }
++    func permitsTabsPublication(from before: StudyWorkspaceMappingProjection?,
++                                to after: StudyWorkspaceMappingProjection?) -> Bool {
++        guard fresh, phase == .applying, step == 0, pending == nil,
++              before == original, after == tabsPublished else { invalidate(); return false }
++        pending = (1, tabsPublished); return true
++    }
++    func permitsSelectionPublication(from before: StudyWorkspaceMappingProjection?,
++                                     to after: StudyWorkspaceMappingProjection?) -> Bool {
++        guard fresh, phase == .applying, step == 1, pending == nil,
++              before == tabsPublished, after == committed else { invalidate(); return false }
++        pending = (2, committed); return true
++    }
++    /// Called by the real didSet hook, after publication, not from desired args.
++    func didPublish(actual: StudyWorkspaceMappingProjection?) -> Bool {
++        guard fresh, let pending, actual == pending.projection else { invalidate(); return false }
++        step = pending.step; self.pending = nil
++        if step == 2 { phase = .committed }
++        return true
++    }
++    func finishApply(_ observation: StudyWorkspaceMappingObservation) throws {
++        guard phase == .committed, step == 2, matches(observation) else {
++            invalidate(); throw StudyWorkspaceError.invalidMembership
++        }
++    }
++    /// A later normal checkpoint may persist only the same already committed
++    /// native target. This never permits a user group/profile/tab mutation.
++    func permitsCheckpoint(from before: StudyWorkspaceMappingProjection?,
++                           to after: StudyWorkspaceMappingProjection?,
++                           actual: StudyWorkspaceMappingObservation) -> Bool {
++        phase == .committed && matches(actual) && after == persisted
++            && (before == originalWorkspace || before == persisted)
++    }
++    func invalidate() { phase = .invalid; pending = nil }
++    func release() { phase = .released; pending = nil }
++}
+diff --git a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift
+index 0fc38aa9..b8972286 100644
+--- a/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift
++++ b/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift
+@@ -29,0 +30,2 @@ final class StudyWorkspaceNavigationAdapter {
++    @ObservationIgnored private var readerReservation: StudyWorkspaceNativeReaderReservation?
++    @ObservationIgnored private var reservedCheckpoint: StudyWorkspaceNativeReaderReservation?
+@@ -48 +50,2 @@ final class StudyWorkspaceNavigationAdapter {
+-        guard let manager = mappingManager, let epoch = mappingOwnershipSource.event.epoch,
++        guard readerReservation?.policy.isPublishing != true,
++              let manager = mappingManager, let epoch = mappingOwnershipSource.event.epoch,
+@@ -63,0 +67,7 @@ final class StudyWorkspaceNavigationAdapter {
++                // Only the exact already committed native reservation's own
++                // normal checkpoint preserves this native owner epoch.
++                if let checkpoint = adapter.reservedCheckpoint,
++                   checkpoint === adapter.readerReservation,
++                   checkpoint.policy.phase == .committed,
++                   checkpoint.policy.epoch == adapter.mappingOwnershipSource.event.epoch { return }
++                adapter.readerReservation?.policy.invalidate()
+@@ -132,4 +142,4 @@ final class StudyWorkspaceNavigationAdapter {
+-            let reasons = StudyWorkspaceMappingPolicy.changes(
+-                from: adapter.currentMappingProjection(manager),
+-                to: adapter.mappingProjection(manager, tabs: tabs, activeID: manager.activeTabId,
+-                    groupID: adapter.liveGroupID, backend: adapter.liveBackend))
++            let before = adapter.currentMappingProjection(manager)
++            let after = adapter.mappingProjection(manager, tabs: tabs, activeID: manager.activeTabId,
++                groupID: adapter.liveGroupID, backend: adapter.liveBackend)
++            let reasons = StudyWorkspaceMappingPolicy.changes(from: before, to: after)
+@@ -136,0 +147,3 @@ final class StudyWorkspaceNavigationAdapter {
++            guard !reasons.isEmpty else { return }
++            if let reservation = adapter.readerReservation,
++               reservation.policy.permitsTabsPublication(from: before, to: after) { return }
+@@ -143,4 +156,4 @@ final class StudyWorkspaceNavigationAdapter {
+-            var reasons = StudyWorkspaceMappingPolicy.changes(
+-                from: adapter.currentMappingProjection(manager),
+-                to: adapter.mappingProjection(manager, tabs: manager.openTabs, activeID: activeID,
+-                    groupID: adapter.liveGroupID, backend: adapter.liveBackend))
++            let before = adapter.currentMappingProjection(manager)
++            let after = adapter.mappingProjection(manager, tabs: manager.openTabs, activeID: activeID,
++                groupID: adapter.liveGroupID, backend: adapter.liveBackend)
++            var reasons = StudyWorkspaceMappingPolicy.changes(from: before, to: after)
+@@ -147,0 +161,3 @@ final class StudyWorkspaceNavigationAdapter {
++            guard !reasons.isEmpty else { return }
++            if let reservation = adapter.readerReservation,
++               reservation.policy.permitsSelectionPublication(from: before, to: after) { return }
+@@ -153 +169,85 @@ final class StudyWorkspaceNavigationAdapter {
+-        withMappingAdapters(manager) { $0.finishMappingPublication() }
++        withMappingAdapters(manager) { adapter in
++            if let reservation = adapter.readerReservation, reservation.policy.isPublishing,
++               !reservation.policy.didPublish(actual: adapter.currentMappingProjection(manager)) {
++                adapter.mappingOwnershipSource.beginChange([.readerReservation])
++            }
++            adapter.finishMappingPublication()
++        }
++    }
++
++    // MARK: Original native reader ownership
++
++    /// Reserves an original ReaderTab/ReaderViewModel before Core admission.
++    /// This does not load, select, persist or authorize content.
++    func reserveNativeReader(requestID: UUID, book: BooksData, destination: LibraryReaderDestination,
++                             manager: iOSNavigationManager) throws -> StudyWorkspaceNativeReaderReservation {
++        guard attached, !isSwitching, mappingManager === manager, readerReservation == nil,
++              mappingOwnershipObservation() != nil,
++              book.backendLocator?.backend == destination.sectionLocator.backend,
++              book.backendLocator?.workKey == destination.sectionLocator.workKey,
++              destination.sectionLocator.backend == BackendCoordinator.shared.activeBackendID else {
++            throw StudyWorkspaceError.invalidMembership
++        }
++        let tab = iOSNavigationManager.ReaderTab(id: UUID(), book: book,
++            initialContentId: LegacyIdentityRegistry.shared.id(for: destination.sectionLocator),
++            viewModel: ReaderViewModel(book: book))
++        // A reservation changes the native mapping contract, so invalidate
++        // any prior context before the caller can admit this request.
++        mappingOwnershipSource.beginChange([.readerReservation])
++        finishMappingPublication()
++        guard let actual = mappingOwnershipObservation(),
++              let saved = StudyWorkspaceMappingPolicy.workspace(store.snapshot, scene: sceneID),
++              let target = mappingTabs([tab]).first else { throw StudyWorkspaceError.invalidMembership }
++        let policy = try StudyWorkspaceReaderReservation(requestID: requestID, observation: actual,
++            workspace: saved, target: target)
++        let reservation = StudyWorkspaceNativeReaderReservation(policy: policy, tab: tab)
++        readerReservation = reservation
++        return reservation
++    }
++
++    func reservedNativeReader(requestID: UUID) throws -> StudyWorkspaceNativeReaderReservation {
++        guard let reservation = readerReservation, reservation.policy.requestID == requestID else {
++            throw StudyWorkspaceError.invalidMembership
++        }
++        try validateNativeReader(reservation)
++        return reservation
++    }
++
++    func validateNativeReader(_ reservation: StudyWorkspaceNativeReaderReservation) throws {
++        guard attached, !isSwitching, readerReservation === reservation,
++              let actual = mappingOwnershipObservation(), reservation.policy.matches(actual) else {
++            throw StudyWorkspaceError.invalidMembership
++        }
++    }
++
++    func applyNativeReader(_ reservation: StudyWorkspaceNativeReaderReservation, operation: () throws -> Void) throws {
++        try validateNativeReader(reservation)
++        guard let before = mappingOwnershipObservation() else { throw StudyWorkspaceError.invalidMembership }
++        do {
++            try reservation.policy.beginApply(before)
++            try operation()
++            guard let actual = mappingOwnershipObservation() else { throw StudyWorkspaceError.invalidMembership }
++            try reservation.policy.finishApply(actual)
++        } catch {
++            reservation.policy.invalidate()
++            mappingOwnershipSource.beginChange([.readerReservation])
++            finishMappingPublication()
++            throw error
++        }
++    }
++
++    func hasCommittedNativeReader(tabID: UUID) -> Bool {
++        guard let reservation = readerReservation, reservation.tab.id == tabID,
++              reservation.policy.phase == .committed,
++              let actual = mappingOwnershipObservation() else { return false }
++        return reservation.policy.matches(actual)
++    }
++
++    func releaseNativeReader(_ reservation: StudyWorkspaceNativeReaderReservation) {
++        guard readerReservation === reservation else { return }
++        reservation.policy.release()
++        readerReservation = nil
++        // Never remove a tab or undo user state, including a partially applied
++        // command. The original orchestrator records uncertain native effects.
++        mappingOwnershipSource.beginChange([.readerReservation])
++        finishMappingPublication()
+@@ -383,0 +484,3 @@ final class StudyWorkspaceNavigationAdapter {
++        let before = StudyWorkspaceMappingPolicy.workspace(store.snapshot, scene: sceneID)
++        let native = mappingOwnershipObservation()
++        defer { reservedCheckpoint = nil }
+@@ -395,0 +499,5 @@ final class StudyWorkspaceNavigationAdapter {
++            if let reservation = readerReservation, let native,
++               reservation.policy.permitsCheckpoint(from: before,
++                   to: StudyWorkspaceMappingPolicy.workspace(value, scene: sceneID), actual: native) {
++                reservedCheckpoint = reservation
++            }
+@@ -446,0 +555,10 @@ final class StudyWorkspaceNavigationAdapter {
++
++/// The R owner retains the actual original objects. No public DTO or permission
++/// is derived from a model-only success; N still requires the visible TextKit.
++@MainActor final class StudyWorkspaceNativeReaderReservation {
++    let policy: StudyWorkspaceReaderReservation
++    let tab: iOSNavigationManager.ReaderTab
++    init(policy: StudyWorkspaceReaderReservation, tab: iOSNavigationManager.ReaderTab) {
++        self.policy = policy; self.tab = tab
++    }
++}
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift
+index 82cea206..8f9e5ae6 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift
+@@ -96 +96 @@ struct MaktabahNativePublicPresentation {
+-        case ("native.reader", .currentTab, true): return .reader
++        case ("native.reader", .currentTab, true), ("native.reader", .newTab, true): return .reader
+@@ -119,15 +119 @@ struct MaktabahNativePublicPresentation {
+-            guard let wanted = intent.content, wanted.presentationMode == .sameTab,
+-                  let witnessed = visible.witnessedReader, witnessed.destination == intent.destination,
+-                  witnessed.presentation.kind == .currentTab, let currentContent = witnessed.content,
+-                  currentContent.sectionLocator.backend == wanted.sectionLocator.backend,
+-                  currentContent.sectionLocator.workKey == wanted.sectionLocator.workKey, witnessed.focus == nil,
+-                  let actualInspector = witnessed.state.inspectorVisible,
+-                  witnessed.state.workspaceID?.rawValue == initial.projection.groupID.uuidString,
+-                  witnessed.state.profileID?.rawValue == initial.projection.profileID.uuidString,
+-                  let selected = initial.projection.activeTabID, let target = initial.projection.targets[selected],
+-                  let stable = UIStableID(rawValue: selected.uuidString), witnessed.presentation.tabID == stable,
+-                  target.readerOwner != nil, target.backend.rawValue == snapshot.backend.rawValue,
+-                  target.backend.rawValue == wanted.sectionLocator.backend.rawValue,
+-                  target.workKey == wanted.sectionLocator.workKey else {
+-                throw UIRouteError(.unavailable, "current_reader_binding_unavailable")
+-            }
++            guard let wanted = intent.content else { throw ActionPortError.notSupported }
+@@ -135 +121,45 @@ struct MaktabahNativePublicPresentation {
+-            tab = .present(stable); inspector = actualInspector
++            if intent.presentation == .newTab {
++                guard wanted.presentationMode == .newTab, let workspace,
++                      let reservation = try? workspace.reservedNativeReader(requestID: requestId),
++                      reservation.policy.source === source, reservation.policy.owner == owner,
++                      reservation.policy.scene == sceneID.rawValue,
++                      reservation.policy.epoch == initial.epoch,
++                      reservation.policy.target.target.backend.rawValue == snapshot.backend.rawValue,
++                      reservation.policy.target.target.backend.rawValue == wanted.sectionLocator.backend.rawValue,
++                      reservation.policy.target.target.workKey == wanted.sectionLocator.workKey,
++                      let stable = UIStableID(rawValue: reservation.tab.id.uuidString) else {
++                    throw UIRouteError(.unavailable, "new_reader_binding_unavailable")
++                }
++                let actualInspector = reservation.tab.viewModel.readerInspectorVisible
++                if reservation.policy.phase == .committed {
++                    guard let witnessed = visible.witnessedReader, witnessed.destination == intent.destination,
++                          witnessed.presentation.kind == .newTab, witnessed.presentation.tabID == stable,
++                          witnessed.content == wanted, witnessed.focus == nil,
++                          witnessed.state.inspectorVisible == actualInspector,
++                          witnessed.state.workspaceID?.rawValue == initial.projection.groupID.uuidString,
++                          witnessed.state.profileID?.rawValue == initial.projection.profileID.uuidString else {
++                        throw UIRouteError(.unavailable, "new_reader_not_rendered")
++                    }
++                } else if reservation.policy.phase != .reserved {
++                    throw UIRouteError(.unavailable, "new_reader_publication_in_progress")
++                }
++                tab = .present(stable); inspector = actualInspector
++            } else {
++                guard wanted.presentationMode == .sameTab,
++                      let witnessed = visible.witnessedReader, witnessed.destination == intent.destination,
++                      witnessed.presentation.kind == .currentTab, let currentContent = witnessed.content,
++                      currentContent.sectionLocator.backend == wanted.sectionLocator.backend,
++                      currentContent.sectionLocator.workKey == wanted.sectionLocator.workKey, witnessed.focus == nil,
++                      let actualInspector = witnessed.state.inspectorVisible,
++                      witnessed.state.workspaceID?.rawValue == initial.projection.groupID.uuidString,
++                      witnessed.state.profileID?.rawValue == initial.projection.profileID.uuidString,
++                      let selected = initial.projection.activeTabID, let target = initial.projection.targets[selected],
++                      let stable = UIStableID(rawValue: selected.uuidString), witnessed.presentation.tabID == stable,
++                      target.readerOwner != nil, target.backend.rawValue == snapshot.backend.rawValue,
++                      target.backend.rawValue == wanted.sectionLocator.backend.rawValue,
++                      target.workKey == wanted.sectionLocator.workKey else {
++                    throw UIRouteError(.unavailable, "current_reader_binding_unavailable")
++                }
++                _ = try MaktabahNativeReaderBinding.appDestination(wanted)
++                tab = .present(stable); inspector = actualInspector
++            }
+@@ -174 +204,2 @@ struct MaktabahNativePublicPresentation {
+-        let ready = visible.ready && (variant.destination.rawValue != "native.reader" || visible.witnessedReader != nil)
++        let ready = visible.ready
++            && (variant.destination.rawValue != "native.reader" || variant.presentation == .newTab || visible.witnessedReader != nil)
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
+index 14599631..3adb39a2 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
+@@ -75 +75 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
+-                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab],
++                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab, .newTab],
+@@ -77 +77 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
+-                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab)]))
++                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab), .init(presentation: .newTab)]))
+@@ -213,2 +213,2 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
+-    /// Current-tab public content stays within the already selected original
+-    /// Reader. Cross-book/new-tab reservations are not advertised by this host.
++    /// Public content uses the original current Reader or R's exact new-tab
++    /// reservation. Core still authorizes the one native mutation.
+@@ -224,5 +224,4 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
+-        let context = context(sceneID: sceneID, origin: origin, snapshot: snapshot)
+-        try issue(context, sceneID: sceneID)
+-        defer { finish(context, sceneID: sceneID) }
+-        let admitted = try authority.admit(context: context, sceneID: sceneID)
+-        defer { authority.release(admitted) }
++        guard contexts[sceneID] == nil else { throw UIRouteError(.unavailable, "native_scene_busy") }
++        let invocation = ActionPortInvocation(requestId: UUID(), snapshot: snapshot, deadlineUptimeNanoseconds: end)
++        // Reserve actual native ownership before issuing/admitting authority;
++        // R advances its epoch and invalidates any older mapping context.
+@@ -230 +229 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
+-            try entry.session.retainReader(content) { [weak self, weak session = entry.session] in
++            try entry.session.retainReader(content, requestID: invocation.requestId) { [weak self, weak session = entry.session] in
+@@ -236 +235,5 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
+-        let invocation = ActionPortInvocation(requestId: UUID(), snapshot: snapshot, deadlineUptimeNanoseconds: end)
++        let context = context(sceneID: sceneID, origin: origin, snapshot: snapshot)
++        try issue(context, sceneID: sceneID)
++        defer { finish(context, sceneID: sceneID) }
++        let admitted = try authority.admit(context: context, sceneID: sceneID)
++        defer { authority.release(admitted) }
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
+index 7e3b3744..cb788b95 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
+@@ -36 +36 @@ struct MaktabahNativeSceneBindings {
+-    func apply(_ command: UISceneCommand) throws {
++    func apply(_ command: UISceneCommand, reservedTab: iOSNavigationManager.ReaderTab? = nil) throws {
+@@ -49,0 +50,14 @@ struct MaktabahNativeSceneBindings {
++            if let reservedTab {
++                guard let content = command.route.route.content, content.presentationMode == .newTab,
++                      command.route.route.presentation.kind == .newTab,
++                      command.route.route.presentation.tabID?.rawValue == reservedTab.id.uuidString else {
++                    throw UIRouteError(.staleState, "reserved_reader_target_changed")
++                }
++                let destination = try MaktabahNativeReaderBinding.appDestination(content)
++                showSettings.wrappedValue = false
++                selectedTab.wrappedValue = .viewer
++                guard manager.presentPreparedNativeReaderTab(reservedTab, destination: destination) else {
++                    throw UIRouteError(.staleState, "reserved_reader_presentation_failed")
++                }
++                return
++            }
+@@ -69,3 +83,2 @@ struct MaktabahNativeSceneBindings {
+-/// One original same-tab Reader owner retained for the whole Core result.
+-/// R's typed mapping publisher separately fences tab/workspace/owner ABA.
+-/// This fence covers passage changes which do not change the selected tab.
++/// One original Reader owner retained for the whole Core result. A new-tab
++/// reservation belongs to R's actual scene owner, never to this permission port.
+@@ -76,0 +90,2 @@ struct MaktabahNativeSceneBindings {
++    private let workspace: StudyWorkspaceNavigationAdapter?
++    private let reservation: StudyWorkspaceNativeReaderReservation?
+@@ -80,0 +96,4 @@ struct MaktabahNativeSceneBindings {
++    var isNewTab: Bool { reservation != nil }
++    var targetTabID: UIStableID { UIStableID(rawValue: tabID.uuidString)! }
++    var inspectorVisible: Bool { reader.readerInspectorVisible }
++    var reservedTab: iOSNavigationManager.ReaderTab? { reservation?.tab }
+@@ -82 +101,2 @@ struct MaktabahNativeSceneBindings {
+-    init(manager: iOSNavigationManager, tabID: UIStableID, content: ActionReaderDestination,
++    init(manager: iOSNavigationManager, currentTabID: UIStableID?,
++         workspace: StudyWorkspaceNavigationAdapter?, requestID: UUID, content: ActionReaderDestination,
+@@ -84,6 +104,22 @@ struct MaktabahNativeSceneBindings {
+-        guard let id = manager.activeTabId, id.uuidString == tabID.rawValue,
+-              let tab = manager.openTabs.first(where: { $0.id == id }),
+-              tab.viewModel.nativeReaderDestinationWillChange == nil,
+-              tab.book.backendLocator?.backend.rawValue == content.sectionLocator.backend.rawValue,
+-              tab.book.backendLocator?.workKey == content.sectionLocator.workKey else {
+-            throw UIRouteError(.unavailable, "current_reader_target_unavailable")
++        let destination = try Self.appDestination(content)
++        let tab: iOSNavigationManager.ReaderTab
++        let reserved: StudyWorkspaceNativeReaderReservation?
++        if content.presentationMode == .newTab {
++            guard let workspace,
++                  let book = MaktabahBackendAdapter.resolveBook(for: destination.sectionLocator, in: LibraryDataManager.shared),
++                  book.backendLocator?.backend == destination.sectionLocator.backend,
++                  book.backendLocator?.workKey == destination.sectionLocator.workKey else {
++                throw UIRouteError(.unavailable, "new_reader_target_unavailable")
++            }
++            let owned = try workspace.reserveNativeReader(requestID: requestID, book: book,
++                destination: destination, manager: manager)
++            tab = owned.tab; reserved = owned
++        } else {
++            guard let id = manager.activeTabId, id.uuidString == currentTabID?.rawValue,
++                  let current = manager.openTabs.first(where: { $0.id == id }),
++                  current.viewModel.nativeReaderDestinationWillChange == nil,
++                  current.book.backendLocator?.backend == destination.sectionLocator.backend,
++                  current.book.backendLocator?.workKey == destination.sectionLocator.workKey else {
++                throw UIRouteError(.unavailable, "current_reader_target_unavailable")
++            }
++            tab = current; reserved = nil
+@@ -91,2 +127,3 @@ struct MaktabahNativeSceneBindings {
+-        self.manager = manager; reader = tab.viewModel; self.tabID = id
+-        destination = try Self.appDestination(content); self.revoke = revoke
++        self.manager = manager; reader = tab.viewModel; tabID = tab.id
++        self.destination = destination; self.revoke = revoke
++        self.workspace = workspace; reservation = reserved
+@@ -103 +140 @@ struct MaktabahNativeSceneBindings {
+-        guard content.presentationMode == .sameTab else { throw ActionPortError.notSupported }
++        guard content.presentationMode == .sameTab || content.presentationMode == .newTab else { throw ActionPortError.notSupported }
+@@ -112,0 +150,3 @@ struct MaktabahNativeSceneBindings {
++    func accepts(_ content: ActionReaderDestination) -> Bool {
++        (content.presentationMode == .newTab) == isNewTab && (try? Self.appDestination(content)) == destination
++    }
+@@ -114,6 +154,17 @@ struct MaktabahNativeSceneBindings {
+-        guard valid, installed, manager.activeTabId == tabID,
+-              let tab = manager.openTabs.first(where: { $0.id == tabID }),
+-              tab.viewModel === reader,
+-              tab.book.backendLocator?.backend == destination.sectionLocator.backend,
+-              tab.book.backendLocator?.workKey == destination.sectionLocator.workKey else {
+-            throw UIRouteError(.staleState, "current_reader_owner_changed")
++        guard valid, installed else { throw UIRouteError(.staleState, "reader_binding_revoked") }
++        if let reservation {
++            guard let workspace, reservation.tab.viewModel === reader,
++                  reservation.tab.id == tabID,
++                  reservation.tab.book.backendLocator?.backend == destination.sectionLocator.backend,
++                  reservation.tab.book.backendLocator?.workKey == destination.sectionLocator.workKey else {
++                throw UIRouteError(.staleState, "reserved_reader_owner_changed")
++            }
++            try workspace.validateNativeReader(reservation)
++        } else {
++            guard manager.activeTabId == tabID,
++                  let tab = manager.openTabs.first(where: { $0.id == tabID }),
++                  tab.viewModel === reader,
++                  tab.book.backendLocator?.backend == destination.sectionLocator.backend,
++                  tab.book.backendLocator?.workKey == destination.sectionLocator.workKey else {
++                throw UIRouteError(.staleState, "current_reader_owner_changed")
++            }
+@@ -127 +178,4 @@ struct MaktabahNativeSceneBindings {
+-        try operation()
++        if let reservation {
++            guard let workspace else { throw ActionPortError.staleState }
++            try workspace.applyNativeReader(reservation, operation: operation)
++        } else { try operation() }
+@@ -134,0 +189,7 @@ struct MaktabahNativeSceneBindings {
++        if let reservation { workspace?.releaseNativeReader(reservation) }
++    }
++    isolated deinit {
++        if installed {
++            reader.nativeReaderDestinationWillChange = nil
++            if let reservation { workspace?.releaseNativeReader(reservation) }
++        }
+@@ -136 +196,0 @@ struct MaktabahNativeSceneBindings {
+-    isolated deinit { if installed { reader.nativeReaderDestinationWillChange = nil } }
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift
+index 789c6d52..9e175ff4 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift
+@@ -86,0 +87 @@ struct MaktabahNativeSceneProjection {
++            let newlyCreated = workspace?.hasCommittedNativeReader(tabID: tab.id) == true
+@@ -88 +89,2 @@ struct MaktabahNativeSceneProjection {
+-                focusLocator: try destination.focusLocator.map(ActionAppIdentityBridge.actionRef), presentationMode: .sameTab)
++                focusLocator: try destination.focusLocator.map(ActionAppIdentityBridge.actionRef),
++                presentationMode: newlyCreated ? .newTab : .sameTab)
+@@ -94 +96 @@ struct MaktabahNativeSceneProjection {
+-            return .init(destination: id("native.reader"), presentation: .init(kind: .currentTab, tabID: stable(tab.id)),
++            return .init(destination: id("native.reader"), presentation: .init(kind: newlyCreated ? .newTab : .currentTab, tabID: stable(tab.id)),
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
+index 18bda8c5..9cc1951d 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
+@@ -66,3 +66,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+-    func retainReader(_ content: ActionReaderDestination, revoke: @escaping @MainActor () -> Void) throws -> MaktabahNativeReaderBinding {
+-        guard readerBinding == nil, let tabID = try project().identity().activeTabID else {
+-            throw UIRouteError(.unavailable, "current_reader_target_unavailable")
++    func retainReader(_ content: ActionReaderDestination, requestID: UUID,
++                      revoke: @escaping @MainActor () -> Void) throws -> MaktabahNativeReaderBinding {
++        guard readerBinding == nil else { throw UIRouteError(.unavailable, "reader_binding_busy") }
++        let identity = try project().identity()
++        let workspace = try workspaceProjectionSource?.read()
++        if content.presentationMode == .newTab, workspaceProjectionSource?.isAuthoritative != true {
++            throw UIRouteError(.unavailable, "new_reader_workspace_unavailable")
+@@ -70 +74,2 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+-        let retained = try MaktabahNativeReaderBinding(manager: bindings.manager, tabID: tabID, content: content, revoke: revoke)
++        let retained = try MaktabahNativeReaderBinding(manager: bindings.manager,
++            currentTabID: identity.activeTabID, workspace: workspace, requestID: requestID, content: content, revoke: revoke)
+@@ -86,3 +91,3 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+-            guard let content = route.content, content.presentationMode == .sameTab,
+-                  route.presentation.kind == .currentTab,
+-                  route.presentation.tabID == identity.activeTabID, route.focus == nil,
++            guard let content = route.content, let readerBinding, readerBinding.accepts(content),
++                  route.presentation.kind == (readerBinding.isNewTab ? .newTab : .currentTab),
++                  route.presentation.tabID == readerBinding.targetTabID, route.focus == nil,
+@@ -90,2 +95,3 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+-                                              inspectorVisible: identity.state.inspectorVisible),
+-                  let readerBinding else { throw UIRouteError(.notSupported, "native_reader_variant_not_installed") }
++                                              inspectorVisible: readerBinding.inspectorVisible) else {
++                throw UIRouteError(.notSupported, "native_reader_variant_not_installed")
++            }
+@@ -114 +120 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+-            try readerBinding.apply { try bindings.apply(command) }
++            try readerBinding.apply { try bindings.apply(command, reservedTab: readerBinding.reservedTab) }
+diff --git a/Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift b/Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift
+index f410111a..cc07d13d 100644
+--- a/Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift
++++ b/Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift
+@@ -51,0 +52,15 @@ extension iOSNavigationManager {
++        let initialContentId = LegacyIdentityRegistry.shared.id(for: destination.sectionLocator)
++        let tab = ReaderTab(id: UUID(), book: book, initialContentId: initialContentId,
++                            viewModel: ReaderViewModel(book: book))
++        _ = presentPreparedNativeReaderTab(tab, destination: destination)
++    }
++
++    /// Original linked-source presentation reused by the scene's Core-gated
++    /// reservation. Construction alone never loads or opens a book.
++    @discardableResult
++    func presentPreparedNativeReaderTab(_ tab: ReaderTab, destination: LibraryReaderDestination) -> Bool {
++        guard destination.sectionLocator.backend == BackendCoordinator.shared.activeBackendID,
++              tab.book.backendLocator?.backend == destination.sectionLocator.backend,
++              tab.book.backendLocator?.workKey == destination.sectionLocator.workKey,
++              tab.viewModel.currentBook === tab.book,
++              !openTabs.contains(where: { $0.id == tab.id }) else { return false }
+@@ -57,9 +72,6 @@ extension iOSNavigationManager {
+-
+-        let viewModel = ReaderViewModel(book: book)
+-        viewModel.loadBackendContent(destination)
+-        let initialContentId = LegacyIdentityRegistry.shared.id(for: destination.sectionLocator)
+-        let newTab = ReaderTab(id: UUID(), book: book, initialContentId: initialContentId, viewModel: viewModel)
+-        openTabs.append(newTab)
+-        activeTabId = newTab.id
+-        selectedContentId = initialContentId
+-        selectedBook = book
++        tab.viewModel.loadBackendContent(destination)
++        openTabs.append(tab)
++        activeTabId = tab.id
++        selectedContentId = tab.initialContentId
++        selectedBook = tab.book
++        return true

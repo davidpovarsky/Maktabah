@@ -5,11 +5,11 @@
   "app_source": "3f16e26d95c37398ae7bd58d19a2bc9134e12343",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3",
+  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 48,
+  "required_nonzero_cases": 50,
   "expected_per_device": {
-    "ipad11": 42,
+    "ipad11": 44,
     "iphone": 6
   },
   "cases": [
@@ -190,7 +190,9 @@
         "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
         "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
         "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
-        "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
+        "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+        "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+        "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
       ],
       "hid_comparison": false
     },
@@ -265,7 +267,9 @@
     "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
     "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
     "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
-    "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
+    "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -626,6 +630,18 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Actual Apple AppIntentsTesting passes an unknown entity to the original intent; system/host refuses without a new native receipt or navigation. Positive system-intent cases are separately required."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual same-process system v2 newTab URL, sealed source DB metadata, original rendered TextKit exact line/highlight/title and one full-Core receipt; actual persisted group gains exactly one unique original tab, every prior tab identity/book/backend is retained, original native tab control returns to prior exact reader locator."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual same-process system v2 newTab URL, sealed source DB metadata, original rendered TextKit exact line/highlight/title and one full-Core receipt; actual persisted group gains exactly one unique original tab, every prior tab identity/book/backend is retained, original native tab control returns to prior exact reader locator."
     }
   ],
   "manager_native_review_history": [
@@ -774,6 +790,16 @@
       "sha": "3f16e26d95c37398ae7bd58d19a2bc9134e12343",
       "status": "SOURCE_ADDED_SDK_AND_NATIVE_PENDING",
       "scope": "Three original system App Intent execution cases via Apple AppIntentsTesting; current native matrix48"
+    },
+    "native_new_tab_cases": [
+      "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+      "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
+    ],
+    "native_new_tab_source": {
+      "status": "LOCAL_SOURCE_IMPLEMENTED_NATIVE_PENDING",
+      "scope": "R-owned actual ReaderTab reservation through original Core, original new-tab presenter and independent TextKit witness",
+      "source_branch": "codex/otzaria-native-reader-owner-20261118",
+      "acceptance_limit": "Two actual Native new-tab cases NOT_RUN; phone content/richer components and device validation remain separate."
     }
   }
 }

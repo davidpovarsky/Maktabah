@@ -1,0 +1,19 @@
+{
+  "reviewed_utc": "2026-11-18T03:13:12.132971+00:00",
+  "base": "8ef1cba41d9bff5d9548bc751a7cdb34cd4a69ce",
+  "reviewer": "sole continuation developer; no subagents",
+  "native_status": "NOT_RUN",
+  "policy_status": "PASS_16_SCENARIOS_47_ASSERTIONS_NATIVE0",
+  "files": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "b5bfeb7cb317be4a81d21d9b6aa6fafca7961598e39b708b86cd14afc89333d9",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift": "599fe2b366b3fd96ee4b24526d2046f9d5770d40202e0fe884fe3961ec260411",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift": "511a4366e362934d3c56d233ea015c4a461c1fa916377d5c5bbd70f14215941e",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "b934919ec49e6809a4668d9fc0c664db9a29e3d9907c194c1fbcc49489025a48",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "3b4f71f77876001675d8ae93428d0433a9295c3b348d8755381bffe4e47b57e1",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "eec03d5e8bcdc273a92d119bdee40f1d8cbb6ef25ff1fb844ef42aa902df414a",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "c7643d2b7786b1b310458139c7398f2ff4a316c6cee366556a9c2cc940437cf7",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "36d5dd0e82a6dfe9a48f14c1c8d2f23636226f19b373e0f560eb975b66494f9a",
+    "Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift": "965e76a06cf927cba88868e3dac8923563aece915ea573cd07d76de86252505f",
+    "docs/hq-integration/runtime27/R27_CASES.json": "e4a724d239b8a2bfeebd37a02cd028eab1b9e9721fdbe553bb1b0d140c31bc16"
+  }
+}

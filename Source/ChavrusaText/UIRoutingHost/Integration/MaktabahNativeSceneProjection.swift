@@ -84,14 +84,16 @@ struct MaktabahNativeSceneProjection {
                   actual.backend == BackendCoordinator.shared.activeBackendID,
                   tab.book.backendLocator?.workKey == actual.workKey,
                   !tab.viewModel.contentText.isEmpty else { return nil }
+            let newlyCreated = workspace?.hasCommittedNativeReader(tabID: tab.id) == true
             let content = ActionReaderDestination(sectionLocator: try ActionAppIdentityBridge.actionRef(actual),
-                focusLocator: try destination.focusLocator.map(ActionAppIdentityBridge.actionRef), presentationMode: .sameTab)
+                focusLocator: try destination.focusLocator.map(ActionAppIdentityBridge.actionRef),
+                presentationMode: newlyCreated ? .newTab : .sameTab)
             let actualState = UIStateSpec(workspaceID: state.workspaceID, profileID: state.profileID,
                                           inspectorVisible: tab.viewModel.readerInspectorVisible)
             // This describes model state only. The scene session separately
             // requires its original TextKit text/viewport witness before an
             // observation can acknowledge this content or focused segment.
-            return .init(destination: id("native.reader"), presentation: .init(kind: .currentTab, tabID: stable(tab.id)),
+            return .init(destination: id("native.reader"), presentation: .init(kind: newlyCreated ? .newTab : .currentTab, tabID: stable(tab.id)),
                          content: content, state: actualState, focus: nil)
         }
     }
