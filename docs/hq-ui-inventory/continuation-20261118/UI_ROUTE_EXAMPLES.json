@@ -21,7 +21,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "SOURCE_WIRED_CONDITIONAL; Original phone/iPad workspace owner, active tab/current book, current backend, Core validated section/focus and original TextKit visible glyph; sameTab cross-book refused; separate R-owned newTab rule installed; compact phone owner uses original NavigationStack witness; inventory support describes code wiring, not a native PASS",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -43,7 +43,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -65,7 +65,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -87,7 +87,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -109,7 +109,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -131,7 +131,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Current source passes showsGlobalHistory:false to existing overlay. Mode/near/help remain; scope fix has no runtime PASS from this inventory.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -153,7 +153,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Subview/section exists but no public exact subsection orchestrator is wired; section focus is planned. Backend switch never implicit.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -175,7 +175,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -197,7 +197,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -219,7 +219,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "SOURCE_WIRED_CONDITIONAL; Original phone/iPad workspace owner, active tab/current book, current backend, Core validated section/focus and original TextKit visible glyph; sameTab cross-book refused; separate R-owned newTab rule installed; compact phone owner uses original NavigationStack witness; inventory support describes code wiring, not a native PASS",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -241,7 +241,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -263,7 +263,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -285,7 +285,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -307,7 +307,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -329,7 +329,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Current source passes showsGlobalHistory:false to existing overlay. Mode/near/help remain; scope fix has no runtime PASS from this inventory.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -351,7 +351,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Subview/section exists but no public exact subsection orchestrator is wired; section focus is planned. Backend switch never implicit.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -373,7 +373,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -395,7 +395,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -417,7 +417,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "SOURCE_WIRED_CONDITIONAL; Original phone/iPad workspace owner, active tab/current book, current backend, Core validated section/focus and original TextKit visible glyph; sameTab cross-book refused; separate R-owned newTab rule installed; compact phone owner uses original NavigationStack witness; inventory support describes code wiring, not a native PASS",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -439,7 +439,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -461,7 +461,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -483,7 +483,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -505,7 +505,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -527,7 +527,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Current source passes showsGlobalHistory:false to existing overlay. Mode/near/help remain; scope fix has no runtime PASS from this inventory.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -549,7 +549,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; Subview/section exists but no public exact subsection orchestrator is wired; section focus is planned. Backend switch never implicit.",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -571,7 +571,7 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     },
     {
@@ -593,11 +593,11 @@
       "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
       "expected_now": "NOT_IMPLEMENTED; ",
       "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
-      "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+      "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
       "execution": "MANUAL_PLAN_NOT_EXECUTED"
     }
   ],
-  "source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+  "source_sha": "04614e5096d78347a90961bf68abccd16394826e",
   "current_native_examples": [
     {
       "case": "Library public root and private query",
