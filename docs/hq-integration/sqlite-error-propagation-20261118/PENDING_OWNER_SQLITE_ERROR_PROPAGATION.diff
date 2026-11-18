@@ -1,0 +1,50 @@
+--- a/Source/Core/Database/SQLiteDatabase.swift
++++ b/Source/Core/Database/SQLiteDatabase.swift
+@@ -231,9 +231,16 @@
+         var results: [T] = []
+         let row = SQLiteRow(stmt: stmt)
+ 
+-        while sqlite3_step(stmt) == SQLITE_ROW {
++        var status = sqlite3_step(stmt)
++        while status == SQLITE_ROW {
+             let mapped = try mapping(row)
+             results.append(mapped)
++            status = sqlite3_step(stmt)
++        }
++        // Only DONE proves a complete read. BUSY, INTERRUPT and other errors
++        // must not publish a partial/empty page or allow a transaction to commit.
++        guard status == SQLITE_DONE else {
++            throw SQLiteError.executionFailed(String(cString: sqlite3_errmsg(dbPointer)))
+         }
+ 
+         return results
+@@ -270,20 +277,24 @@
+     private func bind(parameters: [Any], to stmt: OpaquePointer?) throws {
+         for (index, value) in parameters.enumerated() {
+             let bindIndex = Int32(index + 1)
++            let status: Int32
+             switch value {
+             case let intVal as Int:
+-                sqlite3_bind_int64(stmt, bindIndex, Int64(intVal))
++                status = sqlite3_bind_int64(stmt, bindIndex, Int64(intVal))
+             case let int64Val as Int64:
+-                sqlite3_bind_int64(stmt, bindIndex, int64Val)
++                status = sqlite3_bind_int64(stmt, bindIndex, int64Val)
+             case let doubleVal as Double:
+-                sqlite3_bind_double(stmt, bindIndex, doubleVal)
++                status = sqlite3_bind_double(stmt, bindIndex, doubleVal)
+             case let stringVal as String:
+                 let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+-                sqlite3_bind_text(stmt, bindIndex, stringVal, -1, SQLITE_TRANSIENT)
++                status = sqlite3_bind_text(stmt, bindIndex, stringVal, -1, SQLITE_TRANSIENT)
+             case is NSNull:
+-                sqlite3_bind_null(stmt, bindIndex)
++                status = sqlite3_bind_null(stmt, bindIndex)
+             default:
+                 throw SQLiteError.bindFailed("Unsupported type for parameter at index \(index)")
++            }
++            guard status == SQLITE_OK else {
++                throw SQLiteError.bindFailed(String(cString: sqlite3_errmsg(dbPointer)))
+             }
+         }
+     }

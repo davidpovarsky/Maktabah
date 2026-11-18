@@ -1,0 +1,37 @@
+{
+  "status": "BLOCKED_EXACT_HUNK_APPROVAL_AUTO_REVIEW",
+  "proposed_patch_applied": false,
+  "source_sha": "0b8c06e8038815dc57af534aedabf8a2ee6d2c8e",
+  "file": "Source/Core/Database/SQLiteDatabase.swift",
+  "source_before_sha256": "cf223858b8c564a6e243b1aaf042d098dc93f8571bca4e82f7e5dc0d8020d54a",
+  "patch_sha256": "dc3701947687cd5af0d3cb3357b786b3c2887f5e018581288514f524bab34ae8",
+  "git_apply_check_exit": 0,
+  "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "upstream_blob": "3cf9f96fb23bd7259df5be7256c97314ac776aa1",
+  "owner_authorization": "Owner authorizes all phases broadly. Automatic approval review rejected these exact upstream hunks because project policy requires exact-hunk owner authorization; no such approval is fabricated.",
+  "automatic_rejection_reason": "The script persistently edits an upstream-owned SQLite implementation ... repository mandatory integrity policy requires owner approval for exact protected file/hunk; broad phase-wide authorization does not clearly approve these specific hunks.",
+  "requested_change": [
+    "_fetchNoLock: require final sqlite3_step SQLITE_DONE; propagate existing executionFailed otherwise",
+    "bind: require SQLITE_OK from every existing binding; propagate existing bindFailed otherwise"
+  ],
+  "alternatives": "Original fetch/bind are private; an external adapter cannot recover discarded errors. No duplicate engine, monkey patch or indirect application is attempted.",
+  "baseline": {
+    "artifact": "CONTINUATION_20261117_EVIDENCE/sqlite-source-20261118/before-mini/RESULT.json",
+    "swift": "6.3.3",
+    "sqlite": "real installed winsqlite3 3.53.4",
+    "cases": 21,
+    "pass": 9,
+    "fail": 12,
+    "qualification": "11 direct error/binding/transaction failures, plus1 later read affected by the incorrectly committed fixture row; complete original wrapper, actual SQLite; unrelated ZSTD boundary fails if called."
+  },
+  "data": "Failure tests write only fresh owned UUID fixture directories; one actual miniTest10 source read via mode=ro&immutable=1 matched independent Python oracle. Full v32 previous path unavailable at this checkpoint; earlier read-only audit is preserved, no new full-source pass.",
+  "rollback": "Revert only proposed two hunks; no migration/provider/schema/data change.",
+  "test_plan": "Repeat same actual SQLite regression cases, original Reader/Search/Inspector native gates and Apple compiler/runtime; all unperformed gates remain open.",
+  "reviewer": "Current sole developer",
+  "official_references": [
+    "https://www.sqlite.org/c3ref/step.html",
+    "https://www.sqlite.org/c3ref/bind_blob.html",
+    "https://www.sqlite.org/c3ref/interrupt.html"
+  ],
+  "observed_at": "2026-11-18T16:36:47.316965+00:00"
+}
