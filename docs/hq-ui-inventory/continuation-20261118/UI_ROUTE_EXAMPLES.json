@@ -1,0 +1,638 @@
+{
+  "schema_version": 1,
+  "registered": false,
+  "examples": [
+    {
+      "example_id": "otzaria.reader.content",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.reader.content",
+      "backend": "otzaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "SOURCE_WIRED_CONDITIONAL; iPad live original workspace/active tab/current book, current backend, Core validated section/focus and original TextKit visible glyph; cross-book/newTab/phone content not implemented; inventory support describes code wiring, not a native PASS",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "otzaria.toc.selected-node",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.toc.selected-node",
+      "backend": "otzaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "otzaria.inspector.shared.commentaries",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.inspector.shared.commentaries",
+      "backend": "otzaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "otzaria.inspector.shared.notes",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.inspector.shared.notes",
+      "backend": "otzaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "otzaria.search.global",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.search.global",
+      "backend": "otzaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "otzaria.search.book",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.search.book",
+      "backend": "otzaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Current source passes showsGlobalHistory:false to existing overlay. Mode/near/help remain; scope fix has no runtime PASS from this inventory.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "otzaria.settings.search-data",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.settings.search-data",
+      "backend": "otzaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Subview/section exists but no public exact subsection orchestrator is wired; section focus is planned. Backend switch never implicit.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "otzaria.workspace.reader-tabs",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.workspace.reader-tabs",
+      "backend": "otzaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "otzaria.notes.draft",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.notes.draft",
+      "backend": "otzaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefaria.reader.content",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.reader.content",
+      "backend": "sefaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "SOURCE_WIRED_CONDITIONAL; iPad live original workspace/active tab/current book, current backend, Core validated section/focus and original TextKit visible glyph; cross-book/newTab/phone content not implemented; inventory support describes code wiring, not a native PASS",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefaria.toc.selected-node",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.toc.selected-node",
+      "backend": "sefaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefaria.inspector.shared.commentaries",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.inspector.shared.commentaries",
+      "backend": "sefaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefaria.inspector.shared.notes",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.inspector.shared.notes",
+      "backend": "sefaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefaria.search.global",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.search.global",
+      "backend": "sefaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefaria.search.book",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.search.book",
+      "backend": "sefaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Current source passes showsGlobalHistory:false to existing overlay. Mode/near/help remain; scope fix has no runtime PASS from this inventory.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefaria.settings.search-data",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.settings.search-data",
+      "backend": "sefaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Subview/section exists but no public exact subsection orchestrator is wired; section focus is planned. Backend switch never implicit.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefaria.workspace.reader-tabs",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.workspace.reader-tabs",
+      "backend": "sefaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefaria.notes.draft",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.notes.draft",
+      "backend": "sefaria",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefariaEmbedded.reader.content",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.reader.content",
+      "backend": "sefariaEmbedded",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "SOURCE_WIRED_CONDITIONAL; iPad live original workspace/active tab/current book, current backend, Core validated section/focus and original TextKit visible glyph; cross-book/newTab/phone content not implemented; inventory support describes code wiring, not a native PASS",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefariaEmbedded.toc.selected-node",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.toc.selected-node",
+      "backend": "sefariaEmbedded",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefariaEmbedded.inspector.shared.commentaries",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.inspector.shared.commentaries",
+      "backend": "sefariaEmbedded",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefariaEmbedded.inspector.shared.notes",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.inspector.shared.notes",
+      "backend": "sefariaEmbedded",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Shared UI read from exact Xcode-pinned Kit object; native host callback bindings still need real backend/scene acceptance.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefariaEmbedded.search.global",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.search.global",
+      "backend": "sefariaEmbedded",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefariaEmbedded.search.book",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.search.book",
+      "backend": "sefariaEmbedded",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Current source passes showsGlobalHistory:false to existing overlay. Mode/near/help remain; scope fix has no runtime PASS from this inventory.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefariaEmbedded.settings.search-data",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.settings.search-data",
+      "backend": "sefariaEmbedded",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; Subview/section exists but no public exact subsection orchestrator is wired; section focus is planned. Backend switch never implicit.",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefariaEmbedded.workspace.reader-tabs",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.workspace.reader-tabs",
+      "backend": "sefariaEmbedded",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    },
+    {
+      "example_id": "sefariaEmbedded.notes.draft",
+      "kind": "SEMANTIC_MANUAL_CASE_NOT_EXECUTABLE_WIRE_REQUEST",
+      "destination_id": "inventory.v1.notes.draft",
+      "backend": "sefariaEmbedded",
+      "trusted_host_context_required": [
+        "actualSceneID",
+        "sceneRevision",
+        "backendGeneration",
+        "rights",
+        "rpcEpoch_if_embedded"
+      ],
+      "identity_state": {
+        "workRef": "<backend-qualified resolved identity>",
+        "focusRef": "<optional validated exact anchor>"
+      },
+      "private_runtime_state": "Supply query/draft/selection through trusted in-process context; omitted from public link",
+      "expected_now": "NOT_IMPLEMENTED; ",
+      "future_oracle": "exact destination/content/presentation/focus/tab + requestUUID/backend snapshot/scene revision receipt; queued remains queued",
+      "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+      "execution": "MANUAL_PLAN_NOT_EXECUTED"
+    }
+  ],
+  "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+  "current_native_examples": [
+    {
+      "case": "History public v1/v2",
+      "registry_id": "native.history",
+      "presentation": "currentTab",
+      "input": "Use canonical original NativeRouteURL or NativePublicNavigationURLV2 encoder and active backend; no private search text",
+      "expected": "Exact foreground History visible plus original native receipt"
+    },
+    {
+      "case": "Settings public v2",
+      "registry_id": "native.settings",
+      "presentation": "sheet",
+      "input": "Use canonical NativePublicNavigationURLV2 encoder; current backend; root only",
+      "expected": "Actual Settings sheet visible; no backend/settings writes"
+    },
+    {
+      "case": "Reader positive",
+      "registry_id": "native.reader",
+      "presentation": "currentTab",
+      "input": "Current iPad active book, known source line from independently hashed fixture, explicit section and focus, sameTab; use canonical v2 codec",
+      "expected": "Original TextKit glyph at exact source line and original full Core completion receipt"
+    },
+    {
+      "case": "Reader other-book/current-only refusal",
+      "registry_id": "native.reader",
+      "presentation": "currentTab",
+      "input": "A different known fixture book while current-only binding is installed",
+      "expected": "No acknowledgement or mutation; explicit unsupported route"
+    },
+    {
+      "case": "Stale scene/owner/backend",
+      "registry_id": "native.reader",
+      "input": "Invoke after actual owner or backend changes; never inject authority fields into public JSON",
+      "expected": "Original live-ownership fence rejects, no success receipt"
+    }
+  ],
+  "current_native_execution": "NOT_RUN_ON_THIS_SOURCE"
+}
