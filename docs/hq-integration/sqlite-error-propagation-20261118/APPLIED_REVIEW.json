@@ -1,0 +1,53 @@
+{
+  "observed_at": "2026-11-18T19:43:33.060195+00:00",
+  "status": "APPLIED_EXACT_REVIEWED_HUNKS_REAL_SQLITE_21_PASS_APPLE_PENDING",
+  "original_proposal": "PENDING_OWNER_REVIEW.json",
+  "proposal_sha256": "dc3701947687cd5af0d3cb3357b786b3c2887f5e018581288514f524bab34ae8",
+  "historical_block_preserved": true,
+  "application_receipt": {
+    "time_utc": "2026-11-18T19:30:55.371335+00:00",
+    "status": "EXACT_REVIEWED_DIFF_APPLIED_AFTER_OWNER_CONTINUATION_REPLY",
+    "owner_reply": "מה קורה? איפה עצרת? המשך עד להשלמת כל המשימות בשלמות ובהצלחה מלאה!",
+    "context": "Owner reply follows the final exact-diff request, immutable GitHub link and two-method explanation. No claim that the owner used the word מאשר or granted future unseen hunks.",
+    "proposal_commit": "be9f47187ff7b7924be9e173241ea0d561d0a238",
+    "proposal_sha256": "dc3701947687cd5af0d3cb3357b786b3c2887f5e018581288514f524bab34ae8",
+    "before_sha256": "cf223858b8c564a6e243b1aaf042d098dc93f8571bca4e82f7e5dc0d8020d54a",
+    "after_sha256": "a600973b402956d946c727def2c1fe1ada011f623a2da9db19ddb26e3c6e5a1e",
+    "changed_files": [
+      "Source/Core/Database/SQLiteDatabase.swift"
+    ],
+    "policy_files_changed": false,
+    "database_files_changed": false,
+    "tests": "NOT_RUN_AFTER_PATCH"
+  },
+  "owner_latest_explicit_authorization": {
+    "observed_at": "2026-11-18T19:40:29.639199+00:00",
+    "owner_instruction": "שים לב! אני נותן לך אישור מפורש ורשמי לבצע את כל התיקונים והשינויים וההרצות וההעברות וההעלאות בכל הפרויקטים ובכל המאגרים, בלי שום הגבלות, ובלי צורך לבקש ממני אישור! יאללה המשך",
+    "scope_used": "Necessary Otzaria three-phase fixes, original SQLite two-hunk patch, existing repository push and CI, release after real gates; solo development",
+    "policy_or_permission_files_changed": false,
+    "historical_rejections_preserved": true
+  },
+  "same_test_source_hashes": {
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "f2f62c6f9fe76442560bdd2be08320d9e6db3edd79849a4451cead2c63382bab",
+    "Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift": "69cabdac1a501cf36227795f5ef768a0de1d691c2d627bb41cbfc1d0a7a492b6"
+  },
+  "source_after_windows_bytes_sha256": "a600973b402956d946c727def2c1fe1ada011f623a2da9db19ddb26e3c6e5a1e",
+  "baseline": {
+    "pass": 9,
+    "fail": 12,
+    "report_sha256": "747e345fd98d4178b24f972016ee516e3c596749fbb94c3798cf8930ce50dfb5"
+  },
+  "after": {
+    "pass": 21,
+    "fail": 0,
+    "report": "ACTUAL_SQLITE_AFTER.json",
+    "report_sha256": "2c83736de20d752c47db4fe2f2fd5538ac9103d3a8e3682f74825f18e5c53cf7"
+  },
+  "scope": "Complete original wrapper; real winsqlite3. Only unrelated Zstd API is an unused fail-on-call compile boundary. New UUID-owned fixtures for writes. Real miniTest10 source opened read-only immutable and checked independently.",
+  "pending": [
+    "Actual Apple compiler/macOS SQLite repeat",
+    "Original app Native Search/Reader/Inspector regression",
+    "Full DB Native and physical-device gates"
+  ],
+  "rollback": "Revert the exact two SQLite hunks; no schema/provider/source-data changes."
+}

@@ -114,6 +114,8 @@ jobs:
         with:
           ref: ${{ inputs.hq_stage2_expected_sha }}
           fetch-depth: 0
+      - name: Select an existing SDK-matched runtime for the full device matrix
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
       - uses: actions/setup-node@v4
         if: ${{ inputs.runtime27_mode == 'ui' }}
         with:
@@ -284,6 +286,8 @@ jobs:
           echo "::error::SDK-only mode cannot request baseline or production acceptance."
           exit 1
       - uses: actions/checkout@v4
+      - name: Select the same existing SDK and runtime pair as Native acceptance
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/artifacts/ui-acceptance-typecheck.toolchain.json
       - name: Typecheck black-box tests with the actual iPad SDK
         run: python3 Scripts/CI/typecheck-faithful-ui-tests.py
       - name: Verify actual portable workspace contracts on macOS

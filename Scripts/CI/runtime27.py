@@ -311,7 +311,7 @@ def main():
                                         for p in sorted((ROOT / "Maktabah-iOSUITests").glob("*.swift"))}
         report["helper_inputs_sha256"] = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in [
             "Scripts/CI/hq-stage2-focused-apple.py", "Scripts/CI/hq-stage2-focused-apple.inputs.json", "Scripts/CI/runtime27.py",
-            "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/runtime27_interruption.py", "Scripts/CI/runtime27-fixture-oracle.py",
+            "Scripts/CI/run-faithful-ipad-matrix.py", "Scripts/CI/select-runtime27-toolchain.py", "Scripts/CI/runtime27_interruption.py", "Scripts/CI/runtime27-fixture-oracle.py",
             "tools/verify_xcresult_zero_skips.py", "Scripts/CI/collect-runtime27-palette-log.py", "Scripts/CI/runtime27-hid.py",
             "Scripts/CI/runtime27-fixture-recovery.py", "Scripts/CI/runtime27-url-delivery.py", "Scripts/CI/shutdown-faithful-simulator.py",
             "Scripts/CI/verify-faithful-xctest.py"]}

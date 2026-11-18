@@ -299,6 +299,22 @@
       "patch_digest_sha256": "a1acd93480729dd681a50099ff94fef475ac3642e3fcb9bcb05dcc9c5947505a",
       "scope_and_rollback": "docs/hq-integration/native-reader-core-20261118/REVIEW.json",
       "review": "Sole developer; no independent QA claim"
+    },
+    {
+      "patch_id": "CONTINUATION_20261118_SQLITE_ERROR_PROPAGATION",
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+      "upstream_blob": "3cf9f96fb23bd7259df5be7256c97314ac776aa1",
+      "status": "IMPLEMENTED_REAL_SQLITE_PASS_NATIVE_PENDING",
+      "patch_digest_sha256": "dc3701947687cd5af0d3cb3357b786b3c2887f5e018581288514f524bab34ae8",
+      "approval_ref": "docs/hq-integration/sqlite-error-propagation-20261118/APPLIED_REVIEW.json",
+      "owner_authorization": "Concrete two-hunk diff was presented before owner continuation reply; exact application was subsequently accepted. Owner then explicitly authorized all required changes/runs/uploads without further confirmation. Exact messages and former rejection remain in review evidence.",
+      "necessity": "Private fetch discarded non-DONE sqlite3_step failures and private bind discarded non-OK codes. Real tests demonstrated false success and commit instead of rollback.",
+      "rejected_alternatives": "A downstream adapter cannot recover discarded private SQLite errors; no duplicate wrapper/engine is introduced.",
+      "tests": "Unchanged actual SQLite regression: baseline9/21 pass, after21/21 pass; real winsqlite3 and original wrapper, owned write fixtures and read-only mini source. Apple and Native follow-up pending.",
+      "rollback": "Revert only two reviewed error-propagation hunks; source DB/schema/provider unchanged.",
+      "reviewer": "Current sole developer; no independent review claim",
+      "re_review": "Next upstream SQLite wrapper change or upstream sync"
     }
   ]
 }

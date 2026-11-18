@@ -1,0 +1,25 @@
+{
+  "observed_at": "2026-11-18T19:41:26.481416+00:00",
+  "syntax": "PASS",
+  "actual_retained_runtime_matching": {
+    "27.0": [
+      "com.apple.CoreSimulator.SimRuntime.iOS-27-0"
+    ],
+    "27.1": [],
+    "27.2": [
+      "com.apple.CoreSimulator.SimRuntime.iOS-27-2"
+    ],
+    "26.4": []
+  },
+  "declared_labels_accepted": [
+    "11-reader",
+    "11-search",
+    "11-sidebar",
+    "11-window",
+    "phone"
+  ],
+  "selected_case_count": 65,
+  "git_diff_check": "PASS",
+  "runtime_release_gate_exit_code": 0,
+  "native_tests_executed": 0
+}

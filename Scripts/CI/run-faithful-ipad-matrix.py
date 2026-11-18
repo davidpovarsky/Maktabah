@@ -51,6 +51,13 @@ def main():
             tuple(map(int, value["version"].split(".")[:2])) == sdk_major_minor,
             tuple(map(int, value["version"].split(".")))
         ), reverse=True)
+        selected_runtime = os.environ.get("FAITHFUL_RUNTIME27_IDENTIFIER")
+        if selected_runtime:
+            runtimes = [runtime for runtime in runtimes
+                        if runtime["identifier"] == selected_runtime
+                        and tuple(map(int, runtime["version"].split(".")[:2])) == sdk_major_minor]
+            if not runtimes:
+                raise SystemExit("The selected SDK-matched runtime is unavailable; no cross-version fallback")
         device_types = sim_json("list", "devicetypes")["devicetypes"]
         baseline = os.environ.get("VALIDATING_BASELINE") == "true"
         diagnostic_cases = [item.strip() for item in os.environ.get("FAITHFUL_DIAGNOSTIC_CASES", "").split(",") if item.strip()]
@@ -73,7 +80,8 @@ def main():
                   "configuration": "Debug", "dataProfile": "miniTest10", "devices": [],
                   "fullMatrixAcceptance": not bool(diagnostic_cases), "diagnosticCases": diagnostic_cases,
                   "simulatorSDKVersion": sdk_version,
-                  "runtimePreference": "matching-installed-SDK-then-newest-available-27.x"}
+                  "runtimePreference": "explicit-SDK-matched-pair" if selected_runtime else "matching-installed-SDK-then-newest-available-27.x",
+                  "selectedRuntimeIdentifier": selected_runtime}
 
         def write_matrix_report():
             if report is not None:

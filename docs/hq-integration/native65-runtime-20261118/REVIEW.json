@@ -1,0 +1,67 @@
+{
+  "observed_at": "2026-11-18T19:43:33.060195+00:00",
+  "run": "44350271039",
+  "checkout_sha": "f0cfc5eb804f43f4af307a978a83e0779db272db",
+  "application_source_sha": "2a18db289d725abacbb079d97d840f5130daab0b",
+  "status": "FAILED_BEFORE_NAMED_NATIVE_CASE_EXECUTION",
+  "build_for_testing": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+  "artifact": {
+    "id": 14460807800,
+    "bytes": 108527101,
+    "sha256": "ddee19a9b632fad81213a93c1cf4baaa07e76bd664d04d1bc061c771344d3031",
+    "full_zip_crc_verified": true
+  },
+  "required": 65,
+  "executed": 0,
+  "passed": 0,
+  "failed_named_cases": 0,
+  "skipped": 0,
+  "not_run": 65,
+  "groups": [
+    {
+      "label": "11-search",
+      "status": "FAIL",
+      "failed_phase": "PROVISIONING_NATIVE_FIXTURES",
+      "error": "CalledProcessError: Command ['/opt/homebrew/opt/python@3.15/bin/python3.15', 'Scripts/CI/prepare-faithful-ipad-fixtures.py', '--artifact-label', '11-search'] returned non-zero exit status 2."
+    },
+    {
+      "label": "11-reader",
+      "status": "FAIL",
+      "failed_phase": "RUNNING_NATIVE_XCTEST",
+      "error": "SystemExit: Native UI acceptance failed: ['NativeRoutingAcceptanceTests', 'R27NativePadTests']; acceptance status 65; actual xcodebuild status 65"
+    },
+    {
+      "label": "11-sidebar",
+      "status": "FAIL",
+      "failed_phase": "PROVISIONING_NATIVE_FIXTURES",
+      "error": "CalledProcessError: Command ['/opt/homebrew/opt/python@3.15/bin/python3.15', 'Scripts/CI/prepare-faithful-ipad-fixtures.py', '--artifact-label', '11-sidebar'] returned non-zero exit status 2."
+    },
+    {
+      "label": "11-window",
+      "status": "FAIL",
+      "failed_phase": "RUNNING_NATIVE_XCTEST",
+      "error": "SystemExit: Native UI acceptance failed: ['R27NativePadTests']; acceptance status 65; actual xcodebuild status 65"
+    },
+    {
+      "label": "phone",
+      "status": "FAIL",
+      "failed_phase": "INSTALL_TIMEOUT",
+      "error": "TimeoutExpired: Command '['xcrun', 'simctl', 'get_app_container', 'F5FCB387-FFC3-4964-8FE5-5C3989364A0F', 'com.davidpovarsky.chavrusatext', 'app']' timed out after 45 seconds"
+    }
+  ],
+  "runner_error": "Xcode27.1 AppIntentsTesting expects RunnerServiceDispatcher.resolveValue symbol absent from selected iOS27.2 AppIntentsServices; exact issue attachment retained.",
+  "fixture_error": "11-search and11-sidebar missing from pre-existing fixture/diagnostic label allowlists",
+  "phone_error": "simctl get_app_container timeout before test invocation",
+  "fixes": [
+    "Select an already-installed Xcode27 SDK with matching iOS27 runtime supporting11/13-inch iPad and conventional iPhone; scoped job env only",
+    "Use only the selected matched runtime; no newer cross-version fallback",
+    "Accept all five already-declared group labels in provisioning and diagnostics"
+  ],
+  "not_claimed": [
+    "Successful AppIntents invocation",
+    "Named test failure/pass",
+    "Device acceptance",
+    "Physical-device coverage",
+    "TestFlight readiness"
+  ]
+}

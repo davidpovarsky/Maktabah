@@ -75,3 +75,7 @@ The current all-three-phase instruction includes native Reader/ActionCore integr
 ## CONTINUATION_20261118_NATIVE_READER_CORE_FENCE
 
 Current owner authorizes phase-wide native Core/Reader integration. One optional synchronous original Reader destination callback fences passage ownership through the full Core result. Exact diff, scope limits, pending Native acceptance and rollback: docs/hq-integration/native-reader-core-20261118/REVIEW.json. No independent review or unseen exact-hunk approval is claimed.
+
+## 2026-11-18 — original SQLite error propagation
+
+The concrete frozen two-hunk proposal was presented before the owner's continuation reply, after which exact application was accepted. The owner then explicitly authorized all required fixes/builds/uploads without further confirmation. Actual quotations, the historical rejection, unchanged patch digest and test evidence are retained in [APPLIED_REVIEW.json](../hq-integration/sqlite-error-propagation-20261118/APPLIED_REVIEW.json). Require SQLITE_DONE after fetch and SQLITE_OK from the existing bind calls, using original error types. A downstream adapter cannot recover errors already discarded by these private methods. Identical real-SQLite tests improved from9/21 to21/21 pass; source data is read-only, failure writes use owned fixtures. Apple/Native/full-data/device validation remains pending. Revert only these two hunks for rollback; re-review on the next upstream change. Sole developer review.

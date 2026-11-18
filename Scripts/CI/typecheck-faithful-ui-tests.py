@@ -234,8 +234,27 @@ if (native_host / "Package.swift").is_file():
         output.write("\n=== Native routing host SDK compilation ===\n" + native_host_result.stdout)
     print(json.dumps(native_host_report, indent=2))
     print(native_host_result.stdout)
+# Execute the complete original SQLite wrapper with the installed macOS SQLite.
+# The unrelated Zstd compile boundary fails if called; no SQLite replacement,
+# source DB mutation, or Native acceptance claim is involved.
+sqlite_directory = artifacts / "sqlite-source"
+sqlite_command = [sys.executable, "tools/hq-sqlite-acceptance.py",
+                  "--artifacts-dir", str(sqlite_directory)]
+sqlite_result = subprocess.run(sqlite_command, stdout=subprocess.PIPE,
+                               stderr=subprocess.STDOUT, text=True)
+sqlite_code = sqlite_result.returncode
+(artifacts / "ui-acceptance-typecheck.sqlite-driver.log").write_text(sqlite_result.stdout, encoding="utf-8")
+for name in ["RESULT.json", "compile.log", "tests.log"]:
+    source = sqlite_directory / name
+    if source.is_file():
+        (artifacts / ("ui-acceptance-typecheck.sqlite-" + name)).write_bytes(source.read_bytes())
+sqlite_report = sqlite_directory / "RESULT.json"
+report["actualSQLite"] = json.loads(sqlite_report.read_text()) if sqlite_report.is_file() else {
+    "status": "FAILED_WITHOUT_REPORT", "exitCode": sqlite_code, "native_ui_executed": 0}
+print(json.dumps({"actualSQLiteStatus": report["actualSQLite"]["status"],
+                  "exitCode": sqlite_code}, indent=2))
 report["appMembershipStatus"] = "PASS" if membership_code == 0 else "FAIL"
 report["toolbarSDKStatus"] = "SDK_COMPILE_PASS" if toolbar_code == 0 else "BUILD_FAILED"
-report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code) else "FAIL"
+report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code or sqlite_code) else "FAIL"
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
-raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code)
+raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code or sqlite_code)
