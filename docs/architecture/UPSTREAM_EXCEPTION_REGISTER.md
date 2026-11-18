@@ -71,3 +71,7 @@ The current three-phase owner instruction authorizes native routing integration.
 ## 2026-11-18 — Passive original TextKit reader evidence
 
 The current all-three-phase instruction includes native Reader/ActionCore integration. Two original hooks add only a weak-reference callback from the existing iOSIbarotTextView to its existing ReaderViewModel. Downstream native routing reads the original renderer, actual UITextView text, live foreground scene, viewport and exact focused glyph before acknowledging a reader surface. It does not scroll, select, replace the renderer, install a second policy or mutate data. Exact patch, authorization scope, proof limits and rollback: [native reader witness review](../hq-integration/native-reader-witness-20261118/REVIEW.json). Actual app compilation and native acceptance remain pending; no public route/sink activation is implied.
+
+## CONTINUATION_20261118_NATIVE_READER_CORE_FENCE
+
+Current owner authorizes phase-wide native Core/Reader integration. One optional synchronous original Reader destination callback fences passage ownership through the full Core result. Exact diff, scope limits, pending Native acceptance and rollback: docs/hq-integration/native-reader-core-20261118/REVIEW.json. No independent review or unseen exact-hunk approval is claimed.

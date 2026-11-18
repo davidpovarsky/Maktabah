@@ -21,6 +21,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     let workspaceProjectionSource: MaktabahNativeWorkspaceProjectionSource?
     private var lease: NativeSceneDirectory.Lease?
     private var command: UISceneCommand?
+    var readerBinding: MaktabahNativeReaderBinding?
     private var visible: [UIDestinationID: NativeSurfaceWitness.Evidence] = [:]
     @ObservationIgnored private var visibilityChecks: [UIDestinationID: @MainActor () -> NativeSurfaceWitness.Evidence?] = [:]
     var isPresentationReady: Bool { bindings.isPresentationReady }
@@ -62,12 +63,35 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         command = value; submissionID = value.invocation.requestId
     }
 
+    func retainReader(_ content: ActionReaderDestination, revoke: @escaping @MainActor () -> Void) throws -> MaktabahNativeReaderBinding {
+        guard readerBinding == nil, let tabID = try project().identity().activeTabID else {
+            throw UIRouteError(.unavailable, "current_reader_target_unavailable")
+        }
+        let retained = try MaktabahNativeReaderBinding(manager: bindings.manager, tabID: tabID, content: content, revoke: revoke)
+        readerBinding = retained
+        return retained
+    }
+    func releaseReader(_ retained: MaktabahNativeReaderBinding) {
+        guard readerBinding === retained else { return }
+        retained.release(); readerBinding = nil
+    }
+
     func validateSurface(_ command: UISceneCommand) throws {
         guard mounted, foreground else { throw UIRouteError(.requiresForeground, "exact_foreground_scene_required") }
         guard isPresentationReady else { throw UIRouteError(.unavailable, "native_presentation_in_progress") }
         let route = command.route.route, projection = try project(), identity = try projection.identity()
         guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
               route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
+        if route.destination.rawValue == "native.reader" {
+            guard let content = route.content, content.presentationMode == .sameTab,
+                  route.presentation.kind == .currentTab,
+                  route.presentation.tabID == identity.activeTabID, route.focus == nil,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID,
+                                              inspectorVisible: identity.state.inspectorVisible),
+                  let readerBinding else { throw UIRouteError(.notSupported, "native_reader_variant_not_installed") }
+            try readerBinding.validate()
+            return
+        }
         guard route.content == nil, route.focus == nil, route.presentation.tabID == nil,
               route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID) else {
             throw UIRouteError(.notSupported, "native_surface_variant_not_installed")
@@ -81,9 +105,28 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         }
     }
 
-    func apply(_ command: UISceneCommand) throws { try bindings.apply(command) }
+    func apply(_ command: UISceneCommand) throws {
+        if command.route.route.destination.rawValue == "native.reader" {
+            guard let readerBinding else { throw UIRouteError(.unavailable, "native_reader_owner_missing") }
+            try readerBinding.apply { try bindings.apply(command) }
+        } else { try bindings.apply(command) }
+    }
 
     func waitUntilVisible(_ command: UISceneCommand) async throws -> NativeSurfaceState {
+        // A container's deduplicated layout callback can precede TextKit's
+        // paint/scroll restoration. Observe that same live UIKit witness only
+        // while this original reader request is waiting; never echo the route.
+        let readerObservation: Task<Void, Never>?
+        if command.route.route.destination.rawValue == "native.reader" {
+            readerObservation = Task { @MainActor [weak self] in
+                while !Task.isCancelled {
+                    guard let self, mounted, submissionID == command.invocation.requestId else { return }
+                    if let actual = visibilityChecks[command.route.route.destination]?() { observe(actual) }
+                    do { try await Task.sleep(for: .milliseconds(33)) } catch { return }
+                }
+            }
+        } else { readerObservation = nil }
+        defer { readerObservation?.cancel() }
         do { return try await presentation.wait(for: command).surface }
         catch {
             #if DEBUG
@@ -108,8 +151,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func publicBindingPresentation() throws -> MaktabahNativePublicPresentation {
         let readerID = UIDestinationID(rawValue: "native.reader")!
         var reader: NativeSurfaceState?
-        if let evidence = visible[readerID], evidence.isVisible, evidence.sceneID == sceneID,
-           visibilityChecks[readerID]?() == evidence, let current = try project().surface(.reader),
+        if let evidence = visibilityChecks[readerID]?(), evidence.isVisible, evidence.sceneID == sceneID,
+           let current = try project().surface(.reader),
            current == evidence.surface,
            try project().hasRenderedReaderEvidence(sceneID: sceneID) { reader = current }
         return .init(ready: mounted && foreground && isPresentationReady,

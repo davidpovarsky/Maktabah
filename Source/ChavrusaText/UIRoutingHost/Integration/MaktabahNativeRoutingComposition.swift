@@ -9,7 +9,7 @@ import ChavrusaUIRoutingHost
 /// canonical resolver. No facade/cache/parser/permission implementation here.
 @MainActor
 final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
-    static let futurePublicBindingsEnabled = false
+    static let futurePublicBindingsEnabled = true
     static let shared: MaktabahNativeRoutingComposition = {
         // Only programmer-defined finite capacities/validated static metadata
         // can fail construction. Runtime readiness is queried at invocation.
@@ -38,20 +38,42 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     private var mountWaiters: [ObjectIdentifier: MountWaiter] = [:]
     private var intentsInstalled = false
 
+    private final class ReaderInvocation {
+        let route: UIValidatedRoute
+        let context: ActionExecutionContext
+        let sceneID: UIStableID
+        var receipt: UISceneReceipt?
+        init(route: UIValidatedRoute, context: ActionExecutionContext, sceneID: UIStableID) {
+            self.route = route; self.context = context; self.sceneID = sceneID
+        }
+    }
+    private var readerInvocations: [UUID: ReaderInvocation] = [:]
+
     init(backend: any ActionSynchronousBackendStatePort & ActionResolverDataPort & ActionSearchPort) throws {
         self.backend = backend
         authority = try NativeNavigationAuthority()
         directory = try NativeSceneDirectory(authority: backend)
+        let readerSink = MaktabahNativeReaderCommandSink()
         core = try ActionExecutor(state: backend, resolver: CatalogActionResolver(data: backend, state: backend), search: backend,
-                                  navigationAuthority: authority)
+                                  ui: readerSink, navigationAuthority: authority)
         orchestrator = try NativeSceneNavigationOrchestrator(core: core, backend: backend, authority: authority, directory: directory)
         func id(_ value: String) -> UIDestinationID { UIDestinationID(rawValue: value)! }
         registry = try UIDestinationRegistry(descriptors: [
             .init(id: id("native.history"), title: "History".localized, implementation: .implemented,
-                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true),
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
+                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
             .init(id: id("native.settings"), title: "Settings".localized, implementation: .implemented,
-                  supportedBackends: ActionBackendID.allCases, presentations: [.sheet], requiredCoreActions: [])
+                  supportedBackends: ActionBackendID.allCases, presentations: [.sheet], requiredCoreActions: [],
+                  publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
+            .init(id: id("native.reader"), title: "Reader".localized, implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab],
+                  requiredCoreActions: ["reader.open"], requiresContent: true,
+                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab)]))
         ])
+        readerSink.deliver = { [weak self] command in
+            guard let self else { throw ActionPortError.unavailable }
+            return try await receiveReader(command)
+        }
     }
 
     func mount(sceneID: UIStableID, manager: iOSNavigationManager, bindings: MaktabahNativeSceneBindings, foreground: Bool,
@@ -138,8 +160,17 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         if let binding = entry.publicBinding {
             if let workspace, binding.ownsSource(workspace) { return }
             binding.cancel()
+            scenes[session.sceneID]?.publicBinding = nil
         } else { try invalidateContext(session) }
     }
+    func installPublicBindingIfReady(session: MaktabahNativeSceneSession, manager: iOSNavigationManager,
+                                     workspace: StudyWorkspaceNavigationAdapter?, owner: MaktabahNativeWorkspaceOwner?) throws {
+        guard futurePublicBindingsEnabled, scenes[session.sceneID]?.publicBinding == nil,
+              let workspace, let owner, workspace.mappingOwnershipObservation()?.coverage == .liveNativeSetters else { return }
+        _ = try configureFuturePublicBinding(session: session, manager: manager, workspace: workspace,
+                                              workspaceOwner: owner, enabled: true)
+    }
+
     func invalidateContext(_ session: MaktabahNativeSceneSession) throws {
         guard let entry = scenes[session.sceneID], entry.session === session else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
         contexts.removeValue(forKey: session.sceneID); try authority.invalidate(entry.lease)
@@ -173,12 +204,78 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         record(result)
         return result
     }
+    /// Current-tab public content stays within the already selected original
+    /// Reader. Cross-book/new-tab reservations are not advertised by this host.
+    func open(public intent: PublicNavigationSpecV2, manager: iOSNavigationManager,
+              origin: ActionOrigin = .deepLink, until end: UInt64) async throws -> UISceneAcknowledgement {
+        let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: ObjectIdentifier(manager))
+        }
+        guard let entry = scenes[sceneID], entry.managerID == ObjectIdentifier(manager),
+              entry.session.foreground, let binding = entry.publicBinding else { return .requiresForeground }
+        let snapshot = try backend.currentBackendSnapshot()
+        if let requested = intent.backend, requested != snapshot.backend { return .requiresBackendSwitch(requested) }
+        let context = context(sceneID: sceneID, origin: origin, snapshot: snapshot)
+        try issue(context, sceneID: sceneID)
+        defer { finish(context, sceneID: sceneID) }
+        let admitted = try authority.admit(context: context, sceneID: sceneID)
+        defer { authority.release(admitted) }
+        let retainedReader = try intent.content.map { content in
+            try entry.session.retainReader(content) { [weak self, weak session = entry.session] in
+                guard let self, let session else { return }
+                try? invalidateContext(session)
+            }
+        }
+        defer { if let retainedReader { entry.session.releaseReader(retainedReader) } }
+        let invocation = ActionPortInvocation(requestId: UUID(), snapshot: snapshot, deadlineUptimeNanoseconds: end)
+        let scene = try await directory.currentScene(sceneID: sceneID, context: context, invocation: invocation)
+        let plan = try await registry.bindPublicV2(intent, scene: scene, context: context, invocation: invocation, core: core, host: binding)
+        let result: UISceneAcknowledgement
+        switch plan {
+        case .surface(let prepared):
+            result = await orchestrator.commitPrepared(prepared, admitted: admitted)
+        case .reader(let route):
+            guard retainedReader != nil, readerInvocations.count < 16, readerInvocations[invocation.requestId] == nil else {
+                throw UIRouteError(.unavailable, "native_reader_admission_unavailable")
+            }
+            let pending = ReaderInvocation(route: route, context: context, sceneID: sceneID)
+            readerInvocations[invocation.requestId] = pending
+            defer { readerInvocations.removeValue(forKey: invocation.requestId) }
+            let coreResult = try await orchestrator.executeReaderPlan(route, originalInvocation: invocation, admitted: admitted)
+            guard coreResult.status == .completed, let receipt = pending.receipt else {
+                throw UIRouteError(.failed, "canonical_reader_not_completed")
+            }
+            result = .acknowledged(receipt)
+        }
+        record(result)
+        return result
+    }
+
+    private func receiveReader(_ reader: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement {
+        guard let pending = readerInvocations[reader.invocation.requestId],
+              pending.sceneID.rawValue == reader.sceneID, pending.route.route.content == reader.destination,
+              contexts[pending.sceneID] == pending.context else { throw ActionPortError.staleState }
+        let scene = try await directory.currentScene(sceneID: pending.sceneID, context: pending.context, invocation: reader.invocation)
+        let command = try UISceneCommand(route: pending.route, invocation: reader.invocation, scene: scene)
+        let result = await orchestrator.commit(command, readerCommand: reader, context: pending.context)
+        guard case .acknowledged(let receipt) = result, let coreReceipt = receipt.coreReceipt else {
+            if case .requiresForeground = result { return .requiresForeground }
+            throw ActionPortError.unavailable
+        }
+        pending.receipt = receipt
+        return .acknowledged(coreReceipt)
+    }
+
     func open(url: URL, manager: iOSNavigationManager) async throws -> UISceneAcknowledgement? {
         #if DEBUG
         let scheme = "maktabah-debug"
         #else
         let scheme = "maktabah"
         #endif
+        if URLComponents(url: url, resolvingAgainstBaseURL: false)?.percentEncodedPath.hasPrefix("/v2/") == true {
+            let intent = try NativePublicNavigationURLV2.decode(url, scheme: scheme, registry: registry)
+            return try await open(public: intent, manager: manager, until: deadline())
+        }
         guard case .route(let route) = try NativeRouteURL.decode(url, scheme: scheme, registry: registry) else { return nil }
         #if DEBUG
         OtzariaFileLogger.shared.log("[NativeSceneLifecycle] event=url pid=\(ProcessInfo.processInfo.processIdentifier)")
@@ -267,6 +364,16 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
         // Only validated native acknowledgement reaches here. No private query,
         // note text, selected text or model arguments enter diagnostic logs.
         OtzariaFileLogger.shared.log("[NativeNavigationReceipt] request=\(receipt.requestId) scene=\(receipt.sceneID.rawValue) backend=\(receipt.backendSnapshot.backend.rawValue) generation=\(receipt.backendSnapshot.generation) epoch=\(receipt.backendSnapshot.rpcEpoch.map(String.init) ?? "none") revision=\(receipt.basedOnSceneRevision)->\(receipt.appliedSceneRevision) destination=\(receipt.route.destination.rawValue) presentation=\(receipt.route.presentation.kind.rawValue)")
+    }
+}
+
+/// Only forwards Core's original, opaque, one-use reader command to its
+/// retained native owner. It cannot create grants, resolve or mint receipts.
+@MainActor private final class MaktabahNativeReaderCommandSink: ActionUICommandSink {
+    var deliver: (@MainActor @Sendable (ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement)?
+    func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement {
+        guard let deliver else { throw ActionPortError.unavailable }
+        return try await deliver(command)
     }
 }
 #endif

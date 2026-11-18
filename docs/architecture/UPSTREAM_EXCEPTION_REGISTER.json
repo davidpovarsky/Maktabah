@@ -286,6 +286,19 @@
       "patch_digest_sha256": "c5ff6249a7449510c58f7290e34aa81362faa2737bff93a0055ee3e5b926e450",
       "scope_and_rollback": "docs/hq-integration/native-reader-witness-20261118/REVIEW.json",
       "review": "Sole developer, no independent reviewer claim; exact original renderer/view retained"
+    },
+    {
+      "patch_id": "CONTINUATION_20261118_NATIVE_READER_CORE_FENCE",
+      "paths": [
+        "Source/Features/Reader/ViewModel/ReaderViewModel.swift"
+      ],
+      "base_commit": "2cc6b26d72eedaf40e9329ef8b535b747aaf45c1",
+      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+      "authorization_scope": "Current owner explicitly authorizes all three phases, ordinary continuation push and real CI. Phase-wide authorization, not a previous exact-hunk review.",
+      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
+      "patch_digest_sha256": "a1acd93480729dd681a50099ff94fef475ac3642e3fcb9bcb05dcc9c5947505a",
+      "scope_and_rollback": "docs/hq-integration/native-reader-core-20261118/REVIEW.json",
+      "review": "Sole developer; no independent QA claim"
     }
   ]
 }

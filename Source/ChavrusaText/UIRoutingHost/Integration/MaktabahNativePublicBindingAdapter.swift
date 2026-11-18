@@ -112,9 +112,11 @@ struct MaktabahNativePublicPresentation {
             tab = .absent; inspector = nil
         case .settings: tab = .absent; inspector = nil
         case .reader:
-            guard let wanted = intent.content, wanted.focusLocator == nil, wanted.presentationMode == .sameTab,
+            guard let wanted = intent.content, wanted.presentationMode == .sameTab,
                   let witnessed = visible.witnessedReader, witnessed.destination == intent.destination,
-                  witnessed.presentation.kind == .currentTab, witnessed.content == wanted, witnessed.focus == nil,
+                  witnessed.presentation.kind == .currentTab, let currentContent = witnessed.content,
+                  currentContent.sectionLocator.backend == wanted.sectionLocator.backend,
+                  currentContent.sectionLocator.workKey == wanted.sectionLocator.workKey, witnessed.focus == nil,
                   let actualInspector = witnessed.state.inspectorVisible,
                   witnessed.state.workspaceID?.rawValue == initial.projection.groupID.uuidString,
                   witnessed.state.profileID?.rawValue == initial.projection.profileID.uuidString,
@@ -125,6 +127,7 @@ struct MaktabahNativePublicPresentation {
                   target.workKey == wanted.sectionLocator.workKey else {
                 throw UIRouteError(.unavailable, "current_reader_binding_unavailable")
             }
+            _ = try MaktabahNativeReaderBinding.appDestination(wanted)
             tab = .present(stable); inspector = actualInspector
         }
         let current = try directory.synchronousScene(sceneID: sceneID, context: admitted.context, backend: snapshot)

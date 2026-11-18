@@ -98,6 +98,7 @@ struct MaktabahNativeSceneProjection {
               section.locator.backend == BackendCoordinator.shared.activeBackendID,
               tab.book.backendLocator?.workKey == section.locator.workKey,
               let observe = tab.viewModel.isNativeReaderTextVisible else { return false }
+        guard case .loaded = tab.viewModel.state else { return false }
         let sourceRange: NSRange?
         if let focus = destination.focusLocator {
             guard focus.backend == section.locator.backend,

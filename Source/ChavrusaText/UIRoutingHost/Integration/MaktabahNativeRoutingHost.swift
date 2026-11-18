@@ -97,6 +97,8 @@ struct MaktabahNativeRoutingHost: ViewModifier {
         } else {
             try? session.nativeStateChanged()
         }
+        try? MaktabahNativeRoutingComposition.shared.installPublicBindingIfReady(
+            session: session, manager: manager, workspace: workspace, owner: workspaceOwner)
     }
     private func mountIfReady() {
         guard ready, session == nil, let id = UIStableID(rawValue: sceneID) else { return }
@@ -110,6 +112,8 @@ struct MaktabahNativeRoutingHost: ViewModifier {
                       sidebar: nil, workspace: workspace)
             })
             session = value
+            try MaktabahNativeRoutingComposition.shared.installPublicBindingIfReady(
+                session: value, manager: manager, workspace: workspace, owner: workspaceOwner)
             MaktabahNativeRoutingComposition.shared.installIntentDependency()
         } catch {
             manager.alertMessage = .init(title: "Navigation unavailable", message: "This window is not ready for navigation. Try again.")

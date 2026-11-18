@@ -1,0 +1,24 @@
+{
+  "base_sha": "2cc6b26d72eedaf40e9329ef8b535b747aaf45c1",
+  "authorization": "Current owner explicitly authorizes all three phases, ordinary continuation push and real CI. Phase-wide authorization, not a previous exact-hunk review.",
+  "original_paths": [
+    "Source/Features/Reader/ViewModel/ReaderViewModel.swift"
+  ],
+  "patch_sha256": "a1acd93480729dd681a50099ff94fef475ac3642e3fcb9bcb05dcc9c5947505a",
+  "change": "One optional synchronous destination-will-change callback, owned only by a bounded native reader invocation. Any external passage change retires the original admission; the canonical synchronous apply permits only its exact destination.",
+  "implemented": "Original ActionExecutor now has a thin actual reader sink. Explicit v2 public URLs use the canonical registry codec and binder; same current work/tab only. Original Core grant, opaque retained local guard, typed R mapping ownership, scene authority, observer, original Reader loader, TextKit witness and post-Core completion remain required.",
+  "scope_limits": [
+    "Only already selected iPad reader with live native workspace ownership; cross-book and newTab reservation paths remain unavailable.",
+    "Phone public-v2 content, reader Siri entity selection and all rich components remain unaccepted.",
+    "Original v1 URLs and their strict decoder are unchanged; v1 bytes relabelled with a v2 path still fail.",
+    "No new AI engine, data provider, reference parser, UI receipt fabrication, or original DB mutation."
+  ],
+  "validation": {
+    "iOS_syntax_parse": "PASS (not semantic SDK build)",
+    "portable_host_suite": "RUNNING",
+    "full_app_build": "PENDING",
+    "native_UI": "PENDING"
+  },
+  "rollback": "Revert this dedicated continuation commit. Reverts original callback and all new composition/URL/current-reader behavior together; no data migration.",
+  "reviewer": "Sole developer; no independent QA claim"
+}

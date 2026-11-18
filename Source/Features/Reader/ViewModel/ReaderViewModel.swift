@@ -48,7 +48,18 @@ class ReaderViewModel: ViewModelBase {
     // MARK: - Backend Navigation & Multi-Backend State
 
     var backendSection: LibraryTextSection?
-    var currentDestination: LibraryReaderDestination?
+    var currentDestination: LibraryReaderDestination? {
+        willSet {
+            #if os(iOS)
+            if newValue != currentDestination { nativeReaderDestinationWillChange?(newValue) }
+            #endif
+        }
+    }
+    #if os(iOS)
+    // Synchronous native ownership fence; no parsing, rendering or policy here.
+    @ObservationIgnored
+    var nativeReaderDestinationWillChange: (@MainActor (LibraryReaderDestination?) -> Void)?
+    #endif
     var searchText: String = ""
     var currentLocator: TextLocator? { readerState.currentLocator }
     var navigationItems: [LibraryNavigationItem] = []
