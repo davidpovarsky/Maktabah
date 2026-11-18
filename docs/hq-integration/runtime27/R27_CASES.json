@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "19b5cba46e664692bae6ddcdfca5eccacba8b3c6",
+  "source_test_commit": "cad8148a83ff125d7416cba5200c8561fa2b9ae2",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "19b5cba46e664692bae6ddcdfca5eccacba8b3c6",
+  "app_source": "cad8148a83ff125d7416cba5200c8561fa2b9ae2",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original27 plus actual source-qualified continuation cases; 65 required Native cases, 54iPad27 +11iPhone27, zero skips; app/system/physical/release gates remain distinct.",
@@ -133,7 +133,7 @@
   ],
   "reused_ui_passes": 0,
   "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
-  "previous_manifest_sha256": "17724761c28f8a552a2b8135e56f48574fd8fe33b24b3728eb2b8f318f593b96",
+  "previous_manifest_sha256": "349e5de903fc281f0e3c64145c926abab7283209dae15924ac29e8d0360b71c1",
   "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
   "affected_execution_groups": [
     "11-reader",

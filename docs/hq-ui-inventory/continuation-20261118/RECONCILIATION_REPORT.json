@@ -161,6 +161,7 @@
     "Source/UI/iOS/Views/iPhoneLayout.swift",
     "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
     "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+    "Source/ZayitSearch/ZayitSearchDistribution.swift",
     "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
   ],
   "changed_semantic_anchors": [
@@ -452,5 +453,5 @@
       "line": 637
     }
   ],
-  "source_sha": "19b5cba46e664692bae6ddcdfca5eccacba8b3c6"
+  "source_sha": "cad8148a83ff125d7416cba5200c8561fa2b9ae2"
 }
