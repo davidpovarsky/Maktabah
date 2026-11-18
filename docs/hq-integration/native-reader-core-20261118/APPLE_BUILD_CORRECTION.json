@@ -1,0 +1,9 @@
+{
+  "source": "d2bc52b961aad72ff0c204175030a54d94e21353",
+  "failed_checkout": "1278008323b3f9809f29bf09f7ac38016088f3e1",
+  "failed_run": "44213113353",
+  "artifact_sha256": "9b0aade476f7d677d8cb8dcd99944a6cd84e9425617e9fae2396d1139ebd7cc0",
+  "error": "MaktabahNativeRoutingComposition.swift:168 static member futurePublicBindingsEnabled cannot be used on instance",
+  "correction": "Qualify actual static feature flag with Self; no behavior or assertions changed",
+  "validation": "Full app rebuild required; prior SDK-only compile did not compile this integration file"
+}

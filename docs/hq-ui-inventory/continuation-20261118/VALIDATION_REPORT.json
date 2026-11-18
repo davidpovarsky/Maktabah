@@ -1,5 +1,5 @@
 {
-  "source_sha": "8001f9eea60817be95c27abb0ee7a0df530245dc",
+  "source_sha": "d2bc52b961aad72ff0c204175030a54d94e21353",
   "source_files_verified": 851,
   "semantic_anchors_verified": 287,
   "lexical_candidates": 276,
@@ -14,9 +14,9 @@
   "physical_device_tests_executed": 0,
   "scope_exclusion": "No source-document check certifies app/provider/UI/Siri/physical runtime",
   "artifact_sha256": {
-    "SOURCE_SCAN.json": "ed12c859f83c1a083b083166fc371be29963183ec03d7bb4df337ae7e7fff350",
-    "UI_ROUTE_COVERAGE.json": "ae985e780d1a7e90a8cd2f499c22670c00bb19de8f9ecf7bfca910d9dfe64731",
-    "UI_SURFACE_INVENTORY.md": "5f17c440075640890eec3c97b69d84fc1bda3b2f84f370bd2a1626ab3416faef",
-    "UI_ROUTE_EXAMPLES.json": "8e28580e781109c53d959a2a67f59dd079613e088b0efd4bd6a1c3ade9e19fdb"
+    "SOURCE_SCAN.json": "471eac2c4b4398a76fa75778593836206f3e74ff4731a444d665d0cff3563e34",
+    "UI_ROUTE_COVERAGE.json": "62c262dccdec7a89c1a1e11cc1d7839d6a2f9c265d72ccce3eed6a3b01640d6a",
+    "UI_SURFACE_INVENTORY.md": "55795234976b6c51a8e7621147723e4c76cb789c431306ccf9d6d7bd6bc2a71e",
+    "UI_ROUTE_EXAMPLES.json": "982abcf367d60a14cc6bbd86113d873cb31fd337f5ed03f07662139789eddabe"
   }
 }

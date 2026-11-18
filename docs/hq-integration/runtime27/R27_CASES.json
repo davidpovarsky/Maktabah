@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "61f365ec33cf7f37e4b45b7acf7ccbe01ca67cab",
+  "source_test_commit": "d2bc52b961aad72ff0c204175030a54d94e21353",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "61f365ec33cf7f37e4b45b7acf7ccbe01ca67cab",
+  "app_source": "d2bc52b961aad72ff0c204175030a54d94e21353",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2",
