@@ -138,6 +138,7 @@
     "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift",
     "Source/Otzaria/Bootstrap/OtzariaNativeBootstrapAcceptanceRunner.swift",
     "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift",
+    "Source/Otzaria/Core/String+OtzariaText.swift",
     "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
     "Source/Otzaria/Reading/OtzariaMaktabahBridge+LineAnchors.swift",
     "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
@@ -453,5 +454,5 @@
       "line": 637
     }
   ],
-  "source_sha": "cad8148a83ff125d7416cba5200c8561fa2b9ae2"
+  "source_sha": "a190bbf0017e5f7ad5f79b09f0e8e03cab64fa52"
 }
