@@ -131,6 +131,7 @@
     "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
     "Source/Otzaria/Reading/OtzariaMaktabahBridge+LineAnchors.swift",
     "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+    "Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift",
     "Source/Otzaria/Search/OtzariaSearchIndexManager.swift",
     "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
     "Source/Sefaria/Network/SefariaDTOs.swift",
@@ -417,5 +418,5 @@
       "line": 637
     }
   ],
-  "source_sha": "240053fb01139a6695f7d876bf80a1542940696c"
+  "source_sha": "b1cb406eca38bbb2fd09eeb6a262750869904916"
 }
