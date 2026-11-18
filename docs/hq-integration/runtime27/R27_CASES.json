@@ -5,11 +5,11 @@
   "app_source": "d2bc52b961aad72ff0c204175030a54d94e21353",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2",
+  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 43,
+  "required_nonzero_cases": 45,
   "expected_per_device": {
-    "ipad11": 37,
+    "ipad11": 39,
     "iphone": 6
   },
   "cases": [
@@ -185,7 +185,9 @@
         "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
         "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
         "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
-        "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge"
+        "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+        "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+        "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
       ],
       "hid_comparison": false
     },
@@ -255,7 +257,9 @@
     "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
     "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
     "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
-    "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge"
+    "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+    "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+    "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -586,6 +590,18 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "A real independently known other fixture book must be refused by the current-tab binding, preserving original reader/locator and all prior receipts with no new acknowledgement."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real system URL in same app PID opens original Search; actual editable native field and one canonical visible receipt. An unsubmitted private query survives Search->History->Search without entering the public URL."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real system URL in same app PID opens the original Annotations screen and one exact current-scene canonical receipt; no draft/import/export/write action is requested."
     }
   ],
   "manager_native_review_history": [
@@ -688,7 +704,9 @@
     "phase3_supplemental_case_ids": [
       "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
       "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
-      "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt"
+      "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+      "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+      "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
     ],
     "reused_native_passes": 0,
     "historical_native_evidence": "Preserved only on its original app/test/fixture/context. First continuation run44185317875 remains an independent immutable27-case observation.",
@@ -699,7 +717,7 @@
     },
     "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
     "executor": "Current sole developer continuation; no subagents or resumed prior agents",
-    "native_status": "NOT_RUN on this candidate; earlier independent immutable first27 run is still pending",
+    "native_status": "NOT_RUN on this candidate; immutable prior native41 run44207959071 is independent and still in progress at root-source intake.",
     "canonical_reader_source": {
       "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
       "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
@@ -709,6 +727,10 @@
     "native_reader_cases": [
       "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
       "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge"
+    ],
+    "native_global_root_cases": [
+      "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+      "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
     ]
   }
 }

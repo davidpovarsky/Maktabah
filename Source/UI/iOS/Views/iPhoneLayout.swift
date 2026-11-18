@@ -103,6 +103,7 @@ struct iPhoneLayout: View {
     private var searchTabContent: some View {
         NavigationStack {
             SearchModeView()
+                .modifier(MaktabahNativeRoutingSurface(kind: .search))
                 .navigationTitle(iOSTab.search.title)
                 .adaptiveReaderPush(
                     item: $bManager.selectedBook,
@@ -132,6 +133,7 @@ struct iPhoneLayout: View {
     private var annotationsTabContent: some View {
         NavigationStack {
             AnnotationListView()
+                .modifier(MaktabahNativeRoutingSurface(kind: .annotations))
                 .navigationTitle(iOSTab.annotations.title)
                 .adaptiveReaderPush(
                     item: $bManager.selectedBook,

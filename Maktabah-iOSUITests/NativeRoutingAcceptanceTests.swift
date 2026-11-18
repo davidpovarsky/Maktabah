@@ -381,19 +381,19 @@ final class NativeRoutingPhoneAcceptanceTests: NativeRoutingAcceptanceTests {
     @MainActor
     func testPhoneWarmHistoryUsesActualForegroundScene() throws {
         XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
-        try testWarmHistoryURLUsesOtzariaNativeScene()
+        try runHistoryOnPhone(cold: false, rejectedBackend: false)
     }
 
     @MainActor
     func testPhoneColdHistoryWaitsForActualSceneMount() throws {
         XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
-        try testColdHistoryURLWaitsForActualSceneMount()
+        try runHistoryOnPhone(cold: true, rejectedBackend: false)
     }
 
     @MainActor
     func testPhoneWrongBackendCannotNavigateOrIssueReceipt() throws {
         XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
-        try testWrongBackendURLCannotNavigateOrIssueNativeReceipt()
+        try runHistoryOnPhone(cold: false, rejectedBackend: true)
     }
 }
 
@@ -538,5 +538,154 @@ extension NativeRoutingAcceptanceTests {
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
         XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, rendered.locator)
         capture("native-core-reader-cross-book-refusal")
+    }
+}
+
+
+extension NativeRoutingAcceptanceTests {
+    private func publicRootURL(_ destination: String, request: UUID) throws -> URL {
+        XCTAssertTrue(["native.search", "native.annotations"].contains(destination))
+        let bytes = try JSONSerialization.data(withJSONObject: [
+            "version": 1, "requestId": request.uuidString, "destination": destination,
+            "backend": "otzaria", "presentation": "currentTab"
+        ], options: [.sortedKeys])
+        let token = bytes.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v1/\(destination)?route=\(token)"))
+    }
+
+    private nonisolated static func rootReceiptFields(_ text: String, request: UUID, destination: String) -> [[String: String]] {
+        text.split(separator: "\n").compactMap { line in
+            let parts = line.split(separator: " ", maxSplits: 2)
+            guard parts.count == 3, parts[1] == "[NativeNavigationReceipt]" else { return nil }
+            var fields: [String: String] = [:]
+            for item in parts[2].split(separator: " ") {
+                let pair = item.split(separator: "=", maxSplits: 1)
+                guard pair.count == 2, fields[String(pair[0])] == nil else { return nil }
+                fields[String(pair[0])] = String(pair[1])
+            }
+            guard Set(fields.keys) == ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"],
+                  fields["request"].flatMap(UUID.init(uuidString:)) == request,
+                  fields["destination"] == destination, fields["presentation"] == "currentTab",
+                  fields["backend"] == "otzaria", fields["epoch"] == "none",
+                  fields["generation"].flatMap(UInt64.init) != nil,
+                  let revisions = fields["revision"]?.components(separatedBy: "->"), revisions.count == 2,
+                  let before = UInt64(revisions[0]), let after = UInt64(revisions[1]), after > before else { return nil }
+            return fields
+        }
+    }
+
+    @MainActor
+    private func requireRootReceipt(_ request: UUID, destination: String) throws {
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let appeared = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let text = try? String(contentsOf: log, encoding: .utf8) else { return false }
+            return Self.rootReceiptFields(text, request: request, destination: destination).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [appeared], timeout: 15), .completed,
+                       "Root opening needs one canonical actual visible receipt")
+        let text = try String(contentsOf: log, encoding: .utf8), receipts = Self.rootReceiptFields(text, request: request, destination: destination)
+        XCTAssertEqual(receipts.count, 1)
+        let receipt = try XCTUnwrap(receipts.first)
+        let workspace = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: sidecar)) as? [String: Any])
+        let scenes = try XCTUnwrap(workspace["scenes"] as? [String: Any])
+        XCTAssertNotNil(scenes[try XCTUnwrap(receipt["scene"])])
+        let attachment = XCTAttachment(string: text)
+        attachment.name = "actual-root-native-receipt-\(destination)-\(request)"
+        attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    @MainActor
+    func testGlobalSearchPublicRootPreservesOriginalPrivateQuery() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let first = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: first))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        XCTAssertTrue(field.elementType == .textField || field.elementType == .searchField)
+        try requireRootReceipt(first, destination: "native.search")
+        let privateQuery = "בראשית"
+        field.tap(); field.typeText(privateQuery)
+        XCTAssertEqual(field.value as? String, privateQuery)
+        let historyRequest = UUID()
+        try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+        XCTAssertTrue(history.waitForExistence(timeout: 20))
+        try requireNativeReceipt(historyRequest, backend: "otzaria")
+        let second = UUID(), url = try publicRootURL("native.search", request: second)
+        XCTAssertFalse(url.absoluteString.contains(privateQuery))
+        try openInExistingProcess(url)
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        XCTAssertEqual(field.value as? String, privateQuery, "Original unsubmitted query must survive root navigation")
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try requireRootReceipt(second, destination: "native.search")
+        capture("native-search-root-private-query-preserved")
+    }
+
+    @MainActor
+    func testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let request = UUID()
+        try openInExistingProcess(publicRootURL("native.annotations", request: request))
+        XCTAssertTrue(app.navigationBars["Annotations"].waitForExistence(timeout: 20),
+                      "Original annotation root must actually appear")
+        XCTAssertFalse(history.exists)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try requireRootReceipt(request, destination: "native.annotations")
+        capture("native-original-annotations-root")
+    }
+}
+
+
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    private func requireOriginalPhoneLibrary(timeout: TimeInterval = 40) {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        // iPhoneLayout owns a NavigationStack titled Library. The ipad-only
+        // library-column wrapper is absent on this real form factor.
+        XCTAssertTrue(app.navigationBars["Library"].waitForExistence(timeout: timeout),
+                      "Actual phone Library NavigationStack must be mounted")
+        XCTAssertTrue(findTabButton(hebrew: "חיפוש", english: "Search").exists,
+                      "Original phone TabView must be present after normal bootstrap")
+        XCTAssertFalse(history.exists)
+    }
+
+    @MainActor
+    func runHistoryOnPhone(cold: Bool, rejectedBackend: Bool) throws {
+        configure("otzaria"); app.launch()
+        requireOriginalPhoneLibrary()
+        capture("native-phone-library-before")
+        let request = UUID(), backend = rejectedBackend ? "sefaria" : "otzaria"
+        try invocation(request, backend: backend, mode: rejectedBackend ? "phone_backend_denied" : (cold ? "phone_cold" : "phone_warm"))
+        let url = try historyURL(backend, request: request)
+        if cold { app.terminate(); app.open(url) }
+        else { try openInExistingProcess(url) }
+        if rejectedBackend {
+            let alert = app.alerts["Unable to open link"]
+            XCTAssertTrue(alert.waitForExistence(timeout: 15))
+            XCTAssertTrue(alert.staticTexts["Select the requested library in Maktabah before continuing."].exists)
+            XCTAssertFalse(history.exists)
+            let sidecar = try workspaceSidecarURL().standardizedFileURL
+            let parent = try workspaceContainerParent().standardizedFileURL
+            XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+            let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+            let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+            let text = try String(contentsOf: log, encoding: .utf8)
+            XCTAssertFalse(text.contains("[NativeNavigationReceipt] request=" + request.uuidString),
+                           "Refused backend must never produce a completion receipt")
+            alert.buttons.firstMatch.tap()
+            requireOriginalPhoneLibrary(timeout: 20)
+        } else {
+            XCTAssertTrue(history.waitForExistence(timeout: cold ? 40 : 20))
+            XCTAssertFalse(app.alerts["Unable to open link"].exists)
+            try requireNativeReceipt(request, backend: backend)
+        }
+        capture("native-phone-route-after")
     }
 }

@@ -79,6 +79,22 @@ class OwnedURLTransportTests(unittest.TestCase):
                 self.payload["url"] = self.url.replace("/v1/native.history", "/" + version + "/native.reader")
                 self.assert_rejected()
 
+    def test_explicit_search_and_annotations_envelopes_only(self):
+        for root in ["native.search", "native.annotations"]:
+            for version in ["v1", "v2"]:
+                with self.subTest(root=root, version=version):
+                    self.seen.clear(); self.calls.clear()
+                    self.payload["url"] = self.url.replace("/v1/native.history", "/" + version + "/" + root)
+                    self.assertTrue(self.execute()["delivered"])
+                    self.assertEqual(self.calls[0][0], ["xcrun", "simctl", "openurl", self.udid, self.payload["url"]])
+
+    def test_uninstalled_root_versions_components_and_mutations_rejected(self):
+        for path in ["v3/native.search", "v1/native.search.execute", "v2/native.annotations.delete",
+                     "v1/native.annotations-export", "v1/native.search/extra"]:
+            with self.subTest(path=path):
+                self.payload["url"] = self.url.replace("/v1/native.history", "/" + path)
+                self.assert_rejected()
+
     def test_stale_file_rejected(self):
         self.request.write_text(json.dumps(self.payload))
         os.utime(self.request, (time.time() - 31, time.time() - 31))

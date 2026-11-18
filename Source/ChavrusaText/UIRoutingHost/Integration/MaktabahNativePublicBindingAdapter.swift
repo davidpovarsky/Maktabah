@@ -82,12 +82,16 @@ struct MaktabahNativePublicPresentation {
         guard live.active, live.lifetimeID == lease.lifetimeID else { throw UIRouteError(.staleState, "public_binding_lifetime_changed") }
         return live
     }
-    private enum Shape { case history, settings, reader }
+    private enum Shape { case history, search, annotations, settings, reader }
     private func shape(destination: UIDestinationID, presentation: PublicNavigationSpecV2.Presentation,
                        component: UIDestinationID?, hasContent: Bool) throws -> Shape {
         guard component == nil else { throw UIRouteError(.notSupported, "public_component_not_installed") }
         switch (destination.rawValue, presentation, hasContent) {
         case ("native.history", .currentTab, false): return .history
+        case ("native.search", .currentTab, false):
+            guard MaktabahNativeRootDestination.search.isAvailable else { throw UIRouteError(.notSupported, "native_search_unavailable") }
+            return .search
+        case ("native.annotations", .currentTab, false): return .annotations
         case ("native.settings", .sheet, false): return .settings
         case ("native.reader", .currentTab, true): return .reader
         default: throw UIRouteError(.notSupported, "public_binding_variant_not_installed")
@@ -110,7 +114,7 @@ struct MaktabahNativePublicPresentation {
         case .history:
             guard visible.historyRootAvailable else { throw UIRouteError(.unavailable, "history_root_unavailable") }
             tab = .absent; inspector = nil
-        case .settings: tab = .absent; inspector = nil
+        case .settings, .search, .annotations: tab = .absent; inspector = nil
         case .reader:
             guard let wanted = intent.content, wanted.presentationMode == .sameTab,
                   let witnessed = visible.witnessedReader, witnessed.destination == intent.destination,

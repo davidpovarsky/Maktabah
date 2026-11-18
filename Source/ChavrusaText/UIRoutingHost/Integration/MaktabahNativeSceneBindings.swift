@@ -4,6 +4,22 @@ import OtzariaActionCore
 import OtzariaUIRouting
 import ChavrusaUIRoutingHost
 
+/// Finite existing top-level tabs. Availability delegates to the original UI
+/// capability rules; this contains no resolver, search engine or write action.
+@MainActor enum MaktabahNativeRootDestination: String, CaseIterable {
+    case history = "native.history"
+    case search = "native.search"
+    case annotations = "native.annotations"
+
+    var tab: iOSTab {
+        switch self { case .history: .history; case .search: .search; case .annotations: .annotations }
+    }
+    var isAvailable: Bool {
+        tab.isAvailable(for: BackendCoordinator.shared.activeCapabilities)
+            && (self != .history || HistoryViewModel.shared.searchText.isEmpty)
+    }
+}
+
 /// Thin access to existing scene bindings. No new navigation UI or renderer.
 @MainActor
 struct MaktabahNativeSceneBindings {
@@ -20,10 +36,16 @@ struct MaktabahNativeSceneBindings {
     func apply(_ command: UISceneCommand) throws {
         switch command.route.route.destination.rawValue {
         case "native.settings": showSettings.wrappedValue = true
-        case "native.history":
+        case "native.history", "native.search", "native.annotations":
+            guard let root = MaktabahNativeRootDestination(rawValue: command.route.route.destination.rawValue),
+                  root.isAvailable else { throw UIRouteError(.notSupported, "native_root_unavailable") }
             showSettings.wrappedValue = false
-            selectedTab.wrappedValue = .history
-            manager.switchToMode(.history)
+            // The original phone stacks share this optional navigation item.
+            // Pop the presented reader without closing its tab or replacing
+            // its model; original onDisappear persists the reading position.
+            if !MaktabahApp.isIpad { manager.selectedBook = nil }
+            selectedTab.wrappedValue = root.tab
+            manager.switchToMode(root.tab.appMode)
         case "native.reader":
             // Selection/tab ownership is retained by the caller and rechecked
             // synchronously inside the canonical orchestrator's commit fence.

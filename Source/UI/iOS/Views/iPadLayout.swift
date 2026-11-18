@@ -194,6 +194,7 @@ struct iPadLayout: View {
         } detail: {
             NavigationStack {
                 SearchModeView()
+                    .modifier(MaktabahNativeRoutingSurface(kind: .search))
                     .navigationTitle(iOSTab.search.title)
                     .toolbarGeneral(showSettings: $showSettings)
             }
@@ -265,6 +266,7 @@ struct iPadLayout: View {
     private var annotationsTabContent: some View {
         NavigationStack {
             AnnotationListView()
+                .modifier(MaktabahNativeRoutingSurface(kind: .annotations))
                 .navigationTitle(iOSTab.annotations.title)
                 .toolbarGeneral(showSettings: $showSettings)
         }

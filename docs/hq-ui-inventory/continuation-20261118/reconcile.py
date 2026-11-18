@@ -202,7 +202,7 @@ def main(source):
     refresh_nested(caveats)
     result = dict(schema_version=1, source_sha=source, original_inventory_commit=ORIGINAL,
         original_source_sha=previous["source_sha"], thread_uuid=None, executor="Sole current owner-authorized continuation agent; no independent reviewer",
-        source_task="1220542479938540", registry_registration="INVENTORY_IDS_NOT_REGISTERED; installed native.history/currentTab, native.settings/sheet, and native.reader/currentTab restricted to the current iPad book with actual live workspace ownership; new Reader native acceptance pending",
+        source_task="1220542479938540", registry_registration="INVENTORY_IDS_NOT_REGISTERED; installed native.history/native.search/native.annotations currentTab, native.settings/sheet, and native.reader/currentTab restricted to the current iPad book with actual live workspace ownership; new Reader native acceptance pending",
         linked_catalog={**previous["linked_catalog"], "present_in_runtime_source": True,
                         "historical_revision": previous["source_sha"],
                         "implemented_core_ids": sorted(implemented),

@@ -36,6 +36,8 @@ def main(source):
     comp="Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
     routes=[
         ("history","Native History/current tab",'.init(id: id("native.history")',"currentTab","v1_and_v2","Current backend, foreground exact scene, empty global History search, no implicit backend switch",["inventory.v1.tab.history","inventory.v1.history.list"]),
+        ("search","Native Global Search/current tab",'.init(id: id("native.search")',"currentTab","v1_and_v2","Original Search root, original capability availability and current foreground scene; retains private query, never submits it or encodes it in a public URL",["inventory.v1.tab.search"]),
+        ("annotations","Native Annotations/current tab",'.init(id: id("native.annotations")',"currentTab","v1_and_v2","Original Annotations root in current foreground scene; no draft/import/export/delete or annotation write action",["inventory.v1.tab.annotations","inventory.v1.annotations.list"]),
         ("settings","Native Settings/sheet",'.init(id: id("native.settings")',"sheet","v2","Current backend, foreground exact scene; root sheet only, no subsection mutation",["inventory.v1.shell.settings-sheet","inventory.v1.settings.root"]),
         ("reader","Native Reader/current iPad book",'.init(id: id("native.reader")',"currentTab","v2","iPad live original workspace/active tab/current book, current backend, Core validated section/focus and original TextKit visible glyph; cross-book/newTab/phone content not implemented",["inventory.v1.reader.content","inventory.v1.reader.viewport"])
     ]
@@ -72,10 +74,10 @@ def main(source):
         r.update(id="inventory.v1.native."+kind,screen_section_component=title,source=ref(path,anchor),
             owning_view_model="NativeIntentService / original registered NativeDestinationEntityQuery",
             installed_registry_id=None,linked_semantic_action=None,
-            note="App metadata and foreground service installed for eligible History/Settings; actual Siri/Shortcuts invocation NOT_RUN; Reader content is not advertised")
+            note="App metadata and foreground service installed for eligible History/Search/Annotations/Settings; actual Siri/Shortcuts invocation NOT_RUN; Reader content is not advertised")
         rows.append(r)
     byid={r["id"]:r for r in rows}
-    byid["inventory.v1.app.scene"]["note"]="Real MaktabahNativeRoutingHost mounts using actual UIKit scene identity and original workspace lifecycle; exact target is retained by NativeSceneDirectory. Root History/Settings and limited iPad Reader only."
+    byid["inventory.v1.app.scene"]["note"]="Real MaktabahNativeRoutingHost mounts using actual UIKit scene identity and original workspace lifecycle; exact target is retained by NativeSceneDirectory. Root History/Search/Annotations/Settings and limited iPad Reader only."
     for r in rows:
         r["independent_review"]="NOT_CLAIMED_SOLE_AGENT_OWNER_INSTRUCTION"
         r["source_review_owner"]=OWNER
@@ -123,7 +125,7 @@ def main(source):
         "all_new_paths_classified":set(d["source_census"]["added_paths"])<=set(dispositions),
         "semantic_areas":dict(collections.Counter(r["area"] for r in rows)),
         "status_meaning":"supported means source-wired only; runtime_evidence and native_receipt remain authoritative for execution"}
-    d["summary"].update(semantic_surfaces=len(rows),new_native_contract_surfaces=5,
+    d["summary"].update(semantic_surfaces=len(rows),new_native_contract_surfaces=7,
         source_coverage_review="EXECUTED_PASS_SOLE_AGENT",lexical_candidates=len(candidate_paths),
         file_dispositions=len(dispositions),new_paths_classified=len(d["source_census"]["added_paths"]))
     examples=m.original("UI_ROUTE_EXAMPLES.json")
@@ -169,7 +171,7 @@ def main(source):
         "Owner/review: "+OWNER+". The owner explicitly requested solo execution; no independent QA was represented.","",
         f"{len(rows)} semantic rows, {len(files)} immutable source files, {len(candidate_paths)} lexical candidates, {len(dispositions)} file dispositions, 27 retained manual scenarios and five current native scenarios.","",
         "## Installed native scope","",
-        "History/current tab and Settings/root sheet are connected to the original foreground scene orchestrator. Reader/public-v2 is connected to the original ActionCore for the current iPad book and tab, with original TextKit visibility. Reader cross-book/new-tab/phone content, component destinations, and Siri Reader invocation remain unfinished. Inventory IDs are not installed registry IDs.","",
+        "History/Search/Annotations/current tab and Settings/root sheet are connected to the original foreground scene orchestrator. Phone roots pop the original selectedBook presentation while retaining its tab/model. Reader/public-v2 is connected to the original ActionCore for the current iPad book and tab, with original TextKit visibility. Reader cross-book/new-tab/phone content, component destinations, and Siri Reader invocation remain unfinished. Inventory IDs are not installed registry IDs.","",
         "Native, Siri and physical-device execution is reported separately against the exact tested commit; this document does not award any native pass.","",
         "## Registry maintenance","",
         "1. On every UI or navigation change, run reconcile.py followed by finalize_inventory.py against the full immutable code SHA.","2. Review new/removed source paths, changed anchors, native descriptor rules, backend capability conditions and privacy fields. Add or migrate stable IDs only for meaningful destinations.","3. Every new lexical UI candidate must have a semantic mapping or a reviewed non-route disposition. Decorative components and test fixtures must never become public actions.","4. Public changes must use the existing Core/UI Registry versioned codecs, resolver and native authority. Do not encode scene/workspace identifiers, grants, queries, drafts or selection text in a public link.","5. Retain historic inventories. Record exact compile/native/device receipts separately and re-run affected real acceptance before marking runtime support.","",

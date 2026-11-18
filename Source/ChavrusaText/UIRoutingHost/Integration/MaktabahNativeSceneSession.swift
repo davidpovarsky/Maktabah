@@ -99,8 +99,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         switch route.destination.rawValue {
         case "native.settings":
             guard route.presentation.kind == .sheet else { throw UIRouteError(.notSupported, "settings_presentation_not_installed") }
-        case "native.history":
-            guard route.presentation.kind == .currentTab, HistoryViewModel.shared.searchText.isEmpty else { throw UIRouteError(.notSupported, "history_presentation_not_installed") }
+        case "native.history", "native.search", "native.annotations":
+            guard route.presentation.kind == .currentTab,
+                  MaktabahNativeRootDestination(rawValue: route.destination.rawValue)?.isAvailable == true else {
+                throw UIRouteError(.notSupported, "native_root_presentation_unavailable")
+            }
         default: throw UIRouteError(.notSupported, "native_surface_not_installed")
         }
     }
@@ -170,7 +173,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func prepare(_ route: PublicRouteSpec, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
-        guard route.destination.rawValue == "native.history", route.content == nil, route.presentation == .currentTab else {
+        guard MaktabahNativeRootDestination(rawValue: route.destination.rawValue)?.isAvailable == true,
+              route.content == nil, route.presentation == .currentTab else {
             throw UIRouteError(.notSupported, "public_native_variant_not_installed")
         }
         let identity = try project().identity()
@@ -180,7 +184,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func prepare(destination: UIDestinationID, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
-        guard destination.rawValue == "native.settings" || destination.rawValue == "native.history" else { throw UIRouteError(.notSupported, "native_surface_not_installed") }
+        guard destination.rawValue == "native.settings" || MaktabahNativeRootDestination(rawValue: destination.rawValue)?.isAvailable == true else { throw UIRouteError(.notSupported, "native_surface_not_installed") }
         let identity = try project().identity()
         return RouteSpec(requestId: invocation.requestId, destination: destination, backend: invocation.snapshot.backend,
             presentation: .init(kind: destination.rawValue == "native.settings" ? .sheet : .currentTab),
@@ -230,6 +234,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         case "native.reader.toc": .tableOfContents
         case "native.reader": .reader
         case "native.history": .history
+        case "native.search": .search
+        case "native.annotations": .annotations
         case "native.settings": .settings
         default: nil
         }

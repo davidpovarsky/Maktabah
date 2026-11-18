@@ -62,6 +62,12 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
             .init(id: id("native.history"), title: "History".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
+            .init(id: id("native.search"), title: "Search".localized, implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
+                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
+            .init(id: id("native.annotations"), title: "Annotations".localized, implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
+                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
             .init(id: id("native.settings"), title: "Settings".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.sheet], requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
@@ -351,7 +357,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort {
     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UIRouteEligibility {
         let current = try await directory.currentScene(sceneID: scene.sceneID, context: context, invocation: invocation)
         guard current == scene, let entry = scenes[scene.sceneID] else { throw UIRouteError(.staleState, "scene_or_backend_changed") }
-        let supported = descriptor.id.rawValue == "native.settings" || (descriptor.id.rawValue == "native.history" && HistoryViewModel.shared.searchText.isEmpty)
+        let supported = descriptor.id.rawValue == "native.settings" || MaktabahNativeRootDestination(rawValue: descriptor.id.rawValue)?.isAvailable == true
         return .init(sceneID: scene.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
                      supported: supported, ready: entry.session.foreground && entry.session.mounted && entry.session.isPresentationReady, allowed: true)
     }

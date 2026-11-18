@@ -11,7 +11,7 @@ import ChavrusaUIRoutingHost
 /// target. It neither saves reader state nor resolves a requested locator.
 @MainActor
 struct MaktabahNativeSceneProjection {
-    enum Surface { case library, tableOfContents, reader, history, settings }
+    enum Surface { case library, tableOfContents, reader, history, search, annotations, settings }
     let manager: iOSNavigationManager
     let selectedTab: iOSTab
     let columnVisibility: NavigationSplitViewVisibility
@@ -59,6 +59,13 @@ struct MaktabahNativeSceneProjection {
             guard !settingsPresented, selectedTab.canonical == .history, manager.currentMode == .history,
                   HistoryViewModel.shared.searchText.isEmpty else { return nil }
             return .init(destination: id("native.history"), presentation: .init(), content: nil, state: state, focus: nil)
+        case .search, .annotations:
+            let root: MaktabahNativeRootDestination = surface == .search ? .search : .annotations
+            guard !settingsPresented, root.isAvailable,
+                  selectedTab.canonical == root.tab, manager.currentMode == root.tab.appMode else { return nil }
+            // Existing private query/note state remains in its original owner.
+            // Opening a root never submits a query, creates a draft or writes data.
+            return .init(destination: id(root.rawValue), presentation: .init(), content: nil, state: state, focus: nil)
         case .library, .tableOfContents:
             guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer,
                   let sidebar else { return nil }

@@ -1,0 +1,21 @@
+{
+  "reviewer": "Sole current owner-authorized continuation agent, no independent reviewer",
+  "base": "eed8a2b65798939f379eb1b932af9466c6a7acc1",
+  "scope": [
+    "Source/UI/iOS/Views/iPadLayout.swift",
+    "Source/UI/iOS/Views/iPhoneLayout.swift"
+  ],
+  "exact_original_hook_diff_sha256": "d87c343fdd963118b4dcefe6064ec9cf51349d7771b155d5dbedfcc3c3f3a639",
+  "original_hook_change": "Two passive original native surface markers per layout: SearchModeView and AnnotationListView",
+  "implementation": "Existing Core/UI Registry/Native authority and original scene/tab bindings only; no new search/parser/resolver/notes engine",
+  "privacy": "Public navigation roots carry no query/note/selection text; they never submit a search or request annotation writes",
+  "acceptance": "14 portable transport contracts PASS; real Native cases newly added and NOT_RUN; no Siri/Shortcuts runtime claim",
+  "remaining": "Reader book/newTab/phone content, rich components, and actual system journeys remain unfinished",
+  "phone_global_navigation": "Use existing selectedBook navigation binding to pop phone Reader; preserve openTabs and active reader model. Original Reader onDisappear persists position.",
+  "phone_test_calibration": {
+    "reason": "The three new continuation phone methods previously called ipad helpers requiring library-column; only iPadLayout.swift declares that identifier. Original iPhoneLayout uses NavigationStack with Library title and native TabView.",
+    "change": "Use original Library NavigationStack plus Search tab as bootstrap oracle. Retain exact same-process system URL transport, cold open, actual History surface, backend-specific refusal message, actual-scene exact-one receipt and negative receipt checks.",
+    "original_27_assertions": "unchanged",
+    "native_result": "NOT_RUN on this corrected phone source"
+  }
+}

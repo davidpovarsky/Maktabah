@@ -1,0 +1,40 @@
+diff --git a/Source/UI/iOS/Views/iPadLayout.swift b/Source/UI/iOS/Views/iPadLayout.swift
+index f03f6f85..916f8623 100644
+--- a/Source/UI/iOS/Views/iPadLayout.swift
++++ b/Source/UI/iOS/Views/iPadLayout.swift
+@@ -194,6 +194,7 @@ struct iPadLayout: View {
+         } detail: {
+             NavigationStack {
+                 SearchModeView()
++                    .modifier(MaktabahNativeRoutingSurface(kind: .search))
+                     .navigationTitle(iOSTab.search.title)
+                     .toolbarGeneral(showSettings: $showSettings)
+             }
+@@ -265,6 +266,7 @@ struct iPadLayout: View {
+     private var annotationsTabContent: some View {
+         NavigationStack {
+             AnnotationListView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .annotations))
+                 .navigationTitle(iOSTab.annotations.title)
+                 .toolbarGeneral(showSettings: $showSettings)
+         }
+diff --git a/Source/UI/iOS/Views/iPhoneLayout.swift b/Source/UI/iOS/Views/iPhoneLayout.swift
+index a457907b..19dfa329 100644
+--- a/Source/UI/iOS/Views/iPhoneLayout.swift
++++ b/Source/UI/iOS/Views/iPhoneLayout.swift
+@@ -103,6 +103,7 @@ struct iPhoneLayout: View {
+     private var searchTabContent: some View {
+         NavigationStack {
+             SearchModeView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .search))
+                 .navigationTitle(iOSTab.search.title)
+                 .adaptiveReaderPush(
+                     item: $bManager.selectedBook,
+@@ -132,6 +133,7 @@ struct iPhoneLayout: View {
+     private var annotationsTabContent: some View {
+         NavigationStack {
+             AnnotationListView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .annotations))
+                 .navigationTitle(iOSTab.annotations.title)
+                 .adaptiveReaderPush(
+                     item: $bManager.selectedBook,
