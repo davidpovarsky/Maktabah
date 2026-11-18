@@ -5,11 +5,11 @@
   "app_source": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_PHASE1_REQUIRED27_PLUS_PHASE2_NATIVE_SEARCH11_AND_PHASE3_PHONE_ROUTING3",
+  "scope": "CONTINUATION_REQUIRED27_SEARCH11_PHONE_ROUTING3_CURRENT_READER2",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 41,
+  "required_nonzero_cases": 43,
   "expected_per_device": {
-    "ipad11": 35,
+    "ipad11": 37,
     "iphone": 6
   },
   "cases": [
@@ -183,7 +183,9 @@
         "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
         "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
         "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
-        "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"
+        "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+        "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+        "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge"
       ],
       "hid_comparison": false
     },
@@ -251,7 +253,9 @@
     "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
     "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
     "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
-    "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"
+    "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+    "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+    "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -570,6 +574,18 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Actual native Zayit result and original preview/Open controls; independent sealed SQL lineID/bookID/lineIndex; original explicit line-reading preference; exact native reader and rendered TextKit locator, canonical title and actual search highlight."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Real system v2 URL, same app PID, normal bootstrap, sealed installed miniTest10 SQL metadata, two distinct actual source lines in the current book, original TextKit exact locator and segment highlight, exactly one newly issued full-Core native receipt per navigation with real scene/revision."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "A real independently known other fixture book must be refused by the current-tab binding, preserving original reader/locator and all prior receipts with no new acknowledgement."
     }
   ],
   "manager_native_review_history": [
@@ -688,7 +704,11 @@
       "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
       "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
       "status": "SOURCE_IMPLEMENTED_NATIVE_PENDING",
-      "acceptance_limit": "The current 41 methods predate this Reader integration; new Reader native cases must be added. Existing methods/oracles unchanged."
-    }
+      "acceptance_limit": "Two actual Native current Reader cases added; still NOT_RUN. Cross-book positive/newTab/phone content and richer components remain unavailable."
+    },
+    "native_reader_cases": [
+      "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+      "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge"
+    ]
   }
 }

@@ -68,6 +68,17 @@ class OwnedURLTransportTests(unittest.TestCase):
         self.payload["url"] = self.url.replace("/v1/", "/v2/")
         self.assertTrue(self.execute()["delivered"])
 
+    def test_only_explicit_reader_v2_envelope_is_delivered(self):
+        self.payload["url"] = self.url.replace("/v1/native.history", "/v2/native.reader")
+        self.assertTrue(self.execute()["delivered"])
+        self.assertEqual(self.calls[0][0], ["xcrun", "simctl", "openurl", self.udid, self.payload["url"]])
+
+    def test_uninstalled_reader_envelopes_are_rejected(self):
+        for version in ["v1", "v3"]:
+            with self.subTest(version=version):
+                self.payload["url"] = self.url.replace("/v1/native.history", "/" + version + "/native.reader")
+                self.assert_rejected()
+
     def test_stale_file_rejected(self):
         self.request.write_text(json.dumps(self.payload))
         os.utime(self.request, (time.time() - 31, time.time() - 31))

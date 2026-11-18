@@ -1,4 +1,5 @@
 import XCTest
+import CryptoKit
 import UIKit
 
 /// Actual system URL entry + existing UI. These require the manager-applied
@@ -393,5 +394,149 @@ final class NativeRoutingPhoneAcceptanceTests: NativeRoutingAcceptanceTests {
     func testPhoneWrongBackendCannotNavigateOrIssueReceipt() throws {
         XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
         try testWrongBackendURLCannotNavigateOrIssueNativeReceipt()
+    }
+}
+
+
+extension NativeRoutingAcceptanceTests {
+    private struct ReaderSourceMetadata: Decodable {
+        let profileID: String
+        let profileVersion: Int
+        let databaseSHA256: String
+        let books: [String: String]
+        let rows: [[Int]]
+    }
+
+    private func readerSourceMetadata() throws -> ReaderSourceMetadata {
+        let url = try XCTUnwrap(Bundle(for: NativeRoutingAcceptanceTests.self)
+            .url(forResource: "canonical-miniTest10-metadata", withExtension: "json"))
+        let bytes = try Data(contentsOf: url)
+        let hash = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
+        XCTAssertEqual(hash, "c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b")
+        let metadata = try JSONDecoder().decode(ReaderSourceMetadata.self, from: bytes)
+        XCTAssertEqual(metadata.profileID, "miniTest10")
+        XCTAssertEqual(metadata.profileVersion, 6)
+        XCTAssertEqual(metadata.databaseSHA256, "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef")
+        XCTAssertEqual(metadata.rows.count, 18_879)
+        let proof = XCTAttachment(string: "Installed UITest bundle resource: \(url.absoluteString)\nActual SHA256: \(hash)")
+        proof.name = "native-reader-independent-source-metadata"; proof.lifetime = .keepAlways; add(proof)
+        return metadata
+    }
+
+    @MainActor private func launchCurrentCanonicalReader() throws -> String {
+        XCTAssertTrue(isPad, "Current Reader binding requires the actual iPad workspace; never skip")
+        launchWithTier(.realUI, scenario: "reader", backend: "otzaria",
+            extraArgs: ["-preferredBackend", "otzaria", "-smokeBackend", "otzaria",
+                        "-ChavrusaTextFaithfulReaderUIEnabled", "YES", "-otzaria_reader_unit_mode", "line",
+                        "-studyWorkspaceTestingNamespace", workspaceNamespace, "-lastSelectedTab", "0"],
+            language: "en", locale: "en_US")
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        dismissAlertsIfNeeded()
+        assertReaderHasText()
+        let work = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"])
+        let title = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        XCTAssertTrue(app.staticTexts["reader-current-locator"].label.hasPrefix("otzaria|" + work + "|"))
+        XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(title))
+        return work
+    }
+
+    private func readerURL(bookID: Int, lineIndex: Int) throws -> URL {
+        let ref: [String: Any] = ["backend": "otzaria", "workKey": "book:\(bookID)",
+                                  "position": ["kind": "legacyLine", "value": lineIndex]]
+        let bytes = try JSONSerialization.data(withJSONObject: ["version": 2, "destination": "native.reader",
+            "backend": "otzaria", "presentation": "currentTab",
+            "content": ["sectionLocator": ref, "focusLocator": ref, "presentationMode": "sameTab"]], options: [.sortedKeys])
+        let token = bytes.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v2/native.reader?route=" + token))
+    }
+
+    private func actualReaderLogURL() throws -> URL {
+        let sidecar = try workspaceSidecarURL().standardizedFileURL, parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        return parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+    }
+
+    private func readerReceiptLines() throws -> [String] {
+        let log = try actualReaderLogURL()
+        if !FileManager.default.fileExists(atPath: log.path) { return [] }
+        return try String(contentsOf: log, encoding: .utf8).split(separator: "\n")
+            .map(String.init).filter { $0.contains("[NativeNavigationReceipt]") && $0.contains("destination=native.reader ") }
+    }
+
+    @MainActor private func requireNewReaderReceipt(after before: [String]) throws {
+        let observed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            let actual = (try? self.readerReceiptLines()) ?? []
+            return actual.count == before.count + 1 && Array(actual.prefix(before.count)) == before
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [observed], timeout: 15), .completed,
+                       "Only a full canonical Core result may produce the one new native receipt")
+        let lines = try readerReceiptLines()
+        XCTAssertEqual(lines.count, before.count + 1)
+        XCTAssertEqual(Array(lines.prefix(before.count)), before, "Prior receipt evidence must remain unchanged")
+        let line = try XCTUnwrap(lines.last), parts = line.split(separator: " ", maxSplits: 2)
+        XCTAssertEqual(parts.count, 3)
+        var fields: [String: String] = [:]
+        for item in parts[2].split(separator: " ") {
+            let pair = item.split(separator: "=", maxSplits: 1)
+            XCTAssertEqual(pair.count, 2); XCTAssertNil(fields[String(pair[0])])
+            fields[String(pair[0])] = String(pair[1])
+        }
+        XCTAssertEqual(Set(fields.keys), ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"])
+        XCTAssertNotNil(fields["request"].flatMap(UUID.init(uuidString:)))
+        XCTAssertEqual(fields["backend"], "otzaria"); XCTAssertEqual(fields["epoch"], "none")
+        XCTAssertEqual(fields["destination"], "native.reader"); XCTAssertEqual(fields["presentation"], "currentTab")
+        XCTAssertNotNil(fields["generation"].flatMap(UInt64.init))
+        let revisions = try XCTUnwrap(fields["revision"]).components(separatedBy: "->")
+        XCTAssertEqual(revisions.count, 2)
+        XCTAssertGreaterThan(try XCTUnwrap(UInt64(revisions[1])), try XCTUnwrap(UInt64(revisions[0])))
+        let snapshot = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: workspaceSidecarURL())) as? [String: Any])
+        let scenes = try XCTUnwrap(snapshot["scenes"] as? [String: Any])
+        XCTAssertNotNil(scenes[try XCTUnwrap(fields["scene"])])
+        let receipt = XCTAttachment(string: line); receipt.name = "actual-current-reader-core-receipt"
+        receipt.lifetime = .keepAlways; add(receipt)
+        try attachWorkspaceSnapshot("native-current-reader-receipt")
+    }
+
+    @MainActor
+    func testPublicV2CurrentReaderShowsTwoCanonicalSourceLines() throws {
+        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader()
+        let bookID = try XCTUnwrap(Int(work.replacingOccurrences(of: "book:", with: "")))
+        let rows = metadata.rows.filter { $0.count == 3 && $0[1] == bookID && $0[2] > 0 }
+        XCTAssertGreaterThan(rows.count, 10, "Require two independently known nonzero source lines")
+        let targets = [rows[0], rows[9]]
+        XCTAssertNotEqual(targets[0][2], targets[1][2])
+        for target in targets {
+            let before = try readerReceiptLines()
+            try openInExistingProcess(readerURL(bookID: bookID, lineIndex: target[2]))
+            XCTAssertFalse(app.alerts["Unable to open link"].exists)
+            assertReaderHasText()
+            let expected = "otzaria|book:\(bookID)|line:\(target[2])"
+            XCTAssertEqual(app.staticTexts["reader-current-locator"].label, expected)
+            let rendered = try XCTUnwrap(getRenderedHighlightSnapshot(), "Actual original TextKit diagnostic required")
+            XCTAssertEqual(rendered.locator, expected)
+            XCTAssertGreaterThan(rendered.segmentSelectionCount, 0, "Requested segment must be highlighted by the original renderer")
+            XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(try XCTUnwrap(metadata.books[String(bookID)])))
+            try requireNewReaderReceipt(after: before)
+            capture("native-core-reader-source-line-\(target[2])")
+        }
+    }
+
+    @MainActor
+    func testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge() throws {
+        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader()
+        let bookID = try XCTUnwrap(Int(work.replacingOccurrences(of: "book:", with: "")))
+        let other = try XCTUnwrap(metadata.rows.first { $0.count == 3 && $0[1] != bookID && $0[2] > 0 })
+        let before = try readerReceiptLines(), locator = app.staticTexts["reader-current-locator"].label
+        let rendered = try XCTUnwrap(getRenderedHighlightSnapshot())
+        try openInExistingProcess(readerURL(bookID: other[1], lineIndex: other[2]))
+        XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 15))
+        XCTAssertEqual(try readerReceiptLines(), before, "Unsupported cross-book binding must never produce an ACK")
+        app.alerts["Unable to open link"].buttons.firstMatch.tap()
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, rendered.locator)
+        capture("native-core-reader-cross-book-refusal")
     }
 }

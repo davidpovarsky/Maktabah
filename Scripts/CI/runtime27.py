@@ -330,7 +330,7 @@ def main():
         report["built_binary_sha256"] = binaries
         os.environ["FAITHFUL_RUNTIME27_MANIFEST"] = str(contract_path)
         os.environ["VALIDATING_BASELINE"] = "false"
-        # 41 actual cases now include long bidirectional sidebar transition loops.
+        # The expanded matrix includes long bidirectional sidebar transition loops.
         # Increase only the whole-matrix budget; per-case assertions/timeouts stay intact.
         # Native app installer, exact disposable-device lifecycle, existing tests.
         code = run_logged([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 9000, interrupt_controller=controller)
