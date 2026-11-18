@@ -1,6 +1,6 @@
 # UI surface inventory — continuation 2026-11-18
 
-Source: 4412c8eda44744bf9df9b06b3b7c35ca5fc8e050. This is the G0 source inventory. A supported row means source wiring, never a native PASS.
+Source: 2a18db289d725abacbb079d97d840f5130daab0b. This is the G0 source inventory. A supported row means source wiring, never a native PASS.
 
 Owner/review: Sole owner-authorized continuation agent; source/semantic self-review, no independent reviewer. The owner explicitly requested solo execution; no independent QA was represented.
 

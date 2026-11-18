@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "4412c8eda44744bf9df9b06b3b7c35ca5fc8e050",
+  "source_test_commit": "2a18db289d725abacbb079d97d840f5130daab0b",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "4412c8eda44744bf9df9b06b3b7c35ca5fc8e050",
+  "app_source": "2a18db289d725abacbb079d97d840f5130daab0b",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original27 plus actual source-qualified continuation cases; 65 required Native cases, 54iPad27 +11iPhone27, zero skips; app/system/physical/release gates remain distinct.",
@@ -906,7 +906,7 @@
     },
     "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
     "executor": "Current sole developer continuation; no subagents or resumed prior agents",
-    "native_status": "NOT_RUN_FOR_NEW_SOURCE; Native60 run44335820129 belongs to prior07b/8e35 and cannot accept this change.",
+    "native_status": "NOT_RUN_FOR_NEW_SOURCE; Native60 failed before UI in original Debug Observation storage; no UI case executed.",
     "canonical_reader_source": {
       "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
       "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
@@ -1021,6 +1021,12 @@
       "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner"
     ],
     "system_book_intent_boundary": "SOURCE_ONLY. Original Core catalog/TOC resolution, stable source-only entities, exact selected existing window, original R resolver/public binder/Core reader.open. No model, permission or navigation replacement. Five actual Apple system UI cases NOT_RUN; voice Siri/Spotlight/device remain separate.",
-    "system_book_intent_source": "4412c8eda44744bf9df9b06b3b7c35ca5fc8e050"
+    "system_book_intent_source": "4412c8eda44744bf9df9b06b3b7c35ca5fc8e050",
+    "native60_compile_followup": {
+      "failed_run": 44335820129,
+      "source_sha": "2a18db289d725abacbb079d97d840f5130daab0b",
+      "scope": "Fork-only Debug passive storage excluded through let reference; no provider/result/oracle change",
+      "status": "SOURCE_SYNTAX_ONLY_APP_NATIVE_PENDING"
+    }
   }
 }
