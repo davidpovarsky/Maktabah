@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "9f877cbd9484207723781d8c15c580c77755fdbb",
+  "source_test_commit": "1a90fc3ef7d6c30dcb1ce6df2aa2c4fd6a502855",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "9f877cbd9484207723781d8c15c580c77755fdbb",
+  "app_source": "1a90fc3ef7d6c30dcb1ce6df2aa2c4fd6a502855",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "CONTINUATION_REQUIRED27_SEARCH12_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3",
@@ -878,6 +878,12 @@
       "status": "SOURCE_IMPLEMENTED_NATIVE_PENDING",
       "exact_reader_oracle_resource": "Maktabah-iOSUITests/canonical-miniTest10-reader-lines.json",
       "exact_reader_oracle_sha256": "9a623ea8805cc9a3c945c3ba05e48842a63b06805599ddc5e6ba18f599284b17"
+    },
+    "sdk_followup": {
+      "failed_run": 44319351865,
+      "error": "Swift throwing RHS of short-circuit && requires try on complete expression; replaced with explicit nested control flow",
+      "source_sha": "1a90fc3ef7d6c30dcb1ce6df2aa2c4fd6a502855",
+      "changed_oracle": false
     }
   }
 }
