@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "source_test_commit": "90db0a52ff169a40ff1ae13e509c41873277bd87",
+  "source_test_commit": "9f877cbd9484207723781d8c15c580c77755fdbb",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "90db0a52ff169a40ff1ae13e509c41873277bd87",
+  "app_source": "9f877cbd9484207723781d8c15c580c77755fdbb",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "CONTINUATION_REQUIRED27_SEARCH12_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 53,
+  "required_nonzero_cases": 54,
   "expected_per_device": {
-    "ipad11": 44,
+    "ipad11": 45,
     "iphone": 9
   },
   "cases": [
@@ -75,7 +75,7 @@
     "data_profile": "real native-installed miniTest10",
     "bootstrap": "realUI; never -smokeBypassBootstrap",
     "isolation": "new assigned disposable simulator and per-test UUID sidecars; no user DB/data",
-    "scheduling": "One developer, one coherent source/build, fresh owned reader/window/phone simulators; old chats remain STOPPED"
+    "scheduling": "One developer; one exact source/build; separate fresh owned search/reader/sidebar/window/phone simulators; old chats remain STOPPED;600s maximum per XCTest, no retry."
   },
   "required_test_environment": {
     "R27_EXPECTED_OTZARIA_WORK_KEY": "book:<sourceBookId independently derived from actual verified fixture DB>",
@@ -785,7 +785,8 @@
       "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
       "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
       "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
-      "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"
+      "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+      "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"
     ],
     "phase3_supplemental_case_ids": [
       "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
@@ -806,7 +807,7 @@
     },
     "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
     "executor": "Current sole developer continuation; no subagents or resumed prior agents",
-    "native_status": "NOT_RUN on this53-case candidate; Native41 independent earlier source still running.",
+    "native_status": "NOT_RUN on this54-case candidate. Previous run44207959071 failed/timed out:35 xcresult-verified,28PASS,7FAIL;6 phone outcomes unverified. No historical PASS reused.",
     "canonical_reader_source": {
       "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
       "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
@@ -869,6 +870,14 @@
         "phone": 9
       },
       "prior_result_retained": true
+    },
+    "native_source_followup": {
+      "sha": "9f877cbd9484207723781d8c15c580c77755fdbb",
+      "evidence": "docs/hq-integration/native-followup-20261118/README.md",
+      "prior_run": 44207959071,
+      "status": "SOURCE_IMPLEMENTED_NATIVE_PENDING",
+      "exact_reader_oracle_resource": "Maktabah-iOSUITests/canonical-miniTest10-reader-lines.json",
+      "exact_reader_oracle_sha256": "9a623ea8805cc9a3c945c3ba05e48842a63b06805599ddc5e6ba18f599284b17"
     }
   }
 }
