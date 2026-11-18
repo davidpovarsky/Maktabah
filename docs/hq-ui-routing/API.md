@@ -1,5 +1,7 @@
 # UI02 compiled API checkpoint
 
+Current G1 contract acceptance (18 November): [exact source/fixtures/consumer evidence](continuation-20261118/CONTRACT_ACCEPTANCE.md). The historical checkpoints below retain their original scope; Native routes, full Hanlin integration and release are separate gates.
+
 Current shared discovery contract: [CONTRACT_DISCOVERY_20261115.md](CONTRACT_DISCOVERY_20261115.md). It supersedes the historical discovery freshness/deadline description below and adds mandatory `currentScene(sceneID:context:invocation:)`; no default fallback. Corrected focused run: 19 portable XCTest methods / 0 failures. Native acceptance remains open.
 
 Owner: independent top-level chat `01a1dc89-87bb-7521-b249-ed383392e940`. Branch `codex/otzaria-ui-registry-20261115`, base `2918825be8c5cc8ecee53d57e1f48ca51779cab4`. Scope: Contracts, Registry, Codec, Ports and fixtures only. No native surfaces or orchestration implementation.
