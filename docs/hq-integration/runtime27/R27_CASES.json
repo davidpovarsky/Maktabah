@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
+  "source_test_commit": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "a190bbf0017e5f7ad5f79b09f0e8e03cab64fa52",
+  "app_source": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original27 plus actual source-qualified continuation cases; 65 required Native cases, 54iPad27 +11iPhone27, zero skips; app/system/physical/release gates remain distinct.",
@@ -133,7 +133,7 @@
   ],
   "reused_ui_passes": 0,
   "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
-  "previous_manifest_sha256": "0abc6802a15e0768cb0ead5ffed058edbe9841567c125e8d62ff5f60d24b0fb9",
+  "previous_manifest_sha256": "e47eda294d71e77aada8c0a23762777d1d0dccb01ee8143f785f9de9f522bf89",
   "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
   "affected_execution_groups": [
     "11-reader",
@@ -1099,5 +1099,12 @@
       "ownership_fence": "Original directory revision invalidated synchronously; actual method controls3PASS6FAIL→9PASS;24 original directory/Core-prepared regressionsPASS; Native pending"
     }
   },
-  "application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a"
+  "application_source_sha": "2f5e41f3d79fa51a18ebe8011b57d4827e3bffe7",
+  "hanlin_source_pin_history": {
+    "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
+    "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
+    "prior_app_source": "a190bbf0017e5f7ad5f79b09f0e8e03cab64fa52",
+    "previous_manifest_sha256": "e47eda294d71e77aada8c0a23762777d1d0dccb01ee8143f785f9de9f522bf89",
+    "change": "Original Hanlin contract package linkage and canonical Core catalog fix; original70 Native cases unchanged; no acceptance transfer"
+  }
 }
