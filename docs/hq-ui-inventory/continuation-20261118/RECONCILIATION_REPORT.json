@@ -7,9 +7,9 @@
   "semantic_reconciliation": "MAIN_SESSION_NO_INDEPENDENT_REVIEWER",
   "native_route_acceptance": "NOT_RUN",
   "physical_ipad": "NOT_RUN",
-  "local_code_files": 675,
+  "local_code_files": 680,
   "external_pinned_files_verified": 176,
-  "all_code_files_verified": 851,
+  "all_code_files_verified": 856,
   "added_paths": [
     "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
     "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift",
@@ -40,6 +40,8 @@
     "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeObservationDeadline.swift",
     "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePresentationObserver.swift",
     "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePublicNavigationURLV2.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntents.swift",
     "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderPlanBudget.swift",
     "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteInbox.swift",
     "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteURL.swift",
@@ -53,6 +55,7 @@
     "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePresentationObserverTests.swift",
     "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePublicNavigationURLV2Tests.swift",
     "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePublicPreparedCommitTests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeReaderIntentServiceTests.swift",
     "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeReaderPlanBudgetTests.swift",
     "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeRouteInboxTests.swift",
     "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeRouteURLTests.swift",
@@ -70,9 +73,11 @@
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
     "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift",
     "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogSourceSectionsTests.swift",
     "Source/Otzaria/UIRouting/Package.swift",
     "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/PublicNavigationV2Codec.swift",
     "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift",
@@ -122,6 +127,7 @@
     "Source/LibraryBackend/LibraryBackendModels.swift",
     "Source/LibraryBackend/MaktabahBackendAdapter.swift",
     "Source/Otzaria/Actions/Package.swift",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
     "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
@@ -445,5 +451,5 @@
       "line": 637
     }
   ],
-  "source_sha": "8e35c7d9bebbdd93933686f35b4dead9e3f22994"
+  "source_sha": "4412c8eda44744bf9df9b06b3b7c35ca5fc8e050"
 }

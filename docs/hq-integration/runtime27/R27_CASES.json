@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "source_test_commit": "8e35c7d9bebbdd93933686f35b4dead9e3f22994",
+  "source_test_commit": "4412c8eda44744bf9df9b06b3b7c35ca5fc8e050",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "8e35c7d9bebbdd93933686f35b4dead9e3f22994",
+  "app_source": "4412c8eda44744bf9df9b06b3b7c35ca5fc8e050",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "CONTINUATION_REQUIRED27_SEARCH14_PHONE_ROUTING3_CURRENT_READER2_GLOBAL_ROOTS2_SYSTEM_INTENTS3_NEW_TAB2_PHONE_CONTENT3__LIBRARY_TOC_ROOTS4",
+  "scope": "Original27 plus actual source-qualified continuation cases; 65 required Native cases, 54iPad27 +11iPhone27, zero skips; app/system/physical/release gates remain distinct.",
   "native_cases_executed": 0,
   "required_nonzero_cases": 65,
   "expected_per_device": {
@@ -960,13 +960,13 @@
     },
     "native_execution_partition": {
       "reason": "Run44207959071 spent4086.583s in the RTL Sidebar test and hit the global150-minute ceiling before phone xcresult verification. Use distinct fresh owned simulator groups, unchanged full-case coverage and no retries.",
-      "case_count": 60,
+      "case_count": 65,
       "per_group": {
         "11-search": 21,
-        "11-reader": 23,
+        "11-reader": 27,
         "11-sidebar": 4,
         "11-window": 2,
-        "phone": 10
+        "phone": 11
       },
       "prior_result_retained": true
     },
@@ -1020,6 +1020,7 @@
       "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
       "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner"
     ],
-    "system_book_intent_boundary": "SOURCE_ONLY. Original Core catalog/TOC resolution, stable source-only entities, exact selected existing window, original R resolver/public binder/Core reader.open. No model, permission or navigation replacement. Five actual Apple system UI cases NOT_RUN; voice Siri/Spotlight/device remain separate."
+    "system_book_intent_boundary": "SOURCE_ONLY. Original Core catalog/TOC resolution, stable source-only entities, exact selected existing window, original R resolver/public binder/Core reader.open. No model, permission or navigation replacement. Five actual Apple system UI cases NOT_RUN; voice Siri/Spotlight/device remain separate.",
+    "system_book_intent_source": "4412c8eda44744bf9df9b06b3b7c35ca5fc8e050"
   }
 }
