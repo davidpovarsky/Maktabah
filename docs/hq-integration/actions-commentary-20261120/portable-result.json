@@ -1,0 +1,18 @@
+{
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+    "test",
+    "--package-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\Source\\Otzaria\\Actions",
+    "--jobs",
+    "2"
+  ],
+  "exit_code": 0,
+  "native": "NOT_RUN",
+  "tests": 86,
+  "new_commentary_tests": 19,
+  "swift": "6.3.3",
+  "log_sha256": "4fd986a52a8b376dd73362327ad274bc81b44cfb6ab0285410a4ede279c9f189",
+  "evidence_class": "portable source-shaped fixtures",
+  "backend_data_mutated": false
+}

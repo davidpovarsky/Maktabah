@@ -74,6 +74,16 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
     }
     private var readerInvocations: [UUID: ReaderInvocation] = [:]
+    private final class CommentaryInvocation {
+        let sceneID: UIStableID
+        let context: ActionExecutionContext
+        let observation: HanlinSourceObservation
+        var cleanup: (@MainActor () -> Void)?
+        init(sceneID: UIStableID, context: ActionExecutionContext, observation: HanlinSourceObservation) {
+            self.sceneID = sceneID; self.context = context; self.observation = observation
+        }
+    }
+    private var commentaryInvocations: [UUID: CommentaryInvocation] = [:]
 
     init(backend: any ActionSynchronousBackendStatePort & ActionResolverDataPort & ActionSearchPort) throws {
         self.backend = backend
@@ -115,6 +125,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         readerSink.deliver = { [weak self] command in
             guard let self else { throw ActionPortError.unavailable }
             return try await receiveReader(command)
+        }
+        readerSink.prepareCommentary = { [weak self] destination, context, invocation in
+            guard let self else { throw ActionPortError.unavailable }
+            try await prepareCommentaryReader(destination, context: context, invocation: invocation)
         }
     }
 
@@ -491,6 +505,83 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         return result
     }
 
+    /// Local, explicit commentary navigation. Resolution runs in the same Core;
+    /// only the original scene owner may retain the resolved target. No Hanlin
+    /// content scope, note write or new agent tool is granted by this entry.
+    func openCommentary(baseLocator: ActionTextRef, workRef: ActionWorkRef? = nil,
+                        commentaryQuery: String? = nil, manager: iOSNavigationManager) async throws -> ActionResult {
+        let end = deadline(), managerID = ObjectIdentifier(manager)
+        let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: managerID)
+        }
+        guard let entry = scenes[sceneID], entry.managerID == managerID, contexts[sceneID] == nil,
+              commentaryInvocations.count < 16,
+              !commentaryInvocations.values.contains(where: { $0.sceneID == sceneID }) else { throw UIRouteError(.unavailable, "native_scene_busy") }
+        let observed = try hanlinSource(sceneID: sceneID, entry: entry)
+        let context = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
+        var arguments: ActionObject = ["baseLocator": try .encoded(baseLocator)]
+        if let workRef { arguments["workRef"] = try .encoded(workRef) }
+        if let commentaryQuery { arguments["commentaryQuery"] = .string(commentaryQuery) }
+        let request = ActionRequest(action: "reader.openCommentary", arguments: arguments,
+            expectedBackend: baseLocator.backend, expectedGeneration: observed.backend.generation,
+            requestedPresentation: .foreground)
+        let pending = CommentaryInvocation(sceneID: sceneID, context: context, observation: observed)
+        commentaryInvocations[request.requestId] = pending
+        defer {
+            let cleanup = pending.cleanup; pending.cleanup = nil
+            cleanup?()
+            commentaryInvocations.removeValue(forKey: request.requestId)
+        }
+        let result = await core.execute(request, context: context)
+        if result.status == .completed {
+            guard let receipt = readerInvocations[request.requestId]?.receipt else { throw ActionPortError.invalidResponse }
+            record(.acknowledged(receipt))
+        }
+        return result
+    }
+
+    private func prepareCommentaryReader(_ destination: ActionReaderDestination, context: ActionExecutionContext,
+                                         invocation: ActionPortInvocation) async throws {
+        guard let pending = commentaryInvocations[invocation.requestId], pending.context == context,
+              pending.cleanup == nil, pending.sceneID.rawValue == context.foregroundSceneID,
+              let entry = scenes[pending.sceneID], contexts[pending.sceneID] == nil,
+              let binding = entry.publicBinding, readerInvocations[invocation.requestId] == nil,
+              readerInvocations.count < 16, destination.presentationMode == .newTab,
+              pending.observation.backend == invocation.snapshot,
+              try hanlinSource(sceneID: pending.sceneID, entry: entry) == pending.observation else {
+            throw ActionPortError.staleState
+        }
+        // As in open(public:), reservation advances the original workspace
+        // epoch BEFORE issuing/admitting the context used by the Core grant.
+        let retained = try entry.session.retainReader(destination, requestID: invocation.requestId) { [weak self, weak session = entry.session] in
+            guard let self, let session else { return }
+            try? invalidateContext(session)
+        }
+        do {
+            try issue(context, sceneID: pending.sceneID)
+            let admitted = try authority.admit(context: context, sceneID: pending.sceneID)
+            pending.cleanup = { [self, session = entry.session] in
+                readerInvocations.removeValue(forKey: invocation.requestId)
+                authority.release(admitted)
+                finish(context, sceneID: pending.sceneID)
+                session.releaseReader(retained)
+            }
+            let scene = try await directory.currentScene(sceneID: pending.sceneID, context: context, invocation: invocation)
+            let intent = PublicNavigationSpecV2(destination: UIDestinationID(rawValue: "native.reader")!,
+                backend: invocation.snapshot.backend, content: destination, presentation: .newTab)
+            let plan = try await registry.bindPublicV2(intent, scene: scene, context: context, invocation: invocation, core: core, host: binding)
+            guard case .reader(let route) = plan else { throw ActionPortError.invalidResponse }
+            guard commentaryInvocations[invocation.requestId] === pending, pending.cleanup != nil,
+                  contexts[pending.sceneID] == context else { throw ActionPortError.staleState }
+            try Task.checkCancellation()
+            readerInvocations[invocation.requestId] = ReaderInvocation(route: route, context: context, sceneID: pending.sceneID)
+        } catch {
+            if let cleanup = pending.cleanup { cleanup(); pending.cleanup = nil }
+            else { finish(context, sceneID: pending.sceneID); entry.session.releaseReader(retained) }
+            throw error
+        }
+    }
+
     private func receiveReader(_ reader: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement {
         guard let pending = readerInvocations[reader.invocation.requestId],
               pending.sceneID.rawValue == reader.sceneID, pending.route.route.content == reader.destination,
@@ -703,8 +794,14 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
 
 /// Only forwards Core's original, opaque, one-use reader command to its
 /// retained native owner. It cannot create grants, resolve or mint receipts.
-@MainActor private final class MaktabahNativeReaderCommandSink: ActionUICommandSink {
+@MainActor private final class MaktabahNativeReaderCommandSink: ActionCommentaryUICommandSink {
     var deliver: (@MainActor @Sendable (ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement)?
+    var prepareCommentary: (@MainActor @Sendable (ActionReaderDestination, ActionExecutionContext, ActionPortInvocation) async throws -> Void)?
+    func prepareCommentaryReader(_ destination: ActionReaderDestination, context: ActionExecutionContext,
+                                 invocation: ActionPortInvocation) async throws {
+        guard let prepareCommentary else { throw ActionPortError.unavailable }
+        try await prepareCommentary(destination, context, invocation)
+    }
     func open(_ command: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement {
         guard let deliver else { throw ActionPortError.unavailable }
         return try await deliver(command)
