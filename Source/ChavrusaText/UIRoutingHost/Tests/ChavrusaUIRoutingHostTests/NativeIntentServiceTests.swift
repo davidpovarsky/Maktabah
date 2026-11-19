@@ -93,5 +93,71 @@ import OtzariaUIRouting
         _ = try await service.open(identifier: b.id)
         XCTAssertEqual(state.selectedScene, b.sceneID)
     }
+
+    func testBackgroundIdentityResolvesButOnlyFreshForegroundDiscoveryCanNavigate() async throws {
+        let state = IntentTestState(); state.available = false
+        let root = NativeIntentService.Destination(backend: .otzaria,
+            destination: UIDestinationID(rawValue: "native.search")!, title: "Search",
+            sceneID: UIStableID(rawValue: "scene.A")!)
+        let service = NativeIntentService(discover: { state.available ? [root] : [] },
+            resolveEntities: { [root] }, navigate: { target in
+                state.calls += 1; state.selectedScene = target.sceneID; return .requiresForeground
+            })
+        let named = try await service.destinations(matching: "Search")
+        let exact = try await service.destinations(identifiers: [root.id])
+        XCTAssertEqual(named, [root]); XCTAssertEqual(exact, [root])
+        XCTAssertEqual(state.calls, 0)
+        do { _ = try await service.open(identifier: root.id); XCTFail("Metadata is not foreground authority") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.code, "intent_entity_no_longer_available") }
+        XCTAssertEqual(state.calls, 0)
+        state.available = true
+        _ = try await service.open(identifier: root.id)
+        XCTAssertEqual(state.calls, 1); XCTAssertEqual(state.selectedScene, root.sceneID)
+    }
+
+    func testRemovedWindowIsOmittedAndCannotBeRecreatedFromCachedEntity() async throws {
+        let state = IntentTestState()
+        let root = NativeIntentService.Destination(backend: .otzaria,
+            destination: UIDestinationID(rawValue: "native.library")!, title: "Library",
+            sceneID: UIStableID(rawValue: "scene.A")!)
+        let service = NativeIntentService(discover: { state.available ? [root] : [] },
+            resolveEntities: { state.available ? [root] : [] },
+            navigate: { _ in state.calls += 1; return .requiresForeground })
+        let initial = try await service.destinations(identifiers: [root.id]); XCTAssertEqual(initial, [root])
+        state.available = false
+        let removed = try await service.destinations(identifiers: [root.id]); XCTAssertTrue(removed.isEmpty)
+        do { _ = try await service.open(identifier: root.id); XCTFail("No recreation or first-window fallback") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.status, .staleState) }
+        XCTAssertEqual(state.calls, 0)
+    }
+
+    func testResolvedMetadataCannotBorrowAnotherBackendOrWindow() async throws {
+        let state = IntentTestState(), destination = UIDestinationID(rawValue: "native.library")!
+        let cached = NativeIntentService.Destination(backend: .otzaria, destination: destination,
+            title: "Library", sceneID: UIStableID(rawValue: "scene.A")!)
+        let changedBackend = NativeIntentService.Destination(backend: .sefaria, destination: destination,
+            title: "Library", sceneID: cached.sceneID)
+        let otherWindow = NativeIntentService.Destination(backend: .otzaria, destination: destination,
+            title: "Library", sceneID: UIStableID(rawValue: "scene.B")!)
+        let service = NativeIntentService(discover: { [changedBackend, otherWindow] },
+            resolveEntities: { [cached] }, navigate: { _ in state.calls += 1; return .requiresForeground })
+        let identities = try await service.destinations(identifiers: [cached.id]); XCTAssertEqual(identities, [cached])
+        do { _ = try await service.open(identifier: cached.id); XCTFail("Metadata cannot choose a replacement") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.status, .staleState) }
+        XCTAssertEqual(state.calls, 0)
+    }
+
+    func testDuplicateExecutionCatalogFailsDespiteUniqueResolvedMetadata() async throws {
+        let state = IntentTestState()
+        let root = NativeIntentService.Destination(backend: .otzaria,
+            destination: UIDestinationID(rawValue: "native.search")!, title: "Search",
+            sceneID: UIStableID(rawValue: "scene.A")!)
+        let service = NativeIntentService(discover: { [root, root] }, resolveEntities: { [root] },
+            navigate: { _ in state.calls += 1; return .requiresForeground })
+        let identities = try await service.destinations(); XCTAssertEqual(identities, [root])
+        do { _ = try await service.open(identifier: root.id); XCTFail("Invalid live catalog") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.code, "invalid_live_intent_catalog") }
+        XCTAssertEqual(state.calls, 0)
+    }
 }
 @MainActor private final class IntentTestState { var available = true; var calls = 0; var selectedScene: UIStableID?; var selectedComponent: UIDestinationID? }

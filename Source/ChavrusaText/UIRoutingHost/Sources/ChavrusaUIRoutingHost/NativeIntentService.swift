@@ -25,15 +25,26 @@ public final class NativeIntentService {
     public typealias Discover = @MainActor @Sendable () async throws -> [Destination]
     public typealias Open = @MainActor @Sendable (Destination) async throws -> UISceneAcknowledgement
     private let discover: Discover
+    private let resolveEntities: Discover
     private let navigate: Open
-    public init(discover: @escaping Discover, navigate: @escaping Open) { self.discover = discover; self.navigate = navigate }
+    public init(discover: @escaping Discover, resolveEntities: Discover? = nil, navigate: @escaping Open) {
+        self.discover = discover
+        self.resolveEntities = resolveEntities ?? discover
+        self.navigate = navigate
+    }
 
     public func destinations(identifiers: [String]? = nil, matching query: String? = nil) async throws -> [Destination] {
         try Task.checkCancellation()
         if let identifiers, identifiers.count > 64 { throw UIRouteError(.failed, "too_many_intent_entities") }
         guard query == nil || query!.utf8.count <= 512 else { throw UIRouteError(.failed, "intent_query_too_large") }
-        let values = try await discover()
+        // System parameter resolution may precede foreground activation. These
+        // identities describe existing entities; they never authorize navigation.
+        let values = try await resolveEntities()
         try Task.checkCancellation()
+        return try filter(values, identifiers: identifiers, matching: query)
+    }
+
+    private func filter(_ values: [Destination], identifiers: [String]?, matching query: String?) throws -> [Destination] {
         guard values.count <= 128, Set(values.map(\.id)).count == values.count else { throw UIRouteError(.failed, "invalid_live_intent_catalog") }
         let requested = identifiers.map(Set.init)
         return values.filter { value in
@@ -45,7 +56,12 @@ public final class NativeIntentService {
     /// before handing off. The orchestrator reauthorizes at native commit.
     public func open(identifier: String) async throws -> UISceneAcknowledgement {
         guard identifier.utf8.count <= 512 else { throw UIRouteError(.failed, "invalid_intent_entity") }
-        let matches = try await destinations(identifiers: [identifier])
+        try Task.checkCancellation()
+        // Always obtain fresh execution eligibility. A resolved background entity
+        // or a stale system reference cannot borrow foreground authority.
+        let values = try await discover()
+        try Task.checkCancellation()
+        let matches = try filter(values, identifiers: [identifier], matching: nil)
         guard matches.count == 1, let target = matches.first else { throw UIRouteError(.staleState, "intent_entity_no_longer_available") }
         return try await navigate(target)
     }

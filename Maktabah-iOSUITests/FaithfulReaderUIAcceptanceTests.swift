@@ -112,6 +112,11 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     func workspaceSidecarURL() throws -> URL {
         let containers = try workspaceContainerParent()
         let namespace = workspaceNamespace
+        // Receipt/workspace predicates read this helper while their own waiter
+        // runs. An already-created exact UUID sidecar needs no nested XCTWaiter.
+        let existing = matchingTestSidecars(in: containers, namespace: namespace)
+        if existing.count == 1 { return existing[0] }
+        XCTAssertLessThanOrEqual(existing.count, 1, "Duplicate UUID sidecars remain an error")
         let created = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             matchingTestSidecars(in: containers, namespace: namespace).count == 1
         }, object: nil)
@@ -346,7 +351,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }
     }
 
-    func assertReaderHasText() {
+    func assertReaderHasText(expectedSourceText: String? = nil) {
         let text = app.textViews["reader-text"]
         XCTAssertTrue(text.waitForExistence(timeout: 60), "The original TextKit reader must render")
         let application = app!
@@ -359,9 +364,22 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [laidOut], timeout: 30), .completed,
                        "The actual reader must finish native window reflow before inspecting its pixels")
-        let predicate = NSPredicate(format: "value MATCHES %@", "(?s).{31,}")
+        let predicate: NSPredicate
+        if let expectedSourceText {
+            XCTAssertFalse(expectedSourceText.isEmpty, "Independent source text must not be empty")
+            let directionControls: Set<UInt32> = [0x200E, 0x200F, 0x202A, 0x202B, 0x202C, 0x202D, 0x202E, 0x2066, 0x2067, 0x2068, 0x2069]
+            predicate = NSPredicate { element, _ in
+                MainActor.assumeIsolated {
+                    guard let actual = (element as? XCUIElement)?.value as? String else { return false }
+                    return actual.unicodeScalars.filter { !directionControls.contains($0.value) }.map(String.init)
+                        .joined().trimmingCharacters(in: .whitespacesAndNewlines) == expectedSourceText
+                }
+            }
+        } else {
+            predicate = NSPredicate(format: "value MATCHES %@", "(?s).{31,}")
+        }
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: predicate, object: text)], timeout: 30), .completed,
-                       "Wait for a populated reader; structured diagnostics alone are not text evidence")
+                       "Require actual source text; structured diagnostics alone are not text evidence")
         let title = app.staticTexts["reader-header-title"]
         XCTAssertTrue(title.waitForExistence(timeout: 10))
         XCTAssertFalse(["", "ספר", "Book 1"].contains(title.label), "A fabricated placeholder is not a genuine loaded book")

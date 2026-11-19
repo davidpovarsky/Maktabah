@@ -1,0 +1,39 @@
+diff --git a/Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift b/Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift
+index dbc93dd0..c90ad7fa 100644
+--- a/Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift
++++ b/Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift
+@@ -79,6 +79,7 @@ struct ReaderTabItemView: View {
+                         .clipShape(Circle())
+                 }
+                 .accessibilityLabel(String(localized: "Close Tab"))
++                .accessibilityIdentifier("reader-close-document-tab-" + tab.id.uuidString)
+                 .help(String(localized: "Close Tab"))
+                 .buttonStyle(.plain)
+             }
+@@ -96,6 +97,7 @@ struct ReaderTabItemView: View {
+                     )
+             }
+             .buttonStyle(.plain)
++            .accessibilityIdentifier("reader-document-tab-" + tab.id.uuidString)
+         }
+         .padding(.horizontal, 10)
+         .padding(.vertical, isCompactHeight ? 3 : 6)
+diff --git a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+index 32e7d310..088c73a9 100644
+--- a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
++++ b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+@@ -872,10 +872,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
+                displayedSelected.location >= 0,
+                displayedSelected.length > 0,
+                displayedSelected.location + displayedSelected.length <= attributedString.length {
+-                attributedString.addAttribute(
+-                    .backgroundColor,
+-                    value: UIColor.systemBlue.withAlphaComponent(0.14),
+-                    range: displayedSelected
++                ReaderSelectionBackground.apply(
++                    to: attributedString, range: displayedSelected,
++                    attribute: .backgroundColor,
++                    color: UIColor.systemBlue.withAlphaComponent(0.14)
+                 )
+             }
+         }

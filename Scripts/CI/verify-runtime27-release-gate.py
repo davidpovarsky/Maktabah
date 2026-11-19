@@ -48,7 +48,23 @@ def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, n
     completed = datetime.fromisoformat(run["updated_at"].replace("Z", "+00:00"))
     age = ((now or datetime.now(timezone.utc)) - completed).total_seconds()
     require(0 <= age <= manifest["max_age_hours"] * 3600, "Stale/future acceptance result")
-    result = json.loads(read(root, "artifacts/runtime27/result.json").read_text())
+    checked = verify_artifact_evidence(root, tested_sha, manifest, manifest_sha, application_trees,
+                                       required_inputs=required_inputs)
+    return {"status": "RELEASE_UI_GATE_PASS", "checkout_sha": expected_sha, "tested_checkout_sha": tested_sha,
+            "bounded_reuse_proof": reuse_proof, **checked,
+            "database_effect_claim": "NONE; actual data report and real UI assertions checked separately"}
+
+
+def verify_artifact_evidence(root, tested_sha, manifest, manifest_sha, application_trees, *, required_inputs, result=None):
+    """Validate real files independently of the later GitHub completion check.
+
+    The producer may check an in-memory candidate payload before publishing it.
+    It never fabricates a completed workflow record to call the release gate.
+    """
+    require(manifest.get("full_release_acceptance_required") is True and manifest.get("configurations"),
+            "Missing full release requirements")
+    if result is None:
+        result = json.loads(read(root, "artifacts/runtime27/result.json").read_text())
     require(result.get("status") == "EXECUTED_PASS" and result.get("full_release_acceptance") is True,
             "Missing full real UI acceptance; focused subsets/build/probe do not satisfy release")
     require(result.get("checkout_sha") == tested_sha, "Acceptance artifact checkout mismatch")
@@ -111,11 +127,9 @@ def verify(run, root, expected_sha, manifest, manifest_sha, application_trees, n
         if required["data_profile"] == "production":
             require(data.get("bookCount", 0) >= 7000 and data.get("extractedBytes", 0) >= 1_500_000_000,
                     "Production UI gate lacks full real corpus evidence")
-    return {"status": "RELEASE_UI_GATE_PASS", "checkout_sha": expected_sha, "tested_checkout_sha": tested_sha,
-            "bounded_reuse_proof": reuse_proof, "required_ui_passed": passed,
-            "separate_oracle_executed": oracle_executed,
-            "configurations": sorted(required_configs), "release_manifest_sha256": manifest_sha,
-            "database_effect_claim": "NONE; actual data report and real UI assertions checked separately"}
+    return {"required_ui_passed": passed, "separate_oracle_executed": oracle_executed,
+            "configurations": sorted(required_configs), "release_manifest_sha256": manifest_sha}
+
 
 
 def api(path):

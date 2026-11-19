@@ -50,7 +50,7 @@ on:
         type: string
         default: ''
       runtime27_mode:
-        description: Manual R27 environment probe or actual scoped UI execution; off preserves existing modes
+        description: Manual R27 probe, scoped UI, or full native and production Release evidence; no distribution
         required: true
         type: choice
         default: 'off'
@@ -58,6 +58,7 @@ on:
           - 'off'
           - probe
           - ui
+          - release
       ui_diagnostic_cases:
         description: Optional exact Suite/testMethod diagnostics (phone suite on iPhone, others on 11-inch); never satisfies the full matrix or Release gate
         required: false
@@ -69,7 +70,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.books_updates_check_only && 'books-updates' || (inputs.runtime27_mode == 'probe' || inputs.runtime27_mode == 'ui') && 'runtime27' || inputs.hq_stage2_focused && 'hq-stage2-focused' || inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}-${{ inputs.ui_diagnostic_cases != '' && 'diagnostic' || 'matrix' }}
+  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.books_updates_check_only && 'books-updates' || (inputs.runtime27_mode == 'probe' || (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release')) && 'runtime27' || inputs.hq_stage2_focused && 'hq-stage2-focused' || inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}-${{ inputs.ui_diagnostic_cases != '' && 'diagnostic' || 'matrix' }}
   cancel-in-progress: true
 
 jobs:
@@ -80,7 +81,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Reject conflicting acceptance inputs
-        if: ${{ inputs.run_production_release || inputs.source_ref != '' || inputs.ui_sdk_check_only || inputs.hq_stage2_focused || inputs.runtime27_mode == 'probe' || inputs.runtime27_mode == 'ui' || inputs.ui_diagnostic_cases != '' }}
+        if: ${{ inputs.run_production_release || inputs.source_ref != '' || inputs.ui_sdk_check_only || inputs.hq_stage2_focused || inputs.runtime27_mode == 'probe' || (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release') || inputs.ui_diagnostic_cases != '' }}
         run: |
           echo "::error::Books Updates checks cannot request other acceptance modes."
           exit 1
@@ -99,9 +100,9 @@ jobs:
 
   runtime27:
     name: R27 real UI environment and acceptance
-    if: ${{ !inputs.books_updates_check_only && (inputs.runtime27_mode == 'probe' || inputs.runtime27_mode == 'ui') }}
+    if: ${{ !inputs.books_updates_check_only && (inputs.runtime27_mode == 'probe' || (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release')) }}
     runs-on: xcode-27
-    timeout-minutes: 240
+    timeout-minutes: ${{ inputs.runtime27_mode == 'release' && 360 || 300 }}
     steps:
       - name: Require isolated immutable runtime request
         env:
@@ -117,16 +118,16 @@ jobs:
       - name: Select an existing SDK-matched runtime for the full device matrix
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
       - uses: actions/setup-node@v4
-        if: ${{ inputs.runtime27_mode == 'ui' }}
+        if: ${{ (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release') }}
         with:
           node-version: 22
       - uses: ruby/setup-ruby@v1
-        if: ${{ inputs.runtime27_mode == 'ui' }}
+        if: ${{ (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release') }}
         with:
           ruby-version: '3.3'
       - name: Read source-pinned Zayit build mode
         id: zayit_source_mode
-        if: ${{ inputs.runtime27_mode == 'ui' }}
+        if: ${{ (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release') }}
         run: |
           python3 - <<'PY'
           import json, os, pathlib
@@ -140,7 +141,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
       - name: Key disposable compiler cache by real SDK and native inputs
         id: runtime27_cache_key
-        if: ${{ inputs.runtime27_mode == 'ui' }}
+        if: ${{ (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release') }}
         run: |
           python3 - <<'PY'
           import hashlib, json, os, pathlib, subprocess
@@ -163,7 +164,7 @@ jobs:
           PY
       - uses: actions/cache/restore@v4
         id: runtime27_build_cache
-        if: ${{ inputs.runtime27_mode == 'ui' }}
+        if: ${{ (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release') }}
         with:
           path: build/DerivedData
           key: ${{ steps.runtime27_cache_key.outputs.key }}
@@ -176,7 +177,7 @@ jobs:
         run: python3 Scripts/CI/runtime27.py
       - name: Retain compiler cache only after an actual matching test build
         id: runtime27_cache_ready
-        if: ${{ always() && inputs.runtime27_mode == 'ui' }}
+        if: ${{ always() && (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release') }}
         env:
           EXPECTED_CHECKOUT_SHA: ${{ inputs.hq_stage2_expected_sha }}
         run: |
@@ -200,6 +201,9 @@ jobs:
           name: runtime27-evidence
           path: |
             build/artifacts/
+            !build/artifacts/**/*.xcresult/**
+            !build/artifacts/**/*.mp4
+            !build/artifacts/visual-*/**
             build/hq-stage2/*.json
             build/hq-stage2/*Package.resolved
             build/hq-stage2/*.log
@@ -212,9 +216,20 @@ jobs:
             build/hq-stage2/rebuilt-zayit/
           if-no-files-found: error
 
+      - name: Retain original native result bundles and visual captures separately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime27-native-captures
+          path: |
+            build/artifacts/**/*.xcresult/**
+            build/artifacts/**/*.mp4
+            build/artifacts/visual-*/**
+          if-no-files-found: ignore
+
   hq-stage2-focused:
     name: Focused unsigned Maktabah-iOS (no runtime or data)
-    if: ${{ !inputs.books_updates_check_only && inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
+    if: ${{ !inputs.books_updates_check_only && inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' && inputs.runtime27_mode != 'release' }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 60
     steps:
@@ -279,7 +294,7 @@ jobs:
 
   ui-sdk-check-only:
     name: Focused SDK and workspace checks (no app/runtime acceptance)
-    if: ${{ !inputs.books_updates_check_only && inputs.ui_sdk_check_only && !inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
+    if: ${{ !inputs.books_updates_check_only && inputs.ui_sdk_check_only && !inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' && inputs.runtime27_mode != 'release' }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 15
     steps:
@@ -309,7 +324,7 @@ jobs:
 
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
-    if: ${{ !inputs.books_updates_check_only && !inputs.ui_sdk_check_only && !inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' }}
+    if: ${{ !inputs.books_updates_check_only && !inputs.ui_sdk_check_only && !inputs.hq_stage2_focused && inputs.runtime27_mode != 'probe' && inputs.runtime27_mode != 'ui' && inputs.runtime27_mode != 'release' }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 360
 

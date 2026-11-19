@@ -872,10 +872,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
                displayedSelected.location >= 0,
                displayedSelected.length > 0,
                displayedSelected.location + displayedSelected.length <= attributedString.length {
-                attributedString.addAttribute(
-                    .backgroundColor,
-                    value: UIColor.systemBlue.withAlphaComponent(0.14),
-                    range: displayedSelected
+                ReaderSelectionBackground.apply(
+                    to: attributedString, range: displayedSelected,
+                    attribute: .backgroundColor,
+                    color: UIColor.systemBlue.withAlphaComponent(0.14)
                 )
             }
         }

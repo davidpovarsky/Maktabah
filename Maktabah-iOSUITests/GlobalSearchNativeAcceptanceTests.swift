@@ -621,7 +621,7 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         let url = try XCTUnwrap(bundle.url(forResource: "canonical-miniTest10-reader-lines", withExtension: "json"))
         let bytes = try Data(contentsOf: url)
         let oracleHash = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
-        let expectedHash = "9a623ea8805cc9a3c945c3ba05e48842a63b06805599ddc5e6ba18f599284b17"
+        let expectedHash = "51632762100689aa2da6a6d360a6434d4fa4caf5e57971f4ad8e327ab6e173dc"
         XCTAssertEqual(oracleHash, expectedHash, "The exact SQL source-text oracle must be in the installed test bundle")
         guard oracleHash == expectedHash else { throw SetupError.missing("canonical Reader source hash") }
         let oracle = try JSONDecoder().decode(ZayitReaderLineOracle.self, from: bytes)
@@ -981,8 +981,15 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         }
         XCTAssertTrue(open.isHittable)
         open.tap()
-        assertReaderHasText()
         let expectedLocator = "otzaria|book:\(book)|line:\(line)"
+        let targetRendered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            let locator = self.app.staticTexts["reader-current-locator"]
+            return locator.exists && locator.label == expectedLocator
+                && self.getRenderedHighlightSnapshot()?.locator == expectedLocator
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [targetRendered], timeout: 30), .completed,
+                       "Opening a later page must finish rendering that exact source, not a retained reader")
+        assertReaderHasText()
         XCTAssertEqual(try require("reader-current-locator").label, expectedLocator)
         XCTAssertTrue(try require("reader-header-title").label.contains(try XCTUnwrap(metadata.books[String(book)])))
         let rendered = try XCTUnwrap(getRenderedHighlightSnapshot())

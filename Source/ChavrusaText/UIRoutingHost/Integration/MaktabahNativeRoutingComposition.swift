@@ -516,6 +516,32 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
         return values
     }
+    /// Resolve the identity of an existing mounted window before the system
+    /// brings it to the foreground. Use original Registry metadata and actual
+    /// capability/state checks; do not issue a context, grant or native receipt.
+    private func intentEntities() async throws -> [NativeIntentService.Destination] {
+        let snapshot = try backend.currentBackendSnapshot()
+        var values: [NativeIntentService.Destination] = []
+        for (id, entry) in scenes.sorted(by: { $0.key.rawValue < $1.key.rawValue }) where entry.session.mounted {
+            let windowLabel = entry.session.windowLabel(number: entry.windowNumber)
+            for descriptor in registry.descriptors where descriptor.implementation == .implemented
+                && descriptor.supportedBackends.contains(snapshot.backend)
+                && descriptor.requiredCoreActions.isEmpty && !descriptor.requiresContent
+                && !descriptor.mutatesUserData && !descriptor.allowsPrivateState {
+                guard descriptor.id.rawValue == "native.settings" || entry.session.isRootAvailable(descriptor.id) else { continue }
+                values.append(.init(backend: snapshot.backend, destination: descriptor.id,
+                    title: descriptor.title + " — " + windowLabel, sceneID: id))
+            }
+        }
+        // A field is not a window identity. Its entity still requires the actual
+        // visible, foreground original control through existing live discovery.
+        values += try await destinations().filter { $0.component != nil }
+        guard try backend.currentBackendSnapshot() == snapshot else {
+            throw UIRouteError(.staleState, "intent_source_generation_changed")
+        }
+        return values
+    }
+
     /// System entity metadata executes only the original Core catalog actions.
     /// The observation carries the exact backend/generation/RPC epoch to native
     /// commit; it is not an authority and cannot be used to fabricate a receipt.
@@ -566,7 +592,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
     func installIntentDependency() {
         guard !intentsInstalled else { return }
-        let service = NativeIntentService(discover: { [self] in try await destinations() }, navigate: { [self] in try await open(destination: $0) })
+        let service = NativeIntentService(discover: { [self] in try await destinations() },
+            resolveEntities: { [self] in try await intentEntities() },
+            navigate: { [self] in try await open(destination: $0) })
         AppDependencyManager.shared.add(dependency: service)
         let readerService = NativeReaderIntentService(execute: { [self] in try await readerIntentMetadata($0) },
             navigate: { [self] in try await openReaderIntent($0) })

@@ -247,7 +247,10 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
                 [offset + 1 == path.count ? "book" : "category", title, "0"]
             }
             let identifier = "library-tree-path-" + (try JSONEncoder().encode(components)).base64EncodedString()
-            let matches = library.collectionViews.cells.matching(identifier: identifier)
+            // XCTest's identifier convenience API rejects strings above 128
+            // characters. Preserve the exact independently derived occurrence
+            // identity through its supported predicate API, with no truncation.
+            let matches = library.collectionViews.cells.matching(NSPredicate(format: "identifier == %@", identifier))
             XCTAssertLessThanOrEqual(matches.count, 1, "A complete catalog occurrence must be unique")
             return matches.firstMatch
         }

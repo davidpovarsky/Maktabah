@@ -250,7 +250,7 @@ def main():
         if report["mode"] == "probe":
             report["status"] = "ENVIRONMENT_PROBE_PASS_UI_NOT_RUN"
             return 0
-        if report["mode"] != "ui":
+        if report["mode"] not in {"ui", "release"}:
             raise RuntimeError("Unknown runtime mode")
         # Fail cheap on the exact owned native component before restoring/building
         # the full app. This is real SDK module compilation, never runtime acceptance.
@@ -337,12 +337,15 @@ def main():
         for test_run in (ROOT / "build/DerivedData/Build/Products").glob("*.xctestrun"):
             shutil.copyfile(test_run, OUT / test_run.name)
         report["built_binary_sha256"] = binaries
+        if report["mode"] == "release":
+            return runpy.run_path(str(ROOT / "Scripts/CI/runtime27-release.py"))["run"](
+                report, run_logged, controller)
         os.environ["FAITHFUL_RUNTIME27_MANIFEST"] = str(contract_path)
         os.environ["VALIDATING_BASELINE"] = "false"
         # The expanded matrix includes long bidirectional sidebar transition loops.
         # Increase only the whole-matrix budget; per-case assertions/timeouts stay intact.
         # Native app installer, exact disposable-device lifecycle, existing tests.
-        code = run_logged([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 9000, interrupt_controller=controller)
+        code = run_logged([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"], "native-matrix-driver.log", 12600, interrupt_controller=controller)
         collect_cases(report, contract)
         matrix_path = ROOT / "build/artifacts/faithful-ipad-matrix.json"
         if code and matrix_path.is_file():

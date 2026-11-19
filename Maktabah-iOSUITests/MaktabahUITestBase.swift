@@ -46,7 +46,32 @@ class MaktabahUITestBase: XCTestCase {
     }
 
     override func tearDownWithError() throws {
+        recordRuntime27Configuration(stage: "tearDown")
         app = nil
+    }
+
+    /// Evidence only: does not alter launch arguments, UI assertions or timeouts.
+    /// Locale is explicitly the launched app's argument, not an inferred rendering
+    /// result. Localization/RTL correctness remains a separate native assertion.
+    private func recordRuntime27Configuration(stage: String) {
+        guard ProcessInfo.processInfo.environment["RUNTIME27_RECORD_CONFIGURATION"] == "1",
+              let app else { return }
+        let arguments = app.launchArguments
+        guard let position = arguments.lastIndex(of: "-AppleLocale"),
+              arguments.indices.contains(position + 1) else { return }
+        let observation: [String: Any] = [
+            "test": name,
+            "stage": stage,
+            "bundle_id": "com.davidpovarsky.chavrusatext",
+            "locale": arguments[position + 1],
+            "locale_source": "XCUIApplication.launchArguments/-AppleLocale",
+            "orientation": XCUIDevice.shared.orientation.rawValue,
+            "orientation_source": "XCUIDevice.shared.orientation",
+            "foreground": app.state == .runningForeground
+        ]
+        guard let data = try? JSONSerialization.data(withJSONObject: observation, options: [.sortedKeys]),
+              let json = String(data: data, encoding: .utf8) else { return }
+        print("R27_RUNTIME_CONFIGURATION " + json)
     }
 
     @discardableResult
@@ -124,6 +149,7 @@ class MaktabahUITestBase: XCTestCase {
         }
         app.launch()
         self.app = app
+        recordRuntime27Configuration(stage: "launch")
         return app
     }
 

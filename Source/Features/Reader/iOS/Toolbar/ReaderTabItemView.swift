@@ -79,6 +79,7 @@ struct ReaderTabItemView: View {
                         .clipShape(Circle())
                 }
                 .accessibilityLabel(String(localized: "Close Tab"))
+                .accessibilityIdentifier("reader-close-document-tab-" + tab.id.uuidString)
                 .help(String(localized: "Close Tab"))
                 .buttonStyle(.plain)
             }
@@ -96,6 +97,7 @@ struct ReaderTabItemView: View {
                     )
             }
             .buttonStyle(.plain)
+            .accessibilityIdentifier("reader-document-tab-" + tab.id.uuidString)
         }
         .padding(.horizontal, 10)
         .padding(.vertical, isCompactHeight ? 3 : 6)

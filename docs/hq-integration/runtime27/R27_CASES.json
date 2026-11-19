@@ -951,7 +951,7 @@
     },
     "query_limits": "Source lexical candidate counts; never engine result counts/ranking/readiness. Runtime requires exact installed DB hash and actual native results.",
     "executor": "Current sole developer continuation; no subagents or resumed prior agents",
-    "native_status": "NOT_RUN_FOR_CURRENT_SOURCE; earlier Native65 run44383462276 remains separately in progress at immutable2d31ba09/appsource19b5cba4.",
+    "native_status": "NOT_RUN_FOR_CURRENT_SOURCE; prior run44383462276 completed with36PASS18FAIL11UNVERIFIED at2d31ba09/appsource19b5cba4.",
     "canonical_reader_source": {
       "sha": "73b3d1f9737b43e654d6a75eab6d37a6d7762aec",
       "scope": "Current selected iPad Reader public-v2 + canonical Core sink + original TextKit witness",
@@ -1021,7 +1021,8 @@
       "prior_run": 44207959071,
       "status": "SOURCE_IMPLEMENTED_NATIVE_PENDING",
       "exact_reader_oracle_resource": "Maktabah-iOSUITests/canonical-miniTest10-reader-lines.json",
-      "exact_reader_oracle_sha256": "9a623ea8805cc9a3c945c3ba05e48842a63b06805599ddc5e6ba18f599284b17"
+      "exact_reader_oracle_sha256": "51632762100689aa2da6a6d360a6434d4fa4caf5e57971f4ad8e327ab6e173dc",
+      "prior_exact_reader_oracle_sha256": "9a623ea8805cc9a3c945c3ba05e48842a63b06805599ddc5e6ba18f599284b17"
     },
     "sdk_followup": {
       "failed_run": 44319351865,
@@ -1097,6 +1098,49 @@
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
       ],
       "ownership_fence": "Original directory revision invalidated synchronously; actual method controls3PASS6FAIL→9PASS;24 original directory/Core-prepared regressionsPASS; Native pending"
+    },
+    "native65_failure_correction": {
+      "prior_run": 44383462276,
+      "prior_outcomes": {
+        "pass": 36,
+        "fail": 18,
+        "unverified": 11
+      },
+      "original_phase1_subset": {
+        "pass": 21,
+        "fail": 3,
+        "unverified": 3
+      },
+      "prior_source_review": "CONTINUATION_20261117_EVIDENCE/native65-2d31ba09/SOURCE_REVIEW.json",
+      "changes": [
+        "Preserve search/annotation backgrounds inside selected original TextKit segment",
+        "Dynamic label color for recent-search heading",
+        "Resolve existing background-window entity metadata; reauthorize every execution with fresh foreground scene",
+        "Exact independent SQL text for valid short Reader headings and bootstrap source; preserve locator/highlight/receipt oracles",
+        "Wait for exact later-page target before reading retained Reader",
+        "Exact full Sidebar AX identifier predicate",
+        "Stable original Reader tab button UUIDs",
+        "Create empty TOC test profile through real native controls; retain original groups/tabs",
+        "Avoid nested sidecar waiter when the exact UUID file already exists"
+      ],
+      "whole_matrix_budget_seconds": 12600,
+      "budget_reason": "Actual previous9000-second supervisor interrupted phone evidence. Extra budget applies only to the complete70-case matrix, not product acceptance latency.",
+      "text_fixture_database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+      "fixture_source_rows": [
+        1,
+        2,
+        2634912,
+        3120599,
+        3120608,
+        3121121
+      ],
+      "unresolved": [
+        "Original annotation-root URL was observed only after its case failed; retain failure and20-second visible-screen oracle until new native evidence."
+      ],
+      "current_native_ui_executed": 0,
+      "current_release_ready": false,
+      "existing_assertion_timeouts_relaxed": false,
+      "exact_target_waits": "Retain 30-second reader content acceptance; observe exact later-page locator within30 seconds and initial known bootstrap locator within the existing60-second initial reader budget."
     }
   },
   "application_source_sha": "04614e5096d78347a90961bf68abccd16394826e",

@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "observed_at": "2026-11-19T00:59:40.957573+00:00",
+  "checks": [
+    {
+      "name": "git-diff-check",
+      "exit_code": 0,
+      "log": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\native65-fixes-20261119\\precommit2\\git-diff-check.log"
+    },
+    {
+      "name": "app-package-membership",
+      "exit_code": 0,
+      "log": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\native65-fixes-20261119\\precommit2\\app-package-membership.log"
+    },
+    {
+      "name": "release-gate-tests",
+      "exit_code": 0,
+      "log": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\native65-fixes-20261119\\precommit2\\release-gate-tests.log"
+    },
+    {
+      "name": "release-producer-tests",
+      "exit_code": 0,
+      "log": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\native65-fixes-20261119\\precommit2\\release-producer-tests.log"
+    },
+    {
+      "name": "swift-parser",
+      "exit_code": 0,
+      "log": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\native65-fixes-20261119\\precommit2\\swift-parser.log"
+    }
+  ],
+  "python_parsed": 8,
+  "yaml_syntax_and_mode_gates": "PASS",
+  "workflow_permissions": "UNCHANGED_FROM_HEAD_READ_ONLY",
+  "native_selected_declarations": 70,
+  "original_phase1_retained": 27,
+  "release_ui_executions_declared": 94,
+  "swift_parser_files": 12,
+  "native_ui_executed": 0,
+  "apple_sdk_compile": "NOT_RUN_FOR_DIRTY_SOURCE",
+  "scope": "Local syntax/membership and synthetic release-evidence contract tests only"
+}

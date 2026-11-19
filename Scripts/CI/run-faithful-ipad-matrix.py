@@ -61,6 +61,19 @@ def main():
         device_types = sim_json("list", "devicetypes")["devicetypes"]
         baseline = os.environ.get("VALIDATING_BASELINE") == "true"
         diagnostic_cases = [item.strip() for item in os.environ.get("FAITHFUL_DIAGNOSTIC_CASES", "").split(",") if item.strip()]
+        release_manifest = None
+        release_configurations = {}
+        if os.environ.get("FAITHFUL_RUNTIME27_RELEASE_MANIFEST"):
+            if baseline or diagnostic_cases or os.environ.get("FAITHFUL_RUNTIME27_MANIFEST"):
+                raise SystemExit("Full release configurations cannot mix with baseline or scoped diagnostics")
+            expected_manifest = root / "Scripts/CI/runtime27-release-manifest.json"
+            if Path(os.environ["FAITHFUL_RUNTIME27_RELEASE_MANIFEST"]).resolve() != expected_manifest.resolve():
+                raise SystemExit("Unexpected release manifest path")
+            release_manifest = runpy.run_path("Scripts/CI/runtime27-release.py")["load_manifest"](root)
+            release_configurations = {
+                row["device_size"]: row for row in release_manifest["configurations"]
+                if row["data_profile"] == "miniTest10" and "content_size" not in row
+            }
         runtime27_contract = None
         runtime27_groups = None
         if os.environ.get("FAITHFUL_RUNTIME27_MANIFEST"):
@@ -81,7 +94,8 @@ def main():
                   "fullMatrixAcceptance": not bool(diagnostic_cases), "diagnosticCases": diagnostic_cases,
                   "simulatorSDKVersion": sdk_version,
                   "runtimePreference": "explicit-SDK-matched-pair" if selected_runtime else "matching-installed-SDK-then-newest-available-27.x",
-                  "selectedRuntimeIdentifier": selected_runtime}
+                  "selectedRuntimeIdentifier": selected_runtime,
+                  "releaseManifestSHA256": hashlib.sha256((root / "Scripts/CI/runtime27-release-manifest.json").read_bytes()).hexdigest() if release_manifest else None}
 
         def write_matrix_report():
             if report is not None:
@@ -365,12 +379,15 @@ def main():
                                  if case.startswith(phone_case_prefix) == (size == "phone")]
                 if runtime27_groups:
                     selection = scenario["case_ids"]
+                if release_manifest:
+                    required = release_configurations[size]
+                    selection = required["required_ui_cases"] + required.get("required_oracle_cases", [])
                 result = artifacts / f"result-{label}.xcresult"
                 command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
                            "-parallel-testing-enabled", "NO",
                            "-destination", f"platform=iOS Simulator,id={udid}", "-derivedDataPath", "build/DerivedData",
                            "-resultBundlePath", str(result)]
-                if runtime27_contract:
+                if runtime27_contract or release_manifest:
                     # A stalled AX query consumed68 minutes in run44207959071.
                     # Native XCTest must fail and retain that case, then permit
                     # later required cases to execute; never retry to obtainPASS.
@@ -379,6 +396,8 @@ def main():
                                     "-maximum-test-execution-time-allowance", "600"])
                 command.extend(f"-only-testing:Maktabah-iOSUITests/{suite}" for suite in selection)
                 environment = os.environ.copy()
+                if release_manifest:
+                    environment["TEST_RUNNER_RUNTIME27_RECORD_CONFIGURATION"] = "1"
                 container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
                 environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
                 if any(case.startswith("GlobalSearchNativeAcceptanceTests/testZayit") for case in selection):
@@ -394,7 +413,7 @@ def main():
                     hid_comparison = runpy.run_path("Scripts/CI/runtime27-hid.py")["HIDComparison"](
                         udid, container, label, tools, artifacts / "runtime27")
                     environment.update(hid_comparison.start())
-                if runtime27_contract:
+                if runtime27_contract or release_manifest:
                     environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](
                         udid, label,
                         include_sidebar=any(case.startswith("Sidebar11201AcceptanceTests/") for case in selection),
@@ -498,7 +517,9 @@ def main():
                         large_result = artifacts / "result-13-large-text.xcresult"
                         large_command = [value for value in command if not value.startswith("-only-testing:")]
                         large_command[large_command.index("-resultBundlePath") + 1] = str(large_result)
-                        large_command.append("-only-testing:Maktabah-iOSUITests/FaithfulReaderLargeTextTests")
+                        large_selection = (next(row for row in release_manifest["configurations"] if row["id"] == "ipad13-largest-text")["required_ui_cases"]
+                                           if release_manifest else ["FaithfulReaderLargeTextTests"])
+                        large_command.extend("-only-testing:Maktabah-iOSUITests/" + case for case in large_selection)
                         environment["TEST_RUNNER_FAITHFUL_BASELINE"] = str(baseline).lower()
                         log_path = artifacts / "test-simulator-13-large-text.log"
                         phase("RUNNING_LARGEST_TEXT_XCTEST", ordinarySuitesStatus=device["status"])
@@ -508,11 +529,22 @@ def main():
                         device["largeText"]["executedXCTestCount"] = max(counts, default=0)
                         verification = subprocess.run([sys.executable, "Scripts/CI/verify-faithful-xctest.py",
                                                        "--log", str(log_path), "--out", str(artifacts / "test-case-execution-13-large-text.json"),
-                                                       "FaithfulReaderLargeTextTests"])
+                                                       *large_selection])
+                        if release_manifest:
+                            strict_large = [sys.executable, "tools/verify_xcresult_zero_skips.py",
+                                            "--xcresult", str(large_result), "--log", str(log_path),
+                                            "--scope", "focused-ui", "--expected-device", udid,
+                                            "--expected-os-major", "27", "--min-tests", str(len(large_selection)),
+                                            "--out", str(artifacts / "runtime27/verified-13-large-text.json")]
+                            for identity in large_selection:
+                                strict_large.extend(["--required-case", identity])
+                            large_verified = subprocess.run(strict_large).returncode == 0
+                        else:
+                            large_verified = True
                         if large_result.is_dir():
                             subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(large_result),
                                             "--output-path", str(artifacts / "visual-13-large-text")], check=True)
-                        if large_proc.returncode or not counts or verification.returncode:
+                        if large_proc.returncode or not counts or verification.returncode or not large_verified:
                             device["largeText"]["status"] = "FAIL"
                             raise SystemExit("Largest-text real UI acceptance failed or did not execute")
                         device["largeText"]["status"] = "EXECUTED_PASS"

@@ -98,3 +98,26 @@ enum ReaderSearchContextCoordinator: Sendable {
         searchMode = nil
     }
 }
+
+
+/// A transient segment selection may fill uncolored text, but must retain
+/// the original renderer's search and persistent annotation backgrounds.
+enum ReaderSelectionBackground {
+    static func apply(
+        to attributedString: NSMutableAttributedString,
+        range: NSRange,
+        attribute: NSAttributedString.Key,
+        color: Any
+    ) {
+        guard range.location >= 0, range.length > 0,
+              range.location <= attributedString.length,
+              range.length <= attributedString.length - range.location else { return }
+        var uncolored: [NSRange] = []
+        attributedString.enumerateAttribute(attribute, in: range, options: []) { value, part, _ in
+            if value == nil { uncolored.append(part) }
+        }
+        for part in uncolored {
+            attributedString.addAttribute(attribute, value: color, range: part)
+        }
+    }
+}

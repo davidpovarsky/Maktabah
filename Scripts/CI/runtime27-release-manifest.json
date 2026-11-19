@@ -146,13 +146,22 @@
   "scope_note": "Preserves every declared case in the existing full native faithful matrix and production Release, plus Q real-bootstrap9. Separate prototype oracle cases never inflate Maktabah UI counts. Initial9ispartial; physical iPad remains separate.",
   "prepared_source_requirements": [
     {
-      "path": "Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift",
-      "sha256": "1fe3f1f5f0f2d949914524da7695fdae201c0594a24149f2f80dbd6ba00e6706",
+      "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "sha256": "3fa01d7595ea9849701658e36e098065f465d6411ce651823f874debadc78223",
       "required_cases": [
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
       ],
-      "state": "PREPARED_NOT_RUN; needs Q-selected target registration and independently derived fixture category paths before execution"
+      "state": "REGISTERED_ACTUAL_UITEST_TARGET; current source and independent fixture oracle required; execution still pending",
+      "historical_prepared_reference": {
+        "path": "Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift",
+        "sha256": "1fe3f1f5f0f2d949914524da7695fdae201c0594a24149f2f80dbd6ba00e6706",
+        "required_cases": [
+          "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+          "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
+        ],
+        "state": "PREPARED_NOT_RUN; needs Q-selected target registration and independently derived fixture category paths before execution"
+      }
     }
   ]
 }

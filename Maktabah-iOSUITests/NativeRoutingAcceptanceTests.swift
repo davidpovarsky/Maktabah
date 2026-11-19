@@ -433,10 +433,12 @@ extension NativeRoutingAcceptanceTests {
             language: "en", locale: "en_US")
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         dismissAlertsIfNeeded()
-        assertReaderHasText()
         let work = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"])
         let title = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
-        XCTAssertTrue(app.staticTexts["reader-current-locator"].label.hasPrefix("otzaria|" + work + "|"))
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        try requireReaderLocator("otzaria|\(work)|line:\(initial.lineIndex)", timeout: 60)
         XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(title))
         return work
     }
@@ -516,8 +518,8 @@ extension NativeRoutingAcceptanceTests {
             let before = try readerReceiptLines()
             try openInExistingProcess(readerURL(bookID: bookID, lineIndex: target[2]))
             XCTAssertFalse(app.alerts["Unable to open link"].exists)
-            assertReaderHasText()
             let expected = "otzaria|book:\(bookID)|line:\(target[2])"
+            try requireReaderLocator(expected)
             XCTAssertEqual(app.staticTexts["reader-current-locator"].label, expected)
             let rendered = try XCTUnwrap(getRenderedHighlightSnapshot(), "Actual original TextKit diagnostic required")
             XCTAssertEqual(rendered.locator, expected)
@@ -542,7 +544,7 @@ extension NativeRoutingAcceptanceTests {
         XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 15))
         XCTAssertEqual(try readerReceiptLines(), before, "Unsupported cross-book binding must never produce an ACK")
         app.alerts["Unable to open link"].buttons.firstMatch.tap()
-        assertReaderHasText()
+        try requireReaderLocator(locator)
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
         XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, rendered.locator)
         capture("native-core-reader-cross-book-refusal")
@@ -573,13 +575,25 @@ extension NativeRoutingAcceptanceTests {
     private func actualReaderWorkspace() throws -> ReaderWorkspaceSnapshot {
         try JSONDecoder().decode(ReaderWorkspaceSnapshot.self, from: Data(contentsOf: workspaceSidecarURL()))
     }
-    @MainActor private func requireReaderLocator(_ expected: String) throws {
+    @MainActor private func requireReaderLocator(_ expected: String, timeout: TimeInterval = 15) throws {
+        let fields = expected.components(separatedBy: "|")
+        XCTAssertEqual(fields.count, 3)
+        guard fields.count == 3 else { XCTFail("Require an independent canonical source locator"); return }
+        XCTAssertEqual(fields[0], "otzaria")
+        XCTAssertTrue(fields[1].hasPrefix("book:")); XCTAssertTrue(fields[2].hasPrefix("line:"))
+        let bookID = try XCTUnwrap(Int(fields[1].dropFirst("book:".count)))
+        let lineIndex = try XCTUnwrap(Int(fields[2].dropFirst("line:".count)))
+        let oracle = try systemReaderOracleDocument()
+        let rows = oracle.rows.filter { $0.bookId == bookID && $0.lineIndex == lineIndex }
+        XCTAssertEqual(rows.count, 1, "Exact source text must come from the sealed original SQL fixture")
+        let source = try XCTUnwrap(rows.first)
         let observation = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            self.app.staticTexts["reader-current-locator"].label == expected
+            let locator = self.app.staticTexts["reader-current-locator"]
+            return locator.exists && locator.label == expected
                 && self.getRenderedHighlightSnapshot()?.locator == expected
         }, object: nil)
-        XCTAssertEqual(XCTWaiter.wait(for: [observation], timeout: 15), .completed)
-        assertReaderHasText()
+        XCTAssertEqual(XCTWaiter.wait(for: [observation], timeout: timeout), .completed)
+        assertReaderHasText(expectedSourceText: source.plainText)
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, expected)
         XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, expected)
     }
@@ -1038,7 +1052,42 @@ extension NativeRoutingAcceptanceTests {
         XCTAssertTrue(isPad)
         configure("otzaria"); app.launch()
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        // A fresh sidecar namespace must not erase the original restored tabs.
+        // Establish the empty-reader precondition through the real profile UI.
+        let originalWorkspace = try actualReaderWorkspace()
+        let emptyProfile = "בדיקת תוכן ללא ספר"
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["ניהול פרופילי לימוד"])
+        tap(app.buttons["פרופיל לימוד חדש"])
+        let name = app.textFields["שם הפרופיל"]
+        tap(name); name.typeText(emptyProfile)
+        tap(app.buttons["שמירה"])
+        XCTAssertTrue(app.staticTexts[emptyProfile].waitForExistence(timeout: 10))
+        tap(app.buttons["סיום"])
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons[emptyProfile])
+        let emptyReader = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard !self.app.staticTexts["reader-current-locator"].exists,
+                  let snapshot = try? self.actualReaderWorkspace(),
+                  let sceneID = snapshot.lastActiveSceneID,
+                  let scene = snapshot.scenes[sceneID],
+                  let group = snapshot.groups.first(where: { $0.id == scene.groupID && $0.profileID == scene.profileID })
+            else { return false }
+            return group.tabs.isEmpty && group.activeTabID == nil
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [emptyReader], timeout: 15), .completed)
         XCTAssertFalse(app.staticTexts["reader-current-locator"].exists)
+        let preservedWorkspace = try actualReaderWorkspace()
+        for original in originalWorkspace.groups {
+            let preserved = try XCTUnwrap(preservedWorkspace.groups.first { $0.id == original.id })
+            XCTAssertEqual(preserved.profileID, original.profileID)
+            XCTAssertEqual(Set(preserved.tabs.map(\.session.id)), Set(original.tabs.map(\.session.id)))
+            for tab in original.tabs {
+                let kept = try XCTUnwrap(preserved.tabs.first { $0.session.id == tab.session.id })
+                XCTAssertEqual(kept.backend, tab.backend); XCTAssertEqual(kept.session.bookId, tab.session.bookId)
+            }
+        }
+        try attachWorkspaceSnapshot("native-toc-empty-profile-original-tabs-preserved")
         let before = try actualNativeReceiptLines()
         try openInExistingProcess(publicSidebarRootURL("native.reader.toc"))
         let alert = app.alerts["Unable to open link"]
@@ -1082,22 +1131,30 @@ extension NativeRoutingAcceptanceTests {
             let plainText: String; let plainSHA256: String
         }
         let profileID: String; let profileVersion: Int; let databaseSHA256: String
+        let bootstrapRowID: Int
         let rows: [Row]
     }
-    private func systemReaderOracle(lineID: Int) throws -> SystemReaderOracle.Row {
+    private func systemReaderOracleDocument() throws -> SystemReaderOracle {
         let url = try XCTUnwrap(Bundle(for: NativeRoutingAcceptanceTests.self)
             .url(forResource: "canonical-miniTest10-reader-lines", withExtension: "json"))
         let data = try Data(contentsOf: url)
         let digest = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
-        XCTAssertEqual(digest, "9a623ea8805cc9a3c945c3ba05e48842a63b06805599ddc5e6ba18f599284b17")
+        XCTAssertEqual(digest, "51632762100689aa2da6a6d360a6434d4fa4caf5e57971f4ad8e327ab6e173dc")
         let original = try JSONDecoder().decode(SystemReaderOracle.self, from: data)
         XCTAssertEqual(original.profileID, "miniTest10"); XCTAssertEqual(original.profileVersion, 6)
         XCTAssertEqual(original.databaseSHA256, "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef")
-        let row = try XCTUnwrap(original.rows.first { $0.id == lineID })
-        XCTAssertEqual(SHA256.hash(data: Data(row.plainText.utf8)).map { String(format: "%02x", $0) }.joined(), row.plainSHA256)
-        let evidence = XCTAttachment(string: "Installed original SQL oracle: \(url.absoluteString)\nSHA256: \(digest)\nSource row: \(row.id), book: \(row.bookId), line: \(row.lineIndex)")
-        evidence.name = "system-book-intent-independent-source"; evidence.lifetime = .keepAlways; add(evidence)
-        return row
+        XCTAssertEqual(Set(original.rows.map(\.id)).count, original.rows.count)
+        XCTAssertTrue(original.rows.contains { $0.id == original.bootstrapRowID })
+        for row in original.rows {
+            XCTAssertFalse(row.plainText.isEmpty)
+            XCTAssertEqual(SHA256.hash(data: Data(row.plainText.utf8)).map { String(format: "%02x", $0) }.joined(), row.plainSHA256)
+        }
+        let evidence = XCTAttachment(string: "Installed original SQL oracle: \(url.absoluteString)\nSHA256: \(digest)\nBootstrap row: \(original.bootstrapRowID)\nSealed source rows: \(original.rows.map(\.id))")
+        evidence.name = "native-reader-independent-text-source"; evidence.lifetime = .keepAlways; add(evidence)
+        return original
+    }
+    private func systemReaderOracle(lineID: Int) throws -> SystemReaderOracle.Row {
+        try XCTUnwrap(systemReaderOracleDocument().rows.first { $0.id == lineID })
     }
     private func systemEntityIdentifier(_ fields: [String: Any], kind: String) throws -> String {
         let data = try JSONSerialization.data(withJSONObject: fields, options: [.sortedKeys])

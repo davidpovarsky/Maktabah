@@ -1,0 +1,53 @@
+{
+  "status": "SOURCE_REVIEWED_APPLE_NATIVE_PENDING",
+  "observed_at": "2026-11-19T00:57:34.232706+00:00",
+  "upstream_provenance_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "continuation_parent_sha": "987bc0cecda8de70757e200e76346f5f0a18e8ba",
+  "exact_diff_sha256": "30006712bcbbbe1ded4134be476e3776793d5d47f30f4f6a324b38094f5480bf",
+  "files": {
+    "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift": {
+      "before_sha256": "bc0c80da6b2e22a1dd7a6f5ebcd67e72c2b2134b2d8811d3ff4f74f172410f17",
+      "after_sha256": "cb5d97e1f0a468c09485756507e6ac3701886495a695ace33eb14f275ed2a373"
+    },
+    "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift": {
+      "before_sha256": "2900fce9b1aeefa0fa23a7c978b4acee022defb3c6ae3a7fe483d91556231060",
+      "after_sha256": "a7fc8152be9717118daf5d48ec9694a0c692c33507c3bcca28954e1b3999ca1a"
+    }
+  },
+  "necessity": {
+    "selection": "Native65 three search-open cases render the correct source but report zero search backgrounds: the original selected-segment whole-range blue fill overwrote search and annotation colors. Downstream helper fills only uncolored ranges.",
+    "tab_identity": "The real iPad original ReaderTabItemView has no distinct AX identity for same-title tabs. Add UUID identifiers to existing select/close buttons only; retain native action/layout/title."
+  },
+  "alternatives_rejected": [
+    "Do not suppress search-highlight assertions or recolor after selection and overwrite annotation metadata",
+    "Do not add a duplicate renderer/tab control, choose a same-title tab ambiguously, or mutate the model from a UI test"
+  ],
+  "authorization": {
+    "source": "Current user all-three-phase instruction and explicit latest continuation authorization in this conversation",
+    "scope": "All necessary fixes, ordinary continuation push and existing CI; phase-wide permission, not claimed unseen exact-diff owner review",
+    "quote": "שים לב! אני נותן לך אישור מפורש ורשמי לבצע את כל התיקונים והשינויים וההרצות וההעברות וההעלאות בכל הפרויקטים ובכל המאגרים, בלי שום הגבלות, ובלי צורך לבקש ממני אישור! יאללה המשך"
+  },
+  "verification": {
+    "selection_original": {
+      "pass": 1,
+      "fail": 5
+    },
+    "selection_fixed": {
+      "pass": 6,
+      "fail": 0
+    },
+    "selection_scope": "Compiled original/fixed Foundation attributed-string behavior on six real ranges; no UIKit/TextKit UI execution",
+    "intent_service_tests": {
+      "pass": 11,
+      "fail": 0,
+      "native_ui": 0
+    },
+    "current_apple_compile": "PENDING",
+    "current_native_ui": "NOT_RUN"
+  },
+  "rollback": "Revert only this exact original Reader diff and the downstream selection helper; preserve all original/user datasets and old worktrees. Revert test/provenance batch separately if reverting the candidate.",
+  "reviewer": "Sole current developer; no independent reviewer or resumed old agent",
+  "re_review": "Inspect these exact hunks at the next original upstream sync",
+  "data_mutation": false,
+  "distribution": "NOT_READY"
+}

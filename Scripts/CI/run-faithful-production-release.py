@@ -6,6 +6,9 @@ copied or fabricated. Only a simulator created by this script is removed.
 """
 import json
 import os
+import hashlib
+import plistlib
+import runpy
 from pathlib import Path
 import re
 import subprocess
@@ -17,6 +20,9 @@ artifacts = root / "build/artifacts"
 artifacts.mkdir(parents=True, exist_ok=True)
 report = {"appSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
           "configuration": "Release", "dataProfile": "production", "status": "NOT_RUN"}
+release_manifest = None
+if os.environ.get("FAITHFUL_RUNTIME27_RELEASE_MANIFEST"):
+    release_manifest = runpy.run_path("Scripts/CI/runtime27-release.py")["load_manifest"](root)
 (artifacts / "production-release-acceptance.json").write_text(json.dumps(report, indent=2))
 matrix = json.loads((artifacts / "faithful-ipad-matrix.json").read_text())
 devices = {value["size"]: value for value in matrix.get("devices", [])}
@@ -24,7 +30,9 @@ if (matrix.get("appSHA") != report["appSHA"] or matrix.get("baseline")
         or matrix.get("fullMatrixAcceptance") is not True
         or set(devices) != {"11", "13", "phone"}
         or any(value.get("status") != "EXECUTED_PASS" for value in devices.values())
-        or devices["13"].get("largeText", {}).get("status") != "EXECUTED_PASS"):
+        or devices["13"].get("largeText", {}).get("status") != "EXECUTED_PASS"
+        or (release_manifest and matrix.get("releaseManifestSHA256") !=
+            hashlib.sha256((root / "Scripts/CI/runtime27-release-manifest.json").read_bytes()).hexdigest())):
     raise SystemExit("Release requires the successful full native matrix on this exact app SHA; diagnostics cannot satisfy it")
 def run(command, **kwargs):
     return subprocess.run(command, check=True, **kwargs)
@@ -36,7 +44,7 @@ def sim_json(*args):
 run(["xcodebuild", "build-for-testing", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
      "-configuration", "Release", "-sdk", "iphonesimulator", "-destination", "generic/platform=iOS Simulator",
      "-derivedDataPath", "build/ReleaseDerivedData", "-clonedSourcePackagesDirPath", "build/SourcePackages",
-     "-disableAutomaticPackageResolution", "-jobs", "8", "CODE_SIGN_IDENTITY=-", "CODE_SIGNING_REQUIRED=YES",
+     "-disableAutomaticPackageResolution", "-onlyUsePackageVersionsFromResolvedFile", "-jobs", "8", "CODE_SIGN_IDENTITY=-", "CODE_SIGNING_REQUIRED=YES",
      "CODE_SIGNING_ALLOWED=YES", "COMPILER_INDEX_STORE_ENABLE=NO", "ONLY_ACTIVE_ARCH=YES", "ARCHS=arm64",
      "ENABLE_USER_SCRIPT_SANDBOXING=NO", "RCT_NO_LAUNCH_PACKAGER=1", "SKIP_BUNDLING=1", "FAIL_ON_MISSING_BUNDLE=1",
      "OTZARIA_DEFAULT_DATA_PROFILE=production"])
@@ -45,11 +53,26 @@ release_app = products / "Maktabah.app"
 run(["bash", "Scripts/copy-sefaria-bundle-resources.sh", str(release_app)])
 run(["codesign", "--force", "--deep", "--sign", "-", str(release_app)])
 run(["codesign", "--force", "--deep", "--sign", "-", str(products / "Maktabah-iOSUITests-Runner.app")])
+report["built_binary_sha256"] = {}
+for bundle in [release_app, products / "Maktabah-iOSUITests-Runner.app",
+               products / "Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest"]:
+    info = plistlib.loads((bundle / "Info.plist").read_bytes())
+    with (bundle / info["CFBundleExecutable"]).open("rb") as source:
+        report["built_binary_sha256"][str(bundle.relative_to(root))] = hashlib.file_digest(source, "sha256").hexdigest()
 
 runtimes = [value for value in sim_json("list", "runtimes", "available")["runtimes"]
             if value.get("isAvailable") and value["version"].split(".")[0] == "27"
             and ".iOS-" in value["identifier"]]
-runtimes.sort(key=lambda value: tuple(map(int, value["version"].split("."))), reverse=True)
+sdk_version = subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"], text=True, timeout=60).strip()
+selected_runtime = os.environ.get("FAITHFUL_RUNTIME27_IDENTIFIER")
+if selected_runtime:
+    runtimes = [value for value in runtimes if value["identifier"] == selected_runtime
+                and value["version"].split(".")[:2] == sdk_version.split(".")[:2]]
+    if not runtimes:
+        raise SystemExit("Production Release requires the same explicitly SDK-matched runtime")
+runtimes.sort(key=lambda value: (value["version"].split(".")[:2] == sdk_version.split(".")[:2],
+                               tuple(map(int, value["version"].split(".")))), reverse=True)
+report["simulatorSDKVersion"] = sdk_version
 types = [value for value in sim_json("list", "devicetypes")["devicetypes"] if "iPad Pro" in value["name"] and "13-inch" in value["name"]]
 types.sort(key=lambda value: ("16GB" in value["identifier"], value["identifier"]))
 udid = None
@@ -85,6 +108,8 @@ try:
     run(["xcrun", "simctl", "install", udid, str(release_app)], timeout=600)
     container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True).strip()
     environment = os.environ.copy()
+    if release_manifest:
+        environment["TEST_RUNNER_RUNTIME27_RECORD_CONFIGURATION"] = "1"
     # Read-only test observation of the ordinary production sidecar. This is
     # runner environment, not an app feature override or a testing namespace.
     environment["TEST_RUNNER_FAITHFUL_PRODUCTION_WORKSPACE_FILE"] = str(Path(container) / "Library/Application Support/ChavrusaText/StudyWorkspace/workspace-v1.json")
@@ -92,7 +117,10 @@ try:
     command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
                "-parallel-testing-enabled", "NO",
                "-configuration", "Release", "-derivedDataPath", "build/ReleaseDerivedData", "-destination", f"platform=iOS Simulator,id={udid}",
-               "-resultBundlePath", str(result_path), "-only-testing:Maktabah-iOSUITests/FaithfulProductionReleaseTests"]
+               "-resultBundlePath", str(result_path)]
+    selection = (next(row for row in release_manifest["configurations"] if row["id"] == "ipad13-production-release")["required_ui_cases"]
+                 if release_manifest else ["FaithfulProductionReleaseTests"])
+    command.extend("-only-testing:Maktabah-iOSUITests/" + case for case in selection)
     with (artifacts / "production-release-tests.log").open("w") as log:
         process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
         for line in process.stdout:
@@ -102,12 +130,21 @@ try:
     text = (artifacts / "production-release-tests.log").read_text()
     verification = subprocess.run([sys.executable, "Scripts/CI/verify-faithful-xctest.py",
                                    "--log", str(artifacts / "production-release-tests.log"),
-                                   "--out", str(artifacts / "test-case-execution-production-release.json"), "FaithfulProductionReleaseTests"])
+                                   "--out", str(artifacts / "test-case-execution-production-release.json"), *selection])
+    strict_passed = True
+    if release_manifest:
+        strict = [sys.executable, "tools/verify_xcresult_zero_skips.py", "--xcresult", str(result_path),
+                  "--log", str(artifacts / "production-release-tests.log"), "--scope", "focused-ui",
+                  "--expected-device", udid, "--expected-os-major", "27", "--min-tests", str(len(selection)),
+                  "--out", str(artifacts / "runtime27/verified-production-release.json")]
+        for identity in selection:
+            strict.extend(["--required-case", identity])
+        strict_passed = subprocess.run(strict).returncode == 0
     report["executedXCTestCount"] = max([int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", text)], default=0)
     if result_path.is_dir():
         run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result_path), "--output-path", str(artifacts / "visual-production-release")])
     suite_passed = re.search(r"Test Suite '(?:[^']*\.)?FaithfulProductionReleaseTests' passed", text) is not None
-    if code or report["executedXCTestCount"] == 0 or not suite_passed or verification.returncode:
+    if code or report["executedXCTestCount"] == 0 or not suite_passed or verification.returncode or not strict_passed:
         raise SystemExit("The actual full-corpus Release UI acceptance failed or did not execute")
     report["status"] = "EXECUTED_PASS"
 except BaseException as error:
