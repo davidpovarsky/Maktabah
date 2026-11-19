@@ -165,8 +165,16 @@ class SQLiteDatabase: @unchecked Sendable {
 
     @discardableResult
     func fetch<T>(query: String, parameters: [Any] = [], mapping: (SQLiteRow) throws -> T) throws -> [T] {
-        lock.lock()
+        // Keep statement/decoder serialization, but allow a cancelled read to
+        // leave the queue while an unrelated fetch still owns this same lock.
+        try Task.checkCancellation()
+        while !lock.lock(before: Date(timeIntervalSinceNow: 0.01)) {
+            try Task.checkCancellation()
+        }
         defer { lock.unlock() }
+        // Cancellation can win as acquisition succeeds; establish the unlock
+        // first and do not prepare or publish a statement in that case.
+        try Task.checkCancellation()
         return try _fetchNoLock(query: query, parameters: parameters, mapping: mapping)
     }
 

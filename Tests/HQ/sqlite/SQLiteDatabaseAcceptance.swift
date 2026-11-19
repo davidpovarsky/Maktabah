@@ -22,6 +22,84 @@ private final class FailureRecorder: @unchecked Sendable {
     func add(_ item: String) { lock.lock(); defer { lock.unlock() }; items.append(item) }
     var failures: [String] { lock.lock(); defer { lock.unlock() }; return items }
 }
+private final class CancellationControl: @unchecked Sendable {
+    private let lock = NSLock()
+    private var cancelAction: (@Sendable () -> Void)?
+    func install(_ action: @escaping @Sendable () -> Void) { lock.withLock { cancelAction = action } }
+    func cancel() { let action = lock.withLock { cancelAction }; action?() }
+}
+private func runAsyncCheck(_ action: @escaping @Sendable () async throws -> Void) throws {
+    let failures = FailureRecorder()
+    let finished = DispatchSemaphore(value: 0)
+    Task.detached {
+        do { try await action() } catch { failures.add(String(describing: error)) }
+        finished.signal()
+    }
+    try require(finished.wait(timeout: .now() + 15) == .success, "Owned cancellation check timed out")
+    try require(failures.failures.isEmpty, failures.failures.joined(separator: "; "))
+}
+private func expectCancelled(_ task: Task<[Int], Error>) async throws {
+    do { _ = try await task.value }
+    catch is CancellationError { return }
+    throw CheckFailure(message: "Cancelled fetch returned rows or the wrong error")
+}
+private func verifyFetchCleanup(_ db: SQLiteDatabase) throws {
+    // The worker has joined; inspect the actual lock from this main test thread
+    // to fail promptly on a leaked recursive acquisition, rather than hang.
+    let lock = Mirror(reflecting: db).children.first { $0.label == "lock" }?.value as! NSRecursiveLock
+    let available = lock.try()
+    if available { lock.unlock() }
+    try require(available, "Cancelled fetch leaked its recursive lock")
+    let rows = try db.fetch(query: "SELECT value FROM numbers ORDER BY value LIMIT 3") { $0.int(at: 0) }
+    try require(rows == [1, 2, 3], "Cancelled fetch poisoned/reset the subsequent statement incorrectly")
+}
+private func checkCancelledContender(_ db: SQLiteDatabase, releaseAtCancellation: Bool) async throws {
+    let ownerEntered = DispatchSemaphore(value: 0)
+    let ownerRelease = DispatchSemaphore(value: 0)
+    let waiterStarted = DispatchSemaphore(value: 0)
+    let waiterFinished = DispatchSemaphore(value: 0)
+    let mapped = FailureRecorder()
+    let holder = Task.detached {
+        try db.fetch(query: "SELECT value FROM numbers WHERE value = 7") { row in
+            ownerEntered.signal()
+            try require(ownerRelease.wait(timeout: .now() + 5) == .success, "Holder barrier timed out")
+            return row.int(at: 0)
+        }
+    }
+    guard ownerEntered.wait(timeout: .now() + 5) == .success else {
+        ownerRelease.signal(); _ = try? await holder.value
+        throw CheckFailure(message: "Actual SQLite holder did not start")
+    }
+    let waiter = Task.detached {
+        defer { waiterFinished.signal() }
+        waiterStarted.signal()
+        return try db.fetch(query: "SELECT value FROM numbers WHERE value = ?", parameters: [11]) { row in
+            mapped.add("row mapped after cancellation")
+            return row.int(at: 0)
+        }
+    }
+    guard waiterStarted.wait(timeout: .now() + 5) == .success else {
+        ownerRelease.signal(); _ = try? await holder.value; _ = try? await waiter.value
+        throw CheckFailure(message: "Contending task did not start")
+    }
+    try await Task.sleep(for: .milliseconds(5))
+    waiter.cancel()
+    let completedWhileHolderBlocked: Bool
+    if releaseAtCancellation {
+        // Cancel before releasing the actual owner. This repeatedly exercises
+        // cancellation winning when timed acquisition succeeds rather than times out.
+        ownerRelease.signal()
+        completedWhileHolderBlocked = true
+    } else {
+        completedWhileHolderBlocked = waiterFinished.wait(timeout: .now() + .milliseconds(250)) == .success
+        ownerRelease.signal()
+    }
+    let holderRows = try await holder.value
+    try require(holderRows == [7], "Cancelled contender changed the active holder")
+    try await expectCancelled(waiter)
+    try require(completedWhileHolderBlocked, "Cancelled contender waited for unrelated owner release")
+    try require(mapped.failures.isEmpty, "Cancelled contender prepared/mapped content after acquisition")
+}
 private struct Result: Codable { let name: String; let passed: Bool; let error: String? }
 private final class Harness {
     var results: [Result] = []
@@ -166,6 +244,58 @@ private let sourceSQL = """
                 } catch { errors.add(String(describing: error)) }
             }
             try require(errors.failures.isEmpty, errors.failures.joined(separator: "; "))
+        }
+        harness.check("recursive_fetch_acquisition_keeps_original_owner") {
+            let rows = try db.fetch(query: "SELECT value FROM numbers WHERE value <= 3 ORDER BY value") { row in
+                try db.fetch(query: "SELECT value FROM numbers WHERE value = ?", parameters: [row.int(at: 0)]) {
+                    $0.int(at: 0)
+                }.first ?? -1
+            }
+            try require(rows == [1, 2, 3], "Recursive fetch changed ownership or row identity")
+            try verifyFetchCleanup(db)
+        }
+        harness.check("pre_cancelled_fetch_does_not_map_or_leak_lock") {
+            try runAsyncCheck {
+                let start = DispatchSemaphore(value: 0)
+                let mapped = FailureRecorder()
+                let task = Task.detached {
+                    _ = start.wait(timeout: .now() + 5)
+                    return try db.fetch(query: "SELECT value FROM numbers WHERE value = 17") { row in
+                        mapped.add("mapped"); return row.int(at: 0)
+                    }
+                }
+                task.cancel(); start.signal()
+                try await expectCancelled(task)
+                try require(mapped.failures.isEmpty, "Pre-cancelled fetch reached row mapping")
+            }
+            try verifyFetchCleanup(db)
+        }
+        harness.check("cancelled_fetch_leaves_contended_lock_before_owner_release") {
+            try runAsyncCheck { try await checkCancelledContender(db, releaseAtCancellation: false) }
+            try verifyFetchCleanup(db)
+        }
+        harness.check("cancellation_wins_as_recursive_lock_becomes_available") {
+            try runAsyncCheck {
+                for _ in 0..<32 { try await checkCancelledContender(db, releaseAtCancellation: true) }
+            }
+            try verifyFetchCleanup(db)
+        }
+        harness.check("cancellation_after_acquisition_resets_statement_and_unlocks") {
+            try runAsyncCheck {
+                let start = DispatchSemaphore(value: 0)
+                let control = CancellationControl()
+                let task = Task.detached {
+                    _ = start.wait(timeout: .now() + 5)
+                    return try db.fetch(query: "SELECT value FROM numbers ORDER BY value") { row in
+                        control.cancel()
+                        try Task.checkCancellation()
+                        return row.int(at: 0)
+                    }
+                }
+                control.install { task.cancel() }; start.signal()
+                try await expectCancelled(task)
+            }
+            try verifyFetchCleanup(db)
         }
         let oracles = try JSONDecoder().decode([SourceOracle].self,
             from: Data(contentsOf: URL(fileURLWithPath: CommandLine.arguments[2])))

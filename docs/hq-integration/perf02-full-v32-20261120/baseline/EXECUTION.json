@@ -1,0 +1,24 @@
+{
+  "source_sha": "54ea8990f8ffb025815bf6b4dc158ed705e98326",
+  "started_at": "2026-11-19T23:22:28.754419+00:00",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "tools/hq-full-source-reader.py",
+    "--database",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\full-v32\\seforim.db",
+    "--artifacts-dir",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\attempt-2",
+    "--optimization",
+    "speed",
+    "--stress-only"
+  ],
+  "production_source_changes": 0,
+  "exit_code": 0,
+  "elapsed_seconds": 254.09399999998277,
+  "finished_at": "2026-11-19T23:26:42.846692+00:00",
+  "source_sha_after": "54ea8990f8ffb025815bf6b4dc158ed705e98326",
+  "worktree_status_after": "",
+  "result_status": "ACTUAL_FULL_V32_STRESS_PASS_NOT_UI",
+  "verified_cases": 121,
+  "verified_rows": 113608
+}

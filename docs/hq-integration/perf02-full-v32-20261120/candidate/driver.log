@@ -1,0 +1,7 @@
+PASS shared connection: 96 real Reader outputs with overlapping cache clears
+PASS four independent read-only connections and decoders: 24 real Reader outputs
+PASS source cache capacities, budgets, clear and in-flight generation publication fence
+PASS active cancellation and same-connection recovery after 381 actual rows
+PASS actual side-cache LRU/20MiB rejection and 100-entry prepared-statement eviction
+
+{"status": "ACTUAL_FULL_V32_STRESS_PASS_NOT_UI", "reader_cases": 121, "verified_source_rows": 113608, "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\fr32-3c5d719d4f7d"}

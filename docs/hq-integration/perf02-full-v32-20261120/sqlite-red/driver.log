@@ -1,0 +1,29 @@
+PASS successful_rows_and_genuine_zero
+PASS all_supported_binding_types_keep_values
+PASS step_error_before_first_row_is_not_empty_success
+PASS step_error_after_first_row_is_not_partial_success
+PASS same_cached_query_recovers_after_step_failure
+PASS actual_sqlite_interrupt_never_returns_partial_rows
+PASS cached_statement_recovers_after_interrupt
+PASS out_of_range_int_bind_cannot_succeed
+PASS out_of_range_int64_bind_cannot_succeed
+PASS out_of_range_double_bind_cannot_succeed
+PASS out_of_range_text_bind_cannot_succeed
+PASS out_of_range_null_bind_cannot_succeed
+PASS unsupported_bind_type_still_fails_without_poisoning_cache
+PASS mapping_error_is_preserved_and_statement_is_reset
+PASS cached_schema_change_error_is_not_empty_success
+PASS transaction_rolls_back_when_a_read_fails
+PASS actual_writer_lock_is_not_empty_success
+PASS read_under_writer_lock_recovers_after_rollback
+PASS readonly_connection_rejects_writes
+PASS serialized_concurrent_reads_preserve_entire_results
+PASS recursive_fetch_acquisition_keeps_original_owner
+FAIL pre_cancelled_fetch_does_not_map_or_leak_lock: CheckFailure(message: "CheckFailure(message: \"Cancelled fetch returned rows or the wrong error\")")
+FAIL cancelled_fetch_leaves_contended_lock_before_owner_release: CheckFailure(message: "CheckFailure(message: \"Cancelled fetch returned rows or the wrong error\")")
+FAIL cancellation_wins_as_recursive_lock_becomes_available: CheckFailure(message: "CheckFailure(message: \"Cancelled fetch returned rows or the wrong error\")")
+PASS cancellation_after_acquisition_resets_statement_and_unlocks
+PASS actual_readonly_source_0
+ACTUAL_SQLITE 26 cases; 3 failures; version 3.53.4
+
+{"status": "FAILED", "compile_exit": 0, "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\sqlite-red\\owned-fixture-69f37a3e-9c06-4745-b4e3-19144342abac", "source_files": {"Source/Core/Database/SQLiteDatabase.swift": "a600973b402956d946c727def2c1fe1ada011f623a2da9db19ddb26e3c6e5a1e", "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "f2f62c6f9fe76442560bdd2be08320d9e6db3edd79849a4451cead2c63382bab", "Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift": "3b0da8971245a8a0aad468391a8bc658a340ef91ea19ca0e11e211740cc9800a"}}

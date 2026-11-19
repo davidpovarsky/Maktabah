@@ -1,0 +1,45 @@
+{
+  "started_at": "2026-11-19T23:16:16.604309+00:00",
+  "source_sha": "7d05dd0bb25a7df307b35174e49e18d0f22eecee",
+  "disk_before": {
+    "total": 510615613440,
+    "used": 436221001728,
+    "free": 74394611712
+  },
+  "status": "VERIFIED_FULL_V32_FIXTURE_READY",
+  "installed_user_database_touched": false,
+  "pin": {
+    "repository": "Otzaria/SeforimLibrary",
+    "releaseTag": "v32-20261010190601",
+    "releaseID": 409213893,
+    "assetID": 629048655,
+    "assetName": "seforim-schema6.db.zst",
+    "assetBytes": 1850679582,
+    "assetSHA256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+    "databaseBytes": 3821240320,
+    "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
+  },
+  "official_release": {
+    "id": 409213893,
+    "tag": "v32-20261010190601",
+    "asset": {
+      "id": 629048655,
+      "name": "seforim-schema6.db.zst",
+      "size": 1850679582,
+      "digest": "sha256:6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+      "browser_download_url": "https://github.com/Otzaria/SeforimLibrary/releases/download/v32-20261010190601/seforim-schema6.db.zst"
+    }
+  },
+  "archive_sha256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+  "download_seconds": 65.35999999998603,
+  "database_bytes": 3821240320,
+  "database_sha256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "database": "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\full-v32\\seforim.db",
+  "python_deps": "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\python-deps",
+  "disk_after": {
+    "total": 510615613440,
+    "used": 442139398144,
+    "free": 68476215296
+  },
+  "finished_at": "2026-11-19T23:18:11.878187+00:00"
+}

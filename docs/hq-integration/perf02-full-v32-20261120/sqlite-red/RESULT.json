@@ -1,0 +1,153 @@
+{
+  "observed_at": "2026-11-19T23:34:15.694770+00:00",
+  "host": "Windows-11-10.0.26300-SP0",
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "source_sha": "b3ae11f7c04b6e0af0b55d192ed4a212f9bafeb0",
+  "source_files": {
+    "Source/Core/Database/SQLiteDatabase.swift": "a600973b402956d946c727def2c1fe1ada011f623a2da9db19ddb26e3c6e5a1e",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "f2f62c6f9fe76442560bdd2be08320d9e6db3edd79849a4451cead2c63382bab",
+    "Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift": "3b0da8971245a8a0aad468391a8bc658a340ef91ea19ca0e11e211740cc9800a"
+  },
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "-I",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\sqlite-red\\owned-fixture-69f37a3e-9c06-4745-b4e3-19144342abac",
+    "-L",
+    "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Core\\Database\\SQLiteDatabase.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Tests\\HQ\\sqlite\\UnusedZstdBoundary.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Tests\\HQ\\sqlite\\SQLiteDatabaseAcceptance.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\sqlite-red\\owned-fixture-69f37a3e-9c06-4745-b4e3-19144342abac\\sqlite-acceptance.exe"
+  ],
+  "compile_exit": 0,
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\sqlite-red\\owned-fixture-69f37a3e-9c06-4745-b4e3-19144342abac",
+  "real_source_readonly_count": 1,
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "sqlite_is_real": true,
+  "zstd_boundary_is_unexecuted": true,
+  "execute_exit": 1,
+  "actual_sqlite": {
+    "cases": [
+      {
+        "name": "successful_rows_and_genuine_zero",
+        "passed": true
+      },
+      {
+        "name": "all_supported_binding_types_keep_values",
+        "passed": true
+      },
+      {
+        "name": "step_error_before_first_row_is_not_empty_success",
+        "passed": true
+      },
+      {
+        "name": "step_error_after_first_row_is_not_partial_success",
+        "passed": true
+      },
+      {
+        "name": "same_cached_query_recovers_after_step_failure",
+        "passed": true
+      },
+      {
+        "name": "actual_sqlite_interrupt_never_returns_partial_rows",
+        "passed": true
+      },
+      {
+        "name": "cached_statement_recovers_after_interrupt",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_int_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_int64_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_double_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_text_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "out_of_range_null_bind_cannot_succeed",
+        "passed": true
+      },
+      {
+        "name": "unsupported_bind_type_still_fails_without_poisoning_cache",
+        "passed": true
+      },
+      {
+        "name": "mapping_error_is_preserved_and_statement_is_reset",
+        "passed": true
+      },
+      {
+        "name": "cached_schema_change_error_is_not_empty_success",
+        "passed": true
+      },
+      {
+        "name": "transaction_rolls_back_when_a_read_fails",
+        "passed": true
+      },
+      {
+        "name": "actual_writer_lock_is_not_empty_success",
+        "passed": true
+      },
+      {
+        "name": "read_under_writer_lock_recovers_after_rollback",
+        "passed": true
+      },
+      {
+        "name": "readonly_connection_rejects_writes",
+        "passed": true
+      },
+      {
+        "name": "serialized_concurrent_reads_preserve_entire_results",
+        "passed": true
+      },
+      {
+        "name": "recursive_fetch_acquisition_keeps_original_owner",
+        "passed": true
+      },
+      {
+        "error": "CheckFailure(message: \"CheckFailure(message: \\\"Cancelled fetch returned rows or the wrong error\\\")\")",
+        "name": "pre_cancelled_fetch_does_not_map_or_leak_lock",
+        "passed": false
+      },
+      {
+        "error": "CheckFailure(message: \"CheckFailure(message: \\\"Cancelled fetch returned rows or the wrong error\\\")\")",
+        "name": "cancelled_fetch_leaves_contended_lock_before_owner_release",
+        "passed": false
+      },
+      {
+        "error": "CheckFailure(message: \"CheckFailure(message: \\\"Cancelled fetch returned rows or the wrong error\\\")\")",
+        "name": "cancellation_wins_as_recursive_lock_becomes_available",
+        "passed": false
+      },
+      {
+        "name": "cancellation_after_acquisition_resets_statement_and_unlocks",
+        "passed": true
+      },
+      {
+        "name": "actual_readonly_source_0",
+        "passed": true
+      }
+    ],
+    "decompressorExecuted": false,
+    "nativeUIExecuted": 0,
+    "originalDatabaseWrapper": "Source/Core/Database/SQLiteDatabase.swift",
+    "physicalDeviceExecuted": 0,
+    "sqliteVersion": "3.53.4"
+  },
+  "status": "FAILED"
+}

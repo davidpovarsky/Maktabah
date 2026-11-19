@@ -1,0 +1,51 @@
+{
+  "source_sha": "54ea8990f8ffb025815bf6b4dc158ed705e98326",
+  "production_base": "7d05dd0bb25a7df307b35174e49e18d0f22eecee",
+  "production_diff": "",
+  "files": {
+    "Source/Core/Database/SQLiteDatabase.swift": {
+      "sha256": "a600973b402956d946c727def2c1fe1ada011f623a2da9db19ddb26e3c6e5a1e",
+      "git_blob": "e16d502e247bf22a5273412995e0a654c243edd7"
+    },
+    "Source/Otzaria/Core/OtzariaSQLiteConnection.swift": {
+      "sha256": "672c51d58cbd8b3a7aac6fdf1cdcb14148bf15bd66d7ec6d7c6195b08d58c641",
+      "git_blob": "81f5707dd0d93676cad97220b3a582b528cf8892"
+    },
+    "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift": {
+      "sha256": "f2216f5e7c59921ca2cba4496fffdf7500f3ca661fc8c41bf5a385608766c6a4",
+      "git_blob": "440b95a9b609efac3bc0ef5bdac63821783d4393"
+    },
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": {
+      "sha256": "b1340ed557f0f6a8259c200bc7048ba20dba589ff8f1323ab2b87a5bfc7d5109",
+      "git_blob": "202f5d48a9f5f5dbce68657f56a827e803bbf3aa"
+    },
+    "Source/Otzaria/Reading/OtzariaMaktabahBridge+LineAnchors.swift": {
+      "sha256": "5c38872ddf4f35e2d072be5a71d5517d7f54bbb86eb5d1be7e49cc7b21220ca8",
+      "git_blob": "e60563ae7540468a061f931a4cf207093e6680a5"
+    },
+    "Source/Otzaria/App/OtzariaAppContainer.swift": {
+      "sha256": "4e280f8817c1e881c9de925b50e41032e671a8a4b8c9f776605628711e6f1899",
+      "git_blob": "d993dab12cb007b24033faa8f3e83caca402b91f"
+    },
+    "Source/Features/Reader/Cache/BookPageCache.swift": {
+      "sha256": "e6294bce9c1ba64f3e264374ebfa06b4bf37159a46eda681fb0809536766a55c",
+      "git_blob": "85f4c9ef2518da49b60394ffdb0b14616f686d2a"
+    }
+  },
+  "actual_windows_sqlite": {
+    "version": "3.53.4",
+    "compile_threadsafe": 1
+  },
+  "independent_oracle": {
+    "python": "3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)]",
+    "sqlite_version": "3.45.3",
+    "python_zstandard": "0.23.0",
+    "zstd_version": [
+      1,
+      5,
+      6
+    ],
+    "backend_c.cp312-win_amd64.pyd_sha256": "641e0b0fa75764812fff544c174f7c4838b57f6272eaae246eb7c483a0a35afc",
+    "_cffi.cp312-win_amd64.pyd_sha256": "14db1d573f7ba8f41563bbc7cda6f1a46e5f86c1b7096d298593971a0b1c6c60"
+  }
+}

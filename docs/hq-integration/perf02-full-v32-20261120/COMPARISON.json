@@ -1,0 +1,37 @@
+{
+  "observed_at": "2026-11-19T23:40:57.113019+00:00",
+  "baseline_source_sha": "54ea8990f8ffb025815bf6b4dc158ed705e98326",
+  "candidate_source_sha": "92e7cd3e2bf57f8c2a290afa0aaac26e5f094241",
+  "changed_source_inputs": [
+    "Source/Core/Database/SQLiteDatabase.swift"
+  ],
+  "other_input_hashes_identical": true,
+  "driver_identical": true,
+  "input_catalog_identical": true,
+  "swift_optimization_native_zstd_identical": true,
+  "all_121_source_output_hashes_and_row_counts_identical": true,
+  "source_row_appearances": 113608,
+  "database_sha256_all_runs": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "baseline_queued_cancellation_ms": 4483.99999999674,
+  "candidate_queued_cancellation_ms": 16.00000000325963,
+  "baseline_harness_memory": {
+    "peak_working_set_bytes": 336572416,
+    "samples": 1441,
+    "elapsed_seconds": 39.17200000002049,
+    "includes_test_and_output_allocations": true,
+    "application_memory_claim": false
+  },
+  "candidate_harness_memory": {
+    "peak_working_set_bytes": 343764992,
+    "samples": 533,
+    "elapsed_seconds": 13.561999999976251,
+    "includes_test_and_output_allocations": true,
+    "application_memory_claim": false
+  },
+  "comparison_limits": [
+    "One instrumented Windows observation per source, not p50/p95 or a device SLA",
+    "OS/disk caches not flushed; do not attribute whole-run/compile timing differences to the source patch",
+    "Working set includes harness/output allocations, not application memory acceptance"
+  ],
+  "candidate_source_hashes_unchanged_after": true
+}

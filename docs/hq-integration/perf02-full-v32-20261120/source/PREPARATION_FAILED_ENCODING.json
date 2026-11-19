@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-11-19T23:13:03.918051+00:00",
+  "source_sha": "7d05dd0bb25a7df307b35174e49e18d0f22eecee",
+  "disk_before": {
+    "total": 510615613440,
+    "used": 435955884032,
+    "free": 74659729408
+  },
+  "status": "FAILED",
+  "installed_user_database_touched": false,
+  "error": "UnicodeDecodeError('charmap', b'{\\r\\n  \"profileID\": \"miniTest10\",\\r\\n  \"profileVersion\": 6,\\r\\n  \"source\": {\\r\\n    \"repository\": \"Otzaria/SeforimLibrary\",\\r\\n    \"releaseTag\": \"v32-20261010190601\",\\r\\n    \"releaseID\": 409213893,\\r\\n    \"assetID\": 629048655,\\r\\n    \"assetName\": \"seforim-schema6.db.zst\",\\r\\n    \"assetBytes\": 1850679582,\\r\\n    \"assetSHA256\": \"6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44\",\\r\\n    \"databaseBytes\": 3821240320,\\r\\n    \"databaseSHA256\": \"2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765\"\\r\\n  },\\r\\n  \"bookIDs\": [1, 28, 40, 103, 382, 3152, 3163, 3276, 3764, 3891],\\r\\n  \"goldenQueries\": [\\r\\n    \"\\xd7\\x91\\xd7\\xa8\\xd7\\x90\\xd7\\xa9\\xd7\\x99\\xd7\\xaa \\xd7\\x91\\xd7\\xa8\\xd7\\x90\",\\r\\n    \"\\xd7\\x9c\\xd7\\x97\\xd7\\xaa\\xd7\\x95\\xd7\\x9a \\xd7\\xa6\\xd7\\xa0\\xd7\\x95\\xd7\\x9f \\xd7\\x91\\xd7\\xa1\\xd7\\x9b\\xd7\\x99\\xd7\\x9f \\xd7\\x91\\xd7\\xa9\\xd7\\xa8\\xd7\\x99\",\\r\\n    \"\\xd7\\x9e\\xd7\\xa1\\xd7\\x99\\xd7\\x9c\\xd7\\xaa \\xd7\\x99\\xd7\\xa9\\xd7\\xa8\\xd7\\x99\\xd7\\x9d\",\\r\\n    \"\\xd7\\x93\\xd7\\xa8\\xd7\\xa9\\xd7\\x95\\xd7\\xaa \\xd7\\x94\\xd7\\xa8\\xd7\\x9f\"\\r\\n  ]\\r\\n}\\r\\n', 606, 607, 'character maps to <undefined>')"
+}
