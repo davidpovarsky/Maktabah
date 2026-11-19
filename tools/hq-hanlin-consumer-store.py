@@ -3,7 +3,7 @@
 This is an actual filesystem/CAS proof, not app, provider, native UI or physical protection acceptance.
 """
 from pathlib import Path
-import argparse, datetime, hashlib, json, os, re, shutil, subprocess, sys
+import argparse, datetime, hashlib, importlib.util, json, os, re, shutil, subprocess, sys
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
@@ -83,11 +83,19 @@ with (out / "swift-test.log").open("w", encoding="utf-8") as log:
         code = 124
 log = (out / "swift-test.log").read_text(encoding="utf-8", errors="replace")
 fixture = ROOT / "Tests/HQ/hanlin-consumer/OtzariaHanlinConversationStoreTests.swift"
-expected = sorted(set(re.findall(r"func (test[A-Za-z0-9_]+)\(", fixture.read_text(encoding="utf-8"))))
-passed = sorted(set(re.findall(r"Test Case '.*OtzariaHanlinConversationStoreTests[ .](test[A-Za-z0-9_]+)[\\]'].*passed", log)))
-if not passed:
-    passed = sorted(set(re.findall(r"Test Case 'OtzariaHanlinConversationStoreTests\.(test[A-Za-z0-9_]+)' passed", log)))
-if len(expected) != 11 or passed != expected:
+# Reuse the original strict XCTest verifier: actual Swift declarations plus
+# Objective-C Apple and dotted portable XCTest names, with no failed/missing case.
+verifier_path = ROOT / "Scripts/CI/verify-faithful-xctest.py"
+spec = importlib.util.spec_from_file_location("hanlin_store_xctest_verifier", verifier_path)
+verifier = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(verifier)
+verification = verifier.verify(log, ["OtzariaHanlinConversationStoreTests"], source_directory=fixture.parent)
+suite = next((row for row in verification["suites"]
+              if row.get("suite") == "OtzariaHanlinConversationStoreTests"), {})
+expected = sorted(suite.get("expected", []))
+passed = sorted(suite.get("passed", []))
+process_exit_code = code
+if len(expected) != 11 or verification["status"] != "EXECUTED_PASS":
     code = code or 1
 report = {
     "observed_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -95,6 +103,8 @@ report = {
     "exit_code": code, "source_sha": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
     "working_source_hashes": inputs, "sdk_sha": args.sdk_sha, "command": command,
     "passed": passed, "expected": expected, "warnings": log.count("warning:"),
+    "swift_process_exit_code": process_exit_code, "test_verification": verification,
+    "xctest_verifier_sha256": hashlib.sha256(verifier_path.read_bytes()).hexdigest(),
     "swift_log_sha256": hashlib.sha256((out / "swift-test.log").read_bytes()).hexdigest(),
     "native_ui_executed": 0, "physical_protection_verified": False, "provider_executed": False,
     "boundary": "Complete app store with actual Foundation files, independent host/SDK CAS, scoped lease rejection and platform filesystem write failure. Complete original SDK contract/presentation modules and unchanged message DTO; no engine/provider, UIKit scene, native navigation or physical protection proof."

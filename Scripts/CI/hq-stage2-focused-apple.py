@@ -529,7 +529,10 @@ def main():
         derived_data = checked_path(ROOT / "build", str(Path(args.derived_data).relative_to("build")))
         signing = (["CODE_SIGNING_ALLOWED=YES", "CODE_SIGNING_REQUIRED=YES", "CODE_SIGN_IDENTITY=-"] if args.build_for_testing
                    else ["CODE_SIGNING_ALLOWED=NO", "CODE_SIGNING_REQUIRED=NO", "CODE_SIGN_IDENTITY="])
-        command = ["xcodebuild", "build-for-testing" if args.build_for_testing else "build", *common, "-configuration", "Debug", "-sdk", "iphonesimulator",
+        # Keep the app's Simulator destination while allowing SwiftPM macro tools
+        # to select the macOS host SDK. A global -sdk overrides those host targets.
+        report["sdk_selection"] = "PER_TARGET_FROM_ORIGINAL_SIMULATOR_DESTINATION"
+        command = ["xcodebuild", "build-for-testing" if args.build_for_testing else "build", *common, "-configuration", "Debug",
                    "-destination", "generic/platform=iOS Simulator", "-derivedDataPath", str(derived_data),
                    "-disableAutomaticPackageResolution", "-jobs", "2", "-showBuildTimingSummary",
                    *signing,
