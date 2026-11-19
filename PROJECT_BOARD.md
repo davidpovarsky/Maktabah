@@ -18,6 +18,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Guided-tour research: keep explicit tutorial execution on the existing Core/Registry and use native scene-bound coaching; TipKit is for contextual feature discovery. Beacon a177c6fa uses a global coordinator, the first connected scene and automatic missing-target skips, so it is not safe to adopt as-is for this app's exact-scene/receipt contract. No tour SDK or product code was added. See `docs/hq-integration/guided-tours-20261120/GUIDED_TOURS_DECISION.md` for the implementation decision and remaining native/RTL/accessibility gates (2026-11-19).
+
 - A deliberate chat-source handoff must retain its exact host identity through actual sheet dismissal. The original AgentSession invalidation callback can arrive after presentation revocation; ignore that echo for a closed owner or it cancels the pending source route. API1.2 carries the original request/scene acknowledgement and a newly observed successor separately; Reader/selection freshness must use the original scene projection, never a new content grant. See `docs/hq-integration/hanlin-api12-20261120` for scoped evidence and remaining Native gates (2026-11-20).
 
 - Full v32 prebuilt acceptance can reuse the original native downloader/installer and three-mode/golden-query runner. The explicit `native_existing_v32` workflow mode uses the current source-pinned Xcode27 build and a newly created exact simulator, then checks original query identities across distinct app PIDs. Wrapper controls are not native evidence; installation, complete UI, Zayit and physical-device results remain separate gates (2026-11-19).

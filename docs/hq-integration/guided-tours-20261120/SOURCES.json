@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "kind": "research_source_manifest",
+  "retrieved_on_utc": "2026-11-19",
+  "batch": "20261120",
+  "asana_task": {
+    "gid": "1219614468074332",
+    "name": "[RESEARCH] הדרכה אינטראקטיבית ואוטומציה מרובת צעדים על אותו מנוע",
+    "modified_at": "2026-11-15T13:04:18.179Z",
+    "completed_at_read": false,
+    "comments_count": 0,
+    "subtasks_count": 0,
+    "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219614468074332",
+    "original_research_requirement": "לחקור SDKs וספריות SwiftUI קיימות להדרכה, spotlight, coach marks, ניווט רב-מסכי ומצב replay, עם מטרה לשימוש חוזר ולא בנייה מאפס. נדרש סיור אוטומטי שמפעיל פעולות אמיתיות, מצב התנסות ידני/חופשי, עצירה/חזרה/הפעלה חוזרת, רצפי פעולות מורכבים ללא קוד או Deep Link ייעודי לכל תרחיש, אפשרות עתידית להקלטת תרחיש מהפעלת אפליקציה. לחקור Registry למזהי רכיבי UI מול פעולות סמנטיות, readiness, cancellation, UI sync, RTL, accessibility ויישום מאובטח. מחקר בלבד."
+  },
+  "application": {
+    "repository": "davidpovarsky/Maktabah",
+    "base_commit": "3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d",
+    "hash_semantics": "SHA-256 of actual reviewed Windows worktree file bytes; Git checkout newline conversion may differ on another platform.",
+    "reviewed_files": [
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+        "sha256": "3267ffa612c0612ae6ae738ba603e835520e6634c8e2970057c76b1fba5d2161",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+        "sha256": "6a57fc9ad9fa3538111163f966286761a2aa4c56867cdbaefa960002423f84ac",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+        "sha256": "3d956c5969861fe5f63d9f2b0b2e48136e81234da5c5c628ae8edce867862eb7",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+        "sha256": "573a5552c4ccf666f650b46b8a76a9f983a07fae7d40120ff42ab23b5fe64225",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+        "sha256": "e0ce60ba449fa879e9c807c8cfc52eac3854ed02d778bd7f1d73fdc6569571fd",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift"
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift",
+        "sha256": "d4fbaeedff3a35ae8ac02b8e0583b89da266adc794253512e2d9e675220a0f73",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift"
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+        "sha256": "80004ca6a95a87fa0cf51ab97c116e6020eb32c80937422743c618a9f5fbce1c",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift"
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+        "sha256": "a345d388c0efbe55ee77013cecaa3ae841c2c62cb854ed91e55b2aee002d5cb5",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift"
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift",
+        "sha256": "6951a5a05f28383cf269cd7ba0f3a9c4f599ec89dd158c05000fd60e7dce1900",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift"
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/PublicNavigationLocalBinding.swift",
+        "sha256": "7b256aea21be256e36480066dfbc76bfa46e6eda5a0ac51c47487a61a6aecbf2",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/PublicNavigationLocalBinding.swift"
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+        "sha256": "5131c3f467b994f01a87ebe9265fd6725c2f2f92f23a6f3469d6a5d481972b5f",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift"
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+        "sha256": "9254b898db2fa2913ba19ac9df5b84afaf470af51033dc1a36cb8ef4d3b7c625",
+        "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      }
+    ]
+  },
+  "external_repositories": [
+    {
+      "repository": "mmellau/swift-beacon",
+      "commit": "a177c6fa243e7f6f9c250bbe4197ed011b09d689",
+      "committed_at": "2026-09-09T15:07:42Z"
+    },
+    {
+      "repository": "aheze/Popovers",
+      "commit": "576b4d3eacd9c6e4101519d803726e44bb2a3c45",
+      "committed_at": "2025-02-19T05:57:34Z"
+    },
+    {
+      "repository": "ephread/Instructions",
+      "commit": "0f3efa77e781ffd4c1441e580d398e3d60ff3bfe",
+      "committed_at": "2023-12-08T07:52:58Z"
+    }
+  ],
+  "external_code_review": [
+    {
+      "url": "https://github.com/mmellau/swift-beacon/blob/a177c6fa243e7f6f9c250bbe4197ed011b09d689/README.md",
+      "git_blob_sha": "ec2579533f8a3fb748d52f71c5d30c4217efbe99",
+      "review": "Original pinned README"
+    },
+    {
+      "url": "https://github.com/aheze/Popovers/blob/576b4d3eacd9c6e4101519d803726e44bb2a3c45/README.md",
+      "git_blob_sha": "aa17eb6590f0b7dfffb9b823aabc5b42e8ea6efe",
+      "review": "Original pinned README"
+    },
+    {
+      "url": "https://github.com/ephread/Instructions/blob/0f3efa77e781ffd4c1441e580d398e3d60ff3bfe/README.md",
+      "git_blob_sha": "5ccf26e6288d4dad480e272684e57a108ad0c0f6",
+      "review": "Original pinned README"
+    },
+    {
+      "url": "https://github.com/mmellau/swift-beacon/blob/a177c6fa243e7f6f9c250bbe4197ed011b09d689/Sources/Beacon/Beacon.swift",
+      "git_blob_sha": "f71e8e9f861d01b677e977495154d4e0e470673d",
+      "review": "Original implementation source inspected; no local modification"
+    },
+    {
+      "url": "https://github.com/mmellau/swift-beacon/blob/a177c6fa243e7f6f9c250bbe4197ed011b09d689/Sources/Beacon/Core/BeaconCoordinator.swift",
+      "git_blob_sha": "c8449fda79494f642228dd879693b7edd15fee1f",
+      "review": "Original implementation source inspected; no local modification"
+    },
+    {
+      "url": "https://github.com/mmellau/swift-beacon/blob/a177c6fa243e7f6f9c250bbe4197ed011b09d689/Sources/Beacon/Core/BeaconWindowManager.swift",
+      "git_blob_sha": "1d3cd987771ff73c5a234423b3e861def7ae89e9",
+      "review": "Original implementation source inspected; no local modification"
+    },
+    {
+      "url": "https://github.com/mmellau/swift-beacon/blob/a177c6fa243e7f6f9c250bbe4197ed011b09d689/Sources/Beacon/Sequence/BeaconSequenceRunner.swift",
+      "git_blob_sha": "10d994cb1050ea0865a94ad1d5d7baecdc9f815f",
+      "review": "Original implementation source inspected; no local modification"
+    },
+    {
+      "url": "https://github.com/mmellau/swift-beacon/blob/a177c6fa243e7f6f9c250bbe4197ed011b09d689/Sources/Beacon/Modifiers/BeaconTargetModifier.swift",
+      "git_blob_sha": "8e67cb2fb2bd1ffbd7c82489010081ef872c8cb8",
+      "review": "Original implementation source inspected; no local modification"
+    },
+    {
+      "url": "https://github.com/mmellau/swift-beacon/blob/a177c6fa243e7f6f9c250bbe4197ed011b09d689/Tests/BeaconTests/BeaconTests.swift",
+      "git_blob_sha": "2a1e0ac696acd3be60b737a440326bae8fe0d390",
+      "review": "Original upstream tests inspected; NOT_RUN"
+    }
+  ],
+  "apple_documentation": [
+    {
+      "id": "A1",
+      "title": "TipKit",
+      "url": "https://developer.apple.com/documentation/tipkit/",
+      "authority": "Apple",
+      "review": "Official documentation read; no Apple SDK typecheck or device run performed for this research."
+    },
+    {
+      "id": "A2",
+      "title": "TipGroup",
+      "url": "https://developer.apple.com/documentation/tipkit/tipgroup.md",
+      "authority": "Apple",
+      "review": "Official documentation read; no Apple SDK typecheck or device run performed for this research."
+    },
+    {
+      "id": "A3",
+      "title": "Offering help",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/offering-help.md",
+      "authority": "Apple",
+      "review": "Official documentation read; no Apple SDK typecheck or device run performed for this research."
+    },
+    {
+      "id": "A4",
+      "title": "resetDatastore",
+      "url": "https://developer.apple.com/documentation/tipkit/tips/resetdatastore().md",
+      "authority": "Apple",
+      "review": "Official documentation read; no Apple SDK typecheck or device run performed for this research."
+    },
+    {
+      "id": "A5",
+      "title": "SwiftUI data-driven popover",
+      "url": "https://developer.apple.com/documentation/swiftui/view/popover(item:attachmentanchor:arrowedge:content:).md",
+      "authority": "Apple",
+      "review": "Official documentation read; no Apple SDK typecheck or device run performed for this research."
+    },
+    {
+      "id": "A6",
+      "title": "Right to left",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/right-to-left.md",
+      "authority": "Apple",
+      "review": "Official documentation read; no Apple SDK typecheck or device run performed for this research."
+    },
+    {
+      "id": "A7",
+      "title": "Accessibility",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility.md",
+      "authority": "Apple",
+      "review": "Official documentation read; no Apple SDK typecheck or device run performed for this research."
+    },
+    {
+      "id": "A8",
+      "title": "AccessibilityFocusState",
+      "url": "https://developer.apple.com/documentation/swiftui/accessibilityfocusstate.md",
+      "authority": "Apple",
+      "review": "Official documentation read; no Apple SDK typecheck or device run performed for this research."
+    },
+    {
+      "id": "A9",
+      "title": "accessibilityReduceMotion",
+      "url": "https://developer.apple.com/documentation/swiftui/environmentvalues/accessibilityreducemotion.md",
+      "authority": "Apple",
+      "review": "Official documentation read; no Apple SDK typecheck or device run performed for this research."
+    }
+  ],
+  "validation": {
+    "product_files_modified": 0,
+    "dependencies_installed": 0,
+    "guide_code_implemented": 0,
+    "guide_portable_tests_run": 0,
+    "guide_apple_typechecks_run": 0,
+    "guide_native_tests_run": 0,
+    "upstream_library_tests_run": 0,
+    "physical_device_acceptance": "NOT_RUN",
+    "research_complete": true,
+    "asana_written_by_this_agent": false
+  },
+  "decision": {
+    "explicit_tutorial": "Native SwiftUI coaching plus a future thin scene-owned coordinator over existing Core/Registry",
+    "contextual_hints": "TipKit",
+    "spotlight_dependency": "No dependency adopted; Beacon blocked as-is by source-reviewed scene and skip semantics",
+    "product_implementation": "Deferred; outside this research-only task"
+  }
+}
