@@ -31,3 +31,11 @@ Native75 run44559352638 and focused consumer run44571075774 remain bound to thei
 ## Source freeze
 
 Both application and test provenance now point to merged source `3db5f13cd6e36c5ff32d11e6f5f4672b120cb493`. The original exact-tree/dependency preflight passed; its raw result is FREEZE_PREFLIGHT.json. This is a declaration/source preflight with no new runtime acceptance.
+
+## Latest frozen source after verified Reader change
+
+The later two-parent merge `65e142827be7c241fbda7ee79635494c8098132c` combines native-consumer evidence `114e3331` with primary Reader/SDK evidence `e1d84ede`. Relative to the accepted Native2 application, the sole product delta is `OtzariaReadingUnitService.unitSummary` reporting explicit UTF8 byte sizes. All UI-test bodies, Vendor and project trees remain unchanged. READER_MERGE_REVIEW.json records the exact trees and parents.
+
+The original cold-restart/Reader-return run44571075774 passed 2/2 on its pinned5a40 parent; its full xcresult and visual review are retained under ../hanlin-consumer-20261119/native-44571075774. SDK44559343820 attempt2 recovered its exact original artifact and passed on ef449. Neither result is recounted as a new run on this latest source.
+
+Application/test freeze fields now point to65e14282. The original exact-input/dependency preflight, original execution-group validation and Swift frontend declaration checks passed for the unchanged77 selection (79 catalog entries, including27 Phase1 requirements). Current raw preflight: FREEZE_PREFLIGHT_reader_65e14282.json. No combined Native77 run has been dispatched or accepted yet; Native75 on its original source is still being reviewed separately. Release stays NO_GO.

@@ -1,0 +1,678 @@
+{
+  "checkout_sha": "65e142827be7c241fbda7ee79635494c8098132c",
+  "application_source_sha": "65e142827be7c241fbda7ee79635494c8098132c",
+  "validator_sha256": "054c70c0568e2ccb91c0e55cb86290f05180a3f5a64e2d7d0e8670d89fe5ede8",
+  "inputs_sha256": "588ea40b3d85d38d1a22ca922d406b4be2c89915cb7bd4ba2f16adbde4b62ed9",
+  "workflow_sha256": "64391d1dcddee917e8c5241b61d9e00eda7d030b211087a7d4a2b8fc9384a4d7",
+  "project_sha256": "b674da43e1812dcc4b4f41dd422b9e09ea99d8cded3793bb6e42d092304acf6a",
+  "application_trees": {
+    "Source": "def7aa262875002d5630e55c250dceaccb5a513f",
+    "Vendor": "064e4bcf3f8eea6270f875428c960e7c214ad167",
+    "Maktabah.xcodeproj": "1175aa91ffff58b465c635926ba3eebe9a80ae53"
+  },
+  "zayit_framework": {
+    "mode": "REBUILD_EXACT_REVIEWED_RUST",
+    "source_tree": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+    "baseline_producer_sha": "41c278ac67f0c03e19270ed65b891b242a1a3f2e",
+    "changed_paths": [
+      "Vendor/ZayitSearchPort/Rust/src/magic_dictionary_index.rs",
+      "Vendor/ZayitSearchPort/Rust/tests/fixture_index_search.rs"
+    ],
+    "build_script": "Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh",
+    "build_script_git_blob": "a4f123b144b236fc1ec691060cf144e3e9da2cf9"
+  },
+  "hanlin_gitlink": "6d62957852ffcb428810b065b4252e5384f1374b",
+  "embedded_bundle_build": {
+    "mode": "REBUILD_EXACT_REVIEWED_JS",
+    "overlay_paths": [
+      "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+    ],
+    "source_tree": "1a0e21666586f417186b6218049e03fc1cc232fd"
+  },
+  "package_resolved_sha256": "72df8ff305829bde72b7724c12c5a23f73c302f5bd308baf5663ef77bded6bd5",
+  "package_pins": {
+    "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+    "equatable": "597c2bb34af0c51331eb3b5e705f942d8ee20daa",
+    "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+    "hanlin-streaming-markdown": "6bde022876ef4af738c154b3d5c871984ef76195",
+    "highlightswift": "99c431b38a1444a5fd6a4978307fbbefe3a7af53",
+    "iosmath": "ba9ab7729b151329c54fd895a7c1859981d9484c",
+    "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+    "swift-ai-sdk": "e7bf34111e603ca977becd007dd4e5bb109af857",
+    "swift-argument-parser": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+    "swift-cmark": "08ddb528923cc1a6527e02b7a1aee9e516ca749a",
+    "swift-markdown": "7d9a5ce307528578dfa777d505496bd5f544ad94",
+    "swift-syntax": "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+    "swiftui-shimmer": "0226e21f9bf355d40e07e5f5e1c33679d50e167f",
+    "swiftyjson": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+    "torahinspectorkit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+    "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+    "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+  },
+  "native_selection_count": 77,
+  "original_catalog_count": 79,
+  "runtime_cases_executed": 0,
+  "status": "EXACT_APPLICATION_TREES_ORIGINAL_DEPENDENCIES_AND_77_DECLARATIONS_MATCH",
+  "declarations": {
+    "suites": [
+      {
+        "suite": "R27NativePadTests",
+        "selection": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "expected": [
+          "testNormalBootstrapOtzariaRotationPreservesExactLocator"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "R27NativePadTests",
+        "selection": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "expected": [
+          "testNormalBootstrapLegacyGenesisAndRotation"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "R27NativePadTests",
+        "selection": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "expected": [
+          "testNormalBootstrapEmbeddedGenesisAndRotation"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+        "expected": [
+          "testWarmHistoryURLUsesOtzariaNativeScene"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+        "expected": [
+          "testWarmHistoryURLUsesLegacyNativeScene"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+        "expected": [
+          "testWarmHistoryURLUsesEmbeddedNativeScene"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+        "expected": [
+          "testColdHistoryURLWaitsForActualSceneMount"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+        "expected": [
+          "testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+        "expected": [
+          "testHebrewHeaderUsesActualRTLGeometry"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+        "expected": [
+          "testEnglishHeaderUsesActualLTRGeometry"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+        "expected": [
+          "testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+        "expected": [
+          "testOtzariaDefaultAdvancedFormExposesRealConditionalControls"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+        "expected": [
+          "testExactAndFuzzyHideAdvancedOtzariaBindings"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+        "expected": [
+          "testOptionsDismissalReturnsToSameQueryWithoutSubmission"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+        "expected": [
+          "testHeaderAndHistoryNativeAccessibilityAudit"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "R27NativePhoneTests",
+        "selection": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+        "expected": [
+          "testNormalBootstrapOtzariaBackgroundAndColdRestoration"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "R27NativePhoneTests",
+        "selection": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "expected": [
+          "testNormalBootstrapLegacyGenesisAndRotation"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "R27NativePhoneTests",
+        "selection": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "expected": [
+          "testNormalBootstrapEmbeddedGenesisAndRotation"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "R27NativePadTests",
+        "selection": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "expected": [
+          "testNormalBootstrapNativeWindowResizePaletteAndInspector"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "R27NativePadTests",
+        "selection": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+        "expected": [
+          "testNormalBootstrapPaletteHIDComparison"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "Sidebar11201AcceptanceTests",
+        "selection": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+        "expected": [
+          "testSidebarBodyPagingLTR"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "Sidebar11201AcceptanceTests",
+        "selection": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "expected": [
+          "testSidebarBodyPagingRTL"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "Sidebar11201AcceptanceTests",
+        "selection": "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+        "expected": [
+          "testSidebarSceneStateSurvivesBackgroundAndRotation"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "Sidebar11201AcceptanceTests",
+        "selection": "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+        "expected": [
+          "testOriginalBottomTOCActionUsesActualSidebarPage"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+        "expected": [
+          "testHistoryURLAfterBackgroundRequiresActualVisibleReceipt"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+        "expected": [
+          "testWrongBackendURLCannotNavigateOrIssueNativeReceipt"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+        "expected": [
+          "testReplayCannotIssueSecondNativeReceipt"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+        "expected": [
+          "testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+        "expected": [
+          "testZayitLoadedTitleSubstringUsesActualMountedProjection"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+        "expected": [
+          "testZayitZeroMatchProjectionRetainsRealExplicitPaging"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+        "expected": [
+          "testReturnProducesOriginalRowsWithPersistentHeader"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+        "expected": [
+          "testModeEditRequiresExplicitRerun"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+        "expected": [
+          "testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+        "expected": [
+          "testZeroMatchProjectionRetainsExplicitLoadMore"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+        "expected": [
+          "testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+        "expected": [
+          "testEmbeddedOffersExactOnlyAndNoIgnoredOptions"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+        "expected": [
+          "testLegacyAdvancedUsesItsOwnSourceControls"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+        "expected": [
+          "testPhoneWarmHistoryUsesActualForegroundScene"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+        "expected": [
+          "testPhoneColdHistoryWaitsForActualSceneMount"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+        "expected": [
+          "testPhoneWrongBackendCannotNavigateOrIssueReceipt"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+        "expected": [
+          "testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+        "expected": [
+          "testPublicV2CurrentReaderShowsTwoCanonicalSourceLines"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+        "expected": [
+          "testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+        "expected": [
+          "testGlobalSearchPublicRootPreservesOriginalPrivateQuery"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+        "expected": [
+          "testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+        "expected": [
+          "testSystemAppIntentSettingsShowsOriginalSheetAndReceipt"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+        "expected": [
+          "testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+        "expected": [
+          "testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+        "expected": [
+          "testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+        "expected": [
+          "testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+        "expected": [
+          "testPhonePublicV2CurrentReaderShowsCanonicalSourceLines"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+        "expected": [
+          "testPhonePublicV2NewTabPreservesOriginalReader"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+        "expected": [
+          "testPhonePublicV2OtherBookCannotReplaceCurrentReader"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+        "expected": [
+          "testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+        "expected": [
+          "testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "GlobalSearchNativeAcceptanceTests",
+        "selection": "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+        "expected": [
+          "testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+        "expected": [
+          "testPublicV2LibraryPreservesPrivateQueryAndOriginalReader"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+        "expected": [
+          "testPublicV2TOCPreservesPrivateFilterAndOriginalReader"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+        "expected": [
+          "testPublicV2TOCWithoutOriginalReaderCannotAcknowledge"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+        "expected": [
+          "testPhonePublicV2LibraryPreservesOriginalReaderOwner"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
+        "expected": [
+          "testSystemBookIntentResolvesNamedChapterThroughOriginalCore"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+        "expected": [
+          "testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+        "expected": [
+          "testSystemBookIntentRejectsDifferentBookLocationWithoutMutation"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+        "expected": [
+          "testSystemBookIntentRejectsMissingSourceWithoutMutation"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+        "expected": [
+          "testPhoneSystemBookIntentUsesOriginalReaderOwner"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+        "expected": [
+          "testPublicV2SearchQueryFocusUsesOriginalFirstResponder"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+        "expected": [
+          "testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+        "expected": [
+          "testPublicV2UnknownSearchComponentCannotFocusOrSubmit"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+        "expected": [
+          "testSystemAppIntentFocusesOriginalSearchComponent"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+        "expected": [
+          "testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "expected": [
+          "testPublicV2InspectorPreservesOriginalReaderAndWorkspace"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+        "expected": [
+          "testSystemAppIntentShowsOriginalReaderInspector"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingAcceptanceTests",
+        "selection": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+        "expected": [
+          "testPublicV2InspectorRequiresVisibleOriginalReader"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "expected": [
+          "testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "NativeRoutingPhoneAcceptanceTests",
+        "selection": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+        "expected": [
+          "testPhoneSystemAppIntentShowsOriginalReaderInspector"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "HanlinConsumerAcceptanceTests",
+        "selection": "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
+        "expected": [
+          "testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      },
+      {
+        "suite": "HanlinReaderConsumerAcceptanceTests",
+        "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+        "expected": [
+          "testOriginalReaderChatReturnsToSameNativeWorkspace"
+        ],
+        "status": "DECLARATIONS_MATCH"
+      }
+    ],
+    "status": "DECLARATIONS_MATCH"
+  },
+  "execution_groups_unchanged": true
+}

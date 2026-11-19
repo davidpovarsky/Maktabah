@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "3db5f13cd6e36c5ff32d11e6f5f4672b120cb493",
+  "source_test_commit": "65e142827be7c241fbda7ee79635494c8098132c",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "3db5f13cd6e36c5ff32d11e6f5f4672b120cb493",
+  "app_source": "65e142827be7c241fbda7ee79635494c8098132c",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original75 affected Native cases plus2 original Hanlin consumer cases:77 required cases,63iPad27+14iPhone27,zero skips. All79 catalog entries retained; two historical unselected entries stay explicit. App/system/provider/physical/release gates remain distinct.",
@@ -1250,7 +1250,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "3db5f13cd6e36c5ff32d11e6f5f4672b120cb493",
+  "application_source_sha": "65e142827be7c241fbda7ee79635494c8098132c",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -1363,5 +1363,16 @@
       "hanlin_cold_restart_readiness",
       "current_correction"
     ]
+  },
+  "integrated_reader_logging": {
+    "source_sha": "65e142827be7c241fbda7ee79635494c8098132c",
+    "prior_frozen_source": "3db5f13cd6e36c5ff32d11e6f5f4672b120cb493",
+    "reader_code_sha": "7b2b6a1a7067496be2a2e2f232cf91f9cd8e2478",
+    "reader_evidence_sha": "e1d84ede24e3dfbde8069570059ec1b4acb25642",
+    "native_consumer_pass_run": 44571075774,
+    "native_consumer_pass_source": "5a40fe9c25e8dd6cfaef71c2f51e34d0adbd796e",
+    "source_delta": "Only diagnostic grapheme counts replaced by explicit UTF8 byte sizes; original UI tests, source text, TOC and UTF16 anchors unchanged.",
+    "current_source_native_passes": 0,
+    "prior_native_passes_transferred": 0
   }
 }
