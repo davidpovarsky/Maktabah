@@ -672,7 +672,33 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
         return .init(result: result, snapshot: snapshot)
     }
+    private func awaitIntentForeground(_ destination: NativeIntentService.Destination) async throws {
+        guard let original = scenes[destination.sceneID], original.session.mounted,
+              try backend.currentBackendSnapshot().backend == destination.backend else {
+            throw UIRouteError(.staleState, "intent_window_no_longer_available")
+        }
+        let snapshot = try backend.currentBackendSnapshot(), end = deadline()
+        let activated = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: original.managerID)
+        }
+        guard activated == destination.sceneID, let current = scenes[destination.sceneID],
+              current.session === original.session, current.managerID == original.managerID,
+              current.session.mounted, current.session.foreground,
+              try backend.currentBackendSnapshot() == snapshot else {
+            throw UIRouteError(.staleState, "intent_window_changed_during_activation")
+        }
+        // No context, grant, mutation or receipt exists before this boundary.
+        // The caller must still discover and authorize the current destination.
+    }
+
     private func openReaderIntent(_ request: NativeReaderIntentService.OpenRequest) async throws -> UISceneAcknowledgement {
+        let identities = try await intentEntities().filter {
+            $0.destination.rawValue == "native.library" && $0.id == request.windowIdentifier
+        }
+        guard identities.count == 1, let selected = identities.first else {
+            throw UIRouteError(.staleState, "intent_window_no_longer_available")
+        }
+        try await awaitIntentForeground(selected)
         // Re-resolve the explicit user-selected window. Never pick a first scene
         // or open another one when a cached system entity has become stale.
         let windows = try await destinations().filter {
@@ -702,6 +728,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         guard !intentsInstalled else { return }
         let service = NativeIntentService(discover: { [self] in try await destinations() },
             resolveEntities: { [self] in try await intentEntities() },
+            awaitForeground: { [self] in try await awaitIntentForeground($0) },
             navigate: { [self] in try await open(destination: $0) })
         AppDependencyManager.shared.add(dependency: service)
         let readerService = NativeReaderIntentService(execute: { [self] in try await readerIntentMetadata($0) },

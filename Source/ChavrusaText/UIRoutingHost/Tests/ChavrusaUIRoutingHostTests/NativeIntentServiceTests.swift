@@ -159,5 +159,76 @@ import OtzariaUIRouting
         catch { XCTAssertEqual((error as? UIRouteError)?.code, "invalid_live_intent_catalog") }
         XCTAssertEqual(state.calls, 0)
     }
+    func testForegroundWaitUsesExactResolvedIdentityBeforeFreshExecutionDiscovery() async throws {
+        let state = IntentTestState(); state.available = false
+        let root = NativeIntentService.Destination(backend: .otzaria,
+            destination: UIDestinationID(rawValue: "native.search")!, title: "Search",
+            sceneID: UIStableID(rawValue: "scene.A")!)
+        let service = NativeIntentService(discover: { state.available ? [root] : [] },
+            resolveEntities: { [root] }, awaitForeground: { selected in
+                XCTAssertEqual(selected, root)
+                XCTAssertEqual(state.calls, 0, "Lifecycle waiting cannot navigate or issue a receipt")
+                state.prepared += 1; state.available = true
+            }, navigate: { selected in
+                XCTAssertEqual(state.prepared, 1)
+                state.calls += 1; state.selectedScene = selected.sceneID
+                return .requiresForeground
+            })
+        _ = try await service.open(identifier: root.id)
+        XCTAssertEqual(state.prepared, 1); XCTAssertEqual(state.calls, 1)
+        XCTAssertEqual(state.selectedScene, root.sceneID)
+    }
+
+    func testForegroundWaitDoesNotTurnMetadataIntoExecutionAuthority() async throws {
+        let state = IntentTestState()
+        let root = NativeIntentService.Destination(backend: .otzaria,
+            destination: UIDestinationID(rawValue: "native.search")!, title: "Search",
+            sceneID: UIStableID(rawValue: "scene.A")!)
+        let service = NativeIntentService(discover: { [] }, resolveEntities: { [root] },
+            awaitForeground: { _ in state.prepared += 1 },
+            navigate: { _ in state.calls += 1; return .requiresForeground })
+        do { _ = try await service.open(identifier: root.id); XCTFail("Fresh foreground catalog is still required") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.code, "intent_entity_no_longer_available") }
+        XCTAssertEqual(state.prepared, 1); XCTAssertEqual(state.calls, 0)
+    }
+
+    func testChangedWindowDuringForegroundWaitCannotSubstituteAnotherScene() async throws {
+        let state = IntentTestState()
+        let root = NativeIntentService.Destination(backend: .otzaria,
+            destination: UIDestinationID(rawValue: "native.search")!, title: "Search",
+            sceneID: UIStableID(rawValue: "scene.A")!)
+        let replacement = NativeIntentService.Destination(backend: .otzaria, destination: root.destination,
+            title: "Search", sceneID: UIStableID(rawValue: "scene.B")!)
+        let service = NativeIntentService(discover: { [replacement] }, resolveEntities: { [root] },
+            awaitForeground: { selected in XCTAssertEqual(selected, root); state.prepared += 1 },
+            navigate: { _ in state.calls += 1; return .requiresForeground })
+        do { _ = try await service.open(identifier: root.id); XCTFail("Never pick another foreground window") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.status, .staleState) }
+        XCTAssertEqual(state.calls, 0)
+    }
+
+    func testUnknownEntityCannotRequestForegroundPreparation() async throws {
+        let state = IntentTestState()
+        let service = NativeIntentService(discover: { [] }, resolveEntities: { [] },
+            awaitForeground: { _ in state.prepared += 1 },
+            navigate: { _ in state.calls += 1; return .requiresForeground })
+        do { _ = try await service.open(identifier: "otzaria:scene.missing:native.search"); XCTFail("Unknown scene") }
+        catch { XCTAssertEqual((error as? UIRouteError)?.status, .staleState) }
+        XCTAssertEqual(state.prepared, 0); XCTAssertEqual(state.calls, 0)
+    }
+
+    func testCancelledForegroundWaitCannotNavigate() async throws {
+        let state = IntentTestState()
+        let root = NativeIntentService.Destination(backend: .otzaria,
+            destination: UIDestinationID(rawValue: "native.search")!, title: "Search",
+            sceneID: UIStableID(rawValue: "scene.A")!)
+        let service = NativeIntentService(discover: { [root] }, resolveEntities: { [root] },
+            awaitForeground: { _ in throw CancellationError() },
+            navigate: { _ in state.calls += 1; return .requiresForeground })
+        do { _ = try await service.open(identifier: root.id); XCTFail("Cancellation must stop before admission") }
+        catch { XCTAssertTrue(error is CancellationError) }
+        XCTAssertEqual(state.calls, 0)
+    }
+
 }
-@MainActor private final class IntentTestState { var available = true; var calls = 0; var selectedScene: UIStableID?; var selectedComponent: UIDestinationID? }
+@MainActor private final class IntentTestState { var available = true; var prepared = 0; var calls = 0; var selectedScene: UIStableID?; var selectedComponent: UIDestinationID? }

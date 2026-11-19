@@ -57,8 +57,10 @@ import OtzariaUIRouting
         for backend in ActionBackendID.allCases {
             let f = try await PublicConsumerFixture(backend), prepared = try await f.surfacePlan()
             defer { f.authority.release(f.admitted) }
-            f.driver.afterApply = { f.backend.afterSnapshot = { f.host.mappingRevision += 1 } }
+            var injected = false
+            f.driver.afterVisible = { f.backend.afterSynchronousSnapshot = { injected = true; f.host.mappingRevision += 1 } }
             let result = await f.orchestrator.commitPrepared(prepared, admitted: f.admitted)
+            XCTAssertTrue(injected, "Original mapping must change after the visible witness")
             guard case .staleState(let failure) = result else { return XCTFail("Stale final binding completed") }
             XCTAssertEqual(failure.code, "native_effect_uncertain")
             XCTAssertEqual(f.driver.applied, 1); XCTAssertNil(f.driver.command)
@@ -110,15 +112,17 @@ import OtzariaUIRouting
     func testDriverUnregistrationInsideFinalAuthorityReadCannotAcknowledge() async throws {
         let f = try await PublicConsumerFixture(.otzaria), prepared = try await f.surfacePlan()
         defer { f.authority.release(f.admitted) }
-        f.driver.afterApply = {
-            f.backend.afterSnapshot = {
+        var injected = false
+        f.driver.afterVisible = {
+            f.backend.afterSynchronousSnapshot = {
                 f.backend.onSynchronousSnapshot = {
-                    f.backend.onSynchronousSnapshot = nil
+                    f.backend.onSynchronousSnapshot = nil; injected = true
                     f.orchestrator.unregister(f.driver)
                 }
             }
         }
         let result = await f.orchestrator.commitPrepared(prepared, admitted: f.admitted)
+        XCTAssertTrue(injected, "Original driver must detach during the final authority read")
         guard case .staleState(let failure) = result else { return XCTFail("Unregistered native owner acknowledged completion") }
         XCTAssertEqual(failure.code, "native_effect_uncertain")
         XCTAssertEqual(f.driver.applied, 1); XCTAssertNil(f.driver.command)
@@ -155,6 +159,134 @@ import OtzariaUIRouting
     }
 }
 
+/// Exercises the shared final receipt path used by native surfaces, including
+/// Inspector. The driver/layout callbacks remain synthetic; this is not UIKit
+/// acceptance and cannot substitute for a real Inspector visibility run.
+extension NativePublicPreparedCommitTests {
+    private func assertSameAdmission(_ actual: ActionNavigationState, _ expected: ActionNavigationState,
+                                     file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertEqual(actual.context, expected.context, file: file, line: line)
+        XCTAssertEqual(actual.lifetimeID, expected.lifetimeID, file: file, line: line)
+        XCTAssertEqual(actual.authorityRevision, expected.authorityRevision, file: file, line: line)
+        XCTAssertEqual(actual.active, expected.active, file: file, line: line)
+    }
+
+    func testVisibleSurfaceCompletesWithoutAnotherBackendAwaitDuringLayoutPublication() async throws {
+        for backend in ActionBackendID.allCases {
+            let f = try await PublicConsumerFixture(backend), prepared = try await f.surfacePlan()
+            defer { f.authority.release(f.admitted); f.backend.afterSnapshot = nil }
+            var snapshotsAtVisible: Int?
+            var suspendedAfterVisible = false
+            f.driver.afterVisible = {
+                snapshotsAtVisible = f.backend.asynchronousSnapshots
+                // The visible original surface is unchanged by this layout publication.
+                try f.directory.invalidate(f.directoryLease)
+                // The former extra await allowed another ordinary publication
+                // to make the directory reject its own exact visible witness.
+                f.backend.afterSnapshot = {
+                    suspendedAfterVisible = true
+                    do { try f.directory.invalidate(f.directoryLease) }
+                    catch { XCTFail("Fixture layout publication failed: \(error)") }
+                }
+            }
+            let result = await f.orchestrator.commitPrepared(prepared, admitted: f.admitted)
+            XCTAssertEqual(f.backend.asynchronousSnapshots, try XCTUnwrap(snapshotsAtVisible))
+            XCTAssertFalse(suspendedAfterVisible, "Final observation must use the retained synchronous backend authority")
+            guard case .acknowledged(let receipt) = result else { return XCTFail("Exact visible surface became stale: \(result)") }
+            XCTAssertEqual(receipt.route, prepared.command.route.route)
+            XCTAssertGreaterThan(receipt.appliedSceneRevision, receipt.basedOnSceneRevision)
+            XCTAssertEqual(f.driver.applied, 1); XCTAssertNil(f.driver.command)
+            XCTAssertEqual(f.directory.pendingObservationCount, 0)
+            assertSameAdmission(try f.authority.navigationState(sceneID: f.sceneID.rawValue), f.admitted)
+        }
+    }
+
+    func testCapturedVisibleWitnessCannotReplaceMissingOrChangedLiveRoute() async throws {
+        for backend in ActionBackendID.allCases {
+            for removeWitness in [false, true] {
+                let f = try await PublicConsumerFixture(backend), prepared = try await f.surfacePlan()
+                defer { f.authority.release(f.admitted) }
+                var injected = false
+                f.driver.afterVisible = {
+                    injected = true
+                    if removeWitness { f.driver.command = nil }
+                    else { f.driver.wrongSurface = true }
+                }
+                let result = await f.orchestrator.commitPrepared(prepared, admitted: f.admitted)
+                XCTAssertTrue(injected)
+                guard case .failed(let failure) = result else { return XCTFail("Captured witness replaced live route: \(result)") }
+                XCTAssertEqual(failure.code, "native_effect_uncertain"); XCTAssertFalse(failure.retryable)
+                XCTAssertEqual(f.driver.applied, 1); XCTAssertNil(f.driver.command)
+                XCTAssertEqual(f.directory.pendingObservationCount, 0)
+                assertSameAdmission(try f.authority.navigationState(sceneID: f.sceneID.rawValue), f.admitted)
+            }
+        }
+    }
+
+    func testVisibleWitnessCannotOutliveRevokedOrReplacedNativeAdmission() async throws {
+        for backend in ActionBackendID.allCases {
+            for replaceLifetime in [false, true] {
+                let f = try await PublicConsumerFixture(backend), prepared = try await f.surfacePlan()
+                var replacement: ActionNavigationState?
+                defer {
+                    f.authority.release(f.admitted)
+                    if let replacement { f.authority.release(replacement) }
+                }
+                var injected = false
+                f.driver.afterVisible = {
+                    injected = true
+                    if replaceLifetime {
+                        f.authority.unmount(f.lease)
+                        _ = try f.authority.mount(sceneID: f.sceneID, foreground: true)
+                        replacement = try f.authority.admit(context: f.context, sceneID: f.sceneID)
+                    } else { try f.authority.invalidate(f.lease) }
+                }
+                let result = await f.orchestrator.commitPrepared(prepared, admitted: f.admitted)
+                XCTAssertTrue(injected)
+                let failure: ActionFailure
+                switch (replaceLifetime, result) {
+                // A revoked context is unavailable to the directory's live
+                // owner validator. A newly admitted lifetime is available but
+                // must remain stale for the original prepared completion.
+                case (false, .unavailable(let observed)), (true, .staleState(let observed)):
+                    failure = observed
+                default: return XCTFail("Unexpected native authority result (replacement: \(replaceLifetime)): \(result)")
+                }
+                XCTAssertEqual(failure.code, "native_effect_uncertain"); XCTAssertFalse(failure.retryable)
+                XCTAssertEqual(f.driver.applied, 1); XCTAssertNil(f.driver.command)
+                XCTAssertEqual(f.directory.pendingObservationCount, 0)
+                f.authority.release(f.admitted)
+                if let replacement {
+                    XCTAssertNotEqual(replacement.lifetimeID, f.admitted.lifetimeID)
+                    assertSameAdmission(try f.authority.navigationState(sceneID: f.sceneID.rawValue), replacement)
+                } else { XCTAssertThrowsError(try f.authority.navigationState(sceneID: f.sceneID.rawValue)) }
+            }
+        }
+    }
+
+    func testCancellationAtFinalSynchronousObservationCannotAcknowledgeVisibleEffect() async throws {
+        for backend in ActionBackendID.allCases {
+            let f = try await PublicConsumerFixture(backend), prepared = try await f.surfacePlan()
+            defer { f.authority.release(f.admitted) }
+            var injected = false
+            f.driver.afterVisible = {
+                f.backend.onSynchronousSnapshot = {
+                    f.backend.onSynchronousSnapshot = nil; injected = true
+                    withUnsafeCurrentTask { $0?.cancel() }
+                }
+            }
+            let task = Task { await f.orchestrator.commitPrepared(prepared, admitted: f.admitted) }
+            let result = await task.value
+            XCTAssertTrue(injected); XCTAssertTrue(task.isCancelled)
+            guard case .failed(let failure) = result else { return XCTFail("Cancelled final observation acknowledged: \(result)") }
+            XCTAssertEqual(failure.code, "native_effect_uncertain"); XCTAssertFalse(failure.retryable)
+            XCTAssertEqual(f.driver.applied, 1); XCTAssertNil(f.driver.command)
+            XCTAssertEqual(f.directory.pendingObservationCount, 0)
+            assertSameAdmission(try f.authority.navigationState(sceneID: f.sceneID.rawValue), f.admitted)
+        }
+    }
+}
+
 @MainActor final class PublicConsumerFixture {
     let sceneID = UIStableID(rawValue: "public.native.scene")!
     let authority: NativeNavigationAuthority
@@ -162,6 +294,7 @@ import OtzariaUIRouting
     let admitted: ActionNavigationState
     let backend: NavigationTestBackend
     let directory: NativeSceneDirectory
+    let directoryLease: NativeSceneDirectory.Lease
     let driver: NavigationTestDriver
     let core: ActionExecutor
     let orchestrator: NativeSceneNavigationOrchestrator
@@ -189,7 +322,7 @@ import OtzariaUIRouting
             profileID: .init(rawValue: "22222222-2222-4222-8222-222222222222"), inspectorVisible: reader ? false : nil)
         driver.targetTabID = UIStableID(rawValue: "33333333-3333-4333-8333-333333333333")!
         let authority = authority, driver = driver
-        _ = try directory.mount(sceneID: sceneID, observe: { driver.observation }, validateLifetime: { context in
+        directoryLease = try directory.mount(sceneID: sceneID, observe: { driver.observation }, validateLifetime: { context in
             guard try authority.navigationState(sceneID: driver.sceneID.rawValue).context == context else { throw ActionPortError.staleState }
         })
         sink = NavigationReaderSink()

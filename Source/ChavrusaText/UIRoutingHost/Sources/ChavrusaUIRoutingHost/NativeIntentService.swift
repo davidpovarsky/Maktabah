@@ -23,13 +23,17 @@ public final class NativeIntentService {
         }
     }
     public typealias Discover = @MainActor @Sendable () async throws -> [Destination]
+    public typealias AwaitForeground = @MainActor @Sendable (Destination) async throws -> Void
     public typealias Open = @MainActor @Sendable (Destination) async throws -> UISceneAcknowledgement
     private let discover: Discover
     private let resolveEntities: Discover
+    private let awaitForeground: AwaitForeground?
     private let navigate: Open
-    public init(discover: @escaping Discover, resolveEntities: Discover? = nil, navigate: @escaping Open) {
+    public init(discover: @escaping Discover, resolveEntities: Discover? = nil,
+                awaitForeground: AwaitForeground? = nil, navigate: @escaping Open) {
         self.discover = discover
         self.resolveEntities = resolveEntities ?? discover
+        self.awaitForeground = awaitForeground
         self.navigate = navigate
     }
 
@@ -57,6 +61,16 @@ public final class NativeIntentService {
     public func open(identifier: String) async throws -> UISceneAcknowledgement {
         guard identifier.utf8.count <= 512 else { throw UIRouteError(.failed, "invalid_intent_entity") }
         try Task.checkCancellation()
+        if let awaitForeground {
+            // Resolve only the selected mounted identity before waiting for the
+            // system's foreground lifecycle. Metadata does not grant authority.
+            let candidates = try filter(try await resolveEntities(), identifiers: [identifier], matching: nil)
+            guard candidates.count == 1, let target = candidates.first else {
+                throw UIRouteError(.staleState, "intent_entity_no_longer_available")
+            }
+            try await awaitForeground(target)
+            try Task.checkCancellation()
+        }
         // Always obtain fresh execution eligibility. A resolved background entity
         // or a stale system reference cannot borrow foreground authority.
         let values = try await discover()

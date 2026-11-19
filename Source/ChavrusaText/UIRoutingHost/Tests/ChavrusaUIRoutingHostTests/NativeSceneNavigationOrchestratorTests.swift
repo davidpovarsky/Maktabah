@@ -49,7 +49,7 @@ import OtzariaUIRouting
         let f = try await fixture()
         f.driver.afterApply = { f.backend.value = .init(backend: .otzaria, generation: 2) }
         let result = try await f.orchestrator.commit(f.command, context: f.context)
-        guard case .staleState(let failure) = result else { return XCTFail("Changed backend completed") }
+        guard case .staleState(let failure) = result else { return XCTFail("Changed backend did not retain stale-state semantics: \(result)") }
         XCTAssertEqual(failure.code, "native_effect_uncertain"); XCTAssertFalse(failure.retryable)
     }
     func testRevocationDuringVisibleWaitCannotBecomeCompletion() async throws {
@@ -105,32 +105,56 @@ import OtzariaUIRouting
     func testCanonicalGenerationDriftAfterFinalObservationIsRejectedOnAllBackends() async throws {
         for backend in ActionBackendID.allCases {
             let f = try await fixture(backendID: backend)
-            f.driver.afterApply = { f.backend.afterSnapshot = {
-                f.backend.value = .init(backend: backend, generation: 2, rpcEpoch: backend == .sefariaEmbedded ? 7 : nil)
+            var injected = false
+            f.driver.afterVisible = { f.backend.afterSynchronousSnapshot = {
+                f.backend.onSynchronousSnapshot = {
+                    f.backend.onSynchronousSnapshot = nil; injected = true
+                    f.backend.value = .init(backend: backend, generation: 2, rpcEpoch: backend == .sefariaEmbedded ? 7 : nil)
+                }
             } }
             let result = try await f.orchestrator.commit(f.command, context: f.context)
+            XCTAssertTrue(injected, "Generation drift must occur after the final backend snapshot is captured")
             guard case .staleState(let failure) = result else { XCTFail("Final canonical drift completed: \(result)"); continue }
             XCTAssertEqual(failure.code, "native_effect_uncertain"); XCTAssertEqual(f.driver.applied, 1)
         }
     }
     func testCanonicalEpochDriftAfterFinalObservationIsRejected() async throws {
         let f = try await fixture(backendID: .sefariaEmbedded)
-        f.driver.afterApply = { f.backend.afterSnapshot = { f.backend.value = .init(backend: .sefariaEmbedded, generation: 1, rpcEpoch: 8) } }
+        var injected = false
+        f.driver.afterVisible = { f.backend.afterSynchronousSnapshot = {
+            f.backend.onSynchronousSnapshot = {
+                f.backend.onSynchronousSnapshot = nil; injected = true
+                f.backend.value = .init(backend: .sefariaEmbedded, generation: 1, rpcEpoch: 8)
+            }
+        } }
         let result = try await f.orchestrator.commit(f.command, context: f.context)
+        XCTAssertTrue(injected)
         guard case .staleState(let failure) = result else { return XCTFail("Final epoch drift completed: \(result)") }
         XCTAssertEqual(failure.code, "native_effect_uncertain")
     }
     func testCanonicalReadinessLossAfterFinalObservationIsRejected() async throws {
         let f = try await fixture()
-        f.driver.afterApply = { f.backend.afterSnapshot = { f.backend.available = false } }
+        var injected = false
+        f.driver.afterVisible = { f.backend.afterSynchronousSnapshot = {
+            f.backend.onSynchronousSnapshot = {
+                f.backend.onSynchronousSnapshot = nil; injected = true; f.backend.available = false
+            }
+        } }
         let result = try await f.orchestrator.commit(f.command, context: f.context)
+        XCTAssertTrue(injected)
         guard case .unavailable(let failure) = result else { return XCTFail("Final readiness loss completed: \(result)") }
         XCTAssertEqual(failure.code, "native_effect_uncertain")
     }
     func testCanonicalDeadlineExpiresDuringFinalSynchronousCompletionCheck() async throws {
         let clock = CompletionTestClock(), f = try await fixture(clock: clock, deadline: 200)
-        f.driver.afterApply = { f.backend.afterSnapshot = { f.backend.onSynchronousSnapshot = { clock.expire() } } }
+        var injected = false
+        f.driver.afterVisible = { f.backend.afterSynchronousSnapshot = {
+            f.backend.onSynchronousSnapshot = {
+                f.backend.onSynchronousSnapshot = nil; injected = true; clock.expire()
+            }
+        } }
         let result = try await f.orchestrator.commit(f.command, context: f.context)
+        XCTAssertTrue(injected)
         guard case .failed(let failure) = result else { return XCTFail("Final deadline drift completed: \(result)") }
         XCTAssertEqual(failure.code, "native_effect_uncertain"); XCTAssertGreaterThan(clock.now(), 200)
     }
@@ -220,10 +244,13 @@ import OtzariaUIRouting
     var asynchronousSnapshots = 0
     var afterSnapshot: (@MainActor () -> Void)?
     var onSynchronousSnapshot: (@MainActor () -> Void)?
+    var afterSynchronousSnapshot: (@MainActor () -> Void)?
     init(_ backend: ActionBackendID) { value = .init(backend: backend, generation: 1, rpcEpoch: backend == .sefariaEmbedded ? 7 : nil) }
     func currentBackendSnapshot() throws -> ActionBackendSnapshot {
         guard available else { throw ActionPortError.unavailable }
-        onSynchronousSnapshot?(); return value
+        onSynchronousSnapshot?()
+        let captured = value, callback = afterSynchronousSnapshot
+        afterSynchronousSnapshot = nil; callback?(); return captured
     }
     func snapshot() async throws -> ActionBackendSnapshot {
         asynchronousSnapshots += 1
@@ -260,6 +287,7 @@ struct NavigationTestPorts: ActionResolverPort, ActionSearchPort {
     var actualState = UIStateSpec()
     var targetTabID = UIStableID(rawValue: "native-tab")!
     var afterApply: (@MainActor () throws -> Void)?
+    var afterVisible: (@MainActor () throws -> Void)?
     init(sceneID: UIStableID, backend: NavigationTestBackend) { self.sceneID = sceneID; self.backend = backend }
     var surface: NativeSurfaceState {
         .init(destination: UIDestinationID(rawValue: content == nil ? (wrongSurface ? "native.history" : "native.settings") : "native.reader")!,
@@ -275,7 +303,9 @@ struct NavigationTestPorts: ActionResolverPort, ActionSearchPort {
     func apply(_ command: UISceneCommand) throws { applied += 1; content = command.route.route.content; try afterApply?() }
     func waitUntilVisible(_ command: UISceneCommand) async throws -> NativeSurfaceState {
         if wait { try await Task.sleep(nanoseconds: 10_000_000_000) }
-        return surface
+        let visible = surface
+        try afterVisible?()
+        return visible
     }
     func endObservation(requestID: UUID) { command = nil }
 }

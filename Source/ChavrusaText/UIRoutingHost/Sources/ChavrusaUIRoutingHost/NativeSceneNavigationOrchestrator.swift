@@ -239,7 +239,16 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             let visible = try await NativeObservationDeadline.run(until: command.invocation.deadlineUptimeNanoseconds, clock: clock) {
                 try await driver.waitUntilVisible(command)
             }
-            let observed = try await directory.currentScene(sceneID: sceneID, context: context, invocation: command.invocation)
+            // Observe the actual visible surface and same synchronous backend
+            // in one MainActor turn. A further suspension here lets ordinary
+            // UIKit layout callbacks invalidate an otherwise exact observation.
+            // All original completion/authority/source checks below remain.
+            let completionBackend = try backend.currentBackendSnapshot()
+            guard completionBackend == command.invocation.snapshot else {
+                throw UIRouteError(.staleState, "backend_generation_changed")
+            }
+            let observed = try directory.synchronousScene(sceneID: sceneID, context: context,
+                backend: completionBackend)
             let observedRoute = visible.observedRoute(for: command, backend: observed.backendSnapshot)
             let coreReceipt = observedRoute.content.map {
                 ActionUIReceipt(requestId: requestID, snapshot: observed.backendSnapshot, sceneID: observed.sceneID.rawValue, destination: $0)
