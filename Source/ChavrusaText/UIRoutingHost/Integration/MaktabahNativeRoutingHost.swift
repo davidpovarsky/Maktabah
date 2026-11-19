@@ -73,6 +73,14 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             .onChange(of: workspace?.selection) { _, _ in
                 refreshProjection()
             }
+            // Cold restoration can publish the original live mapping after
+            // attachment without changing the saved selection. Install its
+            // existing binding on that publication as well; readiness never
+            // substitutes for the producer's ownership and authority checks.
+            .onChange(of: workspace?.mappingOwnershipSource.event) { _, event in
+                guard event?.phase == .available else { return }
+                refreshProjection()
+            }
             // Bindings captured at mount can retain their render-time value
             // during a later SwiftUI graph evaluation. Refresh the projection
             // used by the actual destination marker after native UI changes.

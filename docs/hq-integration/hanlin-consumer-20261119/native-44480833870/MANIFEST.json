@@ -1,0 +1,61 @@
+{
+  "run": 44480833870,
+  "source_commit": "7be3af6b977823fb02e64859ab10e79c4eef410f",
+  "scope": "Selected immutable raw failure records, not a replacement for complete original xcresult/recording artifacts",
+  "original_complete_local_artifacts": "C:\\Users\\DAVID\\Code\\Maktabah-continuation-20261117\\build\\continuation-20261119\\consumer-44480833870",
+  "review": {
+    "native_executed": 2,
+    "passed": 1,
+    "failed": 1,
+    "failure": "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart at line29 after actual process restart",
+    "passed_case": "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+    "candidate_reuse": false
+  },
+  "zip_sha256": "e4b2cfff811b349e811670eed4f321406d98f33220628150f70e1118b69f35ff",
+  "files": {
+    "evidence/artifacts/runtime27/junit.xml": {
+      "bytes": 679,
+      "sha256": "dcecfc319d92cfbcfc0b3635adfb5aee41763217d1aba15fe9bac3dd3354c17d"
+    },
+    "evidence/artifacts/test-case-execution-11.json": {
+      "bytes": 981,
+      "sha256": "c5a8f52e705fe0532d320b95ec4a125704706712aeae1468d9add5b84b858b2b"
+    },
+    "evidence/artifacts/runtime27/verified-11.summary.json": {
+      "bytes": 1498,
+      "sha256": "a2c4af789a924acc09e3c647a9447522f54db49101bee05cce497655f26c74f0"
+    },
+    "evidence/artifacts/runtime27/verified-11.tests.json": {
+      "bytes": 3164,
+      "sha256": "6b85b282c36f14371acb2ff736c4c8a724274814018496b2a4bcfd49a9722bc7"
+    },
+    "evidence/artifacts/test-simulator-11.log": {
+      "bytes": 39314,
+      "sha256": "7141ec38ca361de657d0bd6d38f5ccb20a5e3a9c203859d59f7db88ae4161109"
+    },
+    "evidence/hq-stage2/actual-source-inputs.json": {
+      "bytes": 95677,
+      "sha256": "fec55e8faecb1e2afe5ff195e63c575b259386e4650d5416cb09fc96b775d9ad"
+    },
+    "evidence/hq-stage2/hanlin-sdk-inputs.json": {
+      "bytes": 60771,
+      "sha256": "7c92c3382192d779bb6ce3eacaf46d82230a6dbd64f1ed59d38b765228f5eef3"
+    },
+    "captures/visual-11/manifest.json": {
+      "bytes": 27115,
+      "sha256": "d1548b565296146ed3879d06d4c7bab089fceb11c5a942e08fae20e414e8e483"
+    },
+    "captures/visual-11/FFE778CE-D89B-4F5A-BCDA-615D45D7387D.txt": {
+      "bytes": 51291,
+      "sha256": "ba91eb3df36da3f53ad369f83c7419eeedc3aa329d1ca44fed79ff11211b27f8"
+    },
+    "terminal.json": {
+      "bytes": 5001,
+      "sha256": "131848c923de17ecb2778c806e9c71721f7aeb207d43123bb481e751aae544d6"
+    },
+    "artifacts.json": {
+      "bytes": 382,
+      "sha256": "30e1576d608d6c9bd722de0f4646fcbfe091a92b887ea1ec9544c31195707d46"
+    }
+  }
+}
