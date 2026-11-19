@@ -63,3 +63,44 @@ Read AGENTS.md, PROJECT_AGENT_GUIDANCE.md and UPSTREAM_INTEGRITY_POLICY.md.
 The live upstream HEAD examined was `d46af139b3a265399c16d87f5923acd8e3444024`;
 its tree has no Scripts/CI or Maktabah-iOSUITests paths. These repairs are in
 existing downstream tests/orchestration and do not change production app logic.
+
+## Source and Sidebar repair follow-up
+
+Native75 showed Zayit result 6201403 requesting book103/line1175 while the
+existing Reader remained at book103/line138. The two exact-source line tests
+rendered the right text but zero search highlights. The Zayit adapter supplied
+a raw line index as the Reader content ID and omitted explicit matched terms.
+New Reader loads mapped that index to a canonical surrogate, so the old search
+event no longer matched. Existing Reader loads used legacy SQL only.
+
+The Zayit adapter now registers the original qualified book/line locator and
+passes the provider's matched terms verbatim through OpenBookOptions. Display
+search text retains search provenance; no synthetic legacy FTS event is made.
+The downstream destination resolver verifies the current backend/work before
+a small fetchContentById hook calls the existing asynchronous backend loader.
+Unknown or foreign registered IDs refuse; old nonnegative Otzaria line callers
+and original legacy SQL behavior remain supported.
+
+The original upstream fetchContentById method at d46af139b3a265399c16d87f5923acd8e3444024
+was read and compared. Its original legacy SQL body is unchanged; the only
+upstream-file addition is the eight-line canonical-backend dispatch hook.
+Policy/owner authorization covers this proven integration defect. No Core,
+Hanlin, provider engine or database schema is changed.
+
+Sidebar LTR/RTL both completed twenty actual body transitions before failing
+after the final filter clear. The helper inferred collapse from an absent
+virtualized child. It now observes the actual row's chevron.down/chevron.forward
+image identifiers, which appear in both retained native AX captures, and taps
+only a collapsed category. It retains all physical swipe directions, exact
+occurrence IDs, final clear/reveal and Reader/viewport preservation assertions.
+
+Executed follow-up validation: 37 portable assertions compiled with Swift6
+strict concurrency against the actual adapter, registry, destination resolver,
+OpenBookOptions and fetchContentById body. Native dependencies are explicit
+boundary fixtures and grant no Native acceptance. The old adapter at 9bd061ab
+compiled and failed specifically because a raw SQL line was not a qualified
+Reader content ID. Current Swift parsing and git diff --check passed.
+
+Required fresh native regression includes both canonical Zayit source-line
+cases, its three-page case, the parallel Otzaria multi-page case, both Sidebar
+body-paging locales, normal Reader same-book routing and original legacy paths.

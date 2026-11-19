@@ -272,8 +272,18 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
             XCTAssertTrue(target.staticTexts[title].exists, "Canonical cell must retain the real title")
             XCTAssertTrue(target.isHittable, "Canonical catalog occurrence must be visible")
             if index + 1 < path.count {
-                let child = try cell(at: index + 1)
-                if !child.exists { target.tap() }
+                // The native collection virtualizes children below its viewport.
+                // Their absence does not mean this category is collapsed. The
+                // actual rendered chevron exposes its stable SF Symbol identity
+                // in both locale captures from run44559352638.
+                let expanded = target.images["chevron.down"]
+                let collapsed = target.images["chevron.forward"]
+                XCTAssertEqual(target.images.matching(NSPredicate(format: "identifier IN %@",
+                    ["chevron.down", "chevron.forward"])).count, 1,
+                    "Observe the original category's actual disclosure state")
+                if collapsed.exists { target.tap() }
+                XCTAssertTrue(expanded.waitForExistence(timeout: 15),
+                              "The original category must be visibly expanded before finding its child")
             }
         }
     }
