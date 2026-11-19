@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
+  "source_test_commit": "bde5aaee07ff708cf5071a771066afe9c9e27d02",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
+  "app_source": "bde5aaee07ff708cf5071a771066afe9c9e27d02",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original27 plus actual source-qualified continuation cases;75 required Native cases,61iPad27+14iPhone27,zero skips;app/system/physical/release gates remain distinct.",
@@ -1189,7 +1189,7 @@
       "source_sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71"
     },
     "native_inspector_source": {
-      "source": "next immutable source checkpoint",
+      "source": "bde5aaee07ff708cf5071a771066afe9c9e27d02",
       "implementation": "Existing original TorahInspectorKit panel through unchanged public-v2 Inspector policy, original Core and scene registry; retains actual Reader owner/locator/private selection; marker bound to actual panel Reader instance. No new renderer/permission engine.",
       "case_ids": [
         "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
@@ -1200,10 +1200,26 @@
       ],
       "status": "NOT_RUN",
       "source_owner_tests": "17 portable cases with explicit model/backend doubles;0Native",
-      "active_previous_candidate": "44434004471 on b387/2c5 remains immutable; new75 not dispatched yet"
+      "active_previous_candidate": "44434004471 on b387/2c5 remains immutable; new75 not dispatched yet",
+      "source_validation": "17 exact owner assertions,15 complete Foundation highlight assertions,75 Swift-declared Native methods;0Native on this source"
+    },
+    "source_checkpoint_20261119": {
+      "source": "bde5aaee07ff708cf5071a771066afe9c9e27d02",
+      "previous_pins": {
+        "source_test_commit": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
+        "app_source": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
+        "application_source_sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71"
+      },
+      "native70_unchanged": {
+        "run": 44434004471,
+        "head": "b3871b1ff65baa92c56ca3bd960a53be8c18221e",
+        "source": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71"
+      },
+      "native75": "NOT_RUN",
+      "change_impact": "Original Hebrew range matching and original Reader Inspector/public-v2/system entity wiring require a fresh app build and75case run; no old pass is transferred."
     }
   },
-  "application_source_sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
+  "application_source_sha": "bde5aaee07ff708cf5071a771066afe9c9e27d02",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",

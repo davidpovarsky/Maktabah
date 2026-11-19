@@ -344,7 +344,7 @@
       "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
       "anchor": "struct ",
       "old_blob": "a89ca4e0b5459d170ec3bdb20fbdfb34c2361384",
-      "current_blob": "04cc87a3243eca9ee0efd871cda088425330627f",
+      "current_blob": "27ba64a82bef603bd4fb46928494f91e02ccb98d",
       "line": 6
     },
     {
@@ -460,5 +460,5 @@
       "line": 637
     }
   ],
-  "source_sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71"
+  "source_sha": "bde5aaee07ff708cf5071a771066afe9c9e27d02"
 }
