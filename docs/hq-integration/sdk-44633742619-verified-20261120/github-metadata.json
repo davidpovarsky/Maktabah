@@ -1,0 +1,125 @@
+{
+  "artifacts": [
+    {
+      "id": 14586095947,
+      "name": "faithful-ui-sdk-check",
+      "size_in_bytes": 176854,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14586095947",
+      "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14586095947/zip",
+      "expired": false,
+      "created_at": "2026-11-19T23:39:59Z",
+      "expires_at": "2027-02-17T23:00:09Z",
+      "updated_at": "2026-11-19T23:39:59Z",
+      "digest": "sha256:9907b4230304cef5655111e8e506282f4b492c22d724292efdb40a87f1e416e1",
+      "workflow_run": {
+        "id": 44633742619,
+        "repository_id": 1280062128,
+        "head_repository_id": 1280062128,
+        "head_branch": "codex/otzaria-completion-20261120",
+        "head_sha": "7d05dd0bb25a7df307b35174e49e18d0f22eecee"
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "id": 135946880280,
+      "name": "Focused SDK and workspace checks (no app/runtime acceptance)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 44633742619,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Reject conflicting acceptance inputs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Select the same existing SDK and runtime pair as Native acceptance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Typecheck black-box tests with the actual iPad SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify actual portable workspace contracts on macOS",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Upload exact SDK and compiler diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 135946882989,
+      "name": "Books Updates Apple safety checks (no app runtime acceptance)",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44633742619,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 135946883523,
+      "name": "R27 real UI environment and acceptance",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44633742619,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 135946883602,
+      "name": "Validate Sefaria-Mobile Embedded Build and Runtime",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44633742619,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 135946898368,
+      "name": "Focused unsigned Maktabah-iOS (no runtime or data)",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44633742619,
+      "logs_url": null,
+      "steps": null
+    }
+  ]
+}
