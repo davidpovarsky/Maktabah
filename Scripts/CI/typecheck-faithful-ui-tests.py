@@ -47,7 +47,7 @@ ui_sources = ["Maktabah-iOSUITests/MaktabahUITestBase.swift", "Maktabah-iOSUITes
               "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift"]
 if Path("Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift").is_file():
     ui_sources.append("Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift")
-for name in ["GlobalSearchNativeAcceptanceTests.swift", "R27NativeInteractionAcceptanceTests.swift", "Sidebar11201AcceptanceTests.swift", "HanlinConsumerAcceptanceTests.swift"]:
+for name in ["GlobalSearchNativeAcceptanceTests.swift", "R27NativeInteractionAcceptanceTests.swift", "Sidebar11201AcceptanceTests.swift", "HanlinConsumerAcceptanceTests.swift", "BookHistoryScopeAcceptanceTests.swift"]:
     path = "Maktabah-iOSUITests/" + name
     if Path(path).is_file():
         ui_sources.append(path)
