@@ -1,0 +1,12 @@
+{
+  "observed_at": "2026-11-19T04:36:18.609787+00:00",
+  "source_commit": "e75f88b9b03e3ec3835f618e2f43539f6f0b3f67",
+  "original_sdk": "873607e45e021b40fe5b940c836d398c329f95c8",
+  "application_trees": {
+    "Source": "826ca81c02b710ed1246923fd68ebdbd0a2a5548",
+    "Vendor": "a55fbb56056708d2d21ed60fefccb9f4f07cfe66",
+    "Maktabah.xcodeproj": "1175aa91ffff58b465c635926ba3eebe9a80ae53"
+  },
+  "scope": "Original actual app source/products and history owner, pending Apple/native execution",
+  "original_prebuilt_engine_and_resource_provenance_unchanged": true
+}
