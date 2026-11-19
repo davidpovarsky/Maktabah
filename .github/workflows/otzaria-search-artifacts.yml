@@ -417,6 +417,12 @@ jobs:
           command -v zstd >/dev/null || brew install zstd
       - name: Regress candidate manifest identity through the original URLSession transport
         run: bash Scripts/CI/test-artifact-release-discovery.sh
+      - name: Regress native resume seed path against original profile storage
+        run: |
+          set -o pipefail
+          mkdir -p build/hq-v32-prebuilt-native
+          python3 Scripts/CI/test-v32-prebuilt-native.py 2>&1 | tee build/hq-v32-prebuilt-native/evidence-gate-regression.log
+          python3 Scripts/CI/test-v32-seed-workspace.py 2>&1 | tee build/hq-v32-prebuilt-native/seed-path-regression.log
       - name: Build the original integrated app for the simulator
         env:
           GH_TOKEN: ${{ github.token }}

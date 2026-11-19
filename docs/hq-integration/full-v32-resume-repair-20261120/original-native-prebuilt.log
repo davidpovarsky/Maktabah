@@ -1,0 +1,316 @@
+Monitoring boot status for Otzaria-v32-38e8114ba6d9 (97A37202-D721-42F5-A523-9F2D47C41E21).
+[2026-11-19 23:21:49 +0000] Status=2, isTerminal=NO, Elapsed=01:11.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.addressbook.migrator (AddressBookLegacy.migrator)
+		Migration Elapsed:00:48 seconds
+
+[2026-11-19 23:21:50 +0000] Status=2, isTerminal=NO, Elapsed=01:12.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.WebBookmarks.migrator (WebBookmarks.migrator)
+		Migration Elapsed:00:49 seconds
+
+[2026-11-19 23:21:51 +0000] Status=2, isTerminal=NO, Elapsed=01:13.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.MobileSafari.migrator (MobileSafari.migrator)
+		Migration Elapsed:00:50 seconds
+
+[2026-11-19 23:21:52 +0000] Status=2, isTerminal=NO, Elapsed=01:14.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.MobileSafari.migrator (MobileSafari.migrator)
+		Migration Elapsed:00:51 seconds
+
+[2026-11-19 23:21:53 +0000] Status=2, isTerminal=NO, Elapsed=01:15.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.MobileSafari.migrator (MobileSafari.migrator)
+		Migration Elapsed:00:52 seconds
+
+[2026-11-19 23:21:54 +0000] Status=2, isTerminal=NO, Elapsed=01:16.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.dataaccess.migrator (DAAccount.migrator)
+		Migration Elapsed:00:53 seconds
+
+[2026-11-19 23:21:55 +0000] Status=2, isTerminal=NO, Elapsed=01:17.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.PreferencesMigrator (PreferencesMigrator.migrator)
+		Migration Elapsed:00:54 seconds
+
+[2026-11-19 23:21:56 +0000] Status=2, isTerminal=NO, Elapsed=01:18.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.accounts.obsolescencemigrator (AccountsObsolescence.migrator)
+		Migration Elapsed:00:55 seconds
+
+[2026-11-19 23:21:57 +0000] Status=2, isTerminal=NO, Elapsed=01:19.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.accounts.obsolescencemigrator (AccountsObsolescence.migrator)
+		Migration Elapsed:00:56 seconds
+
+[2026-11-19 23:21:58 +0000] Status=2, isTerminal=NO, Elapsed=01:20.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.accounts.obsolescencemigrator (AccountsObsolescence.migrator)
+		Migration Elapsed:00:57 seconds
+
+[2026-11-19 23:21:59 +0000] Status=2, isTerminal=NO, Elapsed=01:21.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.accounts.obsolescencemigrator (AccountsObsolescence.migrator)
+		Migration Elapsed:00:58 seconds
+
+[2026-11-19 23:22:00 +0000] Status=2, isTerminal=NO, Elapsed=01:22.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.accounts.obsolescencemigrator (AccountsObsolescence.migrator)
+		Migration Elapsed:00:59 seconds
+
+[2026-11-19 23:22:01 +0000] Status=2, isTerminal=NO, Elapsed=01:23.
+	Waiting on Data Migration
+		Reason:Running plugin com.apple.VoiceShortcuts.ShortcutsMigrator (Shortcuts.migrator)
+		Migration Elapsed:01:00 seconds
+
+[2026-11-19 23:22:02 +0000] Status=4294967295, isTerminal=YES, Elapsed=01:24.
+	Finished
+
+Launching app for prebuilt install phase...
+Prebuilt install launch output: com.davidpovarsky.chavrusatext: 11356
+Captured prebuilt install PID: 11356
+Prebuilt install report ready after 207s: /Users/runner/Library/Developer/CoreSimulator/Devices/97A37202-D721-42F5-A523-9F2D47C41E21/data/Containers/Data/Application/719FB91C-00C2-44E8-BA10-009672A921BE/Documents/otzaria-prebuilt-install.json
+{
+  "artifactIdentity" : "102293b3a63c7f73fa05298457073804e57e020486753f8f6b8f7964ce29f17e",
+  "checks" : [
+    {
+      "count" : 104120,
+      "firstFilePath" : "otzaria-book:1",
+      "mode" : "exact",
+      "query" : "בראשית"
+    },
+    {
+      "count" : 104120,
+      "firstFilePath" : "otzaria-book:1",
+      "mode" : "fuzzy",
+      "query" : "בראשית"
+    },
+    {
+      "count" : 104120,
+      "firstFilePath" : "otzaria-book:1",
+      "mode" : "advanced",
+      "query" : "בראשית"
+    }
+  ],
+  "documentCount" : 7080797,
+  "golden" : {
+    "highlightedTopResults" : 25,
+    "normalizedQuery" : "לחתוך צנון בסכין בשרי",
+    "orderedResultIDs" : [
+      17686675338218,
+      31520764985410,
+      17836999183531,
+      28402618730346,
+      17879948854687,
+      28402618730413,
+      28402618730434,
+      17879948854576,
+      1683627180939,
+      30829275269486,
+      17433272254491,
+      17433272254649,
+      17437567221957,
+      17725330032952,
+      17725330030767,
+      18120467025808,
+      18073222382152,
+      17729625003226,
+      18421114741333,
+      32452772915387,
+      32452772915389,
+      32452772915401,
+      32452772915437,
+      32452772915439,
+      32452772915473
+    ],
+    "query" : "לחתוך צנון בסכין בשרי",
+    "references" : [
+      "כף החיים על שולחן ערוך יורה דעה, סימן צו, סעיף קטן מח",
+      "פסקי רבינו מענדל קלויזנער על מסכת חולין, פרק כל הבשר, דף קו.",
+      "שפתי כהן על שולחן ערוך יורה דעה, סימן פט, סעיף כב",
+      "קיצור ש''ע ילקוט יוסף החדש - יורה דעה, הלכות בשר בחלב, סימן פט (בסוף) - הכשר כלים לענין בשר וחלב, סט",
+      "באר היטב יורה דעה, סימן צד",
+      "קיצור ש''ע ילקוט יוסף החדש - יורה דעה, הלכות בשר בחלב, סימן צ' - דין כחל, יב",
+      "קיצור ש''ע ילקוט יוסף החדש - יורה דעה, הלכות בשר בחלב, סימן צב עד סימן צח - עוד מהלכות בשר בחלב, ו",
+      "באר היטב יורה דעה, סימן פט",
+      "שולחן ערוך, יורה דעה, סימן צו",
+      "איזהו מקומן על חולין, פרק שמיני - כל הבשר, גמ'",
+      "בדק הבית על תורת הבית הארוך, הבית הראשון, השער השני, פסקה ב",
+      "בדק הבית על תורת הבית הארוך, הבית הרביעי, השער הראשון, פסקה א",
+      "משמרת הבית על תורת הבית הארוך, הבית הרביעי, השער הראשון, פסקה א",
+      "פרי מגדים על יורה דעה, משבצות זהב, סימן צו, סעיף ג",
+      "פרי מגדים על יורה דעה, משבצות זהב, סימן י, סעיף ו",
+      "כל בו, סימן קו",
+      "איסור והיתר הארוך, שער לח",
+      "אליה רבה על שלחן ערוך אורח חיים, סימן תמז",
+      "ביאור חדש מספיק, ספר קדושה, הלכות מאכלות אסורות, פרק תשיעי, כד",
+      "קובץ שיטות קמאי על חולין, דף קיא:, ראב\"ן סימנים רע\"ב, רע\"ג",
+      "קובץ שיטות קמאי על חולין, דף קיא:, האשכול — רצב\"א, הלכ' מליחת בשר",
+      "קובץ שיטות קמאי על חולין, דף קיא:, הרוקח סימן תפ\"א",
+      "קובץ שיטות קמאי על חולין, דף קיא:, הבתים — שערי חלב ודם וגיד שער רביעי",
+      "קובץ שיטות קמאי על חולין, דף קיא:, הבתים — שערי חלב ודם וגיד שער רביעי",
+      "קובץ שיטות קמאי על חולין, דף קיא:, העיטור — שער ראשון הכשר הבשר ח\"ד"
+    ],
+    "stableSourceIDs" : [
+      "otzaria-book:3820",
+      "otzaria-book:6886",
+      "otzaria-book:3855",
+      "otzaria-book:5874",
+      "otzaria-book:3864",
+      "otzaria-book:5874",
+      "otzaria-book:5874",
+      "otzaria-book:3864",
+      "otzaria-book:383",
+      "otzaria-book:6871",
+      "otzaria-book:3784",
+      "otzaria-book:3784",
+      "otzaria-book:3793",
+      "otzaria-book:3827",
+      "otzaria-book:3827",
+      "otzaria-book:3917",
+      "otzaria-book:3909",
+      "otzaria-book:3828",
+      "otzaria-book:7025",
+      "otzaria-book:7574",
+      "otzaria-book:7574",
+      "otzaria-book:7574",
+      "otzaria-book:7574",
+      "otzaria-book:7574",
+      "otzaria-book:7574"
+    ]
+  },
+  "localIndexingRan" : false,
+  "nativeDownloadRan" : true,
+  "passed" : true,
+  "phase" : "install",
+  "productionDiscoveryRan" : true,
+  "productionValidatorRan" : true,
+  "resumedDownloadBytes" : 0,
+  "selectedReleaseTag" : "otzaria-search-data-v32-20261010190601-102293b3a63c",
+  "sourceCount" : 7876,
+  "stagingAbsent" : true
+}Launching app for prebuilt reopen phase...
+Prebuilt reopen launch output: com.davidpovarsky.chavrusatext: 15115
+Captured prebuilt reopen PID: 15115
+Prebuilt reopen report ready after 12s: /Users/runner/Library/Developer/CoreSimulator/Devices/97A37202-D721-42F5-A523-9F2D47C41E21/data/Containers/Data/Application/719FB91C-00C2-44E8-BA10-009672A921BE/Documents/otzaria-prebuilt-reopen.json
+{
+  "artifactIdentity" : "102293b3a63c7f73fa05298457073804e57e020486753f8f6b8f7964ce29f17e",
+  "checks" : [
+    {
+      "count" : 104120,
+      "firstFilePath" : "otzaria-book:1",
+      "mode" : "exact",
+      "query" : "בראשית"
+    },
+    {
+      "count" : 104120,
+      "firstFilePath" : "otzaria-book:1",
+      "mode" : "fuzzy",
+      "query" : "בראשית"
+    },
+    {
+      "count" : 104120,
+      "firstFilePath" : "otzaria-book:1",
+      "mode" : "advanced",
+      "query" : "בראשית"
+    }
+  ],
+  "documentCount" : 7080797,
+  "golden" : {
+    "highlightedTopResults" : 25,
+    "normalizedQuery" : "לחתוך צנון בסכין בשרי",
+    "orderedResultIDs" : [
+      17686675338218,
+      31520764985410,
+      17836999183531,
+      28402618730346,
+      17879948854687,
+      28402618730413,
+      28402618730434,
+      17879948854576,
+      1683627180939,
+      30829275269486,
+      17433272254491,
+      17433272254649,
+      17437567221957,
+      17725330032952,
+      17725330030767,
+      18120467025808,
+      18073222382152,
+      17729625003226,
+      18421114741333,
+      32452772915387,
+      32452772915389,
+      32452772915401,
+      32452772915437,
+      32452772915439,
+      32452772915473
+    ],
+    "query" : "לחתוך צנון בסכין בשרי",
+    "references" : [
+      "כף החיים על שולחן ערוך יורה דעה, סימן צו, סעיף קטן מח",
+      "פסקי רבינו מענדל קלויזנער על מסכת חולין, פרק כל הבשר, דף קו.",
+      "שפתי כהן על שולחן ערוך יורה דעה, סימן פט, סעיף כב",
+      "קיצור ש''ע ילקוט יוסף החדש - יורה דעה, הלכות בשר בחלב, סימן פט (בסוף) - הכשר כלים לענין בשר וחלב, סט",
+      "באר היטב יורה דעה, סימן צד",
+      "קיצור ש''ע ילקוט יוסף החדש - יורה דעה, הלכות בשר בחלב, סימן צ' - דין כחל, יב",
+      "קיצור ש''ע ילקוט יוסף החדש - יורה דעה, הלכות בשר בחלב, סימן צב עד סימן צח - עוד מהלכות בשר בחלב, ו",
+      "באר היטב יורה דעה, סימן פט",
+      "שולחן ערוך, יורה דעה, סימן צו",
+      "איזהו מקומן על חולין, פרק שמיני - כל הבשר, גמ'",
+      "בדק הבית על תורת הבית הארוך, הבית הראשון, השער השני, פסקה ב",
+      "בדק הבית על תורת הבית הארוך, הבית הרביעי, השער הראשון, פסקה א",
+      "משמרת הבית על תורת הבית הארוך, הבית הרביעי, השער הראשון, פסקה א",
+      "פרי מגדים על יורה דעה, משבצות זהב, סימן צו, סעיף ג",
+      "פרי מגדים על יורה דעה, משבצות זהב, סימן י, סעיף ו",
+      "כל בו, סימן קו",
+      "איסור והיתר הארוך, שער לח",
+      "אליה רבה על שלחן ערוך אורח חיים, סימן תמז",
+      "ביאור חדש מספיק, ספר קדושה, הלכות מאכלות אסורות, פרק תשיעי, כד",
+      "קובץ שיטות קמאי על חולין, דף קיא:, ראב\"ן סימנים רע\"ב, רע\"ג",
+      "קובץ שיטות קמאי על חולין, דף קיא:, האשכול — רצב\"א, הלכ' מליחת בשר",
+      "קובץ שיטות קמאי על חולין, דף קיא:, הרוקח סימן תפ\"א",
+      "קובץ שיטות קמאי על חולין, דף קיא:, הבתים — שערי חלב ודם וגיד שער רביעי",
+      "קובץ שיטות קמאי על חולין, דף קיא:, הבתים — שערי חלב ודם וגיד שער רביעי",
+      "קובץ שיטות קמאי על חולין, דף קיא:, העיטור — שער ראשון הכשר הבשר ח\"ד"
+    ],
+    "stableSourceIDs" : [
+      "otzaria-book:3820",
+      "otzaria-book:6886",
+      "otzaria-book:3855",
+      "otzaria-book:5874",
+      "otzaria-book:3864",
+      "otzaria-book:5874",
+      "otzaria-book:5874",
+      "otzaria-book:3864",
+      "otzaria-book:383",
+      "otzaria-book:6871",
+      "otzaria-book:3784",
+      "otzaria-book:3784",
+      "otzaria-book:3793",
+      "otzaria-book:3827",
+      "otzaria-book:3827",
+      "otzaria-book:3917",
+      "otzaria-book:3909",
+      "otzaria-book:3828",
+      "otzaria-book:7025",
+      "otzaria-book:7574",
+      "otzaria-book:7574",
+      "otzaria-book:7574",
+      "otzaria-book:7574",
+      "otzaria-book:7574",
+      "otzaria-book:7574"
+    ]
+  },
+  "localIndexingRan" : false,
+  "nativeDownloadRan" : false,
+  "passed" : true,
+  "phase" : "reopen",
+  "productionDiscoveryRan" : true,
+  "productionValidatorRan" : true,
+  "resumedDownloadBytes" : 0,
+  "selectedReleaseTag" : "otzaria-search-data-v32-20261010190601-102293b3a63c",
+  "sourceCount" : 7876,
+  "stagingAbsent" : true
+}

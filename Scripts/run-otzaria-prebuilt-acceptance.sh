@@ -91,7 +91,9 @@ PY
   SEED_IDENTITY="$(printf '%s\n' "$SEED_VALUES" | sed -n '1p')"
   SEED_ASSET="$(printf '%s\n' "$SEED_VALUES" | sed -n '2p')"
   SEED_SHA="$(printf '%s\n' "$SEED_VALUES" | sed -n '3p')"
-  WORKSPACE="$CONTAINER/Library/Caches/Maktabah/Otzaria/SearchDownloads/$SEED_IDENTITY"
+  # Match OtzariaSearchArtifactStorage -> OtzariaProfileStorage production caches.
+  # The compiled-source parity regression guards this external simulator seed.
+  WORKSPACE="$CONTAINER/Library/Caches/Maktabah/Otzaria/Downloads/$SEED_IDENTITY"
   mkdir -p "$WORKSPACE"
   dd if="$PACKAGE/$SEED_ASSET" of="$WORKSPACE/$SEED_SHA.part" bs=1048576 count=1 2>/dev/null
 else

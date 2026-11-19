@@ -53,6 +53,9 @@ class EvidenceControls(unittest.TestCase):
     def test_missing_native_resume_is_rejected(self):
         self.reject(lambda a, b, log: a.update(nativeDownloadRan=False, resumedDownloadBytes=0))
 
+    def test_full_native_redownload_does_not_count_as_resume(self):
+        self.reject(lambda a, b, log: a.update(nativeDownloadRan=True, resumedDownloadBytes=0))
+
     def test_reopen_download_is_rejected(self):
         self.reject(lambda a, b, log: b.update(nativeDownloadRan=True))
 
