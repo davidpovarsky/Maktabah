@@ -133,3 +133,47 @@ declarations for all 78; Swift frontend parse of the new file; Python byte
 compilation; git diff --check. All passed. This is syntax/declaration evidence,
 not iOS SDK typechecking or Native execution. Native cases executed here: zero;
 BookHistoryScope remains NOT_RUN until the integrated native run passes.
+
+## History heading native accessibility bounds
+
+Original Native75 Search audit failed for the Hebrew recent-history heading:
+`testHeaderAndHistoryNativeAccessibilityAudit-BD640D20-2CBB-4F2D-94B8-E74B415FB43D.txt`.
+Its actual StaticText AX frame was `{{0,360},{834,40.5}}`; its immediate
+rendered-header ancestors were `{{0,360},{514,40.5}}`. The original Search
+field frame was `{{86,227},{412,44}}` and options button `{{16,220},{58,58}}`.
+The outer Search container/header also used the full window width, so that
+outer accessibility container is not a valid detail-column bounds oracle.
+
+The retained native issue crop visibly includes the black heading on the
+sepia Search background and unrelated book-sidebar icons/text. Both the crop
+and full screenshot were inspected:
+
+- `19DC393A-8C23-473F-87DF-0869CF6D2125.png`, SHA256
+  `eba380f3e627a272381412f77d1f56e4c7ec61614245788dc9f8ade54581814e`.
+- `33E55320-1BEB-4E78-AF11-BB766EB47D0D.png`, SHA256
+  `a2a13e156eb3aa29432ee94baff0f268f3d4314ed43019beacacc0c400179dfc`.
+- Full native AX attachment:
+  `testHeaderAndHistoryNativeAccessibilityAudit-16251DA5-D73F-44D4-AC1C-82DC23F40160.txt`.
+
+These are original entries from Native75 artifact 14566591261, selectively
+read by HTTP Range with ZIP CRC verification. The entire 1.81GB artifact SHA
+was not verified; individual PNG SHA256 values above were measured on the
+extracted bytes. The files are retained under `build/native75-captures/`.
+
+The production section header now contains its actual accessible Text and
+Clear button as separate children. The Text explicitly keeps the header trait;
+its existing dynamic system label color and Dynamic Type remain unchanged.
+Apple's documented contain behavior groups the original child elements:
+https://developer.apple.com/documentation/swiftui/accessibilitychildbehavior/contain
+The test additionally requires the heading's actual horizontal bounds to fit
+within the original native query/options controls' combined bounds (one point
+rounding tolerance). The unchanged system accessibility audit then runs with
+all issue kinds/trait changes and returns false for every reported issue.
+No contrast threshold, failure filter, hidden element or synthetic replacement
+is introduced. The original oversized frame is confirmed; resolution of the
+native contrast failure still requires a fresh actual Native audit.
+
+Both edited paths are downstream-only (absent from the reviewed upstream
+HEAD d46af139b3a265399c16d87f5923acd8e3444024). Validation: Swift frontend parses
+both actual edited files, actual selected declarations remain 78, and git diff
+--check passes. iOS SDK compilation and Native audit have not run on Windows.
