@@ -11,3 +11,9 @@ Rollback: revert the dedicated test repair commit; no user database or state cha
 ## First real Apple result
 
 Run 44558147540 compiled the repaired XCTest sources successfully with Xcode 27.2/Swift 6.4.2 and verified all 75 selected declarations. Exact Git-blob repaired-source hash matched the artifact (Windows worktree CRLF is not the checkout byte format). The overall job failed later because the standalone Hanlin navigation proof omitted package platforms and therefore targeted macOS 12. Both original pinned SDK manifests specify iOS 27/macOS 26. The generated proof manifest now uses those same platforms; original SDK sources, all eight assertions, product deployment targets and safety checks are unchanged. Full rerun and Native evidence are still required. See SDK_44558147540.json.
+
+## Second SDK run — checks pass, evidence upload fails
+
+Run [44559343820](https://github.com/davidpovarsky/Maktabah/actions/runs/44559343820) at `ef449e640c3fd538b52627a48ea09846a785c52e` completed both verification steps successfully: SDK compile and source regressions, then 61 workspace checks. Its overall conclusion is **FAILURE** because GitHub ArtifactService CreateArtifact timed out after five attempts. The full job log is retained locally and hashed in `SDK_44559343820.json`; relevant unaltered log lines are preserved beside it. No artifact download or UI acceptance is inferred.
+
+Native75 run [44559352638](https://github.com/davidpovarsky/Maktabah/actions/runs/44559352638) was dispatched on that same source and remains pending at this checkpoint.
