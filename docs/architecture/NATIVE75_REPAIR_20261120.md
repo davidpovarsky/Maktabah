@@ -104,3 +104,32 @@ Reader content ID. Current Swift parsing and git diff --check passed.
 Required fresh native regression includes both canonical Zayit source-line
 cases, its three-page case, the parallel Otzaria multi-page case, both Sidebar
 body-paging locales, normal Reader same-book routing and original legacy paths.
+
+## Book-history scope registration
+
+The original prepared case `Tests/HQ/sidebar/BookHistoryScopeAcceptanceTests.swift`
+(blob `7c4310aecf51fc5f8a763a22f423a96ef790cf90`) is now registered under the
+existing Maktabah-iOSUITests synchronized source group. The Xcode group has no
+membership exceptions; no target/project rewrite was needed. The existing SDK
+typecheck preflight includes the registered source.
+
+Its setup uses the current original `global-search-query` control and native
+Return, waits for the submitted search to complete, relaunches, and requires
+one visible/hittable original history row containing the unique real query.
+It does not seed history. Original book-search acceptance still requires all
+four modes, help, the Near-distance field, and absence of that actual persisted
+global query. iPad is required rather than a skip; normal bootstrap remains.
+
+The exact selected scope is now 78 = all previous 77 plus this one case.
+The catalog has 80 cases. The two historical unselected GlobalHistorySubmit
+cases (R27NativePadTests and R27NativePhoneTests) remain explicitly unselected;
+none of the original 77 cases was replaced. Final integrated source pins must
+be updated by the manager before dispatch.
+
+Executed validation on Windows: execution_groups exact partition (21 Search,
+34 Reader, 5 Sidebar, 2 Window, 2 Hanlin, 14 Phone), set equality against the
+previous 77, uniqueness and unchanged two exclusions; actual Swift compiler
+declarations for all 78; Swift frontend parse of the new file; Python byte
+compilation; git diff --check. All passed. This is syntax/declaration evidence,
+not iOS SDK typechecking or Native execution. Native cases executed here: zero;
+BookHistoryScope remains NOT_RUN until the integrated native run passes.
