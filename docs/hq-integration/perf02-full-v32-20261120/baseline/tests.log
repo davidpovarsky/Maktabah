@@ -1,0 +1,5 @@
+PASS shared connection: 96 real Reader outputs with overlapping cache clears
+PASS four independent read-only connections and decoders: 24 real Reader outputs
+PASS source cache capacities, budgets, clear and in-flight generation publication fence
+PASS active cancellation and same-connection recovery after 381 actual rows
+PASS actual side-cache LRU/20MiB rejection and 100-entry prepared-statement eviction

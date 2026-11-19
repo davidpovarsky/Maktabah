@@ -1,0 +1,57 @@
+C:\Users\DAVID\Code\Maktabah-perf02-completion-20261120\Tests\HQ\reader\FullSourceReaderStress.swift:297:23: error: sending value of non-Sendable type '() -> Bool' risks causing data races [#SendingRisksDataRace]
+
+295 |                 try generationOwner.reader.firstDescriptor(bookId: 28, mode: .paragraph)
+
+296 |             }
+
+297 |             try await waitFor { gate.state.tripped }
+
+    |                       |- error: sending value of non-Sendable type '() -> Bool' risks causing data races [#SendingRisksDataRace]
+
+    |                       `- note: sending main actor-isolated value of non-Sendable type '() -> Bool' to nonisolated global function 'waitFor' risks causing races in between main actor-isolated and nonisolated uses
+
+298 |             generationOwner.reader.clearCaches()
+
+299 |             gate.resume()
+
+
+
+C:\Users\DAVID\Code\Maktabah-perf02-completion-20261120\Tests\HQ\reader\FullSourceReaderStress.swift:331:23: error: sending value of non-Sendable type '() -> Bool' risks causing data races [#SendingRisksDataRace]
+
+329 |             cancellationProbe.install(on: heavyOwner)
+
+330 |             let active = Task.detached { try heavyOwner.reader.buildUnit(from: heavy) }
+
+331 |             try await waitFor { cancellationProbe.state.tripped }
+
+    |                       |- error: sending value of non-Sendable type '() -> Bool' risks causing data races [#SendingRisksDataRace]
+
+    |                       `- note: sending main actor-isolated value of non-Sendable type '() -> Bool' to nonisolated global function 'waitFor' risks causing races in between main actor-isolated and nonisolated uses
+
+332 |             report.activeCancellationRowsBeforeBarrier = cancellationProbe.state.rows
+
+333 |             try require(cancellationProbe.state.rows > 0, "cancellation was not inside an active source read")
+
+
+
+C:\Users\DAVID\Code\Maktabah-perf02-completion-20261120\Tests\HQ\reader\FullSourceReaderStress.swift:351:23: error: sending value of non-Sendable type '() -> Bool' risks causing data races [#SendingRisksDataRace]
+
+349 |             let heavyStarted = now()
+
+350 |             let heavyTask = Task.detached { try heavyOwner.reader.buildUnit(from: heavy) }
+
+351 |             try await waitFor { naturalProbe.state.rows > 0 }
+
+    |                       |- error: sending value of non-Sendable type '() -> Bool' risks causing data races [#SendingRisksDataRace]
+
+    |                       `- note: sending main actor-isolated value of non-Sendable type '() -> Bool' to nonisolated global function 'waitFor' risks causing races in between main actor-isolated and nonisolated uses
+
+352 |             let queuedStarted = DispatchSemaphore(value: 0)
+
+353 |             let queued = Task.detached { () throws -> OtzariaReadingUnit? in
+
+
+
+[#SendingRisksDataRace]: <https://docs.swift.org/compiler/documentation/diagnostics/sending-risks-data-race>
+
+

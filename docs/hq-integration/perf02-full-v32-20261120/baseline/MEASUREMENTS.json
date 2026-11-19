@@ -1,0 +1,68 @@
+{
+  "activeCancellationMilliseconds": 0,
+  "activeCancellationOutcome": "CancellationError; no partial content returned",
+  "activeCancellationRowsBeforeBarrier": 381,
+  "clearDuringActiveQueryGeneration": [
+    0,
+    1
+  ],
+  "independentMaximumOverlap": 4,
+  "nativeUIExecuted": 0,
+  "oversizedUnitEstimatedBytes": 122373172,
+  "oversizedUnitRetained": false,
+  "physicalDeviceExecuted": 0,
+  "preCancelledOutcome": "CancellationError; no content returned",
+  "queuedCancellationArtificialDelay": false,
+  "queuedCancellationMilliseconds": 4483.99999999674,
+  "queuedCancellationOutcome": "CancellationError; no content returned",
+  "sharedMaximumOverlap": 8,
+  "sideCacheEntries": 50,
+  "sideCacheEstimatedBytes": 16638,
+  "sourceReadonly": true,
+  "sqliteVersion": "3.53.4",
+  "statementCacheEntries": 100,
+  "status": "ACTUAL_FULL_V32_STRESS_PASS_NOT_UI",
+  "cache_high_water": {
+    "indexEntries": 20,
+    "summariesEntries": 50,
+    "indexCost": 21125,
+    "summariesCost": 16138
+  },
+  "cache_snapshots": 122,
+  "last_cache_snapshot": {
+    "decoderPresent": false,
+    "generation": 26,
+    "indexCost": 0,
+    "indexEntries": 0,
+    "summariesCost": 0,
+    "summariesEntries": 0
+  },
+  "heavy_sample": {
+    "bookID": 5869,
+    "milliseconds": 13125,
+    "mode": "chapter",
+    "name": "oversized-cache-source",
+    "rows": 110196
+  },
+  "memory": {
+    "peak_working_set_bytes": 336572416,
+    "samples": 1441,
+    "elapsed_seconds": 39.17200000002049,
+    "includes_test_and_output_allocations": true,
+    "application_memory_claim": false
+  },
+  "native_zstd": {
+    "path": "C:\\Program Files\\Git\\mingw64\\bin\\libzstd.dll",
+    "sha256": "b13d4f30b93c96823473d742dda0075f7334cba03a40c33d8a7dc282e37b1500",
+    "version": "1.5.7"
+  },
+  "database_before": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "database_after": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "source_hashes_unchanged": true,
+  "sqlite_sidecars": {
+    "-wal": false,
+    "-shm": false
+  },
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "compile_log_bytes": 224
+}
