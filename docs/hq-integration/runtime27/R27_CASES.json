@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "3609903e1b56ae877bf39049f2f9178f23a3b8eb",
+  "source_test_commit": "5456dab63e963aa68688798a09e601491190bcac",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "3609903e1b56ae877bf39049f2f9178f23a3b8eb",
+  "app_source": "5456dab63e963aa68688798a09e601491190bcac",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Two original Hanlin consumer UI journeys on a fresh owned 11-inch iPad Simulator 27: durable global draft/history/process restart and actual reader-context presentation/return. All 77 original catalog entries and the parent's 75-case affected selection remain intact and are not accepted by this bounded scope. Provider/source-opening, physical and release acceptance remain separate.",
@@ -259,13 +259,13 @@
     "acceptance_limit": "Override presence/timing may affect framework behavior. A diagnostic PASS is not noninstrumented correction acceptance. validate absence/duplicate count alone are not fault/winner proof."
   },
   "current_correction": {
-    "source": "3609903e1b56ae877bf39049f2f9178f23a3b8eb",
-    "implementation": "One nonisolated identity witness reading the immutable original Sendable session; original global history/relaunch and added reader-context return native acceptance.",
+    "source": "5456dab63e963aa68688798a09e601491190bcac",
+    "implementation": "Original history error state qualification plus current-owner native editor TextState composition; same host history writer, scope validator and unchanged native acceptance bodies.",
     "native_status": "NOT_RUN",
     "automatic_retry": false,
     "full_phase_accepted": false
   },
-  "selected_scope_reason": "Exact original consumer app regression after authenticated compile failure 44468055042: one nonisolated immutable Identifiable witness correction, complete original global draft/history/relaunch case, and actual reader toolbar presentation/return. Original build-for-testing must compile the full app and UI runner before either UI case executes. No parent phase, provider, source-opening, physical or release acceptance is inferred.",
+  "selected_scope_reason": "Exact original consumer app regression after authenticated full-build failure44474935357: qualify the existing history error state; bind the original native editor to the live original draft owner/revision using the unchanged three-package manifests at canonical SDK6d629578. Complete original global history/relaunch and original reader-context return UI methods are unchanged. The complete original app/test build gate must pass before native cases execute. No parent phase/provider/physical/release acceptance is inferred.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -1056,7 +1056,7 @@
       "change_impact": "Original Hebrew range matching and original Reader Inspector/public-v2/system entity wiring require a fresh app build and75case run; no old pass is transferred."
     }
   },
-  "application_source_sha": "3609903e1b56ae877bf39049f2f9178f23a3b8eb",
+  "application_source_sha": "5456dab63e963aa68688798a09e601491190bcac",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -1073,7 +1073,7 @@
   },
   "hanlin_consumer_scope": {
     "base_source_sha": "963842a7396a98e3614efe65fd6f24f357232db5",
-    "original_sdk_pin": "873607e45e021b40fe5b940c836d398c329f95c8",
+    "original_sdk_pin": "6d62957852ffcb428810b065b4252e5384f1374b",
     "provider_requests": 0,
     "whole_phase_accepted": false,
     "test_source_sha256": "c9ec8d8727628c5a44ed6fd739b0a8d2e665dbb21e3844534a6f1d2013b0c996",
@@ -1084,7 +1084,7 @@
     "original_affected_selection_sha256": "cc7b346b8981c0911e2b29a05ddbde01dec9749b394f3eb8add399724ae8d49d",
     "selected_native_case_count": 2,
     "legacy_counts_note": "Original required_nonzero_cases=75 and expected_per_device describe the retained parent affected scope, not this two-case consumer execution. All 77 original catalog rows are preserved; this selected scope accepts neither the parent catalog nor the parent affected scope.",
-    "source_sha": "3609903e1b56ae877bf39049f2f9178f23a3b8eb",
+    "source_sha": "5456dab63e963aa68688798a09e601491190bcac",
     "acting_lane": "/root/motion_ui_results",
     "previous_app_run": {
       "id": 44468055042,
@@ -1098,7 +1098,7 @@
       "Complete original app and UI runner build-for-testing",
       "Fresh owned Simulator 27 installation and original real bootstrap"
     ],
-    "app_compile_acceptance": "PENDING on corrected source; prior app-only run failed",
+    "app_compile_acceptance": "PENDING complete Apple build on corrected catch and original native editor owner/revision integration; previous run failed before both UI cases",
     "prior_preparation": {
       "source_test_commit": "f423a0d51c5a2d9bd87a533c48b57f9e395ac168",
       "test_source_sha256": "edaed4f37d1892d98abb0265102ebd5e66c11a52d8e8b9789dd0abb4959917ef",
@@ -1111,6 +1111,23 @@
       "public_enabled": false,
       "native_status": "NOT_RUN",
       "automatic_retry": false
+    },
+    "prior_candidate": {
+      "checkout_sha": "373c9dbf68e3e06a667fee902c52540e71596ed8",
+      "application_source_sha": "3609903e1b56ae877bf39049f2f9178f23a3b8eb",
+      "original_sdk_pin": "873607e45e021b40fe5b940c836d398c329f95c8",
+      "run": 44474935357,
+      "conclusion": "failure",
+      "ui_cases": "NOT_RUN",
+      "cause": "Swift implicit caught Error shadowed the existing history presentation state at ChatView.swift:315"
+    },
+    "editor_owner_integration": {
+      "owner": "existing original MainActor session and scene validator",
+      "draft_revision": "ephemeral UUID advanced by original draft setter",
+      "history_writer": "existing historyChanged/store only; unchanged schema",
+      "sdk_source": "6d62957852ffcb428810b065b4252e5384f1374b",
+      "native_accepted": false,
+      "prior_consumer_ui_source_unchanged": true
     }
   }
 }
