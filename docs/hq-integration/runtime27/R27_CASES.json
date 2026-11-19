@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "5456dab63e963aa68688798a09e601491190bcac",
+  "source_test_commit": "3db5f13cd6e36c5ff32d11e6f5f4672b120cb493",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "868a94c0e4bfb8171cc910dc432710651054aa5d",
+  "app_source": "3db5f13cd6e36c5ff32d11e6f5f4672b120cb493",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original75 affected Native cases plus2 original Hanlin consumer cases:77 required cases,63iPad27+14iPhone27,zero skips. All79 catalog entries retained; two historical unselected entries stay explicit. App/system/provider/physical/release gates remain distinct.",
@@ -1250,7 +1250,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "868a94c0e4bfb8171cc910dc432710651054aa5d",
+  "application_source_sha": "3db5f13cd6e36c5ff32d11e6f5f4672b120cb493",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -1351,12 +1351,17 @@
       "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
       "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
     ],
-    "source_freeze": "PENDING_MERGE_COMMIT",
+    "source_freeze": "3db5f13cd6e36c5ff32d11e6f5f4672b120cb493",
     "native_status": "NOT_RUN",
     "prior_runs": [
       44559352638,
       44571075774
     ],
-    "whole_phase_accepted": false
+    "whole_phase_accepted": false,
+    "historical_parent_records_only": [
+      "hanlin_consumer_scope",
+      "hanlin_cold_restart_readiness",
+      "current_correction"
+    ]
   }
 }

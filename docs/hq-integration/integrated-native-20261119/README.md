@@ -27,3 +27,7 @@ The original runtime27 execution-group validator and exact Swift XCTest declarat
 ## Acceptance still required
 
 Native75 run44559352638 and focused consumer run44571075774 remain bound to their own immutable parents. Their outcomes are not automatically credited to the integrated candidate. Full app/native, original source-opening/provider journeys, physical iPad, accessibility/system surfaces and release acceptance stay open. Release remains NO_GO.
+
+## Source freeze
+
+Both application and test provenance now point to merged source `3db5f13cd6e36c5ff32d11e6f5f4672b120cb493`. The original exact-tree/dependency preflight passed; its raw result is FREEZE_PREFLIGHT.json. This is a declaration/source preflight with no new runtime acceptance.
