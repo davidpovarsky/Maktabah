@@ -59,6 +59,9 @@ struct Exact9401ViewerToolbar: ViewModifier {
         content
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
+                    OtzariaHanlinChatLaunchButton(identifier: "otzaria-hanlin-reader-launch")
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         isPresented = true
                     } label: {

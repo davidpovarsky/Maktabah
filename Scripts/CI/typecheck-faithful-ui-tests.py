@@ -47,7 +47,7 @@ ui_sources = ["Maktabah-iOSUITests/MaktabahUITestBase.swift", "Maktabah-iOSUITes
               "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift"]
 if Path("Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift").is_file():
     ui_sources.append("Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift")
-for name in ["GlobalSearchNativeAcceptanceTests.swift", "R27NativeInteractionAcceptanceTests.swift", "Sidebar11201AcceptanceTests.swift"]:
+for name in ["GlobalSearchNativeAcceptanceTests.swift", "R27NativeInteractionAcceptanceTests.swift", "Sidebar11201AcceptanceTests.swift", "HanlinConsumerAcceptanceTests.swift"]:
     path = "Maktabah-iOSUITests/" + name
     if Path(path).is_file():
         ui_sources.append(path)
@@ -283,11 +283,12 @@ for label, driver in [
     ("hebrew-ranges", "tools/hq-hebrew-match-ranges.py"),
     ("inspector-owner", "tools/hq-native-inspector-ownership.py"),
     ("hanlin-navigation-contract", "tools/hq-hanlin-navigation-transition.py"),
+    ("hanlin-consumer-store", "tools/hq-hanlin-consumer-store.py"),
 ]:
     directory = artifacts / label
     command = [sys.executable, driver, "--artifacts-dir", str(directory)]
     prepared = None
-    if label == "hanlin-navigation-contract":
+    if label in {"hanlin-navigation-contract", "hanlin-consumer-store"}:
         # SDK-only checkout intentionally does not initialize all app submodules.
         # Reuse the original pinned SDK preparer; never substitute SDK modules.
         pin = json.loads(Path("Scripts/CI/hq-stage2-focused-apple.inputs.json").read_text())["hanlin_gitlink"]

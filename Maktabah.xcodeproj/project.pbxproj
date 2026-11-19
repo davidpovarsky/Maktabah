@@ -1359,6 +1359,16 @@
 		9DDFF1C69B69898A4BE82BCA /* HanlinHostContracts in Frameworks */ = {isa = PBXBuildFile; productRef = F4F6F6D782A07742DDB6DFC4; };
 		FBB04E8421920F230B29069D /* HanlinPlatformContracts in Frameworks */ = {isa = PBXBuildFile; productRef = AB1C35328B7CAAA7507D9019; };
 		98A05700AC19A0B451C190A6 /* OtzariaHanlinHostAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901E86F1554BCAB407B6A5A6; };
+		D9ABE98FD86C08EB2CD0E6E6 /* OtzariaHanlinChatOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E566DCD8C30AE14FE4CBEBA /* OtzariaHanlinChatOwner.swift */; };
+		4ABF24C49DF9D33D87252086 /* OtzariaHanlinChatSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42668FE5B9E0D7D95054B2B /* OtzariaHanlinChatSession.swift */; };
+		6D1791650F3AFF85633314E5 /* OtzariaHanlinChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B179A7D53E7B5E5F7920D18 /* OtzariaHanlinChatView.swift */; };
+		BB72DD22574E9AAA36CB64FB /* OtzariaHanlinConversationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C3FCF16863769D7BE6F42 /* OtzariaHanlinConversationStore.swift */; };
+		C329A9364E1D1941A46CACD8 /* HanlinAgentCore in Frameworks */ = {isa = PBXBuildFile; productRef = 97E15224BCE340983B4C2071 /* HanlinAgentCore */; };
+		8A4569751D50F02CA562A56B /* HanlinChatCore in Frameworks */ = {isa = PBXBuildFile; productRef = 452F1A0D287FDA71D7EABF83 /* HanlinChatCore */; };
+		8B6A0DAD2220E9C23724DF4B /* HanlinScriptUI in Frameworks */ = {isa = PBXBuildFile; productRef = C6497DADEF7A0C3C6DBF4A0F /* HanlinScriptUI */; };
+		2685A10D7F57D43CC7ADB0F0 /* HanlinChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 61E07D48951CEA128AC5733B /* HanlinChatUI */; };
+		E8AF13DBAAB27A9D851D1C51 /* HanlinPresentationKit in Frameworks */ = {isa = PBXBuildFile; productRef = B8B0F4BF32E70713AE17DB39 /* HanlinPresentationKit */; };
+		FE6A59AF7AC18FAB419866BB /* HanlinRichUI in Frameworks */ = {isa = PBXBuildFile; productRef = D8320A0FB8BA35EB57884C8B /* HanlinRichUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2135,6 +2145,10 @@
 		5389C28E1836740638EE4ADF /* GlobalSearchToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalSearchToolbar.swift; path = Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift; sourceTree = SOURCE_ROOT; };
 		AFA71DFF1B37DDE8B890673D /* NativeGlobalSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NativeGlobalSearchField.swift; path = Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift; sourceTree = SOURCE_ROOT; };
 		901E86F1554BCAB407B6A5A6 /* OtzariaHanlinHostAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift; sourceTree = SOURCE_ROOT; };
+		6E566DCD8C30AE14FE4CBEBA /* OtzariaHanlinChatOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift; sourceTree = SOURCE_ROOT; };
+		F42668FE5B9E0D7D95054B2B /* OtzariaHanlinChatSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift; sourceTree = SOURCE_ROOT; };
+		0B179A7D53E7B5E5F7920D18 /* OtzariaHanlinChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift; sourceTree = SOURCE_ROOT; };
+		8C3C3FCF16863769D7BE6F42 /* OtzariaHanlinConversationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinConversationStore.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2190,6 +2204,12 @@
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				9DDFF1C69B69898A4BE82BCA /* HanlinHostContracts in Frameworks */,
+				C329A9364E1D1941A46CACD8 /* HanlinAgentCore in Frameworks */,
+				8A4569751D50F02CA562A56B /* HanlinChatCore in Frameworks */,
+				8B6A0DAD2220E9C23724DF4B /* HanlinScriptUI in Frameworks */,
+				2685A10D7F57D43CC7ADB0F0 /* HanlinChatUI in Frameworks */,
+				E8AF13DBAAB27A9D851D1C51 /* HanlinPresentationKit in Frameworks */,
+				FE6A59AF7AC18FAB419866BB /* HanlinRichUI in Frameworks */,
 				FBB04E8421920F230B29069D /* HanlinPlatformContracts in Frameworks */,
 				0E9CF3EC22339C1D8A3C4838 /* ChavrusaUIRoutingHost in Frameworks */,
 				1C985DC975CED210B2EE1259 /* CommandPalette in Frameworks */,
@@ -3791,6 +3811,10 @@
 			children = (
 				D32E4455D153D553B8725C5B /* MaktabahNativeIntents.swift */,
 				901E86F1554BCAB407B6A5A6 /* OtzariaHanlinHostAdapter.swift */,
+				6E566DCD8C30AE14FE4CBEBA /* OtzariaHanlinChatOwner.swift */,
+				F42668FE5B9E0D7D95054B2B /* OtzariaHanlinChatSession.swift */,
+				0B179A7D53E7B5E5F7920D18 /* OtzariaHanlinChatView.swift */,
+				8C3C3FCF16863769D7BE6F42 /* OtzariaHanlinConversationStore.swift */,
 				211B7EF6AFB2FC51C8BCF2D4 /* MaktabahNativeRoutingComposition.swift */,
 				9DBFB4BB6059F173573A2F20 /* MaktabahNativeRoutingHost.swift */,
 				348F3CE98841B091C9694605 /* MaktabahNativeSceneBindings.swift */,
@@ -3945,6 +3969,12 @@
 			name = "Maktabah-iOS";
 			packageProductDependencies = (
 				F4F6F6D782A07742DDB6DFC4 /* HanlinHostContracts */,
+				97E15224BCE340983B4C2071 /* HanlinAgentCore */,
+				452F1A0D287FDA71D7EABF83 /* HanlinChatCore */,
+				C6497DADEF7A0C3C6DBF4A0F /* HanlinScriptUI */,
+				61E07D48951CEA128AC5733B /* HanlinChatUI */,
+				B8B0F4BF32E70713AE17DB39 /* HanlinPresentationKit */,
+				D8320A0FB8BA35EB57884C8B /* HanlinRichUI */,
 				AB1C35328B7CAAA7507D9019 /* HanlinPlatformContracts */,
 				051C43E6363E71B6FF327F74 /* ChavrusaUIRoutingHost */,
 				BF8626D7580C7BB2D53851F8 /* CommandPalette */,
@@ -4009,6 +4039,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				029CD78E719D2D8F539F1C85 /* Original HanlinAgentSDK */,
+				7E52A289619B444249DD5758 /* Original HanlinPresentationSDK */,
 				8B664D33DF7899B0EDCAB128 /* Original HanlinPlatform */,
 				E10A0780E847BB0F646D6289 /* ChavrusaUIRoutingHost */,
 				66370DCD8947589AD0EB9BEB /* CommandPalette source fork */,
@@ -4916,6 +4947,10 @@
 			files = (
 				DFC8CE07B634812E1D8AF37E /* MaktabahNativeIntents.swift in Sources */,
 				98A05700AC19A0B451C190A6 /* OtzariaHanlinHostAdapter.swift in Sources */,
+				D9ABE98FD86C08EB2CD0E6E6 /* OtzariaHanlinChatOwner.swift in Sources */,
+				4ABF24C49DF9D33D87252086 /* OtzariaHanlinChatSession.swift in Sources */,
+				6D1791650F3AFF85633314E5 /* OtzariaHanlinChatView.swift in Sources */,
+				BB72DD22574E9AAA36CB64FB /* OtzariaHanlinConversationStore.swift in Sources */,
 				00701EB57805E06E41C36D74 /* MaktabahNativeRoutingComposition.swift in Sources */,
 				BE73D8D2D661A23C82874079 /* MaktabahNativeRoutingHost.swift in Sources */,
 				272FA036D80429868E339D38 /* MaktabahNativeSceneBindings.swift in Sources */,
@@ -6352,6 +6387,7 @@
 		};
 		029CD78E719D2D8F539F1C85 /* Original HanlinAgentSDK */ = {isa = XCLocalSwiftPackageReference; relativePath = Vendor/HanlinSDK/Packages/HanlinAgentSDK; };
 		8B664D33DF7899B0EDCAB128 /* Original HanlinPlatform */ = {isa = XCLocalSwiftPackageReference; relativePath = Vendor/HanlinSDK/Packages/HanlinPlatform; };
+		7E52A289619B444249DD5758 /* Original HanlinPresentationSDK */ = {isa = XCLocalSwiftPackageReference; relativePath = Vendor/HanlinSDK/Packages/HanlinPresentationSDK; };
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -6481,6 +6517,12 @@
 		};
 		F4F6F6D782A07742DDB6DFC4 /* HanlinHostContracts */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinHostContracts; };
 		AB1C35328B7CAAA7507D9019 /* HanlinPlatformContracts */ = {isa = XCSwiftPackageProductDependency; package = 8B664D33DF7899B0EDCAB128; productName = HanlinPlatformContracts; };
+		97E15224BCE340983B4C2071 /* HanlinAgentCore */ = {isa = XCSwiftPackageProductDependency; package = 029CD78E719D2D8F539F1C85; productName = HanlinAgentCore; };
+		452F1A0D287FDA71D7EABF83 /* HanlinChatCore */ = {isa = XCSwiftPackageProductDependency; package = 8B664D33DF7899B0EDCAB128; productName = HanlinChatCore; };
+		C6497DADEF7A0C3C6DBF4A0F /* HanlinScriptUI */ = {isa = XCSwiftPackageProductDependency; package = 8B664D33DF7899B0EDCAB128; productName = HanlinScriptUI; };
+		61E07D48951CEA128AC5733B /* HanlinChatUI */ = {isa = XCSwiftPackageProductDependency; package = 7E52A289619B444249DD5758; productName = HanlinChatUI; };
+		B8B0F4BF32E70713AE17DB39 /* HanlinPresentationKit */ = {isa = XCSwiftPackageProductDependency; package = 7E52A289619B444249DD5758; productName = HanlinPresentationKit; };
+		D8320A0FB8BA35EB57884C8B /* HanlinRichUI */ = {isa = XCSwiftPackageProductDependency; package = 7E52A289619B444249DD5758; productName = HanlinRichUI; };
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B3202202EDAFE85003B95D1 /* Project object */;

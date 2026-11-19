@@ -77,7 +77,29 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
     private var visible: [UIDestinationID: NativeSurfaceWitness.Evidence] = [:]
     @ObservationIgnored private var visibilityChecks: [UIDestinationID: @MainActor () -> NativeSurfaceWitness.Evidence?] = [:]
-    var isPresentationReady: Bool { bindings.isPresentationReady }
+    private(set) var studyChatPresentationID: UUID?
+    var isPresentationReady: Bool { bindings.isPresentationReady && studyChatPresentationID == nil }
+
+    func beginStudyChatPresentation(_ id: UUID) throws {
+        guard mounted, foreground, isPresentationReady else {
+            throw UIRouteError(.unavailable, "native_presentation_in_progress")
+        }
+        studyChatPresentationID = id
+        do { try nativeStateChanged() }
+        catch { studyChatPresentationID = nil; throw error }
+        presentation.revoke()
+    }
+    func finishStudyChatPresentation(_ id: UUID) {
+        guard studyChatPresentationID == id else { return }
+        studyChatPresentationID = nil
+        try? nativeStateChanged()
+    }
+    /// Only this exact app-owned sheet may use its underlying source identity.
+    /// Other native routes stay unavailable until actual onDismiss, including
+    /// the period after the SDK lease is revoked but its sheet is still visible.
+    func isStudyChatContextReady(allowing id: UUID?) -> Bool {
+        bindings.isPresentationReady && (studyChatPresentationID == nil || studyChatPresentationID == id)
+    }
     func isRootAvailable(_ destination: UIDestinationID) -> Bool {
         guard let root = MaktabahNativeRootDestination(rawValue: destination.rawValue) else { return false }
         return bindings.isRootAvailable(root)
@@ -316,7 +338,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         let names = [projection?.workspace?.profile?.name, projection?.workspace?.group?.name]
             .compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: " / ")
         let window = String(localized: "Window \(number)")
-        return names.isEmpty ? window : names + " — " + window
+        return names.isEmpty ? window : names + " â€” " + window
     }
 
     func prepare(_ route: PublicRouteSpec, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {

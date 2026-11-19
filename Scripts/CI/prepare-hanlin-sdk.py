@@ -57,7 +57,7 @@ def initialize(pin):
     if not (SUBMODULE / ".git").exists():
         if SUBMODULE.exists() and any(SUBMODULE.iterdir()):
             raise RuntimeError("Occupied SDK directory; preserve contents instead of overwriting")
-        command(["git", "clone", "--filter=blob:none", "--no-checkout", "--depth=1", URL, str(SUBMODULE)])
+        command(["git", "clone", "--config", "core.autocrlf=false", "--filter=blob:none", "--no-checkout", "--depth=1", URL, str(SUBMODULE)])
         command(["git", "sparse-checkout", "init", "--cone"], SUBMODULE)
         command(["git", "sparse-checkout", "set", *PACKAGES], SUBMODULE)
         command(["git", "fetch", "--filter=blob:none", "--depth=1", "origin", pin], SUBMODULE)

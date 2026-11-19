@@ -232,6 +232,9 @@ extension View {
 
     func toolbarGeneral(showSettings: Binding<Bool>) -> some View {
         toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                OtzariaHanlinChatLaunchButton(identifier: "otzaria-hanlin-global-launch")
+            }
             ToolbarItem(placement: .topBarLeading) {
                 Button { showSettings.wrappedValue = true } label: {
                     Image(systemName: "gear")

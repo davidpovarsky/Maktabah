@@ -1,0 +1,70 @@
+{
+  "observed_at": "2026-11-19T04:35:36.072727+00:00",
+  "source_base": "469d2f65e58d4ef0e74fe4466b5cc91ece8ac1c4",
+  "sdk": "873607e45e021b40fe5b940c836d398c329f95c8",
+  "swift_grammar": [
+    {
+      "file": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "exit": 0,
+      "sha256": "d89dc4c50797c1dc0d6558ff253d744e91b09421d7c8a6da84d1e84bfbd3e604"
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "exit": 0,
+      "sha256": "d53bd75621bd8654706878d6630bbd8a1e0e34f27022480b6e10dfeed10256c4"
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "exit": 0,
+      "sha256": "14c5c48846f39e64cd35f6dea3f37e5b6fa8b813f453a4cb6d86421f16b1d635"
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "exit": 0,
+      "sha256": "b1b60d4957283d66354023e0e5427a9e45ad01eb6320bb6324c8318a30fb4b69"
+    },
+    {
+      "file": "Source/UI/iOS/Views/iOSMainView.swift",
+      "exit": 0,
+      "sha256": "e0928940ee3931587238257e396de40ab41b7ce6754eb07a4b42adbbbab42a90"
+    },
+    {
+      "file": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "exit": 0,
+      "sha256": "edaed4f37d1892d98abb0265102ebd5e66c11a52d8e8b9789dd0abb4959917ef"
+    },
+    {
+      "file": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "exit": 0,
+      "sha256": "468ec09da45c09682d031d8830708c368f3f8ca1f0f0aadd9101aef3b634be5f"
+    },
+    {
+      "file": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "exit": 0,
+      "sha256": "555256cc4ce699d3fd3cdc2a40bfda0c9486c7b811989eba40c01e327ba21c8e"
+    },
+    {
+      "file": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "exit": 0,
+      "sha256": "139429cf3dc48f32da837cce6c47a9c63831af9f419cedafc33294413d073bac"
+    },
+    {
+      "file": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinConversationStore.swift",
+      "exit": 0,
+      "sha256": "72f19477d9649468e6aa6dad2501c19ed933cbe455c793c8b13cb43e92af83a4"
+    },
+    {
+      "file": "Tests/HQ/hanlin-consumer/OtzariaHanlinConversationStoreTests.swift",
+      "exit": 0,
+      "sha256": "8bc163d56279e76a6d14e324d69869b07bd0242def74b1299af35d25f3f03082"
+    }
+  ],
+  "actual_filesystem_tests": 11,
+  "test_log_sha256": "5d8b6bcd7958df7d0763b0bb2acf97ffa2e1a009d72049ee9b28f8b068a1b160",
+  "app_apple_compile": "PENDING",
+  "native_ui": "PENDING",
+  "provider_request": "NOT_RUN",
+  "native_source_open": "NOT_RUN",
+  "signed_physical_protection": "NOT_RUN",
+  "other_original_owner_worktrees_changed": false
+}

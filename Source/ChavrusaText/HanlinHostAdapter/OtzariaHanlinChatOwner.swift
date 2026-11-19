@@ -1,0 +1,215 @@
+#if os(iOS)
+import Foundation
+import Observation
+import SwiftUI
+import HanlinHostContracts
+import OtzariaUIRouting
+
+/// A consumed handoff owns one original native route after its SDK presentation
+/// is revoked. Its receipt is never returned to the invalidated SDK session.
+@MainActor
+final class OtzariaHanlinNavigationHandoff {
+    let requestID: UUID
+    private var action: (@MainActor () async throws -> UISceneReceipt)?
+    init(requestID: UUID, action: @escaping @MainActor () async throws -> UISceneReceipt) {
+        self.requestID = requestID; self.action = action
+    }
+    func consume() async throws -> UISceneReceipt {
+        guard let action else { throw HanlinHostError.duplicateInvocation }
+        self.action = nil
+        try Task.checkCancellation()
+        return try await action()
+    }
+    func cancel() { action = nil }
+}
+
+@MainActor @Observable
+final class OtzariaHanlinChatOwner {
+    private(set) var presentation: OtzariaHanlinChatSession?
+    private(set) var isPresented = false
+    private(set) var navigationReceipt: UISceneReceipt?
+    @ObservationIgnored private weak var manager: iOSNavigationManager?
+    @ObservationIgnored private weak var nativeSession: MaktabahNativeSceneSession?
+    @ObservationIgnored private let composition: MaktabahNativeRoutingComposition
+    @ObservationIgnored private var host: OtzariaHanlinHostAdapter?
+    @ObservationIgnored private var presentedSceneID: String?
+    @ObservationIgnored private var pendingNavigation: OtzariaHanlinNavigationHandoff?
+    @ObservationIgnored private var pendingHistory: (namespace: HanlinConversationNamespace, id: UUID)?
+    @ObservationIgnored private let conversations = OtzariaHanlinConversationStore.shared
+    @ObservationIgnored private var navigationTask: Task<Void, Never>?
+    @ObservationIgnored private var retired = false
+
+    init(manager: iOSNavigationManager, session: MaktabahNativeSceneSession,
+         composition: MaktabahNativeRoutingComposition) {
+        self.manager = manager; nativeSession = session; self.composition = composition
+    }
+
+    func open(conversationID: UUID? = nil, expectedNamespace: HanlinConversationNamespace? = nil) {
+        guard !retired, presentation == nil, navigationTask == nil,
+              let manager, let nativeSession, nativeSession.mounted, nativeSession.foreground else { return }
+        var issued: HanlinHostSession?
+        do {
+            let prepared = try composition.makeHanlinHostSession(manager: manager, conversationID: conversationID ?? UUID()) { [weak self] in
+                self?.requestClose()
+            }
+            issued = prepared.session
+            let identity = prepared.session
+            if let expectedNamespace {
+                guard identity.context.namespace == expectedNamespace,
+                      try conversations.history(identity.conversationID, namespace: expectedNamespace) != nil else {
+                    throw HanlinHostError.staleContext
+                }
+            }
+            let sessionID = identity.id
+            let scopedStore = OtzariaHanlinScopedConversationStore(identity: identity, store: conversations) { [weak self] in
+                guard let self, !self.retired, let nativeSession = self.nativeSession,
+                      nativeSession.mounted, nativeSession.foreground else { throw HanlinHostError.staleContext }
+                try self.composition.validateHanlinHostSession(identity)
+            }
+            let value = try OtzariaHanlinChatSession(identity: identity, host: prepared.host, store: scopedStore,
+                sourceDestination: { [weak self] event in
+                    guard let self else { throw HanlinHostError.staleContext }
+                    return try self.composition.hanlinSourceDestination(event, session: identity)
+                }, validateOwner: { [weak self] in
+                    guard let self else { throw HanlinHostError.staleContext }
+                    try self.validate(sessionID)
+                }, onClose: { [weak self] in self?.requestClose(sessionID: sessionID) },
+                onNavigate: { [weak self] url in
+                    guard let self else { throw HanlinHostError.staleContext }
+                    try await self.queueNavigation(url, sessionID: sessionID)
+                })
+            try nativeSession.beginStudyChatPresentation(sessionID)
+            host = prepared.host; presentation = value; presentedSceneID = nil; isPresented = true
+        } catch {
+            if let issued {
+                nativeSession.finishStudyChatPresentation(issued.id)
+                composition.closeHanlinHostSession(issued)
+            }
+            manager.alertMessage = .init(title: String(localized: "Study chat unavailable"),
+                message: String(localized: "The original study window is not ready. Try again from the reader."))
+        }
+    }
+
+    func didMount(sceneID: String, sessionID: UUID) {
+        guard presentation?.id == sessionID, isPresented, !retired else { return }
+        guard let nativeSession, sceneID == nativeSession.sceneID.rawValue else {
+            requestClose(sessionID: sessionID); return
+        }
+        presentedSceneID = sceneID
+    }
+
+    private func validate(_ sessionID: UUID) throws {
+        guard !retired, isPresented, let presentation, presentation.id == sessionID,
+              let nativeSession, nativeSession.mounted, nativeSession.foreground,
+              presentedSceneID == nativeSession.sceneID.rawValue else { throw HanlinHostError.staleContext }
+        try composition.validateHanlinHostSession(presentation.identity)
+    }
+
+    private func queueNavigation(_ url: URL, sessionID: UUID) async throws {
+        try validate(sessionID)
+        guard pendingNavigation == nil, pendingHistory == nil, navigationTask == nil,
+              let host, let presentation else { throw HanlinHostError.duplicateInvocation }
+        let destination = HanlinHostDestination(context: presentation.identity.context, objectReference: url.absoluteString)
+        let response = try await host.open(destination)
+        try response.validate(for: destination)
+        guard case .queued = response else { throw HanlinHostError.resultMismatch }
+        try validate(sessionID)
+        pendingNavigation = try composition.takeHanlinNavigationHandoff(destination, session: presentation.identity)
+        requestClose(sessionID: sessionID, preservingContinuation: true)
+    }
+
+    func history() throws -> [OtzariaHanlinConversationSummary] {
+        guard let presentation else { throw HanlinHostError.staleContext }
+        try validate(presentation.id)
+        return try conversations.summaries(namespace: presentation.identity.context.namespace)
+    }
+
+    func selectHistory(_ id: UUID) throws {
+        guard let presentation, pendingNavigation == nil, pendingHistory == nil,
+              navigationTask == nil else { throw HanlinHostError.staleContext }
+        try validate(presentation.id)
+        let namespace = presentation.identity.context.namespace
+        guard try conversations.history(id, namespace: namespace) != nil else { throw HanlinHostError.invalidRecord }
+        pendingHistory = (namespace, id)
+        requestClose(sessionID: presentation.id, preservingContinuation: true)
+    }
+
+    func deleteHistory(_ summary: OtzariaHanlinConversationSummary) throws {
+        guard let presentation, summary.id != presentation.identity.conversationID else { throw HanlinHostError.denied }
+        try validate(presentation.id)
+        try conversations.deleteConversation(summary, namespace: presentation.identity.context.namespace)
+    }
+
+    /// A programmatic dismissal already owns its continuation. SwiftUI echoing
+    /// false must not cancel the native handoff or the selected history reopen.
+    func presentationBindingChanged(_ value: Bool) {
+        if !value && isPresented { requestClose() }
+    }
+
+    func requestClose(sessionID: UUID? = nil, preservingContinuation: Bool = false) {
+        guard let presentation, sessionID == nil || presentation.id == sessionID else { return }
+        if !preservingContinuation {
+            pendingNavigation?.cancel(); pendingNavigation = nil; pendingHistory = nil
+        }
+        isPresented = false; presentedSceneID = nil
+        presentation.revoke()
+        composition.closeHanlinHostSession(presentation.identity)
+        host = nil
+    }
+
+    /// SwiftUI calls this after the actual owned sheet finishes dismissing.
+    /// A replacement cannot be opened while that old presentation is retained.
+    func didDismiss() {
+        if let presentation {
+            presentation.revoke()
+            composition.closeHanlinHostSession(presentation.identity)
+            nativeSession?.finishStudyChatPresentation(presentation.id)
+        }
+        presentation = nil; host = nil; isPresented = false; presentedSceneID = nil
+        if !retired, let history = pendingHistory {
+            pendingHistory = nil
+            open(conversationID: history.id, expectedNamespace: history.namespace)
+            return
+        }
+        pendingHistory = nil
+        guard !retired, let handoff = pendingNavigation, navigationTask == nil else {
+            pendingNavigation?.cancel(); pendingNavigation = nil; return
+        }
+        pendingNavigation = nil
+        navigationTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            defer { self.navigationTask = nil }
+            do {
+                let receipt = try await handoff.consume()
+                try Task.checkCancellation()
+                guard !self.retired, receipt.requestId == handoff.requestID else { throw HanlinHostError.staleContext }
+                self.navigationReceipt = receipt
+            } catch {
+                if !self.retired {
+                    self.manager?.alertMessage = .init(title: String(localized: "Source unavailable"),
+                        message: String(localized: "The source could not be opened in the original study window."))
+                }
+            }
+        }
+    }
+
+    func retire() {
+        guard !retired else { return }
+        retired = true
+        if let presentation { nativeSession?.finishStudyChatPresentation(presentation.id) }
+        navigationTask?.cancel(); navigationTask = nil
+        pendingNavigation?.cancel(); pendingNavigation = nil; pendingHistory = nil
+        requestClose()
+    }
+}
+
+private struct OtzariaHanlinChatOwnerKey: EnvironmentKey {
+    static let defaultValue: OtzariaHanlinChatOwner? = nil
+}
+extension EnvironmentValues {
+    var otzariaHanlinChatOwner: OtzariaHanlinChatOwner? {
+        get { self[OtzariaHanlinChatOwnerKey.self] }
+        set { self[OtzariaHanlinChatOwnerKey.self] = newValue }
+    }
+}
+#endif

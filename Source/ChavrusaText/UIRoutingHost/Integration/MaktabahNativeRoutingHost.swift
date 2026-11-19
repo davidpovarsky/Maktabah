@@ -33,6 +33,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
     @Environment(\.maktabahNativeWorkspaceOwner) private var workspaceOwner
     @State private var sceneID = ""
     @State private var session: MaktabahNativeSceneSession?
+    @State private var hanlinChat: OtzariaHanlinChatOwner?
     // Both layouts expose their original scene-lived workspace owner. Wait
     // for that actual adapter before mounting content-capable navigation.
     private var ready: Bool {
@@ -49,6 +50,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
     func body(content: Content) -> some View {
         content
             .environment(\.maktabahNativeRoutingSession, session)
+            .modifier(OtzariaHanlinChatPresentationHost(owner: hanlinChat))
             .background {
                 ReaderSceneIdentityReader { sceneID = $0 }
                     .frame(width: 0, height: 0).accessibilityHidden(true)
@@ -57,6 +59,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             .onAppear { mountIfReady() }
             .onChange(of: sceneID) { _, current in
                 if let session, session.sceneID.rawValue != current {
+                    hanlinChat?.retire(); hanlinChat = nil
                     MaktabahNativeRoutingComposition.shared.unmount(session)
                     self.session = nil
                 }
@@ -79,6 +82,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             .onChange(of: columnVisibility) { _, _ in refreshProjection(workspaceChanged: false) }
             .onChange(of: sidebar?.page) { _, _ in refreshProjection(workspaceChanged: false) }
             .onDisappear {
+                hanlinChat?.retire(); hanlinChat = nil
                 if let session { MaktabahNativeRoutingComposition.shared.unmount(session) }
                 session = nil
             }
@@ -113,6 +117,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
                       sidebar: bindings.sidebar, workspace: workspace)
             })
             session = value
+            hanlinChat = .init(manager: manager, session: value, composition: MaktabahNativeRoutingComposition.shared)
             try MaktabahNativeRoutingComposition.shared.installPublicBindingIfReady(
                 session: value, manager: manager, workspace: workspace, owner: workspaceOwner)
             MaktabahNativeRoutingComposition.shared.installIntentDependency()
