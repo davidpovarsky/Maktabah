@@ -767,6 +767,35 @@ extension NativeRoutingAcceptanceTests {
 
 extension NativeRoutingAcceptanceTests {
     @MainActor
+    private func prepareOriginalPhoneLibrary() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        let library = app.navigationBars["Library"]
+        let back = app.navigationBars.buttons.matching(identifier: "BackButton")
+            .matching(NSPredicate(format: "label == %@", "Library"))
+        // A prior case can leave the durable original Reader restored on launch.
+        // Return through its real native Back button before starting this case;
+        // never clear app data or repair the screen after a route under test.
+        let mounted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            library.exists || (back.count == 1 && back.firstMatch.isHittable
+                              && self.app.staticTexts["reader-current-locator"].exists)
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [mounted], timeout: 40), .completed,
+                       "Bootstrap must mount the original Library or its restored Reader")
+        if !library.exists {
+            let original = try actualReaderWorkspace().current()
+            XCTAssertEqual(back.count, 1, "Use the original Reader's unique Library Back button")
+            let button = try XCTUnwrap(back.allElementsBoundByIndex.first)
+            XCTAssertTrue(button.isHittable)
+            capture("native-phone-restored-reader-before-library-setup")
+            button.tap()
+            requireOriginalPhoneLibrary(timeout: 20)
+            try requirePreservedOriginalWorkspace(original)
+        } else {
+            requireOriginalPhoneLibrary(timeout: 20)
+        }
+    }
+
+    @MainActor
     private func requireOriginalPhoneLibrary(timeout: TimeInterval = 40) {
         XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
         // iPhoneLayout owns a NavigationStack titled Library. The ipad-only
@@ -781,7 +810,7 @@ extension NativeRoutingAcceptanceTests {
     @MainActor
     func runHistoryOnPhone(cold: Bool, rejectedBackend: Bool) throws {
         configure("otzaria"); app.launch()
-        requireOriginalPhoneLibrary()
+        try prepareOriginalPhoneLibrary()
         capture("native-phone-library-before")
         let request = UUID(), backend = rejectedBackend ? "sefaria" : "otzaria"
         try invocation(request, backend: backend, mode: rejectedBackend ? "phone_backend_denied" : (cold ? "phone_cold" : "phone_warm"))
@@ -1330,7 +1359,7 @@ extension NativeRoutingAcceptanceTests {
         configure("otzaria"); app.launch()
         XCTAssertEqual(UIDevice.current.userInterfaceIdiom == .pad, expectedPad)
         if expectedPad { XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40)) }
-        else { requireOriginalPhoneLibrary() }
+        else { try prepareOriginalPhoneLibrary() }
         let first = UUID()
         try openInExistingProcess(publicRootURL("native.search", request: first))
         XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
@@ -1363,7 +1392,7 @@ extension NativeRoutingAcceptanceTests {
         // Do not tap the field here. Type through the system's current responder.
         app.typeText(" בדיקה")
         XCTAssertEqual(field.value as? String, originalQuery + " בדיקה")
-        XCTAssertTrue(app.otherElements["global-search-history"].exists)
+        XCTAssertTrue(app.collectionViews["global-search-history"].exists)
         XCTAssertFalse(app.otherElements["global-search-loading"].exists)
         capture("native-search-component-actual-keyboard")
     }
@@ -1389,7 +1418,7 @@ extension NativeRoutingAcceptanceTests {
         try requireSearchComponentReceipt(before: before)
         app.typeText("בראשית")
         XCTAssertEqual(field.value as? String, "בראשית")
-        XCTAssertTrue(app.otherElements["global-search-history"].exists)
+        XCTAssertTrue(app.collectionViews["global-search-history"].exists)
         XCTAssertFalse(app.otherElements["global-search-loading"].exists)
         capture("system-intent-original-search-first-responder")
     }
@@ -1437,7 +1466,7 @@ extension NativeRoutingAcceptanceTests {
         alert.buttons.firstMatch.tap()
         XCTAssertEqual(field.value as? String, originalValue)
         XCTAssertFalse(app.keyboards.firstMatch.exists)
-        XCTAssertTrue(app.otherElements["global-search-history"].exists)
+        XCTAssertTrue(app.collectionViews["global-search-history"].exists)
         XCTAssertFalse(app.otherElements["global-search-loading"].exists)
         capture("native-search-component-unknown-denied")
     }

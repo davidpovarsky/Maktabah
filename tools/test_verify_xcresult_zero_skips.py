@@ -32,6 +32,30 @@ class ResultGuardTests(unittest.TestCase):
         self.assertEqual(result["required_ui_passed"], 1)
         self.assertEqual(result["database_open"], "NOT_VERIFIED_BY_TEST_COUNTS")
 
+    def test_failed_run_counts_survive_runner_restart_without_claiming_pass(self):
+        summary = {**self.summary, 'result': 'Failed', 'totalTestCount': 34, 'passedTests': 25, 'failedTests': 9}
+        log = 'Executed 16 tests, with 5 failures\nExecuted 10 tests, with 2 failures\nExecuted 8 tests, with 2 failures\n'
+        self.assertEqual(guard.parse_xcodebuild_log(log)['executed'], 16)
+        counts = guard.xcresult_counts(summary)
+        self.assertEqual(counts['recordedXCTestCount'], 34)
+        self.assertEqual(counts['executedXCTestCount'], 34)
+        self.assertEqual(counts['passedXCTestCount'], 25)
+        self.assertEqual(counts['failedXCTestCount'], 9)
+        self.assertNotIn('status', counts)
+        with self.assertRaises(ValueError):
+            self.verify(summary=summary, log=log)
+
+    def test_summary_counts_separate_skips_and_reject_invalid_counts(self):
+        counts = guard.xcresult_counts({**self.summary, 'totalTestCount': 3, 'failedTests': 1, 'skippedTests': 1})
+        self.assertEqual(counts['recordedXCTestCount'], 3)
+        self.assertEqual(counts['executedXCTestCount'], 2)
+        self.assertEqual(counts['skippedXCTestCount'], 1)
+        for summary in [None, {}, {**self.summary, 'totalTestCount': 2},
+                        {**self.summary, 'passedTests': True}, {**self.summary, 'failedTests': -1},
+                        {**self.summary, 'skippedTests': '0'}]:
+            with self.subTest(summary=summary), self.assertRaises(ValueError):
+                guard.xcresult_counts(summary)
+
     def test_actual_xcode27_execute_footer_and_build_only_refusal(self):
         self.verify(log=self.log.replace("** TEST SUCCEEDED **", "** TEST EXECUTE SUCCEEDED **"))
         for footer in ["** TEST BUILD SUCCEEDED **", "** TEST EXECUTE FAILED **", "** TEST EXECUTE CANCELLED **"]:

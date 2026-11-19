@@ -79,6 +79,19 @@ class OwnedURLTransportTests(unittest.TestCase):
                 self.payload["url"] = self.url.replace("/v1/native.history", "/" + version + "/native.reader")
                 self.assert_rejected()
 
+    def test_explicit_public_v2_inspector_reaches_actual_app_parser(self):
+        self.payload["url"] = self.url.replace("/v1/native.history", "/v2/native.reader.inspector")
+        self.assertTrue(self.execute()["delivered"])
+        self.assertEqual(self.calls[0][0], ["xcrun", "simctl", "openurl", self.udid, self.payload["url"]])
+
+    def test_uninstalled_inspector_versions_children_and_mutations_rejected(self):
+        for path in ["v1/native.reader.inspector", "v3/native.reader.inspector",
+                     "v2/native.reader.inspector.delete", "v2/native.reader.inspector/extra",
+                     "v2/native.reader.inspector.inspector"]:
+            with self.subTest(path=path):
+                self.payload["url"] = self.url.replace("/v1/native.history", "/" + path)
+                self.assert_rejected()
+
     def test_explicit_search_and_annotations_envelopes_only(self):
         for root in ["native.search", "native.annotations", "native.library", "native.reader.toc"]:
             for version in ["v1", "v2"]:
