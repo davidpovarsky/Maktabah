@@ -1,0 +1,102 @@
+Building for debugging...
+[Computing dependencies]
+[Pre-planning 1 / 211]
+[Planning deferred tasks]
+[12 / 121]
+[62 / 121]
+[63 / 122]
+[66 / 160]
+[68 / 160]
+[69 / 160]
+[72 / 160]
+[73 / 160] OtzariaHanlinStoreProof_HanlinPlatformContracts
+[75 / 160] OtzariaHanlinStoreProof_HanlinPlatformContracts
+[78 / 160]
+[80 / 160]
+[82 / 161] HanlinPlatformContracts
+[83 / 161]
+[83 / 165]
+[85 / 165]
+[86 / 165]
+[88 / 165] OtzariaHanlinStoreProof_HanlinPlatformContracts
+[90 / 165]
+[92 / 165]
+[94 / 165]
+[97 / 165]
+[100 / 165] OtzariaHanlinStoreProof_HanlinPlatformContracts
+[101 / 165] HanlinPlatformContracts
+[103 / 165] HanlinPlatformContracts
+[117 / 165] HanlinPresentationKit
+[119 / 165] HanlinPlatformContracts
+[121 / 165] HanlinPlatformContracts
+[122 / 165] HanlinHostContracts
+[125 / 165] HanlinPresentationKit
+[127 / 167] HanlinHostContracts
+[128 / 169] HanlinChatCore
+[129 / 173] HanlinHostContracts
+[142 / 173] HanlinHostContracts
+[144 / 173] HanlinHostContracts
+[145 / 173] HanlinChatCore
+[150 / 174] HanlinChatCore
+[152 / 176] OtzariaHanlinConsumerStore
+[153 / 176] OtzariaHanlinConsumerStore
+[165 / 177] OtzariaHanlinConversationStoreTests-product
+[168 / 213]
+[170 / 213]
+[172 / 213]
+[174 / 213]
+[175 / 213]
+[176 / 213]
+[177 / 213]
+[179 / 213]
+[181 / 213]
+[182 / 213]
+[184 / 213]
+[185 / 213]
+[186 / 213]
+[188 / 213]
+[190 / 213]
+[193 / 213]
+[195 / 213]
+[197 / 213]
+[199 / 213]
+[201 / 213] OtzariaHanlinConversationStoreTests-product
+[204 / 213] OtzariaHanlinConversationStoreTests-product
+[209 / 213] AllIncludingTests
+[211 / 213] OtzariaHanlinConversationStoreTests-product
+Build complete! (36.86 sec)
+Test Suite 'All tests' started at 2026-11-19 23:38:44.831.
+Test Suite 'OtzariaHanlinConversationStoreTests.xctest' started at 2026-11-19 23:38:44.832.
+Test Suite 'OtzariaHanlinConversationStoreTests' started at 2026-11-19 23:38:44.832.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision]' passed (0.009 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite]' passed (0.003 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord]' passed (0.008 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing]' passed (0.004 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata]' passed (0.004 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden]' passed (0.005 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks]' passed (0.003 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave]' passed (0.005 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testForeignMessagePresentationIdentityNeverReachesDisk]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testForeignMessagePresentationIdentityNeverReachesDisk]' passed (0.001 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates]' passed (0.005 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory]' passed (0.006 seconds).
+Test Suite 'OtzariaHanlinConversationStoreTests' passed at 2026-11-19 23:38:44.888.
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.053 (0.056) seconds
+Test Suite 'OtzariaHanlinConversationStoreTests.xctest' passed at 2026-11-19 23:38:44.888.
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.053 (0.056) seconds
+Test Suite 'All tests' passed at 2026-11-19 23:38:44.888.
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.053 (0.057) seconds
+◇ Test run started.
+↳ Testing Library Version: 2403
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

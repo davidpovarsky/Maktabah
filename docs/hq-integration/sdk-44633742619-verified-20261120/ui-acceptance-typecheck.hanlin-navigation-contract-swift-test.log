@@ -1,0 +1,91 @@
+Building for debugging...
+[Constructing description]
+[Planning deferred tasks]
+[12 / 93]
+[49 / 94] HanlinPlatformContracts
+[51 / 132]
+[53 / 132]
+[55 / 132]
+[57 / 132]
+[59 / 132]
+[62 / 132] HanlinNavigationTransitionProof_HanlinPlatformContracts
+[64 / 132]
+[65 / 132]
+[67 / 132]
+[68 / 132]
+[70 / 132]
+[72 / 132]
+[74 / 132]
+[76 / 132]
+[79 / 132]
+[80 / 132]
+[82 / 132]
+[84 / 132]
+[85 / 132]
+[87 / 132] HanlinPlatformContracts
+[88 / 132] HanlinPlatformContracts
+[89 / 132] HanlinPlatformContracts
+[95 / 132] HanlinPlatformContracts
+[99 / 133] HanlinNavigationTransitionProof_HanlinPlatformContracts
+[101 / 137] HanlinHostContracts
+[103 / 137] HanlinHostContracts
+[109 / 137] HanlinHostContracts
+[113 / 138]
+[115 / 140] HanlinAgentCore
+[130 / 141] SDKNavigationTransitionTests-product
+[133 / 177]
+[134 / 177]
+[135 / 177]
+[137 / 177]
+[139 / 177]
+[141 / 177]
+[142 / 177]
+[144 / 177]
+[146 / 177]
+[147 / 177]
+[149 / 177]
+[151 / 177]
+[153 / 177]
+[155 / 177]
+[156 / 177]
+[157 / 177]
+[158 / 177]
+[159 / 177]
+[161 / 177]
+[162 / 177]
+[163 / 177]
+[165 / 177] SDKNavigationTransitionTests-product
+[166 / 177] SDKNavigationTransitionTests-product
+[167 / 177] SDKNavigationTransitionTests-product
+[173 / 177] AllIncludingTests
+[174 / 177]
+Build complete! (42.44 sec)
+Test Suite 'All tests' started at 2026-11-19 23:38:04.424.
+Test Suite 'SDKNavigationTransitionTests.xctest' started at 2026-11-19 23:38:04.429.
+Test Suite 'SDKNavigationTransitionTests' started at 2026-11-19 23:38:04.429.
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testAccountTransitionMustRemainRejected]' started.
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testAccountTransitionMustRemainRejected]' passed (0.005 seconds).
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testAlreadyStaleContextNeverNavigates]' started.
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testAlreadyStaleContextNeverNavigates]' passed (0.001 seconds).
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testGenerationTransitionDropsAcknowledgementAfterNavigationEffect]' started.
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testGenerationTransitionDropsAcknowledgementAfterNavigationEffect]' passed (0.001 seconds).
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testObjectTransitionDropsAcknowledgementAfterNavigationEffect]' started.
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testObjectTransitionDropsAcknowledgementAfterNavigationEffect]' passed (0.001 seconds).
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testQueuedIsNotPresentationAcknowledgement]' started.
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testQueuedIsNotPresentationAcknowledgement]' passed (0.001 seconds).
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testReplyCannotSubstituteNewContextToBypassGuard]' started.
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testReplyCannotSubstituteNewContextToBypassGuard]' passed (0.001 seconds).
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testRevokedSessionNeverNavigates]' started.
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testRevokedSessionNeverNavigates]' passed (0.001 seconds).
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testStableContextPreservesExactPresentedAcknowledgement]' started.
+Test Case '-[SDKNavigationTransitionTests.SDKNavigationTransitionTests testStableContextPreservesExactPresentedAcknowledgement]' passed (0.001 seconds).
+Test Suite 'SDKNavigationTransitionTests' passed at 2026-11-19 23:38:04.441.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.011 (0.012) seconds
+Test Suite 'SDKNavigationTransitionTests.xctest' passed at 2026-11-19 23:38:04.441.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.011 (0.013) seconds
+Test Suite 'All tests' passed at 2026-11-19 23:38:04.442.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.011 (0.018) seconds
+◇ Test run started.
+↳ Testing Library Version: 2403
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

@@ -1,0 +1,230 @@
+{
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44633742619",
+  "job_id": 135946880280,
+  "job_conclusion": "success",
+  "checkout_sha": "7d05dd0bb25a7df307b35174e49e18d0f22eecee",
+  "application_source_pin": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
+  "hanlin_sdk_sha": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "artifact": {
+    "id": 14586095947,
+    "name": "faithful-ui-sdk-check",
+    "bytes": 176854,
+    "sha256": "9907b4230304cef5655111e8e506282f4b492c22d724292efdb40a87f1e416e1",
+    "digest_verified_against_github": true
+  },
+  "toolchain": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+    "target": "arm64-apple-ios27.0-simulator"
+  },
+  "xctest_suites": [
+    {
+      "name": "hanlin-api12-host",
+      "kind": "XCTest",
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "exact_test_names_match": true,
+      "warnings": 0,
+      "boundary": "Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance."
+    },
+    {
+      "name": "hanlin-navigation-contract",
+      "kind": "XCTest",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "exact_test_names_match": true,
+      "warnings": 0,
+      "boundary": "Whole unchanged SDK HostDispatcher + complete original Platform/Host contract modules. Explicit host/navigation effect double; no AgentSession, provider, UIKit, Otzaria runtime or actual UI acknowledgement."
+    },
+    {
+      "name": "hanlin-consumer-store",
+      "kind": "XCTest",
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "exact_test_names_match": true,
+      "warnings": 0,
+      "boundary": "Complete app store with actual Foundation files, independent host/SDK CAS, scoped lease rejection and platform filesystem write failure. Complete original SDK contract/presentation modules and unchanged message DTO; no engine/provider, UIKit scene, native navigation or physical protection proof."
+    }
+  ],
+  "standalone_executed_checks": [
+    {
+      "name": "actual SQLite wrapper",
+      "passed": 20,
+      "failed": 0,
+      "sqlite_version": "3.54.0",
+      "original_data_readonly_count": 0,
+      "fixture": "owned temporary SQLite database",
+      "zstd_executed": false
+    },
+    {
+      "name": "original Hebrew UTF16 source ranges",
+      "passed": 15,
+      "failed": 0,
+      "native_ui_executed": 0
+    },
+    {
+      "name": "original inspector owner binding",
+      "passed": 17,
+      "failed": 0,
+      "model_backend_doubles": true
+    },
+    {
+      "name": "original workspace persistence/migration/rollback/scene/semantic-location",
+      "passed": 61,
+      "failed": 0
+    }
+  ],
+  "native_ui_declarations_typechecked": 78,
+  "native_ui_tests_executed": 0,
+  "physical_device_tests_executed": 0,
+  "sdk_compile_status": "PASS",
+  "sdk_warning_count": 2306,
+  "native_routing_host_package_sdk_compile": "PASS",
+  "full_core_or_routing_xctest_suites_executed_in_this_job": false,
+  "full_app_build": "NOT_RUN",
+  "app_composed_sidebar": "REQUIRES_FULL_APP_BUILD",
+  "app_composed_search_field": "REQUIRES_FULL_APP_BUILD",
+  "new_phase2_notes_search_acceptance": "NOT_RUN_ON_THIS_SOURCE",
+  "artifact_entry_hashes": {
+    "toolbar-sdk-compile.json": {
+      "bytes": 2445,
+      "sha256": "3330589b6c23214780ed8e8e19cfefcf121a17c565a5a329db6155ebcd84f11f"
+    },
+    "toolbar-sdk-compile.log": {
+      "bytes": 1575,
+      "sha256": "ba14e24f93aaa60a4c778424152cca4224ff4f3007db6b449aabdfe33a4b2cc6"
+    },
+    "ui-acceptance-typecheck.hanlin-api12-host-RESULT.json": {
+      "bytes": 4047,
+      "sha256": "18e525be4dab9a9de2d3c7191301edd753cda5b2111e214109027bd2a34e01c3"
+    },
+    "ui-acceptance-typecheck.hanlin-api12-host-driver.log": {
+      "bytes": 14555,
+      "sha256": "cc898d1c44803a6f2e58dbcea49fa0faab1223e2dd5c42f1344a2590c0a75322"
+    },
+    "ui-acceptance-typecheck.hanlin-api12-host-inputs.json": {
+      "bytes": 17331,
+      "sha256": "1ebf6ed3e7cb08b136c0d04c9e9432ff7988a1dec33894c6cd967a736d39788a"
+    },
+    "ui-acceptance-typecheck.hanlin-api12-host-swift-test.log": {
+      "bytes": 10797,
+      "sha256": "c45a249602c7716ed6af77167ac1a078d39b203a4c425c10d56d40ce6f964c06"
+    },
+    "ui-acceptance-typecheck.hanlin-consumer-store-RESULT.json": {
+      "bytes": 14390,
+      "sha256": "a268403b09c12f3c8c26322707521f8e78ed0c7aa5bb1525b24bd6f2c878f3c4"
+    },
+    "ui-acceptance-typecheck.hanlin-consumer-store-driver.log": {
+      "bytes": 4275,
+      "sha256": "07dfe0664c5ffecd8dbfdc84246cf3b030577dda55fa27a54243ec0cab608bfd"
+    },
+    "ui-acceptance-typecheck.hanlin-consumer-store-inputs.json": {
+      "bytes": 9233,
+      "sha256": "c9e6fe820792ebc4dfb22f892529a85c3e49b1ba29fafa5ce87fc92263973259"
+    },
+    "ui-acceptance-typecheck.hanlin-consumer-store-swift-test.log": {
+      "bytes": 6419,
+      "sha256": "3d1dcffad87306a6121a380c04cffd9907293db751228824b8aa53533494684c"
+    },
+    "ui-acceptance-typecheck.hanlin-navigation-contract-RESULT.json": {
+      "bytes": 1964,
+      "sha256": "3ac14edd0c2a6226fb212f2ce3c657a6d57009a15c94e353200fd0183a7bbebe"
+    },
+    "ui-acceptance-typecheck.hanlin-navigation-contract-driver.log": {
+      "bytes": 1826,
+      "sha256": "9f0ecba49d96b0cb70a8d54a02e91a2e3ec18b6c0ddd86e762ad0b2e82848289"
+    },
+    "ui-acceptance-typecheck.hanlin-navigation-contract-inputs.json": {
+      "bytes": 9878,
+      "sha256": "f0d68d5644fded52b0c0d1edfebb5951d6f26fe42a3c94f0b15d91f21f64eb43"
+    },
+    "ui-acceptance-typecheck.hanlin-navigation-contract-swift-test.log": {
+      "bytes": 4522,
+      "sha256": "6712d96f162c786c5896632c2fc14ea5cddc77b84290dfd8b4953e45b5cd35f5"
+    },
+    "ui-acceptance-typecheck.hanlin-sdk-inputs.json": {
+      "bytes": 61045,
+      "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118"
+    },
+    "ui-acceptance-typecheck.hanlin-sdk-prepare.log": {
+      "bytes": 679,
+      "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25"
+    },
+    "ui-acceptance-typecheck.hebrew-ranges-RESULT.json": {
+      "bytes": 5929,
+      "sha256": "05d2a82cdb7f223c250f761dae64a9f53722b670bf8c4126340c4deaf963258d"
+    },
+    "ui-acceptance-typecheck.hebrew-ranges-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ui-acceptance-typecheck.hebrew-ranges-driver.log": {
+      "bytes": 3641,
+      "sha256": "ff2777d5bf26b45d5cd26cb95d0a246b8f30a6440a294449b30c9651723dedef"
+    },
+    "ui-acceptance-typecheck.hebrew-ranges-tests.log": {
+      "bytes": 2568,
+      "sha256": "2cbc7858b9c2f9adcf07e3bfd8edc83cd1ffe867d56ba3bb69a194966cfcb43b"
+    },
+    "ui-acceptance-typecheck.inspector-owner-RESULT.json": {
+      "bytes": 2235,
+      "sha256": "2d0c364e7f44575eca8e432b2d2136196897cea84aabdaf988a47c608d0ba876"
+    },
+    "ui-acceptance-typecheck.inspector-owner-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ui-acceptance-typecheck.inspector-owner-driver.log": {
+      "bytes": 2097,
+      "sha256": "8e5d8d99e80bd021e18038ad8fd7d8199ba808419ee11faf094c41d3cd09a003"
+    },
+    "ui-acceptance-typecheck.inspector-owner-tests.log": {
+      "bytes": 1159,
+      "sha256": "2cc1609be21ee948eff9b8b3ac3383906d5092ec34851a750a1c4cb38b76f53e"
+    },
+    "ui-acceptance-typecheck.json": {
+      "bytes": 72794,
+      "sha256": "d1e422840011068afee3ee9dafce1d617a7f9534c0f8b71a5bfe6b8a2858be1d"
+    },
+    "ui-acceptance-typecheck.log": {
+      "bytes": 2184966,
+      "sha256": "73ee15a8436aff619efa82498cf461416351009ca04b395f4cc7e1dac6663f3e"
+    },
+    "ui-acceptance-typecheck.sqlite-RESULT.json": {
+      "bytes": 4034,
+      "sha256": "f3c65e069d52b20f53f6ec34e8a49b7d9b2d166ae8d4c70f20c1944ea60a4f2d"
+    },
+    "ui-acceptance-typecheck.sqlite-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ui-acceptance-typecheck.sqlite-driver.log": {
+      "bytes": 1616,
+      "sha256": "4a5857f307dee81369618d17122942a4560bf1b35697862257d5091a07e2f431"
+    },
+    "ui-acceptance-typecheck.toolchain.json": {
+      "bytes": 13019,
+      "sha256": "ecc779343270d8dc048311beac518d418d1b7e114ffe36e6a81f1bd78b503455"
+    },
+    "workspace-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ui-acceptance-typecheck.sqlite-tests.log": {
+      "bytes": 1025,
+      "sha256": "cb02a67e197647e3cdda9d8940cfc810484d27df12aabf133419806c526330a3"
+    },
+    "workspace-test-results.log": {
+      "bytes": 81,
+      "sha256": "71f9defc8636f7dc20853da70f92b4b6ce953fbef398575fb9e3b773e337fb8b"
+    },
+    "xcuiautomation-voiceover-sdk.txt": {
+      "bytes": 13992,
+      "sha256": "a67c1b7395766d301e65f88ed64c1424a2e707fca4ddd3a6d50e1bb7d072cb67"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+Building for debugging...
+[Computing dependencies]
+[Pre-planning 1 / 240]
+[Planning deferred tasks]
+[12 / 140]
+[68 / 141] HanlinHostCheck_HanlinPlatformContracts
+[70 / 179]
+[72 / 179]
+[74 / 179]
+[76 / 179]
+[78 / 179]
+[80 / 179]
+[81 / 179] HanlinHostCheck_HanlinPlatformContracts
+[83 / 179]
+[85 / 179]
+[86 / 179]
+[89 / 180]
+[89 / 184]
+[91 / 184]
+[93 / 184]
+[94 / 184]
+[96 / 184]
+[98 / 184]
+[99 / 184]
+[100 / 184]
+[101 / 184]
+[102 / 184]
+[103 / 184]
+[104 / 184]
+[106 / 184] HanlinPlatformContracts
+[109 / 184] OtzariaActionCore
+[120 / 184] OtzariaActionCore
+[122 / 184] HanlinPlatformContracts
+[124 / 184] HanlinPlatformContracts
+[125 / 184] HanlinHostContracts
+[134 / 185] HanlinHostCheck_OtzariaActionCore
+[136 / 189] HanlinHostContracts
+[138 / 189] HanlinHostContracts
+[144 / 189] HanlinHostContracts
+[150 / 190]
+[152 / 192] OtzariaHanlinHostAdapter
+[161 / 192]
+[165 / 193]
+[166 / 195] HanlinAgentCore
+[168 / 195] HanlinAgentCore
+[177 / 195] OtzariaActionCore
+[181 / 196] OtzariaHanlinHostAdapterTests-product
+[184 / 196] OtzariaHanlinHostAdapterTests-product
+[186 / 232]
+[188 / 232]
+[190 / 232]
+[192 / 232]
+[193 / 232]
+[195 / 232]
+[197 / 232]
+[199 / 232]
+[200 / 232]
+[201 / 232]
+[202 / 232]
+[204 / 232]
+[205 / 232]
+[207 / 232]
+[208 / 232]
+[209 / 232]
+[210 / 232]
+[211 / 232]
+[213 / 232]
+[215 / 232]
+[216 / 232]
+[218 / 232]
+[220 / 232] OtzariaHanlinHostAdapterTests-product
+[221 / 232] OtzariaHanlinHostAdapterTests-product
+[222 / 232] OtzariaHanlinHostAdapterTests-product
+[228 / 232] AllIncludingTests
+[232 / 232] OtzariaHanlinHostAdapterTests-product
+Build complete! (43.75 sec)
+Test Suite 'All tests' started at 2026-11-19 23:39:33.318.
+Test Suite 'OtzariaHanlinHostAdapterTests.xctest' started at 2026-11-19 23:39:33.319.
+Test Suite 'OtzariaHanlinHostAdapterTests' started at 2026-11-19 23:39:33.319.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback]' passed (0.102 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect]' passed (0.071 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12DeniesBackgroundBeforeNativeEffect]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12DeniesBackgroundBeforeNativeEffect]' passed (0.037 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats]' passed (0.056 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12RejectsMismatchedNativeAcknowledgement]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12RejectsMismatchedNativeAcknowledgement]' passed (0.042 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12RetainsReceiptWhenSuccessorWasRevoked]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12RetainsReceiptWhenSuccessorWasRevoked]' passed (0.063 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12TransitionReturnsLiveCorrelatedSuccessor]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testAPI12TransitionReturnsLiveCorrelatedSuccessor]' passed (0.043 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testBackgroundNavigationIsDenied]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testBackgroundNavigationIsDenied]' passed (0.035 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCancellationDuringAuthorityLookupNeverReachesCore]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCancellationDuringAuthorityLookupNeverReachesCore]' passed (0.050 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait]' passed (0.056 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCanonicalSchemaRejectionNeverBecomesCompleted]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCanonicalSchemaRejectionNeverBecomesCompleted]' passed (0.038 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCatalogIsExactReadOnlyProjectionAndBackendQualified]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCatalogIsExactReadOnlyProjectionAndBackendQualified]' passed (0.036 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions]' passed (0.047 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights]' passed (0.062 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testContentRightsHideSearchButPreserveCanonicalMetadataActions]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testContentRightsHideSearchButPreserveCanonicalMetadataActions]' passed (0.047 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testContextRevocationDuringReadSuppressesResult]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testContextRevocationDuringReadSuppressesResult]' passed (0.099 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testEmptyNativeForegroundIdentityIsDenied]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testEmptyNativeForegroundIdentityIsDenied]' passed (0.048 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testExplicitCancellationReachesOriginalCoreTask]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testExplicitCancellationReachesOriginalCoreTask]' passed (0.080 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testForeignProviderAndStaleCatalogAreRejected]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testForeignProviderAndStaleCatalogAreRejected]' passed (0.064 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts]' passed (0.049 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testMutationGuaranteeIsRejectedBeforeDispatch]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testMutationGuaranteeIsRejectedBeforeDispatch]' passed (0.060 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID]' passed (0.062 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testOutputLimitAndExpiredDeadlineAreEnforced]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testOutputLimitAndExpiredDeadlineAreEnforced]' passed (0.075 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected]' passed (0.050 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testRealCoreExecutionPreservesGenerationBeyondDoublePrecision]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testRealCoreExecutionPreservesGenerationBeyondDoublePrecision]' passed (0.081 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testReplayDoesNotExecuteAgain]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testReplayDoesNotExecuteAgain]' passed (0.065 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession]' passed (0.051 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testSDKDispatcherDoesNotRepeatQueuedHostTransition]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testSDKDispatcherDoesNotRepeatQueuedHostTransition]' passed (0.053 seconds).
+Test Suite 'OtzariaHanlinHostAdapterTests' passed at 2026-11-19 23:39:34.948.
+	 Executed 28 tests, with 0 failures (0 unexpected) in 1.623 (1.629) seconds
+Test Suite 'OtzariaHanlinHostAdapterTests.xctest' passed at 2026-11-19 23:39:34.948.
+	 Executed 28 tests, with 0 failures (0 unexpected) in 1.623 (1.629) seconds
+Test Suite 'All tests' passed at 2026-11-19 23:39:34.948.
+	 Executed 28 tests, with 0 failures (0 unexpected) in 1.623 (1.630) seconds
+◇ Test run started.
+↳ Testing Library Version: 2403
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

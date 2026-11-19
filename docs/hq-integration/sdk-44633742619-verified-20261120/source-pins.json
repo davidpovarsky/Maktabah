@@ -1,0 +1,84 @@
+{
+  "application_source_sha": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
+  "application_trees": {
+    "Source": "94e4b4f7dcc374509dafccfceaba0318d800aef7",
+    "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+    "Maktabah.xcodeproj": "1175aa91ffff58b465c635926ba3eebe9a80ae53"
+  },
+  "engine_producer_sha": "41c278ac67f0c03e19270ed65b891b242a1a3f2e",
+  "engine_trees": {
+    "Vendor/OtzariaSearchEngine": "5cb2efb3d2e0ecf5c4e2e296196e2d3282b3b81c",
+    "Vendor/ZayitSearchPort/Rust": "ba665920d2a5b13ba58310b808ddf0a9c7ae0dad",
+    "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
+  },
+  "sefaria_gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+  "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
+  "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
+  "resources": {
+    "sources/calendar.json": {
+      "size": 1651059,
+      "sha256": "9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7"
+    },
+    "sources/hebrew_categories.json": {
+      "size": 16121,
+      "sha256": "f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d"
+    },
+    "sources/packages.json": {
+      "size": 238990,
+      "sha256": "3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba"
+    },
+    "sources/people.json": {
+      "size": 52354,
+      "sha256": "b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4"
+    },
+    "sources/search_toc.json": {
+      "size": 829599,
+      "sha256": "6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05"
+    },
+    "sources/toc.json": {
+      "size": 4172545,
+      "sha256": "0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963"
+    },
+    "sources/topic_toc.json": {
+      "size": 1810962,
+      "sha256": "282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c"
+    }
+  },
+  "artifacts": [
+    {
+      "id": 12763376316,
+      "name": "ios-build-otzaria-xcframework",
+      "sha256": "ba24e27a2c26281e0af3d11cd7ea00fe88ff44a3634194dfd10ce89a526eccd5",
+      "tar": "OtzariaSearchEngine.xcframework.tar",
+      "destination": "Vendor/OtzariaSearchEngine",
+      "producer_run": 40566258679
+    },
+    {
+      "id": 12763202077,
+      "name": "ios-build-zayit-xcframework",
+      "sha256": "8f46a00dfc99fbbd01b24a0a72dbee3937d42456169413a7768c4eb112b249d3",
+      "tar": "MaktabahZayitSearch.xcframework.tar",
+      "destination": "Vendor/ZayitSearchPort/build",
+      "producer_run": 40566258679
+    },
+    {
+      "id": 12763481138,
+      "name": "ios-build-swift-packages",
+      "sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd",
+      "tar": "SourcePackages.tar",
+      "destination": "build",
+      "producer_run": 40566258679
+    },
+    {
+      "id": 13658066283,
+      "name": "sefaria-embedded-validation-manifests",
+      "sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda",
+      "producer_run": 42577170165
+    }
+  ],
+  "embedded_js_overlay_paths": [
+    "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+  ],
+  "rebuild_zayit_framework": true,
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+}

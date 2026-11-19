@@ -1,0 +1,24 @@
+{
+  "sourceSHA": "7d05dd0bb25a7df307b35174e49e18d0f22eecee",
+  "xcode": "Xcode 27.2\nBuild version 27B52",
+  "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+  "status": "SDK_COMPILE_PASS",
+  "includesCodeGeneration": true,
+  "notRuntimeAcceptance": true,
+  "sourceHashes": {
+    "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift": "b4fbe3a253bea61d95014dcdc85eea9ac0ec47ff199250e8ca4bffeb28bfc3a9",
+    "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift": "80651917d8e10fc1ba8ec2a73af060bb61d68e0193dfda85b1c2e0a456470076",
+    "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift": "6eed61dc4d43ab7064cc84773b2a09f6a670a8cd4e87b1de12061daaced00c63",
+    "MaktabahTests/ReaderOverviewPresentationTests.swift": "70acea5c7e07df8a73c72ec6cf26aed17490a308db9f515dd173cf53220ca8d9",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift": "8ae46e5812f2782c0a5a197b62f4ec39d504ae68f75dc9be7779a3b440fbcbf0",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift": "8a2162616db8a5ecb15bc81d2fc0f7ac866007377aeb10f855bde79d4e48f503",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift": "6a7eafe79c6b684b6386f2a112640ffdb18bf980ffa49e7902cb1b90fca2c6d1",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderBookTabsModel.swift": "2d840c41bba11a4239107f58e68277d9404c578e27d00e9a2b4197eb07989049",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift": "d31ad0679e524d537cfcecfb241574d3ada9e8d0dcb010458dbf162186a78042",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+    "build/NativeGlobalSearchUIKitControl.swift": "a4c78e808d4337dfba867cacad8abd8f361afe3e6f2bdee86db512f63f187e2a"
+  }
+}
