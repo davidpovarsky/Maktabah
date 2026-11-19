@@ -112,3 +112,87 @@ final class HanlinConsumerAcceptanceTests: FaithfulReaderUIBase {
         closeOriginalChat()
     }
 }
+
+
+/// Uses the existing real-bootstrap reader and its original persisted workspace.
+/// This is a native presentation/return proof; it sends no provider request.
+final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
+    private struct WorkspaceSnapshot: Decodable {
+        struct Document: Decodable, Equatable {
+            struct Session: Decodable, Equatable { let id: UUID; let bookId: Int }
+            let backend: String
+            let session: Session
+        }
+        struct Group: Decodable {
+            let id: UUID; let profileID: UUID
+            let activeTabID: UUID?; let tabs: [Document]
+        }
+        struct Scene: Decodable {
+            let profileID: UUID; let groupID: UUID
+            let activeTabIDsByGroup: [UUID: UUID]?
+        }
+        struct Owner: Equatable {
+            let sceneID: String; let profileID: UUID; let groupID: UUID
+            let activeTabID: UUID; let tabs: [Document]
+        }
+        let groups: [Group]; let scenes: [String: Scene]
+        let lastActiveSceneID: String?
+
+        func currentOwner() throws -> Owner {
+            let sceneID = try XCTUnwrap(lastActiveSceneID)
+            let scene = try XCTUnwrap(scenes[sceneID])
+            let group = try XCTUnwrap(groups.first { $0.id == scene.groupID && $0.profileID == scene.profileID })
+            let activeTabID = try XCTUnwrap(scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID)
+            XCTAssertTrue(group.tabs.contains { $0.session.id == activeTabID })
+            return Owner(sceneID: sceneID, profileID: scene.profileID, groupID: scene.groupID,
+                         activeTabID: activeTabID, tabs: group.tabs)
+        }
+    }
+
+    @MainActor
+    private func originalWorkspaceOwner() throws -> WorkspaceSnapshot.Owner {
+        try JSONDecoder().decode(WorkspaceSnapshot.self, from: Data(contentsOf: workspaceSidecarURL())).currentOwner()
+    }
+
+    @MainActor
+    func testOriginalReaderChatReturnsToSameNativeWorkspace() throws {
+        XCTAssertTrue(isPad, "This original reader toolbar case requires the declared iPad owner")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(backend: "otzaria", language: "en")
+        let originalLocator = try assertTarget(backend: "otzaria")
+        let originalTitle = app.staticTexts["reader-header-title"].label
+        let originalText = try XCTUnwrap(app.textViews["reader-text"].value as? String)
+        XCTAssertFalse(originalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        let originalOwner = try originalWorkspaceOwner()
+        capture("hanlin-reader-original-before-chat")
+
+        let launch = app.buttons["otzaria-hanlin-reader-launch"]
+        XCTAssertTrue(launch.waitForExistence(timeout: 20))
+        XCTAssertTrue(launch.isHittable)
+        launch.tap()
+        let close = app.buttons["otzaria-hanlin-close"]
+        XCTAssertTrue(close.waitForExistence(timeout: 20))
+        XCTAssertEqual(app.buttons.matching(identifier: "otzaria-hanlin-close").count, 1,
+                       "The native reader must present one original scene-owned chat")
+        XCTAssertTrue(app.textFields["otzaria-hanlin-model"].waitForExistence(timeout: 20),
+                      "The real reader entry must expose the explicit original model configuration")
+        XCTAssertTrue(app.staticTexts[
+            "This conversation uses your messages and permitted catalog metadata. Book text and selections are not shared."
+        ].exists, "Opening the reader chat must not imply permission to read the current book")
+        capture("hanlin-reader-original-chat-presented")
+
+        XCTAssertTrue(close.isHittable)
+        close.tap()
+        let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: close)
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 20), .completed)
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), originalLocator)
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, originalTitle)
+        let returnedText = try XCTUnwrap(app.textViews["reader-text"].value as? String)
+        XCTAssertTrue(returnedText.utf8.elementsEqual(originalText.utf8),
+                      "Dismissal must retain the exact original book text, including its Unicode representation")
+        XCTAssertEqual(try originalWorkspaceOwner(), originalOwner,
+                       "The original scene, profile, group, selected tab and all document identities must remain unchanged")
+        XCTAssertTrue(app.buttons["otzaria-hanlin-reader-launch"].isHittable)
+        capture("hanlin-reader-original-after-chat-dismissal")
+    }
+}

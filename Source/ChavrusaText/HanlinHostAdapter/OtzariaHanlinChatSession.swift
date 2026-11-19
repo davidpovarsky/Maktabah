@@ -12,7 +12,7 @@ import HanlinRichUI
 @MainActor @Observable
 final class OtzariaHanlinChatSession: Identifiable {
     let identity: HanlinHostSession
-    var id: UUID { identity.id }
+    nonisolated var id: UUID { identity.id }
     var draft = "" { didSet { historyChanged() } }
     var selectedProfile: PresentationReference { didSet { historyChanged() } }
     private(set) var messages: [HanlinChatMessage] = []
