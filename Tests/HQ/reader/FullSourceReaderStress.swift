@@ -88,7 +88,7 @@ private final class SQLProbe: @unchecked Sendable {
     }
 }
 
-private func waitFor(_ predicate: () -> Bool) async throws {
+private func waitFor(_ predicate: @Sendable () -> Bool) async throws {
     let deadline = now() + 10
     while !predicate() {
         try require(now() < deadline, "test observation timed out")
