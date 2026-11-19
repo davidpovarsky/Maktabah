@@ -3,6 +3,7 @@ import Foundation
 import Observation
 import HanlinAgentCore
 import HanlinChatCore
+import HanlinChatUI
 import HanlinHostContracts
 import HanlinPresentationKit
 import HanlinRichUI
@@ -13,7 +14,15 @@ import HanlinRichUI
 final class OtzariaHanlinChatSession: Identifiable {
     let identity: HanlinHostSession
     nonisolated var id: UUID { identity.id }
-    var draft = "" { didSet { historyChanged() } }
+    private var draftRevision = UUID()
+    private(set) var draft = "" {
+        didSet {
+            // Write identity is ephemeral and advances even for an explicit
+            // same-string clear. History remains owned by the existing store.
+            draftRevision = UUID()
+            historyChanged()
+        }
+    }
     var selectedProfile: PresentationReference { didSet { historyChanged() } }
     private(set) var messages: [HanlinChatMessage] = []
     private(set) var messageStates: [UUID: MessageOpenUIStateStore] = [:]
@@ -98,6 +107,20 @@ final class OtzariaHanlinChatSession: Identifiable {
             operation?.cancel()
             errorMessage = String(localized: "The conversation could not be saved. Close and reopen it before continuing; the previous saved conversation is preserved.")
         }
+    }
+
+    /// A live read of this presentation's original draft owner, never a render snapshot.
+    func readCurrentDraftTextState() -> NativeMultilineTextEditor.TextState? {
+        guard !closed else { return nil }
+        do { try validateOwner() }
+        catch { return nil }
+        return .init(ownerID: identity.id, revision: draftRevision, text: draft)
+    }
+
+    /// A retained native callback cannot write after this original owner is revoked.
+    func updateDraftFromEditor(_ value: String) {
+        guard !storageFailed, readCurrentDraftTextState() != nil else { return }
+        draft = value
     }
 
     var canSend: Bool {

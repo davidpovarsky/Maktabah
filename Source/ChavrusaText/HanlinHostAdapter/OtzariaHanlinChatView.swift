@@ -211,9 +211,14 @@ private struct OtzariaHanlinChatView: View {
                 EmptyView()
             } input: {
                 HStack(alignment: .bottom, spacing: 10) {
-                    NativeMultilineTextEditor(text: $session.draft, textHeight: $editorHeight,
+                    NativeMultilineTextEditor(
+                        text: Binding(
+                            get: { [session] in session.draft },
+                            set: { [session] in session.updateDraftFromEditor($0) }),
+                        textHeight: $editorHeight,
                         placeholderText: String(localized: "Message"), maxHeight: budget,
-                        usesAutomaticLineLimits: true, onSendMessage: session.send)
+                        usesAutomaticLineLimits: true, onSendMessage: session.send,
+                        readCurrentTextState: { [session] in session.readCurrentDraftTextState() })
                         .frame(height: min(editorHeight, budget))
                         .accessibilityIdentifier("otzaria-hanlin-composer")
                     if session.isStreaming {
