@@ -1,0 +1,96 @@
+{
+  "run_id": 44628513017,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44628513017",
+  "status": "FAILED",
+  "checkout_sha": "38e8114ba6d9ded8193be4aab1128a05b2415683",
+  "application_source_sha": "440f7e43af9fa49b67613685566fbb9b6bbc9248",
+  "artifact": {
+    "id": 14585860346,
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44628513017/artifacts/14585860346",
+    "bytes": 39644197,
+    "sha256": "899a5026a61b244c5a3eaeb892260ec870fdb4500b1b1f0becd78d44405c2715",
+    "verified": true,
+    "local_zip": "/workspace/scratch/8c31d602ec0a/native-audit/full-v32-44628513017.zip"
+  },
+  "source_preflight": "PASS",
+  "actual_URLSession_manifest_regression": "PASS",
+  "original_simulator_build": "PASS",
+  "authenticated_data_preparation": "PASS",
+  "original_launcher_exit": 0,
+  "phases": {
+    "install": {
+      "passed": true,
+      "phase": "install",
+      "artifactIdentity": "102293b3a63c7f73fa05298457073804e57e020486753f8f6b8f7964ce29f17e",
+      "documentCount": 7080797,
+      "sourceCount": 7876,
+      "productionDiscoveryRan": true,
+      "productionValidatorRan": true,
+      "selectedReleaseTag": "otzaria-search-data-v32-20261010190601-102293b3a63c",
+      "nativeDownloadRan": true,
+      "resumedDownloadBytes": 0,
+      "stagingAbsent": true,
+      "localIndexingRan": false
+    },
+    "reopen": {
+      "passed": true,
+      "phase": "reopen",
+      "artifactIdentity": "102293b3a63c7f73fa05298457073804e57e020486753f8f6b8f7964ce29f17e",
+      "documentCount": 7080797,
+      "sourceCount": 7876,
+      "productionDiscoveryRan": true,
+      "productionValidatorRan": true,
+      "selectedReleaseTag": "otzaria-search-data-v32-20261010190601-102293b3a63c",
+      "nativeDownloadRan": false,
+      "resumedDownloadBytes": 0,
+      "stagingAbsent": true,
+      "localIndexingRan": false
+    }
+  },
+  "mode_checks": [
+    {
+      "count": 104120,
+      "firstFilePath": "otzaria-book:1",
+      "mode": "exact",
+      "query": "בראשית"
+    },
+    {
+      "count": 104120,
+      "firstFilePath": "otzaria-book:1",
+      "mode": "fuzzy",
+      "query": "בראשית"
+    },
+    {
+      "count": 104120,
+      "firstFilePath": "otzaria-book:1",
+      "mode": "advanced",
+      "query": "בראשית"
+    }
+  ],
+  "golden": {
+    "query": "לחתוך צנון בסכין בשרי",
+    "results": 25,
+    "highlightedTopResults": 25,
+    "unique_result_ids": true
+  },
+  "three_modes_equal_after_restart": true,
+  "golden_equal_after_restart": true,
+  "actual_pids": {
+    "install": "11356",
+    "reopen": "15115"
+  },
+  "distinct_processes": true,
+  "failed_gate": {
+    "error": "Real native partial-download resume did not occur",
+    "expected_resumed_bytes": 1048576,
+    "actual_resumed_bytes": 0
+  },
+  "post_validation_database_integrity": "NOT_RUN (strict resume gate failed first)",
+  "XCTest_UI_cases": 0,
+  "physical_device": "NOT_RUN",
+  "raw_log_sha256": "e5db5893f3be0eee213828152581d1a40a4d2df95b7c2401e27c24b0524dbaaa",
+  "phase_report_sha256": {
+    "otzaria-prebuilt-install.json": "4fd900df14437b35c02df31078deab45977ea05b1c779e90b63933ea0d1fe14e",
+    "otzaria-prebuilt-reopen.json": "c4e0233af9387529510c8179516596591bc21f0aa6e1a28ec4a1e748e92794e0"
+  }
+}
