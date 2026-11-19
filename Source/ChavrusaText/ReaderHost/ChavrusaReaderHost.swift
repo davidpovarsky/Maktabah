@@ -358,26 +358,41 @@ private struct ReaderSidebarToggleRemoval: ViewModifier {
 /// choose an arbitrary connected scene or generate another ID on cold launch.
 struct ReaderSceneIdentityReader: UIViewRepresentable {
     let resolve: (String) -> Void
+    let observeWindow: (@MainActor (UIView, UIWindow?) -> Void)?
+    init(observeWindow: (@MainActor (UIView, UIWindow?) -> Void)? = nil,
+         resolve: @escaping (String) -> Void) {
+        self.resolve = resolve; self.observeWindow = observeWindow
+    }
     func makeUIView(context: Context) -> ReaderSceneIdentityView {
         let view = ReaderSceneIdentityView()
         view.isUserInteractionEnabled = false
         view.onResolve = resolve
+        view.onWindow = observeWindow
         return view
     }
     func updateUIView(_ view: ReaderSceneIdentityView, context: Context) {
         view.onResolve = resolve
+        view.onWindow = observeWindow
         view.publishIdentity()
+    }
+    static func dismantleUIView(_ view: ReaderSceneIdentityView, coordinator: ()) {
+        view.onWindow?(view, nil)
+        view.onWindow = nil; view.onResolve = nil
     }
 }
 
 final class ReaderSceneIdentityView: UIView {
     var onResolve: ((String) -> Void)?
+    var onWindow: (@MainActor (UIView, UIWindow?) -> Void)?
     private var publishedID: String?
     override func didMoveToWindow() {
         super.didMoveToWindow()
         publishIdentity()
     }
     func publishIdentity() {
+        // This is the same scene-owned view's actual attachment, including
+        // detach. Window observation never searches global application state.
+        onWindow?(self, window)
         guard let identifier = window?.windowScene?.session.persistentIdentifier,
               identifier != publishedID else { return }
         Task { @MainActor [weak self] in

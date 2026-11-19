@@ -33,6 +33,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
     @Environment(\.maktabahNativeWorkspaceOwner) private var workspaceOwner
     @State private var sceneID = ""
     @State private var session: MaktabahNativeSceneSession?
+    @State private var windowSource = MaktabahNativeWindowSource()
     @State private var hanlinChat: OtzariaHanlinChatOwner?
     // Both layouts expose their original scene-lived workspace owner. Wait
     // for that actual adapter before mounting content-capable navigation.
@@ -52,7 +53,11 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             .environment(\.maktabahNativeRoutingSession, session)
             .modifier(OtzariaHanlinChatPresentationHost(owner: hanlinChat))
             .background {
-                ReaderSceneIdentityReader { sceneID = $0 }
+                ReaderSceneIdentityReader(observeWindow: { source, window in
+                    if windowSource.observe(window, from: source) {
+                        session?.nativeWindowDidChange(windowSource)
+                    }
+                }) { sceneID = $0 }
                     .frame(width: 0, height: 0).accessibilityHidden(true)
             }
             .onChange(of: ready, initial: true) { _, _ in mountIfReady() }
@@ -124,6 +129,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
                       columnVisibility: bindings.columnVisibility.wrappedValue, settingsPresented: bindings.showSettings.wrappedValue,
                       sidebar: bindings.sidebar, workspace: workspace)
             })
+            value.attachWindowSource(windowSource)
             session = value
             hanlinChat = .init(manager: manager, session: value, composition: MaktabahNativeRoutingComposition.shared)
             try MaktabahNativeRoutingComposition.shared.installPublicBindingIfReady(

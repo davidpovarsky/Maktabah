@@ -89,3 +89,6 @@ The current owner explicitly authorizes all necessary three-phase fixes and exis
 ## 2026-11-20 — Original editable note draft witness
 
 The current owner authorizes all necessary continuation work. The original annotation sheet gains only an optional passive actual-UITextView creation/disappearance observer; its controls, Save/Cancel/Delete, text initialization and persistence stay unchanged. The existing downstream reader workspace supplies its original editable binding and actual sheet onDismiss. Core requires an exact source-owned selection, a purpose-bound one-use grant and a live visible unsaved editor. Focused independent source review found and corrected clipping and dismissal-lifetime gaps. Exact provenance, authorization scope, three-hunk patch, alternatives, tests, Native limits and rollback: [note draft review](../hq-integration/actions-notes-draft-20261120/REVIEW.md). Apple SDK/Native acceptance remains pending; existing studyNotes evidence does not prove the new action ran.
+## 2026-11-20: semantic search original UI ownership
+
+See `docs/hq-integration/search-openresults-20261120/REVIEW.md` and the exact compressed original Search UI diff. Current owner authorization covers this narrow passive hook; Apple/native acceptance is still pending.

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "swift",
+    "test",
+    "--package-path",
+    "Source/Otzaria/Actions",
+    "--scratch-path",
+    "build/search-openresults-20261120/swiftpm",
+    "-j",
+    "1",
+    "-Xswiftc",
+    "-strict-concurrency=complete"
+  ],
+  "started": "2026-11-19T23:13:40.833386+00:00",
+  "scope": "Portable Core contracts, explicit UI/source doubles; no Native run"
+}

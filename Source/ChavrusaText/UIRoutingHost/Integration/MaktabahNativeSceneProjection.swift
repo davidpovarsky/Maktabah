@@ -11,7 +11,7 @@ import ChavrusaUIRoutingHost
 /// target. It neither saves reader state nor resolves a requested locator.
 @MainActor
 struct MaktabahNativeSceneProjection {
-    enum Surface { case library, tableOfContents, reader, history, search, annotations, settings, inspector, noteDraft }
+    enum Surface { case library, tableOfContents, reader, history, search, searchResults, annotations, settings, inspector, noteDraft }
     let manager: iOSNavigationManager
     let selectedTab: iOSTab
     let columnVisibility: NavigationSplitViewVisibility
@@ -59,6 +59,14 @@ struct MaktabahNativeSceneProjection {
             guard !settingsPresented, selectedTab.canonical == .history, manager.currentMode == .history,
                   HistoryViewModel.shared.searchText.isEmpty else { return nil }
             return .init(destination: id("native.history"), presentation: .init(), content: nil, state: state, focus: nil)
+        case .searchResults:
+            let search = manager.unifiedSearchSession
+            guard !settingsPresented, MaktabahNativeRootDestination.search.isAvailable,
+                  selectedTab.canonical == .search, manager.currentMode == .search,
+                  search.hasSubmitted, !search.isSearching, !search.resultsAreDirty,
+                  search.errorMessage == nil else { return nil }
+            return .init(destination: id("native.search.results"), presentation: .init(),
+                         content: nil, state: state, focus: nil)
         case .search, .annotations:
             let root: MaktabahNativeRootDestination = surface == .search ? .search : .annotations
             guard !settingsPresented, root.isAvailable,

@@ -74,6 +74,9 @@ public actor ActionExecutor {
             if request.action == "notes.prepareDraft", !(ui is any ActionNoteDraftUICommandSink) {
                 throw ActionEngineFailure(.notSupported, "note_draft_editor_unavailable")
             }
+            if request.action == "search.openResults", !(ui is any ActionSearchResultsUICommandSink) {
+                throw ActionEngineFailure(.notSupported, "native_search_results_unavailable")
+            }
             let existing = ledger[key]
             if let existing {
                 guard try equivalent(existing.request, request), existing.authority == Authority(context) else { throw ActionEngineFailure(.failed, "request_replay_conflict") }
@@ -174,6 +177,8 @@ public actor ActionExecutor {
             let commentaryAvailable = await commentaryNavigationAvailable()
             let notesSupported = ui is any ActionNoteDraftUICommandSink
             let notesReady = await noteDraftAvailable(context: context)
+            let searchResultsSupported = ui is any ActionSearchResultsUICommandSink
+            let searchResultsReady = await searchResultsAvailable(context: context)
             var reports: [ActionJSON] = []
             for target in ActionBackendID.allCases {
                 let report: ActionBackendReport?
@@ -188,14 +193,19 @@ public actor ActionExecutor {
                     let implemented = ActionRegistry.implemented.contains(descriptor.id)
                         && (descriptor.id != "reader.openCommentary" || commentaryAvailable)
                         && (descriptor.id != "notes.prepareDraft" || notesSupported)
+                        && (descriptor.id != "search.openResults" || searchResultsSupported)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
-                        && (descriptor.id != "notes.prepareDraft" || notesReady)) }
+                        && (descriptor.id != "notes.prepareDraft" || notesReady)
+                        && (descriptor.id != "search.openResults" || searchResultsReady)) }
                     if !supported { fields["reasonCode"] = .string(implemented ? "capability_unavailable" : "action_not_implemented") }
                     else if includeReadiness && target != snapshot.backend { fields["reasonCode"] = .string("backend_selection_required") }
                     else if includeReadiness && descriptor.id == "notes.prepareDraft" && !notesReady {
                         fields["reasonCode"] = .string("exact_note_selection_unavailable")
+                    }
+                    else if includeReadiness && descriptor.id == "search.openResults" && !searchResultsReady {
+                        fields["reasonCode"] = .string("native_search_results_unavailable")
                     }
                     else if includeReadiness && raw?.availableNow != true {
                         fields["reasonCode"] = .string(ActionPolicy.safeReason(raw?.reasonCode, fallback: "backend_unavailable"))
@@ -207,7 +217,8 @@ public actor ActionExecutor {
             return completed(["backends": .array(reports)])
         }
 
-        let searchQuery = request.action == "search.query" ? try ActionValidation.search(request.arguments, backend: backend) : nil
+        let openResultsQuery = request.action == "search.openResults" ? try ActionSearchResultsQuery.arguments(request.arguments, backend: backend) : nil
+        let searchQuery = request.action == "search.query" ? try ActionValidation.search(request.arguments, backend: backend) : openResultsQuery?.search
         if let searchQuery { try ActionPolicy.search(searchQuery, context: context) }
         // Assessment and execution see the exact same normalized search defaults.
         let effectiveArguments = try searchQuery.map { try ActionJSON.encoded($0).object ?? [:] } ?? request.arguments
@@ -217,6 +228,7 @@ public actor ActionExecutor {
         let result: ActionResult
         var navigationCompletion: ActionNavigationPreparation? = nil
         var noteCompletion: (any ActionNoteDraftUICommandSink, ActionNoteDraftReceipt)? = nil
+        var searchCompletion: ((any ActionSearchResultsUICommandSink), ActionOpenSearchResultsCommand, ActionSearchResultsReceipt)?
         switch request.action {
         case "catalog.resolveWork":
             let ref = try request.arguments["workRef"]?.decoded(as: ActionWorkRef.self)
@@ -287,7 +299,10 @@ public actor ActionExecutor {
             switch try await noteUI.presentNoteDraft(command) {
             case .acknowledged(let receipt):
                 guard receipt.requestId == request.requestId, receipt.snapshot == snapshot, receipt.sceneID == scene,
-                      receipt.draft == draft, receipt.isUnsaved else { throw ActionPortError.invalidResponse }
+                      receipt.draft == draft, receipt.isUnsaved else {
+                    throw ActionNativeUIFailure(status: .failed,
+                        failure: .init(code: "native_effect_uncertain", message: "", retryable: false))
+                }
                 navigationCompletion = authorization; noteCompletion = (noteUI, receipt)
                 result = ActionResult(request: request, status: .completed,
                     data: ["locator": try .encoded(locator), "saved": .bool(false)],
@@ -297,6 +312,53 @@ public actor ActionExecutor {
                 result = ActionResult(request: request, status: .uiQueued, data: ["handle": .string(handle)],
                     backend: backend, backendGeneration: snapshot.generation, effects: ["note_draft_queued"])
             case .requiresForeground: throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable")
+            }
+        case "search.openResults":
+            guard let query = openResultsQuery else { throw ActionPortError.invalidResponse }
+            if let reason = ActionSearchResultsQuery.unsupportedReason(query.search) {
+                throw ActionEngineFailure(.notSupported, reason)
+            }
+            guard request.requestedPresentation != .headless, let scene = ActionPolicy.foregroundScene(context),
+                  let searchUI = ui as? any ActionSearchResultsUICommandSink else {
+                throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable")
+            }
+            guard await searchUI.canOpenSearchResults(in: scene) else {
+                throw ActionEngineFailure(.unavailable, "native_search_results_unavailable")
+            }
+            // Scope identities are resolved by the original canonical catalog,
+            // never fabricated from a displayed label or an arbitrary integer.
+            for ref in query.search.scopeWorkRefs {
+                let resolution = try await resolver.resolveWork(.init(backend: backend, query: nil, workRef: ref, limit: 1), invocation: invocation)
+                guard case .unique(let resolved) = resolution, resolved == ref else { throw ActionPortError.notFound }
+                try await recheck(snapshot, deadline: deadline)
+            }
+            try await searchUI.prepareSearchResults(query, context: context, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard let navigationAuthority, let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
+                throw ActionNavigationError(.unavailable, "synchronous_navigation_authority_unavailable")
+            }
+            let authorization = try await ActionNavigationPreparation(authority: navigationAuthority,
+                backendAuthority: backendAuthority, invocation: invocation, sceneID: scene,
+                context: context, destination: nil, clock: clock, searchQuery: query)
+            let command = ActionOpenSearchResultsCommand(query: query, sceneID: scene, invocation: invocation,
+                navigationAuthorization: authorization)
+            switch try await searchUI.openSearchResults(command) {
+            case .acknowledged(let receipt):
+                guard receipt.requestId == request.requestId, receipt.snapshot == snapshot, receipt.sceneID == scene,
+                      receipt.query == query, receipt.submissionRevision > 0 else {
+                    throw ActionNativeUIFailure(status: .failed,
+                        failure: .init(code: "native_effect_uncertain", message: "", retryable: false))
+                }
+                navigationCompletion = authorization
+                searchCompletion = (searchUI, command, receipt)
+                result = ActionResult(request: request, status: .completed, backend: backend,
+                    backendGeneration: snapshot.generation, effects: ["search_results_opened"])
+            case .queued(let handle):
+                guard handle.range(of: "^[A-Za-z0-9_-]{8,128}$", options: .regularExpression) != nil else { throw ActionPortError.invalidResponse }
+                result = ActionResult(request: request, status: .uiQueued, data: ["handle": .string(handle)],
+                    backend: backend, backendGeneration: snapshot.generation, effects: ["search_command_queued"])
+            case .requiresForeground:
+                throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable")
             }
         case "reader.open", "reader.openCommentary":
             let destination: ActionReaderDestination
@@ -371,9 +433,11 @@ public actor ActionExecutor {
             if let noteCompletion {
                 try await Self.validateNoteDraftCompletion(authorization: navigationCompletion,
                     port: noteCompletion.0, receipt: noteCompletion.1, invocation: invocation)
+            } else if let searchCompletion, let navigationCompletion {
+                try await Self.validateSearchCompletion(searchCompletion, authorization: navigationCompletion)
             } else if let navigationCompletion { try await navigationCompletion.validateCompletion() }
         } catch {
-            if noteCompletion != nil {
+            if noteCompletion != nil || searchCompletion != nil {
                 let status = (error as? ActionEngineFailure)?.status ?? (error as? ActionNavigationError)?.status
                     ?? ((error as? ActionPortError) == .staleState ? .staleState : (error is CancellationError ? .cancelled : .failed))
                 throw ActionNativeUIFailure(status: status,
@@ -390,6 +454,13 @@ public actor ActionExecutor {
         // Observe the original editor AFTER that final Core authority read.
         try authorization?.validateCompletion()
         try port.validateNoteDraftCompletion(receipt, invocation: invocation)
+    }
+
+    @MainActor private static func validateSearchCompletion(
+        _ completion: ((any ActionSearchResultsUICommandSink), ActionOpenSearchResultsCommand, ActionSearchResultsReceipt),
+        authorization: ActionNavigationPreparation) throws {
+        try authorization.validateCompletion()
+        try completion.0.validateSearchResultsCompletion(completion.1, receipt: completion.2)
     }
 
     private func recheck(_ snapshot: ActionBackendSnapshot, deadline: UInt64) async throws {
@@ -453,6 +524,11 @@ public actor ActionExecutor {
         return await noteUI.canPrepareNoteDraft(in: scene)
     }
 
+    private func searchResultsAvailable(context: ActionExecutionContext) async -> Bool {
+        guard let scene = ActionPolicy.foregroundScene(context), let searchUI = ui as? any ActionSearchResultsUICommandSink else { return false }
+        return await searchUI.canOpenSearchResults(in: scene)
+    }
+
     private func commentaryNavigationAvailable() async -> Bool {
         guard ui is any ActionCommentaryUICommandSink,
               let commentary = resolver as? any ActionCommentaryResolverPort else { return false }
@@ -468,7 +544,7 @@ public actor ActionExecutor {
         return registry.descriptors.filter { descriptor in
             guard ActionRegistry.implemented.contains(descriptor.id), operations[descriptor.id]?.object?["availableNow"] == .bool(true) else { return false }
             guard (try? ActionPolicy.authorize(descriptor, context: context, backend: backend)) != nil else { return false }
-            return !["reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(descriptor.id) || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
+            return !["reader.open", "reader.openCommentary", "notes.prepareDraft", "search.openResults"].contains(descriptor.id) || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
         }
     }
 

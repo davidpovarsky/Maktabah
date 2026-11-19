@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-search-openresults-20261120",
+  "cleanup": true,
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_d378e4acc66a4086970fdaf74ffddbc9\\script.py"
+  ],
+  "output": "build\\search-presentation-guard-20261120\\SearchPresentationGuards.swift:131:22: warning: 'stateBlocked' mutated after capture by sendable closure\r\n\r\n126 |         let fixture = SearchPresentationFixture(); fixture.windowSource = source\r\n\r\n127 |         let first = UUID(), second = UUID()\r\n\r\n128 |         var stateBlocked = false\r\n\r\n    |             `- note: variable defined here\r\n\r\n129 |         fixture.observeSearchPresentation(owner: first) { stateBlocked }\r\n\r\n    |                                                         | `- note: capturing use\r\n\r\n    |                                                         `- note: variable captured by sendable closure\r\n\r\n130 |         check(fixture.isReady(), \"unblocked original state is ready\")\r\n\r\n131 |         stateBlocked = true\r\n\r\n    |                      `- warning: 'stateBlocked' mutated after capture by sendable closure\r\n\r\n132 |         check(!fixture.isReady(), \"live original State blocks without a render callback\")\r\n\r\n133 |         fixture.observeSearchPresentation(owner: second) { true }\r\n\r\n   Creating library build\\search-presentation-guard-20261120\\SearchPresentationGuards.lib and object build\\search-presentation-guard-20261120\\SearchPresentationGuards.exp\r\n\r\n\r\nPASS: 30 portable ownership/presentation assertions; UIKit behavior itself NOT_RUN\r\n \r\nNo UIKit/native execution claimed.",
+  "duration": 2.97,
+  "returncode": 0,
+  "_notice": "You have 65 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+}

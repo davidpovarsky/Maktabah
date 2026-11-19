@@ -7,6 +7,43 @@ import OtzariaActionCore
 import OtzariaUIRouting
 import ChavrusaUIRoutingHost
 
+/// The original root identity view owns this observation. Both UIKit references
+/// are weak, and a detached older view cannot erase a newer registration.
+@MainActor final class MaktabahNativeWindowSource {
+    private weak var source: UIView?
+    private weak var window: UIWindow?
+
+    @discardableResult
+    func observe(_ window: UIWindow?, from source: UIView) -> Bool {
+        if window == nil {
+            guard self.source === source else { return false }
+            self.source = nil; self.window = nil
+            return true
+        }
+        guard self.source !== source || self.window !== window else { return false }
+        self.source = source; self.window = window
+        return true
+    }
+
+    func isPresentationReady(in sceneID: UIStableID) -> Bool {
+        guard let source, let window, source.window === window,
+              window.isKeyWindow, !window.isHidden, window.alpha >= 0.95,
+              let scene = window.windowScene, scene.activationState == .foregroundActive,
+              scene.session.persistentIdentifier == sceneID.rawValue,
+              let root = window.rootViewController, root.viewIfLoaded?.window === window else { return false }
+        // Read the original controller tree now, including the dismissal
+        // interval after a SwiftUI sheet binding has already become false.
+        var controllers = [root]
+        while let controller = controllers.popLast() {
+            guard controller.presentedViewController == nil,
+                  !controller.isBeingPresented, !controller.isBeingDismissed,
+                  controller.transitionCoordinator == nil else { return false }
+            controllers.append(contentsOf: controller.children)
+        }
+        return true
+    }
+}
+
 /// One instance per actual UIKit session. The app supplies the SAME directory /
 /// S facade used by Core and its current lifetime validator at composition.
 /// Native mutations remain behind P's canonical precommit guard.
@@ -24,6 +61,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     private var lease: NativeSceneDirectory.Lease?
     private var command: UISceneCommand?
     var readerBinding: MaktabahNativeReaderBinding?
+    var searchResultsBinding: MaktabahNativeSearchResultsBinding?
     @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
     @ObservationIgnored private var retainedSearchField: UISearchTextField?
     @ObservationIgnored private var searchFieldUpdateScheduled = false
@@ -31,6 +69,37 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     @ObservationIgnored private var noteEditorOwner: MaktabahNativeNoteEditorOwner?
     @ObservationIgnored private var noteDraftBinding: MaktabahNativeNoteDraftBinding?
     private var searchFieldRevision: UInt64 = 0
+    @ObservationIgnored private weak var windowSource: MaktabahNativeWindowSource?
+    @ObservationIgnored private var searchPresentationOwner: UUID?
+    @ObservationIgnored private var searchPresentationBlocked: (@MainActor () -> Bool)?
+
+    func attachWindowSource(_ source: MaktabahNativeWindowSource) {
+        guard mounted else { return }
+        windowSource = source
+    }
+    func nativeWindowDidChange(_ source: MaktabahNativeWindowSource) {
+        guard mounted, windowSource === source else { return }
+        presentation.revoke()
+        try? nativeStateChanged()
+    }
+    func observeSearchPresentation(owner: UUID, isBlocked: @escaping @MainActor () -> Bool) {
+        guard mounted else { return }
+        searchPresentationOwner = owner; searchPresentationBlocked = isBlocked
+    }
+    func removeSearchPresentation(owner: UUID) {
+        guard searchPresentationOwner == owner else { return }
+        // A hidden Search tab can retain its opaque FTS overlay state. Keep
+        // that original blocker until the actual owner clears/replaces it;
+        // reopening Search semantically must not submit behind a restored mask.
+        guard searchPresentationBlocked?() != true else { return }
+        searchPresentationOwner = nil; searchPresentationBlocked = nil
+    }
+    private func validateSearchPresentation() throws {
+        guard windowSource?.isPresentationReady(in: sceneID) == true,
+              searchPresentationBlocked?() != true else {
+            throw UIRouteError(.unavailable, "native_search_presentation_in_progress")
+        }
+    }
 
     // This is the original scene-owned UIKit control, installed by its existing
     // representable. No lookup through global windows or runtime class names.
@@ -268,6 +337,17 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             try bound.validate()
             return
         }
+        if route.destination.rawValue == "native.search.results" {
+            try validateSearchPresentation()
+            guard route.content == nil, route.focus == nil, route.presentation.kind == .currentTab,
+                  route.presentation.tabID == nil, let searchResultsBinding,
+                  searchResultsBinding.requestID == command.invocation.requestId,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID) else {
+                throw UIRouteError(.notSupported, "native_search_results_variant_not_installed")
+            }
+            try searchResultsBinding.validate()
+            return
+        }
         if route.destination.rawValue == "native.reader.inspector" {
             guard route.content == nil, route.focus == nil, route.presentation.kind == .inspector,
                   route.presentation.tabID == nil,
@@ -317,6 +397,17 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             try validateSurface(command)
             guard let bound = noteDraftBinding else { throw ActionPortError.unavailable }
             try bound.apply()
+            return
+        }
+        if command.route.route.destination.rawValue == "native.search.results" {
+            try validateSurface(command)
+            guard let searchResultsBinding else { throw UIRouteError(.unavailable, "native_search_owner_missing") }
+            try searchResultsBinding.apply {
+                bindings.showSettings.wrappedValue = false
+                if !MaktabahApp.isIpad { bindings.manager.selectedBook = nil }
+                bindings.selectedTab.wrappedValue = .search
+                bindings.manager.switchToMode(.search)
+            }
             return
         }
         if command.route.route.destination.rawValue == "native.reader.inspector" {
@@ -383,6 +474,14 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             guard let bound = noteDraftBinding, bound.isApplied, noteEditorOwner === bound.owner else { return nil }
             try bound.validate()
         }
+        if kind == .searchResults {
+            // Allow the native witness to mount during this route's own
+            // transition so UIKit can report viewDidAppear. The exact window
+            // is rechecked at completion; local overlays must hide the witness.
+            guard searchPresentationBlocked?() != true else { return nil }
+            guard let searchResultsBinding else { return nil }
+            try searchResultsBinding.validateCompleted()
+        }
         guard let state = try project().surface(kind) else { return nil }
         // Root navigation does not request or report keyboard focus. For the
         // registered component, the optional focus facet is projected ONLY
@@ -429,6 +528,59 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func observeVisibility(for destination: UIDestinationID, check: @escaping @MainActor () -> NativeSurfaceWitness.Evidence?) {
         visibilityChecks[destination] = check
     }
+
+    /// Synchronous readiness for Core capability/availability checks. This
+    /// observes only the original scene, presentation and search model; it
+    /// neither submits a query nor acquires a request-specific binding.
+    func canPrepareSearchResults() -> Bool {
+        let manager = bindings.manager, session = bindings.manager.unifiedSearchSession
+        guard mounted, foreground, isPresentationReady, searchResultsBinding == nil,
+              (try? validateSearchPresentation()) != nil,
+              session.searchViewModel === manager.searchViewModel,
+              session.selectedBookIds == manager.searchViewModel.selectedBookIds,
+              session.availableScopes.contains(.exact),
+              !session.showsBookFilterSheet, !session.showsSearchDataSheet,
+              !session.showsAdvancedOptions else { return false }
+        return true
+    }
+
+    func retainSearchResults(_ query: ActionSearchResultsQuery, requestID: UUID) throws -> MaktabahNativeSearchResultsBinding {
+        try validateSearchPresentation()
+        guard canPrepareSearchResults() else {
+            throw UIRouteError(.unavailable, "native_search_owner_unavailable")
+        }
+        let retained = try MaktabahNativeSearchResultsBinding(manager: bindings.manager, query: query, requestID: requestID)
+        searchResultsBinding = retained
+        return retained
+    }
+    func releaseSearchResults(_ binding: MaktabahNativeSearchResultsBinding) {
+        if searchResultsBinding === binding { searchResultsBinding = nil }
+    }
+    func prepareSearchResults(invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        try validateSearchPresentation()
+        guard let searchResultsBinding, searchResultsBinding.requestID == invocation.requestId else {
+            throw UIRouteError(.unavailable, "native_search_owner_missing")
+        }
+        try searchResultsBinding.validate()
+        let identity = try project().identity()
+        return RouteSpec(requestId: invocation.requestId, destination: UIDestinationID(rawValue: "native.search.results")!,
+            backend: invocation.snapshot.backend, presentation: .init(kind: .currentTab),
+            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID),
+            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision),
+            expectedBackendSnapshot: invocation.snapshot)
+    }
+    func validateSearchResultsCompletion(requestID: UUID) throws {
+        try validateSearchPresentation()
+        guard let searchResultsBinding, searchResultsBinding.requestID == requestID,
+              mounted, foreground, isPresentationReady,
+              let surface = try surface(.searchResults),
+              let evidence = visibilityChecks[surface.destination]?(),
+              evidence.isVisible, evidence.sceneID == sceneID, evidence.surface == surface else {
+            throw UIRouteError(.staleState, "native_search_results_no_longer_visible")
+        }
+        try searchResultsBinding.validateCompleted()
+    }
+
     func windowLabel(number: Int) -> String {
         let projection = try? project()
         let names = [projection?.workspace?.profile?.name, projection?.workspace?.group?.name]
@@ -496,6 +648,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
         nativeSearchField = nil; retainedSearchField = nil; inspectorBinding = nil
         noteEditorOwner = nil; noteDraftBinding = nil
+        windowSource = nil; searchPresentationOwner = nil; searchPresentationBlocked = nil
+        searchResultsBinding = nil
         if let lease { directory.unmount(lease) }
         lease = nil
     }
@@ -509,6 +663,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         case "native.reader.noteDraft": .noteDraft
         case "native.history": .history
         case "native.search": .search
+        case "native.search.results": .searchResults
         case "native.annotations": .annotations
         case "native.settings": .settings
         default: nil

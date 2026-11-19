@@ -48,6 +48,7 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
     private let sceneID: String
     private let destination: ActionReaderDestination?
     private let noteDraft: ActionNoteDraftRequest?
+    private let searchQuery: ActionSearchResultsQuery?
     private let clock: any ActionClock
     private var consumed = false
 
@@ -56,10 +57,13 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
     init(authority: any ActionNavigationAuthority, backendAuthority: any ActionSynchronousBackendStatePort,
          invocation: ActionPortInvocation, sceneID: String,
          context: ActionExecutionContext, destination: ActionReaderDestination?, clock: any ActionClock,
-         noteDraft: ActionNoteDraftRequest? = nil) throws {
+         noteDraft: ActionNoteDraftRequest? = nil, searchQuery: ActionSearchResultsQuery? = nil) throws {
+        guard [destination != nil, noteDraft != nil, searchQuery != nil].filter({ $0 }).count <= 1 else {
+            throw ActionNavigationError(.failed, "navigation_command_mismatch")
+        }
         self.authority = authority; self.backendAuthority = backendAuthority
         self.invocation = invocation; self.sceneID = sceneID
-        self.destination = destination; self.clock = clock; self.noteDraft = noteDraft
+        self.destination = destination; self.clock = clock; self.noteDraft = noteDraft; self.searchQuery = searchQuery
         original = try authority.navigationState(sceneID: sceneID)
         preparedSnapshot = try backendAuthority.currentBackendSnapshot()
         guard original.context == context else { throw ActionNavigationError(.failed, "navigation_authority_changed") }
@@ -94,6 +98,10 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
                 }
                 try ActionPolicy.work(noteDraft.locator.workKey, backend: backend.backend, context: live.context)
             }
+            if let searchQuery {
+                guard destination == nil, searchQuery.search.backend == backend.backend else { throw ActionPortError.invalidResponse }
+                try ActionPolicy.search(searchQuery.search, context: live.context)
+            }
         }
         catch let error as ActionEngineFailure { throw ActionNavigationError(error.status, error.code) }
         try Task.checkCancellation()
@@ -111,10 +119,11 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
     /// Fresh native context/rights/lifetime and backend snapshot come from their
     /// retained exact authorities, not caller-provided current-state arguments.
     public func authorizeCommit(invocation: ActionPortInvocation, sceneID: String,
-                                destination: ActionReaderDestination? = nil, noteDraft: ActionNoteDraftRequest? = nil) throws {
+                                destination: ActionReaderDestination? = nil, noteDraft: ActionNoteDraftRequest? = nil,
+                                searchQuery: ActionSearchResultsQuery? = nil) throws {
         guard !consumed else { throw ActionNavigationError(.failed, "navigation_preparation_consumed") }
         guard invocation == self.invocation, sceneID == self.sceneID, destination == self.destination,
-              noteDraft == self.noteDraft else {
+              noteDraft == self.noteDraft, searchQuery == self.searchQuery else {
             throw ActionNavigationError(.failed, "navigation_command_mismatch")
         }
         try validateLive()

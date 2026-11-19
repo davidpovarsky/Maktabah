@@ -156,7 +156,7 @@ import XCTest
         for mutation in 1...5 {
             let source = MockPorts(), editor = NoteEditorFixture(source); editor.receiptMutation = mutation
             let result = await (try executor(source, editor)).execute(try request(editor), context: context())
-            XCTAssertEqual(result.status, .failed, "Mutation \(mutation)"); XCTAssertEqual(result.error?.code, "invalid_backend_response")
+            XCTAssertEqual(result.status, .failed, "Mutation \(mutation)"); XCTAssertEqual(result.error?.code, "native_effect_uncertain"); XCTAssertEqual(result.error?.retryable, false)
             XCTAssertEqual(editor.completions, 0)
         }
     }

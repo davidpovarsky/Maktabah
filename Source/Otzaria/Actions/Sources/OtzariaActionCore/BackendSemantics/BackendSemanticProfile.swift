@@ -89,14 +89,14 @@ public struct ActionBackendSemanticProfile: Sendable {
         let registered = (capability.map { evidence.registeredCapabilities.contains($0) } ?? false)
             && (action != "reader.openCommentary" || evidence.registeredCapabilities.contains("links"))
         let sourceSupported = sourceSupports(action)
-        let initial = ["catalog.resolveWork", "catalog.resolveReference", "search.query", "reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(action)
+        let initial = ["catalog.resolveWork", "catalog.resolveReference", "search.query", "search.openResults", "reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(action)
         var unsupported: String? = sourceSupported ? nil : "source_capability_not_supported"
         if action == "search.countOccurrences" { unsupported = "exact_count_unavailable" }
         else if !initial { unsupported = "action_not_implemented" }
-        if action == "search.query" {
+        if ["search.query", "search.openResults"].contains(action) {
             guard let query, query.backend == backend else { throw ActionPortError.invalidResponse }
             try ActionSearchSemantics.validateBounds(query)
-            unsupported = ActionSearchSemantics.unsupportedReason(query)
+            unsupported = action == "search.openResults" ? ActionSearchResultsQuery.unsupportedReason(query) : ActionSearchSemantics.unsupportedReason(query)
         }
         let supported = unsupported == nil
         if let unsupported {
@@ -111,20 +111,20 @@ public struct ActionBackendSemanticProfile: Sendable {
         let readiness: ActionReadinessEvidence = switch action {
         case "catalog.resolveWork": evidence.catalog
         case "catalog.resolveReference", "reader.open", "reader.openCommentary", "notes.prepareDraft": evidence.references
-        case "search.query": evidence.search
+        case "search.query", "search.openResults": evidence.search
         default: .unknown
         }
         guard readiness.isReady else {
             return .init(registered: true, supported: true, availableNow: false, reasonCode: "operation_readiness_unverified")
         }
-        if backend == .sefaria, action == "search.query", !evidence.network.isReady {
+        if backend == .sefaria, ["search.query", "search.openResults"].contains(action), !evidence.network.isReady {
             return .init(registered: true, supported: true, availableNow: false, reasonCode: "search_requires_network")
         }
         if backend == .sefariaEmbedded {
             guard evidence.snapshot.rpcEpoch != nil, evidence.host.isReady, evidence.embeddedCatalog.isReady else {
                 return .init(registered: true, supported: true, availableNow: false, reasonCode: "embedded_catalog_unavailable")
             }
-            if action == "search.query" {
+            if ["search.query", "search.openResults"].contains(action) {
                 guard evidence.embeddedSearch.isReady else {
                     return .init(registered: true, supported: true, availableNow: false, reasonCode: "embedded_search_unavailable")
                 }
@@ -139,7 +139,7 @@ public struct ActionBackendSemanticProfile: Sendable {
     public func report(evidence: ActionBackendRuntimeEvidence) throws -> ActionBackendReport {
         var operations: [String: ActionCapabilityAssessment] = [:]
         for action in Self.operations {
-            let query = action == "search.query" ? ActionSearchQuery(backend: backend, text: "capability probe") : nil
+            let query = ["search.query", "search.openResults"].contains(action) ? ActionSearchQuery(backend: backend, text: "capability probe") : nil
             operations[action] = try assess(action: action, query: query, evidence: evidence)
         }
         return .init(id: backend, operations: operations)

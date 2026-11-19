@@ -1,0 +1,85 @@
+{
+  "base": "7d05dd0bb25a7df307b35174e49e18d0f22eecee",
+  "created_at_utc": "2026-11-19T23:38:54.332676+00:00",
+  "runs": [
+    {
+      "name": "core-attempt-1",
+      "raw_sha256": "81070b1f32d1fe15551095dcdbd1beb349865149f1ff9ad02225258e3ea43650",
+      "normalized_sha256": "79d9c8aa4a4b5f889cb00d6d9d388cbb8d37973685c4f978f7231e7932bc3ce9",
+      "terminal_counts": []
+    },
+    {
+      "name": "core-attempt-2",
+      "raw_sha256": "d700303a801b8765f6ff0275372eb7098ad1d6d24ee643a49cc8efb0c7b7e493",
+      "normalized_sha256": "a4a2b2e9f8887553f0ee387fa6d18540da57ab2290dc5635df64c00f86e8452f",
+      "terminal_counts": [
+        [
+          "96",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "core-attempt-3",
+      "raw_sha256": "f2cc163cd4211cb42c3aa2cf9c376522154230d6ddcfb53713cd88efde30c895",
+      "normalized_sha256": "1a693579c9bdcc04c7852f4ede89a74379659c18eb42a3b0e09a07e01a626327",
+      "terminal_counts": [
+        [
+          "96",
+          "0"
+        ]
+      ]
+    },
+    {
+      "name": "routing-attempt-1",
+      "raw_sha256": "cc210057d36df237006e1b09794607c4883a3db674ee7e6a36194affbbcb2fc2",
+      "normalized_sha256": "2782ff0c9502f602981d4cf0d482bdfba0b38aff0c760bf0228422cfef4dc2b6",
+      "terminal_counts": [
+        [
+          "90",
+          "0"
+        ]
+      ]
+    }
+  ],
+  "source_sha256": {
+    "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift": "eaccce4b8dd6c5d377a6b11ac064000de33d2656baa186ef0054a321f5c5551b",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "46d2a90b0c3b0206236e2138e458ca2a998f0c3c9bb9261e81cd18816a6d232d",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "8ccde9cef8804ff945131e99497557d9be39edf5ed8e65f1b3aa8471d8975da6",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "37f04d6b6eea0a42fad77051277859eb7f7fe63e99bf4cb59a0ee7b581f34ac7",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "045222b8bf5bc26147633968d3085e438ef1f4e9879f7a2ca21767ea3d841877",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "b9086c319c205fc6dc1eb43ead2368995a0254af3866135f43337df35b912e05",
+    "Source/Features/Search/iOS/SearchModeView.swift": "0a66b2c6cc7fec685b783f8e1f2336e0133109fc3c9307fc97367cd47934142f",
+    "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift": "b7ff6c6d799ee1d0d4a51535f268cccb7cf2593e46f9916e41176d6e0ad3cbce",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift": "478f946b7fc9d5ae0eef9681ce25322b6f15f07f1b1df63b076bd75d5c6cc0a7",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift": "e7cdc86e05f670db74e3d040fb2e5b8ddc308e9d0739e535e0232af8431efdab",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift": "4380421ef40dfb4ad05327230f422d5951074b6b7ff753e135ddcb5a0449379f",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift": "819101e1434fa37e690c83ec34a4ad74cd21e741cc09aa72b5467be2298904d9",
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift": "68cf2b40b69e5eef9d94a3fef4f7346f4f230b69e7a239c632c1537058585329",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift": "e79dfc19a231c0ebf34d71f6497af31c6354da83598989e53847d518377b1074",
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/SearchResultsActionTests.swift": "43f90786ee7e96ae495b43608c6aa3d27a7a36530b3683ad8e5398635af975d8",
+    "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift": "d279121b2eb239b04f70520d6d77242640028623abd2f84ff29988d0b444dae6",
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Ports/SearchResultsNavigationTests.swift": "22c597ec190c3555494821379373c03629a84b4e1c629ae7c86f5e4eac09b296"
+  },
+  "native": "NOT_RUN",
+  "apple_typecheck": "NOT_RUN",
+  "text_normalization_followup": [
+    {
+      "file": "core-attempt-2.log",
+      "original_bytes_archive": "core-attempt-2.log.before-normalization.gz",
+      "original_sha256": "a4a2b2e9f8887553f0ee387fa6d18540da57ab2290dc5635df64c00f86e8452f",
+      "normalized_sha256": "49f30250475bfbdb1fa8b7f89e59be71815103ead5914681de755132dff13ccd"
+    },
+    {
+      "file": "guard-current-compile.log",
+      "original_bytes_archive": "guard-current-compile.log.before-normalization.gz",
+      "original_sha256": "adbea4c26cacdbedac380428cad577f6784eede7bf9e6f392fc0f7b730d60673",
+      "normalized_sha256": "511ad16a71c22d6a9c9d4d0b83835ee640e1df2f5bf8d1693ba49cf34683a6ba"
+    }
+  ],
+  "final_swift_parse": {
+    "changed_source_files": 17,
+    "exit": 0,
+    "typecheck": false
+  }
+}
