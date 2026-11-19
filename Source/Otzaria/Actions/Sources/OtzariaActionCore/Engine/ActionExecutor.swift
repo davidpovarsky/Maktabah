@@ -169,6 +169,7 @@ public actor ActionExecutor {
             if request.arguments["includeModes"] == .bool(true) { throw ActionEngineFailure(.notSupported, "mode_discovery_unavailable") }
             let includeReadiness = request.arguments["includeReadiness"] == .bool(true)
             let commentaryAvailable = await commentaryNavigationAvailable()
+            let searchResultsAvailable = ui is any ActionSearchResultsUICommandSink
             var reports: [ActionJSON] = []
             for target in ActionBackendID.allCases {
                 let report: ActionBackendReport?
@@ -182,6 +183,7 @@ public actor ActionExecutor {
                     let raw = report?.operations[descriptor.id]
                     let implemented = ActionRegistry.implemented.contains(descriptor.id)
                         && (descriptor.id != "reader.openCommentary" || commentaryAvailable)
+                        && (descriptor.id != "search.openResults" || searchResultsAvailable)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend) }
@@ -197,7 +199,8 @@ public actor ActionExecutor {
             return completed(["backends": .array(reports)])
         }
 
-        let searchQuery = request.action == "search.query" ? try ActionValidation.search(request.arguments, backend: backend) : nil
+        let openResultsQuery = request.action == "search.openResults" ? try ActionSearchResultsQuery.arguments(request.arguments, backend: backend) : nil
+        let searchQuery = request.action == "search.query" ? try ActionValidation.search(request.arguments, backend: backend) : openResultsQuery?.search
         if let searchQuery { try ActionPolicy.search(searchQuery, context: context) }
         // Assessment and execution see the exact same normalized search defaults.
         let effectiveArguments = try searchQuery.map { try ActionJSON.encoded($0).object ?? [:] } ?? request.arguments
@@ -206,6 +209,7 @@ public actor ActionExecutor {
         try ActionPolicy.capability(assessment)
         let result: ActionResult
         var navigationCompletion: ActionNavigationPreparation? = nil
+        var searchCompletion: ((any ActionSearchResultsUICommandSink), ActionOpenSearchResultsCommand, ActionSearchResultsReceipt)?
         switch request.action {
         case "catalog.resolveWork":
             let ref = try request.arguments["workRef"]?.decoded(as: ActionWorkRef.self)
@@ -243,6 +247,47 @@ public actor ActionExecutor {
             let page = try await search.search(query, invocation: invocation)
             try validate(page, query: query, context: context)
             result = completed(try ActionJSON.encoded(page).object ?? [:])
+        case "search.openResults":
+            guard let query = openResultsQuery else { throw ActionPortError.invalidResponse }
+            if let reason = ActionSearchResultsQuery.unsupportedReason(query.search) {
+                throw ActionEngineFailure(.notSupported, reason)
+            }
+            guard request.requestedPresentation != .headless, let scene = ActionPolicy.foregroundScene(context),
+                  let searchUI = ui as? any ActionSearchResultsUICommandSink else {
+                throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable")
+            }
+            // Scope identities are resolved by the original canonical catalog,
+            // never fabricated from a displayed label or an arbitrary integer.
+            for ref in query.search.scopeWorkRefs {
+                let resolution = try await resolver.resolveWork(.init(backend: backend, query: nil, workRef: ref, limit: 1), invocation: invocation)
+                guard case .unique(let resolved) = resolution, resolved == ref else { throw ActionPortError.notFound }
+                try await recheck(snapshot, deadline: deadline)
+            }
+            try await searchUI.prepareSearchResults(query, context: context, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard let navigationAuthority, let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
+                throw ActionNavigationError(.unavailable, "synchronous_navigation_authority_unavailable")
+            }
+            let authorization = try await ActionNavigationPreparation(authority: navigationAuthority,
+                backendAuthority: backendAuthority, invocation: invocation, sceneID: scene,
+                context: context, destination: nil, clock: clock, searchQuery: query)
+            let command = ActionOpenSearchResultsCommand(query: query, sceneID: scene, invocation: invocation,
+                navigationAuthorization: authorization)
+            switch try await searchUI.openSearchResults(command) {
+            case .acknowledged(let receipt):
+                guard receipt.requestId == request.requestId, receipt.snapshot == snapshot, receipt.sceneID == scene,
+                      receipt.query == query, receipt.submissionRevision > 0 else { throw ActionPortError.invalidResponse }
+                navigationCompletion = authorization
+                searchCompletion = (searchUI, command, receipt)
+                result = ActionResult(request: request, status: .completed, backend: backend,
+                    backendGeneration: snapshot.generation, effects: ["search_results_opened"])
+            case .queued(let handle):
+                guard handle.range(of: "^[A-Za-z0-9_-]{8,128}$", options: .regularExpression) != nil else { throw ActionPortError.invalidResponse }
+                result = ActionResult(request: request, status: .uiQueued, data: ["handle": .string(handle)],
+                    backend: backend, backendGeneration: snapshot.generation, effects: ["search_command_queued"])
+            case .requiresForeground:
+                throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable")
+            }
         case "reader.open", "reader.openCommentary":
             let destination: ActionReaderDestination
             if request.action == "reader.openCommentary" {
@@ -314,8 +359,17 @@ public actor ActionExecutor {
         // This synchronous MainActor check observes BOTH retained authorities
         // after the last backend/readiness await. Do not add another readiness
         // await after it; this is not an atomic cross-actor commit barrier.
-        if let navigationCompletion { try await navigationCompletion.validateCompletion() }
+        if let searchCompletion, let navigationCompletion {
+            try await Self.validateSearchCompletion(searchCompletion, authorization: navigationCompletion)
+        } else if let navigationCompletion { try await navigationCompletion.validateCompletion() }
         return result
+    }
+
+    @MainActor private static func validateSearchCompletion(
+        _ completion: ((any ActionSearchResultsUICommandSink), ActionOpenSearchResultsCommand, ActionSearchResultsReceipt),
+        authorization: ActionNavigationPreparation) throws {
+        try authorization.validateCompletion()
+        try completion.0.validateSearchResultsCompletion(completion.1, receipt: completion.2)
     }
 
     private func recheck(_ snapshot: ActionBackendSnapshot, deadline: UInt64) async throws {
@@ -389,7 +443,7 @@ public actor ActionExecutor {
         return registry.descriptors.filter { descriptor in
             guard ActionRegistry.implemented.contains(descriptor.id), operations[descriptor.id]?.object?["availableNow"] == .bool(true) else { return false }
             guard (try? ActionPolicy.authorize(descriptor, context: context, backend: backend)) != nil else { return false }
-            return !["reader.open", "reader.openCommentary"].contains(descriptor.id) || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
+            return !["reader.open", "reader.openCommentary", "search.openResults"].contains(descriptor.id) || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
         }
     }
 

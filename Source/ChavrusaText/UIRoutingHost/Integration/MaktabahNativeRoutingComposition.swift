@@ -87,6 +87,24 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
     private var commentaryInvocations: [UUID: CommentaryInvocation] = [:]
 
+    private final class SearchResultsInvocation {
+        let sceneID: UIStableID
+        let context: ActionExecutionContext
+        let observation: HanlinSourceObservation
+        let query: ActionSearchResultsQuery
+        var command: UISceneCommand?
+        var admission: ActionNavigationState?
+        var binding: MaktabahNativeSearchResultsBinding?
+        var receipt: UISceneReceipt?
+        var cleanup: (@MainActor () -> Void)?
+        init(sceneID: UIStableID, context: ActionExecutionContext, observation: HanlinSourceObservation,
+             query: ActionSearchResultsQuery) {
+            self.sceneID = sceneID; self.context = context; self.observation = observation; self.query = query
+        }
+    }
+    private var searchResultsInvocations: [UUID: SearchResultsInvocation] = [:]
+
+
     init(backend: any ActionSynchronousBackendStatePort & ActionResolverDataPort & ActionSearchPort) throws {
         self.backend = backend
         authority = try NativeNavigationAuthority()
@@ -110,6 +128,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], anchors: [id("native.search.query")],
                   requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab, components: [id("native.search.query")])])),
+            .init(id: id("native.search.results"), title: "Search results".localized, implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab],
+                  requiredCoreActions: ["search.openResults"]),
             .init(id: id("native.annotations"), title: "Annotations".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
@@ -127,6 +148,18 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         readerSink.deliver = { [weak self] command in
             guard let self else { throw ActionPortError.unavailable }
             return try await receiveReader(command)
+        }
+        readerSink.prepareSearch = { [weak self] query, context, invocation in
+            guard let self else { throw ActionPortError.unavailable }
+            try await prepareSearchResults(query, context: context, invocation: invocation)
+        }
+        readerSink.deliverSearch = { [weak self] command in
+            guard let self else { throw ActionPortError.unavailable }
+            return try await receiveSearchResults(command)
+        }
+        readerSink.completeSearch = { [weak self] command, receipt in
+            guard let self else { throw ActionPortError.unavailable }
+            try validateSearchResultsCompletion(command, receipt: receipt)
         }
         readerSink.prepareCommentary = { [weak self] destination, context, invocation in
             guard let self else { throw ActionPortError.unavailable }
@@ -541,6 +574,105 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         return result
     }
 
+
+    /// Explicit local submission into the original global results UI. Paging
+    /// and result ownership remain with that existing session and its engines.
+    func openSearchResults(query: ActionSearchResultsQuery, manager: iOSNavigationManager) async throws -> ActionResult {
+        let end = deadline(), managerID = ObjectIdentifier(manager)
+        let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: managerID)
+        }
+        guard let entry = scenes[sceneID], entry.managerID == managerID, contexts[sceneID] == nil,
+              searchResultsInvocations.count < 16,
+              !searchResultsInvocations.values.contains(where: { $0.sceneID == sceneID }) else {
+            throw UIRouteError(.unavailable, "native_scene_busy")
+        }
+        let observed = try hanlinSource(sceneID: sceneID, entry: entry)
+        let context = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
+        var fields = try ActionJSON.encoded(query.search).object ?? [:]
+        fields.removeValue(forKey: "offset"); fields.removeValue(forKey: "limit")
+        let request = ActionRequest(action: "search.openResults", arguments: ["searchQuery": .object(fields)],
+            expectedBackend: query.search.backend, expectedGeneration: observed.backend.generation,
+            requestedPresentation: .foreground)
+        let pending = SearchResultsInvocation(sceneID: sceneID, context: context, observation: observed, query: query)
+        searchResultsInvocations[request.requestId] = pending
+        defer {
+            let cleanup = pending.cleanup; pending.cleanup = nil; cleanup?()
+            searchResultsInvocations.removeValue(forKey: request.requestId)
+        }
+        let result = await core.execute(request, context: context)
+        if result.status == .completed {
+            guard let receipt = pending.receipt else { throw ActionPortError.invalidResponse }
+            record(.acknowledged(receipt))
+        }
+        return result
+    }
+
+    private func prepareSearchResults(_ query: ActionSearchResultsQuery, context: ActionExecutionContext,
+                                      invocation: ActionPortInvocation) async throws {
+        guard let pending = searchResultsInvocations[invocation.requestId], pending.query == query,
+              pending.context == context, pending.cleanup == nil, pending.sceneID.rawValue == context.foregroundSceneID,
+              let entry = scenes[pending.sceneID], contexts[pending.sceneID] == nil,
+              pending.observation.backend == invocation.snapshot,
+              try hanlinSource(sceneID: pending.sceneID, entry: entry) == pending.observation else {
+            throw ActionPortError.staleState
+        }
+        let retained = try entry.session.retainSearchResults(query, requestID: invocation.requestId)
+        do {
+            try issue(context, sceneID: pending.sceneID)
+            let admitted = try authority.admit(context: context, sceneID: pending.sceneID)
+            pending.admission = admitted; pending.binding = retained
+            pending.cleanup = { [self, session = entry.session] in
+                authority.release(admitted)
+                finish(context, sceneID: pending.sceneID)
+                session.releaseSearchResults(retained)
+            }
+            let scene = try await directory.currentScene(sceneID: pending.sceneID, context: context, invocation: invocation)
+            let route = try entry.session.prepareSearchResults(invocation: invocation, scene: scene)
+            pending.command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)
+            guard searchResultsInvocations[invocation.requestId] === pending, contexts[pending.sceneID] == context else {
+                throw ActionPortError.staleState
+            }
+        } catch {
+            if let cleanup = pending.cleanup { cleanup(); pending.cleanup = nil }
+            else { finish(context, sceneID: pending.sceneID); entry.session.releaseSearchResults(retained) }
+            throw error
+        }
+    }
+
+    private func receiveSearchResults(_ search: ActionOpenSearchResultsCommand) async throws -> ActionSearchResultsAcknowledgement {
+        guard let pending = searchResultsInvocations[search.invocation.requestId],
+              pending.sceneID.rawValue == search.sceneID, pending.query == search.query,
+              contexts[pending.sceneID] == pending.context,
+              let command = pending.command, let admitted = pending.admission,
+              let binding = pending.binding, binding.accepts(search.query, requestID: search.invocation.requestId) else {
+            throw ActionPortError.staleState
+        }
+        let prepared = try command.prepareNavigation(searchResultsCommand: search)
+        let result = await orchestrator.commitPrepared(prepared, admitted: admitted)
+        guard case .acknowledged(let receipt) = result else {
+            if case .requiresForeground = result { return .requiresForeground }
+            throw ActionPortError.unavailable
+        }
+        try binding.validateCompleted()
+        guard let revision = binding.submissionRevision else { throw ActionPortError.invalidResponse }
+        pending.receipt = receipt
+        return .acknowledged(.init(requestId: search.invocation.requestId, snapshot: search.invocation.snapshot,
+            sceneID: search.sceneID, query: search.query, submissionRevision: revision))
+    }
+
+    private func validateSearchResultsCompletion(_ search: ActionOpenSearchResultsCommand,
+                                                  receipt: ActionSearchResultsReceipt) throws {
+        guard let pending = searchResultsInvocations[search.invocation.requestId],
+              pending.query == search.query, pending.sceneID.rawValue == search.sceneID,
+              contexts[pending.sceneID] == pending.context, pending.receipt != nil,
+              let binding = pending.binding, binding.submissionRevision == receipt.submissionRevision,
+              let entry = scenes[pending.sceneID], entry.session.searchResultsBinding === binding else {
+            throw ActionPortError.staleState
+        }
+        try entry.session.validateSearchResultsCompletion(requestID: search.invocation.requestId)
+    }
+
     /// Local, explicit commentary navigation. Resolution runs in the same Core;
     /// only the original scene owner may retain the resolved target. No Hanlin
     /// content scope, note write or new agent tool is granted by this entry.
@@ -857,7 +989,25 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
 
 /// Only forwards Core's original, opaque, one-use reader command to its
 /// retained native owner. It cannot create grants, resolve or mint receipts.
-@MainActor private final class MaktabahNativeReaderCommandSink: ActionCommentaryUICommandSink {
+@MainActor private final class MaktabahNativeReaderCommandSink: ActionCommentaryUICommandSink, ActionSearchResultsUICommandSink {
+
+    var prepareSearch: (@MainActor (ActionSearchResultsQuery, ActionExecutionContext, ActionPortInvocation) async throws -> Void)?
+    var deliverSearch: (@MainActor (ActionOpenSearchResultsCommand) async throws -> ActionSearchResultsAcknowledgement)?
+    var completeSearch: (@MainActor (ActionOpenSearchResultsCommand, ActionSearchResultsReceipt) throws -> Void)?
+    func prepareSearchResults(_ query: ActionSearchResultsQuery, context: ActionExecutionContext,
+                              invocation: ActionPortInvocation) async throws {
+        guard let prepareSearch else { throw ActionPortError.unavailable }
+        try await prepareSearch(query, context, invocation)
+    }
+    func openSearchResults(_ command: ActionOpenSearchResultsCommand) async throws -> ActionSearchResultsAcknowledgement {
+        guard let deliverSearch else { throw ActionPortError.unavailable }
+        return try await deliverSearch(command)
+    }
+    func validateSearchResultsCompletion(_ command: ActionOpenSearchResultsCommand, receipt: ActionSearchResultsReceipt) throws {
+        guard let completeSearch else { throw ActionPortError.unavailable }
+        try completeSearch(command, receipt)
+    }
+
     var deliver: (@MainActor @Sendable (ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement)?
     var prepareCommentary: (@MainActor @Sendable (ActionReaderDestination, ActionExecutionContext, ActionPortInvocation) async throws -> Void)?
     func prepareCommentaryReader(_ destination: ActionReaderDestination, context: ActionExecutionContext,

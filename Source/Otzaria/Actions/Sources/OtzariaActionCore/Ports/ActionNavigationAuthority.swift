@@ -47,6 +47,7 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
     private let invocation: ActionPortInvocation
     private let sceneID: String
     private let destination: ActionReaderDestination?
+    private let searchQuery: ActionSearchResultsQuery?
     private let clock: any ActionClock
     private var consumed = false
 
@@ -54,10 +55,11 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
 
     init(authority: any ActionNavigationAuthority, backendAuthority: any ActionSynchronousBackendStatePort,
          invocation: ActionPortInvocation, sceneID: String,
-         context: ActionExecutionContext, destination: ActionReaderDestination?, clock: any ActionClock) throws {
+         context: ActionExecutionContext, destination: ActionReaderDestination?, clock: any ActionClock,
+         searchQuery: ActionSearchResultsQuery? = nil) throws {
         self.authority = authority; self.backendAuthority = backendAuthority
         self.invocation = invocation; self.sceneID = sceneID
-        self.destination = destination; self.clock = clock
+        self.destination = destination; self.clock = clock; self.searchQuery = searchQuery
         original = try authority.navigationState(sceneID: sceneID)
         preparedSnapshot = try backendAuthority.currentBackendSnapshot()
         guard original.context == context else { throw ActionNavigationError(.failed, "navigation_authority_changed") }
@@ -84,7 +86,13 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
         }
         guard beforeNative == invocation.snapshot, backend == invocation.snapshot,
               preparedSnapshot == invocation.snapshot else { throw ActionNavigationError(.staleState, "backend_generation_changed") }
-        do { try ActionPolicy.navigation(context: live.context, backend: backend.backend, sceneID: sceneID, destination: destination) }
+        do {
+            try ActionPolicy.navigation(context: live.context, backend: backend.backend, sceneID: sceneID, destination: destination)
+            if let searchQuery {
+                guard destination == nil, searchQuery.search.backend == backend.backend else { throw ActionPortError.invalidResponse }
+                try ActionPolicy.search(searchQuery.search, context: live.context)
+            }
+        }
         catch let error as ActionEngineFailure { throw ActionNavigationError(error.status, error.code) }
         try Task.checkCancellation()
         guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw ActionNavigationError(.cancelled, "deadline_exceeded") }
@@ -101,9 +109,10 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
     /// Fresh native context/rights/lifetime and backend snapshot come from their
     /// retained exact authorities, not caller-provided current-state arguments.
     public func authorizeCommit(invocation: ActionPortInvocation, sceneID: String,
-                                destination: ActionReaderDestination? = nil) throws {
+                                destination: ActionReaderDestination? = nil, searchQuery: ActionSearchResultsQuery? = nil) throws {
         guard !consumed else { throw ActionNavigationError(.failed, "navigation_preparation_consumed") }
-        guard invocation == self.invocation, sceneID == self.sceneID, destination == self.destination else {
+        guard invocation == self.invocation, sceneID == self.sceneID, destination == self.destination,
+              searchQuery == self.searchQuery else {
             throw ActionNavigationError(.failed, "navigation_command_mismatch")
         }
         try validateLive()

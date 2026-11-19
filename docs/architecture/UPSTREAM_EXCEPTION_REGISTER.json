@@ -315,6 +315,21 @@
       "rollback": "Revert only two reviewed error-propagation hunks; source DB/schema/provider unchanged.",
       "reviewer": "Current sole developer; no independent review claim",
       "re_review": "Next upstream SQLite wrapper change or upstream sync"
+    },
+    {
+      "patch_id": "COMPLETION_20261120_SEMANTIC_SEARCH_OWNER",
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "status": "IMPLEMENTED_PORTABLE_PASS_NATIVE_PENDING",
+      "patch_digest_sha256": "09cd9d035b466fb9a43387ce187982c7c2b2037bbd7d2933efc460944c315a03",
+      "approval_ref": "docs/hq-integration/search-openresults-20261120/REVIEW.md",
+      "owner_authorization": "Current explicit owner instruction authorizes all necessary code changes, tests, commits, pushes and merges without further confirmation.",
+      "necessity": "Bind the semantic search action to the actual existing results surface and its original private presentation blockers.",
+      "rejected_alternatives": "A duplicated results view or echoed controller query cannot establish actual visible original UI; no parallel engine or renderer added.",
+      "tests": "96 Core + 90 Routing tests; 30 extracted source guard assertions with explicit UIKit doubles. Apple/native NOT_RUN.",
+      "rollback": "Remove additive semantic action and its passive Search UI hook together; original state and data preserved.",
+      "reviewer": "Root plus independent native-source review; actual UIKit acceptance still pending",
+      "re_review": "Next original Search UI/lifecycle change or upstream sync"
     }
   ]
 }

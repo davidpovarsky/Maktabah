@@ -88,7 +88,7 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         let target = try ActionBackendArgumentTarget.resolve(arguments, fallback: invocation.snapshot.backend)
         let before = try await snapshot()
         try ActionBackendInvocationGuard.check(invocation, current: before, target: before.backend)
-        let query = action == "search.query" ? try ActionSearchArgumentMapping.query(arguments, backend: target) : nil
+        let query = ["search.query", "search.openResults"].contains(action) ? try ActionSearchArgumentMapping.query(arguments, backend: target) : nil
         let result = try ActionBackendSemanticProfile(backend: target).assess(action: action, query: query,
                     evidence: await currentEvidence(for: target))
         try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: before.backend)

@@ -70,21 +70,46 @@ public struct UISceneCommand: Sendable, Equatable {
         return UIAuthorizedSceneCommand(command: self, authorization: authorization)
     }
 
+    /// Typed search execution cannot borrow a generic navigation preparation.
+    public func prepareNavigation(searchResultsCommand: ActionOpenSearchResultsCommand) throws -> UIAuthorizedSceneCommand {
+        guard route.descriptor.requiredCoreActions == ["search.openResults"],
+              route.route.destination.rawValue == "native.search.results",
+              route.route.content == nil, route.route.state.privateState == nil, route.route.focus == nil,
+              route.route.presentation.kind == .currentTab,
+              searchResultsCommand.invocation == invocation,
+              searchResultsCommand.sceneID == scene.sceneID.rawValue,
+              searchResultsCommand.query.search.backend == invocation.snapshot.backend,
+              let authorization = searchResultsCommand.navigationAuthorization else {
+            throw UIRouteError(.failed, "search_command_authorization_required")
+        }
+        return UIAuthorizedSceneCommand(command: self, authorization: authorization, searchQuery: searchResultsCommand.query)
+    }
+
     /// Final synchronous native guard. Obtain reader authorization only from the
     /// Core-delivered ActionOpenReaderCommand after resolver validation. The
     /// authorization re-reads its retained exact Core authority and is one-use.
     /// Native host must mutate immediately after this returns, with no await.
-    @MainActor fileprivate func authorizeCommit(current: UISceneSnapshot, using authorization: ActionNavigationPreparation) throws {
+    @MainActor fileprivate func authorizeCommit(current: UISceneSnapshot, using authorization: ActionNavigationPreparation,
+                                             searchQuery: ActionSearchResultsQuery? = nil) throws {
         guard route.descriptor.implementation == .implemented, !route.descriptor.mutatesUserData, route.descriptor.riskTier < 3 else {
             throw UIRouteError(.notSupported, "destination_not_implemented")
         }
         let required = route.descriptor.requiredCoreActions
-        guard route.route.content == nil ? required.isEmpty : required == ["reader.open"] else {
-            throw UIRouteError(.notSupported, "semantic_execution_required")
+        if searchQuery != nil {
+            guard required == ["search.openResults"], route.route.destination.rawValue == "native.search.results",
+                  route.route.content == nil, route.route.state.privateState == nil,
+                  route.route.focus == nil, route.route.presentation.kind == .currentTab else {
+                throw UIRouteError(.notSupported, "semantic_execution_required")
+            }
+        } else {
+            guard route.route.content == nil ? required.isEmpty : required == ["reader.open"] else {
+                throw UIRouteError(.notSupported, "semantic_execution_required")
+            }
         }
         try validateScene(current)
         try route.publicLocalBinding?.validate(current: current)
-        try authorization.authorizeCommit(invocation: invocation, sceneID: scene.sceneID.rawValue, destination: route.route.content)
+        try authorization.authorizeCommit(invocation: invocation, sceneID: scene.sceneID.rawValue,
+                                          destination: route.route.content, searchQuery: searchQuery)
     }
 }
 
@@ -94,13 +119,14 @@ public struct UISceneCommand: Sendable, Equatable {
 public struct UIAuthorizedSceneCommand: Sendable {
     public let command: UISceneCommand
     private let authorization: ActionNavigationPreparation
-    init(command: UISceneCommand, authorization: ActionNavigationPreparation) {
-        self.command = command; self.authorization = authorization
+    private let searchQuery: ActionSearchResultsQuery?
+    init(command: UISceneCommand, authorization: ActionNavigationPreparation, searchQuery: ActionSearchResultsQuery? = nil) {
+        self.command = command; self.authorization = authorization; self.searchQuery = searchQuery
     }
     /// Apply exactly command.route after this succeeds, synchronously with no
     /// await. It consumes the one-use preparation; observation/receipt follow.
     @MainActor public func authorizeCommit(current: UISceneSnapshot) throws {
-        try command.authorizeCommit(current: current, using: authorization)
+        try command.authorizeCommit(current: current, using: authorization, searchQuery: searchQuery)
     }
     /// Check the exact observed native result AND current canonical authority
     /// after any layout/readiness await. This cannot authorize/repeat mutation.

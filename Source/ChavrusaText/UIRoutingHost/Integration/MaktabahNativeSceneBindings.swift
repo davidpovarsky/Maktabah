@@ -298,4 +298,118 @@ struct MaktabahNativeSceneBindings {
 }
 // END NATIVE INSPECTOR OWNER BINDING
 
+
+/// Exact ownership of the original global search model for one semantic open.
+/// This never runs a second provider or synthesizes hits; runSearch remains the
+/// original UI submission path, including its own history and paging behavior.
+@MainActor final class MaktabahNativeSearchResultsBinding {
+    let requestID: UUID
+    let query: ActionSearchResultsQuery
+    private let manager: iOSNavigationManager
+    private let session: UnifiedSearchSessionController
+    private let model: SearchViewModel
+    private let initialConfiguration: [String]
+    private let initialText: [UInt8]
+    private let initialSubmission: Int
+    private let initialCancellation: Int
+    private let initialPagination: Int
+    private let generation: UInt64
+    private let selectedBookIDs: Set<Int>
+    private var submittedConfiguration: [String]?
+    private(set) var submissionRevision: Int?
+
+    init(manager: iOSNavigationManager, query: ActionSearchResultsQuery, requestID: UUID) throws {
+        guard ActionSearchResultsQuery.unsupportedReason(query.search) == nil,
+              query.search.backend == ActionAppIdentityBridge.actionBackend(BackendCoordinator.shared.activeBackendID) else {
+            throw UIRouteError(.notSupported, "native_search_query_not_supported")
+        }
+        self.manager = manager; self.query = query; self.requestID = requestID
+        session = manager.unifiedSearchSession; model = manager.searchViewModel
+        initialConfiguration = session.requestConfiguration; initialText = Array(session.query.utf8)
+        initialSubmission = session.submissionRevision; initialCancellation = session.cancellationRevision
+        initialPagination = session.paginationRevision
+        generation = BackendCoordinator.shared.generation
+        var ids = Set<Int>()
+        for ref in query.search.scopeWorkRefs {
+            guard ref.backend == .otzaria, ref.catalogRevision == nil,
+                  ref.workKey.hasPrefix("book:"), let id = Int(ref.workKey.dropFirst(5)), id > 0,
+                  String(id) == String(ref.workKey.dropFirst(5)) else {
+                throw UIRouteError(.notSupported, "native_search_scope_not_supported")
+            }
+            ids.insert(id)
+        }
+        selectedBookIDs = ids
+        try validate()
+    }
+
+    func accepts(_ value: ActionSearchResultsQuery, requestID: UUID) -> Bool {
+        query == value && self.requestID == requestID
+    }
+    func validate() throws {
+        guard manager.unifiedSearchSession === session, manager.searchViewModel === model,
+              session.searchViewModel === model,
+              BackendCoordinator.shared.generation == generation,
+              ActionAppIdentityBridge.actionBackend(BackendCoordinator.shared.activeBackendID) == query.search.backend,
+              session.availableScopes.contains(.exact),
+              !session.showsBookFilterSheet, !session.showsSearchDataSheet, !session.showsAdvancedOptions,
+              session.cancellationRevision == initialCancellation else {
+            throw UIRouteError(.staleState, "native_search_owner_changed")
+        }
+        if let submissionRevision {
+            guard session.submissionRevision == submissionRevision, session.query.utf8.elementsEqual(query.search.text.utf8),
+                  session.selectedBookIds == selectedBookIDs, model.selectedBookIds == selectedBookIDs,
+                  session.scope == .exact, session.requestConfiguration == submittedConfiguration,
+                  !session.resultsAreDirty else { throw UIRouteError(.staleState, "native_search_query_changed") }
+        } else {
+            let sameText = session.query.trimmingCharacters(in: .whitespacesAndNewlines).utf8.elementsEqual(
+                query.search.text.trimmingCharacters(in: .whitespacesAndNewlines).utf8)
+            let sameSort = query.search.backend == .otzaria
+                ? session.otzariaOrder.rawValue == (query.search.sortOrder == .canonical ? "catalogue" : "relevance")
+                : session.sefariaSortOrder.rawValue == query.search.sortOrder.rawValue && !session.sefariaReverseSort
+            guard !(session.isSearching && session.submittedConfiguration == session.requestConfiguration
+                    && sameText && session.scope == .exact && session.selectedBookIds == selectedBookIDs && sameSort) else {
+                throw UIRouteError(.unavailable, "native_search_already_in_progress")
+            }
+            guard session.submissionRevision == initialSubmission,
+                  session.paginationRevision == initialPagination,
+                  session.requestConfiguration == initialConfiguration,
+                  session.query.utf8.elementsEqual(initialText),
+                  session.selectedBookIds == model.selectedBookIds else {
+                throw UIRouteError(.staleState, "native_search_query_changed")
+            }
+        }
+    }
+    func apply(_ present: @MainActor () throws -> Void) throws {
+        try validate()
+        guard submissionRevision == nil else { throw UIRouteError(.failed, "native_search_already_submitted") }
+        // No await between the canonical grant, this ownership check and the
+        // existing bindings/model mutation.
+        try present()
+        session.query = query.search.text; session.scope = .exact
+        session.selectedBookIds = selectedBookIDs; model.setSelectedBooks(selectedBookIDs)
+        session.otzariaOrder = query.search.sortOrder == .canonical ? .catalogue : .relevance
+        switch query.search.sortOrder {
+        case .relevance: session.sefariaSortOrder = .relevance
+        case .canonical: session.sefariaSortOrder = .canonical
+        case .chronological: session.sefariaSortOrder = .chronological
+        }
+        session.sefariaReverseSort = false
+        // Accepted semantic queries always use the original exact UI mode.
+        session.runSearch()
+        guard session.submissionRevision == initialSubmission + 1 else {
+            throw UIRouteError(.failed, "native_search_submission_not_observed")
+        }
+        submissionRevision = session.submissionRevision
+        submittedConfiguration = session.submittedConfiguration
+        try validate()
+    }
+    func validateCompleted() throws {
+        try validate()
+        guard submissionRevision != nil, session.hasSubmitted, !session.isSearching,
+              session.errorMessage == nil, !session.resultsAreDirty else {
+            throw UIRouteError(.unavailable, "native_search_results_not_ready")
+        }
+    }
+}
+
 #endif

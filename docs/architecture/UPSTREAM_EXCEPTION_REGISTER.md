@@ -84,3 +84,7 @@ The concrete frozen two-hunk proposal was presented before the owner's continuat
 ## 2026-11-19 — Original Reader selection colors and tab identity
 
 The current owner explicitly authorizes all necessary three-phase fixes and existing CI. This is phase-wide permission, not a claim that the owner reviewed an unseen exact diff. The original TextKit selection hook now fills only ranges without existing backgrounds, retaining real search highlights and annotation identity. Existing original tab select/close buttons gain stable UUID accessibility identifiers; actions and layout remain original. Exact hunks, hashes, original provenance, necessity, alternatives, authorization, proof boundaries and rollback: [REVIEW.json](../hq-integration/native65-fixes-20261119/REVIEW.json) and [ORIGINAL_READER.diff](../hq-integration/native65-fixes-20261119/ORIGINAL_READER.diff). Six attributed-string behavior cases improve from1PASS5FAIL to6PASS0FAIL; Apple and actual Native acceptance remain pending. Sole developer review. Re-review at the next upstream sync; do not change approval/signing policy or original data.
+
+## 2026-11-20: semantic search original UI ownership
+
+See `docs/hq-integration/search-openresults-20261120/REVIEW.md` and the exact compressed original Search UI diff. Current owner authorization covers this narrow passive hook; Apple/native acceptance is still pending.

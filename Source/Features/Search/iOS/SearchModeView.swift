@@ -2,12 +2,14 @@ import SwiftUI
 
 struct SearchModeView: View {
     @Environment(iOSNavigationManager.self) var navigationManager: iOSNavigationManager
+    @Environment(\.maktabahNativeRoutingSession) private var nativeRoutingSession
     @Environment(\.isSearching) var isSearching
     @State private var showingSaveResults = false
     @State private var showingSavedResults = false
     @FocusState private var isSearchFieldFocused: Bool
     @State private var ftsManager = FtsMigrationManager.shared
     @State private var showFtsMigrationOverlay = false
+    @State private var nativePresentationOwner = UUID()
     @AppStorage("hideFtsMigrationBannerv5") private var hideFtsMigrationBanner = false
 
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -61,6 +63,7 @@ struct SearchModeView: View {
         .animation(.interpolatingSpring(stiffness: 300, damping: 20),
                    value: session.isSearching)
         .onAppear {
+            observeNativePresentation()
             session.searchViewModel = viewModel
             if !session.availableScopes.contains(session.scope), !session.hasSubmitted {
                 session.scope = session.availableScopes.first ?? session.scope
@@ -71,6 +74,12 @@ struct SearchModeView: View {
             if BackendCoordinator.shared.usesNativeMaktabahDataPath {
                 ftsManager.checkNeedsMigration()
             }
+        }
+        .onChange(of: nativeRoutingSession.map(ObjectIdentifier.init), initial: true) { _, _ in
+            observeNativePresentation()
+        }
+        .onDisappear {
+            nativeRoutingSession?.removeSearchPresentation(owner: nativePresentationOwner)
         }
         .onChange(of: viewModel.selectedBookIds) { _, newIds in
             if session.selectedBookIds != newIds {
@@ -112,9 +121,20 @@ struct SearchModeView: View {
         .animation(.easeInOut, value: showFtsMigrationOverlay)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("global-search-screen")
+        .modifier(MaktabahNativeRoutingSurface(kind: .searchResults))
     }
 
     // MARK: - Sub-views
+
+    /// Read the existing State storage at each precommit/receipt check. These
+    /// are passive blockers; the semantic action never dismisses a user's UI.
+    @MainActor private func observeNativePresentation() {
+        let saving = $showingSaveResults, saved = $showingSavedResults
+        let migration = $showFtsMigrationOverlay
+        nativeRoutingSession?.observeSearchPresentation(owner: nativePresentationOwner) {
+            saving.wrappedValue || saved.wrappedValue || migration.wrappedValue
+        }
+    }
 
     private func submitSearch() {
         let session = navigationManager.unifiedSearchSession
