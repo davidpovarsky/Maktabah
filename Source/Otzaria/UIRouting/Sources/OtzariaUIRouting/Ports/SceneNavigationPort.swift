@@ -70,21 +70,41 @@ public struct UISceneCommand: Sendable, Equatable {
         return UIAuthorizedSceneCommand(command: self, authorization: authorization)
     }
 
+    /// A semantic note grant is minted only after Core proves the source.
+    /// Generic surface/reader preparations cannot authorize this draft.
+    public func prepareNavigation(noteDraftCommand: ActionPrepareNoteDraftCommand) throws -> UIAuthorizedSceneCommand {
+        guard route.descriptor.requiredCoreActions == ["notes.prepareDraft"],
+              route.route.content == nil, route.route.state.privateState == nil,
+              route.route.presentation.kind == .sheet,
+              noteDraftCommand.invocation == invocation, noteDraftCommand.sceneID == scene.sceneID.rawValue,
+              let authorization = noteDraftCommand.navigationAuthorization else {
+            throw UIRouteError(.failed, "note_draft_command_authorization_required")
+        }
+        return UIAuthorizedSceneCommand(command: self, authorization: authorization, noteDraft: noteDraftCommand.draft)
+    }
+
     /// Final synchronous native guard. Obtain reader authorization only from the
     /// Core-delivered ActionOpenReaderCommand after resolver validation. The
     /// authorization re-reads its retained exact Core authority and is one-use.
     /// Native host must mutate immediately after this returns, with no await.
-    @MainActor fileprivate func authorizeCommit(current: UISceneSnapshot, using authorization: ActionNavigationPreparation) throws {
+    @MainActor fileprivate func authorizeCommit(current: UISceneSnapshot, using authorization: ActionNavigationPreparation, noteDraft: ActionNoteDraftRequest?) throws {
         guard route.descriptor.implementation == .implemented, !route.descriptor.mutatesUserData, route.descriptor.riskTier < 3 else {
             throw UIRouteError(.notSupported, "destination_not_implemented")
         }
         let required = route.descriptor.requiredCoreActions
-        guard route.route.content == nil ? required.isEmpty : required == ["reader.open"] else {
-            throw UIRouteError(.notSupported, "semantic_execution_required")
+        if noteDraft != nil {
+            guard required == ["notes.prepareDraft"], route.route.content == nil,
+                  route.route.state.privateState == nil, route.route.presentation.kind == .sheet else {
+                throw UIRouteError(.notSupported, "semantic_execution_required")
+            }
+        } else {
+            guard route.route.content == nil ? required.isEmpty : required == ["reader.open"] else {
+                throw UIRouteError(.notSupported, "semantic_execution_required")
+            }
         }
         try validateScene(current)
         try route.publicLocalBinding?.validate(current: current)
-        try authorization.authorizeCommit(invocation: invocation, sceneID: scene.sceneID.rawValue, destination: route.route.content)
+        try authorization.authorizeCommit(invocation: invocation, sceneID: scene.sceneID.rawValue, destination: route.route.content, noteDraft: noteDraft)
     }
 }
 
@@ -94,13 +114,14 @@ public struct UISceneCommand: Sendable, Equatable {
 public struct UIAuthorizedSceneCommand: Sendable {
     public let command: UISceneCommand
     private let authorization: ActionNavigationPreparation
-    init(command: UISceneCommand, authorization: ActionNavigationPreparation) {
-        self.command = command; self.authorization = authorization
+    private let noteDraft: ActionNoteDraftRequest?
+    init(command: UISceneCommand, authorization: ActionNavigationPreparation, noteDraft: ActionNoteDraftRequest? = nil) {
+        self.command = command; self.authorization = authorization; self.noteDraft = noteDraft
     }
     /// Apply exactly command.route after this succeeds, synchronously with no
     /// await. It consumes the one-use preparation; observation/receipt follow.
     @MainActor public func authorizeCommit(current: UISceneSnapshot) throws {
-        try command.authorizeCommit(current: current, using: authorization)
+        try command.authorizeCommit(current: current, using: authorization, noteDraft: noteDraft)
     }
     /// Check the exact observed native result AND current canonical authority
     /// after any layout/readiness await. This cannot authorize/repeat mutation.

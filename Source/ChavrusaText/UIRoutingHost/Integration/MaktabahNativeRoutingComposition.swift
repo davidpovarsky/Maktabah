@@ -87,6 +87,23 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
     private var commentaryInvocations: [UUID: CommentaryInvocation] = [:]
 
+    private final class NoteDraftInvocation {
+        let sceneID: UIStableID
+        let context: ActionExecutionContext
+        let observation: HanlinSourceObservation
+        let request: ActionNoteDraftRequest
+        var binding: MaktabahNativeNoteDraftBinding?
+        var command: UISceneCommand?
+        var admitted: ActionNavigationState?
+        var receipt: UISceneReceipt?
+        var cleanup: (@MainActor () -> Void)?
+        init(sceneID: UIStableID, context: ActionExecutionContext, observation: HanlinSourceObservation,
+             request: ActionNoteDraftRequest) {
+            self.sceneID = sceneID; self.context = context; self.observation = observation; self.request = request
+        }
+    }
+    private var noteDraftInvocations: [UUID: NoteDraftInvocation] = [:]
+
     init(backend: any ActionSynchronousBackendStatePort & ActionResolverDataPort & ActionSearchPort) throws {
         self.backend = backend
         authority = try NativeNavigationAuthority()
@@ -119,6 +136,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             .init(id: id("native.reader.inspector"), title: "Study Tools".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.inspector], requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .inspector)])),
+            .init(id: id("native.reader.noteDraft"), title: "Note Draft".localized, implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.sheet],
+                  requiredCoreActions: ["notes.prepareDraft"]),
             .init(id: id("native.reader"), title: "Reader".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab, .newTab],
                   requiredCoreActions: ["reader.open"], requiresContent: true,
@@ -131,6 +151,22 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         readerSink.prepareCommentary = { [weak self] destination, context, invocation in
             guard let self else { throw ActionPortError.unavailable }
             try await prepareCommentaryReader(destination, context: context, invocation: invocation)
+        }
+        readerSink.noteDraftAvailable = { [weak self] sceneID in
+            guard let self, let id = UIStableID(rawValue: sceneID), let entry = scenes[id] else { return false }
+            return entry.session.canPrepareNoteDraft()
+        }
+        readerSink.prepareNote = { [weak self] draft, context, invocation in
+            guard let self else { throw ActionPortError.unavailable }
+            try await prepareNoteDraft(draft, context: context, invocation: invocation)
+        }
+        readerSink.presentNote = { [weak self] command in
+            guard let self else { throw ActionPortError.unavailable }
+            return try await receiveNoteDraft(command)
+        }
+        readerSink.validateNote = { [weak self] receipt, invocation in
+            guard let self else { throw ActionPortError.unavailable }
+            try validateNoteDraftCompletion(receipt, invocation: invocation)
         }
     }
 
@@ -618,6 +654,128 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
     }
 
+    /// Local editable proposal in the ORIGINAL note editor. It neither saves
+    /// the Annotation nor exports selected text through a new agent tool.
+    func prepareNoteDraft(locator: ActionTextRef, selectedText: String? = nil,
+                          proposedText: String? = nil, manager: iOSNavigationManager) async throws -> ActionResult {
+        let end = deadline(), managerID = ObjectIdentifier(manager)
+        let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: managerID)
+        }
+        guard let entry = scenes[sceneID], entry.managerID == managerID, contexts[sceneID] == nil,
+              noteDraftInvocations.count < 16,
+              !noteDraftInvocations.values.contains(where: { $0.sceneID == sceneID }),
+              entry.session.canPrepareNoteDraft() else { throw UIRouteError(.unavailable, "exact_note_selection_unavailable") }
+        let observed = try hanlinSource(sceneID: sceneID, entry: entry)
+        let context = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
+        let draft = ActionNoteDraftRequest(locator: locator, selectedText: selectedText, proposedText: proposedText)
+        var arguments: ActionObject = ["locator": try .encoded(locator)]
+        if let selectedText { arguments["selectedText"] = .string(selectedText) }
+        if let proposedText { arguments["proposedText"] = .string(proposedText) }
+        let request = ActionRequest(action: "notes.prepareDraft", arguments: arguments,
+            expectedBackend: locator.backend, expectedGeneration: observed.backend.generation,
+            requestedPresentation: .foreground)
+        let pending = NoteDraftInvocation(sceneID: sceneID, context: context, observation: observed, request: draft)
+        noteDraftInvocations[request.requestId] = pending
+        defer {
+            let cleanup = pending.cleanup; pending.cleanup = nil
+            cleanup?()
+            noteDraftInvocations.removeValue(forKey: request.requestId)
+        }
+        let result = await core.execute(request, context: context)
+        if result.status == .completed {
+            guard let receipt = pending.receipt else { throw ActionPortError.invalidResponse }
+            record(.acknowledged(receipt))
+        }
+        return result
+    }
+
+    private func prepareNoteDraft(_ draft: ActionNoteDraftRequest, context: ActionExecutionContext,
+                                  invocation: ActionPortInvocation) async throws {
+        guard let pending = noteDraftInvocations[invocation.requestId], pending.context == context,
+              pending.request == draft, pending.cleanup == nil, pending.sceneID.rawValue == context.foregroundSceneID,
+              let entry = scenes[pending.sceneID], contexts[pending.sceneID] == nil,
+              pending.observation.backend == invocation.snapshot,
+              try hanlinSource(sceneID: pending.sceneID, entry: entry) == pending.observation else {
+            throw ActionPortError.staleState
+        }
+        let retained = try entry.session.retainNoteDraft(draft)
+        do {
+            try issue(context, sceneID: pending.sceneID)
+            let admitted = try authority.admit(context: context, sceneID: pending.sceneID)
+            pending.binding = retained; pending.admitted = admitted
+            pending.cleanup = { [self, session = entry.session] in
+                authority.release(admitted)
+                finish(context, sceneID: pending.sceneID)
+                session.releaseNoteDraft(retained)
+            }
+            let scene = try await directory.currentScene(sceneID: pending.sceneID, context: context, invocation: invocation)
+            let route = try entry.session.prepareNoteDraftRoute(invocation: invocation, scene: scene)
+            let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)
+            guard noteDraftInvocations[invocation.requestId] === pending, pending.cleanup != nil,
+                  contexts[pending.sceneID] == context else { throw ActionPortError.staleState }
+            try Task.checkCancellation()
+            pending.command = command
+        } catch {
+            if let cleanup = pending.cleanup { cleanup(); pending.cleanup = nil }
+            else { finish(context, sceneID: pending.sceneID); entry.session.releaseNoteDraft(retained) }
+            throw error
+        }
+    }
+
+    private func receiveNoteDraft(_ note: ActionPrepareNoteDraftCommand) async throws -> ActionNoteDraftAcknowledgement {
+        guard let pending = noteDraftInvocations[note.invocation.requestId], pending.request == note.draft,
+              pending.sceneID.rawValue == note.sceneID, pending.observation.backend == note.invocation.snapshot,
+              contexts[pending.sceneID] == pending.context, let command = pending.command,
+              command.invocation == note.invocation, let admitted = pending.admitted,
+              let bound = pending.binding, let entry = scenes[pending.sceneID] else { throw ActionPortError.staleState }
+        let prepared = try command.prepareNavigation(noteDraftCommand: note)
+        let result = await orchestrator.commitPrepared(prepared, admitted: admitted)
+        guard case .acknowledged(let receipt) = result else {
+            if case .requiresForeground = result { return .requiresForeground }
+            throw Self.nativeUIFailure(result)
+        }
+        guard noteDraftInvocations[note.invocation.requestId] === pending, pending.cleanup != nil,
+              receipt.requestId == note.invocation.requestId, receipt.backendSnapshot == note.invocation.snapshot,
+              receipt.sceneID == pending.sceneID, receipt.route == command.route.route,
+              receipt.coreReceipt == nil else { throw ActionPortError.invalidResponse }
+        try entry.session.validateNoteDraftCompletion(bound, route: receipt.route)
+        pending.receipt = receipt
+        guard let actual = bound.owner.current else { throw ActionPortError.staleState }
+        return .acknowledged(.init(requestId: receipt.requestId, snapshot: receipt.backendSnapshot,
+            sceneID: receipt.sceneID.rawValue, draft: bound.request, isUnsaved: actual.id == nil))
+    }
+
+    private func validateNoteDraftCompletion(_ receipt: ActionNoteDraftReceipt, invocation: ActionPortInvocation) throws {
+        guard let pending = noteDraftInvocations[invocation.requestId], pending.cleanup != nil,
+              let native = pending.receipt, let bound = pending.binding,
+              pending.request == receipt.draft, receipt.isUnsaved,
+              receipt.requestId == invocation.requestId, receipt.snapshot == invocation.snapshot,
+              native.requestId == invocation.requestId, native.backendSnapshot == invocation.snapshot,
+              receipt.sceneID == pending.sceneID.rawValue, native.sceneID == pending.sceneID,
+              contexts[pending.sceneID] == pending.context, let entry = scenes[pending.sceneID] else {
+            throw ActionPortError.staleState
+        }
+        // Called synchronously on MainActor immediately AFTER Core's final
+        // backend/authority read. Re-read original source/editor/UIKit here;
+        // do not introduce another callback/await or invent a scene snapshot.
+        try entry.session.validateNoteDraftCompletion(bound, route: native.route)
+    }
+
+    private static func nativeUIFailure(_ result: UISceneAcknowledgement) -> ActionNativeUIFailure {
+        let status: ActionStatus, failure: ActionFailure
+        switch result {
+        case .notSupported(let value): status = .notSupported; failure = value
+        case .unavailable(let value): status = .unavailable; failure = value
+        case .staleState(let value): status = .staleState; failure = value
+        case .failed(let value): status = .failed; failure = value
+        case .requiresConfirmation(let value): status = .requiresConfirmation; failure = value
+        case .cancelled: status = .cancelled; failure = .init(code: "cancelled", message: "")
+        default: status = .failed; failure = .init(code: "native_ui_failed", message: "")
+        }
+        return .init(status: status, failure: failure)
+    }
+
     private func receiveReader(_ reader: ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement {
         guard let pending = readerInvocations[reader.invocation.requestId],
               pending.sceneID.rawValue == reader.sceneID, pending.route.route.content == reader.destination,
@@ -857,9 +1015,27 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
 
 /// Only forwards Core's original, opaque, one-use reader command to its
 /// retained native owner. It cannot create grants, resolve or mint receipts.
-@MainActor private final class MaktabahNativeReaderCommandSink: ActionCommentaryUICommandSink {
+@MainActor private final class MaktabahNativeReaderCommandSink: ActionCommentaryUICommandSink, ActionNoteDraftUICommandSink {
     var deliver: (@MainActor @Sendable (ActionOpenReaderCommand) async throws -> ActionUIAcknowledgement)?
     var prepareCommentary: (@MainActor @Sendable (ActionReaderDestination, ActionExecutionContext, ActionPortInvocation) async throws -> Void)?
+    var noteDraftAvailable: (@MainActor @Sendable (String) -> Bool)?
+    var prepareNote: (@MainActor @Sendable (ActionNoteDraftRequest, ActionExecutionContext, ActionPortInvocation) async throws -> Void)?
+    var presentNote: (@MainActor @Sendable (ActionPrepareNoteDraftCommand) async throws -> ActionNoteDraftAcknowledgement)?
+    var validateNote: (@MainActor @Sendable (ActionNoteDraftReceipt, ActionPortInvocation) throws -> Void)?
+    func canPrepareNoteDraft(in sceneID: String) -> Bool { noteDraftAvailable?(sceneID) == true }
+    func prepareNoteDraft(_ draft: ActionNoteDraftRequest, context: ActionExecutionContext,
+                          invocation: ActionPortInvocation) async throws {
+        guard let prepareNote else { throw ActionPortError.unavailable }
+        try await prepareNote(draft, context, invocation)
+    }
+    func presentNoteDraft(_ command: ActionPrepareNoteDraftCommand) async throws -> ActionNoteDraftAcknowledgement {
+        guard let presentNote else { throw ActionPortError.unavailable }
+        return try await presentNote(command)
+    }
+    func validateNoteDraftCompletion(_ receipt: ActionNoteDraftReceipt, invocation: ActionPortInvocation) throws {
+        guard let validateNote else { throw ActionPortError.unavailable }
+        try validateNote(receipt, invocation)
+    }
     func prepareCommentaryReader(_ destination: ActionReaderDestination, context: ActionExecutionContext,
                                  invocation: ActionPortInvocation) async throws {
         guard let prepareCommentary else { throw ActionPortError.unavailable }

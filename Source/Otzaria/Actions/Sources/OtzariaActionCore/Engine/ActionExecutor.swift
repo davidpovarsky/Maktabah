@@ -71,6 +71,9 @@ public actor ActionExecutor {
             if request.action == "reader.openCommentary", !(await commentaryNavigationAvailable()) {
                 throw ActionEngineFailure(.notSupported, "commentary_navigation_unavailable")
             }
+            if request.action == "notes.prepareDraft", !(ui is any ActionNoteDraftUICommandSink) {
+                throw ActionEngineFailure(.notSupported, "note_draft_editor_unavailable")
+            }
             let existing = ledger[key]
             if let existing {
                 guard try equivalent(existing.request, request), existing.authority == Authority(context) else { throw ActionEngineFailure(.failed, "request_replay_conflict") }
@@ -169,6 +172,8 @@ public actor ActionExecutor {
             if request.arguments["includeModes"] == .bool(true) { throw ActionEngineFailure(.notSupported, "mode_discovery_unavailable") }
             let includeReadiness = request.arguments["includeReadiness"] == .bool(true)
             let commentaryAvailable = await commentaryNavigationAvailable()
+            let notesSupported = ui is any ActionNoteDraftUICommandSink
+            let notesReady = await noteDraftAvailable(context: context)
             var reports: [ActionJSON] = []
             for target in ActionBackendID.allCases {
                 let report: ActionBackendReport?
@@ -182,11 +187,16 @@ public actor ActionExecutor {
                     let raw = report?.operations[descriptor.id]
                     let implemented = ActionRegistry.implemented.contains(descriptor.id)
                         && (descriptor.id != "reader.openCommentary" || commentaryAvailable)
+                        && (descriptor.id != "notes.prepareDraft" || notesSupported)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
-                    if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend) }
+                    if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
+                        && (descriptor.id != "notes.prepareDraft" || notesReady)) }
                     if !supported { fields["reasonCode"] = .string(implemented ? "capability_unavailable" : "action_not_implemented") }
                     else if includeReadiness && target != snapshot.backend { fields["reasonCode"] = .string("backend_selection_required") }
+                    else if includeReadiness && descriptor.id == "notes.prepareDraft" && !notesReady {
+                        fields["reasonCode"] = .string("exact_note_selection_unavailable")
+                    }
                     else if includeReadiness && raw?.availableNow != true {
                         fields["reasonCode"] = .string(ActionPolicy.safeReason(raw?.reasonCode, fallback: "backend_unavailable"))
                     }
@@ -206,6 +216,7 @@ public actor ActionExecutor {
         try ActionPolicy.capability(assessment)
         let result: ActionResult
         var navigationCompletion: ActionNavigationPreparation? = nil
+        var noteCompletion: (any ActionNoteDraftUICommandSink, ActionNoteDraftReceipt)? = nil
         switch request.action {
         case "catalog.resolveWork":
             let ref = try request.arguments["workRef"]?.decoded(as: ActionWorkRef.self)
@@ -243,6 +254,50 @@ public actor ActionExecutor {
             let page = try await search.search(query, invocation: invocation)
             try validate(page, query: query, context: context)
             result = completed(try ActionJSON.encoded(page).object ?? [:])
+        case "notes.prepareDraft":
+            guard let rawLocator = request.arguments["locator"] else { throw ActionContractError.invalid("locator") }
+            let locator = try rawLocator.decoded(as: ActionTextRef.self)
+            try ActionPolicy.work(locator.workKey, backend: backend, context: context)
+            guard request.requestedPresentation != .headless, let scene = ActionPolicy.foregroundScene(context),
+                  let noteUI = ui as? any ActionNoteDraftUICommandSink else {
+                throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable")
+            }
+            guard await noteUI.canPrepareNoteDraft(in: scene) else {
+                throw ActionEngineFailure(.unavailable, "exact_note_selection_unavailable")
+            }
+            let exact = ActionReaderDestination(sectionLocator: locator)
+            guard try await resolver.validateDestination(exact, invocation: invocation) == exact else {
+                throw ActionPortError.invalidResponse
+            }
+            let draft = ActionNoteDraftRequest(locator: locator, selectedText: request.arguments["selectedText"]?.string,
+                proposedText: request.arguments["proposedText"]?.string)
+            try await recheck(snapshot, deadline: deadline)
+            try await noteUI.prepareNoteDraft(draft, context: context, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            let authorization: ActionNavigationPreparation?
+            if let navigationAuthority {
+                guard let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
+                    throw ActionNavigationError(.unavailable, "synchronous_navigation_authority_unavailable")
+                }
+                authorization = try await ActionNavigationPreparation(authority: navigationAuthority, backendAuthority: backendAuthority,
+                    invocation: invocation, sceneID: scene, context: context, destination: nil, clock: clock, noteDraft: draft)
+            } else { authorization = nil }
+            let command = ActionPrepareNoteDraftCommand(draft: draft, sceneID: scene, invocation: invocation,
+                navigationAuthorization: authorization)
+            switch try await noteUI.presentNoteDraft(command) {
+            case .acknowledged(let receipt):
+                guard receipt.requestId == request.requestId, receipt.snapshot == snapshot, receipt.sceneID == scene,
+                      receipt.draft == draft, receipt.isUnsaved else { throw ActionPortError.invalidResponse }
+                navigationCompletion = authorization; noteCompletion = (noteUI, receipt)
+                result = ActionResult(request: request, status: .completed,
+                    data: ["locator": try .encoded(locator), "saved": .bool(false)],
+                    backend: backend, backendGeneration: snapshot.generation, effects: ["note_draft_opened"])
+            case .queued(let handle):
+                guard handle.range(of: "^[A-Za-z0-9_-]{8,128}$", options: .regularExpression) != nil else { throw ActionPortError.invalidResponse }
+                result = ActionResult(request: request, status: .uiQueued, data: ["handle": .string(handle)],
+                    backend: backend, backendGeneration: snapshot.generation, effects: ["note_draft_queued"])
+            case .requiresForeground: throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable")
+            }
         case "reader.open", "reader.openCommentary":
             let destination: ActionReaderDestination
             if request.action == "reader.openCommentary" {
@@ -310,12 +365,31 @@ public actor ActionExecutor {
             }
         default: throw ActionEngineFailure(.notSupported, "action_not_implemented")
         }
-        try await recheck(snapshot, deadline: deadline)
-        // This synchronous MainActor check observes BOTH retained authorities
-        // after the last backend/readiness await. Do not add another readiness
-        // await after it; this is not an atomic cross-actor commit barrier.
-        if let navigationCompletion { try await navigationCompletion.validateCompletion() }
+        do {
+            try await recheck(snapshot, deadline: deadline)
+            // Final live native evidence follows every retained authority read.
+            if let noteCompletion {
+                try await Self.validateNoteDraftCompletion(authorization: navigationCompletion,
+                    port: noteCompletion.0, receipt: noteCompletion.1, invocation: invocation)
+            } else if let navigationCompletion { try await navigationCompletion.validateCompletion() }
+        } catch {
+            if noteCompletion != nil {
+                let status = (error as? ActionEngineFailure)?.status ?? (error as? ActionNavigationError)?.status
+                    ?? ((error as? ActionPortError) == .staleState ? .staleState : (error is CancellationError ? .cancelled : .failed))
+                throw ActionNativeUIFailure(status: status,
+                    failure: .init(code: "native_effect_uncertain", message: "", retryable: false))
+            }
+            throw error
+        }
         return result
+    }
+
+    @MainActor private static func validateNoteDraftCompletion(authorization: ActionNavigationPreparation?,
+        port: any ActionNoteDraftUICommandSink, receipt: ActionNoteDraftReceipt, invocation: ActionPortInvocation) throws {
+        // The backend facet may synchronously revoke or change a native source.
+        // Observe the original editor AFTER that final Core authority read.
+        try authorization?.validateCompletion()
+        try port.validateNoteDraftCompletion(receipt, invocation: invocation)
     }
 
     private func recheck(_ snapshot: ActionBackendSnapshot, deadline: UInt64) async throws {
@@ -374,6 +448,11 @@ public actor ActionExecutor {
     }
 
     /// Discovery is policy- and availability-filtered, never the raw29 catalog.
+    private func noteDraftAvailable(context: ActionExecutionContext) async -> Bool {
+        guard let scene = ActionPolicy.foregroundScene(context), let noteUI = ui as? any ActionNoteDraftUICommandSink else { return false }
+        return await noteUI.canPrepareNoteDraft(in: scene)
+    }
+
     private func commentaryNavigationAvailable() async -> Bool {
         guard ui is any ActionCommentaryUICommandSink,
               let commentary = resolver as? any ActionCommentaryResolverPort else { return false }
@@ -389,7 +468,7 @@ public actor ActionExecutor {
         return registry.descriptors.filter { descriptor in
             guard ActionRegistry.implemented.contains(descriptor.id), operations[descriptor.id]?.object?["availableNow"] == .bool(true) else { return false }
             guard (try? ActionPolicy.authorize(descriptor, context: context, backend: backend)) != nil else { return false }
-            return !["reader.open", "reader.openCommentary"].contains(descriptor.id) || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
+            return !["reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(descriptor.id) || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
         }
     }
 
@@ -414,10 +493,12 @@ public actor ActionExecutor {
     }
     private func failure(_ request: ActionRequest, error: any Error) -> ActionResult {
         let status: ActionStatus, code: String
+        var nativeFailure: ActionFailure?
         if let e = error as? ActionEngineFailure { status = e.status; code = e.code }
         else if error is CancellationError { status = .cancelled; code = "cancelled" }
         else if error is ActionContractError || error is DecodingError { status = .failed; code = "invalid_arguments" }
         else if let e = error as? ActionNavigationError { status = e.status; code = e.code }
+        else if let e = error as? ActionNativeUIFailure { status = e.status; code = e.failure.code; nativeFailure = e.failure }
         else if let e = error as? ActionPortError {
             switch e {
             case .unavailable: status = .unavailable; code = "backend_unavailable"
@@ -430,6 +511,6 @@ public actor ActionExecutor {
         // Never echo malformed action names or arbitrary provider descriptions.
         let safe = request.action.unicodeScalars.count <= 80 && request.action.range(of: "^[a-z][a-zA-Z0-9]*(\\.[a-zA-Z0-9]+)+$", options: .regularExpression) != nil
             ? request : ActionRequest(requestId: request.requestId, action: "system.invalid")
-        return ActionResult(request: safe, status: status, error: safeError(code), backend: request.expectedBackend)
+        return ActionResult(request: safe, status: status, error: nativeFailure ?? safeError(code), backend: request.expectedBackend)
     }
 }

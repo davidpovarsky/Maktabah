@@ -1,0 +1,60 @@
+{
+  "results": [
+    {
+      "package": "Source/Otzaria/Actions",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\Source\\Otzaria\\Actions",
+        "--jobs",
+        "2"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "103",
+        "0"
+      ],
+      "log_sha256": "a30876eb129c5a5d528b6514f7f42c8eeb4614cf42cd1448ad50ae75315d4f8d",
+      "native": "NOT_RUN"
+    },
+    {
+      "package": "Source/Otzaria/UIRouting",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\Source\\Otzaria\\UIRouting",
+        "--jobs",
+        "2"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "94",
+        "0"
+      ],
+      "log_sha256": "913b411eb89b043061deca13e7240918db6675bd72acb7e2304c9293e36cdb24",
+      "native": "NOT_RUN"
+    },
+    {
+      "package": "Source/ChavrusaText/UIRoutingHost",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\Source\\ChavrusaText\\UIRoutingHost",
+        "--jobs",
+        "2"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "127",
+        "0"
+      ],
+      "log_sha256": "b26b4d0bf934ada38fd1f54f4d731106c0de86801124e5aab3be92b03c3b28b5",
+      "native": "NOT_RUN"
+    }
+  ],
+  "apple_compilation": "NOT_RUN",
+  "native_runtime": "NOT_RUN"
+}

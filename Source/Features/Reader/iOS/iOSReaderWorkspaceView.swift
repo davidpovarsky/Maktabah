@@ -84,6 +84,7 @@ struct iOSReaderWorkspaceView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
     @Environment(\.layoutDirection) private var layoutDirection
+    @Environment(\.maktabahNativeRoutingSession) private var nativeRoutingSession
 
     @State private var detailColumnWidth: CGFloat = 0
     @State private var compactContentsRequested = false
@@ -100,6 +101,7 @@ struct iOSReaderWorkspaceView: View {
     @State private var inspectorSession: MaktabahTorahInspectorSession
     @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
+    @State private var nativeNoteEditorOwnerID = UUID()
     @State private var noteErrorMessage: String?
     @State private var pendingNotesDidChange: TorahInspectorHostActions.NotesDidChange?
 
@@ -211,7 +213,14 @@ struct iOSReaderWorkspaceView: View {
                 workspaceDetail
             }
         }
-        .onAppear { updatePanelPresentation(animated: false) }
+        .onAppear {
+            updatePanelPresentation(animated: false)
+            attachNativeNoteEditor()
+        }
+        .onChange(of: nativeRoutingSession.map(ObjectIdentifier.init), initial: true) { _, _ in
+            attachNativeNoteEditor()
+        }
+        .onDisappear { nativeRoutingSession?.detachNoteEditor(id: nativeNoteEditorOwnerID) }
         .task {
             if runsCompactTOCTransitionSmoke {
                 for _ in 0..<50 where !showPanelSheet {
@@ -268,7 +277,9 @@ struct iOSReaderWorkspaceView: View {
         .sheet(isPresented: $showPanelSheet, onDismiss: compactPanelDidDismiss) {
             compactStudyPanel
         }
-        .sheet(isPresented: annotationEditorBinding) {
+        .sheet(isPresented: annotationEditorBinding, onDismiss: {
+            nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID)
+        }) {
             annotationEditor
         }
         .alert(
@@ -519,9 +530,20 @@ struct iOSReaderWorkspaceView: View {
                     inspectorSession.repository.invalidateAllNotes()
                     NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
                     finishEditingAnnotation()
+                },
+                onNativeTextView: { textView in
+                    nativeRoutingSession?.noteEditorTextViewChanged(
+                        id: nativeNoteEditorOwnerID, reader: viewModel, textView: textView)
                 }
             )
+            .modifier(MaktabahNativeRoutingSurface(kind: .noteDraft,
+                noteReader: viewModel, noteDraft: editingAnnotation))
         }
+    }
+
+    private func attachNativeNoteEditor() {
+        nativeRoutingSession?.attachNoteEditor(
+            id: nativeNoteEditorOwnerID, reader: viewModel, annotation: $editingAnnotation)
     }
 
     private var annotationEditorBinding: Binding<Bool> {

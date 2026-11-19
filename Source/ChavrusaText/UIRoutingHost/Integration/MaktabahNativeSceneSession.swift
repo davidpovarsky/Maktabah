@@ -1,6 +1,7 @@
 #if os(iOS)
 import Foundation
 import Observation
+import SwiftUI
 import UIKit
 import OtzariaActionCore
 import OtzariaUIRouting
@@ -27,6 +28,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     @ObservationIgnored private var retainedSearchField: UISearchTextField?
     @ObservationIgnored private var searchFieldUpdateScheduled = false
     @ObservationIgnored private var inspectorBinding: MaktabahNativeInspectorBinding?
+    @ObservationIgnored private var noteEditorOwner: MaktabahNativeNoteEditorOwner?
+    @ObservationIgnored private var noteDraftBinding: MaktabahNativeNoteDraftBinding?
     private var searchFieldRevision: UInt64 = 0
 
     // This is the original scene-owned UIKit control, installed by its existing
@@ -78,7 +81,76 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     private var visible: [UIDestinationID: NativeSurfaceWitness.Evidence] = [:]
     @ObservationIgnored private var visibilityChecks: [UIDestinationID: @MainActor () -> NativeSurfaceWitness.Evidence?] = [:]
     private(set) var studyChatPresentationID: UUID?
-    var isPresentationReady: Bool { bindings.isPresentationReady && studyChatPresentationID == nil }
+    var isPresentationReady: Bool {
+        bindings.isPresentationReady && studyChatPresentationID == nil
+            && ((noteEditorOwner?.current == nil && noteEditorOwner?.presentationActive != true)
+                || (command?.route.route.destination.rawValue == "native.reader.noteDraft" && noteDraftBinding?.isApplied == true))
+    }
+
+    func attachNoteEditor(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>) {
+        if noteEditorOwner?.id == id, noteEditorOwner?.reader === reader { return }
+        if noteDraftBinding != nil { presentation.revoke() }
+        noteEditorOwner = .init(id: id, reader: reader, annotation: annotation)
+        try? nativeStateChanged()
+    }
+    func detachNoteEditor(id: UUID) {
+        guard noteEditorOwner?.id == id else { return }
+        noteEditorOwner = nil
+        presentation.revoke()
+        try? nativeStateChanged()
+    }
+    func noteEditorTextViewChanged(id: UUID, reader: ReaderViewModel, textView: UITextView?) {
+        guard let owner = noteEditorOwner, owner.id == id, owner.reader === reader else { return }
+        owner.observeTextView(textView)
+        try? nativeStateChanged()
+    }
+    func noteEditorDidDismiss(id: UUID) {
+        guard let owner = noteEditorOwner, owner.id == id else { return }
+        owner.didDismiss()
+        try? nativeStateChanged()
+    }
+    func ownsNoteEditor(_ reader: ReaderViewModel, draft: Annotation) -> Bool {
+        guard let owner = noteEditorOwner, owner.reader === reader, owner.current == draft,
+              let bound = noteDraftBinding, bound.owner === owner, bound.draft == draft else { return false }
+        return true
+    }
+    func canPrepareNoteDraft() -> Bool {
+        guard mounted, foreground, isPresentationReady, noteDraftBinding == nil,
+              let owner = noteEditorOwner, owner.current == nil,
+              (try? publicBindingPresentation().witnessedReader) != nil else { return false }
+        return (try? MaktabahNativeNoteDraftBinding.selection(manager: bindings.manager, owner: owner, sceneID: sceneID)) != nil
+    }
+    func retainNoteDraft(_ request: ActionNoteDraftRequest) throws -> MaktabahNativeNoteDraftBinding {
+        guard canPrepareNoteDraft(), let owner = noteEditorOwner else { throw ActionPortError.unavailable }
+        let bound = try MaktabahNativeNoteDraftBinding(manager: bindings.manager, owner: owner, request: request, sceneID: sceneID)
+        noteDraftBinding = bound
+        return bound
+    }
+    func releaseNoteDraft(_ bound: MaktabahNativeNoteDraftBinding) {
+        if noteDraftBinding === bound { noteDraftBinding = nil }
+        // The original unsaved editor remains under the user's Save/Cancel.
+    }
+    func prepareNoteDraftRoute(invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        guard let bound = noteDraftBinding else { throw ActionPortError.unavailable }
+        try bound.validate()
+        let identity = try project().identity()
+        return RouteSpec(requestId: invocation.requestId, destination: UIDestinationID(rawValue: "native.reader.noteDraft")!,
+            backend: invocation.snapshot.backend, presentation: .init(kind: .sheet),
+            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID),
+            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision),
+            expectedBackendSnapshot: invocation.snapshot)
+    }
+    func validateNoteDraftCompletion(_ bound: MaktabahNativeNoteDraftBinding, route: RouteSpec) throws {
+        guard mounted, foreground, noteDraftBinding === bound, noteEditorOwner === bound.owner else { throw ActionPortError.staleState }
+        try bound.validateVisible()
+        let id = UIDestinationID(rawValue: "native.reader.noteDraft")!
+        guard let actual = visibilityChecks[id]?(), actual.isVisible, actual.sceneID == sceneID,
+              actual.surface == (try surface(.noteDraft)),
+              actual.surface.destination == route.destination, actual.surface.presentation == route.presentation,
+              actual.surface.state == route.state, actual.surface.content == nil, actual.surface.focus == nil else {
+            throw ActionPortError.staleState
+        }
+    }
 
     func beginStudyChatPresentation(_ id: UUID) throws {
         guard mounted, foreground, isPresentationReady else {
@@ -98,7 +170,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     /// Other native routes stay unavailable until actual onDismiss, including
     /// the period after the SDK lease is revoked but its sheet is still visible.
     func isStudyChatContextReady(allowing id: UUID?) -> Bool {
-        bindings.isPresentationReady && (studyChatPresentationID == nil || studyChatPresentationID == id)
+        bindings.isPresentationReady && noteEditorOwner?.current == nil && noteEditorOwner?.presentationActive != true
+            && (studyChatPresentationID == nil || studyChatPresentationID == id)
     }
     func isRootAvailable(_ destination: UIDestinationID) -> Bool {
         guard let root = MaktabahNativeRootDestination(rawValue: destination.rawValue) else { return false }
@@ -126,7 +199,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                evidence.sceneID == sceneID, evidence.submissionID == command.invocation.requestId,
                let kind = surfaceKind(command.route.route.destination), let current = try self.surface(kind),
                current == evidence.surface,
-               kind != .reader || projection.hasRenderedReaderEvidence(sceneID: sceneID) {
+               (kind != .reader || projection.hasRenderedReaderEvidence(sceneID: sceneID)),
+               (kind != .noteDraft || (try? noteDraftBinding?.validateVisible()) != nil) {
                 surface = current
                 route = current.observedRoute(for: command, backend: command.invocation.snapshot)
             }
@@ -184,6 +258,16 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         let route = command.route.route, projection = try project(), identity = try projection.identity()
         guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
               route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
+        if route.destination.rawValue == "native.reader.noteDraft" {
+            guard route.content == nil, route.focus == nil, route.presentation.kind == .sheet,
+                  route.presentation.tabID == nil,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID),
+                  let bound = noteDraftBinding, noteEditorOwner === bound.owner else {
+                throw UIRouteError(.unavailable, "original_note_editor_unavailable")
+            }
+            try bound.validate()
+            return
+        }
         if route.destination.rawValue == "native.reader.inspector" {
             guard route.content == nil, route.focus == nil, route.presentation.kind == .inspector,
                   route.presentation.tabID == nil,
@@ -229,6 +313,12 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func apply(_ command: UISceneCommand) throws {
+        if command.route.route.destination.rawValue == "native.reader.noteDraft" {
+            try validateSurface(command)
+            guard let bound = noteDraftBinding else { throw ActionPortError.unavailable }
+            try bound.apply()
+            return
+        }
         if command.route.route.destination.rawValue == "native.reader.inspector" {
             try validateSurface(command)
             guard let inspectorBinding else { throw UIRouteError(.unavailable, "native_inspector_owner_missing") }
@@ -260,7 +350,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         // paint/scroll restoration. Observe that same live UIKit witness only
         // while this original reader request is waiting; never echo the route.
         let readerObservation: Task<Void, Never>?
-        if command.route.route.destination.rawValue == "native.reader" {
+        if ["native.reader", "native.reader.noteDraft"].contains(command.route.route.destination.rawValue) {
             readerObservation = Task { @MainActor [weak self] in
                 while !Task.isCancelled {
                     guard let self, mounted, submissionID == command.invocation.requestId else { return }
@@ -289,6 +379,10 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
     func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? {
         if kind == .inspector { try inspectorBinding?.validate() }
+        if kind == .noteDraft {
+            guard let bound = noteDraftBinding, bound.isApplied, noteEditorOwner === bound.owner else { return nil }
+            try bound.validate()
+        }
         guard let state = try project().surface(kind) else { return nil }
         // Root navigation does not request or report keyboard focus. For the
         // registered component, the optional focus facet is projected ONLY
@@ -365,6 +459,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
 
     func observe(_ evidence: NativeSurfaceWitness.Evidence) {
         guard mounted, evidence.sceneID == sceneID else { return }
+        if evidence.isVisible, evidence.surface.destination.rawValue == "native.reader.noteDraft",
+           (try? noteDraftBinding?.validateVisible()) == nil {
+            if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
+            return
+        }
         if evidence.isVisible, evidence.surface.destination.rawValue == "native.reader",
            (try? project().hasRenderedReaderEvidence(sceneID: sceneID)) != true {
             if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
@@ -396,6 +495,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         guard mounted else { return }
         mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
         nativeSearchField = nil; retainedSearchField = nil; inspectorBinding = nil
+        noteEditorOwner = nil; noteDraftBinding = nil
         if let lease { directory.unmount(lease) }
         lease = nil
     }
@@ -406,6 +506,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         case "native.reader.toc": .tableOfContents
         case "native.reader": .reader
         case "native.reader.inspector": .inspector
+        case "native.reader.noteDraft": .noteDraft
         case "native.history": .history
         case "native.search": .search
         case "native.annotations": .annotations
