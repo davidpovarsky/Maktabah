@@ -62,3 +62,12 @@ back to an existing simulator. These are wrapper unit checks, not native tests.
 The original launcher can be reversed to its prior exact source by removing
 only the new optional simulator selector and os import. Python AST, workflow
 YAML, Git Bash syntax and whitespace checks passed.
+
+## Actual dispatch
+
+Run [44593126391](https://github.com/davidpovarsky/Maktabah/actions/runs/44593126391)
+was dispatched at 18:56:48 UTC on 2026-11-19 against immutable source
+46d412cbf27fb1d255e45b04c7879b68de8b2e25. At 19:00 UTC it was queued
+for the Xcode27 runner; the legacy publishing/building job was skipped.
+One completion watcher owns this run. Dispatch and queue state are not PASS.
+The separate 75-case UI run remains on its original ef449e64 source.

@@ -1,0 +1,21 @@
+{
+  "expected_sha": "46d412cbf27fb1d255e45b04c7879b68de8b2e25",
+  "branch": "codex/otzaria-v32-native-20261119",
+  "workflow": "otzaria-search-artifacts.yml",
+  "dispatched_at": "2026-11-19T18:56:48.053906+00:00",
+  "exit_code": 0,
+  "stdout": "https://github.com/davidpovarsky/Maktabah/actions/runs/44593126391\n",
+  "stderr": "",
+  "publish_release": false,
+  "native_case_scope": "original full-v32 app installer/query/relaunch; zero XCTest UI cases",
+  "run_id": 44593126391,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44593126391",
+  "last_observation": {
+    "utc": "2026-11-19T19:00:07Z",
+    "status": "queued",
+    "conclusion": null,
+    "legacy_publish_job": "skipped"
+  },
+  "watcher": "job_db9bc56d056d",
+  "native_acceptance": "PENDING"
+}
