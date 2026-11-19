@@ -22,6 +22,24 @@ struct ResolvedReaderDestination: Equatable, Sendable {
 }
 
 enum ReaderDestinationResolver: Sendable {
+    /// Resolve a legacy API content ID within its existing canonical Reader.
+    /// Never allow another work/backend's registered ID to replace that owner.
+    /// Raw nonnegative Otzaria line indices remain supported for older callers.
+    static func resolve(contentID: Int, in bookLocator: TextLocator,
+                        registeredLocator: TextLocator?) -> ResolvedReaderDestination? {
+        let target: TextLocator
+        if let registeredLocator {
+            guard registeredLocator.backend == bookLocator.backend,
+                  registeredLocator.workKey == bookLocator.workKey else { return nil }
+            target = registeredLocator
+        } else {
+            guard bookLocator.backend == .otzaria, contentID >= 0 else { return nil }
+            target = TextLocator(backend: bookLocator.backend, workKey: bookLocator.workKey,
+                                 position: .legacyLine(contentID))
+        }
+        return resolve(locator: target)
+    }
+
     /// Resolves an exact locator into a bounded reading unit and an optional focused segment.
     ///
     /// For Sefaria:

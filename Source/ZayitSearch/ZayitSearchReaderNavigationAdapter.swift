@@ -21,10 +21,22 @@ enum ZayitSearchReaderNavigationAdapter {
             return false
         }
 
+        // Reader content IDs are qualified registry surrogates, not SQL line
+        // indices. Use the same exact locator on a new or already open tab so
+        // the content request and its search event identify the same render.
+        let locator = TextLocator(backend: .otzaria, workKey: "book:\(bookID)",
+                                  position: .legacyLine(hit.lineIndex))
+        let contentID = LegacyIdentityRegistry.shared.id(for: locator)
         navigationManager.openBook(
             book,
-            initialContentId: hit.lineIndex,
-            searchText: hit.matchedTerms.isEmpty ? nil : hit.matchedTerms.joined(separator: "|")
+            options: OpenBookOptions(
+                contentId: contentID,
+                // These are provider-authored matched terms, not a legacy FTS
+                // expression. Retain them verbatim in the renderer's existing
+                // term path instead of joining them into a synthetic query event.
+                searchText: hit.matchedTerms.joined(separator: " "),
+                highlightTerms: hit.matchedTerms
+            )
         )
         return true
     }

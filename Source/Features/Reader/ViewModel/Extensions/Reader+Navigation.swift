@@ -78,6 +78,14 @@ extension ReaderViewModel {
 
     func fetchContentById(_ contentId: Int) {
         guard let currentBook else { return }
+        if let bookLocator = currentBook.backendLocator {
+            guard let resolved = ReaderDestinationResolver.resolve(
+                contentID: contentId, in: bookLocator,
+                registeredLocator: LegacyIdentityRegistry.shared.locator(for: contentId)
+            ) else { return }
+            loadBackendContent(resolved.destination)
+            return
+        }
         if let content = bookConnection.getContent(
             bkid: "\(currentBook.id)",
             contentId: contentId,
