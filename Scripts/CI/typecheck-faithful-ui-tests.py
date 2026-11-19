@@ -285,8 +285,19 @@ for label, driver in [
     ("hanlin-navigation-contract", "tools/hq-hanlin-navigation-transition.py"),
 ]:
     directory = artifacts / label
-    checked = subprocess.run([sys.executable, driver, "--artifacts-dir", str(directory)],
-                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=300)
+    command = [sys.executable, driver, "--artifacts-dir", str(directory)]
+    prepared = None
+    if label == "hanlin-navigation-contract":
+        # SDK-only checkout intentionally does not initialize all app submodules.
+        # Reuse the original pinned SDK preparer; never substitute SDK modules.
+        pin = json.loads(Path("Scripts/CI/hq-stage2-focused-apple.inputs.json").read_text())["hanlin_gitlink"]
+        prepared = subprocess.run([sys.executable, "Scripts/CI/prepare-hanlin-sdk.py",
+            "--sha", pin, "--output", str(artifacts / "ui-acceptance-typecheck.hanlin-sdk-inputs.json")],
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=240)
+        (artifacts / "ui-acceptance-typecheck.hanlin-sdk-prepare.log").write_text(prepared.stdout, encoding="utf-8")
+        command.extend(["--sdk-sha", pin])
+    checked = (prepared if prepared is not None and prepared.returncode else
+        subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=300))
     source_regression_code = source_regression_code or checked.returncode
     (artifacts / ("ui-acceptance-typecheck." + label + "-driver.log")).write_text(checked.stdout, encoding="utf-8")
     for name in ["RESULT.json", "compile.log", "tests.log", "swift-test.log", "inputs.json"]:
