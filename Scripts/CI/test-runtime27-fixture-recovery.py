@@ -4,6 +4,7 @@ import runpy
 import unittest
 
 eligible = runpy.run_path(str(Path(__file__).with_name('runtime27-fixture-recovery.py')))['verified_fixture_cleanup_timeout']
+retry_download = runpy.run_path(str(Path(__file__).with_name('runtime27-fixture-recovery.py')))['transient_fixture_download_failure']
 
 
 class FixtureRecoveryTests(unittest.TestCase):
@@ -30,6 +31,24 @@ class FixtureRecoveryTests(unittest.TestCase):
     def test_missing_or_other_termination_result_never_recovers(self):
         for termination in [{}, dict(status='PASS', nativeValidationFailurePreserved=False), dict(status='TIMEOUT')]:
             self.assertFalse(eligible(self.fixture, termination, 0))
+
+    def test_native_download_transient_errors_retry_only_once(self):
+        for error in ['HTTP 502', 'Request failed: HTTP 503', 'HTTP 504',
+                      'A server with the specified hostname could not be found.']:
+            with self.subTest(error=error):
+                fixture = dict(passed=False, profileID='miniTest10', phase='install', errors=[error])
+                self.assertTrue(retry_download(fixture, 0))
+                self.assertFalse(retry_download(fixture, 1))
+
+    def test_download_recovery_never_hides_data_validation_or_other_failures(self):
+        fixture = dict(passed=False, profileID='miniTest10', phase='install', errors=['HTTP 503'])
+        for key, value in [('passed', True), ('passed', None), ('phase', 'validate'),
+                           ('profileID', 'production'), ('errors', []), ('errors', 'HTTP 503'),
+                           ('errors', ['HTTP 503', 'SHA256 mismatch']), ('errors', ['HTTP 404']),
+                           ('errors', ['The request timed out.']), ('errors', [None])]:
+            with self.subTest(key=key, value=value):
+                self.assertFalse(retry_download({**fixture, key: value}, 0))
+        self.assertFalse(retry_download({}, 0))
 
 
 if __name__ == '__main__':

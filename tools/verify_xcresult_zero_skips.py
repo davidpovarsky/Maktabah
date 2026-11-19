@@ -15,6 +15,19 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def xcresult_counts(summary):
+    """Diagnostic counts only: a failed summary never becomes UI acceptance."""
+    require(isinstance(summary, dict), 'Missing/corrupt xcresult summary')
+    for key in ('totalTestCount', 'passedTests', 'failedTests', 'skippedTests'):
+        require(type(summary.get(key)) is int and summary[key] >= 0, 'Missing/invalid xcresult count: ' + key)
+    require(summary['totalTestCount'] == summary['passedTests'] + summary['failedTests'] + summary['skippedTests'],
+            'xcresult total/outcome counts inconsistent')
+    return {'recordedXCTestCount': summary['totalTestCount'],
+            'executedXCTestCount': summary['passedTests'] + summary['failedTests'],
+            'passedXCTestCount': summary['passedTests'], 'failedXCTestCount': summary['failedTests'],
+            'skippedXCTestCount': summary['skippedTests'], 'xctestCountSource': 'xcresult-summary'}
+
+
 def case_id(value):
     match = re.search(r'(?:^|/)(\w+)/(test\w+)(?:\(\))?$', unquote(value))
     require(match is not None, 'Invalid named UI case: ' + value)

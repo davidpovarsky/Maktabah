@@ -357,10 +357,8 @@ def main():
                             subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
                             device["fixtureCleanupRecovery"] = "OWNED_SHUTDOWN_VERIFIED_AND_REBOOTED; ALL_UI_STILL_REQUIRED"
                             break
-                        errors = failure.get("errors") or []
-                        transient_download = (failure.get("phase") == "install" and bool(errors)
-                            and all(re.search(r"\bHTTP (502|503|504)\b", str(error)) for error in errors))
-                        if fixture_attempt != 0 or failure.get("passed") is not False or not transient_download:
+                        retry_download = runpy.run_path("Scripts/CI/runtime27-fixture-recovery.py")["transient_fixture_download_failure"]
+                        if not retry_download(failure, fixture_attempt):
                             raise
                         # Preserve the real failed report. Relaunch the same native
                         # installer once; every data/profile/hash check remains intact.
@@ -463,8 +461,16 @@ def main():
                     strict.extend(["--required-case", identity])
                 if subprocess.run(strict).returncode:
                     code = code or 1
-                counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_text)]
-                device["executedXCTestCount"] = max(counts, default=0)
+                # Runner restarts produce several partial textual suite totals.
+                # Run44559352638 had 34 Reader results but max(Executed N) was
+                # only 16. Report actual xcresult counts even when acceptance fails.
+                result_guard = runpy.run_path("tools/verify_xcresult_zero_skips.py")
+                try:
+                    summary_path = artifacts / f"runtime27/verified-{label}.summary.json"
+                    device.update(result_guard["xcresult_counts"](json.loads(summary_path.read_text())))
+                except (ValueError, OSError) as error:
+                    device.update(executedXCTestCount=None, xctestCountError=str(error))
+                    code = code or 1
                 minimum_count = len(selection) if diagnostic_cases else (1 if baseline or size == "phone" else 6)
                 if code == 0 and device["executedXCTestCount"] < minimum_count:
                     raise SystemExit("Expected black-box XCTest cases were not actually executed")
@@ -525,8 +531,6 @@ def main():
                         phase("RUNNING_LARGEST_TEXT_XCTEST", ordinarySuitesStatus=device["status"])
                         with log_path.open("w") as log:
                             large_proc = subprocess.run(large_command, env=environment, stdout=log, stderr=subprocess.STDOUT, text=True)
-                        counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_path.read_text())]
-                        device["largeText"]["executedXCTestCount"] = max(counts, default=0)
                         verification = subprocess.run([sys.executable, "Scripts/CI/verify-faithful-xctest.py",
                                                        "--log", str(log_path), "--out", str(artifacts / "test-case-execution-13-large-text.json"),
                                                        *large_selection])
@@ -541,10 +545,17 @@ def main():
                             large_verified = subprocess.run(strict_large).returncode == 0
                         else:
                             large_verified = True
+                        try:
+                            summary = result_guard["read_xcresult"](large_result, "summary")
+                            device["largeText"].update(result_guard["xcresult_counts"](summary))
+                            (artifacts / "runtime27/verified-13-large-text.summary.json").write_text(json.dumps(summary, indent=2) + "\n")
+                        except (ValueError, OSError, subprocess.SubprocessError) as error:
+                            device["largeText"].update(executedXCTestCount=None, xctestCountError=str(error))
+                            large_verified = False
                         if large_result.is_dir():
                             subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(large_result),
                                             "--output-path", str(artifacts / "visual-13-large-text")], check=True)
-                        if large_proc.returncode or not counts or verification.returncode or not large_verified:
+                        if large_proc.returncode or not device["largeText"]["executedXCTestCount"] or verification.returncode or not large_verified:
                             device["largeText"]["status"] = "FAIL"
                             raise SystemExit("Largest-text real UI acceptance failed or did not execute")
                         device["largeText"]["status"] = "EXECUTED_PASS"
