@@ -11,6 +11,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import tarfile
 import urllib.request
 import zipfile
@@ -331,6 +332,63 @@ def verify_actual_sources(report):
         report["actual_package_checkouts"][identity] = {"head": head, "status": "CLEAN"}
 
 
+def authorize_pinned_equatable_macro(report, *, security_directory=None):
+    """Enable only the source-verified existing macro; retain Xcode validation."""
+    revision = "597c2bb34af0c51331eb3b5e705f942d8ee20daa"
+    require(report["package_pins"].get("equatable") == revision, "Equatable macro pin drift")
+    require(report.get("actual_package_checkouts", {}).get("equatable") ==
+            {"head": revision, "status": "CLEAN"}, "Equatable macro source was not verified clean")
+    entry = {"fingerprint": revision, "packageIdentity": "equatable", "targetName": "EquatableMacros"}
+    directory = security_directory or Path.home() / "Library/org.swift.swiftpm/security"
+    path = directory / "macros.json"
+    try:
+        before = path.read_bytes()
+    except FileNotFoundError:
+        before = None
+    entries = json.loads(before) if before is not None else []
+    require(isinstance(entries, list) and all(
+        isinstance(row, dict) and all(isinstance(row.get(key), str) and row[key]
+            for key in ("fingerprint", "packageIdentity", "targetName")) for row in entries),
+        "Existing macro authorization schema is not a list of fingerprint entries")
+    added = entry not in entries
+    if added:
+        directory.mkdir(parents=True, exist_ok=True)
+        mode = path.stat().st_mode & 0o777 if before is not None else 0o600
+        temporary = None
+        try:
+            with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", newline="\n",
+                                             prefix=".hanlin-macro-", dir=directory, delete=False) as stream:
+                temporary = Path(stream.name)
+                json.dump([*entries, entry], stream, indent=2)
+                stream.write("\n")
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.chmod(temporary, mode)
+            try:
+                current = path.read_bytes()
+            except FileNotFoundError:
+                current = None
+            require(current == before, "Macro authorization changed during the scoped update")
+            os.replace(temporary, path)
+        finally:
+            if temporary is not None:
+                temporary.unlink(missing_ok=True)
+    after = path.read_bytes()
+    actual = json.loads(after)
+    require(entry in actual and all(row in actual for row in entries),
+            "Exact macro trust entry or existing authorizations were not preserved")
+    report["compiler_macro_authorization"] = {
+        "entry": entry, "entry_added": added,
+        "mode": "EXACT_PACKAGE_TARGET_REVISION_FINGERPRINT",
+        "normal_xcode_fingerprint_validation": True,
+        "source_verified_clean": True,
+        "existing_entry_count": len(entries), "existing_entries_preserved": True,
+        "before_sha256": hashlib.sha256(before).hexdigest() if before is not None else None,
+        "after_sha256": hashlib.sha256(after).hexdigest(),
+        "global_validation_disabled": False,
+    }
+
+
 def privacy_categories(document):
     result = {}
     for row in document.get("NSPrivacyAccessedAPITypes", []):
@@ -467,6 +525,7 @@ def main():
         shutil.copyfile(ROOT / "Maktabah.xcworkspace/xcshareddata/swiftpm/Package.resolved", OUT / "workspace-Package.resolved")
         verify_actual_sources(report)
         verify_selected_zayit_files(report)
+        authorize_pinned_equatable_macro(report)
         derived_data = checked_path(ROOT / "build", str(Path(args.derived_data).relative_to("build")))
         signing = (["CODE_SIGNING_ALLOWED=YES", "CODE_SIGNING_REQUIRED=YES", "CODE_SIGN_IDENTITY=-"] if args.build_for_testing
                    else ["CODE_SIGNING_ALLOWED=NO", "CODE_SIGNING_REQUIRED=NO", "CODE_SIGN_IDENTITY="])
