@@ -1,0 +1,30 @@
+{
+  "status": "RECOVERY_OR_BASELINE_INCOMPLETE",
+  "source": {
+    "repository": "Otzaria/SeforimLibrary",
+    "releaseTag": "v32-20261010190601",
+    "releaseID": 409213893,
+    "assetID": 629048655,
+    "assetName": "seforim-schema6.db.zst",
+    "assetBytes": 1850679582,
+    "assetSHA256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+    "databaseBytes": 3821240320,
+    "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
+  },
+  "started_at_utc": "2026-11-19T17:41:01.484165+00:00",
+  "reason": "Original uncompressed partial stopped at the retained 512MiB safety reserve. Directory NTFS compression is now active. Both original processes terminated before this recovery.",
+  "original_source_job": "job_29dbbd09d184",
+  "original_baseline_job": "job_3d6bdb526e16",
+  "user_data_modified": false,
+  "original_reports_preserved": true,
+  "discarded_incomplete_owned_prefix": {
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-continuation-20261117\\build\\full-v32-performance-20261119\\seforim.db.part",
+    "bytes": 3489660928,
+    "sha256": "3714b98d16215b64bc76246e00c95dded6ad9c331d9c1e99296348a92462cc5a",
+    "reproducible_from_retained_verified_archive": true
+  },
+  "free_bytes_after_owned_partial_removal": 6213296128,
+  "database_bytes_written": 3221225472,
+  "error": "RuntimeError: Remaining disk safety reserve reached; compressed partial retained",
+  "finished_at_utc": "2026-11-19T17:42:22.467018+00:00"
+}

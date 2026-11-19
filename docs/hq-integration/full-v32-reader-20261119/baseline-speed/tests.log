@@ -1,0 +1,236 @@
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=nil start=0 count=1 durationMs=33
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=5 htmlCount=14 heRef= durationMs=55
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=nil start=0 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=5 htmlCount=14 heRef= durationMs=0
+PASS actual reader 103-line-0 rows=1 cold=55.416107177734375ms warm=0.5970001220703125ms
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=nil start=1437 count=1 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=line result=ok modeUnitId=line:1437 tocEntryId=nil startLineIndex=1437 endLineIndex=1437 sourceLineCount=1 plainTextCount=55 htmlCount=55 heRef=ברכות, לא., א durationMs=5
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=nil start=1437 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=line result=ok modeUnitId=line:1437 tocEntryId=nil startLineIndex=1437 endLineIndex=1437 sourceLineCount=1 plainTextCount=55 htmlCount=55 heRef=ברכות, לא., א durationMs=0
+PASS actual reader 103-line-1437 rows=1 cold=5.645751953125ms warm=0.5035400390625ms
+[OtzariaReadingUnitService] bookIndex bookId=103 tocEntries=126 lineTocMappings=2875 durationMs=52
+[OtzariaReadingUnitService] unitSummaries bookId=103 mode=paragraph count=125 durationMs=53
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1558 start=0 count=16 durationMs=3
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:1558 tocEntryId=1558 startLineIndex=0 endLineIndex=15 sourceLineCount=16 plainTextCount=1341 htmlCount=1415 heRef=ברכות, ב., א durationMs=59
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1558 start=0 count=16 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:1558 tocEntryId=1558 startLineIndex=0 endLineIndex=15 sourceLineCount=16 plainTextCount=1341 htmlCount=1415 heRef=ברכות, ב., א durationMs=1
+PASS actual reader 103-paragraph-0 rows=16 cold=59.368133544921875ms warm=1.3713836669921875ms
+[OtzariaReadingUnitService] bookIndex bookId=103 tocEntries=126 lineTocMappings=2875 durationMs=2
+[OtzariaReadingUnitService] unitSummaries bookId=103 mode=paragraph count=125 durationMs=4
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1616 start=1436 count=29 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=paragraph result=ok modeUnitId=toc:1616 tocEntryId=1616 startLineIndex=1436 endLineIndex=1464 sourceLineCount=29 plainTextCount=3398 htmlCount=3407 heRef=ברכות, לא., א durationMs=10
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1616 start=1436 count=29 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=paragraph result=ok modeUnitId=toc:1616 tocEntryId=1616 startLineIndex=1436 endLineIndex=1464 sourceLineCount=29 plainTextCount=3398 htmlCount=3407 heRef=ברכות, לא., א durationMs=1
+PASS actual reader 103-paragraph-1437 rows=29 cold=11.112213134765625ms warm=1.6803741455078125ms
+[OtzariaReadingUnitService] bookIndex bookId=103 tocEntries=126 lineTocMappings=2875 durationMs=2
+[OtzariaReadingUnitService] unitSummaries bookId=103 mode=chapter count=125 durationMs=4
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1558 start=0 count=16 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=chapter result=ok modeUnitId=toc:1558 tocEntryId=1558 startLineIndex=0 endLineIndex=15 sourceLineCount=16 plainTextCount=1341 htmlCount=1415 heRef=ברכות, ב., א durationMs=10
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1558 start=0 count=16 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=chapter result=ok modeUnitId=toc:1558 tocEntryId=1558 startLineIndex=0 endLineIndex=15 sourceLineCount=16 plainTextCount=1341 htmlCount=1415 heRef=ברכות, ב., א durationMs=1
+PASS actual reader 103-chapter-0 rows=16 cold=11.074066162109375ms warm=2.044677734375ms
+[OtzariaReadingUnitService] bookIndex bookId=103 tocEntries=126 lineTocMappings=2875 durationMs=2
+[OtzariaReadingUnitService] unitSummaries bookId=103 mode=chapter count=125 durationMs=4
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1616 start=1436 count=29 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=chapter result=ok modeUnitId=toc:1616 tocEntryId=1616 startLineIndex=1436 endLineIndex=1464 sourceLineCount=29 plainTextCount=3398 htmlCount=3407 heRef=ברכות, לא., א durationMs=10
+[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1616 start=1436 count=29 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=chapter result=ok modeUnitId=toc:1616 tocEntryId=1616 startLineIndex=1436 endLineIndex=1464 sourceLineCount=29 plainTextCount=3398 htmlCount=3407 heRef=ברכות, לא., א durationMs=1
+PASS actual reader 103-chapter-1437 rows=29 cold=10.713577270507812ms warm=1.5850067138671875ms
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=nil start=0 count=1 durationMs=13
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=6 htmlCount=15 heRef= durationMs=14
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=nil start=0 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=6 htmlCount=15 heRef= durationMs=0
+PASS actual reader 28-line-0 rows=1 cold=15.110015869140625ms warm=1.4286041259765625ms
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=nil start=1339 count=1 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=line result=ok modeUnitId=line:1339 tocEntryId=nil startLineIndex=1339 endLineIndex=1339 sourceLineCount=1 plainTextCount=34 htmlCount=34 heRef=תהילים, עח, לג durationMs=4
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=nil start=1339 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=line result=ok modeUnitId=line:1339 tocEntryId=nil startLineIndex=1339 endLineIndex=1339 sourceLineCount=1 plainTextCount=34 htmlCount=34 heRef=תהילים, עח, לג durationMs=0
+PASS actual reader 28-line-1339 rows=1 cold=4.7168731689453125ms warm=0.4730224609375ms
+[OtzariaReadingUnitService] bookIndex bookId=28 tocEntries=151 lineTocMappings=2678 durationMs=5
+[OtzariaReadingUnitService] unitSummaries bookId=28 mode=paragraph count=150 durationMs=7
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=600 start=0 count=8 durationMs=6
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:600 tocEntryId=600 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextCount=388 htmlCount=588 heRef=תהילים, א, א durationMs=15
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=600 start=0 count=8 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:600 tocEntryId=600 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextCount=388 htmlCount=588 heRef=תהילים, א, א durationMs=1
+PASS actual reader 28-paragraph-0 rows=8 cold=16.061782836914062ms warm=1.8100738525390625ms
+[OtzariaReadingUnitService] bookIndex bookId=28 tocEntries=151 lineTocMappings=2678 durationMs=2
+[OtzariaReadingUnitService] unitSummaries bookId=28 mode=paragraph count=150 durationMs=3
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=677 start=1306 count=73 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=paragraph result=ok modeUnitId=toc:677 tocEntryId=677 startLineIndex=1306 endLineIndex=1378 sourceLineCount=73 plainTextCount=3312 htmlCount=3447 heRef=תהילים, עח, א durationMs=13
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=677 start=1306 count=73 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=paragraph result=ok modeUnitId=toc:677 tocEntryId=677 startLineIndex=1306 endLineIndex=1378 sourceLineCount=73 plainTextCount=3312 htmlCount=3447 heRef=תהילים, עח, א durationMs=4
+PASS actual reader 28-paragraph-1339 rows=73 cold=13.399124145507812ms warm=5.0067901611328125ms
+[OtzariaReadingUnitService] bookIndex bookId=28 tocEntries=151 lineTocMappings=2678 durationMs=3
+[OtzariaReadingUnitService] unitSummaries bookId=28 mode=chapter count=150 durationMs=5
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=600 start=0 count=8 durationMs=3
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=chapter result=ok modeUnitId=toc:600 tocEntryId=600 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextCount=388 htmlCount=588 heRef=תהילים, א, א durationMs=10
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=600 start=0 count=8 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=chapter result=ok modeUnitId=toc:600 tocEntryId=600 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextCount=388 htmlCount=588 heRef=תהילים, א, א durationMs=1
+PASS actual reader 28-chapter-0 rows=8 cold=10.448455810546875ms warm=1.712799072265625ms
+[OtzariaReadingUnitService] bookIndex bookId=28 tocEntries=151 lineTocMappings=2678 durationMs=3
+[OtzariaReadingUnitService] unitSummaries bookId=28 mode=chapter count=150 durationMs=5
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=677 start=1306 count=73 durationMs=3
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=chapter result=ok modeUnitId=toc:677 tocEntryId=677 startLineIndex=1306 endLineIndex=1378 sourceLineCount=73 plainTextCount=3312 htmlCount=3447 heRef=תהילים, עח, א durationMs=13
+[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=677 start=1306 count=73 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=chapter result=ok modeUnitId=toc:677 tocEntryId=677 startLineIndex=1306 endLineIndex=1378 sourceLineCount=73 plainTextCount=3312 htmlCount=3447 heRef=תהילים, עח, א durationMs=4
+PASS actual reader 28-chapter-1339 rows=73 cold=13.28277587890625ms warm=4.8542022705078125ms
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=nil start=0 count=1 durationMs=5
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=10 htmlCount=19 heRef= durationMs=6
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=nil start=0 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=10 htmlCount=19 heRef= durationMs=0
+PASS actual reader 3152-line-0 rows=1 cold=6.73675537109375ms warm=0.5550384521484375ms
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=nil start=264 count=1 durationMs=5
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=line result=ok modeUnitId=line:264 tocEntryId=nil startLineIndex=264 endLineIndex=264 sourceLineCount=1 plainTextCount=639 htmlCount=639 heRef=דרשות הר"ן, ו, כה durationMs=5
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=nil start=264 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=line result=ok modeUnitId=line:264 tocEntryId=nil startLineIndex=264 endLineIndex=264 sourceLineCount=1 plainTextCount=639 htmlCount=639 heRef=דרשות הר"ן, ו, כה durationMs=0
+PASS actual reader 3152-line-264 rows=1 cold=5.8689117431640625ms warm=0.5893707275390625ms
+[OtzariaReadingUnitService] bookIndex bookId=3152 tocEntries=13 lineTocMappings=528 durationMs=18
+[OtzariaReadingUnitService] unitSummaries bookId=3152 mode=paragraph count=12 durationMs=19
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297503 start=0 count=57 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:297503 tocEntryId=297503 startLineIndex=0 endLineIndex=56 sourceLineCount=57 plainTextCount=34939 htmlCount=34960 heRef=דרשות הר"ן, א, א durationMs=30
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297503 start=0 count=57 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:297503 tocEntryId=297503 startLineIndex=0 endLineIndex=56 sourceLineCount=57 plainTextCount=34939 htmlCount=34960 heRef=דרשות הר"ן, א, א durationMs=6
+PASS actual reader 3152-paragraph-0 rows=57 cold=31.005859375ms warm=7.1239471435546875ms
+[OtzariaReadingUnitService] bookIndex bookId=3152 tocEntries=13 lineTocMappings=528 durationMs=1
+[OtzariaReadingUnitService] unitSummaries bookId=3152 mode=paragraph count=12 durationMs=1
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297508 start=239 count=31 durationMs=5
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=paragraph result=ok modeUnitId=toc:297508 tocEntryId=297508 startLineIndex=239 endLineIndex=269 sourceLineCount=31 plainTextCount=26578 htmlCount=26588 heRef=דרשות הר"ן, ו, א durationMs=12
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297508 start=239 count=31 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=paragraph result=ok modeUnitId=toc:297508 tocEntryId=297508 startLineIndex=239 endLineIndex=269 sourceLineCount=31 plainTextCount=26578 htmlCount=26588 heRef=דרשות הר"ן, ו, א durationMs=5
+PASS actual reader 3152-paragraph-264 rows=31 cold=12.769699096679688ms warm=5.4454803466796875ms
+[OtzariaReadingUnitService] bookIndex bookId=3152 tocEntries=13 lineTocMappings=528 durationMs=0
+[OtzariaReadingUnitService] unitSummaries bookId=3152 mode=chapter count=12 durationMs=1
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297503 start=0 count=57 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=chapter result=ok modeUnitId=toc:297503 tocEntryId=297503 startLineIndex=0 endLineIndex=56 sourceLineCount=57 plainTextCount=34939 htmlCount=34960 heRef=דרשות הר"ן, א, א durationMs=11
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297503 start=0 count=57 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=chapter result=ok modeUnitId=toc:297503 tocEntryId=297503 startLineIndex=0 endLineIndex=56 sourceLineCount=57 plainTextCount=34939 htmlCount=34960 heRef=דרשות הר"ן, א, א durationMs=6
+PASS actual reader 3152-chapter-0 rows=57 cold=11.690139770507812ms warm=7.160186767578125ms
+[OtzariaReadingUnitService] bookIndex bookId=3152 tocEntries=13 lineTocMappings=528 durationMs=0
+[OtzariaReadingUnitService] unitSummaries bookId=3152 mode=chapter count=12 durationMs=1
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297508 start=239 count=31 durationMs=5
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=chapter result=ok modeUnitId=toc:297508 tocEntryId=297508 startLineIndex=239 endLineIndex=269 sourceLineCount=31 plainTextCount=26578 htmlCount=26588 heRef=דרשות הר"ן, ו, א durationMs=12
+[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297508 start=239 count=31 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=chapter result=ok modeUnitId=toc:297508 tocEntryId=297508 startLineIndex=239 endLineIndex=269 sourceLineCount=31 plainTextCount=26578 htmlCount=26588 heRef=דרשות הר"ן, ו, א durationMs=5
+PASS actual reader 3152-chapter-264 rows=31 cold=12.380599975585938ms warm=5.8765411376953125ms
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=nil start=0 count=1 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=24 htmlCount=33 heRef= durationMs=4
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=nil start=0 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=24 htmlCount=33 heRef= durationMs=0
+PASS actual reader 5869-line-0 rows=1 cold=4.7740936279296875ms warm=0.576019287109375ms
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=nil start=95380 count=1 durationMs=15
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=line result=ok modeUnitId=line:95380 tocEntryId=nil startLineIndex=95380 endLineIndex=95380 sourceLineCount=1 plainTextCount=382 htmlCount=382 heRef=דור המלקטים על אורח חיים 95381 durationMs=15
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=nil start=95380 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=line result=ok modeUnitId=line:95380 tocEntryId=nil startLineIndex=95380 endLineIndex=95380 sourceLineCount=1 plainTextCount=382 htmlCount=382 heRef=דור המלקטים על אורח חיים 95381 durationMs=0
+PASS actual reader 5869-line-95380 rows=1 cold=16.162872314453125ms warm=0.644683837890625ms
+[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=363
+[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=paragraph count=411 durationMs=410
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851640 start=0 count=8 durationMs=3
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:851640 tocEntryId=851640 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextCount=925 htmlCount=957 heRef=דור המלקטים על אורח חיים 2 durationMs=415
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851640 start=0 count=8 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:851640 tocEntryId=851640 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextCount=925 htmlCount=957 heRef=דור המלקטים על אורח חיים 2 durationMs=0
+PASS actual reader 5869-paragraph-0 rows=8 cold=415.4987335205078ms warm=0.9746551513671875ms
+[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=182
+[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=paragraph count=411 durationMs=226
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851850 start=94282 count=1192 durationMs=10
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=paragraph result=ok modeUnitId=toc:851850 tocEntryId=851850 startLineIndex=94282 endLineIndex=95473 sourceLineCount=1192 plainTextCount=194781 htmlCount=199236 heRef=דור המלקטים על אורח חיים 94284 durationMs=292
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851850 start=94282 count=1192 durationMs=4
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=paragraph result=ok modeUnitId=toc:851850 tocEntryId=851850 startLineIndex=94282 endLineIndex=95473 sourceLineCount=1192 plainTextCount=194781 htmlCount=199236 heRef=דור המלקטים על אורח חיים 94284 durationMs=56
+PASS actual reader 5869-paragraph-95380 rows=1192 cold=293.0641174316406ms warm=56.99920654296875ms
+[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=177
+[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=chapter count=7 durationMs=298
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851640 start=0 count=8 durationMs=2
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=chapter result=ok modeUnitId=toc:851640 tocEntryId=851640 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextCount=925 htmlCount=957 heRef=דור המלקטים על אורח חיים 2 durationMs=302
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851640 start=0 count=8 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=chapter result=ok modeUnitId=toc:851640 tocEntryId=851640 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextCount=925 htmlCount=957 heRef=דור המלקטים על אורח חיים 2 durationMs=0
+PASS actual reader 5869-chapter-0 rows=8 cold=303.0586242675781ms warm=0.8792877197265625ms
+[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=182
+[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=chapter count=7 durationMs=297
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=694
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextCount=17728260 htmlCount=18066752 heRef=דור המלקטים על אורח חיים 40922 durationMs=7145
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=610
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextCount=17728260 htmlCount=18066752 heRef=דור המלקטים על אורח חיים 40922 durationMs=6585
+PASS actual reader 5869-chapter-95380 rows=110196 cold=7145.395278930664ms warm=6586.177825927734ms
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=nil start=0 count=1 durationMs=7
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=21 htmlCount=30 heRef= durationMs=8
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=nil start=0 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=21 htmlCount=30 heRef= durationMs=0
+PASS actual reader 6049-line-0 rows=1 cold=8.729934692382812ms warm=1.2359619140625ms
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=nil start=68098 count=1 durationMs=21
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=line result=ok modeUnitId=line:68098 tocEntryId=nil startLineIndex=68098 endLineIndex=68098 sourceLineCount=1 plainTextCount=85 htmlCount=85 heRef=אספקלריה אותיות א - מ 68099 durationMs=22
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=nil start=68098 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=line result=ok modeUnitId=line:68098 tocEntryId=nil startLineIndex=68098 endLineIndex=68098 sourceLineCount=1 plainTextCount=85 htmlCount=85 heRef=אספקלריה אותיות א - מ 68099 durationMs=0
+PASS actual reader 6049-line-68098 rows=1 cold=22.558212280273438ms warm=1.003265380859375ms
+[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=561
+[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=paragraph count=28621 durationMs=716
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=899017 start=0 count=4 durationMs=5
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:899017 tocEntryId=899017 startLineIndex=0 endLineIndex=3 sourceLineCount=4 plainTextCount=107 htmlCount=125 heRef=אספקלריה אותיות א - מ 2 durationMs=725
+[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=174
+[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=paragraph count=28621 durationMs=325
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=899017 start=0 count=4 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:899017 tocEntryId=899017 startLineIndex=0 endLineIndex=3 sourceLineCount=4 plainTextCount=107 htmlCount=125 heRef=אספקלריה אותיות א - מ 2 durationMs=329
+PASS actual reader 6049-paragraph-0 rows=4 cold=725.6984710693359ms warm=329.37049865722656ms
+[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=191
+[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=paragraph count=28621 durationMs=330
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=913133 start=68096 count=4 durationMs=2
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=paragraph result=ok modeUnitId=toc:913133 tocEntryId=913133 startLineIndex=68096 endLineIndex=68099 sourceLineCount=4 plainTextCount=271 htmlCount=280 heRef=אספקלריה אותיות א - מ 68098 durationMs=337
+[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=169
+[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=paragraph count=28621 durationMs=311
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=913133 start=68096 count=4 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=paragraph result=ok modeUnitId=toc:913133 tocEntryId=913133 startLineIndex=68096 endLineIndex=68099 sourceLineCount=4 plainTextCount=271 htmlCount=280 heRef=אספקלריה אותיות א - מ 68098 durationMs=315
+PASS actual reader 6049-paragraph-68098 rows=4 cold=337.3756408691406ms warm=315.3038024902344ms
+[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=193
+[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=chapter count=13 durationMs=323
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=899017 start=0 count=30435 durationMs=272
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=chapter result=ok modeUnitId=toc:899017 tocEntryId=899017 startLineIndex=0 endLineIndex=30434 sourceLineCount=30435 plainTextCount=7686093 htmlCount=7754666 heRef=אספקלריה אותיות א - מ 2 durationMs=3207
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=899017 start=0 count=30435 durationMs=176
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=chapter result=ok modeUnitId=toc:899017 tocEntryId=899017 startLineIndex=0 endLineIndex=30434 sourceLineCount=30435 plainTextCount=7686093 htmlCount=7754666 heRef=אספקלריה אותיות א - מ 2 durationMs=2650
+PASS actual reader 6049-chapter-0 rows=30435 cold=3207.794189453125ms warm=2650.909423828125ms
+[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=266
+[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=chapter count=13 durationMs=431
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=913001 start=67440 count=7519 durationMs=105
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=chapter result=ok modeUnitId=toc:913001 tocEntryId=913001 startLineIndex=67440 endLineIndex=74958 sourceLineCount=7519 plainTextCount=1661697 htmlCount=1680676 heRef=אספקלריה אותיות א - מ 67443 durationMs=1330
+[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=913001 start=67440 count=7519 durationMs=56
+[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=chapter result=ok modeUnitId=toc:913001 tocEntryId=913001 startLineIndex=67440 endLineIndex=74958 sourceLineCount=7519 plainTextCount=1661697 htmlCount=1680676 heRef=אספקלריה אותיות א - מ 67443 durationMs=901
+PASS actual reader 6049-chapter-68098 rows=7519 cold=1330.9669494628906ms warm=902.0957946777344ms
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=nil start=0 count=1 durationMs=3
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=21 htmlCount=30 heRef= durationMs=4
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=nil start=0 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextCount=21 htmlCount=30 heRef= durationMs=0
+PASS actual reader 6050-line-0 rows=1 cold=4.55474853515625ms warm=0.60272216796875ms
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=nil start=45427 count=1 durationMs=23
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=line result=ok modeUnitId=line:45427 tocEntryId=nil startLineIndex=45427 endLineIndex=45427 sourceLineCount=1 plainTextCount=10 htmlCount=19 heRef= durationMs=24
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=nil start=45427 count=1 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=line result=ok modeUnitId=line:45427 tocEntryId=nil startLineIndex=45427 endLineIndex=45427 sourceLineCount=1 plainTextCount=10 htmlCount=19 heRef= durationMs=0
+PASS actual reader 6050-line-45427 rows=1 cold=24.944305419921875ms warm=1.007080078125ms
+[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=290
+[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=paragraph count=18862 durationMs=437
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=927639 start=0 count=4 durationMs=3
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:927639 tocEntryId=927639 startLineIndex=0 endLineIndex=3 sourceLineCount=4 plainTextCount=107 htmlCount=125 heRef=אספקלריה אותיות נ - ת 2 durationMs=445
+[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=148
+[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=paragraph count=18862 durationMs=269
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=927639 start=0 count=4 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:927639 tocEntryId=927639 startLineIndex=0 endLineIndex=3 sourceLineCount=4 plainTextCount=107 htmlCount=125 heRef=אספקלריה אותיות נ - ת 2 durationMs=274
+PASS actual reader 6050-paragraph-0 rows=4 cold=445.4364776611328ms warm=274.5780944824219ms
+[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=195
+[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=paragraph count=18862 durationMs=313
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=937705 start=45427 count=19 durationMs=3
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=paragraph result=ok modeUnitId=toc:937705 tocEntryId=937705 startLineIndex=45427 endLineIndex=45445 sourceLineCount=19 plainTextCount=10609 htmlCount=10618 heRef=אספקלריה אותיות נ - ת 45429 durationMs=321
+[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=159
+[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=paragraph count=18862 durationMs=292
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=937705 start=45427 count=19 durationMs=0
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=paragraph result=ok modeUnitId=toc:937705 tocEntryId=937705 startLineIndex=45427 endLineIndex=45445 sourceLineCount=19 plainTextCount=10609 htmlCount=10618 heRef=אספקלריה אותיות נ - ת 45429 durationMs=298
+PASS actual reader 6050-paragraph-45427 rows=19 cold=322.0787048339844ms warm=298.1910705566406ms
+[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=201
+[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=chapter count=9 durationMs=305
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=927639 start=0 count=10703 durationMs=200
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=chapter result=ok modeUnitId=toc:927639 tocEntryId=927639 startLineIndex=0 endLineIndex=10702 sourceLineCount=10703 plainTextCount=3084225 htmlCount=3107255 heRef=אספקלריה אותיות נ - ת 2 durationMs=1633
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=927639 start=0 count=10703 durationMs=72
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=chapter result=ok modeUnitId=toc:927639 tocEntryId=927639 startLineIndex=0 endLineIndex=10702 sourceLineCount=10703 plainTextCount=3084225 htmlCount=3107255 heRef=אספקלריה אותיות נ - ת 2 durationMs=1327
+PASS actual reader 6050-chapter-0 rows=10703 cold=1633.626937866211ms warm=1327.5566101074219ms
+[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=201
+[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=chapter count=9 durationMs=325
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=936684 start=40712 count=10055 durationMs=187
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=chapter result=ok modeUnitId=toc:936684 tocEntryId=936684 startLineIndex=40712 endLineIndex=50766 sourceLineCount=10055 plainTextCount=2862956 htmlCount=2882251 heRef=אספקלריה אותיות נ - ת 40715 durationMs=1715
+[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=936684 start=40712 count=10055 durationMs=76
+[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=chapter result=ok modeUnitId=toc:936684 tocEntryId=936684 startLineIndex=40712 endLineIndex=50766 sourceLineCount=10055 plainTextCount=2862956 htmlCount=2882251 heRef=אספקלריה אותיות נ - ת 40715 durationMs=1059
+PASS actual reader 6050-chapter-45427 rows=10055 cold=1715.7745361328125ms warm=1060.0509643554688ms

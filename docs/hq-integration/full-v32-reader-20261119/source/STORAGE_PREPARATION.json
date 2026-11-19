@@ -1,0 +1,19 @@
+{
+  "observed_at_utc": "2026-11-19T17:39:34.820474+00:00",
+  "reason": "Available disk decreased after initial preflight; retain exact owned source bytes with NTFS compression on new fixture files.",
+  "owned_directory": "C:\\Users\\DAVID\\Code\\Maktabah-continuation-20261117\\build\\full-v32-performance-20261119",
+  "free_bytes_before": 1239990272,
+  "baseline_comparison_boundary": "Same verified database and storage attributes must be retained for before/after; no cross-storage or device timing claim.",
+  "command": [
+    "compact",
+    "/C",
+    "/I",
+    "/Q",
+    "C:\\Users\\DAVID\\Code\\Maktabah-continuation-20261117\\build\\full-v32-performance-20261119"
+  ],
+  "exit_code": 0,
+  "stdout": "\n Compressing files in C:\\Users\\DAVID\\Code\\Maktabah-continuation-20261117\\build\\\n\n\n1 files within 1 directories were compressed.\n0 total bytes of data are stored in 0 bytes.\nThe compression ratio is 1.0 to 1.\n",
+  "stderr": "",
+  "directory_attributes": 2064,
+  "directory_compressed": true
+}

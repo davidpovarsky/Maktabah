@@ -1,0 +1,10 @@
+{
+  "observation_timing": "After the initial candidate run and before owned-fixture compression; not continuous samples during its timed intervals.",
+  "memory_load_percent": 85,
+  "total_physical_bytes": 16870088704,
+  "available_physical_bytes": 2472505344,
+  "free_disk_bytes": 416231424,
+  "largest_warm_source_lines_ms": 11150,
+  "baseline_largest_warm_source_lines_ms": 610,
+  "causality": "Source-line retrieval is unchanged in the patch. This observation motivated paired same-process validation; it does not by itself prove the cause of the slow sample."
+}

@@ -1,0 +1,40 @@
+{
+  "archived_at_utc": "2026-11-19T17:51:06.993934+00:00",
+  "source_status": "VERIFIED_FULL_V32_READONLY_FIXTURE_READY",
+  "database_sha256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "original_archived_source_files": [
+    {
+      "file": "PREPARATION.json",
+      "bytes": 1594,
+      "sha256": "0d4455d4df32ed2127269c3e6caeb9406079675b8df0334336981e617a1c5cdb"
+    },
+    {
+      "file": "PREPARATION_FAILED_DISK_20261119.json",
+      "bytes": 953,
+      "sha256": "433d84b5106f6f84764684fc6c65633bb63537b7baea0d80000455519d1e242f"
+    },
+    {
+      "file": "RESTORATION_RECOVERY_FAILED_DISK_2.json",
+      "bytes": 1479,
+      "sha256": "04888a7e3d1a729194de23f380902e5fe41e304366c2224b1cb667545a35dda0"
+    },
+    {
+      "file": "PREFIX_COMPLETION.json",
+      "bytes": 1342,
+      "sha256": "1f7f372f0d17e5e6d6fd0444b98ae65efd8f84c59a9f5a6b7267608dc0a188cc"
+    },
+    {
+      "file": "STORAGE_PREPARATION.json",
+      "bytes": 1012,
+      "sha256": "902e0cea4d11ae828e66ae72a4eb3f9bed37a027b9e41e1983bbc977c0d8a6b8"
+    },
+    {
+      "file": "OWNED_COMPILER_CACHE_RELEASE.json",
+      "bytes": 554,
+      "sha256": "98458cd189ef6d37f8300e03c58ccb62e5008ad8e35ea7dac990964bc797fd4e"
+    }
+  ],
+  "database_text_included": false,
+  "original_public_asset_remains_authority": true,
+  "baseline_and_candidate_storage_requirement": "Use this same NTFS-compressed read-only file for both measurements; do not mix compile modes or storage properties in a source speedup claim."
+}

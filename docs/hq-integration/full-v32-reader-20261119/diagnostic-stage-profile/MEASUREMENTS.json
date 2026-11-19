@@ -1,0 +1,34 @@
+{
+  "native_ui_executed" : 0,
+  "physical_device_executed" : 0,
+  "records" : [
+    {
+      "build_unit_including_source_and_normalization_ms" : 6321.4111328125,
+      "descriptor_ms" : 608.1027984619141,
+      "diagnostic_grapheme_counts_ms" : 1926.5327453613281,
+      "html_graphemes" : 18066752,
+      "pass" : 0,
+      "plain_graphemes" : 17728260,
+      "source_rows" : 110196
+    },
+    {
+      "build_unit_including_source_and_normalization_ms" : 5668.767929077148,
+      "descriptor_ms" : 0.5245208740234375,
+      "diagnostic_grapheme_counts_ms" : 1798.5801696777344,
+      "html_graphemes" : 18066752,
+      "pass" : 1,
+      "plain_graphemes" : 17728260,
+      "source_rows" : 110196
+    },
+    {
+      "build_unit_including_source_and_normalization_ms" : 5900.318145751953,
+      "descriptor_ms" : 0.46539306640625,
+      "diagnostic_grapheme_counts_ms" : 2243.0038452148438,
+      "html_graphemes" : 18066752,
+      "pass" : 2,
+      "plain_graphemes" : 17728260,
+      "source_rows" : 110196
+    }
+  ],
+  "status" : "DIAGNOSTIC_ORIGINAL_BUILD_VS_LOG_COUNTS_NOT_ACCEPTANCE"
+}

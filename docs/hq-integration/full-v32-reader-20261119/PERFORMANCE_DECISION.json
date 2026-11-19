@@ -1,0 +1,55 @@
+{
+  "status": "ACCEPT_SCOPED_LOGGING_COST_REDUCTION_NOT_FULL_PERFORMANCE_ACCEPTANCE",
+  "candidate_source_sha": "7b2b6a1a7067496be2a2e2f232cf91f9cd8e2478",
+  "change": "Only unitSummary diagnostic sizes become explicitly labelled UTF8 byte counts, removing full-text grapheme enumeration. No text normalization, content, cache budget, chapter size, TOC or UTF16-anchor changes.",
+  "full_original_reader_oracle": "EXACT_ORIGINAL_READER_OUTPUT_PARITY_PASS_NOT_UI",
+  "reader_cases": 36,
+  "navigation_cases": 18,
+  "verified_source_row_appearances": 170587,
+  "normalizer_unchanged": true,
+  "initial_end_to_end_regression_retained": true,
+  "paired_same_process_diagnostic": [
+    {
+      "round": 0,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline_cold_ms": 8410.554885864258,
+      "candidate_cold_ms": 4316.989898681641,
+      "baseline_warm_ms": 7081.80046081543,
+      "candidate_warm_ms": 4493.129730224609,
+      "cold_reduction_percent": 48.67175879278467,
+      "warm_reduction_percent": 36.55385018138099
+    },
+    {
+      "round": 1,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "baseline_cold_ms": 7233.1390380859375,
+      "candidate_cold_ms": 4591.831207275391,
+      "baseline_warm_ms": 6136.53564453125,
+      "candidate_warm_ms": 4576.648712158203,
+      "cold_reduction_percent": 36.51675734287419,
+      "warm_reduction_percent": 25.419667100983677
+    }
+  ],
+  "baseline_profile_grapheme_count_ms": [
+    1926.5327453613281,
+    1798.5801696777344,
+    2243.0038452148438
+  ],
+  "new_byte_size_diagnostic_observation": "0.000-0.002 ms at Date timer resolution; not a literal zero-cost claim.",
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "full_task_complete": false,
+  "open_acceptance": [
+    "first-visible time",
+    "p95 distribution",
+    "UIKit/TextKit and frame/CPU/RSS on Apple",
+    "full installed database/indexes",
+    "physical iPad"
+  ]
+}

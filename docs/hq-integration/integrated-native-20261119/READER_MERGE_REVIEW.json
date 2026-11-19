@@ -1,0 +1,23 @@
+{
+  "observed_at_utc": "2026-11-19T18:29:40.565222+00:00",
+  "parents": [
+    "114e3331cddb9cc3e004f774d256df4d3f3068b2",
+    "e1d84ede24e3dfbde8069570059ec1b4acb25642"
+  ],
+  "source_changes_from_accepted_native2_application": [
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift"
+  ],
+  "ui_test_tree_unchanged": true,
+  "normalizer_unchanged": true,
+  "vendor_and_project_trees_unchanged": true,
+  "native2_acceptance_run": 44571075774,
+  "native2_tested_source": "5a40fe9c25e8dd6cfaef71c2f51e34d0adbd796e",
+  "reader_tested_source": "7b2b6a1a7067496be2a2e2f232cf91f9cd8e2478",
+  "source_trees": {
+    "Source": "def7aa262875002d5630e55c250dceaccb5a513f",
+    "Vendor": "064e4bcf3f8eea6270f875428c960e7c214ad167",
+    "Maktabah.xcodeproj": "1175aa91ffff58b465c635926ba3eebe9a80ae53"
+  },
+  "native_acceptance_on_combined_source": 0,
+  "scope": "Merge tested diagnostic logging change and complete evidence. The only new product source delta is explicit UTF8 diagnostic sizes. Existing 77-case freeze must be refreshed before any combined Native dispatch."
+}

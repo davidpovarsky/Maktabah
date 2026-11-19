@@ -1,0 +1,22 @@
+{
+  "source": {
+    "repository": "Otzaria/SeforimLibrary",
+    "releaseTag": "v32-20261010190601",
+    "releaseID": 409213893,
+    "assetID": 629048655,
+    "assetName": "seforim-schema6.db.zst",
+    "assetBytes": 1850679582,
+    "assetSHA256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+    "databaseBytes": 3821240320,
+    "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
+  },
+  "status": "PREPARATION_INCOMPLETE",
+  "started_at_utc": "2026-11-19T17:04:10.909864+00:00",
+  "owned_directory": "C:\\Users\\DAVID\\Code\\Maktabah-continuation-20261117\\build\\full-v32-performance-20261119",
+  "user_data_modified": false,
+  "native_ui_executed": 0,
+  "downloaded_bytes": 1850679582,
+  "archive_sha256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+  "database_bytes_written": 3221225472,
+  "error": "RuntimeError: Insufficient remaining disk space; partial retained"
+}

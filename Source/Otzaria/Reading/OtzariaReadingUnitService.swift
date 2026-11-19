@@ -701,7 +701,9 @@ final class OtzariaReadingUnitService {
 
     private func unitSummary(_ unit: OtzariaReadingUnit?) -> String {
         guard let unit else { return "unit=nil" }
-        return "modeUnitId=\(unit.id) tocEntryId=\(unit.tocEntryId.map(String.init) ?? "nil") startLineIndex=\(unit.startLineIndex) endLineIndex=\(unit.endLineIndex) sourceLineCount=\(unit.sourceLineIndices.count) plainTextCount=\(unit.plainText.count) htmlCount=\(unit.html.count) heRef=\(unit.heRef ?? "")"
+        // Diagnostic sizes must not enumerate every grapheme of a full chapter.
+        // Byte counts are labelled explicitly; content and UTF16 anchors are unchanged.
+        return "modeUnitId=\(unit.id) tocEntryId=\(unit.tocEntryId.map(String.init) ?? "nil") startLineIndex=\(unit.startLineIndex) endLineIndex=\(unit.endLineIndex) sourceLineCount=\(unit.sourceLineIndices.count) plainTextUTF8Bytes=\(unit.plainText.utf8.count) htmlUTF8Bytes=\(unit.html.utf8.count) heRef=\(unit.heRef ?? "")"
     }
 
     private func log(_ message: String) {

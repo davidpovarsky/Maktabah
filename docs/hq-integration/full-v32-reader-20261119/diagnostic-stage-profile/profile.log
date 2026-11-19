@@ -1,0 +1,8 @@
+[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=441
+[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=chapter count=7 durationMs=607
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=1405
+PROFILE 0 descriptor=608.1027984619141 build=6321.4111328125 counts=1926.5327453613281
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=706
+PROFILE 1 descriptor=0.5245208740234375 build=5668.767929077148 counts=1798.5801696777344
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=655
+PROFILE 2 descriptor=0.46539306640625 build=5900.318145751953 counts=2243.0038452148438
