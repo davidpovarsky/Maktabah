@@ -349,6 +349,21 @@
       "rollback": "Remove additive semantic action and its passive Search UI hook together; original state and data preserved.",
       "reviewer": "Root plus independent native-source review; actual UIKit acceptance still pending",
       "re_review": "Next original Search UI/lifecycle change or upstream sync"
+    },
+    {
+      "patch_id": "COMPLETION_20261120_NATIVE_ACTION_ACCEPTANCE_TRIGGER",
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+      "status": "DEBUG_TEST_HOOK_SYNTAX_PASS_APPLE_NATIVE_NOT_RUN",
+      "patch_digest_sha256": "2bdc60f62488ee84cb746e745a433b1c06bb213436b491a50a0dcb3f7a5f280f",
+      "approval_ref": "docs/hq-integration/actions-native-20261120/REVIEW.md",
+      "owner_authorization": "Current explicit owner instruction authorizes required continuation, code, integrations, tests, commits, pushes and merges without further confirmation.",
+      "necessity": "Five DEBUG-only lines invoke the existing typed Core action from the actually mounted original Search view, under miniTest10/UUID nonce guards.",
+      "rejected_alternatives": "A parallel results view, synthetic witness, echoed query or direct engine bypass would not test the original Core-to-native path.",
+      "tests": "Four Swift frontend iOS DEBUG syntax parses PASS, original profile verifier PASS, independent read-only source evidence PASS. Six Native cases and Apple SDK typecheck NOT_RUN.",
+      "rollback": "Remove this DEBUG task with the downstream acceptance helper and six tests; production controllers, source bytes, editor/save and native guards remain untouched.",
+      "reviewer": "Independent native source review; actual Apple/native acceptance pending parent integration.",
+      "re_review": "Next original Search or reader lifecycle change or upstream sync."
     }
   ]
 }

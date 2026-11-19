@@ -1,0 +1,18 @@
+{
+  "kind": "FAILED_ATTEMPT_NOT_PASS",
+  "result": {
+    "ok": false,
+    "interpreter": "python3",
+    "sudo": false,
+    "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120",
+    "cleanup": true,
+    "command": [
+      "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_2c50ba9b3dad4fa296422e5714bbad68\\script.py"
+    ],
+    "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_2c50ba9b3dad4fa296422e5714bbad68\\script.py\", line 4, in <module>\r\n    r=subprocess.run(cmd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30)\r\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\subprocess.py\", line 550, in run\r\n    stdout, stderr = process.communicate(input, timeout=timeout)\r\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\subprocess.py\", line 1209, in communicate\r\n    stdout, stderr = self._communicate(input, endtime, timeout)\r\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\subprocess.py\", line 1630, in _communicate\r\n    raise TimeoutExpired(self.args, orig_timeout)\r\nsubprocess.TimeoutExpired: Command '['C:\\\\ProgramData\\\\SentinelX\\\\.venv\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-actions-completion-20261120\\\\docs\\\\hq-integration\\\\actions-native-20261120\\\\verify-commentary-fixture.py', '--profile', 'Source/Otzaria/DataProfiles/miniTest10.profile.json', '--database', 'build/actions-native-20261120/miniTest10/seforim.db', '--archive', 'build/actions-native-20261120/miniTest10/miniTest10-seforim.db.zst', '--output', 'C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-actions-completion-20261120\\\\docs\\\\hq-integration\\\\actions-native-20261120\\\\commentary-source-evidence.json']' timed out after 30 seconds",
+    "duration": 33.74,
+    "returncode": 1,
+    "hub_request_id": "hreq_ad7283143b444c62"
+  }
+}

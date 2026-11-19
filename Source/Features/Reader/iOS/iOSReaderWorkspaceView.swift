@@ -221,6 +221,14 @@ struct iOSReaderWorkspaceView: View {
             attachNativeNoteEditor()
         }
         .onDisappear { nativeRoutingSession?.detachNoteEditor(id: nativeNoteEditorOwnerID) }
+        #if DEBUG
+        .task {
+            await MaktabahNativeRoutingComposition.shared.runNoteDraftAcceptanceProbe(
+                manager: navigationManager, reader: viewModel, currentDraft: { editingAnnotation })
+            await MaktabahNativeRoutingComposition.shared.runCommentaryAcceptanceProbe(
+                manager: navigationManager, reader: viewModel)
+        }
+        #endif
         .task {
             if runsCompactTOCTransitionSmoke {
                 for _ in 0..<50 where !showPanelSheet {

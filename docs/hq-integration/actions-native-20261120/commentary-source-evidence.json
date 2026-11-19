@@ -1,0 +1,92 @@
+{
+  "kind": "INDEPENDENT_SOURCE_RELATION_AND_TEXT_NOT_NATIVE_PASS",
+  "profileID": "miniTest10",
+  "profileVersion": 6,
+  "databaseBytes": 15470592,
+  "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "archiveSHA256": "e9e6dedd2ceaadbe46234612c359e5bd8add00c348be8eaeba85cf029fa5c4d3",
+  "dictionarySHA256": "7b08b7c3534c9f9cd0e8f18414b4326aeeb64cfd574cc0f12d83b6f92bd6a396",
+  "scriptSHA256": "f2753a3a423a99e68824bafa9a35ea86b4354f69df0eb2d0878b50e38858772f",
+  "profileSHA256": "6b4913f7961efce4028cf34ac51f726586a67d6230c31ecbed5b0e57ae75a658",
+  "quickCheck": "ok",
+  "readOnly": true,
+  "databaseUnchanged": true,
+  "sql": "WITH matched(linkId, side) AS (\n SELECT id, 0 FROM link WHERE sourceBookId=28 AND sourceLineId=6188105\n UNION SELECT l.id, 0 FROM link_coverage c JOIN link l ON l.id=c.linkId\n       WHERE c.side=0 AND c.lineId=6188105 AND l.sourceBookId=28\n UNION SELECT id, 1 FROM link WHERE targetBookId=28 AND targetLineId=6188105\n UNION SELECT l.id, 1 FROM link_coverage c JOIN link l ON l.id=c.linkId\n       WHERE c.side=1 AND c.lineId=6188105 AND l.targetBookId=28\n)\nSELECT DISTINCT l.id, m.side, ct.name AS rawConnectionType,\n l.sourceBookId, l.targetBookId, l.sourceLineId, l.targetLineId,\n CASE m.side WHEN 0 THEN l.targetBookId ELSE l.sourceBookId END AS linkedBookID,\n CASE m.side WHEN 0 THEN l.targetLineId ELSE l.sourceLineId END AS linkedLineID\nFROM matched m JOIN link l ON l.id=m.linkId\nJOIN connection_type ct ON ct.id=l.connectionTypeId\nWHERE (CASE m.side WHEN 0 THEN l.targetBookId ELSE l.sourceBookId END)=3276\n AND NOT EXISTS (SELECT 1 FROM link_suppressed_side s WHERE s.linkId=l.id AND s.side=m.side)\nORDER BY l.id, m.side",
+  "books": [
+    {
+      "id": 28,
+      "title": "תהילים",
+      "isBaseBook": 1,
+      "dependenceType": null
+    },
+    {
+      "id": 3276,
+      "title": "חומת אנך על תהלים",
+      "isBaseBook": 0,
+      "dependenceType": "commentary"
+    }
+  ],
+  "links": [
+    {
+      "id": 6528846,
+      "side": 1,
+      "rawConnectionType": "REFERENCE",
+      "sourceBookId": 3276,
+      "targetBookId": 28,
+      "sourceLineId": 6610321,
+      "targetLineId": 6188105,
+      "linkedBookID": 3276,
+      "linkedLineID": 6610321
+    },
+    {
+      "id": 6529212,
+      "side": 0,
+      "rawConnectionType": "COMMENTARY",
+      "sourceBookId": 28,
+      "targetBookId": 3276,
+      "sourceLineId": 6188105,
+      "targetLineId": 6609893,
+      "linkedBookID": 3276,
+      "linkedLineID": 6609893
+    }
+  ],
+  "eligibleCommentaryLinks": [
+    {
+      "id": 6529212,
+      "side": 0,
+      "rawConnectionType": "COMMENTARY",
+      "sourceBookId": 28,
+      "targetBookId": 3276,
+      "sourceLineId": 6188105,
+      "targetLineId": 6609893,
+      "linkedBookID": 3276,
+      "linkedLineID": 6609893
+    }
+  ],
+  "excludedReferenceLinkIDs": [
+    6528846
+  ],
+  "classificationSource": "Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift",
+  "suppressedSides": [],
+  "coverage": [],
+  "rows": [
+    {
+      "id": 6188105,
+      "bookId": 28,
+      "lineIndex": 2,
+      "heRef": "תהילים, א, א",
+      "html": "(א) אַ֥שְֽׁרֵי<span class=\"mam-implicit-maqaf\">־</span>הָאִ֗ישׁ אֲשֶׁ֤ר&thinsp;<b>׀</b> לֹ֥א הָלַךְ֮ בַּעֲצַ֢ת רְשָׁ֫עִ֥ים וּבְדֶ֣רֶךְ חַ֭טָּאִים לֹ֥א עָמָ֑ד וּבְמוֹשַׁ֥ב לֵ֝צִ֗ים לֹ֣א יָשָֽׁב׃",
+      "plainText": "(א) אַ֥שְֽׁרֵי־הָאִ֗ישׁ אֲשֶׁ֤ר ׀ לֹ֥א הָלַךְ֮ בַּעֲצַ֢ת רְשָׁ֫עִ֥ים וּבְדֶ֣רֶךְ חַ֭טָּאִים לֹ֥א עָמָ֑ד וּבְמוֹשַׁ֥ב לֵ֝צִ֗ים לֹ֣א יָשָֽׁב׃",
+      "plainSHA256": "fb2e82003d0c6074169020011cdf92c1b36671ca8eaacef2295488db14a22c15"
+    },
+    {
+      "id": 6609893,
+      "bookId": 3276,
+      "lineIndex": 4,
+      "heRef": "חומת אנך על תהלים, א, א, א",
+      "html": "<b>אשרי האיש</b>. אפשר להסמיך רמז שאם חטא אפילו בשוגג תכף יכנע וישפוך נפשו לפני ה' שימחול לו ובזה לא יבא לחטא אחר או למזיד. וזהו ראשי תיבות אשרי האיש. אם שגג רחמים יבקש ה' אלהים יסלח שגגתו:",
+      "plainText": "אשרי האיש. אפשר להסמיך רמז שאם חטא אפילו בשוגג תכף יכנע וישפוך נפשו לפני ה' שימחול לו ובזה לא יבא לחטא אחר או למזיד. וזהו ראשי תיבות אשרי האיש. אם שגג רחמים יבקש ה' אלהים יסלח שגגתו:",
+      "plainSHA256": "c6268174b7b68e32832c7beee72f7cf4932bb5607896a510d635c52ca79b5fd9"
+    }
+  ]
+}

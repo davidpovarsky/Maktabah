@@ -1,0 +1,17 @@
+{
+  "kind": "SOURCE_AND_SYNTAX_EVIDENCE_NOT_APPLE_NATIVE_PASS",
+  "baseCommit": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+  "swiftSyntaxParse": "PASS_4_FILES",
+  "AppleSDKTypecheck": "NOT_RUN",
+  "NativeUI": "NOT_RUN_6_CASES",
+  "originalProfileVerifier": "PASS",
+  "independentSourceVerifier": "PASS",
+  "initialRawLinkUniquenessAssumption": "FAILED_CORRECTED_WITH_BOTH_RELATIONS_PRESERVED",
+  "stagedDiffCheck": "PASS",
+  "stagedSourceSHA256": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "df01f95c3d47accd8823553578d17cefd296ce6dcc02a5db063ade63bcbc9b40",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "68ceb83fc5480161e7d02af41def45328b0e00f121893e82ea010970e3f06338",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": "78dccc65089a6f8a487a217dad13ac5fa3795126e4e15eb934a072565150a987",
+    "Source/Features/Search/iOS/SearchModeView.swift": "25c1f34a17fd4c565c9c557a21b842275eb5c970858c4c3a11327609dac320fb"
+  }
+}
