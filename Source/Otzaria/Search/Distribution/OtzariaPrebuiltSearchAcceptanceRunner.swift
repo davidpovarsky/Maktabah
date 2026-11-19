@@ -88,19 +88,16 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
 
             let resolved: OtzariaResolvedSearchArtifact
             if let releaseBaseURL, let base = URL(string: releaseBaseURL), let releasesPath {
-                let manifestData = try Data(contentsOf: URL(fileURLWithPath: manifestPath))
                 let releasesData = try Data(contentsOf: URL(fileURLWithPath: releasesPath))
+                // Preserve the URL-to-manifest identity for every candidate release.
+                // Reusing the pinned manifest for a newer release can select the
+                // wrong package when their part filenames happen to be identical.
                 let discovered = try await OtzariaSearchArtifactReleaseClient().matchingArtifact(
                     releasesData: releasesData,
                     database: databaseManifest,
                     databaseBytes: databaseBytes,
                     build: build
-                ) { requestedURL in
-                    guard requestedURL.lastPathComponent == OtzariaSearchArtifactReleaseClient.manifestAssetName else {
-                        throw OtzariaSearchArtifactError.missingPart(requestedURL.lastPathComponent)
-                    }
-                    return manifestData
-                }
+                )
                 guard discovered.releaseTag == base.lastPathComponent,
                       discovered.manifest == localManifest else {
                     throw OtzariaSearchArtifactError.validationFailed(

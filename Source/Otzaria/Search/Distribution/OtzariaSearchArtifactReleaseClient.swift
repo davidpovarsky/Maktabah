@@ -53,6 +53,22 @@ struct OtzariaSearchArtifactReleaseClient: Sendable {
             database: database,
             databaseBytes: databaseBytes,
             build: build
+        )
+    }
+
+    /// Resolve captured release metadata using each candidate's real manifest URL.
+    /// Both production discovery and native acceptance share the same transport.
+    func matchingArtifact(
+        releasesData: Data,
+        database: OtzariaDatabaseInstallationManifest,
+        databaseBytes: Int64,
+        build: OtzariaSearchEngineBuildInfo
+    ) async throws -> OtzariaResolvedSearchArtifact {
+        try await matchingArtifact(
+            releasesData: releasesData,
+            database: database,
+            databaseBytes: databaseBytes,
+            build: build
         ) { url in
             let (manifestData, manifestResponse) = try await session.data(
                 for: request(url: url)

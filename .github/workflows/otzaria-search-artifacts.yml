@@ -415,6 +415,8 @@ jobs:
           python3 -c 'import shutil; assert shutil.disk_usage(".").free >= 35 * 1024**3, "Need 35 GiB free before the original app build"'
           python3 Scripts/CI/hq-v32-prebuilt-native.py preflight --expected-sha "$EXPECTED_CHECKOUT_SHA"
           command -v zstd >/dev/null || brew install zstd
+      - name: Regress candidate manifest identity through the original URLSession transport
+        run: bash Scripts/CI/test-artifact-release-discovery.sh
       - name: Build the original integrated app for the simulator
         env:
           GH_TOKEN: ${{ github.token }}

@@ -15,3 +15,7 @@ docs/hq-native-binding-integration/mount-wait-manager/** -text whitespace=-blank
 Maktabah-iOSUITests/canonical-miniTest10-metadata.json -text
 
 Tests/HQ/search/canonical-miniTest10-query-candidates.json -text
+
+
+# Keep the digest-pinned full v32 acceptance manifest byte-exact on Windows.
+docs/hq-integration/full-v32-native-20261119/otzaria-search-manifest.json -text
