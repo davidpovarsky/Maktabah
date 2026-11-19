@@ -595,20 +595,47 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     func exerciseGlobalHistorySubmission(enabled: Bool) -> String {
         let query = "בדיקת היסטוריה " + UUID().uuidString
         launchReader(enabled: enabled, scenario: "search")
-        let globalInput = app.textFields.firstMatch
+        let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+        let globalInput = fields.firstMatch
+        XCTAssertTrue(globalInput.waitForExistence(timeout: 40))
+        XCTAssertEqual(fields.count, 1, "Require the single original global query field")
+        XCTAssertTrue(globalInput.elementType == .searchField || globalInput.elementType == .textField)
+        XCTAssertTrue(app.collectionViews["global-search-history"].waitForExistence(timeout: 20))
         tap(globalInput)
-        globalInput.typeText(query)
-        let start = app.buttons.matching(NSPredicate(format: "label == 'התחל חיפוש' OR label == 'Start Search'")).allElementsBoundByIndex
-            .filter { $0.frame.intersects(globalInput.frame.insetBy(dx: -70, dy: -20)) }
-        XCTAssertEqual(start.count, 1, "Identify the real input-bar submit action uniquely")
-        guard let submit = start.first else { return query }
-        tap(submit)
-        tap(globalInput)
+        // NativeGlobalSearchField.textFieldShouldReturn submits through the
+        // original session; there is no Start Search button in this header.
+        globalInput.typeText(query + "\n")
+        XCTAssertEqual(globalInput.value as? String, query)
+        let application = app!
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                !application.collectionViews["global-search-history"].exists
+                    && !application.otherElements["global-search-loading"].exists
+                    && !application.buttons["global-search-cancel"].exists
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 90), .completed,
+                       "The original Return submission must settle before the history relaunch")
+        // The current original screen shows inline history before a submission,
+        // not on refocus of existing results. Relaunch its actual session and
+        // require the same query persisted by the original submit action.
+        app.terminate()
+        launchReader(enabled: enabled, scenario: "search")
+        let reopenedFields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+        XCTAssertTrue(reopenedFields.firstMatch.waitForExistence(timeout: 40))
+        XCTAssertEqual(reopenedFields.count, 1)
+        tap(reopenedFields.firstMatch)
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10),
+                      "Observe the actual native keyboard before checking usable history")
         // Capture the actual focused global screen even when the following
         // assertion fails, so immutable baseline behavior can be compared.
         capture(enabled ? "candidate-global-search-history" : "baseline-global-search-history")
-        let historyRow = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", query)).firstMatch
+        let historyRows = app.collectionViews["global-search-history"].buttons
+            .matching(identifier: "global-search-history-" + query)
+        let historyRow = historyRows.firstMatch
         let historyIsVisible = historyRow.waitForExistence(timeout: 20)
+        XCTAssertEqual(historyRows.count, 1, "The exact genuine submitted history query must occur once")
+        XCTAssertTrue(historyRow.label.contains(query))
         // Observe only these two known preferences. Never dump all app defaults
         // or seed a history entry: the native submit action remains the writer.
         do {
@@ -637,6 +664,8 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }
         XCTAssertTrue(historyIsVisible, "A submitted global query must appear in the original global history")
         XCTAssertTrue(historyRow.isHittable, "The submitted history row must actually be visible and usable above the native keyboard")
+        XCTAssertLessThanOrEqual(historyRow.frame.maxY, app.keyboards.firstMatch.frame.minY + 2,
+                                 "The original history row must remain above the real native keyboard")
         return query
     }
 }

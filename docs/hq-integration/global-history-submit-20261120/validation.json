@@ -1,0 +1,73 @@
+{
+  "base_source": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+  "status": "PREPARED_NOT_RUN",
+  "required_native_cases": 80,
+  "catalog_count": 80,
+  "previous78_preserved_in_order": true,
+  "restored_original_cases": [
+    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
+  ],
+  "expected_per_device": {
+    "ipad11": 65,
+    "iphone": 15
+  },
+  "groups": {
+    "11-search": 22,
+    "11-reader": 34,
+    "11-sidebar": 5,
+    "11-window": 2,
+    "11": 2,
+    "phone": 15
+  },
+  "declaration_status": "DECLARATIONS_MATCH",
+  "declaration_frontend": "Windows Swift6.3.3 -frontend -dump-parse -D DEBUG",
+  "apple_target_parse_exit": 0,
+  "apple_target_parse_warnings": [
+    "SDKSettings.json unavailable in Windows SDK",
+    "Windows sysroot used while targeting iPhone"
+  ],
+  "apple_sdk_typecheck": "NOT_RUN",
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "production_source_changed": false,
+  "source_hashes": {
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+      "base_repository_lf_sha256": "f9313e6954227593d55406630b1436355724658a76085b5cd369ae6e954fffa2",
+      "working_raw_sha256": "56de96e664914886219c1c226b1622f6c78780136900a3b52d72f7c154716cc0",
+      "working_normalized_lf_sha256": "56de96e664914886219c1c226b1622f6c78780136900a3b52d72f7c154716cc0"
+    },
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": {
+      "base_repository_lf_sha256": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc",
+      "working_raw_sha256": "21b859725028bf37b0203b5b265ffc714b9b229945799672a2b5ee4a2bded2de",
+      "working_normalized_lf_sha256": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc"
+    },
+    "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift": {
+      "base_repository_lf_sha256": "e28b7db9b430281b99463014b0e44956c89ec8d7cb52d83771d518b297f1feb6",
+      "working_raw_sha256": "66cccfce8474646e0892943aa0d6501c4c568636f2c97acf8b6e3d474cf737b9",
+      "working_normalized_lf_sha256": "e28b7db9b430281b99463014b0e44956c89ec8d7cb52d83771d518b297f1feb6"
+    },
+    "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift": {
+      "base_repository_lf_sha256": "4d8595b82e1d9045fbe30a0f001d8251d9c067447d188f8dbcced6a0128eb11e",
+      "working_raw_sha256": "e3e5068b84745ca16433fd0416e48fca03e5334cdfe5b5bfd5d2f5b05bfd3d1f",
+      "working_normalized_lf_sha256": "4d8595b82e1d9045fbe30a0f001d8251d9c067447d188f8dbcced6a0128eb11e"
+    },
+    "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift": {
+      "base_repository_lf_sha256": "43331ffc115ce6825aeb9a7f1c12ea334ebb7a51449b7994c13b16a65bb6b222",
+      "working_raw_sha256": "98284b0ffb8e6609c2bdc7fe928a965af51f9c1315944b00a47a03a5e8ec48e2",
+      "working_normalized_lf_sha256": "43331ffc115ce6825aeb9a7f1c12ea334ebb7a51449b7994c13b16a65bb6b222"
+    },
+    "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift": {
+      "base_repository_lf_sha256": "073dfa913c5b86eeae86b473a6e8cccbb724cee960c762ca0f5eb2b7fec5cf8c",
+      "working_raw_sha256": "aa05c8205cbae23ddec06ebf3d727d86271b6846576ceca504b618876969e809",
+      "working_normalized_lf_sha256": "073dfa913c5b86eeae86b473a6e8cccbb724cee960c762ca0f5eb2b7fec5cf8c"
+    },
+    "Source/Features/Search/iOS/SearchModeView.swift": {
+      "base_repository_lf_sha256": "ac42b7e28fcee5e299e646afc7756b70d9fe84f671470c4ca43a057b0206072b",
+      "working_raw_sha256": "0a66b2c6cc7fec685b783f8e1f2336e0133109fc3c9307fc97367cd47934142f",
+      "working_normalized_lf_sha256": "ac42b7e28fcee5e299e646afc7756b70d9fe84f671470c4ca43a057b0206072b"
+    }
+  },
+  "manifest_sha256": "aa5e24c1f0be70e11ad8dd11eddb5b1f68c7f4d6f75acfdb34a82960c7f0adac",
+  "pending": "Combined source freeze and actual Apple SDK/Native80+Phase2 execution owned by root"
+}
