@@ -1,0 +1,7 @@
+# Isolating original Reader build and diagnostic counts
+
+This diagnostic compiles the unchanged production sources from 6535d7bc with the same -O command as baseline-speed, replacing only the standalone entry point. It reads the same completed, pinned database through the actual SQLite/schema/ZSTD/Reader code. It measures descriptor construction, original buildUnit, and the exact plainText.count / html.count expressions used in the original unitSummary. The expected 110,196 source rows, 17,728,260 plain graphemes and 18,066,752 HTML graphemes are asserted on each of three passes.
+
+The diagnostic grapheme counts alone took 1,926.533 / 1,798.580 / 2,243.004 ms. Original buildUnit, including source retrieval and normalization, took 6,321.411 / 5,668.768 / 5,900.318 ms. These independent samples identify a concrete logging cost; they are not p95, UI/device acceptance, or a candidate before/after comparison. Original source hashes were checked both before and after execution. No production source was changed for this profile.
+
+A code/Tests/tools/Scripts/.github search found no parser consuming the plainTextCount/htmlCount diagnostic fields. The service file is downstream-only and absent from pinned upstream d46af139b3a265399c16d87f5923acd8e3444024. A subsequent change may report explicit UTF8 byte sizes instead; it must keep content and UTF16 anchors unchanged and pass the complete original Reader oracle.

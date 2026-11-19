@@ -1,0 +1,11 @@
+{
+  "observed_at_utc": "2026-11-19T17:49:02.824411+00:00",
+  "removed_reproducible_owned_cache": "C:\\Users\\DAVID\\Code\\hanlin-otzaria-navigation-20261119\\build\\nav\\x86_64-unknown-windows-msvc\\debug\\ModuleCache",
+  "file_count": 108,
+  "logical_bytes": 379641013,
+  "retained_sdk_evidence_commit": "4568a850c2a4728ed1a58e17eb3612fdb012b170",
+  "retained_raw_proof_sha256": "9f1bbbd83bf2ec1f74321e3b618fba4725c51c60c5474db2fb1d5536d33a64cf",
+  "source_logs_tests_binaries_preserved": true,
+  "free_before": 1032425472,
+  "free_after": 1412329472
+}

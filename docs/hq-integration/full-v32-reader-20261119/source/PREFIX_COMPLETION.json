@@ -1,0 +1,24 @@
+{
+  "status": "VERIFIED_FULL_V32_SOURCE_RESTORED",
+  "started_at_utc": "2026-11-19T17:46:41.877680+00:00",
+  "retained_partial_bytes": 3489660928,
+  "maximum_tail_memory_bytes": 331579392,
+  "user_data_modified": false,
+  "native_ui_executed": 0,
+  "recovery_policy": "Compare every retained prefix byte with the original decoded archive; hold only the verified final tail in memory; release the reproducible owned archive cache only after complete original compressed and uncompressed hashes pass; append and independently rehash the entire database.",
+  "archive_sha256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+  "prefix_sha256": "3714b98d16215b64bc76246e00c95dded6ad9c331d9c1e99296348a92462cc5a",
+  "database_sha256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "tail_bytes": 331579392,
+  "original_asset_retained_at": "https://github.com/Otzaria/SeforimLibrary/releases/tag/v32-20261010190601",
+  "owned_archive_cache_released": true,
+  "free_bytes_after_archive_release": 1869877248,
+  "storage": {
+    "ntfs_compressed": true,
+    "logical_bytes": 3821240320,
+    "allocated_bytes": 2780241920,
+    "free_bytes_after_restore": 1222127616,
+    "downloaded_archive_cache_released_after_complete_source_validation": true
+  },
+  "finished_at_utc": "2026-11-19T17:48:21.184803+00:00"
+}

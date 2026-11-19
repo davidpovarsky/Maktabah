@@ -1,0 +1,39 @@
+{
+  "source": {
+    "repository": "Otzaria/SeforimLibrary",
+    "releaseTag": "v32-20261010190601",
+    "releaseID": 409213893,
+    "assetID": 629048655,
+    "assetName": "seforim-schema6.db.zst",
+    "assetBytes": 1850679582,
+    "assetSHA256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+    "databaseBytes": 3821240320,
+    "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
+  },
+  "status": "VERIFIED_FULL_V32_READONLY_FIXTURE_READY",
+  "started_at_utc": "2026-11-19T17:04:10.909864+00:00",
+  "finished_at_utc": "2026-11-19T17:48:21.184803+00:00",
+  "owned_directory": "C:\\Users\\DAVID\\Code\\Maktabah-continuation-20261117\\build\\full-v32-performance-20261119",
+  "database_path": "C:\\Users\\DAVID\\Code\\Maktabah-continuation-20261117\\build\\full-v32-performance-20261119\\seforim.db",
+  "archive_sha256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+  "database_bytes": 3821240320,
+  "database_sha256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "counts": {
+    "book": 7876,
+    "line": 7080797
+  },
+  "storage": {
+    "ntfs_compressed": true,
+    "logical_bytes": 3821240320,
+    "allocated_bytes": 2780241920,
+    "free_bytes_after_restore": 1222127616,
+    "downloaded_archive_cache_released_after_complete_source_validation": true
+  },
+  "prefix_completion_report": "PREFIX_COMPLETION.json",
+  "failed_attempts": [
+    "PREPARATION_FAILED_DISK_20261119.json",
+    "RESTORATION_RECOVERY_FAILED_DISK_2.json"
+  ],
+  "user_data_modified": false,
+  "native_ui_executed": 0
+}
