@@ -140,14 +140,21 @@ struct MaktabahNativeRoutingHost: ViewModifier {
 struct MaktabahNativeRoutingSurface: ViewModifier {
     let kind: MaktabahNativeSceneProjection.Surface
     let inspectorReader: ReaderViewModel?
-    init(kind: MaktabahNativeSceneProjection.Surface, inspectorReader: ReaderViewModel? = nil) {
+    let noteReader: ReaderViewModel?
+    let noteDraft: Annotation?
+    init(kind: MaktabahNativeSceneProjection.Surface, inspectorReader: ReaderViewModel? = nil,
+         noteReader: ReaderViewModel? = nil, noteDraft: Annotation? = nil) {
         self.kind = kind; self.inspectorReader = inspectorReader
+        self.noteReader = noteReader; self.noteDraft = noteDraft
     }
     @Environment(\.maktabahNativeRoutingSession) private var session
     func body(content: Content) -> some View {
         content.background {
             if let session,
                kind != .inspector || inspectorReader.map({ session.ownsInspectorReader($0) }) == true,
+               kind != .noteDraft || (noteReader.flatMap { reader in
+                   noteDraft.map { session.ownsNoteEditor(reader, draft: $0) }
+               } == true),
                let state = try? session.surface(kind) {
                 NativeSurfaceWitness(surface: state, submissionID: session.submissionID,
                     observeVisibility: { session.observeVisibility(for: state.destination, check: $0) },

@@ -6,6 +6,8 @@ struct iOSAnnotationEditorSheet: View {
     @State var annotation: Annotation
     let onSave: (Annotation) throws -> Void
     let onDelete: (Int64) throws -> Void
+    // Passive host observation only; Save/Cancel and persistence stay here.
+    var onNativeTextView: ((UITextView?) -> Void)? = nil
 
     @State private var noteText: String = ""
     @State private var selectedColorHex: String = ""
@@ -49,7 +51,10 @@ struct iOSAnnotationEditorSheet: View {
         NavigationStack {
             ThemeForm {
                 ThemeSection("Note") {
-                    iOSAutoDirectionTextView(text: $noteText, onCreated: { self.editorTextView = $0 })
+                    iOSAutoDirectionTextView(text: $noteText, onCreated: {
+                        self.editorTextView = $0
+                        onNativeTextView?($0)
+                    })
                         .frame(minHeight: 80)
                 }
 
@@ -197,6 +202,7 @@ struct iOSAnnotationEditorSheet: View {
                 #endif
             }
             .onDisappear {
+                onNativeTextView?(nil)
                 if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
                     AccessibleAutoDirectionTextView.activeInstance = nil
                 }

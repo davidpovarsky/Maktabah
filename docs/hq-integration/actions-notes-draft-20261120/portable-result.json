@@ -1,0 +1,74 @@
+{
+  "results": [
+    {
+      "package": "Source/Otzaria/Actions",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\Source\\Otzaria\\Actions",
+        "--jobs",
+        "2"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "103",
+        "0"
+      ],
+      "log_sha256": "6eb40f5f5681c119a559c19751a3aa5a53caebb6c0957952323d5f74389e86e1",
+      "native": "NOT_RUN",
+      "raw_log_sha256": "a30876eb129c5a5d528b6514f7f42c8eeb4614cf42cd1448ad50ae75315d4f8d",
+      "raw_log_archive": "core-swift-test.raw.log.gz",
+      "log_normalization": "Readable copy: trailing CR/space removed only. Exact original process bytes preserved in deterministic gzip archive."
+    },
+    {
+      "package": "Source/Otzaria/UIRouting",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\Source\\Otzaria\\UIRouting",
+        "--jobs",
+        "2"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "94",
+        "0"
+      ],
+      "log_sha256": "accb6ceac7bfd22c948cc32ee691dbd26cd2dd5319d19bca9416c4d9e67810e9",
+      "native": "NOT_RUN",
+      "raw_log_sha256": "913b411eb89b043061deca13e7240918db6675bd72acb7e2304c9293e36cdb24",
+      "raw_log_archive": "ui-routing-swift-test.raw.log.gz",
+      "log_normalization": "Readable copy: trailing CR/space removed only. Exact original process bytes preserved in deterministic gzip archive."
+    },
+    {
+      "package": "Source/ChavrusaText/UIRoutingHost",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+        "test",
+        "--package-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\Source\\ChavrusaText\\UIRoutingHost",
+        "--jobs",
+        "2"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "127",
+        "0"
+      ],
+      "log_sha256": "04a546aa8f524b991fb176e3fcdd21d064cf00419bbd12d9011fb72157617c3a",
+      "native": "NOT_RUN",
+      "raw_log_sha256": "b26b4d0bf934ada38fd1f54f4d731106c0de86801124e5aab3be92b03c3b28b5",
+      "raw_log_archive": "native-host-swift-test.raw.log.gz",
+      "log_normalization": "Readable copy: trailing CR/space removed only. Exact original process bytes preserved in deterministic gzip archive."
+    }
+  ],
+  "apple_compilation": "NOT_RUN",
+  "native_runtime": "NOT_RUN",
+  "source_base": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
+  "new_core_note_tests": 17,
+  "new_ui_note_tests": 9,
+  "sentinel_job": "job_638af5876299",
+  "note": "Windows Swift 6.3.3 contract regressions; no UIKit or Apple SDK claims."
+}

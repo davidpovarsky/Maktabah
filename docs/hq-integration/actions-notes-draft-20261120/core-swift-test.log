@@ -1,0 +1,294 @@
+[0/1] Planning build
+Building for debugging...
+[0/11] Write sources
+[2/11] Write swift-version-2807070033DA82CF.txt
+[4/15] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[5/15] Compiling OtzariaActionCore ActionNativeUIFailure.swift
+[6/15] Compiling OtzariaActionCore ActionNoteDraft.swift
+[7/15] Emitting module OtzariaActionCore
+[8/27] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[9/27] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[10/27] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[11/27] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[12/27] Compiling OtzariaActionCore ActionCommentary.swift
+[13/27] Compiling OtzariaActionCore ActionJSON.swift
+[14/27] Compiling OtzariaActionCore ActionReferences.swift
+[15/27] Compiling OtzariaActionCore ActionRequest.swift
+[16/27] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[17/36] Compiling OtzariaActionCore ActionExecutor.swift
+[18/36] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[19/36] Compiling OtzariaActionCore ActionRegistry.swift
+[20/36] Compiling OtzariaActionCore ActionSearch.swift
+[21/36] Compiling OtzariaActionCore ActionWireCodec.swift
+[22/36] Compiling OtzariaActionCore ActionDeadline.swift
+[23/36] Compiling OtzariaActionCore ActionExecutionContext.swift
+[24/36] Compiling OtzariaActionCore ActionPolicy.swift
+[25/36] Compiling OtzariaActionCore ActionValidation.swift
+[26/36] Compiling OtzariaActionCore ActionPorts.swift
+[27/36] Compiling OtzariaActionCore CatalogActionResolver+SourceSections.swift
+[28/36] Compiling OtzariaActionCore CatalogActionResolver.swift
+[29/37] Wrapping AST for OtzariaActionCore for debugging
+[31/43] Compiling OtzariaActionCoreTests BackendSemanticsTests.swift
+[32/43] Compiling OtzariaActionCoreTests ContractAPITests.swift
+[33/43] Compiling OtzariaActionCoreTests WireSecurityTests.swift
+[34/43] Compiling OtzariaActionCoreTests EngineTests.swift
+[35/43] Compiling OtzariaActionCoreTests NoteDraftActionTests.swift
+[36/43] Emitting module OtzariaActionCoreTests
+[37/47] Compiling OtzariaActionCoreTests MockPorts.swift
+[38/47] Compiling OtzariaActionCoreTests CatalogActionResolverTests.swift
+[39/47] Compiling OtzariaActionCoreTests CatalogSourceSectionsTests.swift
+[40/47] Compiling OtzariaActionCoreTests CommentaryActionTests.swift
+[41/48] C:\Users\DAVID\Code\Maktabah-actions-completion-20261120\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageDiscoveredTests.derived\all-discovered-tests.swift
+[42/49] Write sources
+[43/49] Wrapping AST for OtzariaActionCoreTests for debugging
+[45/51] Compiling OtzariaActionCorePackageDiscoveredTests OtzariaActionCoreTests.swift
+[46/51] Emitting module OtzariaActionCorePackageDiscoveredTests
+[47/52] Compiling OtzariaActionCorePackageDiscoveredTests all-discovered-tests.swift
+[48/53] C:\Users\DAVID\Code\Maktabah-actions-completion-20261120\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageTests.derived\runner.swift
+[49/54] Write sources
+[50/54] Wrapping AST for OtzariaActionCorePackageDiscoveredTests for debugging
+[52/56] Emitting module OtzariaActionCorePackageTests
+[53/56] Compiling OtzariaActionCorePackageTests runner.swift
+[54/56] Write Objects.LinkFileList
+[55/56] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (59.03s)
+Test Suite 'All tests' started at 2026-11-19 23:18:43.781
+Test Suite 'debug.xctest' started at 2026-11-19 23:18:43.816
+Test Suite 'BackendSemanticsTests' started at 2026-11-19 23:18:43.816
+Test Case 'BackendSemanticsTests.testActualEmbeddedHandlerFixtures' started at 2026-11-19 23:18:43.816
+Test Case 'BackendSemanticsTests.testActualEmbeddedHandlerFixtures' passed (0.02 seconds)
+Test Case 'BackendSemanticsTests.testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope' started at 2026-11-19 23:18:43.837
+Test Case 'BackendSemanticsTests.testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases' started at 2026-11-19 23:18:43.837
+Test Case 'BackendSemanticsTests.testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testEmbeddedReadinessIsPerOperationAndEpoch' started at 2026-11-19 23:18:43.838
+Test Case 'BackendSemanticsTests.testEmbeddedReadinessIsPerOperationAndEpoch' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim' started at 2026-11-19 23:18:43.838
+Test Case 'BackendSemanticsTests.testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testIgnoredModesAndSortsAreRejected' started at 2026-11-19 23:18:43.838
+Test Case 'BackendSemanticsTests.testIgnoredModesAndSortsAreRejected' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testInactiveBackendCannotBecomeAvailable' started at 2026-11-19 23:18:43.839
+Test Case 'BackendSemanticsTests.testInactiveBackendCannotBecomeAvailable' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testInvocationGenerationEpochDeadlineAndCancellation' started at 2026-11-19 23:18:43.839
+Test Case 'BackendSemanticsTests.testInvocationGenerationEpochDeadlineAndCancellation' passed (0.001 seconds)
+Test Case 'BackendSemanticsTests.testLegacyDownloadedReadingDoesNotEnableOfflineSearch' started at 2026-11-19 23:18:43.839
+Test Case 'BackendSemanticsTests.testLegacyDownloadedReadingDoesNotEnableOfflineSearch' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback' started at 2026-11-19 23:18:43.840
+Test Case 'BackendSemanticsTests.testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testLoadedRuntimeContractRequiresExactSchemaNonceAndPositiveReadiness' started at 2026-11-19 23:18:43.840
+Test Case 'BackendSemanticsTests.testLoadedRuntimeContractRequiresExactSchemaNonceAndPositiveReadiness' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testOtzariaScopeUsesOnlyProvenCanonicalBookFilters' started at 2026-11-19 23:18:43.840
+Test Case 'BackendSemanticsTests.testOtzariaScopeUsesOnlyProvenCanonicalBookFilters' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testRegistrationDoesNotProveReadiness' started at 2026-11-19 23:18:43.841
+Test Case 'BackendSemanticsTests.testRegistrationDoesNotProveReadiness' passed (0.0 seconds)
+Test Case 'BackendSemanticsTests.testSourceFeaturesSurviveWithoutEnablingStagedActions' started at 2026-11-19 23:18:43.841
+Test Case 'BackendSemanticsTests.testSourceFeaturesSurviveWithoutEnablingStagedActions' passed (0.001 seconds)
+Test Case 'BackendSemanticsTests.testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing' started at 2026-11-19 23:18:43.842
+Test Case 'BackendSemanticsTests.testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing' passed (0.0 seconds)
+Test Suite 'BackendSemanticsTests' passed at 2026-11-19 23:18:43.842
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.025 (0.025) seconds
+Test Suite 'CatalogActionResolverTests' started at 2026-11-19 23:18:43.842
+Test Case 'CatalogActionResolverTests.testBudgetsFailWithoutSearchingOnlyPrefix' started at 2026-11-19 23:18:43.842
+Test Case 'CatalogActionResolverTests.testBudgetsFailWithoutSearchingOnlyPrefix' passed (0.002 seconds)
+Test Case 'CatalogActionResolverTests.testDeadlineAndCancellationBeforeAndDuringSourceAwait' started at 2026-11-19 23:18:43.844
+Test Case 'CatalogActionResolverTests.testDeadlineAndCancellationBeforeAndDuringSourceAwait' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testDeadlineExpiresAcrossEachAwaitAndUnknownRPCEpoch' started at 2026-11-19 23:18:43.845
+Test Case 'CatalogActionResolverTests.testDeadlineExpiresAcrossEachAwaitAndUnknownRPCEpoch' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity' started at 2026-11-19 23:18:43.845
+Test Case 'CatalogActionResolverTests.testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity' passed (0.074 seconds)
+Test Case 'CatalogActionResolverTests.testDuplicateTitlesEditionsAliasesAndLimitOne' started at 2026-11-19 23:18:43.919
+Test Case 'CatalogActionResolverTests.testDuplicateTitlesEditionsAliasesAndLimitOne' passed (0.015 seconds)
+Test Case 'CatalogActionResolverTests.testExistenceProofsNeverSurviveTheInvocation' started at 2026-11-19 23:18:43.934
+Test Case 'CatalogActionResolverTests.testExistenceProofsNeverSurviveTheInvocation' passed (0.002 seconds)
+Test Case 'CatalogActionResolverTests.testGenerationBackendAndEpochChangeAcrossEveryDataAwait' started at 2026-11-19 23:18:43.936
+Test Case 'CatalogActionResolverTests.testGenerationBackendAndEpochChangeAcrossEveryDataAwait' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testIdenticalSectionAndFocusShareExistenceProof' started at 2026-11-19 23:18:43.937
+Test Case 'CatalogActionResolverTests.testIdenticalSectionAndFocusShareExistenceProof' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testLargeCatalogLastMatchAndDeadlineDuringActorScan' started at 2026-11-19 23:18:43.938
+Test Case 'CatalogActionResolverTests.testLargeCatalogLastMatchAndDeadlineDuringActorScan' passed (0.093 seconds)
+Test Case 'CatalogActionResolverTests.testMalformedAndCrossBackendInputsBeforeProvider' started at 2026-11-19 23:18:44.031
+Test Case 'CatalogActionResolverTests.testMalformedAndCrossBackendInputsBeforeProvider' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testMalformedReferenceCandidatesAndCandidateBudgetFailClosed' started at 2026-11-19 23:18:44.032
+Test Case 'CatalogActionResolverTests.testMalformedReferenceCandidatesAndCandidateBudgetFailClosed' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testMissingVersusUnavailableAndRedactedFailure' started at 2026-11-19 23:18:44.033
+Test Case 'CatalogActionResolverTests.testMissingVersusUnavailableAndRedactedFailure' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testProofDeduplicationKeepsDataRevisionsDistinct' started at 2026-11-19 23:18:44.034
+Test Case 'CatalogActionResolverTests.testProofDeduplicationKeepsDataRevisionsDistinct' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testReferenceAmbiguityIsStableCappedAndFullyValidated' started at 2026-11-19 23:18:44.035
+Test Case 'CatalogActionResolverTests.testReferenceAmbiguityIsStableCappedAndFullyValidated' passed (0.008 seconds)
+Test Case 'CatalogActionResolverTests.testReferenceFidelityUnknownEmbeddedAndWrongWork' started at 2026-11-19 23:18:44.043
+Test Case 'CatalogActionResolverTests.testReferenceFidelityUnknownEmbeddedAndWrongWork' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testRevisionIdentityAndOpaqueKeyOrderingAreNotConcatenated' started at 2026-11-19 23:18:44.044
+Test Case 'CatalogActionResolverTests.testRevisionIdentityAndOpaqueKeyOrderingAreNotConcatenated' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testSourceNormalizationPreservesNikudAndCase' started at 2026-11-19 23:18:44.045
+Test Case 'CatalogActionResolverTests.testSourceNormalizationPreservesNikudAndCase' passed (0.004 seconds)
+Test Case 'CatalogActionResolverTests.testSourceSubstitutionAndMalformedCatalogRejected' started at 2026-11-19 23:18:44.048
+Test Case 'CatalogActionResolverTests.testSourceSubstitutionAndMalformedCatalogRejected' passed (0.001 seconds)
+Test Case 'CatalogActionResolverTests.testThreeBackendsAndExactSectionFocus' started at 2026-11-19 23:18:44.049
+Test Case 'CatalogActionResolverTests.testThreeBackendsAndExactSectionFocus' passed (0.001 seconds)
+Test Suite 'CatalogActionResolverTests' passed at 2026-11-19 23:18:44.050
+	 Executed 19 tests, with 0 failures (0 unexpected) in 0.208 (0.208) seconds
+Test Suite 'CatalogSourceSectionsTests' started at 2026-11-19 23:18:44.051
+Test Case 'CatalogSourceSectionsTests.testConservativeNamesDoNotInferChapterNumbersOrDropNiqqud' started at 2026-11-19 23:18:44.051
+Test Case 'CatalogSourceSectionsTests.testConservativeNamesDoNotInferChapterNumbersOrDropNiqqud' passed (0.001 seconds)
+Test Case 'CatalogSourceSectionsTests.testDeadlineAndCancellationRemainExplicit' started at 2026-11-19 23:18:44.051
+Test Case 'CatalogSourceSectionsTests.testDeadlineAndCancellationRemainExplicit' passed (0.0 seconds)
+Test Case 'CatalogSourceSectionsTests.testEmptyAndOversizedSourcesNeverInventAUniqueReference' started at 2026-11-19 23:18:44.051
+Test Case 'CatalogSourceSectionsTests.testEmptyAndOversizedSourcesNeverInventAUniqueReference' passed (0.015 seconds)
+Test Case 'CatalogSourceSectionsTests.testInvalidSourceAfterAnExactMatchFailsInsteadOfTruncating' started at 2026-11-19 23:18:44.067
+Test Case 'CatalogSourceSectionsTests.testInvalidSourceAfterAnExactMatchFailsInsteadOfTruncating' passed (0.001 seconds)
+Test Case 'CatalogSourceSectionsTests.testRepeatedIdentityDeduplicatesButRepeatedTitleRemainsAmbiguous' started at 2026-11-19 23:18:44.067
+Test Case 'CatalogSourceSectionsTests.testRepeatedIdentityDeduplicatesButRepeatedTitleRemainsAmbiguous' passed (0.001 seconds)
+Test Case 'CatalogSourceSectionsTests.testSourceTitlePreservesZeroAndRevisionMetadata' started at 2026-11-19 23:18:44.068
+Test Case 'CatalogSourceSectionsTests.testSourceTitlePreservesZeroAndRevisionMetadata' passed (0.0 seconds)
+Test Suite 'CatalogSourceSectionsTests' passed at 2026-11-19 23:18:44.068
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.018 (0.018) seconds
+Test Suite 'CommentaryActionTests' started at 2026-11-19 23:18:44.069
+Test Case 'CommentaryActionTests.testAmbiguousLinkedPassagesStayAmbiguousAndBounded' started at 2026-11-19 23:18:44.069
+Test Case 'CommentaryActionTests.testAmbiguousLinkedPassagesStayAmbiguousAndBounded' passed (0.005 seconds)
+Test Case 'CommentaryActionTests.testBackendChangeDuringNativePreparationNeverOpens' started at 2026-11-19 23:18:44.074
+Test Case 'CommentaryActionTests.testBackendChangeDuringNativePreparationNeverOpens' passed (0.06 seconds)
+Test Case 'CommentaryActionTests.testCatalogTitleCannotCreateMissingRelationship' started at 2026-11-19 23:18:44.134
+Test Case 'CommentaryActionTests.testCatalogTitleCannotCreateMissingRelationship' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testDuplicateLinkIsDeduplicatedWithoutDroppingFocus' started at 2026-11-19 23:18:44.134
+Test Case 'CommentaryActionTests.testDuplicateLinkIsDeduplicatedWithoutDroppingFocus' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testEngineUsesOriginalReaderReceiptAndIdempotentRequest' started at 2026-11-19 23:18:44.135
+Test Case 'CommentaryActionTests.testEngineUsesOriginalReaderReceiptAndIdempotentRequest' passed (0.03 seconds)
+Test Case 'CommentaryActionTests.testExactLinkedSectionAndFocusAcrossAllSources' started at 2026-11-19 23:18:44.165
+Test Case 'CommentaryActionTests.testExactLinkedSectionAndFocusAcrossAllSources' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testExplicitWorkStillRequiresSourceLinkAndExactQuery' started at 2026-11-19 23:18:44.166
+Test Case 'CommentaryActionTests.testExplicitWorkStillRequiresSourceLinkAndExactQuery' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testFocusFromAnotherWorkIsInvalid' started at 2026-11-19 23:18:44.167
+Test Case 'CommentaryActionTests.testFocusFromAnotherWorkIsInvalid' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testForeignAndUnknownCatalogTargetsAreInvalid' started at 2026-11-19 23:18:44.167
+Test Case 'CommentaryActionTests.testForeignAndUnknownCatalogTargetsAreInvalid' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testHeadlessAndRestrictedWorkCannotOpen' started at 2026-11-19 23:18:44.168
+Test Case 'CommentaryActionTests.testHeadlessAndRestrictedWorkCannotOpen' passed (0.031 seconds)
+Test Case 'CommentaryActionTests.testNFCWhitespaceAndSourceAliasesAreConservative' started at 2026-11-19 23:18:44.199
+Test Case 'CommentaryActionTests.testNFCWhitespaceAndSourceAliasesAreConservative' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testOversizedRelationshipPayloadFailsWithoutPrefixUniqueness' started at 2026-11-19 23:18:44.200
+Test Case 'CommentaryActionTests.testOversizedRelationshipPayloadFailsWithoutPrefixUniqueness' passed (0.002 seconds)
+Test Case 'CommentaryActionTests.testSemanticCapabilityRequiresBothNavigationAndOriginalLinks' started at 2026-11-19 23:18:44.202
+Test Case 'CommentaryActionTests.testSemanticCapabilityRequiresBothNavigationAndOriginalLinks' passed (0.0 seconds)
+Test Case 'CommentaryActionTests.testSourceCannotSubstituteProofForBase' started at 2026-11-19 23:18:44.202
+Test Case 'CommentaryActionTests.testSourceCannotSubstituteProofForBase' passed (0.0 seconds)
+Test Case 'CommentaryActionTests.testSourceGenerationAndEmbeddedEpochChangesDiscardLinks' started at 2026-11-19 23:18:44.203
+Test Case 'CommentaryActionTests.testSourceGenerationAndEmbeddedEpochChangesDiscardLinks' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testUnprovenFocusCannotOpenSectionInstead' started at 2026-11-19 23:18:44.203
+Test Case 'CommentaryActionTests.testUnprovenFocusCannotOpenSectionInstead' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testUnsupportedSourceOrSinkDoesNotAdvertiseOrExecute' started at 2026-11-19 23:18:44.204
+Test Case 'CommentaryActionTests.testUnsupportedSourceOrSinkDoesNotAdvertiseOrExecute' passed (0.055 seconds)
+Test Case 'CommentaryActionTests.testWrongBaseLinkIsInvalid' started at 2026-11-19 23:18:44.259
+Test Case 'CommentaryActionTests.testWrongBaseLinkIsInvalid' passed (0.001 seconds)
+Test Case 'CommentaryActionTests.testWrongNativeReceiptCannotComplete' started at 2026-11-19 23:18:44.259
+Test Case 'CommentaryActionTests.testWrongNativeReceiptCannotComplete' passed (0.026 seconds)
+Test Suite 'CommentaryActionTests' passed at 2026-11-19 23:18:44.285
+	 Executed 19 tests, with 0 failures (0 unexpected) in 0.216 (0.216) seconds
+Test Suite 'ContractAPITests' started at 2026-11-19 23:18:44.285
+Test Case 'ContractAPITests.testPositionKindValueMismatchRejected' started at 2026-11-19 23:18:44.285
+Test Case 'ContractAPITests.testPositionKindValueMismatchRejected' passed (0.0 seconds)
+Test Case 'ContractAPITests.testWirePositionAndSendableAPI' started at 2026-11-19 23:18:44.285
+Test Case 'ContractAPITests.testWirePositionAndSendableAPI' passed (0.0 seconds)
+Test Suite 'ContractAPITests' passed at 2026-11-19 23:18:44.285
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'EngineTests' started at 2026-11-19 23:18:44.285
+Test Case 'EngineTests.testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends' started at 2026-11-19 23:18:44.286
+Test Case 'EngineTests.testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends' passed (0.404 seconds)
+Test Case 'EngineTests.testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented' started at 2026-11-19 23:18:44.690
+Test Case 'EngineTests.testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented' passed (0.034 seconds)
+Test Case 'EngineTests.testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls' started at 2026-11-19 23:18:44.724
+Test Case 'EngineTests.testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls' passed (0.042 seconds)
+Test Case 'EngineTests.testCancellationDeadlineAndReplayBudget' started at 2026-11-19 23:18:44.766
+Test Case 'EngineTests.testCancellationDeadlineAndReplayBudget' passed (0.168 seconds)
+Test Case 'EngineTests.testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason' started at 2026-11-19 23:18:44.933
+Test Case 'EngineTests.testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason' passed (0.042 seconds)
+Test Case 'EngineTests.testGenerationAndEmbeddedEpochChangesDiscardResults' started at 2026-11-19 23:18:44.976
+Test Case 'EngineTests.testGenerationAndEmbeddedEpochChangesDiscardResults' passed (0.051 seconds)
+Test Case 'EngineTests.testInactiveBackendRequiresSwitchWithoutCommandCalls' started at 2026-11-19 23:18:45.027
+Test Case 'EngineTests.testInactiveBackendRequiresSwitchWithoutCommandCalls' passed (0.029 seconds)
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' started at 2026-11-19 23:18:45.056
+Test Case 'EngineTests.testInitialFiveAcrossAllThreeMockBackends' passed (0.241 seconds)
+Test Case 'EngineTests.testOutputAndWorkScopeBudgets' started at 2026-11-19 23:18:45.298
+Test Case 'EngineTests.testOutputAndWorkScopeBudgets' passed (0.043 seconds)
+Test Case 'EngineTests.testPaginationIdentityAndProviderErrors' started at 2026-11-19 23:18:45.341
+Test Case 'EngineTests.testPaginationIdentityAndProviderErrors' passed (0.05 seconds)
+Test Case 'EngineTests.testRightsOriginAndScopeFailClosed' started at 2026-11-19 23:18:45.391
+Test Case 'EngineTests.testRightsOriginAndScopeFailClosed' passed (0.023 seconds)
+Test Case 'EngineTests.testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange' started at 2026-11-19 23:18:45.414
+Test Case 'EngineTests.testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange' passed (0.036 seconds)
+Test Case 'EngineTests.testSemanticSupportAvailabilityAndRealZeroAreDistinct' started at 2026-11-19 23:18:45.450
+Test Case 'EngineTests.testSemanticSupportAvailabilityAndRealZeroAreDistinct' passed (0.043 seconds)
+Test Case 'EngineTests.testStagedCountWritesAndDiscoveryCannotAdvertiseThem' started at 2026-11-19 23:18:45.493
+Test Case 'EngineTests.testStagedCountWritesAndDiscoveryCannotAdvertiseThem' passed (0.036 seconds)
+Test Case 'EngineTests.testTypedUnsignedResolutionLimitDoesNotDefault' started at 2026-11-19 23:18:45.530
+Test Case 'EngineTests.testTypedUnsignedResolutionLimitDoesNotDefault' passed (0.035 seconds)
+Test Case 'EngineTests.testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay' started at 2026-11-19 23:18:45.564
+Test Case 'EngineTests.testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay' passed (0.197 seconds)
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' started at 2026-11-19 23:18:45.762
+Test Case 'EngineTests.testUIQueueSceneAndExactReceiptBinding' passed (0.07 seconds)
+Test Case 'EngineTests.testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines' started at 2026-11-19 23:18:45.832
+Test Case 'EngineTests.testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines' passed (1.073 seconds)
+Test Suite 'EngineTests' passed at 2026-11-19 23:18:46.905
+	 Executed 18 tests, with 0 failures (0 unexpected) in 2.619 (2.619) seconds
+Test Suite 'NoteDraftActionTests' started at 2026-11-19 23:18:46.905
+Test Case 'NoteDraftActionTests.testExactDraftAcrossSourcesReturnsUnsavedReceiptWithoutExportingText' started at 2026-11-19 23:18:46.905
+Test Case 'NoteDraftActionTests.testExactDraftAcrossSourcesReturnsUnsavedReceiptWithoutExportingText' passed (0.138 seconds)
+Test Case 'NoteDraftActionTests.testFinalSourceOrVisibilityLossRefusesCompletion' started at 2026-11-19 23:18:47.043
+Test Case 'NoteDraftActionTests.testFinalSourceOrVisibilityLossRefusesCompletion' passed (0.053 seconds)
+Test Case 'NoteDraftActionTests.testGenerationChangeAfterActualEffectDoesNotClaimCompletion' started at 2026-11-19 23:18:47.096
+Test Case 'NoteDraftActionTests.testGenerationChangeAfterActualEffectDoesNotClaimCompletion' passed (0.047 seconds)
+Test Case 'NoteDraftActionTests.testGenerationChangeDuringPreparationPreventsPresentation' started at 2026-11-19 23:18:47.142
+Test Case 'NoteDraftActionTests.testGenerationChangeDuringPreparationPreventsPresentation' passed (0.049 seconds)
+Test Case 'NoteDraftActionTests.testHeadlessMissingSceneAndScopeCannotPresentDraft' started at 2026-11-19 23:18:47.192
+Test Case 'NoteDraftActionTests.testHeadlessMissingSceneAndScopeCannotPresentDraft' passed (0.138 seconds)
+Test Case 'NoteDraftActionTests.testInvalidMissingOversizedOrSplitUTF16SelectionCannotGuessFallback' started at 2026-11-19 23:18:47.330
+Test Case 'NoteDraftActionTests.testInvalidMissingOversizedOrSplitUTF16SelectionCannotGuessFallback' passed (0.001 seconds)
+Test Case 'NoteDraftActionTests.testMissingOriginalEditorIsNotAdvertisedOrExecuted' started at 2026-11-19 23:18:47.331
+Test Case 'NoteDraftActionTests.testMissingOriginalEditorIsNotAdvertisedOrExecuted' passed (0.089 seconds)
+Test Case 'NoteDraftActionTests.testMissingProposalCreatesOnlyBlankEditableDraft' started at 2026-11-19 23:18:47.421
+Test Case 'NoteDraftActionTests.testMissingProposalCreatesOnlyBlankEditableDraft' passed (0.052 seconds)
+Test Case 'NoteDraftActionTests.testOriginalUTF16RangeAndExactUnicodeAreRequired' started at 2026-11-19 23:18:47.473
+Test Case 'NoteDraftActionTests.testOriginalUTF16RangeAndExactUnicodeAreRequired' passed (0.0 seconds)
+Test Case 'NoteDraftActionTests.testProposalBoundsRejectBeforeAnyEditorOrResolverCall' started at 2026-11-19 23:18:47.473
+Test Case 'NoteDraftActionTests.testProposalBoundsRejectBeforeAnyEditorOrResolverCall' passed (0.044 seconds)
+Test Case 'NoteDraftActionTests.testQueueIsNotSuccessfulPresentationAndHandleIsBounded' started at 2026-11-19 23:18:47.517
+Test Case 'NoteDraftActionTests.testQueueIsNotSuccessfulPresentationAndHandleIsBounded' passed (0.094 seconds)
+Test Case 'NoteDraftActionTests.testReceiptRequiresExactRequestSnapshotSceneDraftAndUnsavedState' started at 2026-11-19 23:18:47.611
+Test Case 'NoteDraftActionTests.testReceiptRequiresExactRequestSnapshotSceneDraftAndUnsavedState' passed (0.233 seconds)
+Test Case 'NoteDraftActionTests.testSameRequestIsIdempotentAndChangedProposalConflicts' started at 2026-11-19 23:18:47.845
+Test Case 'NoteDraftActionTests.testSameRequestIsIdempotentAndChangedProposalConflicts' passed (0.059 seconds)
+Test Case 'NoteDraftActionTests.testSelectedTextCannotSubstituteOriginalSelection' started at 2026-11-19 23:18:47.904
+Test Case 'NoteDraftActionTests.testSelectedTextCannotSubstituteOriginalSelection' passed (0.043 seconds)
+Test Case 'NoteDraftActionTests.testSelectionReadinessIsTruthfulAndUnavailableDoesNotResolveOrPresent' started at 2026-11-19 23:18:47.947
+Test Case 'NoteDraftActionTests.testSelectionReadinessIsTruthfulAndUnavailableDoesNotResolveOrPresent' passed (0.064 seconds)
+Test Case 'NoteDraftActionTests.testUnverifiedLocatorFailsBeforeEditorPreparation' started at 2026-11-19 23:18:48.011
+Test Case 'NoteDraftActionTests.testUnverifiedLocatorFailsBeforeEditorPreparation' passed (0.044 seconds)
+Test Case 'NoteDraftActionTests.testWorkPolicyRejectsBeforeSelectionOrPresentation' started at 2026-11-19 23:18:48.055
+Test Case 'NoteDraftActionTests.testWorkPolicyRejectsBeforeSelectionOrPresentation' passed (0.037 seconds)
+Test Suite 'NoteDraftActionTests' passed at 2026-11-19 23:18:48.091
+	 Executed 17 tests, with 0 failures (0 unexpected) in 1.186 (1.186) seconds
+Test Suite 'WireSecurityTests' started at 2026-11-19 23:18:48.091
+Test Case 'WireSecurityTests.testBoundedGenericObjectIngressReusesExactParser' started at 2026-11-19 23:18:48.091
+Test Case 'WireSecurityTests.testBoundedGenericObjectIngressReusesExactParser' passed (0.001 seconds)
+Test Case 'WireSecurityTests.testByteDepthAndInvalidGrammarBudgets' started at 2026-11-19 23:18:48.093
+Test Case 'WireSecurityTests.testByteDepthAndInvalidGrammarBudgets' passed (0.082 seconds)
+Test Case 'WireSecurityTests.testDuplicateDecodedKeysRejected' started at 2026-11-19 23:18:48.175
+Test Case 'WireSecurityTests.testDuplicateDecodedKeysRejected' passed (0.001 seconds)
+Test Case 'WireSecurityTests.testEnvelopeTypeBoundsAndUnknownFields' started at 2026-11-19 23:18:48.175
+Test Case 'WireSecurityTests.testEnvelopeTypeBoundsAndUnknownFields' passed (0.022 seconds)
+Test Case 'WireSecurityTests.testExactNumericTokenClassificationBeforeFoundationCoercion' started at 2026-11-19 23:18:48.197
+Test Case 'WireSecurityTests.testExactNumericTokenClassificationBeforeFoundationCoercion' passed (0.068 seconds)
+Test Case 'WireSecurityTests.testFrozenCatalogAndElevenExamplesProject' started at 2026-11-19 23:18:48.266
+Test Case 'WireSecurityTests.testFrozenCatalogAndElevenExamplesProject' passed (0.303 seconds)
+Test Case 'WireSecurityTests.testWireKeysDoNotAcquireUnicodeNormalizationAliases' started at 2026-11-19 23:18:48.569
+Test Case 'WireSecurityTests.testWireKeysDoNotAcquireUnicodeNormalizationAliases' passed (0.053 seconds)
+Test Suite 'WireSecurityTests' passed at 2026-11-19 23:18:48.622
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.53 (0.53) seconds
+Test Suite 'debug.xctest' passed at 2026-11-19 23:18:48.622
+	 Executed 103 tests, with 0 failures (0 unexpected) in 4.802 (4.802) seconds
+Test Suite 'All tests' passed at 2026-11-19 23:18:48.622
+	 Executed 103 tests, with 0 failures (0 unexpected) in 4.802 (4.802) seconds
+◊ Test run started.
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+→ Target Platform: x86_64-unknown-windows-msvc
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.

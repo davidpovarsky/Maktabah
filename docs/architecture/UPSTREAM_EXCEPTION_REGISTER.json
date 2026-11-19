@@ -315,6 +315,25 @@
       "rollback": "Revert only two reviewed error-propagation hunks; source DB/schema/provider unchanged.",
       "reviewer": "Current sole developer; no independent review claim",
       "re_review": "Next upstream SQLite wrapper change or upstream sync"
+    },
+    {
+      "patch_id": "CONTINUATION_20261120_ORIGINAL_NOTE_DRAFT_WITNESS",
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "base_commit": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
+      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+      "authorization_scope": "Current 2026-11-19 owner explicitly authorizes all necessary changes, runs, commits, pushes and merges. Delegated continuation specifically requires original editable note owner and visible receipt. Standing task authorization, not an unseen exact-hunk review.",
+      "approval_ref": "docs/hq-integration/actions-notes-draft-20261120/REVIEW.md",
+      "patch_digest_sha256": "9a91dc8544df5d1ea7d343db30255a52727af7e83f0374aa64cd2a9265f77fb9",
+      "necessity": "Read-only optional observer for the original private UIKit note editor; existing sheet container alone cannot prove proposal text or visibility. Save/Cancel/Delete, state initialization and persistence are unchanged.",
+      "rejected_alternatives": [
+        "No replacement editor, note store or new executor.",
+        "No global UIKit inspection or fabricated model-only success."
+      ],
+      "tests": "Portable contract and authority regressions in actions-notes-draft-20261120; Apple SDK and actual Native action evidence pending.",
+      "review": "Independent focused source review found clipping and dismissal-lifetime issues, both corrected. No Apple/Native PASS claim.",
+      "rollback": "Revert only these three passive hook hunks and their isolated downstream adapter change; do not alter original data or annotations.",
+      "re_review": "Next upstream sheet or editor lifecycle update."
     }
   ]
 }

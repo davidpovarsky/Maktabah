@@ -1,5 +1,6 @@
 #if os(iOS)
 import SwiftUI
+import UIKit
 import OtzariaActionCore
 import OtzariaUIRouting
 import ChavrusaUIRoutingHost
@@ -297,5 +298,150 @@ struct MaktabahNativeSceneBindings {
     }
 }
 // END NATIVE INSPECTOR OWNER BINDING
+
+// BEGIN ORIGINAL NOTE EDITOR OWNER
+/// The existing SwiftUI Annotation binding and its original UITextView belong
+/// to the mounted Reader. This is neither a note store nor another editor.
+@MainActor final class MaktabahNativeNoteEditorOwner {
+    let id: UUID
+    weak var reader: ReaderViewModel?
+    private let annotation: Binding<Annotation?>
+    weak var textView: UITextView?
+    private(set) var presentationActive = false
+    func observeTextView(_ value: UITextView?) {
+        textView = value
+        if value != nil { presentationActive = true }
+    }
+    func didDismiss() {
+        guard current == nil else { return }
+        presentationActive = false
+        textView = nil
+    }
+    init(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>) {
+        self.id = id; self.reader = reader; self.annotation = annotation
+    }
+    var current: Annotation? { annotation.wrappedValue }
+    func present(_ draft: Annotation) throws {
+        guard current == nil, draft.id == nil else { throw ActionPortError.staleState }
+        presentationActive = true
+        annotation.wrappedValue = draft
+    }
+}
+
+/// Retain a proven original paragraph/line selection and an unsaved original
+/// Annotation value. Preparation never calls any annotation persistence API.
+@MainActor final class MaktabahNativeNoteDraftBinding {
+    let owner: MaktabahNativeNoteEditorOwner
+    let request: ActionNoteDraftRequest
+    let draft: Annotation
+    private let reader: ReaderViewModel
+    private let sourceGuard: MaktabahNativeInspectorBinding
+    private let sourceText: String
+    private let sceneID: UIStableID
+    private(set) var isApplied = false
+
+    static func selection(manager: iOSNavigationManager, owner: MaktabahNativeNoteEditorOwner,
+                          sceneID: UIStableID) throws -> (ReaderViewModel, TextLocator, NSRange, String) {
+        guard let reader = MaktabahNativeInspectorBinding.currentReader(in: manager), owner.reader === reader,
+              owner.current == nil, let locator = reader.selectedSegmentLocator,
+              let range = reader.selectedSegmentRange,
+              reader.isNativeReaderTextVisible?(sceneID.rawValue, range) == true else {
+            throw UIRouteError(.unavailable, "exact_note_selection_unavailable")
+        }
+        // These are the original renderer/DB anchor ranges, never a guessed
+        // first character, a title-derived position or a model-supplied range.
+        let rendered = reader.backendRenderModel?.renderedSegment(for: locator)?.visualRange
+        let anchorMatches = reader.otzariaSelectedLineAnchor.map {
+            locator.backend == .otzaria && locator.workKey == "book:\($0.bookId)"
+                && locator.position == .legacyLine($0.lineIndex) && $0.range == range
+        } ?? false
+        guard rendered == range || anchorMatches else { throw ActionPortError.staleState }
+        let ref = try ActionAppIdentityBridge.actionRef(locator)
+        _ = try ActionNoteDraftSelection.validate(.init(locator: ref), observedLocator: ref,
+            sourceText: reader.contentText, originalRange: range)
+        return (reader, locator, range, reader.contentText)
+    }
+
+    init(manager: iOSNavigationManager, owner: MaktabahNativeNoteEditorOwner,
+         request: ActionNoteDraftRequest, sceneID: UIStableID) throws {
+        let (reader, locator, range, source) = try Self.selection(manager: manager, owner: owner, sceneID: sceneID)
+        let actual = try ActionAppIdentityBridge.actionRef(locator)
+        let snippet = try ActionNoteDraftSelection.validate(request, observedLocator: actual, sourceText: source, originalRange: range)
+        let sourceGuard = try MaktabahNativeInspectorBinding(manager: manager)
+        var draft = try reader.makeAnnotationDraft(in: range, mode: .highlight, sourceText: source,
+            color: UIColor(named: "HighlightText") ?? .systemYellow)
+        guard draft.id == nil, draft.context.utf8.elementsEqual(snippet.utf8) else { throw ActionPortError.invalidResponse }
+        // Same original editor flow: use the selected source-owned locator
+        // when the original generic factory falls back to its containing unit.
+        draft.backendLocator = locator
+        draft.note = request.proposedText
+        self.owner = owner; self.reader = reader; self.request = request; self.draft = draft
+        self.sourceGuard = sourceGuard; sourceText = source; self.sceneID = sceneID
+        try validate()
+    }
+    func validate() throws {
+        try sourceGuard.validate()
+        guard owner.reader === reader, reader.contentText.utf8.elementsEqual(sourceText.utf8) else { throw ActionPortError.staleState }
+        if isApplied {
+            guard owner.current == draft, owner.current?.id == nil else { throw ActionPortError.staleState }
+        } else {
+            guard owner.current == nil else { throw ActionPortError.staleState }
+        }
+    }
+    func apply() throws {
+        try validate()
+        isApplied = true
+        try owner.present(draft)
+        try validate()
+    }
+    func validateVisible() throws {
+        try validate()
+        guard isApplied, let textView = owner.textView,
+              NativeNoteEditorTextVisibility.isVisible(textView, sceneID: sceneID,
+                  expectedText: request.proposedText ?? "") else {
+            throw UIRouteError(.unavailable, "original_note_editor_not_visible")
+        }
+    }
+}
+
+@MainActor private enum NativeNoteEditorTextVisibility {
+    static func isVisible(_ textView: UITextView, sceneID: UIStableID, expectedText: String) -> Bool {
+        guard textView.isEditable, (textView.text ?? "").utf8.elementsEqual(expectedText.utf8),
+              let window = textView.window, window.isKeyWindow, !window.isHidden,
+              let scene = window.windowScene, scene.activationState == .foregroundActive,
+              scene.session.persistentIdentifier == sceneID.rawValue,
+              textView.bounds.width > 1, textView.bounds.height > 1 else { return false }
+        var current: UIView? = textView
+        while let view = current {
+            guard !view.isHidden, view.alpha > 0 else { return false }
+            current = view.superview
+        }
+        let target = textView.convert(textView.bounds, to: window)
+        guard target.origin.x.isFinite, target.origin.y.isFinite, target.width.isFinite, target.height.isFinite else { return false }
+        var visible = target.intersection(window.bounds)
+        var ancestor = textView.superview
+        while let view = ancestor {
+            if view.clipsToBounds {
+                let clip = view.convert(view.bounds, to: window)
+                guard clip.origin.x.isFinite, clip.origin.y.isFinite, clip.width.isFinite, clip.height.isFinite else { return false }
+                visible = visible.intersection(clip)
+            }
+            ancestor = view.superview
+        }
+        guard !visible.isNull, visible.width > 1, visible.height > 1 else { return false }
+        var top = window.rootViewController
+        while let presented = top?.presentedViewController { top = presented }
+        guard let top, top !== window.rootViewController, textView.isDescendant(of: top.view) else { return false }
+        if !expectedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            // Reuse the existing TextKit viewport/glyph proof for this actual
+            // text view. Blank drafts need a visible editor, not an invented glyph.
+            return ReaderNativeTextVisibility.isVisible(textView: textView, sceneID: sceneID.rawValue,
+                expectedSource: expectedText, renderedSource: textView.textStorage.string,
+                renderedText: textView.textStorage.string, sourceRange: nil, displayedRange: { $0 })
+        }
+        return true
+    }
+}
+// END ORIGINAL NOTE EDITOR OWNER
 
 #endif
