@@ -86,6 +86,11 @@ private struct DemoChatMessage: Identifiable {
 
 struct ContentView: View {
     @State private var showStudySheet = false
+    @State private var isDocked = false
+    @State private var dockAfterSheetDismissal = false
+    @State private var splitVisibility: NavigationSplitViewVisibility = .all
+    @State private var compactColumn: NavigationSplitViewColumn = .detail
+    @State private var readerScrollPosition = ScrollPosition()
     @State private var placement: SheetPlacementChoice = .leading
     @State private var detent: PresentationDetent = .medium
     @State private var backgroundTouches: BackgroundTouchChoice = .throughMedium
@@ -104,6 +109,37 @@ struct ContentView: View {
     ]
 
     var body: some View {
+        Group {
+            if isDocked {
+                NavigationSplitView(
+                    columnVisibility: $splitVisibility,
+                    preferredCompactColumn: $compactColumn
+                ) {
+                    chatPanel(isDocked: true)
+                        .navigationSplitViewColumnWidth(min: 340, ideal: 420, max: 560)
+                } detail: {
+                    readerWorkspace
+                }
+                .navigationSplitViewStyle(.balanced)
+            } else {
+                readerWorkspace
+            }
+        }
+        .environment(\.layoutDirection, .rightToLeft)
+        // The sheet is owned by the same stable root in both layouts. Never
+        // present a sheet and mount the docked chat at the same time.
+        .sheet(isPresented: $showStudySheet, onDismiss: sheetDidDismiss) {
+            chatPanel(isDocked: false)
+                .presentationDetents([.height(180), .medium, .large], selection: $detent)
+                .presentationDragIndicator(.visible)
+                .presentationBackgroundInteraction(backgroundTouches.systemValue)
+                .presentationContentInteraction(swipePriority.systemValue)
+                .modifier(NativeSheetPlacement(placement: placement))
+                .modifier(NativeSheetSurface(style: sheetBackground))
+        }
+    }
+
+    private var readerWorkspace: some View {
         NavigationStack {
             GeometryReader { geometry in
                 ScrollView {
@@ -126,39 +162,80 @@ struct ContentView: View {
                     .frame(maxWidth: 1400)
                     .frame(maxWidth: .infinity)
                 }
+                .scrollPosition($readerScrollPosition)
                 .background(Color(uiColor: .systemGroupedBackground))
             }
             .navigationTitle("אוצריא · Native Sheet Lab")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showStudySheet = true
-                    } label: {
-                        Label("פתח Hanlin", systemImage: "bubble.left.and.bubble.right")
+                    if isDocked {
+                        Button(action: restoreSheet) {
+                            Label("החזר את Hanlin לחלונית", systemImage: "rectangle.bottomthird.inset.filled")
+                        }
+                        .buttonStyle(.glass)
+                        .accessibilityIdentifier("hanlin-reader-undock")
+                    } else {
+                        Button {
+                            showStudySheet = true
+                        } label: {
+                            Label("פתח Hanlin", systemImage: "bubble.left.and.bubble.right")
+                        }
                     }
                 }
             }
         }
-        .environment(\.layoutDirection, .rightToLeft)
-        .sheet(isPresented: $showStudySheet) {
-            NativeStudySheet(
-                isPresented: $showStudySheet,
-                placement: $placement,
-                detent: $detent,
-                backgroundTouches: $backgroundTouches,
-                swipePriority: $swipePriority,
-                sheetBackground: $sheetBackground,
-                messages: $messages,
-                draft: $draft
-            )
-            .presentationDetents([.height(180), .medium, .large], selection: $detent)
-            .presentationDragIndicator(.visible)
-            .presentationBackgroundInteraction(backgroundTouches.systemValue)
-            .presentationContentInteraction(swipePriority.systemValue)
-            .modifier(NativeSheetPlacement(placement: placement))
-            .modifier(NativeSheetSurface(style: sheetBackground))
+    }
+
+    // Both branches use the same panel component and bindings. Messages, draft,
+    // reader chapter, bookmark, typography and scroll position are not duplicated.
+    private func chatPanel(isDocked: Bool) -> some View {
+        NativeStudyChatPanel(
+            isDocked: isDocked,
+            onToggleLayout: isDocked ? restoreSheet : requestDock,
+            onClose: isDocked ? closeDockedChat : closeSheet,
+            placement: $placement,
+            detent: $detent,
+            backgroundTouches: $backgroundTouches,
+            swipePriority: $swipePriority,
+            sheetBackground: $sheetBackground,
+            messages: $messages,
+            draft: $draft
+        )
+    }
+
+    private func requestDock() {
+        guard !isDocked, showStudySheet else { return }
+        dockAfterSheetDismissal = true
+        showStudySheet = false
+    }
+
+    private func sheetDidDismiss() {
+        guard dockAfterSheetDismissal else { return }
+        dockAfterSheetDismissal = false
+        splitVisibility = .all
+        compactColumn = .detail
+        isDocked = true
+    }
+
+    private func restoreSheet() {
+        guard isDocked else { return }
+        isDocked = false
+        // Wait for the native split view to unmount before presenting the sheet.
+        Task { @MainActor in
+            await Task.yield()
+            if !isDocked { showStudySheet = true }
         }
+    }
+
+    private func closeDockedChat() {
+        isDocked = false
+        showStudySheet = false
+    }
+
+    private func closeSheet() {
+        dockAfterSheetDismissal = false
+        showStudySheet = false
     }
 
     private var hero: some View {
@@ -183,7 +260,7 @@ struct ContentView: View {
                 }
                 .buttonStyle(.borderedProminent)
             }
-            Text("בדוק את הגרירה, העגינה, המיקום בצד החלון והיכולת להמשיך לעבוד בספר. אין כאן FloatingPanel או מימוש חלונית עצמאי.")
+            Text("בדוק את הגרירה והמיקום של ה־Sheet, והעבר את אותה שיחה לעמודת צד מערכתית בלחיצה על כפתור הזכוכית. הספר נשאר פעיל בשני המצבים.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -394,8 +471,10 @@ private struct SheetExperimentControls: View {
     }
 }
 
-private struct NativeStudySheet: View {
-    @Binding var isPresented: Bool
+private struct NativeStudyChatPanel: View {
+    let isDocked: Bool
+    let onToggleLayout: () -> Void
+    let onClose: () -> Void
     @Binding var placement: SheetPlacementChoice
     @Binding var detent: PresentationDetent
     @Binding var backgroundTouches: BackgroundTouchChoice
@@ -412,14 +491,24 @@ private struct NativeStudySheet: View {
                     .font(.title3)
                     .foregroundStyle(.tint)
                 VStack(alignment: .leading, spacing: 1) {
-                    Text("Hanlin · Native Sheet")
+                    Text(isDocked ? "Hanlin · Split View" : "Hanlin · Native Sheet")
                         .font(.headline)
                     Text("שיחה מקומית להדגמת התצוגה")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 Spacer(minLength: 8)
-                Menu {
+                Button(action: onToggleLayout) {
+                    Image(systemName: isDocked ? "rectangle.bottomthird.inset.filled" : "sidebar.right")
+                        .font(.system(size: 17, weight: .semibold))
+                        .frame(width: 36, height: 36)
+                }
+                .buttonStyle(.glass)
+                .help(isDocked ? "חזור ל־Sheet" : "הצג את Hanlin בעמודה לצד הספר")
+                .accessibilityLabel(isDocked ? "החזר את השיחה לחלונית המערכת" : "הצג את השיחה בשתי עמודות")
+                .accessibilityIdentifier("hanlin-layout-toggle")
+                if !isDocked {
+                    Menu {
                     Button("מזער", systemImage: "arrow.down.to.line") { detent = .height(180) }
                     Button("בינוני", systemImage: "rectangle.center.inset.filled") { detent = .medium }
                     Button("הרחב", systemImage: "arrow.up.left.and.arrow.down.right") { detent = .large }
@@ -427,10 +516,9 @@ private struct NativeStudySheet: View {
                     Image(systemName: "arrow.up.left.and.arrow.down.right")
                         .frame(width: 36, height: 36)
                 }
-                .accessibilityLabel("שנה גובה חלונית")
-                Button {
-                    isPresented = false
-                } label: {
+                    .accessibilityLabel("שנה גובה חלונית")
+                }
+                Button(action: onClose) {
                     Image(systemName: "xmark.circle.fill")
                         .font(.title2)
                         .foregroundStyle(.secondary)
@@ -445,7 +533,9 @@ private struct NativeStudySheet: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("גרור את ידית המערכת כדי לשנות גובה. בזמן שהחלונית בגובה קטן או בינוני, נסה ללחוץ על הספר שמאחוריה.")
+                    Text(isDocked
+                         ? "מצב שתי עמודות: הספר והשיחה מוצגים יחד ב־NavigationSplitView המקורי של Apple. כפתור סרגל הצד מחזיר ל־Sheet, בלי למחוק את ההודעות."
+                         : "גרור את ידית המערכת כדי לשנות גובה. בזמן שהחלונית בגובה קטן או בינוני, נסה ללחוץ על הספר שמאחוריה.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -463,8 +553,9 @@ private struct NativeStudySheet: View {
                             if message.isUser { Spacer(minLength: 24) }
                         }
                     }
-                    DisclosureGroup {
-                        SheetExperimentControls(
+                    if !isDocked {
+                        DisclosureGroup {
+                            SheetExperimentControls(
                             placement: $placement,
                             detent: $detent,
                             backgroundTouches: $backgroundTouches,
@@ -477,7 +568,8 @@ private struct NativeStudySheet: View {
                             .font(.subheadline.weight(.semibold))
                     }
                     .padding(12)
-                    .background(Color(uiColor: .tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 14))
+                        .background(Color(uiColor: .tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 14))
+                    }
                 }
                 .padding(16)
                 .frame(maxWidth: .infinity, alignment: .leading)
