@@ -36,7 +36,8 @@ No original upstream UI source, renderer, data files, conversation-store impleme
 ## Validation record
 
 - Initial component command: FAILED during compilation because its old recursive source selection pulled in the separate conversation store without HanlinChatCore/HanlinPresentationKit. It executed zero tests; this is preserved in `initial-harness-failure/`.
-- Corrected command: PENDING collection in `host-tests/`.
+- Corrected initial compilation reached all adapter/dispatcher/test sources without errors, then hit the unchanged240s build limit before any test ran. The raw0-test timeout is preserved in `corrected-compile-timeout/`.
+- Resuming the same generated package under the same240s limit completed successfully: **28 XCTest cases PASS,0 failures,0 skips,0 compiler warnings**.19 existing cases,7 new transition boundary cases and2 original dispatcher-to-adapter cases ran. Test duration2.23s; build189.23s; Windows Swift6.3.3 with strict concurrency. All58 compilation inputs were checked against source commit60bbfb6739258bb41f68e2aff3282fecb66c8a28 and original SDK e00498e3 (line-ending normalization is explicitly listed). Raw results are in `host-tests/`.
 - Windows syntax-only parsing of the five changed production files: exit 0 for each. This is not Apple typechecking.
 - Git whitespace/error check: passed.
 - Original SDK package-byte verification: 424 files passed.
