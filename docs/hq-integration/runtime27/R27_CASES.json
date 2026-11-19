@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "65e142827be7c241fbda7ee79635494c8098132c",
+  "source_test_commit": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "65e142827be7c241fbda7ee79635494c8098132c",
+  "app_source": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original77 selected Native cases plus1 registered BookHistoryScope case:78 required cases,64iPad27+14iPhone27,zero skips. All80 catalog entries retained; two historical GlobalHistorySubmit exclusions remain explicit. No prior Native pass transferred.",
@@ -1258,7 +1258,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "65e142827be7c241fbda7ee79635494c8098132c",
+  "application_source_sha": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -1477,7 +1477,42 @@
       "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
     ],
     "native_status": "NOT_RUN",
-    "source_freeze": "Manager must repin the final integrated source before dispatch",
+    "source_freeze": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
     "whole_phase_accepted": false
+  },
+  "completion_20261120": {
+    "source_freeze": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
+    "application_trees": {
+      "Source": "94e4b4f7dcc374509dafccfceaba0318d800aef7",
+      "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+      "Maktabah.xcodeproj": "1175aa91ffff58b465c635926ba3eebe9a80ae53"
+    },
+    "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "prior_top_level_source_fields": {
+      "source_test_commit": "65e142827be7c241fbda7ee79635494c8098132c",
+      "app_source": "65e142827be7c241fbda7ee79635494c8098132c",
+      "application_source_sha": "65e142827be7c241fbda7ee79635494c8098132c"
+    },
+    "required_cases": 78,
+    "historical_acceptance_transferred": false,
+    "native_cases_executed": 0,
+    "status": "NOT_RUN",
+    "source_changes": [
+      "candidate manifest URL identity",
+      "Hanlin original API1.2 context transition",
+      "exact Zayit locator/terms and existing Reader loader",
+      "exact AppIntent window activation",
+      "atomic final native scene/backend acknowledgement",
+      "source-backed Core commentary",
+      "history heading accessibility container"
+    ],
+    "test_changes": [
+      "Native transport/counts/DNS retry",
+      "original history CollectionView selectors",
+      "phone initial restored Reader preparation",
+      "actual Sidebar disclosure state",
+      "BookHistoryScope original UI case registration",
+      "history heading geometry then unchanged accessibility audit"
+    ]
   }
 }

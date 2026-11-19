@@ -1,8 +1,8 @@
 {
-  "application_source_sha": "440f7e43af9fa49b67613685566fbb9b6bbc9248",
+  "application_source_sha": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
   "application_trees": {
-    "Source": "4c34e21c7fe3d624953c7defb246b87af002df35",
-    "Vendor": "064e4bcf3f8eea6270f875428c960e7c214ad167",
+    "Source": "94e4b4f7dcc374509dafccfceaba0318d800aef7",
+    "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
     "Maktabah.xcodeproj": "1175aa91ffff58b465c635926ba3eebe9a80ae53"
   },
   "engine_producer_sha": "41c278ac67f0c03e19270ed65b891b242a1a3f2e",
@@ -80,5 +80,5 @@
     "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
   ],
   "rebuild_zayit_framework": true,
-  "hanlin_gitlink": "6d62957852ffcb428810b065b4252e5384f1374b"
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300"
 }
