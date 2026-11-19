@@ -1,0 +1,18 @@
+{
+  "label": "routing",
+  "head": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+  "exit": 0,
+  "end": "2026-11-19T23:52:40.681438+00:00",
+  "source_hashes_unchanged": true,
+  "summary_lines": [
+    "\t Executed 24 tests, with 0 failures (0 unexpected) in 5.151 (5.151) seconds",
+    "\t Executed 9 tests, with 0 failures (0 unexpected) in 0.755 (0.755) seconds",
+    "\t Executed 23 tests, with 0 failures (0 unexpected) in 21.02 (21.02) seconds",
+    "\t Executed 5 tests, with 0 failures (0 unexpected) in 2.574 (2.574) seconds",
+    "\t Executed 5 tests, with 0 failures (0 unexpected) in 0.512 (0.512) seconds",
+    "\t Executed 5 tests, with 0 failures (0 unexpected) in 0.329 (0.329) seconds",
+    "\t Executed 99 tests, with 0 failures (0 unexpected) in 36.491 (36.491) seconds",
+    "\t Executed 99 tests, with 0 failures (0 unexpected) in 36.491 (36.491) seconds"
+  ],
+  "raw_log_sha256": "f9eb7675edd86fe78737f03d273856836b89e726d4b012a63fbed5c2d79541d0"
+}

@@ -1,0 +1,18 @@
+{
+  "label": "host",
+  "head": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+  "exit": 0,
+  "end": "2026-11-19T23:52:28.361902+00:00",
+  "source_hashes_unchanged": true,
+  "summary_lines": [
+    "\t Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds",
+    "\t Executed 9 tests, with 0 failures (0 unexpected) in 0.65 (0.65) seconds",
+    "\t Executed 16 tests, with 0 failures (0 unexpected) in 0.084 (0.084) seconds",
+    "\t Executed 17 tests, with 0 failures (0 unexpected) in 2.438 (2.438) seconds",
+    "\t Executed 2 tests, with 0 failures (0 unexpected) in 0.104 (0.104) seconds",
+    "\t Executed 9 tests, with 0 failures (0 unexpected) in 0.007 (0.007) seconds",
+    "\t Executed 127 tests, with 0 failures (0 unexpected) in 15.664 (15.664) seconds",
+    "\t Executed 127 tests, with 0 failures (0 unexpected) in 15.664 (15.664) seconds"
+  ],
+  "raw_log_sha256": "7b3abd44df59c8e5b3c5aa30a1ddb18011f133719134f6268988a76c0ae27ec7"
+}

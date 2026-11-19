@@ -1,0 +1,18 @@
+{
+  "label": "core",
+  "head": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+  "exit": 0,
+  "end": "2026-11-19T23:51:57.698854+00:00",
+  "source_hashes_unchanged": true,
+  "summary_lines": [
+    "\t Executed 19 tests, with 0 failures (0 unexpected) in 0.205 (0.205) seconds",
+    "\t Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds",
+    "\t Executed 18 tests, with 0 failures (0 unexpected) in 2.272 (2.272) seconds",
+    "\t Executed 17 tests, with 0 failures (0 unexpected) in 1.08 (1.08) seconds",
+    "\t Executed 14 tests, with 0 failures (0 unexpected) in 0.447 (0.447) seconds",
+    "\t Executed 7 tests, with 0 failures (0 unexpected) in 0.422 (0.422) seconds",
+    "\t Executed 117 tests, with 0 failures (0 unexpected) in 4.625 (4.625) seconds",
+    "\t Executed 117 tests, with 0 failures (0 unexpected) in 4.625 (4.625) seconds"
+  ],
+  "raw_log_sha256": "a66cb277bda8f6bf964ac721b8b79afd01d1429d88a7df164a311cc6a363423e"
+}

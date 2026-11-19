@@ -1,0 +1,87 @@
+{
+  "tested_head": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+  "packages": {
+    "core": {
+      "executed": 117,
+      "failures": 0,
+      "result": {
+        "label": "core",
+        "head": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+        "exit": 0,
+        "end": "2026-11-19T23:51:57.698854+00:00",
+        "source_hashes_unchanged": true,
+        "summary_lines": [
+          "\t Executed 19 tests, with 0 failures (0 unexpected) in 0.205 (0.205) seconds",
+          "\t Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds",
+          "\t Executed 18 tests, with 0 failures (0 unexpected) in 2.272 (2.272) seconds",
+          "\t Executed 17 tests, with 0 failures (0 unexpected) in 1.08 (1.08) seconds",
+          "\t Executed 14 tests, with 0 failures (0 unexpected) in 0.447 (0.447) seconds",
+          "\t Executed 7 tests, with 0 failures (0 unexpected) in 0.422 (0.422) seconds",
+          "\t Executed 117 tests, with 0 failures (0 unexpected) in 4.625 (4.625) seconds",
+          "\t Executed 117 tests, with 0 failures (0 unexpected) in 4.625 (4.625) seconds"
+        ],
+        "raw_log_sha256": "a66cb277bda8f6bf964ac721b8b79afd01d1429d88a7df164a311cc6a363423e"
+      },
+      "raw_gzip_sha256": "f0d75c17cb26003b4231c2c0b8622ca24ab79378fb5c97264e48b744c60e1d6a",
+      "readable_sha256": "a8a5b0afdd593b5c938970026d06889fa6bf58b0b94de4f5b0c26abebc8a390a"
+    },
+    "routing": {
+      "executed": 99,
+      "failures": 0,
+      "result": {
+        "label": "routing",
+        "head": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+        "exit": 0,
+        "end": "2026-11-19T23:52:40.681438+00:00",
+        "source_hashes_unchanged": true,
+        "summary_lines": [
+          "\t Executed 24 tests, with 0 failures (0 unexpected) in 5.151 (5.151) seconds",
+          "\t Executed 9 tests, with 0 failures (0 unexpected) in 0.755 (0.755) seconds",
+          "\t Executed 23 tests, with 0 failures (0 unexpected) in 21.02 (21.02) seconds",
+          "\t Executed 5 tests, with 0 failures (0 unexpected) in 2.574 (2.574) seconds",
+          "\t Executed 5 tests, with 0 failures (0 unexpected) in 0.512 (0.512) seconds",
+          "\t Executed 5 tests, with 0 failures (0 unexpected) in 0.329 (0.329) seconds",
+          "\t Executed 99 tests, with 0 failures (0 unexpected) in 36.491 (36.491) seconds",
+          "\t Executed 99 tests, with 0 failures (0 unexpected) in 36.491 (36.491) seconds"
+        ],
+        "raw_log_sha256": "f9eb7675edd86fe78737f03d273856836b89e726d4b012a63fbed5c2d79541d0"
+      },
+      "raw_gzip_sha256": "ce249cf24227e2d468817d8f334ac26d03aaaac7d7ec8049c6a53fa5dc348719",
+      "readable_sha256": "83d8dfe05b01d80ab732e760aa2a2d180561fdf245c5facd67c6a62f96dbea95"
+    },
+    "host": {
+      "executed": 127,
+      "failures": 0,
+      "result": {
+        "label": "host",
+        "head": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+        "exit": 0,
+        "end": "2026-11-19T23:52:28.361902+00:00",
+        "source_hashes_unchanged": true,
+        "summary_lines": [
+          "\t Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds",
+          "\t Executed 9 tests, with 0 failures (0 unexpected) in 0.65 (0.65) seconds",
+          "\t Executed 16 tests, with 0 failures (0 unexpected) in 0.084 (0.084) seconds",
+          "\t Executed 17 tests, with 0 failures (0 unexpected) in 2.438 (2.438) seconds",
+          "\t Executed 2 tests, with 0 failures (0 unexpected) in 0.104 (0.104) seconds",
+          "\t Executed 9 tests, with 0 failures (0 unexpected) in 0.007 (0.007) seconds",
+          "\t Executed 127 tests, with 0 failures (0 unexpected) in 15.664 (15.664) seconds",
+          "\t Executed 127 tests, with 0 failures (0 unexpected) in 15.664 (15.664) seconds"
+        ],
+        "raw_log_sha256": "7b3abd44df59c8e5b3c5aa30a1ddb18011f133719134f6268988a76c0ae27ec7"
+      },
+      "raw_gzip_sha256": "6edc5144c98f89dfab60e35f4b4b3bdb58689b3d9734992894bcd48e34e269cc",
+      "readable_sha256": "f926e28b17ef4351b8c266256c5a95ec342891ba1880193fddd78bc47f8ddc0c"
+    }
+  },
+  "total_executed": 343,
+  "native_ui_executed": 0,
+  "apple_sdk": "NOT_RUN for this combined source",
+  "physical_device": "NOT_RUN",
+  "git_package_trees": {
+    "Source/Otzaria/Actions": "dea7144c42bbd59b13aec2899954c253947c9274",
+    "Source/Otzaria/UIRouting": "9c25ca5c7a78676497b4cde7159a22c92bc9f88b",
+    "Source/ChavrusaText/UIRoutingHost/Sources": "c541afe51601d87f903550d0f44f2f2cd8454fa2",
+    "Source/ChavrusaText/UIRoutingHost/Tests": "5d736dfda106e4ef3cc2e2eb9e46b1a10fff9050"
+  }
+}
