@@ -1,0 +1,32 @@
+BEGIN round=0 version=baseline
+[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=389
+[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=chapter count=7 durationMs=512
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=992
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextCount=17728260 htmlCount=18066752 heRef=דור המלקטים על אורח חיים 40922 durationMs=8410
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=696
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextCount=17728260 htmlCount=18066752 heRef=דור המלקטים על אורח חיים 40922 durationMs=7081
+END round=0 version=baseline cold=8410.554885864258 warm=7081.80046081543 bytesDiagnostic=0.0
+BEGIN round=0 version=candidate
+[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=209
+[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=chapter count=7 durationMs=342
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=604
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextUTF8Bytes=30245157 htmlUTF8Bytes=30583708 heRef=דור המלקטים על אורח חיים 40922 durationMs=4316
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=563
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextUTF8Bytes=30245157 htmlUTF8Bytes=30583708 heRef=דור המלקטים על אורח חיים 40922 durationMs=4493
+END round=0 version=candidate cold=4316.989898681641 warm=4493.129730224609 bytesDiagnostic=0.0019073486328125
+BEGIN round=1 version=candidate
+[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=171
+[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=chapter count=7 durationMs=272
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=446
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextUTF8Bytes=30245157 htmlUTF8Bytes=30583708 heRef=דור המלקטים על אורח חיים 40922 durationMs=4591
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=656
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextUTF8Bytes=30245157 htmlUTF8Bytes=30583708 heRef=דור המלקטים על אורח חיים 40922 durationMs=4576
+END round=1 version=candidate cold=4591.831207275391 warm=4576.648712158203 bytesDiagnostic=0.0
+BEGIN round=1 version=baseline
+[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=283
+[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=chapter count=7 durationMs=403
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=716
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextCount=17728260 htmlCount=18066752 heRef=דור המלקטים על אורח חיים 40922 durationMs=7233
+[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=671
+[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextCount=17728260 htmlCount=18066752 heRef=דור המלקטים על אורח חיים 40922 durationMs=6136
+END round=1 version=baseline cold=7233.1390380859375 warm=6136.53564453125 bytesDiagnostic=0.0

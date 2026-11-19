@@ -1,0 +1,1944 @@
+{
+  "status": "ORIGINAL_STAGES_CAPTURED",
+  "reader_cases": 36,
+  "navigation_cases": 18,
+  "records": [
+    {
+      "book_id": 103,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 75,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 68,
+      "remaining_materialization_and_summary_ms": 7,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 68,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=nil start=0 count=1 durationMs=68"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 75,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=10 htmlUTF8Bytes=19 heRef= durationMs=75"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 1,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=nil start=0 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=10 htmlUTF8Bytes=19 heRef= durationMs=1"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 1437,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 6,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 6,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=nil start=1437 count=1 durationMs=6"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=line result=ok modeUnitId=line:1437 tocEntryId=nil startLineIndex=1437 endLineIndex=1437 sourceLineCount=1 plainTextUTF8Bytes=168 htmlUTF8Bytes=168 heRef=ברכות, לא., א durationMs=6"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 1437,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 0,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=nil start=1437 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=line result=ok modeUnitId=line:1437 tocEntryId=nil startLineIndex=1437 endLineIndex=1437 sourceLineCount=1 plainTextUTF8Bytes=168 htmlUTF8Bytes=168 heRef=ברכות, לא., א durationMs=0"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 16,
+      "total_ms": 29,
+      "book_index_ms_nested": 17,
+      "unit_summaries_ms_including_index": 19,
+      "source_lines_ms": 6,
+      "remaining_materialization_and_summary_ms": 4,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 17,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=103 tocEntries=126 lineTocMappings=2875 durationMs=17"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 19,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=103 mode=paragraph count=125 durationMs=19"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1558 start=0 count=16 durationMs=6"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 29,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:1558 tocEntryId=1558 startLineIndex=0 endLineIndex=15 sourceLineCount=16 plainTextUTF8Bytes=4043 htmlUTF8Bytes=4117 heRef=ברכות, ב., א durationMs=29"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 16,
+      "total_ms": 4,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 4,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1558 start=0 count=16 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 4,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:1558 tocEntryId=1558 startLineIndex=0 endLineIndex=15 sourceLineCount=16 plainTextUTF8Bytes=4043 htmlUTF8Bytes=4117 heRef=ברכות, ב., א durationMs=4"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 1437,
+      "mode": "paragraph",
+      "rows": 29,
+      "total_ms": 28,
+      "book_index_ms_nested": 10,
+      "unit_summaries_ms_including_index": 15,
+      "source_lines_ms": 9,
+      "remaining_materialization_and_summary_ms": 4,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 10,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=103 tocEntries=126 lineTocMappings=2875 durationMs=10"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 15,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=103 mode=paragraph count=125 durationMs=15"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 9,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1616 start=1436 count=29 durationMs=9"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 28,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=paragraph result=ok modeUnitId=toc:1616 tocEntryId=1616 startLineIndex=1436 endLineIndex=1464 sourceLineCount=29 plainTextUTF8Bytes=10255 htmlUTF8Bytes=10264 heRef=ברכות, לא., א durationMs=28"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 1437,
+      "mode": "paragraph",
+      "rows": 29,
+      "total_ms": 3,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 3,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1616 start=1436 count=29 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 3,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=paragraph result=ok modeUnitId=toc:1616 tocEntryId=1616 startLineIndex=1436 endLineIndex=1464 sourceLineCount=29 plainTextUTF8Bytes=10255 htmlUTF8Bytes=10264 heRef=ברכות, לא., א durationMs=3"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 16,
+      "total_ms": 27,
+      "book_index_ms_nested": 9,
+      "unit_summaries_ms_including_index": 15,
+      "source_lines_ms": 7,
+      "remaining_materialization_and_summary_ms": 5,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 9,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=103 tocEntries=126 lineTocMappings=2875 durationMs=9"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 15,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=103 mode=chapter count=125 durationMs=15"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 7,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1558 start=0 count=16 durationMs=7"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 27,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=chapter result=ok modeUnitId=toc:1558 tocEntryId=1558 startLineIndex=0 endLineIndex=15 sourceLineCount=16 plainTextUTF8Bytes=4043 htmlUTF8Bytes=4117 heRef=ברכות, ב., א durationMs=27"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 16,
+      "total_ms": 3,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 3,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1558 start=0 count=16 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 3,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=0 mode=chapter result=ok modeUnitId=toc:1558 tocEntryId=1558 startLineIndex=0 endLineIndex=15 sourceLineCount=16 plainTextUTF8Bytes=4043 htmlUTF8Bytes=4117 heRef=ברכות, ב., א durationMs=3"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 1437,
+      "mode": "chapter",
+      "rows": 29,
+      "total_ms": 27,
+      "book_index_ms_nested": 10,
+      "unit_summaries_ms_including_index": 16,
+      "source_lines_ms": 8,
+      "remaining_materialization_and_summary_ms": 3,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 10,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=103 tocEntries=126 lineTocMappings=2875 durationMs=10"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 16,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=103 mode=chapter count=125 durationMs=16"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 8,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1616 start=1436 count=29 durationMs=8"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 27,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=chapter result=ok modeUnitId=toc:1616 tocEntryId=1616 startLineIndex=1436 endLineIndex=1464 sourceLineCount=29 plainTextUTF8Bytes=10255 htmlUTF8Bytes=10264 heRef=ברכות, לא., א durationMs=27"
+        }
+      ]
+    },
+    {
+      "book_id": 103,
+      "line_index": 1437,
+      "mode": "chapter",
+      "rows": 29,
+      "total_ms": 3,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 3,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=103 tocEntryId=1616 start=1436 count=29 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 3,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=103 lineIndex=1437 mode=chapter result=ok modeUnitId=toc:1616 tocEntryId=1616 startLineIndex=1436 endLineIndex=1464 sourceLineCount=29 plainTextUTF8Bytes=10255 htmlUTF8Bytes=10264 heRef=ברכות, לא., א durationMs=3"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 26,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 25,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 25,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=nil start=0 count=1 durationMs=25"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 26,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=12 htmlUTF8Bytes=21 heRef= durationMs=26"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 1,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=nil start=0 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=12 htmlUTF8Bytes=21 heRef= durationMs=1"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 1339,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 7,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 6,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=nil start=1339 count=1 durationMs=6"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 7,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=line result=ok modeUnitId=line:1339 tocEntryId=nil startLineIndex=1339 endLineIndex=1339 sourceLineCount=1 plainTextUTF8Bytes=114 htmlUTF8Bytes=114 heRef=תהילים, עח, לג durationMs=7"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 1339,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 0,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=nil start=1339 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=line result=ok modeUnitId=line:1339 tocEntryId=nil startLineIndex=1339 endLineIndex=1339 sourceLineCount=1 plainTextUTF8Bytes=114 htmlUTF8Bytes=114 heRef=תהילים, עח, לג durationMs=0"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 8,
+      "total_ms": 53,
+      "book_index_ms_nested": 36,
+      "unit_summaries_ms_including_index": 39,
+      "source_lines_ms": 8,
+      "remaining_materialization_and_summary_ms": 6,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 36,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=28 tocEntries=151 lineTocMappings=2678 durationMs=36"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 39,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=28 mode=paragraph count=150 durationMs=39"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 8,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=600 start=0 count=8 durationMs=8"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 53,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:600 tocEntryId=600 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextUTF8Bytes=1234 htmlUTF8Bytes=1434 heRef=תהילים, א, א durationMs=53"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 8,
+      "total_ms": 4,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 4,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=600 start=0 count=8 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 4,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:600 tocEntryId=600 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextUTF8Bytes=1234 htmlUTF8Bytes=1434 heRef=תהילים, א, א durationMs=4"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 1339,
+      "mode": "paragraph",
+      "rows": 73,
+      "total_ms": 20,
+      "book_index_ms_nested": 6,
+      "unit_summaries_ms_including_index": 8,
+      "source_lines_ms": 5,
+      "remaining_materialization_and_summary_ms": 7,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=28 tocEntries=151 lineTocMappings=2678 durationMs=6"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 8,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=28 mode=paragraph count=150 durationMs=8"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 5,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=677 start=1306 count=73 durationMs=5"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 20,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=paragraph result=ok modeUnitId=toc:677 tocEntryId=677 startLineIndex=1306 endLineIndex=1378 sourceLineCount=73 plainTextUTF8Bytes=10718 htmlUTF8Bytes=10853 heRef=תהילים, עח, א durationMs=20"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 1339,
+      "mode": "paragraph",
+      "rows": 73,
+      "total_ms": 7,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 7,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=677 start=1306 count=73 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 7,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=paragraph result=ok modeUnitId=toc:677 tocEntryId=677 startLineIndex=1306 endLineIndex=1378 sourceLineCount=73 plainTextUTF8Bytes=10718 htmlUTF8Bytes=10853 heRef=תהילים, עח, א durationMs=7"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 8,
+      "total_ms": 17,
+      "book_index_ms_nested": 6,
+      "unit_summaries_ms_including_index": 9,
+      "source_lines_ms": 5,
+      "remaining_materialization_and_summary_ms": 3,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=28 tocEntries=151 lineTocMappings=2678 durationMs=6"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 9,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=28 mode=chapter count=150 durationMs=9"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 5,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=600 start=0 count=8 durationMs=5"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 17,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=chapter result=ok modeUnitId=toc:600 tocEntryId=600 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextUTF8Bytes=1234 htmlUTF8Bytes=1434 heRef=תהילים, א, א durationMs=17"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 8,
+      "total_ms": 2,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 2,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=600 start=0 count=8 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 2,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=0 mode=chapter result=ok modeUnitId=toc:600 tocEntryId=600 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextUTF8Bytes=1234 htmlUTF8Bytes=1434 heRef=תהילים, א, א durationMs=2"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 1339,
+      "mode": "chapter",
+      "rows": 73,
+      "total_ms": 23,
+      "book_index_ms_nested": 4,
+      "unit_summaries_ms_including_index": 8,
+      "source_lines_ms": 6,
+      "remaining_materialization_and_summary_ms": 9,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 4,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=28 tocEntries=151 lineTocMappings=2678 durationMs=4"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 8,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=28 mode=chapter count=150 durationMs=8"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=677 start=1306 count=73 durationMs=6"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 23,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=chapter result=ok modeUnitId=toc:677 tocEntryId=677 startLineIndex=1306 endLineIndex=1378 sourceLineCount=73 plainTextUTF8Bytes=10718 htmlUTF8Bytes=10853 heRef=תהילים, עח, א durationMs=23"
+        }
+      ]
+    },
+    {
+      "book_id": 28,
+      "line_index": 1339,
+      "mode": "chapter",
+      "rows": 73,
+      "total_ms": 6,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 6,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=28 tocEntryId=677 start=1306 count=73 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=28 lineIndex=1339 mode=chapter result=ok modeUnitId=toc:677 tocEntryId=677 startLineIndex=1306 endLineIndex=1378 sourceLineCount=73 plainTextUTF8Bytes=10718 htmlUTF8Bytes=10853 heRef=תהילים, עח, א durationMs=6"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 14,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 13,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 13,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=nil start=0 count=1 durationMs=13"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 14,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=18 htmlUTF8Bytes=27 heRef= durationMs=14"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 1,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=nil start=0 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=18 htmlUTF8Bytes=27 heRef= durationMs=1"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 264,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 7,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 7,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 7,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=nil start=264 count=1 durationMs=7"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 7,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=line result=ok modeUnitId=line:264 tocEntryId=nil startLineIndex=264 endLineIndex=264 sourceLineCount=1 plainTextUTF8Bytes=1133 htmlUTF8Bytes=1133 heRef=דרשות הר\"ן, ו, כה durationMs=7"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 264,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 0,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=nil start=264 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=line result=ok modeUnitId=line:264 tocEntryId=nil startLineIndex=264 endLineIndex=264 sourceLineCount=1 plainTextUTF8Bytes=1133 htmlUTF8Bytes=1133 heRef=דרשות הר\"ן, ו, כה durationMs=0"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 57,
+      "total_ms": 30,
+      "book_index_ms_nested": 16,
+      "unit_summaries_ms_including_index": 17,
+      "source_lines_ms": 6,
+      "remaining_materialization_and_summary_ms": 7,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 16,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=3152 tocEntries=13 lineTocMappings=528 durationMs=16"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 17,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=3152 mode=paragraph count=12 durationMs=17"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297503 start=0 count=57 durationMs=6"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 30,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:297503 tocEntryId=297503 startLineIndex=0 endLineIndex=56 sourceLineCount=57 plainTextUTF8Bytes=62359 htmlUTF8Bytes=62380 heRef=דרשות הר\"ן, א, א durationMs=30"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 57,
+      "total_ms": 5,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 1,
+      "remaining_materialization_and_summary_ms": 4,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 1,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297503 start=0 count=57 durationMs=1"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 5,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:297503 tocEntryId=297503 startLineIndex=0 endLineIndex=56 sourceLineCount=57 plainTextUTF8Bytes=62359 htmlUTF8Bytes=62380 heRef=דרשות הר\"ן, א, א durationMs=5"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 264,
+      "mode": "paragraph",
+      "rows": 31,
+      "total_ms": 16,
+      "book_index_ms_nested": 2,
+      "unit_summaries_ms_including_index": 3,
+      "source_lines_ms": 8,
+      "remaining_materialization_and_summary_ms": 5,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 2,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=3152 tocEntries=13 lineTocMappings=528 durationMs=2"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 3,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=3152 mode=paragraph count=12 durationMs=3"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 8,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297508 start=239 count=31 durationMs=8"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 16,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=paragraph result=ok modeUnitId=toc:297508 tocEntryId=297508 startLineIndex=239 endLineIndex=269 sourceLineCount=31 plainTextUTF8Bytes=47203 htmlUTF8Bytes=47213 heRef=דרשות הר\"ן, ו, א durationMs=16"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 264,
+      "mode": "paragraph",
+      "rows": 31,
+      "total_ms": 5,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 1,
+      "remaining_materialization_and_summary_ms": 4,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 1,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297508 start=239 count=31 durationMs=1"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 5,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=paragraph result=ok modeUnitId=toc:297508 tocEntryId=297508 startLineIndex=239 endLineIndex=269 sourceLineCount=31 plainTextUTF8Bytes=47203 htmlUTF8Bytes=47213 heRef=דרשות הר\"ן, ו, א durationMs=5"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 57,
+      "total_ms": 15,
+      "book_index_ms_nested": 1,
+      "unit_summaries_ms_including_index": 2,
+      "source_lines_ms": 7,
+      "remaining_materialization_and_summary_ms": 6,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 1,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=3152 tocEntries=13 lineTocMappings=528 durationMs=1"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 2,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=3152 mode=chapter count=12 durationMs=2"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 7,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297503 start=0 count=57 durationMs=7"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 15,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=chapter result=ok modeUnitId=toc:297503 tocEntryId=297503 startLineIndex=0 endLineIndex=56 sourceLineCount=57 plainTextUTF8Bytes=62359 htmlUTF8Bytes=62380 heRef=דרשות הר\"ן, א, א durationMs=15"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 57,
+      "total_ms": 6,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 6,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297503 start=0 count=57 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=0 mode=chapter result=ok modeUnitId=toc:297503 tocEntryId=297503 startLineIndex=0 endLineIndex=56 sourceLineCount=57 plainTextUTF8Bytes=62359 htmlUTF8Bytes=62380 heRef=דרשות הר\"ן, א, א durationMs=6"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 264,
+      "mode": "chapter",
+      "rows": 31,
+      "total_ms": 13,
+      "book_index_ms_nested": 1,
+      "unit_summaries_ms_including_index": 3,
+      "source_lines_ms": 5,
+      "remaining_materialization_and_summary_ms": 5,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 1,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=3152 tocEntries=13 lineTocMappings=528 durationMs=1"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 3,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=3152 mode=chapter count=12 durationMs=3"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 5,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297508 start=239 count=31 durationMs=5"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 13,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=chapter result=ok modeUnitId=toc:297508 tocEntryId=297508 startLineIndex=239 endLineIndex=269 sourceLineCount=31 plainTextUTF8Bytes=47203 htmlUTF8Bytes=47213 heRef=דרשות הר\"ן, ו, א durationMs=13"
+        }
+      ]
+    },
+    {
+      "book_id": 3152,
+      "line_index": 264,
+      "mode": "chapter",
+      "rows": 31,
+      "total_ms": 6,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 6,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=3152 tocEntryId=297508 start=239 count=31 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=3152 lineIndex=264 mode=chapter result=ok modeUnitId=toc:297508 tocEntryId=297508 startLineIndex=239 endLineIndex=269 sourceLineCount=31 plainTextUTF8Bytes=47203 htmlUTF8Bytes=47213 heRef=דרשות הר\"ן, ו, א durationMs=6"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 7,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 7,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 7,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=nil start=0 count=1 durationMs=7"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 7,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=44 htmlUTF8Bytes=53 heRef= durationMs=7"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 0,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=nil start=0 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=44 htmlUTF8Bytes=53 heRef= durationMs=0"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 95380,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 6,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 6,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=nil start=95380 count=1 durationMs=6"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=line result=ok modeUnitId=line:95380 tocEntryId=nil startLineIndex=95380 endLineIndex=95380 sourceLineCount=1 plainTextUTF8Bytes=667 htmlUTF8Bytes=667 heRef=דור המלקטים על אורח חיים 95381 durationMs=6"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 95380,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 0,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=nil start=95380 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=line result=ok modeUnitId=line:95380 tocEntryId=nil startLineIndex=95380 endLineIndex=95380 sourceLineCount=1 plainTextUTF8Bytes=667 htmlUTF8Bytes=667 heRef=דור המלקטים על אורח חיים 95381 durationMs=0"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 8,
+      "total_ms": 730,
+      "book_index_ms_nested": 607,
+      "unit_summaries_ms_including_index": 720,
+      "source_lines_ms": 8,
+      "remaining_materialization_and_summary_ms": 2,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 607,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=607"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 720,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=paragraph count=411 durationMs=720"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 8,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851640 start=0 count=8 durationMs=8"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 730,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:851640 tocEntryId=851640 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextUTF8Bytes=1649 htmlUTF8Bytes=1681 heRef=דור המלקטים על אורח חיים 2 durationMs=730"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 8,
+      "total_ms": 2,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 2,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851640 start=0 count=8 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 2,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:851640 tocEntryId=851640 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextUTF8Bytes=1649 htmlUTF8Bytes=1681 heRef=דור המלקטים על אורח חיים 2 durationMs=2"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 95380,
+      "mode": "paragraph",
+      "rows": 1192,
+      "total_ms": 474,
+      "book_index_ms_nested": 280,
+      "unit_summaries_ms_including_index": 355,
+      "source_lines_ms": 14,
+      "remaining_materialization_and_summary_ms": 105,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 280,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=280"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 355,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=paragraph count=411 durationMs=355"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 14,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851850 start=94282 count=1192 durationMs=14"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 474,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=paragraph result=ok modeUnitId=toc:851850 tocEntryId=851850 startLineIndex=94282 endLineIndex=95473 sourceLineCount=1192 plainTextUTF8Bytes=334736 htmlUTF8Bytes=339191 heRef=דור המלקטים על אורח חיים 94284 durationMs=474"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 95380,
+      "mode": "paragraph",
+      "rows": 1192,
+      "total_ms": 164,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 21,
+      "remaining_materialization_and_summary_ms": 143,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 21,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851850 start=94282 count=1192 durationMs=21"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 164,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=paragraph result=ok modeUnitId=toc:851850 tocEntryId=851850 startLineIndex=94282 endLineIndex=95473 sourceLineCount=1192 plainTextUTF8Bytes=334736 htmlUTF8Bytes=339191 heRef=דור המלקטים על אורח חיים 94284 durationMs=164"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 8,
+      "total_ms": 730,
+      "book_index_ms_nested": 451,
+      "unit_summaries_ms_including_index": 720,
+      "source_lines_ms": 7,
+      "remaining_materialization_and_summary_ms": 3,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 451,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=451"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 720,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=chapter count=7 durationMs=720"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 7,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851640 start=0 count=8 durationMs=7"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 730,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=chapter result=ok modeUnitId=toc:851640 tocEntryId=851640 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextUTF8Bytes=1649 htmlUTF8Bytes=1681 heRef=דור המלקטים על אורח חיים 2 durationMs=730"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 8,
+      "total_ms": 1,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851640 start=0 count=8 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=0 mode=chapter result=ok modeUnitId=toc:851640 tocEntryId=851640 startLineIndex=0 endLineIndex=7 sourceLineCount=8 plainTextUTF8Bytes=1649 htmlUTF8Bytes=1681 heRef=דור המלקטים על אורח חיים 2 durationMs=1"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 95380,
+      "mode": "chapter",
+      "rows": 110196,
+      "total_ms": 13054,
+      "book_index_ms_nested": 395,
+      "unit_summaries_ms_including_index": 664,
+      "source_lines_ms": 1597,
+      "remaining_materialization_and_summary_ms": 10793,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 395,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=5869 tocEntries=412 lineTocMappings=190760 durationMs=395"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 664,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=5869 mode=chapter count=7 durationMs=664"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 1597,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=1597"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 13054,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextUTF8Bytes=30245157 htmlUTF8Bytes=30583708 heRef=דור המלקטים על אורח חיים 40922 durationMs=13054"
+        }
+      ]
+    },
+    {
+      "book_id": 5869,
+      "line_index": 95380,
+      "mode": "chapter",
+      "rows": 110196,
+      "total_ms": 21360,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 11150,
+      "remaining_materialization_and_summary_ms": 10210,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 11150,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=5869 tocEntryId=851774 start=40920 count=110196 durationMs=11150"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 21360,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=5869 lineIndex=95380 mode=chapter result=ok modeUnitId=toc:851774 tocEntryId=851774 startLineIndex=40920 endLineIndex=151115 sourceLineCount=110196 plainTextUTF8Bytes=30245157 htmlUTF8Bytes=30583708 heRef=דור המלקטים על אורח חיים 40922 durationMs=21360"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 50,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 42,
+      "remaining_materialization_and_summary_ms": 8,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 42,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=nil start=0 count=1 durationMs=42"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 50,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=37 htmlUTF8Bytes=46 heRef= durationMs=50"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 0,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=nil start=0 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=37 htmlUTF8Bytes=46 heRef= durationMs=0"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 68098,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 15,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 14,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 14,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=nil start=68098 count=1 durationMs=14"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 15,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=line result=ok modeUnitId=line:68098 tocEntryId=nil startLineIndex=68098 endLineIndex=68098 sourceLineCount=1 plainTextUTF8Bytes=148 htmlUTF8Bytes=148 heRef=אספקלריה אותיות א - מ 68099 durationMs=15"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 68098,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 0,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=nil start=68098 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=line result=ok modeUnitId=line:68098 tocEntryId=nil startLineIndex=68098 endLineIndex=68098 sourceLineCount=1 plainTextUTF8Bytes=148 htmlUTF8Bytes=148 heRef=אספקלריה אותיות א - מ 68099 durationMs=0"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 4,
+      "total_ms": 914,
+      "book_index_ms_nested": 629,
+      "unit_summaries_ms_including_index": 898,
+      "source_lines_ms": 8,
+      "remaining_materialization_and_summary_ms": 8,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 629,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=629"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 898,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=paragraph count=28621 durationMs=898"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 8,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=899017 start=0 count=4 durationMs=8"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 914,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:899017 tocEntryId=899017 startLineIndex=0 endLineIndex=3 sourceLineCount=4 plainTextUTF8Bytes=192 htmlUTF8Bytes=210 heRef=אספקלריה אותיות א - מ 2 durationMs=914"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 4,
+      "total_ms": 572,
+      "book_index_ms_nested": 331,
+      "unit_summaries_ms_including_index": 567,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 5,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 331,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=331"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 567,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=paragraph count=28621 durationMs=567"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=899017 start=0 count=4 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 572,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:899017 tocEntryId=899017 startLineIndex=0 endLineIndex=3 sourceLineCount=4 plainTextUTF8Bytes=192 htmlUTF8Bytes=210 heRef=אספקלריה אותיות א - מ 2 durationMs=572"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 68098,
+      "mode": "paragraph",
+      "rows": 4,
+      "total_ms": 529,
+      "book_index_ms_nested": 299,
+      "unit_summaries_ms_including_index": 516,
+      "source_lines_ms": 5,
+      "remaining_materialization_and_summary_ms": 8,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 299,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=299"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 516,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=paragraph count=28621 durationMs=516"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 5,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=913133 start=68096 count=4 durationMs=5"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 529,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=paragraph result=ok modeUnitId=toc:913133 tocEntryId=913133 startLineIndex=68096 endLineIndex=68099 sourceLineCount=4 plainTextUTF8Bytes=466 htmlUTF8Bytes=475 heRef=אספקלריה אותיות א - מ 68098 durationMs=529"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 68098,
+      "mode": "paragraph",
+      "rows": 4,
+      "total_ms": 683,
+      "book_index_ms_nested": 367,
+      "unit_summaries_ms_including_index": 675,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 8,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 367,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=367"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 675,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=paragraph count=28621 durationMs=675"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=913133 start=68096 count=4 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 683,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=paragraph result=ok modeUnitId=toc:913133 tocEntryId=913133 startLineIndex=68096 endLineIndex=68099 sourceLineCount=4 plainTextUTF8Bytes=466 htmlUTF8Bytes=475 heRef=אספקלריה אותיות א - מ 68098 durationMs=683"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 30435,
+      "total_ms": 4932,
+      "book_index_ms_nested": 443,
+      "unit_summaries_ms_including_index": 699,
+      "source_lines_ms": 606,
+      "remaining_materialization_and_summary_ms": 3627,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 443,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=443"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 699,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=chapter count=13 durationMs=699"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 606,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=899017 start=0 count=30435 durationMs=606"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 4932,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=chapter result=ok modeUnitId=toc:899017 tocEntryId=899017 startLineIndex=0 endLineIndex=30434 sourceLineCount=30435 plainTextUTF8Bytes=13503296 htmlUTF8Bytes=13571869 heRef=אספקלריה אותיות א - מ 2 durationMs=4932"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 30435,
+      "total_ms": 3528,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 259,
+      "remaining_materialization_and_summary_ms": 3269,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 259,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=899017 start=0 count=30435 durationMs=259"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 3528,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=0 mode=chapter result=ok modeUnitId=toc:899017 tocEntryId=899017 startLineIndex=0 endLineIndex=30434 sourceLineCount=30435 plainTextUTF8Bytes=13503296 htmlUTF8Bytes=13571869 heRef=אספקלריה אותיות א - מ 2 durationMs=3528"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 68098,
+      "mode": "chapter",
+      "rows": 7519,
+      "total_ms": 1753,
+      "book_index_ms_nested": 299,
+      "unit_summaries_ms_including_index": 519,
+      "source_lines_ms": 228,
+      "remaining_materialization_and_summary_ms": 1006,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 299,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6049 tocEntries=28622 lineTocMappings=136196 durationMs=299"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 519,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6049 mode=chapter count=13 durationMs=519"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 228,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=913001 start=67440 count=7519 durationMs=228"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1753,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=chapter result=ok modeUnitId=toc:913001 tocEntryId=913001 startLineIndex=67440 endLineIndex=74958 sourceLineCount=7519 plainTextUTF8Bytes=2919584 htmlUTF8Bytes=2938563 heRef=אספקלריה אותיות א - מ 67443 durationMs=1753"
+        }
+      ]
+    },
+    {
+      "book_id": 6049,
+      "line_index": 68098,
+      "mode": "chapter",
+      "rows": 7519,
+      "total_ms": 1174,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 83,
+      "remaining_materialization_and_summary_ms": 1091,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 83,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6049 tocEntryId=913001 start=67440 count=7519 durationMs=83"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1174,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6049 lineIndex=68098 mode=chapter result=ok modeUnitId=toc:913001 tocEntryId=913001 startLineIndex=67440 endLineIndex=74958 sourceLineCount=7519 plainTextUTF8Bytes=2919584 htmlUTF8Bytes=2938563 heRef=אספקלריה אותיות א - מ 67443 durationMs=1174"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 13,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 12,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 12,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=nil start=0 count=1 durationMs=12"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 13,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=37 htmlUTF8Bytes=46 heRef= durationMs=13"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 0,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 1,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 1,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=nil start=0 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=line result=ok modeUnitId=line:0 tocEntryId=nil startLineIndex=0 endLineIndex=0 sourceLineCount=1 plainTextUTF8Bytes=37 htmlUTF8Bytes=46 heRef= durationMs=1"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 45427,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 17,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 15,
+      "remaining_materialization_and_summary_ms": 2,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 15,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=nil start=45427 count=1 durationMs=15"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 17,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=line result=ok modeUnitId=line:45427 tocEntryId=nil startLineIndex=45427 endLineIndex=45427 sourceLineCount=1 plainTextUTF8Bytes=19 htmlUTF8Bytes=28 heRef= durationMs=17"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 45427,
+      "mode": "line",
+      "rows": 1,
+      "total_ms": 0,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 0,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=nil start=45427 count=1 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=line result=ok modeUnitId=line:45427 tocEntryId=nil startLineIndex=45427 endLineIndex=45427 sourceLineCount=1 plainTextUTF8Bytes=19 htmlUTF8Bytes=28 heRef= durationMs=0"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 4,
+      "total_ms": 791,
+      "book_index_ms_nested": 566,
+      "unit_summaries_ms_including_index": 780,
+      "source_lines_ms": 6,
+      "remaining_materialization_and_summary_ms": 5,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 566,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=566"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 780,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=paragraph count=18862 durationMs=780"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=927639 start=0 count=4 durationMs=6"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 791,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:927639 tocEntryId=927639 startLineIndex=0 endLineIndex=3 sourceLineCount=4 plainTextUTF8Bytes=192 htmlUTF8Bytes=210 heRef=אספקלריה אותיות נ - ת 2 durationMs=791"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 0,
+      "mode": "paragraph",
+      "rows": 4,
+      "total_ms": 400,
+      "book_index_ms_nested": 217,
+      "unit_summaries_ms_including_index": 393,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 7,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 217,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=217"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 393,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=paragraph count=18862 durationMs=393"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=927639 start=0 count=4 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 400,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=paragraph result=ok modeUnitId=toc:927639 tocEntryId=927639 startLineIndex=0 endLineIndex=3 sourceLineCount=4 plainTextUTF8Bytes=192 htmlUTF8Bytes=210 heRef=אספקלריה אותיות נ - ת 2 durationMs=400"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 45427,
+      "mode": "paragraph",
+      "rows": 19,
+      "total_ms": 439,
+      "book_index_ms_nested": 227,
+      "unit_summaries_ms_including_index": 424,
+      "source_lines_ms": 6,
+      "remaining_materialization_and_summary_ms": 9,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 227,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=227"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 424,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=paragraph count=18862 durationMs=424"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 6,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=937705 start=45427 count=19 durationMs=6"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 439,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=paragraph result=ok modeUnitId=toc:937705 tocEntryId=937705 startLineIndex=45427 endLineIndex=45445 sourceLineCount=19 plainTextUTF8Bytes=18721 htmlUTF8Bytes=18730 heRef=אספקלריה אותיות נ - ת 45429 durationMs=439"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 45427,
+      "mode": "paragraph",
+      "rows": 19,
+      "total_ms": 516,
+      "book_index_ms_nested": 301,
+      "unit_summaries_ms_including_index": 507,
+      "source_lines_ms": 0,
+      "remaining_materialization_and_summary_ms": 9,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 301,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=301"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 507,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=paragraph count=18862 durationMs=507"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 0,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=937705 start=45427 count=19 durationMs=0"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 516,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=paragraph result=ok modeUnitId=toc:937705 tocEntryId=937705 startLineIndex=45427 endLineIndex=45445 sourceLineCount=19 plainTextUTF8Bytes=18721 htmlUTF8Bytes=18730 heRef=אספקלריה אותיות נ - ת 45429 durationMs=516"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 10703,
+      "total_ms": 1700,
+      "book_index_ms_nested": 334,
+      "unit_summaries_ms_including_index": 512,
+      "source_lines_ms": 219,
+      "remaining_materialization_and_summary_ms": 969,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 334,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=334"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 512,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=chapter count=9 durationMs=512"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 219,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=927639 start=0 count=10703 durationMs=219"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1700,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=chapter result=ok modeUnitId=toc:927639 tocEntryId=927639 startLineIndex=0 endLineIndex=10702 sourceLineCount=10703 plainTextUTF8Bytes=5423030 htmlUTF8Bytes=5446060 heRef=אספקלריה אותיות נ - ת 2 durationMs=1700"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 0,
+      "mode": "chapter",
+      "rows": 10703,
+      "total_ms": 1111,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 115,
+      "remaining_materialization_and_summary_ms": 996,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 115,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=927639 start=0 count=10703 durationMs=115"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1111,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=0 mode=chapter result=ok modeUnitId=toc:927639 tocEntryId=927639 startLineIndex=0 endLineIndex=10702 sourceLineCount=10703 plainTextUTF8Bytes=5423030 htmlUTF8Bytes=5446060 heRef=אספקלריה אותיות נ - ת 2 durationMs=1111"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 45427,
+      "mode": "chapter",
+      "rows": 10055,
+      "total_ms": 1328,
+      "book_index_ms_nested": 260,
+      "unit_summaries_ms_including_index": 407,
+      "source_lines_ms": 152,
+      "remaining_materialization_and_summary_ms": 769,
+      "original_stages": [
+        {
+          "stage": "bookIndex",
+          "duration_ms": 260,
+          "line": "[OtzariaReadingUnitService] bookIndex bookId=6050 tocEntries=18863 lineTocMappings=90854 durationMs=260"
+        },
+        {
+          "stage": "unitSummaries",
+          "duration_ms": 407,
+          "line": "[OtzariaReadingUnitService] unitSummaries bookId=6050 mode=chapter count=9 durationMs=407"
+        },
+        {
+          "stage": "sourceLines",
+          "duration_ms": 152,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=936684 start=40712 count=10055 durationMs=152"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 1328,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=chapter result=ok modeUnitId=toc:936684 tocEntryId=936684 startLineIndex=40712 endLineIndex=50766 sourceLineCount=10055 plainTextUTF8Bytes=5044065 htmlUTF8Bytes=5063360 heRef=אספקלריה אותיות נ - ת 40715 durationMs=1328"
+        }
+      ]
+    },
+    {
+      "book_id": 6050,
+      "line_index": 45427,
+      "mode": "chapter",
+      "rows": 10055,
+      "total_ms": 805,
+      "book_index_ms_nested": 0,
+      "unit_summaries_ms_including_index": 0,
+      "source_lines_ms": 83,
+      "remaining_materialization_and_summary_ms": 722,
+      "original_stages": [
+        {
+          "stage": "sourceLines",
+          "duration_ms": 83,
+          "line": "[OtzariaReadingUnitService] sourceLines bookId=6050 tocEntryId=936684 start=40712 count=10055 durationMs=83"
+        },
+        {
+          "stage": "readingUnit",
+          "duration_ms": 805,
+          "line": "[OtzariaReadingUnitService] readingUnit bookId=6050 lineIndex=45427 mode=chapter result=ok modeUnitId=toc:936684 tocEntryId=936684 startLineIndex=40712 endLineIndex=50766 sourceLineCount=10055 plainTextUTF8Bytes=5044065 htmlUTF8Bytes=5063360 heRef=אספקלריה אותיות נ - ת 40715 durationMs=805"
+        }
+      ]
+    }
+  ],
+  "note": "The nested index is included in unitSummaries; the initial candidate run had an observed end-to-end timing regression. Its output/content checks still passed. Results are retained and not substituted with the later paired diagnostic."
+}

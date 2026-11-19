@@ -4,7 +4,7 @@
 
 Both runs passed the original full-source Reader checks: 36 cold/warm units, 18 navigation cases, and independent Python SQLite/ZSTD verification of 170,587 source-row appearances. The complete source database contains 7,876 books and 7,080,797 lines. These checks do not read every content row, run UIKit/TextKit, establish p95, measure first-visible latency, or certify a physical device.
 
-Production source is unchanged at `6535d7bc5e3e38686efcf6db93112114dee2e917`. All 13 Swift input hashes and the driver hash match across runs. The only compiler-mode difference is explicit `-Onone` versus `-O`; both print the original Reader stage logs. Lower times in the second run are not attributed to a production code improvement.
+Both baseline runs use unchanged production source at `6535d7bc5e3e38686efcf6db93112114dee2e917`. All 13 Swift input hashes and the driver hash match across runs. The only compiler-mode difference is explicit `-Onone` versus `-O`; both print the original Reader stage logs. Lower times in the second run are not attributed to a production code improvement.
 
 | Case | Source-row appearances | -Onone cold / warm (s) | -O cold / warm (s) |
 |---|---:|---:|---:|
@@ -39,3 +39,7 @@ For the 110,196-row chapter with `-O`, the original cold stage log records 297 m
 From the repository root, use the original `tools/hq-full-source-reader.py` with the pinned complete database, a new artifacts directory, `--optimization none` or `--optimization speed`, and `--log-stages`. The Windows runtime must provide the actual SQLite/ZSTD dependencies and Python `zstandard`. Do not accept a partial database or replace the 36 content / 18 navigation oracles with generated text.
 
 PERF01, PERF03 and full installed-index/device acceptance remain open. These reports supply a reproducible baseline for a separately measured source change.
+
+## Subsequent measured source change
+
+Candidate `7b2b6a1a7067496be2a2e2f232cf91f9cd8e2478` removes full-chapter grapheme scans used only in the diagnostic unitSummary, reporting explicitly labelled UTF8 byte sizes. All original content/navigation checks and exact output comparisons passed. The first candidate full-suite timing regressed and remains recorded unmodified. A subsequent same-process comparison, run in both AB and BA order, measured 4.317/4.592 s candidate cold versus 8.411/7.233 s baseline cold, and 4.493/4.577 s candidate warm versus 7.082/6.137 s baseline warm. See PERFORMANCE_DECISION.json, candidate-speed/ and paired-diagnostic-ab/ for full evidence and limits. The narrow source change is accepted; full PERF01/PERF03, first-visible/p95 and physical-device gates remain open.

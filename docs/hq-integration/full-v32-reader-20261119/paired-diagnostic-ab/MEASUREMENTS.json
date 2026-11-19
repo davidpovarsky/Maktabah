@@ -1,0 +1,51 @@
+{
+  "native_ui_executed" : 0,
+  "physical_device_executed" : 0,
+  "records" : [
+    {
+      "cold_ms" : 8410.554885864258,
+      "diagnostic_utf8_sizes_ms" : 0,
+      "html_utf8_bytes" : 30583708,
+      "original_cold_warm_full_equality" : true,
+      "plain_utf8_bytes" : 30245157,
+      "round" : 0,
+      "source_rows" : 110196,
+      "version" : "baseline",
+      "warm_ms" : 7081.80046081543
+    },
+    {
+      "cold_ms" : 4316.989898681641,
+      "diagnostic_utf8_sizes_ms" : 0.0019073486328125,
+      "html_utf8_bytes" : 30583708,
+      "original_cold_warm_full_equality" : true,
+      "plain_utf8_bytes" : 30245157,
+      "round" : 0,
+      "source_rows" : 110196,
+      "version" : "candidate",
+      "warm_ms" : 4493.129730224609
+    },
+    {
+      "cold_ms" : 4591.831207275391,
+      "diagnostic_utf8_sizes_ms" : 0,
+      "html_utf8_bytes" : 30583708,
+      "original_cold_warm_full_equality" : true,
+      "plain_utf8_bytes" : 30245157,
+      "round" : 1,
+      "source_rows" : 110196,
+      "version" : "candidate",
+      "warm_ms" : 4576.648712158203
+    },
+    {
+      "cold_ms" : 7233.1390380859375,
+      "diagnostic_utf8_sizes_ms" : 0,
+      "html_utf8_bytes" : 30583708,
+      "original_cold_warm_full_equality" : true,
+      "plain_utf8_bytes" : 30245157,
+      "round" : 1,
+      "source_rows" : 110196,
+      "version" : "baseline",
+      "warm_ms" : 6136.53564453125
+    }
+  ],
+  "status" : "PAIRED_SAME_PROCESS_READER_DIAGNOSTIC_NOT_UI"
+}
