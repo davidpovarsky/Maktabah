@@ -1,0 +1,45 @@
+{
+  "observed_at": "2026-11-19T23:43:11.808790+00:00",
+  "status": "SCOPED_SQLITE_FIX_AND_FULL_V32_SOURCE_PASS_APPLE_NATIVE_DEVICE_OPEN",
+  "production_fix_sha": "92e7cd3e2bf57f8c2a290afa0aaac26e5f094241",
+  "baseline_evidence_commit": "559d38080b02d909c4eef2510d337073c2750ad3",
+  "test_commit": "b3ae11f7c04b6e0af0b55d192ed4a212f9bafeb0",
+  "changed_upstream_file": "Source/Core/Database/SQLiteDatabase.swift",
+  "change": {
+    "insertions": 9,
+    "deletions": 1,
+    "public_api_changed": false,
+    "same_recursive_lock": true,
+    "statement_decoder_serialization_preserved": true
+  },
+  "red": {
+    "cases": 26,
+    "failures": [
+      "pre_cancelled_fetch_does_not_map_or_leak_lock",
+      "cancelled_fetch_leaves_contended_lock_before_owner_release",
+      "cancellation_wins_as_recursive_lock_becomes_available"
+    ]
+  },
+  "green": {
+    "cases": 26,
+    "failures": []
+  },
+  "regression_fixture_hash_unchanged": true,
+  "candidate_input_hashes_unchanged_after": true,
+  "jobs": {
+    "baseline_stress": "job_29f72b547b5f",
+    "focused_red": "job_1acfb427615e",
+    "focused_green_and_candidate": "job_020e8969e4cd"
+  },
+  "independent_review": {
+    "agent": "github_native_audit",
+    "scope": "Read-only exact source diff review",
+    "tests_run_by_reviewer": 0,
+    "outcome": "No scoped exception/lock lifetime or noncancelled serialization defect found; 10ms is wait granularity, not SLA"
+  },
+  "apple_documentation": "https://developer.apple.com/documentation/foundation/nsrecursivelock",
+  "apple_sdk_validation": "NOT_RUN_BY_THIS_TRANCHE",
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "asana_marked_complete": false
+}

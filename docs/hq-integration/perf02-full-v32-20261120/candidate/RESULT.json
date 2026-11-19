@@ -1,0 +1,3132 @@
+{
+  "observed_at": "2026-11-19T23:36:14.496601+00:00",
+  "source_sha": "92e7cd3e2bf57f8c2a290afa0aaac26e5f094241",
+  "source_files": {
+    "Source/Core/Database/SQLiteDatabase.swift": "355e4fb166de36e973d4fa6233c090a3ff91d07405de3182f9567de16b5b5f05",
+    "Source/Core/Database/ZstdShim.swift": "371ae8bf15c4e8dd07a4123895f7069e9decb8977696136c003db593fc7df5df",
+    "Source/Otzaria/Core/OtzariaSQLiteError.swift": "6bd3e09a0530a95d5e73f2da8282438a4512a5df18c376a5f6db328b9e1167d7",
+    "Source/Otzaria/Core/OtzariaSQLiteStatement.swift": "59f7f6ddae0b16c7da14de60b7c2661906d57d716c8a095ef5d6f2a32f09044d",
+    "Source/Otzaria/Core/String+OtzariaText.swift": "546adba578aa90dc417c53d42775367b0d5147700e293739c2707042eaf32686",
+    "Source/Otzaria/Data/OtzariaSchema.swift": "12794224860af9fa965b60cf837bb6d57b0d416cc7e91f3eca402691634cb92a",
+    "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift": "f2216f5e7c59921ca2cba4496fffdf7500f3ca661fc8c41bf5a385608766c6a4",
+    "Source/Otzaria/Reading/OtzariaReadingUnit.swift": "1a653a83de0df5c00c55ad74006b3cb76b810c2a3369bcc161e5f4a1960d03de",
+    "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift": "51b928839fb9cc9edbf6ad5a00da7fe02aa28d3d31d7ce07d9d3cb86f40da9d9",
+    "Source/Otzaria/Reading/OtzariaLineAnchor.swift": "02086e3eb5fd605f041ab801270c6ff3adcf2bf118aa167517ce5f805741a049",
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "b1340ed557f0f6a8259c200bc7048ba20dba589ff8f1323ab2b87a5bfc7d5109",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "f2f62c6f9fe76442560bdd2be08320d9e6db3edd79849a4451cead2c63382bab",
+    "Tests/HQ/reader/FullSourceReaderStress.swift": "d739bb7beedc0bd9ee47b33cca629fadb2d0835926e2155a1b96162991ef2b65"
+  },
+  "host": "Windows-11-10.0.26300-SP0",
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "source_pin": {
+    "repository": "Otzaria/SeforimLibrary",
+    "releaseTag": "v32-20261010190601",
+    "releaseID": 409213893,
+    "assetID": 629048655,
+    "assetName": "seforim-schema6.db.zst",
+    "assetBytes": 1850679582,
+    "assetSHA256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+    "databaseBytes": 3821240320,
+    "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
+  },
+  "source_pin_file_sha256": "07923bbb68aeb9dff7d3982007e789d5a4ab955dbc1ef3954fa4e8c04bacd822",
+  "database_sha256_before": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "books": [
+    {
+      "id": 103,
+      "title": "ברכות",
+      "lineCount": 2875,
+      "first": 0,
+      "middle": 1437,
+      "last": 2874,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 1437,
+          "previous": 1436,
+          "next": 1438
+        },
+        {
+          "index": 2874,
+          "previous": 2873,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "title": "תהילים",
+      "lineCount": 2678,
+      "first": 0,
+      "middle": 1339,
+      "last": 2677,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 1339,
+          "previous": 1338,
+          "next": 1340
+        },
+        {
+          "index": 2677,
+          "previous": 2676,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 3152,
+      "title": "דרשות הר\"ן",
+      "lineCount": 528,
+      "first": 0,
+      "middle": 264,
+      "last": 527,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 264,
+          "previous": 263,
+          "next": 265
+        },
+        {
+          "index": 527,
+          "previous": 526,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 5869,
+      "title": "דור המלקטים על אורח חיים",
+      "lineCount": 190760,
+      "first": 0,
+      "middle": 95380,
+      "last": 190759,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 95380,
+          "previous": 95379,
+          "next": 95381
+        },
+        {
+          "index": 190759,
+          "previous": 190758,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 6049,
+      "title": "אספקלריה אותיות א - מ",
+      "lineCount": 136196,
+      "first": 0,
+      "middle": 68098,
+      "last": 136195,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 68098,
+          "previous": 68097,
+          "next": 68099
+        },
+        {
+          "index": 136195,
+          "previous": 136194,
+          "next": null
+        }
+      ]
+    },
+    {
+      "id": 6050,
+      "title": "אספקלריה אותיות נ - ת",
+      "lineCount": 90854,
+      "first": 0,
+      "middle": 45427,
+      "last": 90853,
+      "navigation": [
+        {
+          "index": 0,
+          "previous": null,
+          "next": 1
+        },
+        {
+          "index": 45427,
+          "previous": 45426,
+          "next": 45428
+        },
+        {
+          "index": 90853,
+          "previous": 90852,
+          "next": null
+        }
+      ]
+    }
+  ],
+  "zstd": {
+    "path": "C:\\Program Files\\Git\\mingw64\\bin\\libzstd.dll",
+    "sha256": "b13d4f30b93c96823473d742dda0075f7334cba03a40c33d8a7dc282e37b1500",
+    "version": "1.5.7"
+  },
+  "owned_fixture": "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\fr32-3c5d719d4f7d",
+  "boundaries": [
+    "logging/signpost no-ops only",
+    "unused legacy SQLite compressed-column API fails if called; original dictionary decoder is executed"
+  ],
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "-O",
+    "-I",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\fr32-3c5d719d4f7d",
+    "-L",
+    "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.26100.0\\um\\x64",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Core\\Database\\SQLiteDatabase.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Core\\Database\\ZstdShim.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Otzaria\\Core\\OtzariaSQLiteError.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Otzaria\\Core\\OtzariaSQLiteStatement.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Otzaria\\Core\\String+OtzariaText.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Otzaria\\Data\\OtzariaSchema.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Otzaria\\Data\\OtzariaBookSchemaCompatibility.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Otzaria\\Reading\\OtzariaReadingUnit.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Otzaria\\Reading\\OtzariaReadingUnitDescriptor.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Otzaria\\Reading\\OtzariaLineAnchor.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Source\\Otzaria\\Reading\\OtzariaReadingUnitService.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Tests\\HQ\\sqlite\\UnusedZstdBoundary.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\Tests\\HQ\\reader\\FullSourceReaderStress.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\fr32-3c5d719d4f7d\\OriginalReadingUnitSideCache.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\fr32-3c5d719d4f7d\\zstd.lib",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\fr32-3c5d719d4f7d\\full-reader.exe"
+  ],
+  "driver_sha256": "c24c71051a9a85f011f828197d16f84e52ee2e18394e4aa7d367b8e1f217dad0",
+  "optimization": "speed",
+  "original_stage_logging": false,
+  "timing_boundary": "Instrumented Windows source stress; service/SQL cancellation latency and harness working set only; no MainActor/UIKit/p95/device acceptance",
+  "scenario": "stress-only",
+  "cache_class_extraction": {
+    "source": "Source\\Otzaria\\Reading\\OtzariaMaktabahBridge+LineAnchors.swift",
+    "source_sha256": "5c38872ddf4f35e2d072be5a71d5517d7f54bbb86eb5d1be7e49cc7b21220ca8",
+    "extracted_sha256": "ba5f2e5607476d73f54c0c1cbb05f4462d1736659106eeb4b4d84302ca146537",
+    "boundary": "Complete unchanged class before original app bridge extension; no bridge/UI compiled"
+  },
+  "cache_books": [
+    {
+      "id": 16,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 18,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 19,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 20,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 21,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 22,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 23,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 24,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 26,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 27,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 31,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 40,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 41,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 42,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 43,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 44,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 45,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 46,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 47,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 48,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 49,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 50,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 52,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 53,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 54,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 55,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 56,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 57,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 58,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 59,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 60,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 61,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 62,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 64,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 65,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 66,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 67,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 68,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 69,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 70,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 71,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 72,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 73,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 74,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 75,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 76,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 77,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 78,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 79,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 80,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 81,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 82,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 83,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 84,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 85,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 86,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 87,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 88,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 89,
+      "first": 0,
+      "middle": 0
+    },
+    {
+      "id": 90,
+      "first": 0,
+      "middle": 0
+    }
+  ],
+  "compile_exit": 0,
+  "harness_memory_observation": {
+    "peak_working_set_bytes": 343764992,
+    "samples": 533,
+    "elapsed_seconds": 13.561999999976251,
+    "includes_test_and_output_allocations": true,
+    "application_memory_claim": false
+  },
+  "execute_exit": 0,
+  "swift_reader": {
+    "activeCancellationMilliseconds": 0,
+    "activeCancellationOutcome": "CancellationError; no partial content returned",
+    "activeCancellationRowsBeforeBarrier": 381,
+    "cacheSnapshots": [
+      {
+        "decoderPresent": true,
+        "generation": 24,
+        "indexCost": 21125,
+        "indexEntries": 3,
+        "summariesCost": 12416,
+        "summariesEntries": 5
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 278,
+        "indexEntries": 1,
+        "summariesCost": 102,
+        "summariesEntries": 1
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 278,
+        "indexEntries": 1,
+        "summariesCost": 204,
+        "summariesEntries": 2
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 366,
+        "indexEntries": 2,
+        "summariesCost": 233,
+        "summariesEntries": 3
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 366,
+        "indexEntries": 2,
+        "summariesCost": 262,
+        "summariesEntries": 4
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 569,
+        "indexEntries": 3,
+        "summariesCost": 339,
+        "summariesEntries": 5
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 569,
+        "indexEntries": 3,
+        "summariesCost": 416,
+        "summariesEntries": 6
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 979,
+        "indexEntries": 4,
+        "summariesCost": 571,
+        "summariesEntries": 7
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 979,
+        "indexEntries": 4,
+        "summariesCost": 726,
+        "summariesEntries": 8
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1167,
+        "indexEntries": 5,
+        "summariesCost": 795,
+        "summariesEntries": 9
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1167,
+        "indexEntries": 5,
+        "summariesCost": 864,
+        "summariesEntries": 10
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1383,
+        "indexEntries": 6,
+        "summariesCost": 942,
+        "summariesEntries": 11
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1383,
+        "indexEntries": 6,
+        "summariesCost": 1020,
+        "summariesEntries": 12
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1590,
+        "indexEntries": 7,
+        "summariesCost": 1095,
+        "summariesEntries": 13
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1590,
+        "indexEntries": 7,
+        "summariesCost": 1170,
+        "summariesEntries": 14
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1738,
+        "indexEntries": 8,
+        "summariesCost": 1223,
+        "summariesEntries": 15
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1738,
+        "indexEntries": 8,
+        "summariesCost": 1276,
+        "summariesEntries": 16
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1951,
+        "indexEntries": 9,
+        "summariesCost": 1353,
+        "summariesEntries": 17
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1951,
+        "indexEntries": 9,
+        "summariesCost": 1430,
+        "summariesEntries": 18
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2264,
+        "indexEntries": 10,
+        "summariesCost": 1544,
+        "summariesEntries": 19
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2264,
+        "indexEntries": 10,
+        "summariesCost": 1658,
+        "summariesEntries": 20
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2728,
+        "indexEntries": 11,
+        "summariesCost": 1832,
+        "summariesEntries": 21
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2728,
+        "indexEntries": 11,
+        "summariesCost": 2006,
+        "summariesEntries": 22
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3024,
+        "indexEntries": 12,
+        "summariesCost": 2127,
+        "summariesEntries": 23
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3024,
+        "indexEntries": 12,
+        "summariesCost": 2248,
+        "summariesEntries": 24
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3342,
+        "indexEntries": 13,
+        "summariesCost": 2374,
+        "summariesEntries": 25
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3342,
+        "indexEntries": 13,
+        "summariesCost": 2500,
+        "summariesEntries": 26
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3601,
+        "indexEntries": 14,
+        "summariesCost": 2603,
+        "summariesEntries": 27
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3601,
+        "indexEntries": 14,
+        "summariesCost": 2706,
+        "summariesEntries": 28
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3957,
+        "indexEntries": 15,
+        "summariesCost": 2847,
+        "summariesEntries": 29
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3957,
+        "indexEntries": 15,
+        "summariesCost": 2988,
+        "summariesEntries": 30
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4362,
+        "indexEntries": 16,
+        "summariesCost": 3148,
+        "summariesEntries": 31
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4362,
+        "indexEntries": 16,
+        "summariesCost": 3308,
+        "summariesEntries": 32
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4816,
+        "indexEntries": 17,
+        "summariesCost": 3488,
+        "summariesEntries": 33
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4816,
+        "indexEntries": 17,
+        "summariesCost": 3668,
+        "summariesEntries": 34
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5014,
+        "indexEntries": 18,
+        "summariesCost": 3744,
+        "summariesEntries": 35
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5014,
+        "indexEntries": 18,
+        "summariesCost": 3820,
+        "summariesEntries": 36
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5265,
+        "indexEntries": 19,
+        "summariesCost": 3913,
+        "summariesEntries": 37
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5265,
+        "indexEntries": 19,
+        "summariesCost": 4006,
+        "summariesEntries": 38
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5442,
+        "indexEntries": 20,
+        "summariesCost": 4073,
+        "summariesEntries": 39
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5442,
+        "indexEntries": 20,
+        "summariesCost": 4140,
+        "summariesEntries": 40
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 157,
+        "indexEntries": 1,
+        "summariesCost": 4197,
+        "summariesEntries": 41
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 157,
+        "indexEntries": 1,
+        "summariesCost": 4254,
+        "summariesEntries": 42
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 341,
+        "indexEntries": 2,
+        "summariesCost": 4322,
+        "summariesEntries": 43
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 341,
+        "indexEntries": 2,
+        "summariesCost": 4390,
+        "summariesEntries": 44
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 768,
+        "indexEntries": 3,
+        "summariesCost": 4557,
+        "summariesEntries": 45
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 768,
+        "indexEntries": 3,
+        "summariesCost": 4724,
+        "summariesEntries": 46
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1172,
+        "indexEntries": 4,
+        "summariesCost": 4884,
+        "summariesEntries": 47
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1172,
+        "indexEntries": 4,
+        "summariesCost": 5044,
+        "summariesEntries": 48
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1441,
+        "indexEntries": 5,
+        "summariesCost": 5153,
+        "summariesEntries": 49
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1441,
+        "indexEntries": 5,
+        "summariesCost": 5262,
+        "summariesEntries": 50
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1736,
+        "indexEntries": 6,
+        "summariesCost": 118,
+        "summariesEntries": 1
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1736,
+        "indexEntries": 6,
+        "summariesCost": 236,
+        "summariesEntries": 2
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1971,
+        "indexEntries": 7,
+        "summariesCost": 325,
+        "summariesEntries": 3
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1971,
+        "indexEntries": 7,
+        "summariesCost": 414,
+        "summariesEntries": 4
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2173,
+        "indexEntries": 8,
+        "summariesCost": 492,
+        "summariesEntries": 5
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2173,
+        "indexEntries": 8,
+        "summariesCost": 570,
+        "summariesEntries": 6
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2346,
+        "indexEntries": 9,
+        "summariesCost": 634,
+        "summariesEntries": 7
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2346,
+        "indexEntries": 9,
+        "summariesCost": 698,
+        "summariesEntries": 8
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2513,
+        "indexEntries": 10,
+        "summariesCost": 761,
+        "summariesEntries": 9
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2513,
+        "indexEntries": 10,
+        "summariesCost": 824,
+        "summariesEntries": 10
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2677,
+        "indexEntries": 11,
+        "summariesCost": 886,
+        "summariesEntries": 11
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2677,
+        "indexEntries": 11,
+        "summariesCost": 948,
+        "summariesEntries": 12
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2805,
+        "indexEntries": 12,
+        "summariesCost": 994,
+        "summariesEntries": 13
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2805,
+        "indexEntries": 12,
+        "summariesCost": 1040,
+        "summariesEntries": 14
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2927,
+        "indexEntries": 13,
+        "summariesCost": 1085,
+        "summariesEntries": 15
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2927,
+        "indexEntries": 13,
+        "summariesCost": 1130,
+        "summariesEntries": 16
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3437,
+        "indexEntries": 14,
+        "summariesCost": 1336,
+        "summariesEntries": 17
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3437,
+        "indexEntries": 14,
+        "summariesCost": 1542,
+        "summariesEntries": 18
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3857,
+        "indexEntries": 15,
+        "summariesCost": 1711,
+        "summariesEntries": 19
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3857,
+        "indexEntries": 15,
+        "summariesCost": 1880,
+        "summariesEntries": 20
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4161,
+        "indexEntries": 16,
+        "summariesCost": 2004,
+        "summariesEntries": 21
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4161,
+        "indexEntries": 16,
+        "summariesCost": 2128,
+        "summariesEntries": 22
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4486,
+        "indexEntries": 17,
+        "summariesCost": 2259,
+        "summariesEntries": 23
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4486,
+        "indexEntries": 17,
+        "summariesCost": 2390,
+        "summariesEntries": 24
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4836,
+        "indexEntries": 18,
+        "summariesCost": 2529,
+        "summariesEntries": 25
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4836,
+        "indexEntries": 18,
+        "summariesCost": 2668,
+        "summariesEntries": 26
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5044,
+        "indexEntries": 19,
+        "summariesCost": 2744,
+        "summariesEntries": 27
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5044,
+        "indexEntries": 19,
+        "summariesCost": 2820,
+        "summariesEntries": 28
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5420,
+        "indexEntries": 20,
+        "summariesCost": 2970,
+        "summariesEntries": 29
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5420,
+        "indexEntries": 20,
+        "summariesCost": 3120,
+        "summariesEntries": 30
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 444,
+        "indexEntries": 1,
+        "summariesCost": 3292,
+        "summariesEntries": 31
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 444,
+        "indexEntries": 1,
+        "summariesCost": 3464,
+        "summariesEntries": 32
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 842,
+        "indexEntries": 2,
+        "summariesCost": 3621,
+        "summariesEntries": 33
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 842,
+        "indexEntries": 2,
+        "summariesCost": 3778,
+        "summariesEntries": 34
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1207,
+        "indexEntries": 3,
+        "summariesCost": 3928,
+        "summariesEntries": 35
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1207,
+        "indexEntries": 3,
+        "summariesCost": 4078,
+        "summariesEntries": 36
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1361,
+        "indexEntries": 4,
+        "summariesCost": 4134,
+        "summariesEntries": 37
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1361,
+        "indexEntries": 4,
+        "summariesCost": 4190,
+        "summariesEntries": 38
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1661,
+        "indexEntries": 5,
+        "summariesCost": 4309,
+        "summariesEntries": 39
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1661,
+        "indexEntries": 5,
+        "summariesCost": 4428,
+        "summariesEntries": 40
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1996,
+        "indexEntries": 6,
+        "summariesCost": 4559,
+        "summariesEntries": 41
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 1996,
+        "indexEntries": 6,
+        "summariesCost": 4690,
+        "summariesEntries": 42
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2227,
+        "indexEntries": 7,
+        "summariesCost": 4776,
+        "summariesEntries": 43
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2227,
+        "indexEntries": 7,
+        "summariesCost": 4862,
+        "summariesEntries": 44
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2639,
+        "indexEntries": 8,
+        "summariesCost": 5013,
+        "summariesEntries": 45
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2639,
+        "indexEntries": 8,
+        "summariesCost": 5164,
+        "summariesEntries": 46
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2753,
+        "indexEntries": 9,
+        "summariesCost": 5206,
+        "summariesEntries": 47
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 2753,
+        "indexEntries": 9,
+        "summariesCost": 5248,
+        "summariesEntries": 48
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3245,
+        "indexEntries": 10,
+        "summariesCost": 5452,
+        "summariesEntries": 49
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3245,
+        "indexEntries": 10,
+        "summariesCost": 5656,
+        "summariesEntries": 50
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3700,
+        "indexEntries": 11,
+        "summariesCost": 188,
+        "summariesEntries": 1
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 3700,
+        "indexEntries": 11,
+        "summariesCost": 376,
+        "summariesEntries": 2
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4085,
+        "indexEntries": 12,
+        "summariesCost": 537,
+        "summariesEntries": 3
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4085,
+        "indexEntries": 12,
+        "summariesCost": 698,
+        "summariesEntries": 4
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4430,
+        "indexEntries": 13,
+        "summariesCost": 835,
+        "summariesEntries": 5
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4430,
+        "indexEntries": 13,
+        "summariesCost": 972,
+        "summariesEntries": 6
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4705,
+        "indexEntries": 14,
+        "summariesCost": 1086,
+        "summariesEntries": 7
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4705,
+        "indexEntries": 14,
+        "summariesCost": 1200,
+        "summariesEntries": 8
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4911,
+        "indexEntries": 15,
+        "summariesCost": 1285,
+        "summariesEntries": 9
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 4911,
+        "indexEntries": 15,
+        "summariesCost": 1370,
+        "summariesEntries": 10
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5130,
+        "indexEntries": 16,
+        "summariesCost": 1456,
+        "summariesEntries": 11
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5130,
+        "indexEntries": 16,
+        "summariesCost": 1542,
+        "summariesEntries": 12
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5333,
+        "indexEntries": 17,
+        "summariesCost": 1623,
+        "summariesEntries": 13
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5333,
+        "indexEntries": 17,
+        "summariesCost": 1704,
+        "summariesEntries": 14
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5535,
+        "indexEntries": 18,
+        "summariesCost": 1788,
+        "summariesEntries": 15
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5535,
+        "indexEntries": 18,
+        "summariesCost": 1872,
+        "summariesEntries": 16
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5713,
+        "indexEntries": 19,
+        "summariesCost": 1942,
+        "summariesEntries": 17
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5713,
+        "indexEntries": 19,
+        "summariesCost": 2012,
+        "summariesEntries": 18
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5811,
+        "indexEntries": 20,
+        "summariesCost": 2049,
+        "summariesEntries": 19
+      },
+      {
+        "decoderPresent": false,
+        "generation": 25,
+        "indexCost": 5811,
+        "indexEntries": 20,
+        "summariesCost": 2086,
+        "summariesEntries": 20
+      },
+      {
+        "decoderPresent": false,
+        "generation": 26,
+        "indexCost": 0,
+        "indexEntries": 0,
+        "summariesCost": 0,
+        "summariesEntries": 0
+      }
+    ],
+    "clearDuringActiveQueryGeneration": [
+      0,
+      1
+    ],
+    "independentMaximumOverlap": 4,
+    "nativeUIExecuted": 0,
+    "oversizedUnitEstimatedBytes": 122373172,
+    "oversizedUnitRetained": false,
+    "physicalDeviceExecuted": 0,
+    "preCancelledOutcome": "CancellationError; no content returned",
+    "queuedCancellationArtificialDelay": false,
+    "queuedCancellationMilliseconds": 16.00000000325963,
+    "queuedCancellationOutcome": "CancellationError; no content returned",
+    "samples": [
+      {
+        "bookID": 28,
+        "milliseconds": 63.000000023748726,
+        "mode": "line",
+        "name": "shared-7-0",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 63.000000023748726,
+        "mode": "paragraph",
+        "name": "shared-7-1",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 14.999999955762178,
+        "mode": "chapter",
+        "name": "shared-7-2",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 16.00000000325963,
+        "mode": "line",
+        "name": "shared-7-3",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 15.000000013969839,
+        "mode": "paragraph",
+        "name": "shared-7-4",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-7-5",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-7-6",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 14.999999955762178,
+        "mode": "paragraph",
+        "name": "shared-7-7",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 15.000000013969839,
+        "mode": "chapter",
+        "name": "shared-7-8",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-7-9",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "shared-7-10",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 31.000000017229468,
+        "mode": "chapter",
+        "name": "shared-7-11",
+        "rows": 29
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 63.000000023748726,
+        "mode": "line",
+        "name": "shared-5-0",
+        "rows": 1
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 47.0000000204891,
+        "mode": "paragraph",
+        "name": "shared-5-1",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 31.000000017229468,
+        "mode": "chapter",
+        "name": "shared-5-2",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-5-3",
+        "rows": 1
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "paragraph",
+        "name": "shared-5-4",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 15.000000013969839,
+        "mode": "chapter",
+        "name": "shared-5-5",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 16.00000000325963,
+        "mode": "line",
+        "name": "shared-5-6",
+        "rows": 1
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "shared-5-7",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 32.00000000651926,
+        "mode": "chapter",
+        "name": "shared-5-8",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 30.999999959021807,
+        "mode": "line",
+        "name": "shared-5-9",
+        "rows": 1
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "shared-5-10",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 47.0000000204891,
+        "mode": "chapter",
+        "name": "shared-5-11",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 63.000000023748726,
+        "mode": "line",
+        "name": "shared-2-0",
+        "rows": 1
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 92.99999999348074,
+        "mode": "paragraph",
+        "name": "shared-2-1",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "chapter",
+        "name": "shared-2-2",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-2-3",
+        "rows": 1
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "paragraph",
+        "name": "shared-2-4",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-2-5",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 16.00000000325963,
+        "mode": "line",
+        "name": "shared-2-6",
+        "rows": 1
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "shared-2-7",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-2-8",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-2-9",
+        "rows": 1
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 31.000000017229468,
+        "mode": "paragraph",
+        "name": "shared-2-10",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-2-11",
+        "rows": 73
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 63.000000023748726,
+        "mode": "line",
+        "name": "shared-0-0",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 63.000000023748726,
+        "mode": "paragraph",
+        "name": "shared-0-1",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 30.999999959021807,
+        "mode": "chapter",
+        "name": "shared-0-2",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-0-3",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 16.00000000325963,
+        "mode": "paragraph",
+        "name": "shared-0-4",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "chapter",
+        "name": "shared-0-5",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "line",
+        "name": "shared-0-6",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "shared-0-7",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 30.999999959021807,
+        "mode": "chapter",
+        "name": "shared-0-8",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 31.000000017229468,
+        "mode": "line",
+        "name": "shared-0-9",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 15.000000013969839,
+        "mode": "paragraph",
+        "name": "shared-0-10",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 14.999999955762178,
+        "mode": "chapter",
+        "name": "shared-0-11",
+        "rows": 31
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 63.000000023748726,
+        "mode": "line",
+        "name": "shared-1-0",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 92.99999999348074,
+        "mode": "paragraph",
+        "name": "shared-1-1",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 15.000000013969839,
+        "mode": "chapter",
+        "name": "shared-1-2",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 16.00000000325963,
+        "mode": "line",
+        "name": "shared-1-3",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "shared-1-4",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-1-5",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 30.999999959021807,
+        "mode": "line",
+        "name": "shared-1-6",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 15.000000013969839,
+        "mode": "paragraph",
+        "name": "shared-1-7",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-1-8",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 31.000000017229468,
+        "mode": "line",
+        "name": "shared-1-9",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 15.000000013969839,
+        "mode": "paragraph",
+        "name": "shared-1-10",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-1-11",
+        "rows": 29
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 63.000000023748726,
+        "mode": "line",
+        "name": "shared-6-0",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 125,
+        "mode": "paragraph",
+        "name": "shared-6-1",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "chapter",
+        "name": "shared-6-2",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "line",
+        "name": "shared-6-3",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "shared-6-4",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-6-5",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "line",
+        "name": "shared-6-6",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 15.000000013969839,
+        "mode": "paragraph",
+        "name": "shared-6-7",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-6-8",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 31.000000017229468,
+        "mode": "line",
+        "name": "shared-6-9",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "shared-6-10",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "chapter",
+        "name": "shared-6-11",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 63.000000023748726,
+        "mode": "line",
+        "name": "shared-3-0",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 77.9999999795109,
+        "mode": "paragraph",
+        "name": "shared-3-1",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 16.00000000325963,
+        "mode": "chapter",
+        "name": "shared-3-2",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-3-3",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "shared-3-4",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 15.000000013969839,
+        "mode": "chapter",
+        "name": "shared-3-5",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 14.999999955762178,
+        "mode": "line",
+        "name": "shared-3-6",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "shared-3-7",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 47.0000000204891,
+        "mode": "chapter",
+        "name": "shared-3-8",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-3-9",
+        "rows": 1
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "shared-3-10",
+        "rows": 8
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 15.000000013969839,
+        "mode": "chapter",
+        "name": "shared-3-11",
+        "rows": 31
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 63.000000023748726,
+        "mode": "line",
+        "name": "shared-4-0",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 108.99999999674037,
+        "mode": "paragraph",
+        "name": "shared-4-1",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "chapter",
+        "name": "shared-4-2",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-4-3",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 16.00000000325963,
+        "mode": "paragraph",
+        "name": "shared-4-4",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 15.000000013969839,
+        "mode": "chapter",
+        "name": "shared-4-5",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 14.999999955762178,
+        "mode": "line",
+        "name": "shared-4-6",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "shared-4-7",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 47.0000000204891,
+        "mode": "chapter",
+        "name": "shared-4-8",
+        "rows": 16
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "line",
+        "name": "shared-4-9",
+        "rows": 1
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 16.00000000325963,
+        "mode": "paragraph",
+        "name": "shared-4-10",
+        "rows": 57
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "chapter",
+        "name": "shared-4-11",
+        "rows": 29
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "independent-3-0",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 15.000000013969839,
+        "mode": "paragraph",
+        "name": "independent-3-1",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-3-2",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-3-3",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-3-4",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-3-5",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "independent-0-0",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 15.000000013969839,
+        "mode": "paragraph",
+        "name": "independent-0-1",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-0-2",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-0-3",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-0-4",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-0-5",
+        "rows": 31
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "independent-2-0",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 15.000000013969839,
+        "mode": "paragraph",
+        "name": "independent-2-1",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 15.000000013969839,
+        "mode": "paragraph",
+        "name": "independent-2-2",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-2-3",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-2-4",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-2-5",
+        "rows": 73
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 30.999999959021807,
+        "mode": "paragraph",
+        "name": "independent-1-0",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 16.00000000325963,
+        "mode": "paragraph",
+        "name": "independent-1-1",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 16.00000000325963,
+        "mode": "paragraph",
+        "name": "independent-1-2",
+        "rows": 29
+      },
+      {
+        "bookID": 28,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-1-3",
+        "rows": 73
+      },
+      {
+        "bookID": 3152,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-1-4",
+        "rows": 31
+      },
+      {
+        "bookID": 103,
+        "milliseconds": 0,
+        "mode": "paragraph",
+        "name": "independent-1-5",
+        "rows": 29
+      },
+      {
+        "bookID": 5869,
+        "milliseconds": 4702.999999979511,
+        "mode": "chapter",
+        "name": "oversized-cache-source",
+        "rows": 110196
+      }
+    ],
+    "sharedMaximumOverlap": 8,
+    "sideCacheEntries": 50,
+    "sideCacheEstimatedBytes": 16638,
+    "sourceReadonly": true,
+    "sqliteVersion": "3.53.4",
+    "statementCacheEntries": 100,
+    "status": "ACTUAL_FULL_V32_STRESS_PASS_NOT_UI"
+  },
+  "database_sha256_after": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "independent_python_sqlite_zstd_oracles": [
+    {
+      "case": "independent-0-0",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "independent-0-1",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "independent-0-2",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "independent-0-3",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "independent-0-4",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "independent-0-5",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "independent-1-0",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "independent-1-1",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "independent-1-2",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "independent-1-3",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "independent-1-4",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "independent-1-5",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "independent-2-0",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "independent-2-1",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "independent-2-2",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "independent-2-3",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "independent-2-4",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "independent-2-5",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "independent-3-0",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "independent-3-1",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "independent-3-2",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "independent-3-3",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "independent-3-4",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "independent-3-5",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "oversized-cache-source",
+      "verified_rows": 110196,
+      "decoded_source_bytes": 30583708,
+      "sha256": "4907b66a5de99f5753f3fb4d750204ae802a9563705a58ccbf46e5b3fc6340d9"
+    },
+    {
+      "case": "shared-0-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 19,
+      "sha256": "6ee0e80d53f0b90cdac8a9b263a9dd23001c5d5ab363e7f06aea9c96533718e6"
+    },
+    {
+      "case": "shared-0-1",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-0-10",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-0-11",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-0-2",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-0-3",
+      "verified_rows": 1,
+      "decoded_source_bytes": 168,
+      "sha256": "79d0f74ca657de8ca9304723a3e7cb19456971a0d1255ad64727353e1e5930c4"
+    },
+    {
+      "case": "shared-0-4",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-0-5",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-0-6",
+      "verified_rows": 1,
+      "decoded_source_bytes": 19,
+      "sha256": "6ee0e80d53f0b90cdac8a9b263a9dd23001c5d5ab363e7f06aea9c96533718e6"
+    },
+    {
+      "case": "shared-0-7",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-0-8",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-0-9",
+      "verified_rows": 1,
+      "decoded_source_bytes": 168,
+      "sha256": "79d0f74ca657de8ca9304723a3e7cb19456971a0d1255ad64727353e1e5930c4"
+    },
+    {
+      "case": "shared-1-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 21,
+      "sha256": "e885332e883585b9ce161734d44a96a307362455fc6a4a2a75473f02a4f49cf6"
+    },
+    {
+      "case": "shared-1-1",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-1-10",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-1-11",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-1-2",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-1-3",
+      "verified_rows": 1,
+      "decoded_source_bytes": 114,
+      "sha256": "2b1fa60e1dce956fd693ae2888aa332b9d50b73954a9d0a1f09a23ac4086c5f2"
+    },
+    {
+      "case": "shared-1-4",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-1-5",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-1-6",
+      "verified_rows": 1,
+      "decoded_source_bytes": 21,
+      "sha256": "e885332e883585b9ce161734d44a96a307362455fc6a4a2a75473f02a4f49cf6"
+    },
+    {
+      "case": "shared-1-7",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-1-8",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-1-9",
+      "verified_rows": 1,
+      "decoded_source_bytes": 114,
+      "sha256": "2b1fa60e1dce956fd693ae2888aa332b9d50b73954a9d0a1f09a23ac4086c5f2"
+    },
+    {
+      "case": "shared-2-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 27,
+      "sha256": "e661b45a46d70c2dea7fff88d15614b3db9508d8255e8cc39e073c22acd90a00"
+    },
+    {
+      "case": "shared-2-1",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-2-10",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-2-11",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-2-2",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-2-3",
+      "verified_rows": 1,
+      "decoded_source_bytes": 1133,
+      "sha256": "24abc18238f23061eaeffd512925e5ae0773aa2ef9836618db1b2544ca53bf6f"
+    },
+    {
+      "case": "shared-2-4",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-2-5",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-2-6",
+      "verified_rows": 1,
+      "decoded_source_bytes": 27,
+      "sha256": "e661b45a46d70c2dea7fff88d15614b3db9508d8255e8cc39e073c22acd90a00"
+    },
+    {
+      "case": "shared-2-7",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-2-8",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-2-9",
+      "verified_rows": 1,
+      "decoded_source_bytes": 1133,
+      "sha256": "24abc18238f23061eaeffd512925e5ae0773aa2ef9836618db1b2544ca53bf6f"
+    },
+    {
+      "case": "shared-3-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 19,
+      "sha256": "6ee0e80d53f0b90cdac8a9b263a9dd23001c5d5ab363e7f06aea9c96533718e6"
+    },
+    {
+      "case": "shared-3-1",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-3-10",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-3-11",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-3-2",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-3-3",
+      "verified_rows": 1,
+      "decoded_source_bytes": 168,
+      "sha256": "79d0f74ca657de8ca9304723a3e7cb19456971a0d1255ad64727353e1e5930c4"
+    },
+    {
+      "case": "shared-3-4",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-3-5",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-3-6",
+      "verified_rows": 1,
+      "decoded_source_bytes": 19,
+      "sha256": "6ee0e80d53f0b90cdac8a9b263a9dd23001c5d5ab363e7f06aea9c96533718e6"
+    },
+    {
+      "case": "shared-3-7",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-3-8",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-3-9",
+      "verified_rows": 1,
+      "decoded_source_bytes": 168,
+      "sha256": "79d0f74ca657de8ca9304723a3e7cb19456971a0d1255ad64727353e1e5930c4"
+    },
+    {
+      "case": "shared-4-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 21,
+      "sha256": "e885332e883585b9ce161734d44a96a307362455fc6a4a2a75473f02a4f49cf6"
+    },
+    {
+      "case": "shared-4-1",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-4-10",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-4-11",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-4-2",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-4-3",
+      "verified_rows": 1,
+      "decoded_source_bytes": 114,
+      "sha256": "2b1fa60e1dce956fd693ae2888aa332b9d50b73954a9d0a1f09a23ac4086c5f2"
+    },
+    {
+      "case": "shared-4-4",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-4-5",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-4-6",
+      "verified_rows": 1,
+      "decoded_source_bytes": 21,
+      "sha256": "e885332e883585b9ce161734d44a96a307362455fc6a4a2a75473f02a4f49cf6"
+    },
+    {
+      "case": "shared-4-7",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-4-8",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-4-9",
+      "verified_rows": 1,
+      "decoded_source_bytes": 114,
+      "sha256": "2b1fa60e1dce956fd693ae2888aa332b9d50b73954a9d0a1f09a23ac4086c5f2"
+    },
+    {
+      "case": "shared-5-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 27,
+      "sha256": "e661b45a46d70c2dea7fff88d15614b3db9508d8255e8cc39e073c22acd90a00"
+    },
+    {
+      "case": "shared-5-1",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-5-10",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-5-11",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-5-2",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-5-3",
+      "verified_rows": 1,
+      "decoded_source_bytes": 1133,
+      "sha256": "24abc18238f23061eaeffd512925e5ae0773aa2ef9836618db1b2544ca53bf6f"
+    },
+    {
+      "case": "shared-5-4",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-5-5",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-5-6",
+      "verified_rows": 1,
+      "decoded_source_bytes": 27,
+      "sha256": "e661b45a46d70c2dea7fff88d15614b3db9508d8255e8cc39e073c22acd90a00"
+    },
+    {
+      "case": "shared-5-7",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-5-8",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-5-9",
+      "verified_rows": 1,
+      "decoded_source_bytes": 1133,
+      "sha256": "24abc18238f23061eaeffd512925e5ae0773aa2ef9836618db1b2544ca53bf6f"
+    },
+    {
+      "case": "shared-6-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 19,
+      "sha256": "6ee0e80d53f0b90cdac8a9b263a9dd23001c5d5ab363e7f06aea9c96533718e6"
+    },
+    {
+      "case": "shared-6-1",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-6-10",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-6-11",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-6-2",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-6-3",
+      "verified_rows": 1,
+      "decoded_source_bytes": 168,
+      "sha256": "79d0f74ca657de8ca9304723a3e7cb19456971a0d1255ad64727353e1e5930c4"
+    },
+    {
+      "case": "shared-6-4",
+      "verified_rows": 8,
+      "decoded_source_bytes": 1434,
+      "sha256": "6339f46f8d2bdd59c1acf485ab9cd02e70dc0870d12125ecb5b6c457265bb9f7"
+    },
+    {
+      "case": "shared-6-5",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-6-6",
+      "verified_rows": 1,
+      "decoded_source_bytes": 19,
+      "sha256": "6ee0e80d53f0b90cdac8a9b263a9dd23001c5d5ab363e7f06aea9c96533718e6"
+    },
+    {
+      "case": "shared-6-7",
+      "verified_rows": 73,
+      "decoded_source_bytes": 10853,
+      "sha256": "29827fb98a46f37f35e5994b2c3b21c03dc3ac00ee8489da5128dcaceedf3a1a"
+    },
+    {
+      "case": "shared-6-8",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-6-9",
+      "verified_rows": 1,
+      "decoded_source_bytes": 168,
+      "sha256": "79d0f74ca657de8ca9304723a3e7cb19456971a0d1255ad64727353e1e5930c4"
+    },
+    {
+      "case": "shared-7-0",
+      "verified_rows": 1,
+      "decoded_source_bytes": 21,
+      "sha256": "e885332e883585b9ce161734d44a96a307362455fc6a4a2a75473f02a4f49cf6"
+    },
+    {
+      "case": "shared-7-1",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-7-10",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-7-11",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-7-2",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-7-3",
+      "verified_rows": 1,
+      "decoded_source_bytes": 114,
+      "sha256": "2b1fa60e1dce956fd693ae2888aa332b9d50b73954a9d0a1f09a23ac4086c5f2"
+    },
+    {
+      "case": "shared-7-4",
+      "verified_rows": 57,
+      "decoded_source_bytes": 62380,
+      "sha256": "2312b6f5a9298e449213d01c58b20a42c96bde260ef0c9dab06d05cc786222d7"
+    },
+    {
+      "case": "shared-7-5",
+      "verified_rows": 29,
+      "decoded_source_bytes": 10264,
+      "sha256": "639cac180398b6b604cbc341103ca4848eae3eeb8f931bafd4312b49d253e906"
+    },
+    {
+      "case": "shared-7-6",
+      "verified_rows": 1,
+      "decoded_source_bytes": 21,
+      "sha256": "e885332e883585b9ce161734d44a96a307362455fc6a4a2a75473f02a4f49cf6"
+    },
+    {
+      "case": "shared-7-7",
+      "verified_rows": 31,
+      "decoded_source_bytes": 47213,
+      "sha256": "611496745443c79d3671011d186622f04fab3fbba562b449705ed63306c4b76e"
+    },
+    {
+      "case": "shared-7-8",
+      "verified_rows": 16,
+      "decoded_source_bytes": 4117,
+      "sha256": "4526bef515a281cc748d8979f9238c7a5cfb11d7233d8e1b60129381b48bc34f"
+    },
+    {
+      "case": "shared-7-9",
+      "verified_rows": 1,
+      "decoded_source_bytes": 114,
+      "sha256": "2b1fa60e1dce956fd693ae2888aa332b9d50b73954a9d0a1f09a23ac4086c5f2"
+    }
+  ],
+  "status": "ACTUAL_FULL_V32_STRESS_PASS_NOT_UI"
+}

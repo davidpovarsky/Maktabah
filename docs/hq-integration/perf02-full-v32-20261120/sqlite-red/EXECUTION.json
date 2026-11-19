@@ -1,0 +1,16 @@
+{
+  "source_sha": "b3ae11f7c04b6e0af0b55d192ed4a212f9bafeb0",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "tools/hq-sqlite-acceptance.py",
+    "--artifacts-dir",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\sqlite-red",
+    "--source-db",
+    "C:\\Users\\DAVID\\Code\\Maktabah-perf02-completion-20261120\\build\\perf02-20261120\\full-v32\\seforim.db"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 10.85899999999674,
+  "finished_at": "2026-11-19T23:34:16.880484+00:00",
+  "source_sha_after": "b3ae11f7c04b6e0af0b55d192ed4a212f9bafeb0",
+  "worktree_status_after": ""
+}

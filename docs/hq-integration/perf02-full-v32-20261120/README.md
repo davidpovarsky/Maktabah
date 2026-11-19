@@ -2,7 +2,13 @@
 
 Task: [PERF-02](https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219613714507780). This tranche contributes actual source-level Windows evidence. The full task remains open for the application's MainActor, backend/DB/tab lifecycle, annotation/Sefaria parity and native/physical device acceptance.
 
-## Scope and source
+## Current follow-up
+
+A measured, narrow fetch-lock fix is now committed at `92e7cd3e2bf57f8c2a290afa0aaac26e5f094241`. The unchanged focused regression tests pass 26/26, and the identical full-v32 workload again passes all 121 outputs / 113,608 source-row appearances. Queued cancellation measured 16 ms after the preserved 4,484 ms baseline. Both are single instrumented Windows observations. See [FETCH_CANCELLATION_FIX.md](FETCH_CANCELLATION_FIX.md), `COMPARISON.json`, and `VALIDATION.json` for the exact source change, RED/GREEN, output identity and remaining Apple/Native/device gates.
+
+The sections below retain the original baseline provenance.
+
+## Baseline scope and source
 
 Production input is exactly `7d05dd0bb25a7df307b35174e49e18d0f22eecee`. Harness commit `e39b4f5f75d4410b7a4de3e349d437be4cbb5b2c` adds a stress mode to the existing `tools/hq-full-source-reader.py` and one Swift fixture. Commit `54ea8990f8ffb025815bf6b4dc158ed705e98326` makes the test observation predicates explicitly Sendable. No production file, application UI, dependency pin, project file or database schema changed. The existing 36-unit/18-navigation/170,587-row baseline and AB/BA performance experiment were not repeated.
 

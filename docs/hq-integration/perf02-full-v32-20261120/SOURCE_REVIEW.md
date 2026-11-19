@@ -2,6 +2,8 @@
 
 This review is bound to production source at `7d05dd0bb25a7df307b35174e49e18d0f22eecee`. The stress harness commit changes no production source. Historical Asana statements were checked against the current files before choosing the workload.
 
+The later fix is reviewed separately in [FETCH_CANCELLATION_FIX.md](FETCH_CANCELLATION_FIX.md); this baseline review and its source hashes remain frozen.
+
 ## Connection and decoder ownership
 
 The Maktabah Reader path uses `OtzariaMaktabahBridge` → `OtzariaReadingUnitService` → `SQLiteDatabase`. The separate `OtzariaSQLiteConnection.read` queue used by `OtzariaAppContainer` repositories is not this Reader connection and is not substituted for it in these checks.
