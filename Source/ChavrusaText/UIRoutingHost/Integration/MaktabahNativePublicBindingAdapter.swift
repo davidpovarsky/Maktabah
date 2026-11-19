@@ -11,6 +11,7 @@ struct MaktabahNativePublicPresentation {
     let tableOfContentsAvailable: Bool
     let witnessedReader: NativeSurfaceState?
     var searchFieldAvailable: Bool = false
+    var inspectorAvailable: Bool = false
 }
 
 /// App-target adapter over immutable R44 producer APIs. Not an executor, cache,
@@ -84,7 +85,7 @@ struct MaktabahNativePublicPresentation {
         guard live.active, live.lifetimeID == lease.lifetimeID else { throw UIRouteError(.staleState, "public_binding_lifetime_changed") }
         return live
     }
-    private enum Shape { case library, tableOfContents, history, search, annotations, settings, reader }
+    private enum Shape { case library, tableOfContents, history, search, annotations, settings, reader, inspector }
     private func shape(destination: UIDestinationID, presentation: PublicNavigationSpecV2.Presentation,
                        component: UIDestinationID?, hasContent: Bool) throws -> Shape {
         if let component {
@@ -102,6 +103,7 @@ struct MaktabahNativePublicPresentation {
             return .search
         case ("native.annotations", .currentTab, false): return .annotations
         case ("native.settings", .sheet, false): return .settings
+        case ("native.reader.inspector", .inspector, false): return .inspector
         case ("native.reader", .currentTab, true), ("native.reader", .newTab, true): return .reader
         default: throw UIRouteError(.notSupported, "public_binding_variant_not_installed")
         }
@@ -130,6 +132,16 @@ struct MaktabahNativePublicPresentation {
             guard visible.tableOfContentsAvailable else { throw UIRouteError(.unavailable, "native_toc_unavailable") }
             tab = .absent; inspector = nil
         case .library, .settings, .search, .annotations: tab = .absent; inspector = nil
+        case .inspector:
+            guard visible.inspectorAvailable,
+                  let selected = initial.projection.activeTabID, let target = initial.projection.targets[selected],
+                  target.readerOwner != nil, target.backend.rawValue == snapshot.backend.rawValue else {
+                throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
+            }
+            // The original public-v2 inspector policy requests visibility=true.
+            // The original mapping epoch binds its current Reader privately; no
+            // tab/content identifier or previous visibility is imported from URL.
+            tab = .absent; inspector = nil
         case .reader:
             guard let wanted = intent.content else { throw ActionPortError.notSupported }
             _ = try MaktabahNativeReaderBinding.appDestination(wanted)
@@ -205,7 +217,8 @@ struct MaktabahNativePublicPresentation {
     }
     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext,
                 invocation: ActionPortInvocation) async throws -> UIRouteEligibility {
-        let root: PublicNavigationSpecV2.Presentation = descriptor.id.rawValue == "native.settings" ? .sheet : .currentTab
+        let root: PublicNavigationSpecV2.Presentation = descriptor.id.rawValue == "native.settings" ? .sheet
+            : descriptor.id.rawValue == "native.reader.inspector" ? .inspector : .currentTab
         return try await assessPublicVariant(.init(destination: descriptor.id, presentation: root, component: nil,
             requiresContent: descriptor.requiresContent), scene: scene, context: context, invocation: invocation)
     }
@@ -221,6 +234,7 @@ struct MaktabahNativePublicPresentation {
             && (variant.destination.rawValue != "native.reader" || variant.presentation == .newTab || visible.witnessedReader != nil)
             && (variant.destination.rawValue != "native.history" || visible.historyRootAvailable)
             && (variant.destination.rawValue != "native.reader.toc" || visible.tableOfContentsAvailable)
+            && (variant.destination.rawValue != "native.reader.inspector" || visible.inspectorAvailable)
         return .init(sceneID: current.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
             supported: true, ready: ready, allowed: true)
     }

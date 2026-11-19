@@ -265,7 +265,7 @@ sqlite_result = subprocess.run(sqlite_command, stdout=subprocess.PIPE,
                                stderr=subprocess.STDOUT, text=True)
 sqlite_code = sqlite_result.returncode
 (artifacts / "ui-acceptance-typecheck.sqlite-driver.log").write_text(sqlite_result.stdout, encoding="utf-8")
-for name in ["RESULT.json", "compile.log", "tests.log"]:
+for name in ["RESULT.json", "compile.log", "tests.log", "swift-test.log", "inputs.json"]:
     source = sqlite_directory / name
     if source.is_file():
         (artifacts / ("ui-acceptance-typecheck.sqlite-" + name)).write_bytes(source.read_bytes())
@@ -274,8 +274,31 @@ report["actualSQLite"] = json.loads(sqlite_report.read_text()) if sqlite_report.
     "status": "FAILED_WITHOUT_REPORT", "exitCode": sqlite_code, "native_ui_executed": 0}
 print(json.dumps({"actualSQLiteStatus": report["actualSQLite"]["status"],
                   "exitCode": sqlite_code}, indent=2))
+# Execute the complete Hebrew matcher with the installed macOS Foundation, and
+# the exact app Inspector owner with explicit app-model boundary doubles. Neither
+# driver contributes a Native UI pass; the unchanged SDK dispatcher proof also
+# records its explicit context-transition limitation. Actual app compilation remains required.
+source_regression_code = 0
+for label, driver in [
+    ("hebrew-ranges", "tools/hq-hebrew-match-ranges.py"),
+    ("inspector-owner", "tools/hq-native-inspector-ownership.py"),
+    ("hanlin-navigation-contract", "tools/hq-hanlin-navigation-transition.py"),
+]:
+    directory = artifacts / label
+    checked = subprocess.run([sys.executable, driver, "--artifacts-dir", str(directory)],
+                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=300)
+    source_regression_code = source_regression_code or checked.returncode
+    (artifacts / ("ui-acceptance-typecheck." + label + "-driver.log")).write_text(checked.stdout, encoding="utf-8")
+    for name in ["RESULT.json", "compile.log", "tests.log", "swift-test.log", "inputs.json"]:
+        source = directory / name
+        if source.is_file():
+            (artifacts / ("ui-acceptance-typecheck." + label + "-" + name)).write_bytes(source.read_bytes())
+    receipt = directory / "RESULT.json"
+    report[label] = json.loads(receipt.read_text(encoding="utf-8")) if receipt.is_file() else {
+        "status": "FAILED_WITHOUT_REPORT", "exitCode": checked.returncode, "native_passes": 0}
+    print(json.dumps({"sourceRegression": label, "exitCode": checked.returncode, "native_passes": 0}))
 report["appMembershipStatus"] = "PASS" if membership_code == 0 else "FAIL"
 report["toolbarSDKStatus"] = "SDK_COMPILE_PASS" if toolbar_code == 0 else "BUILD_FAILED"
-report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code or sqlite_code) else "FAIL"
+report["aggregateSDKStatus"] = "PASS" if not (result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code or sqlite_code or source_regression_code) else "FAIL"
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
-raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code or sqlite_code)
+raise SystemExit(result.returncode or sidebar_code or toolbar_code or native_host_code or membership_code or native_search_code or reader_visibility_code or declaration_code or sqlite_code or source_regression_code)

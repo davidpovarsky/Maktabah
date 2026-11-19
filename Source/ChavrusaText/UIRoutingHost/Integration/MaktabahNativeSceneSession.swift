@@ -26,6 +26,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
     @ObservationIgnored private var retainedSearchField: UISearchTextField?
     @ObservationIgnored private var searchFieldUpdateScheduled = false
+    @ObservationIgnored private var inspectorBinding: MaktabahNativeInspectorBinding?
     private var searchFieldRevision: UInt64 = 0
 
     // This is the original scene-owned UIKit control, installed by its existing
@@ -124,7 +125,15 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             }
             field = original
         } else { field = nil }
+        let inspector: MaktabahNativeInspectorBinding?
+        if value.route.route.destination.rawValue == "native.reader.inspector" {
+            guard try publicBindingPresentation().inspectorAvailable else {
+                throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
+            }
+            inspector = try MaktabahNativeInspectorBinding(manager: bindings.manager)
+        } else { inspector = nil }
         try presentation.begin(value)
+        inspectorBinding = inspector
         retainedSearchField = field
         command = value; submissionID = value.invocation.requestId
     }
@@ -153,6 +162,17 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         let route = command.route.route, projection = try project(), identity = try projection.identity()
         guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
               route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
+        if route.destination.rawValue == "native.reader.inspector" {
+            guard route.content == nil, route.focus == nil, route.presentation.kind == .inspector,
+                  route.presentation.tabID == nil,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID,
+                      profileID: identity.state.profileID, inspectorVisible: true),
+                  try publicBindingPresentation().inspectorAvailable else {
+                throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
+            }
+            try inspectorBinding?.validate()
+            return
+        }
         if route.destination.rawValue == "native.reader" {
             guard let content = route.content, let readerBinding, readerBinding.accepts(content),
                   route.presentation.kind == (readerBinding.isNewTab ? .newTab : .currentTab),
@@ -187,6 +207,12 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func apply(_ command: UISceneCommand) throws {
+        if command.route.route.destination.rawValue == "native.reader.inspector" {
+            try validateSurface(command)
+            guard let inspectorBinding else { throw UIRouteError(.unavailable, "native_inspector_owner_missing") }
+            try inspectorBinding.apply()
+            return
+        }
         if command.route.route.focus != nil {
             // Focus only an ALREADY VISIBLE original field. A caller first
             // opens the Search root through this same orchestrator, then
@@ -240,6 +266,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         self.project = project
     }
     func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? {
+        if kind == .inspector { try inspectorBinding?.validate() }
         guard let state = try project().surface(kind) else { return nil }
         // Root navigation does not request or report keyboard focus. For the
         // registered component, the optional focus facet is projected ONLY
@@ -266,10 +293,20 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
            let current = try project().surface(.reader),
            current == evidence.surface,
            try project().hasRenderedReaderEvidence(sceneID: sceneID) { reader = current }
+        let inspectorID = UIDestinationID(rawValue: "native.reader.inspector")!
+        let inspectorWitnessed: Bool
+        if let evidence = visibilityChecks[inspectorID]?(), evidence.isVisible, evidence.sceneID == sceneID,
+           let actual = try surface(.inspector), actual == evidence.surface { inspectorWitnessed = true }
+        else { inspectorWitnessed = false }
+        let inspectorAvailable = MaktabahNativeInspectorBinding.currentReader(in: bindings.manager) != nil
+            && (reader != nil || inspectorWitnessed)
         return .init(ready: mounted && foreground && isPresentationReady,
             historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty,
             tableOfContentsAvailable: bindings.isRootAvailable(.tableOfContents), witnessedReader: reader,
-            searchFieldAvailable: searchFieldAvailable)
+            searchFieldAvailable: searchFieldAvailable, inspectorAvailable: inspectorAvailable)
+    }
+    func ownsInspectorReader(_ reader: ReaderViewModel) -> Bool {
+        MaktabahNativeInspectorBinding.currentReader(in: bindings.manager) === reader
     }
     func observeVisibility(for destination: UIDestinationID, check: @escaping @MainActor () -> NativeSurfaceWitness.Evidence?) {
         visibilityChecks[destination] = check
@@ -328,13 +365,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         presentation.end(requestID: requestID); submissionID = nil
         // Keep only the independently observed surface. Clear private request
         // metadata after its owner has validated the complete visible receipt.
-        command = nil; retainedSearchField = nil
+        command = nil; retainedSearchField = nil; inspectorBinding = nil
     }
 
     func unmount() {
         guard mounted else { return }
         mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
-        nativeSearchField = nil; retainedSearchField = nil
+        nativeSearchField = nil; retainedSearchField = nil; inspectorBinding = nil
         if let lease { directory.unmount(lease) }
         lease = nil
     }
@@ -344,6 +381,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         case "native.library": .library
         case "native.reader.toc": .tableOfContents
         case "native.reader": .reader
+        case "native.reader.inspector": .inspector
         case "native.history": .history
         case "native.search": .search
         case "native.annotations": .annotations

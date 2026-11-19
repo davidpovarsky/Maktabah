@@ -126,10 +126,16 @@ struct MaktabahNativeRoutingHost: ViewModifier {
 /// and derives visibility from the real foreground UIKit session after layout.
 struct MaktabahNativeRoutingSurface: ViewModifier {
     let kind: MaktabahNativeSceneProjection.Surface
+    let inspectorReader: ReaderViewModel?
+    init(kind: MaktabahNativeSceneProjection.Surface, inspectorReader: ReaderViewModel? = nil) {
+        self.kind = kind; self.inspectorReader = inspectorReader
+    }
     @Environment(\.maktabahNativeRoutingSession) private var session
     func body(content: Content) -> some View {
         content.background {
-            if let session, let state = try? session.surface(kind) {
+            if let session,
+               kind != .inspector || inspectorReader.map({ session.ownsInspectorReader($0) }) == true,
+               let state = try? session.surface(kind) {
                 NativeSurfaceWitness(surface: state, submissionID: session.submissionID,
                     observeVisibility: { session.observeVisibility(for: state.destination, check: $0) },
                     diagnose: { flags in

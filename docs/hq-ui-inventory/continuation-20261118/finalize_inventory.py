@@ -41,6 +41,7 @@ def main(source):
         ("search","Native Global Search/current tab",'.init(id: id("native.search")',"currentTab","v1_and_v2","Original Search root, original capability availability and current foreground scene; retains private query, never submits it or encodes it in a public URL",["inventory.v1.tab.search"]),
         ("annotations","Native Annotations/current tab",'.init(id: id("native.annotations")',"currentTab","v1_and_v2","Original Annotations root in current foreground scene; no draft/import/export/delete or annotation write action",["inventory.v1.tab.annotations","inventory.v1.annotations.list"]),
         ("settings","Native Settings/sheet",'.init(id: id("native.settings")',"sheet","v2","Current backend, foreground exact scene; root sheet only, no subsection mutation",["inventory.v1.shell.settings-sheet","inventory.v1.settings.root"]),
+        ("reader.inspector","Original Reader Study Tools panel",'.init(id: id("native.reader.inspector")',"inspector","v2","Actual visible loaded original Reader only; retained original object/tab/source/selection across Core awaits; existing TorahInspectorKit panel and native window witness; no public content/tab/selection, tool choice or data mutation",["inventory.v1.inspector.panel","inventory.v1.inspector.sheet"]),
         ("reader","Native Reader/current phone or iPad book",'.init(id: id("native.reader")',"currentTab","v2","Original phone/iPad workspace owner, active tab/current book, current backend, Core validated section/focus and original TextKit visible glyph; sameTab cross-book refused; separate R-owned newTab rule installed; compact phone owner uses original NavigationStack witness",["inventory.v1.reader.content","inventory.v1.reader.viewport"])
     ]
     for dest,title,anchor,presentation,version,limits,aliases in routes:
@@ -69,6 +70,15 @@ def main(source):
             r=byid[alias];r.update(route_implementation="SOURCE_WIRED_CONDITIONAL",installed_registry_id="native."+dest,
                 status="supported",note=limits+"; inventory support describes code wiring, not a native PASS")
             for b in r["backends"].values():b.update(route="SOURCE_WIRED_CONDITIONAL",reason=limits)
+    inspector=next(r for r in rows if r["id"]=="inventory.v1.native.reader.inspector")
+    inspector["supporting_sources"]=[
+        ref("Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift","@MainActor final class MaktabahNativeInspectorBinding"),
+        ref("Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",".modifier(MaktabahNativeRoutingSurface(kind: .inspector, inspectorReader: viewModel))"),
+        ref("Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift","func ownsInspectorReader(")]
+    inspector["tests"]["required"]=["Original visible panel and exact Core receipt on iPad/iPhone27", "Existing system App Intent", "Hidden Reader refusal without query or workspace mutation", "Original selection/tab/source retained and close returns to exact SQL text"]
+    inspector["suitability"].update(app_intent="same_existing_live_foreground_intent_for_actual_reader",deep_link="canonical_v2_inspector_visibility_only")
+    for alias in ["inventory.v1.inspector.panel","inventory.v1.inspector.sheet"]:
+        byid[alias]["note"] += "; registered navigation opens only the original top-level panel; choosing tools, related sources and editing notes are separate unimplemented route variants"
     newtab=copy.deepcopy(next(r for r in rows if r["id"]=="inventory.v1.native.reader"))
     newtab.update(id="inventory.v1.native.reader-new-tab",screen_section_component="Native Reader/new phone or iPad tab",
         source=ref("Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift","func reserveNativeReader("),
@@ -91,7 +101,7 @@ def main(source):
             inputs=["fresh registered backend-qualified root entity", "exact foreground scene"],
             visible_state="The chosen original native root is independently visible and acknowledged",
             public_versions="NOT_APPLICABLE_SYSTEM_INTENT",
-            note="App metadata and foreground service installed for eligible Library/TOC/History/Search/Annotations/Settings; actual Siri/Shortcuts invocation NOT_RUN; separate source-wired Book/Location intent uses original Core and Reader owner")
+            note="App metadata and foreground service installed for eligible Library/TOC/History/Search/Annotations/Settings and the actually visible original Reader Inspector; actual Siri/Shortcuts invocation NOT_RUN; separate source-wired Book/Location intent uses original Core and Reader owner")
         rows.append(r)
     reader_intent=copy.deepcopy(newtab)
     reader_intent.update(id="inventory.v1.native.reader-intent",screen_section_component="Open source book at chapter or passage / original Reader",
@@ -129,7 +139,7 @@ def main(source):
     for key in ["inventory.v1.native.foreground-intent","inventory.v1.native.shortcut"]:
         byid[key]["inputs"]=["Fresh backend/scene-qualified root or currently eligible component entity","Exact foreground scene"]
         byid[key]["note"] += "; visible Search query component is source-wired through the same existing intent and public binder; native/system acceptance pending"
-    byid["inventory.v1.app.scene"]["note"]="Real MaktabahNativeRoutingHost mounts using actual UIKit scene identity and original workspace lifecycle; exact target is retained by NativeSceneDirectory. Root Library/TOC/History/Search/Annotations/Settings and current/new-tab Reader on original phone/iPad owners; native validation remains pending."
+    byid["inventory.v1.app.scene"]["note"]="Real MaktabahNativeRoutingHost mounts using actual UIKit scene identity and original workspace lifecycle; exact target is retained by NativeSceneDirectory. Root Library/TOC/History/Search/Annotations/Settings, original current-Reader Inspector and current/new-tab Reader on original phone/iPad owners; native validation remains pending."
     for r in rows:
         r["independent_review"]="NOT_CLAIMED_SOLE_AGENT_OWNER_INSTRUCTION"
         r["source_review_owner"]=OWNER
@@ -177,7 +187,7 @@ def main(source):
         "all_new_paths_classified":set(d["source_census"]["added_paths"])<=set(dispositions),
         "semantic_areas":dict(collections.Counter(r["area"] for r in rows)),
         "status_meaning":"supported means source-wired only; runtime_evidence and native_receipt remain authoritative for execution"}
-    d["summary"].update(semantic_surfaces=len(rows),new_native_contract_surfaces=9,
+    d["summary"].update(semantic_surfaces=len(rows),new_native_contract_surfaces=sum(r["id"].startswith("inventory.v1.native.") for r in rows),
         source_coverage_review="EXECUTED_PASS_SOLE_AGENT",lexical_candidates=len(candidate_paths),
         file_dispositions=len(dispositions),new_paths_classified=len(d["source_census"]["added_paths"]))
     examples=m.original("UI_ROUTE_EXAMPLES.json")
@@ -211,6 +221,11 @@ def main(source):
         {"case":"System wrong-book refusal","registry_id":"native.reader","input":"Location belonging to another selected book","expected":"System refuses without native receipt, tab or original Reader change"},
         {"case":"System missing-source refusal","registry_id":"native.reader","input":"Canonical-shaped ID with a nonexistent source line","expected":"Original Core source validation refuses; no invented location, successful intent or tab mutation"},
         {"case":"Phone system Reader ownership","registry_id":"native.reader","presentation":"newTab","input":"Real system book/location intent after background on compact phone","expected":"Original phone Reader and exact source; original overview returns to retained prior tab"}
+    ]
+    examples["current_native_examples"] += [
+        {"case":"Original Inspector public navigation on iPad and iPhone","registry_id":"native.reader.inspector","presentation":"inspector","input":"Canonical v2 destination/backend/presentation only while the original Reader is actually visible","expected":"Original TorahInspectorKit panel with exact Core receipt; repeat is acknowledged separately; original tab, source and selection retained; close returns to independently verified SQL text"},
+        {"case":"System original Inspector on iPad and iPhone","registry_id":"native.reader.inspector","presentation":"inspector","input":"Live Study Tools entity through the existing OpenNativeDestinationIntent","expected":"Original panel and canonical receipt, no replacement Reader; existing close action restores the original Reader"},
+        {"case":"Hidden Reader Inspector refusal","registry_id":"native.reader.inspector","presentation":"inspector","input":"Same canonical request while original Search is visible","expected":"No native receipt or panel; private search query and original workspace remain unchanged"}
     ]
     examples["current_native_examples"] += [
         {"case":"Visible Search query component on iPad and iPhone","registry_id":"native.search","component":"native.search.query","presentation":"currentTab","input":"Canonical v2 component after original Search root is visibly mounted; no private query","expected":"Same original UIKit field becomes first responder, private input unchanged, real keyboard typing without another tap and canonical component receipt"},

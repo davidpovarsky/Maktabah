@@ -1,0 +1,26 @@
+{
+  "reviewed_at": "2026-11-19T01:38:20.659015+00:00",
+  "base_commit": "b3871b1ff65baa92c56ca3bd960a53be8c18221e",
+  "reviewer": "Sole owner-authorized continuation developer; no independent reviewer claimed",
+  "changes": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "0b2055c53d8130215367dbb0282a4090b5aa66924c6c7130aef1d6648cb4ae1c",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "d938829d9d71ec0c3ae09d8f79da1e08cdc4456f0b5488746e9e2d19559f5f79",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "5171b2e86b5612030845421b99fb68091ffb2a0672b9a5d944ffc14dd0061b19",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "4917640eba40c1c6aa126abc4ef8e86dddfe39ab162d63106be84b2cf1bb58b1",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "12823ebbe1df2cb11932d4a56edee6512f39a3b7867b3c932e23d1d1cf71858e",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "f51887b1423985a14b6cce22b14d108b0a8ab2eb6c5c6f63d1186320cc9e2ab5",
+    "Source/Otzaria/Core/String+OtzariaText.swift": "e62731fccc95328cb6284809e6e4b464ab83e064ed2117d7da1bf8c0ff9a826a",
+    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": "564fcc74a76faf5bd911ca8eb4e06c92ad288409b38863263a5dbbbe848af7c3"
+  },
+  "diff_sha256": "94b9207e1c973f607a03e20b0aa6ed782913b1b69b1822a197d69052a7090539",
+  "boundaries": [
+    "Original Core/public-v2 policies unchanged",
+    "Only current original Reader panel visibility is mutated",
+    "Actual retained Reader identity/selection and native window witness required",
+    "Hebrew match lookup uses source UTF16 offsets; original plain-text normalizer unchanged",
+    "No database write or search engine replacement",
+    "All75declarations and original27 retained;0Native acceptance claimed"
+  ],
+  "native70_run_unchanged": "44434004471",
+  "native75": "NOT_RUN"
+}

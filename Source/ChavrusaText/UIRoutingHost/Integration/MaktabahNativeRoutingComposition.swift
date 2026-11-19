@@ -97,6 +97,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             .init(id: id("native.settings"), title: "Settings".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.sheet], requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
+            .init(id: id("native.reader.inspector"), title: "Study Tools".localized, implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.inspector], requiredCoreActions: [],
+                  publicNavigationV2: .init(rules: [.init(presentation: .inspector)])),
             .init(id: id("native.reader"), title: "Reader".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab, .newTab],
                   requiredCoreActions: ["reader.open"], requiresContent: true,
@@ -341,12 +344,13 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         guard let entry = scenes[destination.sceneID], entry.session.foreground else { return .requiresForeground }
         let snapshot = try backend.currentBackendSnapshot()
         guard snapshot.backend == destination.backend else { return .requiresBackendSwitch(destination.backend) }
-        if let component = destination.component {
+        if destination.component != nil || destination.destination.rawValue == "native.reader.inspector" {
             // The same live system entity uses the same public binder and
             // original Core fence as a component deep link. No second intent
             // executor, deferred focus or caller-supplied authority is added.
             return try await open(public: .init(destination: destination.destination, backend: destination.backend,
-                presentation: .currentTab, component: component), sceneID: destination.sceneID,
+                presentation: destination.destination.rawValue == "native.reader.inspector" ? .inspector : .currentTab,
+                component: destination.component), sceneID: destination.sceneID,
                 managerID: entry.managerID, expectedSnapshot: snapshot, origin: .appIntent, until: deadline())
         }
         let context = context(sceneID: destination.sceneID, origin: .appIntent, snapshot: snapshot)
@@ -535,7 +539,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
         // A field is not a window identity. Its entity still requires the actual
         // visible, foreground original control through existing live discovery.
-        values += try await destinations().filter { $0.component != nil }
+        values += try await destinations().filter { $0.component != nil || $0.destination.rawValue == "native.reader.inspector" }
         guard try backend.currentBackendSnapshot() == snapshot else {
             throw UIRouteError(.staleState, "intent_source_generation_changed")
         }
@@ -607,7 +611,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UIRouteEligibility {
         let current = try await directory.currentScene(sceneID: scene.sceneID, context: context, invocation: invocation)
         guard current == scene, let entry = scenes[scene.sceneID] else { throw UIRouteError(.staleState, "scene_or_backend_changed") }
-        let supported = descriptor.id.rawValue == "native.settings" || entry.session.isRootAvailable(descriptor.id)
+        let supported = descriptor.id.rawValue == "native.reader.inspector"
+            ? try entry.session.publicBindingPresentation().inspectorAvailable
+            : descriptor.id.rawValue == "native.settings" || entry.session.isRootAvailable(descriptor.id)
         return .init(sceneID: scene.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
                      supported: supported, ready: entry.session.foreground && entry.session.mounted && entry.session.isPresentationReady, allowed: true)
     }

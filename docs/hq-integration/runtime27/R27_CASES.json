@@ -5,12 +5,12 @@
   "app_source": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "Original27 plus actual source-qualified continuation cases;70 required Native cases,58iPad27+12iPhone27,zero skips;app/system/physical/release gates remain distinct.",
+  "scope": "Original27 plus actual source-qualified continuation cases;75 required Native cases,61iPad27+14iPhone27,zero skips;app/system/physical/release gates remain distinct.",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 70,
+  "required_nonzero_cases": 75,
   "expected_per_device": {
-    "ipad11": 58,
-    "iphone": 12
+    "ipad11": 61,
+    "iphone": 14
   },
   "cases": [
     {
@@ -133,7 +133,7 @@
   ],
   "reused_ui_passes": 0,
   "prior_evidence": "T intake:42577170165/42571097678 failed at70810eec;40566258679 older different fingerprints cannot be reused;43666438604/391 is build-only0UI",
-  "previous_manifest_sha256": "4c1444f1c49dd490396f8692d589e84ab8915e72b6f5757a3fd255e71c4bc957",
+  "previous_manifest_sha256": "989e8e8baaef13eac9709a12a706444e6570e004ffc24384c5229cfb9da6a806",
   "correction": "Window test uses actual wired controls and semantic native restore; all9case IDs stable; executor isolates resize on separate fresh11-window",
   "affected_execution_groups": [
     "11-reader",
@@ -209,7 +209,10 @@
         "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
         "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
         "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
-        "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent"
+        "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+        "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+        "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader"
       ],
       "hid_comparison": false
     },
@@ -248,7 +251,9 @@
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
         "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
-        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector"
       ],
       "hid_comparison": false
     }
@@ -323,7 +328,12 @@
     "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
     "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
     "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
-    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -816,6 +826,36 @@
       "device": "iphone",
       "status": "NOT_RUN",
       "oracle": "Actual compact iPhone UI: same original scene-owned Search field, private query preserved, canonical receipt and typing without another tap."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original TorahInspectorKit panel, one receipt per request, repeated opening preserves original tab/book/locator, original Close returns to exact SQL source text."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual out-of-process Apple AppIntentsTesting selects the visible original Reader panel entity; same Core/public binder/native receipt and original Close preserves Reader."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Inspector cannot open a hidden Reader from Search, cannot alter private query or original workspace, and produces no Native receipt."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Actual compact original Inspector sheet with same Core/public-v2 authority, real visible panel, repeated request, original Close and exact source-text return."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Actual Apple system App Intent opens original compact Reader Inspector with exact scene receipt and original Reader restored after Close."
     }
   ],
   "manager_native_review_history": [
@@ -940,7 +980,12 @@
       "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
       "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
       "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
-      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+      "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector"
     ],
     "reused_native_passes": 0,
     "historical_native_evidence": "Preserved only on its original app/test/fixture/context. First continuation run44185317875 remains an independent immutable27-case observation.",
@@ -1005,13 +1050,13 @@
     },
     "native_execution_partition": {
       "reason": "Run44207959071 spent4086.583s in the RTL Sidebar test and hit the global150-minute ceiling before phone xcresult verification. Use distinct fresh owned simulator groups, unchanged full-case coverage and no retries.",
-      "case_count": 70,
+      "case_count": 75,
       "per_group": {
         "11-search": 21,
-        "11-reader": 31,
+        "11-reader": 34,
         "11-sidebar": 4,
         "11-window": 2,
-        "phone": 12
+        "phone": 14
       },
       "prior_result_retained": true
     },
@@ -1142,6 +1187,20 @@
       "existing_assertion_timeouts_relaxed": false,
       "exact_target_waits": "Retain 30-second reader content acceptance; observe exact later-page locator within30 seconds and initial known bootstrap locator within the existing60-second initial reader budget.",
       "source_sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71"
+    },
+    "native_inspector_source": {
+      "source": "next immutable source checkpoint",
+      "implementation": "Existing original TorahInspectorKit panel through unchanged public-v2 Inspector policy, original Core and scene registry; retains actual Reader owner/locator/private selection; marker bound to actual panel Reader instance. No new renderer/permission engine.",
+      "case_ids": [
+        "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+        "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector"
+      ],
+      "status": "NOT_RUN",
+      "source_owner_tests": "17 portable cases with explicit model/backend doubles;0Native",
+      "active_previous_candidate": "44434004471 on b387/2c5 remains immutable; new75 not dispatched yet"
     }
   },
   "application_source_sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",

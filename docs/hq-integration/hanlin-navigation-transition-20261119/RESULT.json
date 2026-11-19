@@ -1,0 +1,43 @@
+{
+  "observed_at": "2026-11-19T01:36:43.167002+00:00",
+  "status": "REPRODUCED_CURRENT_CONTRACT_LIMITATION",
+  "exit_code": 0,
+  "sdk_sha": "080d1a2b264ead9e3f9df690f2dd0d3e81ebd07e",
+  "inputs": 28,
+  "fixture_sha256": "9b34848ca63e7611d53249b36dbb7a29ad12ab79b4914dba9234a49eb781f567",
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+    "test",
+    "--scratch-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\build\\hn",
+    "-j",
+    "1",
+    "-Xswiftc",
+    "-strict-concurrency=complete"
+  ],
+  "passed": [
+    "testAccountTransitionMustRemainRejected",
+    "testAlreadyStaleContextNeverNavigates",
+    "testGenerationTransitionDropsAcknowledgementAfterNavigationEffect",
+    "testObjectTransitionDropsAcknowledgementAfterNavigationEffect",
+    "testQueuedIsNotPresentationAcknowledgement",
+    "testReplyCannotSubstituteNewContextToBypassGuard",
+    "testRevokedSessionNeverNavigates",
+    "testStableContextPreservesExactPresentedAcknowledgement"
+  ],
+  "expected": [
+    "testAccountTransitionMustRemainRejected",
+    "testAlreadyStaleContextNeverNavigates",
+    "testGenerationTransitionDropsAcknowledgementAfterNavigationEffect",
+    "testObjectTransitionDropsAcknowledgementAfterNavigationEffect",
+    "testQueuedIsNotPresentationAcknowledgement",
+    "testReplyCannotSubstituteNewContextToBypassGuard",
+    "testRevokedSessionNeverNavigates",
+    "testStableContextPreservesExactPresentedAcknowledgement"
+  ],
+  "warnings": 48,
+  "native_passes": 0,
+  "production_navigation_acceptance": "NOT_RUN",
+  "boundary": "Whole unchanged SDK HostDispatcher + complete original Platform/Host contract modules. Explicit host/navigation effect double; no AgentSession, provider, UIKit, Otzaria runtime or actual UI acknowledgement.",
+  "finding": "Current context changes caused by navigation cannot be acknowledged through HostDispatcher.open: returning the old context becomes stale after the host effect, while returning a new context fails result validation. Existing safety guards remain unchanged."
+}

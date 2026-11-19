@@ -1,0 +1,43 @@
+{
+  "observed_at": "2026-11-19T01:23:43.450863+00:00",
+  "source_path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+  "source_sha256": "4917640eba40c1c6aa126abc4ef8e86dddfe39ab162d63106be84b2cf1bb58b1",
+  "actual_binding_sha256": "231e8f6a72be8e0c4c0d8397ed42ae275909d816b22153413c7d090bf82c9c74",
+  "fixture_sha256": "43e4dcd0af15d27bd482a1bbab8c456194c16dc9e08e3e53e609c9ea8ba20e1e",
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\native-inspector-20261119\\owner\\ExactInspectorOwner.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\native-inspector-20261119\\owner\\inspector-owner.exe"
+  ],
+  "compile_exit": 0,
+  "warnings": 0,
+  "test_exit": 0,
+  "passed": [
+    "Creating a binding does not open the panel or change selection",
+    "Opening the existing panel preserves source, selection and original Reader identity",
+    "Repeated presentation stays on the same original panel and selection",
+    "Missing active identity cannot fall back to the first Reader",
+    "Non-Reader app mode cannot supply an inspector owner",
+    "Loading content cannot advertise a ready inspector",
+    "A section from another book cannot bind the active Reader",
+    "An unrelated retained line anchor cannot select another book",
+    "An unrelated selected locator cannot select another backend",
+    "Closing the retained tab before commit prevents the effect",
+    "Replacing a Reader under the same tab UUID prevents the effect",
+    "Switching the active tab before commit prevents the effect",
+    "A new content destination invalidates the old inspector request",
+    "A changed private selection invalidates the old inspector request",
+    "A changed source anchor invalidates the old inspector request",
+    "A changed reading mode invalidates the old inspector request",
+    "A changed backend invalidates the old inspector request"
+  ],
+  "failed": [],
+  "status": "PASS",
+  "native_passes": 0,
+  "boundary": "Exact app binding with real Swift6/MainActor, explicit model/backend DTO doubles. No UIKit, Core permission, database or native presentation acceptance."
+}

@@ -232,4 +232,70 @@ struct MaktabahNativeSceneBindings {
         }
     }
 }
+
+// BEGIN NATIVE INSPECTOR OWNER BINDING
+/// A retained original Reader, not a resolver or a second inspector. Opening the
+/// existing panel may change only its visibility; source and private selection
+/// must survive every Core/native await.
+@MainActor final class MaktabahNativeInspectorBinding {
+    private let manager: iOSNavigationManager
+    private let reader: ReaderViewModel
+    private let tabID: UUID
+    private let destination: LibraryReaderDestination
+    private let selectedLocator: TextLocator?
+    private let lineAnchor: OtzariaLineAnchor?
+    private let selectedRange: NSRange?
+    private let textMode: LibraryReaderTextMode
+    private let contentID: Int
+
+    init(manager: iOSNavigationManager) throws {
+        guard let reader = Self.currentReader(in: manager), let tabID = manager.activeTabId,
+              let destination = reader.currentDestination else {
+            throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
+        }
+        self.manager = manager; self.reader = reader; self.tabID = tabID
+        self.destination = destination; selectedLocator = reader.selectedSegmentLocator
+        lineAnchor = reader.otzariaSelectedLineAnchor; selectedRange = reader.readerState.selectedRange
+        textMode = reader.currentReaderTextMode; contentID = reader.currentContentId
+    }
+
+    static func currentReader(in manager: iOSNavigationManager) -> ReaderViewModel? {
+        guard manager.currentMode == .viewer, let id = manager.activeTabId,
+              let tab = manager.openTabs.first(where: { $0.id == id }),
+              let destination = tab.viewModel.currentDestination,
+              let section = tab.viewModel.backendSection?.locator,
+              section == destination.sectionLocator,
+              section.backend == BackendCoordinator.shared.activeBackendID,
+              tab.book.backendLocator?.backend == section.backend,
+              tab.book.backendLocator?.workKey == section.workKey,
+              !tab.viewModel.contentText.isEmpty,
+              case .loaded = tab.viewModel.state else { return nil }
+        let reader = tab.viewModel
+        if let selected = reader.selectedSegmentLocator,
+           selected.backend != section.backend || selected.workKey != section.workKey { return nil }
+        if let anchor = reader.otzariaSelectedLineAnchor,
+           section.backend != .otzaria || section.workKey != "book:\(anchor.bookId)" { return nil }
+        if section.backend == .otzaria {
+            guard let book = reader.currentBook, section.workKey == "book:\(book.id)" else { return nil }
+        }
+        return reader
+    }
+
+    func validate() throws {
+        guard manager.activeTabId == tabID, Self.currentReader(in: manager) === reader,
+              reader.currentDestination == destination, reader.currentContentId == contentID,
+              reader.currentReaderTextMode == textMode,
+              reader.selectedSegmentLocator == selectedLocator, reader.otzariaSelectedLineAnchor == lineAnchor,
+              reader.readerState.selectedRange == selectedRange else {
+            throw UIRouteError(.staleState, "native_inspector_reader_changed")
+        }
+    }
+
+    func apply() throws {
+        try validate()
+        reader.readerInspectorVisible = true
+    }
+}
+// END NATIVE INSPECTOR OWNER BINDING
+
 #endif

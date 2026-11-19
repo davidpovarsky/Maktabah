@@ -49,6 +49,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 showsCloseButton: showsCloseButton
             )
             .id("\(backendCoordinator.generation):\(viewModel.currentReaderTextMode.rawValue):\(contentID)")
+            .modifier(MaktabahNativeRoutingSurface(kind: .inspector, inspectorReader: viewModel))
             .onChange(of: backendCoordinator.generation) { _, _ in
                 inspectorSession = MaktabahTorahInspectorSession(viewModel: viewModel)
                 viewModel.closeReaderInspector()

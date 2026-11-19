@@ -11,7 +11,7 @@ import ChavrusaUIRoutingHost
 /// target. It neither saves reader state nor resolves a requested locator.
 @MainActor
 struct MaktabahNativeSceneProjection {
-    enum Surface { case library, tableOfContents, reader, history, search, annotations, settings }
+    enum Surface { case library, tableOfContents, reader, history, search, annotations, settings, inspector }
     let manager: iOSNavigationManager
     let selectedTab: iOSTab
     let columnVisibility: NavigationSplitViewVisibility
@@ -87,6 +87,13 @@ struct MaktabahNativeSceneProjection {
             // actually be visible before it can acknowledge this root.
             return .init(destination: id(destination), presentation: .init(),
                          content: nil, state: state, focus: nil)
+        case .inspector:
+            guard !settingsPresented, selectedTab.canonical == .viewer,
+                  let reader = MaktabahNativeInspectorBinding.currentReader(in: manager),
+                  reader.readerInspectorVisible else { return nil }
+            return .init(destination: id("native.reader.inspector"), presentation: .init(kind: .inspector),
+                content: nil, state: .init(workspaceID: state.workspaceID, profileID: state.profileID,
+                                          inspectorVisible: true), focus: nil)
         case .reader:
             guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer,
                   let tab = activeTab, let destination = tab.viewModel.currentDestination,

@@ -1,0 +1,397 @@
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift
+index df6e08a5..8a0ee581 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift
+@@ -11,6 +11,7 @@ struct MaktabahNativePublicPresentation {
+     let tableOfContentsAvailable: Bool
+     let witnessedReader: NativeSurfaceState?
+     var searchFieldAvailable: Bool = false
++    var inspectorAvailable: Bool = false
+ }
+ 
+ /// App-target adapter over immutable R44 producer APIs. Not an executor, cache,
+@@ -84,7 +85,7 @@ struct MaktabahNativePublicPresentation {
+         guard live.active, live.lifetimeID == lease.lifetimeID else { throw UIRouteError(.staleState, "public_binding_lifetime_changed") }
+         return live
+     }
+-    private enum Shape { case library, tableOfContents, history, search, annotations, settings, reader }
++    private enum Shape { case library, tableOfContents, history, search, annotations, settings, reader, inspector }
+     private func shape(destination: UIDestinationID, presentation: PublicNavigationSpecV2.Presentation,
+                        component: UIDestinationID?, hasContent: Bool) throws -> Shape {
+         if let component {
+@@ -102,6 +103,7 @@ struct MaktabahNativePublicPresentation {
+             return .search
+         case ("native.annotations", .currentTab, false): return .annotations
+         case ("native.settings", .sheet, false): return .settings
++        case ("native.reader.inspector", .inspector, false): return .inspector
+         case ("native.reader", .currentTab, true), ("native.reader", .newTab, true): return .reader
+         default: throw UIRouteError(.notSupported, "public_binding_variant_not_installed")
+         }
+@@ -130,6 +132,16 @@ struct MaktabahNativePublicPresentation {
+             guard visible.tableOfContentsAvailable else { throw UIRouteError(.unavailable, "native_toc_unavailable") }
+             tab = .absent; inspector = nil
+         case .library, .settings, .search, .annotations: tab = .absent; inspector = nil
++        case .inspector:
++            guard visible.inspectorAvailable,
++                  let selected = initial.projection.activeTabID, let target = initial.projection.targets[selected],
++                  target.readerOwner != nil, target.backend.rawValue == snapshot.backend.rawValue else {
++                throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
++            }
++            // The original public-v2 inspector policy requests visibility=true.
++            // The original mapping epoch binds its current Reader privately; no
++            // tab/content identifier or previous visibility is imported from URL.
++            tab = .absent; inspector = nil
+         case .reader:
+             guard let wanted = intent.content else { throw ActionPortError.notSupported }
+             _ = try MaktabahNativeReaderBinding.appDestination(wanted)
+@@ -205,7 +217,8 @@ struct MaktabahNativePublicPresentation {
+     }
+     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext,
+                 invocation: ActionPortInvocation) async throws -> UIRouteEligibility {
+-        let root: PublicNavigationSpecV2.Presentation = descriptor.id.rawValue == "native.settings" ? .sheet : .currentTab
++        let root: PublicNavigationSpecV2.Presentation = descriptor.id.rawValue == "native.settings" ? .sheet
++            : descriptor.id.rawValue == "native.reader.inspector" ? .inspector : .currentTab
+         return try await assessPublicVariant(.init(destination: descriptor.id, presentation: root, component: nil,
+             requiresContent: descriptor.requiresContent), scene: scene, context: context, invocation: invocation)
+     }
+@@ -221,6 +234,7 @@ struct MaktabahNativePublicPresentation {
+             && (variant.destination.rawValue != "native.reader" || variant.presentation == .newTab || visible.witnessedReader != nil)
+             && (variant.destination.rawValue != "native.history" || visible.historyRootAvailable)
+             && (variant.destination.rawValue != "native.reader.toc" || visible.tableOfContentsAvailable)
++            && (variant.destination.rawValue != "native.reader.inspector" || visible.inspectorAvailable)
+         return .init(sceneID: current.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
+             supported: true, ready: ready, allowed: true)
+     }
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
+index b46774ee..897c5472 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
+@@ -97,6 +97,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+             .init(id: id("native.settings"), title: "Settings".localized, implementation: .implemented,
+                   supportedBackends: ActionBackendID.allCases, presentations: [.sheet], requiredCoreActions: [],
+                   publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
++            .init(id: id("native.reader.inspector"), title: "Study Tools".localized, implementation: .implemented,
++                  supportedBackends: ActionBackendID.allCases, presentations: [.inspector], requiredCoreActions: [],
++                  publicNavigationV2: .init(rules: [.init(presentation: .inspector)])),
+             .init(id: id("native.reader"), title: "Reader".localized, implementation: .implemented,
+                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab, .newTab],
+                   requiredCoreActions: ["reader.open"], requiresContent: true,
+@@ -341,12 +344,13 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+         guard let entry = scenes[destination.sceneID], entry.session.foreground else { return .requiresForeground }
+         let snapshot = try backend.currentBackendSnapshot()
+         guard snapshot.backend == destination.backend else { return .requiresBackendSwitch(destination.backend) }
+-        if let component = destination.component {
++        if destination.component != nil || destination.destination.rawValue == "native.reader.inspector" {
+             // The same live system entity uses the same public binder and
+             // original Core fence as a component deep link. No second intent
+             // executor, deferred focus or caller-supplied authority is added.
+             return try await open(public: .init(destination: destination.destination, backend: destination.backend,
+-                presentation: .currentTab, component: component), sceneID: destination.sceneID,
++                presentation: destination.destination.rawValue == "native.reader.inspector" ? .inspector : .currentTab,
++                component: destination.component), sceneID: destination.sceneID,
+                 managerID: entry.managerID, expectedSnapshot: snapshot, origin: .appIntent, until: deadline())
+         }
+         let context = context(sceneID: destination.sceneID, origin: .appIntent, snapshot: snapshot)
+@@ -535,7 +539,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+         }
+         // A field is not a window identity. Its entity still requires the actual
+         // visible, foreground original control through existing live discovery.
+-        values += try await destinations().filter { $0.component != nil }
++        values += try await destinations().filter { $0.component != nil || $0.destination.rawValue == "native.reader.inspector" }
+         guard try backend.currentBackendSnapshot() == snapshot else {
+             throw UIRouteError(.staleState, "intent_source_generation_changed")
+         }
+@@ -607,7 +611,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UIRouteEligibility {
+         let current = try await directory.currentScene(sceneID: scene.sceneID, context: context, invocation: invocation)
+         guard current == scene, let entry = scenes[scene.sceneID] else { throw UIRouteError(.staleState, "scene_or_backend_changed") }
+-        let supported = descriptor.id.rawValue == "native.settings" || entry.session.isRootAvailable(descriptor.id)
++        let supported = descriptor.id.rawValue == "native.reader.inspector"
++            ? try entry.session.publicBindingPresentation().inspectorAvailable
++            : descriptor.id.rawValue == "native.settings" || entry.session.isRootAvailable(descriptor.id)
+         return .init(sceneID: scene.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
+                      supported: supported, ready: entry.session.foreground && entry.session.mounted && entry.session.isPresentationReady, allowed: true)
+     }
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
+index 8e3de6ce..c1371ad2 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift
+@@ -126,10 +126,16 @@ struct MaktabahNativeRoutingHost: ViewModifier {
+ /// and derives visibility from the real foreground UIKit session after layout.
+ struct MaktabahNativeRoutingSurface: ViewModifier {
+     let kind: MaktabahNativeSceneProjection.Surface
++    let inspectorReader: ReaderViewModel?
++    init(kind: MaktabahNativeSceneProjection.Surface, inspectorReader: ReaderViewModel? = nil) {
++        self.kind = kind; self.inspectorReader = inspectorReader
++    }
+     @Environment(\.maktabahNativeRoutingSession) private var session
+     func body(content: Content) -> some View {
+         content.background {
+-            if let session, let state = try? session.surface(kind) {
++            if let session,
++               kind != .inspector || inspectorReader.map({ session.ownsInspectorReader($0) }) == true,
++               let state = try? session.surface(kind) {
+                 NativeSurfaceWitness(surface: state, submissionID: session.submissionID,
+                     observeVisibility: { session.observeVisibility(for: state.destination, check: $0) },
+                     diagnose: { flags in
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
+index 6458808a..c1e2ae60 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
+@@ -232,4 +232,70 @@ struct MaktabahNativeSceneBindings {
+         }
+     }
+ }
++
++// BEGIN NATIVE INSPECTOR OWNER BINDING
++/// A retained original Reader, not a resolver or a second inspector. Opening the
++/// existing panel may change only its visibility; source and private selection
++/// must survive every Core/native await.
++@MainActor final class MaktabahNativeInspectorBinding {
++    private let manager: iOSNavigationManager
++    private let reader: ReaderViewModel
++    private let tabID: UUID
++    private let destination: LibraryReaderDestination
++    private let selectedLocator: TextLocator?
++    private let lineAnchor: OtzariaLineAnchor?
++    private let selectedRange: NSRange?
++    private let textMode: LibraryReaderTextMode
++    private let contentID: Int
++
++    init(manager: iOSNavigationManager) throws {
++        guard let reader = Self.currentReader(in: manager), let tabID = manager.activeTabId,
++              let destination = reader.currentDestination else {
++            throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
++        }
++        self.manager = manager; self.reader = reader; self.tabID = tabID
++        self.destination = destination; selectedLocator = reader.selectedSegmentLocator
++        lineAnchor = reader.otzariaSelectedLineAnchor; selectedRange = reader.readerState.selectedRange
++        textMode = reader.currentReaderTextMode; contentID = reader.currentContentId
++    }
++
++    static func currentReader(in manager: iOSNavigationManager) -> ReaderViewModel? {
++        guard manager.currentMode == .viewer, let id = manager.activeTabId,
++              let tab = manager.openTabs.first(where: { $0.id == id }),
++              let destination = tab.viewModel.currentDestination,
++              let section = tab.viewModel.backendSection?.locator,
++              section == destination.sectionLocator,
++              section.backend == BackendCoordinator.shared.activeBackendID,
++              tab.book.backendLocator?.backend == section.backend,
++              tab.book.backendLocator?.workKey == section.workKey,
++              !tab.viewModel.contentText.isEmpty,
++              case .loaded = tab.viewModel.state else { return nil }
++        let reader = tab.viewModel
++        if let selected = reader.selectedSegmentLocator,
++           selected.backend != section.backend || selected.workKey != section.workKey { return nil }
++        if let anchor = reader.otzariaSelectedLineAnchor,
++           section.backend != .otzaria || section.workKey != "book:\(anchor.bookId)" { return nil }
++        if section.backend == .otzaria {
++            guard let book = reader.currentBook, section.workKey == "book:\(book.id)" else { return nil }
++        }
++        return reader
++    }
++
++    func validate() throws {
++        guard manager.activeTabId == tabID, Self.currentReader(in: manager) === reader,
++              reader.currentDestination == destination, reader.currentContentId == contentID,
++              reader.currentReaderTextMode == textMode,
++              reader.selectedSegmentLocator == selectedLocator, reader.otzariaSelectedLineAnchor == lineAnchor,
++              reader.readerState.selectedRange == selectedRange else {
++            throw UIRouteError(.staleState, "native_inspector_reader_changed")
++        }
++    }
++
++    func apply() throws {
++        try validate()
++        reader.readerInspectorVisible = true
++    }
++}
++// END NATIVE INSPECTOR OWNER BINDING
++
+ #endif
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift
+index 79d0f2b3..7f14712a 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift
+@@ -11,7 +11,7 @@ import ChavrusaUIRoutingHost
+ /// target. It neither saves reader state nor resolves a requested locator.
+ @MainActor
+ struct MaktabahNativeSceneProjection {
+-    enum Surface { case library, tableOfContents, reader, history, search, annotations, settings }
++    enum Surface { case library, tableOfContents, reader, history, search, annotations, settings, inspector }
+     let manager: iOSNavigationManager
+     let selectedTab: iOSTab
+     let columnVisibility: NavigationSplitViewVisibility
+@@ -87,6 +87,13 @@ struct MaktabahNativeSceneProjection {
+             // actually be visible before it can acknowledge this root.
+             return .init(destination: id(destination), presentation: .init(),
+                          content: nil, state: state, focus: nil)
++        case .inspector:
++            guard !settingsPresented, selectedTab.canonical == .viewer,
++                  let reader = MaktabahNativeInspectorBinding.currentReader(in: manager),
++                  reader.readerInspectorVisible else { return nil }
++            return .init(destination: id("native.reader.inspector"), presentation: .init(kind: .inspector),
++                content: nil, state: .init(workspaceID: state.workspaceID, profileID: state.profileID,
++                                          inspectorVisible: true), focus: nil)
+         case .reader:
+             guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer,
+                   let tab = activeTab, let destination = tab.viewModel.currentDestination,
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
+index 06a6acb1..496c9e93 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
+@@ -26,6 +26,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+     @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
+     @ObservationIgnored private var retainedSearchField: UISearchTextField?
+     @ObservationIgnored private var searchFieldUpdateScheduled = false
++    @ObservationIgnored private var inspectorBinding: MaktabahNativeInspectorBinding?
+     private var searchFieldRevision: UInt64 = 0
+ 
+     // This is the original scene-owned UIKit control, installed by its existing
+@@ -124,7 +125,15 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+             }
+             field = original
+         } else { field = nil }
++        let inspector: MaktabahNativeInspectorBinding?
++        if value.route.route.destination.rawValue == "native.reader.inspector" {
++            guard try publicBindingPresentation().inspectorAvailable else {
++                throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
++            }
++            inspector = try MaktabahNativeInspectorBinding(manager: bindings.manager)
++        } else { inspector = nil }
+         try presentation.begin(value)
++        inspectorBinding = inspector
+         retainedSearchField = field
+         command = value; submissionID = value.invocation.requestId
+     }
+@@ -153,6 +162,17 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+         let route = command.route.route, projection = try project(), identity = try projection.identity()
+         guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
+               route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
++        if route.destination.rawValue == "native.reader.inspector" {
++            guard route.content == nil, route.focus == nil, route.presentation.kind == .inspector,
++                  route.presentation.tabID == nil,
++                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID,
++                      profileID: identity.state.profileID, inspectorVisible: true),
++                  try publicBindingPresentation().inspectorAvailable else {
++                throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
++            }
++            try inspectorBinding?.validate()
++            return
++        }
+         if route.destination.rawValue == "native.reader" {
+             guard let content = route.content, let readerBinding, readerBinding.accepts(content),
+                   route.presentation.kind == (readerBinding.isNewTab ? .newTab : .currentTab),
+@@ -187,6 +207,12 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+     }
+ 
+     func apply(_ command: UISceneCommand) throws {
++        if command.route.route.destination.rawValue == "native.reader.inspector" {
++            try validateSurface(command)
++            guard let inspectorBinding else { throw UIRouteError(.unavailable, "native_inspector_owner_missing") }
++            try inspectorBinding.apply()
++            return
++        }
+         if command.route.route.focus != nil {
+             // Focus only an ALREADY VISIBLE original field. A caller first
+             // opens the Search root through this same orchestrator, then
+@@ -240,6 +266,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+         self.project = project
+     }
+     func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? {
++        if kind == .inspector { try inspectorBinding?.validate() }
+         guard let state = try project().surface(kind) else { return nil }
+         // Root navigation does not request or report keyboard focus. For the
+         // registered component, the optional focus facet is projected ONLY
+@@ -266,10 +293,20 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+            let current = try project().surface(.reader),
+            current == evidence.surface,
+            try project().hasRenderedReaderEvidence(sceneID: sceneID) { reader = current }
++        let inspectorID = UIDestinationID(rawValue: "native.reader.inspector")!
++        let inspectorWitnessed: Bool
++        if let evidence = visibilityChecks[inspectorID]?(), evidence.isVisible, evidence.sceneID == sceneID,
++           let actual = try surface(.inspector), actual == evidence.surface { inspectorWitnessed = true }
++        else { inspectorWitnessed = false }
++        let inspectorAvailable = MaktabahNativeInspectorBinding.currentReader(in: bindings.manager) != nil
++            && (reader != nil || inspectorWitnessed)
+         return .init(ready: mounted && foreground && isPresentationReady,
+             historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty,
+             tableOfContentsAvailable: bindings.isRootAvailable(.tableOfContents), witnessedReader: reader,
+-            searchFieldAvailable: searchFieldAvailable)
++            searchFieldAvailable: searchFieldAvailable, inspectorAvailable: inspectorAvailable)
++    }
++    func ownsInspectorReader(_ reader: ReaderViewModel) -> Bool {
++        MaktabahNativeInspectorBinding.currentReader(in: bindings.manager) === reader
+     }
+     func observeVisibility(for destination: UIDestinationID, check: @escaping @MainActor () -> NativeSurfaceWitness.Evidence?) {
+         visibilityChecks[destination] = check
+@@ -328,13 +365,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+         presentation.end(requestID: requestID); submissionID = nil
+         // Keep only the independently observed surface. Clear private request
+         // metadata after its owner has validated the complete visible receipt.
+-        command = nil; retainedSearchField = nil
++        command = nil; retainedSearchField = nil; inspectorBinding = nil
+     }
+ 
+     func unmount() {
+         guard mounted else { return }
+         mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
+-        nativeSearchField = nil; retainedSearchField = nil
++        nativeSearchField = nil; retainedSearchField = nil; inspectorBinding = nil
+         if let lease { directory.unmount(lease) }
+         lease = nil
+     }
+@@ -344,6 +381,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+         case "native.library": .library
+         case "native.reader.toc": .tableOfContents
+         case "native.reader": .reader
++        case "native.reader.inspector": .inspector
+         case "native.history": .history
+         case "native.search": .search
+         case "native.annotations": .annotations
+diff --git a/Source/Otzaria/Core/String+OtzariaText.swift b/Source/Otzaria/Core/String+OtzariaText.swift
+index cce18ecb..a51c076d 100644
+--- a/Source/Otzaria/Core/String+OtzariaText.swift
++++ b/Source/Otzaria/Core/String+OtzariaText.swift
+@@ -65,7 +65,10 @@ extension String {
+                 utf16Offset += len
+                 continue
+             }
+-            indexMap.append(utf16Offset)
++            // Foundation match ranges use UTF16 offsets. A displayed Character
++            // can contain several scalars (combining marks, flags or ZWJ emoji),
++            // and a scalar can occupy two UTF16 units. Preserve every source unit.
++            for unitOffset in 0..<len { indexMap.append(utf16Offset + unitOffset) }
+             normalizedScalars.append(scalar)
+             utf16Offset += len
+         }
+@@ -87,12 +90,12 @@ extension String {
+             var searchStart = normText.startIndex
+             while searchStart < normText.endIndex,
+                   let found = normText.range(of: normKey, options: [.caseInsensitive], range: searchStart..<normText.endIndex) {
+-                let startScalarIdx = normText.distance(from: normText.startIndex, to: found.lowerBound)
+-                let endScalarIdx = normText.distance(from: normText.startIndex, to: found.upperBound)
++                let normalizedRange = NSRange(found, in: normText)
++                let endOffset = NSMaxRange(normalizedRange)
+ 
+-                if startScalarIdx < indexMap.count {
+-                    let startUtf16 = indexMap[startScalarIdx]
+-                    let endUtf16 = endScalarIdx < indexMap.count ? indexMap[endScalarIdx] : self.utf16.count
++                if normalizedRange.location < indexMap.count, endOffset <= indexMap.count {
++                    let startUtf16 = indexMap[normalizedRange.location]
++                    let endUtf16 = endOffset < indexMap.count ? indexMap[endOffset] : self.utf16.count
+                     let range = NSRange(location: startUtf16, length: max(0, endUtf16 - startUtf16))
+                     if !ranges.contains(where: { $0.location == range.location && $0.length == range.length }) {
+                         ranges.append(range)
+diff --git a/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift b/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift
+index 04cc87a3..27ba64a8 100644
+--- a/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift
++++ b/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift
+@@ -49,6 +49,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
+                 showsCloseButton: showsCloseButton
+             )
+             .id("\(backendCoordinator.generation):\(viewModel.currentReaderTextMode.rawValue):\(contentID)")
++            .modifier(MaktabahNativeRoutingSurface(kind: .inspector, inspectorReader: viewModel))
+             .onChange(of: backendCoordinator.generation) { _, _ in
+                 inspectorSession = MaktabahTorahInspectorSession(viewModel: viewModel)
+                 viewModel.closeReaderInspector()

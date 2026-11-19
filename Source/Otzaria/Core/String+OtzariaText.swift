@@ -65,7 +65,10 @@ extension String {
                 utf16Offset += len
                 continue
             }
-            indexMap.append(utf16Offset)
+            // Foundation match ranges use UTF16 offsets. A displayed Character
+            // can contain several scalars (combining marks, flags or ZWJ emoji),
+            // and a scalar can occupy two UTF16 units. Preserve every source unit.
+            for unitOffset in 0..<len { indexMap.append(utf16Offset + unitOffset) }
             normalizedScalars.append(scalar)
             utf16Offset += len
         }
@@ -87,12 +90,12 @@ extension String {
             var searchStart = normText.startIndex
             while searchStart < normText.endIndex,
                   let found = normText.range(of: normKey, options: [.caseInsensitive], range: searchStart..<normText.endIndex) {
-                let startScalarIdx = normText.distance(from: normText.startIndex, to: found.lowerBound)
-                let endScalarIdx = normText.distance(from: normText.startIndex, to: found.upperBound)
+                let normalizedRange = NSRange(found, in: normText)
+                let endOffset = NSMaxRange(normalizedRange)
 
-                if startScalarIdx < indexMap.count {
-                    let startUtf16 = indexMap[startScalarIdx]
-                    let endUtf16 = endScalarIdx < indexMap.count ? indexMap[endScalarIdx] : self.utf16.count
+                if normalizedRange.location < indexMap.count, endOffset <= indexMap.count {
+                    let startUtf16 = indexMap[normalizedRange.location]
+                    let endUtf16 = endOffset < indexMap.count ? indexMap[endOffset] : self.utf16.count
                     let range = NSRange(location: startUtf16, length: max(0, endUtf16 - startUtf16))
                     if !ranges.contains(where: { $0.location == range.location && $0.length == range.length }) {
                         ranges.append(range)

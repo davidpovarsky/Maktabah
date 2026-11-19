@@ -1,0 +1,257 @@
+{
+  "source_path": "Source/Otzaria/Core/String+OtzariaText.swift",
+  "source_ref": null,
+  "source_sha256": "e62731fccc95328cb6284809e6e4b464ab83e064ed2117d7da1bf8c0ff9a826a",
+  "fixture_sha256": "9b6aa93c3fa5db6264691c7b48e5de91a2ad84ab3c5c79851b011914fa72d45a",
+  "swift": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\hebrew-ranges-20261119\\after\\String+OtzariaText.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-owner-20261118\\Tests\\HQ\\reader\\HebrewMatchingRangesTests.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\single-agent-three-phases-20261116\\CONTINUATION_20261117_EVIDENCE\\hebrew-ranges-20261119\\after\\hebrew-ranges.exe"
+  ],
+  "compile_exit": 0,
+  "native_passes": 0,
+  "test_exit": 0,
+  "actual": {
+    "boundary": "Complete original String extension with real Swift/Foundation; independent literal source-span oracles. No UIKit/TextKit or device claim.",
+    "cases": [
+      {
+        "actual": [
+          {
+            "length": 11,
+            "location": 0
+          }
+        ],
+        "expected": [
+          {
+            "length": 11,
+            "location": 0
+          }
+        ],
+        "name": "Original Hebrew niqqud remains in the highlighted source range",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 11,
+            "location": 3
+          }
+        ],
+        "expected": [
+          {
+            "length": 11,
+            "location": 3
+          }
+        ],
+        "name": "Combining Latin prefix does not move a Hebrew highlight",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 7,
+            "location": 12
+          }
+        ],
+        "expected": [
+          {
+            "length": 7,
+            "location": 12
+          }
+        ],
+        "name": "Family emoji prefix retains the exact following source range",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 7,
+            "location": 5
+          }
+        ],
+        "expected": [
+          {
+            "length": 7,
+            "location": 5
+          }
+        ],
+        "name": "Regional-indicator flag prefix retains the exact source range",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 7,
+            "location": 3
+          }
+        ],
+        "expected": [
+          {
+            "length": 7,
+            "location": 3
+          }
+        ],
+        "name": "Variation selector prefix retains the exact source range",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 7,
+            "location": 3
+          }
+        ],
+        "expected": [
+          {
+            "length": 7,
+            "location": 3
+          }
+        ],
+        "name": "Supplementary scalar prefix uses its original UTF16 width",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 9,
+            "location": 6
+          }
+        ],
+        "expected": [
+          {
+            "length": 9,
+            "location": 6
+          }
+        ],
+        "name": "Canonical-equivalent combining characters within a match retain its full extent",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 18,
+            "location": 0
+          }
+        ],
+        "expected": [
+          {
+            "length": 18,
+            "location": 0
+          }
+        ],
+        "name": "Joined emoji inside the match is not truncated",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 7,
+            "location": 12
+          },
+          {
+            "length": 7,
+            "location": 22
+          }
+        ],
+        "expected": [
+          {
+            "length": 7,
+            "location": 12
+          },
+          {
+            "length": 7,
+            "location": 22
+          }
+        ],
+        "name": "Repeated matches after a multi-scalar prefix preserve both positions",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 7,
+            "location": 3
+          },
+          {
+            "length": 7,
+            "location": 13
+          }
+        ],
+        "expected": [
+          {
+            "length": 7,
+            "location": 3
+          },
+          {
+            "length": 7,
+            "location": 13
+          }
+        ],
+        "name": "Repeated keywords do not duplicate a source highlight",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 11,
+            "location": 1
+          }
+        ],
+        "expected": [
+          {
+            "length": 11,
+            "location": 1
+          }
+        ],
+        "name": "Bidi isolates remain outside the selected Hebrew word",
+        "passed": true
+      },
+      {
+        "actual": [],
+        "expected": [],
+        "name": "Hebrew maqaf remains meaningful during matching",
+        "passed": true
+      },
+      {
+        "actual": [],
+        "expected": [],
+        "name": "Whitespace-only keywords produce no highlight",
+        "passed": true
+      },
+      {
+        "actual": [],
+        "expected": [],
+        "name": "Empty source produces no highlight",
+        "passed": true
+      },
+      {
+        "actual": [
+          {
+            "length": 3,
+            "location": 3
+          }
+        ],
+        "expected": [
+          {
+            "length": 3,
+            "location": 3
+          }
+        ],
+        "name": "Case-insensitive Latin match after combining prefix retains source spelling",
+        "passed": true
+      }
+    ],
+    "failed": 0,
+    "native_passes": 0,
+    "passed": 15,
+    "tests": 15
+  }
+}

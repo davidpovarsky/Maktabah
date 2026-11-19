@@ -1449,3 +1449,123 @@ extension NativeRoutingPhoneAcceptanceTests {
         try runOriginalSearchComponentFocus(expectedPad: false)
     }
 }
+
+
+// The existing Inspector is opened through public-v2/Core/Registry only. These
+// tests neither instantiate an Inspector nor call an App Intent perform method.
+extension NativeRoutingAcceptanceTests {
+    private func publicInspectorURL() throws -> URL {
+        let destination = "native.reader.inspector"
+        let payload: [String: Any] = ["version": 2, "destination": destination,
+                                     "backend": "otzaria", "presentation": "inspector"]
+        let data = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        let token = data.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v2/\(destination)?route=\(token)"))
+    }
+
+    @MainActor private func requireOriginalInspectorReceipt(before: Set<String>) throws {
+        let panel = app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch
+        XCTAssertTrue(panel.waitForExistence(timeout: 30), "The original TorahInspectorKit panel must actually mount")
+        XCTAssertTrue(panel.isHittable, "A hidden panel or model flag is not visible presentation")
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "torah-inspector-tools").firstMatch.exists)
+        let receipt = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = try? self.actualNativeReceiptLines() else { return false }
+            return before.isSubset(of: actual) && actual.subtracting(before).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [receipt], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: "native.reader.inspector", presentation: "inspector", before: before)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+    }
+
+    @MainActor private func closeOriginalInspectorAndRequireReader(_ locator: String) throws {
+        tap(app.buttons["torah-inspector-close"])
+        let panel = app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: panel)
+        XCTAssertEqual(XCTWaiter.wait(for: [gone], timeout: 10), .completed)
+        try requireReaderLocator(locator)
+    }
+
+    @MainActor func runOriginalInspectorPublic(expectedPad: Bool) throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch.exists)
+        var before = try actualNativeReceiptLines()
+        let url = try publicInspectorURL()
+        XCTAssertFalse(url.absoluteString.contains(locator), "Public panel navigation must not serialize private Reader state")
+        try openInExistingProcess(url)
+        try requireOriginalInspectorReceipt(before: before)
+        try requirePreservedOriginalWorkspace(original)
+        // Reopening an already displayed original panel is a separate exact
+        // request, with one receipt and no replacement Reader/tab or selection.
+        before = try actualNativeReceiptLines()
+        try openInExistingProcess(url)
+        try requireOriginalInspectorReceipt(before: before)
+        try requirePreservedOriginalWorkspace(original)
+        capture("native-inspector-original-current-reader")
+        try closeOriginalInspectorAndRequireReader(locator)
+        try requirePreservedOriginalWorkspace(original)
+    }
+
+    @MainActor func runOriginalInspectorSystemIntent(expectedPad: Bool) async throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let entities = try await system.entities["NativeDestinationEntity"].entities(matching: "Study Tools")
+        XCTAssertEqual(entities.count, 1, "Only the actual visible original Reader in this window may advertise its panel")
+        let entity = try XCTUnwrap(entities.first), before = try actualNativeReceiptLines()
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: entity).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        try requireOriginalInspectorReceipt(before: before)
+        try requirePreservedOriginalWorkspace(original)
+        capture("system-intent-original-inspector")
+        try closeOriginalInspectorAndRequireReader(locator)
+        try requirePreservedOriginalWorkspace(original)
+    }
+
+    @MainActor func testPublicV2InspectorPreservesOriginalReaderAndWorkspace() throws {
+        try runOriginalInspectorPublic(expectedPad: true)
+    }
+
+    @MainActor func testSystemAppIntentShowsOriginalReaderInspector() async throws {
+        try await runOriginalInspectorSystemIntent(expectedPad: true)
+    }
+
+    @MainActor func testPublicV2InspectorRequiresVisibleOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader()
+        let original = try actualReaderWorkspace().current()
+        let request = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: request))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(request, destination: "native.search")
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        let privateQuery = "בדיקת מפרשים ללא מעבר"
+        field.tap(); field.typeText(privateQuery)
+        XCTAssertEqual(field.value as? String, privateQuery)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicInspectorURL())
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15), "A background Reader owner must not authorize presentation")
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        alert.buttons.firstMatch.tap()
+        XCTAssertTrue(app.otherElements["global-search-screen"].exists)
+        XCTAssertEqual(field.value as? String, privateQuery)
+        XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch.exists)
+        try requirePreservedOriginalWorkspace(original)
+        capture("native-inspector-hidden-reader-refused")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace() throws {
+        try runOriginalInspectorPublic(expectedPad: false)
+    }
+
+    @MainActor func testPhoneSystemAppIntentShowsOriginalReaderInspector() async throws {
+        try await runOriginalInspectorSystemIntent(expectedPad: false)
+    }
+}
