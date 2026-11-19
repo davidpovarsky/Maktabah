@@ -9,7 +9,9 @@ struct OtzariaPerformanceTelemetry: Sendable {
 }
 struct OtzariaFileLogger: Sendable {
     static let shared = Self()
-    func log(_ value: String) {}
+    func log(_ value: String) {
+        if ProcessInfo.processInfo.environment["OTZARIA_READER_STAGE_LOG"] == "1" { print(value) }
+    }
 }
 
 @main struct FullSourceReaderAcceptance {

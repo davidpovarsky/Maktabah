@@ -12,6 +12,8 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--database",required=True,type=Path)
     ap.add_argument("--artifacts-dir",required=True,type=Path)
+    ap.add_argument("--optimization",choices=["none","speed"],default="none",help="Record the actual Swift compile mode; never compare unlike modes as a source speedup")
+    ap.add_argument("--log-stages",action="store_true",help="Retain the original Reader stage timings; no production instrumentation change")
     args=ap.parse_args()
     artifacts=args.artifacts_dir.resolve();artifacts.mkdir(parents=True,exist_ok=True)
     database=args.database.resolve(strict=True)
@@ -44,6 +46,7 @@ def main():
         "Tests/HQ/sqlite/UnusedZstdBoundary.swift","Tests/HQ/reader/FullSourceReaderAcceptance.swift"
     ]
     command=[shutil.which("swiftc"),"-parse-as-library","-swift-version","6","-Xfrontend","-strict-concurrency=complete"]
+    command.append("-O" if args.optimization=="speed" else "-Onone")
     if os.name!="nt": raise RuntimeError("This receipt currently targets the existing Windows host; Apple/UIKit evidence remains separate")
     dll=Path(os.environ.get("ProgramFiles",r"C:\Program Files"))/"Git/mingw64/bin/libzstd.dll"
     assert dll.is_file(),"An existing native ZSTD library is required; no install is performed"
@@ -65,8 +68,10 @@ def main():
         source_files={p:sha(ROOT/p) for p in sources},host=platform.platform(),swift=subprocess.check_output([command[0],"--version"],text=True).strip(),
         source_pin=pin,source_pin_file_sha256=sha(seed),database_sha256_before=before,books=books,
         zstd=dict(path=str(dll),sha256=sha(dll),version=version),owned_fixture=str(owned),
-        boundaries=["logging/signpost no-ops only","unused legacy SQLite compressed-column API fails if called; original dictionary decoder is executed"],
-        native_ui_executed=0,physical_device_executed=0,command=command)
+        boundaries=[("original Reader log strings printed; signpost boundary is a no-op" if args.log_stages else "logging/signpost no-ops only"),"unused legacy SQLite compressed-column API fails if called; original dictionary decoder is executed"],
+        native_ui_executed=0,physical_device_executed=0,command=command,
+        driver_sha256=sha(Path(__file__)),optimization=args.optimization,original_stage_logging=args.log_stages,
+        timing_boundary="Service-cache cold/warm on Windows; OS/disk cache not flushed; no UI, p95 or device claim")
     build=subprocess.run(command,capture_output=True,text=True,encoding="utf-8",timeout=150)
     (artifacts/"compile.log").write_bytes((build.stdout+build.stderr).encode("utf-8"));report["compile_exit"]=build.returncode
     if build.returncode:
@@ -74,7 +79,8 @@ def main():
         (artifacts/"RESULT.json").write_bytes(json.dumps(report,ensure_ascii=False,indent=2).encode("utf-8"))
         return build.returncode
     output=owned/"output";output.mkdir()
-    run=subprocess.run([str(executable),str(owned/"input.json"),str(output)],capture_output=True,text=True,encoding="utf-8",timeout=420)
+    run_env={**os.environ,"OTZARIA_READER_STAGE_LOG":"1" if args.log_stages else "0"}
+    run=subprocess.run([str(executable),str(owned/"input.json"),str(output)],capture_output=True,text=True,encoding="utf-8",timeout=420,env=run_env)
     (artifacts/"tests.log").write_bytes((run.stdout+run.stderr).encode("utf-8"));print(run.stdout);print(run.stderr[-6000:])
     report["execute_exit"]=run.returncode
     if (output/"RESULT.json").exists():report["swift_reader"]=json.loads((output/"RESULT.json").read_text(encoding="utf-8"))
