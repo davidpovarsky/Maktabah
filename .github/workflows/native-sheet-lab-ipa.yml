@@ -1,0 +1,77 @@
+name: Native Sheet Lab iPadOS 27 IPA
+on:
+  push:
+    branches:
+      - demo/native-sheet-lab-ipa-20261119
+    paths:
+      - "NativeSheetLab-iOS/**"
+      - ".github/workflows/native-sheet-lab-ipa.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-unsigned-ipa:
+    runs-on: xcode-27
+    timeout-minutes: 45
+    steps:
+      - name: Checkout exact source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify Apple build environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcode-select -p
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
+          test "$(xcrun --sdk iphoneos --show-sdk-version | cut -d. -f1)" -ge 27
+      - name: Install XcodeGen if needed
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v xcodegen >/dev/null 2>&1; then brew install xcodegen; fi
+          xcodegen --version
+      - name: Generate isolated app project
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd NativeSheetLab-iOS
+          xcodegen generate --spec project.yml
+          xcodebuild -list -project NativeSheetLab.xcodeproj
+      - name: Compile real iPadOS device app without signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project NativeSheetLab-iOS/NativeSheetLab.xcodeproj \
+            -scheme NativeSheetLab -configuration Release \
+            -sdk iphoneos -destination 'generic/platform=iOS' \
+            -derivedDataPath "$RUNNER_TEMP/NativeSheetDerived" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
+            build 2>&1 | tee "$RUNNER_TEMP/NativeSheetLab-build.log"
+      - name: Assemble and verify unsigned SideStore IPA
+        shell: bash
+        run: |
+          set -euo pipefail
+          APP="$RUNNER_TEMP/NativeSheetDerived/Build/Products/Release-iphoneos/NativeSheetLab.app"
+          test -d "$APP" && test -f "$APP/Info.plist" && test -f "$APP/NativeSheetLab"
+          BUNDLE_ID=$(/usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" "$APP/Info.plist")
+          MIN_OS=$(/usr/libexec/PlistBuddy -c "Print :MinimumOSVersion" "$APP/Info.plist")
+          test "$BUNDLE_ID" = "io.github.davidpovarsky.NativeSheetLab"
+          test "$MIN_OS" = "27.0"
+          mkdir -p NativeSheetLab-iOS/dist "$RUNNER_TEMP/pack/Payload"
+          ditto "$APP" "$RUNNER_TEMP/pack/Payload/NativeSheetLab.app"
+          (cd "$RUNNER_TEMP/pack" && /usr/bin/zip -qry "$GITHUB_WORKSPACE/NativeSheetLab-iOS/dist/NativeSheetLab-iPadOS27-unsigned.ipa" Payload)
+          unzip -t NativeSheetLab-iOS/dist/NativeSheetLab-iPadOS27-unsigned.ipa | tail -1
+          shasum -a 256 NativeSheetLab-iOS/dist/NativeSheetLab-iPadOS27-unsigned.ipa | tee NativeSheetLab-iOS/dist/SHA256.txt
+          echo "Verified bundle ID: $BUNDLE_ID"
+          echo "Verified minimum iPadOS: $MIN_OS"
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: NativeSheetLab-iPadOS27-SideStore
+          path: |
+            NativeSheetLab-iOS/dist/NativeSheetLab-iPadOS27-unsigned.ipa
+            NativeSheetLab-iOS/dist/SHA256.txt
+          if-no-files-found: error
+          retention-days: 30
