@@ -1,0 +1,49 @@
+{
+  "reviewed_at_utc": "2026-11-19T17:31:46.139255+00:00",
+  "run_id": 44480833870,
+  "tested_candidate": "7be3af6b977823fb02e64859ab10e79c4eef410f",
+  "capture_artifact_id": 14511479191,
+  "native_result_unchanged": {
+    "pass": 1,
+    "fail": 1
+  },
+  "files": {
+    "reader-before.png": {
+      "original_attachment": "1D8D7897-7DAF-40BD-B988-2F345F058B92.png",
+      "bytes": 912034,
+      "sha256": "8608e851604e660be1d0eb65662e36d1df1c09bff5780dce166d95156b612eb9"
+    },
+    "reader-after.png": {
+      "original_attachment": "44C3A3BC-237F-490C-BC0F-2A7DA6E4FEAE.png",
+      "bytes": 912034,
+      "sha256": "8608e851604e660be1d0eb65662e36d1df1c09bff5780dce166d95156b612eb9"
+    },
+    "reader-chat-presented.png": {
+      "original_attachment": "A03F0453-4E7A-41BB-9EAD-0B3897FD0223.png",
+      "bytes": 704630,
+      "sha256": "ecfeadd957feeb2c06a9974449cabd7b7d44afade53c1968d45ee06abdcc10e9"
+    },
+    "global-draft-before-dismiss.png": {
+      "original_attachment": "27CFDCDB-CFAE-48D5-AA51-7CF433261941.png",
+      "bytes": 384465,
+      "sha256": "81d0db75c98f23dd1992f93c57709f8016e382cf024e3a2e1a35e452987c2d86"
+    }
+  },
+  "reader_before_after_png_bytes_equal": true,
+  "observations": [
+    "Original global multiline Hebrew/English draft is visible in the SDK native editor above the system keyboard.",
+    "Original reader chat sheet and its configuration/metadata boundary are visible over the actual highlighted Sefer HaChinukh reader.",
+    "After native dismissal, the original reader screenshot is byte-identical to its before-chat attachment, including viewport and visible highlight."
+  ],
+  "limits": [
+    "Historical source7be only; this does not accept cold-restart fix868a or the combined77 candidate.",
+    "Cold restart failed before history inspection; the original AX alert remains the failure evidence.",
+    "These captures do not establish large-chapter performance, VoiceOver, physical-device acceptance or actual model execution."
+  ],
+  "full_raw_capture_archive_included": false,
+  "selected_archive": {
+    "file": "selected-visual-evidence.zip",
+    "bytes": 2835373,
+    "sha256": "3e3c237dbd53ec2988251cf31c2875166bbacce6b99fdac38372ca24fa0d95f9"
+  }
+}
