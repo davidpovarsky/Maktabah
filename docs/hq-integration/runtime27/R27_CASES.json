@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source_test_commit": "5456dab63e963aa68688798a09e601491190bcac",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "5456dab63e963aa68688798a09e601491190bcac",
+  "app_source": "868a94c0e4bfb8171cc910dc432710651054aa5d",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Two original Hanlin consumer UI journeys on a fresh owned 11-inch iPad Simulator 27: durable global draft/history/process restart and actual reader-context presentation/return. All 77 original catalog entries and the parent's 75-case affected selection remain intact and are not accepted by this bounded scope. Provider/source-opening, physical and release acceptance remain separate.",
@@ -1056,7 +1056,7 @@
       "change_impact": "Original Hebrew range matching and original Reader Inspector/public-v2/system entity wiring require a fresh app build and75case run; no old pass is transferred."
     }
   },
-  "application_source_sha": "5456dab63e963aa68688798a09e601491190bcac",
+  "application_source_sha": "868a94c0e4bfb8171cc910dc432710651054aa5d",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -1129,5 +1129,18 @@
       "native_accepted": false,
       "prior_consumer_ui_source_unchanged": true
     }
+  },
+  "hanlin_cold_restart_readiness": {
+    "source": "868a94c0e4bfb8171cc910dc432710651054aa5d",
+    "parent": "7be3af6b977823fb02e64859ab10e79c4eef410f",
+    "prior_failure_run": 44480833870,
+    "prior_source": "5456dab63e963aa68688798a09e601491190bcac",
+    "changed_paths": [
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift"
+    ],
+    "native_status": "NOT_RUN",
+    "test_source_unchanged": "5456dab63e963aa68688798a09e601491190bcac",
+    "prior_manifest_sha256": "ed22e9027ad8549bda795c942e846a2bf782583170ccf31ee768348569776a95",
+    "scope": "Same two actual original consumer UI journeys; original 75/77 catalog retained, no other fresh acceptance."
   }
 }
