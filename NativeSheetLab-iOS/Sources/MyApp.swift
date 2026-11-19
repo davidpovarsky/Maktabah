@@ -144,17 +144,23 @@ struct ContentView: View {
             GeometryReader { geometry in
                 ScrollView {
                     VStack(alignment: .leading, spacing: 18) {
-                        hero
-                        if geometry.size.width >= 850 {
-                            HStack(alignment: .top, spacing: 18) {
-                                readingCard
-                                    .frame(maxWidth: .infinity)
-                                settingsCard
-                                    .frame(width: 310)
-                            }
-                        } else {
-                            settingsCard
+                        if isDocked {
+                            // In docked study mode, reserve the detail column for
+                            // the book itself, not the Sheet experimentation UI.
                             readingCard
+                        } else {
+                            hero
+                            if geometry.size.width >= 850 {
+                                HStack(alignment: .top, spacing: 18) {
+                                    readingCard
+                                        .frame(maxWidth: .infinity)
+                                    settingsCard
+                                        .frame(width: 310)
+                                }
+                            } else {
+                                settingsCard
+                                readingCard
+                            }
                         }
                         footer
                     }
@@ -165,7 +171,7 @@ struct ContentView: View {
                 .scrollPosition($readerScrollPosition)
                 .background(Color(uiColor: .systemGroupedBackground))
             }
-            .navigationTitle("אוצריא · Native Sheet Lab")
+            .navigationTitle(isDocked ? "אוצריא · ספר לימוד" : "אוצריא · Native Sheet Lab")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
