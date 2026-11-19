@@ -368,9 +368,11 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         if let expectedSourceText {
             XCTAssertFalse(expectedSourceText.isEmpty, "Independent source text must not be empty")
             let directionControls: Set<UInt32> = [0x200E, 0x200F, 0x202A, 0x202B, 0x202C, 0x202D, 0x202E, 0x2066, 0x2067, 0x2068, 0x2069]
-            predicate = NSPredicate { element, _ in
+            // Capture the existing MainActor-owned element instead of transferring
+            // NSPredicate's unisolated Any? argument across the actor boundary.
+            predicate = NSPredicate { _, _ in
                 MainActor.assumeIsolated {
-                    guard let actual = (element as? XCUIElement)?.value as? String else { return false }
+                    guard let actual = text.value as? String else { return false }
                     return actual.unicodeScalars.filter { !directionControls.contains($0.value) }.map(String.init)
                         .joined().trimmingCharacters(in: .whitespacesAndNewlines) == expectedSourceText
                 }

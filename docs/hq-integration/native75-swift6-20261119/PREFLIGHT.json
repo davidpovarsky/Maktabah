@@ -1,0 +1,16 @@
+{
+  "baseline": "e215f277afc913cd2fbd8e9b9b21619c9faf2091",
+  "upstream": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "ownership": "DOWNSTREAM_OWNED: test file introduced by fork commit 2a46d52c; absent from live upstream tree",
+  "changed_file": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "swift_parse_exit": 0,
+  "declarations": "DECLARATIONS_MATCH",
+  "selected_count": 75,
+  "group_counts": {
+    "group": 14
+  },
+  "exact_source_oracle_unchanged": true,
+  "native_executed": 0,
+  "sdk_compilation": "PENDING",
+  "product_sources_changed": false
+}
