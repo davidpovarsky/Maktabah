@@ -7,7 +7,11 @@
   "declarations": "DECLARATIONS_MATCH",
   "selected_count": 75,
   "group_counts": {
-    "group": 14
+    "11-search": 21,
+    "11-reader": 34,
+    "11-sidebar": 4,
+    "11-window": 2,
+    "phone": 14
   },
   "exact_source_oracle_unchanged": true,
   "native_executed": 0,
