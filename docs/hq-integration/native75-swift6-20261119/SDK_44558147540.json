@@ -1,0 +1,26 @@
+{
+  "run": "https://github.com/davidpovarsky/Maktabah/actions/runs/44558147540",
+  "head": "f55eba90d3723713614e0f5c6a1b0274a1485ee0",
+  "overall": "FAIL",
+  "xctest_compilation": "SDK_COMPILE_PASS",
+  "xcode": "Xcode 27.2\nBuild version 27B52",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "git_blob_hash_verified": true,
+  "xctest_source_sha256": "f9313e6954227593d55406630b1436355724658a76085b5cd369ae6e954fffa2",
+  "warningCount": 2306,
+  "declarations": 75,
+  "native_ui_executed": 0,
+  "failure": "Navigation proof generated Package.swift omitted its platforms; SwiftPM default macOS12 rejects unchanged SDK APIs requiring macOS13+. Both original pinned Hanlin manifests require macOS26/iOS27.",
+  "fix": "Set the generated proof package to the same original minimum platforms. No SDK or fixture source changed.",
+  "artifact_reports": {
+    "toolbar-sdk-compile.json": "f7dd3bbc08e238c560520600cac249dad18322c49f91e0ebb90c077139f5fbac",
+    "ui-acceptance-typecheck.hanlin-navigation-contract-inputs.json": "7173d564377b7f94a26b04a1246ad311eb34e89a4c57bbd28839ca8c9cfcc6fe",
+    "ui-acceptance-typecheck.hanlin-navigation-contract-RESULT.json": "35382aea80dd8fe77e59c3d672d99c67ed315bfb745176f95fd2999726fe1817",
+    "ui-acceptance-typecheck.hanlin-sdk-inputs.json": "4e40a099e4aebb1176e54a7db1ad852737fbf7915e6f933e248127260a928a8e",
+    "ui-acceptance-typecheck.hebrew-ranges-RESULT.json": "05d2a82cdb7f223c250f761dae64a9f53722b670bf8c4126340c4deaf963258d",
+    "ui-acceptance-typecheck.inspector-owner-RESULT.json": "bc5cfcb9aa5fa561342d3cd4c9cdca9a5bfd22c64952db44d5588ca6fa25fb61",
+    "ui-acceptance-typecheck.json": "980fd843012ef606c361bc7cdc58dcec8ef9d79a7cd87fa6ffd4433e52248710",
+    "ui-acceptance-typecheck.sqlite-RESULT.json": "e72bcfc0249060b550b8807ff18fe2dbaab2fcd9551d0c3ffe4ddd2b5ba5b648",
+    "ui-acceptance-typecheck.toolchain.json": "8a74d08a59c4a269cb3335eeb761dad356c700da1576b15f3352ff4d38a7a95c"
+  }
+}

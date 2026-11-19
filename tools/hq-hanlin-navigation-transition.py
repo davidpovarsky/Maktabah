@@ -48,7 +48,9 @@ destination.parent.mkdir(parents=True)
 destination.write_bytes(fixture.read_bytes())
 manifest = """// swift-tools-version: 6.2
 import PackageDescription
-let package = Package(name: "HanlinNavigationTransitionProof", targets: [
+let package = Package(name: "HanlinNavigationTransitionProof",
+    platforms: [.iOS("27.0"), .macOS(.v26)],
+    targets: [
     .target(name: "HanlinPlatformContracts", resources: [.process("Resources")]),
     .target(name: "HanlinHostContracts", dependencies: ["HanlinPlatformContracts"]),
     .target(name: "HanlinAgentCore", dependencies: ["HanlinPlatformContracts", "HanlinHostContracts"]),
