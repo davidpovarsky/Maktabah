@@ -5,11 +5,11 @@
   "app_source": "868a94c0e4bfb8171cc910dc432710651054aa5d",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "Two original Hanlin consumer UI journeys on a fresh owned 11-inch iPad Simulator 27: durable global draft/history/process restart and actual reader-context presentation/return. All 77 original catalog entries and the parent's 75-case affected selection remain intact and are not accepted by this bounded scope. Provider/source-opening, physical and release acceptance remain separate.",
+  "scope": "Original75 affected Native cases plus2 original Hanlin consumer cases:77 required cases,63iPad27+14iPhone27,zero skips. All79 catalog entries retained; two historical unselected entries stay explicit. App/system/provider/physical/release gates remain distinct.",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 75,
+  "required_nonzero_cases": 77,
   "expected_per_device": {
-    "ipad11": 61,
+    "ipad11": 63,
     "iphone": 14
   },
   "cases": [
@@ -148,15 +148,201 @@
   ],
   "execution_groups": [
     {
+      "label": "11-search",
+      "size": "11",
+      "case_ids": [
+        "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+        "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+        "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+        "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+        "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+        "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+        "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+        "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+        "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+        "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+        "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+        "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+        "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+        "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+        "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+        "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+        "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+        "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+        "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+        "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+        "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-reader",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+        "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+        "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+        "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+        "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+        "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+        "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+        "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+        "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+        "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+        "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+        "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+        "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+        "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
+        "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+        "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+        "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+        "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+        "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+        "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+        "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+        "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-sidebar",
+      "size": "11",
+      "case_ids": [
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison"
+      ],
+      "hid_comparison": true
+    },
+    {
       "label": "11",
       "size": "11",
       "case_ids": [
         "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
         "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace"
-      ]
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "case_ids": [
+        "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+        "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector"
+      ],
+      "hid_comparison": false
     }
   ],
   "execution_case_ids": [
+    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+    "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+    "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+    "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+    "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+    "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+    "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+    "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+    "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+    "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+    "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+    "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+    "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+    "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+    "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+    "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+    "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+    "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+    "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+    "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+    "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+    "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+    "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+    "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+    "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+    "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+    "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+    "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+    "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+    "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+    "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+    "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
+    "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+    "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+    "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+    "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+    "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+    "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
     "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
     "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace"
   ],
@@ -265,7 +451,7 @@
     "automatic_retry": false,
     "full_phase_accepted": false
   },
-  "selected_scope_reason": "Exact original consumer app regression after authenticated full-build failure44474935357: qualify the existing history error state; bind the original native editor to the live original draft owner/revision using the unchanged three-package manifests at canonical SDK6d629578. Complete original global history/relaunch and original reader-context return UI methods are unchanged. The complete original app/test build gate must pass before native cases execute. No parent phase/provider/physical/release acceptance is inferred.",
+  "selected_scope_reason": "Integrate both exact original parent sources and preserve every acceptance body, oracle, timeout and genuine fixture. The parent75 selection is restored with its original device groups and HID comparison; the two original Hanlin consumer journeys run in their own fresh 11-inch simulator group. Original SDK6d629578 and engine/resource pins remain unchanged. No previous-source pass is counted as execution on this combined candidate.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -724,7 +910,7 @@
       }
     }
   ],
-  "hid_comparison": false,
+  "hid_comparison": true,
   "phase1_original_18_case_ids": [
     "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
     "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
@@ -1054,6 +1240,14 @@
       },
       "native75": "NOT_RUN",
       "change_impact": "Original Hebrew range matching and original Reader Inspector/public-v2/system entity wiring require a fresh app build and75case run; no old pass is transferred."
+    },
+    "swift6_reader_predicate_fix": {
+      "source_commit": "b10abbf1348309f0c902124b5ab6ec7e16b3cd85",
+      "prior_test_source": "bde5aaee07ff708cf5071a771066afe9c9e27d02",
+      "product_source_unchanged": true,
+      "scope": "MainActor-owned XCTest element capture; exact source text, fixtures, assertion limits and case selection unchanged",
+      "sdk": "PENDING",
+      "native": "NOT_RUN"
     }
   },
   "application_source_sha": "868a94c0e4bfb8171cc910dc432710651054aa5d",
@@ -1142,5 +1336,27 @@
     "test_source_unchanged": "5456dab63e963aa68688798a09e601491190bcac",
     "prior_manifest_sha256": "ed22e9027ad8549bda795c942e846a2bf782583170ccf31ee768348569776a95",
     "scope": "Same two actual original consumer UI journeys; original 75/77 catalog retained, no other fresh acceptance."
+  },
+  "integrated_native_continuation": {
+    "prepared_at_utc": "2026-11-19T17:19:48.080987+00:00",
+    "parents": [
+      "5a40fe9c25e8dd6cfaef71c2f51e34d0adbd796e",
+      "60cd079199d999d9c4b3c458e892a341ae9cd6ac"
+    ],
+    "parent_75_selection_sha256": "cc7b346b8981c0911e2b29a05ddbde01dec9749b394f3eb8add399724ae8d49d",
+    "prior_catalog_count": 77,
+    "combined_catalog_count": 79,
+    "selected_count": 77,
+    "unchanged_historical_unselected": [
+      "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
+    ],
+    "source_freeze": "PENDING_MERGE_COMMIT",
+    "native_status": "NOT_RUN",
+    "prior_runs": [
+      44559352638,
+      44571075774
+    ],
+    "whole_phase_accepted": false
   }
 }

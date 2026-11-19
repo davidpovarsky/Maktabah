@@ -51,7 +51,8 @@ import PackageDescription
 // Preserve the actual platforms of the pinned Hanlin contract packages.
 // Omitting this selects SwiftPM's older default macOS target.
 let package = Package(name: "HanlinNavigationTransitionProof",
-    platforms: [.macOS(.v26), .iOS("27.0")], targets: [
+    platforms: [.iOS("27.0"), .macOS(.v26)],
+    targets: [
     .target(name: "HanlinPlatformContracts", resources: [.process("Resources")]),
     .target(name: "HanlinHostContracts", dependencies: ["HanlinPlatformContracts"]),
     .target(name: "HanlinAgentCore", dependencies: ["HanlinPlatformContracts", "HanlinHostContracts"]),

@@ -1,0 +1,21 @@
+{
+  "run_id": 44559343820,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44559343820",
+  "head_sha": "ef449e640c3fd538b52627a48ea09846a785c52e",
+  "workflow_conclusion": "failure",
+  "sdk_and_workspace_steps": "success",
+  "failure_phase": "artifact upload",
+  "failure": "GitHub ArtifactService CreateArtifact timed out after five attempts",
+  "source_regression_exit_codes": {
+    "actual_sqlite": 0,
+    "hebrew_ranges": 0,
+    "inspector_owner": 0,
+    "hanlin_navigation_contract": 0
+  },
+  "workspace_checks_reported_pass": 61,
+  "native_passes": 0,
+  "raw_job_log_sha256": "3b6e7da0692ca6c499e52d928e9db8f6cf2067f2afe898255732e70153e4dd28",
+  "raw_job_log_path": "build\\continuation-20261119\\sdk-44559343820\\job.log",
+  "limitation": "Named runtime evidence/artifact upload was not recovered. This is not a green workflow or UI acceptance. No already-passing compile/tests were rerun solely for upload failure.",
+  "native_run_in_progress": 44559352638
+}
