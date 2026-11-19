@@ -469,6 +469,16 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     func testHeaderAndHistoryNativeAccessibilityAudit() throws {
         try launchSearch()
+        let heading = try require("global-search-history-heading")
+        XCTAssertEqual(heading.elementType, .staticText)
+        XCTAssertEqual(heading.label, "חיפושים אחרונים")
+        XCTAssertFalse(heading.frame.isEmpty)
+        // The actual field/options bounds belong to the Search detail column.
+        // A full-window heading frame would include unrelated sidebar pixels
+        // during the native contrast audit and be wrong for VoiceOver as well.
+        let controls = try queryField().frame.union(require("global-search-options").frame)
+        XCTAssertGreaterThanOrEqual(heading.frame.minX, controls.minX - 1)
+        XCTAssertLessThanOrEqual(heading.frame.maxX, controls.maxX + 1)
         try app.performAccessibilityAudit { issue in
             // Keep every system-reported failure. Attach its element while
             // the audit is active, before transient trait-change AX expires.

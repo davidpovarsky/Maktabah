@@ -33,6 +33,8 @@ struct GlobalSearchHistoryContent: View {
                     // explicitly against the original sepia/system background.
                     Text("חיפושים אחרונים")
                         .foregroundStyle(Color(uiColor: .label))
+                        .accessibilityAddTraits(.isHeader)
+                        .accessibilityIdentifier("global-search-history-heading")
                     Spacer()
                     if !viewModel.searchHistory.isEmpty {
                         Button("נקה הכול") {
@@ -41,6 +43,11 @@ struct GlobalSearchHistoryContent: View {
                         .accessibilityIdentifier("global-search-history-clear")
                     }
                 }
+                // Keep the heading and Clear action as their own native
+                // accessibility elements. Combining this split-view section
+                // header gave its text the entire window's AX frame, including
+                // the unrelated book sidebar, rather than its rendered bounds.
+                .accessibilityElement(children: .contain)
             }
             .listRowBackground(Color.appBackground)
         }
