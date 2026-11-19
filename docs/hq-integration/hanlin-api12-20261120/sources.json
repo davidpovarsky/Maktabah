@@ -1,0 +1,34 @@
+{
+  "base": "508d15149b5c1ba0d9949279755ba286fd57a138",
+  "sdk_sha": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "files": {
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift": {
+      "sha256": "2b337c656e1873a67b89f6911145e4e738938554f2b3608fa6827bc93b028499",
+      "bytes": 18681
+    },
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift": {
+      "sha256": "fd0eae825c23cefb3f24a4caa94b28897aad45472c6f8577115e017077525f8a",
+      "bytes": 12542
+    },
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift": {
+      "sha256": "b1b9ac1968f96e80c4f1b4aa3b84e5767d4c5f02d673e52f3e784493aad9b555",
+      "bytes": 18170
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": {
+      "sha256": "c0424867d6ee92c9fa71c05743ba0d3ea173365a44eb76181ca77328c05ca025",
+      "bytes": 51345
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+      "sha256": "8e25b08af87aed66b4ef98ce9c15b0c9354a9b2c2882cf37ea7ee48f82d929c8",
+      "bytes": 25831
+    },
+    "Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift": {
+      "sha256": "68fb470e269b252beab53f8a81c6d70449679ade08674b667478cb57db445a72",
+      "bytes": 28780
+    },
+    "tools/hq-hanlin-host-contracts.py": {
+      "sha256": "e5c95eb425bcb5bf29ccf87ff44eed076ac6aa17c138669653431fedc70866dd",
+      "bytes": 6072
+    }
+  }
+}

@@ -1,5 +1,5 @@
 """Compile the real frozen Hanlin contracts, current ActionCore and thin host adapter.
-No AgentCore/model/provider, app registration, SDK fork or native UI claim.
+Includes the original HostDispatcher; no AgentSession/model/provider or native UI claim.
 All dependencies are immutable original source bytes copied to a disposable build.
 """
 from pathlib import Path
@@ -25,22 +25,31 @@ for module, source in [
     for name in names:
         raw = subprocess.check_output(["git", "-C", str(a.hanlin_repo), "show", a.hanlin_sha + ":" + name])
         put("Sources/" + module + "/" + name[len(source)+1:], raw, a.hanlin_sha + ":" + name)
+dispatcher_source = "Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift"
+put("Sources/HanlinAgentCore/HanlinHostDispatcher.swift",
+    subprocess.check_output(["git", "-C", str(a.hanlin_repo), "show", a.hanlin_sha + ":" + dispatcher_source]),
+    a.hanlin_sha + ":" + dispatcher_source)
 for module, source in [
     ("OtzariaActionCore", repo / "Source/Otzaria/Actions/Sources/OtzariaActionCore"),
     ("OtzariaHanlinHostAdapter", repo / "Source/ChavrusaText/HanlinHostAdapter")]:
     for path in sorted(source.rglob("*")):
+        # This component target is the actual thin transport. The sibling
+        # original ChatUI/store consumers have their own dependency graph/tests.
+        if module == "OtzariaHanlinHostAdapter" and path.name != "OtzariaHanlinHostAdapter.swift":
+            continue
         if path.is_file() and (path.suffix in [".swift", ".json"]):
             put("Sources/" + module + "/" + path.relative_to(source).as_posix(), path.read_bytes(), str(path.relative_to(repo)))
 test = repo / "Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift"
 put("Tests/OtzariaHanlinHostAdapterTests/AdapterTests.swift", test.read_bytes(), str(test.relative_to(repo)))
 manifest = """// swift-tools-version: 6.2
 import PackageDescription
-let package = Package(name: "HanlinHostCheck", targets: [
+let package = Package(name: "HanlinHostCheck", platforms: [.iOS("27.0"), .macOS(.v26)], targets: [
     .target(name: "HanlinPlatformContracts", resources: [.process("Resources")]),
     .target(name: "HanlinHostContracts", dependencies: ["HanlinPlatformContracts"]),
+    .target(name: "HanlinAgentCore", dependencies: ["HanlinHostContracts", "HanlinPlatformContracts"]),
     .target(name: "OtzariaActionCore", resources: [.process("Resources")]),
     .target(name: "OtzariaHanlinHostAdapter", dependencies: ["HanlinHostContracts", "HanlinPlatformContracts", "OtzariaActionCore"]),
-    .testTarget(name: "OtzariaHanlinHostAdapterTests", dependencies: ["OtzariaHanlinHostAdapter", "HanlinHostContracts", "HanlinPlatformContracts", "OtzariaActionCore"])
+    .testTarget(name: "OtzariaHanlinHostAdapterTests", dependencies: ["HanlinAgentCore", "OtzariaHanlinHostAdapter", "HanlinHostContracts", "HanlinPlatformContracts", "OtzariaActionCore"])
 ], swiftLanguageModes: [.v6])
 """
 if not (build / "Package.swift").exists() or (build / "Package.swift").read_bytes() != manifest.encode():
@@ -67,7 +76,7 @@ if r.returncode == 0 and (not expected_tests or passed_tests != expected_tests):
 report = dict(expected_tests=expected_tests, passed_tests=passed_tests, warnings=log_text.count("warning:"),
 status="PASS" if r.returncode == 0 else "FAIL", exit_code=r.returncode,
     hanlin_sha=a.hanlin_sha, adapter_sha256=inputs["Sources/OtzariaHanlinHostAdapter/OtzariaHanlinHostAdapter.swift"]["sha256"],
-    inputs=len(inputs), command=command, boundary="Actual frozen SDK Contracts + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No SDK AgentCore, app, provider, native UI or device acceptance.")
+    inputs=len(inputs), command=command, boundary="Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance.")
 (out / "result.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(report)); print((out / "swift-test.log").read_text(encoding="utf-8", errors="replace")[-14000:])
 raise SystemExit(r.returncode)

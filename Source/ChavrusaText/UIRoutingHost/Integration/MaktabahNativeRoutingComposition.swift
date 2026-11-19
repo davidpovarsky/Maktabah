@@ -10,7 +10,7 @@ import HanlinPlatformContracts
 /// One process composition using S's real singleton, one Core actor and I's
 /// canonical resolver. No facade/cache/parser/permission implementation here.
 @MainActor
-final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, OtzariaHanlinHostAuthority {
+final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, OtzariaHanlinNavigationAuthority {
     static let futurePublicBindingsEnabled = true
     static let shared: MaktabahNativeRoutingComposition = {
         // Only programmer-defined finite capacities/validated static metadata
@@ -42,6 +42,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let source: ObjectIdentifier
         let epoch: StudyWorkspaceMappingEpoch
         let projection: StudyWorkspaceMappingProjection
+        let readerContent: ActionReaderDestination?
+        let selectedRange: UIUTF16Range?
         let locale: String
     }
     private struct HanlinRegistration {
@@ -245,16 +247,31 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         try Task.checkCancellation()
         let matches = scenes.filter { $0.value.managerID == ObjectIdentifier(manager) }
         guard matches.count == 1, let (sceneID, entry) = matches.first else { throw HanlinHostError.invalidContext }
+        return try issueHanlinHostSession(sceneID: sceneID, entry: entry,
+            conversationID: conversationID, invalidated: invalidated)
+    }
+
+    private func issueHanlinHostSession(sceneID: UIStableID, entry: Registration,
+        conversationID: UUID, invalidated: @escaping @MainActor () -> Void)
+        throws -> (host: OtzariaHanlinHostAdapter, session: HanlinHostSession) {
         let observed = try hanlinSource(sceneID: sceneID, entry: entry)
         let namespace = try HanlinConversationNamespace(app: "otzaria",
             account: observed.projection.profileID.uuidString,
             workspace: observed.projection.groupID.uuidString, space: observed.backend.backend.rawValue)
         // Native UIKit identifiers remain strings. This UUID belongs only to the
         // SDK association and is discarded with this exact native registration.
+        let objectReference = try observed.readerContent.map { content in
+            let current = ActionReaderDestination(sectionLocator: content.sectionLocator,
+                focusLocator: content.focusLocator, presentationMode: .sameTab)
+            return try NativePublicNavigationURLV2.encode(.init(
+                destination: UIDestinationID(rawValue: "native.reader")!, backend: observed.backend.backend,
+                content: current, presentation: .currentTab), registry: registry).absoluteString
+        }
         let sdkContext = HanlinHostContext(namespace: namespace, sceneID: entry.hanlinSceneID,
-            generation: UUID(), sourceRevision: "backend:" + String(observed.backend.generation)
+            generation: UUID(), objectReference: objectReference, sourceRevision: "backend:" + String(observed.backend.generation)
                 + ";rpc:" + (observed.backend.rpcEpoch.map(String.init) ?? "none")
-                + ";mapping:" + observed.epoch.sourceID.uuidString + ":" + String(observed.epoch.revision),
+                + ";mapping:" + observed.epoch.sourceID.uuidString + ":" + String(observed.epoch.revision)
+                + ";tab:" + (observed.projection.activeTabID?.uuidString ?? "none"),
             localeIdentifier: observed.locale)
         let binding = OtzariaHanlinBinding(context: sdkContext,
             executionContext: context(sceneID: sceneID, origin: .internalAI, snapshot: observed.backend),
@@ -284,8 +301,13 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         guard mapping.projection.targets.values.allSatisfy({
             ActionAppIdentityBridge.actionBackend($0.backend) == snapshot.backend
         }) else { throw HanlinHostError.staleContext }
+        let content = try entry.session.surface(.reader)?.content.map {
+            ActionReaderDestination(sectionLocator: $0.sectionLocator, focusLocator: $0.focusLocator,
+                presentationMode: .sameTab)
+        }
         return .init(backend: snapshot, source: ObjectIdentifier(mapping.source),
-            epoch: mapping.epoch, projection: mapping.projection, locale: Locale.current.identifier)
+            epoch: mapping.epoch, projection: mapping.projection, readerContent: content,
+            selectedRange: try entry.session.hanlinSelectionRange(), locale: Locale.current.identifier)
     }
 
     private func hanlinRegistration(for context: HanlinHostContext) throws -> (UIStableID, Registration, HanlinRegistration) {
@@ -374,38 +396,52 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         return try NativePublicNavigationURLV2.encode(intent, registry: registry)
     }
 
-    func takeHanlinNavigationHandoff(_ destination: HanlinHostDestination,
-                                    session: HanlinHostSession) throws -> OtzariaHanlinNavigationHandoff {
+    /// Called only after the original chat sheet has actually dismissed. The
+    /// original Core and scene orchestrator still own the one native mutation.
+    func openWithContextTransition(_ destination: HanlinHostDestination,
+        session: HanlinHostSession, binding: OtzariaHanlinBinding) async throws -> HanlinHostNavigationReceipt {
         let (sceneID, entry, active) = try hanlinRegistration(for: destination.context)
-        guard active.session == session, let pending = active.navigation,
-              pending.destination == destination else { throw HanlinHostError.staleContext }
+        guard active.session == session, active.binding == binding,
+              let pending = active.navigation, pending.destination == destination,
+              entry.session.studyChatPresentationID == nil, entry.session.isPresentationReady else {
+            throw HanlinHostError.staleContext
+        }
         scenes[sceneID]?.hanlin?.navigation = nil
         let observed = active.observed
-        let managerID = entry.managerID
-        let nativeSession = entry.session
-        return .init(requestID: destination.requestID) { [weak self, weak nativeSession] in
-            guard let self, let nativeSession,
-                  let current = self.scenes[sceneID], current.session === nativeSession,
-                  current.managerID == managerID,
-                  try self.hanlinSource(sceneID: sceneID, entry: current) == observed else {
-                throw HanlinHostError.staleContext
-            }
-            try Task.checkCancellation()
-            let result = try await self.open(public: pending.intent, sceneID: sceneID, managerID: managerID,
-                expectedSnapshot: observed.backend, origin: .internalAI, until: pending.deadline,
-                requestID: destination.requestID)
-            guard case .acknowledged(let receipt) = result,
-                  receipt.requestId == destination.requestID, receipt.sceneID == sceneID,
-                  receipt.backendSnapshot == observed.backend,
-                  receipt.route.destination == pending.intent.destination,
-                  receipt.route.content == pending.intent.content else {
-                throw HanlinHostError.resultMismatch
-            }
-            // Core and the original live native owner already validated the
-            // route/content and visible TextKit witness. This is an app receipt,
-            // never a success result delivered to the retired SDK context.
-            return receipt
+        try Task.checkCancellation()
+        // `open(public:)` retains the original mapping owner and revalidates it
+        // at the actual Core/native commit boundary; no alternate UI path exists.
+        let result = try await open(public: pending.intent, sceneID: sceneID, managerID: entry.managerID,
+            expectedSnapshot: observed.backend, origin: .internalAI, until: pending.deadline,
+            requestID: destination.requestID)
+        guard case .acknowledged(let receipt) = result,
+              receipt.requestId == destination.requestID, receipt.sceneID == sceneID,
+              receipt.backendSnapshot == observed.backend,
+              receipt.route.destination == pending.intent.destination,
+              receipt.route.content == pending.intent.content else {
+            throw HanlinHostError.resultMismatch
         }
+        guard let current = scenes[sceneID], current.session === entry.session,
+              current.managerID == entry.managerID, current.hanlinSceneID == entry.hanlinSceneID else {
+            throw HanlinHostError.staleContext
+        }
+        let after = try hanlinSource(sceneID: sceneID, entry: current)
+        guard after.backend == observed.backend, after.source == observed.source,
+              after.epoch.sourceID == observed.epoch.sourceID,
+              after.projection.profileID == observed.projection.profileID,
+              after.projection.groupID == observed.projection.groupID else {
+            throw HanlinHostError.staleContext
+        }
+        // Only the observed same-scene result can create this fresh generation.
+        // This is metadata/navigation authority, never permission to read text.
+        let successor = try issueHanlinHostSession(sceneID: sceneID, entry: current,
+            conversationID: session.conversationID, invalidated: active.invalidated).session
+        let acknowledgement = HanlinHostNavigationReceipt(originalSession: session,
+            result: .presented(requestID: destination.requestID, context: destination.context,
+                objectReference: destination.objectReference, blockReference: destination.blockReference),
+            successorSession: successor)
+        try acknowledgement.validate(for: destination, session: session)
+        return acknowledgement
     }
 
     func open(destination: NativeIntentService.Destination) async throws -> UISceneAcknowledgement {

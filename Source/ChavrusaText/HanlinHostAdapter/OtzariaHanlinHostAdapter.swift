@@ -33,12 +33,19 @@ public protocol OtzariaHanlinHostAuthority: Sendable {
               binding: OtzariaHanlinBinding) async throws -> HanlinHostNavigationResult
 }
 
+/// Additive native-owner capability. A transition may only acknowledge the
+/// original scene's observed destination and host-issued successor session.
+public protocol OtzariaHanlinNavigationAuthority: OtzariaHanlinHostAuthority {
+    func openWithContextTransition(_ destination: HanlinHostDestination,
+        session: HanlinHostSession, binding: OtzariaHanlinBinding) async throws -> HanlinHostNavigationReceipt
+}
+
 /// Compatible with the real Hanlin HostIntegration contract. No chat, agent loop,
 /// credentials, MCP transport, persistence or new business/permission engine.
 /// The app links the original pinned SDK packages; runtime authority is supplied
 /// only by its actual scene owner. Package linkage is not native acceptance.
-public actor OtzariaHanlinHostAdapter: HanlinHostIntegration {
-    public nonisolated let apiVersion = HanlinAPIVersion(major: 1, minor: 0)
+public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
+    public nonisolated let apiVersion = HanlinAPIVersion(major: 1, minor: 2)
     private let core: ActionExecutor
     private let authority: any OtzariaHanlinHostAuthority
     private let registry: ActionRegistry
@@ -46,6 +53,9 @@ public actor OtzariaHanlinHostAdapter: HanlinHostIntegration {
     private var seen = Set<HanlinToolInvocationID>()
     private var pending = Set<HanlinToolInvocationID>()
     private var cancelled = Set<HanlinToolInvocationID>()
+    private struct NavigationKey: Hashable { let session: UUID; let request: UUID }
+    private var navigationRequests = Set<NavigationKey>()
+    private var navigationReceipts: [NavigationKey: HanlinHostNavigationReceipt] = [:]
     private let maximumInvocations = 256
     private let maximumConcurrentInvocations = 8
 
@@ -191,6 +201,44 @@ public actor OtzariaHanlinHostAdapter: HanlinHostIntegration {
         let result = try await authority.open(destination, binding: binding)
         try result.validate(for: destination)
         return result
+    }
+
+    public func openWithContextTransition(_ destination: HanlinHostDestination,
+                                          session: HanlinHostSession) async throws -> HanlinHostNavigationReceipt {
+        try Task.checkCancellation()
+        guard destination.context == session.context else { throw HanlinHostError.staleContext }
+        let binding = try await authority.current(for: session)
+        try validateAuthority(binding)
+        guard binding.context == session.context else { throw HanlinHostError.staleContext }
+        guard binding.executionContext.scopes.contains(.navigation),
+              let scene = binding.executionContext.foregroundSceneID,
+              !scene.isEmpty, scene.utf8.count <= 256 else { throw HanlinHostError.denied }
+        guard let native = authority as? any OtzariaHanlinNavigationAuthority else {
+            throw HanlinHostError.unsupportedVersion
+        }
+        try Task.checkCancellation()
+        let key = NavigationKey(session: session.id, request: destination.requestID)
+        guard !navigationRequests.contains(key) else { throw HanlinHostError.duplicateInvocation }
+        guard navigationRequests.count < maximumInvocations else { throw HanlinHostError.storageLimitExceeded }
+        navigationRequests.insert(key)
+        // Once entered, the original native owner may already have changed UI.
+        // Retain its reservation and correlated receipt even if delivery is
+        // subsequently suppressed; callers must never retry an uncertain route.
+        let receipt = try await native.openWithContextTransition(destination, session: session, binding: binding)
+        try receipt.validate(for: destination, session: session)
+        navigationReceipts[key] = receipt
+        try Task.checkCancellation()
+        let next = receipt.successorSession ?? session
+        let current = try await authority.current(for: next)
+        try validateAuthority(current)
+        try Task.checkCancellation()
+        guard current.context == next.context else { throw HanlinHostError.staleContext }
+        return receipt
+    }
+
+    /// Reconciliation evidence only; this does not establish current authority.
+    public func navigationReceipt(for requestID: UUID, session: HanlinHostSession) -> HanlinHostNavigationReceipt? {
+        navigationReceipts[.init(session: session.id, request: requestID)]
     }
 
     private func checkedBinding(_ context: HanlinHostContext) async throws -> OtzariaHanlinBinding {

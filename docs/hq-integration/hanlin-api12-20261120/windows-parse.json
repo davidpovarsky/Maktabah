@@ -1,0 +1,40 @@
+{
+  "boundary": "Windows syntax parse only; not Apple typecheck",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+      "sha256": "2b337c656e1873a67b89f6911145e4e738938554f2b3608fa6827bc93b028499",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "sha256": "fd0eae825c23cefb3f24a4caa94b28897aad45472c6f8577115e017077525f8a",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "sha256": "b1b9ac1968f96e80c4f1b4aa3b84e5767d4c5f02d673e52f3e784493aad9b555",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "c0424867d6ee92c9fa71c05743ba0d3ea173365a44eb76181ca77328c05ca025",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "8e25b08af87aed66b4ef98ce9c15b0c9354a9b2c2882cf37ea7ee48f82d929c8",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

@@ -3,31 +3,40 @@ import Foundation
 import Observation
 import SwiftUI
 import HanlinHostContracts
+import HanlinAgentCore
 import OtzariaUIRouting
 
-/// A consumed handoff owns one original native route after its SDK presentation
-/// is revoked. Its receipt is never returned to the invalidated SDK session.
+/// A source click retains one original host identity through actual dismissal.
+/// Its dispatcher performs the context transition after the covering sheet is gone.
 @MainActor
 final class OtzariaHanlinNavigationHandoff {
-    let requestID: UUID
-    private var action: (@MainActor () async throws -> UISceneReceipt)?
-    init(requestID: UUID, action: @escaping @MainActor () async throws -> UISceneReceipt) {
-        self.requestID = requestID; self.action = action
+    let destination: HanlinHostDestination
+    let session: HanlinHostSession
+    let host: OtzariaHanlinHostAdapter
+    var requestID: UUID { destination.requestID }
+    private var action: (@MainActor () async throws -> HanlinHostNavigationReceipt)?
+    private let closeOriginal: @MainActor () -> Void
+    init(destination: HanlinHostDestination, session: HanlinHostSession,
+         host: OtzariaHanlinHostAdapter, closeOriginal: @escaping @MainActor () -> Void) {
+        self.destination = destination; self.session = session; self.host = host
+        self.closeOriginal = closeOriginal
+        let dispatcher = HanlinHostDispatcher(host: host)
+        action = { try await dispatcher.openWithContextTransition(destination, session: session) }
     }
-    func consume() async throws -> UISceneReceipt {
+    func consume() async throws -> HanlinHostNavigationReceipt {
         guard let action else { throw HanlinHostError.duplicateInvocation }
         self.action = nil
         try Task.checkCancellation()
         return try await action()
     }
-    func cancel() { action = nil }
+    func cancel() { action = nil; closeOriginal() }
 }
 
 @MainActor @Observable
 final class OtzariaHanlinChatOwner {
     private(set) var presentation: OtzariaHanlinChatSession?
     private(set) var isPresented = false
-    private(set) var navigationReceipt: UISceneReceipt?
+    private(set) var navigationReceipt: HanlinHostNavigationReceipt?
     @ObservationIgnored private weak var manager: iOSNavigationManager?
     @ObservationIgnored private weak var nativeSession: MaktabahNativeSceneSession?
     @ObservationIgnored private let composition: MaktabahNativeRoutingComposition
@@ -114,7 +123,10 @@ final class OtzariaHanlinChatOwner {
         try response.validate(for: destination)
         guard case .queued = response else { throw HanlinHostError.resultMismatch }
         try validate(sessionID)
-        pendingNavigation = try composition.takeHanlinNavigationHandoff(destination, session: presentation.identity)
+        let identity = presentation.identity
+        pendingNavigation = .init(destination: destination, session: identity, host: host) { [weak self] in
+            self?.composition.closeHanlinHostSession(identity)
+        }
         requestClose(sessionID: sessionID, preservingContinuation: true)
     }
 
@@ -153,7 +165,7 @@ final class OtzariaHanlinChatOwner {
         }
         isPresented = false; presentedSceneID = nil
         presentation.revoke()
-        composition.closeHanlinHostSession(presentation.identity)
+        if pendingNavigation == nil { composition.closeHanlinHostSession(presentation.identity) }
         host = nil
     }
 
@@ -162,7 +174,7 @@ final class OtzariaHanlinChatOwner {
     func didDismiss() {
         if let presentation {
             presentation.revoke()
-            composition.closeHanlinHostSession(presentation.identity)
+            if pendingNavigation == nil { composition.closeHanlinHostSession(presentation.identity) }
             nativeSession?.finishStudyChatPresentation(presentation.id)
         }
         presentation = nil; host = nil; isPresented = false; presentedSceneID = nil
@@ -182,9 +194,18 @@ final class OtzariaHanlinChatOwner {
             do {
                 let receipt = try await handoff.consume()
                 try Task.checkCancellation()
-                guard !self.retired, receipt.requestId == handoff.requestID else { throw HanlinHostError.staleContext }
+                try receipt.validate(for: handoff.destination, session: handoff.session)
+                guard !self.retired, receipt.presentationAcknowledged else { throw HanlinHostError.staleContext }
                 self.navigationReceipt = receipt
+                // A source button keeps the existing close-chat behavior. Do not
+                // silently resume a model or transfer its former consent. A later
+                // explicit chat opening uses the same saved conversation store.
+                if let successor = receipt.successorSession { self.composition.closeHanlinHostSession(successor) }
+                self.composition.closeHanlinHostSession(handoff.session)
             } catch {
+                let observed = await handoff.host.navigationReceipt(for: handoff.requestID, session: handoff.session)
+                if let successor = observed?.successorSession { self.composition.closeHanlinHostSession(successor) }
+                self.composition.closeHanlinHostSession(handoff.session)
                 if !self.retired {
                     self.manager?.alertMessage = .init(title: String(localized: "Source unavailable"),
                         message: String(localized: "The source could not be opened in the original study window."))
