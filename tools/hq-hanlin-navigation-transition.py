@@ -48,7 +48,10 @@ destination.parent.mkdir(parents=True)
 destination.write_bytes(fixture.read_bytes())
 manifest = """// swift-tools-version: 6.2
 import PackageDescription
-let package = Package(name: "HanlinNavigationTransitionProof", targets: [
+// Preserve the actual platforms of the pinned Hanlin contract packages.
+// Omitting this selects SwiftPM's older default macOS target.
+let package = Package(name: "HanlinNavigationTransitionProof",
+    platforms: [.macOS(.v26), .iOS("27.0")], targets: [
     .target(name: "HanlinPlatformContracts", resources: [.process("Resources")]),
     .target(name: "HanlinHostContracts", dependencies: ["HanlinPlatformContracts"]),
     .target(name: "HanlinAgentCore", dependencies: ["HanlinPlatformContracts", "HanlinHostContracts"]),
