@@ -1,0 +1,292 @@
+{
+  "Sources/HanlinPlatformContracts/HanlinCatalogContracts.swift": {
+    "sha256": "757478b238a1fc3144ef51c70275539502f959dd2aca9e67dbbf2449b24f7473",
+    "bytes": 9413,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinCatalogContracts.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinChatStructuredPart.swift": {
+    "sha256": "07479b91a7ce77a8fdf5d53f3cb16939d9d46b0287efbd50b8b20b446c8ea2fa",
+    "bytes": 3784,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinChatStructuredPart.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinContractError.swift": {
+    "sha256": "ad59a698345d7c218b3787c721b93fc6104ae462f7f11000d9204b1dd03e8518",
+    "bytes": 5423,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinContractError.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinDescriptors.swift": {
+    "sha256": "6b4076de7b2416d108431276b147796352aa232d39507dca2f7f0b5cd5efa0d1",
+    "bytes": 44005,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinDescriptors.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinExposureContracts.swift": {
+    "sha256": "e7a39ee73d27678fd8a5405a6a176b31c68eab76c1828fbe02fa02f63c7decea",
+    "bytes": 21524,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinExposureContracts.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinIdentifiers.swift": {
+    "sha256": "3b3651705d4ee066324e623f284718d985ce7e44d1b01d4a9c3a437ed3d7410a",
+    "bytes": 15313,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinIdentifiers.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinJSONSchemaDocument.swift": {
+    "sha256": "d763b95edd959241d4c6931892802eb20f1bf90bd21037ed6371c4d68a5e661a",
+    "bytes": 4842,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinJSONSchemaDocument.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinManifestSchema.swift": {
+    "sha256": "c1dd837d01913bc58b72d62cf47a9a21ef4bf1f23a1b3ccdaf93858e987c4d23",
+    "bytes": 565,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinManifestSchema.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinMiniAppContracts.swift": {
+    "sha256": "eb880c3c00a789bcd21d8e0cbc353018e32b4e7d7f781415809781751515ae63",
+    "bytes": 6472,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinMiniAppContracts.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinPermissionContracts.swift": {
+    "sha256": "f0911d44d578d35f2714b30e4aa925a953475d54fb4f9ee2da39cf0f8590fed3",
+    "bytes": 8912,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPermissionContracts.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinPreparedRuntimeVersion.swift": {
+    "sha256": "122b1d09c68e28907fdbce19986824d9bd6596d36bd6f08074c670a386f2f19c",
+    "bytes": 1109,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPreparedRuntimeVersion.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinPresentationContracts.swift": {
+    "sha256": "e05fb0509136f303f621f292147d98db140f3e0f028e7431cc7064fb935e7a9b",
+    "bytes": 10661,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPresentationContracts.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinRuntimeProfiles.swift": {
+    "sha256": "43bffad1d4245d9a00924aab08ffd498a622d32321b5165ff036f0e425140262",
+    "bytes": 5825,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinRuntimeProfiles.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinScriptContracts.swift": {
+    "sha256": "d3af6a89f8e19dccdc17ff9f59f223875260a0b0d4d2b440e49170b599626180",
+    "bytes": 24323,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinScriptContracts.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinSessionContracts.swift": {
+    "sha256": "03493cb4f2f414088282d97b2b4c0a01a918c0df1db78451974400bbfcba7386",
+    "bytes": 6805,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinSessionContracts.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinSkillContracts.swift": {
+    "sha256": "cb8910c6d12ac4cc0f8546e89a0a514151fc9d3cd53d30aacd8abc479f2af99f",
+    "bytes": 3494,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinSkillContracts.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinStoreFileAccess.swift": {
+    "sha256": "ee87c52bc778c1a3848c37e125a709378f69e032ca91f80cc58f250a3c81a3f5",
+    "bytes": 523,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinStoreFileAccess.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinToolContracts.swift": {
+    "sha256": "8ce9c0771689e43f24b42fb16b0f1bf2a545628e99f972b625af57314257156d",
+    "bytes": 7298,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinToolContracts.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinValue.swift": {
+    "sha256": "8284d64b8d9f0fc9212d6178860db6ce75dd15b212fb9214fea33fe1e51b9750",
+    "bytes": 56729,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinValue.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinVersions.swift": {
+    "sha256": "014a9f0d5d078b84cda43d805e8b95b89203cabd834254f4e30030805e8dad0f",
+    "bytes": 15847,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinVersions.swift"
+  },
+  "Sources/HanlinPlatformContracts/HanlinWireProtocol.swift": {
+    "sha256": "13fc4ffbffef08ac7d439f6e9f961b4b94b05d6d0e45ba3cec6522709b7870d7",
+    "bytes": 6725,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinWireProtocol.swift"
+  },
+  "Sources/HanlinPlatformContracts/Resources/HanlinAppManifest.schema.json": {
+    "sha256": "9443a12286831f386d9a7db06b833902d041fe46d990e2014885a10d99b612fb",
+    "bytes": 20017,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/Resources/HanlinAppManifest.schema.json"
+  },
+  "Sources/HanlinHostContracts/HanlinConversationStore.swift": {
+    "sha256": "7a19c8b974a35bae6fc16eebbd71684ab7bc3ed0526a15efa81e5c24d48848ed",
+    "bytes": 4841,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinConversationStore.swift"
+  },
+  "Sources/HanlinHostContracts/HanlinHostContext.swift": {
+    "sha256": "fd308d1d583a0205fb1305677b87878d6e82396b21eb20082ddd335981be2f6f",
+    "bytes": 8843,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostContext.swift"
+  },
+  "Sources/HanlinHostContracts/HanlinHostEvents.swift": {
+    "sha256": "1bd20a915332012ea2156260f062b138d519c1ecd6eabe0a7338587f6e8eba2b",
+    "bytes": 1989,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostEvents.swift"
+  },
+  "Sources/HanlinHostContracts/HanlinHostIntegration.swift": {
+    "sha256": "5058e0e331612aa8d9eba2372f77530947719156efc7c8c40c0bee98144df7bf",
+    "bytes": 9102,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostIntegration.swift"
+  },
+  "Sources/HanlinHostContracts/HanlinHostInteraction.swift": {
+    "sha256": "067a6e3e0a8099e14345d2d67ca24b706bd352f4e28ce84aea6caa8360f627c5",
+    "bytes": 1621,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostInteraction.swift"
+  },
+  "Sources/HanlinHostContracts/HanlinHostNavigationTransition.swift": {
+    "sha256": "4800f100ff21fd3ea3a4b8f6dde016f5e17eb7a07b328cf689d39ca9a86e2ea3",
+    "bytes": 3084,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostNavigationTransition.swift"
+  },
+  "Sources/HanlinAgentCore/HanlinHostDispatcher.swift": {
+    "sha256": "8c7289779a6cce63dd58bb43a3ba877abfba357680609dc38c2dbd8cd8b738a1",
+    "bytes": 16079,
+    "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift"
+  },
+  "Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift": {
+    "sha256": "b45b86613217cb29b5a8ec1e7949e5c0596b667d9c4688eccaa54dd458c4057a",
+    "bytes": 1651,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\ActionBackendArgumentTarget.swift"
+  },
+  "Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift": {
+    "sha256": "82e9aaf357c02dc71b1fd1351cd9c66bdd8febf32a8601478e78dbb66ed629fc",
+    "bytes": 1775,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\ActionSearchArgumentMapping.swift"
+  },
+  "Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift": {
+    "sha256": "049d5c042b15047ead280b7a0346598be7e4403ad1aaa7b9b911170195ca3b3c",
+    "bytes": 4813,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\ActionSearchSemantics.swift"
+  },
+  "Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift": {
+    "sha256": "1615ad518d7af50a2d6b11ec43ccab053165cfc8118ee5d7c684c44d5e002834",
+    "bytes": 9984,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\BackendSemanticProfile.swift"
+  },
+  "Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift": {
+    "sha256": "733681a6b082e6742208ea52408f65eee55466e06261fa3d6bbb21f0c5fd8bd8",
+    "bytes": 9584,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\EmbeddedActionResponseProof.swift"
+  },
+  "Sources/OtzariaActionCore/Contracts/ActionJSON.swift": {
+    "sha256": "d3db8a15f38040009ebfc17500a09fab9a77278afb3e759548ea22dc60e1682a",
+    "bytes": 2676,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionJSON.swift"
+  },
+  "Sources/OtzariaActionCore/Contracts/ActionReferences.swift": {
+    "sha256": "fde0a6c25a76c048c30df2ca13acf7e0849ca8a33289424daf59020743aad405",
+    "bytes": 6134,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionReferences.swift"
+  },
+  "Sources/OtzariaActionCore/Contracts/ActionRequest.swift": {
+    "sha256": "e0ce60ba449fa879e9c807c8cfc52eac3854ed02d778bd7f1d73fdc6569571fd",
+    "bytes": 6028,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionRequest.swift"
+  },
+  "Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift": {
+    "sha256": "ea82447522e138106b85685578b38a203e918c5aea6c6370eb73b5e233a08930",
+    "bytes": 4658,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionSchemaValidator.swift"
+  },
+  "Sources/OtzariaActionCore/Contracts/ActionSearch.swift": {
+    "sha256": "124e68c87b8598538befde637b4411095fd601981778eaba7eaf8ec9bddd2ea0",
+    "bytes": 2396,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionSearch.swift"
+  },
+  "Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": {
+    "sha256": "7e75bc7f7118c31fa0266094318163b8a1c0a91241b3a3adc830e12241539f4b",
+    "bytes": 8600,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionWireCodec.swift"
+  },
+  "Sources/OtzariaActionCore/Engine/ActionDeadline.swift": {
+    "sha256": "9a627bb057d06f5210076d78732108ef220bd4799f3eb0216978b800c4455c28",
+    "bytes": 3226,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Engine\\ActionDeadline.swift"
+  },
+  "Sources/OtzariaActionCore/Engine/ActionExecutor.swift": {
+    "sha256": "6a57fc9ad9fa3538111163f966286761a2aa4c56867cdbaefa960002423f84ac",
+    "bytes": 28226,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Engine\\ActionExecutor.swift"
+  },
+  "Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift": {
+    "sha256": "3d956c5969861fe5f63d9f2b0b2e48136e81234da5c5c628ae8edce867862eb7",
+    "bytes": 1702,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Policy\\ActionExecutionContext.swift"
+  },
+  "Sources/OtzariaActionCore/Policy/ActionPolicy.swift": {
+    "sha256": "573a5552c4ccf666f650b46b8a76a9f983a07fae7d40120ff42ab23b5fe64225",
+    "bytes": 4910,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Policy\\ActionPolicy.swift"
+  },
+  "Sources/OtzariaActionCore/Policy/ActionValidation.swift": {
+    "sha256": "eba3eeeb0964fd0f40287cad2eb3e41abf2c22653b5eef66e4dd4f3b3b6aa140",
+    "bytes": 8069,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Policy\\ActionValidation.swift"
+  },
+  "Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift": {
+    "sha256": "00c5f7d28223b670124dd61e655b430c6899ab1ad0f0372c8ea4b078ccd95dbb",
+    "bytes": 7090,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Ports\\ActionNavigationAuthority.swift"
+  },
+  "Sources/OtzariaActionCore/Ports/ActionPorts.swift": {
+    "sha256": "d8dac3b83d4b0b68a5031677aa12e02c1985765a9562db01b053c7dbd761a1c5",
+    "bytes": 4917,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Ports\\ActionPorts.swift"
+  },
+  "Sources/OtzariaActionCore/Registry/ActionRegistry.swift": {
+    "sha256": "3267ffa612c0612ae6ae738ba603e835520e6634c8e2970057c76b1fba5d2161",
+    "bytes": 1774,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Registry\\ActionRegistry.swift"
+  },
+  "Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift": {
+    "sha256": "04b7bd6ff34c1664e6dcf6a95540946b0f7dccffdfc6291b4760cf55460be2dd",
+    "bytes": 2971,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resolver\\CatalogActionResolver+SourceSections.swift"
+  },
+  "Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift": {
+    "sha256": "86354dd463be267e243b1567753a9f9d1f1c7898010dd4761cff803b14210b46",
+    "bytes": 19172,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resolver\\CatalogActionResolver.swift"
+  },
+  "Sources/OtzariaActionCore/Resources/action-catalog.v1.json": {
+    "sha256": "21cf2f24255b9bae28fe4725d5394759ec12055e99e37f16fa7140cff755b503",
+    "bytes": 45036,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\action-catalog.v1.json"
+  },
+  "Sources/OtzariaActionCore/Resources/action-request.v1.schema.json": {
+    "sha256": "5bdd92a543111ede8dfd74c40a284477b26ecf237f1d02b18d7e8a87a76af677",
+    "bytes": 1571,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\action-request.v1.schema.json"
+  },
+  "Sources/OtzariaActionCore/Resources/action-result.v1.schema.json": {
+    "sha256": "f4a25fdcd6aa05e16adaf990b9aa33b12fdc63c513163a23a86feec19ee5b724",
+    "bytes": 3859,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\action-result.v1.schema.json"
+  },
+  "Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json": {
+    "sha256": "678d326932532f267a8a932c286e5cee4b4c982cc9f86ada6238ed532eee85ed",
+    "bytes": 98009,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\backend-acceptance-cases.v1.json"
+  },
+  "Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json": {
+    "sha256": "e8fb0933325e6c32b52422405e1e4988052d4fd81daac2cff1c019e862ca8965",
+    "bytes": 36996,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\backend-capability-matrix.v1.json"
+  },
+  "Sources/OtzariaActionCore/Resources/examples.v1.json": {
+    "sha256": "939e20a96b34c82699e118d58a9674cd610301f4cf17f451ff9eb93e7ca504a3",
+    "bytes": 10497,
+    "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\examples.v1.json"
+  },
+  "Sources/OtzariaHanlinHostAdapter/OtzariaHanlinHostAdapter.swift": {
+    "sha256": "2b337c656e1873a67b89f6911145e4e738938554f2b3608fa6827bc93b028499",
+    "bytes": 18681,
+    "source": "Source\\ChavrusaText\\HanlinHostAdapter\\OtzariaHanlinHostAdapter.swift"
+  },
+  "Tests/OtzariaHanlinHostAdapterTests/AdapterTests.swift": {
+    "sha256": "68fb470e269b252beab53f8a81c6d70449679ade08674b667478cb57db445a72",
+    "bytes": 28780,
+    "source": "Tests\\HQ\\hanlin-host\\OtzariaHanlinHostAdapterTests.swift"
+  }
+}
