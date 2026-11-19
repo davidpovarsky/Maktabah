@@ -92,3 +92,7 @@ The current owner authorizes all necessary continuation work. The original annot
 ## 2026-11-20: semantic search original UI ownership
 
 See `docs/hq-integration/search-openresults-20261120/REVIEW.md` and the exact compressed original Search UI diff. Current owner authorization covers this narrow passive hook; Apple/native acceptance is still pending.
+
+## 2026-11-20 — Typed action Native acceptance trigger
+
+Current explicit owner authorization covers the five DEBUG-only original Search view lines. The original mounted view invokes the existing Core action under miniTest10 and UUID nonce guards; no engine, renderer, receipt or annotation persistence is replaced. Exact hunk, source evidence, review, limitations and rollback: [Native action review](../hq-integration/actions-native-20261120/REVIEW.md). Four syntax parses and the independent source verifier passed; Apple SDK and all six Native cases remain NOT_RUN pending the parent integration freeze.

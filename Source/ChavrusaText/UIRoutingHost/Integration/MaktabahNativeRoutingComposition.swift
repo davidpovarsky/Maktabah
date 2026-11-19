@@ -1216,4 +1216,216 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         return try await deliver(command)
     }
 }
+
+#if DEBUG
+/// Explicit local acceptance trigger only. Production actions still run through
+/// the original Composition -> Core -> Registry -> native owner and witnesses.
+/// Each test provides a unique UUID and its own file in this app's Documents.
+@MainActor struct MaktabahNativeActionAcceptanceProbe {
+    let kind: String
+    let token: UUID
+    private let documents: URL
+
+    init?(kind: String) {
+        guard ["notes", "search", "commentary"].contains(kind) else { return nil }
+        let args = ProcessInfo.processInfo.arguments
+        func value(_ key: String) -> String? {
+            guard let i = args.firstIndex(of: key), args.indices.contains(i + 1) else { return nil }
+            return args[i + 1]
+        }
+        guard OtzariaDataProfileRegistry.activeProfileID == "miniTest10",
+              UUID(uuidString: UserDefaults.standard.string(forKey: "studyWorkspaceTestingNamespace") ?? "") != nil,
+              value("-nativeActionAcceptanceKind") == kind,
+              let raw = value("-nativeActionAcceptanceToken"), let token = UUID(uuidString: raw),
+              let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        self.kind = kind; self.token = token; self.documents = documents
+    }
+    func argument(_ key: String) -> String? {
+        let args = ProcessInfo.processInfo.arguments
+        guard let i = args.firstIndex(of: key), args.indices.contains(i + 1) else { return nil }
+        return args[i + 1]
+    }
+    func json<T: Encodable>(_ value: T) throws -> Any {
+        try JSONSerialization.jsonObject(with: JSONEncoder().encode(value))
+    }
+    private var stem: String { "native-action-\(kind)-\(token.uuidString)" }
+    private var trigger: URL { documents.appendingPathComponent(stem + "-trigger.txt") }
+    private var result: URL { documents.appendingPathComponent(stem + "-result.json") }
+    var hasResult: Bool { FileManager.default.fileExists(atPath: result.path) }
+
+    func consumeTrigger() throws -> Bool {
+        guard !FileManager.default.fileExists(atPath: result.path),
+              FileManager.default.fileExists(atPath: trigger.path) else { return false }
+        let attributes = try FileManager.default.attributesOfItem(atPath: trigger.path)
+        guard (attributes[.size] as? NSNumber)?.intValue == token.uuidString.utf8.count,
+              try String(contentsOf: trigger, encoding: .utf8) == token.uuidString else { return false }
+        try FileManager.default.removeItem(at: trigger)
+        return true
+    }
+    func write(phase: String = "result", payload: [String: Any]) throws {
+        guard phase == "result" || phase == "closed" else { throw ProbeError.invalidPhase }
+        let destination = documents.appendingPathComponent(stem + "-" + phase + ".json")
+        guard !FileManager.default.fileExists(atPath: destination.path) else { return }
+        let bytes = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        try bytes.write(to: destination, options: .atomic)
+    }
+    private enum ProbeError: Error { case invalidPhase }
+}
+
+// These DEBUG calls are opt-in for the exact disposable miniTest10 fixture.
+// They invoke production entry points and observe original owners; they cannot
+// supply a resolver answer, render text, mutate a receipt or save an Annotation.
+extension MaktabahNativeRoutingComposition {
+    private func actionAcceptanceSession(manager: iOSNavigationManager) -> MaktabahNativeSceneSession? {
+        let matches = scenes.values.filter { $0.managerID == ObjectIdentifier(manager) }
+        guard matches.count == 1, let session = matches.first?.session,
+              session.mounted, session.foreground else { return nil }
+        return session
+    }
+
+    func runNoteDraftAcceptanceProbe(manager: iOSNavigationManager, reader: ReaderViewModel,
+                                    currentDraft: @escaping @MainActor () -> Annotation?) async {
+        guard let probe = MaktabahNativeActionAcceptanceProbe(kind: "notes") else { return }
+        do {
+            for _ in 0..<900 {
+                try Task.checkCancellation()
+                if probe.hasResult { return }
+                if MaktabahNativeInspectorBinding.currentReader(in: manager) === reader,
+                   let session = actionAcceptanceSession(manager: manager), session.canPrepareNoteDraft(),
+                   AnnotationRepository.shared.db != nil, let locator = reader.selectedSegmentLocator,
+                   try probe.consumeTrigger() {
+                    let ref = try ActionAppIdentityBridge.actionRef(locator)
+                    let original = try AnnotationRepository.shared.loadAllAnnotations()
+                    let proposal = "טיוטה ללא שמירה \(probe.token.uuidString)"
+                    let result = try await prepareNoteDraft(locator: ref, proposedText: proposal, manager: manager)
+                    let draft = currentDraft()
+                    var payload: [String: Any] = [
+                        "coreResult": try probe.json(result),
+                        "originalStoreUnchanged": try AnnotationRepository.shared.loadAllAnnotations() == original,
+                        "originalUnsavedEditor": draft != nil && draft?.id == nil,
+                        "originalEditorOwnsProposal": draft?.note == proposal,
+                        "processID": ProcessInfo.processInfo.processIdentifier,
+                    ]
+                    if let actual = draft?.backendLocator {
+                        payload["originalDraftLocator"] = try probe.json(ActionAppIdentityBridge.actionRef(actual))
+                    }
+                    try probe.write(payload: payload)
+                    // Only UITest's actual Cancel button dismisses the editor.
+                    // Binding=nil alone is insufficient; await original onDismiss.
+                    for _ in 0..<300 {
+                        try Task.checkCancellation()
+                        if currentDraft() == nil, session.isPresentationReady {
+                            try probe.write(phase: "closed", payload: [
+                                "originalStoreUnchanged": try AnnotationRepository.shared.loadAllAnnotations() == original,
+                                "originalEditorDismissed": true,
+                                "originalSceneReady": session.mounted && session.foreground && session.isPresentationReady,
+                            ])
+                            return
+                        }
+                        try await Task.sleep(for: .milliseconds(100))
+                    }
+                    try probe.write(phase: "closed", payload: ["probeError": "original_editor_dismissal_not_observed"])
+                    return
+                }
+                try await Task.sleep(for: .milliseconds(100))
+            }
+            try probe.write(payload: ["probeError": "original_note_source_or_trigger_not_ready"])
+        } catch is CancellationError {
+            // An unmounted inactive reader must not overwrite the active owner's proof.
+        } catch {
+            try? probe.write(payload: ["probeError": "note_action_failed", "errorType": String(describing: type(of: error))])
+        }
+    }
+
+    func runSearchResultsAcceptanceProbe(manager: iOSNavigationManager) async {
+        guard let probe = MaktabahNativeActionAcceptanceProbe(kind: "search") else { return }
+        do {
+            guard let text = probe.argument("-nativeActionAcceptanceQuery"), !text.isEmpty else {
+                try probe.write(payload: ["probeError": "missing_independent_query"]); return
+            }
+            let query = try ActionSearchResultsQuery(.init(backend: .otzaria, text: text))
+            for _ in 0..<900 {
+                try Task.checkCancellation()
+                if probe.hasResult { return }
+                if manager.currentMode == .search,
+                   let scene = actionAcceptanceSession(manager: manager), scene.isPresentationReady,
+                   try probe.consumeTrigger() {
+                    let session = manager.unifiedSearchSession
+                    let before = session.submissionRevision
+                    let result = try await openSearchResults(query: query, manager: manager)
+                    let rows: [[String: Any]] = try session.results.prefix(20).map { item in
+                        var row: [String: Any] = ["stableID": item.stableID]
+                        if let locator = item.backendLocator {
+                            row["locator"] = try probe.json(ActionAppIdentityBridge.actionRef(locator))
+                        }
+                        return row
+                    }
+                    var payload: [String: Any] = [
+                        "coreResult": try probe.json(result),
+                        "originalQuery": session.query,
+                        "originalSubmissionBefore": before,
+                        "originalSubmissionAfter": session.submissionRevision,
+                        "originalHasSubmitted": session.hasSubmitted,
+                        "originalIsSearching": session.isSearching,
+                        "originalResultsAreDirty": session.resultsAreDirty,
+                        "originalBookIDs": session.selectedBookIds.sorted(),
+                        "originalRows": rows,
+                        "processID": ProcessInfo.processInfo.processIdentifier,
+                    ]
+                    if let error = session.errorMessage { payload["originalError"] = error }
+                    try probe.write(payload: payload)
+                    return
+                }
+                try await Task.sleep(for: .milliseconds(100))
+            }
+            try probe.write(payload: ["probeError": "original_search_scene_or_trigger_not_ready"])
+        } catch is CancellationError {
+        } catch {
+            try? probe.write(payload: ["probeError": "search_action_failed", "errorType": String(describing: type(of: error))])
+        }
+    }
+
+    func runCommentaryAcceptanceProbe(manager: iOSNavigationManager, reader: ReaderViewModel) async {
+        guard let probe = MaktabahNativeActionAcceptanceProbe(kind: "commentary") else { return }
+        do {
+            guard let workKey = probe.argument("-nativeActionAcceptanceTargetWorkKey") else {
+                try probe.write(payload: ["probeError": "missing_source_commentary_work"]); return
+            }
+            for _ in 0..<900 {
+                try Task.checkCancellation()
+                if probe.hasResult { return }
+                if MaktabahNativeInspectorBinding.currentReader(in: manager) === reader,
+                   let scene = actionAcceptanceSession(manager: manager), scene.isPresentationReady,
+                   let base = reader.selectedSegmentLocator, try probe.consumeTrigger() {
+                    let ref = try ActionAppIdentityBridge.actionRef(base)
+                    // The action changes the active tab. This explicit local
+                    // request belongs to the composition, not the disappearing
+                    // source View's task. Core owns its normal bounded lifetime.
+                    await Task { @MainActor in
+                        do {
+                            let result = try await self.openCommentary(baseLocator: ref,
+                                workRef: .init(backend: ref.backend, workKey: workKey), manager: manager)
+                            try probe.write(payload: [
+                                "coreResult": try probe.json(result),
+                                "originalBaseLocator": try probe.json(ref),
+                                "processID": ProcessInfo.processInfo.processIdentifier,
+                            ])
+                        } catch {
+                            try? probe.write(payload: ["probeError": "commentary_action_failed",
+                                "errorType": String(describing: type(of: error))])
+                        }
+                    }.value
+                    return
+                }
+                try await Task.sleep(for: .milliseconds(100))
+            }
+            try probe.write(payload: ["probeError": "original_commentary_source_or_trigger_not_ready"])
+        } catch is CancellationError {
+        } catch {
+            try? probe.write(payload: ["probeError": "commentary_probe_failed"])
+        }
+    }
+}
+#endif
+
 #endif

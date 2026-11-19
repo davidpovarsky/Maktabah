@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\docs\\hq-integration\\actions-native-20261120\\verify-commentary-fixture.py",
+    "--profile",
+    "Source/Otzaria/DataProfiles/miniTest10.profile.json",
+    "--database",
+    "build/actions-native-20261120/miniTest10/seforim.db",
+    "--archive",
+    "build/actions-native-20261120/miniTest10/miniTest10-seforim.db.zst",
+    "--output",
+    "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\docs\\hq-integration\\actions-native-20261120\\commentary-source-evidence.json"
+  ],
+  "durationSeconds": 0.437,
+  "exitCode": 0,
+  "output": "{\"output\": \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-actions-completion-20261120\\\\docs\\\\hq-integration\\\\actions-native-20261120\\\\commentary-source-evidence.json\", \"sha256\": \"8f36956d526735e7f55223d1b240c89ed3042b36b0ff22757ee648d311f3b699\", \"linkID\": 6529212, \"rows\": [{\"id\": 6188105, \"plainSHA256\": \"fb2e82003d0c6074169020011cdf92c1b36671ca8eaacef2295488db14a22c15\"}, {\"id\": 6609893, \"plainSHA256\": \"c6268174b7b68e32832c7beee72f7cf4932bb5607896a510d635c52ca79b5fd9\"}]}\r\n"
+}

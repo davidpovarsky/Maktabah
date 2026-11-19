@@ -122,6 +122,11 @@ struct SearchModeView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("global-search-screen")
         .modifier(MaktabahNativeRoutingSurface(kind: .searchResults))
+        #if DEBUG
+        .task {
+            await MaktabahNativeRoutingComposition.shared.runSearchResultsAcceptanceProbe(manager: navigationManager)
+        }
+        #endif
     }
 
     // MARK: - Sub-views

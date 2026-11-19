@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\docs\\hq-integration\\actions-native-20261120\\verify-commentary-fixture.py",
+    "--profile",
+    "Source/Otzaria/DataProfiles/miniTest10.profile.json",
+    "--database",
+    "build/actions-native-20261120/miniTest10/seforim.db",
+    "--archive",
+    "build/actions-native-20261120/miniTest10/miniTest10-seforim.db.zst",
+    "--output",
+    "C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\docs\\hq-integration\\actions-native-20261120\\commentary-source-evidence.json"
+  ],
+  "durationSeconds": 0.468,
+  "exitCode": 1,
+  "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\DAVID\\Code\\Maktabah-actions-completion-20261120\\docs\\hq-integration\\actions-native-20261120\\verify-commentary-fixture.py\", line 61, in <module>\r\n    assert len(links) == 1\r\n           ^^^^^^^^^^^^^^^\r\nAssertionError\r\n"
+}
