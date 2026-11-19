@@ -5,12 +5,12 @@
   "app_source": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "Original77 selected Native cases plus1 registered BookHistoryScope case:78 required cases,64iPad27+14iPhone27,zero skips. All80 catalog entries retained; two historical GlobalHistorySubmit exclusions remain explicit. No prior Native pass transferred.",
+  "scope": "All original78 selected Native cases plus the two restored original GlobalHistorySubmit cases:80 required cases,65iPad27+15iPhone27,zero skips. All80 catalog entries selected; historical exclusions retained only as prior records. No prior Native pass transferred.",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 78,
+  "required_nonzero_cases": 80,
   "expected_per_device": {
-    "ipad11": 64,
-    "iphone": 14
+    "ipad11": 65,
+    "iphone": 15
   },
   "cases": [
     {
@@ -171,7 +171,8 @@
         "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
         "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
         "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
-        "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
+        "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+        "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
       ],
       "hid_comparison": false
     },
@@ -263,7 +264,8 @@
         "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
-        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector"
+        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+        "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
       ],
       "hid_comparison": false
     }
@@ -346,7 +348,9 @@
     "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
     "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
     "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
-    "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory"
+    "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -1514,5 +1518,32 @@
       "BookHistoryScope original UI case registration",
       "history heading geometry then unchanged accessibility audit"
     ]
+  },
+  "global_history_submission_continuation": {
+    "prepared_at": "2026-11-20",
+    "base_source": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+    "previous_required_cases": 78,
+    "previous_manifest_sha256": "5646b548ab1272540f8fc5c4b6d3472766f3ec8400d58edcb46f506808017285",
+    "restored_original_case_ids": [
+      "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
+    ],
+    "preserved_selected_case_count": 78,
+    "required_cases_before_phase2_additions": 80,
+    "helper_path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "helper_sha256": "56de96e664914886219c1c226b1622f6c78780136900a3b52d72f7c154716cc0",
+    "setup_correction": "Exact current global-search-query native field + Return; actual original submission settles, cold session relaunch exposes persisted original inline history; focus retains real keyboard. No fabricated history, engine result or receipt.",
+    "preserved_oracles": [
+      "normal bootstrap per original R27 overrides",
+      "original unique Hebrew query submitted through native control",
+      "real persisted exact history row",
+      "one original field and one exact history row",
+      "visible and hittable row above actual native keyboard",
+      "read-only original history preference diagnostic"
+    ],
+    "source_freeze_status": "PENDING_COMBINED_SOURCE_FREEZE",
+    "native_status": "NOT_RUN",
+    "native_cases_executed": 0,
+    "whole_phase_accepted": false
   }
 }
