@@ -1,0 +1,68 @@
+{
+  "status": "ORIGINAL_NATIVE_CONSUMER_2_OF_2_VERIFIED_PASS",
+  "observed_at_utc": "2026-11-19T18:12:49.473058+00:00",
+  "run_id": 44571075774,
+  "source_sha": "5a40fe9c25e8dd6cfaef71c2f51e34d0adbd796e",
+  "application_source_sha": "868a94c0e4bfb8171cc910dc432710651054aa5d",
+  "cases": [
+    {
+      "case": "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
+      "status": "Passed",
+      "duration_seconds": 130.12773394584656
+    },
+    {
+      "case": "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+      "status": "Passed",
+      "duration_seconds": 57.06767296791077
+    }
+  ],
+  "missing": [],
+  "duplicates": [],
+  "skipped": 0,
+  "failed": 0,
+  "verified_app_source_git_blobs": 875,
+  "verified_original_dependency_generated_privacy_inputs": 1,
+  "privacy_added_reasons": 6,
+  "privacy_dependency_input_files": 5,
+  "verified_sdk_source_git_blobs": 422,
+  "sdk_before_after_identical": true,
+  "verified_test_and_helper_sha256_inputs": 31,
+  "test_tree_unchanged_from": "5456dab63e963aa68688798a09e601491190bcac",
+  "test_tree": "4f460233e0d4af052cfb7100beb0dd2459a5e150",
+  "draft_process_before": "5680",
+  "draft_process_after": "8355",
+  "draft_value_exactness": "Original XCTest asserts complete Hebrew/English multiline editor value after reopen and restart. AX itself truncates the displayed value.",
+  "after_restart_reconnect_visible_and_send_disabled": true,
+  "reader_before_after_png_sha256": "0f20503bd7c27cb3ffcd8c53607b33dfc2052d79f875aea24893d398b1780e46",
+  "reader_before_after_png_identical": true,
+  "review_images": [
+    "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-native-completion-20261119\\build\\native-restart-20261119\\run-44571075774\\review\\7B3BC239-82D2-4A4D-B8EC-23D6D6671503.png",
+    "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-native-completion-20261119\\build\\native-restart-20261119\\run-44571075774\\review\\6D35A85D-413A-41E0-A9A7-757C2087ACC8.png",
+    "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-native-completion-20261119\\build\\native-restart-20261119\\run-44571075774\\review\\5232FD31-21DE-4835-A01A-6BD3438B495D.png",
+    "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-native-completion-20261119\\build\\native-restart-20261119\\run-44571075774\\review\\5936DDA0-5296-4993-93D2-46E18B5CA8E9.png"
+  ],
+  "device": {
+    "architecture": "arm64",
+    "deviceId": "2CF5208F-D3B9-412C-855D-11A8D33959DB",
+    "deviceName": "Faithful 11-inch abdf8998",
+    "modelName": "iPad Pro 11-inch (M5)",
+    "osBuildNumber": "24B8117",
+    "osVersion": "27.2",
+    "platform": "iOS Simulator"
+  },
+  "xcresult_export_hash_mode": "Original verifier hashes json.dumps(value, sort_keys=True); independently matched. Raw file hashes recorded separately.",
+  "summary_json_raw_sha256": "193b82a4d89090ce9ca0e20af2bec2d2978c38a522584d7d330d3bcc892e911e",
+  "tests_json_raw_sha256": "138046baf2950982cbf74bea96eae6a2a3e6d0faedec78fdfb4aafbb516a302e",
+  "boundaries": [
+    "Pinned Simulator native UI only",
+    "No model/provider requests",
+    "No host transition API1.2 adoption",
+    "No full corpus, physical device, integrated77 or release acceptance"
+  ],
+  "visual_review": {
+    "after_restart_screenshot": "7B3BC239-82D2-4A4D-B8EC-23D6D6671503.png",
+    "observed": "Full Hebrew and English multiline draft visible in original composer after process restart; Connect visible, Send visually disabled. Returned Reader shows the original Sefer HaChinukh content/highlight.",
+    "reader_return_screenshot": "5936DDA0-5296-4993-93D2-46E18B5CA8E9.png",
+    "reviewed_at_utc": "2026-11-19T18:16:16.676891+00:00"
+  }
+}
