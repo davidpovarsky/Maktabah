@@ -284,11 +284,12 @@ for label, driver in [
     ("inspector-owner", "tools/hq-native-inspector-ownership.py"),
     ("hanlin-navigation-contract", "tools/hq-hanlin-navigation-transition.py"),
     ("hanlin-consumer-store", "tools/hq-hanlin-consumer-store.py"),
+    ("hanlin-api12-host", "tools/hq-hanlin-host-contracts.py"),
 ]:
     directory = artifacts / label
     command = [sys.executable, driver, "--artifacts-dir", str(directory)]
     prepared = None
-    if label in {"hanlin-navigation-contract", "hanlin-consumer-store"}:
+    if label in {"hanlin-navigation-contract", "hanlin-consumer-store", "hanlin-api12-host"}:
         # SDK-only checkout intentionally does not initialize all app submodules.
         # Reuse the original pinned SDK preparer; never substitute SDK modules.
         pin = json.loads(Path("Scripts/CI/hq-stage2-focused-apple.inputs.json").read_text())["hanlin_gitlink"]
@@ -296,16 +297,19 @@ for label, driver in [
             "--sha", pin, "--output", str(artifacts / "ui-acceptance-typecheck.hanlin-sdk-inputs.json")],
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=240)
         (artifacts / "ui-acceptance-typecheck.hanlin-sdk-prepare.log").write_text(prepared.stdout, encoding="utf-8")
-        command.extend(["--sdk-sha", pin])
+        if label == "hanlin-api12-host":
+            command.extend(["--hanlin-repo", "Vendor/HanlinSDK", "--hanlin-sha", pin])
+        else:
+            command.extend(["--sdk-sha", pin])
     checked = (prepared if prepared is not None and prepared.returncode else
         subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=300))
     source_regression_code = source_regression_code or checked.returncode
     (artifacts / ("ui-acceptance-typecheck." + label + "-driver.log")).write_text(checked.stdout, encoding="utf-8")
-    for name in ["RESULT.json", "compile.log", "tests.log", "swift-test.log", "inputs.json"]:
+    for name in ["RESULT.json", "result.json", "compile.log", "tests.log", "swift-test.log", "inputs.json"]:
         source = directory / name
         if source.is_file():
             (artifacts / ("ui-acceptance-typecheck." + label + "-" + name)).write_bytes(source.read_bytes())
-    receipt = directory / "RESULT.json"
+    receipt = directory / ("result.json" if label == "hanlin-api12-host" else "RESULT.json")
     report[label] = json.loads(receipt.read_text(encoding="utf-8")) if receipt.is_file() else {
         "status": "FAILED_WITHOUT_REPORT", "exitCode": checked.returncode, "native_passes": 0}
     print(json.dumps({"sourceRegression": label, "exitCode": checked.returncode, "native_passes": 0}))

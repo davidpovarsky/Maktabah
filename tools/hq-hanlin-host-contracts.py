@@ -6,7 +6,7 @@ from pathlib import Path
 import argparse, subprocess, hashlib, json, shutil, sys, re
 p = argparse.ArgumentParser()
 p.add_argument("--hanlin-repo", type=Path, required=True)
-p.add_argument("--hanlin-sha", default="bff3364d64f43b1d5235ead2b6e8f3756e890eed")
+p.add_argument("--hanlin-sha", default="e00498e33f106cc43be0476ffa2e09329c8ca300")
 p.add_argument("--artifacts-dir", type=Path, required=True)
 a = p.parse_args()
 repo = Path(__file__).resolve().parents[1]
@@ -70,7 +70,8 @@ with (out / "swift-test.log").open("w", encoding="utf-8") as log:
 r = subprocess.CompletedProcess(command, exit_code)
 log_text = (out / "swift-test.log").read_text(encoding="utf-8", errors="replace")
 expected_tests = sorted(set(re.findall(r"func (test[A-Za-z0-9_]+)\(", (build / "Tests/OtzariaHanlinHostAdapterTests/AdapterTests.swift").read_text(encoding="utf-8"))))
-passed_tests = sorted(set(re.findall(r"Test Case 'OtzariaHanlinHostAdapterTests\.(test[A-Za-z0-9_]+)' passed", log_text)))
+passed_tests = sorted(set(re.findall(
+    r"Test Case '.*OtzariaHanlinHostAdapterTests[ .](test[A-Za-z0-9_]+)[\]'].*passed", log_text)))
 if r.returncode == 0 and (not expected_tests or passed_tests != expected_tests):
     r = subprocess.CompletedProcess(command, 1)
 report = dict(expected_tests=expected_tests, passed_tests=passed_tests, warnings=log_text.count("warning:"),

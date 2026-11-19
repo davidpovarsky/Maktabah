@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce the current SDK navigation transition boundary using its WHOLE original dispatcher."""
+"""Verify the legacy strict open contract using the WHOLE original dispatcher; API 1.2 transitions are tested separately."""
 from pathlib import Path
 import argparse
 import datetime
@@ -83,14 +83,14 @@ if len(expected) != 8 or passed != expected:
     code = code or 1
 report = {
     "observed_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-    "status": "REPRODUCED_CURRENT_CONTRACT_LIMITATION" if code == 0 else "FAIL",
+    "status": "LEGACY_STRICT_OPEN_CONTRACT_VERIFIED" if code == 0 else "FAIL",
     "exit_code": code, "sdk_sha": args.sdk_sha,
     "inputs": len(inputs), "fixture_sha256": hashlib.sha256(fixture.read_bytes()).hexdigest(),
     "command": command, "passed": passed, "expected": expected,
     "warnings": log_text.count("warning:"), "native_passes": 0,
     "production_navigation_acceptance": "NOT_RUN",
     "boundary": "Whole unchanged SDK HostDispatcher + complete original Platform/Host contract modules. Explicit host/navigation effect double; no AgentSession, provider, UIKit, Otzaria runtime or actual UI acknowledgement.",
-    "finding": "Current context changes caused by navigation cannot be acknowledged through HostDispatcher.open: returning the old context becomes stale after the host effect, while returning a new context fails result validation. Existing safety guards remain unchanged.",
+    "finding": "The legacy HanlinHostIntegration API 1.0 / HostDispatcher.open path rejects context changes. This preserves compatibility and security; API 1.2 openWithContextTransition is verified separately by the hanlin-api12-host driver.",
 }
 (output / "RESULT.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(report))
