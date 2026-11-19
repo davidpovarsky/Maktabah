@@ -35,7 +35,7 @@ Reviewed revision: `a177c6fa243e7f6f9c250bbe4197ed011b09d689`.
 
 A later adoption gate would require an upstream-supported, injectable scene/instance API, owned cancellation/cleanup, and explicit missing-target failure. The app would still retain semantic step execution and receipt validation. Merely prefixing target strings with a scene ID does not fix window selection or shared cancellation. No vendor source was patched and no library was installed for this research.
 
-## Fit to the code that exists now
+## Fit to the frozen baseline and reviewed current delta
 
 | Existing boundary at the reviewed application SHA | Consequence for a guide |
 |---|---|
@@ -47,7 +47,13 @@ A later adoption gate would require an upstream-supported, injectable scene/inst
 | Public intents exclude imported scene, tab, restoration and authority IDs; local binding checks workspace/profile/tab, mapping revision and backend. | Store portable intent data, then bind actual local ownership at execution. Never serialize a prepared command for later replay. [R7] |
 | `MaktabahNativeRoutingComposition.open(public:manager:origin:until:)` already reaches the one registry/Core/native path; content uses `executeReaderPlan` and the original reader sink. | A `.guide` caller should use this seam, rather than opening a bespoke URL or mutating the reader model. The full Core reader result and native receipt remain required. [R8], [R9] |
 
-The currently registered native surfaces include Library, TOC, History, Search, Annotations, Settings, Reader and Inspector; Search exposes `native.search.query` as a component. Registration is not proof that every surface is currently available on every backend. The host's current live assessment remains authoritative. [R8]
+### Reviewed current delta — `5d8ef991`
+
+The five-action set above is retained as the exact `3f085091` research baseline, not the current implementation count. Source was additionally reviewed at `5d8ef991554b01ba6bf3d39222c5ef6cc00a264b`: `reader.openCommentary` was added by `f17d06856fbe2258d17cd6db20052af4801e4486`, making **six implemented actions**. Its original Core path requires the commentary resolver and prepared UI sink, validates the selected destination, and performs the existing reader authorization/receipt flow. Advertisement still depends on the installed ports and current backend availability; its presence in the implementation set alone is not a native acceptance result. [R11], [R12]
+
+`search.openResults` and `notes.prepareDraft` remain pending at this reviewed current SHA. A guide may use commentary only after live discovery and the same original native completion checks. No tests were rerun for this documentation update; the baseline source hashes remain unchanged and the delta is recorded separately in `SOURCES.json`.
+
+At the frozen baseline, registered native surfaces include Library, TOC, History, Search, Annotations, Settings, Reader and Inspector; Search exposes `native.search.query` as a component. Registration is not proof that every surface is currently available on every backend. The host's current live assessment remains authoritative. [R8]
 
 ## Proposed implementation contract
 
@@ -126,7 +132,7 @@ Start with portable coordinator tests over the **real existing Core/Registry con
 1. **Guide context and app-event adapter:** `.guide` exists, but the frozen baseline has no guide coordinator or complete trusted guide-context/event publisher. Reuse existing authority and content-rights owners; do not infer rights from the origin or scenario. Search/content practice remains unavailable until its genuine context can be issued. [R1], [R8]
 2. **Live component anchors:** existing IDs and eligibility need a minimal scene-owned anchor observation bridge. This must not turn metadata or an accessibility identifier into a mutation capability. [R5], [R6], [R7], [R8]
 3. **Optional spotlight:** Beacon's current global scene selection and skip semantics block direct adoption. Native coaching remains the initial path. A changed Beacon version would need source re-review and GT-04/06/08/09 before selection. [G2], [G3], [G4]
-4. **Capabilities beyond the frozen five:** use live discovery after the independently implemented semantic-action work lands; no acceptance is inferred from an inventory descriptor. [R3], [R4]
+4. **Capabilities beyond the reviewed current six:** `reader.openCommentary` is now implemented in the explicitly reviewed delta; `search.openResults` and `notes.prepareDraft` remain pending. Use live discovery after further semantic-action work lands; no native acceptance is inferred from an implementation flag or inventory descriptor. [R3], [R4], [R11], [R12]
 5. **Native/device verification and recording:** the guide pilot, accessibility/RTL matrix, checkpoint behavior and private-parameter recording policy are not implemented or executed by this research.
 
 Research scope is complete: original task requirements, reusable options, exact source mismatches, contract reuse, execution/control semantics and implementation acceptance are documented. There is no product implementation or new dependency in this change. No Swift/Apple/UI test was run for this document; only source/document review and document/provenance checks were performed. The old Asana pause is superseded by the owner's explicit current resume instruction; this research does not expand its scope into implementation.
@@ -160,3 +166,5 @@ All external sources are Apple documentation or the original library repositorie
 [R8]: https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
 [R9]: https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift
 [R10]: https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift
+[R11]: https://github.com/davidpovarsky/Maktabah/blob/5d8ef991554b01ba6bf3d39222c5ef6cc00a264b/Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift
+[R12]: https://github.com/davidpovarsky/Maktabah/blob/5d8ef991554b01ba6bf3d39222c5ef6cc00a264b/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift

@@ -5,13 +5,13 @@
   "batch": "20261120",
   "asana_task": {
     "gid": "1219614468074332",
-    "name": "[RESEARCH] הדרכה אינטראקטיבית ואוטומציה מרובת צעדים על אותו מנוע",
+    "name": "[RESEARCH] \u05d4\u05d3\u05e8\u05db\u05d4 \u05d0\u05d9\u05e0\u05d8\u05e8\u05d0\u05e7\u05d8\u05d9\u05d1\u05d9\u05ea \u05d5\u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d4 \u05de\u05e8\u05d5\u05d1\u05ea \u05e6\u05e2\u05d3\u05d9\u05dd \u05e2\u05dc \u05d0\u05d5\u05ea\u05d5 \u05de\u05e0\u05d5\u05e2",
     "modified_at": "2026-11-15T13:04:18.179Z",
     "completed_at_read": false,
     "comments_count": 0,
     "subtasks_count": 0,
     "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219614468074332",
-    "original_research_requirement": "לחקור SDKs וספריות SwiftUI קיימות להדרכה, spotlight, coach marks, ניווט רב-מסכי ומצב replay, עם מטרה לשימוש חוזר ולא בנייה מאפס. נדרש סיור אוטומטי שמפעיל פעולות אמיתיות, מצב התנסות ידני/חופשי, עצירה/חזרה/הפעלה חוזרת, רצפי פעולות מורכבים ללא קוד או Deep Link ייעודי לכל תרחיש, אפשרות עתידית להקלטת תרחיש מהפעלת אפליקציה. לחקור Registry למזהי רכיבי UI מול פעולות סמנטיות, readiness, cancellation, UI sync, RTL, accessibility ויישום מאובטח. מחקר בלבד."
+    "original_research_requirement": "\u05dc\u05d7\u05e7\u05d5\u05e8 SDKs \u05d5\u05e1\u05e4\u05e8\u05d9\u05d5\u05ea SwiftUI \u05e7\u05d9\u05d9\u05de\u05d5\u05ea \u05dc\u05d4\u05d3\u05e8\u05db\u05d4, spotlight, coach marks, \u05e0\u05d9\u05d5\u05d5\u05d8 \u05e8\u05d1-\u05de\u05e1\u05db\u05d9 \u05d5\u05de\u05e6\u05d1 replay, \u05e2\u05dd \u05de\u05d8\u05e8\u05d4 \u05dc\u05e9\u05d9\u05de\u05d5\u05e9 \u05d7\u05d5\u05d6\u05e8 \u05d5\u05dc\u05d0 \u05d1\u05e0\u05d9\u05d9\u05d4 \u05de\u05d0\u05e4\u05e1. \u05e0\u05d3\u05e8\u05e9 \u05e1\u05d9\u05d5\u05e8 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9 \u05e9\u05de\u05e4\u05e2\u05d9\u05dc \u05e4\u05e2\u05d5\u05dc\u05d5\u05ea \u05d0\u05de\u05d9\u05ea\u05d9\u05d5\u05ea, \u05de\u05e6\u05d1 \u05d4\u05ea\u05e0\u05e1\u05d5\u05ea \u05d9\u05d3\u05e0\u05d9/\u05d7\u05d5\u05e4\u05e9\u05d9, \u05e2\u05e6\u05d9\u05e8\u05d4/\u05d7\u05d6\u05e8\u05d4/\u05d4\u05e4\u05e2\u05dc\u05d4 \u05d7\u05d5\u05d6\u05e8\u05ea, \u05e8\u05e6\u05e4\u05d9 \u05e4\u05e2\u05d5\u05dc\u05d5\u05ea \u05de\u05d5\u05e8\u05db\u05d1\u05d9\u05dd \u05dc\u05dc\u05d0 \u05e7\u05d5\u05d3 \u05d0\u05d5 Deep Link \u05d9\u05d9\u05e2\u05d5\u05d3\u05d9 \u05dc\u05db\u05dc \u05ea\u05e8\u05d7\u05d9\u05e9, \u05d0\u05e4\u05e9\u05e8\u05d5\u05ea \u05e2\u05ea\u05d9\u05d3\u05d9\u05ea \u05dc\u05d4\u05e7\u05dc\u05d8\u05ea \u05ea\u05e8\u05d7\u05d9\u05e9 \u05de\u05d4\u05e4\u05e2\u05dc\u05ea \u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4. \u05dc\u05d7\u05e7\u05d5\u05e8 Registry \u05dc\u05de\u05d6\u05d4\u05d9 \u05e8\u05db\u05d9\u05d1\u05d9 UI \u05de\u05d5\u05dc \u05e4\u05e2\u05d5\u05dc\u05d5\u05ea \u05e1\u05de\u05e0\u05d8\u05d9\u05d5\u05ea, readiness, cancellation, UI sync, RTL, accessibility \u05d5\u05d9\u05d9\u05e9\u05d5\u05dd \u05de\u05d0\u05d5\u05d1\u05d8\u05d7. \u05de\u05d7\u05e7\u05e8 \u05d1\u05dc\u05d1\u05d3."
   },
   "application": {
     "repository": "davidpovarsky/Maktabah",
@@ -77,6 +77,33 @@
         "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
         "sha256": "9254b898db2fa2913ba19ac9df5b84afaf470af51033dc1a36cb8ef4d3b7c625",
         "url": "https://github.com/davidpovarsky/Maktabah/blob/3f085091edbf86117e1ce9b1d10d2f2b87bfbc4d/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      }
+    ],
+    "reviewed_deltas": [
+      {
+        "commit": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
+        "feature_commit": "f17d06856fbe2258d17cd6db20052af4801e4486",
+        "reviewed_files": [
+          {
+            "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+            "sha256_lf": "831de83d5ff56dfc61b6cc60a58d3c2324ac6f3b2b3a1b010d159d1751560df6",
+            "url": "https://github.com/davidpovarsky/Maktabah/blob/5d8ef991554b01ba6bf3d39222c5ef6cc00a264b/Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift"
+          },
+          {
+            "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+            "sha256_lf": "d83a5722dd76ef30b1a361d069f73eec46339ffc8d97e1fa958fe88b38f9f43c",
+            "url": "https://github.com/davidpovarsky/Maktabah/blob/5d8ef991554b01ba6bf3d39222c5ef6cc00a264b/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift"
+          }
+        ],
+        "implemented_action_count": 6,
+        "newly_implemented": [
+          "reader.openCommentary"
+        ],
+        "still_pending": [
+          "search.openResults",
+          "notes.prepareDraft"
+        ],
+        "validation": "Source review only; no new test or native acceptance claim. Frozen baseline provenance retained."
       }
     ]
   },
