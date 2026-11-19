@@ -312,7 +312,7 @@ private struct OtzariaHanlinHistoryView: View {
     }
     private func reload() {
         do { rows = try owner.history(); error = nil }
-        catch { error = String(localized: "Saved conversations are unavailable. Existing data has been preserved.") }
+        catch { self.error = String(localized: "Saved conversations are unavailable. Existing data has been preserved.") }
     }
 }
 #endif

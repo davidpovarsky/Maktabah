@@ -46,3 +46,31 @@ acceptance remain separate.
 
 Hanlin SDK pin remains 873607e45e021b40fe5b940c836d398c329f95c8.
 Dependency locks, upstream components, native routing, real bootstrap and release/signing gates are unchanged.
+
+## Native full-build result at 373c9dbf
+
+The original runtime27 UI route 44474935357 executed at checkout
+373c9dbf68e3e06a667fee902c52540e71596ed8, application source
+3609903e1b56ae877bf39049f2f9178f23a3b8eb, and original SDK gitlink
+873607e45e021b40fe5b940c836d398c329f95c8. Xcode 27.2 (27B52), Apple Swift
+6.4.2 and iOS Simulator SDK 27.2 reached the complete app/test build-for-testing
+gate, which failed. Both selected UI journeys are NOT_RUN (zero executed pass
+and zero executed fail); the earlier immutable identity diagnostic is absent
+from this log, but that is not a complete build pass.
+
+The exact errors at OtzariaHanlinChatView.swift:315 report an immutable caught
+Error and assigning String to Error. Swift's implicit catch variable shadows
+the existing presentation error property. The downstream-only correction
+qualifies self.error; it does not change persistence, the message, the error
+policy, the test selection, or the native assertions. The same file's open
+and delete error handlers already use this qualification.
+
+Original failure: https://github.com/davidpovarsky/Maktabah/actions/runs/44474935357
+
+Artifact 14506784693 is 39,609,786 bytes, authenticated against GitHub's full
+SHA-256 ef8fd6b6b2e32c26c301d0cff9d15e92d4bcee7b6b85283fb450876900ac0a81.
+Every ZIP member CRC passed. The complete compiler log and both original
+runtime27 and focused-build result documents are retained. The external
+VERIFIED_NATIVE_BUILD_FAILURE.json records their exact source and hashes.
+A subsequent complete Apple build and both original consumer UI journeys
+remain required; local Swift parsing is not product acceptance.
