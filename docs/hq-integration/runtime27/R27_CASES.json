@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "04614e5096d78347a90961bf68abccd16394826e",
+  "source_test_commit": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "04614e5096d78347a90961bf68abccd16394826e",
+  "app_source": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "Original27 plus actual source-qualified continuation cases;70 required Native cases,58iPad27+12iPhone27,zero skips;app/system/physical/release gates remain distinct.",
@@ -1016,7 +1016,7 @@
       "prior_result_retained": true
     },
     "native_source_followup": {
-      "sha": "9f877cbd9484207723781d8c15c580c77755fdbb",
+      "sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
       "evidence": "docs/hq-integration/native-followup-20261118/README.md",
       "prior_run": 44207959071,
       "status": "SOURCE_IMPLEMENTED_NATIVE_PENDING",
@@ -1140,10 +1140,11 @@
       "current_native_ui_executed": 0,
       "current_release_ready": false,
       "existing_assertion_timeouts_relaxed": false,
-      "exact_target_waits": "Retain 30-second reader content acceptance; observe exact later-page locator within30 seconds and initial known bootstrap locator within the existing60-second initial reader budget."
+      "exact_target_waits": "Retain 30-second reader content acceptance; observe exact later-page locator within30 seconds and initial known bootstrap locator within the existing60-second initial reader budget.",
+      "source_sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71"
     }
   },
-  "application_source_sha": "04614e5096d78347a90961bf68abccd16394826e",
+  "application_source_sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",

@@ -107,6 +107,7 @@
     "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift",
     "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
     "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+    "Source/ChavrusaText/Search/ReaderSearchContextCoordinator.swift",
     "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
     "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
     "Source/ChavrusaText/Testing/ReaderRenderedHighlightInspector.swift",
@@ -117,6 +118,7 @@
     "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
     "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
     "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+    "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift",
     "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
     "Source/Features/Reader/iOS/iOSReaderView.swift",
     "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
@@ -272,14 +274,14 @@
       "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
       "anchor": "viewModel.fetchSelectedRange",
       "old_blob": "23cd37e5897b51b9d19839a089d8d3f4a0abc597",
-      "current_blob": "32e7d310d8e2a531305b87b6843ba771fca96e09",
+      "current_blob": "088c73a9d628d15cc527aada2b861e4df30083ee",
       "line": 709
     },
     {
       "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
       "anchor": "var onAddAnnotation:",
       "old_blob": "23cd37e5897b51b9d19839a089d8d3f4a0abc597",
-      "current_blob": "32e7d310d8e2a531305b87b6843ba771fca96e09",
+      "current_blob": "088c73a9d628d15cc527aada2b861e4df30083ee",
       "line": 551
     },
     {
@@ -458,5 +460,5 @@
       "line": 637
     }
   ],
-  "source_sha": "04614e5096d78347a90961bf68abccd16394826e"
+  "source_sha": "2c5af4e9e2f0fd2cd774c6705b7f2e2a7dd82f71"
 }
