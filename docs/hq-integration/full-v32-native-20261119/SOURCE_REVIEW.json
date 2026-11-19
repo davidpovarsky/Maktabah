@@ -1,0 +1,23 @@
+{
+  "status": "SOURCE_AND_WRAPPER_CONTROLS_PASS",
+  "observed_at": "2026-11-19T18:56:00.272233+00:00",
+  "synthetic_wrapper_tests": 14,
+  "native_runtime_executed": false,
+  "ui_xctest_cases_executed": 0,
+  "original_launcher_oracles_and_timeouts_unchanged": true,
+  "application_source_sha": "65e142827be7c241fbda7ee79635494c8098132c",
+  "parent": "573f4ac6cf0a0c1f22a011ff0477119eea6ff112",
+  "checks": [
+    "Python AST",
+    "14 explicit synthetic report/manifest/simulator controls",
+    "Git Bash syntax",
+    "original launcher reverse-diff",
+    "workflow YAML schema and read-only isolated mode",
+    "git diff --check"
+  ],
+  "input_sha256": {
+    "Scripts/CI/hq-v32-prebuilt-native.py": "779953b8d119e5c0118675cceb89f5755973bfaf3966ccb6f026650e8075bee5",
+    "Scripts/CI/test-v32-prebuilt-native.py": "c9c63fec6c6a4eeb32bb80c6241bdb44f14cabb3b051fb42f039153da9de8e68",
+    "docs/hq-integration/full-v32-native-20261119/otzaria-search-manifest.json": "34319ced48e76f22a5ae2df23745a03332160ddab2dd64244a5c917e0ce00a57"
+  }
+}

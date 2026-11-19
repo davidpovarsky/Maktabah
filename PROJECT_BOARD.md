@@ -18,6 +18,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Full v32 prebuilt acceptance can reuse the original native downloader/installer and three-mode/golden-query runner. The explicit `native_existing_v32` workflow mode uses the current source-pinned Xcode27 build and a newly created exact simulator, then checks original query identities across distinct app PIDs. Wrapper controls are not native evidence; installation, complete UI, Zayit and physical-device results remain separate gates (2026-11-19).
+
 - Runtime27's saved xcresult verifier hashes canonical Python JSON (`json.dumps(value, sort_keys=True)`), not the pretty-printed summary/tests file bytes. Reproducing that serialization verifies the recovered `43891893650` receipts; the exact-source reader outcomes are 9 PASS / 13 FAIL, not aggregate acceptance. Also distinguish similarly named HQ evidence folders from the actual run/device before reuse. See `docs/phase1-cezar/MANAGER_EVIDENCE_REVIEW.md` (2026-11-17).
 
 - Xcode27.1 `XCUIApplication.open` restarted the target PID for nominal warm/replay URLs in Native43844345630; two receipts therefore belonged to separate process lifetimes. The background XCTest Runner's `UIApplication.open` was rejected in43863125434. The Phase1 owned `simctl openurl` fixture retains strict actual same-PID and original canonical receipt/UI checks; its real Native validation remains pending. Do not add persistent replay storage to compensate for a cold-launching warm fixture (2026-11-16).

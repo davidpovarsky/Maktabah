@@ -3,6 +3,16 @@ name: Build Otzaria Search Artifacts
 on:
   workflow_call:
     inputs:
+      native_existing_v32:
+        description: Run original full v32 app installation/query/relaunch only; never publish
+        required: false
+        type: boolean
+        default: false
+      native_expected_sha:
+        description: Exact reviewed workflow and application checkout for native v32 mode
+        required: false
+        type: string
+        default: ""
       publish_release:
         description: Publish verified package as a dedicated public data release
         required: true
@@ -19,6 +29,16 @@ on:
         default: false
   workflow_dispatch:
     inputs:
+      native_existing_v32:
+        description: Run original full v32 app installation/query/relaunch only; never publish
+        required: false
+        type: boolean
+        default: false
+      native_expected_sha:
+        description: Exact reviewed workflow and application checkout for native v32 mode
+        required: false
+        type: string
+        default: ""
       publish_release:
         description: Publish verified package as a dedicated public data release
         required: true
@@ -50,6 +70,7 @@ concurrency:
 
 jobs:
   lexical-artifact:
+    if: ${{ !inputs.native_existing_v32 }}
     runs-on: macos-26
     timeout-minutes: 720
     steps:
@@ -352,3 +373,82 @@ jobs:
           git status --short --untracked-files=no
           test -z "$(git status --short --untracked-files=no)"
           test -z "$(git ls-files '*.gguf' '*.db.zst' 'build/otzaria-artifact/*')"
+
+  native-existing-v32:
+    name: Original app full v32 install, query, and relaunch
+    if: ${{ inputs.native_existing_v32 }}
+    runs-on: xcode-27
+    timeout-minutes: 120
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - name: Require the reviewed immutable source and existing v32 package
+        env:
+          REQUESTED_SHA: ${{ inputs.native_expected_sha }}
+          PUBLISH: ${{ inputs.publish_release }}
+          REPAIR: ${{ inputs.repair_manifest_layout }}
+          EXISTING_TAG: ${{ inputs.existing_release_tag }}
+        run: |
+          [[ "$REQUESTED_SHA" =~ ^[a-f0-9]{40}$ ]]
+          test "$REQUESTED_SHA" = "$GITHUB_SHA"
+          test "$PUBLISH" = false
+          test "$REPAIR" = false
+          test "$EXISTING_TAG" = otzaria-search-data-v32-20261010190601-102293b3a63c
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.native_expected_sha }}
+          fetch-depth: 0
+      - name: Select the existing matching Xcode27 and iOS runtime
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/hq-v32-prebuilt-native/toolchain.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Check capacity and exact original source
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ inputs.native_expected_sha }}
+        run: |
+          python3 -c 'import shutil; assert shutil.disk_usage(".").free >= 35 * 1024**3, "Need 35 GiB free before the original app build"'
+          python3 Scripts/CI/hq-v32-prebuilt-native.py preflight --expected-sha "$EXPECTED_CHECKOUT_SHA"
+          command -v zstd >/dev/null || brew install zstd
+      - name: Build the original integrated app for the simulator
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_CHECKOUT_SHA: ${{ inputs.native_expected_sha }}
+        run: python3 Scripts/CI/hq-stage2-focused-apple.py --build-for-testing
+      - name: Authenticate the existing v32 manifest, source, and resume seed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_CHECKOUT_SHA: ${{ inputs.native_expected_sha }}
+        run: python3 Scripts/CI/hq-v32-prebuilt-native.py prepare --expected-sha "$EXPECTED_CHECKOUT_SHA"
+      - name: Execute original native installer and query acceptance across restart
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ inputs.native_expected_sha }}
+        run: python3 Scripts/CI/hq-v32-prebuilt-native.py run --expected-sha "$EXPECTED_CHECKOUT_SHA"
+      - name: Preserve source-bound evidence and original failure diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-v32-native-prebuilt-evidence
+          path: |
+            build/hq-v32-prebuilt-native/*.json
+            build/hq-v32-prebuilt-native/*.log
+            build/hq-v32-prebuilt-native/reports/
+            build/hq-stage2/result.json
+            build/hq-stage2/*.log
+            build/hq-stage2/rebuilt-zayit/
+            build/hq-stage2/generated-pods-project.diff
+            build/hq-stage2/resolved-Podfile.lock
+            build/hq-stage2/actual-source-inputs.json
+            build/hq-stage2/hanlin-sdk-inputs*.json
+            build/hq-stage2/*Package.resolved
+            build/hq-stage2/generated-privacy.diff
+            build/hq-stage2/privacy-*.xcprivacy
+            build/hq-stage2/ExpoModulesProvider.swift
+            build/hq-stage2/privacy-dependency-inputs/*.xcprivacy
+          compression-level: 6
+          if-no-files-found: error

@@ -19,7 +19,7 @@ test -d "$APP"; test -f "$DATABASE"; test -f "$MANIFEST"; test -d "$PACKAGE"
 
 # Select intended stable iOS 18 iPhone simulator
 UDID="$(python3 <<'PY'
-import json, subprocess, sys
+import json, os, subprocess, sys
 
 def simctl(*arguments):
     return json.loads(subprocess.check_output(["xcrun", "simctl", *arguments, "-j"]))
@@ -31,6 +31,15 @@ for r in simctl("list", "runtimes", "available").get("runtimes", []):
         runtimes[r["identifier"]] = tuple(parts)
 
 devices_data = simctl("list", "devices", "available").get("devices", {})
+requested = os.environ.get("OTZARIA_PREBUILT_SIMULATOR_UDID")
+if requested:
+    matches = [device for runtime_id, devices in devices_data.items()
+               if runtime_id in runtimes for device in devices
+               if device.get("udid") == requested and device.get("isAvailable")]
+    if len(matches) != 1:
+        raise SystemExit("Requested isolated simulator is unavailable or ambiguous")
+    print(matches[0]["udid"])
+    sys.exit(0)
 candidates = []
 for runtime_id, devices in devices_data.items():
     version = runtimes.get(runtime_id)
