@@ -1,0 +1,7 @@
+# SDK attempt 2: successful verification and recovered original artifact
+
+[Run 44559343820, attempt 2](https://github.com/davidpovarsky/Maktabah/actions/runs/44559343820) completed SUCCESS at 18:03:05 UTC on 19 November 2026, on the same immutable ef449e640c3fd538b52627a48ea09846a785c52e source. Only the failed SDK job was rerun. The exact original GitHub artifact is retained as raw-proof.zip: 154,268 bytes, SHA256 1804efcc2848650c5ab7fcdef5816e95f2f21695016fb31b8888c62232d2b602, artifact ID 14561290442. This resolves the previous upload-artifact transport failure; attempt 1 remains recorded as an overall failure with zero uploaded artifacts.
+
+The original report verifies SDK code generation and all 75 selected UI declarations, 20 actual SQLite checks, 15 real Foundation/UTF16 range cases, 17 Inspector-owner cases with explicit model DTO doubles, 8 old Hanlin contract-limit reproduction cases, and 61 workspace harness checks. All tracked source hashes recorded in REVIEW.json were independently matched to the tested Git revision, and all 422 original SDK input blobs were matched to SDK080d1a2b264ead9e3f9df690f2dd0d3e81ebd07e.
+
+The SDK report contains 2,306 warning occurrences; it is not a warning-free build. No Native UI test, full app runtime, physical device or release acceptance is claimed. The old 8-case Hanlin probe deliberately reproduces the context-transition limitation with a host double; the newer API1.2 has separate evidence in the original Hanlin repository. The Native75 run 44559352638 remains independent.
