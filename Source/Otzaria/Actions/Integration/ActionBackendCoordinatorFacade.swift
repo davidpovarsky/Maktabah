@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -179,6 +179,39 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         let task = Task.detached { try ActionLibraryProjection.searchPage(page, query: query, works: works.works) }
         let result = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
         try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        return result
+    }
+
+    func commentaryLinks(for baseLocator: ActionTextRef,
+                         invocation: ActionPortInvocation) async throws -> [ActionCommentaryLink] {
+        let backend = baseLocator.backend
+        try await require("reader.openCommentary", backend: backend, invocation: invocation)
+        guard try await validate(baseLocator, invocation: invocation) == baseLocator else { throw ActionPortError.invalidResponse }
+        let nativeBase = try ActionAppIdentityBridge.appLocator(baseLocator)
+        let sources: [LibraryRelatedSource]
+        do { sources = try await coordinator.links(for: nativeBase) }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+        guard sources.count <= 10_000 else { throw ActionPortError.invalidResponse }
+        var result: [ActionCommentaryLink] = []
+        for (index, source) in sources.enumerated() {
+            if index.isMultiple(of: 256) {
+                await Task.yield()
+                try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+            }
+            // The inspector's original classifier distinguishes actual
+            // commentary from quoting commentary, translations and other links.
+            guard OtzariaRelationshipClassifier.classify(category: source.category, type: source.type).relationshipKind == .commentary else { continue }
+            guard ActionAppIdentityBridge.actionBackend(source.locator.backend) == backend else { throw ActionPortError.invalidResponse }
+            let original = ReaderDestinationResolver.resolve(locator: source.locator)
+            let destination = ActionReaderDestination(sectionLocator: try ActionAppIdentityBridge.actionRef(original.sectionLocator),
+                focusLocator: try original.focusLocator.map(ActionAppIdentityBridge.actionRef))
+            let names = [source.displayRef, source.heRef, source.collectiveTitle, source.heCollectiveTitle]
+                .compactMap { $0 }.filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+            let title = names.last ?? source.displayRef
+            result.append(.init(baseLocator: baseLocator, destination: destination, title: title, aliases: Array(Set(names)).sorted()))
+        }
+        try await require("reader.openCommentary", backend: backend, invocation: invocation)
         return result
     }
 

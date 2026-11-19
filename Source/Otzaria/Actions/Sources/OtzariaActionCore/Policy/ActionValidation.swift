@@ -19,7 +19,7 @@ enum ActionValidation {
         try collectBackends(.object(request.arguments), into: &backends)
         guard backends.count <= 1 else { throw ActionContractError.invalid("$.arguments") }
         try semanticReferences(.object(request.arguments))
-        for key in ["query", "text", "section"] {
+        for key in ["query", "text", "section", "commentaryQuery"] {
             if let value = request.arguments[key]?.string, value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 throw ActionContractError.invalid("$.arguments.\(key)")
             }

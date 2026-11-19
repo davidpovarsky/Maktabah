@@ -68,6 +68,9 @@ public actor ActionExecutor {
             guard ActionRegistry.implemented.contains(request.action), !action.descriptor.mutatesUserData, action.descriptor.riskTier < 3 else {
                 throw ActionEngineFailure(.notSupported, "action_not_implemented")
             }
+            if request.action == "reader.openCommentary", !(await commentaryNavigationAvailable()) {
+                throw ActionEngineFailure(.notSupported, "commentary_navigation_unavailable")
+            }
             let existing = ledger[key]
             if let existing {
                 guard try equivalent(existing.request, request), existing.authority == Authority(context) else { throw ActionEngineFailure(.failed, "request_replay_conflict") }
@@ -165,6 +168,7 @@ public actor ActionExecutor {
             // invent mode support from broad flags or silently ignore the flag.
             if request.arguments["includeModes"] == .bool(true) { throw ActionEngineFailure(.notSupported, "mode_discovery_unavailable") }
             let includeReadiness = request.arguments["includeReadiness"] == .bool(true)
+            let commentaryAvailable = await commentaryNavigationAvailable()
             var reports: [ActionJSON] = []
             for target in ActionBackendID.allCases {
                 let report: ActionBackendReport?
@@ -177,6 +181,7 @@ public actor ActionExecutor {
                 for descriptor in registry.descriptors {
                     let raw = report?.operations[descriptor.id]
                     let implemented = ActionRegistry.implemented.contains(descriptor.id)
+                        && (descriptor.id != "reader.openCommentary" || commentaryAvailable)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend) }
@@ -238,14 +243,49 @@ public actor ActionExecutor {
             let page = try await search.search(query, invocation: invocation)
             try validate(page, query: query, context: context)
             result = completed(try ActionJSON.encoded(page).object ?? [:])
-        case "reader.open":
-            let destination = try ActionValidation.destination(request.arguments)
+        case "reader.open", "reader.openCommentary":
+            let destination: ActionReaderDestination
+            if request.action == "reader.openCommentary" {
+                guard let commentary = resolver as? any ActionCommentaryResolverPort,
+                      let rawBase = request.arguments["baseLocator"] else { throw ActionPortError.notSupported }
+                let base = try rawBase.decoded(as: ActionTextRef.self)
+                let selected = try request.arguments["workRef"]?.decoded(as: ActionWorkRef.self)
+                try ActionPolicy.work(base.workKey, backend: backend, context: context)
+                if let selected { try ActionPolicy.work(selected.workKey, backend: backend, context: context) }
+                let resolved = try await commentary.resolveCommentary(.init(baseLocator: base, workRef: selected,
+                    commentaryQuery: request.arguments["commentaryQuery"]?.string), invocation: invocation)
+                try await recheck(snapshot, deadline: deadline)
+                switch resolved {
+                case .unique(let value):
+                    do {
+                        try ActionValidation.text(value.sectionLocator, backend: backend)
+                        if let focus = value.focusLocator {
+                            try ActionValidation.text(focus, backend: backend)
+                            guard focus.workKey == value.sectionLocator.workKey else { throw ActionPortError.invalidResponse }
+                        }
+                    } catch { throw ActionPortError.invalidResponse }
+                    guard value.presentationMode == .sameTab,
+                          selected == nil || selected?.workKey == value.sectionLocator.workKey else { throw ActionPortError.invalidResponse }
+                    // A commentary is another source. Preserve the base reader
+                    // through the existing native new-tab reservation.
+                    destination = ActionReaderDestination(sectionLocator: value.sectionLocator,
+                        focusLocator: value.focusLocator, presentationMode: .newTab)
+                case .ambiguous(let candidates):
+                    return try ambiguity(candidates, limit: 25, request: request, context: context, snapshot: snapshot)
+                case .notFound: throw ActionPortError.notFound
+                }
+            } else { destination = try ActionValidation.destination(request.arguments) }
             try ActionPolicy.work(destination.sectionLocator.workKey, backend: backend, context: context)
             guard request.requestedPresentation != .headless, let scene = ActionPolicy.foregroundScene(context),
                   let ui else { throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable") }
             let validated = try await resolver.validateDestination(destination, invocation: invocation)
             guard validated == destination else { throw ActionPortError.invalidResponse }
             try await recheck(snapshot, deadline: deadline)
+            if request.action == "reader.openCommentary" {
+                guard let preparedUI = ui as? any ActionCommentaryUICommandSink else { throw ActionPortError.notSupported }
+                try await preparedUI.prepareCommentaryReader(validated, context: context, invocation: invocation)
+                try await recheck(snapshot, deadline: deadline)
+            }
             let authorization: ActionNavigationPreparation?
             if let navigationAuthority {
                 guard let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
@@ -334,6 +374,12 @@ public actor ActionExecutor {
     }
 
     /// Discovery is policy- and availability-filtered, never the raw29 catalog.
+    private func commentaryNavigationAvailable() async -> Bool {
+        guard ui is any ActionCommentaryUICommandSink,
+              let commentary = resolver as? any ActionCommentaryResolverPort else { return false }
+        return await commentary.canResolveCommentary()
+    }
+
     public func advertisedActions(for backend: ActionBackendID, context: ActionExecutionContext) async -> [ActionDescriptor] {
         let request = ActionRequest(action: "system.listBackends", arguments: ["includeReadiness": .bool(true)], expectedBackend: backend)
         let result = await execute(request, context: context)
@@ -343,7 +389,7 @@ public actor ActionExecutor {
         return registry.descriptors.filter { descriptor in
             guard ActionRegistry.implemented.contains(descriptor.id), operations[descriptor.id]?.object?["availableNow"] == .bool(true) else { return false }
             guard (try? ActionPolicy.authorize(descriptor, context: context, backend: backend)) != nil else { return false }
-            return descriptor.id != "reader.open" || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
+            return !["reader.open", "reader.openCommentary"].contains(descriptor.id) || (ActionPolicy.foregroundScene(context) != nil && ui != nil)
         }
     }
 

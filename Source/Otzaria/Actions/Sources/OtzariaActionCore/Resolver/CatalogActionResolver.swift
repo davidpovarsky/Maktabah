@@ -3,7 +3,7 @@ import Dispatch
 
 /// Resolves source-owned catalog identities without a second index or guessed refs.
 /// DataPort.validate is an existence check against source data, not normalization.
-public actor CatalogActionResolver: ActionResolverPort {
+public actor CatalogActionResolver: ActionResolverPort, ActionCommentaryResolverPort {
     private struct CatalogView: Sendable {
         let entries: [ActionCatalogEntry]
         let identities: Set<ActionWorkRef>
@@ -137,6 +137,81 @@ public actor CatalogActionResolver: ActionResolverPort {
             try await checkpoint(invocation)
             return .ambiguous(output)
         }
+    }
+
+    public func canResolveCommentary() async -> Bool { data is any ActionCommentaryDataPort }
+
+    public func resolveCommentary(_ query: ActionResolveCommentaryQuery,
+                                  invocation: ActionPortInvocation) async throws -> ActionResolution<ActionReaderDestination> {
+        let base = query.baseLocator, backend = query.baseLocator.backend
+        try requireBackend(backend, invocation)
+        try requireReference(base)
+        guard query.workRef != nil || query.commentaryQuery != nil else { throw ActionContractError.invalid("commentary") }
+        if let work = query.workRef { try requireWork(work, backend: backend) }
+        let name = try query.commentaryQuery.map { try normalizedName($0, field: "commentaryQuery") }
+        guard let source = data as? any ActionCommentaryDataPort else { throw ActionPortError.notSupported }
+        let entries = try await catalog(backend, invocation)
+        let baseWork = ActionWorkRef(backend: backend, workKey: base.workKey, catalogRevision: base.catalogRevision)
+        guard entries.contains(baseWork) else { return .notFound }
+        if let work = query.workRef, !entries.contains(work) { return .notFound }
+        try await validateExactly(base, invocation)
+        let links = try await sourceCall(invocation) {
+            try await source.commentaryLinks(for: base, invocation: invocation)
+        }
+        // Never truncate a source response and then claim a unique match.
+        guard links.count <= 10_000 else { throw ActionPortError.invalidResponse }
+        var matchingCatalogWorkKeys = Set<String>()
+        if let name {
+            // Scan the catalog once, not once for every related passage.
+            for (index, entry) in entries.entries.enumerated() {
+                try await scanCheckpoint(index, invocation)
+                if try match(name, entry: entry) != nil { matchingCatalogWorkKeys.insert(entry.workRef.workKey) }
+            }
+        }
+        var destinations: [ActionTextRef: (ActionReaderDestination, String)] = [:]
+        var bytes = 0
+        for (index, link) in links.enumerated() {
+            try await scanCheckpoint(index, invocation)
+            guard link.baseLocator == base, link.destination.presentationMode == .sameTab,
+                  link.aliases.count <= 64 else { throw ActionPortError.invalidResponse }
+            let section = link.destination.sectionLocator, focus = link.destination.focusLocator
+            try requireSourceReference(section, backend: backend, work: nil, catalog: entries)
+            if let focus {
+                try requireSourceReference(focus, backend: backend, work: nil, catalog: entries)
+                guard focus.workKey == section.workKey, compatible(focus.catalogRevision, section.catalogRevision),
+                      compatible(focus.dataRevision, section.dataRevision) else { throw ActionPortError.invalidResponse }
+            }
+            try requireSourceText(link.title, maximum: 512)
+            for alias in link.aliases { try requireSourceText(alias, maximum: 512) }
+            bytes += link.title.utf8.count + link.aliases.reduce(0) { $0 + $1.utf8.count }
+            guard bytes <= maximumCatalogBytes else { throw ActionPortError.invalidResponse }
+            let work = ActionWorkRef(backend: backend, workKey: section.workKey, catalogRevision: section.catalogRevision)
+            if let selected = query.workRef, !matches(work, selected) { continue }
+            if let name, !matchingCatalogWorkKeys.contains(work.workKey) {
+                guard try ([link.title] + link.aliases).contains(where: {
+                    try normalizedName($0, field: "source") == name
+                }) else { continue }
+            }
+            let exact = focus ?? section
+            if let previous = destinations[exact] {
+                guard previous.0 == link.destination else { throw ActionPortError.invalidResponse }
+                continue
+            }
+            guard destinations.count < maximumReferenceCandidates else { throw ActionPortError.invalidResponse }
+            do {
+                try await validateExactly(section, invocation)
+                if let focus, focus != section { try await validateExactly(focus, invocation) }
+            } catch ActionPortError.notFound { throw ActionPortError.invalidResponse }
+            destinations[exact] = (link.destination, link.title)
+        }
+        try await checkpoint(invocation)
+        guard !destinations.isEmpty else { return .notFound }
+        if destinations.count == 1, let value = destinations.values.first { return .unique(value.0) }
+        let candidates = try destinations.keys.sorted(by: textLess).prefix(25).map { ref in
+            ActionCandidate(ref: try object(ref), title: destinations[ref]!.1,
+                            kind: .segment, confidenceBand: .exact, reason: "source_commentary_link")
+        }
+        return .ambiguous(candidates)
     }
 
     public func validateDestination(_ destination: ActionReaderDestination,
