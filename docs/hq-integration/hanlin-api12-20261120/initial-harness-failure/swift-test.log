@@ -1,0 +1,110 @@
+Building for debugging...
+[0/26] Write swift-version-2807070033DA82CF.txt
+[1/26] Write sources
+[6/26] Copying examples.v1.json
+[7/26] Copying backend-capability-matrix.v1.json
+[8/26] Copying backend-acceptance-cases.v1.json
+[9/26] Copying action-result.v1.schema.json
+[10/26] Copying action-request.v1.schema.json
+[11/26] Copying action-catalog.v1.json
+[12/26] Copying HanlinAppManifest.schema.json
+[14/27] Emitting module OtzariaActionCore
+[15/49] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[16/49] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[17/49] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[18/49] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[19/49] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[20/49] Compiling OtzariaActionCore ActionJSON.swift
+[21/49] Compiling OtzariaActionCore ActionReferences.swift
+[22/49] Compiling OtzariaActionCore ActionRequest.swift
+[23/49] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[24/49] Compiling OtzariaActionCore ActionSearch.swift
+[25/49] Compiling OtzariaActionCore ActionWireCodec.swift
+[26/49] Compiling OtzariaActionCore ActionDeadline.swift
+[27/49] Compiling OtzariaActionCore ActionExecutor.swift
+[28/49] Compiling OtzariaActionCore ActionExecutionContext.swift
+[29/49] Compiling OtzariaActionCore ActionPolicy.swift
+[30/49] Compiling OtzariaActionCore ActionValidation.swift
+[31/49] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[32/49] Compiling OtzariaActionCore ActionPorts.swift
+[33/49] Compiling OtzariaActionCore ActionRegistry.swift
+[34/49] Compiling OtzariaActionCore CatalogActionResolver+SourceSections.swift
+[35/49] Compiling OtzariaActionCore CatalogActionResolver.swift
+[36/49] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[38/51] Emitting module HanlinPlatformContracts
+[39/73] Compiling HanlinPlatformContracts HanlinCatalogContracts.swift
+[40/73] Compiling HanlinPlatformContracts HanlinChatStructuredPart.swift
+[41/73] Compiling HanlinPlatformContracts HanlinContractError.swift
+[42/73] Compiling HanlinPlatformContracts HanlinDescriptors.swift
+[43/73] Compiling HanlinPlatformContracts HanlinExposureContracts.swift
+[44/73] Compiling HanlinPlatformContracts HanlinIdentifiers.swift
+[45/73] Compiling HanlinPlatformContracts HanlinJSONSchemaDocument.swift
+[46/73] Compiling HanlinPlatformContracts HanlinManifestSchema.swift
+[47/73] Compiling HanlinPlatformContracts HanlinMiniAppContracts.swift
+[48/73] Compiling HanlinPlatformContracts HanlinPermissionContracts.swift
+[49/73] Compiling HanlinPlatformContracts HanlinPreparedRuntimeVersion.swift
+[50/73] Compiling HanlinPlatformContracts HanlinPresentationContracts.swift
+[51/73] Compiling HanlinPlatformContracts HanlinRuntimeProfiles.swift
+[52/73] Compiling HanlinPlatformContracts HanlinScriptContracts.swift
+[53/73] Compiling HanlinPlatformContracts HanlinSessionContracts.swift
+[54/73] Compiling HanlinPlatformContracts HanlinSkillContracts.swift
+[55/73] Compiling HanlinPlatformContracts HanlinStoreFileAccess.swift
+[56/73] Compiling HanlinPlatformContracts HanlinToolContracts.swift
+[57/73] Compiling HanlinPlatformContracts HanlinValue.swift
+[58/73] Compiling HanlinPlatformContracts HanlinVersions.swift
+[59/73] Compiling HanlinPlatformContracts HanlinWireProtocol.swift
+[60/73] Compiling HanlinPlatformContracts resource_bundle_accessor.swift
+[61/74] Wrapping AST for OtzariaActionCore for debugging
+[62/74] Wrapping AST for HanlinPlatformContracts for debugging
+[64/75] Emitting module HanlinHostContracts
+[65/81] Compiling HanlinHostContracts HanlinConversationStore.swift
+[66/81] Compiling HanlinHostContracts HanlinHostContext.swift
+[67/81] Compiling HanlinHostContracts HanlinHostEvents.swift
+[68/81] Compiling HanlinHostContracts HanlinHostIntegration.swift
+[69/81] Compiling HanlinHostContracts HanlinHostInteraction.swift
+[70/81] Compiling HanlinHostContracts HanlinHostNavigationTransition.swift
+[71/82] Wrapping AST for HanlinHostContracts for debugging
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[73/83] Emitting module OtzariaHanlinHostAdapter
+C:\Users\DAVID\Code\Maktabah-hanlin-api12-20261120\build\hanlin-api12-20261120\host-tests\package\Sources\OtzariaHanlinHostAdapter\OtzariaHanlinConversationStore.swift:2:8: error: no such module 'HanlinChatCore'
+  1 | import Foundation
+  2 | import HanlinChatCore
+    |        `- error: no such module 'HanlinChatCore'
+  3 | import HanlinHostContracts
+  4 | import HanlinPresentationKit
+[74/88] Compiling OtzariaHanlinHostAdapter OtzariaHanlinChatOwner.swift
+C:\Users\DAVID\Code\Maktabah-hanlin-api12-20261120\build\hanlin-api12-20261120\host-tests\package\Sources\OtzariaHanlinHostAdapter\OtzariaHanlinConversationStore.swift:2:8: error: no such module 'HanlinChatCore'
+  1 | import Foundation
+  2 | import HanlinChatCore
+    |        `- error: no such module 'HanlinChatCore'
+  3 | import HanlinHostContracts
+  4 | import HanlinPresentationKit
+[75/88] Compiling OtzariaHanlinHostAdapter OtzariaHanlinChatSession.swift
+C:\Users\DAVID\Code\Maktabah-hanlin-api12-20261120\build\hanlin-api12-20261120\host-tests\package\Sources\OtzariaHanlinHostAdapter\OtzariaHanlinConversationStore.swift:2:8: error: no such module 'HanlinChatCore'
+  1 | import Foundation
+  2 | import HanlinChatCore
+    |        `- error: no such module 'HanlinChatCore'
+  3 | import HanlinHostContracts
+  4 | import HanlinPresentationKit
+[76/88] Compiling OtzariaHanlinHostAdapter OtzariaHanlinChatView.swift
+C:\Users\DAVID\Code\Maktabah-hanlin-api12-20261120\build\hanlin-api12-20261120\host-tests\package\Sources\OtzariaHanlinHostAdapter\OtzariaHanlinConversationStore.swift:2:8: error: no such module 'HanlinChatCore'
+  1 | import Foundation
+  2 | import HanlinChatCore
+    |        `- error: no such module 'HanlinChatCore'
+  3 | import HanlinHostContracts
+  4 | import HanlinPresentationKit
+[77/88] Compiling OtzariaHanlinHostAdapter OtzariaHanlinConversationStore.swift
+C:\Users\DAVID\Code\Maktabah-hanlin-api12-20261120\build\hanlin-api12-20261120\host-tests\package\Sources\OtzariaHanlinHostAdapter\OtzariaHanlinConversationStore.swift:2:8: error: no such module 'HanlinChatCore'
+  1 | import Foundation
+  2 | import HanlinChatCore
+    |        `- error: no such module 'HanlinChatCore'
+  3 | import HanlinHostContracts
+  4 | import HanlinPresentationKit
+[78/88] Compiling OtzariaHanlinHostAdapter OtzariaHanlinHostAdapter.swift
+C:\Users\DAVID\Code\Maktabah-hanlin-api12-20261120\build\hanlin-api12-20261120\host-tests\package\Sources\OtzariaHanlinHostAdapter\OtzariaHanlinConversationStore.swift:2:8: error: no such module 'HanlinChatCore'
+  1 | import Foundation
+  2 | import HanlinChatCore
+    |        `- error: no such module 'HanlinChatCore'
+  3 | import HanlinHostContracts
+  4 | import HanlinPresentationKit
+error: fatalError

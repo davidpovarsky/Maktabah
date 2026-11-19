@@ -2,10 +2,11 @@ import XCTest
 import Foundation
 import HanlinPlatformContracts
 import HanlinHostContracts
+import HanlinAgentCore
 import OtzariaActionCore
 @testable import OtzariaHanlinHostAdapter
 
-private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchPort, OtzariaHanlinHostAuthority {
+private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchPort, OtzariaHanlinNavigationAuthority {
     var binding: OtzariaHanlinBinding
     var reads = 0
     var unavailableActions = Set<String>()
@@ -13,6 +14,12 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
     var entered = false
     var blocked: CheckedContinuation<Void, Never>?
     var wrongReceipt = false
+    var navigationCount = 0
+    var queuedTransition = false
+    var holdTransition = false
+    var transitionEntered = false
+    var transitionBlocked: CheckedContinuation<Void, Never>?
+    var staleSuccessor = false
     var holdAuthority = false
     var authorityEntered = false
     var authorityBlocked: CheckedContinuation<Void, Never>?
@@ -49,6 +56,37 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
             objectReference: destination.objectReference, blockReference: destination.blockReference) }
         return .queued(requestID: destination.requestID, context: destination.context)
     }
+    func openWithContextTransition(_ destination: HanlinHostDestination,
+        session: HanlinHostSession, binding: OtzariaHanlinBinding) async throws -> HanlinHostNavigationReceipt {
+        navigationCount += 1
+        if queuedTransition {
+            return .init(originalSession: session,
+                result: .queued(requestID: destination.requestID, context: destination.context))
+        }
+        if holdTransition {
+            transitionEntered = true
+            await withCheckedContinuation { transitionBlocked = $0 }
+        }
+        changeGeneration()
+        let successor = HanlinHostSession(conversationID: session.conversationID, context: self.binding.context)
+        let receipt = HanlinHostNavigationReceipt(originalSession: session,
+            result: .presented(requestID: wrongReceipt ? UUID() : destination.requestID,
+                context: destination.context, objectReference: destination.objectReference,
+                blockReference: destination.blockReference), successorSession: successor)
+        if staleSuccessor { changeGeneration() }
+        return receipt
+    }
+    func setQueuedTransition() { queuedTransition = true }
+    func setStaleSuccessor() { staleSuccessor = true }
+    func setTransitionHold() { holdTransition = true }
+    func waitForTransition() async throws {
+        let deadline = ContinuousClock.now + .seconds(5)
+        while !transitionEntered {
+            guard ContinuousClock.now < deadline else { throw NSError(domain: "TransitionNotEntered", code: 1) }
+            try await Task.sleep(for: .milliseconds(5))
+        }
+    }
+    func releaseTransition() { transitionBlocked?.resume(); transitionBlocked = nil }
     func resetReads() { reads = 0 }
     func setUnavailable(_ actions: Set<String>) { unavailableActions = actions }
     func setHold() { hold = true }
@@ -300,4 +338,111 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
         do { _ = try await adapter.open(.init(context: session.context, objectReference: "native.history")); XCTFail("Background navigation accepted") }
         catch let error as HanlinHostError { XCTAssertEqual(error, .denied) }
     }
+    func testAPI12TransitionReturnsLiveCorrelatedSuccessor() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        XCTAssertEqual(adapter.apiVersion.minor, 2)
+        let destination = HanlinHostDestination(context: session.context, objectReference: "native.history")
+        let receipt = try await adapter.openWithContextTransition(destination, session: session)
+        try receipt.validate(for: destination, session: session)
+        XCTAssertTrue(receipt.presentationAcknowledged)
+        let successor = try XCTUnwrap(receipt.successorSession)
+        XCTAssertNotEqual(successor.id, session.id)
+        XCTAssertNotEqual(successor.context.generation, session.context.generation)
+        let current = try await adapter.context(for: successor)
+        XCTAssertEqual(current, successor.context)
+        let count = await fixture.navigationCount; XCTAssertEqual(count, 1)
+    }
+
+    func testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        await fixture.setQueuedTransition()
+        let destination = HanlinHostDestination(context: session.context, objectReference: "native.history")
+        let receipt = try await adapter.openWithContextTransition(destination, session: session)
+        XCTAssertFalse(receipt.presentationAcknowledged)
+        XCTAssertNil(receipt.successorSession)
+        do { _ = try await adapter.openWithContextTransition(destination, session: session); XCTFail("Queued route repeated") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .duplicateInvocation) }
+        let count = await fixture.navigationCount; XCTAssertEqual(count, 1)
+    }
+
+    func testAPI12RejectsMismatchedNativeAcknowledgement() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        await fixture.setWrongReceipt()
+        let destination = HanlinHostDestination(context: session.context, objectReference: "native.history")
+        do { _ = try await adapter.openWithContextTransition(destination, session: session); XCTFail("Foreign acknowledgement escaped") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .resultMismatch) }
+        let retained = await adapter.navigationReceipt(for: destination.requestID, session: session)
+        XCTAssertNil(retained)
+    }
+
+    func testAPI12RetainsReceiptWhenSuccessorWasRevoked() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        await fixture.setStaleSuccessor()
+        let destination = HanlinHostDestination(context: session.context, objectReference: "native.history")
+        do { _ = try await adapter.openWithContextTransition(destination, session: session); XCTFail("Stale successor escaped") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .staleContext) }
+        let retained = await adapter.navigationReceipt(for: destination.requestID, session: session)
+        XCTAssertTrue(try XCTUnwrap(retained).presentationAcknowledged)
+    }
+
+    func testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        let destination = HanlinHostDestination(context: session.context, objectReference: "native.history")
+        await fixture.setAuthorityHold()
+        let work = Task { try await adapter.openWithContextTransition(destination, session: session) }
+        try await fixture.waitForAuthority(); work.cancel(); await fixture.releaseAuthority()
+        do { _ = try await work.value; XCTFail("Cancelled navigation entered") }
+        catch is CancellationError {}
+        let count = await fixture.navigationCount; XCTAssertEqual(count, 0)
+    }
+
+    func testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        let destination = HanlinHostDestination(context: session.context, objectReference: "native.history")
+        await fixture.setTransitionHold()
+        let work = Task { try await adapter.openWithContextTransition(destination, session: session) }
+        try await fixture.waitForTransition(); work.cancel(); await fixture.releaseTransition()
+        do { _ = try await work.value; XCTFail("Cancelled result was delivered") }
+        catch is CancellationError {}
+        let retained = await adapter.navigationReceipt(for: destination.requestID, session: session)
+        XCTAssertTrue(try XCTUnwrap(retained).presentationAcknowledged)
+        let count = await fixture.navigationCount; XCTAssertEqual(count, 1)
+    }
+
+    func testAPI12DeniesBackgroundBeforeNativeEffect() async throws {
+        let (fixture, adapter, session, _) = try await setup(foreground: false)
+        let destination = HanlinHostDestination(context: session.context, objectReference: "native.history")
+        do { _ = try await adapter.openWithContextTransition(destination, session: session); XCTFail("Background route entered") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .denied) }
+        let count = await fixture.navigationCount; XCTAssertEqual(count, 0)
+    }
+
+    func testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        let dispatcher = HanlinHostDispatcher(host: adapter)
+        let destination = HanlinHostDestination(context: session.context, objectReference: "native.history")
+        let receipt = try await dispatcher.openWithContextTransition(destination, session: session)
+        let successor = try XCTUnwrap(receipt.successorSession)
+        XCTAssertTrue(receipt.presentationAcknowledged)
+        let current = try await adapter.context(for: successor)
+        XCTAssertEqual(current, successor.context)
+        do { _ = try await dispatcher.open(destination, session: session); XCTFail("Retired original session reused") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .staleContext) }
+        let retained = await dispatcher.navigationReceipts(for: session)
+        XCTAssertEqual(retained, [receipt])
+        let count = await fixture.navigationCount; XCTAssertEqual(count, 1)
+    }
+
+    func testSDKDispatcherDoesNotRepeatQueuedHostTransition() async throws {
+        let (fixture, adapter, session, _) = try await setup()
+        await fixture.setQueuedTransition()
+        let dispatcher = HanlinHostDispatcher(host: adapter)
+        let destination = HanlinHostDestination(context: session.context, objectReference: "native.history")
+        let receipt = try await dispatcher.openWithContextTransition(destination, session: session)
+        XCTAssertFalse(receipt.presentationAcknowledged)
+        do { _ = try await dispatcher.openWithContextTransition(destination, session: session); XCTFail("Queued source click was repeated") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .duplicateInvocation) }
+        let count = await fixture.navigationCount; XCTAssertEqual(count, 1)
+    }
+
 }

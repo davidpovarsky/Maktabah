@@ -327,6 +327,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             tableOfContentsAvailable: bindings.isRootAvailable(.tableOfContents), witnessedReader: reader,
             searchFieldAvailable: searchFieldAvailable, inspectorAvailable: inspectorAvailable)
     }
+    /// A freshness facet from the existing scene projection; no selected text or content grant.
+    func hanlinSelectionRange() throws -> UIUTF16Range? { try project().identity().selectedRange }
     func ownsInspectorReader(_ reader: ReaderViewModel) -> Bool {
         MaktabahNativeInspectorBinding.currentReader(in: bindings.manager) === reader
     }

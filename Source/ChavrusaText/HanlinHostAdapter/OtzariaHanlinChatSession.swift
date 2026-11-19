@@ -164,7 +164,10 @@ final class OtzariaHanlinChatSession: Identifiable {
                     guard self.pendingHostResults.count < 256 else { self.operation?.cancel(); return }
                     self.pendingHostResults[key] = event
                 }
-                session.onSessionInvalidated = { [weak self] _ in self?.onClose() }
+                session.onSessionInvalidated = { [weak self] _ in
+                    guard let self, !self.closed else { return }
+                    self.onClose()
+                }
                 self.agent = session
                 self.model = .init(provider: HanlinAISDKProviderFactory.descriptor(for: configuration).kind.rawValue,
                                    modelID: configuration.baseModelID)
