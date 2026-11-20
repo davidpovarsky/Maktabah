@@ -1,0 +1,139 @@
+{
+  "status": "ACTUAL_NATIVE6_FAILURE",
+  "run_id": 44796704535,
+  "run_attempt": 1,
+  "F": "bce0fee51c813fe2b830d87d61b1c7943f0344f4",
+  "M": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "workflow_updated_at": "2026-11-20T20:05:39Z",
+  "jobs": [
+    {
+      "id": 136497998236,
+      "name": "Full real app: ipad11 (4 original cases)",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-20T18:51:33Z",
+      "completed_at": "2026-11-20T20:05:05Z"
+    },
+    {
+      "id": 136497998833,
+      "name": "Full real app: ipad13 (2 original cases)",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-20T18:51:33Z",
+      "completed_at": "2026-11-20T19:43:19Z"
+    },
+    {
+      "id": 136537298877,
+      "name": "Require four plus two actual original Native executions",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-20T20:05:08Z",
+      "completed_at": "2026-11-20T20:05:39Z"
+    }
+  ],
+  "case_executions": 6,
+  "distinct_methods": 4,
+  "passed": 2,
+  "failed": 4,
+  "skipped": 0,
+  "unverified": 0,
+  "case_outcomes": [
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "device": "ipad11",
+      "expected": "Existing original calibration: actual Close button, Down/Up selection, XCTest Escape for empty and filtered real input, original target and every 15-second assertion; trace opt-in only.",
+      "configuration_label": "11-reader",
+      "actual": "Failed",
+      "source": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "head": "bce0fee51c813fe2b830d87d61b1c7943f0344f4"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "device": "ipad11",
+      "expected": "Existing original Pointer/Keyboard case: actual hover, click, typed query, XCTest Escape and original 15-second dismissal, frame/reopen/result-click assertions.",
+      "configuration_label": "11-reader",
+      "actual": "Failed",
+      "source": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "head": "bce0fee51c813fe2b830d87d61b1c7943f0344f4"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "device": "ipad11",
+      "expected": "Existing original Global Search landscape comparison against feature-off baseline: original navigation bounds, controls and tolerance unchanged.",
+      "configuration_label": "11-reader",
+      "actual": "Failed",
+      "source": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "head": "bce0fee51c813fe2b830d87d61b1c7943f0344f4"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "device": "ipad11",
+      "expected": "Existing original Global Search portrait comparison against feature-off baseline: original navigation bounds, controls and tolerance unchanged.",
+      "configuration_label": "11-reader",
+      "actual": "Passed",
+      "source": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "head": "bce0fee51c813fe2b830d87d61b1c7943f0344f4"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "device": "ipad13",
+      "expected": "Existing original Global Search landscape comparison against feature-off baseline: original navigation bounds, controls and tolerance unchanged.",
+      "configuration_label": "13",
+      "actual": "Passed",
+      "source": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "head": "bce0fee51c813fe2b830d87d61b1c7943f0344f4"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "device": "ipad13",
+      "expected": "Existing original Global Search portrait comparison against feature-off baseline: original navigation bounds, controls and tolerance unchanged.",
+      "configuration_label": "13",
+      "actual": "Failed",
+      "source": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "head": "bce0fee51c813fe2b830d87d61b1c7943f0344f4"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/ipad13-evidence.zip",
+      "artifact_id": 14662875377,
+      "bytes": 8211368,
+      "sha256": "0ca7e80954b7dae6f31b243d645327c6a2aa00e5bc613df0f9423b001adc053f",
+      "crc_members": 142
+    },
+    {
+      "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/ipad13-captures.zip",
+      "artifact_id": 14663085383,
+      "bytes": 93782761,
+      "sha256": "cbe77a98338e3c6285354a2626760c05167dfc35863f0fab633e9b524826cd6b",
+      "crc_members": 1337
+    },
+    {
+      "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/ipad11-evidence.zip",
+      "artifact_id": 14662824248,
+      "bytes": 6532578,
+      "sha256": "57c2db7c85407763b44f230b1a25d88f914b75d03132bf17369b03661d73fbc2",
+      "crc_members": 147
+    },
+    {
+      "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/ipad11-captures.zip",
+      "artifact_id": 14662809284,
+      "bytes": 221407962,
+      "sha256": "1adad83ccdcd467f9bcb63bdbc8bc15cdc518689917a27e50f57be282d6a64d2",
+      "crc_members": 1539
+    },
+    {
+      "path": "/workspace/scratch/8c31d602ec0a/keyboard-global-44796704535-20261120/aggregate.zip",
+      "artifact_id": 14662898052,
+      "bytes": 255350,
+      "sha256": "5c0ed7b1c7ddd5e9ca473a69ca08bab4cc5b49fea58defe29c80388b85aa1cbb",
+      "crc_members": 1
+    }
+  ],
+  "zip_members_crc_verified": 3166,
+  "full_native116_acceptance": false,
+  "full_release114_acceptance": false,
+  "candidate_Global4_executed": 0,
+  "historical_passes_transferred": false,
+  "raw_preservation": "All five authentic complete ZIPs retained at the recorded local paths and original GitHub artifact IDs. This compact route packet includes raw leaves/source receipts/API metadata; no entire capture ZIP is copied into this CI packet."
+}

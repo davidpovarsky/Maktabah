@@ -1,9 +1,9 @@
 {
-  "application_source_sha": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "application_source_sha": "cb252c143955d037ab0cef4df556b1e8fcd4c334",
   "application_trees": {
-    "Source": "c7732ce8cc0ba7d1a12a1e5c04d9cdb8d8f0fbc9",
+    "Source": "9aa3a513dcb4802988f6cba6fc0bcbad794de792",
     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
-    "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+    "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72"
   },
   "engine_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
   "engine_trees": {
@@ -105,5 +105,5 @@
   ],
   "rebuild_zayit_framework": false,
   "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
-  "otzaria_test_additions_sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+  "otzaria_test_additions_sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313"
 }

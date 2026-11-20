@@ -1,0 +1,184 @@
+name: Four original Global Search navigation executions
+
+on:
+  push:
+    branches: [codex/otzaria-global-tab-ownership-native-20261120]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: global-tab-ownership-native-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  original-four:
+    name: "Full real app: ${{ matrix.configuration }} (${{ matrix.count }} original cases)"
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - configuration: ipad11
+            count: 2
+            manifest: docs/hq-integration/runtime27/global-tab-ownership-ipad11.json
+          - configuration: ipad13
+            count: 2
+            manifest: docs/hq-integration/runtime27/global-tab-ownership-ipad13.json
+    runs-on: xcode-27
+    timeout-minutes: 360
+    env:
+      EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+      RUNTIME27_CASE_MANIFEST: ${{ matrix.manifest }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Bind exact M and unchanged original execution closure
+        run: python3 Scripts/CI/global-tab-ownership-native.py before --configuration ${{ matrix.configuration }}
+      - name: Reject false source or result credit
+        run: python3 Scripts/CI/test-global-tab-ownership-native.py
+      - name: Select an existing SDK-matched runtime for the full device matrix
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+      - name: Require all 55 Sefaria transport cases on actual Apple Foundation
+        run: python3 Scripts/CI/sefaria-toc-apple55.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Read source-pinned Zayit build mode
+        id: zayit_source_mode
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib
+          rebuild = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text()).get('rebuild_zayit_framework', False)
+          assert type(rebuild) is bool
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('rebuild=' + str(rebuild).lower() + '\n')
+          PY
+      - name: Use Rust only for the reviewed matching Zayit build
+        if: ${{ steps.zayit_source_mode.outputs.rebuild == 'true' }}
+        uses: dtolnay/rust-toolchain@stable
+      - name: Key disposable compiler cache by real SDK and native inputs
+        id: runtime27_cache_key
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          def git(path):
+              return subprocess.check_output(['git', 'rev-parse', 'HEAD:' + path])
+          inputs = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text())
+          inputs.pop('application_source_sha')
+          inputs.pop('application_trees')
+          # A package resource-layout change must not restore an older copied
+          # Resources directory into a newly processed/signable bundle.
+          package_manifests = subprocess.check_output(['git', 'ls-files', '-z', 'Source/**/Package.swift']).decode().split('\0')
+          package_layout = b''.join(git(path) for path in package_manifests if path)
+          rust = subprocess.check_output(['rustc', '-Vv']) if inputs.get('rebuild_zayit_framework') else b''
+          native = (subprocess.check_output(['xcodebuild', '-version']) + git('Vendor') + git('Maktabah.xcodeproj')
+                    + pathlib.Path('Podfile').read_bytes() + json.dumps(inputs, sort_keys=True).encode() + package_layout + rust)
+          prefix = 'runtime27-derived-v2-' + hashlib.sha256(native).hexdigest() + '-'
+          key = prefix + hashlib.sha256(git('Source') + git('Maktabah-iOSUITests')).hexdigest()
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('prefix=' + prefix + '\nkey=' + key + '\n')
+          PY
+      - uses: actions/cache/restore@v4
+        id: runtime27_build_cache
+        with:
+          path: build/DerivedData
+          key: ${{ steps.runtime27_cache_key.outputs.key }}
+          restore-keys: ${{ steps.runtime27_cache_key.outputs.prefix }}
+      - name: Execute original full app build and unchanged selected native cases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUNTIME27_MODE: ui
+        run: python3 Scripts/CI/runtime27.py
+      - name: Bind post-execution source and actual per-configuration results
+        if: always()
+        run: python3 Scripts/CI/global-tab-ownership-native.py after --configuration ${{ matrix.configuration }}
+      - name: Retain compiler cache only after an actual matching test build
+        id: runtime27_cache_ready
+        if: always()
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib
+          path = pathlib.Path('build/hq-stage2/result.json')
+          report = json.loads(path.read_text()) if path.is_file() else {}
+          ready = report.get('status') == 'SIMULATOR_BUILD_FOR_REAL_UI_PASS' and report.get('checkout_sha') == os.environ['EXPECTED_CHECKOUT_SHA']
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('ready=' + str(ready).lower() + '\n')
+          PY
+      - uses: actions/cache/save@v4
+        if: ${{ always() && steps.runtime27_cache_ready.outputs.ready == 'true' && steps.runtime27_build_cache.outputs.cache-hit != 'true' }}
+        with:
+          path: build/DerivedData
+          key: ${{ steps.runtime27_cache_key.outputs.key }}
+      - name: Retain real runtime evidence including failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-tab-ownership-native-evidence-${{ matrix.configuration }}
+          path: |
+            build/artifacts/
+            !build/artifacts/**/*.xcresult/**
+            !build/artifacts/**/*.mp4
+            !build/artifacts/visual-*/**
+            build/hq-stage2/*.json
+            build/hq-stage2/*Package.resolved
+            build/hq-stage2/*.log
+            build/hq-stage2/*.diff
+            build/hq-stage2/generated-Maktabah-project.pbxproj
+            build/hq-stage2/*.xcprivacy
+            build/hq-stage2/ExpoModulesProvider.swift
+            build/hq-stage2/resolved-Podfile.lock
+            build/hq-stage2/privacy-dependency-inputs/
+            build/hq-stage2/rebuilt-zayit/
+          if-no-files-found: error
+      - name: Retain original native result bundles and visual captures separately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-tab-ownership-native-captures-${{ matrix.configuration }}
+          path: |
+            build/artifacts/**/*.xcresult/**
+            build/artifacts/**/*.mp4
+            build/artifacts/visual-*/**
+          if-no-files-found: ignore
+
+  aggregate-four:
+    name: Require two plus two actual original Native executions
+    needs: original-four
+    if: always()
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    env:
+      EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+      MATRIX_JOB_RESULT: ${{ needs.original-four.result }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Download only current-run configuration evidence
+        id: download_configuration_evidence
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          pattern: global-tab-ownership-native-evidence-*
+          path: build/downloaded-global-tab-ownership
+          merge-multiple: false
+      - name: Require both original scopes and recheck actual raw results
+        if: always()
+        run: python3 Scripts/CI/global-tab-ownership-native.py aggregate --evidence-root build/downloaded-global-tab-ownership
+      - name: Retain aggregate failure and partial evidence status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-tab-ownership-native-aggregate
+          path: build/artifacts/global-tab-ownership-native/AGGREGATE.json
+          if-no-files-found: error
