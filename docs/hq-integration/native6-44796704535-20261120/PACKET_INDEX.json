@@ -1,0 +1,451 @@
+{
+  "schema_version": 1,
+  "run_id": 44796704535,
+  "F": "bce0fee51c813fe2b830d87d61b1c7943f0344f4",
+  "M": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "status": "ACTUAL_FAILURE_2PASS_4FAIL",
+  "records": [
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/ARTIFACT_AUTHENTICATION.json",
+      "bytes": 3057,
+      "sha256": "b7c1ad7d9d4489e585f8a6a7eeee5a2e08201af14375011b2fca58bee2a1a950",
+      "git_blob": "ab6534026b70231a37564b8addfcfab7df7735b0"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/README.md",
+      "bytes": 4400,
+      "sha256": "37e6bd34092c00562a0692836b647f817186f4b60c1f3788094b55e306970482",
+      "git_blob": "f37a41a0519c7a10b072321622b532d99fd402b7"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/RESULT.json",
+      "bytes": 6061,
+      "sha256": "3a733b31e78426e0bc1687220308ef31e80a13033a21d89b7cd667fc1d2637b0",
+      "git_blob": "3c1883434d483aa9cde5ed9da5136ba9360dccf3"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/api/ARTIFACTS.json.gz",
+      "bytes": 861,
+      "sha256": "f0b48c6136110b0e3e2e1453e0279d14b8672ed7063588c102ad1795950ac5bd",
+      "git_blob": "3ce61e6b1dda257bf0efb7f01e11922a3c82e996",
+      "uncompressed_bytes": 3872,
+      "uncompressed_sha256": "8fd6e9901c7b79c35f484049a0ba387d3fd9fedadd0207d83efa38621b181120"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/api/JOBS.json.gz",
+      "bytes": 1660,
+      "sha256": "f632d38d7f9599906ac3a0d3cc74d02d0a463fc286edc14913d89cd022508084",
+      "git_blob": "850b9e24c9cd6cf6b3be7024b855f270063c6869",
+      "uncompressed_bytes": 12015,
+      "uncompressed_sha256": "d452b2d0191945f861891527b338965a18d4072323a3d6d10894c3f8fa4ceb86"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/api/RUN.json.gz",
+      "bytes": 1720,
+      "sha256": "38f67a8bd69e44b5debf18f0d19c76ed1126170e3c591d4b07857864f516f982",
+      "git_blob": "8063e538b44ba6c4873d7ee24f5b46cc064ac522",
+      "uncompressed_bytes": 13052,
+      "uncompressed_sha256": "e543cbe209ddccb250dde89a621e689833284315bd622b0884a6fc1ce27a9c57"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/capture-manifests/ipad11.json.gz",
+      "bytes": 3990,
+      "sha256": "a64c09e0d032284d0d2883b32751d8144f5915764d120ee76aa38987d6ae25be",
+      "git_blob": "efbaf8c538922e20a05539b23aa30df9b753a68c",
+      "uncompressed_bytes": 30272,
+      "uncompressed_sha256": "f51fd3654bee379792a97d62213efd8dd8de926043190319c121eecc6a6c7136"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/capture-manifests/ipad13.json.gz",
+      "bytes": 1007,
+      "sha256": "3f8523e932df022371b67a919c99698a7109531800adc88dcbc434994fe4f2c5",
+      "git_blob": "b35675c447b8df1ef073a1ab3373753be5475f58",
+      "uncompressed_bytes": 4725,
+      "uncompressed_sha256": "a0e70f5091e7371c177793b4da4f3dd2c32a1b47b6648a7abe2cc00e624717c9"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/evidence/seal_terminal_result.py.gz",
+      "bytes": 4800,
+      "sha256": "1b6fccfc119b67dbce8ae13eadbacc190dffd15536e3d669117a90a077d66e2e",
+      "git_blob": "9ce5248a320574d7e354e2187a7d679dfcb36c9c",
+      "uncompressed_bytes": 11547,
+      "uncompressed_sha256": "4d7aa49702ea8f5292653f9fd45f8af487eee02f3b53f381f949ddb6e1ed91cc"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/joblogs/aggregate-JOB.log.gz",
+      "bytes": 9842,
+      "sha256": "491b5f11db809c0fa50d8874fb0ec97d093f81cf2610685e89adde876b20e725",
+      "git_blob": "6efbb14a3699231260e6f261a3aad5efaa68ae30",
+      "uncompressed_bytes": 48902,
+      "uncompressed_sha256": "e2c40785d502793cac94f793713685ec95142d6d9fec45be1692485b4953641e"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/joblogs/ipad11-JOB.log.gz",
+      "bytes": 21395,
+      "sha256": "0e90d4927daebae4afa7c7ba380a929e7f71ea6c395542a1128f8d01333e6cbe",
+      "git_blob": "1dd53c2db19b3d27f6a275be237f2eeca7786649",
+      "uncompressed_bytes": 104978,
+      "uncompressed_sha256": "4fa5e900fa8086f287e8eca69d257981e6e0809b2531b7a3a088d23954daa069"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/joblogs/ipad13-JOB.log.gz",
+      "bytes": 19638,
+      "sha256": "78d3890689d8a9d3f9eb731341bdd1bd8fdabb42b33c13b4549a898687627659",
+      "git_blob": "af86833f13550a3759772b353ed9d4d78914586c",
+      "uncompressed_bytes": 100995,
+      "uncompressed_sha256": "701fb27a88fa834bdfa9c267f275b287d11068759c7e9542ac37188193bb42c7"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/observations/ALL_FIVE_ARTIFACTS_VERIFIED.json.gz",
+      "bytes": 476,
+      "sha256": "4a34dcf69a7d26cb330ab79abe256e76e9f783384a4b5f226945a3e23633d462",
+      "git_blob": "9891ee87a5a0efd6df6e32e12f7d706a538612ef",
+      "uncompressed_bytes": 1359,
+      "uncompressed_sha256": "dc5cd5127f5934e79037fbd4750a97e9efcfcd05ad9fba3c80ecf76e41af5f6f"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/observations/ESCAPE_HANDOFF.json.gz",
+      "bytes": 3831,
+      "sha256": "84bd4e4a849a2941de4236cd6dec4e43768645b79f65056a0cf3ece8d516336b",
+      "git_blob": "7e4cc4cc4872da36da44e0e895402662be210333",
+      "uncompressed_bytes": 20534,
+      "uncompressed_sha256": "ea9b80eb383079fdf1b3ffbd900473401c0d55ba1e70a306f12dd2bf77639737"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/observations/GLOBAL_MATCHED_AX.json.gz",
+      "bytes": 1918,
+      "sha256": "e99d1a1bad2320f413e0bdaec41d47a74fa8fe960189e9163d4539dbe016543b",
+      "git_blob": "5fc5d14173428552a0e6858929d2494d85944feb",
+      "uncompressed_bytes": 10239,
+      "uncompressed_sha256": "af98d8f60c42856707fe35311aa272b4417244a7d8803a84756411f934049c0e"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/original-artifacts/aggregate.zip",
+      "bytes": 255350,
+      "sha256": "5c0ed7b1c7ddd5e9ca473a69ca08bab4cc5b49fea58defe29c80388b85aa1cbb",
+      "git_blob": "d4f394f4ab72ad50e661b0ebae3544eeca6fb09c"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/original-artifacts/ipad11-evidence.zip",
+      "bytes": 6532578,
+      "sha256": "57c2db7c85407763b44f230b1a25d88f914b75d03132bf17369b03661d73fbc2",
+      "git_blob": "921db288d3759a45ed0394fcc519b5cb3ca06052"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/original-artifacts/ipad13-evidence.zip",
+      "bytes": 8211368,
+      "sha256": "0ca7e80954b7dae6f31b243d645327c6a2aa00e5bc613df0f9423b001adc053f",
+      "git_blob": "829882b6715c951071ec102deec42c225624a6c9"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/AGGREGATE.json.gz",
+      "bytes": 264189,
+      "sha256": "d4d123d06ea71945e744fa407ecaaa97c27ef8697c1ec04f20a63cac5b54d513",
+      "git_blob": "050e642844166de05712631daefdeab26796b064",
+      "uncompressed_bytes": 877873,
+      "uncompressed_sha256": "8785109b1506a3a6453dcf414582771cd4d498af6c57f1c34722bba6e08cdd59"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/artifacts/keyboard-global-focused-native/RESULT_AFTER.json.gz",
+      "bytes": 360,
+      "sha256": "e170e4a3b2429e6c06cae681cff8952a6db78cd2452365a92b9ab3dced17c282",
+      "git_blob": "fb322320dc423de33c37cd5af906d939c80f0084",
+      "uncompressed_bytes": 594,
+      "uncompressed_sha256": "6b68419525d0eb29b344a8c697f11d5aa1da116af362ec26cf7510f1147a2ab4"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/artifacts/keyboard-global-focused-native/RESULT_BEFORE.json.gz",
+      "bytes": 368,
+      "sha256": "4d1c8f9b216b3660bffa280d48ffa5c989f9ca552a7c4becbe2bd9b9d1dcd5bb",
+      "git_blob": "f1ecf18cd1a0664df0745306a56545dcbed46387",
+      "uncompressed_bytes": 593,
+      "uncompressed_sha256": "5bdf6917457e8ecc927fdff71f99a69f6ebdd7a8b272f47a93ae64bca3820984"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/artifacts/keyboard-global-focused-native/SOURCE_AFTER.json.gz",
+      "bytes": 24652,
+      "sha256": "819c1895ea8eab101fbb02fc64f440d9478dd817d3807d277ff6055f8a9b259e",
+      "git_blob": "db780e2b779a360f125e8dbc605282ba31a90013",
+      "uncompressed_bytes": 73882,
+      "uncompressed_sha256": "e77e9007fe7ad839e3001b6d34291682b45af0eaa6c067cd7d05a972033d0b0b"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/artifacts/keyboard-global-focused-native/SOURCE_BEFORE.json.gz",
+      "bytes": 106078,
+      "sha256": "93c0ac9788ef65087aa20855bed1a4282812f28bd7fded068f300f166e64bc22",
+      "git_blob": "bc4de30fc5e8a634a890ff4a4bbec4d50b605f35",
+      "uncompressed_bytes": 313169,
+      "uncompressed_sha256": "8831e5298408130caf7ef51678676c9fa1b4713d51c49f6921e152dfce2277ed"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/artifacts/runtime27/result.json.gz",
+      "bytes": 13307,
+      "sha256": "5849b3f117ef333f18a6054b62b4fa37064fcdfe4cf6e2c7bd91cf1bcc90b874",
+      "git_blob": "86c35f0d9f2bf14320895c173ca7dfaafdbce6bc",
+      "uncompressed_bytes": 150381,
+      "uncompressed_sha256": "9bcbf18c2a58266aff904c30c0324469fcd1739cf9ec357de40bf95d3e54f1fe"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/artifacts/runtime27/verified-11-reader.json.gz",
+      "bytes": 254,
+      "sha256": "0d0d0c5a3d59e14a73d0c11779dc5f001562e853d6e3f7cebfd7b919701a6636",
+      "git_blob": "de5293d4d48023b41c65b47440b2783796452cf9",
+      "uncompressed_bytes": 316,
+      "uncompressed_sha256": "5f6e5a2f909e2dfe211be4637281dfcefdc2cc7eda1740d30305473163d984e6"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/artifacts/runtime27/verified-11-reader.summary.json.gz",
+      "bytes": 958,
+      "sha256": "17c00a19deab0008c4eb51bd8838bac9bdd01c27428e12c0f0b75235500b3efb",
+      "git_blob": "a071b43a558d70c3e7e1730217841792050e7332",
+      "uncompressed_bytes": 2918,
+      "uncompressed_sha256": "8454f63b2381ff997a59390d0232a5f933d66cd09d80f690c0f47cae29dbf577"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/artifacts/runtime27/verified-11-reader.tests.json.gz",
+      "bytes": 1126,
+      "sha256": "b8633c604061b0552c938dc323a286ecfa778776438496276cb841dcde090849",
+      "git_blob": "4c1fdb45279da0c8e2e9871244ee68e7d26967e8",
+      "uncompressed_bytes": 5693,
+      "uncompressed_sha256": "5a8dd3686d3ed1a5bd0b313612c1686b7e409051e2e15e3668eed7b3754b33d4"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/artifacts/test-simulator-11-reader.log.gz",
+      "bytes": 6617,
+      "sha256": "e3abed0e884907cbbfb1c809c74732884e0c05c6f9e81b8608424eac5bd8b2d1",
+      "git_blob": "524bef292413723fc7f66accb216a2330c7a7467",
+      "uncompressed_bytes": 44970,
+      "uncompressed_sha256": "ae868d24a91fa1872229421e83cbc6621b9107a7929cd333e74d19dfca1b40c6"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/collection.json.gz",
+      "bytes": 384,
+      "sha256": "daef25713d9a32033c952ff1484522c02d3dceeb5cbd5f5b871f89d422fad3a6",
+      "git_blob": "aca158cfb695b8e4e847c1a6355e810967d4f98d",
+      "uncompressed_bytes": 551,
+      "uncompressed_sha256": "de952462522021e795ec0b341fd04ada1b9e14a58a1f3c89ae660ac27bdc32d2"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/hq-stage2/result.json.gz",
+      "bytes": 23453,
+      "sha256": "f293c44004e761626e5204c2cbca2cbb81d872210a30972459045bf90acd32d5",
+      "git_blob": "3cb91bf2054070d717fba9097bb07664304358c5",
+      "uncompressed_bytes": 83531,
+      "uncompressed_sha256": "515e8723113112ac7bc7e6f61a482689d131206aaf2b1f0b90aa849a14ac7706"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad11/otzaria-reader.log.gz",
+      "bytes": 2961,
+      "sha256": "d47bb78bce81669e8c7cb6e096a4b95af7f66b91628ec485c124d78b462c54e7",
+      "git_blob": "9b0139d9a0b723961f707345f8096d83133fb44c",
+      "uncompressed_bytes": 46009,
+      "uncompressed_sha256": "f425a8070f59203fe1d80775f31065a12a1261110d74cb9f65e195c73806fba1"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/artifacts/keyboard-global-focused-native/RESULT_AFTER.json.gz",
+      "bytes": 360,
+      "sha256": "17003ae550443c032f0450dbf210acba7a6b839d9f9ef94a77f1f14f00d50d18",
+      "git_blob": "acbafbe9496c61929db317f857a22823eccd679f",
+      "uncompressed_bytes": 594,
+      "uncompressed_sha256": "b003aa434023d0ef536559eb2c89b4bcceb5becb5e2eb874eae455a268eb08c4"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/artifacts/keyboard-global-focused-native/RESULT_BEFORE.json.gz",
+      "bytes": 367,
+      "sha256": "10168fbe6ecad3709bf68fd7ebbed59b778700d436abf1cc3141048f28ed5b66",
+      "git_blob": "fe0fc7027b95670486f76c130336540d0a230098",
+      "uncompressed_bytes": 593,
+      "uncompressed_sha256": "111b7e986fa419a816e1605b7649916f6daf627056390ff6ff10f33154cc4b66"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/artifacts/keyboard-global-focused-native/SOURCE_AFTER.json.gz",
+      "bytes": 24650,
+      "sha256": "0b7fe8ce4e37af3af3667edd97cf4d0b1df407c5ccebca2623a6692e85be2d5a",
+      "git_blob": "ab150b532b30de4b56efaba25d86854173d373c3",
+      "uncompressed_bytes": 73882,
+      "uncompressed_sha256": "03ac48f31f11bc0872c71c8b9e67e4273bb6ea3bc55b2530f97121f35010c44a"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/artifacts/keyboard-global-focused-native/SOURCE_BEFORE.json.gz",
+      "bytes": 106075,
+      "sha256": "26c87fc6db36e59a41834749e09aed1623b6f657305fcaa441053eb62e58259b",
+      "git_blob": "a49a2899aec3c13f1036cc397ad048678181be73",
+      "uncompressed_bytes": 313169,
+      "uncompressed_sha256": "6a546f6e1e9bc06e9e97d5a582638b3833d5d1006aa912af1676fc7767fa5820"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/artifacts/runtime27/result.json.gz",
+      "bytes": 12980,
+      "sha256": "106b88d6a72cd2e03ab715319a5654a2852f8b190c96ea72c32a4904ea203a21",
+      "git_blob": "55c37ef19b43c285f0811fbec888d94568ee5c25",
+      "uncompressed_bytes": 153034,
+      "uncompressed_sha256": "bd46c38d8ebfe1b41846818db96680460ad05c23994588e9f0017a642aa77b03"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/artifacts/runtime27/verified-13.json.gz",
+      "bytes": 253,
+      "sha256": "19ae3e7e084a1f77a0565d71e6039a97c43130e35d6874dfff1b6229911528d6",
+      "git_blob": "85e6337d938a5db872da2d6c16ade2aaff4df176",
+      "uncompressed_bytes": 316,
+      "uncompressed_sha256": "78623290939dd92454d65e796716d17fdf4aec8690f48d7b9fb0696e69c321a9"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/artifacts/runtime27/verified-13.summary.json.gz",
+      "bytes": 727,
+      "sha256": "241d23b5eeb0a13f53ae66a5397ff3e50b69610ae6aba8623ae0d1d98614d5fb",
+      "git_blob": "cdb859debebb93a49c26bdc104921daec22a6f2b",
+      "uncompressed_bytes": 1648,
+      "uncompressed_sha256": "a8ca79942c1c62b05f5ea0f745d265d04d6b36db111a79e4e691c989ebfb0891"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/artifacts/runtime27/verified-13.tests.json.gz",
+      "bytes": 811,
+      "sha256": "01fcedf3e5c6ba80f2f96e6d1d197dbabc46060b3d6db9154c56eb98c7abaae5",
+      "git_blob": "dd5905c896fc1a6c6eaa8b4dfa1667cb776fce57",
+      "uncompressed_bytes": 3006,
+      "uncompressed_sha256": "914ed71d3201f968119641cd704165e1781ed475083c045fe261512c1a78eb25"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/artifacts/test-simulator-13.log.gz",
+      "bytes": 3587,
+      "sha256": "1776f0de640dd1d2f415975f2f27122332667e7d2e7886d9a8b7939a069fc73b",
+      "git_blob": "44be3d58d61239a7e32dbb2e9b2789cf4b8d5cef",
+      "uncompressed_bytes": 16512,
+      "uncompressed_sha256": "c2d05086e65dc039891b1da72d4275fe5eceace6d338c8bcbbb682ab0cb17982"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/raw/ipad13/hq-stage2/result.json.gz",
+      "bytes": 23453,
+      "sha256": "ef268062acc7315e0fb81328feb735ab15af1bffeb9a7fb57d69d657e4bceeb4",
+      "git_blob": "29d8d9af80ccb28e516a53d18828a0005beacac0",
+      "uncompressed_bytes": 83531,
+      "uncompressed_sha256": "b21e67ff9f9ce8125123b23882a8ca0e4ca2523c7dc217051f217995648e5471"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/escape/5FAA2C49-EB8E-4269-941A-7C7AE11FBFF4.txt.gz",
+      "bytes": 5360,
+      "sha256": "c4057de7a21afb6ab16e6e012ee0fc23f1a4ec0e4ac67a7c349e097487a37e9b",
+      "git_blob": "0e388df13f97e20e6f7c0648561f35e4ac41dc3e",
+      "uncompressed_bytes": 29662,
+      "uncompressed_sha256": "a677bafdaea7e6dedaee01f92b272084d8f810235ed6f5fa6d28076d98e0c32b"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/escape/CCDBCA29-821D-4A07-98CD-DEA5B3914C4C.png",
+      "bytes": 1042370,
+      "sha256": "7b261b7dba5051091c4869cc793e650a32e58417d69d894801f891b3f5f6dba1",
+      "git_blob": "388a2cc612bb642b6bec54081f882206ab1a7a1c"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad11/187B890B-76E1-4C44-B586-F7C78716072B.png",
+      "bytes": 212825,
+      "sha256": "28726614023b7d46e11ac45d64849103a149f81a8198aea023737e7deca4a6a4",
+      "git_blob": "bd4d3754a172490d82e0f3f681fc01b875430071"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad11/40F98F7C-1CBE-4328-8747-80E078EEDE08.txt.gz",
+      "bytes": 2972,
+      "sha256": "3884f6be361f48db459c91a73b4c0ad9797001be5c38161d1cc664b5ce6ac9d6",
+      "git_blob": "54e8a583ec9fa5d0d294d5a6a2563a79aa75695e",
+      "uncompressed_bytes": 21298,
+      "uncompressed_sha256": "0ea80372078daa72cdf4092af2637d0da12d1ec340a8201e8e5e5c7379c6a0ee"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad11/442620A8-267F-4C48-9D89-1D985F9B1CF0.txt.gz",
+      "bytes": 2960,
+      "sha256": "fb16b570af90ffb44c50b14f95be91f7ddd69a70c97dea4c33197881b0851a89",
+      "git_blob": "762005519dd0692b9127344a7af667767cd35c6e",
+      "uncompressed_bytes": 21107,
+      "uncompressed_sha256": "ce49b518621e725019a3b16519a5b514eae890a84e4a17de7dee97ab7f8ce4ec"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad11/4FD2F8C5-59CF-4744-B139-363D446EFFCC.png",
+      "bytes": 229077,
+      "sha256": "88aa54c26ad70d8e3e5a725e8f18c5a9fcfdb12cf2d34cb787fb573c3a8e8310",
+      "git_blob": "e44bebd32b4393de55d48f898885a4bb8adbb6c6"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad11/561573B4-7A85-491D-A812-37C3BB0DAB36.txt.gz",
+      "bytes": 2942,
+      "sha256": "7055d5e950f331def9e3b504926b48d98ba00ae719bed825319418b1637a3fa3",
+      "git_blob": "e6381f054b9c90221b19c857ff5466cc5910f696",
+      "uncompressed_bytes": 21281,
+      "uncompressed_sha256": "387a364e1a1d374b586136fc844dd94a8d8ef45dcad49905a95bc0fe412b3341"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad11/9516664B-DCAD-478D-81B3-07700CFB3CF9.png",
+      "bytes": 212825,
+      "sha256": "28726614023b7d46e11ac45d64849103a149f81a8198aea023737e7deca4a6a4",
+      "git_blob": "bd4d3754a172490d82e0f3f681fc01b875430071"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad11/9EACEDF8-007F-4FFC-B7D0-923175709C25.txt.gz",
+      "bytes": 2945,
+      "sha256": "e24d3174d983c0d7bab8b9a50948ce563a9f8c08c7bc01b8253cd86976214490",
+      "git_blob": "3ac87cd5e3d736509b30a6822645b66b54377045",
+      "uncompressed_bytes": 21097,
+      "uncompressed_sha256": "18eb84b5c96e15454505b92c1222f72da47e98c4d74a268474221b8cadb4f457"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad11/C1E45AB9-5FCF-47B7-B623-01FBFB85989A.png",
+      "bytes": 229963,
+      "sha256": "e997813db17b35129a14f503e35a4851399079aa59f5da7e7a8a0dfc062f7ea4",
+      "git_blob": "142d42663f0bc35f5e27e46d62deccc7862120e9"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad13/28E1A794-E78C-4D4A-8A70-C7DCDD3B800E.txt.gz",
+      "bytes": 2958,
+      "sha256": "8dab8f2abeb9c2480d37f9be1cc934ad74215fb66eec6d7642798fa1565dc938",
+      "git_blob": "bdb2548977932a9c416eef3e243e35cb24e84e18",
+      "uncompressed_bytes": 21407,
+      "uncompressed_sha256": "02e0d948c227b3eb06ad63b46ff215287d293d78e47f5e73b1138a63f5b1452b"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad13/41A72AE2-38B4-4659-A01A-41C26EFA6E45.png",
+      "bytes": 236665,
+      "sha256": "6cd9361fbd30abea18b7abb1cd5ff588cb9e5a2aef87f3caad884037ea422980",
+      "git_blob": "b524e8155234e34ace952591c4ae9036e97b3bba"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad13/4A882FB3-8637-4430-90FE-3B6C39D5F46B.png",
+      "bytes": 255022,
+      "sha256": "f35af77c93669838e659e531071a259372ed9c97a0cf045d1545f95935e936f7",
+      "git_blob": "ff90eec15ce3f260070265a0be98007da9b757d8"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad13/74FB1E36-B620-44DD-A759-0139D5BA1557.png",
+      "bytes": 254397,
+      "sha256": "941be9dddd37a53f20f30a72b8bfecc6d8a3384d580fb0243162a16b94b6061e",
+      "git_blob": "d7049169d8d29de17ece3e36e7bb077c82d13949"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad13/78854549-9B5A-4A07-BC6B-B3A6577F09C1.png",
+      "bytes": 237251,
+      "sha256": "437825f6b7ffc7ef05df3c248a9abbfd575b3e94f54e3aaf926bf125a7ac8d9d",
+      "git_blob": "2f2231c2974fe4d3ecf811ab20b4437452954b71"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad13/7F41DC2B-2B72-45B1-9DEF-F37980A2C992.txt.gz",
+      "bytes": 2968,
+      "sha256": "8344a493039319600850ea505d9b10737d31a4a37247f0780011e903dd37447e",
+      "git_blob": "bb66cb2be1cf818b3f303720862a482570416c35",
+      "uncompressed_bytes": 21165,
+      "uncompressed_sha256": "e1cea7ba2df795a5cb7de5504ce382028f4d62a90a84973910831e07779302fb"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad13/96ABA018-2273-47B9-A201-A2EA3AA936E7.txt.gz",
+      "bytes": 2968,
+      "sha256": "b1151d6fbcecb7a5cd107875473f19ff37c31fe21b9ad524d48faea80f89d2d8",
+      "git_blob": "23bc57feec394487d4a6fdd6b5ec9684ad1f85f5",
+      "uncompressed_bytes": 21349,
+      "uncompressed_sha256": "004fb49d8bec43efbefa5580c0fe8fca74c173d43c91c8152156c885adce3ad6"
+    },
+    {
+      "path": "docs/hq-integration/native6-44796704535-20261120/selected-captures/ipad13/B746C3D8-90CA-409D-824C-385FC9A0A237.txt.gz",
+      "bytes": 2960,
+      "sha256": "054d2093779c4f38fd27495f29c4679365deab561fdf4760c434c4ceffd64cfc",
+      "git_blob": "6bcc18627e8b938acc40531e077059ba36eabc86",
+      "uncompressed_bytes": 21216,
+      "uncompressed_sha256": "3ec94bc350683359998982ce9bbe621e8cd3d90e8a5632e140e37694786272db"
+    }
+  ]
+}
