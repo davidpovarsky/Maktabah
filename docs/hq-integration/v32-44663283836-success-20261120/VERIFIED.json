@@ -1,0 +1,48 @@
+{
+  "verified_utc": "2026-11-20T04:03:12.522386+00:00",
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44663283836",
+  "checkout_sha": "89b301c0a2671782aa63487f183507c28ceb7308",
+  "application_source_sha": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "archive_sha256": "55912efb63e3f0fa0496d390f2d742f0327b35889a49231aedb749030557409e",
+  "source_tree_parity_verified": true,
+  "reports_and_native_log_hashes_verified": true,
+  "status": "FULL_V32_ORIGINAL_APP_INSTALL_QUERY_RELAUNCH_PASS",
+  "document_count": 7080797,
+  "source_count": 7876,
+  "original_query_checks": [
+    {
+      "count": 104120,
+      "firstFilePath": "otzaria-book:1",
+      "mode": "exact",
+      "query": "בראשית"
+    },
+    {
+      "count": 104120,
+      "firstFilePath": "otzaria-book:1",
+      "mode": "fuzzy",
+      "query": "בראשית"
+    },
+    {
+      "count": 104120,
+      "firstFilePath": "otzaria-book:1",
+      "mode": "advanced",
+      "query": "בראשית"
+    }
+  ],
+  "golden_25_ordered_ids_references_source_ids_equal": true,
+  "golden_highlighted_top_results_count_each_phase": 25,
+  "highlight_snippet_byte_parity": "NOT_CLAIMED; native reports contain a count",
+  "process_ids": {
+    "install": "37838",
+    "reopen": "43345"
+  },
+  "native_resume_bytes": 1048576,
+  "source_database_unchanged": true,
+  "installed_database_sha256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+  "reopen_download": false,
+  "reindex": false,
+  "xctest_ui_executed": 0,
+  "physical_device": "NOT_RUN",
+  "newer_c37_Hanlin_and_d5_occurrence_acceptance": "NOT_CLAIMED",
+  "local_verification_attempt1": "TypeError before commit: highlightedTopResults Int mistakenly treated as list; fixed local checker only, no native rerun or result alteration"
+}
