@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+    "-frontend",
+    "-parse",
+    "-swift-version",
+    "6",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\Maktabah-iOSUITests\\Build8401SevenDefectsAcceptanceTests.swift"
+  ],
+  "exit": 0,
+  "warnings": 0
+}

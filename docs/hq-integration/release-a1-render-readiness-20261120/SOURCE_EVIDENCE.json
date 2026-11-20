@@ -1,0 +1,38 @@
+{
+  "base": "dfd6cdcdd43af7166912a1574b5d70f44e8421a3",
+  "inspector_byte_identical_from_actual_app7e": true,
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Testing/ReaderRenderedHighlightInspector.swift",
+      "sha256_git_lf": "bdfa1b65d109e82317c5c52d4e447e7d8863b5d722fc77c464108a453ab2a5ef",
+      "excerpts": [
+        {
+          "first": 65,
+          "last": 81,
+          "text": "    public static func inspect(\n        textView: UITextView,\n        searchRanges: [NSRange],\n        currentLocator: String?,\n        renderGeneration: Int\n    ) -> RenderedHighlightSnapshot {\n        guard let attributedString = textView.attributedText, attributedString.length > 0 else {\n            return RenderedHighlightSnapshot(\n                searchHighlightCount: 0,\n                annotationHighlightCount: 0,\n                segmentSelectionCount: 0,\n                totalHighlights: 0,\n                locator: currentLocator,\n                renderGeneration: renderGeneration,\n                highlights: []\n            )\n        }"
+        },
+        {
+          "first": 133,
+          "last": 168,
+          "text": "    public static func updateDiagnostics(\n        for textView: UITextView,\n        searchRanges: [NSRange],\n        currentLocator: String?,\n        renderGeneration: Int\n    ) {\n        let snapshot = inspect(\n            textView: textView,\n            searchRanges: searchRanges,\n            currentLocator: currentLocator,\n            renderGeneration: renderGeneration\n        )\n        let jsonString = snapshot.toJSONString()\n\n        // Both enabled native Reader hosts must expose their actual book text\n        // to VoiceOver. The compact phone host previously overwrote it with\n        // diagnostic JSON. Keep only the immutable flags-off baseline behavior;\n        // structured diagnostics retain their existing dedicated child.\n        if !ChavrusaTextReaderUI.isEnabled {\n            textView.accessibilityValue = jsonString\n        }\n\n        let subview: UIView\n        if let existing = textView.subviews.first(where: { $0.accessibilityIdentifier == diagnosticsAccessibilityIdentifier }) {\n            subview = existing\n        } else {\n            let view = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))\n            view.accessibilityIdentifier = diagnosticsAccessibilityIdentifier\n            view.isAccessibilityElement = true\n            view.isUserInteractionEnabled = false\n            textView.addSubview(view)\n            subview = view\n        }\n        subview.accessibilityValue = jsonString\n        subview.accessibilityLabel = \"searchHighlights:\\(snapshot.searchHighlightCount)\"\n    }"
+        }
+      ]
+    },
+    {
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "sha256_git_lf": "71fb1b96a0d07f8167aa46d1f8c295ad84fc64bb260aa63fb662dd45bc7a5ec1",
+      "excerpts": [
+        {
+          "first": 624,
+          "last": 647,
+          "text": "    func updateUIView(_ uiView: UIView, context: Context) {\n        guard let textView = uiView.subviews.first as? iOSCustomIbarotTextView else { return }\n\n        context.coordinator.parent = self\n        updateTextAlignmentAndSemantics(for: textView)\n        setupViewModelClosure(for: textView, context: context)\n\n        if context.coordinator.lastBackgroundColorIndex != state.backgroundColorIndex {\n            context.coordinator.lastBackgroundColorIndex = state.backgroundColorIndex\n            if let tlm = textView.textLayoutManager {\n                tlm.invalidateLayout(for: tlm.documentRange)\n                textView.setNeedsDisplay()\n            }\n        }\n\n        let rendered = resolveRenderedContent(textView: textView, context: context)\n\n        #if DEBUG\n        ReaderRenderedHighlightInspector.updateDiagnostics(\n            for: textView,\n            searchRanges: rendered.searchRanges,\n            currentLocator: viewModel.currentLocator?.persistenceKey,\n            renderGeneration: context.coordinator.renderGeneration\n        )"
+        },
+        {
+          "first": 729,
+          "last": 774,
+          "text": "    private func resolveRenderedContent(\n        textView: iOSCustomIbarotTextView,\n        context: Context\n    ) -> RenderedAttributedContent {\n        let isSearchEventForThisContent = searchEvent != nil && searchEvent?.contentId == viewModel.currentContentId\n        let activeSearchEventId = isSearchEventForThisContent ? searchEvent?.id : nil\n\n        let currentKey = RenderCacheKey(\n            bookId: viewModel.currentBook?.id,\n            contentId: viewModel.currentContentId,\n            text: text,\n            annotations: annotations,\n            searchEventId: activeSearchEventId,\n            selectedSegmentRange: selectedSegmentRange,\n            highlightTerms: viewModel.highlightTerms,\n            showHarakat: state.showHarakat,\n            clickableAnnotation: state.clickableAnnotation,\n            enhancedUnderline: enhancedUnderline,\n            isMultiLanguage: isMultiLanguage,\n            isImported: isImported,\n            fontName: state.fontName,\n            fontSize: state.fontSize,\n            lineHeight: state.lineHeight\n        )\n\n        if let lastKey = context.coordinator.lastRenderKey, lastKey == currentKey,\n           let cached = context.coordinator.lastRenderedContent\n        {\n            return cached\n        }\n\n        context.coordinator.renderGeneration += 1\n        let newlyRendered = renderAttributedContent(\n            textView: textView,\n            context: context,\n            isSearchEventForThisContent: isSearchEventForThisContent\n        )\n        context.coordinator.lastRenderKey = currentKey\n        context.coordinator.lastRenderedContent = newlyRendered\n\n        textView.attributedText = newlyRendered.attributedString\n        textView.invalidateIntrinsicContentSize()\n        textView.setNeedsLayout()\n        textView.layoutIfNeeded()\n        return newlyRendered\n    }"
+        }
+      ]
+    }
+  ]
+}
