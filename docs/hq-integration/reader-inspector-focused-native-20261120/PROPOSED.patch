@@ -1,0 +1,1151 @@
+--- /dev/null
++++ b/.github/workflows/otzaria-reader-inspector-focused-native.yml
+@@ -0,0 +1,139 @@
++name: Four original Reader and Inspector native diagnostics
++
++on:
++  push:
++    branches: [codex/otzaria-reader-inspector-focused-native-20261120]
++
++permissions:
++  contents: read
++  actions: read
++
++concurrency:
++  group: reader-inspector-focused-native-${{ github.ref }}
++  cancel-in-progress: false
++
++jobs:
++  original-four:
++    name: Full real app and four original native cases (partial acceptance only)
++    runs-on: xcode-27
++    timeout-minutes: 360
++    env:
++      EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          ref: ${{ github.sha }}
++          fetch-depth: 0
++      - name: Bind exact M and unchanged original execution closure
++        run: python3 Scripts/CI/reader-inspector-focused-native.py before
++      - name: Reject false source or result credit
++        run: python3 Scripts/CI/test-reader-inspector-focused-native.py
++      - name: Select an existing SDK-matched runtime for the full device matrix
++        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
++      - name: Require all 55 Sefaria transport cases on actual Apple Foundation
++        run: python3 Scripts/CI/sefaria-toc-apple55.py
++      - uses: actions/setup-node@v4
++        with:
++          node-version: 22
++      - uses: ruby/setup-ruby@v1
++        with:
++          ruby-version: '3.3'
++      - name: Read source-pinned Zayit build mode
++        id: zayit_source_mode
++        run: |
++          python3 - <<'PY'
++          import json, os, pathlib
++          rebuild = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text()).get('rebuild_zayit_framework', False)
++          assert type(rebuild) is bool
++          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
++              output.write('rebuild=' + str(rebuild).lower() + '\n')
++          PY
++      - name: Use Rust only for the reviewed matching Zayit build
++        if: ${{ steps.zayit_source_mode.outputs.rebuild == 'true' }}
++        uses: dtolnay/rust-toolchain@stable
++      - name: Key disposable compiler cache by real SDK and native inputs
++        id: runtime27_cache_key
++        run: |
++          python3 - <<'PY'
++          import hashlib, json, os, pathlib, subprocess
++          def git(path):
++              return subprocess.check_output(['git', 'rev-parse', 'HEAD:' + path])
++          inputs = json.loads(pathlib.Path('Scripts/CI/hq-stage2-focused-apple.inputs.json').read_text())
++          inputs.pop('application_source_sha')
++          inputs.pop('application_trees')
++          # A package resource-layout change must not restore an older copied
++          # Resources directory into a newly processed/signable bundle.
++          package_manifests = subprocess.check_output(['git', 'ls-files', '-z', 'Source/**/Package.swift']).decode().split('\0')
++          package_layout = b''.join(git(path) for path in package_manifests if path)
++          rust = subprocess.check_output(['rustc', '-Vv']) if inputs.get('rebuild_zayit_framework') else b''
++          native = (subprocess.check_output(['xcodebuild', '-version']) + git('Vendor') + git('Maktabah.xcodeproj')
++                    + pathlib.Path('Podfile').read_bytes() + json.dumps(inputs, sort_keys=True).encode() + package_layout + rust)
++          prefix = 'runtime27-derived-v2-' + hashlib.sha256(native).hexdigest() + '-'
++          key = prefix + hashlib.sha256(git('Source') + git('Maktabah-iOSUITests')).hexdigest()
++          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
++              output.write('prefix=' + prefix + '\nkey=' + key + '\n')
++          PY
++      - uses: actions/cache/restore@v4
++        id: runtime27_build_cache
++        with:
++          path: build/DerivedData
++          key: ${{ steps.runtime27_cache_key.outputs.key }}
++          restore-keys: ${{ steps.runtime27_cache_key.outputs.prefix }}
++      - name: Execute original full app build and four unchanged native cases
++        env:
++          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
++          RUNTIME27_MODE: ui
++        run: python3 Scripts/CI/runtime27.py
++      - name: Bind post-execution source and actual four-case results
++        if: always()
++        run: python3 Scripts/CI/reader-inspector-focused-native.py after
++      - name: Retain compiler cache only after an actual matching test build
++        id: runtime27_cache_ready
++        if: always()
++        env:
++          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
++        run: |
++          python3 - <<'PY'
++          import json, os, pathlib
++          path = pathlib.Path('build/hq-stage2/result.json')
++          report = json.loads(path.read_text()) if path.is_file() else {}
++          ready = report.get('status') == 'SIMULATOR_BUILD_FOR_REAL_UI_PASS' and report.get('checkout_sha') == os.environ['EXPECTED_CHECKOUT_SHA']
++          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
++              output.write('ready=' + str(ready).lower() + '\n')
++          PY
++      - uses: actions/cache/save@v4
++        if: ${{ always() && steps.runtime27_cache_ready.outputs.ready == 'true' && steps.runtime27_build_cache.outputs.cache-hit != 'true' }}
++        with:
++          path: build/DerivedData
++          key: ${{ steps.runtime27_cache_key.outputs.key }}
++      - name: Retain real runtime evidence including failure
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: reader-inspector-focused-native-evidence
++          path: |
++            build/artifacts/
++            !build/artifacts/**/*.xcresult/**
++            !build/artifacts/**/*.mp4
++            !build/artifacts/visual-*/**
++            build/hq-stage2/*.json
++            build/hq-stage2/*Package.resolved
++            build/hq-stage2/*.log
++            build/hq-stage2/*.diff
++            build/hq-stage2/generated-Maktabah-project.pbxproj
++            build/hq-stage2/*.xcprivacy
++            build/hq-stage2/ExpoModulesProvider.swift
++            build/hq-stage2/resolved-Podfile.lock
++            build/hq-stage2/privacy-dependency-inputs/
++            build/hq-stage2/rebuilt-zayit/
++          if-no-files-found: error
++      - name: Retain original native result bundles and visual captures separately
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: reader-inspector-focused-native-captures
++          path: |
++            build/artifacts/**/*.xcresult/**
++            build/artifacts/**/*.mp4
++            build/artifacts/visual-*/**
++          if-no-files-found: ignore
+--- /dev/null
++++ b/Scripts/CI/reader-inspector-focused-native.py
+@@ -0,0 +1,255 @@
++#!/usr/bin/env python3
++"""Source/result boundary for four unchanged original native diagnostics.
++
++The original runtime27.py owns all full-app compilation, Simulator lifecycle,
++XCTest execution, deadlines, raw xcresult verification and collection. This
++wrapper grants neither full Native116 nor Release114 acceptance.
++"""
++import argparse
++import hashlib
++import json
++import os
++from pathlib import Path
++import runpy
++import subprocess
++import sys
++
++ROOT = Path(__file__).resolve().parents[2]
++BASE = "8ff4e820970e6697eabff40ac46e2f6e61484f27"
++REF = "refs/heads/codex/otzaria-reader-inspector-focused-native-20261120"
++DOCS = "docs/hq-integration/reader-inspector-focused-native-20261120/"
++WORKFLOW = ".github/workflows/otzaria-reader-inspector-focused-native.yml"
++SELF = "Scripts/CI/reader-inspector-focused-native.py"
++TESTS = "Scripts/CI/test-reader-inspector-focused-native.py"
++MANIFEST = "docs/hq-integration/runtime27/R27_CASES.json"
++INPUTS = "Scripts/CI/hq-stage2-focused-apple.inputs.json"
++ADDITIONS = "Scripts/CI/hq-stage2-otzaria-test-additions.json"
++RUNTIME = "Scripts/CI/runtime27.py"
++ALLOWED = {WORKFLOW, SELF, TESTS, MANIFEST, INPUTS, ADDITIONS, RUNTIME}
++TREES = {
++    "Source": "d4cc25409260ef275214db70ecd57711f24bcaef",
++    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
++    "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72",
++    "Maktabah-iOSUITests": "e060cd09a096392cb73fa36bffe7fbf8758ffe50",
++}
++SELECTED = [
++    "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
++    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
++    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
++    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
++]
++OLD_R27 = "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b"
++NEW_R27 = "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f"
++OLD_PROJECT = "2741615644741d39b0b19c6146f9c459323dabab"
++NEW_PROJECT = "489fd95080cd47c8b2138f70bc9ab72e5e4879f0"
++OUT = ROOT / "build/artifacts/reader-inspector-focused-native"
++
++
++def require(ok, message):
++    if not ok:
++        raise ValueError(message)
++
++
++def sha(data):
++    return hashlib.sha256(data).hexdigest()
++
++
++def blob(data):
++    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
++
++
++def git(*args):
++    return subprocess.check_output(["git", *args], cwd=ROOT, timeout=120)
++
++
++def frozen_json(path):
++    return json.loads(git("show", BASE + ":" + path))
++
++
++def read_json(path):
++    return json.loads((ROOT / path).read_bytes())
++
++
++def write(path, value):
++    path.parent.mkdir(parents=True, exist_ok=True)
++    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
++
++
++def validate_identity(head, expected, ref, parents, trees, changed):
++    require(len(expected) == 40 and all(c in "0123456789abcdef" for c in expected), "Missing exact expected checkout")
++    require(head == expected and ref == REF, "Wrong immutable checkout/ref")
++    require(parents == [BASE], "This route requires exactly one reviewed child of M")
++    require(trees == TREES, "Application, dependency, project or XCTest tree changed")
++    require(set(changed) >= ALLOWED, "Missing required focused source/pins")
++    require(all(p in ALLOWED or p.startswith(DOCS) for p in changed), "Unreviewed changed path")
++
++
++def validate_manifest(current, original):
++    old_rows = original["cases"] + original["supplemental_cases"]
++    rows = current["cases"] + current["supplemental_cases"]
++    require(len(old_rows) == 116 and rows[:116] == old_rows, "Original116 rows/oracles changed")
++    require(len(rows) == 119 and len({r["case_id"] for r in rows}) == 119, "Diagnostic catalog must contain116+3 unique rows")
++    require([r["case_id"] for r in rows[116:]] == SELECTED[1:], "Wrong existing Release diagnostic rows")
++    require(all(r["device"] == "ipad11" and r["status"] == "NOT_RUN" for r in rows[116:]), "New rows may not carry execution credit")
++    require(current["execution_case_ids"] == SELECTED, "Wrong diagnostic selection/order")
++    require(current["execution_groups"] == [{"label": "11-reader", "size": "11", "case_ids": SELECTED}], "Wrong original matrix partition")
++    require(current["expected_per_device"] == {"ipad11": 4, "ipad13": 0, "iphone": 0}, "Wrong per-device count")
++    require(current["required_nonzero_cases"] == 4 and current["native_cases_executed"] == 0, "Wrong execution count")
++    require(current["diagnostic_only"] is True and current["hid_comparison"] is False, "Wrong focused mode")
++    require(all(current[k] == BASE for k in ("source_test_commit", "app_source", "application_source_sha")), "Source/test pins do not bind M")
++    history = current["reader_inspector_diagnostic_20261120"]
++    require(history["original_execution_case_ids"] == original["execution_case_ids"], "Original full selection not retained")
++    require(history["source_snapshot"] == BASE and history["additional_existing_release_rows"] == rows[116:], "Diagnostic provenance mismatch")
++    require(history["full_native116_acceptance"] is False and history["full_release114_acceptance"] is False
++            and history["new_native_executions"] == 0, "Unexecuted or full-phase credit")
++    allowed = {"source_test_commit", "app_source", "application_source_sha", "scope", "native_cases_executed",
++               "required_nonzero_cases", "expected_per_device", "diagnostic_only", "hid_comparison", "execution_case_ids",
++               "execution_groups", "selected_scope_reason", "diagnostic_purpose", "supplemental_cases",
++               "reader_inspector_diagnostic_20261120"}
++    require({k: v for k, v in current.items() if k not in allowed} ==
++            {k: v for k, v in original.items() if k not in allowed}, "Unrelated manifest contract changed")
++
++
++def validate_pins(inputs, old_inputs, additions_bytes, old_additions_bytes, runtime, old_runtime):
++    require(old_runtime.count(OLD_R27.encode()) == 1 and runtime == old_runtime.replace(OLD_R27.encode(), NEW_R27.encode()),
++            "Original runtime driver changed beyond reviewed test hash")
++    require(old_additions_bytes.count(OLD_PROJECT.encode()) == 1
++            and additions_bytes == old_additions_bytes.replace(OLD_PROJECT.encode(), NEW_PROJECT.encode()),
++            "Exact78 test additions/build exclusions changed beyond actual project proof pin")
++    allowed = {"application_source_sha", "application_trees", "otzaria_test_additions_sha256"}
++    require({k: v for k, v in inputs.items() if k not in allowed} ==
++            {k: v for k, v in old_inputs.items() if k not in allowed}, "Engine/resource/SDK/package inputs changed")
++    require(inputs["application_source_sha"] == BASE, "Wrong app source")
++    require(inputs["application_trees"] == {k: TREES[k] for k in ("Source", "Vendor", "Maktabah.xcodeproj")}, "Wrong app trees")
++    require(inputs["otzaria_test_additions_sha256"] == sha(additions_bytes), "Unbound exact additions manifest")
++    require(inputs["hanlin_gitlink"] == "e00498e33f106cc43be0476ffa2e09329c8ca300", "Original Hanlin changed")
++
++
++def exact_working_inputs(paths):
++    records = {}
++    entries = git("ls-tree", "-r", "-z", "HEAD", "--", *paths)
++    for row in entries.split(b"\0"):
++        if not row:
++            continue
++        meta, name = row.split(b"\t", 1)
++        mode, kind, object_id = meta.decode().split()
++        if kind != "blob":
++            continue
++        path = name.decode()
++        p = ROOT / path
++        # Tracked source links, if any, are hashed as the original link target.
++        actual = os.readlink(p).encode() if mode == "120000" and p.is_symlink() else p.read_bytes()
++        require(blob(actual) == object_id, "Dirty tracked execution input: " + path)
++        records[path] = {"blob": object_id, "bytes": len(actual), "sha256": sha(actual)}
++    require(records, "Empty execution source closure")
++    return records
++
++
++def validate_outcomes(ui, build, summary, leaves, expected):
++    require(ui.get("checkout_sha") == build.get("checkout_sha") == expected, "Outcome checkout mismatch")
++    require(build.get("status") == "SIMULATOR_BUILD_FOR_REAL_UI_PASS", "No complete actual full-app/test build")
++    require(build.get("application_source_sha") == BASE and build.get("application_trees") ==
++            {k: TREES[k] for k in ("Source", "Vendor", "Maktabah.xcodeproj")}, "Build source mismatch")
++    require(ui.get("status") == "SELECTED_UI_EXECUTED_PASS" and ui.get("mode") == "ui", "Selected diagnostic execution did not pass")
++    require(ui.get("full_release_acceptance") is False and ui.get("distribution") is False, "Invalid full/distribution credit")
++    require(ui.get("test_source_commit") == BASE and ui.get("test_tree") == TREES["Maktabah-iOSUITests"], "Actual test source mismatch")
++    require(ui.get("requested_ui_case_count") == ui.get("executed_ui_pass") == 4, "Incomplete selected UI execution")
++    require(all(ui.get(k) == 0 for k in ("executed_ui_fail", "executed_ui_skip", "ui_not_run")), "Failed/skipped/unverified original case")
++    outcomes = ui.get("case_outcomes", [])
++    require(len(outcomes) == 4 and {r["case_id"] for r in outcomes} == set(SELECTED)
++            and all(r["actual"] == "Passed" and r["device"] == "ipad11" and r["configuration_label"] == "11-reader" for r in outcomes),
++            "Wrong actual case identities/outcomes")
++    require(summary.get("passedTests") == 4 and all(summary.get(k) == 0 for k in ("failedTests", "skippedTests", "expectedFailures")),
++            "Raw xcresult summary is not four ordinary passes")
++    require(len(leaves) == 4 and {x[0] for x in leaves} == set(SELECTED) and all(x[1] == "Passed" for x in leaves),
++            "Raw xcresult leaves differ or duplicate")
++
++
++def source_check(phase, expected, ref):
++    head = git("rev-parse", "HEAD").decode().strip()
++    parents = git("show", "-s", "--format=%P", "HEAD").decode().split()
++    trees = {p: git("rev-parse", "HEAD:" + p).decode().strip() for p in TREES}
++    changed = git("diff", "--name-only", BASE, "HEAD").decode().splitlines()
++    validate_identity(head, expected, ref, parents, trees, changed)
++    manifest = read_json(MANIFEST)
++    validate_manifest(manifest, frozen_json(MANIFEST))
++    validate_pins(read_json(INPUTS), frozen_json(INPUTS), (ROOT / ADDITIONS).read_bytes(), git("show", BASE + ":" + ADDITIONS),
++                  (ROOT / RUNTIME).read_bytes(), git("show", BASE + ":" + RUNTIME))
++    require(sha((ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift").read_bytes()) == NEW_R27, "Pinned actual R27 source differs")
++    require(git("rev-parse", "HEAD:Maktabah.xcodeproj/project.pbxproj").decode().strip() == NEW_PROJECT, "Pinned original project differs")
++    records = exact_working_inputs(["Scripts/CI", ".github/workflows", "Maktabah-iOSUITests", "tools"])
++    if phase == "before":
++        product = exact_working_inputs(list(TREES))
++    else:
++        # Reuse the original package/pristine/privacy audit after actual UI.
++        # CocoaPods' reviewed project/privacy generation is not a source rewrite.
++        build = read_json("build/hq-stage2/result.json")
++        hq = runpy.run_path(str(ROOT / "Scripts/CI/hq-stage2-focused-apple.py"))
++        hq["verify_actual_sources"](build)
++        native = build.get("native_context", {})
++        require(sha((ROOT / "Maktabah.xcodeproj/project.pbxproj").read_bytes()) == native.get("generated_project_sha256"), "Generated original Pod integration project changed")
++        require(sha((ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata").read_bytes()) == native.get("workspace_sha256"), "Original workspace changed")
++        hq["prepare_original_hanlin"](read_json(INPUTS), build, verify_only=True)
++        product = {"original_helper_actual_source_count": build["actual_source_inputs_verified"],
++                   "package_checkouts": build["actual_package_checkouts"],
++                   "generated_configuration": build.get("generated_configuration", [])}
++        write(OUT / "original-post-ui-input-audit.json", build)
++        before = read_json("build/artifacts/reader-inspector-focused-native/SOURCE_BEFORE.json")
++        require(records == before["execution_inputs"], "CI/test bytes changed across original execution")
++    return {"status": "SOURCE_BOUND_ONLY", "head": head, "application_and_tests": BASE, "ref": ref, "phase": phase,
++            "trees": trees, "changed_paths": changed, "execution_inputs": records, "product_inputs": product,
++            "native_pass_credit": 0, "full_native116_acceptance": False, "full_release114_acceptance": False}
++
++
++def qualify(expected):
++    ui = read_json("build/artifacts/runtime27/result.json")
++    build = read_json("build/hq-stage2/result.json")
++    summary = read_json("build/artifacts/runtime27/verified-11-reader.summary.json")
++    tree = read_json("build/artifacts/runtime27/verified-11-reader.tests.json")
++    case_id = runpy.run_path(str(ROOT / "tools/verify_xcresult_zero_skips.py"))["case_id"]
++    leaves = []
++    def visit(node, suite=None):
++        if node.get("nodeType") == "Test Suite":
++            suite = node["name"].split(".")[-1]
++        if node.get("nodeType") == "Test Case":
++            leaves.append((case_id(node.get("nodeIdentifier") or f"{suite}/{node['name']}"), node.get("result")))
++        for child in node.get("children", []):
++            visit(child, suite)
++    for node in tree.get("testNodes", []):
++        visit(node)
++    validate_outcomes(ui, build, summary, leaves, expected)
++    require(ui.get("case_manifest_sha256") == sha((ROOT / MANIFEST).read_bytes()), "Execution used different selected scope")
++    require(ui.get("helper_inputs_sha256", {}).get(RUNTIME) == sha((ROOT / RUNTIME).read_bytes()), "Execution used different original runtime")
++    return {"status": "FOUR_SELECTED_ORIGINAL_NATIVE_CASES_PASS", "head": expected, "application_and_tests": BASE,
++            "case_outcomes": ui["case_outcomes"], "selected_count": 4, "original_native_catalog_preserved": 116,
++            "full_native116_acceptance": False, "full_release114_acceptance": False,
++            "scope": "Full actual app build; only four original iPad cases qualified. No physical-device or full-phase credit."}
++
++
++def main():
++    parser = argparse.ArgumentParser()
++    parser.add_argument("phase", choices=["before", "after"])
++    args = parser.parse_args()
++    expected = os.environ.get("EXPECTED_CHECKOUT_SHA", "")
++    report = {"status": "FAIL", "phase": args.phase, "head": expected, "application_and_tests": BASE,
++              "selected_count": 4, "full_native116_acceptance": False, "full_release114_acceptance": False}
++    try:
++        source = source_check(args.phase, expected, os.environ.get("GITHUB_REF", ""))
++        write(OUT / ("SOURCE_" + args.phase.upper() + ".json"), source)
++        report.update(source_status=source["status"])
++        if args.phase == "after":
++            report.update(qualify(expected))
++        else:
++            report.update(status="SOURCE_PREFLIGHT_PASS", native_pass_credit=0)
++        return 0
++    except Exception as error:
++        report["error"] = str(error)
++        print(type(error).__name__ + ": " + str(error), file=sys.stderr)
++        return 1
++    finally:
++        write(OUT / ("RESULT_" + args.phase.upper() + ".json"), report)
++        print(json.dumps({k: report.get(k) for k in ("status", "phase", "head", "selected_count", "error")}, indent=2))
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ b/Scripts/CI/test-reader-inspector-focused-native.py
+@@ -0,0 +1,159 @@
++#!/usr/bin/env python3
++"""Synthetic refusal/source-preservation controls; zero Native credit."""
++import argparse
++import copy
++import json
++from pathlib import Path
++import runpy
++import subprocess
++import unittest
++
++HERE = Path(__file__).resolve().parent
++G = runpy.run_path(str(HERE / 'reader-inspector-focused-native.py'))
++PARSER = argparse.ArgumentParser()
++PARSER.add_argument('--base-dir', type=Path)
++ARGS, OTHER = PARSER.parse_known_args()
++ROOT = HERE.parents[1]
++
++
++def original(path):
++    if ARGS.base_dir:
++        return (ARGS.base_dir / path).read_bytes()
++    return subprocess.check_output(['git', 'show', G['BASE'] + ':' + path], cwd=ROOT)
++
++
++class FocusedBoundary(unittest.TestCase):
++    def setUp(self):
++        self.manifest = json.loads((ROOT / G['MANIFEST']).read_bytes())
++        self.old_manifest = json.loads(original(G['MANIFEST']))
++        self.pins = [json.loads((ROOT / G['INPUTS']).read_bytes()), json.loads(original(G['INPUTS'])),
++                     (ROOT / G['ADDITIONS']).read_bytes(), original(G['ADDITIONS']),
++                     (ROOT / G['RUNTIME']).read_bytes(), original(G['RUNTIME'])]
++        self.head = 'a' * 40
++        self.ui = {'checkout_sha': self.head, 'status': 'SELECTED_UI_EXECUTED_PASS', 'mode': 'ui',
++                   'full_release_acceptance': False, 'distribution': False, 'test_source_commit': G['BASE'],
++                   'test_tree': G['TREES']['Maktabah-iOSUITests'], 'requested_ui_case_count': 4,
++                   'executed_ui_pass': 4, 'executed_ui_fail': 0, 'executed_ui_skip': 0, 'ui_not_run': 0,
++                   'case_outcomes': [dict(case_id=c, actual='Passed', device='ipad11', configuration_label='11-reader') for c in G['SELECTED']]}
++        self.build = {'checkout_sha': self.head, 'status': 'SIMULATOR_BUILD_FOR_REAL_UI_PASS', 'application_source_sha': G['BASE'],
++                      'application_trees': {k: G['TREES'][k] for k in ('Source','Vendor','Maktabah.xcodeproj')}}
++        self.summary = {'passedTests': 4, 'failedTests': 0, 'skippedTests': 0, 'expectedFailures': 0}
++        self.leaves = [(c, 'Passed') for c in G['SELECTED']]
++
++    def validate(self):
++        G['validate_outcomes'](self.ui, self.build, self.summary, self.leaves, self.head)
++
++    def rejected(self):
++        with self.assertRaises(ValueError):
++            self.validate()
++
++    def test_current_metadata_preserves_original116(self):
++        G['validate_manifest'](self.manifest, self.old_manifest)
++
++    def test_current_exact_runtime_and_project_pin_inverses(self):
++        G['validate_pins'](*self.pins)
++
++    def test_changed_original_oracle_rejected(self):
++        self.manifest['cases'][0]['oracle'] += ' relaxed'
++        with self.assertRaises(ValueError): G['validate_manifest'](self.manifest, self.old_manifest)
++
++    def test_missing_original_row_rejected(self):
++        self.manifest['supplemental_cases'].pop(0)
++        with self.assertRaises(ValueError): G['validate_manifest'](self.manifest, self.old_manifest)
++
++    def test_missing_motion_selection_rejected(self):
++        self.manifest['execution_case_ids'].pop()
++        with self.assertRaises(ValueError): G['validate_manifest'](self.manifest, self.old_manifest)
++
++    def test_wrong_device_group_rejected(self):
++        self.manifest['execution_groups'][0]['size'] = '13'
++        with self.assertRaises(ValueError): G['validate_manifest'](self.manifest, self.old_manifest)
++
++    def test_historical_credit_rejected(self):
++        self.manifest['native_cases_executed'] = 4
++        with self.assertRaises(ValueError): G['validate_manifest'](self.manifest, self.old_manifest)
++
++    def test_full_phase_credit_rejected(self):
++        self.manifest['reader_inspector_diagnostic_20261120']['full_native116_acceptance'] = True
++        with self.assertRaises(ValueError): G['validate_manifest'](self.manifest, self.old_manifest)
++
++    def test_original_runtime_body_edit_rejected(self):
++        self.pins[4] += b'\n# changed original helper\n'
++        with self.assertRaises(ValueError): G['validate_pins'](*self.pins)
++
++    def test_source_or_artifact_pin_edit_rejected(self):
++        self.pins[0]['engine_producer_sha'] = '0' * 40
++        with self.assertRaises(ValueError): G['validate_pins'](*self.pins)
++
++    def test_test_additions_exemption_edit_rejected(self):
++        self.pins[2] += b'\n'
++        with self.assertRaises(ValueError): G['validate_pins'](*self.pins)
++
++    def test_exact_immutable_child_permitted(self):
++        G['validate_identity'](self.head,self.head,G['REF'],[G['BASE']],G['TREES'],G['ALLOWED'])
++
++    def test_wrong_head_ref_or_parent_rejected(self):
++        for head,ref,parents in [('b'*40,G['REF'],[G['BASE']]),(self.head,'refs/heads/main',[G['BASE']]),(self.head,G['REF'],[]),(self.head,G['REF'],[G['BASE'],'b'*40])]:
++            with self.subTest(head=head,ref=ref,parents=parents),self.assertRaises(ValueError):
++                G['validate_identity'](head,self.head,ref,parents,G['TREES'],G['ALLOWED'])
++
++    def test_unreviewed_product_or_test_tree_rejected(self):
++        for k in G['TREES']:
++            trees=dict(G['TREES']); trees[k]='b'*40
++            with self.subTest(tree=k),self.assertRaises(ValueError):
++                G['validate_identity'](self.head,self.head,G['REF'],[G['BASE']],trees,G['ALLOWED'])
++
++    def test_changed_unreviewed_path_rejected(self):
++        with self.assertRaises(ValueError):
++            G['validate_identity'](self.head,self.head,G['REF'],[G['BASE']],G['TREES'],G['ALLOWED']|{'Scripts/CI/run-faithful-ipad-matrix.py'})
++
++    def test_four_matching_synthetic_outcomes_qualify_only_subset(self):
++        self.validate()
++
++    def test_build_only_cannot_qualify_native(self):
++        self.ui['status']='BUILD_ONLY'
++        self.rejected()
++
++    def test_full_phase_status_cannot_qualify_subset(self):
++        self.ui['status']='EXECUTED_PASS'
++        self.rejected()
++
++    def test_incomplete_or_failed_app_build_rejected(self):
++        self.build['status']='FAILED'
++        self.rejected()
++
++    def test_wrong_actual_build_head_rejected(self):
++        self.build['checkout_sha']='b'*40
++        self.rejected()
++
++    def test_wrong_actual_test_tree_rejected(self):
++        self.ui['test_tree']='b'*40
++        self.rejected()
++
++    def test_one_ui_failure_rejected(self):
++        self.ui['executed_ui_pass']=3;self.ui['executed_ui_fail']=1
++        self.rejected()
++
++    def test_skip_or_not_run_rejected(self):
++        for key in ['executed_ui_skip','ui_not_run']:
++            self.ui[key]=1
++            with self.subTest(key=key): self.rejected()
++            self.ui[key]=0
++
++    def test_raw_xcresult_missing_or_extra_leaf_rejected(self):
++        self.leaves.pop();self.rejected()
++        self.leaves += [(G['SELECTED'][0],'Passed')]*2;self.rejected()
++
++    def test_raw_expected_failure_is_not_pass(self):
++        self.leaves[0]=(self.leaves[0][0],'Expected Failure');self.rejected()
++
++    def test_raw_summary_disagrees_rejected(self):
++        self.summary['failedTests']=1;self.rejected()
++
++    def test_wrong_original_case_id_rejected(self):
++        self.ui['case_outcomes'][0]['case_id']='AnotherTests/testSynthetic'
++        self.rejected()
++
++
++if __name__ == '__main__':
++    unittest.main(argv=[__file__, *OTHER], verbosity=2)
+--- a/Scripts/CI/runtime27.py
++++ b/Scripts/CI/runtime27.py
+@@ -313,7 +313,7 @@
+         report["full_release_acceptance"] = False
+         report["scope"] = contract["scope"]
+         test_path = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
+-        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b":
++        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f":
+             raise RuntimeError("Reviewed test source drift")
+         report["test_source_commit"] = contract["source_test_commit"]
+         subprocess.run(["git", "merge-base", "--is-ancestor", contract["source_test_commit"], "HEAD"], cwd=ROOT, check=True)
+--- a/Scripts/CI/hq-stage2-focused-apple.inputs.json
++++ b/Scripts/CI/hq-stage2-focused-apple.inputs.json
+@@ -1,9 +1,9 @@
+ {
+-  "application_source_sha": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
++  "application_source_sha": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+   "application_trees": {
+-    "Source": "c7732ce8cc0ba7d1a12a1e5c04d9cdb8d8f0fbc9",
++    "Source": "d4cc25409260ef275214db70ecd57711f24bcaef",
+     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+-    "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
++    "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72"
+   },
+   "engine_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+   "engine_trees": {
+@@ -105,5 +105,5 @@
+   ],
+   "rebuild_zayit_framework": false,
+   "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+-  "otzaria_test_additions_sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
++  "otzaria_test_additions_sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313"
+ }
+--- a/Scripts/CI/hq-stage2-otzaria-test-additions.json
++++ b/Scripts/CI/hq-stage2-otzaria-test-additions.json
+@@ -475,7 +475,7 @@
+     }
+   ],
+   "excluded_build_inputs": {
+-    "Maktabah.xcodeproj/project.pbxproj": "2741615644741d39b0b19c6146f9c459323dabab",
++    "Maktabah.xcodeproj/project.pbxproj": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+     "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
+     "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
+     "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+--- a/docs/hq-integration/runtime27/R27_CASES.json
++++ b/docs/hq-integration/runtime27/R27_CASES.json
+@@ -1,16 +1,17 @@
+ {
+   "schema_version": 1,
+-  "source_test_commit": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
++  "source_test_commit": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
+-  "app_source": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
++  "app_source": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
+   "independent_qa_thread": null,
+-  "scope": "Preparation for the complete Native116: all98 original selected cases plus6 original Core compound journeys and12 Hebrew/English Sefaria TOC/transport cases. Exact final app/test source pins remain pending Coordinator integration; this preparation is not an executable frozen-source acceptance or a completed Native result.",
++  "scope": "Focused original4 diagnostic cases only: CommentaryPad, original Inspector landscape/portrait, and original Reduce Motion. All116 original Native rows retained plus3 existing Release rows as separate diagnostic metadata. Full Native116/Release114 acceptance remains NOT_RUN on this source.",
+   "native_cases_executed": 0,
+-  "required_nonzero_cases": 116,
++  "required_nonzero_cases": 4,
+   "expected_per_device": {
+-    "ipad11": 87,
+-    "iphone": 29
++    "ipad11": 4,
++    "ipad13": 0,
++    "iphone": 0
+   },
+   "cases": [
+     {
+@@ -152,288 +153,21 @@
+   ],
+   "execution_groups": [
+     {
+-      "label": "11",
+-      "size": "11",
+-      "case_ids": [
+-        "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+-        "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+-        "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+-        "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+-        "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+-        "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+-        "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
+-        "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+-        "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+-        "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+-        "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+-        "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad"
+-      ],
+-      "hid_comparison": false
+-    },
+-    {
+-      "label": "11-search",
+-      "size": "11",
+-      "case_ids": [
+-        "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+-        "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+-        "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+-        "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+-        "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+-        "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+-        "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+-        "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+-        "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+-        "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+-        "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+-        "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+-        "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+-        "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+-        "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+-        "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+-        "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+-        "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+-        "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+-        "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+-        "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+-        "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
+-      ],
+-      "hid_comparison": false
+-    },
+-    {
+-      "label": "11-index",
+-      "size": "11",
+-      "case_ids": [
+-        "SearchDataNativeAcceptanceTests/testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount",
+-        "SearchDataNativeAcceptanceTests/testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch",
+-        "SearchDataNativeAcceptanceTests/testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch",
+-        "SearchDataNativeAcceptanceTests/testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks",
+-        "SearchDataNativeAcceptanceTests/testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry"
+-      ],
+-      "hid_comparison": false
+-    },
+-    {
+       "label": "11-reader",
+       "size": "11",
+       "case_ids": [
+-        "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+-        "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+-        "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+-        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+-        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+-        "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+-        "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+-        "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+-        "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+-        "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+-        "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+-        "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+-        "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+-        "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+-        "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+-        "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+-        "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+-        "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+-        "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+-        "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+-        "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+-        "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+-        "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+-        "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
+-        "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+-        "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+-        "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+-        "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+-        "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+-        "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+-        "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+-        "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+-        "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+-        "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+-        "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+-        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+-        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+-        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+-        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+-        "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+-        "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry"
+-      ],
+-      "hid_comparison": false
+-    },
+-    {
+-      "label": "11-sidebar",
+-      "size": "11",
+-      "case_ids": [
+-        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+-        "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+-        "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+-        "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+-        "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory"
+-      ],
+-      "hid_comparison": false
+-    },
+-    {
+-      "label": "11-window",
+-      "size": "11",
+-      "case_ids": [
+-        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+-        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison"
+-      ],
+-      "hid_comparison": true
+-    },
+-    {
+-      "label": "phone",
+-      "size": "phone",
+-      "case_ids": [
+-        "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+-        "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+-        "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+-        "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+-        "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+-        "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+-        "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+-        "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+-        "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+-        "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+-        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+-        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+-        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+-        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+-        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+-        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+-        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+-        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+-        "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+-        "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+-        "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+-        "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+-        "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone",
+-        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+-        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+-        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+-        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+-        "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+-        "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
+-      ],
+-      "hid_comparison": false
++        "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
++        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
++        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
++        "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable"
++      ]
+     }
+   ],
+   "execution_case_ids": [
+-    "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+-    "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+-    "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+-    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+-    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+-    "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+-    "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+-    "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+-    "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+-    "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+-    "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+-    "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+-    "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+-    "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+-    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+-    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+-    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+-    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+-    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+-    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+-    "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+-    "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+-    "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+-    "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+-    "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+-    "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+-    "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+-    "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+-    "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+-    "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+-    "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+-    "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+-    "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+-    "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+-    "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+-    "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+-    "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+-    "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+-    "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+-    "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+-    "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+-    "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+-    "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+-    "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+-    "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+-    "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+-    "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+-    "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+-    "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+-    "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+-    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+-    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+-    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+-    "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+-    "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+-    "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+-    "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+-    "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+-    "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+-    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+-    "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
+-    "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+-    "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+-    "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+-    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+-    "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+-    "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+-    "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+-    "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+-    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+-    "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+-    "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+-    "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+-    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+-    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+-    "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
+-    "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+-    "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+-    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+-    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+-    "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+-    "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+-    "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+-    "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+     "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+-    "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+-    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+-    "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+-    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+-    "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+-    "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+-    "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+-    "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+-    "SearchDataNativeAcceptanceTests/testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount",
+-    "SearchDataNativeAcceptanceTests/testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch",
+-    "SearchDataNativeAcceptanceTests/testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch",
+-    "SearchDataNativeAcceptanceTests/testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks",
+-    "SearchDataNativeAcceptanceTests/testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry",
+-    "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+-    "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+-    "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad",
+-    "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+-    "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+-    "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone",
+-    "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+-    "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+-    "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+-    "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+-    "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+-    "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry",
+-    "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+-    "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+-    "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+-    "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+-    "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+-    "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
++    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
++    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
++    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable"
+   ],
+   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
+   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
+@@ -494,9 +228,9 @@
+     }
+   ],
+   "prior_test_source_commit": "ab23bb4925dbcd6c63f094ffc5c58c786e651a6e",
+-  "diagnostic_purpose": "Retained fixed stage capture only; acceptance requires real visible dismissal and Inspector/text/locator/window oracles",
++  "diagnostic_purpose": "Observe the original Commentary setup catch, original wide Inspector geometry, and original Reduce Motion precondition. Partial or failing execution remains failure and grants no full-phase acceptance.",
+   "app_source_before_observation": "068920924e329573b07c7fa2b3c498364d0800de",
+-  "diagnostic_only": false,
++  "diagnostic_only": true,
+   "native_trace": {
+     "donor": "914fa87f5b93e2667571001cd0c762ef58589d88",
+     "evidence": "99f5082f27369239ba98415fe23c6d1a9b4c4755",
+@@ -540,7 +274,7 @@
+     "automatic_retry": false,
+     "full_phase_accepted": false
+   },
+-  "selected_scope_reason": "All98 original case IDs, catalog/oracles, order within each original group, seven owned Simulator groups, original600s per-test limits and HID-only11-window remain. Append6 Core and12 Sefaria declarations; final source/pins are deliberately not set before the pending AppIntent integration.",
++  "selected_scope_reason": "The exact four existing methods run with original assertions/deadlines and the real full app. No original catalog row or final116/114 selection is replaced; this owned branch is diagnostic only.",
+   "supplemental_cases": [
+     {
+       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+@@ -1214,6 +948,27 @@
+       "status": "NOT_RUN",
+       "oracle": "Original Remote Genesis TOC request is tagged exactly once through its live owner/TaskLocal and actual URL Loading boundary; visible held/loading state, real transport failure, then original user Retry outside the scope returns nonempty original TOC. Exact owned nonce/proof files and source/Reader stability. No fabricated success response, physical-offline or Hermes transport claim.",
+       "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
++    },
++    {
++      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
++      "device": "ipad11",
++      "status": "NOT_RUN",
++      "oracle": "Unchanged original XCTest: same original Reader and Inspector, real open/close, visible TextKit content and Reader width unchanged while the panel overlays in landscape.",
++      "diagnostic_catalog_source": "Existing Release114 declaration; not added to final Native116 selection."
++    },
++    {
++      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
++      "device": "ipad11",
++      "status": "NOT_RUN",
++      "oracle": "Unchanged original XCTest: same original Reader and Inspector, real open/close, visible TextKit content and Reader width unchanged while the panel overlays in portrait.",
++      "diagnostic_catalog_source": "Existing Release114 declaration; not added to final Native116 selection."
++    },
++    {
++      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
++      "device": "ipad11",
++      "status": "NOT_RUN",
++      "oracle": "Unchanged original XCTest: real Settings Reduce Motion switch, original finite geometry guard and preference witness, palette interaction, original 15-second oracle and restoration. The relocated passive witness records a refused precondition; no repair PASS is assumed.",
++      "diagnostic_catalog_source": "Existing Release114 declaration; not added to final Native116 selection."
+     }
+   ],
+   "manager_native_review_history": [
+@@ -1245,7 +1000,7 @@
+       }
+     }
+   ],
+-  "hid_comparison": true,
++  "hid_comparison": false,
+   "phase1_original_18_case_ids": [
+     "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+     "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+@@ -1585,7 +1340,7 @@
+       "native": "NOT_RUN"
+     }
+   },
+-  "application_source_sha": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
++  "application_source_sha": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+   "hanlin_source_pin_history": {
+     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
+     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
+@@ -2766,5 +2521,154 @@
+     "native116": "NOT_RUN",
+     "release96Plus2Manifest": "UNCHANGED",
+     "finalApplicationSource": "PENDING_COORDINATOR_FREEZE_AFTER_APPINTENT_TRANCHE"
++  },
++  "reader_inspector_diagnostic_20261120": {
++    "original_execution_case_ids": [
++      "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
++      "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
++      "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
++      "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
++      "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
++      "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
++      "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
++      "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
++      "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
++      "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
++      "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
++      "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
++      "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
++      "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
++      "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
++      "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
++      "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
++      "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
++      "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
++      "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
++      "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
++      "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
++      "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
++      "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
++      "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
++      "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
++      "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
++      "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
++      "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
++      "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
++      "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
++      "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
++      "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
++      "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
++      "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
++      "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
++      "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
++      "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
++      "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
++      "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
++      "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
++      "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
++      "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
++      "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
++      "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
++      "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
++      "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
++      "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
++      "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
++      "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
++      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
++      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
++      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
++      "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
++      "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
++      "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
++      "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
++      "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
++      "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
++      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
++      "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
++      "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
++      "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
++      "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
++      "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
++      "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
++      "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
++      "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
++      "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
++      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
++      "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
++      "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
++      "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
++      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
++      "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
++      "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
++      "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
++      "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
++      "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
++      "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
++      "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
++      "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
++      "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
++      "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
++      "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
++      "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
++      "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
++      "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
++      "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
++      "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
++      "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
++      "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
++      "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
++      "SearchDataNativeAcceptanceTests/testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount",
++      "SearchDataNativeAcceptanceTests/testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch",
++      "SearchDataNativeAcceptanceTests/testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch",
++      "SearchDataNativeAcceptanceTests/testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks",
++      "SearchDataNativeAcceptanceTests/testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry",
++      "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
++      "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
++      "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad",
++      "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
++      "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
++      "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone",
++      "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
++      "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
++      "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
++      "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
++      "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
++      "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry",
++      "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
++      "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
++      "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
++      "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
++      "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
++      "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
++    ],
++    "unchanged_original_row_count": 116,
++    "additional_existing_release_rows": [
++      {
++        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
++        "device": "ipad11",
++        "status": "NOT_RUN",
++        "oracle": "Unchanged original XCTest: same original Reader and Inspector, real open/close, visible TextKit content and Reader width unchanged while the panel overlays in landscape.",
++        "diagnostic_catalog_source": "Existing Release114 declaration; not added to final Native116 selection."
++      },
++      {
++        "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
++        "device": "ipad11",
++        "status": "NOT_RUN",
++        "oracle": "Unchanged original XCTest: same original Reader and Inspector, real open/close, visible TextKit content and Reader width unchanged while the panel overlays in portrait.",
++        "diagnostic_catalog_source": "Existing Release114 declaration; not added to final Native116 selection."
++      },
++      {
++        "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
++        "device": "ipad11",
++        "status": "NOT_RUN",
++        "oracle": "Unchanged original XCTest: real Settings Reduce Motion switch, original finite geometry guard and preference witness, palette interaction, original 15-second oracle and restoration. The relocated passive witness records a refused precondition; no repair PASS is assumed.",
++        "diagnostic_catalog_source": "Existing Release114 declaration; not added to final Native116 selection."
++      }
++    ],
++    "full_native116_acceptance": false,
++    "full_release114_acceptance": false,
++    "new_native_executions": 0,
++    "source_snapshot": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
++    "previous_manifest_sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+   }
+ }

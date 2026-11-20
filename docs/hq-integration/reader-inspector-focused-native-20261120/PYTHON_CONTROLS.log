@@ -1,0 +1,32 @@
+test_build_only_cannot_qualify_native (__main__.FocusedBoundary.test_build_only_cannot_qualify_native) ... ok
+test_changed_original_oracle_rejected (__main__.FocusedBoundary.test_changed_original_oracle_rejected) ... ok
+test_changed_unreviewed_path_rejected (__main__.FocusedBoundary.test_changed_unreviewed_path_rejected) ... ok
+test_current_exact_runtime_and_project_pin_inverses (__main__.FocusedBoundary.test_current_exact_runtime_and_project_pin_inverses) ... ok
+test_current_metadata_preserves_original116 (__main__.FocusedBoundary.test_current_metadata_preserves_original116) ... ok
+test_exact_immutable_child_permitted (__main__.FocusedBoundary.test_exact_immutable_child_permitted) ... ok
+test_four_matching_synthetic_outcomes_qualify_only_subset (__main__.FocusedBoundary.test_four_matching_synthetic_outcomes_qualify_only_subset) ... ok
+test_full_phase_credit_rejected (__main__.FocusedBoundary.test_full_phase_credit_rejected) ... ok
+test_full_phase_status_cannot_qualify_subset (__main__.FocusedBoundary.test_full_phase_status_cannot_qualify_subset) ... ok
+test_historical_credit_rejected (__main__.FocusedBoundary.test_historical_credit_rejected) ... ok
+test_incomplete_or_failed_app_build_rejected (__main__.FocusedBoundary.test_incomplete_or_failed_app_build_rejected) ... ok
+test_missing_motion_selection_rejected (__main__.FocusedBoundary.test_missing_motion_selection_rejected) ... ok
+test_missing_original_row_rejected (__main__.FocusedBoundary.test_missing_original_row_rejected) ... ok
+test_one_ui_failure_rejected (__main__.FocusedBoundary.test_one_ui_failure_rejected) ... ok
+test_original_runtime_body_edit_rejected (__main__.FocusedBoundary.test_original_runtime_body_edit_rejected) ... ok
+test_raw_expected_failure_is_not_pass (__main__.FocusedBoundary.test_raw_expected_failure_is_not_pass) ... ok
+test_raw_summary_disagrees_rejected (__main__.FocusedBoundary.test_raw_summary_disagrees_rejected) ... ok
+test_raw_xcresult_missing_or_extra_leaf_rejected (__main__.FocusedBoundary.test_raw_xcresult_missing_or_extra_leaf_rejected) ... ok
+test_skip_or_not_run_rejected (__main__.FocusedBoundary.test_skip_or_not_run_rejected) ... ok
+test_source_or_artifact_pin_edit_rejected (__main__.FocusedBoundary.test_source_or_artifact_pin_edit_rejected) ... ok
+test_test_additions_exemption_edit_rejected (__main__.FocusedBoundary.test_test_additions_exemption_edit_rejected) ... ok
+test_unreviewed_product_or_test_tree_rejected (__main__.FocusedBoundary.test_unreviewed_product_or_test_tree_rejected) ... ok
+test_wrong_actual_build_head_rejected (__main__.FocusedBoundary.test_wrong_actual_build_head_rejected) ... ok
+test_wrong_actual_test_tree_rejected (__main__.FocusedBoundary.test_wrong_actual_test_tree_rejected) ... ok
+test_wrong_device_group_rejected (__main__.FocusedBoundary.test_wrong_device_group_rejected) ... ok
+test_wrong_head_ref_or_parent_rejected (__main__.FocusedBoundary.test_wrong_head_ref_or_parent_rejected) ... ok
+test_wrong_original_case_id_rejected (__main__.FocusedBoundary.test_wrong_original_case_id_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.074s
+
+OK

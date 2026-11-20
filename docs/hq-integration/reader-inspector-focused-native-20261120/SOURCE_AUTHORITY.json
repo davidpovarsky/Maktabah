@@ -1,0 +1,27 @@
+[
+  {
+    "path": "Scripts/CI/runtime27.py",
+    "gitBlob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+    "ref": "84368c3c4fe0fdc593166cd7800021451346dc87"
+  },
+  {
+    "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    "gitBlob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+    "ref": "84368c3c4fe0fdc593166cd7800021451346dc87"
+  },
+  {
+    "path": "Scripts/CI/hq-stage2-focused-apple.py",
+    "gitBlob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+    "ref": "84368c3c4fe0fdc593166cd7800021451346dc87"
+  },
+  {
+    "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+    "gitBlob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+    "ref": "84368c3c4fe0fdc593166cd7800021451346dc87"
+  },
+  {
+    "path": "docs/hq-integration/runtime27/R27_CASES.json",
+    "gitBlob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+    "ref": "84368c3c4fe0fdc593166cd7800021451346dc87"
+  }
+]

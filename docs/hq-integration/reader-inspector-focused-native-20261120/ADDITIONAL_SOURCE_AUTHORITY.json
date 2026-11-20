@@ -1,0 +1,32 @@
+[
+  {
+    "bytes": 596038,
+    "gitBlob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+  },
+  {
+    "bytes": 6377,
+    "gitBlob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+    "path": "Scripts/CI/select-runtime27-toolchain.py",
+    "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+  },
+  {
+    "bytes": 6009,
+    "gitBlob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+    "path": "Scripts/CI/verify-faithful-xctest.py",
+    "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+  },
+  {
+    "bytes": 7650,
+    "gitBlob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+    "path": "Scripts/CI/runtime27_interruption.py",
+    "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+  },
+  {
+    "bytes": 592111,
+    "gitBlob": "2741615644741d39b0b19c6146f9c459323dabab",
+    "path": "project-M87.pbxproj",
+    "sha256": "ac5e360aa4cb3d6c31354cba83ca72488bfef283067b2bd121231defa95c68df"
+  }
+]

@@ -1,0 +1,174 @@
+{
+  "status": "SOURCE_AND_PYTHON_ONLY_PASS",
+  "checks": [
+    {
+      "name": "all116_original_rows_exact_and_four_selected",
+      "passed": true
+    },
+    {
+      "name": "full_runtime_and78_addition_inverses",
+      "passed": true
+    },
+    {
+      "name": "python_parse:Scripts/CI/reader-inspector-focused-native.py",
+      "passed": true
+    },
+    {
+      "name": "python_parse:Scripts/CI/test-reader-inspector-focused-native.py",
+      "passed": true
+    },
+    {
+      "name": "python_parse:Scripts/CI/runtime27.py",
+      "passed": true
+    },
+    {
+      "name": "single_exact_push_branch",
+      "passed": true
+    },
+    {
+      "name": "read_only_permissions",
+      "passed": true
+    },
+    {
+      "name": "original_runner_and_budget",
+      "passed": true
+    },
+    {
+      "name": "no_concurrency_cancellation",
+      "passed": true
+    },
+    {
+      "name": "exact_checkout_source",
+      "passed": true
+    },
+    {
+      "name": "unchanged_original_shell:Read source-pinned Zayit build mode",
+      "passed": true
+    },
+    {
+      "name": "unchanged_original_shell:Key disposable compiler cache by real SDK and native inputs",
+      "passed": true
+    },
+    {
+      "name": "unchanged_original_shell:Retain compiler cache only after an actual matching test build",
+      "passed": true
+    },
+    {
+      "name": "original_command:Select an existing SDK-matched runtime for the full device matrix",
+      "passed": true
+    },
+    {
+      "name": "original_command:Require all 55 Sefaria transport cases on actual Apple Foundation",
+      "passed": true
+    },
+    {
+      "name": "unchanged_original_setup:actions/setup-node@v4",
+      "passed": true
+    },
+    {
+      "name": "unchanged_original_setup:ruby/setup-ruby@v1",
+      "passed": true
+    },
+    {
+      "name": "unchanged_original_setup:actions/cache/restore@v4",
+      "passed": true
+    },
+    {
+      "name": "unchanged_original_setup:actions/cache/save@v4",
+      "passed": true
+    },
+    {
+      "name": "unaltered_capture_paths:Retain real runtime evidence including failure",
+      "passed": true
+    },
+    {
+      "name": "always_collects:Retain real runtime evidence including failure",
+      "passed": true
+    },
+    {
+      "name": "unaltered_capture_paths:Retain original native result bundles and visual captures separately",
+      "passed": true
+    },
+    {
+      "name": "always_collects:Retain original native result bundles and visual captures separately",
+      "passed": true
+    },
+    {
+      "name": "calls_original_full_app_and_matrix",
+      "passed": true
+    },
+    {
+      "name": "mode_and_auth",
+      "passed": true
+    },
+    {
+      "name": "post_source_qualification_always",
+      "passed": true
+    },
+    {
+      "name": "no_continue_on_error",
+      "passed": true
+    },
+    {
+      "name": "original_method_text_present:NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+      "passed": true
+    },
+    {
+      "name": "original_method_text_present:FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "passed": true
+    },
+    {
+      "name": "original_method_text_present:FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "passed": true
+    },
+    {
+      "name": "original_method_text_present:FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "passed": true
+    },
+    {
+      "name": "project_membership_inverse",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged_during_python_controls",
+      "passed": true
+    },
+    {
+      "name": "python27_actual_pass",
+      "passed": true
+    }
+  ],
+  "source_assertions": 34,
+  "python_controls": 27,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/8c31d602ec0a/release-reader-focused-native-20261120/candidate/Scripts/CI/test-reader-inspector-focused-native.py",
+    "--base-dir",
+    "/workspace/scratch/8c31d602ec0a/release-reader-focused-native-20261120/base"
+  ],
+  "exit_code": 0,
+  "log_sha256": "811dcaffadf59a26177e02c0caea769e06b3c5b6a51388bc1e463d57b346646c",
+  "source_before": {
+    "Scripts/CI/hq-stage2-otzaria-test-additions.json": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313",
+    "Scripts/CI/test-reader-inspector-focused-native.py": "1e8ec2c7d1e8a845ed5bd3e81323bf26b8e411e89581a6b0c74f9b56c2677e56",
+    "Scripts/CI/reader-inspector-focused-native.py": "64c317656b8e3f19f4b0b4cbc8b20ef11e1b4be2c2e6a6672c023799abb411c7",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "2924c0e07bf2cdfd92ec8dd84d87f0ddc14cfc9bc438d84336e41db68cefdda8",
+    "Scripts/CI/runtime27.py": "96340dd16b7923b5e5549ff0430cccfb924887a2fe67e3e231488662bed09f94",
+    "docs/hq-integration/runtime27/R27_CASES.json": "f41855a274e8e83fe908636dbf1f53385425f4d80946d5cef7b31af1c5b7c1cb",
+    ".github/workflows/otzaria-reader-inspector-focused-native.yml": "184d5b6a37ea47f2ff5b29052fdd816eef932757ae4dcf79784d56a3c083ff6e"
+  },
+  "source_after": {
+    "Scripts/CI/hq-stage2-otzaria-test-additions.json": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313",
+    "Scripts/CI/test-reader-inspector-focused-native.py": "1e8ec2c7d1e8a845ed5bd3e81323bf26b8e411e89581a6b0c74f9b56c2677e56",
+    "Scripts/CI/reader-inspector-focused-native.py": "64c317656b8e3f19f4b0b4cbc8b20ef11e1b4be2c2e6a6672c023799abb411c7",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "2924c0e07bf2cdfd92ec8dd84d87f0ddc14cfc9bc438d84336e41db68cefdda8",
+    "Scripts/CI/runtime27.py": "96340dd16b7923b5e5549ff0430cccfb924887a2fe67e3e231488662bed09f94",
+    "docs/hq-integration/runtime27/R27_CASES.json": "f41855a274e8e83fe908636dbf1f53385425f4d80946d5cef7b31af1c5b7c1cb",
+    ".github/workflows/otzaria-reader-inspector-focused-native.yml": "184d5b6a37ea47f2ff5b29052fdd816eef932757ae4dcf79784d56a3c083ff6e"
+  },
+  "original_swift_declaration_verifier": "SETUP_NOT_RUN: swiftc absent; retained original error,0 executions",
+  "swift_compilation": "NOT_RUN",
+  "native_cases_executed": 0,
+  "full_native116_acceptance": false,
+  "full_release114_acceptance": false
+}

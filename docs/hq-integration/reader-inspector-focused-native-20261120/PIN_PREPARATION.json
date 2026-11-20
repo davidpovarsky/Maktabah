@@ -1,0 +1,25 @@
+{
+  "source_snapshot": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "source_tree": "bb8b437d54b632c86273ead54780d571e125442e",
+  "protected_trees": {
+    "Maktabah-iOSUITests": "e060cd09a096392cb73fa36bffe7fbf8758ffe50",
+    "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72",
+    "Source": "d4cc25409260ef275214db70ecd57711f24bcaef",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "original_rows": 116,
+  "additional_diagnostic_rows": 3,
+  "selected": [
+    "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable"
+  ],
+  "old_project_proof_blob": "2741615644741d39b0b19c6146f9c459323dabab",
+  "new_project_proof_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+  "old_r27_test_sha256": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+  "new_r27_test_sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f",
+  "faithful_source_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+  "faithful_source_sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0",
+  "notes": "No application or XCTest source changed by this route. Metadata/ref not activated."
+}

@@ -1,0 +1,118 @@
+{
+  "base": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "base_tree": "bb8b437d54b632c86273ead54780d571e125442e",
+  "canonical_inputs": [
+    {
+      "path": ".github/workflows/sefaria-embedded-validation.yml",
+      "git_blob": "ac42069b4dbbe57898c45e280513412c8df41ee7",
+      "bytes": 44363,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "git_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+      "bytes": 196355,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "git_blob": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
+      "bytes": 160603,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "git_blob": "26ddbe5bbd20d759424bf253756e9c755ba50a58",
+      "bytes": 31760,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "git_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+      "bytes": 596038,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+      "bytes": 4333,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "git_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "bytes": 47630,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "git_blob": "fcf0d0791235a43378f5a595e803e23253c83a6f",
+      "bytes": 19318,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "git_blob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "bytes": 49924,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "bytes": 56247,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "bytes": 26341,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "git_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+      "bytes": 7650,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+      "bytes": 6377,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+      "bytes": 6009,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "bytes": 200381,
+      "authority": "8ff actual Git tree"
+    },
+    {
+      "path": "project-M87.pbxproj",
+      "git_blob": "2741615644741d39b0b19c6146f9c459323dabab",
+      "authority": "Canonical original additions manifest pinned excluded project blob"
+    }
+  ],
+  "full_driver_workflow_and27_controls_read": true,
+  "whole_runtime_inverse": "Only exact R27 literal",
+  "project_proof_inverse": "28 membership lines / four original application files; engine exclusion unchanged",
+  "selected_original_native_cases": 4,
+  "retained_original_catalog_rows": 116,
+  "added_diagnostic_metadata_rows": 3,
+  "source_trees_unchanged": [
+    "Source",
+    "Vendor",
+    "Maktabah.xcodeproj",
+    "Maktabah-iOSUITests"
+  ],
+  "full_native116": false,
+  "full_release114": false,
+  "source_verification": "Root readonly packet replay; no repeat Python controls / Swift / Native execution",
+  "root_branch_may_advance_with_evidence_only": "f3a3ee3f7d69ce891255734cf46a0f25350fb81b",
+  "immutable_child_parent": "8ff4e820970e6697eabff40ac46e2f6e61484f27"
+}

@@ -1,0 +1,82 @@
+{
+  ".github/workflows/sefaria-embedded-validation.yml": {
+    "bytes": 44363,
+    "sha256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4",
+    "git_blob": "ac42069b4dbbe57898c45e280513412c8df41ee7"
+  },
+  "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+    "bytes": 196355,
+    "sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0",
+    "git_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777"
+  },
+  "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": {
+    "bytes": 160603,
+    "sha256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f",
+    "git_blob": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f"
+  },
+  "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": {
+    "bytes": 31760,
+    "sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f",
+    "git_blob": "26ddbe5bbd20d759424bf253756e9c755ba50a58"
+  },
+  "Maktabah.xcodeproj/project.pbxproj": {
+    "bytes": 596038,
+    "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9",
+    "git_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0"
+  },
+  "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+    "bytes": 4333,
+    "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976",
+    "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38"
+  },
+  "Scripts/CI/hq-stage2-focused-apple.py": {
+    "bytes": 47630,
+    "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+    "git_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1"
+  },
+  "Scripts/CI/hq-stage2-otzaria-test-additions.json": {
+    "bytes": 19318,
+    "sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6",
+    "git_blob": "fcf0d0791235a43378f5a595e803e23253c83a6f"
+  },
+  "Scripts/CI/run-faithful-ipad-matrix.py": {
+    "bytes": 49924,
+    "sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6",
+    "git_blob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9"
+  },
+  "Scripts/CI/runtime27-release-manifest.json": {
+    "bytes": 56247,
+    "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+    "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee"
+  },
+  "Scripts/CI/runtime27.py": {
+    "bytes": 26341,
+    "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583",
+    "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4"
+  },
+  "Scripts/CI/runtime27_interruption.py": {
+    "bytes": 7650,
+    "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+    "git_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6"
+  },
+  "Scripts/CI/select-runtime27-toolchain.py": {
+    "bytes": 6377,
+    "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8",
+    "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05"
+  },
+  "Scripts/CI/verify-faithful-xctest.py": {
+    "bytes": 6009,
+    "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
+    "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1"
+  },
+  "docs/hq-integration/runtime27/R27_CASES.json": {
+    "bytes": 200381,
+    "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3",
+    "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713"
+  },
+  "project-M87.pbxproj": {
+    "bytes": 592111,
+    "sha256": "ac5e360aa4cb3d6c31354cba83ca72488bfef283067b2bd121231defa95c68df",
+    "git_blob": "2741615644741d39b0b19c6146f9c459323dabab"
+  }
+}

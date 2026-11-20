@@ -1,0 +1,26 @@
+[
+  {
+    "bytes": 31760,
+    "gitBlob": "26ddbe5bbd20d759424bf253756e9c755ba50a58",
+    "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f"
+  },
+  {
+    "bytes": 44363,
+    "gitBlob": "ac42069b4dbbe57898c45e280513412c8df41ee7",
+    "path": ".github/workflows/sefaria-embedded-validation.yml",
+    "sha256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4"
+  },
+  {
+    "bytes": 56247,
+    "gitBlob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+    "path": "Scripts/CI/runtime27-release-manifest.json",
+    "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+  },
+  {
+    "bytes": 19318,
+    "gitBlob": "fcf0d0791235a43378f5a595e803e23253c83a6f",
+    "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+    "sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+  }
+]

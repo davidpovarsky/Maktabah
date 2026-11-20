@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "base_commit": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "base_tree": "bb8b437d54b632c86273ead54780d571e125442e",
+  "scope": "SOURCE_AND_PYTHON_ONLY; no Apple/Native execution",
+  "files": [
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/ADDITIONAL_SOURCE_AUTHORITY.json",
+      "bytes": 1092,
+      "sha256": "2e70ca252bb7425ac668ff47bf76d09e1a8c812b7cec2dc748ab1c07615ef382",
+      "git_blob": "fece98647d9cb96d1a2d596a12cccbbed02fb6b9"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/BASE_INPUTS.json",
+      "bytes": 3452,
+      "sha256": "a1457c1acd02bda69ee26924b80cacc28a2561a730bfbeb0ae5ce7366d9557cf",
+      "git_blob": "b283ce39a821e14fa9f1878b1e85539024fdf577"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/BASE_INPUTS.zip",
+      "bytes": 357499,
+      "sha256": "f31fd6e40b1c6f71df8091f3a90abe008eaa06c8a1d64fd7120894cd6c2ec7b2",
+      "git_blob": "1331501089b77693a7b38179cfbdcf79032e0635"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/FINAL_SOURCE_AUTHORITY.json",
+      "bytes": 943,
+      "sha256": "965b4f18b78c6c59e471c1b3247582084b21d6558f0144bf597055eeac571748",
+      "git_blob": "5e48cd6c2d8942a0076e637ad6777b07efc27f0e"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/M8FF_COMMIT.json",
+      "bytes": 1659,
+      "sha256": "378c3eb185721b85a1a1cce292759c267b1f48e1d5817e327166fcbb7bc2ca14",
+      "git_blob": "7c8ec06c92f345eb035c22bd854c902eb12a82de"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/M8FF_TREE.json",
+      "bytes": 9861,
+      "sha256": "87c8669e1b2707e0a1481659ec6be69956bbbc81634529aa240721f541ced779",
+      "git_blob": "038282dfbae0deb78ea1f4ef0908bac87dc8cee5"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/ORIGINAL_DECLARATION_CHECK.json",
+      "bytes": 106,
+      "sha256": "c7e533e1421b824d8ce283d6d08cb830a69d00f1307443ca00ba1ee9111fc17e",
+      "git_blob": "3720c7c0107d1b6d8cfe9146590c421119224a2f"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/PIN_PREPARATION.json",
+      "bytes": 1443,
+      "sha256": "a243d5a50ffaff486aaacb33b65a1d5afbc7b5d5707176bec17eff73fd8ad720",
+      "git_blob": "3ef34f65d6d94905f76c2d65458c317dfd47482a"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/PROJECT_MEMBERSHIP_INVERSE.json",
+      "bytes": 4935,
+      "sha256": "99cb99f649338bbb3579d584e72a670e3b3fb34fa1560ed4270bf0bc5fb7a0b4",
+      "git_blob": "6c94a30e735f57478a928f148f4d2b3d6dd6621b"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/PROPOSED.patch",
+      "bytes": 75860,
+      "sha256": "0c364d72448be413262599860d4040aaf37a7804b67a7217e3baa3e13372fbd7",
+      "git_blob": "d92a72209ca886e8945e3a54dfa2c274f37f5141"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/PYTHON_CONTROLS.log",
+      "bytes": 3161,
+      "sha256": "811dcaffadf59a26177e02c0caea769e06b3c5b6a51388bc1e463d57b346646c",
+      "git_blob": "82d288ba1bedb7b03a920a300d41774c32e3316b"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/README.md",
+      "bytes": 7090,
+      "sha256": "179d0936f0e7a0baf60ed21cf1ab3546ea9b3a0110e2ae0d37b657f6df1addb6",
+      "git_blob": "f508609683307300b393639bf214ebd19a0fb0ba"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/SOURCE_AUTHORITY.json",
+      "bytes": 881,
+      "sha256": "69229b5fb44ae67dfc9e699747f4a4212f8fd5736fe72c27b274184b0ab83d0c",
+      "git_blob": "e9bce2de6188eea5e48187cd0fcdc296ec42b000"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/VALIDATION.json",
+      "bytes": 6194,
+      "sha256": "520af314ebcb93377bb7d9c0f14a275c55a5ad97003e070dfe6f845fb65ab4e7",
+      "git_blob": "da0129d33a084d8f41fa86f3a269e2f6c37918d3"
+    },
+    {
+      "path": "docs/hq-integration/reader-inspector-focused-native-20261120/verify_packet.py",
+      "bytes": 1985,
+      "sha256": "cb792c831b3d57ee3ffb819dbbc3d9188dbe00c9106f2d532a1cf49511fb7fb1",
+      "git_blob": "23e1e2869b48bd345dc4f780004ae1fa5a46d240"
+    }
+  ],
+  "candidate_sources": [
+    {
+      "path": ".github/workflows/otzaria-reader-inspector-focused-native.yml",
+      "bytes": 6412,
+      "sha256": "184d5b6a37ea47f2ff5b29052fdd816eef932757ae4dcf79784d56a3c083ff6e",
+      "git_blob": "bbd2a0a08f2dea24b672d37ecb2b3c74648d1a38"
+    },
+    {
+      "path": "Scripts/CI/reader-inspector-focused-native.py",
+      "bytes": 15459,
+      "sha256": "64c317656b8e3f19f4b0b4cbc8b20ef11e1b4be2c2e6a6672c023799abb411c7",
+      "git_blob": "02016836fcb236f02a29b75375e830bbff2aa85d"
+    },
+    {
+      "path": "Scripts/CI/test-reader-inspector-focused-native.py",
+      "bytes": 7185,
+      "sha256": "1e8ec2c7d1e8a845ed5bd3e81323bf26b8e411e89581a6b0c74f9b56c2677e56",
+      "git_blob": "4d64126b44238654a987acbf1b134c669a25808e"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "bytes": 26341,
+      "sha256": "96340dd16b7923b5e5549ff0430cccfb924887a2fe67e3e231488662bed09f94",
+      "git_blob": "87e2a3d453509135fc55df2348a3605ab4687673"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "bytes": 4333,
+      "sha256": "2924c0e07bf2cdfd92ec8dd84d87f0ddc14cfc9bc438d84336e41db68cefdda8",
+      "git_blob": "b794333e67d2a1eca3499d3a6cf1b4927f3e57d4"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "bytes": 19318,
+      "sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313",
+      "git_blob": "23a8e81487a350e97bcb077ed7a01d2caec76f24"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "bytes": 192794,
+      "sha256": "f41855a274e8e83fe908636dbf1f53385425f4d80946d5cef7b31af1c5b7c1cb",
+      "git_blob": "350ae106c492a510a4064924229cc5e85e83470a"
+    }
+  ]
+}
