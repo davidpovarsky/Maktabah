@@ -1,0 +1,28 @@
+{
+  "command": [
+    "cargo",
+    "rustc",
+    "--locked",
+    "--manifest-path",
+    "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml",
+    "--no-default-features",
+    "--lib",
+    "--",
+    "--print",
+    "native-static-libs"
+  ],
+  "exit": 0,
+  "seconds": 31.844,
+  "started_utc": "2026-11-20T02:06:37.691355+00:00",
+  "engineSource": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "engineCheckoutPristineAfter": true,
+  "artifact": "C:\\Users\\DAVID\\Code\\otzaria-search-occurrences-20261120\\rust\\target\\debug\\otzaria_search_engine_ios.lib",
+  "artifactExists": true,
+  "nativeLibraries": [
+    "note: native-static-libs: windows.0.52.0.lib legacy_stdio_definitions.lib kernel32.lib ntdll.lib userenv.lib ws2_32.lib dbghelp.lib /defaultlib:msvcrt"
+  ],
+  "AppleSDK": "NOT_RUN",
+  "Native": "NOT_RUN",
+  "artifactBytes": 560900320,
+  "artifactSHA256": "7f23e3e87aa604b410f9cd21f1b56aab2d30596c697d46c8fb19ad160e34c7a0"
+}

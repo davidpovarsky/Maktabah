@@ -1,0 +1,207 @@
+{
+  "AppleSDK" : "NOT_RUN",
+  "CorePermissionAdmission" : "NOT_RUN: direct trusted app-port fixture; whole original Core DTOs compiled",
+  "NativeUI" : "NOT_RUN",
+  "actualOriginalOwner" : true,
+  "cases" : [
+    {
+      "category" : "provenance",
+      "name" : "actual_original_C_source_and_producer_identity",
+      "passed" : true,
+      "seconds" : 0.000995635986328125
+    },
+    {
+      "category" : "provenance",
+      "name" : "original_profile_and_installation_model",
+      "passed" : true,
+      "seconds" : 0.001819610595703125
+    },
+    {
+      "category" : "authentication",
+      "name" : "actual_SHA256_known_vector",
+      "passed" : true,
+      "seconds" : 0.0003185272216796875
+    },
+    {
+      "category" : "authentication",
+      "name" : "complete_original_mini_and_full_manifests",
+      "passed" : true,
+      "seconds" : 0.001117706298828125
+    },
+    {
+      "category" : "authentication",
+      "name" : "legitimate_original_Codable_reencoding",
+      "passed" : true,
+      "seconds" : 0.004337310791015625
+    },
+    {
+      "category" : "authentication",
+      "name" : "twenty_nested_complete_manifest_tamper_rejections",
+      "passed" : true,
+      "seconds" : 0.06634902954101562
+    },
+    {
+      "category" : "scope",
+      "name" : "canonical_scope_UInt64_and_200_work_bound",
+      "passed" : true,
+      "seconds" : 0.0039501190185546875
+    },
+    {
+      "category" : "scope",
+      "name" : "noncanonical_duplicate_and_foreign_scopes_rejected",
+      "passed" : true,
+      "seconds" : 0.000202178955078125
+    },
+    {
+      "category" : "scope",
+      "name" : "unsupported_modes_units_backends_and_text",
+      "passed" : true,
+      "seconds" : 0.0001544952392578125
+    },
+    {
+      "category" : "admission",
+      "name" : "actual_production_registry_controls_coverage",
+      "passed" : true,
+      "seconds" : 0.0200042724609375
+    },
+    {
+      "category" : "owner",
+      "name" : "original_owner_initial_publish_clear_and_ABA",
+      "passed" : true,
+      "seconds" : 0.0002651214599609375
+    },
+    {
+      "category" : "owner",
+      "name" : "original_owner_same_pair_revokes_old_revision",
+      "passed" : true,
+      "seconds" : 9.918212890625e-05
+    },
+    {
+      "category" : "owner",
+      "name" : "original_owner_16000_publications_24000_coherent_snapshots",
+      "passed" : true,
+      "seconds" : 0.03557777404785156
+    },
+    {
+      "category" : "counter",
+      "name" : "unopened_app_discovery_and_count_never_construct_engine",
+      "passed" : true,
+      "seconds" : 0.07170677185058594
+    },
+    {
+      "category" : "counter",
+      "name" : "unknown_external_and_noncanonical_managed_sources_fail_closed",
+      "passed" : true,
+      "seconds" : 0.06669425964355469
+    },
+    {
+      "category" : "counter",
+      "name" : "foreign_backend_readiness_and_count_rejected",
+      "passed" : true,
+      "seconds" : 0.00025177001953125
+    },
+    {
+      "category" : "counter",
+      "name" : "already_elapsed_absolute_deadline_has_no_scalar",
+      "passed" : true,
+      "seconds" : 6.866455078125e-05
+    },
+    {
+      "category" : "counter",
+      "name" : "already_cancelled_task_has_no_scalar",
+      "passed" : true,
+      "seconds" : 0.0002288818359375
+    },
+    {
+      "category" : "metadata",
+      "name" : "three_original_metadata_files_empty_fail_closed",
+      "passed" : true,
+      "seconds" : 0.18973350524902344
+    },
+    {
+      "category" : "metadata",
+      "name" : "three_original_metadata_files_oversized_fail_closed",
+      "passed" : true,
+      "seconds" : 0.30545616149902344
+    },
+    {
+      "category" : "metadata",
+      "name" : "three_original_metadata_files_malformed_fail_closed",
+      "passed" : true,
+      "seconds" : 0.3237037658691406
+    },
+    {
+      "category" : "metadata",
+      "name" : "three_original_metadata_files_directory_fail_closed",
+      "passed" : true,
+      "seconds" : 0.26567840576171875
+    },
+    {
+      "category" : "metadata",
+      "name" : "three_original_metadata_files_missing_fail_closed",
+      "passed" : true,
+      "seconds" : 0.170013427734375
+    },
+    {
+      "category" : "coverage",
+      "name" : "qualified_coverage_changed_installation_identity_rejected",
+      "passed" : true,
+      "seconds" : 0.021770477294921875
+    },
+    {
+      "category" : "original_engine",
+      "name" : "whole_app_original_global_counts_match_independent_SQL",
+      "passed" : true,
+      "seconds" : 1.0232410430908203
+    },
+    {
+      "category" : "original_engine",
+      "name" : "whole_app_original_book_scopes_match_independent_SQL",
+      "passed" : true,
+      "seconds" : 1.0347919464111328
+    },
+    {
+      "category" : "original_engine",
+      "name" : "original_analyzer_rejects_multiple_tokens",
+      "passed" : true,
+      "seconds" : 0.8975296020507812
+    },
+    {
+      "category" : "source_lifetime",
+      "name" : "actual_post_count_selection_ABA_revokes_result",
+      "passed" : true,
+      "seconds" : 0.9027996063232422
+    },
+    {
+      "category" : "source_lifetime",
+      "name" : "actual_post_count_generation_revokes_result",
+      "passed" : true,
+      "seconds" : 0.9695892333984375
+    },
+    {
+      "category" : "source_lifetime",
+      "name" : "actual_post_count_manifest_revokes_result",
+      "passed" : true,
+      "seconds" : 1.0364971160888672
+    },
+    {
+      "category" : "source_lifetime",
+      "name" : "app_queued_cancellation_returns_before_engine_queue_release",
+      "passed" : true,
+      "seconds" : 0.9922561645507812
+    },
+    {
+      "category" : "source_lifetime",
+      "name" : "app_queued_deadline_returns_before_engine_queue_release",
+      "passed" : true,
+      "seconds" : 1.9525794982910156
+    }
+  ],
+  "failed" : 0,
+  "passed" : 32,
+  "positiveManagedNativeCounting" : "EXECUTED: actual original mini C counts; each case result is recorded separately; no Native UI claim",
+  "qualificationExpected" : true,
+  "sourceCommit" : "bdbed98b5ee883c987a570b310cbef001f912110",
+  "unsafeUserPathDiagnostics" : "NOT_RUN",
+  "wholeProductionFiles" : true
+}
