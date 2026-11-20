@@ -634,34 +634,7 @@ extension NativeRoutingAcceptanceTests {
         // Return through the original native tab control. No debug navigation
         // or direct model mutation can stand in for the old reading state.
         if expectedPad {
-            let originalTab = app.descendants(matching: .any)
-                .matching(identifier: "reader-document-tab-" + originalTabID.uuidString).firstMatch
-            let strip = app.descendants(matching: .any)
-                .matching(identifier: "reader-document-tab-strip").firstMatch
-            XCTAssertTrue(strip.waitForExistence(timeout: 10))
-            // The original UUID can be outside this narrow native scroll view
-            // after newTab scrolls to the new selection. Reveal it with real
-            // gestures; a visible but occluded control must still fail below.
-            for attempt in 0..<8 {
-                if originalTab.exists {
-                    if originalTab.isHittable { break }
-                    if originalTab.frame.maxX <= strip.frame.minX {
-                        strip.swipeRight()
-                    } else if originalTab.frame.minX >= strip.frame.maxX {
-                        strip.swipeLeft()
-                    } else {
-                        break
-                    }
-                } else if attempt < 4 {
-                    strip.swipeRight()
-                } else {
-                    // A nonmaterialized cell has no screen geometry. Search
-                    // both directions so the fallback does not assume LTR.
-                    strip.swipeLeft()
-                }
-            }
-            XCTAssertTrue(originalTab.waitForExistence(timeout: 10)); XCTAssertTrue(originalTab.isHittable)
-            originalTab.tap()
+            returnToOriginalIPadReaderTab(originalTabID)
         } else {
             let overview = app.buttons["reader-open-tabs-button"]
             XCTAssertTrue(overview.waitForExistence(timeout: 10)); XCTAssertTrue(overview.isHittable)
@@ -676,6 +649,37 @@ extension NativeRoutingAcceptanceTests {
         XCTAssertEqual(try readerReceiptLines().count, beforeReceipts.count + 1)
         try attachWorkspaceSnapshot("native-new-tab-returned-to-original")
         capture("native-new-tab-original-reader-restored")
+    }
+
+    @MainActor private func returnToOriginalIPadReaderTab(_ originalTabID: UUID) {
+        let originalTab = app.descendants(matching: .any)
+            .matching(identifier: "reader-document-tab-" + originalTabID.uuidString).firstMatch
+        let strip = app.descendants(matching: .any)
+            .matching(identifier: "reader-document-tab-strip").firstMatch
+        XCTAssertTrue(strip.waitForExistence(timeout: 10))
+        // The original UUID can be outside this narrow native scroll view
+        // after newTab scrolls to the new selection. Reveal it with real
+        // gestures; a visible but occluded control must still fail below.
+        for attempt in 0..<8 {
+            if originalTab.exists {
+                if originalTab.isHittable { break }
+                if originalTab.frame.maxX <= strip.frame.minX {
+                    strip.swipeRight()
+                } else if originalTab.frame.minX >= strip.frame.maxX {
+                    strip.swipeLeft()
+                } else {
+                    break
+                }
+            } else if attempt < 4 {
+                strip.swipeRight()
+            } else {
+                // A nonmaterialized cell has no screen geometry. Search
+                // both directions so the fallback does not assume LTR.
+                strip.swipeLeft()
+            }
+        }
+        XCTAssertTrue(originalTab.waitForExistence(timeout: 10)); XCTAssertTrue(originalTab.isHittable)
+        originalTab.tap()
     }
 
     @MainActor func testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader() throws {
@@ -1278,8 +1282,7 @@ extension NativeRoutingAcceptanceTests {
         }
         capture(namedChapter ? "system-book-intent-original-named-chapter" : "system-book-intent-original-source-after-background")
         if expectedPad {
-            let tab = app.descendants(matching: .any).matching(identifier: "reader-document-tab-" + original.1.uuidString).firstMatch
-            XCTAssertTrue(tab.isHittable); tab.tap()
+            returnToOriginalIPadReaderTab(original.1)
         } else {
             let overview = app.buttons["reader-open-tabs-button"]
             XCTAssertTrue(overview.waitForExistence(timeout: 10)); XCTAssertTrue(overview.isHittable); overview.tap()
