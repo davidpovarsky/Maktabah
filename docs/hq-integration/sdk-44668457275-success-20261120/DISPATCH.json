@@ -1,0 +1,22 @@
+{
+  "branch": "codex/otzaria-hanlin-consent-sdk-20261120",
+  "exact_checkout": "e90feda1ed411b98ebc4a55f1d6df0b089a6f305",
+  "application_source": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+  "inputs": {
+    "run_simulator_tests": "false",
+    "validation_runner": "xcode-27",
+    "source_ref": "",
+    "run_production_release": "false",
+    "ui_sdk_check_only": "true",
+    "books_updates_check_only": "false",
+    "hq_stage2_focused": "false",
+    "hq_stage2_expected_sha": "e90feda1ed411b98ebc4a55f1d6df0b089a6f305",
+    "runtime27_mode": "off",
+    "ui_diagnostic_cases": ""
+  },
+  "dispatch_output": "https://github.com/davidpovarsky/Maktabah/actions/runs/44668457275",
+  "new_workflow_dispatched": true,
+  "at_utc": "2026-11-20T03:32:48.413513+00:00",
+  "native_executed": 0,
+  "required_native_cases_registered": 90
+}

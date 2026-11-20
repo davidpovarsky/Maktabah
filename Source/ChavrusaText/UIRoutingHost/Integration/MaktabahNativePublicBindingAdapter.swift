@@ -12,6 +12,8 @@ struct MaktabahNativePublicPresentation {
     let witnessedReader: NativeSurfaceState?
     var searchFieldAvailable: Bool = false
     var inspectorAvailable: Bool = false
+    /// From the independently witnessed original Reader or Inspector; nil is unknown.
+    var witnessedInspectorVisible: Bool? = nil
 }
 
 /// App-target adapter over immutable R44 producer APIs. Not an executor, cache,
@@ -133,15 +135,16 @@ struct MaktabahNativePublicPresentation {
             tab = .absent; inspector = nil
         case .library, .settings, .search, .annotations: tab = .absent; inspector = nil
         case .inspector:
-            guard visible.inspectorAvailable,
+            guard visible.inspectorAvailable, let actualInspectorVisible = visible.witnessedInspectorVisible,
                   let selected = initial.projection.activeTabID, let target = initial.projection.targets[selected],
                   target.readerOwner != nil, target.backend.rawValue == snapshot.backend.rawValue else {
                 throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
             }
-            // The original public-v2 inspector policy requests visibility=true.
-            // The original mapping epoch binds its current Reader privately; no
-            // tab/content identifier or previous visibility is imported from URL.
-            tab = .absent; inspector = nil
+            // The URL requests visibility, while this field observes the original
+            // native surface. Completion must see true through the same witness;
+            // a constant nil would reject every successfully presented Inspector.
+            // Its Reader remains privately bound by the original mapping epoch.
+            tab = .absent; inspector = actualInspectorVisible
         case .reader:
             guard let wanted = intent.content else { throw ActionPortError.notSupported }
             _ = try MaktabahNativeReaderBinding.appDestination(wanted)

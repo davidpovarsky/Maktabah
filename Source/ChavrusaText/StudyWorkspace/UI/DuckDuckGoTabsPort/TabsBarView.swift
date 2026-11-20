@@ -72,6 +72,7 @@ final class TabsBarView: UIView {
     }
 
     private func setUpSubviews() {
+        collectionView.accessibilityIdentifier = "reader-document-tab-strip"
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isDirectionalLockEnabled = true
         collectionView.showsHorizontalScrollIndicator = false

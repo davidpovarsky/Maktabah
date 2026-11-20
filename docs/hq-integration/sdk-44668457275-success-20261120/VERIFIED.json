@@ -1,0 +1,57 @@
+{
+  "run": 44668457275,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44668457275",
+  "workflow_status": "SUCCESS",
+  "checkout": "e90feda1ed411b98ebc4a55f1d6df0b089a6f305",
+  "application_and_XCTest_source": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+  "artifact": {
+    "run_id": 44668457275,
+    "artifact_id": 14599247507,
+    "artifact_bytes": 215156,
+    "artifact_sha256": "ed322e44f9ff7cb9ba397483a889fb4cf8fcb043ae0e5d068c7f068f3ce415c5"
+  },
+  "xcode": "Xcode 27.2\nBuild version 27B52",
+  "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+  "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+  "actual_sdk_compile": "SDK_COMPILE_PASS",
+  "includes_codegen": true,
+  "compiler_warning_count": 2668,
+  "native_declarations": 90,
+  "native_executed": 0,
+  "actual_results": {
+    "sqlite": 25,
+    "cache": 26,
+    "annotation_component": 28,
+    "annotation_process_termination_recovery": 2,
+    "hebrew_source_ranges": 15,
+    "inspector_owner": 17,
+    "hanlin_api12_host": 48,
+    "hanlin_legacy_contract": 8,
+    "hanlin_scoped_filesystem_store": 11,
+    "workspace_checks": 89
+  },
+  "source_tree_parity": {
+    "Source": {
+      "e90feda1ed411b98ebc4a55f1d6df0b089a6f305": "5f38e576a1f21446d2b8f6cba8c391aa2c2466bf",
+      "c37b72374b65a44d54cdcffea2e39f5818a12aac": "5f38e576a1f21446d2b8f6cba8c391aa2c2466bf"
+    },
+    "Vendor": {
+      "e90feda1ed411b98ebc4a55f1d6df0b089a6f305": "fd589175514256438eb1a72a0d2efcd5284c247c",
+      "c37b72374b65a44d54cdcffea2e39f5818a12aac": "fd589175514256438eb1a72a0d2efcd5284c247c"
+    },
+    "Maktabah.xcodeproj": {
+      "e90feda1ed411b98ebc4a55f1d6df0b089a6f305": "0504a80db4dcd844871922ccf68d419eccb478f0",
+      "c37b72374b65a44d54cdcffea2e39f5818a12aac": "0504a80db4dcd844871922ccf68d419eccb478f0"
+    },
+    "Maktabah-iOSUITests": {
+      "e90feda1ed411b98ebc4a55f1d6df0b089a6f305": "945fa7b81c2b3261de7d4811068fbea7086e652e",
+      "c37b72374b65a44d54cdcffea2e39f5818a12aac": "945fa7b81c2b3261de7d4811068fbea7086e652e"
+    }
+  },
+  "limits": [
+    "SDK/component/portable evidence is not full-app runtime, Native UI or physical-device acceptance.",
+    "Original SDK e00498e3 unchanged; host mocks are explicitly retained in original driver boundary.",
+    "Annotation capability remains inactive; no CloudKit/Anytype/transport/runtime integration.",
+    "Current Native88 and release run remain on older7e and are not accepted by these SDK results."
+  ]
+}
