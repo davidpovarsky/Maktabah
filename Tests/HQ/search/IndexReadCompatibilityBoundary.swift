@@ -28,7 +28,6 @@ struct OtzariaLibraryRelease {
 enum FixtureWorld {
     nonisolated(unsafe) static var root = URL(fileURLWithPath: "unused")
     nonisolated(unsafe) static var build: OtzariaSearchEngineBuildInfo!
-    nonisolated(unsafe) static var admitCandidate = false
     nonisolated(unsafe) static var compatible = true
     nonisolated(unsafe) static var count: UInt64 = 18_879
     nonisolated(unsafe) static var openFails = false
@@ -99,17 +98,12 @@ struct OtzariaZstdStreamExtractor: Sendable {
     }
 }
 
-/// This is a flow-test authority double. It can examine candidate eligibility;
-/// the actual SubjectArtifactPolicy's production registry stays empty.
+/// Flow tests forward to the complete current production policy. The narrowly
+/// qualified registry is compiled unchanged; no candidate-admission override.
 enum OtzariaSearchArtifactPolicy {
     static func validate(_ manifest: OtzariaSearchArtifactManifest, database: OtzariaDatabaseInstallationManifest,
                          databaseBytes: Int64, build: OtzariaSearchEngineBuildInfo) throws {
-        if FixtureWorld.admitCandidate {
-            _ = try SubjectArtifactPolicy.validateReadCompatibilityCandidate(manifest, database: database,
-                databaseBytes: databaseBytes, build: build)
-        } else {
-            try SubjectArtifactPolicy.validate(manifest, database: database, databaseBytes: databaseBytes, build: build)
-        }
+        try SubjectArtifactPolicy.validate(manifest, database: database, databaseBytes: databaseBytes, build: build)
     }
     static func managedIdentityMatchesCanonicalData(_ identity: OtzariaIndexBuildIdentity,
         currentDatabase: OtzariaIndexFingerprint, build: OtzariaSearchEngineBuildInfo,

@@ -3,8 +3,8 @@
 
 No real index, archive/network, Apple runtime or qualification evidence is
 produced. The normal policy is compiled unchanged (type renamed for isolation).
-Only the flow fixture's policy authority may run the explicit candidate probe;
-that double cannot populate the application's empty qualification registry.
+Flow fixtures forward to that complete production policy without a candidate
+admission override. The historical disabled-registry evidence remains immutable.
 """
 from pathlib import Path
 import argparse, datetime, hashlib, json, os, subprocess, tempfile
@@ -112,12 +112,14 @@ def main():
             "docs/hq-search/manifests/otzaria-search-manifest.json"]},
         generated_swift_sha256={p.name:digest(p.read_bytes()) for p in owned.glob("*.swift")},
         swift_version=subprocess.check_output([options.swiftc,"--version"],text=True,encoding="utf-8").strip(),
-        production_qualification="DISABLED_EMPTY_REGISTRY",
+        production_qualification="CANDIDATE_EXACT_CONTRACT_REGISTRY_ENABLED",
+        qualification_evidence_commit="df3b894cef2c8ea3dd50ccb31394635aa8fe4077",
+        qualification_review_sha256="56fead3a78281ea6a1ba68d21806d5fa7505f2ba32b709fd03c1ce831c8fa3ca",
         boundaries=["Complete current and baseline policy with only type names renamed",
             "Exact original install/stream/promote/trusted-manifest/recovery/readiness/writer methods",
             "Real filesystem, Swift Codable and task cancellation",
             "Controlled profile/provider, FFI compatibility/count/open, raw fixture extractor, storage lock/capacity/backup metadata",
-            "Flow-only candidate policy authority invokes candidate probe; never changes production qualification"],
+            "Flow boundary forwards to complete production validate; no candidate-admission override"],
         actual_old_index_runtime_executed=0, native_executed=0, owned_directory=str(owned))
     report["compile_timeout_seconds"] = options.compile_timeout_seconds
     report["compiler_jobs"] = options.compiler_jobs
