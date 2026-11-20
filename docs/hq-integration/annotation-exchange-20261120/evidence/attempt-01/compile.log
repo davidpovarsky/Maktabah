@@ -1,0 +1,1863 @@
+Building for debugging...
+[0/13] Write sources
+[1/13] Copying action-catalog.v1.json
+[1/13] Copying action-request.v1.schema.json
+[3/13] Copying action-result.v1.schema.json
+[4/13] Copying backend-acceptance-cases.v1.json
+[4/13] Copying backend-capability-matrix.v1.json
+[6/13] Copying examples.v1.json
+[7/13] Write sources
+[8/13] Write swift-version-2807070033DA82CF.txt
+[10/34] Emitting module OtzariaActionCore
+[11/34] Compiling OtzariaActionCore ActionNativeUIFailure.swift
+[12/34] Compiling OtzariaActionCore ActionNoteDraft.swift
+[13/34] Compiling OtzariaActionCore ActionReferences.swift
+[14/34] Compiling OtzariaActionCore ActionRequest.swift
+[15/34] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[16/34] Compiling OtzariaActionCore ActionSearch.swift
+[17/34] Compiling OtzariaActionCore ActionSearchResults.swift
+[18/34] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[19/34] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[20/34] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[21/34] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[22/34] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[23/34] Compiling OtzariaActionCore ActionCommentary.swift
+[24/34] Compiling OtzariaActionCore ActionJSON.swift
+[25/34] Compiling OtzariaActionCore ActionWireCodec.swift
+[26/34] Compiling OtzariaActionCore ActionDeadline.swift
+[27/34] Compiling OtzariaActionCore ActionExecutor.swift
+[28/34] Compiling OtzariaActionCore ActionExecutionContext.swift
+[29/34] Compiling OtzariaActionCore ActionPolicy.swift
+[30/34] Compiling OtzariaActionCore ActionValidation.swift
+[31/40] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[32/40] Compiling OtzariaActionCore ActionPorts.swift
+[33/40] Compiling OtzariaActionCore ActionRegistry.swift
+[34/40] Compiling OtzariaActionCore CatalogActionResolver+SourceSections.swift
+[35/40] Compiling OtzariaActionCore CatalogActionResolver.swift
+[36/40] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[37/42] Wrapping AST for OtzariaActionCore for debugging
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[39/48] Compiling ExchangeAcceptance SyncPendingStore.swift
+[40/48] Compiling ExchangeAcceptance TorahAnnotationEnvelope.swift
+[41/48] Emitting module ExchangeAcceptance
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:83:15: error: 'UUID' is ambiguous for type lookup in this context
+
+ 81 |     let ledger: AnnotationExchangeLedger
+
+ 82 |     let queue: SyncPendingStore
+
+ 83 |     let uuid: UUID
+
+    |               `- error: 'UUID' is ambiguous for type lookup in this context
+
+ 84 | 
+
+ 85 |     init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: UUID = fixedAnnotationID) throws {
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:85:84: error: 'UUID' is ambiguous for type lookup in this context
+
+ 83 |     let uuid: UUID
+
+ 84 | 
+
+ 85 |     init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: UUID = fixedAnnotationID) throws {
+
+    |                                                                                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+ 86 |         path = root.appendingPathComponent(name + ".sqlite")
+
+ 87 |         db = try SQLiteDatabase(path: path.path)
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:145:29: error: 'UUID' is ambiguous for type lookup in this context
+
+143 |     }
+
+144 | 
+
+145 |     func commit(_ mutation: UUID = UUID(), expectedRevision: Int64 = 0,
+
+    |                             `- error: 'UUID' is ambiguous for type lookup in this context
+
+146 |                 destinations: [AnnotationExchangeDestination]? = nil,
+
+147 |                 preview: String = "תצוגה בלבד") throws -> AnnotationExchangeCommit {
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:21: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:40: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                                        `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:203:21: error: 'UUID' is ambiguous for type lookup in this context
+
+201 | struct CrashReceipt: Codable {
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+204 |     let messageID: UUID
+
+205 |     let payloadBase64: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:204:20: error: 'UUID' is ambiguous for type lookup in this context
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+204 |     let messageID: UUID
+
+    |                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:201:8: error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+199 | }
+
+200 | 
+
+201 | struct CrashReceipt: Codable {
+
+    |        `- error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+204 |     let messageID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+Swift.Decodable.init:2:1: note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+1 | protocol Decodable {
+
+2 | init(from decoder: any Decoder) throws}
+
+  | `- note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+3 | 
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:201:8: error: type 'CrashReceipt' does not conform to protocol 'Encodable'
+
+199 | }
+
+200 | 
+
+201 | struct CrashReceipt: Codable {
+
+    |        `- error: type 'CrashReceipt' does not conform to protocol 'Encodable'
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |         `- note: cannot automatically synthesize 'Encodable' because 'UUID' does not conform to 'Encodable'
+
+204 |     let messageID: UUID
+
+    |         `- note: cannot automatically synthesize 'Encodable' because 'UUID' does not conform to 'Encodable'
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+Swift.Encodable.encode:2:6: note: protocol requires function 'encode(to:)' with type 'Encodable'
+
+1 | protocol Encodable {
+
+2 | func encode(to encoder: any Encoder) throws}
+
+  |      `- note: protocol requires function 'encode(to:)' with type 'Encodable'
+
+3 | 
+
+[42/48] Compiling ExchangeAcceptance AnnotationExchangeAcceptance.swift
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:85:84: error: 'UUID' is ambiguous for type lookup in this context
+
+ 83 |     let uuid: UUID
+
+ 84 | 
+
+ 85 |     init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: UUID = fixedAnnotationID) throws {
+
+    |                                                                                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+ 86 |         path = root.appendingPathComponent(name + ".sqlite")
+
+ 87 |         db = try SQLiteDatabase(path: path.path)
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:204:20: error: 'UUID' is ambiguous for type lookup in this context
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+204 |     let messageID: UUID
+
+    |                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:203:21: error: 'UUID' is ambiguous for type lookup in this context
+
+201 | struct CrashReceipt: Codable {
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+204 |     let messageID: UUID
+
+205 |     let payloadBase64: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:21: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:40: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                                        `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+[43/48] Compiling ExchangeAcceptance AnnotationExchangeLedger.swift
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:85:84: error: 'UUID' is ambiguous for type lookup in this context
+
+ 83 |     let uuid: UUID
+
+ 84 | 
+
+ 85 |     init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: UUID = fixedAnnotationID) throws {
+
+    |                                                                                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+ 86 |         path = root.appendingPathComponent(name + ".sqlite")
+
+ 87 |         db = try SQLiteDatabase(path: path.path)
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:204:20: error: 'UUID' is ambiguous for type lookup in this context
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+204 |     let messageID: UUID
+
+    |                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:203:21: error: 'UUID' is ambiguous for type lookup in this context
+
+201 | struct CrashReceipt: Codable {
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+204 |     let messageID: UUID
+
+205 |     let payloadBase64: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:21: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:40: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                                        `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+[44/48] Compiling ExchangeAcceptance AnnotationExchangeTestSupport.swift
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:83:15: error: 'UUID' is ambiguous for type lookup in this context
+
+ 81 |     let ledger: AnnotationExchangeLedger
+
+ 82 |     let queue: SyncPendingStore
+
+ 83 |     let uuid: UUID
+
+    |               `- error: 'UUID' is ambiguous for type lookup in this context
+
+ 84 | 
+
+ 85 |     init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: UUID = fixedAnnotationID) throws {
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:85:84: error: 'UUID' is ambiguous for type lookup in this context
+
+ 83 |     let uuid: UUID
+
+ 84 | 
+
+ 85 |     init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: UUID = fixedAnnotationID) throws {
+
+    |                                                                                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+ 86 |         path = root.appendingPathComponent(name + ".sqlite")
+
+ 87 |         db = try SQLiteDatabase(path: path.path)
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:145:29: error: 'UUID' is ambiguous for type lookup in this context
+
+143 |     }
+
+144 | 
+
+145 |     func commit(_ mutation: UUID = UUID(), expectedRevision: Int64 = 0,
+
+    |                             `- error: 'UUID' is ambiguous for type lookup in this context
+
+146 |                 destinations: [AnnotationExchangeDestination]? = nil,
+
+147 |                 preview: String = "תצוגה בלבד") throws -> AnnotationExchangeCommit {
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:21: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:40: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                                        `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:203:21: error: 'UUID' is ambiguous for type lookup in this context
+
+201 | struct CrashReceipt: Codable {
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+204 |     let messageID: UUID
+
+205 |     let payloadBase64: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:204:20: error: 'UUID' is ambiguous for type lookup in this context
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+204 |     let messageID: UUID
+
+    |                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:201:8: error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+199 | }
+
+200 | 
+
+201 | struct CrashReceipt: Codable {
+
+    |        `- error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+204 |     let messageID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+Swift.Decodable.init:2:1: note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+1 | protocol Decodable {
+
+2 | init(from decoder: any Decoder) throws}
+
+  | `- note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+3 | 
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:201:8: error: type 'CrashReceipt' does not conform to protocol 'Encodable'
+
+199 | }
+
+200 | 
+
+201 | struct CrashReceipt: Codable {
+
+    |        `- error: type 'CrashReceipt' does not conform to protocol 'Encodable'
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |         `- note: cannot automatically synthesize 'Encodable' because 'UUID' does not conform to 'Encodable'
+
+204 |     let messageID: UUID
+
+    |         `- note: cannot automatically synthesize 'Encodable' because 'UUID' does not conform to 'Encodable'
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+Swift.Encodable.encode:2:6: note: protocol requires function 'encode(to:)' with type 'Encodable'
+
+1 | protocol Encodable {
+
+2 | func encode(to encoder: any Encoder) throws}
+
+  |      `- note: protocol requires function 'encode(to:)' with type 'Encodable'
+
+3 | 
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:141:37: error: cannot infer contextual base in reference to member 'object'
+
+139 |         guard extra else { return encoded }
+
+140 |         var object = try ActionWireCodec.decodeObject(encoded)
+
+141 |         object["futureMetadata"] = .object(["keepExact": .string("שלום unknown"), "number": .unsigned(UInt64.max)])
+
+    |                                     `- error: cannot infer contextual base in reference to member 'object'
+
+142 |         return try AnnotationExchangeValidation.canonical(.object(object))
+
+143 |     }
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:141:59: error: type 'Any' has no member 'string'
+
+139 |         guard extra else { return encoded }
+
+140 |         var object = try ActionWireCodec.decodeObject(encoded)
+
+141 |         object["futureMetadata"] = .object(["keepExact": .string("שלום unknown"), "number": .unsigned(UInt64.max)])
+
+    |                                                           `- error: type 'Any' has no member 'string'
+
+142 |         return try AnnotationExchangeValidation.canonical(.object(object))
+
+143 |     }
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:141:98: error: type 'Any' has no member 'unsigned'
+
+139 |         guard extra else { return encoded }
+
+140 |         var object = try ActionWireCodec.decodeObject(encoded)
+
+141 |         object["futureMetadata"] = .object(["keepExact": .string("שלום unknown"), "number": .unsigned(UInt64.max)])
+
+    |                                                                                              `- error: type 'Any' has no member 'unsigned'
+
+142 |         return try AnnotationExchangeValidation.canonical(.object(object))
+
+143 |     }
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:201:8: error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+199 | }
+
+200 | 
+
+201 | struct CrashReceipt: Codable {
+
+    |        `- error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+204 |     let messageID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+Swift.Decodable.init:2:1: note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+1 | protocol Decodable {
+
+2 | init(from decoder: any Decoder) throws}
+
+  | `- note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+3 | 
+
+[45/48] Compiling ExchangeAcceptance SQLiteDatabase.swift
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:83:15: error: 'UUID' is ambiguous for type lookup in this context
+
+ 81 |     let ledger: AnnotationExchangeLedger
+
+ 82 |     let queue: SyncPendingStore
+
+ 83 |     let uuid: UUID
+
+    |               `- error: 'UUID' is ambiguous for type lookup in this context
+
+ 84 | 
+
+ 85 |     init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: UUID = fixedAnnotationID) throws {
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:85:84: error: 'UUID' is ambiguous for type lookup in this context
+
+ 83 |     let uuid: UUID
+
+ 84 | 
+
+ 85 |     init(root: URL, name: String, create: Bool = true, install: Bool = true, uuid: UUID = fixedAnnotationID) throws {
+
+    |                                                                                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+ 86 |         path = root.appendingPathComponent(name + ".sqlite")
+
+ 87 |         db = try SQLiteDatabase(path: path.path)
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:145:29: error: 'UUID' is ambiguous for type lookup in this context
+
+143 |     }
+
+144 | 
+
+145 |     func commit(_ mutation: UUID = UUID(), expectedRevision: Int64 = 0,
+
+    |                             `- error: 'UUID' is ambiguous for type lookup in this context
+
+146 |                 destinations: [AnnotationExchangeDestination]? = nil,
+
+147 |                 preview: String = "תצוגה בלבד") throws -> AnnotationExchangeCommit {
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:21: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:185:40: error: 'UUID' is ambiguous for type lookup in this context
+
+183 | 
+
+184 | func ack(_ delivery: AnnotationExchangeDelivery, destination: AnnotationExchangeDestination? = nil,
+
+185 |          messageID: UUID? = nil, uuid: UUID? = nil, revision: Int64? = nil, digest: String? = nil,
+
+    |                                        `- error: 'UUID' is ambiguous for type lookup in this context
+
+186 |          envelopeNamespace: String? = nil) -> AnnotationExchangeAcknowledgement {
+
+187 |     .init(messageID: messageID ?? delivery.messageID, destination: destination ?? delivery.destination,
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:203:21: error: 'UUID' is ambiguous for type lookup in this context
+
+201 | struct CrashReceipt: Codable {
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |                     `- error: 'UUID' is ambiguous for type lookup in this context
+
+204 |     let messageID: UUID
+
+205 |     let payloadBase64: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:204:20: error: 'UUID' is ambiguous for type lookup in this context
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+204 |     let messageID: UUID
+
+    |                    `- error: 'UUID' is ambiguous for type lookup in this context
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\rpcdce.h:83:14: note: found this candidate
+
+  81 | #ifndef UUID_DEFINED
+
+  82 | #define UUID_DEFINED
+
+  83 | typedef GUID UUID;
+
+     |              `- note: found this candidate
+
+  84 | #ifndef uuid_t
+
+  85 | #define uuid_t UUID
+
+
+
+FoundationEssentials.UUID:2:15: note: found this candidate
+
+ 1 | @available(macOS 10.8, iOS 6.0, tvOS 9.0, watchOS 2.0, *)
+
+ 2 | public struct UUID : Hashable, Equatable, CustomStringConvertible, Sendable {
+
+   |               `- note: found this candidate
+
+ 3 |     public private(set) var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
+
+ 4 |     public init()
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:201:8: error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+199 | }
+
+200 | 
+
+201 | struct CrashReceipt: Codable {
+
+    |        `- error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+204 |     let messageID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+Swift.Decodable.init:2:1: note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+1 | protocol Decodable {
+
+2 | init(from decoder: any Decoder) throws}
+
+  | `- note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+3 | 
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:201:8: error: type 'CrashReceipt' does not conform to protocol 'Encodable'
+
+199 | }
+
+200 | 
+
+201 | struct CrashReceipt: Codable {
+
+    |        `- error: type 'CrashReceipt' does not conform to protocol 'Encodable'
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |         `- note: cannot automatically synthesize 'Encodable' because 'UUID' does not conform to 'Encodable'
+
+204 |     let messageID: UUID
+
+    |         `- note: cannot automatically synthesize 'Encodable' because 'UUID' does not conform to 'Encodable'
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+Swift.Encodable.encode:2:6: note: protocol requires function 'encode(to:)' with type 'Encodable'
+
+1 | protocol Encodable {
+
+2 | func encode(to encoder: any Encoder) throws}
+
+  |      `- note: protocol requires function 'encode(to:)' with type 'Encodable'
+
+3 | 
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:141:37: error: cannot infer contextual base in reference to member 'object'
+
+139 |         guard extra else { return encoded }
+
+140 |         var object = try ActionWireCodec.decodeObject(encoded)
+
+141 |         object["futureMetadata"] = .object(["keepExact": .string("שלום unknown"), "number": .unsigned(UInt64.max)])
+
+    |                                     `- error: cannot infer contextual base in reference to member 'object'
+
+142 |         return try AnnotationExchangeValidation.canonical(.object(object))
+
+143 |     }
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:141:59: error: type 'Any' has no member 'string'
+
+139 |         guard extra else { return encoded }
+
+140 |         var object = try ActionWireCodec.decodeObject(encoded)
+
+141 |         object["futureMetadata"] = .object(["keepExact": .string("שלום unknown"), "number": .unsigned(UInt64.max)])
+
+    |                                                           `- error: type 'Any' has no member 'string'
+
+142 |         return try AnnotationExchangeValidation.canonical(.object(object))
+
+143 |     }
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:141:98: error: type 'Any' has no member 'unsigned'
+
+139 |         guard extra else { return encoded }
+
+140 |         var object = try ActionWireCodec.decodeObject(encoded)
+
+141 |         object["futureMetadata"] = .object(["keepExact": .string("שלום unknown"), "number": .unsigned(UInt64.max)])
+
+    |                                                                                              `- error: type 'Any' has no member 'unsigned'
+
+142 |         return try AnnotationExchangeValidation.canonical(.object(object))
+
+143 |     }
+
+
+
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-01\owned-486d0c4a-d8a8-4a58-a1ea-ee7d99b3ee5d\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:201:8: error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+199 | }
+
+200 | 
+
+201 | struct CrashReceipt: Codable {
+
+    |        `- error: type 'CrashReceipt' does not conform to protocol 'Decodable'
+
+202 |     let phase: String
+
+203 |     let mutationID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+204 |     let messageID: UUID
+
+    |         `- note: cannot automatically synthesize 'Decodable' because 'UUID' does not conform to 'Decodable'
+
+205 |     let payloadBase64: String
+
+206 |     let payloadDigest: String
+
+
+
+Swift.Decodable.init:2:1: note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+1 | protocol Decodable {
+
+2 | init(from decoder: any Decoder) throws}
+
+  | `- note: protocol requires initializer 'init(from:)' with type 'Decodable'
+
+3 | 
+
+[46/49] Compiling ExchangeAcceptance UnusedZstdBoundary.swift
