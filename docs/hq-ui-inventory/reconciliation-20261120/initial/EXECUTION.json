@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "docs\\hq-ui-inventory\\reconciliation-20261120\\reconcile_current.py",
+    "--repo",
+    "C:\\Users\\DAVID\\Code\\Maktabah-ui-surface-reconciliation-20261120",
+    "--source",
+    "0e879ae85c4533a7687095cf640f1dc02baf0e60",
+    "--output",
+    "docs\\hq-ui-inventory\\reconciliation-20261120\\CROSSWALK.json"
+  ],
+  "exit": 0,
+  "stdout": "{\"output\": \"docs\\\\hq-ui-inventory\\\\reconciliation-20261120\\\\CROSSWALK.json\", \"sha256\": \"986b9241d4a80c891fc0f4243abf3aae87df57e2c8ef9b8078f0eec0dfe2049c\", \"source_sha\": \"0e879ae85c4533a7687095cf640f1dc02baf0e60\", \"semantic_rows\": 294, \"unique_ids\": 294, \"potential_backend_ingress_cells\": 4410, \"fresh_runtime_executions\": 0, \"fresh_runtime_passes\": 0, \"core_implemented_count\": 8, \"composition_descriptor_count\": 10, \"source_anchor_statuses\": {\"ANCHOR_PRESENT\": 294}, \"mapping_kinds\": {\"NO_EXACT_DESTINATION_MAPPING\": 262, \"EXACT_ROOT_OR_CANONICAL_READER_SUBSET\": 24, \"HOST_API_ONLY\": 3, \"LEGACY_URL_HANDLER\": 2, \"INGRESS_DEFINITION\": 3}, \"per_ingress_source_statuses\": {\"in_app\": {\"ORIGINAL_UI_SOURCE_ONLY\": 267, \"SOURCE_WIRED_CONDITIONAL\": 24, \"HOST_API_WIRED_NO_PRODUCTION_CALLER\": 3}, \"app_intents\": {\"NOT_EXPOSED_BY_CURRENT_HOST\": 267, \"SOURCE_WIRED_CONDITIONAL\": 27}, \"urls\": {\"NOT_EXPOSED_BY_CURRENT_HOST\": 268, \"CUSTOM_SCHEME_ONLY_CONDITIONAL\": 24, \"LEGACY_DELEGATED_NO_REGISTRY_ACK\": 2}, \"hanlin\": {\"NOT_EXPOSED_BY_CURRENT_HOST\": 284, \"METADATA_TOOL_ONLY_NO_UI_MAPPING\": 6, \"SOURCE_LINK_TRANSITION_ONLY\": 4}, \"guides\": {\"NOT_IMPLEMENTED\": 294}}}\n",
+  "stderr": ""
+}
