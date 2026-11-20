@@ -1,0 +1,77 @@
+# Actual named component cases
+
+Every row below is present in the authenticated raw executable result; the frozen validator requires exact names, uniqueness and PASS. Process gates are separate from these71 component cases.
+
+| Suite | # | Exact case | Actual result |
+|---|---:|---|---|
+| local | 1 | `legacy_read_has_no_schema_or_original_mutation` | PASS |
+| local | 2 | `same_uuid_atomic_two_block_body_and_plain_preview` | PASS |
+| local | 3 | `all_original_metadata_tags_and_uuid_preserved` | PASS |
+| local | 4 | `original_queue_upload_delete_preserved_and_no_exchange_destination` | PASS |
+| local | 5 | `original_store_cache_reads_committed_preview` | PASS |
+| local | 6 | `original_cloudkit_boundary_receives_plain_record_once_without_requeue` | PASS |
+| local | 7 | `exact_retry_returns_same_version_without_duplicate_publication` | PASS |
+| local | 8 | `same_mutation_different_body_is_conflict` | PASS |
+| local | 9 | `new_revision_preserves_immutable_previous_bytes` | PASS |
+| local | 10 | `second_session_stale_revision_cannot_overwrite` | PASS |
+| local | 11 | `normal_save_invalidates_old_rich_intent_without_altering_normal_path` | PASS |
+| local | 12 | `original_tag_change_invalidates_source_witness` | PASS |
+| local | 13 | `changed_original_row_is_rejected_by_post_worker_read_publication` | PASS |
+| local | 14 | `changed_version_is_rejected_by_post_worker_read_publication` | PASS |
+| local | 15 | `pending_original_delete_cannot_be_resurrected` | PASS |
+| local | 16 | `missing_original_annotation_is_not_recreated` | PASS |
+| local | 17 | `ambiguous_uuid_is_never_selected_by_first_match` | PASS |
+| local | 18 | `profile_switch_and_return_never_revives_old_owner` | PASS |
+| local | 19 | `disconnect_reconnect_same_file_requires_fresh_session` | PASS |
+| local | 20 | `retire_before_save_has_no_schema_or_write` | PASS |
+| local | 21 | `read_and_cancel_does_not_save_or_backfill` | PASS |
+| local | 22 | `foreign_session_snapshot_is_denied` | PASS |
+| local | 23 | `unsupported_body_format_is_readable_but_never_overwritten` | PASS |
+| local | 24 | `future_envelope_is_retained_and_read_only` | PASS |
+| local | 25 | `unknown_envelope_and_rich_metadata_survive_supported_edit` | PASS |
+| local | 26 | `altered_snapshot_document_cannot_remove_preserved_unknown_fields` | PASS |
+| local | 27 | `unknown_local_commit_marker_is_not_reinterpreted` | PASS |
+| local | 28 | `future_database_schema_is_not_migrated_by_read` | PASS |
+| local | 29 | `partial_schema_is_not_repaired_by_read` | PASS |
+| local | 30 | `corrupt_body_digest_is_rejected` | PASS |
+| local | 31 | `payload_bound_failure_rolls_back_preview_schema_and_queue` | PASS |
+| local | 32 | `sqlite_failure_after_preview_rolls_back_entire_commit` | PASS |
+| local | 33 | `retirement_during_original_sql_rolls_back_before_commit` | PASS |
+| local | 34 | `normal_plain_save_preserves_rich_bytes_but_marks_body_stale` | PASS |
+| local | 35 | `lowercase_original_uuid_bytes_are_not_restamped` | PASS |
+| local | 36 | `nul_preview_is_rejected_before_original_sqlite_string_binding` | PASS |
+| local | 37 | `empty_format_contract_has_no_implicit_editor_default` | PASS |
+| local | 38 | `format_conversion_is_not_implicit_even_when_both_are_known` | PASS |
+| local | 39 | `replay_of_older_head_cannot_replace_or_publish_newer_body` | PASS |
+| local | 40 | `retirement_during_publication_reports_real_commit_without_owner_delivery` | PASS |
+| local | 41 | `orphaned_version_is_not_treated_as_a_legacy_empty_note` | PASS |
+| local | 42 | `original_exchange_api_still_rejects_empty_destinations` | PASS |
+| local | 43 | `ordinary_original_save_and_tags_still_work_on_legacy_note` | PASS |
+| exchange | 1 | `actual_platform_SHA256_known_vectors` | PASS |
+| exchange | 2 | `constructor_is_inert_and_capability_stays_off` | PASS |
+| exchange | 3 | `exact_rich_bytes_preview_and_unknown_fields_survive_reopen` | PASS |
+| exchange | 4 | `unknown_version_is_exact_quarantine_without_execution` | PASS |
+| exchange | 5 | `all_original_handles_close_before_reopen_and_retry` | PASS |
+| exchange | 6 | `duplicate_escaped_keys_malformed_UTF8_and_numbers_are_rejected` | PASS |
+| exchange | 7 | `invalid_UUID_base64_types_and_scope_are_rejected` | PASS |
+| exchange | 8 | `oversized_payload_fails_intact_without_rows` | PASS |
+| exchange | 9 | `schema_constraints_reject_fractional_revision_and_invalid_status` | PASS |
+| exchange | 10 | `unknown_ledger_schema_fails_closed` | PASS |
+| exchange | 11 | `missing_or_ambiguous_original_UUID_is_not_backfilled` | PASS |
+| exchange | 12 | `same_second_source_edit_rejects_stale_witness` | PASS |
+| exchange | 13 | `tag_locator_and_embedded_NUL_each_change_source_witness` | PASS |
+| exchange | 14 | `source_metadata_and_revision_mismatch_do_not_write` | PASS |
+| exchange | 15 | `dangling_original_tag_link_changes_witness_and_rejects_stale_commit` | PASS |
+| exchange | 16 | `idempotent_retry_binds_exact_payload_and_destination_set` | PASS |
+| exchange | 17 | `ACK_is_bound_to_destination_account_space_UUID_revision_digest_and_message` | PASS |
+| exchange | 18 | `old_ACK_does_not_consume_newer_revision_or_account` | PASS |
+| exchange | 19 | `nested_enqueue_failure_rolls_back_source_cloud_queue_and_ledger` | PASS |
+| exchange | 20 | `outer_failure_after_inner_release_rolls_back_everything` | PASS |
+| exchange | 21 | `successful_outer_transaction_preserves_original_cloud_queue_semantics` | PASS |
+| exchange | 22 | `tombstone_requires_prior_identity_and_absent_original_source` | PASS |
+| exchange | 23 | `known_inbox_is_review_only_exact_idempotent_and_account_scoped` | PASS |
+| exchange | 24 | `incoming_digest_and_identity_mismatch_are_rejected` | PASS |
+| exchange | 25 | `corrupt_payload_and_orphan_outbox_fail_closed` | PASS |
+| exchange | 26 | `pre_cancelled_commit_and_ACK_do_not_write` | PASS |
+| exchange | 27 | `cancellation_after_real_enqueue_rolls_back_before_commit` | PASS |
+| exchange | 28 | `eight_concurrent_same_revision_writers_have_one_atomic_winner` | PASS |
