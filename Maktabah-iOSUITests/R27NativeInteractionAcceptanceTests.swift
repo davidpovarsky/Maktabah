@@ -214,7 +214,7 @@ final class R27NativePadTests: R27NativeUIBase {
                        "Escape must remove the actual palette input, not only its AX container")
         recordWindowEvidence("r27-visible-palette-dismissed")
 
-        tapInWindow(app.buttons["reader-study-toggle"])
+        tapInWindow(try originalStudyToolsActionInWindow())
         let inspector = app.descendants(matching: .any)["torah-inspector-panel"]
         XCTAssertTrue(inspector.waitForExistence(timeout: 30))
         XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].exists)
@@ -384,7 +384,7 @@ final class R27NativePadTests: R27NativeUIBase {
             predicate: NSPredicate(format: "count == 0"), object: inputs
         )], timeout: 15), .completed, "One genuine HID Escape must remove the genuinely filtered narrow input")
         XCTAssertFalse(palette.exists)
-        tapInWindow(app.buttons["reader-study-toggle"])
+        tapInWindow(try originalStudyToolsActionInWindow())
         let inspector = app.descendants(matching: .any)["torah-inspector-panel"]
         XCTAssertTrue(inspector.waitForExistence(timeout: 30))
         XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].exists)

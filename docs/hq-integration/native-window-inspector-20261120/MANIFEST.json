@@ -1,0 +1,66 @@
+{
+  "files": [
+    {
+      "path": "ACTUAL_NATIVE88_OBSERVATIONS.json",
+      "bytes": 4260,
+      "sha256": "e8e89a43f13850fdc270d32d86220116e0b203e5e8a55bed12e27f0b1a820583"
+    },
+    {
+      "path": "FaithfulReaderUIAcceptanceTests.parse.log",
+      "bytes": 163,
+      "sha256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153"
+    },
+    {
+      "path": "FaithfulReaderUIAcceptanceTests.review-correction.parse.log",
+      "bytes": 163,
+      "sha256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153"
+    },
+    {
+      "path": "original-ax/182107AA-A5BD-4D0C-82D8-7F46B0F3139C.txt.gz",
+      "bytes": 4063,
+      "sha256": "084b79fa565e1828ecb79fb9a9f2fd7267ccb8985cc4e9bd65f918a299602abf"
+    },
+    {
+      "path": "original-ax/A6180895-5CB6-4292-A063-5EDA4160DC2D.txt.gz",
+      "bytes": 3847,
+      "sha256": "c7a08ac9eab141594106e78049e3a0de7be372c4517b17256d0c167d49c1445f"
+    },
+    {
+      "path": "original-ax/B613FBFF-494C-4FFD-80CC-201554D770E9.txt.gz",
+      "bytes": 3846,
+      "sha256": "9b82d23c700488e8f91205a91ddb0e6f06d6347ff45057b3206b3a3b679da1f0"
+    },
+    {
+      "path": "original-ax/D628EFA0-66D7-489A-ADDF-34AE38C78709.txt.gz",
+      "bytes": 4051,
+      "sha256": "d03a72ecd70f988625b251a1db8c05bfad4eb29c91860c22e7bcd6b0bf1028bc"
+    },
+    {
+      "path": "R27NativeInteractionAcceptanceTests.parse.log",
+      "bytes": 163,
+      "sha256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4770,
+      "sha256": "170d26d00471758a91fe2728c90587f362996cbe76e5c141572bb83102c96ef2"
+    },
+    {
+      "path": "SOURCE_PRESERVATION.json",
+      "bytes": 1046,
+      "sha256": "54d64c6b2e27b8bbcd51771c8e26f3f9970d37927e337394337af7df05ec8b4b"
+    },
+    {
+      "path": "SYNTAX_PARSE.json",
+      "bytes": 1537,
+      "sha256": "f1a890d01d437f367d2f68ccad998846e611a0fbcb2946c62ac54e0178eda1dd"
+    },
+    {
+      "path": "SYNTAX_PARSE_REVIEW_CORRECTION.json",
+      "bytes": 742,
+      "sha256": "3a80483958a24f1e20c90906e828c890fda048c7f925d8f80d467c0a2e699d28"
+    }
+  ],
+  "scope": "Original Native88 failure observations, scoped test-source repair, Windows syntax parse; candidate Native NOT_RUN",
+  "repositoryTextEncoding": "UTF-8 LF. Initial staging byte check caught Windows newline normalization before commit; files and manifest were explicitly normalized. Original AX gzip bytes are unchanged."
+}

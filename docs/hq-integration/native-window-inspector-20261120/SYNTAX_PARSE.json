@@ -1,0 +1,38 @@
+[
+  {
+    "source": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "workingFileSHA256": "819fd6204a90d3dbc14394feb825bb03df0789a3ffbf631d09fdaef3244aa8bd",
+    "command": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios17.0-simulator",
+      "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+    ],
+    "returncode": 0,
+    "startedUTC": "2026-11-20T06:31:49.843062+00:00",
+    "finishedUTC": "2026-11-20T06:31:50.971580+00:00",
+    "warnings": 2,
+    "log": "FaithfulReaderUIAcceptanceTests.parse.log",
+    "scope": "Windows syntax parse only; no Apple SDK typecheck, app or Native execution"
+  },
+  {
+    "source": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "workingFileSHA256": "72c06f94cdb96f504d8a2fbd83c4c6c9ccea9f9be4f79f637a762dd746d38512",
+    "command": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios17.0-simulator",
+      "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
+    ],
+    "returncode": 0,
+    "startedUTC": "2026-11-20T06:31:50.972086+00:00",
+    "finishedUTC": "2026-11-20T06:31:51.107566+00:00",
+    "warnings": 2,
+    "log": "R27NativeInteractionAcceptanceTests.parse.log",
+    "scope": "Windows syntax parse only; no Apple SDK typecheck, app or Native execution"
+  }
+]

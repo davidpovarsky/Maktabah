@@ -1,0 +1,21 @@
+{
+  "base": "f064b5517f560e2b52838bf321214baa3fb09e2c",
+  "exactInverseRestoresBaseline": true,
+  "originalProductionFilesChanged": false,
+  "r27CallReplacements": 2,
+  "faithfulOriginalAssertionsPreserved": true,
+  "originalWindowHIDLocatorTextPanelRestorationOraclesPreserved": true,
+  "peerReviewCorrection": "Wait once up to the original 15 seconds for visible direct OR native top overflow; choose again afterwards and open overflow at most once.",
+  "sourceFiles": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "beforeGitLF_SHA256": "b3e3165a9a54d39dfc32866fd078a410201f1db7240d261ee32124209ac09fa3",
+      "candidateGitLF_SHA256": "53ca3541c0faf5c96e4847b2fffcaeb3c3c23ba9dd82fd1fd3ef22d09e1d001e"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "beforeGitLF_SHA256": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc",
+      "candidateGitLF_SHA256": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b"
+    }
+  ]
+}

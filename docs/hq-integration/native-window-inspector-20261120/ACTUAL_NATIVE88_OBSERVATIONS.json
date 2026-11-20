@@ -1,0 +1,87 @@
+{
+  "run": 44657116407,
+  "runURL": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407",
+  "checkout": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+  "appAndTestSource": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "repairBase": "f064b5517f560e2b52838bf321214baa3fb09e2c",
+  "cases": [
+    {
+      "case": "testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "observations": [
+        {
+          "mode": "narrow",
+          "originalAttachment": "D628EFA0-66D7-489A-ADDF-34AE38C78709.txt",
+          "originalSHA256": "817675fac4e31757c985a7a94e6944ffcca6e314390db7090904b4709db35a04",
+          "pid": 79692,
+          "originalStudyActionInAX": false,
+          "nativeTopOverflowInAX": true,
+          "readerLocator": "otzaria|book:3891|line:522",
+          "evidenceFile": "original-ax/D628EFA0-66D7-489A-ADDF-34AE38C78709.txt.gz",
+          "gzipSHA256": "d03a72ecd70f988625b251a1db8c05bfad4eb29c91860c22e7bcd6b0bf1028bc"
+        },
+        {
+          "mode": "restoredWide",
+          "originalAttachment": "B613FBFF-494C-4FFD-80CC-201554D770E9.txt",
+          "originalSHA256": "2a061601b2404df081249f4f84e6d3e6176269511fdcfc01172d38d510be5595",
+          "pid": 79692,
+          "originalStudyActionInAX": true,
+          "nativeTopOverflowInAX": false,
+          "readerLocator": "otzaria|book:3891|line:522",
+          "evidenceFile": "original-ax/B613FBFF-494C-4FFD-80CC-201554D770E9.txt.gz",
+          "gzipSHA256": "9b82d23c700488e8f91205a91ddb0e6f06d6347ff45057b3206b3a3b679da1f0"
+        }
+      ]
+    },
+    {
+      "case": "testNormalBootstrapPaletteHIDComparison",
+      "observations": [
+        {
+          "mode": "narrow",
+          "originalAttachment": "182107AA-A5BD-4D0C-82D8-7F46B0F3139C.txt",
+          "originalSHA256": "fb17d567b5ffff486c28ed9320957831cef1620af5d6e491e43d2a47fbab591c",
+          "pid": 92508,
+          "originalStudyActionInAX": false,
+          "nativeTopOverflowInAX": true,
+          "readerLocator": "otzaria|book:3891|line:522",
+          "evidenceFile": "original-ax/182107AA-A5BD-4D0C-82D8-7F46B0F3139C.txt.gz",
+          "gzipSHA256": "084b79fa565e1828ecb79fb9a9f2fd7267ccb8985cc4e9bd65f918a299602abf"
+        },
+        {
+          "mode": "restoredWide",
+          "originalAttachment": "A6180895-5CB6-4292-A063-5EDA4160DC2D.txt",
+          "originalSHA256": "b57ab42e34afd5933367e77e61bd3ebf91c75abb6a7c8e81033d7c695da35480",
+          "pid": 92508,
+          "originalStudyActionInAX": true,
+          "nativeTopOverflowInAX": false,
+          "readerLocator": "otzaria|book:3891|line:522",
+          "evidenceFile": "original-ax/A6180895-5CB6-4292-A063-5EDA4160DC2D.txt.gz",
+          "gzipSHA256": "c7a08ac9eab141594106e78049e3a0de7be372c4517b17256d0c167d49c1445f"
+        }
+      ]
+    }
+  ],
+  "productionToolbar": {
+    "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+    "sameExactRegionOldAndRepairBase": true,
+    "region": "            ToolbarItem(placement: .topBarTrailing) {\n                Button(action: toggleStudyPanel) {\n                    PanelToggleIcon(isOpen: showPanel)\n                }\n                .accessibilityLabel(showPanel ? Text(\"Close Study Tools\") : Text(\"Open Study Tools\"))\n                .accessibilityIdentifier(\"reader-study-toggle\")\n                .help(showPanel ? Text(\"Close Study Tools\") : Text(\"Open Study Tools\"))\n",
+    "regionSHA256": "4966e443439fb8569882a943970fdb59a9364ab72e058e2c63e3bc573922b45b"
+  },
+  "originalLabelCatalogEntry": {
+    "localizations": {
+      "en": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Open Study Tools"
+        }
+      },
+      "he": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "פתיחת כלי לימוד"
+        }
+      }
+    }
+  },
+  "inference": "Actual original narrow toolbar does not expose the direct Study Tools button, but exposes native top overflow; the same process and locator expose the original button after wide restoration. The source-owned action should be exercised via this actual overflow when it is not directly visible. The old run did not open this overflow, so candidate menu/action success is still unproven.",
+  "candidateNativeExecuted": 0
+}
