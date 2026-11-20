@@ -454,7 +454,14 @@ public actor ActionExecutor {
                 guard receipt.requestId == request.requestId, receipt.snapshot == snapshot, receipt.sceneID == scene,
                       receipt.destination == validated else { throw ActionPortError.invalidResponse }
                 navigationCompletion = authorization
-                result = ActionResult(request: request, status: .completed, backend: backend, backendGeneration: snapshot.generation, effects: ["reader_opened"])
+                // An additive continuation describes only the exact source
+                // target acknowledged by the original native reader. It is
+                // metadata, never a substitute for the next action's grant.
+                let continuation: ActionObject? = request.action == "reader.openCommentary"
+                    ? ["destination": try .encoded(receipt.destination),
+                       "locator": try .encoded(receipt.destination.focusLocator ?? receipt.destination.sectionLocator)] : nil
+                result = ActionResult(request: request, status: .completed, data: continuation,
+                    backend: backend, backendGeneration: snapshot.generation, effects: ["reader_opened"])
             case .queued(let handle):
                 guard handle.range(of: "^[A-Za-z0-9_-]{8,128}$", options: .regularExpression) != nil else { throw ActionPortError.invalidResponse }
                 result = ActionResult(request: request, status: .uiQueued, data: ["handle": .string(handle)], backend: backend, backendGeneration: snapshot.generation, effects: ["reader_command_queued"])

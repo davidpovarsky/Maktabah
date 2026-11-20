@@ -266,6 +266,41 @@ final class CommentaryActionTests: XCTestCase, @unchecked Sendable {
         let oldResult = await oldResolver.execute(try request(f), context: context(f))
         XCTAssertEqual(oldResult.error?.code, "commentary_navigation_unavailable")
     }
+    func testAcknowledgedCommentaryPublishesExactDestinationAndFocusContinuation() async throws {
+        let f = CommentaryFixture(), source = CommentarySource(f), ui = await CommentaryUI(source)
+        let core = try ActionExecutor(state: source, resolver: resolver(source), search: source, ui: ui)
+        let result = await core.execute(try request(f), context: context(f))
+        XCTAssertEqual(result.status, .completed)
+        XCTAssertEqual(try result.data?["destination"]?.decoded(as: ActionReaderDestination.self), f.opened)
+        XCTAssertEqual(try result.data?["locator"]?.decoded(as: ActionTextRef.self), f.destination.focusLocator)
+    }
+    func testAcknowledgedSectionOnlyCommentaryDoesNotInventSegmentContinuation() async throws {
+        let f = CommentaryFixture(), source = CommentarySource(f), ui = await CommentaryUI(source)
+        let section = ActionReaderDestination(sectionLocator: f.destination.sectionLocator)
+        await source.setup(links: [.init(baseLocator: f.base, destination: section, title: "כלי יקר")])
+        let core = try ActionExecutor(state: source, resolver: resolver(source), search: source, ui: ui)
+        let result = await core.execute(try request(f), context: context(f))
+        XCTAssertEqual(result.status, .completed)
+        let returned = try result.data?["destination"]?.decoded(as: ActionReaderDestination.self)
+        XCTAssertEqual(returned, .init(sectionLocator: section.sectionLocator, presentationMode: .newTab))
+        XCTAssertEqual(try result.data?["locator"]?.decoded(as: ActionTextRef.self), section.sectionLocator)
+    }
+    func testRejectedCommentaryReceiptPublishesNoContinuation() async throws {
+        let f = CommentaryFixture(), source = CommentarySource(f), ui = await CommentaryUI(source)
+        await MainActor.run { ui.wrongReceipt = true }
+        let core = try ActionExecutor(state: source, resolver: resolver(source), search: source, ui: ui)
+        let result = await core.execute(try request(f), context: context(f))
+        XCTAssertNotEqual(result.status, .completed); XCTAssertNil(result.data)
+    }
+    func testOriginalIndependentReaderResultShapeIsUnchanged() async throws {
+        let f = CommentaryFixture(), source = CommentarySource(f), ui = await CommentaryUI(source)
+        await MainActor.run { ui.prepared = f.opened }
+        let core = try ActionExecutor(state: source, resolver: resolver(source), search: source, ui: ui)
+        let req = ActionRequest(action: "reader.open", arguments: try ActionJSON.encoded(f.opened).object ?? [:], expectedBackend: f.backend)
+        let result = await core.execute(req, context: context(f))
+        XCTAssertEqual(result.status, .completed); XCTAssertNil(result.data)
+        XCTAssertEqual(result.effects, ["reader_opened"])
+    }
     func testSemanticCapabilityRequiresBothNavigationAndOriginalLinks() throws {
         let f = CommentaryFixture()
         var evidence = ActionBackendRuntimeEvidence(snapshot: .init(backend: f.backend, generation: 3),
