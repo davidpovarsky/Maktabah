@@ -4,12 +4,14 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
     typealias EmbeddedReferenceProof = @Sendable (ActionTextRef, ActionPortInvocation) async throws -> Void
     typealias EmbeddedCatalog = @Sendable (ActionPortInvocation) async throws -> [LibraryCatalogNode]
+    typealias OccurrenceReadiness = @Sendable (ActionBackendSnapshot) async -> ActionReadinessEvidence
+    typealias OccurrenceCounter = @Sendable (ActionOccurrenceQuery, ActionPortInvocation) async throws -> ActionExactOccurrenceCount
     private let coordinator: BackendCoordinator
     private let readiness: ReadinessProbe
     private let epoch: EpochProbe
@@ -18,6 +20,8 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
     private let embeddedSearch: EmbeddedSearch?
     private let embeddedReferenceProof: EmbeddedReferenceProof?
     private let embeddedCatalog: EmbeddedCatalog?
+    private let occurrenceReadiness: OccurrenceReadiness?
+    private let occurrenceCounter: OccurrenceCounter?
 
     init(coordinator: BackendCoordinator, epoch: @escaping EpochProbe = { nil },
          currentEpoch: (@MainActor @Sendable () throws -> UInt64?)? = nil,
@@ -25,11 +29,15 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
          readiness: @escaping ReadinessProbe = { .init(snapshot: $0) },
          embeddedSearch: EmbeddedSearch? = nil,
          embeddedReferenceProof: EmbeddedReferenceProof? = nil,
-         embeddedCatalog: EmbeddedCatalog? = nil) {
+         embeddedCatalog: EmbeddedCatalog? = nil,
+         occurrenceReadiness: OccurrenceReadiness? = nil,
+         occurrenceCounter: OccurrenceCounter? = nil) {
         self.coordinator = coordinator; self.epoch = epoch; self.currentEpoch = currentEpoch; self.readiness = readiness
         self.resourceWitness = resourceWitness
         self.embeddedSearch = embeddedSearch; self.embeddedReferenceProof = embeddedReferenceProof
         self.embeddedCatalog = embeddedCatalog
+        self.occurrenceReadiness = occurrenceReadiness
+        self.occurrenceCounter = occurrenceCounter
     }
 
     func snapshot() async throws -> ActionBackendSnapshot {
@@ -81,13 +89,53 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
     }
 
     func report(for backend: ActionBackendID) async throws -> ActionBackendReport {
-        try ActionBackendSemanticProfile(backend: backend).report(evidence: await currentEvidence(for: backend))
+        let evidence = try await currentEvidence(for: backend)
+        var operations = try ActionBackendSemanticProfile(backend: backend).report(evidence: evidence).operations
+        operations["search.countOccurrences"] = await occurrenceAssessment(backend: backend, evidence: evidence)
+        guard try await snapshot() == evidence.snapshot else { throw ActionPortError.staleState }
+        return .init(id: backend, operations: operations)
+    }
+
+    /// The generic source profile continues to fail closed. Only this optional
+    /// app-owned composition can attest qualified complete managed artifacts.
+    /// A registered search provider or a nonempty index alone is insufficient.
+    private func occurrenceAssessment(backend: ActionBackendID, query: ActionOccurrenceQuery? = nil,
+                                      evidence: ActionBackendRuntimeEvidence) async -> ActionCapabilityAssessment {
+        let registered = evidence.registeredCapabilities.contains("search") && occurrenceCounter != nil
+        guard backend == .otzaria, occurrenceCounter != nil, let occurrenceReadiness else {
+            return .init(registered: registered, supported: false, availableNow: false,
+                         reasonCode: "exact_count_unavailable")
+        }
+        if let query, let reason = query.unsupportedReason {
+            return .init(registered: registered, supported: false, availableNow: false, reasonCode: reason)
+        }
+        guard evidence.snapshot.backend == backend else {
+            return .init(registered: registered, supported: true, availableNow: false,
+                         reasonCode: "backend_selection_required")
+        }
+        guard registered else {
+            return .init(registered: false, supported: true, availableNow: false,
+                         reasonCode: "provider_not_registered")
+        }
+        guard evidence.catalog.isReady, evidence.search.isReady,
+              await occurrenceReadiness(evidence.snapshot) == .ready else {
+            return .init(registered: true, supported: true, availableNow: false,
+                         reasonCode: "occurrence_coverage_unverified")
+        }
+        return .init(registered: true, supported: true, availableNow: true)
     }
 
     func assess(action: String, arguments: ActionObject, invocation: ActionPortInvocation) async throws -> ActionCapabilityAssessment {
         let target = try ActionBackendArgumentTarget.resolve(arguments, fallback: invocation.snapshot.backend)
         let before = try await snapshot()
         try ActionBackendInvocationGuard.check(invocation, current: before, target: before.backend)
+        if action == "search.countOccurrences" {
+            let query = try ActionOccurrenceQuery.arguments(arguments, backend: target)
+            let result = await occurrenceAssessment(backend: target, query: query,
+                evidence: try await currentEvidence(for: target))
+            try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: before.backend)
+            return result
+        }
         let query = ["search.query", "search.openResults"].contains(action) ? try ActionSearchArgumentMapping.query(arguments, backend: target) : nil
         let result = try ActionBackendSemanticProfile(backend: target).assess(action: action, query: query,
                     evidence: await currentEvidence(for: target))
@@ -179,6 +227,36 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         let task = Task.detached { try ActionLibraryProjection.searchPage(page, query: query, works: works.works) }
         let result = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
         try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        return result
+    }
+
+    func countOccurrences(_ query: ActionOccurrenceQuery,
+                          invocation: ActionPortInvocation) async throws -> ActionExactOccurrenceCount {
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        guard query.unsupportedReason == nil else { throw ActionOccurrenceFailure.unsupportedQuery }
+        guard let occurrenceCounter else { throw ActionPortError.notSupported }
+        let assessment = await occurrenceAssessment(backend: query.backend, query: query,
+            evidence: try await currentEvidence(for: query.backend))
+        guard assessment.supported else { throw ActionPortError.notSupported }
+        guard assessment.registered, assessment.availableNow else { throw ActionOccurrenceFailure.incompleteCoverage }
+        let works = try await catalogWorks(backend: query.backend, invocation: invocation)
+        guard query.scopeWorkRefs.allSatisfy({ $0.backend == query.backend && works.workKeys.contains($0.workKey) }) else {
+            throw ActionPortError.notFound
+        }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        let result: ActionExactOccurrenceCount
+        do { result = try await occurrenceCounter(query, invocation) }
+        catch let error as ActionOccurrenceFailure { throw error }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        let after = await occurrenceAssessment(backend: query.backend, query: query,
+            evidence: try await currentEvidence(for: query.backend))
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        guard after.registered, after.supported, after.availableNow else { throw ActionOccurrenceFailure.staleIndex }
+        guard result.requestId == invocation.requestId, result.snapshot == invocation.snapshot,
+              result.query == query, result.query.text.utf8.elementsEqual(query.text.utf8) else {
+            throw ActionPortError.invalidResponse
+        }
         return result
     }
 
