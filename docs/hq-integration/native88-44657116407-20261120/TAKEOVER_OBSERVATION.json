@@ -1,0 +1,204 @@
+{
+  "observedUTC": "2026-11-20T05:54:22.216815+00:00",
+  "run": {
+    "conclusion": "",
+    "createdAt": "2026-11-20T01:55:39Z",
+    "headSha": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+    "jobs": [
+      {
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "databaseId": 136025963076,
+        "name": "R27 real UI environment and acceptance",
+        "startedAt": "2026-11-20T01:57:04Z",
+        "status": "in_progress",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T01:57:06Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T01:57:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T01:57:06Z",
+            "conclusion": "success",
+            "name": "Require isolated immutable runtime request",
+            "number": 2,
+            "startedAt": "2026-11-20T01:57:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T01:57:11Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-11-20T01:57:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T01:58:16Z",
+            "conclusion": "success",
+            "name": "Select an existing SDK-matched runtime for the full device matrix",
+            "number": 4,
+            "startedAt": "2026-11-20T01:57:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T01:58:17Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v4",
+            "number": 5,
+            "startedAt": "2026-11-20T01:58:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T01:58:19Z",
+            "conclusion": "success",
+            "name": "Run ruby/setup-ruby@v1",
+            "number": 6,
+            "startedAt": "2026-11-20T01:58:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T01:58:20Z",
+            "conclusion": "success",
+            "name": "Read source-pinned Zayit build mode",
+            "number": 7,
+            "startedAt": "2026-11-20T01:58:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T01:58:30Z",
+            "conclusion": "success",
+            "name": "Use Rust only for the reviewed matching Zayit build",
+            "number": 8,
+            "startedAt": "2026-11-20T01:58:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T01:58:31Z",
+            "conclusion": "success",
+            "name": "Key disposable compiler cache by real SDK and native inputs",
+            "number": 9,
+            "startedAt": "2026-11-20T01:58:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T01:58:32Z",
+            "conclusion": "success",
+            "name": "Run actions/cache/restore@v4",
+            "number": 10,
+            "startedAt": "2026-11-20T01:58:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Inspect real Xcode27 tools or execute reviewed native cases",
+            "number": 11,
+            "startedAt": "2026-11-20T01:58:32Z",
+            "status": "in_progress"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Retain compiler cache only after an actual matching test build",
+            "number": 12,
+            "startedAt": "0001-01-01T00:00:00Z",
+            "status": "pending"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Run actions/cache/save@v4",
+            "number": 13,
+            "startedAt": "0001-01-01T00:00:00Z",
+            "status": "pending"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Retain real runtime evidence including failure",
+            "number": 14,
+            "startedAt": "0001-01-01T00:00:00Z",
+            "status": "pending"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Retain original native result bundles and visual captures separately",
+            "number": 15,
+            "startedAt": "0001-01-01T00:00:00Z",
+            "status": "pending"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Post Run actions/setup-node@v4",
+            "number": 29,
+            "startedAt": "0001-01-01T00:00:00Z",
+            "status": "pending"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Post Run actions/checkout@v4",
+            "number": 30,
+            "startedAt": "0001-01-01T00:00:00Z",
+            "status": "pending"
+          }
+        ],
+        "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407/job/136025963076"
+      },
+      {
+        "completedAt": "2026-11-20T01:55:40Z",
+        "conclusion": "skipped",
+        "databaseId": 136025964600,
+        "name": "Focused unsigned Maktabah-iOS (no runtime or data)",
+        "startedAt": "2026-11-20T01:55:41Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407/job/136025964600"
+      },
+      {
+        "completedAt": "2026-11-20T01:55:40Z",
+        "conclusion": "skipped",
+        "databaseId": 136025965024,
+        "name": "Books Updates Apple safety checks (no app runtime acceptance)",
+        "startedAt": "2026-11-20T01:55:41Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407/job/136025965024"
+      },
+      {
+        "completedAt": "2026-11-20T01:55:40Z",
+        "conclusion": "skipped",
+        "databaseId": 136025965095,
+        "name": "Focused SDK and workspace checks (no app/runtime acceptance)",
+        "startedAt": "2026-11-20T01:55:41Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407/job/136025965095"
+      },
+      {
+        "completedAt": "2026-11-20T01:55:40Z",
+        "conclusion": "skipped",
+        "databaseId": 136025965153,
+        "name": "Validate Sefaria-Mobile Embedded Build and Runtime",
+        "startedAt": "2026-11-20T01:55:41Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407/job/136025965153"
+      }
+    ],
+    "name": "Sefaria Embedded Real iOS Runtime Validation",
+    "status": "in_progress",
+    "updatedAt": "2026-11-20T01:57:04Z",
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407"
+  },
+  "matchingWatchers": [],
+  "inheritedWatcherJob": "job_1b48d59bdf35",
+  "inheritedExit": "FINITE_WATCH_TIMEOUT_NOT_WORKFLOW_RESULT"
+}

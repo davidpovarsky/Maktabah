@@ -1,0 +1,26 @@
+{
+  "runID": "44657116407",
+  "headSha": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+  "observedBefore": {
+    "conclusion": "",
+    "headSha": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+    "status": "in_progress"
+  },
+  "existingMatchingWatchers": 0,
+  "previousWatchJob": "job_1b48d59bdf35",
+  "startedUTC": "2026-11-20T05:55:07.603425+00:00",
+  "timeoutSeconds": 3380,
+  "command": [
+    "gh",
+    "run",
+    "watch",
+    "44657116407",
+    "--repo",
+    "davidpovarsky/Maktabah",
+    "--exit-status",
+    "--compact",
+    "--interval",
+    "30"
+  ],
+  "watchPID": 40664
+}

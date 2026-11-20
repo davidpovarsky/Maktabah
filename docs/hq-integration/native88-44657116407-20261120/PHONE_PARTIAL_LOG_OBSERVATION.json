@@ -1,0 +1,107 @@
+{
+  "starts": [
+    "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+    "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+    "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+    "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
+  ],
+  "terminalLogObservations": [
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+      "result": "failed",
+      "seconds": 88.896
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+      "result": "failed",
+      "seconds": 54.246
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+      "result": "failed",
+      "seconds": 111.74
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+      "result": "failed",
+      "seconds": 130.868
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+      "result": "passed",
+      "seconds": 83.147
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "result": "failed",
+      "seconds": 62.754
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+      "result": "failed",
+      "seconds": 47.693
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+      "result": "passed",
+      "seconds": 65.237
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+      "result": "passed",
+      "seconds": 45.052
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "result": "passed",
+      "seconds": 95.44
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+      "result": "failed",
+      "seconds": 25.156
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+      "result": "failed",
+      "seconds": 24.567
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+      "result": "passed",
+      "seconds": 28.123
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+      "result": "passed",
+      "seconds": 30.448
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "result": "passed",
+      "seconds": 43.006
+    }
+  ],
+  "xcresultExportPresent": false,
+  "notAcceptedAsVerifiedCaseLeaves": true,
+  "rawSHA256": "59da8b3d8323e039eea0bc8dae943999f5b69b69a1b02ca7656bb243217ec7a5",
+  "noStartObserved": [
+    "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration"
+  ],
+  "startedWithoutTerminalLog": [
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
+  ]
+}

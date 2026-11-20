@@ -1,0 +1,12 @@
+{
+  "artifactID": 14606041723,
+  "name": "runtime27-evidence",
+  "expectedSHA256": "ced48935baf6c27a7df229b1e438ae30113fcad7939ccfa5783ad4262723872c",
+  "actualSHA256": "ced48935baf6c27a7df229b1e438ae30113fcad7939ccfa5783ad4262723872c",
+  "verified": true,
+  "bytes": 87098508,
+  "startedUTC": "2026-11-20T06:11:20.540446+00:00",
+  "finishedUTC": "2026-11-20T06:14:19.592884+00:00",
+  "entries": 181,
+  "uncompressedBytes": 206579124
+}

@@ -1,0 +1,37 @@
+{
+  "readFrom": "docs/hq-integration/phase3-freeze-20261120/DISPATCHED_RUNS.json",
+  "sourceFileSHA256": "449ffebedcd40168685fbc5abcfa7c5b1bfc73bf3dbf2ffc5bf1146b63969222",
+  "records": [
+    {
+      "label": "native88",
+      "branch": "codex/otzaria-phase3-native88-20261120",
+      "expected_checkout": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+      "application_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+      "inputs": {
+        "validation_runner": "xcode-27",
+        "hq_stage2_expected_sha": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+        "run_simulator_tests": "false",
+        "run_production_release": "false",
+        "ui_sdk_check_only": "false",
+        "hq_stage2_focused": "false",
+        "runtime27_mode": "ui",
+        "ui_diagnostic_cases": "",
+        "source_ref": "",
+        "books_updates_check_only": "false"
+      },
+      "dispatch_at_utc": "2026-11-20T01:55:37.909968+00:00",
+      "dispatch_stdout": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407\n",
+      "dispatch_exit_code": 0,
+      "verified_github_run": {
+        "id": 44657116407,
+        "status": "queued",
+        "conclusion": null,
+        "head_sha": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+        "branch": "codex/otzaria-phase3-native88-20261120",
+        "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657116407",
+        "created_at": "2026-11-20T01:55:39Z"
+      },
+      "native_cases_executed": 0
+    }
+  ]
+}
