@@ -1,0 +1,164 @@
+{
+  "observed_at": "2026-11-20T03:01:45.765597+00:00",
+  "source_commit": "bbd3605ac4b501e442fdfa6dfdc3ca2dd0f4ad16",
+  "sdk_sha": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "preserved_evidence": [
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt01-compile-timeout\\AdapterTests.swift",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt01-timeout\\AdapterTests.swift",
+      "bytes": 50395,
+      "sha256": "a16d7ec2090d20c67a5448211ba4232636397c9543188a8a3fe31f262fc154df"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt01-compile-timeout\\candidate-sources.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt01-timeout\\candidate-sources.json",
+      "bytes": 1029,
+      "sha256": "072257da139c70f4fa3353e4454faae5785c6fb871f8e128c7bb5d3ca27a740a"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt01-compile-timeout\\candidate.patch",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt01-timeout\\candidate.patch",
+      "bytes": 76038,
+      "sha256": "a74d0feadafe949d2a8528fb6d0f9663527fca8639a7d0ffc4841ee1ec62be9d"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt01-compile-timeout\\inputs.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt01-timeout\\inputs.json",
+      "bytes": 18660,
+      "sha256": "f6e4414faa3776f39907f6081f445e37feff042f3f62964cd98fa5b62e0b0a22"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt01-compile-timeout\\OtzariaHanlinHostAdapter.swift",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt01-timeout\\OtzariaHanlinHostAdapter.swift",
+      "bytes": 23451,
+      "sha256": "0b1d076e0b77c2aa3c0a17d9410cfea223f2a5f8168330160fb4cfd2a04bb447"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt01-compile-timeout\\result.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt01-timeout\\result.json",
+      "bytes": 3707,
+      "sha256": "01d682e6797561750d3f27c220eb66fd58539f61fe91839d1840d0d6eb57470b"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt01-compile-timeout\\swift-test.log",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt01-timeout\\swift-test.log",
+      "bytes": 5602,
+      "sha256": "de221cfebfd0f5249d99d64c4bf18e6729fcef03db5275969f0fef0f2d8a3ddb"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt02-compile-timeout\\candidate-sources.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt02-timeout\\candidate-sources.json",
+      "bytes": 999,
+      "sha256": "247b4b07f6fcde9d7d34c2335e8e8e83914cd77cab837131aad40385bb1c35ae"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt02-compile-timeout\\candidate.patch",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt02-timeout\\candidate.patch",
+      "bytes": 80786,
+      "sha256": "f4a58ee7144697a838b99fe5a019a1654dbdb0816dbc72aeea76547de52fd27f"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt02-compile-timeout\\inputs.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt02-timeout\\inputs.json",
+      "bytes": 18660,
+      "sha256": "4c2367b2904c6abba4ebce317a01c1f36e07f7c01861f14d27b32ee6c3902f15"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt02-compile-timeout\\result.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt02-timeout\\result.json",
+      "bytes": 3837,
+      "sha256": "8579b23940f41af1cb2e439f54dd95693f0c914d3d71754d83a0017ef1b8a91b"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-initial\\attempt02-compile-timeout\\swift-test.log",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt02-timeout\\swift-test.log",
+      "bytes": 1781,
+      "sha256": "033a71c81b27d0a6148b2cea14a30a6bbc14b4dda1d46911f537392019c1cfb4"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-resume-executed\\inputs.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt03-actual-red\\inputs.json",
+      "bytes": 21092,
+      "sha256": "45f0e7cb159a1ecb7fdfeb91d6bd8d802beb0d5b158c40888e1e1977f83d03a3"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-resume-executed\\RESULT.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt03-actual-red\\RESULT.json",
+      "bytes": 29396,
+      "sha256": "24439e65a5c3de0db39958d71fa732979d9ca4b610a725372a38129dd897ec19"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\host-resume-executed\\swift-test.log",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\host-attempt03-actual-red\\swift-test.log",
+      "bytes": 18637,
+      "sha256": "db30a2406b16f617c3351e84fa6a5608c0bb47d2e16f3085ce5f2466a2ecd6a2"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\store\\inputs.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\store-attempt01-timeout\\inputs.json",
+      "bytes": 9233,
+      "sha256": "9ff3095bbdc7ace483e36451585631ae4e89f91d3a4c13bd2e84f8f9bfe7dbc6"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\store\\RESULT.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\store-attempt01-timeout\\RESULT.json",
+      "bytes": 13655,
+      "sha256": "9163e45470077ad8e8c45c3717c7c7906d98908f3b136d4e9be4a2d7ebde26fe"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\store\\swift-test.log",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\store-attempt01-timeout\\swift-test.log",
+      "bytes": 20817,
+      "sha256": "02ffc775b9de77c2ebce7109bfdce31ce8ecfbc62e6850bba45fdd71452120ab"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\runner-diagnostic\\alias.log",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\runner-diagnostic\\alias.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\runner-diagnostic\\default.log",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\runner-diagnostic\\default.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\runner-diagnostic\\OptionalTestingImport.swift",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\runner-diagnostic\\OptionalTestingImport.swift",
+      "bytes": 45,
+      "sha256": "dc3515a7f5406d3d539654243464423c0079e93793c31a884b7f906ff8958987"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\runner-diagnostic\\own-process-observation-current.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\runner-diagnostic\\own-process-observation-current.json",
+      "bytes": 22465,
+      "sha256": "b6b591867f277e63f62a08196ff032cad55efc7db9537b4fff67f8e546bb5adc"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\runner-diagnostic\\own-process-orphan-check.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\runner-diagnostic\\own-process-orphan-check.json",
+      "bytes": 167,
+      "sha256": "02300e9b049f1902d4ce6f55cccf1693effecb04153a147dfc220aa82b716a9a"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\runner-diagnostic\\RESULT.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\runner-diagnostic\\RESULT.json",
+      "bytes": 1798,
+      "sha256": "db2a7e86b4cd0fcfd8322e41176aec481ec1cbc0d9cb7fbb547e0a1182aac507"
+    },
+    {
+      "source": "build\\hanlin-read-actions-20261120\\previous-job-results.json",
+      "evidence": "docs\\hq-integration\\hanlin-read-actions-20261120\\evidence\\previous-job-results.json",
+      "bytes": 22786,
+      "sha256": "1a1a3fb4e49adec77d458c2e54eec767944323a4864927debc51f6e9ffaf626c"
+    }
+  ],
+  "host_actual": {
+    "executed": 48,
+    "passed": 38,
+    "failed": 10,
+    "original28_passed": true
+  },
+  "root_cause": "Actual Core.advertisedActions executes discovery action system.listBackends before policy filtering. The separate read context omitted existing discovery; permitted search was therefore absent. Scope issuer fix pending; no denial oracle weakened."
+}

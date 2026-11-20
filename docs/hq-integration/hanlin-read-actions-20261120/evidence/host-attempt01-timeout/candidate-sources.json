@@ -1,0 +1,13 @@
+{
+  "source_base": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "utc": "2026-11-20T02:18:10.692453+00:00",
+  "free_bytes": 48133623808,
+  "files": {
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift": "1f25efa2218d50791a8c4e9722f7f90772e40cecceed5d33957e42b9beb3bf3c",
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift": "01e7fd67955b102c8716a96223ee041cd9d7be4bd5b9b616163f1a5baee4b5a0",
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift": "2ced8e8128ae13e897dcf94ab301d3335f8d4f3ac7b2569cb6cbbf971962cb7a",
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift": "0b1d076e0b77c2aa3c0a17d9410cfea223f2a5f8168330160fb4cfd2a04bb447",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "496bc1a8afcfc6dc2e1b15e4cddf58c1783ab5be1b6dcaeed2f9fe09566b8960",
+    "Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift": "a16d7ec2090d20c67a5448211ba4232636397c9543188a8a3fe31f262fc154df"
+  }
+}
