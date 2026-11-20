@@ -1,0 +1,49 @@
+{
+  "actual_failure": {
+    "artifact_id": 14656519348,
+    "artifact_sha256": "1e3fab2c767e19ef673c951e63dd05c50cf0a78bffd070b8d5be1acca9b2e116",
+    "compile_log_sha256": "718538e3c72add82bca06e474420813f1a5375944e60d5ee2b23f0fb31dbf86a",
+    "diagnostics": [
+      "error: SwiftCompile normal arm64 /Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorCloudOwnership.swift failed with a nonzero exit code. Command line:     cd /Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1",
+      "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-acceptance/owned-4ffc11e1-17a2-4e6a-986c-35e56f8deda1/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorCloudOwnership.swift:40:40: error: 'inout sending' parameter '$0' is accessible to code in the current isolation context at end of function [#RegionIsolation]",
+      "    |                                        |- error: 'inout sending' parameter '$0' is accessible to code in the current isolation context at end of function [#RegionIsolation]",
+      "    |                                        `- note: '$0' risks causing races in between code in the current isolation context and caller uses since caller assumes value is not actor isolated",
+      "error: Build failed"
+    ],
+    "full_production_copies_verified": 2,
+    "identity": {
+      "event": "push",
+      "head_sha": "452a04c2b05150694d8120ed465afb48da190af3",
+      "ref": "refs/heads/codex/otzaria-local-annotation-cloud-apple-reviewed-20261120",
+      "repository": "davidpovarsky/Maktabah",
+      "repository_id": 1280062128,
+      "run_attempt": 1,
+      "run_id": 44792622640,
+      "workflow": ".github/workflows/otzaria-local-annotation-cloud-apple.yml"
+    },
+    "run_id": 44792622640,
+    "swift_cases_executed": 0,
+    "zip_members_crc_verified": 114
+  },
+  "apple_runtime": "NOT_RUN",
+  "authoring_branch": "codex/otzaria-local-annotation-cloud-observer-20261120",
+  "base_bytes": 14839,
+  "base_sha256": "1b9556b20886ec54addc8135be7090d649ba017539df543e4268957e2b3cd243",
+  "candidate_bytes": 14853,
+  "candidate_git_blob": "a1ddaf0ff4a243d9cef5850c144941728927f650",
+  "candidate_sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17",
+  "changed_scope": "Only create/store observer token inside the existing Mutex closure. Existing callback, notification name/object/queue, registration timing, center identity, deinit extraction/removal and all owner guards remain unchanged.",
+  "existing48_tests_changed": false,
+  "no_unchecked_or_preconcurrency_added": true,
+  "one_file_git_compare_verified": true,
+  "patch_sha256": "ec3756f2d78cd3b518883b0e51a90cbaa423ccbc48e69c5d1c4f7d22762eef1a",
+  "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+  "product_source_base": "57e4a1cb7cd0bee72e3042e2f4567972237e7e35",
+  "source_commit": "7af3a06d48ccbe77acef180cb99d120971c3804e",
+  "source_parent": "214017b376c442b3d475ef0df9f3164a3d4e65d4",
+  "source_tree": "6770d217d92cfcf2bb9a136cb9c36d23535c3bd0",
+  "status": "SOURCE_ONLY_ONE_FILE_CANDIDATE",
+  "swift_typecheck": "NOT_RUN",
+  "tests_tools_project_trees_unchanged": true,
+  "whole_file_inverse_exact": true
+}

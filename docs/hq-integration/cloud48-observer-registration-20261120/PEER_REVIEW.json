@@ -1,0 +1,8 @@
+{
+  "apple_credit": 0,
+  "finding": "No concrete new source blocker found: token created and stored inside one critical section, no external alias; callback captures only Sendable lifetime and does not enter observer mutex; deinit extraction/clear then removal outside lock remains unchanged.",
+  "qualification": "Actual Swift6.4 compilation must still decide candidate acceptance.",
+  "reviewer": "asana_audit",
+  "scope": "Read-only full observer/lifetime block, exact diff and authentic compile diagnostic",
+  "swift_executed": 0
+}

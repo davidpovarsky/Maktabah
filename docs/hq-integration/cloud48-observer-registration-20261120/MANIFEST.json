@@ -1,0 +1,46 @@
+{
+  "files": [
+    {
+      "bytes": 536,
+      "path": "PEER_REVIEW.json",
+      "sha256": "45a42b1741fedb665748ab2fa38e3527b098f7fff507845466cffc5b34c876e5"
+    },
+    {
+      "bytes": 780,
+      "path": "PROPOSED.patch",
+      "sha256": "ec3756f2d78cd3b518883b0e51a90cbaa423ccbc48e69c5d1c4f7d22762eef1a"
+    },
+    {
+      "bytes": 3338,
+      "path": "README.md",
+      "sha256": "a1d049b2098343ec590116afc315b0079a499f4384706012bcc30b2ee1c94476"
+    },
+    {
+      "bytes": 3399,
+      "path": "SOURCE_PROOF.json",
+      "sha256": "bbae103295a16fb6986e1eea884c7ceb95ce0d2f9c88d563de186088ba002842"
+    },
+    {
+      "bytes": 2361,
+      "path": "actual-failed-compile.log.gz",
+      "sha256": "4ee17bd48abfdc37546355e44f84af9b56bc809d0f0ff820a120143608935e10"
+    },
+    {
+      "bytes": 3519,
+      "path": "base.swift.gz",
+      "sha256": "b1422a8b9bb0dd742741c25203326cf03b9c6f2c0c21469b0d536cdb742ea040"
+    },
+    {
+      "bytes": 3514,
+      "path": "candidate.swift.gz",
+      "sha256": "8a278873375f940b7cda74619acd80dd807c492d63521f94290552f59ce5d0d4"
+    },
+    {
+      "bytes": 1863,
+      "path": "verify.py",
+      "sha256": "69603c12f2552c87ff27b0499828b59cafdf5ffc49660036af2792733df61281"
+    }
+  ],
+  "schema": 1,
+  "source": "7af3a06d48ccbe77acef180cb99d120971c3804e"
+}
