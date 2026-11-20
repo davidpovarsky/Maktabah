@@ -1,0 +1,40 @@
+{
+  "producer": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+  "reviewedCandidate": "52e530a0a0adc85bfa5ff1e59e20b4ddf618135f",
+  "allPreexistingOtzariaVendorEntriesByteIdentical": true,
+  "onlyAddedOtzariaVendorTestEntries": 78,
+  "addedEntryPrefix": "Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/",
+  "entireZayitVendorTreeIdentical": true,
+  "actualProducerInputs": {
+    ".github/workflows/ios-build.yml": {
+      "bytes": 43487,
+      "sha256": "499ff806132b88eec60d8f0240aa50148d32e0cb7a6b34b464d97d5e547bcf55",
+      "identical": true
+    },
+    "Scripts/CI/ensure-otzaria-upstream-checkout.sh": {
+      "bytes": 4081,
+      "sha256": "cb9a0ce8e5eb41ae2f2b62bd7040661200fc08210105d99f10ba052ffcb84120",
+      "identical": true
+    },
+    "Scripts/CI/verify-xcframework.sh": {
+      "bytes": 808,
+      "sha256": "6cc8cc2d1a22026e0864c1ddac337460146bc0e0b5da0a2a587dd9f2a1a19782",
+      "identical": true
+    },
+    "Vendor/OtzariaSearchEngine/build_xcframework.sh": {
+      "bytes": 2339,
+      "sha256": "0b9e9063c6c5b8cb3cb04906c5f99f49474ce2b093bb965a163709659bc8421f",
+      "identical": true
+    },
+    "Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh": {
+      "bytes": 1057,
+      "sha256": "fd36b637c38582a1aa322553bc252cfa6f72f5c3f486410ac12e15d7cbacc1d0",
+      "identical": true
+    }
+  },
+  "semanticHostCheck": "In the original ios-build.yml verify step: cargo check --locked --features semantic --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml. There is no separate verify-otzaria-semantic-framework.sh script.",
+  "upstreamEngineCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "upstreamOriginalBase": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+  "frameworkSourceRestamped": false,
+  "preflightChanged": false
+}
