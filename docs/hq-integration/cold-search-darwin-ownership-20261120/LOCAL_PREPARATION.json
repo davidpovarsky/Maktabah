@@ -1,0 +1,394 @@
+{
+  "attempt1_c_double_compile_exit": 1,
+  "attempt2_c_double_compile_exit": 0,
+  "attempt3_scope": "Generation only after source-reviewed synchronous semaphore helper; no new Swift or C runtime",
+  "attempts": [
+    {
+      "bytes": 32411,
+      "git_blob": "345569f61f78cc065e6164c8958b2fb632c3d5fa",
+      "members": [
+        {
+          "bytes": 5983,
+          "path": "GENERATED_INPUTS.json",
+          "sha256": "00b468444b68af2bf31538ad847ca4fea8ea8fe1ff99d08930f7d6d96719b0d4"
+        },
+        {
+          "bytes": 311,
+          "path": "RESULT.json",
+          "sha256": "42ea2aef7444fcae49dd54cd0ebf29a9fe0e6000bf5efd19c3b44af3344f317c"
+        },
+        {
+          "bytes": 6295,
+          "path": "generated/NativeConstructorDouble.c",
+          "sha256": "2834029b10717e1a906ea13b838030b3e61471888023891186e2970974c0edfa"
+        },
+        {
+          "bytes": 11971,
+          "path": "generated/OtzariaExactOccurrenceModels.swift",
+          "sha256": "8ec1e4a4f834b84e12001e600109fd660e4a38bdcb4a48c3a584da14c2a3fc78"
+        },
+        {
+          "bytes": 7084,
+          "path": "generated/OtzariaExactOccurrenceOperation.swift",
+          "sha256": "6b3ada4ad48a7f0b93d274e673bb94c95e0ea51cf9f4321edec297851cd6001c"
+        },
+        {
+          "bytes": 26498,
+          "path": "generated/OtzariaSearchEngineBridge.swift",
+          "sha256": "51ba13a30cf33d7a3c274531a44f2a3eb8098c42614e7ffd5a306e714b805c5e"
+        },
+        {
+          "bytes": 738,
+          "path": "generated/OtzariaSearchMode.swift",
+          "sha256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876"
+        },
+        {
+          "bytes": 18733,
+          "path": "generated/OtzariaSearchModels.swift",
+          "sha256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9"
+        },
+        {
+          "bytes": 977,
+          "path": "generated/OtzariaSearchSnippetRenderer.swift",
+          "sha256": "72076785cbad55847681725bcef3ca038d0e714911026fbe16d70b365cc3ac6d"
+        },
+        {
+          "bytes": 29224,
+          "path": "generated/OtzariaTantivySearchRepository.swift",
+          "sha256": "a7b495b21cdcad159101ba2665deff191d3451f883ffcbd158758ba752f0cf19"
+        },
+        {
+          "bytes": 11172,
+          "path": "generated/OwnershipBoundary.swift",
+          "sha256": "4ff0cbd88030119a6a46d19e020d5c3aa620510a6f0ba99c32b8a29f51e45419"
+        },
+        {
+          "bytes": 22663,
+          "path": "generated/OwnershipCases.swift",
+          "sha256": "15459cd07dc1ba924ce1f2cac3b3c9decee1763cb7e7965a6d426db3e5943e87"
+        },
+        {
+          "bytes": 2725,
+          "path": "generated/StorageLock.swift",
+          "sha256": "df52333f6d4a50ed5201f4274aa4f600b17372d4390abda72ee5716ba0f8c95c"
+        },
+        {
+          "bytes": 602,
+          "path": "linux-c-boundary-compile.json",
+          "sha256": "8361714e2277bae4cd7838e530ba2e0c1ed4bf1f53c9a7ceaa8965767128124c"
+        },
+        {
+          "bytes": 816,
+          "path": "linux-c-boundary-compile.log",
+          "sha256": "349c4ef692e111e851bc12651e3c6623eb53b6aadf56d68adb2b02420a7fe588"
+        },
+        {
+          "bytes": 3328,
+          "path": "source-before.json",
+          "sha256": "fedb017c08d404f8af69235943a1d9099c0b3fc126c1e40394944252232ceefc"
+        }
+      ],
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/raw/local-generation-attempt1.tar.gz",
+      "sha256": "b48e8aaea2091ae50b32023ac3fd4e724f309b2e08a45a60d28ba9bc586ff380",
+      "uncompressed_bytes": 163840,
+      "uncompressed_sha256": "936dc3b3306fc948c6f18ec2ac1f510e5b3a51e16af7130ec8af7c8646d94e91"
+    },
+    {
+      "bytes": 35982,
+      "git_blob": "074a8f2807475dfba37fae05f568bda76924dd43",
+      "members": [
+        {
+          "bytes": 5983,
+          "path": "GENERATED_INPUTS.json",
+          "sha256": "2be1bec49f34e9914399af3f6baa4d6f0baa72349fcbcd65a7f7978a563ab9d4"
+        },
+        {
+          "bytes": 1309,
+          "path": "LOCAL_ONLY.json",
+          "sha256": "9edd0219bf1e9ee50a8150b1a2c0c40bae11979b02aa4214a9b61ba9898f33dc"
+        },
+        {
+          "bytes": 12736,
+          "path": "NativeConstructorDouble-linux-syntax.o",
+          "sha256": "9f1f209a8e8c0d7310eed5cd94acce73fec1064fdb6dfd8f75b6c8c8662b9c4b"
+        },
+        {
+          "bytes": 311,
+          "path": "RESULT.json",
+          "sha256": "140c2684c2de798c734746b7963a44a0725e9be47f300f3852105ff2fef0ffa2"
+        },
+        {
+          "bytes": 6315,
+          "path": "generated/NativeConstructorDouble.c",
+          "sha256": "dc79ad71379e91a0b5a69a55fa4242e7293b966ebfaf0e0cbaf673250dbb969b"
+        },
+        {
+          "bytes": 11971,
+          "path": "generated/OtzariaExactOccurrenceModels.swift",
+          "sha256": "8ec1e4a4f834b84e12001e600109fd660e4a38bdcb4a48c3a584da14c2a3fc78"
+        },
+        {
+          "bytes": 7084,
+          "path": "generated/OtzariaExactOccurrenceOperation.swift",
+          "sha256": "6b3ada4ad48a7f0b93d274e673bb94c95e0ea51cf9f4321edec297851cd6001c"
+        },
+        {
+          "bytes": 26498,
+          "path": "generated/OtzariaSearchEngineBridge.swift",
+          "sha256": "51ba13a30cf33d7a3c274531a44f2a3eb8098c42614e7ffd5a306e714b805c5e"
+        },
+        {
+          "bytes": 738,
+          "path": "generated/OtzariaSearchMode.swift",
+          "sha256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876"
+        },
+        {
+          "bytes": 18733,
+          "path": "generated/OtzariaSearchModels.swift",
+          "sha256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9"
+        },
+        {
+          "bytes": 977,
+          "path": "generated/OtzariaSearchSnippetRenderer.swift",
+          "sha256": "72076785cbad55847681725bcef3ca038d0e714911026fbe16d70b365cc3ac6d"
+        },
+        {
+          "bytes": 29224,
+          "path": "generated/OtzariaTantivySearchRepository.swift",
+          "sha256": "a7b495b21cdcad159101ba2665deff191d3451f883ffcbd158758ba752f0cf19"
+        },
+        {
+          "bytes": 11172,
+          "path": "generated/OwnershipBoundary.swift",
+          "sha256": "4ff0cbd88030119a6a46d19e020d5c3aa620510a6f0ba99c32b8a29f51e45419"
+        },
+        {
+          "bytes": 22663,
+          "path": "generated/OwnershipCases.swift",
+          "sha256": "15459cd07dc1ba924ce1f2cac3b3c9decee1763cb7e7965a6d426db3e5943e87"
+        },
+        {
+          "bytes": 2725,
+          "path": "generated/StorageLock.swift",
+          "sha256": "df52333f6d4a50ed5201f4274aa4f600b17372d4390abda72ee5716ba0f8c95c"
+        },
+        {
+          "bytes": 134,
+          "path": "generation.log",
+          "sha256": "57fb31415833dfe0dfc8790c45dfdc39899f112e209c145fd48785b4e94f5aec"
+        },
+        {
+          "bytes": 0,
+          "path": "linux-c-boundary-compile.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 3568,
+          "path": "source-before.json",
+          "sha256": "e7ad7229ad5f0cfd1694afb28b3254b3499fefc59d37cf273944c8a69e35b025"
+        },
+        {
+          "bytes": 1172,
+          "path": "synthetic-verifier.log",
+          "sha256": "a7565ccee36e429e9455c61d042767c5fb78159e862ccfa5a666e41b5bdc651a"
+        }
+      ],
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/raw/local-generation-attempt2.tar.gz",
+      "sha256": "d4693ab52d0869f51b13ec40b9940be4292b4d1d582ec3dc9a105d72683ed016",
+      "uncompressed_bytes": 184320,
+      "uncompressed_sha256": "78f6ec69c9c66dd04ca632d51f637ec94bc98f3b7d0b60d2441fc8a5370f8208"
+    },
+    {
+      "bytes": 32157,
+      "git_blob": "9099de6f990071ee23afc724a7e3d0b947333eec",
+      "members": [
+        {
+          "bytes": 5983,
+          "path": "GENERATED_INPUTS.json",
+          "sha256": "101d2dcb8f325a9bb733710f16a0e625317adeb68e899159513f00c2eeef8f4d"
+        },
+        {
+          "bytes": 311,
+          "path": "RESULT.json",
+          "sha256": "343c5ac726c342bbc134b415b1d3863b2961102cdd79e5ab21dec13971ef3d5b"
+        },
+        {
+          "bytes": 6315,
+          "path": "generated/NativeConstructorDouble.c",
+          "sha256": "dc79ad71379e91a0b5a69a55fa4242e7293b966ebfaf0e0cbaf673250dbb969b"
+        },
+        {
+          "bytes": 11971,
+          "path": "generated/OtzariaExactOccurrenceModels.swift",
+          "sha256": "8ec1e4a4f834b84e12001e600109fd660e4a38bdcb4a48c3a584da14c2a3fc78"
+        },
+        {
+          "bytes": 7084,
+          "path": "generated/OtzariaExactOccurrenceOperation.swift",
+          "sha256": "6b3ada4ad48a7f0b93d274e673bb94c95e0ea51cf9f4321edec297851cd6001c"
+        },
+        {
+          "bytes": 26498,
+          "path": "generated/OtzariaSearchEngineBridge.swift",
+          "sha256": "51ba13a30cf33d7a3c274531a44f2a3eb8098c42614e7ffd5a306e714b805c5e"
+        },
+        {
+          "bytes": 738,
+          "path": "generated/OtzariaSearchMode.swift",
+          "sha256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876"
+        },
+        {
+          "bytes": 18733,
+          "path": "generated/OtzariaSearchModels.swift",
+          "sha256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9"
+        },
+        {
+          "bytes": 977,
+          "path": "generated/OtzariaSearchSnippetRenderer.swift",
+          "sha256": "72076785cbad55847681725bcef3ca038d0e714911026fbe16d70b365cc3ac6d"
+        },
+        {
+          "bytes": 29224,
+          "path": "generated/OtzariaTantivySearchRepository.swift",
+          "sha256": "a7b495b21cdcad159101ba2665deff191d3451f883ffcbd158758ba752f0cf19"
+        },
+        {
+          "bytes": 11172,
+          "path": "generated/OwnershipBoundary.swift",
+          "sha256": "4ff0cbd88030119a6a46d19e020d5c3aa620510a6f0ba99c32b8a29f51e45419"
+        },
+        {
+          "bytes": 23057,
+          "path": "generated/OwnershipCases.swift",
+          "sha256": "dc77899c0a5c8de7053867ba87ea467478d21c6a8bb9ef99df9b4cb57e507cbf"
+        },
+        {
+          "bytes": 2725,
+          "path": "generated/StorageLock.swift",
+          "sha256": "df52333f6d4a50ed5201f4274aa4f600b17372d4390abda72ee5716ba0f8c95c"
+        },
+        {
+          "bytes": 3568,
+          "path": "source-before.json",
+          "sha256": "e304ed0bdfc7318b9b66fd23fbdc52ee53210a8372cc34bfc8cab49dbf05209a"
+        }
+      ],
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/raw/local-generation-attempt3.tar.gz",
+      "sha256": "8cdb40038ee8abbadd21ada3ba71791dffc95151ced83e5965341b32a86dd17e",
+      "uncompressed_bytes": 163840,
+      "uncompressed_sha256": "a85a25c2c5eabc5364d7ec73d9a0e33ed1cda2f9cb2eacf5d42dfac6be76aeb4"
+    }
+  ],
+  "darwin_cases_executed": 0,
+  "frozen_core_16_unchanged": [
+    {
+      "bytes": 29465,
+      "git_blob": "12414c2f72006c4fd411d681e60fde897dc94057",
+      "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+      "sha256": "1ad1a21996a2fd0804ae5c548f0f232dd63ca8868bcb0f11ce88275afac3196a"
+    },
+    {
+      "bytes": 21767,
+      "git_blob": "fdfe92a35542f4b502a04966eaae3da982e551b9",
+      "path": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+      "sha256": "6b244f30eed64b387c974d88ca27e01ccb2086261795e3e77b321e5db9d03d54"
+    },
+    {
+      "bytes": 47315,
+      "git_blob": "d39ae93c3a12f9b26071f836425b38f8900c487b",
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "sha256": "56a6d646f6c570354be9dc3eecde8404765498c6e8b973874ff5c39d6817824e"
+    },
+    {
+      "bytes": 5558,
+      "git_blob": "941cd321869dcef3d5a95c1d0d5b5fb493529c53",
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+      "sha256": "9629b2586f3b31db7cbe7ddcb78b836e856401abc2a5a91b3a4734c7f08d5da7"
+    },
+    {
+      "bytes": 35675,
+      "git_blob": "eb689ae87de7f9fa8d360e45a141d5a4aecf23c8",
+      "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+      "sha256": "23df24a82b1203b981286ca119c843f3a3add4b3551fbb1d9b96dde5406ae7a9"
+    },
+    {
+      "bytes": 19704,
+      "git_blob": "5035a9234bf5706569f730366adba7a275e2dab5",
+      "path": "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift",
+      "sha256": "76a27d56d8a97688689b0e4cdb0a98a759aed9206f32280715727c825342d811"
+    },
+    {
+      "bytes": 26498,
+      "git_blob": "4b21b39abc9628b8f007c49d9cebaa21d22a212d",
+      "path": "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift",
+      "sha256": "51ba13a30cf33d7a3c274531a44f2a3eb8098c42614e7ffd5a306e714b805c5e"
+    },
+    {
+      "bytes": 29224,
+      "git_blob": "2a3b379ed998830190923536ec0924fd6e622639",
+      "path": "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+      "sha256": "a7b495b21cdcad159101ba2665deff191d3451f883ffcbd158758ba752f0cf19"
+    },
+    {
+      "bytes": 42358,
+      "git_blob": "8df9fc1232e154fae2787f4dbddf199c7f00494c",
+      "path": "Source/Otzaria/Storage/ITorahSharedContainer.swift",
+      "sha256": "d4fc6b5ae5f52d78806448cf5d499f46421fce15734d651c400ab1f08cd0aa67"
+    },
+    {
+      "bytes": 19796,
+      "git_blob": "1f9123bef2bb209250b5d505f49a6fdf4f9ab6d6",
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ColdSearchExecutionOfflineTests.swift",
+      "sha256": "54c2d18250e7e9715352ff029139ba690e296c15877bfb23e092d1dff02b0f22"
+    },
+    {
+      "bytes": 16970,
+      "git_blob": "66cdf584cd22b837bd8831bd013c94f1d0442f6f",
+      "path": "tools/hq-cold-search-core-acceptance.py",
+      "sha256": "bc2b40a712fa2576582006763b9e86a2dba82eb8c9b453914ea32429542bf6e5"
+    },
+    {
+      "bytes": 5228,
+      "git_blob": "4dbd7b8a63bd9699e50f8417a8070679e5a9ed44",
+      "path": "Tests/HQ/cold-search/test_core_driver.py",
+      "sha256": "a76b577048b2f20e06a90a66191f6c7694823e521d1c226947e61ad952d35f67"
+    },
+    {
+      "bytes": 38696,
+      "git_blob": "169047bbab9ae00d6fa43e787a95016f2822e4ac",
+      "path": "Tests/HQ/cold-search/CORE_INPUTS.json",
+      "sha256": "59a9e89f2bf16f556917577509de64c1c3f99052e7d1509e0c5bf1d9c04226e6"
+    },
+    {
+      "bytes": 9069,
+      "git_blob": "865b7b1660f7397577925c0626d260ff19591c18",
+      "path": "Tests/HQ/cold-search/baseline-19b-ActionExecutor.swift.gz",
+      "sha256": "b6a86d1c09286b2b6790655731d6fd7d938e922b24a64ab108ca726c4f804a5f"
+    },
+    {
+      "bytes": 2095,
+      "git_blob": "6976a33f37f1b8b93beb32497fa81da154e4ef2e",
+      "path": ".github/workflows/otzaria-cold-search-core-validation.yml",
+      "sha256": "e9e2e40e056e7f9a4fade4d3e2c8f3c0d2fbf9a32c8196e9a2257227efc2b10e"
+    },
+    {
+      "bytes": 7686,
+      "git_blob": "8abeea8ee8a3db66911385e8f7120b79b965f582",
+      "path": "docs/hq-integration/core-cold-search-20261120/README.md",
+      "sha256": "eea300bfb292c3e282ff5a4ff32b372015c8f846f1013704058b1f709ff289b6"
+    }
+  ],
+  "independent_source_review": {
+    "correction": "Exact same signal/deadline/assertion through an explicit synchronous helper; no production changes",
+    "execution": "NONE",
+    "finding": "Direct DispatchSemaphore.wait in async fixture case is an Apple @noasync risk",
+    "reviewer": "/root/github_native_audit"
+  },
+  "native_ui_executed": 0,
+  "real_native_engine_executed": 0,
+  "recorded_at": "2026-11-20T15:38:32.924761+00:00",
+  "scope": "SOURCE_GENERATION_PYTHON_VERIFIER_AND_LINUX_C_DOUBLE_COMPILE_ONLY",
+  "swift_cases_executed": 0,
+  "synthetic_verifier_methods_passed": 8,
+  "workflow_yaml_and_source_contract": "PASS_LOCAL_SOURCE_ONLY"
+}

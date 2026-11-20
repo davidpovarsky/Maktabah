@@ -1,0 +1,170 @@
+{
+  "activation_owner": "/root",
+  "base_commit": "a826e66ab2710f1d3c05342da5b39b79e8c30c44",
+  "base_tree": "3c360bada95f478513ab482bfd6a6807adbe826e",
+  "changed_files": [
+    {
+      "binary": false,
+      "bytes": 3318,
+      "git_blob": "0557a8cb7ec68390cac39b1e0637f128f2905ac2",
+      "mode": "100644",
+      "path": "Tests/HQ/cold-search-ownership/NativeConstructorDouble.c",
+      "sha256": "8a6ec20f92b4d4f91f319f302fcb87c995701a0f2b512041568e6aba0b9a0eaa",
+      "type": "blob"
+    },
+    {
+      "binary": false,
+      "bytes": 7249,
+      "git_blob": "1ab68445701c21e6579cf294ec1e3dabd279c65c",
+      "mode": "100644",
+      "path": "Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json",
+      "sha256": "85d72a500037ff914fe47b2cc33094a104df8d13cbddcfac9294236dbe0bbdb2",
+      "type": "blob"
+    },
+    {
+      "binary": false,
+      "bytes": 10975,
+      "git_blob": "283aa18a3c19f69d08cdfe2aef40bc47ca640c77",
+      "mode": "100644",
+      "path": "Tests/HQ/cold-search-ownership/OwnershipBoundary.swift",
+      "sha256": "4298b197fd2120d33391b2a0eeb07cf02aca8e09f4caf47654ce2e8645f1fe8d",
+      "type": "blob"
+    },
+    {
+      "binary": false,
+      "bytes": 23057,
+      "git_blob": "4905fa0d499c9cccfbdf745d195ce3b05298d0c7",
+      "mode": "100644",
+      "path": "Tests/HQ/cold-search-ownership/OwnershipCases.swift",
+      "sha256": "dc77899c0a5c8de7053867ba87ea467478d21c6a8bb9ef99df9b4cb57e507cbf",
+      "type": "blob"
+    },
+    {
+      "binary": true,
+      "bytes": 6315,
+      "git_blob": "eda860af2099b412220d6eb0f528c8b65cb8f601",
+      "mode": "100644",
+      "path": "Tests/HQ/cold-search-ownership/pre-publication-Repository.swift.gz",
+      "sha256": "3c2f7edbcd16bbf27133d11c96242b608b1a5b72a11da06ae64e2ceb9944f0d1",
+      "type": "blob"
+    },
+    {
+      "binary": false,
+      "bytes": 3412,
+      "git_blob": "f21becb6a16fe3f32806ddd128f481e7eff4e3d1",
+      "mode": "100644",
+      "path": "Tests/HQ/cold-search-ownership/test_ownership_driver.py",
+      "sha256": "704488db3307fae2fd30e0858eb1a839fe56528a3ec9370a465a9c9825e7c22b",
+      "type": "blob"
+    },
+    {
+      "binary": false,
+      "bytes": 14971,
+      "git_blob": "bef1edc5aa29c14ce095964879871aec4dd3e5b7",
+      "mode": "100644",
+      "path": "tools/hq-cold-search-ownership.py",
+      "sha256": "06226561f58167cbf0dbf3ec070e1255037eaceda9c7b7640010548745d398aa",
+      "type": "blob"
+    },
+    {
+      "binary": false,
+      "bytes": 3492,
+      "git_blob": "b41c1bc38f0d25cce1d8e604e17d89c615b76a25",
+      "mode": "100644",
+      "path": ".github/workflows/otzaria-cold-search-ownership-validation.yml",
+      "sha256": "3607dd154f390d9d3c37716864049279a57abbfae9184933d5739150f07467e6",
+      "type": "blob"
+    },
+    {
+      "binary": false,
+      "bytes": 1492,
+      "git_blob": "2b69fc8797dc89c9cecc13726061eb9c6490e8db",
+      "mode": "100644",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/ARTIFACTS.json",
+      "sha256": "447ef8548d0fdd773a0cd0cd71188be218fd0a44e9383d70109615fc2c75fa0a",
+      "type": "blob"
+    },
+    {
+      "binary": false,
+      "bytes": 15566,
+      "git_blob": "e9b800b5daaf7fc581d709aac70406ef5d63bb30",
+      "mode": "100644",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/LOCAL_PREPARATION.json",
+      "sha256": "e8e899429cc541544f9c47d5e49cee4cec663cf5168c7ed843c197d37d7b0ece",
+      "type": "blob"
+    },
+    {
+      "binary": false,
+      "bytes": 7318,
+      "git_blob": "2fbbf459a3f11ddef4e72953edd3ff26cfa8ae3c",
+      "mode": "100644",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/README.md",
+      "sha256": "067a89c606e0ea8b5aaa0b9c6df33eea4abfb1a3b879f21616b16e5a68dd5088",
+      "type": "blob"
+    },
+    {
+      "binary": true,
+      "bytes": 32411,
+      "git_blob": "345569f61f78cc065e6164c8958b2fb632c3d5fa",
+      "mode": "100644",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/raw/local-generation-attempt1.tar.gz",
+      "sha256": "b48e8aaea2091ae50b32023ac3fd4e724f309b2e08a45a60d28ba9bc586ff380",
+      "type": "blob"
+    },
+    {
+      "binary": true,
+      "bytes": 35982,
+      "git_blob": "074a8f2807475dfba37fae05f568bda76924dd43",
+      "mode": "100644",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/raw/local-generation-attempt2.tar.gz",
+      "sha256": "d4693ab52d0869f51b13ec40b9940be4292b4d1d582ec3dc9a105d72683ed016",
+      "type": "blob"
+    },
+    {
+      "binary": true,
+      "bytes": 32157,
+      "git_blob": "9099de6f990071ee23afc724a7e3d0b947333eec",
+      "mode": "100644",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/raw/local-generation-attempt3.tar.gz",
+      "sha256": "8cdb40038ee8abbadd21ada3ba71791dffc95151ced83e5965341b32a86dd17e",
+      "type": "blob"
+    }
+  ],
+  "command": "python3 tools/hq-cold-search-ownership.py --repo . --output build/cold-search-ownership --expected-inputs-sha256 85d72a500037ff914fe47b2cc33094a104df8d13cbddcfac9294236dbe0bbdb2",
+  "core_frozen_16_unchanged": true,
+  "expected_apple_stages": {
+    "candidate": {
+      "cases": 32,
+      "exit": 0,
+      "fail": 0,
+      "pass": 32
+    },
+    "pre_guard": {
+      "cases": 1,
+      "exit": 1,
+      "fail": 1,
+      "failure_code": "stale_constructor_performed_more_native_work",
+      "pass": 0,
+      "source_scope": "unpublished candidate before final source guard"
+    }
+  },
+  "input_manifest": {
+    "bytes": 7249,
+    "git_blob": "1ab68445701c21e6579cf294ec1e3dabd279c65c",
+    "path": "Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json",
+    "sha256": "85d72a500037ff914fe47b2cc33094a104df8d13cbddcfac9294236dbe0bbdb2"
+  },
+  "production_changes": 0,
+  "publication_instructions": [
+    "Independently match all unchanged manifest inputs to base a826 Git blobs.",
+    "Review and create only the listed new blobs/tree/commit on the base tree; no product/Core input is changed.",
+    "Verify the owned trigger ref does not exist. Create exactly that immutable ref once after review.",
+    "If publication is ambiguous, use GET-only ref/run discovery; do not repeat activation.",
+    "Bind the resulting run to the actual new commit/attempt1 and collect the complete always-uploaded evidence."
+  ],
+  "repository": "davidpovarsky/Maktabah",
+  "status": "READY_FOR_ROOT_REVIEW_NOT_ACTIVATED",
+  "swift_or_darwin_cases_executed_locally": 0,
+  "trigger_ref": "refs/heads/codex/otzaria-cold-search-ownership-apple-20261120",
+  "workflow": ".github/workflows/otzaria-cold-search-ownership-validation.yml"
+}
