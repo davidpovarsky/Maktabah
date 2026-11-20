@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "repository": "davidpovarsky/Maktabah",
+  "source": "57e4a1cb7cd0bee72e3042e2f4567972237e7e35",
+  "source_tree": "7394eeaa5074904cf4dbfd9dc21a4e9dbcf8d43f",
+  "ci": "826711a577063cacac28ed2f24a0daa0603d2e28",
+  "packet_parent": "214017b376c442b3d475ef0df9f3164a3d4e65d4",
+  "packet_parent_tree": "85e754a33a94ea98460af63ae0eb01a28ae74809",
+  "manifest_sha256": "3f1dfc54a277cd6275457acb5d6faf26a3f699c3b4ec5166de8c77f5c3842d5a",
+  "reviewed_branch": "codex/otzaria-local-annotation-cloud-apple-reviewed-20261120",
+  "root_canonical_checks": {
+    "source_changes": 12,
+    "ci_additions": 4,
+    "packet_additions": 11,
+    "all_other_baseline_leaves_preserved": true,
+    "source_pins": 39,
+    "raw_git_inputs": 96,
+    "packet_files_match_canonical_git": 11,
+    "core_tree": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+    "application_trees": {
+      "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+      "Source": "267a778fb1c5f7512ebe5e35153c1d3ee743ec5c",
+      "Tests": "afe91dee5f6c6a7a0315f5c1a90a0b82dfe1d7cd",
+      "tools": "447b05cbe2efb0e7c4e9246236fec68857296941"
+    }
+  },
+  "root_actual_replay": {
+    "status": "PASS_SEALED_SOURCE_AND_RECORDED_RESULTS",
+    "sealed_files": 10,
+    "raw_streams": 230,
+    "git_inputs": 96,
+    "whole_files_each_executable": 23,
+    "product_inverse_files": 8,
+    "recorded_python_controls": 43,
+    "recorded_sqlite_premises": 13,
+    "swift_rerun": 0,
+    "apple_execution_credit": 0,
+    "live_cloudkit_credit": 0
+  },
+  "review": {
+    "production": "Read all eight product/project changes and original Core/SQLite/persistence. Final account-entry retirement maps to accountChanged only for refused account admission; protected-body errors retain identity. Original default upload completion and notification ordering remain unchanged.",
+    "concurrency": "The new acknowledgment holds captured DB serialization then editor, connection and account lifetimes through validation/delete/commit. No repository lock, await or transport occurs in that critical section. The preexisting Repository disconnect inversion is a separate unmerged repair and is not claimed fixed here.",
+    "runtime": "Read complete whole-source driver, CI gate, workflow and 43 Python controls. Whole original43, cold2 and exchange28/crash2 validators, assertions and process deadlines are retained. New cloud48 uses explicit account/transport/wait doubles and real original CloudKit/SQLite classes.",
+    "boundaries": "Both executables compile the same 23 whole source files apart from their fixture entry; cloud48 adds the exact original fixture prefix. No live account, request, Anytype editor, full app, native UI, physical device or Core194 result is credited.",
+    "failures": "Original SQL 8/1 preparation failure and verifier/parser preparation attempts remain in sealed raw evidence."
+  },
+  "budgets": {
+    "job_minutes": 60,
+    "compile_seconds": 480,
+    "original_local_cases_seconds": 180,
+    "new_cloud_cases_seconds": 180,
+    "cold_process_seconds": 45,
+    "permissions": "actions: read; contents: read",
+    "auto_cancellation": false
+  },
+  "integration": "This isolated frozen source is not the Root integration head. All six preexisting product files modified by the candidate match Root40c1eaa baseline bytes, but integration is deferred until actual Apple results. Root40c1eaa Source/Vendor/UI state is preserved.",
+  "status": "REVIEWED_FOR_ACTUAL_APPLE_EXECUTION_NOT_QUALIFIED"
+}
