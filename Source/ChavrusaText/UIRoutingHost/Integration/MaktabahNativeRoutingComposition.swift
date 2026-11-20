@@ -1139,7 +1139,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     /// Resolve the identity of an existing mounted window before the system
     /// brings it to the foreground. Use original Registry metadata and actual
     /// capability/state checks; do not issue a context, grant or native receipt.
-    private func intentEntities() async throws -> [NativeIntentService.Destination] {
+    private func intentRootEntities() throws -> [NativeIntentService.Destination] {
+        try Task.checkCancellation()
         let snapshot = try backend.currentBackendSnapshot()
         var values: [NativeIntentService.Destination] = []
         for (id, entry) in scenes.sorted(by: { $0.key.rawValue < $1.key.rawValue }) where entry.session.mounted {
@@ -1153,8 +1154,18 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                     title: descriptor.title + " — " + windowLabel, sceneID: id))
             }
         }
-        // A field is not a window identity. Its entity still requires the actual
-        // visible, foreground original control through existing live discovery.
+        try Task.checkCancellation()
+        guard try backend.currentBackendSnapshot() == snapshot else {
+            throw UIRouteError(.staleState, "intent_source_generation_changed")
+        }
+        return values
+    }
+
+    private func intentEntities() async throws -> [NativeIntentService.Destination] {
+        let snapshot = try backend.currentBackendSnapshot()
+        var values = try intentRootEntities()
+        // General system entities still require live discovery for controls and
+        // the Inspector. Reader-window identity resolution does not use this path.
         values += try await destinations().filter { $0.component != nil || $0.destination.rawValue == "native.reader.inspector" }
         guard try backend.currentBackendSnapshot() == snapshot else {
             throw UIRouteError(.staleState, "intent_source_generation_changed")
@@ -1204,13 +1215,17 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
 
     private func openReaderIntent(_ request: NativeReaderIntentService.OpenRequest) async throws -> UISceneAcknowledgement {
-        let identities = try await intentEntities().filter {
+        let identities = try intentRootEntities().filter {
             $0.destination.rawValue == "native.library" && $0.id == request.windowIdentifier
         }
         guard identities.count == 1, let selected = identities.first else {
             throw UIRouteError(.staleState, "intent_window_no_longer_available")
         }
-        try await awaitIntentForeground(selected)
+        do { try await awaitIntentForeground(selected) }
+        catch {
+            logIntentFailure(error, stage: "reader_foreground")
+            throw error
+        }
         // Re-resolve the explicit user-selected window. Never pick a first scene
         // or open another one when a cached system entity has become stale.
         let windows = try await destinations().filter {
@@ -1238,15 +1253,51 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
     func installIntentDependency() {
         guard !intentsInstalled else { return }
-        let service = NativeIntentService(discover: { [self] in try await destinations() },
-            resolveEntities: { [self] in try await intentEntities() },
-            awaitForeground: { [self] in try await awaitIntentForeground($0) },
-            navigate: { [self] in try await open(destination: $0) })
+        let service = NativeIntentService(discover: { [self] in
+            do { return try await destinations() }
+            catch { logIntentFailure(error, stage: "discovery"); throw error }
+        }, resolveEntities: { [self] in
+            do { return try await intentEntities() }
+            catch { logIntentFailure(error, stage: "entities"); throw error }
+        }, resolveReaderWindows: { [self] in
+            do { return try intentRootEntities() }
+            catch { logIntentFailure(error, stage: "reader_windows"); throw error }
+        }, awaitForeground: { [self] in
+            do { try await awaitIntentForeground($0) }
+            catch { logIntentFailure(error, stage: "foreground"); throw error }
+        }, navigate: { [self] in
+            do { return try await open(destination: $0) }
+            catch { logIntentFailure(error, stage: "navigation"); throw error }
+        })
         AppDependencyManager.shared.add(dependency: service)
-        let readerService = NativeReaderIntentService(execute: { [self] in try await readerIntentMetadata($0) },
-            navigate: { [self] in try await openReaderIntent($0) })
+        let readerService = NativeReaderIntentService(execute: { [self] in
+            do { return try await readerIntentMetadata($0) }
+            catch { logIntentFailure(error, stage: "reader_metadata"); throw error }
+        }, navigate: { [self] in
+            do { return try await openReaderIntent($0) }
+            catch { logIntentFailure(error, stage: "reader_navigation"); throw error }
+        })
         AppDependencyManager.shared.add(dependency: readerService)
         intentsInstalled = true
+    }
+
+    private func logIntentFailure(_ error: any Error, stage: StaticString) {
+        #if DEBUG
+        // Only fixed internal codes cross this diagnostic boundary. Never log
+        // the request, source, scene identity, token, query or error description.
+        let route = error as? UIRouteError
+        let knownCodes: Set<String> = [
+            "native_scene_busy", "native_scene_context_changed", "scene_changed_during_observation",
+            "scene_lifetime_changed", "scene_not_foreground", "scene_not_mounted",
+            "backend_generation_changed", "intent_source_generation_changed",
+            "intent_window_no_longer_available", "intent_window_changed_during_activation",
+            "intent_entity_no_longer_available", "deadline_exceeded", "native_effect_uncertain"
+        ]
+        let code = route.flatMap { knownCodes.contains($0.code) ? $0.code : nil }
+            ?? (error is CancellationError ? "cancelled" : "unclassified")
+        let status = route?.status.rawValue ?? (error is CancellationError ? "cancelled" : "unclassified")
+        OtzariaFileLogger.shared.log("[NativeIntentFailure] stage=\(stage) status=\(status) code=\(code)")
+        #endif
     }
     func currentScene(sceneID: UIStableID, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UISceneSnapshot {
         try await directory.currentScene(sceneID: sceneID, context: context, invocation: invocation)

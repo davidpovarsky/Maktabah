@@ -48,15 +48,15 @@ public struct NativeReaderWindowEntityQuery: EntityStringQuery {
     @Dependency private var service: NativeIntentService
     public init() {}
     public func entities(for identifiers: [String]) async throws -> [NativeDestinationEntity] {
-        try await service.destinations(identifiers: identifiers).filter { $0.destination.rawValue == "native.library" }
+        try await service.readerWindows(identifiers: identifiers).filter { $0.destination.rawValue == "native.library" }
             .map { .init(id: $0.id, title: $0.title) }
     }
     public func entities(matching string: String) async throws -> [NativeDestinationEntity] {
-        try await service.destinations(matching: string).filter { $0.destination.rawValue == "native.library" }
+        try await service.readerWindows(matching: string).filter { $0.destination.rawValue == "native.library" }
             .map { .init(id: $0.id, title: $0.title) }
     }
     public func suggestedEntities() async throws -> [NativeDestinationEntity] {
-        try await service.destinations().filter { $0.destination.rawValue == "native.library" }
+        try await service.readerWindows().filter { $0.destination.rawValue == "native.library" }
             .map { .init(id: $0.id, title: $0.title) }
     }
 }
