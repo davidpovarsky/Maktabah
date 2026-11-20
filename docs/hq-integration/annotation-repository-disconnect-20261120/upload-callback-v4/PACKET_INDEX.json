@@ -1,0 +1,207 @@
+{
+  "source_m": "c1e0d33117154d578206195ef021d41fc2fa2b12",
+  "branch": "codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120",
+  "files": [
+    {
+      "path": "Scripts/CI/annotation-disconnect-apple.py",
+      "bytes": 27172,
+      "sha256": "d5d1842259590866b68c11180422a20c2432ab07daba73623196ea5861f52568",
+      "git_blob": "72a3bc23ea32e72a5a0364a196d5596099f5e68b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "Scripts/CI/annotation-disconnect-apple.inputs.json",
+      "bytes": 21773,
+      "sha256": "83cb3bfec717c2a1a9cea5c0662335ba7a762abc03788e777d8b2f7399741855",
+      "git_blob": "7cdea6fa72a8abfb407f71948cd0e6bb7a02dea9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "Scripts/CI/test-annotation-disconnect-apple.py",
+      "bytes": 21310,
+      "sha256": "2dd6666c359cc2d8ff0a281851a546a0be20993b0fef5427b05f6976a539783c",
+      "git_blob": "e76c28302de51e1ae55c70e28c0fc442e7737b3c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "Scripts/CI/local-annotation-cloud-apple.inputs.json",
+      "bytes": 19262,
+      "sha256": "87c20b9a4a394ba30fb49d55f2282c31230c7c6ba93c3e90114c62efc94e258f",
+      "git_blob": "8a51e2b47b0237de65a1702a7ef64645a4ea11f4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": ".github/workflows/otzaria-annotation-disconnect-apple.yml",
+      "bytes": 7167,
+      "sha256": "bd63223ba4fdd130e671c69109498b6b8baf5b6ebfc23817184f3637e35be578",
+      "git_blob": "edeed8087be9142180b9f18f5b34a817a3b6884b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/compile-types-v3/REPOSITORY_API.json",
+      "bytes": 19284,
+      "sha256": "25393d84b6d5f0e2048ccd6562fe558b6599633d2612877611e11cce820ca5d6",
+      "git_blob": "4a5d1c68082a505f92925490a22c9516d5c970a4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/CI_DELTA.patch",
+      "bytes": 8895,
+      "sha256": "c1637171b08bbc35a593bf96baa39edf35c390c3f6325d69f096445a6a5208e1",
+      "git_blob": "115c55e2f64c4bc2e8819a8fb29b4b7547ed7ddd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/METADATA_PREPARATION.json",
+      "bytes": 3358,
+      "sha256": "4c0af97808234b473db003a057f8226de6b4e4e987aca90b5621d8d26163cf4c",
+      "git_blob": "c28b9ba6a37e333f961532f43c129f37c76a1bbe",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/PREPARATION_ATTEMPT1.json",
+      "bytes": 221,
+      "sha256": "60f16079a8809488dfc9af01b72c664ff79278c3565f7aef9ead184e964101a5",
+      "git_blob": "552cabdaac83b3e205443f0def599a0c2fe915fd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/PREPARE.py",
+      "bytes": 8447,
+      "sha256": "5b471f94cacc435a6b03a3eb7e8e25c6e167e38e7df9b4f145e823f0b3b3c378",
+      "git_blob": "bd5346934ae9ceb313e95705fac66a85f39d4911",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/README.md",
+      "bytes": 1819,
+      "sha256": "62357c32452895de5c4b38b3e255fd4dded2255542fa3fa94e3d0d8b9be2d10e",
+      "git_blob": "30274777416d353ae199f4842c75105a076f398f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/RESULT_SCOPE.json",
+      "bytes": 1530,
+      "sha256": "d5dfd8c5ae88d4fb8b73ef4879d4a6bf2b61a65cfb45056b3e9c0ce98b832653",
+      "git_blob": "90434d9cd136d930d6a9d4c6d2f3e7295657632f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/ROOT_REVIEW.json",
+      "bytes": 943,
+      "sha256": "f20af74eec52957d875f21d28a3f18f71f4eb3a6d07a7c8d883bdfac3227431e",
+      "git_blob": "2a4639c35bd27ce5969f1a5d37092c605f153b22",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/ROOT_SOURCE_ACTUAL_0.json.gz",
+      "bytes": 636237,
+      "sha256": "786f463f57e084a1898ccfb94677949ce71cb0639011e62e31c9fda44babb1f3",
+      "git_blob": "7c1fb1ae3fb1bc6c2487e98197592972f8dc0325",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/ROOT_SOURCE_ACTUAL_1.json.gz",
+      "bytes": 806,
+      "sha256": "2beae0dc815e8761815c991dc0b60eb77074a378389a006507285981d5990301",
+      "git_blob": "57cab5079f3120574f7e20c93cac644799b4849d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/SOURCE.patch",
+      "bytes": 616,
+      "sha256": "229580fc2490d6e6968cf6dd188435b129a95cf5b4928f3a8ff99ba6f72491c1",
+      "git_blob": "268b78c894483d22c2e020dc82ed9c571c6fc3d4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/SOURCE_INDEX.json",
+      "bytes": 277,
+      "sha256": "74237ffa10da57e67645225c45c3bcc883bbbb777c1dc43bbb978e0e4107b398",
+      "git_blob": "5de273a80d2b245e24d04e3d870610b2e531a716",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/SOURCE_REVIEW.json",
+      "bytes": 633,
+      "sha256": "21e799c3b85c2933e5bae46f578b1c53cbe8d2a8bc247bc73be7c55765d4f238",
+      "git_blob": "7be99b3628e03647097264c170e3d6f1d0284b90",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/controls-attempt1.zip",
+      "bytes": 25885,
+      "sha256": "2e8570fa7fc5bd1e3bd3fba7ba00de13197ee24c804550decf073a527e7c721d",
+      "git_blob": "ac030c3e01321aa7fe819d45e2caac262a7fae42",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/controls-attempt2.zip",
+      "bytes": 769,
+      "sha256": "99449deb31c909b08ff9aec66bb31f144a33533030bb0c3b7505141f1aa7ba6d",
+      "git_blob": "c40ee53cc03348c45987a6f76a60aace9b24ba14",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/controls.zip",
+      "bytes": 27622,
+      "sha256": "f6b6ff9b33cc16cd5624a3656d3b660da8ab823b40262fdb0a919a988ecd23c2",
+      "git_blob": "0f8cc733dbcf74f9eb9c0757a5885b2b3f1016dc",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/prior-v3-failure/API_0.json.gz",
+      "bytes": 1153,
+      "sha256": "067a93d577cc3d73429671fe4da7349246411ac7973a59cbcf67ce044bbd638c",
+      "git_blob": "82ff2c5aa598fb24bf48bc5b265b55b061613e0a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/prior-v3-failure/API_1.json.gz",
+      "bytes": 679,
+      "sha256": "980d87b9023655529374304f1c5c1e1245cfecb7b6d8c1d24810623fe2e27b1d",
+      "git_blob": "e4e7ee068141349b3c3bd8c57e23810aad48f55b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/prior-v3-failure/JOB_LOG.json.gz",
+      "bytes": 10534,
+      "sha256": "420ec0d54beb575f07f67035d885f0af2d5595cb54b19f53b3ff82f91cc0c166",
+      "git_blob": "0c601feb73a028edce0bee3981be6a0645b9153b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/upload-callback-v4/prior-v3-failure/evidence.zip",
+      "bytes": 1236300,
+      "sha256": "07515b9ef7359117fae2b2fe17f29502783cd2e9e48f1019f75c412e3fec8f11",
+      "git_blob": "bb1387e6e906617450426b85f4759b1be3643a10",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "scope": "Source preparation, actual Python controls and complete failed v3 evidence; no v4Apple execution"
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
+  "base_tree": "c8f03d50b2c0791db7e3328a01d4c5d59a3399fa",
+  "whole_file_inverse": true,
+  "modified_source_files": 1,
+  "callback_body_and_notifications_and_order_unchanged": true,
+  "actual_v3_error": "CloudKitCoreManager.swift267 contextual closure @Sendable () -> Void expects0arguments but1used",
+  "actual_callback_declaration": "completionNotification:(@Sendable ()->Void)?=nil, completion:(@Sendable(Result<Void,any Error>)->Void)?=nil",
+  "fix": "Explicit completion: argument label; retain typed continuation",
+  "Apple_compile": "NOT_RUN",
+  "Native": "NOT_RUN"
+}

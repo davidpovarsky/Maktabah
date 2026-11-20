@@ -1,0 +1,156 @@
+--- v3/Scripts/CI/annotation-disconnect-apple.py
++++ v4/Scripts/CI/annotation-disconnect-apple.py
+@@ -18,7 +18,7 @@
+ 
+ REPOSITORY = "davidpovarsky/Maktabah"
+ REPOSITORY_ID = 1280062128
+-BRANCH = "codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120"
++BRANCH = "codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120"
+ WORKFLOW = ".github/workflows/otzaria-annotation-disconnect-apple.yml"
+ SELF = "Scripts/CI/annotation-disconnect-apple.py"
+ BINDING = "Scripts/CI/annotation-disconnect-apple.inputs.json"
+@@ -31,7 +31,8 @@
+ REPOSITORY_SOURCE = "Source/Features/Annotations/Database/AnnotationRepository.swift"
+ BASE = "7af3a06d48ccbe77acef180cb99d120971c3804e"
+ PREVIOUS_SOURCE_M = "939eaf3a5b56fe604354b235579cf7aa4a60e3d4"
+-SOURCE_M = "1e55f6012a1b8cedd674349106f27b0e0e476a0b"
++PREVIOUS_COMPILER_M = "1e55f6012a1b8cedd674349106f27b0e0e476a0b"
++SOURCE_M = "c1e0d33117154d578206195ef021d41fc2fa2b12"
+ CORE = "Source/Otzaria/Actions"
+ CORE_TREE = "5d0ee482c8f10726fe3863792dac94c18e94d792"
+ OUTPUT = "build/annotation-disconnect-route"
+@@ -170,10 +171,14 @@
+     require(not git(root, "status", "--porcelain", "--untracked-files=no"), "Dirty tracked checkout")
+     require(git(root, "show", "-s", "--format=%P", "HEAD").decode().strip() == SOURCE_M,
+             "This reviewed route must be a single additive CI commit on repaired M")
+-    require(git(root, "show", "-s", "--format=%P", SOURCE_M).decode().strip() == PREVIOUS_SOURCE_M
++    require(git(root, "show", "-s", "--format=%P", SOURCE_M).decode().strip() == PREVIOUS_COMPILER_M
++            and git(root, "show", "-s", "--format=%P", PREVIOUS_COMPILER_M).decode().strip() == PREVIOUS_SOURCE_M
+             and git(root, "show", "-s", "--format=%P", PREVIOUS_SOURCE_M).decode().strip() == BASE,
+-            "Compiler repair must be the exact child of the reviewed Repository source and Cloud base")
+-    repair_delta = git(root, "diff", "--name-status", PREVIOUS_SOURCE_M, SOURCE_M).decode().splitlines()
++            "Compiler repairs must preserve the exact reviewed source ancestry")
++    callback_delta = git(root, "diff", "--name-status", PREVIOUS_COMPILER_M, SOURCE_M).decode().splitlines()
++    require(callback_delta == ["M\tSource/Core/CloudKit/CloudKitCoreManager.swift"],
++            "Explicit upload completion repair changed other source")
++    repair_delta = git(root, "diff", "--name-status", PREVIOUS_SOURCE_M, PREVIOUS_COMPILER_M).decode().splitlines()
+     require(set(repair_delta) == {"M\tSource/Core/CloudKit/CloudKitCoreManager.swift", "M\t" + FIXTURE}
+             and len(repair_delta) == 2, "Compiler repair changed unreviewed source")
+     binding = load_json(exact_file(root, BINDING))
+--- v3/Scripts/CI/annotation-disconnect-apple.inputs.json
++++ v4/Scripts/CI/annotation-disconnect-apple.inputs.json
+@@ -1,8 +1,8 @@
+ {
+-  "application_source": "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
++  "application_source": "c1e0d33117154d578206195ef021d41fc2fa2b12",
+   "application_trees": {
+     "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+-    "Source": "800b37c839b15f86fd59320022b8c35f0aaeabca",
++    "Source": "6e02950f8501da4e2bedfa90b41438b4081fdb1a",
+     "Tests": "deaf2b40e4e852d13c4aadea6d9c8dd26bd76584",
+     "tools": "cb52d9a96e01f1aaf6888dded9cc2f28bcc82424"
+   },
+@@ -178,7 +178,7 @@
+   },
+   "preparation_state": "SOURCE_M_PUBLISHED_CI_READY_FOR_REVIEW_NO_ACTIVATION",
+   "route": {
+-    "branch": "codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120",
++    "branch": "codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120",
+     "repository": "davidpovarsky/Maktabah",
+     "workflow": ".github/workflows/otzaria-annotation-disconnect-apple.yml"
+   },
+@@ -198,8 +198,8 @@
+     },
+     "Scripts/CI/local-annotation-cloud-apple.inputs.json": {
+       "bytes": 19262,
+-      "git_blob": "474423e038d97bbbe99cfa7642881df2e380cf24",
+-      "sha256": "a2d4f95be8335f350c03a224bce5010e4a72cb6baf214a940cd2d85e3456ebe8"
++      "git_blob": "8a51e2b47b0237de65a1702a7ef64645a4ea11f4",
++      "sha256": "87c20b9a4a394ba30fb49d55f2282c31230c7c6ba93c3e90114c62efc94e258f"
+     },
+     "Scripts/CI/local-annotation-cloud-apple.py": {
+       "bytes": 30332,
+@@ -257,9 +257,9 @@
+       "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a"
+     },
+     "Source/Core/CloudKit/CloudKitCoreManager.swift": {
+-      "bytes": 13510,
+-      "git_blob": "f872b9e4b7151ea8e247157821821c7235a74517",
+-      "sha256": "5dbb277fd43bade110df53bfd30fbd5f356507bb74662444e3fb166734f474d3"
++      "bytes": 13523,
++      "git_blob": "6e5a7901cac7d53acf5e8b6f4b7e1a3e09755c65",
++      "sha256": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68"
+     },
+     "Source/Core/CloudKit/CloudKitSyncable.swift": {
+       "bytes": 1329,
+--- v3/Scripts/CI/local-annotation-cloud-apple.inputs.json
++++ v4/Scripts/CI/local-annotation-cloud-apple.inputs.json
+@@ -1,7 +1,7 @@
+ {
+   "application_trees": {
+     "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+-    "Source": "800b37c839b15f86fd59320022b8c35f0aaeabca",
++    "Source": "6e02950f8501da4e2bedfa90b41438b4081fdb1a",
+     "Tests": "deaf2b40e4e852d13c4aadea6d9c8dd26bd76584",
+     "tools": "cb52d9a96e01f1aaf6888dded9cc2f28bcc82424"
+   },
+@@ -154,7 +154,7 @@
+   "exchange_count": 28,
+   "exchange_crash_gates": 2,
+   "local_cold_gates": 2,
+-  "reviewed_source_sha": "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
++  "reviewed_source_sha": "c1e0d33117154d578206195ef021d41fc2fa2b12",
+   "route": {
+     "branch": "codex/otzaria-local-annotation-cloud-apple-reviewed-20261120",
+     "repository": "davidpovarsky/Maktabah",
+@@ -214,9 +214,9 @@
+       "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a"
+     },
+     "Source/Core/CloudKit/CloudKitCoreManager.swift": {
+-      "bytes": 13510,
+-      "git_blob": "f872b9e4b7151ea8e247157821821c7235a74517",
+-      "sha256": "5dbb277fd43bade110df53bfd30fbd5f356507bb74662444e3fb166734f474d3"
++      "bytes": 13523,
++      "git_blob": "6e5a7901cac7d53acf5e8b6f4b7e1a3e09755c65",
++      "sha256": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68"
+     },
+     "Source/Core/CloudKit/CloudKitSyncable.swift": {
+       "bytes": 1329,
+--- v3/.github/workflows/otzaria-annotation-disconnect-apple.yml
++++ v4/.github/workflows/otzaria-annotation-disconnect-apple.yml
+@@ -3,7 +3,7 @@
+ on:
+   push:
+     branches:
+-      - codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120
++      - codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120
+ 
+ permissions:
+   actions: read
+@@ -15,7 +15,7 @@
+ 
+ jobs:
+   original-repository-disconnect:
+-    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120' }}
++    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120' }}
+     runs-on: xcode-27
+     timeout-minutes: 75
+     env:
+@@ -24,7 +24,7 @@
+       - uses: actions/checkout@v4
+         with:
+           ref: ${{ github.sha }}
+-          fetch-depth: 4
++          fetch-depth: 5
+           submodules: false
+           persist-credentials: false
+       - name: Bind exact original and candidate source before execution
+@@ -36,7 +36,7 @@
+           root = pathlib.Path.cwd()
+           output = root / 'build/annotation-disconnect-route'
+           output.mkdir(parents=True, exist_ok=True)
+-          expected = {'Scripts/CI/annotation-disconnect-apple.py': 'cb96c1d136de2bf78caf55a85e73bc02ffea17d1646837f3354f2dbd5acf4802', 'Scripts/CI/annotation-disconnect-apple.inputs.json': '3986d86119ccb07a3e806505c9d27a72456b304976a4f44df71aa2bfcd69b703', 'Scripts/CI/test-annotation-disconnect-apple.py': '2dd6666c359cc2d8ff0a281851a546a0be20993b0fef5427b05f6976a539783c', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
++          expected = {'Scripts/CI/annotation-disconnect-apple.py': 'd5d1842259590866b68c11180422a20c2432ab07daba73623196ea5861f52568', 'Scripts/CI/annotation-disconnect-apple.inputs.json': '83cb3bfec717c2a1a9cea5c0662335ba7a762abc03788e777d8b2f7399741855', 'Scripts/CI/test-annotation-disconnect-apple.py': '2dd6666c359cc2d8ff0a281851a546a0be20993b0fef5427b05f6976a539783c', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
+           report = {'status': 'FAILED', 'scope': 'Source bootstrap only; no Swift or Native execution', 'pins': expected}
+           try:
+               if set(expected) != {'Scripts/CI/annotation-disconnect-apple.py', 'Scripts/CI/annotation-disconnect-apple.inputs.json', 'Scripts/CI/test-annotation-disconnect-apple.py', 'Scripts/CI/select-runtime27-toolchain.py'}:

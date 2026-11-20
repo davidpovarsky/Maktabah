@@ -1,0 +1,23 @@
+{
+  "status": "ROOT_SOURCE_AND_ROUTE_REVIEWED_APPLE_PENDING",
+  "source_m": "c1e0d33117154d578206195ef021d41fc2fa2b12",
+  "source_tree": "ba04f752ae54fe1898207323259dc3fb51e0df20",
+  "one_source_path_exact_inverse": true,
+  "all_other_source_leaves_modes_preserved": true,
+  "canonical_pins": 44,
+  "all50_local_inputs_stable": true,
+  "all_original_case_names_counts_drivers_deadlines_unchanged": true,
+  "exact_original_C_validator_invoked": true,
+  "source_chain_checked_by_real_Git_before_execution": [
+    "c1e0d33117154d578206195ef021d41fc2fa2b12",
+    "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
+    "939eaf3a5b56fe604354b235579cf7aa4a60e3d4",
+    "7af3a06d48ccbe77acef180cb99d120971c3804e"
+  ],
+  "Python26_original43_SQL13": "ACTUAL_PASS",
+  "full_Git_source_gate": "NOT_RUN_LOCALLY",
+  "Apple": "NOT_RUN",
+  "Native": "NOT_RUN",
+  "original_preparation_failures_retained": true,
+  "original_v3_failure_full_archive_retained": true
+}

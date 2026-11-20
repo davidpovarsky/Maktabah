@@ -1,0 +1,9 @@
+# Explicit upload completion retry — source and failed execution evidence
+
+The actual v3 Apple run 44806090790 failed compilation at CloudKitCoreManager.swift:267. Its full original artifact and job/API records are retained here. Exchange28 and two actual process-termination reopens passed; local43, cold2, ownedCloud48 and Repository RED/10 executed zero cases. GitHub continue-on-error step conclusions are not test results.
+
+Source c1e0d33117154d578206195ef021d41fc2fa2b12 is the exact one-file child of 1e55f6012a1b8cedd674349106f27b0e0e476a0b. The repair names the existing result completion argument explicitly. The callback body, operation ordering, notification behavior, original cases, deadlines, cold readers and process checks are unchanged. The CI gate verifies the full F → c1e0 → 1e55 → 939 → 7af ancestry, exact one-file and preceding two-file repair deltas, all original four source paths, 44 canonical dependency pins, full original Core, and before/after source invariance.
+
+Actual preparation controls: 26 admission/collection, original43, and SQL13 passed. These are Python/SQLite controls. The preparation failures and existing-output refusal are preserved in separate archives. Only26 was rerun after restoring its missing immutable API fixture; original43 andSQL13 were not rerun. The exact26 test source still references the retained canonical repository API file at its original compile-types-v3 path. No control was removed or weakened.
+
+Apple compilation, all original runtime gates and Native UI for this candidate remain NOT_RUN before activation. The exact original result validator is still invoked directly, with only reviewed source/trees/input metadata rebound. This packet does not qualify Core194, actual CloudKit network transport, Anytype runtime, or physical devices.

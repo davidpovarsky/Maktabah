@@ -1,0 +1,35 @@
+{
+  "prior_run": 44806090790,
+  "prior_job": 136530361558,
+  "prior_attempt": 1,
+  "prior_F": "72281b9d9066a1cbdbaf656dd22288553e83a9d4",
+  "prior_status": "FAILED",
+  "artifact": 14662494496,
+  "artifact_bytes": 1236300,
+  "artifact_sha256": "07515b9ef7359117fae2b2fe17f29502783cd2e9e48f1019f75c412e3fec8f11",
+  "artifact_crc_members": 169,
+  "actual_exchange_passed": 28,
+  "actual_exchange_process_termination_reopens_passed": 2,
+  "actual_local43": 0,
+  "actual_cold2": 0,
+  "actual_owned_cloud48": 0,
+  "actual_repository_red10": 0,
+  "failure": "Swift CloudKitCoreManager.swift267: unlabeled trailing closure binds first defaulted @Sendable () -> Void callback",
+  "candidate_source": "c1e0d33117154d578206195ef021d41fc2fa2b12",
+  "source_fix": "Explicit upload completion: label, whole-file exact inverse",
+  "candidate_local_controls": {
+    "new26": 26,
+    "original43": 43,
+    "SQL13": 13
+  },
+  "control_scope": "Python and actual SQLite only; no Swift",
+  "retained_preparation_failures": [
+    "Initial receipt parser expected wrapper but prior tree was raw canonical JSON; no test execution",
+    "First26:24PASS and2ERROR because pinned original repository API JSON fixture omitted",
+    "Next26 start rejected existing prior result output; 0cases/new result, stale result is not evidence",
+    "Final26 uses fresh directory and original API bytes;26PASS0FAIL0ERROR0SKIP"
+  ],
+  "workflow_original_driver_bodies_and_runtime_budgets": "unchanged",
+  "candidate_Apple": "NOT_RUN",
+  "candidate_Native": "NOT_RUN"
+}

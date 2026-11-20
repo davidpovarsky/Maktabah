@@ -1,0 +1,48 @@
+{
+  "actual_Native_execution": 0,
+  "actual_Swift_execution": 0,
+  "actual_full_Git_source_gate": "NOT_RUN_LOCALLY",
+  "all_original_runtime_drivers_and_deadlines_unchanged": true,
+  "bootstrap": {
+    "Scripts/CI/annotation-disconnect-apple.inputs.json": "83cb3bfec717c2a1a9cea5c0662335ba7a762abc03788e777d8b2f7399741855",
+    "Scripts/CI/annotation-disconnect-apple.py": "d5d1842259590866b68c11180422a20c2432ab07daba73623196ea5861f52568",
+    "Scripts/CI/select-runtime27-toolchain.py": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8",
+    "Scripts/CI/test-annotation-disconnect-apple.py": "2dd6666c359cc2d8ff0a281851a546a0be20993b0fef5427b05f6976a539783c"
+  },
+  "branch": "codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120",
+  "canonical_M_source_pins": 44,
+  "counts_and_cases_unchanged": true,
+  "driver_replacements": [
+    [
+      "codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120",
+      "codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120"
+    ],
+    [
+      "SOURCE_M = \"1e55f6012a1b8cedd674349106f27b0e0e476a0b\"",
+      "PREVIOUS_COMPILER_M = \"1e55f6012a1b8cedd674349106f27b0e0e476a0b\"\nSOURCE_M = \"c1e0d33117154d578206195ef021d41fc2fa2b12\""
+    ],
+    [
+      "    require(git(root, \"show\", \"-s\", \"--format=%P\", SOURCE_M).decode().strip() == PREVIOUS_SOURCE_M\n            and git(root, \"show\", \"-s\", \"--format=%P\", PREVIOUS_SOURCE_M).decode().strip() == BASE,\n            \"Compiler repair must be the exact child of the reviewed Repository source and Cloud base\")\n    repair_delta = git(root, \"diff\", \"--name-status\", PREVIOUS_SOURCE_M, SOURCE_M).decode().splitlines()",
+      "    require(git(root, \"show\", \"-s\", \"--format=%P\", SOURCE_M).decode().strip() == PREVIOUS_COMPILER_M\n            and git(root, \"show\", \"-s\", \"--format=%P\", PREVIOUS_COMPILER_M).decode().strip() == PREVIOUS_SOURCE_M\n            and git(root, \"show\", \"-s\", \"--format=%P\", PREVIOUS_SOURCE_M).decode().strip() == BASE,\n            \"Compiler repairs must preserve the exact reviewed source ancestry\")\n    callback_delta = git(root, \"diff\", \"--name-status\", PREVIOUS_COMPILER_M, SOURCE_M).decode().splitlines()\n    require(callback_delta == [\"M\\tSource/Core/CloudKit/CloudKitCoreManager.swift\"],\n            \"Explicit upload completion repair changed other source\")\n    repair_delta = git(root, \"diff\", \"--name-status\", PREVIOUS_SOURCE_M, PREVIOUS_COMPILER_M).decode().splitlines()"
+    ]
+  ],
+  "local_fixture_files": 50,
+  "original26_and43_control_sources_unchanged": true,
+  "previous_compiler_m": "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
+  "source_chain": [
+    "c1e0d33117154d578206195ef021d41fc2fa2b12",
+    "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
+    "939eaf3a5b56fe604354b235579cf7aa4a60e3d4",
+    "7af3a06d48ccbe77acef180cb99d120971c3804e"
+  ],
+  "source_m": "c1e0d33117154d578206195ef021d41fc2fa2b12",
+  "source_tree": "ba04f752ae54fe1898207323259dc3fb51e0df20",
+  "source_trees": {
+    "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+    "Source": "6e02950f8501da4e2bedfa90b41438b4081fdb1a",
+    "Tests": "deaf2b40e4e852d13c4aadea6d9c8dd26bd76584",
+    "tools": "cb52d9a96e01f1aaf6888dded9cc2f28bcc82424"
+  },
+  "whole_driver_inverse": true,
+  "whole_workflow_inverse_except_branch_depth_and_bootstrap": true
+}

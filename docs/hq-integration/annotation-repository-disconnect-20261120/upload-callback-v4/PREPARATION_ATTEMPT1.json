@@ -1,0 +1,6 @@
+{
+  "exit": 1,
+  "error": "KeyError: 'structuredContent' reading v3 ROOT_SOURCE_TREE_ACTUAL.json; existing receipt is already canonical JSON, not connector wrapper",
+  "before_fixture_copy": true,
+  "Apple_executed": 0
+}
