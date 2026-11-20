@@ -1575,7 +1575,7 @@
     "prepared_at": "2026-11-20",
     "base_source": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
     "previous_required_cases": 78,
-    "previous_manifest_sha256": "5646b548ab1272540f8fc5c4b6d3472766f3ec8400d58edcb46f506808017285",
+    "previous_manifest_sha256": "bdadb6c5e7dc6edee5cfb4d2e04f26d50ce8388209b9a39795143ee2c449a06a",
     "restored_original_case_ids": [
       "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
       "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
@@ -1596,11 +1596,13 @@
     "source_freeze_status": "PENDING_COMBINED_SOURCE_FREEZE",
     "native_status": "NOT_RUN",
     "native_cases_executed": 0,
-    "whole_phase_accepted": false
+    "whole_phase_accepted": false,
+    "previous_windows_checkout_manifest_sha256": "5646b548ab1272540f8fc5c4b6d3472766f3ec8400d58edcb46f506808017285",
+    "previous_manifest_hash_encoding": "SHA256 of original repository LF bytes; Windows raw CRLF checkout digest retained separately"
   },
   "phase2_actions_20261120": {
     "baseline_selected_cases": 80,
-    "previous_manifest_sha256": "010d70b8ae4e439788d0a70f6214a4fa7d477ad52ead5c80c6ef60fb37820cf1",
+    "previous_manifest_sha256": "aa5e24c1f0be70e11ad8dd11eddb5b1f68c7f4d6f75acfdb34a82960c7f0adac",
     "new_cases": [
       {
         "case_id": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
@@ -1726,6 +1728,8 @@
       "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
       "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
     ],
-    "group_order_reason": "New original-owner actions execute in the existing dedicated11-inch group first for earlier failure evidence; all80 original cases and independent device ownership retained."
+    "group_order_reason": "New original-owner actions execute in the existing dedicated11-inch group first for earlier failure evidence; all80 original cases and independent device ownership retained.",
+    "previous_manifest_windows_checkout_sha256": "010d70b8ae4e439788d0a70f6214a4fa7d477ad52ead5c80c6ef60fb37820cf1",
+    "previous_manifest_hash_definition": "Primary hash is canonical Git blob bytes at0d6a6d55; separate Windows checkout bytes are retained as originally inspected."
   }
 }
