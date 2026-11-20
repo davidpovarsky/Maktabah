@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "scope": "Previously retrieved authentic GitHub run/artifact/job metadata only; archive not downloaded",
+  "sourceRun": 44723902453,
+  "sourceRunConclusion": "cancelled",
+  "sourceJobConclusion": "cancelled",
+  "sourceArtifactId": 14632274701,
+  "observedMetadataDigest": "sha256:7ce28dc10dbdfb6a52fe15e0eb0ec4bfaef746f8165974d060367cf61594a69d",
+  "actualArchiveHashVerified": false,
+  "nativeExecutions": 0
+}

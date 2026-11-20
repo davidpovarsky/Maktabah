@@ -1,0 +1,25 @@
+{
+  "activationPerformed": false,
+  "authenticHistoricalMetadataValidated": true,
+  "baseCommit": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "baseTree": "5128feff6992aab17b368775e3b5d7ec7e33cc82",
+  "baseTreeEntries": 7688,
+  "baseTreeTruncated": false,
+  "completeArchiveDownloadExecuted": false,
+  "completeArchiveHashVerified": false,
+  "existingSourceFilesChanged": 0,
+  "finalPythonControls": {
+    "executed": 40,
+    "failed": 0,
+    "passed": 40
+  },
+  "firstPythonControls": {
+    "executed": 39,
+    "failed": 0,
+    "passed": 39
+  },
+  "fourNewSourcePathsAbsentAtBase": true,
+  "nativeExecutions": 0,
+  "scope": "Local Python/source/archive-boundary preparation only",
+  "workflowParsedAndThreeChecksumsMatched": true
+}
