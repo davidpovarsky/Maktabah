@@ -1,0 +1,85 @@
+{
+  "reason": "Preserve original compiler/test bytes including whitespace without treating runtime logs as source whitespace violations. Original raw logs remain in the owned build evidence.",
+  "logs": [
+    {
+      "raw_name": "evidence/existing-search/tests.log",
+      "raw_bytes": 1776,
+      "raw_sha256": "9fba3e85c6b64599407f1ab0b7c13b8765d691bb5ca2edf4e5afee7b97b45cd5",
+      "gzip_name": "evidence/existing-search/tests.log.gz",
+      "gzip_bytes": 613,
+      "gzip_sha256": "3f253a9850bd5767c766e8762d87c702a5b239481d3e0b4bdb9970ddd3499fd2"
+    },
+    {
+      "raw_name": "evidence/existing-search-final/tests.log",
+      "raw_bytes": 1776,
+      "raw_sha256": "2f6ec60c54ea44c6e05a835a6bf3f7cca63173f709d81d906feda45dd191cb61",
+      "gzip_name": "evidence/existing-search-final/tests.log.gz",
+      "gzip_bytes": 612,
+      "gzip_sha256": "2cfa2ee29b65649238bc057b8ae9e2fa022ff6b54d80a2695078645c84f58adb"
+    },
+    {
+      "raw_name": "evidence/final-green/compile.log",
+      "raw_bytes": 246,
+      "raw_sha256": "5b3116eae7faf8cdc17ba18c477229c4a0e55bbcebcd8f5838ac7e5462edbcd6",
+      "gzip_name": "evidence/final-green/compile.log.gz",
+      "gzip_bytes": 144,
+      "gzip_sha256": "e6150082f9534fd655c9fd3c7cfc30497b3370a81353ea127728b390aa6adc3b"
+    },
+    {
+      "raw_name": "evidence/final-green/tests.log",
+      "raw_bytes": 56,
+      "raw_sha256": "b739c41e85025250251e54364d7dafdb9eda297317f07045fba06d06c30047b7",
+      "gzip_name": "evidence/final-green/tests.log.gz",
+      "gzip_bytes": 73,
+      "gzip_sha256": "dcae55e20b0baf47144e4f9b63fe8f3d48394c9ca98fa711b204caa636401262"
+    },
+    {
+      "raw_name": "evidence/final-red/compile.log",
+      "raw_bytes": 246,
+      "raw_sha256": "c877e3f75cc4b7c07294577028a82e227537e6befe228b1d9887c029fad1eefb",
+      "gzip_name": "evidence/final-red/compile.log.gz",
+      "gzip_bytes": 142,
+      "gzip_sha256": "d7dab0b5e2916391e07813ce5087c24133f1c508bb9f0d82b22ccd8fb8770c37"
+    },
+    {
+      "raw_name": "evidence/final-red/tests.log",
+      "raw_bytes": 590,
+      "raw_sha256": "5e04e7509a24993440344192ebf3e0c07d64f1b2dcfa0c77144258d89cd89487",
+      "gzip_name": "evidence/final-red/tests.log.gz",
+      "gzip_bytes": 267,
+      "gzip_sha256": "53703f5391e32c028e985c51875b601a7efda30bdc2faab73b1e05e7f4ca0d25"
+    },
+    {
+      "raw_name": "evidence/green-attempt1/compile.log",
+      "raw_bytes": 246,
+      "raw_sha256": "f84cb8ee26e2d2313510be55c222a9f2f7bd1f99d3eafadeb7a09111a6f43120",
+      "gzip_name": "evidence/green-attempt1/compile.log.gz",
+      "gzip_bytes": 142,
+      "gzip_sha256": "06d6321412bf3bb7dcfd257974f924f2fffcf4eb050b96a5cc43cca538f23af7"
+    },
+    {
+      "raw_name": "evidence/green-attempt1/tests.log",
+      "raw_bytes": 56,
+      "raw_sha256": "2d1ff28bbd675c72d11dc093b45f2a8edbb8f4a81b764b1465e43bc6f93cf1c1",
+      "gzip_name": "evidence/green-attempt1/tests.log.gz",
+      "gzip_bytes": 73,
+      "gzip_sha256": "3f931e5a5a228a0acf2ca396e924c953e361542f0d9e7343cd04bf6b41638fd2"
+    },
+    {
+      "raw_name": "evidence/red-original-flows/compile.log",
+      "raw_bytes": 246,
+      "raw_sha256": "30c83da8c1f9157db3d8017a043999daf5e997f793ec5d0f4a5753ba64a39b03",
+      "gzip_name": "evidence/red-original-flows/compile.log.gz",
+      "gzip_bytes": 144,
+      "gzip_sha256": "0711744af9e1da163db32968f337ab589a0cc4434446430e5ec6cc4eb9003885"
+    },
+    {
+      "raw_name": "evidence/red-original-flows/tests.log",
+      "raw_bytes": 590,
+      "raw_sha256": "61b2705ab89f8da42de7e55a0509d55cecd91d78a2c9af804ea1a6666f16e647",
+      "gzip_name": "evidence/red-original-flows/tests.log.gz",
+      "gzip_bytes": 267,
+      "gzip_sha256": "04f9519a636828be76adc84918fc292863e0e0d2c63a1f77af871325959adf40"
+    }
+  ]
+}

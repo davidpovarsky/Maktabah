@@ -75,6 +75,7 @@ final class FixtureIndexValidator {
     func storedIdentity(indexURL: URL) -> OtzariaIndexBuildIdentity? { identity }
     func currentFingerprint(databasePath: String) throws -> OtzariaIndexFingerprint { fingerprint }
     func recoverTrustedManagedIndex(databasePath: String) throws -> UInt64? { nil }
+    func trustedManagedReadManifest(indexURL: URL, databasePath: String, build: OtzariaSearchEngineBuildInfo) -> OtzariaSearchArtifactManifest? { nil }
     func decode<T: Decodable>(_ type: T.Type, at url: URL) -> T? { nil }
 }
 @MainActor final class iOSNavigationManager { var openedHit: Int64? }

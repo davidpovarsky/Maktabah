@@ -131,16 +131,10 @@ struct OtzariaSearchArtifactInstaller: Sendable {
 
             let build = try OtzariaSearchEngineBridge.buildInfo()
             let fingerprint = try manager.currentFingerprint(databasePath: databasePath)
-            let identity = OtzariaIndexBuildIdentity(
+            let identity = try OtzariaSearchArtifactPolicy.artifactProducerIdentity(
+                manifest: artifact.manifest,
                 database: fingerprint,
-                upstreamCommit: build.upstreamCommit,
-                engineVersion: build.engineVersion,
-                indexSchemaVersion: build.indexSchemaVersion,
-                defaultGenerationOrder: build.defaultGenerationOrder,
-                adapterVersion: build.adapterVersion,
-                resourceHashes: build.resourceHashes,
-                catalogueHash: artifact.manifest.lexicalArtifact.catalogueHash,
-                semanticArtifactIdentity: nil
+                requiredResourceNames: Set(build.resourceHashes.keys)
             )
             try manager.writeIdentity(identity, indexURL: stagingURL)
             OtzariaIndexFileLogger.log("[Installer] Checking compatibility at \(stagingURL.path)...")
@@ -253,13 +247,10 @@ struct OtzariaSearchArtifactInstaller: Sendable {
             try validateContext()
             let build = try OtzariaSearchEngineBridge.buildInfo()
             let fingerprint = try manager.currentFingerprint(databasePath: databasePath)
-            let identity = OtzariaIndexBuildIdentity(
-                database: fingerprint, upstreamCommit: build.upstreamCommit,
-                engineVersion: build.engineVersion, indexSchemaVersion: build.indexSchemaVersion,
-                defaultGenerationOrder: build.defaultGenerationOrder, adapterVersion: build.adapterVersion,
-                resourceHashes: build.resourceHashes,
-                catalogueHash: artifact.manifest.lexicalArtifact.catalogueHash,
-                semanticArtifactIdentity: nil
+            let identity = try OtzariaSearchArtifactPolicy.artifactProducerIdentity(
+                manifest: artifact.manifest,
+                database: fingerprint,
+                requiredResourceNames: Set(build.resourceHashes.keys)
             )
             try manager.writeIdentity(identity, indexURL: stagingURL)
             OtzariaIndexFileLogger.log("[Installer] Checking compatibility at \(stagingURL.path)...")

@@ -1,0 +1,433 @@
+{
+  "observed_at": "2026-11-20T02:15:40.298249+00:00",
+  "base": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "flow_source": "baseline",
+  "source_sha256": {
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift": "446e4ba0c48f066c80671a8b6b8d530a50df9f2d590f13fd5df1cd3107904e63",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift": "497595f70f98417622ad38cd0951ea74e39eaaa0d7fea439572371ca6d90b2bd",
+    "Source/Otzaria/Search/OtzariaSearchIndexManager.swift": "c251124c03b6acf88b470fa931cdca4325e6ee62ed025a355de6a1bf23ac385a"
+  },
+  "candidate_policy_sha256": "9386bab3f68a98aa522e6eba22629b4dd9f79eb040a31f91b15533d89456fe30",
+  "exact_writer_methods_unchanged": {
+    "func makeIdentity(": true,
+    "func prepareOrResumeBuildingIndex(": true,
+    "private func canSeedBuildingIndex(": true
+  },
+  "fixture_sha256": {
+    "Tests\\HQ\\search\\IndexReadCompatibilityBoundary.swift": "428f9b77caf21eb14529ddc8fe7f278642d3cabcd1ec04ac839aec1b9d7a6001",
+    "Tests\\HQ\\search\\IndexReadCompatibilityFixtures.swift": "a6a95c91d624df9f478c27404e9872dad6426c8ac49042aa001eec5100af993b"
+  },
+  "manager_boundary_sha256": "16ce96d03265377444929067e8c69a75b821d33363e1d70c029a20d7c9197413",
+  "runner_sha256": "983162d025e8314e8425b0eed275604e3f51d14fc4b456f2826a1e61e364449a",
+  "manifest_sha256": {
+    "Tests/HQ/search/Fixtures/otzaria-miniTest10-v6-manifest.json": "626625ca7b6497695448870ca96f3982fe7a86cd064d5a3027c2e1a981d3bca7",
+    "docs/hq-search/manifests/otzaria-search-manifest.json": "34319ced48e76f22a5ae2df23745a03332160ddab2dd64244a5c917e0ce00a57"
+  },
+  "generated_swift_sha256": {
+    "BaselinePolicy.swift": "f0c848fac73932408455ed584f19799204ef1c20f2fb8f99a0769f2f6830dbd8",
+    "Installer.swift": "97e3ad0d8b879b7899df711d2c772f4e65533d7ca4134b1bc0f6423afd9c0011",
+    "Manager.swift": "e34734c5fed2d329019b79d149d46f56c99790b2d25d99623e425e06ef8b38f3",
+    "Models.swift": "9c48529fe9ac403c66b7d681edf444549464139fc929ac5f6100ed7a239560de",
+    "Policy.swift": "7b4f41907afa44bcc4f64b21f08b5759d09d2d087ff197f03d11d2750c615655"
+  },
+  "swift_version": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "production_qualification": "DISABLED_EMPTY_REGISTRY",
+  "boundaries": [
+    "Complete current and baseline policy with only type names renamed",
+    "Exact original install/stream/promote/trusted-manifest/recovery/readiness/writer methods",
+    "Real filesystem, Swift Codable and task cancellation",
+    "Controlled profile/provider, FFI compatibility/count/open, raw fixture extractor, storage lock/capacity/backup metadata",
+    "Flow-only candidate policy authority invokes candidate probe; never changes production qualification"
+  ],
+  "actual_old_index_runtime_executed": 0,
+  "native_executed": 0,
+  "owned_directory": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\read-compat-1n51dviy",
+  "compile_exit": 0,
+  "execute_exit": 1,
+  "cases": {
+    "cases": [
+      {
+        "name": "original_policy_accepts_original265_manifest",
+        "outcome": "PASS"
+      },
+      {
+        "name": "current_policy_preserves_original265_exact_build",
+        "outcome": "PASS"
+      },
+      {
+        "name": "baseline_RED_cross_revision_candidate_is_rejected",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_GREEN_exact_265_to_d5_full_policy_probe",
+        "outcome": "PASS"
+      },
+      {
+        "name": "production_candidate_remains_unqualified_and_rejected",
+        "outcome": "PASS"
+      },
+      {
+        "name": "actual_v32_manifest_candidate_metadata_probe_only",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_format",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_profile",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_profile_version",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_database_repository",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_database_release",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_database_tag",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_database_asset",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_database_asset_name",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_database_asset_digest",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_database_compressed_size",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_database_size",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_repository",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_commit",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_version",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_schema",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_generation",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_adapter",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_tantivy",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_semantic_revision",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_document_total",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_source_total",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_extracted_total",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_packaged_total",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_file_total",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_part_compression",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_part_digest",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_part_digest_nonhex",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_part_path",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_part_offset",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_part_packaged_bytes",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_part_output_bytes",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_repository",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_commit",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_future_descendant",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_branch",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_version",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_schema",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_generation",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_adapter",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_semantic_revision",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_resource_hash_Application Support/Otzaria/lexical.db",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_resource_hash_Application Support/Otzaria/lexical.db",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_missing_resource_Application Support/Otzaria/lexical.db",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_resource_hash_Vendor/OtzariaSearchEngine/Resources/Acronyms.json",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_resource_hash_Vendor/OtzariaSearchEngine/Resources/Acronyms.json",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_missing_resource_Vendor/OtzariaSearchEngine/Resources/Acronyms.json",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_producer_resource_hash_Vendor/OtzariaSearchEngine/Resources/dictionary.json",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_consumer_resource_hash_Vendor/OtzariaSearchEngine/Resources/dictionary.json",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_missing_resource_Vendor/OtzariaSearchEngine/Resources/dictionary.json",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_extra_resource",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_wrong_active_profile",
+        "outcome": "PASS"
+      },
+      {
+        "name": "candidate_rejects_wrong_actual_database_bytes",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_identity_uses_manifest_fields_and_keeps_consumer_honest",
+        "outcome": "PASS"
+      },
+      {
+        "name": "untrusted_bare_commit_cannot_authorize_cross_revision_read",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_identity_missing_required_resource_throws",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_metadata_binding_accepts_only_its_original_fields",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_metadata_binding_rejects_upstreamCommit",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_metadata_binding_rejects_engineVersion",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_metadata_binding_rejects_indexSchemaVersion",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_metadata_binding_rejects_defaultGenerationOrder",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_metadata_binding_rejects_adapterVersion",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_metadata_binding_rejects_catalogueHash",
+        "outcome": "PASS"
+      },
+      {
+        "name": "producer_metadata_binding_rejects_resourceHashes",
+        "outcome": "PASS"
+      },
+      {
+        "detail": "original producer265 replaced by consumerd5",
+        "name": "install_bulk_preserves_producer_and_old_reader_rollback",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "original producer265 replaced by consumerd5",
+        "name": "install_stream_preserves_producer_and_old_reader_rollback",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "original producer265 replaced by consumerd5",
+        "name": "recovery_preserves_original_producer_across_path_change",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "stable producer metadata rewritten",
+        "name": "recovery_existing_correct_producer_does_not_rewrite_identity",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "original producer265 replaced by consumerd5",
+        "name": "recovery_repairs_consumer_restamp_from_original_manifest",
+        "outcome": "FAIL"
+      },
+      {
+        "name": "recovery_production_disabled_preserves_existing_index",
+        "outcome": "PASS"
+      },
+      {
+        "name": "recovery_incompatible_engine_preserves_existing_index",
+        "outcome": "PASS"
+      },
+      {
+        "name": "recovery_wrong_count_preserves_existing_index",
+        "outcome": "PASS"
+      },
+      {
+        "name": "recovery_count_error_preserves_existing_index",
+        "outcome": "PASS"
+      },
+      {
+        "name": "recovery_wrong_resource_preserves_existing_index",
+        "outcome": "PASS"
+      },
+      {
+        "name": "recovery_wrong_source_preserves_existing_index",
+        "outcome": "PASS"
+      },
+      {
+        "name": "recovery_wrong_profile_preserves_existing_index",
+        "outcome": "PASS"
+      },
+      {
+        "name": "installer_incompatible_engine_preserves_original_final",
+        "outcome": "PASS"
+      },
+      {
+        "name": "installer_wrong_count_preserves_original_final",
+        "outcome": "PASS"
+      },
+      {
+        "name": "installer_count_error_preserves_original_final",
+        "outcome": "PASS"
+      },
+      {
+        "name": "installer_open_error_preserves_original_final",
+        "outcome": "PASS"
+      },
+      {
+        "name": "installer_promotion_open_error_preserves_original_final",
+        "outcome": "PASS"
+      },
+      {
+        "name": "streaming_cancellation_keeps_original_final",
+        "outcome": "PASS"
+      },
+      {
+        "name": "production_readiness_rejects_unqualified_producer_without_mutation",
+        "outcome": "PASS"
+      },
+      {
+        "name": "new_writer_identity_keeps_real_consumer_revision",
+        "outcome": "PASS"
+      },
+      {
+        "name": "cross_writer_seed_stays_denied_without_deleting_final",
+        "outcome": "PASS"
+      },
+      {
+        "name": "checkpoint_cross_writer_does_not_resume_or_seed",
+        "outcome": "PASS"
+      },
+      {
+        "name": "checkpoint_same_writer_resumes",
+        "outcome": "PASS"
+      }
+    ],
+    "counts": {
+      "failed": 5,
+      "passed": 87,
+      "skipped": 0,
+      "total": 92
+    },
+    "real_engine_or_index": false,
+    "runtime_qualification": "NOT_RUN; production registry empty"
+  },
+  "status": "FAILED"
+}

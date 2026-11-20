@@ -6,6 +6,60 @@ enum OtzariaManagedDiscoveryDisposition: Equatable, Sendable {
     case repairRequired
 }
 
+/// Directional READ compatibility is separate from an index writer identity.
+/// A source-parity candidate is deliberately insufficient to admit an index.
+/// Qualification requires the old producer's actual artifacts to pass the new
+/// runtime's read/install/recovery/rollback gates before this registry changes.
+enum OtzariaLexicalIndexReadCompatibility {
+    enum Contract: String, CaseIterable, Sendable {
+        case original265ToExactOccurrencesD5 = "otzaria-265-to-d5-lexical-read-v1"
+    }
+
+    // No contract is runtime-qualified. Do not populate this from a manifest,
+    // user default, environment variable, schema equality, or git ancestry.
+    private static let qualifiedContracts: Set<Contract> = []
+
+    static func qualifiedContract(
+        manifest: OtzariaSearchArtifactManifest,
+        consumer: OtzariaSearchEngineBuildInfo
+    ) -> Contract? {
+        guard let contract = candidateContract(manifest: manifest, consumer: consumer),
+              qualifiedContracts.contains(contract) else { return nil }
+        return contract
+    }
+
+    /// Eligibility only: this never authorizes production discovery or reads.
+    static func candidateContract(
+        manifest: OtzariaSearchArtifactManifest,
+        consumer: OtzariaSearchEngineBuildInfo
+    ) -> Contract? {
+        let producer = manifest.lexicalEngine
+        let resources = [
+            "Application Support/Otzaria/lexical.db":
+                "b42e36626802629fed178068e8cf11f0f034d6f24ae3b72ac9999b9311bf299f",
+            "Vendor/OtzariaSearchEngine/Resources/Acronyms.json":
+                "cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f",
+            "Vendor/OtzariaSearchEngine/Resources/dictionary.json":
+                "cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69",
+        ]
+        guard producer.repository == "Otzaria/otzaria_search_engine",
+              producer.commit == "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+              consumer.upstreamRepository == "davidpovarsky/otzaria_search_engine",
+              consumer.upstreamCommit == "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+              consumer.upstreamBranch == "codex/otzaria-exact-occurrences-20261120",
+              producer.engineVersion == "0.1.0", consumer.engineVersion == "0.1.0",
+              producer.indexSchemaVersion == 4, consumer.indexSchemaVersion == 4,
+              producer.defaultGenerationOrder == 5, consumer.defaultGenerationOrder == 5,
+              producer.adapterVersion == "0.1.0", consumer.adapterVersion == "0.1.0",
+              producer.tantivyVersion == "0.26.1",
+              producer.semanticSidecarRevision == "e836ea6cac05e695efdb03ef227e78cd1a624149",
+              consumer.semanticSidecarRevision == producer.semanticSidecarRevision,
+              manifest.resources.mapValues(\.sha256) == resources,
+              consumer.resourceHashes == resources else { return nil }
+        return .original265ToExactOccurrencesD5
+    }
+}
+
 enum OtzariaSearchArtifactPolicy {
     static let safetyReserve: Int64 = 1_073_741_824
 
@@ -23,17 +77,73 @@ enum OtzariaSearchArtifactPolicy {
     static func managedIdentityMatchesCanonicalData(
         _ identity: OtzariaIndexBuildIdentity,
         currentDatabase: OtzariaIndexFingerprint,
-        build: OtzariaSearchEngineBuildInfo
+        build: OtzariaSearchEngineBuildInfo,
+        trustedManifest: OtzariaSearchArtifactManifest? = nil
     ) -> Bool {
-        identity.database.fileSize == currentDatabase.fileSize
-            && identity.upstreamCommit == build.upstreamCommit
+        guard identity.database.fileSize == currentDatabase.fileSize
             && identity.engineVersion == build.engineVersion
             && identity.indexSchemaVersion == build.indexSchemaVersion
             && identity.defaultGenerationOrder == build.defaultGenerationOrder
             && identity.adapterVersion == build.adapterVersion
-            && identity.resourceHashes == build.resourceHashes
+            && identity.resourceHashes == build.resourceHashes else { return false }
+        if identity.upstreamCommit == build.upstreamCommit { return true }
+        // Older identity files have no repository field. A cross-revision read
+        // must also bind to the independently validated original manifest;
+        // matching a bare commit or schema is not sufficient provenance.
+        guard let trustedManifest,
+              OtzariaLexicalIndexReadCompatibility.qualifiedContract(
+                  manifest: trustedManifest, consumer: build
+              ) != nil else { return false }
+        return identityMatchesArtifactProducer(identity, manifest: trustedManifest)
         // Container path, mtime, and semantic sidecar registration are not
         // part of the canonical lexical artifact identity.
+    }
+
+    /// Producer metadata binding only; this is not runtime read authorization.
+    /// The identity format has no repository field, so a fully validated trusted
+    /// manifest and a qualified directional contract remain separate gates.
+    static func identityMatchesArtifactProducer(
+        _ identity: OtzariaIndexBuildIdentity,
+        manifest: OtzariaSearchArtifactManifest
+    ) -> Bool {
+        let producer = manifest.lexicalEngine
+        return identity.upstreamCommit == producer.commit
+            && identity.engineVersion == producer.engineVersion
+            && identity.indexSchemaVersion == producer.indexSchemaVersion
+            && identity.defaultGenerationOrder == producer.defaultGenerationOrder
+            && identity.adapterVersion == producer.adapterVersion
+            && identity.catalogueHash == manifest.lexicalArtifact.catalogueHash
+            && identity.resourceHashes == manifest.resources.mapValues(\.sha256)
+    }
+
+    /// Installing or repairing metadata records who PRODUCED the index, never
+    /// the runtime that happens to consume it. The existing required-resource
+    /// projection is retained for exact-build artifacts with extra resources.
+    /// Admission and physical engine/count checks remain the caller's gates.
+    static func artifactProducerIdentity(
+        manifest: OtzariaSearchArtifactManifest,
+        database: OtzariaIndexFingerprint,
+        requiredResourceNames: Set<String>
+    ) throws -> OtzariaIndexBuildIdentity {
+        var resources: [String: String] = [:]
+        for name in requiredResourceNames {
+            guard let resource = manifest.resources[name] else {
+                throw OtzariaSearchArtifactError.incompatible("resource \(name)")
+            }
+            resources[name] = resource.sha256
+        }
+        let producer = manifest.lexicalEngine
+        return OtzariaIndexBuildIdentity(
+            database: database,
+            upstreamCommit: producer.commit,
+            engineVersion: producer.engineVersion,
+            indexSchemaVersion: producer.indexSchemaVersion,
+            defaultGenerationOrder: producer.defaultGenerationOrder,
+            adapterVersion: producer.adapterVersion,
+            resourceHashes: resources,
+            catalogueHash: manifest.lexicalArtifact.catalogueHash,
+            semanticArtifactIdentity: nil
+        )
     }
 
     static func managedDiscoveryDisposition(
@@ -71,6 +181,36 @@ enum OtzariaSearchArtifactPolicy {
         databaseBytes: Int64,
         build: OtzariaSearchEngineBuildInfo
     ) throws {
+        try validate(manifest, database: database, databaseBytes: databaseBytes, build: build,
+                     readContract: OtzariaLexicalIndexReadCompatibility.qualifiedContract(
+                        manifest: manifest, consumer: build
+                     ))
+    }
+
+    /// A qualification probe, not an admission token. Uses every original
+    /// database/profile/part/layout gate; success still cannot populate the
+    /// production qualification registry or authorize discovery/installation.
+    static func validateReadCompatibilityCandidate(
+        _ manifest: OtzariaSearchArtifactManifest,
+        database: OtzariaDatabaseInstallationManifest,
+        databaseBytes: Int64,
+        build: OtzariaSearchEngineBuildInfo
+    ) throws -> OtzariaLexicalIndexReadCompatibility.Contract {
+        guard let candidate = OtzariaLexicalIndexReadCompatibility.candidateContract(
+            manifest: manifest, consumer: build
+        ) else { throw OtzariaSearchArtifactError.incompatible("unqualified read candidate") }
+        try validate(manifest, database: database, databaseBytes: databaseBytes, build: build,
+                     readContract: candidate)
+        return candidate
+    }
+
+    private static func validate(
+        _ manifest: OtzariaSearchArtifactManifest,
+        database: OtzariaDatabaseInstallationManifest,
+        databaseBytes: Int64,
+        build: OtzariaSearchEngineBuildInfo,
+        readContract: OtzariaLexicalIndexReadCompatibility.Contract?
+    ) throws {
         guard manifest.formatVersion == OtzariaSearchArtifactManifest.currentFormatVersion else {
             throw OtzariaSearchArtifactError.incompatible("manifest format \(manifest.formatVersion)")
         }
@@ -94,8 +234,9 @@ enum OtzariaSearchArtifactPolicy {
             throw OtzariaSearchArtifactError.incompatible("source database identity")
         }
         let engine = manifest.lexicalEngine
-        guard engine.repository == build.upstreamRepository,
-              engine.commit == build.upstreamCommit,
+        let exactProducer = engine.repository == build.upstreamRepository
+            && engine.commit == build.upstreamCommit
+        guard exactProducer || readContract != nil,
               engine.engineVersion == build.engineVersion,
               engine.indexSchemaVersion == build.indexSchemaVersion,
               engine.defaultGenerationOrder == build.defaultGenerationOrder,
