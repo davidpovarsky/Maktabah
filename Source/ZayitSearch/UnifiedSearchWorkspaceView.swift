@@ -566,16 +566,18 @@ struct SearchDataView: View {
             Section("ספרייה") {
                 componentRow(
                     title: "מסד ספרים", role: "חובה",
-                    status: OtzariaMaktabahBridge.shared.databaseURL == nil ? "לא מותקן" : "מוכן"
+                    status: OtzariaMaktabahBridge.shared.databaseURL == nil ? "לא מותקן" : "מוכן",
+                    statusIdentifier: "search-data-books-status"
                 )
                 componentRow(
                     title: "מילון לשוני משותף", role: "מומלץ",
-                    status: OtzariaMagicDictionaryManager.shared.validatedDatabaseURL == nil ? "לא מותקן" : "מוכן"
+                    status: OtzariaMagicDictionaryManager.shared.validatedDatabaseURL == nil ? "לא מותקן" : "מוכן",
+                    statusIdentifier: "search-data-lexical-status"
                 )
             }
             Section("אינדקסים לחיפוש") {
-                componentRow(title: "אינדקס אוצריא", role: "מומלץ", status: otzaria.status.label)
-                componentRow(title: "אינדקס זית", role: "מומלץ", status: zayitLabel)
+                componentRow(title: "אינדקס אוצריא", role: "מומלץ", status: otzaria.status.label, statusIdentifier: "search-data-otzaria-status")
+                componentRow(title: "אינדקס זית", role: "מומלץ", status: zayitLabel, statusIdentifier: "search-data-zayit-status")
             }
             Section {
                 Button("הורד והתקן רכיבים חסרים") {
@@ -618,6 +620,7 @@ struct SearchDataView: View {
                 }
                 .disabled(isInstallingAll)
                 Button("המשך עם הספרייה בלבד") { dismiss() }
+                    .accessibilityIdentifier("search-data-close")
                     .foregroundStyle(.secondary)
                 if let installMessage {
                     Text(installMessage)
@@ -638,9 +641,12 @@ struct SearchDataView: View {
                 Button("תקן את זית") { Task { await zayit.refresh(discover: true); await zayit.install() } }
                 Button("הסר את זית", role: .destructive) { zayit.remove() }
                 Button("תקן אינדקס אוצריא") { Task { _ = await otzaria.installManagedArtifactAndWait() } }
+                    .accessibilityIdentifier("search-data-repair-otzaria")
                 Button("הסר אינדקס אוצריא", role: .destructive) { otzaria.removeManagedIndex() }
+                    .accessibilityIdentifier("search-data-remove-otzaria")
             }
         }
+        .accessibilityIdentifier("search-data-screen")
         .navigationTitle("נתוני חיפוש")
         .task {
             otzaria.refreshStatus()
@@ -648,7 +654,7 @@ struct SearchDataView: View {
         }
     }
 
-    private func componentRow(title: String, role: String, status: String) -> some View {
+    private func componentRow(title: String, role: String, status: String, statusIdentifier: String) -> some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(title)
@@ -656,6 +662,7 @@ struct SearchDataView: View {
             }
             Spacer()
             Text(status).font(.caption).foregroundStyle(.secondary).multilineTextAlignment(.trailing)
+                .accessibilityIdentifier(statusIdentifier)
         }
     }
 

@@ -1,0 +1,26 @@
+{
+  "status": "PREPARED_NOT_RUN",
+  "additional_required_cases": [
+    "SearchDataNativeAcceptanceTests/testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount",
+    "SearchDataNativeAcceptanceTests/testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch",
+    "SearchDataNativeAcceptanceTests/testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch",
+    "SearchDataNativeAcceptanceTests/testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks",
+    "SearchDataNativeAcceptanceTests/testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry"
+  ],
+  "original_required_92_preserved": true,
+  "group": {
+    "label": "11-index",
+    "size": "11",
+    "hid_comparison": false
+  },
+  "bootstrap": "realUI original miniTest10 v6 installation",
+  "fixture_ownership": "exact simulator UUID, original container metadata, UUID sidecar, canonical miniature DB hash/size, trusted installed manifest",
+  "production_mutation": false,
+  "native_execution": "NOT_RUN",
+  "apple_typecheck": "NOT_RUN",
+  "scope_limits": [
+    "not full-production corpus UI",
+    "not physical-device or low-disk/OOM acceptance",
+    "repair failure is an actual disposable directory POSIX write denial, not simulated error injection"
+  ]
+}
