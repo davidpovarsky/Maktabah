@@ -1,0 +1,632 @@
+[
+  {
+    "artifactID": 14623629980,
+    "archiveSHA256": "d429442a479bf52692eed00099fc3226a88b17d905a30f084edaa4315c083104",
+    "archiveEntry": "normal-ios-runtime-selection.json",
+    "entryCRC32": 3405698874,
+    "originalBytes": 461,
+    "originalSHA256": "2a487c3eeb43518bc2150986202b376f9a1b4cc35306d84b43af07539fa272c4",
+    "sealedPath": "raw/artifacts/14623629980/normal-ios-runtime-selection.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14625246106,
+    "archiveSHA256": "6b184ae9d8f2c64290ccc6042840a1a81be154e213b0c80933e5bd168eb4668d",
+    "archiveEntry": "orientation-probe-landscape.png",
+    "entryCRC32": 37325669,
+    "originalBytes": 6364500,
+    "originalSHA256": "f943a3895a70b33818fd5fc4bff627a79dcd0f6af73deea98d56698e15ee55cc",
+    "sealedPath": "raw/artifacts/14625246106/orientation-probe-landscape.png",
+    "gzip": false
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "logs/equatable-macro-authorization.json",
+    "entryCRC32": 2067347917,
+    "originalBytes": 1328,
+    "originalSHA256": "225baaf3808f6380df5334c186366bedc07fbf762be098352ebd4a363752bb19",
+    "sealedPath": "raw/artifacts/14623734717/logs/equatable-macro-authorization.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "logs/hanlin-sdk-source.json",
+    "entryCRC32": 71549526,
+    "originalBytes": 61045,
+    "originalSHA256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+    "sealedPath": "raw/artifacts/14623734717/logs/hanlin-sdk-source.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "logs/build-simulator.log",
+    "entryCRC32": 3903620296,
+    "originalBytes": 35320556,
+    "originalSHA256": "6e1f5af333898355bd210876c0c731e70a26be39ef6464397b8edf922eb1f839",
+    "sealedPath": "raw/artifacts/14623734717/logs/build-simulator.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "logs/normal-ios-toolchain.json",
+    "entryCRC32": 1201856161,
+    "originalBytes": 17538,
+    "originalSHA256": "371aa7797ee2563558e59fc1e99656d7be7da05c2aa0a4d8d687766e71d1adea",
+    "sealedPath": "raw/artifacts/14623734717/logs/normal-ios-toolchain.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "logs/reports/normal-ios-runtime-selection.json",
+    "entryCRC32": 3405698874,
+    "originalBytes": 461,
+    "originalSHA256": "2a487c3eeb43518bc2150986202b376f9a1b4cc35306d84b43af07539fa272c4",
+    "sealedPath": "raw/artifacts/14623734717/logs/reports/normal-ios-runtime-selection.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/ExpoModulesProvider.swift",
+    "entryCRC32": 1233122861,
+    "originalBytes": 1246,
+    "originalSHA256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/ExpoModulesProvider.swift.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/actual-source-inputs.json",
+    "entryCRC32": 3230567270,
+    "originalBytes": 113162,
+    "originalSHA256": "5956b61f9d4280b61f942a4bfdc81e85d99c0f01f467268d86289f053b210063",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/actual-source-inputs.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/generated-pods-project.diff",
+    "entryCRC32": 405844769,
+    "originalBytes": 408815,
+    "originalSHA256": "396c48c1b525cfe6bd951cd1a395f4dc66d84112d9a4442edf1b5099f02a3591",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/generated-pods-project.diff.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/generated-privacy.diff",
+    "entryCRC32": 3566800935,
+    "originalBytes": 2616,
+    "originalSHA256": "7657a43fc563a530d15cefdbe12681962f64367e22c700fd3cd87dc4a491cb62",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/generated-privacy.diff.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/hanlin-sdk-after.log",
+    "entryCRC32": 1750068523,
+    "originalBytes": 679,
+    "originalSHA256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/hanlin-sdk-after.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/hanlin-sdk-inputs-after.json",
+    "entryCRC32": 71549526,
+    "originalBytes": 61045,
+    "originalSHA256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/hanlin-sdk-inputs-after.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/matching-embedded-bundle.log",
+    "entryCRC32": 2197235807,
+    "originalBytes": 741,
+    "originalSHA256": "29e34f5a221dbe07dfb7ef9fb331dda2800bf2d7e16ee02b9031012ff5922482",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/matching-embedded-bundle.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/native-script-permissions.log",
+    "entryCRC32": 0,
+    "originalBytes": 0,
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/native-script-permissions.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/pinned-sharp-inputs.log",
+    "entryCRC32": 3024443772,
+    "originalBytes": 991,
+    "originalSHA256": "78560d94294e7adc970a8f8eb5ffee5288bdf8f10e966c59249bbe32e9ff5c45",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/pinned-sharp-inputs.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/pod-install.log",
+    "entryCRC32": 406745189,
+    "originalBytes": 31886,
+    "originalSHA256": "603be33a7bfcd5afd0f9bc3d172953c807194d2c631883a52b5304e0ef17fd61",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/pod-install.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/npm-ci.log",
+    "entryCRC32": 1170146653,
+    "originalBytes": 3331,
+    "originalSHA256": "a54b8fcfc10b71b51289f316ab3ca5497bcdf5a66946a4c9ec44a3783c71beeb",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/npm-ci.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/preparation.json",
+    "entryCRC32": 1730968261,
+    "originalBytes": 75103,
+    "originalSHA256": "e14c3a660b3f6eb409ddea31debeb364bebaa463e330dd592dbea1345693de3b",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/preparation.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+    "entryCRC32": 217205652,
+    "originalBytes": 877,
+    "originalSHA256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+    "entryCRC32": 273092064,
+    "originalBytes": 855,
+    "originalSHA256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+    "entryCRC32": 3723357901,
+    "originalBytes": 1482,
+    "originalSHA256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+    "entryCRC32": 4021329801,
+    "originalBytes": 776,
+    "originalSHA256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+    "entryCRC32": 2194189160,
+    "originalBytes": 1233,
+    "originalSHA256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/privacy-generated.xcprivacy",
+    "entryCRC32": 1646111432,
+    "originalBytes": 1386,
+    "originalSHA256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/privacy-generated.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/privacy-original.xcprivacy",
+    "entryCRC32": 2557722508,
+    "originalBytes": 1132,
+    "originalSHA256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/privacy-original.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/react-source-checkout.log",
+    "entryCRC32": 1784428531,
+    "originalBytes": 453,
+    "originalSHA256": "b278da59b8bfd20172192fee69776965913a069701ec217aba71aa99075b6248",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/react-source-checkout.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/resolved-Podfile.lock",
+    "entryCRC32": 3011158832,
+    "originalBytes": 100298,
+    "originalSHA256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/resolved-Podfile.lock.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/resolved-Package.resolved",
+    "entryCRC32": 1908335594,
+    "originalBytes": 4432,
+    "originalSHA256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/resolved-Package.resolved.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/resource-producer-source.log",
+    "entryCRC32": 1494114326,
+    "originalBytes": 123,
+    "originalSHA256": "70e9e4a092543852aaab35d9a72b5076a5b1b69511576386c99735e9b9c73b75",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/resource-producer-source.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/verify-app.json",
+    "entryCRC32": 3233685624,
+    "originalBytes": 79977,
+    "originalSHA256": "0d6a90bed2b317591ead3f5762442d5ac61cabe743b6c446769b736c3f6b49c9",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/verify-app.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/workspace-Package.resolved",
+    "entryCRC32": 1908335594,
+    "originalBytes": 4432,
+    "originalSHA256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/workspace-Package.resolved.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14623734717,
+    "archiveSHA256": "539acf63435cd4efc32b994792ca38d5961c2c6c636508d260ed43d75e42da40",
+    "archiveEntry": "normal-ios-embedded/workspace-resolve-packages.log",
+    "entryCRC32": 1677514417,
+    "originalBytes": 2630,
+    "originalSHA256": "1ca3702caccc5800d71edd1fab20de8149e894c930e8c1f7227737ad2a6b0002",
+    "sealedPath": "raw/artifacts/14623734717/normal-ios-embedded/workspace-resolve-packages.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "logs/build-unsigned-device.log",
+    "entryCRC32": 416416343,
+    "originalBytes": 18620837,
+    "originalSHA256": "1a1ed462b8f33a3241bcbc9a75234b069504400568d3641aeb277e1ba2cacbbf",
+    "sealedPath": "raw/artifacts/14624375558/logs/build-unsigned-device.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "logs/equatable-macro-authorization.json",
+    "entryCRC32": 2067347917,
+    "originalBytes": 1328,
+    "originalSHA256": "225baaf3808f6380df5334c186366bedc07fbf762be098352ebd4a363752bb19",
+    "sealedPath": "raw/artifacts/14624375558/logs/equatable-macro-authorization.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "logs/hanlin-sdk-source.json",
+    "entryCRC32": 71549526,
+    "originalBytes": 61045,
+    "originalSHA256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+    "sealedPath": "raw/artifacts/14624375558/logs/hanlin-sdk-source.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "logs/normal-ios-toolchain.json",
+    "entryCRC32": 3941785682,
+    "originalBytes": 13019,
+    "originalSHA256": "5943d2222743b8a7efac83b6da34ec58d38696b2ba3592f3896c0373f074ec89",
+    "sealedPath": "raw/artifacts/14624375558/logs/normal-ios-toolchain.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/ExpoModulesProvider.swift",
+    "entryCRC32": 1233122861,
+    "originalBytes": 1246,
+    "originalSHA256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/ExpoModulesProvider.swift.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/actual-source-inputs.json",
+    "entryCRC32": 3230567270,
+    "originalBytes": 113162,
+    "originalSHA256": "5956b61f9d4280b61f942a4bfdc81e85d99c0f01f467268d86289f053b210063",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/actual-source-inputs.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/generated-pods-project.diff",
+    "entryCRC32": 2902039203,
+    "originalBytes": 410334,
+    "originalSHA256": "66497d8202ea7cd2f6100409e717e0ca1f1b4eb24b5982884681bd1b52bf3004",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/generated-pods-project.diff.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/generated-privacy.diff",
+    "entryCRC32": 3566800935,
+    "originalBytes": 2616,
+    "originalSHA256": "7657a43fc563a530d15cefdbe12681962f64367e22c700fd3cd87dc4a491cb62",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/generated-privacy.diff.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/hanlin-sdk-after.log",
+    "entryCRC32": 1750068523,
+    "originalBytes": 679,
+    "originalSHA256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/hanlin-sdk-after.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/hanlin-sdk-inputs-after.json",
+    "entryCRC32": 71549526,
+    "originalBytes": 61045,
+    "originalSHA256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/hanlin-sdk-inputs-after.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/matching-embedded-bundle.log",
+    "entryCRC32": 2197235807,
+    "originalBytes": 741,
+    "originalSHA256": "29e34f5a221dbe07dfb7ef9fb331dda2800bf2d7e16ee02b9031012ff5922482",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/matching-embedded-bundle.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/native-script-permissions.log",
+    "entryCRC32": 0,
+    "originalBytes": 0,
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/native-script-permissions.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/npm-ci.log",
+    "entryCRC32": 2947514793,
+    "originalBytes": 3331,
+    "originalSHA256": "87d6b73b1f83956d4c79e2fd8303a41e5db776027a122f9444776d9ca6d0ee87",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/npm-ci.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/pinned-sharp-inputs.log",
+    "entryCRC32": 3024443772,
+    "originalBytes": 991,
+    "originalSHA256": "78560d94294e7adc970a8f8eb5ffee5288bdf8f10e966c59249bbe32e9ff5c45",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/pinned-sharp-inputs.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/pod-install.log",
+    "entryCRC32": 2585073890,
+    "originalBytes": 31886,
+    "originalSHA256": "258c80c90e7a44727423e145bdcc1fac79125528d847bd3d80ed1ddec6703c67",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/pod-install.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/preparation.json",
+    "entryCRC32": 3552431517,
+    "originalBytes": 75103,
+    "originalSHA256": "cead45e910fc4ac8892d8f9cef8e858b9fac91f91b3816cd22c83a5a4fe6fabf",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/preparation.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+    "entryCRC32": 217205652,
+    "originalBytes": 877,
+    "originalSHA256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+    "entryCRC32": 3723357901,
+    "originalBytes": 1482,
+    "originalSHA256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+    "entryCRC32": 4021329801,
+    "originalBytes": 776,
+    "originalSHA256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+    "entryCRC32": 2194189160,
+    "originalBytes": 1233,
+    "originalSHA256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+    "entryCRC32": 273092064,
+    "originalBytes": 855,
+    "originalSHA256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/privacy-generated.xcprivacy",
+    "entryCRC32": 1646111432,
+    "originalBytes": 1386,
+    "originalSHA256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/privacy-generated.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/privacy-original.xcprivacy",
+    "entryCRC32": 2557722508,
+    "originalBytes": 1132,
+    "originalSHA256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/privacy-original.xcprivacy.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/react-source-checkout.log",
+    "entryCRC32": 1784428531,
+    "originalBytes": 453,
+    "originalSHA256": "b278da59b8bfd20172192fee69776965913a069701ec217aba71aa99075b6248",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/react-source-checkout.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/resolved-Package.resolved",
+    "entryCRC32": 1908335594,
+    "originalBytes": 4432,
+    "originalSHA256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/resolved-Package.resolved.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/resolved-Podfile.lock",
+    "entryCRC32": 3011158832,
+    "originalBytes": 100298,
+    "originalSHA256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/resolved-Podfile.lock.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/resource-producer-source.log",
+    "entryCRC32": 1494114326,
+    "originalBytes": 123,
+    "originalSHA256": "70e9e4a092543852aaab35d9a72b5076a5b1b69511576386c99735e9b9c73b75",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/resource-producer-source.log.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/verify-app.json",
+    "entryCRC32": 1840637254,
+    "originalBytes": 79981,
+    "originalSHA256": "15f089391ad122ef77e8d17525cbf31efc5010fd26f05e996ca2b8f0b2947d66",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/verify-app.json.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/workspace-Package.resolved",
+    "entryCRC32": 1908335594,
+    "originalBytes": 4432,
+    "originalSHA256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/workspace-Package.resolved.gz",
+    "gzip": true
+  },
+  {
+    "artifactID": 14624375558,
+    "archiveSHA256": "240231006f0627fa01b5deadbc3b9cc7c7c989aa652ce6f6d85ef67da1a042ff",
+    "archiveEntry": "normal-ios-embedded/workspace-resolve-packages.log",
+    "entryCRC32": 1317699757,
+    "originalBytes": 2630,
+    "originalSHA256": "c712534b757cae88b18d8cf42194730a0af7090954876523fa47c1cf495f97b5",
+    "sealedPath": "raw/artifacts/14624375558/normal-ios-embedded/workspace-resolve-packages.log.gz",
+    "gzip": true
+  }
+]

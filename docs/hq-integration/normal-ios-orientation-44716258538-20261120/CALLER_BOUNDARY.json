@@ -1,0 +1,27 @@
+{
+  "head": {
+    "code": 0,
+    "out": "b9508ff7e302dcd692b97c2c510993d0c2652809\n",
+    "err": ""
+  },
+  "status": {
+    "code": 0,
+    "out": "",
+    "err": ""
+  },
+  "branch": {
+    "code": 0,
+    "out": "codex/otzaria-occurrence-app-20261120\n",
+    "err": ""
+  },
+  "scriptDelta": {
+    "code": 0,
+    "out": "",
+    "err": ""
+  },
+  "callerReferences": {
+    "code": 0,
+    "out": "HEAD:.github/workflows/ios-build.yml:682:          bash Scripts/run-ipad-simulator-acceptance.sh \"$APP\"\nHEAD:Scripts/CI/test-normal-ios-toolchain.py:26:SHELL = \"Scripts/run-ipad-simulator-acceptance.sh\"\nHEAD:Scripts/CI/test-normal-ios-workspace.py:339:        self.assertIn('bash Scripts/run-ipad-simulator-acceptance.sh \"$APP\"', WORKFLOW)\nHEAD:Scripts/run-ipad-simulator-acceptance.sh:3:# run-ipad-simulator-acceptance.sh\nHEAD:Scripts/run-ipad-simulator-acceptance.sh:179:  normalize_screenshot_orientation \"$SCREENSHOT_DIR/$output\" \"$CURRENT_ORIENTATION\"\nHEAD:Scripts/run-ipad-simulator-acceptance.sh:666:  normalize_screenshot_orientation \"$SCREENSHOT_DIR/$name\" \"$CURRENT_ORIENTATION\"\nHEAD:Scripts/run-ipad-simulator-acceptance.sh:1094:  idb ui rotate \"$idb_orientation\" --udid \"$UDID\" || {\nHEAD:Scripts/run-ipad-simulator-acceptance.sh:1101:normalize_screenshot_orientation() {\nHEAD:Scripts/run-ipad-simulator-acceptance.sh:1152:echo \"=== [PHASE 0: Interface Orientation Probe] ===\"\nHEAD:Scripts/run-ipad-simulator-acceptance.sh:1157:normalize_screenshot_orientation \"$SCREENSHOT_DIR/orientation-probe-landscape.png\" landscapeLeft\n",
+    "err": ""
+  }
+}
