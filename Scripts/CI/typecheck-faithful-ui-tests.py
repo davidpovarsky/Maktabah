@@ -281,6 +281,7 @@ print(json.dumps({"actualSQLiteStatus": report["actualSQLite"]["status"],
 # records its explicit context-transition limitation. Actual app compilation remains required.
 source_regression_code = 0
 for label, driver in [
+    ("annotation-exchange", "tools/hq-annotation-exchange-acceptance.py"),
     ("hebrew-ranges", "tools/hq-hebrew-match-ranges.py"),
     ("book-page-cache", "tools/hq-book-page-cache-regression.py"),
     ("inspector-owner", "tools/hq-native-inspector-ownership.py"),
@@ -307,7 +308,8 @@ for label, driver in [
         subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=300))
     source_regression_code = source_regression_code or checked.returncode
     (artifacts / ("ui-acceptance-typecheck." + label + "-driver.log")).write_text(checked.stdout, encoding="utf-8")
-    for name in ["RESULT.json", "result.json", "compile.log", "tests.log", "swift-test.log", "inputs.json"]:
+    for name in ["RESULT.json", "result.json", "compile.log", "tests.log", "swift-test.log", "inputs.json",
+                 "crash-after.log", "crash-before.log", "verify-crash-after.log", "verify-crash-before.log"]:
         source = directory / name
         if source.is_file():
             (artifacts / ("ui-acceptance-typecheck." + label + "-" + name)).write_bytes(source.read_bytes())

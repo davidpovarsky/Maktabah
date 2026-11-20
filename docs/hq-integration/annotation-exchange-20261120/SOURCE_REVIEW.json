@@ -1,0 +1,6 @@
+{
+  "source_sha": "44a83552c007226ac46f7a48d65c7266cbccec05",
+  "reviewer": "github_native_audit",
+  "scope": "read-only association-query review, no test execution",
+  "finding": "No blocker found. LEFT JOIN keeps each annotation_tags row even when tags row is absent; association IDs, NULL values, text/blob bytes, order and duplicate multiplicity participate; materialization/disappearance changes transaction-bound source witness. No original table writes added."
+}

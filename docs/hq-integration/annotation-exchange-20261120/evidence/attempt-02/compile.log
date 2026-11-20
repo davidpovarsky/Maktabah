@@ -1,0 +1,49 @@
+Building for debugging...
+[0/13] Copying action-catalog.v1.json
+[0/13] Copying backend-acceptance-cases.v1.json
+[1/13] Copying backend-capability-matrix.v1.json
+[3/13] Copying examples.v1.json
+[4/13] Copying action-result.v1.schema.json
+[5/13] Copying action-request.v1.schema.json
+[6/13] Write sources
+[8/13] Write swift-version-2807070033DA82CF.txt
+[10/34] Emitting module OtzariaActionCore
+[11/40] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[12/40] Compiling OtzariaActionCore ActionPorts.swift
+[13/40] Compiling OtzariaActionCore ActionRegistry.swift
+[14/40] Compiling OtzariaActionCore CatalogActionResolver+SourceSections.swift
+[15/40] Compiling OtzariaActionCore CatalogActionResolver.swift
+[16/40] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[17/40] Compiling OtzariaActionCore ActionNativeUIFailure.swift
+[18/40] Compiling OtzariaActionCore ActionNoteDraft.swift
+[19/40] Compiling OtzariaActionCore ActionReferences.swift
+[20/40] Compiling OtzariaActionCore ActionRequest.swift
+[21/40] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[22/40] Compiling OtzariaActionCore ActionSearch.swift
+[23/40] Compiling OtzariaActionCore ActionSearchResults.swift
+[24/40] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[25/40] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[26/40] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[27/40] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[28/40] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[29/40] Compiling OtzariaActionCore ActionCommentary.swift
+[30/40] Compiling OtzariaActionCore ActionJSON.swift
+[31/40] Compiling OtzariaActionCore ActionWireCodec.swift
+[32/40] Compiling OtzariaActionCore ActionDeadline.swift
+[33/40] Compiling OtzariaActionCore ActionExecutor.swift
+[34/40] Compiling OtzariaActionCore ActionExecutionContext.swift
+[35/40] Compiling OtzariaActionCore ActionPolicy.swift
+[36/40] Compiling OtzariaActionCore ActionValidation.swift
+[37/42] Wrapping AST for OtzariaActionCore for debugging
+[39/48] Emitting module ExchangeAcceptance
+[40/48] Compiling ExchangeAcceptance SyncPendingStore.swift
+[41/48] Compiling ExchangeAcceptance TorahAnnotationEnvelope.swift
+[42/48] Compiling ExchangeAcceptance AnnotationExchangeTestSupport.swift
+[43/48] Compiling ExchangeAcceptance SQLiteDatabase.swift
+[44/48] Compiling ExchangeAcceptance AnnotationExchangeAcceptance.swift
+[45/48] Compiling ExchangeAcceptance AnnotationExchangeLedger.swift
+[46/49] Compiling ExchangeAcceptance UnusedZstdBoundary.swift
+[47/50] Wrapping AST for ExchangeAcceptance for debugging
+[48/50] Write Objects.LinkFileList
+[49/50] Linking ExchangeAcceptance.exe
+Build complete! (74.81s)

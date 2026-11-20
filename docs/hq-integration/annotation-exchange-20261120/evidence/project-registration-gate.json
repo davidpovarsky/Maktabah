@@ -1,0 +1,9 @@
+{
+  "source_sha": "a16b151f48446d9dbdc7810517d15de69ab94129",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "Scripts/CI/verify-otzaria-xcode-project.py"
+  ],
+  "exit_code": 0,
+  "scope": "source-level membership gate; not Apple compilation/Native"
+}

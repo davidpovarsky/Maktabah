@@ -1,0 +1,45 @@
+{
+  "scope": "actual SQLite component; no app/Native/transport",
+  "attempts": [
+    {
+      "attempt": "attempt-01",
+      "sentinel_job": "job_10635bf20b79",
+      "source_sha": "f070f218c28611d93146b276a1ff77d75b7a693f",
+      "status": "FAILED",
+      "passed_cases": 0,
+      "failed_cases": 0,
+      "files": {
+        "compile.log": "42a7e71beece43b4b9fb6202b99fa8466238057c1ea8b00226b77b4a67fd6fa6",
+        "RESULT.json": "4f9692c5eb06de212c5fa903b111e53e02de91fa1d39843caa037329f791e6c6"
+      }
+    },
+    {
+      "attempt": "attempt-02",
+      "sentinel_job": "job_efd03b64f6dc",
+      "source_sha": "9dc3d29198b39276bc9730b5624171b029be85b2",
+      "status": "FAILED",
+      "passed_cases": 0,
+      "failed_cases": 0,
+      "files": {
+        "compile.log": "357b9b2bb0ee1beb853f113b54716d3b072c8fc675c11a160d5cb1d615dad0a8",
+        "DIAGNOSTIC_NOTE.txt": "6b13799581f715ec2073e6b48ae288f8cc3241952c15ba07fc5c697a6074e57b",
+        "RESULT.json": "06fcf461ee65ef1113f027e63b229b0bc535b84a2f95b4c687955c4999538f83",
+        "tests.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "attempt": "attempt-03",
+      "sentinel_job": "job_88b6b8844f1b",
+      "source_sha": "4dc61536a2ee319cafa21742d0bf858e3d15db52",
+      "status": "FAILED",
+      "passed_cases": 27,
+      "failed_cases": 1,
+      "files": {
+        "CASES.json": "707c55bca0bb455b071ffe6d132f7d30f51e3458633c6bcebb3d5c01385df172",
+        "compile.log": "e84b7dba7726aa151fb7d56ebeed7ef7b925265586a8b05fc991ea78e33d3ab2",
+        "RESULT.json": "2f6e71f6cd40f4a825212244a90c168b703130bee05735b750c8141e2ce62fed",
+        "tests.log": "52a79434b2dc682522e66191d0b83ec9cd04d5b99ae2095e00859c600581a9fc"
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "targets": {
+    "Maktabah": "4B3202242EDAFE85003B95D1",
+    "Maktabah-Direct": "4B7C90A52F83494200454BE1",
+    "Maktabah-iOS": "F30576E22FA46222005732C6"
+  },
+  "group": "CFEE00000000000000000001",
+  "entries": [
+    {
+      "source": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "file_ref": "5C779026CC573B19C11E67E9",
+      "build_files": {
+        "Maktabah": "E87B9F1B268D74CCA1A03D7E",
+        "Maktabah-Direct": "D063CFCD71B1E5C5250AE920",
+        "Maktabah-iOS": "EA8CD1F296E0EA146F79764C"
+      }
+    },
+    {
+      "source": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "file_ref": "15AA5DEFA4B1E2823A7CCD9A",
+      "build_files": {
+        "Maktabah": "4C4E1E4F9DC2F168D2260AC8",
+        "Maktabah-Direct": "7CFE6AEF1FAFD68BFCEEC502",
+        "Maktabah-iOS": "D238792D20CAE8596B84D69F"
+      }
+    }
+  ],
+  "existing_dependencies": "All three targets already include original SQLiteDatabase, SyncPendingStore, AnnotationRepository and OtzariaActionCore. No package/product/signing/entitlement change.",
+  "validated": "All existing object-ID counts retained; exactly 8 unique new object IDs and six source memberships. Source inspection, not Apple build.",
+  "apple_regression_command": "python3 tools/hq-annotation-exchange-acceptance.py --artifacts-dir build/artifacts/annotation-exchange",
+  "native_capability_enabled": false
+}

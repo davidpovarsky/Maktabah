@@ -1,0 +1,98 @@
+Building for debugging...
+[0/13] Copying action-result.v1.schema.json
+[0/13] Copying action-request.v1.schema.json
+[1/13] Copying backend-acceptance-cases.v1.json
+[1/13] Copying backend-capability-matrix.v1.json
+[4/13] Copying action-catalog.v1.json
+[4/13] Write sources
+[6/13] Copying examples.v1.json
+[7/13] Write sources
+[8/13] Write swift-version-2807070033DA82CF.txt
+[10/34] Emitting module OtzariaActionCore
+[11/34] Compiling OtzariaActionCore ActionNativeUIFailure.swift
+[12/34] Compiling OtzariaActionCore ActionNoteDraft.swift
+[13/34] Compiling OtzariaActionCore ActionReferences.swift
+[14/34] Compiling OtzariaActionCore ActionRequest.swift
+[15/34] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[16/34] Compiling OtzariaActionCore ActionSearch.swift
+[17/34] Compiling OtzariaActionCore ActionSearchResults.swift
+[18/34] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[19/34] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[20/34] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[21/34] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[22/34] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[23/34] Compiling OtzariaActionCore ActionCommentary.swift
+[24/34] Compiling OtzariaActionCore ActionJSON.swift
+[25/34] Compiling OtzariaActionCore ActionWireCodec.swift
+[26/34] Compiling OtzariaActionCore ActionDeadline.swift
+[27/34] Compiling OtzariaActionCore ActionExecutor.swift
+[28/34] Compiling OtzariaActionCore ActionExecutionContext.swift
+[29/34] Compiling OtzariaActionCore ActionPolicy.swift
+[30/34] Compiling OtzariaActionCore ActionValidation.swift
+[31/40] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[32/40] Compiling OtzariaActionCore ActionPorts.swift
+[33/40] Compiling OtzariaActionCore ActionRegistry.swift
+[34/40] Compiling OtzariaActionCore CatalogActionResolver+SourceSections.swift
+[35/40] Compiling OtzariaActionCore CatalogActionResolver.swift
+[36/40] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[37/42] Wrapping AST for OtzariaActionCore for debugging
+[39/48] Compiling ExchangeAcceptance SyncPendingStore.swift
+[40/48] Compiling ExchangeAcceptance TorahAnnotationEnvelope.swift
+[41/48] Compiling ExchangeAcceptance AnnotationExchangeTestSupport.swift
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-04\owned-7670df8f-a20c-49a0-a12f-fa8c30405ed6\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:61:5: warning: will never be executed
+
+ 55 | func failAcceptance() -> Never {
+
+ 56 |     #if os(Windows)
+
+ 57 |     ExitProcess(1)
+
+    |     `- note: a call to a never-returning function
+
+ 58 |     #else
+
+ 59 |     exit(1)
+
+ 60 |     #endif
+
+ 61 |     fatalError("exit returned")
+
+    |     `- warning: will never be executed
+
+ 62 | }
+
+ 63 | 
+
+[42/48] Compiling ExchangeAcceptance SQLiteDatabase.swift
+C:\Users\DAVID\Code\Maktabah-annotation-exchange-20261120\build\annotation-exchange-20261120\attempt-04\owned-7670df8f-a20c-49a0-a12f-fa8c30405ed6\package\Sources\ExchangeAcceptance\AnnotationExchangeTestSupport.swift:61:5: warning: will never be executed
+
+ 55 | func failAcceptance() -> Never {
+
+ 56 |     #if os(Windows)
+
+ 57 |     ExitProcess(1)
+
+    |     `- note: a call to a never-returning function
+
+ 58 |     #else
+
+ 59 |     exit(1)
+
+ 60 |     #endif
+
+ 61 |     fatalError("exit returned")
+
+    |     `- warning: will never be executed
+
+ 62 | }
+
+ 63 | 
+
+[43/48] Compiling ExchangeAcceptance AnnotationExchangeAcceptance.swift
+[44/48] Compiling ExchangeAcceptance AnnotationExchangeLedger.swift
+[45/48] Emitting module ExchangeAcceptance
+[46/49] Compiling ExchangeAcceptance UnusedZstdBoundary.swift
+[47/50] Wrapping AST for ExchangeAcceptance for debugging
+[48/50] Write Objects.LinkFileList
+[49/50] Linking ExchangeAcceptance.exe
+Build complete! (74.78s)
