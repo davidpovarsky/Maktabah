@@ -1,0 +1,37 @@
+--- prior-v2/Scripts/CI/reader-inspector-focused-native.py
++++ candidate/Scripts/CI/reader-inspector-focused-native.py
+@@ -15,10 +15,10 @@
+ import sys
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+-BASE = "409519a6972783990a276ade0dbdc4703bb36ae4"
+-REF = "refs/heads/codex/otzaria-reader-inspector-focused-native-v2-20261120"
+-DOCS = "docs/hq-integration/reader-inspector-focused-native-v2-20261120/"
+-WORKFLOW = ".github/workflows/otzaria-reader-inspector-focused-native-v2.yml"
++BASE = "1bf1da14c0c3d74bb790331d8df365accac905f9"
++REF = "refs/heads/codex/otzaria-reader-inspector-focused-native-v3-20261120"
++DOCS = "docs/hq-integration/reader-inspector-focused-native-v3-20261120/"
++WORKFLOW = ".github/workflows/otzaria-reader-inspector-focused-native-v3.yml"
+ SELF = "Scripts/CI/reader-inspector-focused-native.py"
+ TESTS = "Scripts/CI/test-reader-inspector-focused-native.py"
+ MANIFEST = "docs/hq-integration/runtime27/R27_CASES.json"
+@@ -30,7 +30,7 @@
+     "Source": "3e2541b84ee83a4fed5ec7f93cc5ac488c7c2169",
+     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+     "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72",
+-    "Maktabah-iOSUITests": "9be9f4c91114f5daffceac8a8ded0e7314f29fb4",
++    "Maktabah-iOSUITests": "6ab7629c1dee420d7a6e6118d2d72759fe1fafc8",
+ }
+ SELECTED = [
+     "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+--- prior-v2/.github/workflows/otzaria-reader-inspector-focused-native-v2.yml
++++ candidate/.github/workflows/otzaria-reader-inspector-focused-native-v3.yml
+@@ -2,7 +2,7 @@
+ 
+ on:
+   push:
+-    branches: [codex/otzaria-reader-inspector-focused-native-v2-20261120]
++    branches: [codex/otzaria-reader-inspector-focused-native-v3-20261120]
+ 
+ permissions:
+   contents: read

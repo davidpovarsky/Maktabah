@@ -1,0 +1,59 @@
+{
+  "status": "SOURCE_REBOUND_APPLE_NATIVE_NOT_RUN",
+  "application_and_test_source": "1bf1da14c0c3d74bb790331d8df365accac905f9",
+  "source_tree": "19f2d0907d596fa0dc60083590ba9b16c2a11882",
+  "prior_reviewed_F4_v2": "8bb0ab7e87895a85265132188ede021cef3a08ae",
+  "prior_reviewed_M": "409519a6972783990a276ade0dbdc4703bb36ae4",
+  "new_branch": "codex/otzaria-reader-inspector-focused-native-v3-20261120",
+  "protected_trees": {
+    "Source": "3e2541b84ee83a4fed5ec7f93cc5ac488c7c2169",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72",
+    "Maktabah-iOSUITests": "6ab7629c1dee420d7a6e6118d2d72759fe1fafc8"
+  },
+  "driver_whole_file_inverse": true,
+  "driver_replacements": [
+    {
+      "before": "409519a6972783990a276ade0dbdc4703bb36ae4",
+      "after": "1bf1da14c0c3d74bb790331d8df365accac905f9"
+    },
+    {
+      "before": "codex/otzaria-reader-inspector-focused-native-v2-20261120",
+      "after": "codex/otzaria-reader-inspector-focused-native-v3-20261120"
+    },
+    {
+      "before": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/",
+      "after": "docs/hq-integration/reader-inspector-focused-native-v3-20261120/"
+    },
+    {
+      "before": ".github/workflows/otzaria-reader-inspector-focused-native-v2.yml",
+      "after": ".github/workflows/otzaria-reader-inspector-focused-native-v3.yml"
+    },
+    {
+      "before": "\"Maktabah-iOSUITests\": \"9be9f4c91114f5daffceac8a8ded0e7314f29fb4\"",
+      "after": "\"Maktabah-iOSUITests\": \"6ab7629c1dee420d7a6e6118d2d72759fe1fafc8\""
+    }
+  ],
+  "driver_old_sha256": "24521804567c55a4b1076800103baa8f87adbd128770da55334973b158eda7e9",
+  "driver_new_sha256": "bbdf903d29612534e4b309da66eac276e76767879bd8d39284eb216b6285c084",
+  "unchanged_original27_control_source_sha256": "1e8ec2c7d1e8a845ed5bd3e81323bf26b8e411e89581a6b0c74f9b56c2677e56",
+  "workflow_inverse_exact_branch_only": true,
+  "runtime_and_additions_exactly_equal_actual_v2": true,
+  "complete_Faithful_original_inverse_except_separately_reviewed_Motion_helper": true,
+  "all_four_selected_original_method_bodies_unchanged": true,
+  "preserved_original_native_rows": 116,
+  "preserved_extra_existing_release_rows": 3,
+  "selected_four_case_ids": [
+    "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable"
+  ],
+  "all_case_deadlines_seconds": 600,
+  "job_minutes": 360,
+  "source_or_ui_mutations_by_this_route": 0,
+  "native_executions": 0,
+  "actual_Apple_build": "NOT_RUN",
+  "full_native116_or_release114_credit": false,
+  "note": "M contains the separately reviewed outer palette-container hit-test correction. The four methods, all other helper bytes, input/result hit tests, original20-second palette wait and every other deadline remain unchanged."
+}
