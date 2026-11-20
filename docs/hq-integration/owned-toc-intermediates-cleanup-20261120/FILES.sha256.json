@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "PLAN.json",
+      "bytes": 578123,
+      "sha256": "42bd9087f26e5a6060b415e36b655b0e7b0817b7b7acb3ced45d20121401dc3c"
+    },
+    {
+      "path": "PROCESS_OBSERVATION.json",
+      "bytes": 75,
+      "sha256": "54646c9850a90200e21f7b8f7e384f9c56c95c2e09e1244a06c108e0a5b2d3b5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2269,
+      "sha256": "8e2bf636a3d1bdb1f611b48cf9b59756649e040ef064f0e3c1bc23d1e46379e8"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 100600,
+      "sha256": "79273f64937ae4b874c5c5bed1b29786ee9d595b78404e5c92917f477c8960c2"
+    }
+  ]
+}
