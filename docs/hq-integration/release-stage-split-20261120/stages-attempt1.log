@@ -1,0 +1,62 @@
+test_a_skipped_leaf_is_not_success_even_with_passing_matrix_report (__main__.NativeAcceptanceBoundaryTests.test_a_skipped_leaf_is_not_success_even_with_passing_matrix_report) ... ok
+test_failed_child_never_inherits_build_success_or_invents_counts (__main__.NativeAcceptanceBoundaryTests.test_failed_child_never_inherits_build_success_or_invents_counts) ... ok
+test_failed_largest_text_does_not_satisfy_native_predecessor (__main__.NativeAcceptanceBoundaryTests.test_failed_largest_text_does_not_satisfy_native_predecessor) ... ok
+test_original_four_config_gates_count_95_ui_and_two_separate_oracles (__main__.NativeAcceptanceBoundaryTests.test_original_four_config_gates_count_95_ui_and_two_separate_oracles) ... ERROR
+test_partial_device_matrix_cannot_reach_production (__main__.NativeAcceptanceBoundaryTests.test_partial_device_matrix_cannot_reach_production) ... ok
+test_successful_native_stage_remains_partial_with_original_counts (__main__.NativeAcceptanceBoundaryTests.test_successful_native_stage_remains_partial_with_original_counts) ... ERROR
+test_complete_manifest_remains_five_configurations_96_ui_and_two_oracles (__main__.OutcomePublicationTests.test_complete_manifest_remains_five_configurations_96_ui_and_two_oracles) ... ok
+test_diagnostic_or_baseline_scope_is_rejected (__main__.OutcomePublicationTests.test_diagnostic_or_baseline_scope_is_rejected) ... ok
+test_failed_import_has_durable_failure_before_a_stage_report_exists (__main__.OutcomePublicationTests.test_failed_import_has_durable_failure_before_a_stage_report_exists) ... ok
+test_original_final_gate_failure_cannot_publish_release_success (__main__.OutcomePublicationTests.test_original_final_gate_failure_cannot_publish_release_success) ... ok
+test_input_only_cannot_overwrite_original_build_evidence (__main__.PreparationControlTests.test_input_only_cannot_overwrite_original_build_evidence) ... ok
+test_input_only_requires_original_testing_input_checks (__main__.PreparationControlTests.test_input_only_requires_original_testing_input_checks) ... ok
+test_input_only_runs_original_preparation_but_never_xcode_debug_build (__main__.PreparationControlTests.test_input_only_runs_original_preparation_but_never_xcode_debug_build) ... ok
+test_separate_evidence_argument_cannot_modify_default_mode (__main__.PreparationControlTests.test_separate_evidence_argument_cannot_modify_default_mode) ... ok
+test_a_fresh_debug_build_or_full_acceptance_cannot_replace_input_restoration (__main__.RestoredInputsTests.test_a_fresh_debug_build_or_full_acceptance_cannot_replace_input_restoration) ... ok
+test_changed_actual_tracked_byte_inventory_is_rejected (__main__.RestoredInputsTests.test_changed_actual_tracked_byte_inventory_is_rejected) ... ok
+test_each_source_sdk_lock_package_resource_and_context_drift_is_rejected (__main__.RestoredInputsTests.test_each_source_sdk_lock_package_resource_and_context_drift_is_rejected) ... ok
+test_identical_original_inputs_pass_without_debug_rebuild (__main__.RestoredInputsTests.test_identical_original_inputs_pass_without_debug_rebuild) ... ok
+test_missing_original_input_cannot_silently_match_absence (__main__.RestoredInputsTests.test_missing_original_input_cannot_silently_match_absence) ... ok
+
+======================================================================
+ERROR: test_original_four_config_gates_count_95_ui_and_two_separate_oracles (__main__.NativeAcceptanceBoundaryTests.test_original_four_config_gates_count_95_ui_and_two_separate_oracles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/8c31d602ec0a/release-stage-split-work/Scripts/CI/test-runtime27-release-stages.py", line 216, in test_original_four_config_gates_count_95_ui_and_two_separate_oracles
+    checked = stages["strict_native_configurations"](self.report, self.manifest)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/8c31d602ec0a/release-stage-split-work/Scripts/CI/runtime27-release-stages.py", line 106, in strict_native_configurations
+    checked = guard["verify"](summary, tree, log, selected["required_ui_cases"],
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpusjg9rlq/tools/verify_xcresult_zero_skips.py", line 115, in verify
+    require(logs['executed'] == len(cases), 'Log/xcresult execution count mismatch')
+  File "/tmp/tmpusjg9rlq/tools/verify_xcresult_zero_skips.py", line 15, in require
+    raise ValueError(message)
+ValueError: Log/xcresult execution count mismatch
+
+======================================================================
+ERROR: test_successful_native_stage_remains_partial_with_original_counts (__main__.NativeAcceptanceBoundaryTests.test_successful_native_stage_remains_partial_with_original_counts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/8c31d602ec0a/release-stage-split-work/Scripts/CI/test-runtime27-release-stages.py", line 257, in test_successful_native_stage_remains_partial_with_original_counts
+    self.assertEqual(self.invoke_native(0), 0)
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/8c31d602ec0a/release-stage-split-work/Scripts/CI/test-runtime27-release-stages.py", line 254, in invoke_native
+    return stages["native_stage"](args, lambda *a, **k: exit_code, controller)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/8c31d602ec0a/release-stage-split-work/Scripts/CI/runtime27-release-stages.py", line 134, in native_stage
+    checked = strict_native_configurations(report, manifest)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/8c31d602ec0a/release-stage-split-work/Scripts/CI/runtime27-release-stages.py", line 106, in strict_native_configurations
+    checked = guard["verify"](summary, tree, log, selected["required_ui_cases"],
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpwfzzyqmb/tools/verify_xcresult_zero_skips.py", line 115, in verify
+    require(logs['executed'] == len(cases), 'Log/xcresult execution count mismatch')
+  File "/tmp/tmpwfzzyqmb/tools/verify_xcresult_zero_skips.py", line 15, in require
+    raise ValueError(message)
+ValueError: Log/xcresult execution count mismatch
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.026s
+
+FAILED (errors=2)

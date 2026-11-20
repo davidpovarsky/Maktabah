@@ -1,0 +1,32 @@
+[
+  {
+    "path": "Scripts/CI/runtime27.py",
+    "gitBlob": "0a272f2e08c8393cc4679f55438cebff94f92faa",
+    "sha256": "4cd655633b6b644b5a18c1d3860c77435a7f4ae9b95f7a67929e19a674840ac9"
+  },
+  {
+    "path": "Scripts/CI/runtime27-release.py",
+    "gitBlob": "91d78d5beae95b1ec88e7f7558fea5c4d3c0b043",
+    "sha256": "92f8f79fcf085334512c6f7ad5de97e17c68a3d6e8b0bd9ac1088eef5bc337dc"
+  },
+  {
+    "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+    "gitBlob": "8f881b6a9efc7ea5a98139105c8f8fb258665f11",
+    "sha256": "1226c240e9b3f4b70bfeb0e681d1a9902a36a0a115d43c3f31a594afc0e1f9a1"
+  },
+  {
+    "path": "Scripts/CI/run-faithful-production-release.py",
+    "gitBlob": "fa12215ba5c7e6044459fe0a9ec75c7a354dfc7a",
+    "sha256": "6e211230c772acf83643503de24e7f3f2c405f0c111091fcd0f5bcc90cd116f1"
+  },
+  {
+    "path": ".github/workflows/sefaria-embedded-validation.yml",
+    "gitBlob": "5ec661a48a22e7f49b4335fe488565e39e1a6add",
+    "sha256": "361d710124e01540f6ffa44e2fa9ef30b266ccc685abef6b39cfea5d40b43cf2"
+  },
+  {
+    "path": "Scripts/CI/hq-stage2-focused-apple.py",
+    "gitBlob": "32080db5067fe2cfcb959cf4f696dabed7a0888a",
+    "sha256": "eb9df6467fd26673e9a6e495f3bbdcf6e066e700db4daab54d882f14041b415e"
+  }
+]

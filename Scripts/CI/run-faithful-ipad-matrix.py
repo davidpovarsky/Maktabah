@@ -19,6 +19,7 @@ if _SCRIPTS_CI_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_CI_DIR)
 
 import runtime27_interruption
+import runtime27_release_handoff
 
 
 def main():
@@ -74,6 +75,16 @@ def main():
                 row["device_size"]: row for row in release_manifest["configurations"]
                 if row["data_profile"] == "miniTest10" and "content_size" not in row
             }
+        original_test_run = None
+        if os.environ.get("FAITHFUL_RELEASE_XCTESTRUN"):
+            if not release_manifest:
+                raise SystemExit("Transferred test products require the full original Release manifest")
+            receipt = runtime27_release_handoff.read_json(root / "build/runtime27-handoff/imported-build.json")
+            runtime27_release_handoff.validate_receipt(
+                receipt, runtime27_release_handoff.context(root), "build")
+            original_test_run = runtime27_release_handoff.original_xctestrun(root, receipt)
+            if Path(os.environ["FAITHFUL_RELEASE_XCTESTRUN"]).resolve() != original_test_run.resolve():
+                raise SystemExit("Cannot substitute a different test-run file")
         runtime27_contract = None
         runtime27_groups = None
         if os.environ.get("FAITHFUL_RUNTIME27_MANIFEST"):
@@ -385,6 +396,12 @@ def main():
                            "-parallel-testing-enabled", "NO",
                            "-destination", f"platform=iOS Simulator,id={udid}", "-derivedDataPath", "build/DerivedData",
                            "-resultBundlePath", str(result)]
+                if original_test_run:
+                    # Only the separate Release continuation uses this unchanged
+                    # original generated plist; the same-job command stays intact.
+                    command = ["xcodebuild", "test-without-building", "-xctestrun", str(original_test_run),
+                               "-parallel-testing-enabled", "NO", "-destination", f"platform=iOS Simulator,id={udid}",
+                               "-resultBundlePath", str(result)]
                 if runtime27_contract or release_manifest:
                     # A stalled AX query consumed68 minutes in run44207959071.
                     # Native XCTest must fail and retain that case, then permit
@@ -406,7 +423,8 @@ def main():
                     native_url_delivery = runpy.run_path("Scripts/CI/runtime27-url-delivery.py")["NativeURLDelivery"](
                         udid, container, label, artifacts / "runtime27")
                     environment.update(native_url_delivery.start())
-                if runtime27_contract and runtime27_contract.get("hid_comparison") and scenario.get("hid_comparison", True):
+                if ((runtime27_contract and runtime27_contract.get("hid_comparison") and scenario.get("hid_comparison", True))
+                        or (release_manifest and runpy.run_path("Scripts/CI/runtime27-release.py")["requires_native_hid"](selection))):
                     tools = json.loads((artifacts / "runtime27/hid-tools.json").read_text())
                     hid_comparison = runpy.run_path("Scripts/CI/runtime27-hid.py")["HIDComparison"](
                         udid, container, label, tools, artifacts / "runtime27")

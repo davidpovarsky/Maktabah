@@ -1,0 +1,20 @@
+{
+  "transfer_archive_sha256": "967abae5fe60fb0055ee7d12caa5d7ca81a2757e6958331e175c73ca3175a099",
+  "transfer_files": 23,
+  "worktree": "C:\\Users\\DAVID\\Code\\Maktabah-release-stage-split-20261120",
+  "base": "c24f71123818576e06cafdc8474a525be0f30811",
+  "source_sha256": {
+    ".github/workflows/sefaria-embedded-validation.yml": "4447ad0c79c5afc1a6ba3325966cd4c39c73c6a527a82ed1d1e9ae958d1007d9",
+    "Scripts/CI/hq-stage2-focused-apple.py": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+    "Scripts/CI/run-faithful-ipad-matrix.py": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171",
+    "Scripts/CI/runtime27-release.py": "aae3efc5c2fdb1123f24c05842d4b235434a46b6125c8280461f875a6690ea41",
+    "Scripts/CI/runtime27-release-stages.py": "1615b5aa05a260207023954f55ead35832ea814dcaf2881c12d958d341f750b8",
+    "Scripts/CI/runtime27_release_handoff.py": "28ab9a2a3d1f7426521fcb7401621fb46e8bc7f6de4e3d6c5bc556b69ccbd9dd",
+    "Scripts/CI/test-runtime27-release-handoff.py": "81df1415c68ce53d0b94e65756e82322e3168d976329df2db376c768f82538e4",
+    "Scripts/CI/test-runtime27-release-stages.py": "1581e3e61ca148d398842ef168226cc4c143445f766152db7608d6988b26ed7d",
+    "Scripts/CI/verify-release-stage-preservation.py": "1d0f08ea9e854843354ac1520652e06581454ca1289d37f035b7c24be6c238d9"
+  },
+  "windows_source_preservation_sha256": "78f492ef50b596d2b9ffa5713cc33d720184178476876bbb29db3f13b0935b9d",
+  "free_bytes": 925335552,
+  "native_ui_executed": 0
+}

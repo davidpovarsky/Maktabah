@@ -1,0 +1,28 @@
+test_empty_duplicate_unknown_wrong_device_scopes_rejected (__main__.AffectedExecutionTests.test_empty_duplicate_unknown_wrong_device_scopes_rejected) ... ok
+test_fresh_isolation_exactly_partitions_affected_cases (__main__.AffectedExecutionTests.test_fresh_isolation_exactly_partitions_affected_cases) ... ok
+test_missing_execution_is_not_an_executed_ui_failure (__main__.AffectedExecutionTests.test_missing_execution_is_not_an_executed_ui_failure) ... ok
+test_nonrequested_prior_pass_is_not_reported_as_new_or_not_run (__main__.AffectedExecutionTests.test_nonrequested_prior_pass_is_not_reported_as_new_or_not_run) ... ok
+test_supplemental_navigation_cases_preserve_original_phase_and_not_run (__main__.AffectedExecutionTests.test_supplemental_navigation_cases_preserve_original_phase_and_not_run) ... ok
+test_skipped_and_expected_failure_never_become_ui_passes (__main__.EvidenceClassificationTests.test_skipped_and_expected_failure_never_become_ui_passes) ... ok
+test_post_verification_staging_error_cannot_leave_success_status (__main__.GateMainFailureTests.test_post_verification_staging_error_cannot_leave_success_status) ... ok
+test_changed_native_lock_and_provider_are_rejected (__main__.PreparedInputTests.test_changed_native_lock_and_provider_are_rejected) ... ok
+test_changed_native_toolchain_rejected (__main__.PreparedInputTests.test_changed_native_toolchain_rejected) ... ok
+test_matching_prepared_context_reaches_existing_source_auditor (__main__.PreparedInputTests.test_matching_prepared_context_reaches_existing_source_auditor) ... ok
+test_only_named_actual_results_count (__main__.PreparedInputTests.test_only_named_actual_results_count) ... ok
+test_original_sdk_or_pinned_package_drift_before_signing_is_rejected (__main__.PreparedInputTests.test_original_sdk_or_pinned_package_drift_before_signing_is_rejected) ... ok
+test_complete_positive_fixture (__main__.ReleaseGateTests.test_complete_positive_fixture) ... ok
+test_documentation_only_reuse_preserves_checked_sha (__main__.ReleaseGateTests.test_documentation_only_reuse_preserves_checked_sha) ... ok
+test_extra_checkout_and_missing_checkout_are_rejected (__main__.ReleaseGateTests.test_extra_checkout_and_missing_checkout_are_rejected) ... ok
+test_extra_unit_cases_cannot_replace_required_ui (__main__.ReleaseGateTests.test_extra_unit_cases_cannot_replace_required_ui) ... ok
+test_legacy_six_pins_cannot_replace_current_nine (__main__.ReleaseGateTests.test_legacy_six_pins_cannot_replace_current_nine) ... ok
+test_prototype_oracle_never_inflates_native_ui_count (__main__.ReleaseGateTests.test_prototype_oracle_never_inflates_native_ui_count) ... ok
+test_reject_stale_failed_partial_and_missing_evidence (__main__.ReleaseGateTests.test_reject_stale_failed_partial_and_missing_evidence) ... ok
+test_same_count_self_consistent_foreign_revision_is_rejected (__main__.ReleaseGateTests.test_same_count_self_consistent_foreign_revision_is_rejected) ... ok
+test_sdk_revision_source_and_post_build_drift_are_rejected (__main__.ReleaseGateTests.test_sdk_revision_source_and_post_build_drift_are_rejected) ... ok
+test_small_corpus_cannot_satisfy_production (__main__.ReleaseGateTests.test_small_corpus_cannot_satisfy_production) ... ok
+test_unaccepted_lock_bytes_and_sdk_gitlink_are_rejected (__main__.ReleaseGateTests.test_unaccepted_lock_bytes_and_sdk_gitlink_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.050s
+
+OK
