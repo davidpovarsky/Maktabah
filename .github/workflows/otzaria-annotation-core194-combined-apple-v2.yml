@@ -1,0 +1,229 @@
+name: Combined Core194 original annotations and full app compile
+
+on:
+  push:
+    branches:
+      - codex/otzaria-annotation-core194-combined-apple-v2-20261120
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: annotation-core194-combined-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+  PYTHONDONTWRITEBYTECODE: '1'
+
+jobs:
+  components:
+    name: Core194 and original Annotation Cloud Repository
+    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-core194-combined-apple-v2-20261120' }}
+    runs-on: xcode-27
+    timeout-minutes: 130
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          submodules: false
+          persist-credentials: false
+      - name: Bind exact combined source before component execution
+        id: source
+        timeout-minutes: 3
+        run: |
+          python3 - <<'PYBOOT'
+          import hashlib, json, pathlib
+          root = pathlib.Path.cwd()
+          output = root / 'build/annotation-combined-core194/components'
+          output.mkdir(parents=True, exist_ok=True)
+          expected = {'Scripts/CI/annotation-combined-core194-apple.py': '40ec0e8d07ae5e7b8d5964de91a8e9d29a393e7070ef40bc62db94df68ea959f', 'Scripts/CI/annotation-combined-core194-apple.inputs.json': '67ecb0506b6e35a53249d3c9d81b80b2b0f85ab288eeebd4e4b3e693b4cc86d7', 'Scripts/CI/test-annotation-combined-core194-apple.py': '5d80bb1e4bfbfa47f9d5e7259796add2c70cb1d90f67750b1a829debbd7a1db6', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
+          report = {'status': 'FAILED', 'pins': expected, 'Swift_executed': 0, 'Native_executed': 0}
+          try:
+              if len(expected) != 4:
+                  raise ValueError('Reviewed bootstrap is UNFINALIZED')
+              for relative, digest in expected.items():
+                  if hashlib.sha256((root / relative).read_bytes()).hexdigest() != digest:
+                      raise ValueError('Reviewed executable CI input differs: ' + relative)
+              report['status'] = 'BOOTSTRAP_SOURCE_BOUND'
+          finally:
+              (output / 'bootstrap.json').write_text(json.dumps(report, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+          PYBOOT
+          python3 Scripts/CI/annotation-combined-core194-apple.py --phase before --scope components
+      - name: Select original installed Apple toolchain
+        id: toolchain
+        timeout-minutes: 8
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/local-annotation-cloud-route/toolchain.json
+      - name: Execute route controls and unchanged original Python controls
+        id: controls
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          python3 Scripts/CI/test-annotation-combined-core194-apple.py --artifacts-dir build/annotation-combined-core194/components/python-controls 2>&1 | tee build/annotation-combined-core194/components/python-controls.log
+          python3 Tests/HQ/cold-search/test_core_driver.py 2>&1 | tee build/annotation-combined-core194/components/original-core-driver-controls.log
+          python3 Scripts/CI/test-annotation-disconnect-apple.py --artifacts-dir build/annotation-disconnect-route/python-controls 2>&1 | tee build/annotation-combined-core194/components/original-repository-controls.log
+          python3 Scripts/CI/test-local-annotation-cloud-apple.py --artifacts-dir build/local-annotation-cloud-route/python-controls 2>&1 | tee build/annotation-combined-core194/components/original-cloud-controls.log
+          python3 tools/test-local-cloud-pending-sql.py --root . --output build/local-annotation-cloud-route/sql-premises/RESULT.json
+      - name: Execute original Core baseline20 and all194 candidate tests
+        id: core
+        if: ${{ steps.source.outcome == 'success' && steps.toolchain.outcome == 'success' && steps.controls.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 45
+        run: >-
+          python3 tools/hq-cold-search-core-acceptance.py
+          --output build/cold-search-core-apple
+          --expected-inputs-sha256 7d840410c2b1a705285b782deb7be7ca04cee7542be7dace5b6beed687202d9d
+      - name: Execute unchanged original local43 cold2 and owned cloud48
+        id: local
+        if: ${{ always() && steps.source.outcome == 'success' && steps.toolchain.outcome == 'success' && steps.controls.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 20
+        run: python3 tools/hq-local-annotation-cloud-acceptance.py --artifacts-dir build/local-annotation-cloud-acceptance
+      - name: Execute unchanged original exchange28 and two process reopens
+        id: exchange
+        if: ${{ always() && steps.source.outcome == 'success' && steps.toolchain.outcome == 'success' && steps.controls.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 14
+        run: python3 tools/hq-annotation-exchange-acceptance.py --artifacts-dir build/local-annotation-cloud-exchange-regression
+      - name: Execute original Repository expected RED and all10 candidate controls
+        id: race
+        if: ${{ always() && steps.source.outcome == 'success' && steps.toolchain.outcome == 'success' && steps.controls.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 15
+        run: python3 tools/hq-annotation-disconnect-acceptance.py --artifacts-dir build/annotation-disconnect-acceptance
+      - name: Require complete Core and original component gates
+        if: always()
+        timeout-minutes: 5
+        env:
+          COMBINED_TOOLCHAIN_OUTCOME: ${{ steps.toolchain.outcome }}
+          COMBINED_CONTROLS_OUTCOME: ${{ steps.controls.outcome }}
+          COMBINED_CORE_OUTCOME: ${{ steps.core.outcome }}
+          COMBINED_LOCAL_OUTCOME: ${{ steps.local.outcome }}
+          COMBINED_EXCHANGE_OUTCOME: ${{ steps.exchange.outcome }}
+          COMBINED_RACE_OUTCOME: ${{ steps.race.outcome }}
+        run: python3 Scripts/CI/annotation-combined-core194-apple.py --phase after --scope components
+      - name: Retain exact raw component evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: annotation-core194-components
+          path: build/annotation-combined-core194/components/
+          if-no-files-found: error
+          retention-days: 30
+
+  full_app:
+    name: Original full app compile including CloudKit callers
+    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-core194-combined-apple-v2-20261120' }}
+    runs-on: xcode-27
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          submodules: false
+          persist-credentials: false
+      - name: Bind exact combined source before full app compile
+        id: source
+        timeout-minutes: 3
+        run: |
+          python3 - <<'PYBOOT'
+          import hashlib, json, pathlib
+          root = pathlib.Path.cwd()
+          output = root / 'build/annotation-combined-core194/full_app'
+          output.mkdir(parents=True, exist_ok=True)
+          expected = {'Scripts/CI/annotation-combined-core194-apple.py': '40ec0e8d07ae5e7b8d5964de91a8e9d29a393e7070ef40bc62db94df68ea959f', 'Scripts/CI/annotation-combined-core194-apple.inputs.json': '67ecb0506b6e35a53249d3c9d81b80b2b0f85ab288eeebd4e4b3e693b4cc86d7', 'Scripts/CI/test-annotation-combined-core194-apple.py': '5d80bb1e4bfbfa47f9d5e7259796add2c70cb1d90f67750b1a829debbd7a1db6', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
+          report = {'status': 'FAILED', 'pins': expected, 'Swift_executed': 0, 'Native_executed': 0}
+          try:
+              if len(expected) != 4:
+                  raise ValueError('Reviewed bootstrap is UNFINALIZED')
+              for relative, digest in expected.items():
+                  if hashlib.sha256((root / relative).read_bytes()).hexdigest() != digest:
+                      raise ValueError('Reviewed executable CI input differs: ' + relative)
+              report['status'] = 'BOOTSTRAP_SOURCE_BOUND'
+          finally:
+              (output / 'bootstrap.json').write_text(json.dumps(report, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+          PYBOOT
+          python3 Scripts/CI/annotation-combined-core194-apple.py --phase before --scope full_app
+      - name: Select original full app toolchain
+        id: toolchain
+        timeout-minutes: 8
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/annotation-combined-core194/full_app/toolchain.json
+      - name: Prepare original Node version
+        id: node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare original Ruby version
+        id: ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Build original full app and original UI test target
+        id: build
+        if: ${{ steps.source.outcome == 'success' && steps.toolchain.outcome == 'success' && steps.node.outcome == 'success' && steps.ruby.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 72
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/annotation-combined-core194-apple.py --phase build --scope full_app
+      - name: Require original full app and unchanged source
+        if: always()
+        timeout-minutes: 5
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COMBINED_TOOLCHAIN_OUTCOME: ${{ steps.toolchain.outcome }}
+          COMBINED_NODE_OUTCOME: ${{ steps.node.outcome }}
+          COMBINED_RUBY_OUTCOME: ${{ steps.ruby.outcome }}
+          COMBINED_BUILD_OUTCOME: ${{ steps.build.outcome }}
+        run: python3 Scripts/CI/annotation-combined-core194-apple.py --phase after --scope full_app
+      - name: Retain actual full app compile evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: annotation-core194-full-app
+          path: build/annotation-combined-core194/full_app/
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    name: Require both exact combined Apple jobs
+    if: always()
+    needs: [components, full_app]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          submodules: false
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: annotation-core194-components
+          path: build/annotation-combined-core194/downloads/components
+      - uses: actions/download-artifact@v4
+        with:
+          name: annotation-core194-full-app
+          path: build/annotation-combined-core194/downloads/full_app
+      - name: Require complete same-run components and full-app compile
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COMBINED_COMPONENTS_JOB_RESULT: ${{ needs.components.result }}
+          COMBINED_FULL_APP_JOB_RESULT: ${{ needs.full_app.result }}
+        run: >-
+          python3 Scripts/CI/annotation-combined-core194-apple.py --phase aggregate --scope aggregate
+          --artifacts build/annotation-combined-core194/downloads
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: annotation-core194-combined-summary
+          path: |
+            build/annotation-combined-core194/aggregate/RESULT_AGGREGATE.json
+            build/annotation-combined-core194/aggregate/ACTUAL_JOBS.json
+          if-no-files-found: error
+          retention-days: 30

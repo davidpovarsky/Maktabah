@@ -1,0 +1,35 @@
+{
+  "actual_Mac_controls": {
+    "errors": 0,
+    "executed": 40,
+    "failures": 1,
+    "passed": 39,
+    "skips": 0
+  },
+  "actual_failure": "AssertionError: True is not false at the lowercase Path.exists lookup",
+  "application_source": "bd855c02fcef94a732f584c5992aeacec6b1b21d",
+  "artifact": {
+    "bytes": 2133690,
+    "git_blob": "14043e41511374eb01c528fb5f5a09d1cfade421",
+    "sha256": "92ef4039475120edb20b4e5d6d09ad23f2aa59e9c5ac7f6a5fe24cfeffd7bf07"
+  },
+  "artifact_id": 14671777929,
+  "attempt": 1,
+  "component_Swift_execution": "NOT_RUN",
+  "component_job": 136582815054,
+  "failed_case": "test_main_produced_uppercase_receipts_are_read_by_actual_aggregate_consumer",
+  "full_app_job": {
+    "id": 136582815484,
+    "no_result_inferred": true,
+    "not_canceled_or_rerun_by_this_agent": true,
+    "status_at_root_observation": "RUNNING_ORIGINAL_BUILD"
+  },
+  "head": "b511249f5a75337b328325e8c5e83c2b78030a7a",
+  "no_cross_F_result_credit": true,
+  "original_Core_and_component_outcomes": "SKIPPED_AFTER_REQUIRED_PYTHON_FAILURE",
+  "reason": "A correctly spelled uppercase entry also resolves through a lowercase lookup on the actual Mac filesystem. The corrected test compares actual directory-entry strings.",
+  "run": 44821378113,
+  "status": "AUTHENTIC_COMPONENT_FAILURE_RETAINED",
+  "whole_run_terminal_result": "NOT_ASSERTED_BY_THIS_PACKET",
+  "zip_crc_members": 9
+}

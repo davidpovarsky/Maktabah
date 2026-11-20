@@ -1,0 +1,59 @@
+{
+  "Apple_executed": 0,
+  "functions": {
+    "archive_sources": {
+      "byte_exact": true,
+      "sha256": "b8642fa3b211f440bc8f7b86e1de42349098513db72b7969718759361dce1a8b"
+    },
+    "blob": {
+      "byte_exact": true,
+      "sha256": "0dc88895f21d26f6604f8c1d625683e6983ec09fb9a35c9a5f85014b13ac8cb7"
+    },
+    "digest": {
+      "byte_exact": true,
+      "sha256": "50b76bfffc27cbd7a792c95d031f6fd8e49777b6241b96ed8c4c4773edc356cb"
+    },
+    "exact_file": {
+      "byte_exact": true,
+      "sha256": "33ed89466cab72f812907aba691e4d848b5a11fd33bc2ee5c38aff847c3589b8"
+    },
+    "git": {
+      "byte_exact": true,
+      "sha256": "432c9b6b7b539dfc5ce0faea779014843a6d1f47a9e571db2584deef0a343678"
+    },
+    "json_bytes": {
+      "byte_exact": true,
+      "sha256": "76aa5295ab6fd50a0fb85a6a67db3007dfa0e3fb33224f07eec54e7fd20dcdd3"
+    },
+    "load_json": {
+      "byte_exact": true,
+      "sha256": "3d1f41e641a6ed7d20a7a6f3e29007f3d19e163e157ee8320ce5b64d01dae037"
+    },
+    "module": {
+      "byte_exact": true,
+      "sha256": "ff1b8d76b5ba0f4d623ea72f37b4ce91e90cc32d2058dd022b0e2ab99ccdb4e7"
+    },
+    "record": {
+      "byte_exact": true,
+      "sha256": "236f99ad56efa94e292bfceb01f3763b278dbf49f086a01ff001ad88697f6d00"
+    },
+    "require": {
+      "byte_exact": true,
+      "sha256": "fba5518dbbe127c5d736b6a2ef99ebbb28b24be84759bc3ce649d93a6815e637"
+    },
+    "source_report": {
+      "byte_exact": true,
+      "sha256": "880ed2f344305df709a37c1bec21a09edce05bb4f4f80c97ade59452e974da50"
+    },
+    "verify_original_gates": {
+      "byte_exact": true,
+      "sha256": "27fdc09ce5494c3231f8a0d192b38b8d8a47876ae14653c9dc17f28108e6aacc"
+    },
+    "verify_race": {
+      "byte_exact": true,
+      "sha256": "e739442454cee105a7374c97a87b0bdb8966e4185059819cd3c72c70769aeda0"
+    }
+  },
+  "original_file_sha256": "d5d1842259590866b68c11180422a20c2432ab07daba73623196ea5861f52568",
+  "status": "PASS_BYTE_EXACT_ORIGINAL_RESULT_VALIDATORS"
+}

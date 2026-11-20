@@ -1,0 +1,122 @@
+{
+  "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+    "after": {
+      "bytes": 4333,
+      "git_blob": "401931f2f39d47bc56790f267e03d622218a0ea3",
+      "sha256": "3633976680f64c0918685633ba1cf650afd4c1b2a9930e1898cac0d6c2667ead"
+    },
+    "before": {
+      "bytes": 4333,
+      "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+      "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    "changed_only": [
+      "application_source_sha",
+      "application_trees",
+      "otzaria_test_additions_sha256"
+    ],
+    "semantic_inverse": true
+  },
+  "Scripts/CI/hq-stage2-otzaria-test-additions.json": {
+    "after": {
+      "bytes": 19318,
+      "git_blob": "05b1879352e4abe926e6de7fe17603de428746cf",
+      "sha256": "650702d476423eec1ca31d767692d3bf29212b6f596d99aed7f9aef36af51a19"
+    },
+    "before": {
+      "bytes": 19318,
+      "git_blob": "fcf0d0791235a43378f5a595e803e23253c83a6f",
+      "sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+    },
+    "edits": [
+      {
+        "new": "eaf385c363750e04688a4cda181f40597f22f315",
+        "old": "2741615644741d39b0b19c6146f9c459323dabab"
+      }
+    ],
+    "exact_inverse": true
+  },
+  "Scripts/CI/local-annotation-cloud-apple.inputs.json": {
+    "after": {
+      "bytes": 19352,
+      "git_blob": "b3f7cf43689e33ef3527b78cd959a04cf79b229a",
+      "sha256": "2f34f4b4fa3b51acc1602d925d10f042589d4eef4cf7846da692af55d47a28a3"
+    },
+    "changed_input_pins": [
+      "Source/Core/CloudKit/CloudKitCoreManager.swift"
+    ],
+    "changed_only": [
+      "reviewed_source_sha",
+      "core_tree_sha",
+      "application_trees",
+      "source_pins",
+      "scope"
+    ],
+    "historical_before": {
+      "bytes": 19262,
+      "git_blob": "8a51e2b47b0237de65a1702a7ef64645a4ea11f4",
+      "sha256": "87c20b9a4a394ba30fb49d55f2282c31230c7c6ba93c3e90114c62efc94e258f"
+    },
+    "semantic_inverse": true
+  },
+  "Tests/HQ/cold-search/CORE_INPUTS.json": {
+    "after": {
+      "bytes": 38973,
+      "git_blob": "dbc60a044829edac545fdd047c2a96efa07d873d",
+      "sha256": "7d840410c2b1a705285b782deb7be7ca04cee7542be7dace5b6beed687202d9d"
+    },
+    "before": {
+      "bytes": 38973,
+      "git_blob": "98ed8e682cccedf7a5a8e089b1de6eb3e6ea51d4",
+      "sha256": "34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff"
+    },
+    "changed_only": "support_inputs[tools/hq-cold-search-core-acceptance.py]",
+    "semantic_inverse": true
+  },
+  "tools/hq-annotation-disconnect-acceptance.py": {
+    "after": {
+      "bytes": 24252,
+      "git_blob": "dc0de14212b41e02f925e023e4a1b44ce4503a5a",
+      "sha256": "e0d46e6e0a52fe8a9671529f7fa692a990fbfea5e0b5dad24770f4efb5c61cf4"
+    },
+    "before": {
+      "bytes": 24265,
+      "git_blob": "b71db9898af73964c56b88824566cfff310e21ca",
+      "sha256": "370090274c300120b55fb76131c86e4aacffcf7dc92a4c0437f153ffcfdeee63"
+    },
+    "edits": [
+      {
+        "new": "CORE_TREE = \"a89104250c1aedf75e6aa95ed3f111a4dc597217\"",
+        "old": "CORE_TREE = \"5d0ee482c8f10726fe3863792dac94c18e94d792\""
+      },
+      {
+        "new": "This gate requires the reviewed combined Core tree",
+        "old": "This gate qualifies original Core5d0, not a different Core tree"
+      }
+    ],
+    "exact_inverse": true
+  },
+  "tools/hq-cold-search-core-acceptance.py": {
+    "after": {
+      "bytes": 16993,
+      "git_blob": "117843a9b844f5feb33d769a85bd187d3f5a18d0",
+      "sha256": "47dc5de2074c407e4ede5192ede5472d1c41bde93983930c340493a70666a9c3"
+    },
+    "before": {
+      "bytes": 16973,
+      "git_blob": "2f89bd845f0d65c765b500fc16b866c190b97bc6",
+      "sha256": "64f0c0dd045137ab3b59da5c5146e9a226488c0865bd4b2f9df4576abe3e319a"
+    },
+    "edits": [
+      {
+        "new": "WORKFLOW = \".github/workflows/otzaria-annotation-core194-combined-apple-v2.yml\"",
+        "old": "WORKFLOW = \".github/workflows/otzaria-cold-search-core-validation.yml\""
+      },
+      {
+        "new": "BRANCH = \"refs/heads/codex/otzaria-annotation-core194-combined-apple-v2-20261120\"",
+        "old": "BRANCH = \"refs/heads/codex/otzaria-cold-search-core-apple-v2-20261120\""
+      }
+    ],
+    "exact_inverse": true
+  }
+}

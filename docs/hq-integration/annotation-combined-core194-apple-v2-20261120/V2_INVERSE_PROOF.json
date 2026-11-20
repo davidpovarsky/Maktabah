@@ -1,0 +1,156 @@
+{
+  "Core_cases_or_classifiers_changed": false,
+  "Core_driver_inverse": "exact branch/workflow only",
+  "Core_manifest_inverse": "exact one driver self-pin only",
+  "Native_executed": 0,
+  "Swift_executed": 0,
+  "all_other_candidate_file_bytes_unchanged": true,
+  "application_source": "bd855c02fcef94a732f584c5992aeacec6b1b21d",
+  "application_tree": "3c08a3de2102dd80df64f79dd56035a689d26edb",
+  "binding_changed_only": [
+    "route",
+    "source_pins"
+  ],
+  "branch": "codex/otzaria-annotation-core194-combined-apple-v2-20261120",
+  "budgets_changed": false,
+  "cause": "Actual case-insensitive Mac lookup resolves RESULT_after.json to the correctly named RESULT_AFTER.json. Directory-entry strings retain actual spelling.",
+  "changed_source_pins": [
+    "Tests/HQ/cold-search/CORE_INPUTS.json",
+    "docs/hq-integration/annotation-combined-core194-apple-v2-20261120/reference/original-cloud-binding.json",
+    "tools/hq-cold-search-core-acceptance.py"
+  ],
+  "changes": {
+    "Scripts/CI/annotation-combined-core194-apple.py": {
+      "after": {
+        "bytes": 60577,
+        "git_blob": "e8f2b560252c6e0cdf858fe50d9f73b339e651a3",
+        "sha256": "40ec0e8d07ae5e7b8d5964de91a8e9d29a393e7070ef40bc62db94df68ea959f"
+      },
+      "before": {
+        "bytes": 60568,
+        "git_blob": "10b6375c41cbc7abbd11d6e5d92482a2eff9ae78",
+        "sha256": "08c1aef2f88649b07cbd73c04cfad8edfcabd5f57d8d3996e22548187757c7c9"
+      },
+      "edits": [
+        {
+          "after": "codex/otzaria-annotation-core194-combined-apple-v2-20261120",
+          "before": "codex/otzaria-annotation-core194-combined-apple-20261120"
+        },
+        {
+          "after": ".github/workflows/otzaria-annotation-core194-combined-apple-v2.yml",
+          "before": ".github/workflows/otzaria-annotation-core194-combined-apple.yml"
+        },
+        {
+          "after": "docs/hq-integration/annotation-combined-core194-apple-v2-20261120/",
+          "before": "docs/hq-integration/annotation-combined-core194-apple-20261120/"
+        }
+      ],
+      "whole_inverse_exact": true
+    },
+    "Scripts/CI/test-annotation-combined-core194-apple.py": {
+      "after": {
+        "bytes": 36658,
+        "git_blob": "688213d115ad3c814349bef2f02bbb2a022c6561",
+        "sha256": "5d80bb1e4bfbfa47f9d5e7259796add2c70cb1d90f67750b1a829debbd7a1db6"
+      },
+      "before": {
+        "bytes": 36634,
+        "git_blob": "fc42896c927e2c73ab7be49279417b2f78bbfe2e",
+        "sha256": "dfadccfbe5b2dd0ecad9dce42183b394e7e9352e763bb21bfc63d4320cece60f"
+      },
+      "edits": [
+        {
+          "after": "            self.assertNotIn(\"RESULT_after.json\", {entry.name for entry in directory.iterdir()})",
+          "before": "            self.assertFalse((directory / \"RESULT_after.json\").exists())"
+        }
+      ],
+      "whole_inverse_exact": true
+    }
+  },
+  "old_Mac_controls": {
+    "errors": 0,
+    "failed": 1,
+    "passed": 39,
+    "skipped": 0
+  },
+  "old_Mac_run": 44821378113,
+  "old_component_job": 136582815054,
+  "original_control_count": 40,
+  "original_control_ids": [
+    "test_before_after_source_change_rejected",
+    "test_bound_source_core_counts_budgets_and_api_scope",
+    "test_core_baseline_cannot_run_candidate_executor_and_claim_expected_red",
+    "test_core_original_swiftpm_invocation_cannot_drop_jobs_or_select_subset",
+    "test_core_post_summary_signal_is_rejected_even_if_all_receipts_agree",
+    "test_core_raw_leaf_failure_cannot_be_hidden_by_summary_or_pass_receipt",
+    "test_core_raw_result_cannot_move_to_another_attempt",
+    "test_cross_run_attempt_head_and_branch_job_rejected",
+    "test_current_core194_cannot_be_inferred_from_old_component_gate",
+    "test_exact_push_identity_accepts_only_bound_run",
+    "test_failed_gate_or_upload_step_never_qualifies",
+    "test_full_app_actual_list_requires_both_original_complete_sources",
+    "test_full_app_incomplete_or_basename_only_list_is_rejected",
+    "test_full_app_must_retain_actual_caller_compiler_inputs",
+    "test_full_app_original_timeout_and_log_digest_are_required",
+    "test_linux_retention_gate_reads_both_binaries_and_all_empty_marker_dirs_without_execution",
+    "test_main_missing_stage_outcome_keeps_failed_receipt",
+    "test_main_produced_uppercase_receipts_are_read_by_actual_aggregate_consumer",
+    "test_missing_local_cloud_cold_exchange_or_race_result_rejected",
+    "test_missing_or_duplicate_job_cannot_count_twice",
+    "test_missing_original_metadata_path_or_duplicate_delta_is_rejected",
+    "test_new_workflow_keeps_two_required_jobs_original_arguments_and_zero_native_execution",
+    "test_no_component_success_can_stand_in_for_full_app_helper_status",
+    "test_original_core_classifier_retains_signal_and_partial_leaf_refusals",
+    "test_original_core_whole_input_closure_is_exact_candidate_source",
+    "test_original_receipt_cannot_be_overwritten_by_second_main",
+    "test_partial_success_or_skipped_full_app_never_qualifies",
+    "test_push_payload_cannot_substitute_another_source_or_fork",
+    "test_raw_archive_hash_or_inventory_tamper_is_rejected",
+    "test_raw_member_duplicate_type_or_mode_cannot_be_substituted",
+    "test_raw_pack_retains_empty_marker_directory_and_exact_binary_bytes",
+    "test_raw_producer_cannot_silently_omit_or_change_reported_executable",
+    "test_raw_symlink_cannot_escape_owned_evidence",
+    "test_raw_traversal_member_denied_before_any_external_write",
+    "test_source_delta_preserves_product_and_swift_oracles",
+    "test_two_jobs_cannot_use_distinct_internally_stable_inputs",
+    "test_two_successful_exact_jobs_and_complete_receipts_are_required",
+    "test_unfinalized_or_syntax_enforcement_claim_cannot_execute",
+    "test_unqualified_or_failed_producer_status_rejected",
+    "test_whole_core_result_consumer_replays_exact_twenty_and194_raw_leaf_names"
+  ],
+  "production_or_Swift_source_changed": false,
+  "status": "EXACT_ONE_ASSERTION_PLUS_ROUTE_METADATA_ONLY",
+  "workflow": ".github/workflows/otzaria-annotation-core194-combined-apple-v2.yml",
+  "workflow_Core_manifest_pin": {
+    "after": "7d840410c2b1a705285b782deb7be7ca04cee7542be7dace5b6beed687202d9d",
+    "before": "e777d6a4301950c65daed3825b4458e73ea1f68b948978bdd7614e4ca5716266"
+  },
+  "workflow_inverse": "exact branch, Core manifest SHA and three changed bootstrap file hashes only",
+  "workflow_replacements": [
+    {
+      "after": "codex/otzaria-annotation-core194-combined-apple-v2-20261120",
+      "before": "codex/otzaria-annotation-core194-combined-apple-20261120",
+      "count": 3
+    },
+    {
+      "after": "7d840410c2b1a705285b782deb7be7ca04cee7542be7dace5b6beed687202d9d",
+      "before": "e777d6a4301950c65daed3825b4458e73ea1f68b948978bdd7614e4ca5716266",
+      "count": 1
+    },
+    {
+      "after": "40ec0e8d07ae5e7b8d5964de91a8e9d29a393e7070ef40bc62db94df68ea959f",
+      "before": "08c1aef2f88649b07cbd73c04cfad8edfcabd5f57d8d3996e22548187757c7c9",
+      "count": 2
+    },
+    {
+      "after": "67ecb0506b6e35a53249d3c9d81b80b2b0f85ab288eeebd4e4b3e693b4cc86d7",
+      "before": "5868a4b6adc2fc8fc2d4dfc195ca4a8704176aebad071db58fd20227993fc122",
+      "count": 2
+    },
+    {
+      "after": "5d80bb1e4bfbfa47f9d5e7259796add2c70cb1d90f67750b1a829debbd7a1db6",
+      "before": "dfadccfbe5b2dd0ecad9dce42183b394e7e9352e763bb21bfc63d4320cece60f",
+      "count": 2
+    }
+  ]
+}

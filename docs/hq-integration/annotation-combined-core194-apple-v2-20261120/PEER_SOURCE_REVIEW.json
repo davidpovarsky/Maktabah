@@ -1,0 +1,13 @@
+{
+  "Apple_or_Native_claim": false,
+  "finding": "No concrete blocker. Actual main/consumer and uppercase is_file remain; directory-entry spelling avoids APFS alias lookup. Remaining changes are branch/workflow/docs and corresponding Core/self/bootstrap pins on the same bd855.",
+  "reviewed": [
+    "V2_SOURCE.patch",
+    "V2_INVERSE_PROOF.json",
+    "complete changed test function"
+  ],
+  "reviewer": "/root/asana_audit",
+  "scope": "SOURCE_ONLY",
+  "test_sha256": "5d80bb1e4bfbfa47f9d5e7259796add2c70cb1d90f67750b1a829debbd7a1db6",
+  "tests_executed_by_reviewer": 0
+}

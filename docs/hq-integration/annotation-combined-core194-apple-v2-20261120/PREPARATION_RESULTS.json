@@ -1,0 +1,25 @@
+{
+  "Native_executed": 0,
+  "Swift_executed": 0,
+  "all_original40_IDs_retained": true,
+  "first_authoring_attempt": "Stopped before workflow write on the assumption of one branch occurrence. The original workflow has three authority occurrences; all three are rebound with complete inverse. Zero controls in that setup attempt.",
+  "new_Apple_execution": "NOT_RUN",
+  "new_controls": {
+    "final": {
+      "errors": 0,
+      "executed": 40,
+      "failures": 0,
+      "passed": 40,
+      "skips": 0
+    }
+  },
+  "original26_43_13_SQL13": "UNCHANGED; prior local receipts remain in immutable v1 packet; not rerun for this one-assertion repair",
+  "prior_Mac_controls": {
+    "errors": 0,
+    "executed": 40,
+    "failures": 1,
+    "passed": 39,
+    "skips": 0
+  },
+  "status": "PASS_CURRENT_LOCAL40_SOURCE_ONLY"
+}

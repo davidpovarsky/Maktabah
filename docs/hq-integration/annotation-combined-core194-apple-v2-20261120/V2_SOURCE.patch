@@ -1,0 +1,165 @@
+--- prior-v1/Scripts/CI/annotation-combined-core194-apple.inputs.json
++++ candidate-v2/Scripts/CI/annotation-combined-core194-apple.inputs.json
+@@ -211,9 +211,9 @@
+     "full_app": "Original full app compile including CloudKit callers"
+   },
+   "route": {
+-    "branch": "codex/otzaria-annotation-core194-combined-apple-20261120",
++    "branch": "codex/otzaria-annotation-core194-combined-apple-v2-20261120",
+     "repository": "davidpovarsky/Maktabah",
+-    "workflow": ".github/workflows/otzaria-annotation-core194-combined-apple.yml"
++    "workflow": ".github/workflows/otzaria-annotation-core194-combined-apple-v2.yml"
+   },
+   "schema": "annotation-core194-combined-apple-v1",
+   "scope": "New combined source qualification is pending. Historical v4 results remain on their original Core5d0 source. All original Core/component cases and bounds are preserved; actual full-app compile additionally qualifies original CloudKit callers. No Native/live CloudKit/physical qualification.",
+@@ -696,8 +696,8 @@
+     },
+     "Tests/HQ/cold-search/CORE_INPUTS.json": {
+       "bytes": 38973,
+-      "git_blob": "444bc6d61c091d2c7c7e4a9fe03b181480dc8e44",
+-      "sha256": "e777d6a4301950c65daed3825b4458e73ea1f68b948978bdd7614e4ca5716266"
++      "git_blob": "dbc60a044829edac545fdd047c2a96efa07d873d",
++      "sha256": "7d840410c2b1a705285b782deb7be7ca04cee7542be7dace5b6beed687202d9d"
+     },
+     "Tests/HQ/cold-search/baseline-19b-ActionExecutor.swift.gz": {
+       "bytes": 9069,
+@@ -739,7 +739,7 @@
+       "git_blob": "86ab7654efc5317afffbbe5a0cbbb98f646ab775",
+       "sha256": "b8cd14b074f50f3be46a799e059125e1441b07b2682c8e32c7ad7c015f19d7e1"
+     },
+-    "docs/hq-integration/annotation-combined-core194-apple-20261120/reference/original-cloud-binding.json": {
++    "docs/hq-integration/annotation-combined-core194-apple-v2-20261120/reference/original-cloud-binding.json": {
+       "bytes": 19262,
+       "git_blob": "8a51e2b47b0237de65a1702a7ef64645a4ea11f4",
+       "sha256": "87c20b9a4a394ba30fb49d55f2282c31230c7c6ba93c3e90114c62efc94e258f"
+@@ -760,9 +760,9 @@
+       "sha256": "e5bb838def64d8a64f8228889d6d371dfe3968b4ee0ec521cd122f58428eb97f"
+     },
+     "tools/hq-cold-search-core-acceptance.py": {
+-      "bytes": 16987,
+-      "git_blob": "5d46c7781dd3071a977c737c2810135f920ccad3",
+-      "sha256": "30f5dd6e564a81f8cda5d345f3981151ef116126b343e8306dee75d6340586aa"
++      "bytes": 16993,
++      "git_blob": "117843a9b844f5feb33d769a85bd187d3f5a18d0",
++      "sha256": "47dc5de2074c407e4ede5192ede5472d1c41bde93983930c340493a70666a9c3"
+     },
+     "tools/hq-local-annotation-cloud-acceptance.py": {
+       "bytes": 13582,
+--- prior-v1/Scripts/CI/annotation-combined-core194-apple.py
++++ candidate-v2/Scripts/CI/annotation-combined-core194-apple.py
+@@ -208,8 +208,8 @@
+ 
+ REPOSITORY = "davidpovarsky/Maktabah"
+ REPOSITORY_ID = 1280062128
+-BRANCH = "codex/otzaria-annotation-core194-combined-apple-20261120"
+-WORKFLOW = ".github/workflows/otzaria-annotation-core194-combined-apple.yml"
++BRANCH = "codex/otzaria-annotation-core194-combined-apple-v2-20261120"
++WORKFLOW = ".github/workflows/otzaria-annotation-core194-combined-apple-v2.yml"
+ SELF = "Scripts/CI/annotation-combined-core194-apple.py"
+ BINDING = "Scripts/CI/annotation-combined-core194-apple.inputs.json"
+ TESTS = "Scripts/CI/test-annotation-combined-core194-apple.py"
+@@ -245,7 +245,7 @@
+ CORE_MANAGER = "Source/Core/CloudKit/CloudKitCoreManager.swift"
+ SYNC_MANAGER = "Source/Core/Database/CloudKitSyncManager.swift"
+ OUTPUT = "build/annotation-combined-core194"
+-DOCS = "docs/hq-integration/annotation-combined-core194-apple-20261120/"
++DOCS = "docs/hq-integration/annotation-combined-core194-apple-v2-20261120/"
+ OLD_CLOUD_BINDING = DOCS + "reference/original-cloud-binding.json"
+ PROTECTED_TREES = {
+     "Source": "efeee8e2366dfa1155f9c029cff1de5c6441f39b",
+--- prior-v1/Scripts/CI/test-annotation-combined-core194-apple.py
++++ candidate-v2/Scripts/CI/test-annotation-combined-core194-apple.py
+@@ -339,7 +339,7 @@
+         for scope in route.JOBS:
+             directory = self.root / route.OUTPUT / scope
+             self.assertTrue((directory / "RESULT_AFTER.json").is_file())
+-            self.assertFalse((directory / "RESULT_after.json").exists())
++            self.assertNotIn("RESULT_after.json", {entry.name for entry in directory.iterdir()})
+ 
+     def test_main_missing_stage_outcome_keeps_failed_receipt(self):
+         scope = "components"; output = self.root / route.OUTPUT / scope
+--- prior-v1/Tests/HQ/cold-search/CORE_INPUTS.json
++++ candidate-v2/Tests/HQ/cold-search/CORE_INPUTS.json
+@@ -659,10 +659,10 @@
+   "scope": "ORIGINAL_CORE_XCTEST_WITH_EXPLICIT_PROVIDER_UI_DOUBLES",
+   "support_inputs": [
+     {
+-      "bytes": 16987,
+-      "git_blob": "5d46c7781dd3071a977c737c2810135f920ccad3",
++      "bytes": 16993,
++      "git_blob": "117843a9b844f5feb33d769a85bd187d3f5a18d0",
+       "path": "tools/hq-cold-search-core-acceptance.py",
+-      "sha256": "30f5dd6e564a81f8cda5d345f3981151ef116126b343e8306dee75d6340586aa"
++      "sha256": "47dc5de2074c407e4ede5192ede5472d1c41bde93983930c340493a70666a9c3"
+     },
+     {
+       "bytes": 5228,
+--- prior-v1/tools/hq-cold-search-core-acceptance.py
++++ candidate-v2/tools/hq-cold-search-core-acceptance.py
+@@ -29,8 +29,8 @@
+ NEW_TEST = PACKAGE + "/Tests/OtzariaActionCoreTests/Engine/ColdSearchExecutionOfflineTests.swift"
+ FIXTURE = "docs/hq-actions-bridge/embedded-handler-fixtures.json"
+ INPUTS = "Tests/HQ/cold-search/CORE_INPUTS.json"
+-WORKFLOW = ".github/workflows/otzaria-annotation-core194-combined-apple.yml"
+-BRANCH = "refs/heads/codex/otzaria-annotation-core194-combined-apple-20261120"
++WORKFLOW = ".github/workflows/otzaria-annotation-core194-combined-apple-v2.yml"
++BRANCH = "refs/heads/codex/otzaria-annotation-core194-combined-apple-v2-20261120"
+ 
+ 
+ def digest(data: bytes) -> str:
+--- prior-v1/.github/workflows/otzaria-annotation-core194-combined-apple.yml
++++ candidate-v2/.github/workflows/otzaria-annotation-core194-combined-apple-v2.yml
+@@ -3,7 +3,7 @@
+ on:
+   push:
+     branches:
+-      - codex/otzaria-annotation-core194-combined-apple-20261120
++      - codex/otzaria-annotation-core194-combined-apple-v2-20261120
+ 
+ permissions:
+   actions: read
+@@ -20,7 +20,7 @@
+ jobs:
+   components:
+     name: Core194 and original Annotation Cloud Repository
+-    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-core194-combined-apple-20261120' }}
++    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-core194-combined-apple-v2-20261120' }}
+     runs-on: xcode-27
+     timeout-minutes: 130
+     steps:
+@@ -39,7 +39,7 @@
+           root = pathlib.Path.cwd()
+           output = root / 'build/annotation-combined-core194/components'
+           output.mkdir(parents=True, exist_ok=True)
+-          expected = {'Scripts/CI/annotation-combined-core194-apple.py': '08c1aef2f88649b07cbd73c04cfad8edfcabd5f57d8d3996e22548187757c7c9', 'Scripts/CI/annotation-combined-core194-apple.inputs.json': '5868a4b6adc2fc8fc2d4dfc195ca4a8704176aebad071db58fd20227993fc122', 'Scripts/CI/test-annotation-combined-core194-apple.py': 'dfadccfbe5b2dd0ecad9dce42183b394e7e9352e763bb21bfc63d4320cece60f', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
++          expected = {'Scripts/CI/annotation-combined-core194-apple.py': '40ec0e8d07ae5e7b8d5964de91a8e9d29a393e7070ef40bc62db94df68ea959f', 'Scripts/CI/annotation-combined-core194-apple.inputs.json': '67ecb0506b6e35a53249d3c9d81b80b2b0f85ab288eeebd4e4b3e693b4cc86d7', 'Scripts/CI/test-annotation-combined-core194-apple.py': '5d80bb1e4bfbfa47f9d5e7259796add2c70cb1d90f67750b1a829debbd7a1db6', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
+           report = {'status': 'FAILED', 'pins': expected, 'Swift_executed': 0, 'Native_executed': 0}
+           try:
+               if len(expected) != 4:
+@@ -74,7 +74,7 @@
+         run: >-
+           python3 tools/hq-cold-search-core-acceptance.py
+           --output build/cold-search-core-apple
+-          --expected-inputs-sha256 e777d6a4301950c65daed3825b4458e73ea1f68b948978bdd7614e4ca5716266
++          --expected-inputs-sha256 7d840410c2b1a705285b782deb7be7ca04cee7542be7dace5b6beed687202d9d
+       - name: Execute unchanged original local43 cold2 and owned cloud48
+         id: local
+         if: ${{ always() && steps.source.outcome == 'success' && steps.toolchain.outcome == 'success' && steps.controls.outcome == 'success' }}
+@@ -115,7 +115,7 @@
+ 
+   full_app:
+     name: Original full app compile including CloudKit callers
+-    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-core194-combined-apple-20261120' }}
++    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-core194-combined-apple-v2-20261120' }}
+     runs-on: xcode-27
+     timeout-minutes: 100
+     steps:
+@@ -134,7 +134,7 @@
+           root = pathlib.Path.cwd()
+           output = root / 'build/annotation-combined-core194/full_app'
+           output.mkdir(parents=True, exist_ok=True)
+-          expected = {'Scripts/CI/annotation-combined-core194-apple.py': '08c1aef2f88649b07cbd73c04cfad8edfcabd5f57d8d3996e22548187757c7c9', 'Scripts/CI/annotation-combined-core194-apple.inputs.json': '5868a4b6adc2fc8fc2d4dfc195ca4a8704176aebad071db58fd20227993fc122', 'Scripts/CI/test-annotation-combined-core194-apple.py': 'dfadccfbe5b2dd0ecad9dce42183b394e7e9352e763bb21bfc63d4320cece60f', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
++          expected = {'Scripts/CI/annotation-combined-core194-apple.py': '40ec0e8d07ae5e7b8d5964de91a8e9d29a393e7070ef40bc62db94df68ea959f', 'Scripts/CI/annotation-combined-core194-apple.inputs.json': '67ecb0506b6e35a53249d3c9d81b80b2b0f85ab288eeebd4e4b3e693b4cc86d7', 'Scripts/CI/test-annotation-combined-core194-apple.py': '5d80bb1e4bfbfa47f9d5e7259796add2c70cb1d90f67750b1a829debbd7a1db6', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
+           report = {'status': 'FAILED', 'pins': expected, 'Swift_executed': 0, 'Native_executed': 0}
+           try:
+               if len(expected) != 4:
