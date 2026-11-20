@@ -144,8 +144,9 @@ final class AnnotationExchangeLedger: Sendable {
         var metadata: ActionObject = ["state": .string(exists ? "present" : "absent")]
         if let (id, fields) = rows.first {
             let tags: [ActionJSON] = try database.fetch(query: """
-                SELECT t.id, t.name, t.normalizedName FROM annotation_tags a
-                JOIN tags t ON t.id = a.tagId WHERE a.annotationId = ? ORDER BY t.id, t.name, t.normalizedName;
+                SELECT a.annotationId, a.tagId, t.id, t.name, t.normalizedName FROM annotation_tags a
+                LEFT JOIN tags t ON t.id = a.tagId WHERE a.annotationId = ?
+                ORDER BY a.annotationId, a.tagId, t.id, t.name, t.normalizedName;
                 """, parameters: [id]) { row in
                     .array(try (0..<row.columnCount).map { try Self.column(row, index: $0) })
                 }

@@ -403,11 +403,18 @@ struct AnnotationExchangeAcceptanceMain {
     static func run() async throws {
         guard CommandLine.arguments.count == 3 else { throw CheckFailure("usage: executable MODE OWNED_FIXTURE_DIRECTORY") }
         let mode = CommandLine.arguments[1], root = URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true)
+        acceptancePrint("ACTUAL_SQLITE \(String(cString: sqlite3_libversion()))")
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
         if mode == "self-tests" { try await Acceptance(root: root).run(); return }
         if mode == "crash-after-commit" || mode == "crash-before-outer-commit" {
             let phase = mode == "crash-after-commit" ? "after" : "before"
             let f = try Fixture(root: root, name: "crash-\(phase)")
+            // AnnotationRepository.connect uses this original API. Verify the
+            // actual mode because its public method intentionally ignores errors.
+            f.db.enableWALMode()
+            let mode = try f.db.fetch(query: "PRAGMA journal_mode;") { $0.string(at: 0) }.first ?? nil
+            try require(mode == "wal", "actual app WAL mode unavailable")
+            acceptancePrint("CRASH_JOURNAL_MODE wal; synchronous=\(try f.scalar("PRAGMA synchronous;"))")
             let originals = try f.originals(), cloud = try f.cloudRows()
             if phase == "after" {
                 let commit = try f.commit(fixedMutationID)

@@ -132,6 +132,8 @@ let package = Package(name: "AnnotationExchangeAcceptance",
         report["test_command"] = test_command
         run = subprocess.run(test_command, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", timeout=150)
         report["execute_exit"] = run.returncode
+        report["sqlite_version"] = next((line.removeprefix("ACTUAL_SQLITE ") for line in run.stdout.splitlines()
+                                         if line.startswith("ACTUAL_SQLITE ")), None)
         (artifacts / "tests.log").write_text(run.stdout + run.stderr, encoding="utf-8")
         print(run.stdout)
         if run.stderr:
@@ -146,7 +148,9 @@ let package = Package(name: "AnnotationExchangeAcceptance",
             child = subprocess.run(child_command, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", timeout=40)
             (artifacts / ("crash-" + phase + ".log")).write_text(child.stdout + child.stderr, encoding="utf-8")
             gate = {"phase": phase, "termination_command": child_command, "terminated_exit": child.returncode,
-                    "expected_terminated_exit": 73, "status": "FAIL"}
+                    "expected_terminated_exit": 73, "status": "FAIL",
+                    "actual_journal_observation": next((line for line in child.stdout.splitlines()
+                                                       if line.startswith("CRASH_JOURNAL_MODE ")), None)}
             report["process_termination_checks"].append(gate)
             if child.returncode != 73:
                 raise RuntimeError("Expected actual abrupt process exit 73: " + repr(gate))
