@@ -1,0 +1,88 @@
+{
+  "nativeRun": 44657116407,
+  "actualCheckout": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+  "actualApplicationSource": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "candidateBase": "f064b5517f560e2b52838bf321214baa3fb09e2c",
+  "nativeOverallOutcome": "FAILURE; 46 passed,24 failed,0 skipped,18 not_run per verified xcresult leaves; partial phone logs are not promoted to completed cases",
+  "commentary": {
+    "observedFailure": "Independent base-source TextKit/locator gate; Core reader.openCommentary was not triggered",
+    "cause": "Different book28 requested via currentTab while original active owner book3891; unchanged same-tab guard correctly refuses current_reader_target_unavailable",
+    "logTimestamp": "2026-11-20T02:49:53.332Z",
+    "fix": "Existing readerURL newTab:true for setup only; capture baseline after original base TextKit/locator gate",
+    "originalAcceptanceOracles": "All source text/locator,+1 commentary tab,retained workspace,return-to-base andPID/receipt assertions byte-identical",
+    "proof": "COMMENTARY_SETUP_INVERSE_PROOF.json.gz",
+    "swiftSyntaxParse": "PASS,0.906s,zero diagnostics; not Apple typecheck",
+    "candidateNative": "NOT_RUN"
+  },
+  "notes": {
+    "observedFailure": "notes.prepareDraft cancelled with deadline_exceeded",
+    "originalUnsavedEditor": true,
+    "originalEditorOwnsProposal": true,
+    "originalStoreUnchanged": true,
+    "actualLocator": "otzaria|book:3891|line:523",
+    "actualVisibleUI": "Original Edit Annotation sheet with exact proposal and Save/Cancel independently inspected in native PNG/AX",
+    "nativeWitness": "No native.reader.noteDraft marker diagnostics in retained native reader log; underlying original Reader/Library show modal true before existing5s deadline",
+    "diagnosis": "Missing or rejected note-surface witness seam; exact branch remains unresolved pending source review/actual Native diagnostics",
+    "productFix": "NOT_YET_APPLIED",
+    "candidateNative": "NOT_RUN"
+  },
+  "sourceComparison": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "oldSHA256": "cdf42ff721495d309d3949462ba9efbb3772e4cc3caf06bd208b01b9aac2d257",
+      "currentSHA256": "cdf42ff721495d309d3949462ba9efbb3772e4cc3caf06bd208b01b9aac2d257",
+      "bytesIdentical": true
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "oldSHA256": "cadb9c4eba2859542a7560ca62f70a7e8856c83cd6411d6ed0d665477f2eb87b",
+      "currentSHA256": "cadb9c4eba2859542a7560ca62f70a7e8856c83cd6411d6ed0d665477f2eb87b",
+      "bytesIdentical": true
+    }
+  ],
+  "selectedCaptureIntegrity": {
+    "artifactID": 14605489369,
+    "advertisedArchiveDigest": "sha256:60d744b9133bffc81c826b5d49922731fb15e049e6e1625eb59b759163c5cb1b",
+    "fullArchiveHashVerified": false,
+    "verification": "Authenticated exact HTTP206 selected member ranges; selected CRC andSHA256 rechecked here",
+    "selected": [
+      {
+        "zipEntry": "visual-11/99701F94-580E-475A-888D-88D30F0F6F81.png",
+        "bytes": 484160,
+        "sha256": "b19877aa7531f67c1f635ea5844826ad5c278043165472c1a2e78bb349137e3b",
+        "crc32": "bd16ef52",
+        "crcValidatedByZipFile": true
+      },
+      {
+        "zipEntry": "visual-11/028CE410-A877-4398-B51E-B2F249114D43.txt",
+        "bytes": 33222,
+        "sha256": "7a1c17258c51657799ba43f108836e49f27a1d35188779a1672d239bb8c1a7e2",
+        "crc32": "a31539dc",
+        "crcValidatedByZipFile": true
+      },
+      {
+        "zipEntry": "visual-11/DD43C205-4C9A-4715-978B-A4D9504DA0FA.png",
+        "bytes": 505602,
+        "sha256": "78844cea23f8afe9ef036aec9cb93ed141fb384756f6c7046b57529609366955",
+        "crc32": "fd5ea486",
+        "crcValidatedByZipFile": true
+      },
+      {
+        "zipEntry": "visual-11/B9E0C663-C2F1-46D9-B92F-993E00BCC849.txt",
+        "bytes": 41077,
+        "sha256": "707c45ad22d9dc290280f38741f3899826d62680c3139ef5259547fdb9261cb5",
+        "crc32": "00726418",
+        "crcValidatedByZipFile": true
+      },
+      {
+        "zipEntry": "visual-11/A7F47F5F-E3E8-4616-9B8D-AB036FCCF002.json",
+        "bytes": 490,
+        "sha256": "cc174561cb7012dbb815ed0106431861fc2e95f92b48ccb581edea43ce82100c",
+        "crc32": "69a4bf5f",
+        "crcValidatedByZipFile": true
+      }
+    ]
+  },
+  "unchangedProductGuards": true,
+  "newBuildOrAppExecution": false
+}

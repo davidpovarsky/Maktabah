@@ -2024,7 +2024,7 @@ extension NativeRoutingAcceptanceTests {
         _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
             "-nativeActionAcceptanceKind", "commentary", "-nativeActionAcceptanceToken", token.uuidString,
             "-nativeActionAcceptanceTargetWorkKey", "book:3276"])
-        try openInExistingProcess(readerURL(bookID: rows.0.bookId, lineIndex: rows.0.lineIndex))
+        try openInExistingProcess(readerURL(bookID: rows.0.bookId, lineIndex: rows.0.lineIndex, newTab: true))
         try requireSystemReaderSource(rows.0)
         let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
         let before = try actualNativeReceiptLines()
