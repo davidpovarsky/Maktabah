@@ -1,0 +1,48 @@
+{
+  "reviewer": "root",
+  "reviewed_at_utc": "2026-11-20 19:21:56 UTC",
+  "parent_for_CI": "939eaf3a5b56fe604354b235579cf7aa4a60e3d4",
+  "parent_tree": "77c330767559a94e5a0b35fd05a2e0b0f6faa2a6",
+  "baseline": "7af3a06d48ccbe77acef180cb99d120971c3804e",
+  "sealed_packet": {
+    "sha256": "34d1954d47fa9e3baee09dec140918a0eafb98deecdbaa8d91bcd3dad49d9dfe",
+    "bytes": 43493,
+    "git_blob": "945f5dfdb7143b0dafa1b1698b36d51540f72a23",
+    "payloads": 89
+  },
+  "root_checks": {
+    "readonly_packet_replay": "PASS_PACKET_HASHES_ONLY",
+    "canonical_runtime_input_git_blobs": 44,
+    "application_trees_verified": 4,
+    "complete_original_core_tree": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+    "source3_matches_published_M": true,
+    "source_review": "Read entire new authority/collector route and workflow plus unchanged original C verify_results adapter. Root previously authored and reviewed exact Repository repair; original C2 metadata pin/M/tree inverse independently checked before publication. Original local/cloud/exchange drivers, case declarations, assertions, command deadlines and output paths are unchanged.",
+    "whole_local_git_gate": "NOT_RUN; first actual CI step uses a genuine checkout, no fabricated Git objects",
+    "python_evidence": {
+      "new_controls": 24,
+      "original_C_controls": 43,
+      "original_SQL_controls": 13,
+      "root_reran_these_controls": false
+    }
+  },
+  "required_apple_results": {
+    "original_local": 43,
+    "cold_reopens": 2,
+    "owned_cloud": 48,
+    "original_exchange": 28,
+    "exchange_termination_reopens": 2,
+    "original_repository_expected_red": 1,
+    "candidate_cases": 10,
+    "independent_race_cold_reads": 11
+  },
+  "limits": {
+    "apple_executed": 0,
+    "native_ui_executed": 0,
+    "live_cloudkit_executed": 0,
+    "current_Core194_executed": false,
+    "anytype_runtime_executed": 0,
+    "original_red_counts_as_pass": false,
+    "full_cross_app_GO": false
+  },
+  "publication": "Exactly one child of M939. Four new route files, one exact metadata correction, documentation additions only; all product/test/tool and other existing leaves/modes must remain M939."
+}

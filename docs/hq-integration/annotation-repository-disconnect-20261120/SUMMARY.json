@@ -1,0 +1,1095 @@
+{
+  "Native": 0,
+  "actual_Swift": 0,
+  "actual_candidate10": "NOT_RUN",
+  "actual_original_red": "NOT_RUN",
+  "actual_original_regressions_on_M": "NOT_RUN",
+  "all_controls_zero_fail_error_skip": true,
+  "canonical_M_original_pins_match": 44,
+  "canonical_M_tree_entries": 7636,
+  "core_tree": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+  "executed_local_controls": {
+    "new_python": 24,
+    "original_C_python": 43,
+    "original_SQL": 13
+  },
+  "final_control_input_files": 49,
+  "frozen_refs_changed": false,
+  "local_whole_git_source_gate": "NOT_RUN; first execution on real CI",
+  "one_updated_C_metadata_file_has_complete_original_byte_inverse": true,
+  "raw_records": [
+    {
+      "compressed": {
+        "bytes": 1180,
+        "git_blob": "1137067e37ca963748b26d9af4bb2e3c834d6c08",
+        "sha256": "8873d742d49800869753377810b243f39b6b7c8d97ca182fc934b7c4ef004316"
+      },
+      "raw": {
+        "bytes": 2538,
+        "git_blob": "fe497e572ed403630b2e0b153527af7d6221f86d",
+        "sha256": "2247971e7ee074525cc22682b326fbd6cb04e7b2ee3de09d48ef867ad449c0ad"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__C_BINDING_METADATA_INVERSE.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/C_BINDING_METADATA_INVERSE.json"
+    },
+    {
+      "compressed": {
+        "bytes": 639,
+        "git_blob": "03358d8cf3460c24d01a3dde60de7615b389e9b9",
+        "sha256": "b25d576e1da82e090904c8f8e5a42574bb69540d530cafb2c9e2dcf756f8ca18"
+      },
+      "raw": {
+        "bytes": 1185,
+        "git_blob": "3eda2b1b4738f5c2e857a6d560dc28a6742ae389",
+        "sha256": "5b3ae80a34a9bde16568208fefa4e72e044a6f28ebc68da8489bb89e87a26410"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__WORKFLOW_PRESERVATION.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/WORKFLOW_PRESERVATION.json"
+    },
+    {
+      "compressed": {
+        "bytes": 1352,
+        "git_blob": "529e5b7af0dacf17dc112e418a8809ef21822338",
+        "sha256": "7bddd1497623a34128330e4c2502b0942ea92a7e81244b53de8bce6862ed8964"
+      },
+      "raw": {
+        "bytes": 5764,
+        "git_blob": "ae747f7312bcc11f1e1777affada27fb97ec07fa",
+        "sha256": "c9c91057ed93b0373c8858f57a8c6a22c50f2621e57b20dd38074cdf8b3308b6"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-controls-attempt1__RESULT.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-controls-attempt1/RESULT.json"
+    },
+    {
+      "compressed": {
+        "bytes": 497,
+        "git_blob": "48abf4113c3d4a3ebb6188649071ca71251bf7f8",
+        "sha256": "0af39c337cf380bd987292406214349778f91c93f86d055cca1d4c71371171f5"
+      },
+      "raw": {
+        "bytes": 2032,
+        "git_blob": "ccce74917e678b30323c33f4b43c12a35ce581d5",
+        "sha256": "d9bc3823d2c52960d7f9420e81587c6355ec832fcdbbb723611f88eeb8622b3b"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__COMMANDS.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/COMMANDS.json"
+    },
+    {
+      "compressed": {
+        "bytes": 2941,
+        "git_blob": "4b46196dbf737a8c0e240c81650021f9ce217398",
+        "sha256": "74f5db4c8f9da3a73d923e45f5b3aa3e39c3ce35020e0b743d81edeb19ceb1f4"
+      },
+      "raw": {
+        "bytes": 8248,
+        "git_blob": "e2fec3704f645293a652a7b4396100a57cfe28b2",
+        "sha256": "d62ee278830792b64283e6c70f04009f317ba345823142a42bc3a303c36af9e3"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__INPUTS_AFTER.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/INPUTS_AFTER.json"
+    },
+    {
+      "compressed": {
+        "bytes": 2941,
+        "git_blob": "4b46196dbf737a8c0e240c81650021f9ce217398",
+        "sha256": "74f5db4c8f9da3a73d923e45f5b3aa3e39c3ce35020e0b743d81edeb19ceb1f4"
+      },
+      "raw": {
+        "bytes": 8248,
+        "git_blob": "e2fec3704f645293a652a7b4396100a57cfe28b2",
+        "sha256": "d62ee278830792b64283e6c70f04009f317ba345823142a42bc3a303c36af9e3"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__INPUTS_BEFORE.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/INPUTS_BEFORE.json"
+    },
+    {
+      "compressed": {
+        "bytes": 1350,
+        "git_blob": "63cfcfc5b22f51d00d4a2ec7919b46b4bd97b347",
+        "sha256": "7bc64b9339321161e484f669c752d6516e30f4eb453c1c71651e9212ef758349"
+      },
+      "raw": {
+        "bytes": 5766,
+        "git_blob": "936f51e7b06ce857d4ea1b2924e65ca61a5bfb2a",
+        "sha256": "454559b5f45a67c60239ff7060b88389fac2d8591bb104161614f4cd11e0a054"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__new24__RESULT.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/new24/RESULT.json"
+    },
+    {
+      "compressed": {
+        "bytes": 861,
+        "git_blob": "fab485f60fecdfa7c7bb88dddd641fe52181f760",
+        "sha256": "2aa27550aee20b079c28f0c2b0dc277663906b1eb3282bf1b3f3b687ed02c720"
+      },
+      "raw": {
+        "bytes": 3737,
+        "git_blob": "bdfeab44f5da21622a6cf4ea7c64e953b0b7e198",
+        "sha256": "dc975b67cd02860d663ed781f59bc940f1dca92917c544e54e3fe31591cc193c"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__new24.stderr.log.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/new24.stderr.log"
+    },
+    {
+      "compressed": {
+        "bytes": 20,
+        "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "raw": {
+        "bytes": 0,
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__new24.stdout.log.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/new24.stdout.log"
+    },
+    {
+      "compressed": {
+        "bytes": 4137,
+        "git_blob": "ff8814919828b3688c605f3109ac0fbefe90a271",
+        "sha256": "ad5872cffc4858cf0a951e8a5c8d601df77a51676d4362fd23674fd1c8a7ed13"
+      },
+      "raw": {
+        "bytes": 20854,
+        "git_blob": "b4276098aa3a37483ff48505d6116088eec11c20",
+        "sha256": "4788abd932fed12d2c8440f3544fd49464258cd145d948d2203898660581db0b"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__original43__RESULT.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/original43/RESULT.json"
+    },
+    {
+      "compressed": {
+        "bytes": 1060,
+        "git_blob": "6c39db42909724d2095efc26c35b7d5348a9d4a7",
+        "sha256": "5decf266c9e97bdce35a667ee90adf478dd2acd0d5e3ede6880bdd2dc61c69fe"
+      },
+      "raw": {
+        "bytes": 5404,
+        "git_blob": "cf0ec5026dfe7b79bab29b453ef17deaff0e2644",
+        "sha256": "ed727e9755c8611d22cc5f4b894983acb4e2f4fa980a482222a992919eae7dfb"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__original43.stderr.log.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/original43.stderr.log"
+    },
+    {
+      "compressed": {
+        "bytes": 20,
+        "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "raw": {
+        "bytes": 0,
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__original43.stdout.log.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/original43.stdout.log"
+    },
+    {
+      "compressed": {
+        "bytes": 1225,
+        "git_blob": "7503729278886a5d75413ee4b0ea18f26dbf2c0f",
+        "sha256": "db3e777f640b62f93b10027ad8569976a59c9668e41c9c6f9f67d5971edc7f79"
+      },
+      "raw": {
+        "bytes": 5627,
+        "git_blob": "10c75a6dda12cba097b924e937a936c3d12a5cac",
+        "sha256": "9f48da02c212c93b4839b2c09b2dea733c454245d9ae173a5e3ef617ea162023"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__original_sql13__RESULT.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/original_sql13/RESULT.json"
+    },
+    {
+      "compressed": {
+        "bytes": 20,
+        "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "raw": {
+        "bytes": 0,
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__original_sql13.stderr.log.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/original_sql13.stderr.log"
+    },
+    {
+      "compressed": {
+        "bytes": 97,
+        "git_blob": "9660de77373cb9d0e5822fddc751b5dae69d2b00",
+        "sha256": "d35273b4e98ee78f005f4ea1aeafdbe7589c48c416d9a1e20042c01a55c8339f"
+      },
+      "raw": {
+        "bytes": 88,
+        "git_blob": "7e591d816cf87db170a12b2ef1e0e1ad529080bb",
+        "sha256": "338bcf25b4976078b5742770e6ba867e3f76979bd94dd82db7f823930afa1a7e"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt1__original_sql13.stdout.log.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt1/original_sql13.stdout.log"
+    },
+    {
+      "compressed": {
+        "bytes": 324,
+        "git_blob": "ea44d516abede262da125d3864895bedbff6cb37",
+        "sha256": "6a848397d689f2316774512063b805e8f67c7e94fb62c5522147e98f7b425b00"
+      },
+      "raw": {
+        "bytes": 579,
+        "git_blob": "ba008f9f88eb38c88c8043feba16e6ac41e3c525",
+        "sha256": "b806677c2d91eb2b6d3722571ed63c0ab4a6c7500bd4627680de64fe4545e3ce"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt2__COMMAND.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt2/COMMAND.json"
+    },
+    {
+      "compressed": {
+        "bytes": 2940,
+        "git_blob": "68d490334af6f5cd80badb5a67b8c78e1e07e630",
+        "sha256": "0e50fccc2ced33620b27a8455ea823ea3358b07c6b169332e6902e67d55b7358"
+      },
+      "raw": {
+        "bytes": 8248,
+        "git_blob": "73a318a4a6935787d13ed81adedde859b7615961",
+        "sha256": "e63c38a07006512983392b7728c8b58240188cb2c6d3c7eada9bf65443685673"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt2__INPUTS_AFTER.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt2/INPUTS_AFTER.json"
+    },
+    {
+      "compressed": {
+        "bytes": 2940,
+        "git_blob": "68d490334af6f5cd80badb5a67b8c78e1e07e630",
+        "sha256": "0e50fccc2ced33620b27a8455ea823ea3358b07c6b169332e6902e67d55b7358"
+      },
+      "raw": {
+        "bytes": 8248,
+        "git_blob": "73a318a4a6935787d13ed81adedde859b7615961",
+        "sha256": "e63c38a07006512983392b7728c8b58240188cb2c6d3c7eada9bf65443685673"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt2__INPUTS_BEFORE.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt2/INPUTS_BEFORE.json"
+    },
+    {
+      "compressed": {
+        "bytes": 1347,
+        "git_blob": "4e1c1ec4fe9b09a0de83ff3987c2ec166534c963",
+        "sha256": "ab0f9c9ccda1aacfc41fca357c77f4e84d9e1a04d1396adcbe5aad2dc7084aab"
+      },
+      "raw": {
+        "bytes": 5761,
+        "git_blob": "ae2be5140afd09145667c76941a9663a6b2d5bd1",
+        "sha256": "43943a0bdb086ccf34d99d241e3e1e704d63d11e3f8246b227299ce96a725a35"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt2__new24__RESULT.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt2/new24/RESULT.json"
+    },
+    {
+      "compressed": {
+        "bytes": 860,
+        "git_blob": "a517fae2f661fdf6b1b851fcabc4476077ddc71d",
+        "sha256": "a0acb77133bbc5521fc850bc467078e33e88ce269245646ec2944d7084fdeb4d"
+      },
+      "raw": {
+        "bytes": 3737,
+        "git_blob": "e4a2a582fa2171717c412bd6d196e29dc8c3435f",
+        "sha256": "e21f1e400fc2a61db8b59c3cd02dc78ab62929b905c30ff9de05ff74333919c3"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt2__new24.stderr.log.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt2/new24.stderr.log"
+    },
+    {
+      "compressed": {
+        "bytes": 20,
+        "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "raw": {
+        "bytes": 0,
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/evidence__python-final-attempt2__new24.stdout.log.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/evidence/python-final-attempt2/new24.stdout.log"
+    },
+    {
+      "compressed": {
+        "bytes": 861,
+        "git_blob": "292c55ba8da664564d0def8bd41aa81822bf4265",
+        "sha256": "53d2bf21d151fc6e925d5b938ed5e4772b53e8cf06e8774499cc5f22a445dbbd"
+      },
+      "raw": {
+        "bytes": 3737,
+        "git_blob": "4131ab1f1acd7f177d892d91e1eec90c4b4e201a",
+        "sha256": "b320beb439907a917880eb853e82c27e26b1288dad54d6631684ce7e6d1f402a"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/initial-controls.log.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/python-controls-attempt1.log"
+    },
+    {
+      "compressed": {
+        "bytes": 704,
+        "git_blob": "df677b0660a3c1df165f166ab0eb679ecfe27f96",
+        "sha256": "6516b06472a9626f7624fffa8e4e155b7714c82d9411adf285ee53dff8e53383"
+      },
+      "raw": {
+        "bytes": 1323,
+        "git_blob": "060a6efd3ccaa51885649afdf76e231e00e3fdf6",
+        "sha256": "dcf43693f1b940158079800d86abeb04273d5f16e910f229a4b0236e11ee9c6e"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/ROOT_SOURCE_PUBLICATION.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/ROOT_SOURCE_PUBLICATION.json"
+    },
+    {
+      "compressed": {
+        "bytes": 315687,
+        "git_blob": "31aadbe3574f2e157898ccb8bd2b4aa497fd090d",
+        "sha256": "9086ab4c2612644f048fb58df846c078d567783449fb7d917064202522fca10a"
+      },
+      "raw": {
+        "bytes": 2225640,
+        "git_blob": "50985f304b11d126141b4a13f77e1bb090519d00",
+        "sha256": "46550a657e184dddb275ff2f4c5524c880963c9edcde4209cbfb34c85f79bab9"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/ROOT_CANONICAL_M939_TREE.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/ROOT_CANONICAL_M939_TREE.json"
+    },
+    {
+      "compressed": {
+        "bytes": 1203,
+        "git_blob": "e66be1c1e00857bfac8ce7412c3b2b8b7fd3ca6d",
+        "sha256": "96a0ce11ca757e4b1b0e4068163fd82ad5a1effba896f5105a47bdc414d9849d"
+      },
+      "raw": {
+        "bytes": 2202,
+        "git_blob": "1a5e467d3206f0b081584813877004f7340db229",
+        "sha256": "aefe5dd6fa57d43109469ede8f8966cbfcb9296016f38adec69d03f2ad8ba5ed"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/SOURCE_PACKET.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/source-publication/SOURCE_PACKET.json"
+    },
+    {
+      "compressed": {
+        "bytes": 634,
+        "git_blob": "5aef9de0b20871bbf03eeb7fd845beb375a2cd49",
+        "sha256": "e59819d7855bc041fd04e0517ef0970cdb290808fc70ed7013e36a827b711a79"
+      },
+      "raw": {
+        "bytes": 1776,
+        "git_blob": "ddc613d682c5bc57431c409d30ff24b3a06b76f9",
+        "sha256": "6baf70f32a7313a8301969b9afd9e6784155aa05326f6522865d7e2534907fae"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/PROPOSED_REPOSITORY.patch.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/source-publication/PROPOSED_REPOSITORY.patch"
+    },
+    {
+      "compressed": {
+        "bytes": 316,
+        "git_blob": "062d1bcc2b62086e1525f3cdd3de80ac5615243d",
+        "sha256": "1c20ce9959e9ea5efd1dcc20b9d70fe694e3ece9c022703e0b98eb941058cd92"
+      },
+      "raw": {
+        "bytes": 474,
+        "git_blob": "419364689e678b2557e9ad32f1bd4f5b4151da66",
+        "sha256": "cb181de43a16bbd2014a2673e1f8f6491ede35cd472c5f09ef90f24fe269eaf0"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/historical_INPUT_SNAPSHOT.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/INPUT_SNAPSHOT.json"
+    },
+    {
+      "compressed": {
+        "bytes": 2440,
+        "git_blob": "1a7704db63f7447df3ee592a1d6be8651d3f5422",
+        "sha256": "0f5a986d9f914088fe2eadf52a8e7136bf9975eba953faf6c443d22cb5cbecbf"
+      },
+      "raw": {
+        "bytes": 10733,
+        "git_blob": "73f091d7832c514143566e03a66fd40b2ffe226c",
+        "sha256": "f5d30f7b0f1225878b0bf18e4b9825be7c406b3e0868ca8679aa604532a824a8"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/historical_BASE_COMPILE_INPUTS.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/BASE_COMPILE_INPUTS.json"
+    },
+    {
+      "compressed": {
+        "bytes": 321,
+        "git_blob": "cd81d30d661e73097c4d37a4aee9a8110ad6b8c2",
+        "sha256": "3faea2b15ac6e04dc1aa3191e1c3ef6b75167c6660c31d52d7d8036abc2a2f47"
+      },
+      "raw": {
+        "bytes": 780,
+        "git_blob": "e217cc9335e0983950eceb996a1f21303dcd622c",
+        "sha256": "ec3756f2d78cd3b518883b0e51a90cbaa423ccbc48e69c5d1c4f7d22762eef1a"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/observer_PROPOSED.patch.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/cloud48-observer-registration-20261120/PROPOSED.patch"
+    },
+    {
+      "compressed": {
+        "bytes": 1543,
+        "git_blob": "b5c340aa792f6e53e984bedd70ca1f5f41c1881b",
+        "sha256": "a9326fa0809ff91aa21f5cbd7a46543fc9a74dbabcf06c892eac000a2ca140ae"
+      },
+      "raw": {
+        "bytes": 3399,
+        "git_blob": "2ce28d3e3fd4935193c471eb6d88ff5e02a117a1",
+        "sha256": "bbae103295a16fb6986e1eea884c7ceb95ce0d2f9c88d563de186088ba002842"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/observer_SOURCE_PROOF.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/cloud48-observer-registration-20261120/SOURCE_PROOF.json"
+    },
+    {
+      "compressed": {
+        "bytes": 1901,
+        "git_blob": "c1334045fa90c09366a7ad98d10ee82fbe53b500",
+        "sha256": "820ec58f2fc3d696d7b8bbf3f344de4292627263d79bdc4440d5b367ba6ec7b9"
+      },
+      "raw": {
+        "bytes": 5714,
+        "git_blob": "2b450b1adcc95d26571e103a2acad406c786b7db",
+        "sha256": "3cdc4d9faa08c79ce7b66effbcd0dc0920030338b3dd7316974369b44a6abc4f"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__.github__workflows__otzaria-local-annotation-cloud-apple.yml.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/.github/workflows/otzaria-local-annotation-cloud-apple.yml"
+    },
+    {
+      "compressed": {
+        "bytes": 85910,
+        "git_blob": "db653fe49a90e6205e413989bfc3fbe72d6e90e6",
+        "sha256": "029b7debee78702bc94487a274a567c1b96b59ed6e8de1a1806ce252343e7c49"
+      },
+      "raw": {
+        "bytes": 598318,
+        "git_blob": "eaf385c363750e04688a4cda181f40597f22f315",
+        "sha256": "49625ef0f05c3f0c7052ea9b1e069591f635c6dd581e33e1fe70a32d7b41582d"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Maktabah.xcodeproj__project.pbxproj.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Maktabah.xcodeproj/project.pbxproj"
+    },
+    {
+      "compressed": {
+        "bytes": 6926,
+        "git_blob": "dfe118e94d5af76eb7fadba53cdfadb9f09a7f70",
+        "sha256": "703335561559945d9ba5dd5e86fcdb3c40e1c0fec0f20ea7d3a80477f0be4bae"
+      },
+      "raw": {
+        "bytes": 19262,
+        "git_blob": "93e1c559206ca7014d59f3b997bc6862093fa881",
+        "sha256": "105cd3ffa91f359464bb4a49b2de22435a88baab81869c3546f713a3e1fae014"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Scripts__CI__local-annotation-cloud-apple.inputs.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Scripts/CI/local-annotation-cloud-apple.inputs.json"
+    },
+    {
+      "compressed": {
+        "bytes": 8828,
+        "git_blob": "f024fad9936202ebb62e6967c18fec847ef81c24",
+        "sha256": "558d410205ada66c2cfa15bdf2995f0eea7f5898685c67840fd4d9295f513379"
+      },
+      "raw": {
+        "bytes": 30332,
+        "git_blob": "d13ca7d1be66bafa5c0a9d450eb98881975d7537",
+        "sha256": "f39979e99c8d3172bc105b17ff0f6e373b65e9de9f2dd34efffce83f933f5fd6"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Scripts__CI__local-annotation-cloud-apple.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Scripts/CI/local-annotation-cloud-apple.py"
+    },
+    {
+      "compressed": {
+        "bytes": 2320,
+        "git_blob": "a2a6b21d8d910eda6ce75f13e8d29299e9cc9f00",
+        "sha256": "bef6def53ab001bd8cba40d6f324a003c082e12e288b9f040eb55323a8100c0b"
+      },
+      "raw": {
+        "bytes": 6377,
+        "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+        "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Scripts__CI__select-runtime27-toolchain.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Scripts/CI/select-runtime27-toolchain.py"
+    },
+    {
+      "compressed": {
+        "bytes": 7256,
+        "git_blob": "ae57b4a752df39801f7d259f7e0cb4279733205a",
+        "sha256": "648ba52c91733228927c163ee692857767bcef12b72cd4af200f71f8e4b02c68"
+      },
+      "raw": {
+        "bytes": 29447,
+        "git_blob": "57e2909492663413c6770e476ca7657a3fe18fea",
+        "sha256": "1b2a21f84ae9690b283844b3907608b8338a9e3c067f941f36fd356d532ad059"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Scripts__CI__test-local-annotation-cloud-apple.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Scripts/CI/test-local-annotation-cloud-apple.py"
+    },
+    {
+      "compressed": {
+        "bytes": 6368,
+        "git_blob": "9ce250d7e9f9e2664b69fc8e03fc7b1e42249d3a",
+        "sha256": "15e01131e634944dcc92940fce2dfdd5b99c9d9d709c40826d4b7355e567f9c7"
+      },
+      "raw": {
+        "bytes": 33283,
+        "git_blob": "c58864a98532c50c5b158c5e9ffbf0775ea92136",
+        "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__ChavrusaText__Annotations__Exchange__AnnotationExchangeLedger.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 2602,
+        "git_blob": "0d407ee1bd90723aa17863ee570a004191ca5806",
+        "sha256": "85944c5f32662b97629a47b4cbf2aa0be035d133f82fe05b6cce5f93b80aa90a"
+      },
+      "raw": {
+        "bytes": 8619,
+        "git_blob": "30602a567c239852fc56de436e35f939c5486997",
+        "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__ChavrusaText__Annotations__Exchange__TorahAnnotationEnvelope.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 1329,
+        "git_blob": "6907036e20d0272c7bf9d6d7d33e9949eea6fec6",
+        "sha256": "21709cada05b5987045f7e660e4b9713c9751fe0536bbd1f8593a009402b5bbd"
+      },
+      "raw": {
+        "bytes": 3982,
+        "git_blob": "fea867c79e7acc97f441b37b72c92accaddcdf29",
+        "sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__ChavrusaText__Annotations__LocalEditor__AnnotationLocalEditorCloudKit.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 3514,
+        "git_blob": "580880d5e46d6485b7bdb2f20cd5b24e35bae7cb",
+        "sha256": "8a278873375f940b7cda74619acd80dd807c492d63521f94290552f59ce5d0d4"
+      },
+      "raw": {
+        "bytes": 14853,
+        "git_blob": "a1ddaf0ff4a243d9cef5850c144941728927f650",
+        "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__ChavrusaText__Annotations__LocalEditor__AnnotationLocalEditorCloudOwnership.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 1454,
+        "git_blob": "0f36d8b2b657b587da999984953c4a60a334ad26",
+        "sha256": "848dee6dbb4091d4657f9e6a587509a25ba56c9ca4155d85918827b74b303db2"
+      },
+      "raw": {
+        "bytes": 3885,
+        "git_blob": "feffbb8b323e9ed2b1212f4d7a1adaab4f8ecca3",
+        "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__ChavrusaText__Annotations__LocalEditor__AnnotationLocalEditorModels.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 5869,
+        "git_blob": "748da2a219880678a1616938564b045d64ba4752",
+        "sha256": "73218861e710587e1da6aad9ec01badfe0f64cb7d27ae6a7f5ce0bbb86479ea5"
+      },
+      "raw": {
+        "bytes": 25713,
+        "git_blob": "d4d77f1dbaa8650c5336dcc7c0483a9ef17a13e5",
+        "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__ChavrusaText__Annotations__LocalEditor__AnnotationLocalEditorPersistence.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 2403,
+        "git_blob": "a4ebb8a47224306d19486aac48f54581661ff134",
+        "sha256": "ddfde50759c7c969225ec179b8c5760401267d85ca9b5013339444ef6de05881"
+      },
+      "raw": {
+        "bytes": 9240,
+        "git_blob": "1d35ea064eb70ddfa4d09f6313098b0db8c5bd26",
+        "sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__ChavrusaText__Annotations__LocalEditor__AnnotationLocalEditorSession.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 1052,
+        "git_blob": "bffcfd6bf5a71566fb034f921c7a08670a2c0e2c",
+        "sha256": "660dfda88915b05ff33f0cc3e268f875070388925242e18f0a94490080ee2259"
+      },
+      "raw": {
+        "bytes": 3504,
+        "git_blob": "30096dd4533109d2c0975de0db9399ab7b932cd2",
+        "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Core__CloudKit__AnnotationSyncHandler.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Core/CloudKit/AnnotationSyncHandler.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 3829,
+        "git_blob": "8e4b810eb0de7335a94da1609c5bdcf0a2c9c051",
+        "sha256": "f60a456006b25c88fa7cb974d2cec157da6cb872a40a684b38c99a5c27c0705e"
+      },
+      "raw": {
+        "bytes": 13430,
+        "git_blob": "54491e0f191a5cafed68639d965bddc0f3ce5220",
+        "sha256": "c2543785eb57ce344c4114b88f7068c5a553670087e532be9de75391cddb88c2"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Core__CloudKit__CloudKitCoreManager.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Core/CloudKit/CloudKitCoreManager.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 587,
+        "git_blob": "35f5f52c1abfabb8407ee22fb90eec1caa7424dd",
+        "sha256": "5ad63dfaa1a2adbe992858c1d331af94a96931790dc7ddf609a694e217d36e92"
+      },
+      "raw": {
+        "bytes": 1329,
+        "git_blob": "b7f647b4e7b51d328ac5eaa58675fa62f14f786f",
+        "sha256": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Core__CloudKit__CloudKitSyncable.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Core/CloudKit/CloudKitSyncable.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 749,
+        "git_blob": "ac3c922ebf52183efd752c154d57cbd7838cd96f",
+        "sha256": "77dac3586bdd4de383e914b6c2050e9a3b0411f43eb84774bdaac572189cb214"
+      },
+      "raw": {
+        "bytes": 1979,
+        "git_blob": "c8db3d4141369ba5217e9bff72367c9d4afe0100",
+        "sha256": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Core__CloudKit__CloudKitUploadDebouncer.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Core/CloudKit/CloudKitUploadDebouncer.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 1105,
+        "git_blob": "0ef31046e83056a3ba29cff0fc5eeaf4313dc1ec",
+        "sha256": "d7c719da8bdfb2c3d17c7b6d5d293b512cf2c382ab144a867b93fd5247ab7057"
+      },
+      "raw": {
+        "bytes": 3534,
+        "git_blob": "52f4039c55aac40b8cccb9cf01441cecda1ef3a8",
+        "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Core__CloudKit__SyncPendingStore.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Core/CloudKit/SyncPendingStore.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 5693,
+        "git_blob": "3fd44a58e83533fd6e56595da2618b6857e73b37",
+        "sha256": "e458e46861f6271919da33f74de3e7909791814286e9c037540e0dab8e74c1ea"
+      },
+      "raw": {
+        "bytes": 25258,
+        "git_blob": "bc1029dfe8b08a5acbe9e4a131da19fb10f98c94",
+        "sha256": "2af554f74d3a0900a94e1ac9129b9518190b7b88742929e8c18b5b5bfb79079a"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Core__Configuration__AppConfig.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Core/Configuration/AppConfig.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 4533,
+        "git_blob": "c18c62e74acf5de3dad3f4708e2efbc013bd77db",
+        "sha256": "470182bc11e8f5c750490d2df3090034768d99d90e5bbd9f8ec73f6825876145"
+      },
+      "raw": {
+        "bytes": 14942,
+        "git_blob": "9804cb1132925d130b9045a062ca99d46e907260",
+        "sha256": "dcfbf50da4a828231dcaeb0d83da6eaecbaade6bfc7e47ad691ad026853e87b7"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Core__Configuration__ReusableFunc.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Core/Configuration/ReusableFunc.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 6995,
+        "git_blob": "3d68e0a937b6cbce032920a5917d00374c2b4895",
+        "sha256": "b602e96e3599c0a82cd054cf476935a7efa858d573ffe846b1699f042b9f15ca"
+      },
+      "raw": {
+        "bytes": 41539,
+        "git_blob": "cb400f59c5154688532524622544e135634d5cca",
+        "sha256": "f5bbfde7f1c2c3e10bba5cbb7ea7066db321b1ecdd80ee5e15a27c7f556763ad"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Core__Database__CloudKitSyncManager.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Core/Database/CloudKitSyncManager.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 3892,
+        "git_blob": "360b0805e8fd75eed23e8db25e367d807c55e78f",
+        "sha256": "2ecfe5a4e3cdae04212fce5e2ab7930ff8de772303d02f0713e1f01073302c2a"
+      },
+      "raw": {
+        "bytes": 14916,
+        "git_blob": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+        "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Core__Database__SQLiteDatabase.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Core/Database/SQLiteDatabase.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 8198,
+        "git_blob": "e3b3d2c9b9032d458ce437746c4deacda20575f7",
+        "sha256": "0614202e8e569dde380850b5d365c84f9923ee1fcbc816113e38b66c0be96859"
+      },
+      "raw": {
+        "bytes": 45376,
+        "git_blob": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+        "sha256": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Features__Annotations__Database__AnnotationRepository.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Features/Annotations/Database/AnnotationRepository.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 3042,
+        "git_blob": "88c63e669733425bb612d143f2981c5064f1d5a8",
+        "sha256": "a8698348bf944cbea36b82941ae2698fbd952fffe249a1b0f44fbc3605f49983"
+      },
+      "raw": {
+        "bytes": 15022,
+        "git_blob": "aed5ca06c5839a1169ac0e41b02967d028047df6",
+        "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Features__Annotations__Database__AnnotationStore.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Features/Annotations/Database/AnnotationStore.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 1972,
+        "git_blob": "a6e1daec68fa3f14280024323d2f6171a0b91670",
+        "sha256": "191154544ebda605aa42ac4630be46cf2cfabfdce54bef2cb6cd62f3dfff303c"
+      },
+      "raw": {
+        "bytes": 6351,
+        "git_blob": "e88cffe612ba294d9b818fbb09fc05d5b86a3991",
+        "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Features__Annotations__Models__Annotation.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Features/Annotations/Models/Annotation.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 1628,
+        "git_blob": "f3351b02bad5e7a092a0ef467f7f393e2c399278",
+        "sha256": "e90e1c5cde0da4ba35fe968df3ed89121dc52f79cf3f46aad39859853edc516d"
+      },
+      "raw": {
+        "bytes": 17370,
+        "git_blob": "238e8bb2a3e2a676fb59e2af888a96e8c93553ff",
+        "sha256": "1a5364d2a5f36c614f91933d1225547db1ed92614a9ac3615f3219d1445b88ba"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Features__Annotations__Models__Annotation.xcstrings.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Features/Annotations/Models/Annotation.xcstrings"
+    },
+    {
+      "compressed": {
+        "bytes": 519,
+        "git_blob": "cb28026f30a7a97b749aed68260b4825ac499939",
+        "sha256": "dc8ffdf6ef42e9a700279c244f4c56d883afc72abc867551b2b5dd59ebdb0efe"
+      },
+      "raw": {
+        "bytes": 1589,
+        "git_blob": "d82cc1be0d2fb1a21b0e97ff25954ca4f1f382ee",
+        "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Features__Annotations__Models__AnnotationChangeTypes.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Features/Annotations/Models/AnnotationChangeTypes.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 170,
+        "git_blob": "edfe2fbb1e1cf4de343bb91d9e47b41614fc099d",
+        "sha256": "a5137f2e1f12c9af0cf163f68c7e7e1c37934a60d1530cbfbbad3b4ca7a92a0a"
+      },
+      "raw": {
+        "bytes": 270,
+        "git_blob": "42b8ba3d8d37d56aab4d83a4fd1354b2f3f8d7cc",
+        "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Features__Annotations__Models__AnnotationEvent.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Features/Annotations/Models/AnnotationEvent.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 1283,
+        "git_blob": "91fa6859e43fdbba447ca8f64e42c7f27e391c61",
+        "sha256": "057e89fc55c6eaefd56523acba00dd0a40734573aaffb4cbab59717ec7762f25"
+      },
+      "raw": {
+        "bytes": 4413,
+        "git_blob": "aefdacf6d13ea0c13d6fde3ed0b160421006290a",
+        "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Features__Annotations__Models__AnnotationNode.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Features/Annotations/Models/AnnotationNode.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 4268,
+        "git_blob": "c79daf751acb48aa8f6a92ee60ba5d6fa35c2387",
+        "sha256": "285567ba3858d4b6e490b7eba51e4409ca61a2f3353ff32ec0b6130183408698"
+      },
+      "raw": {
+        "bytes": 20313,
+        "git_blob": "64cd681bfcdb89cb41073162cc2cc0af96d65cf6",
+        "sha256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Source__Features__Reader__iOS__iOSAnnotationEditorSheet.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 4450,
+        "git_blob": "13067f02dc996167e74961ce37ece06086b35aeb",
+        "sha256": "7c89f688c8471c1f40a55735189c4c8947fb404685c17dc830f237b9ea228088"
+      },
+      "raw": {
+        "bytes": 19702,
+        "git_blob": "a3f5763ed9876234f8e28b4c0142ad60c8f01254",
+        "sha256": "296585d961c4474cfa66784d8bba9f39a450bba69db977bd8fc37c9de27af5fe"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Tests__HQ__annotation-disconnect__AnnotationRepositoryDisconnectAcceptance.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Tests/HQ/annotation-disconnect/AnnotationRepositoryDisconnectAcceptance.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 7667,
+        "git_blob": "93c91acc148137b93781231b3d40f9ae1e2981e6",
+        "sha256": "3492f661476b29da6ac45315985892007870e9c5170f1ce0f5d5176e12862f4a"
+      },
+      "raw": {
+        "bytes": 35544,
+        "git_blob": "79b114b591ef7346093646ee01ccbfb7ceff43ce",
+        "sha256": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Tests__HQ__annotation-exchange__AnnotationExchangeAcceptance.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 4227,
+        "git_blob": "a7aa9dffd8349aa738b80bb5ac79c7d054c57440",
+        "sha256": "d1a59128e0019fe99297db67ad015919da1e8506f5839a5654df7da4dfc33331"
+      },
+      "raw": {
+        "bytes": 11957,
+        "git_blob": "eb4ca0f06fb46b42175f1b3a08c4db09a4ec447c",
+        "sha256": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Tests__HQ__annotation-exchange__AnnotationExchangeTestSupport.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 8194,
+        "git_blob": "2df9183de5872c9a82b2cb01a90c787bf7435861",
+        "sha256": "c15e69f4b023c6a92ede318b595a6ce89b32e70a5799f858fa3316258170a33a"
+      },
+      "raw": {
+        "bytes": 44287,
+        "git_blob": "df96549af006a148c4c1b4ef5c82a3afc8ee443e",
+        "sha256": "0eb0914e8a1c92559fcb574efcec487d8dc97c276bf4a6a503d3320821285b8c"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Tests__HQ__local-annotation-cloud__LocalAnnotationCloudAcceptance.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Tests/HQ/local-annotation-cloud/LocalAnnotationCloudAcceptance.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 374,
+        "git_blob": "7fbff3d6b013ff297c8c37e6cb8980673b0b0939",
+        "sha256": "e70058cb06578ebca654eccb66a03a96598ce83f1438991ce6e3a428f5ab2977"
+      },
+      "raw": {
+        "bytes": 599,
+        "git_blob": "0056a307f0aede09d39bf0c15665db3f9fb18c9c",
+        "sha256": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Tests__HQ__local-annotation-cloud__LocalAnnotationCloudBoundary.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 9076,
+        "git_blob": "f07dd6133048f0d228c1d0ffa281d59deff83cb4",
+        "sha256": "411254715b7e9aef3e0d88bc5459fb120ea0c3da17b57d9ebac2b06c0b38410a"
+      },
+      "raw": {
+        "bytes": 39693,
+        "git_blob": "467f45f7859ad03824d030be1855c2b27a1a98a5",
+        "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Tests__HQ__local-annotation-editor__LocalAnnotationEditorAcceptance.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 1501,
+        "git_blob": "52a3c9eb8974e644362c959888dbd7f66826be04",
+        "sha256": "060fa29a4f1f628230ac8a804dab877b8b7133099ad7dca2d5ce63132238d369"
+      },
+      "raw": {
+        "bytes": 3758,
+        "git_blob": "0f8bf29a30d63aa7769b723973784839a44300c9",
+        "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Tests__HQ__local-annotation-editor__LocalAnnotationEditorBoundary.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 316,
+        "git_blob": "5ab95c95522174693d9a855a6fb6c1b322a7a773",
+        "sha256": "5afb414d9745a25e44562339865a50c1865d364ac394333ef1bfaaf7e8295aec"
+      },
+      "raw": {
+        "bytes": 443,
+        "git_blob": "af39c8673dcda19785f6f1259474c39941f5a5a0",
+        "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__Tests__HQ__sqlite__UnusedZstdBoundary.swift.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/Tests/HQ/sqlite/UnusedZstdBoundary.swift"
+    },
+    {
+      "compressed": {
+        "bytes": 7760,
+        "git_blob": "4344b3091820117d3911b438b986e483e954fea1",
+        "sha256": "e7218fa9ff77f1b093b4db9d1aa56fce02b34f7f96fbb2d8c3961075094c0fd0"
+      },
+      "raw": {
+        "bytes": 24265,
+        "git_blob": "b71db9898af73964c56b88824566cfff310e21ca",
+        "sha256": "370090274c300120b55fb76131c86e4aacffcf7dc92a4c0437f153ffcfdeee63"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__tools__hq-annotation-disconnect-acceptance.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/tools/hq-annotation-disconnect-acceptance.py"
+    },
+    {
+      "compressed": {
+        "bytes": 3906,
+        "git_blob": "f8f1f4050f7047f756605ddff87a88166a23ff7c",
+        "sha256": "a2b085c20523761694bc5f88b035dffba5ff9812996f27917b1a21f9ed963e15"
+      },
+      "raw": {
+        "bytes": 11654,
+        "git_blob": "4f87f3a4f4b61144fd3bcf6ee8b1975e5708fb72",
+        "sha256": "e5bb838def64d8a64f8228889d6d371dfe3968b4ee0ec521cd122f58428eb97f"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__tools__hq-annotation-exchange-acceptance.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/tools/hq-annotation-exchange-acceptance.py"
+    },
+    {
+      "compressed": {
+        "bytes": 4371,
+        "git_blob": "ecc6800afb0fe199db9744b70c3fe7e976c12e04",
+        "sha256": "b543c88fad781f3c06aad88a60f62046bc36a06b7ee9061ea934e5b2486a4e30"
+      },
+      "raw": {
+        "bytes": 13582,
+        "git_blob": "11117d25545434adbd698e713eb4542422312cc9",
+        "sha256": "9ef5252edfb7c47235279775da201715ff22ee9e1b81dab698c8d4bb2f429bbd"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__tools__hq-local-annotation-cloud-acceptance.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/tools/hq-local-annotation-cloud-acceptance.py"
+    },
+    {
+      "compressed": {
+        "bytes": 5008,
+        "git_blob": "bb68ee4e185c91d062908107a75a0eeb9e9fc7f3",
+        "sha256": "329e9642a6f2fc8fd480595f1d5b4ee558ad79769565bcda2afdbd49e8def4a5"
+      },
+      "raw": {
+        "bytes": 16135,
+        "git_blob": "d1ad554013d77c7c80e3cce8c6c17509455ff345",
+        "sha256": "76bd98bf2fe2c8df4332b13e25399a85a95d0e653e2db1f00ebe723eef423a14"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__tools__hq-local-annotation-editor-acceptance.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/tools/hq-local-annotation-editor-acceptance.py"
+    },
+    {
+      "compressed": {
+        "bytes": 2758,
+        "git_blob": "59419f8c2d04ec31868fe33784ece7469a481a4e",
+        "sha256": "5a5d49da585f2412d09a3a28d405b65ad7434764467b0f86ddbd34bb63b9aade"
+      },
+      "raw": {
+        "bytes": 8865,
+        "git_blob": "b6f0e88657f7f0586175f14b325fd784a95d747c",
+        "sha256": "ebf4567506838f61a1f3838b82efd44196ddc5810290ab09a8dc8d671d775054"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__tools__test-local-annotation-editor-gate.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/tools/test-local-annotation-editor-gate.py"
+    },
+    {
+      "compressed": {
+        "bytes": 4381,
+        "git_blob": "88218328f56e8a816e09e6bf8b505740fc83560e",
+        "sha256": "e208be2bf13c539c0985d544767f79b615a9255e9883bc28e7ce1549c9c4b318"
+      },
+      "raw": {
+        "bytes": 14698,
+        "git_blob": "fa91b24b351651d7ddd62a0c2894d0b7fb418759",
+        "sha256": "24cd22170829f162b76b845c667f259a5925a756f4791e8b80c8880bc00d8b4f"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__tools__test-local-annotation-editor-sql.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/tools/test-local-annotation-editor-sql.py"
+    },
+    {
+      "compressed": {
+        "bytes": 3838,
+        "git_blob": "3cffb591597f271e79a9b8b488f941ff9638ae5c",
+        "sha256": "bffc9b4abf6274cdc9341f7749d110c84012d2449d0b0ebed887a2ca6bd77842"
+      },
+      "raw": {
+        "bytes": 14533,
+        "git_blob": "b54c68b2ec400239c90ad7e0ee829c2930316c42",
+        "sha256": "d321cd6512c69fec1c8ae7b3bfaddf8d356792f97d0bf3769727b1815a0e04f8"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/source__tools__test-local-cloud-pending-sql.py.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/annotation-repository-disconnect-apple-20261120/control-root/tools/test-local-cloud-pending-sql.py"
+    },
+    {
+      "compressed": {
+        "bytes": 6919,
+        "git_blob": "f7ae55f73c3cbdd589f0ec0ffedf0fd15a6802d6",
+        "sha256": "a79e045afad7c628e5a489914474499af45c1f75f6979aeab149e129f32ab566"
+      },
+      "raw": {
+        "bytes": 19262,
+        "git_blob": "5e55cc95a3a2391d623a38b14239a69acb51d66c",
+        "sha256": "85cf4b4309b247a0f763020a0695086d3b6463d09c66c00436f1a7b1b55e73a3"
+      },
+      "retained": "docs/hq-integration/annotation-repository-disconnect-20261120/raw/original_C_binding.json.gz",
+      "source": "/workspace/scratch/8c31d602ec0a/local-annotation-cloudkit-owner-20261120/candidate/Scripts/CI/local-annotation-cloud-apple.inputs.json"
+    }
+  ],
+  "source3_unchanged_after_publication": true,
+  "source_M": "939eaf3a5b56fe604354b235579cf7aa4a60e3d4",
+  "source_base": "7af3a06d48ccbe77acef180cb99d120971c3804e",
+  "source_pins": 45,
+  "source_review": {
+    "fixture_B": "Read full344 lines and5/8 marker qualification; no concrete Swift6/capture blocker; no compile or runtime claim.",
+    "route_Root": "Read entire final route/workflow and unchanged C verify_results adapter; no concrete blocker. Root formal review may be added under root-review/ outside this sealed index."
+  },
+  "status": "READY_FOR_ROOT_REVIEW_NO_ACTIVATION"
+}

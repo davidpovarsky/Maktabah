@@ -1,0 +1,35 @@
+{
+  "activation": "Root only, after review; no activation performed",
+  "allowed_extra_root_review_prefix": "docs/hq-integration/annotation-repository-disconnect-20261120/root-review/",
+  "branch": "codex/otzaria-annotation-disconnect-apple-reviewed-20261120",
+  "ci_delta_paths": [
+    ".github/workflows/otzaria-annotation-disconnect-apple.yml",
+    "Scripts/CI/annotation-disconnect-apple.py",
+    "Scripts/CI/annotation-disconnect-apple.inputs.json",
+    "Scripts/CI/test-annotation-disconnect-apple.py",
+    "Scripts/CI/local-annotation-cloud-apple.inputs.json"
+  ],
+  "parent": "939eaf3a5b56fe604354b235579cf7aa4a60e3d4",
+  "required_ancestry": "Exactly one CI child of M939; M939 is exactly the reviewed3-source child of7af; checkout depth3.",
+  "source3_already_in_parent": [
+    {
+      "mode": "100644",
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "sha": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+      "type": "blob"
+    },
+    {
+      "mode": "100644",
+      "path": "Tests/HQ/annotation-disconnect/AnnotationRepositoryDisconnectAcceptance.swift",
+      "sha": "a3f5763ed9876234f8e28b4c0142ad60c8f01254",
+      "type": "blob"
+    },
+    {
+      "mode": "100644",
+      "path": "tools/hq-annotation-disconnect-acceptance.py",
+      "sha": "b71db9898af73964c56b88824566cfff310e21ca",
+      "type": "blob"
+    }
+  ],
+  "workflow": ".github/workflows/otzaria-annotation-disconnect-apple.yml"
+}

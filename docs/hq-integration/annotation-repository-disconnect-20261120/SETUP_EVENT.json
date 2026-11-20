@@ -1,0 +1,6 @@
+{
+  "actual_tests_in_failed_call": 0,
+  "error": "One functions.exec JavaScript call had SyntaxError: missing ) after argument list before exec_command was invoked. Corrected orchestration then executed the retained actual controls.",
+  "source_mutation_in_failed_call": false,
+  "status": "SETUP_ONLY_NO_NESTED_COMMAND"
+}

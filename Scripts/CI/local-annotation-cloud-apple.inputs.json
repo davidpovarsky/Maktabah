@@ -1,9 +1,9 @@
 {
   "application_trees": {
     "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
-    "Source": "267a778fb1c5f7512ebe5e35153c1d3ee743ec5c",
-    "Tests": "afe91dee5f6c6a7a0315f5c1a90a0b82dfe1d7cd",
-    "tools": "447b05cbe2efb0e7c4e9246236fec68857296941"
+    "Source": "24885d99839a0d9614f7e328d421b32edb4acbe7",
+    "Tests": "fbed6a306afd224c9738f4aa4cf24a831efa651a",
+    "tools": "cb52d9a96e01f1aaf6888dded9cc2f28bcc82424"
   },
   "case_names": {
     "cloud": [
@@ -154,7 +154,7 @@
   "exchange_count": 28,
   "exchange_crash_gates": 2,
   "local_cold_gates": 2,
-  "reviewed_source_sha": "57e4a1cb7cd0bee72e3042e2f4567972237e7e35",
+  "reviewed_source_sha": "939eaf3a5b56fe604354b235579cf7aa4a60e3d4",
   "route": {
     "branch": "codex/otzaria-local-annotation-cloud-apple-reviewed-20261120",
     "repository": "davidpovarsky/Maktabah",
@@ -189,9 +189,9 @@
       "sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71"
     },
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift": {
-      "bytes": 14839,
-      "git_blob": "8db64e163e4798b22bb73f2b5713072fc00d9310",
-      "sha256": "1b9556b20886ec54addc8135be7090d649ba017539df543e4268957e2b3cd243"
+      "bytes": 14853,
+      "git_blob": "a1ddaf0ff4a243d9cef5850c144941728927f650",
+      "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17"
     },
     "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift": {
       "bytes": 3885,
@@ -254,9 +254,9 @@
       "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
     },
     "Source/Features/Annotations/Database/AnnotationRepository.swift": {
-      "bytes": 44176,
-      "git_blob": "86512a8286560aedb248da4abea1a41f5c96ea0e",
-      "sha256": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af"
+      "bytes": 45376,
+      "git_blob": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+      "sha256": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8"
     },
     "Source/Features/Annotations/Database/AnnotationStore.swift": {
       "bytes": 15022,
