@@ -1,0 +1,40 @@
+{
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+    "build",
+    "--package-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package",
+    "--target",
+    "Crypto",
+    "--jobs",
+    "2"
+  ],
+  "exit": 0,
+  "seconds": 987.125,
+  "kind": "official dependency build only",
+  "occurrenceTestsExecuted": 0,
+  "CryptoRevision": "1b6b2e274e85105bfa155183145a1dcfd63331f1",
+  "resolved": {
+    "originHash": "2c55e48ee25c3605fd0ebf30fd2e6adef051fa0fb3f30b2e86738ec31fe6b98c",
+    "pins": [
+      {
+        "identity": "swift-asn1",
+        "kind": "remoteSourceControl",
+        "location": "https://github.com/apple/swift-asn1.git",
+        "state": {
+          "revision": "917b472dbe53ba699cbb0495f9a95a084bc6364d",
+          "version": "1.7.4"
+        }
+      },
+      {
+        "identity": "swift-crypto",
+        "kind": "remoteSourceControl",
+        "location": "https://github.com/apple/swift-crypto.git",
+        "state": {
+          "revision": "1b6b2e274e85105bfa155183145a1dcfd63331f1"
+        }
+      }
+    ],
+    "version": 3
+  }
+}

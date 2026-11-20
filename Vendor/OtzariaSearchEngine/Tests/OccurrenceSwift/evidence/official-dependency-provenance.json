@@ -1,0 +1,42 @@
+{
+  "checkouts": [
+    {
+      "package": "swift-crypto",
+      "checkout": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\checkouts\\swift-crypto",
+      "HEAD": "1b6b2e274e85105bfa155183145a1dcfd63331f1",
+      "status": "",
+      "origin": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\repositories\\swift-crypto-7e0614ea"
+    },
+    {
+      "package": "swift-asn1",
+      "checkout": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\checkouts\\swift-asn1",
+      "HEAD": "917b472dbe53ba699cbb0495f9a95a084bc6364d",
+      "status": "",
+      "origin": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\swift\\package\\.build\\repositories\\swift-asn1-7065ad2c"
+    }
+  ],
+  "resolved": {
+    "originHash": "2c55e48ee25c3605fd0ebf30fd2e6adef051fa0fb3f30b2e86738ec31fe6b98c",
+    "pins": [
+      {
+        "identity": "swift-asn1",
+        "kind": "remoteSourceControl",
+        "location": "https://github.com/apple/swift-asn1.git",
+        "state": {
+          "revision": "917b472dbe53ba699cbb0495f9a95a084bc6364d",
+          "version": "1.7.4"
+        }
+      },
+      {
+        "identity": "swift-crypto",
+        "kind": "remoteSourceControl",
+        "location": "https://github.com/apple/swift-crypto.git",
+        "state": {
+          "revision": "1b6b2e274e85105bfa155183145a1dcfd63331f1"
+        }
+      }
+    ],
+    "version": 3
+  },
+  "legacyMethodsUnchanged": true
+}
