@@ -30,6 +30,9 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 entryMode: .relationships,
                 chrome: chrome,
                 selectedTool: $selectedTool,
+                presentationOptions: ChavrusaTextReaderUI.isEnabled
+                    ? .init(showsStudyToolsTitle: false, showsSelectedSegmentTitle: false)
+                    : .init(),
                 onClose: {
                     #if DEBUG
                     OtzariaFileLogger.shared.log("[NativeInspector] originalClose invoked visible=\(viewModel.readerInspectorVisible)")

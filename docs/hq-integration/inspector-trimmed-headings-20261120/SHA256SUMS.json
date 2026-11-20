@@ -1,0 +1,45 @@
+{
+  "scope": "staged Git bytes before this manifest",
+  "files": [
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "bytes": 3301,
+      "sha256": "091c0e6cb09b83c393485377ec8837829c255d23ed5e4a39d2abff555ea23362"
+    },
+    {
+      "path": "docs/hq-integration/inspector-trimmed-headings-20261120/README.md",
+      "bytes": 1551,
+      "sha256": "39d56c2d74ce20fa1f86a8c4fec608e527e22a84b6c3c65fb87f648018c3c396"
+    },
+    {
+      "path": "docs/hq-integration/inspector-trimmed-headings-20261120/SOURCE_REVIEW.json",
+      "bytes": 2774,
+      "sha256": "db3e966f29a0e4a736bba15cfc5c9fd87986ff4d61b37f46147806345aa8c4e3"
+    },
+    {
+      "path": "docs/hq-integration/inspector-trimmed-headings-20261120/TorahInspectorPresentationOptions.swift.gz",
+      "bytes": 366,
+      "sha256": "04dbb95652d7a945d2e252935d268d993f0ce093c4fd0940be77b3964f34d173"
+    },
+    {
+      "path": "docs/hq-integration/inspector-trimmed-headings-20261120/TorahInspectorView.swift.gz",
+      "bytes": 2258,
+      "sha256": "fda12e7fbd22f04e185fc765ca3013b72e554123b25639e793ab1bd8e08827d0"
+    },
+    {
+      "path": "docs/hq-integration/inspector-trimmed-headings-20261120/TorahSegmentDetailView.swift.gz",
+      "bytes": 6028,
+      "sha256": "4f2b4b626df92cddd5f2c564ce388d234d9bcfb69bef22db173575a34d26e246"
+    },
+    {
+      "path": "docs/hq-integration/inspector-trimmed-headings-20261120/syntax-parse.stderr.log",
+      "bytes": 163,
+      "sha256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153"
+    },
+    {
+      "path": "docs/hq-integration/inspector-trimmed-headings-20261120/syntax-parse.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "at_utc": "2026-11-20T08:08:23.931528+00:00",
+  "base": "a68b79e2f5b93ee59ffc33f70d34f1bb8a3ddef3",
+  "file": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+  "before_git_lf_sha256": "564fcc74a76faf5bd911ca8eb4e06c92ad288409b38863263a5dbbbe848af7c3",
+  "after_git_lf_sha256": "091c0e6cb09b83c393485377ec8837829c255d23ed5e4a39d2abff555ea23362",
+  "exact_inverse_preserves_other_source": true,
+  "sdk_pin_unchanged": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+  "api_receipts": [
+    {
+      "path": "Sources/TorahInspectorUI/TorahInspectorView.swift",
+      "commit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+      "git_blob": "b44a43b9afa9e4f5ab6d0b8b4036ba36662cb486",
+      "sha256": "56b1344586acf41c0b260bb285bb6786227986276d08d305b5872e21b3a69c2d",
+      "url": "https://github.com/davidpovarsky/TorahInspectorKit/blob/19d1b35397af4f10ae70cfb3f444c9de87383b53/Sources/TorahInspectorUI/TorahInspectorView.swift",
+      "retained": "TorahInspectorView.swift.gz"
+    },
+    {
+      "path": "Sources/TorahInspectorUI/TorahInspectorPresentationOptions.swift",
+      "commit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+      "git_blob": "b97b34393a8540b6b59d41230fc1991ca2849508",
+      "sha256": "93108c769bda01fa19a03b9ad840edaa3f986fcbf1edfd7668d2c6d1ea49fb79",
+      "url": "https://github.com/davidpovarsky/TorahInspectorKit/blob/19d1b35397af4f10ae70cfb3f444c9de87383b53/Sources/TorahInspectorUI/TorahInspectorPresentationOptions.swift",
+      "retained": "TorahInspectorPresentationOptions.swift.gz"
+    },
+    {
+      "path": "Sources/TorahInspectorUI/TorahSegmentDetailView.swift",
+      "commit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+      "git_blob": "f3b1b4fc55a6dd56cbb8044b6f776efce0423c28",
+      "sha256": "4613d6e83237fcff481cc8324c2eec437319d4699ad40dc33b33bc7f6ac0a7b9",
+      "url": "https://github.com/davidpovarsky/TorahInspectorKit/blob/19d1b35397af4f10ae70cfb3f444c9de87383b53/Sources/TorahInspectorUI/TorahSegmentDetailView.swift",
+      "retained": "TorahSegmentDetailView.swift.gz"
+    }
+  ],
+  "syntax_command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native88-harness-repairs-20261120\\Source\\Otzaria\\Reading\\OtzariaReaderSourcesInspectorHost.swift"
+  ],
+  "syntax_exit": 0,
+  "syntax_warning_lines": 2,
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "unchanged_behavior": [
+    "feature-off SDK defaults",
+    "usesMinimalChrome default false",
+    "selected text and reference",
+    "tools",
+    "original Close callback",
+    "source navigation",
+    "note callbacks",
+    "SDK/pins",
+    "all XCTest oracles"
+  ]
+}
