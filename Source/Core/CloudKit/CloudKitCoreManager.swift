@@ -149,9 +149,15 @@ final class CloudKitCoreManager: Sendable {
 
     // MARK: - Core Operations
 
+    // Preserve the original result-completion API, including unlabeled trailing
+    // closures, and forward its original default notification behavior.
+    func upload(records: [CKRecord], completion: (@Sendable (Result<Void, any Error>) -> Void)? = nil) {
+        upload(records: records, completionNotification: nil, completion: completion)
+    }
+
     func upload(
         records: [CKRecord],
-        completionNotification: (@Sendable () -> Void)? = nil,
+        completionNotification: (@Sendable () -> Void)?,
         completion: (@Sendable (Result<Void, any Error>) -> Void)? = nil
     ) {
         guard let privateDatabase else {
