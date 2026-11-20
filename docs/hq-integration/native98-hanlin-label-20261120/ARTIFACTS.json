@@ -1,0 +1,91 @@
+{
+  "base": "9adf4a5b9a4f26929620e7b73b553700d3598b84",
+  "nativeRun": 44723902453,
+  "nativeSource": "60a57972acb28739ec738565083bf17fb7503028",
+  "nativeFileEqualsBase": true,
+  "source": {
+    "base": "9adf4a5b9a4f26929620e7b73b553700d3598b84",
+    "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+    "beforeCanonicalSHA256": "552a010f1b9f6ecd29406e1bca22eec509594e0938cad457fcf9275b96e27240",
+    "afterCanonicalSHA256": "f55e88d3577b79f1146b762aa85f93f7c7582f6f0ffae63efba5db61b91db2b6",
+    "exactInverse": true,
+    "replacementCount": 1,
+    "existingAssertionsAndConsentTextRetained": true,
+    "noFirstMatch": true,
+    "query": "Exact label == %@ and unique element",
+    "native": "NOT_RUN",
+    "AppleTypecheck": "NOT_RUN"
+  },
+  "artifacts": [
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/NATIVE_ARTIFACT_VERIFIED.json.gz",
+      "compressedBytes": 228,
+      "compressedSHA256": "7418a871803e13472ad47808fdba60c2ce2844b4315047ac45e5598869588f85",
+      "uncompressedBytes": 311,
+      "uncompressedSHA256": "f38f0a60bb1913d8ce40297eb6ccc46750b1bb0abca0fcfb2958e240bd1f1a57"
+    },
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/NATIVE_FIRST_FAILURE.txt.gz",
+      "compressedBytes": 1871,
+      "compressedSHA256": "8a842d6d9fbabc663d28418548faf37f622bb8e6332e9a67bd66a6fefe35afc3",
+      "uncompressedBytes": 7169,
+      "uncompressedSHA256": "a9882e0ba53e0db0dc45552f90dc67d87d632074c90fdbe940fa4ab9a055ddaf"
+    },
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/NATIVE_SUMMARY.json.gz",
+      "compressedBytes": 1460,
+      "compressedSHA256": "59c602b191ea636eaa18942ab740fd650a1d3812a18ef7184be483b39c93e2bf",
+      "uncompressedBytes": 5531,
+      "uncompressedSHA256": "f08a0540c17395f71332f97646ff365e9e2e7be3ec89c608f6616bc025523f28"
+    },
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/PARSE.json.gz",
+      "compressedBytes": 330,
+      "compressedSHA256": "1cccb4e7cfe61174c1f396bcc0b2b293b768a38d2c42e85b0937228036d73779",
+      "uncompressedBytes": 472,
+      "uncompressedSHA256": "f8eb499e16b43a614efd17ade1555b825b7e54075cb4af6b3fa9f30d8542beb0"
+    },
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/PARSE.stderr.log.gz",
+      "compressedBytes": 20,
+      "compressedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/PARSE.stdout.log.gz",
+      "compressedBytes": 20,
+      "compressedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/SOURCE.patch.gz",
+      "compressedBytes": 634,
+      "compressedSHA256": "6a586c8b57d0a782a3bb8a4e2c82d32c16ace0311707b4dcab0fbdd9c7c3729f",
+      "uncompressedBytes": 1398,
+      "uncompressedSHA256": "1633d57385b0aef45c5bfbaa97a58d922685fb8d64f70a3b076b3aa4a2fa35f0"
+    },
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/SOURCE_AFTER.swift.gz",
+      "compressedBytes": 4762,
+      "compressedSHA256": "146b78dfac886ca371effbe3621ee65231d2574154303f173615b695150a6101",
+      "uncompressedBytes": 19027,
+      "uncompressedSHA256": "f55e88d3577b79f1146b762aa85f93f7c7582f6f0ffae63efba5db61b91db2b6"
+    },
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/SOURCE_BEFORE.swift.gz",
+      "compressedBytes": 4747,
+      "compressedSHA256": "600958e6689f23d93758bfccad77533d7366b67adc9cfd823c932a2b3f357e20",
+      "uncompressedBytes": 18962,
+      "uncompressedSHA256": "552a010f1b9f6ecd29406e1bca22eec509594e0938cad457fcf9275b96e27240"
+    },
+    {
+      "path": "docs/hq-integration/native98-hanlin-label-20261120/raw/SOURCE_PRESERVATION.json.gz",
+      "compressedBytes": 385,
+      "compressedSHA256": "da81d0ee76fedb014fadaa8f3fe27be27528cd9ced34238179ed32113e362fb9",
+      "uncompressedBytes": 556,
+      "uncompressedSHA256": "fadd97e310e559cfc7cab3038edc480c9df71238736f3b62a11a1da28c07ffa1"
+    }
+  ]
+}

@@ -176,9 +176,10 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
                        "The native reader must present one original scene-owned chat")
         XCTAssertTrue(app.textFields["otzaria-hanlin-model"].waitForExistence(timeout: 20),
                       "The real reader entry must expose the explicit original model configuration")
-        XCTAssertTrue(app.staticTexts[
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(
+            format: "label == %@",
             "This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared."
-        ].exists, "Opening the reader chat must not imply permission to read the current book")
+        )).element.exists, "Opening the reader chat must not imply permission to read the current book")
         XCTAssertEqual(app.switches["otzaria-hanlin-allow-current-book"].value as? String, "0",
                        "The actual source-bound read offer must default to OFF")
         capture("hanlin-reader-original-chat-presented")
