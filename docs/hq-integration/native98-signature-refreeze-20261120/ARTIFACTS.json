@@ -1,0 +1,75 @@
+{
+  "representation": "Exact staged Git blob bytes; raw gzip members preserve original bytes",
+  "files": [
+    {
+      "path": "FULL98_DECLARATIONS.json",
+      "bytes": 29371,
+      "sha256": "f4e640425a420bcb50e98c18298c0e81574677996a805bd62e75f89fa8661121"
+    },
+    {
+      "path": "FULL_SOURCE_PREFLIGHT.json",
+      "bytes": 3560,
+      "sha256": "f36fd5ec8678e88625eb1d23c332f2b69bdd02e267603c0918f20bf2ddcf65cb"
+    },
+    {
+      "path": "PIN_DELTA_PROOF.json",
+      "bytes": 2105,
+      "sha256": "8d2dfa931fff73fcaafd2fb721dd8ed5a8fc14744cc68180bcf1ab8a94be12d6"
+    },
+    {
+      "path": "PREFLIGHT_SUMMARY.json",
+      "bytes": 726,
+      "sha256": "78756841908b43b92f657b82df3ce51fd2036baa50eb0ebf39449dde6de4a412"
+    },
+    {
+      "path": "PREPARATION.json",
+      "bytes": 807,
+      "sha256": "ea81e02fb7952a4fe039786606843a73a0acdea5459bb0741cdb3096ce4e0fcf"
+    },
+    {
+      "path": "raw/PREFLIGHT_DRIVER.py.gz",
+      "bytes": 1532,
+      "sha256": "fc01dc9a17a95d401e78c772c137ae0b090fba10a0f52f25cec9fbc9f30008b3"
+    },
+    {
+      "path": "raw/PROPOSED.patch.gz",
+      "bytes": 4170,
+      "sha256": "71b32709390093f2531f78985a4eb7215ea58e207ed96b5bd71ce55bac405d7f"
+    },
+    {
+      "path": "raw/source-preflight.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/source-preflight.stdout.log.gz",
+      "bytes": 1919,
+      "sha256": "79a94c7787ee101d3c4225024e2cc363ec8dbb623bb9481a8602b04a03f8fe62"
+    },
+    {
+      "path": "RAW_FILES.json",
+      "bytes": 680,
+      "sha256": "a4b5bec0806eda2515ba9bfd6e3ec7aed8559d037e028ffbd3bd2e5e5fb74926"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4789,
+      "sha256": "8649d11f4da468049c578b4807f46b2b65222f1b164b1ba6cb4b4ddb3dab52ac"
+    },
+    {
+      "path": "RELEASE_MANIFEST_PREFLIGHT.json",
+      "bytes": 709,
+      "sha256": "be8c2e6a7bdcf6163ac825e9b9f8fb16217e4b7a9ab7133ece1b755bb4eb4cec"
+    },
+    {
+      "path": "SOURCE_FREEZE.json",
+      "bytes": 6056,
+      "sha256": "948cb49eb966f455a2769940a5d74d09a042f2089ceed9d8ec950b3d64af0363"
+    },
+    {
+      "path": "SOURCE_PREFLIGHT_COMMAND.json",
+      "bytes": 531,
+      "sha256": "e4abfa811359c1b7d4b85c6aed469ec2799881d26f35648a64b6591107f08571"
+    }
+  ]
+}

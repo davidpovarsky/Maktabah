@@ -1,0 +1,22 @@
+[
+  {
+    "path": "raw/PREFLIGHT_DRIVER.py.gz",
+    "originalBytes": 3698,
+    "originalSHA256": "fdbeabb85e79b22fe8e87b228c0c5fb8a6eed2e75e8086a2913e9ad199021196"
+  },
+  {
+    "path": "raw/PROPOSED.patch.gz",
+    "originalBytes": 16467,
+    "originalSHA256": "92806af2d22ab5f691f2952b9f223eef96108db92731905ffdcc8fe84d9abd57"
+  },
+  {
+    "path": "raw/source-preflight.stdout.log.gz",
+    "originalBytes": 3560,
+    "originalSHA256": "f36fd5ec8678e88625eb1d23c332f2b69bdd02e267603c0918f20bf2ddcf65cb"
+  },
+  {
+    "path": "raw/source-preflight.stderr.log.gz",
+    "originalBytes": 0,
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

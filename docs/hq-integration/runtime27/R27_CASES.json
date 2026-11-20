@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "source_test_commit": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "app_source": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "All98 required Native cases: all92 original cases plus one hundred-group-switch case and five original Search Data readiness/repair/failure cases;78 iPad27 and20 iPhone27. Zero skips required. Original realUI installation, engines, owners and exact-source oracles remain mandatory; prior-source passes are not transferred.",
@@ -1423,7 +1423,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "application_source_sha": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -2499,5 +2499,89 @@
     "original_release_manifest_unchanged_except_this_append_only_freeze": true,
     "registry": "ONE_QUALIFIED_ORIGINAL_265_TO_EXACT_OCCURRENCES_D5_CONTRACT",
     "acceptance": "PENDING_ACTUAL_CURRENT_SOURCE_APPLE_AND_NATIVE_EXECUTION"
+  },
+  "native98_foundation_signature_refreeze_20261120": {
+    "prepared_at_utc": "2026-11-20T10:54:28.043188+00:00",
+    "application_and_test_source": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "application_trees": {
+      "Source": "c7732ce8cc0ba7d1a12a1e5c04d9cdb8d8f0fbc9",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+      "Maktabah-iOSUITests": "2ba71c125cd1e1b165a5bf147cb67802266a69dd",
+      "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+    },
+    "previous_frozen_checkout": "e9050ad8998a070c92c73a881b0d7deb6e216e88",
+    "previous_application_source": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+    "previous_native_manifest_git_lf_sha256": "c4a5a146448460b227327ddd1ce7ade42eb8d8e261c3d772c5ca2909630ace0d",
+    "previous_release_manifest_git_lf_sha256": "0b23b2549fa8c5e407a011ccc0b2be0d0db8570b4bf6a8b43755f91f46018fff",
+    "test_inputs_git_lf_sha256": {
+      "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+      "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+      "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab",
+      "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+      "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d",
+      "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "51bebde38ca03e8318e5330001d39fcc517d8fbe68977e0a7652bdd76129c9d1",
+      "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift": "9d8c1339233ad8d3c5ad74ccaaad04b94541d010617fc69b61e131a363a57a32",
+      "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift": "552a010f1b9f6ecd29406e1bca22eec509594e0938cad457fcf9275b96e27240",
+      "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+      "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+      "Maktabah-iOSUITests/MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+      "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "90a34895607e98f05b7cee448d7d96c17ee463a568f31b7fe3ebb3cd0ed4d11d",
+      "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e",
+      "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+      "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+      "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift": "a79b4b0b78bf0e1e22f070d4558fc3d692f70c199012a5cd6e85043ea2530562",
+      "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+      "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f"
+    },
+    "unchanged_runner_and_workflow_git_lf_sha256": {
+      "Scripts/CI/runtime27.py": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583",
+      "Scripts/CI/run-faithful-ipad-matrix.py": "1d4b45162b2f2752020a822512d5e5edd679de3e905d0f092b0a21897776eafc",
+      "Scripts/CI/runtime27-release.py": "aae3efc5c2fdb1123f24c05842d4b235434a46b6125c8280461f875a6690ea41",
+      "Scripts/CI/runtime27-release-stages.py": "1615b5aa05a260207023954f55ead35832ea814dcaf2881c12d958d341f750b8",
+      ".github/workflows/sefaria-embedded-validation.yml": "4447ad0c79c5afc1a6ba3325966cd4c39c73c6a527a82ed1d1e9ae958d1007d9"
+    },
+    "hash_representation": "SHA256_OF_EXACT_CANONICAL_GIT_BLOBS",
+    "native_status": "NOT_RUN",
+    "native_cases_executed": 0,
+    "prior_source_acceptance_transferred": false,
+    "required_native_cases": 98,
+    "expected_per_device": {
+      "ipad11": 78,
+      "iphone": 20
+    },
+    "required_release_ui_cases": 96,
+    "required_release_oracle_cases": 2,
+    "original_sdk_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "native_failure": {
+      "run": 44716092729,
+      "frozen_checkout": "e9050ad8998a070c92c73a881b0d7deb6e216e88",
+      "verified_ui_executed": 0,
+      "not_run": 98,
+      "source_and_evidence_commit": "59a0e0aacaa454f2947ea7672e4bd0cf1653d9cd",
+      "cause": "Three incorrect Foundation setAttributes argument labels; corrected to ofItemAtPath with exact inverse and real Foundation RED/GREEN compile-only proof"
+    },
+    "source_delta_since_previous_freeze": [
+      {
+        "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+        "source": "59a0e0aacaa454f2947ea7672e4bd0cf1653d9cd",
+        "scope": "Exactly three labels; all permission/ownership/restore/UI/timeout/oracle code unchanged"
+      },
+      {
+        "path": "Source/Sefaria/Domain/SefariaNavigationParser.swift",
+        "source": "48ec98784f28a08fc7f4f0811f6dd7784148de77",
+        "scope": "Three title preference sites reuse original he/en fallback policy; canonical refs/traversal unchanged"
+      },
+      {
+        "path": "Vendor/SefariaNativeTests/NavigationAndPackageTests.swift",
+        "source": "48ec98784f28a08fc7f4f0811f6dd7784148de77",
+        "scope": "31 language cases plus explicit Hebrew preferences in two unchanged original assertions; baseline20/31 and repaired31/31, all six original regression stages passed; no Native claim"
+      }
+    ],
+    "preserved_native_rows_oracles_order_groups_hid_timeouts": true,
+    "preserved_release_configurations_oracles_and_three_stage_workflow": true,
+    "engine_framework_resource_and_package_pins_unchanged": true,
+    "excludes_subsequent_compound_core_and_anytype_work": true,
+    "acceptance": "PENDING_ACTUAL_CURRENT_SOURCE_APPLE_AND_NATIVE_EXECUTION",
+    "execution_coordination": "Prepared only. Root reviews and selects separate immutable Native/Release refs before any dispatch."
   }
 }

@@ -1,0 +1,16 @@
+{
+  "startedUTC": "2026-11-20T10:55:28.719847+00:00",
+  "head": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "context": "Precommit source preparation: exact current config hash binds M application source; final commit will preserve these inputs",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "Scripts/CI/hq-stage2-focused-apple.py",
+    "--preflight-only"
+  ],
+  "returncode": 0,
+  "elapsedSeconds": 2.452999999979511,
+  "nativeExecuted": 0,
+  "appleCompile": "NOT_RUN"
+}

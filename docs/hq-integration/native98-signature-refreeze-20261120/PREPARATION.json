@@ -1,0 +1,24 @@
+{
+  "createdUTC": "2026-11-20T10:51:29.576353+00:00",
+  "base": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "branch": "codex/otzaria-native98-signature-refreeze-20261120",
+  "path": "C:\\Users\\DAVID\\Code\\Maktabah-native98-signature-refreeze-20261120",
+  "initialClean": true,
+  "checkoutLineEndings": "command-local core.autocrlf=false; no global Git configuration changed",
+  "sparsePaths": [
+    "Source",
+    "Vendor",
+    "Maktabah-iOSUITests",
+    "Maktabah.xcodeproj",
+    "Maktabah.xcworkspace",
+    "Scripts",
+    "tools",
+    ".github",
+    "docs/hq-integration/runtime27",
+    "docs/hq-integration/full98-release96-freeze-20261120",
+    "docs/hq-integration/native98-signature-refreeze-20261120",
+    "docs/architecture"
+  ],
+  "freeBytesBefore": 4917092352,
+  "freeBytesAfter": 4875427840
+}

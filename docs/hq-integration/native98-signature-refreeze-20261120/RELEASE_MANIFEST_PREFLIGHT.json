@@ -1,0 +1,35 @@
+{
+  "originalFunction": "runtime27-release.py:load_manifest",
+  "status": "ORIGINAL_DECLARATIONS_AND_PREPARED_SOURCE_CHECKS_PASSED",
+  "configurations": [
+    {
+      "id": "ipad11-native",
+      "ui": 54,
+      "oracle": 1
+    },
+    {
+      "id": "ipad13-native",
+      "ui": 34,
+      "oracle": 1
+    },
+    {
+      "id": "ipad13-largest-text",
+      "ui": 1,
+      "oracle": 0
+    },
+    {
+      "id": "iphone-native",
+      "ui": 6,
+      "oracle": 0
+    },
+    {
+      "id": "ipad13-production-release",
+      "ui": 1,
+      "oracle": 0
+    }
+  ],
+  "requiredUI": 96,
+  "requiredOracle": 2,
+  "manifestSHA256": "5f698a786980d9bf4712b545603e512225c4ce36a04b0f2cc3b30529e050612a",
+  "nativeExecuted": 0
+}

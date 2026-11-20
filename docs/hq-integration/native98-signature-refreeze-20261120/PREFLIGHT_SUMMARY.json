@@ -1,0 +1,24 @@
+{
+  "startedUTC": "2026-11-20T10:55:28.719847+00:00",
+  "finishedUTC": "2026-11-20T10:55:42.385795+00:00",
+  "sourcePreflight": "PASS",
+  "nativeDeclarations": "DECLARATIONS_MATCH",
+  "nativeCases": 98,
+  "nativeGroups": 7,
+  "groupCaseCounts": {
+    "11": 9,
+    "11-search": 22,
+    "11-index": 5,
+    "11-reader": 35,
+    "11-sidebar": 5,
+    "11-window": 2,
+    "phone": 20
+  },
+  "releaseUI": 96,
+  "releaseOracles": 2,
+  "releaseManifestPreflight": "ORIGINAL_DECLARATIONS_AND_PREPARED_SOURCE_CHECKS_PASSED",
+  "nativeExecuted": 0,
+  "appleCompile": "NOT_RUN",
+  "scope": "Source, declaration, original group validator and original Release preparation checks only",
+  "head": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8"
+}

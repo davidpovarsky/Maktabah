@@ -1,0 +1,74 @@
+{
+  "base": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "paths": [
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "beforeGitLFSHA256": "a5f5e409014c0e59cd7bfd5d9519bc9f63b9816380a5ae0d12539402a858cab5",
+      "candidateGitLFSHA256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "beforeGitLFSHA256": "c4a5a146448460b227327ddd1ce7ade42eb8d8e261c3d772c5ca2909630ace0d",
+      "candidateGitLFSHA256": "e4f3fd204cdbc40c3aaa1616e84046ff6aaf4238f776cb41912838987af6cd75"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "beforeGitLFSHA256": "0b23b2549fa8c5e407a011ccc0b2be0d0db8570b4bf6a8b43755f91f46018fff",
+      "candidateGitLFSHA256": "5f698a786980d9bf4712b545603e512225c4ce36a04b0f2cc3b30529e050612a"
+    },
+    {
+      "path": "Scripts/CI/hq-v32-prebuilt-native.py",
+      "beforeGitLFSHA256": "f89d2e916c84eecfb9bc2e5c8052038a5a3bbb76878b626cc960952f1c9f3d30",
+      "candidateGitLFSHA256": "69d3960dfb5e4bd8261d4d4d29ba73696f76e3477548834c255d59759e9ed986"
+    }
+  ],
+  "allExistingNativeManifestValuesExceptThreeActivePointersPreserved": true,
+  "allExistingReleaseManifestValuesPreserved": true,
+  "applicationSourceTreesUnmodified": true,
+  "workflowAndRunnersByteIdentical": true,
+  "originalIndividualTestTimeoutSeconds": 600,
+  "executionGroups": [
+    {
+      "label": "11",
+      "size": "11",
+      "cases": 9,
+      "hid": false
+    },
+    {
+      "label": "11-search",
+      "size": "11",
+      "cases": 22,
+      "hid": false
+    },
+    {
+      "label": "11-index",
+      "size": "11",
+      "cases": 5,
+      "hid": false
+    },
+    {
+      "label": "11-reader",
+      "size": "11",
+      "cases": 35,
+      "hid": false
+    },
+    {
+      "label": "11-sidebar",
+      "size": "11",
+      "cases": 5,
+      "hid": false
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "cases": 2,
+      "hid": true
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "cases": 20,
+      "hid": false
+    }
+  ]
+}
