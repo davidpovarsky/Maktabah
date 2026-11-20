@@ -1064,8 +1064,8 @@ pub extern "C" fn otzaria_search_engine_build_info() -> *mut c_char {
     boundary("build_info", || {
         let compatibility = check_index_compatibility(String::new());
         Ok(BridgeBuildInfo {
-            upstream_repository: "Otzaria/otzaria_search_engine",
-            upstream_branch: "refactor",
+            upstream_repository: env!("OTZARIA_ENGINE_REPOSITORY"),
+            upstream_branch: env!("OTZARIA_ENGINE_BRANCH"),
             upstream_commit: env!("OTZARIA_UPSTREAM_COMMIT"),
             engine_version: compatibility.engine_version,
             index_schema_version: compatibility.required_schema_version,

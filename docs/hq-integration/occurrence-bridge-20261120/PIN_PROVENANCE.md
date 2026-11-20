@@ -27,3 +27,7 @@ changes migrates, rewrites, repairs or opens any user's database/index.
 The bridge component tests may compile only after these truthful pin inputs
 are present. Apple XCFramework, application/Core capability exposure and Native
 acceptance remain separate gates.
+
+The original C build-info repository and branch literals also now come from the
+validated pinned manifest. The build exports the exact original-base commit for
+the additive occurrence proof. No d5 build is labelled Otzaria/refactor.
