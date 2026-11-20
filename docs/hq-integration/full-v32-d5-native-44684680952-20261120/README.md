@@ -39,7 +39,7 @@ The unchanged Zayit framework retains its separate successful producer job **136
 | Original source books | 7,876 | 7,876 |
 | Original exact/fuzzy/advanced queries | All three executed | All three executed |
 | “בראשית” document results in each original mode | 104,120 | 104,120 |
-| Golden query ordered/highlighted top results | 25 | Same 25 identities, order, references and highlights |
+| Golden query ordered/highlighted top results | 25 | Same 25 identities/order/references; 25 highlighted in each phase |
 | Native index download | Executed | Not run; installed index reused |
 | Resumed download bytes | 1,048,576 | 0 |
 | Local indexing | False | False |
@@ -47,7 +47,7 @@ The unchanged Zayit framework retains its separate successful producer job **136
 | Staging absent at completion | True | True |
 | Native report passed | True | True |
 
-The original golden query was “לחתוך צנון בסכין בשרי”. The complete result IDs and source references remain in the original reports. The authentic launcher recorded two different app PIDs; this is not two calls in one process.
+The original golden query was “לחתוך צנון בסכין בשרי”. The complete result IDs and source references remain in the original reports. The original report records the count of highlighted top results, not the highlight strings. Equality of highlight bytes was not tested or claimed by the original validator. The authentic launcher recorded two different app PIDs; this is not two calls in one process.
 
 Both phases retained the official artifact identity:
 
