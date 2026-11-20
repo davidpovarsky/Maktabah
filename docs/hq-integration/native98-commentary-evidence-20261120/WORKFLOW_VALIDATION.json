@@ -1,0 +1,16 @@
+{
+  "workflowYamlParsed": true,
+  "sourceChecksumPinsMatched": 3,
+  "exactBranchOnly": true,
+  "permissions": [
+    "actions:read",
+    "contents:read"
+  ],
+  "applicationOrNativeBuildSteps": 0,
+  "separateCacheNotUploaded": true,
+  "stepsContinueOnError": false,
+  "alwaysRetainsFailure": true,
+  "originalArchiveDownloadExecuted": false,
+  "sparseCheckoutExactlyFourSources": true,
+  "workflowSha256": "04b63203f554b17c495a1d1ded1cc44e1868ce2cc794a73159b8f52046d2fbe3"
+}

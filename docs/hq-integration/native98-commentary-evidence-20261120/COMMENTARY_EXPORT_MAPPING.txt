@@ -1,0 +1,14 @@
+Exported 12 attachments for: NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad():
+File: 09F8F8D6-7BAF-450B-8077-5500D4413075.png, suggested name: "native-route-final-screen_0_D6B4AA60-505F-4F01-846C-4C11C9B82306.png"
+File: 34995614-E845-4469-8EBB-AE7E59600FF9.txt, suggested name: "native-route-final-hierarchy_0_10C47A92-2D0E-481E-94B0-0B0CB2C3AB2F.txt"
+File: 025C76BE-5CE9-4391-9335-259EA19E746A.txt, suggested name: "Element Debug Description_0_F6E46797-B905-477B-B148-2A600224321F.txt"
+File: D45F0BEE-6A95-489C-B7A3-1831E8C74A96.txt, suggested name: "actual-warm-system-url-process-identity_0_B56A43E2-9188-4F20-80EF-B8C483817D67.txt"
+File: F180BADF-720A-464E-BB6A-A1C032E37B4D.txt, suggested name: "actual-system-open-confirmation_0_9738A11D-1730-4725-8334-55A71596E5AF.txt"
+File: EF4F32F5-4CD2-4A02-9757-077816A7823B, suggested name: "Synthesized Event 2026-11-20 at 12.06.06 PM"
+File: 0C7ED9A5-D6DB-4182-8A04-38FB325DA59A.json, suggested name: "actual-system-url-transport-only_0_925EF894-5784-4313-ABA7-B716538AF9C5.json"
+File: 62E20211-D0E9-4F41-8D01-D8AC165B2ABC, suggested name: "UI Snapshot 2026-11-20 at 12.05.51 PM"
+File: 9569B821-36AC-4ED5-B7B0-5E28F96A44BA.txt, suggested name: "native-reader-independent-text-source_0_CC11390A-6AC3-43FA-9CDE-638AD00421D4.txt"
+File: 4F062063-6400-41DC-858B-5EE43AEE36CA.txt, suggested name: "native-reader-independent-text-source_0_303E68A0-6FA8-488A-92B1-BC747854BBB1.txt"
+File: A828823B-94E0-42DA-AE05-27BDECC745D9.txt, suggested name: "native-reader-independent-source-metadata_0_A73C4A91-0EAE-43BE-8704-B554ED8FC839.txt"
+File: 666C4784-90C1-40C3-8ED6-EE23BF7B7CDE.mp4, suggested name: "Screen Recording 2026-11-20 at 12.05.26 PM.mp4"
+

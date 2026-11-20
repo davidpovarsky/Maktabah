@@ -1,0 +1,8 @@
+{
+  "reviewer": "/root/github_native_audit",
+  "scope": "Read-only review of driver and full workflow; no test/download/Native execution",
+  "driverSha256": "61826896dd6bfdcad1f462ebd508454a201facde921c1a57d72568cb6d4cef72",
+  "finding": "No concrete blocker found in authenticated API vs anonymous storage separation, metadata before/after binding, full ZIP SHA/size/all-entry CRC before selection, fixed-code errors, final source qualification and preservation of historical cancelled outcome.",
+  "publicationConstraint": "Exactly one commit parent equal to e603 is required by the source guard.",
+  "nativeExecutions": 0
+}

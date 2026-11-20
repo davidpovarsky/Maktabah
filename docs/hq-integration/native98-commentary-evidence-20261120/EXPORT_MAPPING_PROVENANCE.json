@@ -1,0 +1,12 @@
+{
+  "sourceArchiveId": 14632383919,
+  "sourceArchiveSha256": "1dec4baa131deaa5cfdb1f2f62b3dea6a84ee7713bccf67a2e62a41f1ff72310",
+  "logPath": "artifacts/runtime27/native-matrix-driver.log",
+  "logBytes": 704470,
+  "logSha256": "540de9cd291a28f327be9727b5a32abe3e04d2214a9803468699e68f125f881c",
+  "oneBasedLines": [
+    3264,
+    3277
+  ],
+  "exportScope": "Names and attribution only; no capture payload bytes yet"
+}

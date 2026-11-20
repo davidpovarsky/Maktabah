@@ -1,0 +1,45 @@
+{
+  "processor_run": 44776995967,
+  "processor_commit": "d749a2222ff06ae723d14bb174ead19331004e91",
+  "artifact_id": 14650267648,
+  "artifact_bytes": 683830,
+  "artifact_sha256": "f2772aa98ca34e31029eecd6b7e3f7a1ff5681c46ab09718d448167ca3b094bf",
+  "small_zip_crc_members": 16,
+  "four_processor_inputs_bound_to_git": true,
+  "original_metadata_checked_before_after": true,
+  "processor_receipt": {
+    "allMembersCRCVerified": true,
+    "archiveBytes": 775094118,
+    "archiveMemberCount": 3686,
+    "archiveSha256": "7ce28dc10dbdfb6a52fe15e0eb0ec4bfaef746f8165974d060367cf61594a69d",
+    "fullArchiveHashVerifiedBeforeAndAfter": true,
+    "selected": [
+      {
+        "bytes": 331270,
+        "compressedBytes": 291531,
+        "crc32": "b49d13c4",
+        "crcVerified": true,
+        "path": "visual-11/09F8F8D6-7BAF-450B-8077-5500D4413075.png",
+        "sha256": "11645dfd335289b7b1aabd7c286b3377494ef1ca8c9e0576dd79a835542a8168"
+      },
+      {
+        "bytes": 29914,
+        "compressedBytes": 4362,
+        "crc32": "dd16a47d",
+        "crcVerified": true,
+        "path": "visual-11/34995614-E845-4469-8EBB-AE7E59600FF9.txt",
+        "sha256": "e31c8fd542c2c2539a082a427f0e8d88b1141cab22029e18cc6f55372ceb77c8"
+      },
+      {
+        "bytes": 384,
+        "compressedBytes": 284,
+        "crc32": "04ba63c4",
+        "crcVerified": true,
+        "path": "visual-11/A828823B-94E0-42DA-AE05-27BDECC745D9.txt",
+        "sha256": "2d8bd7c715b9538963f531baf20c9128642c7851f1275f841d9f7a4dd1fdc119"
+      }
+    ],
+    "selectedPayloadBytes": 361568
+  },
+  "scope": "CI verified complete historical source ZIP; Root verified small output ZIP/provenance/selected bytes; 0 new Native"
+}

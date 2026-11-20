@@ -1,0 +1,75 @@
+{
+  "caseId": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+  "limitations": [
+    "The original workflow and job were cancelled; actor/cause is not inferred.",
+    "This processor proves artifact integrity and exact byte extraction, not UI or Commentary success.",
+    "The known failure occurred in the reader setup TextKit/locator predicate before the Core commentary action."
+  ],
+  "originalApplicationSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "schemaVersion": 1,
+  "scope": "Read-only processing of historical Native98 evidence; 0 new Native/app/test executions.",
+  "selectedMembers": [
+    {
+      "path": "visual-11/34995614-E845-4469-8EBB-AE7E59600FF9.txt",
+      "purpose": "Original final hierarchy"
+    },
+    {
+      "path": "visual-11/09F8F8D6-7BAF-450B-8077-5500D4413075.png",
+      "purpose": "Original final screenshot; unchanged pixels"
+    },
+    {
+      "path": "visual-11/A828823B-94E0-42DA-AE05-27BDECC745D9.txt",
+      "purpose": "Original independent reader source metadata"
+    }
+  ],
+  "selectionProvenance": {
+    "archiveRoot": "Upload-artifact common ancestor build/artifacts; previously observed selected entry paths visual-11/...",
+    "exportLog": "artifacts/runtime27/native-matrix-driver.log",
+    "lines": [
+      3264,
+      3277
+    ],
+    "noBasenameFallback": true,
+    "originalWorkflowArtifactPaths": [
+      "build/artifacts/**/*.xcresult/**",
+      "build/artifacts/visual-*/**"
+    ],
+    "originalWorkflowBlob": "08ba8590f0e29e5ad4b3c4295dc9a2cc602fb207"
+  },
+  "sourceArtifact": {
+    "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14632274701/zip",
+    "created_at": "2026-11-20T13:40:04Z",
+    "digest": "sha256:7ce28dc10dbdfb6a52fe15e0eb0ec4bfaef746f8165974d060367cf61594a69d",
+    "expired": false,
+    "id": 14632274701,
+    "name": "runtime27-native-captures",
+    "size_in_bytes": 775094118,
+    "updated_at": "2026-11-20T13:40:04Z"
+  },
+  "sourceJob": {
+    "conclusion": "cancelled",
+    "head_sha": "60a57972acb28739ec738565083bf17fb7503028",
+    "id": 136246398292,
+    "name": "R27 real UI environment and acceptance",
+    "run_attempt": 1,
+    "run_id": 44723902453,
+    "status": "completed"
+  },
+  "sourceRun": {
+    "conclusion": "cancelled",
+    "head_branch": "codex/otzaria-native98-signature-reviewed-20261120",
+    "head_sha": "60a57972acb28739ec738565083bf17fb7503028",
+    "id": 44723902453,
+    "path": ".github/workflows/sefaria-embedded-validation.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "uploadStep": {
+    "completed_at": "2026-11-20T13:40:05Z",
+    "conclusion": "success",
+    "name": "Retain original native result bundles and visual captures separately",
+    "number": 17,
+    "started_at": "2026-11-20T13:37:04Z",
+    "status": "completed"
+  }
+}

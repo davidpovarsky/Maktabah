@@ -1,0 +1,97 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 136429340664,
+      "run_id": 44776995967,
+      "workflow_name": "Recover original Native98 Commentary evidence",
+      "head_branch": "codex/otzaria-native98-commentary-evidence-20261120",
+      "run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/runs/44776995967",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTEwysM8AAAAfw9KH-A",
+      "head_sha": "d749a2222ff06ae723d14bb174ead19331004e91",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/jobs/136429340664",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44776995967/job/136429340664",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-20T16:48:11Z",
+      "started_at": "2026-11-20T16:48:13Z",
+      "completed_at": "2026-11-20T16:48:35Z",
+      "name": "evidence",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-20T16:48:13Z",
+          "completed_at": "2026-11-20T16:48:14Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-20T16:48:14Z",
+          "completed_at": "2026-11-20T16:48:16Z"
+        },
+        {
+          "name": "Verify reviewed evidence processor bytes",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-20T16:48:16Z",
+          "completed_at": "2026-11-20T16:48:16Z"
+        },
+        {
+          "name": "Run synthetic transport and archive refusal controls (no Native)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-20T16:48:16Z",
+          "completed_at": "2026-11-20T16:48:16Z"
+        },
+        {
+          "name": "Verify complete original ZIP and retain exactly three capture files",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-20T16:48:16Z",
+          "completed_at": "2026-11-20T16:48:32Z"
+        },
+        {
+          "name": "Retain bounded evidence and failures (no full source ZIP)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-20T16:48:32Z",
+          "completed_at": "2026-11-20T16:48:33Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-20T16:48:33Z",
+          "completed_at": "2026-11-20T16:48:33Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-20T16:48:33Z",
+          "completed_at": "2026-11-20T16:48:33Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/check-runs/136429340664",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000022622,
+      "runner_name": "GitHub Actions 1000022622",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

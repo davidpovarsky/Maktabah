@@ -1,0 +1,4 @@
+{
+  "status": "FAILED_ROOT_REVIEW_PROJECTION",
+  "reason": "Compared same four authentic input records as ordered arrays; publication order differs from driver order. Corrected to unique path-keyed exact record equality. Source, artifact and original CI qualifier unchanged."
+}

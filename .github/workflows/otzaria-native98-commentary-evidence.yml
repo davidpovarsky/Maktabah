@@ -1,0 +1,71 @@
+name: Recover original Native98 Commentary evidence
+
+on:
+  push:
+    branches: [codex/otzaria-native98-commentary-evidence-20261120]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: native98-commentary-evidence-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  evidence:
+    if: >-
+      github.repository == 'davidpovarsky/Maktabah' &&
+      github.repository_id == '1280062128' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/codex/otzaria-native98-commentary-evidence-20261120'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+          submodules: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/otzaria-native98-commentary-evidence.yml
+            /Scripts/CI/native98-commentary-evidence.py
+            /Scripts/CI/test-native98-commentary-evidence.py
+            /Scripts/CI/native98-commentary-evidence.json
+      - name: Verify reviewed evidence processor bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum --check <<'HASHES'
+          61826896dd6bfdcad1f462ebd508454a201facde921c1a57d72568cb6d4cef72  Scripts/CI/native98-commentary-evidence.py
+          2e1178acbeb759a21c2811d1321c99139ff394437b468501850c73f06314e406  Scripts/CI/test-native98-commentary-evidence.py
+          3bfecef77c4e5341ec16ff9bdebe5b611cafa042d30d31af90dbb49d2d0a8e07  Scripts/CI/native98-commentary-evidence.json
+          HASHES
+      - name: Run synthetic transport and archive refusal controls (no Native)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/native98-commentary-evidence
+          python3 -u Scripts/CI/test-native98-commentary-evidence.py 2>&1 | tee build/native98-commentary-evidence/python-controls.log
+      - name: Verify complete original ZIP and retain exactly three capture files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -u Scripts/CI/native98-commentary-evidence.py \
+            --root "$GITHUB_WORKSPACE" \
+            --output "$GITHUB_WORKSPACE/build/native98-commentary-evidence" \
+            --cache "$RUNNER_TEMP/native98-commentary-source-$GITHUB_RUN_ID" \
+            --manifest-sha256 3bfecef77c4e5341ec16ff9bdebe5b611cafa042d30d31af90dbb49d2d0a8e07
+      - name: Retain bounded evidence and failures (no full source ZIP)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native98-commentary-evidence
+          path: build/native98-commentary-evidence/
+          if-no-files-found: error
+          retention-days: 90

@@ -1,0 +1,45 @@
+test_all_crc_and_selected_original_bytes (__main__.ArchiveControls.test_all_crc_and_selected_original_bytes) ... ok
+test_deadline_is_not_success (__main__.ArchiveControls.test_deadline_is_not_success) ... ok
+test_duplicate_member (__main__.ArchiveControls.test_duplicate_member) ... ok
+test_hash_failure (__main__.ArchiveControls.test_hash_failure) ... ok
+test_no_basename_fallback (__main__.ArchiveControls.test_no_basename_fallback) ... ok
+test_noncanonical_and_encrypted_members (__main__.ArchiveControls.test_noncanonical_and_encrypted_members) ... ok
+test_nonselected_crc_failure_blocks_all_selected_publication (__main__.ArchiveControls.test_nonselected_crc_failure_blocks_all_selected_publication) ... ok
+test_selected_crc_failure (__main__.ArchiveControls.test_selected_crc_failure) ... ok
+test_size_failure (__main__.ArchiveControls.test_size_failure) ... ok
+test_symlink_member (__main__.ArchiveControls.test_symlink_member) ... ok
+test_traversal_member (__main__.ArchiveControls.test_traversal_member) ... ok
+test_boolean_attempt_is_not_integer (__main__.MetadataControls.test_boolean_attempt_is_not_integer) ... ok
+test_expired_artifact (__main__.MetadataControls.test_expired_artifact) ... ok
+test_failed_or_duplicate_upload (__main__.MetadataControls.test_failed_or_duplicate_upload) ... ok
+test_original_cancelled_run_with_successful_upload_is_accepted_as_evidence_only (__main__.MetadataControls.test_original_cancelled_run_with_successful_upload_is_accepted_as_evidence_only) ... ok
+test_success_is_not_substituted_for_cancelled (__main__.MetadataControls.test_success_is_not_substituted_for_cancelled) ... ok
+test_upload_window_is_checked_independently (__main__.MetadataControls.test_upload_window_is_checked_independently) ... ok
+test_wrong_artifact (__main__.MetadataControls.test_wrong_artifact) ... ok
+test_wrong_artifact_digest (__main__.MetadataControls.test_wrong_artifact_digest) ... ok
+test_wrong_artifact_run (__main__.MetadataControls.test_wrong_artifact_run) ... ok
+test_wrong_artifact_size (__main__.MetadataControls.test_wrong_artifact_size) ... ok
+test_wrong_attempt (__main__.MetadataControls.test_wrong_attempt) ... ok
+test_wrong_head (__main__.MetadataControls.test_wrong_head) ... ok
+test_wrong_job (__main__.MetadataControls.test_wrong_job) ... ok
+test_wrong_job_attempt (__main__.MetadataControls.test_wrong_job_attempt) ... ok
+test_wrong_job_head (__main__.MetadataControls.test_wrong_job_head) ... ok
+test_wrong_repository (__main__.MetadataControls.test_wrong_repository) ... ok
+test_wrong_run (__main__.MetadataControls.test_wrong_run) ... ok
+test_changed_driver_bytes (__main__.SourceControls.test_changed_driver_bytes) ... ok
+test_exact_git_bytes_and_parent (__main__.SourceControls.test_exact_git_bytes_and_parent) ... ok
+test_existing_receipt_is_not_overwritten_on_reuse (__main__.SourceControls.test_existing_receipt_is_not_overwritten_on_reuse) ... ok
+test_other_product_change_is_refused (__main__.SourceControls.test_other_product_change_is_refused) ... ok
+test_wrong_trigger_branch (__main__.SourceControls.test_wrong_trigger_branch) ... ok
+test_api_route_cannot_receive_a_foreign_host (__main__.TransportControls.test_api_route_cannot_receive_a_foreign_host) ... ok
+test_authenticated_github_then_anonymous_storage (__main__.TransportControls.test_authenticated_github_then_anonymous_storage) ... ok
+test_incomplete_download (__main__.TransportControls.test_incomplete_download) ... ok
+test_oversized_download (__main__.TransportControls.test_oversized_download) ... ok
+test_storage_redirect_not_followed (__main__.TransportControls.test_storage_redirect_not_followed) ... ok
+test_unsafe_redirects_are_refused (__main__.TransportControls.test_unsafe_redirects_are_refused) ... ok
+test_wrong_download_digest (__main__.TransportControls.test_wrong_download_digest) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 0.158s
+
+OK

@@ -1,0 +1,2 @@
+Installed UITest bundle resource: file:///Users/runner/Library/Developer/CoreSimulator/Devices/3D007451-04A3-4D27-A569-D345E46345A1/data/Containers/Bundle/Application/00B92889-8184-456D-8E49-FC6FE397BD3F/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest/canonical-miniTest10-metadata.json
+Actual SHA256: c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b

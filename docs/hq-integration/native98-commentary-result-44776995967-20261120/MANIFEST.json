@@ -1,0 +1,70 @@
+{
+  "schema": "otzaria-historical-commentary-result-packet-v1",
+  "files": [
+    {
+      "path": "ARTIFACT_METADATA.json",
+      "bytes": 830,
+      "sha256": "a7a61722b27f9d1361fd23da91d0a58613c16c4c7bd7fb365f76f3e290e37b24"
+    },
+    {
+      "path": "PROCESSOR_JOBS.json",
+      "bytes": 3385,
+      "sha256": "42f2b41ebb5ff30c69a5fb7de4c5117bade60021b6702163aa618b6bb56712d1"
+    },
+    {
+      "path": "PROCESSOR_RUN.json",
+      "bytes": 14384,
+      "sha256": "17ffc346863512189652745d422cc54c0589cd2b422eaa3c6ffacbbce1a601c3"
+    },
+    {
+      "path": "PROCESSOR_SOURCE.json",
+      "bytes": 1108,
+      "sha256": "61de6d1ca400ec1b291011fbb5e611b1db41b31ed6bf8cfbf077dcca4f121a31"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2850,
+      "sha256": "df1963157a98a341d60a61a1353341ad8276d7d3de80e6b2c984b62b667b790b"
+    },
+    {
+      "path": "ROOT_REVIEW.json",
+      "bytes": 1692,
+      "sha256": "c660e0481298a7a1abf22e2e07bae5704e418d0f00badda067703c5272f03d3f"
+    },
+    {
+      "path": "VERIFY_PACKET.py",
+      "bytes": 4248,
+      "sha256": "49c9cb57fe921984183b7b37d4b996e36303ed40ec15a18e9804424f1514c780"
+    },
+    {
+      "path": "captures/09F8F8D6-7BAF-450B-8077-5500D4413075.png",
+      "bytes": 331270,
+      "sha256": "11645dfd335289b7b1aabd7c286b3377494ef1ca8c9e0576dd79a835542a8168"
+    },
+    {
+      "path": "captures/34995614-E845-4469-8EBB-AE7E59600FF9.txt",
+      "bytes": 29914,
+      "sha256": "e31c8fd542c2c2539a082a427f0e8d88b1141cab22029e18cc6f55372ceb77c8"
+    },
+    {
+      "path": "captures/A828823B-94E0-42DA-AE05-27BDECC745D9.txt",
+      "bytes": 384,
+      "sha256": "2d8bd7c715b9538963f531baf20c9128642c7851f1275f841d9f7a4dd1fdc119"
+    },
+    {
+      "path": "raw/PROCESSOR_JOB.log.gz",
+      "bytes": 5470,
+      "sha256": "31159a6a5d7ccf4bedf5aab90a0d614e7fe8b914be5cada5f197b361341e88fe"
+    },
+    {
+      "path": "raw/ROOT_CHECK_ATTEMPT1.json",
+      "bytes": 278,
+      "sha256": "985ae47614f158c0f4c58e2ff534d3dd5eeb7ace5e6f7a29deb46af3c978b7aa"
+    },
+    {
+      "path": "raw/artifact.zip",
+      "bytes": 683830,
+      "sha256": "f2772aa98ca34e31029eecd6b7e3f7a1ff5681c46ab09718d448167ca3b094bf"
+    }
+  ]
+}

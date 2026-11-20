@@ -1,0 +1,15 @@
+{
+  "inspectedAction": "actions/checkout@v4",
+  "actionYmlBlob": "24e73e5a12126edc2adb9e5cd1bf245ce85bde56",
+  "gitSourceProviderBlob": "2d3513897655e0ea2eb4efc2b2c9d6132a69549f",
+  "verifiedInputs": [
+    "sparse-checkout",
+    "sparse-checkout-cone-mode",
+    "fetch-depth",
+    "persist-credentials",
+    "submodules"
+  ],
+  "observedImplementation": "When sparseCheckout is supplied and filter is absent, fetchOptions.filter is blob:none.",
+  "actualCheckoutExecuted": false,
+  "scope": "Primary source review only; no action-version upgrade or SDK dependency."
+}
