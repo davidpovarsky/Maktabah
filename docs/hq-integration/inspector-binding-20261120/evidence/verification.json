@@ -1,0 +1,107 @@
+{
+  "observed_at": "2026-11-20T04:08:21.250319+00:00",
+  "base_sha": "e90feda1ed411b98ebc4a55f1d6df0b089a6f305",
+  "attempts": [
+    {
+      "name": "red-e90",
+      "job_id": "job_9fa9e294bd45",
+      "executed": 0,
+      "passed": 0,
+      "failed": 0,
+      "warnings": 40
+    },
+    {
+      "name": "red-e90-fixture2",
+      "job_id": "job_745913cc5c3a",
+      "executed": 24,
+      "passed": 16,
+      "failed": 8,
+      "warnings": 0
+    },
+    {
+      "name": "green-worktree",
+      "job_id": "job_6a558968ced2",
+      "executed": 24,
+      "passed": 24,
+      "failed": 0,
+      "warnings": 0
+    }
+  ],
+  "red_green_fixture_inputs_equal": true,
+  "red_green_package_inputs_equal": true,
+  "package_input_count": 64,
+  "candidate_source_post_execution": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": {
+      "sha256": "2a8fd9cb509bce5f7719d65e774b19376046fe81d6c002e810735185a2f8c40a",
+      "bytes": 17460,
+      "git_blob": "4ac661ab2936ff7503e0af8fe99d9eae3fc9ab60"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift": {
+      "sha256": "5c8f1916af0436882e083160437ddd9f924244b25ec4cf39a446bd5a2cd3620b",
+      "bytes": 3106,
+      "git_blob": "ef338b73b558acab9aae9e975880b66d96a08d40"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift": {
+      "sha256": "599fe2b366b3fd96ee4b24526d2046f9d5770d40202e0fe884fe3961ec260411",
+      "bytes": 16944,
+      "git_blob": "99d267d3968f160b641a7f8138ffaefbd8ce6517"
+    },
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift": {
+      "sha256": "f15165d716401fd105094a3d84ecdf1856b7609710b9294a6c1c994fbc8cc2b6",
+      "bytes": 6793,
+      "git_blob": "234eea1153ada4fbda360c155ddae27dc8eb62fa"
+    },
+    "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift": {
+      "sha256": "6cdb27ec5935c4c8a15df5d1f7425127021c43bc120d974bd416dad75c312afb",
+      "bytes": 6997,
+      "git_blob": "d3c3451a79e2d0ded0db3a22d7754ea85747e99c"
+    },
+    "Source/LibraryBackend/LibraryBackendModels.swift": {
+      "sha256": "d1d9fa7bf0b20d3c32f2dbd73cc81f8028180524462f6386e77c5ce11e412a34",
+      "bytes": 32835,
+      "git_blob": "fe2fbcb9f07762e0d35949b098b55d079a3c95d2"
+    },
+    "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift": {
+      "sha256": "3574d8cb9f7973372fbf0a502cb659b1f1e5067799af7534635184ef85ee9979",
+      "bytes": 9260,
+      "git_blob": "c247e147286e7da365e96ca4a56cca074516bdec"
+    },
+    "Source/Otzaria/Reading/OtzariaLineAnchor.swift": {
+      "sha256": "02086e3eb5fd605f041ab801270c6ff3adcf2bf118aa167517ce5f805741a049",
+      "bytes": 209,
+      "git_blob": "2c6c645e783c3a0c762967fa039f98c9fb020558"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+      "sha256": "b7f082ac8794bdc456995197cf986c3a533a09c7b29f873574a9a799cc220a6f",
+      "bytes": 41287,
+      "git_blob": "e52f0f6bdb074c86bd984f1151e8679ce1c9c034"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": {
+      "sha256": "027275829bd6ed4998640fb91d34f911b0c7138175c75293d5dd59442bab5602",
+      "bytes": 31849,
+      "git_blob": "a5cf5e9e03d0dedf420e6d7ad2d559f31c675a74"
+    }
+  },
+  "fixture_post_execution": {
+    "Tests/HQ/navigation/NativeInspectorBindingBoundary.swift": "aaa464863da900ccd2fda72319a244d7410ebb550a114c71df464c6a2990a794",
+    "Tests/HQ/navigation/NativeInspectorBindingAcceptance.swift": "da5aa648f1aa5cf610109a23a841fb9ebeb3b16b9dadbe52005f02e23fe266c1"
+  },
+  "archive": {
+    "name": "attempts.zip",
+    "bytes": 125685,
+    "sha256": "8df1c5e891bef30b896dee130362fb1dad40b4b3ccbfa647b4b18ead34f545c0"
+  },
+  "AppleAppBuild": "NOT_RUN",
+  "NativeUI": "NOT_RUN",
+  "original_native78_evidence": {
+    "artifact_id": 14596339141,
+    "bytes": 76651411,
+    "sha256": "5842cfdfe0748dcd7b2620a2dde895812bb2441694c36a63901a8530f1373968",
+    "executed": 78,
+    "passed": 65,
+    "failed": 13,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "sdk_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+}
