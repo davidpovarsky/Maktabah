@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-11-20T00:56:43.351531+00:00",
+  "operation": "read-only iOS development bridge availability; no pairing/install/network scan",
+  "commands": {
+    "idevice_id": false,
+    "ideviceinfo": false,
+    "idevicescreenshot": false,
+    "ideviceinstaller": false,
+    "iproxy": false,
+    "tidevice": false,
+    "ios": false,
+    "xcodebuild": false,
+    "xcrun": false
+  },
+  "service_query_exit": 0,
+  "services": [],
+  "apple_mobile_support_installed": {
+    "C:/Program Files/Common Files/Apple/Mobile Device Support": false,
+    "C:/Program Files/iTunes": true
+  }
+}

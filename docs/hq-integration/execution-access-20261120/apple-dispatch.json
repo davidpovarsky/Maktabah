@@ -1,0 +1,55 @@
+{
+  "checkout_sha": "83bc48f7b27e41d5580124a974d78bfad6ace50c",
+  "application_source_sha": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "branch": "codex/otzaria-phase2-apple88-20261120",
+  "started_at_utc": "2026-11-20T00:46:15.037029+00:00",
+  "dispatches": [
+    {
+      "label": "sdk",
+      "workflow": "sefaria-embedded-validation.yml",
+      "inputs": {
+        "run_simulator_tests": "false",
+        "validation_runner": "xcode-27",
+        "ui_sdk_check_only": "true",
+        "hq_stage2_expected_sha": "83bc48f7b27e41d5580124a974d78bfad6ace50c",
+        "runtime27_mode": "off",
+        "run_production_release": "false",
+        "hq_stage2_focused": "false"
+      },
+      "exit": 0,
+      "stdout": "https://github.com/davidpovarsky/Maktabah/actions/runs/44648487731\n",
+      "stderr": "",
+      "time_utc": "2026-11-20T00:46:17.356064+00:00"
+    },
+    {
+      "label": "v32",
+      "workflow": "otzaria-search-artifacts.yml",
+      "inputs": {
+        "native_existing_v32": "true",
+        "native_expected_sha": "83bc48f7b27e41d5580124a974d78bfad6ace50c",
+        "publish_release": "false",
+        "source_release_tag": "v32-20261010190601",
+        "existing_release_tag": "otzaria-search-data-v32-20261010190601-102293b3a63c",
+        "repair_manifest_layout": "false"
+      },
+      "exit": 0,
+      "stdout": "https://github.com/davidpovarsky/Maktabah/actions/runs/44648492504\n",
+      "stderr": "",
+      "time_utc": "2026-11-20T00:46:19.640799+00:00"
+    }
+  ],
+  "run_discovery": [
+    {
+      "label": "sdk",
+      "exit": 0,
+      "runs": [],
+      "stderr": ""
+    },
+    {
+      "label": "v32",
+      "exit": 0,
+      "runs": [],
+      "stderr": ""
+    }
+  ]
+}
