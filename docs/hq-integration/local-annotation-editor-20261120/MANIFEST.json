@@ -1,0 +1,54 @@
+{
+  "created_at": "2026-11-20T16:05:33.113392+00:00",
+  "files": [
+    {
+      "bytes": 4858,
+      "path": "APPLE_PLAN.json",
+      "sha256": "dce899b2aa94c8c62f40c1537ca54d6c5008e4ecbc6adeef21da155292cf6356"
+    },
+    {
+      "bytes": 5043,
+      "path": "BASE_INPUTS.json",
+      "sha256": "9f1dcaf5ce6c24bb8e7541689a2fc84bb43f4851a6d2d1fa2c4db9891693830d"
+    },
+    {
+      "bytes": 10742,
+      "path": "RAW_INVENTORY.json",
+      "sha256": "06fc63f119662bf40be0a73c683fa4fecb4bd7049529785bc94528c438755cff"
+    },
+    {
+      "bytes": 8508,
+      "path": "README.md",
+      "sha256": "20d90a32f292d4d6a343f00cfc4c96b7f9ed2272d4b4a684686678d862e1f2d3"
+    },
+    {
+      "bytes": 16786,
+      "path": "SOURCE.patch",
+      "sha256": "97402c63a73132cdca3cf7e6800cd11c29bdee3bf805e344210dc48cd172f07f"
+    },
+    {
+      "bytes": 15701,
+      "path": "SOURCE_PROOF.json",
+      "sha256": "d6c3f0bc9cdb03d3b8ef4f18fabd1284cac9e6fe501fa2341890202a2ccda39d"
+    },
+    {
+      "bytes": 693,
+      "path": "TARGET_REGISTRATION.json",
+      "sha256": "91449f13fbba7b26b1365b3a805269918de8c311f426f3807096a47cecf500e5"
+    },
+    {
+      "bytes": 324352,
+      "path": "raw-evidence.tar.gz",
+      "sha256": "a7b28516f4dbe58cd3f5f36a60caabf7f12dc088e1b0e7b2fb65e94be0b9c97c"
+    },
+    {
+      "bytes": 5516,
+      "path": "verify-evidence.py",
+      "sha256": "b3ff89dda17fcd6d27f7edaba1d92f0904124c05283e705c4f5100b062089c1a"
+    }
+  ],
+  "parent_source": "689d8db5a1186272779b278a5a86752ed9acef6a",
+  "schema": "otzaria-local-annotation-editor-evidence-v1",
+  "scope": "Actual SQL18/Python15 and source preservation; Apple43+2 NOT_RUN; no renderer or live transport claim",
+  "source_commit": "4be6c9b27fa6c882275cddf209f5959cb9b9690b"
+}

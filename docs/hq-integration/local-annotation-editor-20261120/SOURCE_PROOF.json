@@ -1,0 +1,368 @@
+{
+  "apple_cold_reopen_gates": 2,
+  "apple_component_count": 43,
+  "apple_component_declarations": [
+    "legacy_read_has_no_schema_or_original_mutation",
+    "same_uuid_atomic_two_block_body_and_plain_preview",
+    "all_original_metadata_tags_and_uuid_preserved",
+    "original_queue_upload_delete_preserved_and_no_exchange_destination",
+    "original_store_cache_reads_committed_preview",
+    "original_cloudkit_boundary_receives_plain_record_once_without_requeue",
+    "exact_retry_returns_same_version_without_duplicate_publication",
+    "same_mutation_different_body_is_conflict",
+    "new_revision_preserves_immutable_previous_bytes",
+    "second_session_stale_revision_cannot_overwrite",
+    "normal_save_invalidates_old_rich_intent_without_altering_normal_path",
+    "original_tag_change_invalidates_source_witness",
+    "changed_original_row_is_rejected_by_post_worker_read_publication",
+    "changed_version_is_rejected_by_post_worker_read_publication",
+    "pending_original_delete_cannot_be_resurrected",
+    "missing_original_annotation_is_not_recreated",
+    "ambiguous_uuid_is_never_selected_by_first_match",
+    "profile_switch_and_return_never_revives_old_owner",
+    "disconnect_reconnect_same_file_requires_fresh_session",
+    "retire_before_save_has_no_schema_or_write",
+    "read_and_cancel_does_not_save_or_backfill",
+    "foreign_session_snapshot_is_denied",
+    "unsupported_body_format_is_readable_but_never_overwritten",
+    "future_envelope_is_retained_and_read_only",
+    "unknown_envelope_and_rich_metadata_survive_supported_edit",
+    "altered_snapshot_document_cannot_remove_preserved_unknown_fields",
+    "unknown_local_commit_marker_is_not_reinterpreted",
+    "future_database_schema_is_not_migrated_by_read",
+    "partial_schema_is_not_repaired_by_read",
+    "corrupt_body_digest_is_rejected",
+    "payload_bound_failure_rolls_back_preview_schema_and_queue",
+    "sqlite_failure_after_preview_rolls_back_entire_commit",
+    "retirement_during_original_sql_rolls_back_before_commit",
+    "normal_plain_save_preserves_rich_bytes_but_marks_body_stale",
+    "lowercase_original_uuid_bytes_are_not_restamped",
+    "nul_preview_is_rejected_before_original_sqlite_string_binding",
+    "empty_format_contract_has_no_implicit_editor_default",
+    "format_conversion_is_not_implicit_even_when_both_are_known",
+    "replay_of_older_head_cannot_replace_or_publish_newer_body",
+    "retirement_during_publication_reports_real_commit_without_owner_delivery",
+    "orphaned_version_is_not_treated_as_a_legacy_empty_note",
+    "original_exchange_api_still_rejects_empty_destinations",
+    "ordinary_original_save_and_tags_still_work_on_legacy_note"
+  ],
+  "apple_execution": "NOT_RUN",
+  "apple_process_modes": [
+    "cold-write",
+    "cold-reopen",
+    "cold-reopen-final"
+  ],
+  "base": "689d8db5a1186272779b278a5a86752ed9acef6a",
+  "candidate_files": [
+    {
+      "blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+      "bytes": 596038,
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+    },
+    {
+      "blob": "c58864a98532c50c5b158c5e9ffbf0775ea92136",
+      "bytes": 33283,
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918"
+    },
+    {
+      "blob": "e1aeea55762ad6550052559e9ea0a45246171c50",
+      "bytes": 3411,
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "sha256": "cc76dac40c22427ce931fde4286ff11845b6f9672fb659a4d4f7ca117f2f6df5"
+    },
+    {
+      "blob": "5e4fbd410327133847213a6bdb866ebe6d894422",
+      "bytes": 16189,
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "sha256": "65799a7c6bd19bc0386e32ed4de40dfed22ae68419590f6015bc6fb302b5e003"
+    },
+    {
+      "blob": "c9f6fdbbb5737cd66b3157c44ceb9acffd7f3e1d",
+      "bytes": 5348,
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "sha256": "e84ef4260eb75d11471a0526ee5e0d7b96465fc717ee445b711e3deb42216e8a"
+    },
+    {
+      "blob": "86512a8286560aedb248da4abea1a41f5c96ea0e",
+      "bytes": 44176,
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "sha256": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af"
+    },
+    {
+      "blob": "467f45f7859ad03824d030be1855c2b27a1a98a5",
+      "bytes": 39693,
+      "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a"
+    },
+    {
+      "blob": "3a7a5c7164e1178b4fe7ebee97ae5a034e114bd6",
+      "bytes": 2951,
+      "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift",
+      "sha256": "c4465d77bda614534486b101969cb6abca0b3f0a8762ccdeca64f1b2a9b98c29"
+    },
+    {
+      "blob": "97908fa861e774f1386d74ec6a5e6aad0a7154d2",
+      "bytes": 16072,
+      "path": "tools/hq-local-annotation-editor-acceptance.py",
+      "sha256": "247beaff9c1c3c44b75c751e1a623cdf8ce7102c03489871ff50172621527421"
+    },
+    {
+      "blob": "b6f0e88657f7f0586175f14b325fd784a95d747c",
+      "bytes": 8865,
+      "path": "tools/test-local-annotation-editor-gate.py",
+      "sha256": "ebf4567506838f61a1f3838b82efd44196ddc5810290ab09a8dc8d671d775054"
+    },
+    {
+      "blob": "fa91b24b351651d7ddd62a0c2894d0b7fb418759",
+      "bytes": 14698,
+      "path": "tools/test-local-annotation-editor-sql.py",
+      "sha256": "24cd22170829f162b76b845c667f259a5925a756f4791e8b80c8880bc00d8b4f"
+    }
+  ],
+  "changed_existing_files": [
+    "Maktabah.xcodeproj/project.pbxproj",
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+    "Source/Features/Annotations/Database/AnnotationRepository.swift"
+  ],
+  "existing_live_commit_body_preserved_except_explicit_local_scopes": true,
+  "ledger_inverse_sha256": "07692442c301419c79142a786654b319a3618e8ecea3ff159561a52379fda888",
+  "live_exchange_enabled": false,
+  "native_executed": 0,
+  "normal_store_sheet_model_cloudkit_sqlite_queue_bytes_unchanged": true,
+  "observed_at": "2026-11-20T15:58:18.037854+00:00",
+  "originals": [
+    {
+      "blob": "7bb033aff1bfc351ae03369667dc3c929d5226e7",
+      "bytes": 10467,
+      "candidate_sha256": "e371f43f3d108f3848741a61eb6875c37fd8b8afcd451cd5673c6a0596fc28a9",
+      "encoding": "utf-8",
+      "path": "AGENTS.md",
+      "sha256": "e371f43f3d108f3848741a61eb6875c37fd8b8afcd451cd5673c6a0596fc28a9",
+      "unchanged": true
+    },
+    {
+      "blob": "f37b33123b66c3c473d56a876f2b7257d2f1744c",
+      "bytes": 6185,
+      "candidate_sha256": "cd245836cee86bd38e66bfb26d45dc0ff8bf80945038be7c5ed75d319472d49d",
+      "encoding": "utf-8",
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "sha256": "cd245836cee86bd38e66bfb26d45dc0ff8bf80945038be7c5ed75d319472d49d",
+      "unchanged": true
+    },
+    {
+      "blob": "e88cffe612ba294d9b818fbb09fc05d5b86a3991",
+      "bytes": 6351,
+      "candidate_sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+      "encoding": "utf-8",
+      "path": "Source/Features/Annotations/Models/Annotation.swift",
+      "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+      "unchanged": true
+    },
+    {
+      "blob": "52d19c0a7042ac81ca9194b52c21e13a17bd640a",
+      "bytes": 43134,
+      "candidate_sha256": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af",
+      "encoding": "utf-8",
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "sha256": "8d57558658e8bfd9e24f99121f26840e9f52472bdf20e06cb36843c399a67f5a",
+      "unchanged": false
+    },
+    {
+      "blob": "aed5ca06c5839a1169ac0e41b02967d028047df6",
+      "bytes": 15022,
+      "candidate_sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+      "encoding": "utf-8",
+      "path": "Source/Features/Annotations/Database/AnnotationStore.swift",
+      "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+      "unchanged": true
+    },
+    {
+      "blob": "64cd681bfcdb89cb41073162cc2cc0af96d65cf6",
+      "bytes": 20313,
+      "candidate_sha256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c",
+      "encoding": "utf-8",
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "sha256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c",
+      "unchanged": true
+    },
+    {
+      "blob": "2a026e03e9fcb29344f341e31b6b9c863a6a02b8",
+      "bytes": 26720,
+      "candidate_sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+      "encoding": "utf-8",
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "sha256": "07692442c301419c79142a786654b319a3618e8ecea3ff159561a52379fda888",
+      "unchanged": false
+    },
+    {
+      "blob": "30602a567c239852fc56de436e35f939c5486997",
+      "bytes": 8619,
+      "candidate_sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+      "encoding": "utf-8",
+      "path": "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+      "unchanged": true
+    },
+    {
+      "blob": "52f4039c55aac40b8cccb9cf01441cecda1ef3a8",
+      "bytes": 3534,
+      "candidate_sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+      "encoding": "utf-8",
+      "path": "Source/Core/CloudKit/SyncPendingStore.swift",
+      "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+      "unchanged": true
+    },
+    {
+      "blob": "bc237e0b42c3c65b275d883a318a9ef525c95037",
+      "bytes": 14351,
+      "candidate_sha256": "8bc64d2bb889d90270b56445e0c9f24a73f5af012fd86f45f44ff18d7b2c0b4b",
+      "encoding": "utf-8",
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "sha256": "8bc64d2bb889d90270b56445e0c9f24a73f5af012fd86f45f44ff18d7b2c0b4b",
+      "unchanged": true
+    },
+    {
+      "blob": "cb400f59c5154688532524622544e135634d5cca",
+      "bytes": 41539,
+      "candidate_sha256": "f5bbfde7f1c2c3e10bba5cbb7ea7066db321b1ecdd80ee5e15a27c7f556763ad",
+      "encoding": "utf-8",
+      "path": "Source/Core/Database/CloudKitSyncManager.swift",
+      "sha256": "f5bbfde7f1c2c3e10bba5cbb7ea7066db321b1ecdd80ee5e15a27c7f556763ad",
+      "unchanged": true
+    },
+    {
+      "blob": "d82cc1be0d2fb1a21b0e97ff25954ca4f1f382ee",
+      "bytes": 1589,
+      "candidate_sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+      "encoding": "utf-8",
+      "path": "Source/Features/Annotations/Models/AnnotationChangeTypes.swift",
+      "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+      "unchanged": true
+    },
+    {
+      "blob": "42b8ba3d8d37d56aab4d83a4fd1354b2f3f8d7cc",
+      "bytes": 270,
+      "candidate_sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+      "encoding": "utf-8",
+      "path": "Source/Features/Annotations/Models/AnnotationEvent.swift",
+      "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+      "unchanged": true
+    },
+    {
+      "blob": "2a2e9d56b7a31b844b87e80b0662f1c4c02b423f",
+      "bytes": 592726,
+      "candidate_sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9",
+      "encoding": "utf-8",
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "sha256": "96faef1cf8eecd6ef06210a9acb00f55becd44cb518335f2ffb7dd72d913d17c",
+      "unchanged": false
+    },
+    {
+      "blob": "4f87f3a4f4b61144fd3bcf6ee8b1975e5708fb72",
+      "bytes": 11654,
+      "candidate_sha256": "e5bb838def64d8a64f8228889d6d371dfe3968b4ee0ec521cd122f58428eb97f",
+      "encoding": "utf-8",
+      "path": "tools/hq-annotation-exchange-acceptance.py",
+      "sha256": "e5bb838def64d8a64f8228889d6d371dfe3968b4ee0ec521cd122f58428eb97f",
+      "unchanged": true
+    },
+    {
+      "blob": "eb4ca0f06fb46b42175f1b3a08c4db09a4ec447c",
+      "bytes": 11957,
+      "candidate_sha256": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8",
+      "encoding": "utf-8",
+      "path": "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift",
+      "sha256": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8",
+      "unchanged": true
+    },
+    {
+      "blob": "79b114b591ef7346093646ee01ccbfb7ceff43ce",
+      "bytes": 35544,
+      "candidate_sha256": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de",
+      "encoding": "utf-8",
+      "path": "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift",
+      "sha256": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de",
+      "unchanged": true
+    },
+    {
+      "blob": "af39c8673dcda19785f6f1259474c39941f5a5a0",
+      "bytes": 443,
+      "candidate_sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+      "encoding": "utf-8",
+      "path": "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+      "unchanged": true
+    }
+  ],
+  "project_inverse_sha256": "96faef1cf8eecd6ef06210a9acb00f55becd44cb518335f2ffb7dd72d913d17c",
+  "repository_inverse_sha256": "8d57558658e8bfd9e24f99121f26840e9f52472bdf20e06cb36843c399a67f5a",
+  "status": "PASS_SOURCE_PRESERVATION_ONLY",
+  "swift_executed": 0,
+  "target_registration": [
+    {
+      "build_id": "C4D9F799C43B95EC13DAFE68",
+      "phase": "4B3202242EDAFE85003B95D1",
+      "source": "AnnotationLocalEditorModels.swift",
+      "target": "Maktabah",
+      "target_id": "4B3202272EDAFE85003B95D1"
+    },
+    {
+      "build_id": "FDFFEE666030424CBE21238A",
+      "phase": "4B7C90A52F83494200454BE1",
+      "source": "AnnotationLocalEditorModels.swift",
+      "target": "Maktabah-Direct",
+      "target_id": "4B7C90A02F83494200454BE1"
+    },
+    {
+      "build_id": "AB467DB193BB97E635A4C008",
+      "phase": "F30576E22FA46222005732C6",
+      "source": "AnnotationLocalEditorModels.swift",
+      "target": "Maktabah-iOS",
+      "target_id": "F30576DD2FA46222005732C6"
+    },
+    {
+      "build_id": "339269F3BD193BCD1D8B9A27",
+      "phase": "4B3202242EDAFE85003B95D1",
+      "source": "AnnotationLocalEditorPersistence.swift",
+      "target": "Maktabah",
+      "target_id": "4B3202272EDAFE85003B95D1"
+    },
+    {
+      "build_id": "9D6C002E3485E64BCFCAB334",
+      "phase": "4B7C90A52F83494200454BE1",
+      "source": "AnnotationLocalEditorPersistence.swift",
+      "target": "Maktabah-Direct",
+      "target_id": "4B7C90A02F83494200454BE1"
+    },
+    {
+      "build_id": "2A81EE6B3B2514B9F4773658",
+      "phase": "F30576E22FA46222005732C6",
+      "source": "AnnotationLocalEditorPersistence.swift",
+      "target": "Maktabah-iOS",
+      "target_id": "F30576DD2FA46222005732C6"
+    },
+    {
+      "build_id": "387C03A49E4420CA3ECF3308",
+      "phase": "4B3202242EDAFE85003B95D1",
+      "source": "AnnotationLocalEditorSession.swift",
+      "target": "Maktabah",
+      "target_id": "4B3202272EDAFE85003B95D1"
+    },
+    {
+      "build_id": "2636D2D8F62C8C21A825A12A",
+      "phase": "4B7C90A52F83494200454BE1",
+      "source": "AnnotationLocalEditorSession.swift",
+      "target": "Maktabah-Direct",
+      "target_id": "4B7C90A02F83494200454BE1"
+    },
+    {
+      "build_id": "D627561A0D3655B435E380A6",
+      "phase": "F30576E22FA46222005732C6",
+      "source": "AnnotationLocalEditorSession.swift",
+      "target": "Maktabah-iOS",
+      "target_id": "F30576DD2FA46222005732C6"
+    }
+  ]
+}

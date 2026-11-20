@@ -1,0 +1,284 @@
+{
+  "archive_bytes": 324352,
+  "archive_sha256": "a7b28516f4dbe58cd3f5f36a60caabf7f12dc088e1b0e7b2fb65e94be0b9c97c",
+  "files": [
+    {
+      "bytes": 5043,
+      "path": "BASE_INPUTS.json",
+      "sha256": "9f1dcaf5ce6c24bb8e7541689a2fc84bb43f4851a6d2d1fa2c4db9891693830d"
+    },
+    {
+      "bytes": 693,
+      "path": "TARGET_REGISTRATION.json",
+      "sha256": "91449f13fbba7b26b1365b3a805269918de8c311f426f3807096a47cecf500e5"
+    },
+    {
+      "bytes": 10467,
+      "path": "base/AGENTS.md",
+      "sha256": "e371f43f3d108f3848741a61eb6875c37fd8b8afcd451cd5673c6a0596fc28a9"
+    },
+    {
+      "bytes": 592726,
+      "path": "base/Maktabah.xcodeproj/project.pbxproj",
+      "sha256": "96faef1cf8eecd6ef06210a9acb00f55becd44cb518335f2ffb7dd72d913d17c"
+    },
+    {
+      "bytes": 6185,
+      "path": "base/PROJECT_AGENT_GUIDANCE.md",
+      "sha256": "cd245836cee86bd38e66bfb26d45dc0ff8bf80945038be7c5ed75d319472d49d"
+    },
+    {
+      "bytes": 26720,
+      "path": "base/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "sha256": "07692442c301419c79142a786654b319a3618e8ecea3ff159561a52379fda888"
+    },
+    {
+      "bytes": 8619,
+      "path": "base/Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f"
+    },
+    {
+      "bytes": 3534,
+      "path": "base/Source/Core/CloudKit/SyncPendingStore.swift",
+      "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+    },
+    {
+      "bytes": 41539,
+      "path": "base/Source/Core/Database/CloudKitSyncManager.swift",
+      "sha256": "f5bbfde7f1c2c3e10bba5cbb7ea7066db321b1ecdd80ee5e15a27c7f556763ad"
+    },
+    {
+      "bytes": 14351,
+      "path": "base/Source/Core/Database/SQLiteDatabase.swift",
+      "sha256": "8bc64d2bb889d90270b56445e0c9f24a73f5af012fd86f45f44ff18d7b2c0b4b"
+    },
+    {
+      "bytes": 43134,
+      "path": "base/Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "sha256": "8d57558658e8bfd9e24f99121f26840e9f52472bdf20e06cb36843c399a67f5a"
+    },
+    {
+      "bytes": 15022,
+      "path": "base/Source/Features/Annotations/Database/AnnotationStore.swift",
+      "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37"
+    },
+    {
+      "bytes": 6351,
+      "path": "base/Source/Features/Annotations/Models/Annotation.swift",
+      "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+    },
+    {
+      "bytes": 1589,
+      "path": "base/Source/Features/Annotations/Models/AnnotationChangeTypes.swift",
+      "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b"
+    },
+    {
+      "bytes": 270,
+      "path": "base/Source/Features/Annotations/Models/AnnotationEvent.swift",
+      "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21"
+    },
+    {
+      "bytes": 20313,
+      "path": "base/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "sha256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c"
+    },
+    {
+      "bytes": 35544,
+      "path": "base/Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift",
+      "sha256": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de"
+    },
+    {
+      "bytes": 11957,
+      "path": "base/Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift",
+      "sha256": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8"
+    },
+    {
+      "bytes": 443,
+      "path": "base/Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    {
+      "bytes": 11654,
+      "path": "base/tools/hq-annotation-exchange-acceptance.py",
+      "sha256": "e5bb838def64d8a64f8228889d6d371dfe3968b4ee0ec521cd122f58428eb97f"
+    },
+    {
+      "bytes": 10467,
+      "path": "candidate/AGENTS.md",
+      "sha256": "e371f43f3d108f3848741a61eb6875c37fd8b8afcd451cd5673c6a0596fc28a9"
+    },
+    {
+      "bytes": 596038,
+      "path": "candidate/Maktabah.xcodeproj/project.pbxproj",
+      "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+    },
+    {
+      "bytes": 6185,
+      "path": "candidate/PROJECT_AGENT_GUIDANCE.md",
+      "sha256": "cd245836cee86bd38e66bfb26d45dc0ff8bf80945038be7c5ed75d319472d49d"
+    },
+    {
+      "bytes": 33283,
+      "path": "candidate/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918"
+    },
+    {
+      "bytes": 8619,
+      "path": "candidate/Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift",
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f"
+    },
+    {
+      "bytes": 3411,
+      "path": "candidate/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "sha256": "cc76dac40c22427ce931fde4286ff11845b6f9672fb659a4d4f7ca117f2f6df5"
+    },
+    {
+      "bytes": 16189,
+      "path": "candidate/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "sha256": "65799a7c6bd19bc0386e32ed4de40dfed22ae68419590f6015bc6fb302b5e003"
+    },
+    {
+      "bytes": 5348,
+      "path": "candidate/Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "sha256": "e84ef4260eb75d11471a0526ee5e0d7b96465fc717ee445b711e3deb42216e8a"
+    },
+    {
+      "bytes": 3534,
+      "path": "candidate/Source/Core/CloudKit/SyncPendingStore.swift",
+      "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+    },
+    {
+      "bytes": 41539,
+      "path": "candidate/Source/Core/Database/CloudKitSyncManager.swift",
+      "sha256": "f5bbfde7f1c2c3e10bba5cbb7ea7066db321b1ecdd80ee5e15a27c7f556763ad"
+    },
+    {
+      "bytes": 14351,
+      "path": "candidate/Source/Core/Database/SQLiteDatabase.swift",
+      "sha256": "8bc64d2bb889d90270b56445e0c9f24a73f5af012fd86f45f44ff18d7b2c0b4b"
+    },
+    {
+      "bytes": 44176,
+      "path": "candidate/Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "sha256": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af"
+    },
+    {
+      "bytes": 15022,
+      "path": "candidate/Source/Features/Annotations/Database/AnnotationStore.swift",
+      "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37"
+    },
+    {
+      "bytes": 6351,
+      "path": "candidate/Source/Features/Annotations/Models/Annotation.swift",
+      "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+    },
+    {
+      "bytes": 1589,
+      "path": "candidate/Source/Features/Annotations/Models/AnnotationChangeTypes.swift",
+      "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b"
+    },
+    {
+      "bytes": 270,
+      "path": "candidate/Source/Features/Annotations/Models/AnnotationEvent.swift",
+      "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21"
+    },
+    {
+      "bytes": 20313,
+      "path": "candidate/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "sha256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c"
+    },
+    {
+      "bytes": 35544,
+      "path": "candidate/Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift",
+      "sha256": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de"
+    },
+    {
+      "bytes": 11957,
+      "path": "candidate/Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift",
+      "sha256": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8"
+    },
+    {
+      "bytes": 39693,
+      "path": "candidate/Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a"
+    },
+    {
+      "bytes": 2951,
+      "path": "candidate/Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift",
+      "sha256": "c4465d77bda614534486b101969cb6abca0b3f0a8762ccdeca64f1b2a9b98c29"
+    },
+    {
+      "bytes": 443,
+      "path": "candidate/Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    {
+      "bytes": 11654,
+      "path": "candidate/tools/hq-annotation-exchange-acceptance.py",
+      "sha256": "e5bb838def64d8a64f8228889d6d371dfe3968b4ee0ec521cd122f58428eb97f"
+    },
+    {
+      "bytes": 16072,
+      "path": "candidate/tools/hq-local-annotation-editor-acceptance.py",
+      "sha256": "247beaff9c1c3c44b75c751e1a623cdf8ce7102c03489871ff50172621527421"
+    },
+    {
+      "bytes": 8865,
+      "path": "candidate/tools/test-local-annotation-editor-gate.py",
+      "sha256": "ebf4567506838f61a1f3838b82efd44196ddc5810290ab09a8dc8d671d775054"
+    },
+    {
+      "bytes": 14698,
+      "path": "candidate/tools/test-local-annotation-editor-sql.py",
+      "sha256": "24cd22170829f162b76b845c667f259a5925a756f4791e8b80c8880bc00d8b4f"
+    },
+    {
+      "bytes": 16786,
+      "path": "evidence/SOURCE.patch",
+      "sha256": "97402c63a73132cdca3cf7e6800cd11c29bdee3bf805e344210dc48cd172f07f"
+    },
+    {
+      "bytes": 15701,
+      "path": "evidence/SOURCE_PROOF.json",
+      "sha256": "d6c3f0bc9cdb03d3b8ef4f18fabd1284cac9e6fe501fa2341890202a2ccda39d"
+    },
+    {
+      "bytes": 6503,
+      "path": "evidence/SOURCE_PUBLICATION.json",
+      "sha256": "f8bead842812d032ed4fb9f6026c0c257003fb5639d4baf20336b22e0a06542c"
+    },
+    {
+      "bytes": 5165,
+      "path": "evidence/gate-attempt1/RESULT.json",
+      "sha256": "0cf61f706cbeb83e3c931fa5d11a7c2e3f7618086d138936e3c41f83d3ef8248"
+    },
+    {
+      "bytes": 8666,
+      "path": "evidence/source-proof.py",
+      "sha256": "9d7db17c0e85eb5654807fafd108216485011f2409075385a043c1b6a0d2f941"
+    },
+    {
+      "bytes": 5905,
+      "path": "evidence/sql-attempt1/EXTRACTED_SQL.json",
+      "sha256": "d25751ba3a118dea634f39591163b6f1f8c93fd4f300659eca0555a5ba0a8179"
+    },
+    {
+      "bytes": 4155,
+      "path": "evidence/sql-attempt1/RESULT.json",
+      "sha256": "314c4f681df35ae534dfdae1c21c97ed219783ebcc4a5fb9922a404f4886f519"
+    },
+    {
+      "bytes": 5905,
+      "path": "evidence/sql-attempt2/EXTRACTED_SQL.json",
+      "sha256": "d25751ba3a118dea634f39591163b6f1f8c93fd4f300659eca0555a5ba0a8179"
+    },
+    {
+      "bytes": 4155,
+      "path": "evidence/sql-attempt2/RESULT.json",
+      "sha256": "d454efba3afa6a8b5fa3c2ff9146978ec08ac468211b6f26a4b96299c3f55a48"
+    }
+  ],
+  "scope": "Canonical source plus actual SQL/Python results; no Swift execution",
+  "tar_bytes": 1945600,
+  "tar_sha256": "b6b9ead1b1e526ddb3c11d9f4374fe8794fc754b3338ca3fbc85c0b293d5e513"
+}

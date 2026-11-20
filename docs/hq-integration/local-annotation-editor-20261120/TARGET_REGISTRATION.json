@@ -1,0 +1,29 @@
+[
+  {
+    "name": "AnnotationLocalEditorModels.swift",
+    "file_ref": "CA3731254136642FE1C1A7A0",
+    "build_ids": [
+      "C4D9F799C43B95EC13DAFE68",
+      "FDFFEE666030424CBE21238A",
+      "AB467DB193BB97E635A4C008"
+    ]
+  },
+  {
+    "name": "AnnotationLocalEditorPersistence.swift",
+    "file_ref": "60BCDFAFF80B303F5EAA4126",
+    "build_ids": [
+      "339269F3BD193BCD1D8B9A27",
+      "9D6C002E3485E64BCFCAB334",
+      "2A81EE6B3B2514B9F4773658"
+    ]
+  },
+  {
+    "name": "AnnotationLocalEditorSession.swift",
+    "file_ref": "5835D2C31D3517A99B534126",
+    "build_ids": [
+      "387C03A49E4420CA3ECF3308",
+      "2636D2D8F62C8C21A825A12A",
+      "D627561A0D3655B435E380A6"
+    ]
+  }
+]

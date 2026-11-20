@@ -1,0 +1,112 @@
+{
+  "apple_component_cases": [
+    "legacy_read_has_no_schema_or_original_mutation",
+    "same_uuid_atomic_two_block_body_and_plain_preview",
+    "all_original_metadata_tags_and_uuid_preserved",
+    "original_queue_upload_delete_preserved_and_no_exchange_destination",
+    "original_store_cache_reads_committed_preview",
+    "original_cloudkit_boundary_receives_plain_record_once_without_requeue",
+    "exact_retry_returns_same_version_without_duplicate_publication",
+    "same_mutation_different_body_is_conflict",
+    "new_revision_preserves_immutable_previous_bytes",
+    "second_session_stale_revision_cannot_overwrite",
+    "normal_save_invalidates_old_rich_intent_without_altering_normal_path",
+    "original_tag_change_invalidates_source_witness",
+    "changed_original_row_is_rejected_by_post_worker_read_publication",
+    "changed_version_is_rejected_by_post_worker_read_publication",
+    "pending_original_delete_cannot_be_resurrected",
+    "missing_original_annotation_is_not_recreated",
+    "ambiguous_uuid_is_never_selected_by_first_match",
+    "profile_switch_and_return_never_revives_old_owner",
+    "disconnect_reconnect_same_file_requires_fresh_session",
+    "retire_before_save_has_no_schema_or_write",
+    "read_and_cancel_does_not_save_or_backfill",
+    "foreign_session_snapshot_is_denied",
+    "unsupported_body_format_is_readable_but_never_overwritten",
+    "future_envelope_is_retained_and_read_only",
+    "unknown_envelope_and_rich_metadata_survive_supported_edit",
+    "altered_snapshot_document_cannot_remove_preserved_unknown_fields",
+    "unknown_local_commit_marker_is_not_reinterpreted",
+    "future_database_schema_is_not_migrated_by_read",
+    "partial_schema_is_not_repaired_by_read",
+    "corrupt_body_digest_is_rejected",
+    "payload_bound_failure_rolls_back_preview_schema_and_queue",
+    "sqlite_failure_after_preview_rolls_back_entire_commit",
+    "retirement_during_original_sql_rolls_back_before_commit",
+    "normal_plain_save_preserves_rich_bytes_but_marks_body_stale",
+    "lowercase_original_uuid_bytes_are_not_restamped",
+    "nul_preview_is_rejected_before_original_sqlite_string_binding",
+    "empty_format_contract_has_no_implicit_editor_default",
+    "format_conversion_is_not_implicit_even_when_both_are_known",
+    "replay_of_older_head_cannot_replace_or_publish_newer_body",
+    "retirement_during_publication_reports_real_commit_without_owner_delivery",
+    "orphaned_version_is_not_treated_as_a_legacy_empty_note",
+    "original_exchange_api_still_rejects_empty_destinations",
+    "ordinary_original_save_and_tags_still_work_on_legacy_note"
+  ],
+  "author_branch": "codex/otzaria-local-annotation-editor-20261120",
+  "cold_reopen_gates": 2,
+  "command": [
+    "python3",
+    "tools/hq-local-annotation-editor-acceptance.py",
+    "--artifacts-dir",
+    "build/local-annotation-editor-acceptance"
+  ],
+  "component": "Maktabah original AnnotationStore local-body consumer, not the separate Anytype43 suites",
+  "component_count": 43,
+  "destinations": [],
+  "execution_bounds_seconds": {
+    "compile": 480,
+    "each_cold_process": 45,
+    "self_tests": 180
+  },
+  "explicit_doubles": [
+    "Unrelated UI/color/catalog boundaries",
+    "CloudKit plain-record admission observer",
+    "Unused ZSTD compressed-column fatal boundary"
+  ],
+  "live_exchange_enabled": false,
+  "no_claims": [
+    "Swift compile or execution locally",
+    "XCTest UI",
+    "actual Maktabah app cold launch",
+    "Anytype renderer import/mount",
+    "Anytype opaque format compatibility",
+    "CloudKit transport/account/profile completion isolation",
+    "live exchange/remote rollback",
+    "physical device"
+  ],
+  "original_regression_command": [
+    "python3",
+    "tools/hq-annotation-exchange-acceptance.py",
+    "--artifacts-dir",
+    "build/local-annotation-editor-exchange-regression"
+  ],
+  "original_regression_scope": "Original 28 component cases plus two abrupt-process SQLite recovery gates; unchanged source/driver, not executed for this candidate.",
+  "repository": "davidpovarsky/Maktabah",
+  "requires_original_app_target_builds": [
+    "Maktabah-iOS",
+    "Maktabah",
+    "Maktabah-Direct"
+  ],
+  "separate_process_modes": [
+    "cold-write",
+    "cold-reopen",
+    "cold-reopen-final"
+  ],
+  "source_commit": "4be6c9b27fa6c882275cddf209f5959cb9b9690b",
+  "status": "PREPARED_NOT_RUN",
+  "toolchain": "Installed Apple macOS SDK/SQLite3/Combine/CryptoKit; Swift6 strict concurrency; macOS15.0 original deployment floor; -j1",
+  "whole_original_compiled_sources": [
+    "Annotation.swift",
+    "AnnotationChangeTypes.swift",
+    "AnnotationEvent.swift",
+    "AnnotationRepository.swift",
+    "AnnotationStore.swift",
+    "SQLiteDatabase.swift",
+    "SyncPendingStore.swift",
+    "TorahAnnotationEnvelope.swift",
+    "AnnotationExchangeLedger.swift",
+    "whole original OtzariaActionCore local package"
+  ]
+}
