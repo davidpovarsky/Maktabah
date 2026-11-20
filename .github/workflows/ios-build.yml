@@ -510,6 +510,12 @@ jobs:
           github_token: ${{ github.token }}
       - name: Select an installed SDK-matched Xcode 27 and runtime
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/logs/normal-ios-toolchain.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -550,6 +556,10 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
+      - name: Prepare the original pinned React, Pods workspace, and Embedded bundle
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 Scripts/CI/prepare-normal-ios-workspace.py --github-env "$GITHUB_ENV"
       - name: Test Inspector backend mappings
         run: |
           xcrun swiftc -D OTZARIA_INSPECTOR_MAPPING_TESTS \
@@ -622,20 +632,22 @@ jobs:
           [ "$JOBS" -le 8 ] || JOBS=8
           set -o pipefail
           xcodebuild build \
-            -project "$PROJECT_PATH" \
+            -workspace Maktabah.xcworkspace \
             -scheme "$SCHEME" \
             -configuration Debug \
-            -sdk iphonesimulator \
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath build/DerivedData \
             -clonedSourcePackagesDirPath build/SourcePackages \
             -disableAutomaticPackageResolution \
             OTZARIA_DEFAULT_DATA_PROFILE=miniTest10 \
             -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            ENABLE_USER_SCRIPT_SANDBOXING=NO \
+            RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1 FAIL_ON_MISSING_BUNDLE=1 \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             2>&1 | tee build/logs/build-simulator.log
           APP="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
           test -d "$APP"
+          python3 Scripts/CI/prepare-normal-ios-workspace.py --verify-app "$APP"
           test -f "$APP/dictionary.json"
           test -f "$APP/Acronyms.json"
           tar -C "$(dirname "$APP")" -cf build/artifacts/Maktabah-simulator-app.tar "$(basename "$APP")"
@@ -725,7 +737,16 @@ jobs:
         if: always()
         with:
           name: simulator-build-logs
-          path: build/logs
+          path: |
+            build/logs
+            build/normal-ios-embedded/*.json
+            build/normal-ios-embedded/*.log
+            build/normal-ios-embedded/*.diff
+            build/normal-ios-embedded/*Package.resolved
+            build/normal-ios-embedded/resolved-Podfile.lock
+            build/normal-ios-embedded/*.xcprivacy
+            build/normal-ios-embedded/privacy-dependency-inputs/*.xcprivacy
+            build/normal-ios-embedded/ExpoModulesProvider.swift
           compression-level: 0
           if-no-files-found: warn
       - name: Live Activity · refresh
@@ -774,6 +795,12 @@ jobs:
           github_token: ${{ github.token }}
       - name: Select an installed SDK-matched Xcode 27 and runtime
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/logs/normal-ios-toolchain.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -812,6 +839,10 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
+      - name: Prepare the original pinned React, Pods workspace, and Embedded bundle
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 Scripts/CI/prepare-normal-ios-workspace.py --github-env "$GITHUB_ENV"
       - name: Build unsigned device IPA for inspection
         run: |
           mkdir -p build/logs
@@ -819,19 +850,21 @@ jobs:
           [ "$JOBS" -le 8 ] || JOBS=8
           set -o pipefail
           xcodebuild build \
-            -project "$PROJECT_PATH" \
+            -workspace Maktabah.xcworkspace \
             -scheme "$SCHEME" \
             -configuration Release \
-            -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -derivedDataPath build/DerivedData-iphoneos \
             -clonedSourcePackagesDirPath build/SourcePackages \
             -disableAutomaticPackageResolution \
             -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            ENABLE_USER_SCRIPT_SANDBOXING=NO \
+            RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1 FAIL_ON_MISSING_BUNDLE=1 \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             2>&1 | tee build/logs/build-unsigned-device.log
           APP="build/DerivedData-iphoneos/Build/Products/Release-iphoneos/${PRODUCT_NAME}.app"
           test -d "$APP"
+          python3 Scripts/CI/prepare-normal-ios-workspace.py --verify-app "$APP"
           rm -rf Payload "${PRODUCT_NAME}-unsigned.ipa"
           mkdir -p Payload
           cp -R "$APP" Payload/
@@ -867,7 +900,16 @@ jobs:
         if: always()
         with:
           name: device-build-logs
-          path: build/logs
+          path: |
+            build/logs
+            build/normal-ios-embedded/*.json
+            build/normal-ios-embedded/*.log
+            build/normal-ios-embedded/*.diff
+            build/normal-ios-embedded/*Package.resolved
+            build/normal-ios-embedded/resolved-Podfile.lock
+            build/normal-ios-embedded/*.xcprivacy
+            build/normal-ios-embedded/privacy-dependency-inputs/*.xcprivacy
+            build/normal-ios-embedded/ExpoModulesProvider.swift
           compression-level: 0
           if-no-files-found: warn
 

@@ -1,0 +1,109 @@
+{
+  "run": "https://github.com/davidpovarsky/Maktabah/actions/runs/44704546258",
+  "run_id": 44704546258,
+  "attempt": 1,
+  "checkout_sha": "e80cd5f2c27993351533f1be9d0890dfaa82cb42",
+  "app_test_source_sha": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "workflow_result": "FAILURE",
+  "workflow_updated_at": "2026-11-20T09:18:50Z",
+  "last_job_completed_at": "2026-11-20T09:18:49Z",
+  "watcher_observation_exit_utc": "2026-11-20T09:19:09.577525+00:00",
+  "jobs": [
+    {
+      "id": 136180786569,
+      "name": "Resolve Swift packages once",
+      "conclusion": "success",
+      "started_at": "2026-11-20T08:41:29Z",
+      "completed_at": "2026-11-20T08:45:20Z"
+    },
+    {
+      "id": 136180786759,
+      "name": "Build or restore Zayit framework",
+      "conclusion": "success",
+      "started_at": "2026-11-20T08:41:28Z",
+      "completed_at": "2026-11-20T08:48:51Z"
+    },
+    {
+      "id": 136180786800,
+      "name": "Build or restore Otzaria framework",
+      "conclusion": "success",
+      "started_at": "2026-11-20T08:41:29Z",
+      "completed_at": "2026-11-20T09:03:29Z"
+    },
+    {
+      "id": 136190541914,
+      "name": "Build unsigned device IPA",
+      "conclusion": "failure",
+      "started_at": "2026-11-20T09:03:32Z",
+      "completed_at": "2026-11-20T09:18:42Z"
+    },
+    {
+      "id": 136190542104,
+      "name": "Build simulator app",
+      "conclusion": "failure",
+      "started_at": "2026-11-20T09:10:47Z",
+      "completed_at": "2026-11-20T09:15:01Z"
+    },
+    {
+      "id": 136195973888,
+      "name": "Real native Otzaria bootstrap acceptance",
+      "conclusion": "skipped",
+      "started_at": "2026-11-20T09:15:02Z",
+      "completed_at": "2026-11-20T09:15:02Z"
+    },
+    {
+      "id": 136197729770,
+      "name": "Build and cache summary",
+      "conclusion": "failure",
+      "started_at": "2026-11-20T09:18:44Z",
+      "completed_at": "2026-11-20T09:18:49Z"
+    }
+  ],
+  "first_actual_simulator_error": {
+    "line": 4075,
+    "text": "2026-11-20T09:14:48.2937330Z /Users/runner/work/Maktabah/Maktabah/build/SourcePackages/checkouts/equatable/Sources/EquatableMacros/Closure.swift:1:8: error: Unable to resolve module dependency: 'SwiftSyntax' (in target 'EquatableMacros' from project 'Equatable')"
+  },
+  "macro_compiler_commands": [
+    {
+      "line": 4074,
+      "text": "2026-11-20T09:14:48.2338030Z     builtin-SwiftDriver -- /Applications/Xcode_27.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -parse-as-library -module-name EquatableMacros -Onone @/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DXcode -I /Users/runner/work/Maktabah/Maktabah/build/SourcePackages/prebuilts/swift-syntax/603.0.2/swiftlang-6.4.2.1.9-macosx27.2-MacroSupport/Modules -I /Users/runner/work/Maktabah/Maktabah/build/SourcePackages/checkouts/swift-syntax/Sources/_SwiftSyntaxCShims/include -I /Users/runner/work/Maktabah/Maktabah/build/SourcePackages/checkouts/swift-syntax/Sources/_SwiftLibraryPluginProviderCShims/include -plugin-path /Applications/Xcode_27.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk -target arm64-apple-ios15.0-simulator -g -module-cache-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -suppress-warnings -index-store-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Maktabah/Maktabah/build/DerivedData/SDKStatCaches.noindex/iphonesimulator27.2-24B8118-9aa026f88bf9ed31cff8761912ac5bd1414ec6ff3c837c3a1760e1fb4ff3fe25.sdkstatcache -output-file-map /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros-dependency-scan.dia -user-module-version 1.4.1 -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Maktabah/Maktabah/build/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -package-name equatable -emit-const-values -const-gather-protocols-list /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros_const_extract_protocols.json -Xcc -I/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -working-directory /Users/runner/work/Maktabah/Maktabah/Maktabah.xcodeproj -experimental-emit-module-separately -disable-cmo"
+    },
+    {
+      "line": 4287,
+      "text": "2026-11-20T09:14:49.7920190Z     builtin-Swift-Compilation-Requirements -- /Applications/Xcode_27.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -parse-as-library -module-name EquatableMacros -Onone @/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DXcode -I /Users/runner/work/Maktabah/Maktabah/build/SourcePackages/prebuilts/swift-syntax/603.0.2/swiftlang-6.4.2.1.9-macosx27.2-MacroSupport/Modules -I /Users/runner/work/Maktabah/Maktabah/build/SourcePackages/checkouts/swift-syntax/Sources/_SwiftSyntaxCShims/include -I /Users/runner/work/Maktabah/Maktabah/build/SourcePackages/checkouts/swift-syntax/Sources/_SwiftLibraryPluginProviderCShims/include -plugin-path /Applications/Xcode_27.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk -target arm64-apple-ios15.0-simulator -g -module-cache-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -suppress-warnings -index-store-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Maktabah/Maktabah/build/DerivedData/SDKStatCaches.noindex/iphonesimulator27.2-24B8118-9aa026f88bf9ed31cff8761912ac5bd1414ec6ff3c837c3a1760e1fb4ff3fe25.sdkstatcache -output-file-map /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros-dependency-scan.dia -user-module-version 1.4.1 -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Maktabah/Maktabah/build/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -package-name equatable -emit-const-values -const-gather-protocols-list /Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/Objects-normal/arm64/EquatableMacros_const_extract_protocols.json -Xcc -I/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/Maktabah/Maktabah/build/DerivedData/Build/Intermediates.noindex/Equatable.build/Debug-iphonesimulator/EquatableMacros-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -working-directory /Users/runner/work/Maktabah/Maktabah/Maktabah.xcodeproj -experimental-emit-module-separately -disable-cmo"
+    }
+  ],
+  "first_actual_device_error": {
+    "line": 7717,
+    "text": "2026-11-20T09:18:29.9725990Z /Users/runner/work/Maktabah/Maktabah/Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m:10:9: error: 'React/RCTBridgeModule.h' file not found (in target 'Maktabah-iOS' from project 'Maktabah')"
+  },
+  "inspector_original_step": {
+    "name": "Test Inspector backend mappings",
+    "status": "completed",
+    "conclusion": "success",
+    "number": 12,
+    "started_at": "2026-11-20T09:13:00Z",
+    "completed_at": "2026-11-20T09:13:51Z"
+  },
+  "inspector_original_completed_stages": [
+    "LocatorAndRefTests",
+    "DecodingTests",
+    "NavigationAndPackageTests",
+    "LegacyIdentityRegistryTests",
+    "BackendCoordinatorTests",
+    "UnifiedSearchArchitectureTests"
+  ],
+  "inspector_assertion_count_claim": null,
+  "candidate_verification": {
+    "python_controls": 28,
+    "passed": 28,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "apple_compiles": 0,
+    "native_cases": 0,
+    "historical_toolchain_initial_argparse_attempt_executed": 0
+  },
+  "candidate_apple_status": "NOT_RUN",
+  "raw_manifest": "RAW_MANIFEST.json"
+}
