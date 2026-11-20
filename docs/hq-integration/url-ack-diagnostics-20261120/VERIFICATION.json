@@ -1,0 +1,34 @@
+{
+  "base": "20ee9959fb82ec2e2407f97c8e50d7a4d3eee608",
+  "recordedUTC": "2026-11-20T05:07:21.818858+00:00",
+  "source": "Maktabah-iOSUITests\\NativeRoutingAcceptanceTests.swift",
+  "beforeLF_SHA256": "d051ac9f13bd40f7f74c17437de5824e4a7fa386c7d0ab9e70c70e546fde0541",
+  "afterLF_SHA256": "d48524a695c8708de7b8695f9c7ccfa6babdfb3930229ead295f19b208217bc2",
+  "exactInverseOutsideACKBlock": true,
+  "wholeHostUnchanged": true,
+  "hostLF_SHA256": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8",
+  "fixedMessagesVerifiedAgainstOriginalHostAST": [
+    "System URL transport timed out",
+    "System URL transport could not start",
+    "System URL transport failed"
+  ],
+  "dynamicExitCodeAndUncorrelatedRejectionRemainRejected": true,
+  "sourceComparisonScope": "READ_ONLY_STRUCTURE_AND_BYTES_NOT_RUNTIME_TEST",
+  "parse": {
+    "command": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0",
+      "Maktabah-iOSUITests\\NativeRoutingAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "seconds": 0.25,
+    "logSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539",
+    "scope": "WINDOWS_SYNTAX_ONLY_NO_APPLE_TYPECHECK"
+  },
+  "executedNativeCases": 0,
+  "nativeResult": "NOT_RUN",
+  "ackDecoderRuntimeResult": "NOT_RUN"
+}

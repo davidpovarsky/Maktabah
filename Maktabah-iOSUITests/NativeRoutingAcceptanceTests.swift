@@ -190,12 +190,50 @@ class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
             predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil
         )], timeout: 20)
         XCTAssertEqual(delivered, .completed, "Owned system URL transport must acknowledge the exact request")
+        enum SystemURLAcknowledgementError: Error {
+            case invalidAcknowledgement
+            case transportFailed
+        }
         guard delivered == .completed, let bytes = try? Data(contentsOf: ack),
               let response = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
-              Set(response.keys) == ["udid", "transport", "delivered", "nonce", "time"],
+              response["nonce"] as? String == nonce,
+              response["udid"] as? String == udid,
+              response["transport"] as? String == "simctl-system-openurl",
               String(decoding: bytes, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil else {
-            XCTFail("System URL acknowledgement must have the exact credential-free schema")
-            return
+            XCTFail("System URL acknowledgement must have the exact credential-free identity")
+            throw SystemURLAcknowledgementError.invalidAcknowledgement
+        }
+        let successKeys: Set<String> = ["udid", "transport", "delivered", "nonce", "time"]
+        if response["delivered"] as? Bool == false {
+            // Recognize only these fixed host messages after request validation.
+            // Do not relay arbitrary error text or continue to UI acceptance.
+            let knownErrors: Set<String> = [
+                "System URL transport timed out",
+                "System URL transport could not start",
+                "System URL transport failed"
+            ]
+            guard Set(response.keys) == successKeys.union(["error"]),
+                  let failure = response["error"] as? String, knownErrors.contains(failure),
+                  let timestamp = response["time"] as? Double, timestamp.isFinite else {
+                XCTFail("System URL failure acknowledgement must have the exact credential-free schema and known error")
+                throw SystemURLAcknowledgementError.invalidAcknowledgement
+            }
+            let sanitized: [String: Any] = [
+                "udid": udid, "transport": "simctl-system-openurl", "delivered": false,
+                "nonce": nonce, "time": timestamp, "error": failure
+            ]
+            let evidence = XCTAttachment(
+                data: try JSONSerialization.data(withJSONObject: sanitized, options: .sortedKeys),
+                uniformTypeIdentifier: "public.json"
+            )
+            evidence.name = "actual-system-url-transport-failure"
+            evidence.lifetime = .keepAlways; add(evidence)
+            XCTFail(failure)
+            throw SystemURLAcknowledgementError.transportFailed
+        }
+        guard Set(response.keys) == successKeys, response["delivered"] as? Bool == true else {
+            XCTFail("System URL acknowledgement must have the exact credential-free success schema")
+            throw SystemURLAcknowledgementError.invalidAcknowledgement
         }
         XCTAssertEqual(response["nonce"] as? String, nonce)
         XCTAssertEqual(response["udid"] as? String, udid)
