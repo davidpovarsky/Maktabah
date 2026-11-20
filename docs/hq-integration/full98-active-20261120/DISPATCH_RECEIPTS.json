@@ -1,0 +1,38 @@
+[
+  {
+    "file": "native-DISPATCH_INTENT.json",
+    "raw_bytes": 772,
+    "raw_sha256": "d5d7aa3d66fc7e995b613bf754590460700f2462f5f0a5a18d470047c0059a7f",
+    "representation": "original gzip plus explicitly normalized LF JSON"
+  },
+  {
+    "file": "native-DISPATCH_RESPONSE.json",
+    "raw_bytes": 380,
+    "raw_sha256": "8afee626f33502067beba2783e5a4dbe4a23f251cf4a9e4f94b9df36e56d7381",
+    "representation": "original gzip plus explicitly normalized LF JSON"
+  },
+  {
+    "file": "native-DISPATCH_VERIFIED.json",
+    "raw_bytes": 463,
+    "raw_sha256": "c7d6d8521b7fdd0c9caed2dda80239b0b5cde5f91a6fdaea45b38e297a99669c",
+    "representation": "original gzip plus explicitly normalized LF JSON"
+  },
+  {
+    "file": "release-DISPATCH_INTENT.json",
+    "raw_bytes": 795,
+    "raw_sha256": "b1eadd8ebf9e7fa0b4a661174305b9ebe2fd9ccd87594020ea66d19d73ca1250",
+    "representation": "original gzip plus explicitly normalized LF JSON"
+  },
+  {
+    "file": "release-DISPATCH_RESPONSE.json",
+    "raw_bytes": 398,
+    "raw_sha256": "093fb0477f31be1dffaa8f19e786f03906476b5d837c9f9f4e204c402fa044a2",
+    "representation": "original gzip plus explicitly normalized LF JSON"
+  },
+  {
+    "file": "release-DISPATCH_VERIFIED.json",
+    "raw_bytes": 464,
+    "raw_sha256": "1dc733052fccd6b3d9bf281e14be612f698be49cb5051633ab7743a898f80cd4",
+    "representation": "original gzip plus explicitly normalized LF JSON"
+  }
+]

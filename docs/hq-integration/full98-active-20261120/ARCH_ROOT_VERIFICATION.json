@@ -1,0 +1,16 @@
+{
+  "at_utc": "2026-11-20T10:12:29.364813+00:00",
+  "source": "89538ec8bd3e4c2a9c77f3957c071b4b362861d1",
+  "merge": "a8f9ac570ba4f1255906eaa2b49969f27f6c70c7",
+  "root_source_binding_checked": 37,
+  "historical_artifact_git_hashes_checked": 19,
+  "changed_doc_paths": 18,
+  "app_source_unchanged": true,
+  "frozen_refs": {
+    "codex/otzaria-native98-reviewed-20261120": "e9050ad8998a070c92c73a881b0d7deb6e216e88",
+    "codex/otzaria-release96-reviewed-20261120": "e9050ad8998a070c92c73a881b0d7deb6e216e88",
+    "codex/otzaria-ios-reviewed-20261120": "e9050ad8998a070c92c73a881b0d7deb6e216e88"
+  },
+  "clean": true,
+  "new_execution": false
+}

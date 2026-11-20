@@ -1,0 +1,12 @@
+{
+  "verified_at_utc": "2026-11-20T10:10:15.739400+00:00",
+  "run_id": 44716092729,
+  "checkout": "e9050ad8998a070c92c73a881b0d7deb6e216e88",
+  "application_source": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "branch": "codex/otzaria-native98-reviewed-20261120",
+  "attempt": 1,
+  "status": "in_progress",
+  "conclusion": null,
+  "created_at": "2026-11-20T10:04:35Z",
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44716092729"
+}

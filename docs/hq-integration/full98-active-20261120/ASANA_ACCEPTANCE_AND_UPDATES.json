@@ -1,0 +1,54 @@
+{
+  "decisions": {
+    "profile": "20.11.2026 — קבלת תוצרי ARCH לאחר בדיקה חוזרת מול תנאי המשימה המקוריים.\nהושלמו חוזי schema/route/ownership, מיפוי StudyProfile→StudyTabGroup→ReaderDocumentTab, מזהים וסדר יציבים, הפרדת חלון/backend, מדיניות מעבר וביטול, fixtures מהצהרות Codable היסטוריות, atomic migration, backup/rollback ומטריצת מודל של חלונות/backends.\nהרצת הנהג המקורי על 37 קובצי Swift מקוריים של d5a01b53 הסתיימה בפועל ב־09:55:40 UTC: 89/89 בדיקות portable PASS, 92.453 שניות, Swift 6.3.3 Windows. Root אימת מחדש ששכל 37 קלטי Git זהים גם במקור המאוחד c6542e41 ובהקפאה e9050ad8, וכן אימת 19 תוצרי ראיות מול hash ובתי Git. זוהי קשירת מקור להרצה אחת; לא הרצה חדשה.\nהסעיפים כוללים rollback לאחר כשל I/O אמיתי, גיבוי והגנה מפני schema עתידי, ten-tab historical migration, UUID/מיקום/בחירה, שני חלונות ומקרי Otzaria/Sefaria/Embedded שב־fixture המקורי. חוזה StudyWorkspaceNavigationAdapter נבדק בקוד; SwiftUI/UIKit hydration שלו לא הורצו ב־Windows.\nמיפוי כל קריטריון לראיה, EXECUTION וקלטים מדויקים: https://github.com/davidpovarsky/Maktabah/tree/a8f9ac570ba4f1255906eaa2b49969f27f6c70c7/docs/hq-integration/architecture-deliverables-20261120\nמקור התוצרים 89538ec8bd3e4c2a9c77f3957c071b4b362861d1; מיזוג תיעוד בלבד a8f9ac570ba4f1255906eaa2b49969f27f6c70c7, נדחף ואומת. קוד האפליקציה ושלושת ענפי ההרצות הקפואים לא השתנו.\nהקבלה כאן היא של היקף התכנון/מודל שנקבע במשימת ARCH זו. התנאים המלאים של משימות האב, UI, QA, SEC ואינטגרציה נשארים פתוחים: Native/ספקים חיים/100 מעברים/ביצועים/מכשירים אינם מקבלים PASS מעדות זו. העדכונים הקודמים נשמרים להלן כהיסטוריה.\n\n",
+    "sidebar": "20.11.2026 — קבלת תוצרי ARCH לאחר בדיקה חוזרת מול דרישת המסירה המקורית.\nנבדקו בפועל ה־RFC, זרימת Library→TOC→detail המקורית, מפת ownership, החלופות ללא upstream edit, exact protected hunks והחלטת feature flag/rollback. המסירה המקורית של משימה זו היא מסמך תכנון ללא דרישת merge/CI/שינוי קוד; התוצרים זמינים וממופים לכל סעיף בנספח.\nה־RFC ההיסטורי נשמר ומציג ביושר את פער כיבוי התכונה שהיה קיים. התיקון העוקב 455e5afa מתועד בנפרד עם בדיקות lifecycle אמיתיות ב־Windows: 11/18 לפני התיקון ו־18/18 לאחריו. אין בכך קבלת Native של rollback.\nRoot קרא את ה־RFC ומסמך exact hooks ואימת 19 תוצרי ראיות מול hash ובתי Git. נספח הקבלה ומפת הסעיפים: https://github.com/davidpovarsky/Maktabah/tree/a8f9ac570ba4f1255906eaa2b49969f27f6c70c7/docs/hq-integration/architecture-deliverables-20261120\nמקור התוצרים 89538ec8bd3e4c2a9c77f3957c071b4b362861d1; מיזוג תיעוד בלבד a8f9ac570ba4f1255906eaa2b49969f27f6c70c7 נדחף ואומת, ללא שינוי קוד היישום או ענפי CI הקפואים.\nהקבלה מתייחסת לתוצרי התכנון של משימת ARCH זו. משימת האב, Sidebar UI/QA, feature-off Native, parity בשני גדלי iPad ובדיקת המכשיר נשארות פתוחות לתוצאותיהן בפועל. נוסחי OPEN בעדכונים הקודמים נשמרים כהיסטוריית העבודה ואינם מוצגים כ־Native PASS.\n\n",
+    "source": "89538ec8bd3e4c2a9c77f3957c071b4b362861d1",
+    "merge": "a8f9ac570ba4f1255906eaa2b49969f27f6c70c7"
+  },
+  "completion": [
+    {
+      "gid": "1220103384074402",
+      "completed": true,
+      "completed_at": "2026-11-20T10:13:59.776Z",
+      "modified_at": "2026-11-20T10:13:59.826Z"
+    },
+    {
+      "gid": "1220036734132868",
+      "completed": true,
+      "completed_at": "2026-11-20T10:13:59.820Z",
+      "modified_at": "2026-11-20T10:13:59.892Z"
+    }
+  ],
+  "comments": [
+    {
+      "task_id": "1219602987688812",
+      "story_id": "1220735944157110",
+      "created_at": "2026-11-20T10:12:58.748Z"
+    },
+    {
+      "task_id": "1220542361203468",
+      "story_id": "1220735944157118",
+      "created_at": "2026-11-20T10:13:00.543Z"
+    },
+    {
+      "task_id": "1220539645638524",
+      "story_id": "1220735833627350",
+      "created_at": "2026-11-20T10:13:02.600Z"
+    },
+    {
+      "task_id": "1220107239748221",
+      "story_id": "1220735742482274",
+      "created_at": "2026-11-20T10:13:04.534Z"
+    },
+    {
+      "task_id": "1219614315863536",
+      "story_id": "1220736011825672",
+      "created_at": "2026-11-20T10:13:06.728Z"
+    },
+    {
+      "task_id": "1219614472017979",
+      "story_id": "1220736011770301",
+      "created_at": "2026-11-20T10:13:09.239Z"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "attempted_at_utc": "2026-11-20T10:04:39.252013+00:00",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "",
+  "checkout": "e9050ad8998a070c92c73a881b0d7deb6e216e88",
+  "app_source": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "branch": "codex/otzaria-release96-reviewed-20261120",
+  "scope": "FULL_ORIGINAL_RELEASE96_UI_PLUS2_ORACLES; all5 configurations; original3-stage handoff"
+}
