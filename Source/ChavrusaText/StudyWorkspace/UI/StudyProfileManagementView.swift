@@ -13,7 +13,11 @@ struct StudyProfileManagementView: View {
             List {
                 ForEach((workspace.store.snapshot?.profiles ?? []).sorted { $0.order < $1.order }) { profile in
                     HStack {
-                        Label(profile.name, systemImage: profile.symbol)
+                        Label { Text(profile.name) } icon: {
+                            StudyProfileIcon(symbol: profile.symbol, color: profile.color)
+                        }
+                            .accessibilityValue(profile.color?.displayName ?? "")
+                            .accessibilityIdentifier("study-profile-\(profile.id.uuidString)")
                             .accessibilityAddTraits(workspace.profile?.id == profile.id ? .isSelected : [])
                         Spacer()
                         if workspace.profile?.id == profile.id { Image(systemName: "checkmark").accessibilityHidden(true) }
@@ -22,6 +26,7 @@ struct StudyProfileManagementView: View {
                             Button("מחיקה", systemImage: "trash", role: .destructive) { deleting = profile }
                         } label: { Image(systemName: "ellipsis.circle").frame(width: 44, height: 44) }
                         .accessibilityLabel("פעולות בפרופיל \(profile.name)")
+                        .accessibilityIdentifier("study-profile-actions-\(profile.id.uuidString)")
                     }
                 }
                 .onMove { source, destination in
@@ -71,10 +76,10 @@ struct StudyProfileManagementView: View {
     }
 
     private func profileEditor(_ profile: StudyProfile?) -> some View {
-        StudyProfileEditor(profile: profile) { name, symbol in
+        StudyProfileEditor(profile: profile) { name, symbol, color in
             do {
-                if let profile { try workspace.store.renameProfile(profile.id, name: name, symbol: symbol) }
-                else { try workspace.store.addProfile(name: name, symbol: symbol) }
+                if let profile { try workspace.store.updateProfile(profile.id, name: name, symbol: symbol, color: color) }
+                else { try workspace.store.addProfile(name: name, symbol: symbol, color: color) }
                 return true
             } catch { workspace.errorMessage = error.localizedDescription; return false }
         }
@@ -135,17 +140,19 @@ private struct StudyGroupManagementView: View {
 
 private struct StudyProfileEditor: View {
     let profile: StudyProfile?
-    let onSave: (String, String) -> Bool
+    let onSave: (String, String, StudyProfileColor?) -> Bool
     @Environment(\.dismiss) private var dismiss
     @State private var name: String
     @State private var symbol: String
+    @State private var color: StudyProfileColor?
     private let symbols = ["person.crop.circle", "book.closed", "books.vertical", "graduationcap", "star"]
     private let symbolLabels = ["person.crop.circle": "אישי", "book.closed": "ספר", "books.vertical": "ספרים",
                                 "graduationcap": "לימוד", "star": "מועדף"]
-    init(profile: StudyProfile?, onSave: @escaping (String, String) -> Bool) {
+    init(profile: StudyProfile?, onSave: @escaping (String, String, StudyProfileColor?) -> Bool) {
         self.profile = profile; self.onSave = onSave
         _name = State(initialValue: profile?.name ?? "")
         _symbol = State(initialValue: profile?.symbol ?? "person.crop.circle")
+        _color = State(initialValue: profile?.color)
     }
     var body: some View {
         NavigationStack {
@@ -156,15 +163,63 @@ private struct StudyProfileEditor: View {
                         Image(systemName: choice).accessibilityLabel(symbolLabels[choice] ?? choice).tag(choice)
                     }
                 }
+                Picker("צבע", selection: $color) {
+                    Text("ברירת מחדל").tag(StudyProfileColor?.none)
+                    ForEach(StudyProfileColor.allCases, id: \.self) { choice in
+                        Label { Text(choice.displayName) } icon: {
+                            StudyProfileIcon(symbol: "circle.fill", color: choice)
+                        }.tag(Optional(choice))
+                    }
+                }
+                .pickerStyle(.menu)
+                .accessibilityIdentifier("study-profile-color")
+                .accessibilityValue(color?.displayName ?? "ברירת מחדל")
             }
             .navigationTitle(profile == nil ? "פרופיל חדש" : "עריכת פרופיל")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("ביטול") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("שמירה") { if onSave(name.trimmingCharacters(in: .whitespacesAndNewlines), symbol) { dismiss() } }
+                    Button("שמירה") { if onSave(name.trimmingCharacters(in: .whitespacesAndNewlines), symbol, color) { dismiss() } }
                         .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
             }
+        }
+    }
+}
+
+/// Only an explicit user color overrides the inherited native symbol style.
+struct StudyProfileIcon: View {
+    let symbol: String
+    let color: StudyProfileColor?
+    var body: some View {
+        if let color {
+            Image(systemName: symbol).foregroundStyle(color.swiftUIColor)
+        } else {
+            Image(systemName: symbol)
+        }
+    }
+}
+
+extension StudyProfileColor {
+    var displayName: String {
+        switch self {
+        case .blue: "כחול"
+        case .teal: "טורקיז"
+        case .green: "ירוק"
+        case .orange: "כתום"
+        case .red: "אדום"
+        case .purple: "סגול"
+        }
+    }
+
+    var swiftUIColor: Color {
+        switch self {
+        case .blue: .blue
+        case .teal: .teal
+        case .green: .green
+        case .orange: .orange
+        case .red: .red
+        case .purple: .purple
         }
     }
 }

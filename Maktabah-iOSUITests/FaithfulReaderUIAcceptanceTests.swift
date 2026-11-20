@@ -1846,3 +1846,116 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
         capture("release-production-empty-group-restored")
     }
 }
+
+
+/// Real UI bootstrap, the original profile editor/store, and a per-test UUID sidecar.
+/// This case is deliberately iPad-only; it is not physical-device visual acceptance.
+final class StudyProfileNativeAcceptanceTests: R27NativeUIBase {
+    func testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace() throws {
+        XCTAssertTrue(isPad, "The selected profile-color case requires an actual iPad Simulator")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        let locator = try assertTarget(backend: "otzaria")
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["ניהול פרופילי לימוד"])
+
+        // Create through the original native UI, never seed or mutate the sidecar.
+        tap(app.buttons["פרופיל לימוד חדש"])
+        let name = app.textFields["שם הפרופיל"]
+        tap(name)
+        name.typeText("פרופיל צבע נוסף")
+        tap(app.buttons["שמירה"])
+        XCTAssertTrue(app.staticTexts["פרופיל צבע נוסף"].waitForExistence(timeout: 10))
+        let before = try profileWorkspace()
+        let profiles = try XCTUnwrap(before["profiles"] as? [[String: Any]])
+        XCTAssertEqual(profiles.count, 2)
+        let personal = try XCTUnwrap(profiles.first { $0["name"] as? String == "אישי" })
+        let other = try XCTUnwrap(profiles.first { $0["name"] as? String == "פרופיל צבע נוסף" })
+        let profileID = try XCTUnwrap(personal["id"] as? String)
+        XCTAssertNotNil(UUID(uuidString: profileID))
+        XCTAssertNil(personal["color"])
+        XCTAssertNil(other["color"])
+
+        openProfileEditor(id: profileID)
+        chooseProfileColor(named: "אדום")
+        tap(app.buttons["ביטול"])
+        XCTAssertTrue(app.buttons["study-profile-actions-\(profileID)"].waitForExistence(timeout: 10))
+        let cancelled = try profileWorkspace()
+        XCTAssertEqual(try normalizedProfileValue(cancelled["profiles"]),
+                       try normalizedProfileValue(before["profiles"]),
+                       "Cancel must not persist the draft color or alter another profile")
+
+        openProfileEditor(id: profileID)
+        XCTAssertEqual(profileColorPicker().value as? String, "ברירת מחדל")
+        chooseProfileColor(named: "כחול")
+        tap(app.buttons["שמירה"])
+        let row = app.descendants(matching: .any).matching(identifier: "study-profile-\(profileID)").firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        XCTAssertTrue(row.isHittable)
+        XCTAssertEqual(row.value as? String, "כחול", "The original visible profile row must expose the selected color")
+        capture("profile-color-original-management-blue")
+        try attachWorkspaceSnapshot("profile-color-after-original-save")
+        let saved = try profileWorkspace()
+        let savedProfiles = try XCTUnwrap(saved["profiles"] as? [[String: Any]])
+        var changed = try XCTUnwrap(savedProfiles.first { $0["id"] as? String == profileID })
+        XCTAssertEqual(changed.removeValue(forKey: "color") as? String, "blue")
+        XCTAssertEqual(try normalizedProfileValue(changed), try normalizedProfileValue(personal),
+                       "A color-only Save preserves the original profile UUID, name, icon and order")
+        XCTAssertEqual(try normalizedProfileValue(savedProfiles.first { $0["id"] as? String == other["id"] as? String }),
+                       try normalizedProfileValue(other), "Another profile remains unchanged")
+        for key in ["groups", "scenes"] {
+            XCTAssertEqual(try normalizedProfileValue(saved[key]), try normalizedProfileValue(before[key]),
+                           "A profile color cannot change documents, locators, group membership or scene selection")
+        }
+        tap(app.buttons["סיום"])
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+
+        app.terminate()
+        launchReader()
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+        let restored = try profileWorkspace()
+        XCTAssertEqual(try normalizedProfileValue(restored["profiles"]), try normalizedProfileValue(saved["profiles"]),
+                       "The actual persisted color and untouched profile must survive a cold app launch")
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["ניהול פרופילי לימוד"])
+        openProfileEditor(id: profileID)
+        XCTAssertEqual(profileColorPicker().value as? String, "כחול")
+        capture("profile-color-original-editor-after-cold-relaunch")
+        chooseProfileColor(named: "ברירת מחדל")
+        tap(app.buttons["שמירה"])
+        XCTAssertTrue(app.buttons["study-profile-actions-\(profileID)"].waitForExistence(timeout: 10))
+        let reset = try profileWorkspace()
+        let resetProfiles = try XCTUnwrap(reset["profiles"] as? [[String: Any]])
+        XCTAssertEqual(try normalizedProfileValue(resetProfiles), try normalizedProfileValue(profiles),
+                       "Explicit default selection restores the original omitted optional field")
+        try attachWorkspaceSnapshot("profile-color-reset-to-original-default")
+        tap(app.buttons["סיום"])
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), locator)
+    }
+
+    private func openProfileEditor(id: String) {
+        tap(app.buttons["study-profile-actions-\(id)"])
+        tap(app.buttons["עריכה"])
+        XCTAssertTrue(profileColorPicker().waitForExistence(timeout: 10))
+    }
+
+    private func profileColorPicker() -> XCUIElement {
+        app.buttons["study-profile-color"]
+    }
+
+    private func chooseProfileColor(named name: String) {
+        let picker = profileColorPicker()
+        XCTAssertTrue(picker.isHittable)
+        tap(picker)
+        tap(app.buttons.matching(NSPredicate(format: "label == %@", name)).firstMatch)
+        XCTAssertEqual(picker.value as? String, name, "Selection must be visible in the original native Picker before Save")
+    }
+
+    private func profileWorkspace() throws -> [String: Any] {
+        try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: workspaceSidecarURL())) as? [String: Any])
+    }
+
+    private func normalizedProfileValue(_ value: Any?) throws -> Data {
+        try JSONSerialization.data(withJSONObject: XCTUnwrap(value), options: [.sortedKeys, .fragmentsAllowed])
+    }
+}

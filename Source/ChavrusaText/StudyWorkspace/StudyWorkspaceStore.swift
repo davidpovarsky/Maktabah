@@ -159,10 +159,10 @@ final class StudyWorkspaceStore {
     }
 
     @discardableResult
-    func addProfile(name: String, symbol: String) throws -> UUID {
+    func addProfile(name: String, symbol: String, color: StudyProfileColor? = nil) throws -> UUID {
         let id = UUID()
         try transaction { value in
-            value.profiles.append(.init(id: id, name: name, symbol: symbol, order: value.profiles.count))
+            value.profiles.append(.init(id: id, name: name, symbol: symbol, order: value.profiles.count, color: color))
             value.groups.append(.init(id: UUID(), profileID: id, name: "כל הכרטיסיות", order: 0, tabs: [], activeTabID: nil))
         }
         return id
@@ -181,10 +181,19 @@ final class StudyWorkspaceStore {
     }
 
     func renameProfile(_ id: UUID, name: String, symbol: String) throws {
+        guard let profile = snapshot?.profiles.first(where: { $0.id == id }) else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        try updateProfile(id, name: name, symbol: symbol, color: profile.color)
+    }
+
+    /// One existing transaction commits the complete editor choice or none of it.
+    func updateProfile(_ id: UUID, name: String, symbol: String, color: StudyProfileColor?) throws {
         try transaction { value in
             guard let index = value.profiles.firstIndex(where: { $0.id == id }) else { throw StudyWorkspaceError.invalidMembership }
             value.profiles[index].name = name
             value.profiles[index].symbol = symbol
+            value.profiles[index].color = color
         }
     }
 

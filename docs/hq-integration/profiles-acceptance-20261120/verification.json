@@ -1,0 +1,77 @@
+{
+  "source_base": "bfc7f5a6aa849ab7e9a892cf63c693a8f49ac8a1",
+  "branch": "codex/otzaria-acceptance-reconciliation-20261120",
+  "portable": {
+    "status": "EXECUTED_PASS",
+    "checks": 89,
+    "previous_checks": 61,
+    "new_checks": 28,
+    "log": "workspace-tests-initial.log"
+  },
+  "historical_encoder": {
+    "status": "EXECUTED_PASS",
+    "fixture_files": 2,
+    "schema_claim": "Exact historical Codable declarations with constructed test values; no user/provider/native proof"
+  },
+  "syntax_parse": {
+    "status": "EXECUTED_PASS",
+    "files": 5,
+    "sdk_typecheck": false,
+    "evidence": "swift-parse.json"
+  },
+  "provenance": {
+    "result": "PASS",
+    "current_rows": 32,
+    "historical_rows_still_matching": 29,
+    "historical_drift_rows_preserved": 3,
+    "scope": "Exact current source/diff/manifest bytes only; historical gaps, Native and license approvals remain explicit."
+  },
+  "fixture_hashes": "EXECUTED_PASS",
+  "diff_check": "EXECUTED_PASS",
+  "apple_sdk_typecheck": "NOT_RUN",
+  "native_case": {
+    "selector": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "device": "iPad only",
+    "status": "NOT_RUN",
+    "bootstrap": "original R27NativeUIBase realUI",
+    "manifest_changed": false
+  },
+  "physical_ipad": "NOT_RUN",
+  "source_files": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "lf_sha256": "da6920095961f53add1c9776e31db2efced8835dd35f6e8e0c08527af2d0ef69"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "lf_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "lf_sha256": "b166532ca71f220d081e1ff9fb978830c6a6dc6c3b249bdc70b036e846304ede"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+      "lf_sha256": "dec666dbb22ac874a3e918bfc5013555e7e798d4b8f0e9f9ee39263067efe096"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "lf_sha256": "699ede8473ae36bc46531ba465384bee0eb98ea0051d90ebefe2919cec605c55"
+    },
+    {
+      "path": "tools/test_faithful_study_workspace.swift",
+      "lf_sha256": "619aeae15cfde94d1511b3699254ad1ae95f21554d448b1317eb408e6525bfec"
+    }
+  ],
+  "ownership": {
+    "original_upstream": "d46af139b3a265399c16d87f5923acd8e3444024",
+    "git_ls_tree_all_changed_source_paths": "empty; downstream-owned",
+    "core_packages_changed": false,
+    "policy_or_guard_changed": false
+  },
+  "limitations": [
+    "Shallow Git graph; upstream merge-base unavailable, not invented",
+    "One historical LibraryCommandPaletteAdapter digest not located in available per-path history",
+    "Separate feature-off repair/Native gate pending under manager/QA ownership"
+  ]
+}
