@@ -1,0 +1,86 @@
+{
+  "formatVersion": 1,
+  "baselineFrozenCheckout": "60a57972acb28739ec738565083bf17fb7503028",
+  "baselineAppTestSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "originalCasePrefixUnchanged": true,
+  "sourceFile": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+  "native": "NOT_RUN",
+  "manifestChanged": false,
+  "additionalCount": 12,
+  "iPadCount": 6,
+  "iPhoneCount": 6,
+  "cases": [
+    {
+      "test": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+      "device": "iPad",
+      "kind": "embedded-mobile-toc",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation"
+    },
+    {
+      "test": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+      "device": "iPad",
+      "kind": "embedded-mobile-toc",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation"
+    },
+    {
+      "test": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+      "device": "iPad",
+      "kind": "embedded-mobile-toc",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC"
+    },
+    {
+      "test": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+      "device": "iPad",
+      "kind": "embedded-mobile-toc",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC"
+    },
+    {
+      "test": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+      "device": "iPad",
+      "kind": "remote-transport",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry"
+    },
+    {
+      "test": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry",
+      "device": "iPad",
+      "kind": "remote-transport",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry"
+    },
+    {
+      "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+      "device": "iPhone",
+      "kind": "embedded-mobile-toc",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone"
+    },
+    {
+      "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+      "device": "iPhone",
+      "kind": "embedded-mobile-toc",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone"
+    },
+    {
+      "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+      "device": "iPhone",
+      "kind": "embedded-mobile-toc",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone"
+    },
+    {
+      "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+      "device": "iPhone",
+      "kind": "embedded-mobile-toc",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone"
+    },
+    {
+      "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+      "device": "iPhone",
+      "kind": "remote-transport",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone"
+    },
+    {
+      "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone",
+      "device": "iPhone",
+      "kind": "remote-transport",
+      "testIdentifier": "Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "projectUnchanged": true,
+  "projectCanonicalLFSHA256": "ac5e360aa4cb3d6c31354cba83ca72488bfef283067b2bd121231defa95c68df",
+  "existingFiles": {
+    "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift": {
+      "fileMentionCount": 6,
+      "sourcesPhaseMentionCount": 2
+    },
+    "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift": {
+      "fileMentionCount": 6,
+      "sourcesPhaseMentionCount": 2
+    },
+    "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift": {
+      "fileMentionCount": 6,
+      "sourcesPhaseMentionCount": 2
+    },
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": {
+      "fileMentionCount": 6,
+      "sourcesPhaseMentionCount": 2
+    },
+    "Source/Sefaria/Network/SefariaHTTPClient.swift": {
+      "fileMentionCount": 12,
+      "sourcesPhaseMentionCount": 6
+    },
+    "Source/UI/iOS/Views/iPadLayout.swift": {
+      "fileMentionCount": 6,
+      "sourcesPhaseMentionCount": 2
+    }
+  },
+  "newAppSwiftFiles": 0,
+  "native": "NOT_RUN"
+}

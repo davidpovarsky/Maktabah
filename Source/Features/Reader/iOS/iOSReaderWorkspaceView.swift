@@ -312,6 +312,7 @@ struct iOSReaderWorkspaceView: View {
             selectedId: selectedTOCNode?.id,
             bookTitle: book.book,
             onClose: closeContents,
+            onRetry: { viewModel.loadTOC(book: book) },
             embedsNavigationStack: false,
             onSelect: selectTOCNode
         )
