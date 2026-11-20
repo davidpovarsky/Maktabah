@@ -35,9 +35,10 @@ enum SefariaNavigationParser {
         indexTitle: String,
         baseRef: String? = nil,
         heTitle: String? = nil,
-        prefersHebrew: Bool = LibraryPresentationPolicy.prefersHebrew()
+        prefersHebrew: Bool = LibraryPresentationPolicy.prefersHebrew(),
+        primaryNodesOverride: [LibraryTOCNode]? = nil
     ) -> [LibraryNavigationStructure] {
-        let primary = primaryNodes(
+        let primary = primaryNodesOverride ?? primaryNodes(
             shapes: shapes,
             schema: schema,
             indexTitle: indexTitle,
@@ -73,6 +74,229 @@ enum SefariaNavigationParser {
             }
         }
         return results
+    }
+
+
+    /// The pinned Sefaria-Mobile textToc payload uses absolute, zero-based
+    /// content_counts positions (including padding), not the native shape
+    /// convention that starts Talmud at 2a. Keep that input contract explicit.
+    static func mobileIndexStructures(
+        schema: SefariaJSONValue,
+        alternateStructures: [String: SefariaJSONValue]? = nil,
+        indexTitle: String,
+        prefersHebrew: Bool = LibraryPresentationPolicy.prefersHebrew()
+    ) throws -> [LibraryNavigationStructure] {
+        var remaining = 100_000
+        let primary = try mobileSchemaNodes(schema, indexTitle: indexTitle,
+            baseRef: indexTitle, prefersHebrew: prefersHebrew, depth: 0,
+            remaining: &remaining)
+        return structures(schema: schema, alternateStructures: alternateStructures,
+            indexTitle: indexTitle, prefersHebrew: prefersHebrew,
+            primaryNodesOverride: primary)
+    }
+
+    private static func mobileSchemaNodes(
+        _ value: SefariaJSONValue, indexTitle: String, baseRef: String,
+        prefersHebrew: Bool, depth: Int, remaining: inout Int
+    ) throws -> [LibraryTOCNode] {
+        try consumeMobileNode(depth: depth, remaining: &remaining)
+        guard case .object(let object) = value else {
+            throw LibraryBackendError.invalidResponse("Mobile TOC schema is not an object")
+        }
+        if let children = object["nodes"] {
+            guard case .array(let values) = children else {
+                throw LibraryBackendError.invalidResponse("Mobile TOC nodes are not an array")
+            }
+            return try values.flatMap { childValue -> [LibraryTOCNode] in
+                // Named one-dimensional leaves do not recurse; account for
+                // every original schema child before selecting its branch.
+                try consumeMobileNode(depth: depth + 1, remaining: &remaining)
+                guard case .object(let child) = childValue else {
+                    throw LibraryBackendError.invalidResponse("Mobile TOC child is not an object")
+                }
+                let isDefault = child["default"] == .bool(true)
+                let key = string(child["title"]) ?? schemaTitle(child, language: "en")
+                    ?? string(child["key"]) ?? ""
+                guard isDefault || !key.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+                    throw LibraryBackendError.invalidResponse("Mobile TOC child has no canonical title")
+                }
+                let ref = nodeReference(child, baseRef: baseRef, key: key)
+                if isDefault {
+                    return try mobileSchemaNodes(childValue, indexTitle: indexTitle,
+                        baseRef: ref, prefersHebrew: prefersHebrew, depth: depth + 1,
+                        remaining: &remaining)
+                }
+                if child["nodeType"] == .string("ArrayMapNode")
+                    || child["nodeType"] == .string("DictionaryNode") {
+                    return try mobileSchemaNodes(childValue, indexTitle: indexTitle,
+                        baseRef: ref, prefersHebrew: prefersHebrew, depth: depth + 1,
+                        remaining: &remaining)
+                }
+                // Original mobile named one-dimensional sections open the whole
+                // named section; their content count is not a chapter count.
+                let isNamedSection = child["nodeType"] == .string("JaggedArrayNode")
+                    && child["depth"] == .number(1)
+                let nested = isNamedSection ? [] : try mobileSchemaNodes(childValue,
+                    indexTitle: indexTitle, baseRef: ref, prefersHebrew: prefersHebrew,
+                    depth: depth + 1, remaining: &remaining)
+                let title = LibraryPresentationPolicy.workTitle(
+                    title: schemaTitle(child, language: "en") ?? string(child["title"]) ?? key,
+                    heTitle: schemaTitle(child, language: "he") ?? string(child["heTitle"]),
+                    localeIdentifier: prefersHebrew ? "he" : "en")
+                return [LibraryTOCNode(locator: locator(indexTitle: indexTitle, ref: ref),
+                    title: title, children: nested)]
+            }
+        }
+        if object["nodeType"] == .string("ArrayMapNode")
+            || object["nodeType"] == .string("DictionaryNode") {
+            return schemaNodes(value, indexTitle: indexTitle, baseRef: baseRef,
+                prefersHebrew: prefersHebrew)
+        }
+        guard object["nodeType"] == .string("JaggedArrayNode"),
+              let counts = object["content_counts"],
+              let declaredDepth = try mobileInteger(object["depth"]), declaredDepth > 0,
+              declaredDepth <= 32,
+              let types = strings(object["addressTypes"]), types.count >= declaredDepth else {
+            throw LibraryBackendError.invalidResponse("Mobile TOC has no complete content-count schema")
+        }
+        let zoom = try mobileInteger(object["toc_zoom"]) ?? 1
+        guard zoom > 0, zoom <= declaredDepth else {
+            throw LibraryBackendError.invalidResponse("Mobile TOC zoom is outside its schema")
+        }
+        let offsets: [String: SefariaJSONValue]
+        if let value = object["index_offsets_by_depth"], value != .null {
+            guard case .object(let supplied) = value else {
+                throw LibraryBackendError.invalidResponse("Mobile TOC offsets are not an object")
+            }
+            offsets = supplied
+        } else { offsets = [:] }
+        return try mobileContentNodes(counts, indexTitle: indexTitle, baseRef: baseRef,
+            navigationDepth: declaredDepth - zoom + 1, addressTypes: types,
+            offsets: offsets, referenceDepth: 0, nestingDepth: depth,
+            prefersHebrew: prefersHebrew, remaining: &remaining)
+    }
+
+    private static func mobileContentNodes(
+        _ counts: SefariaJSONValue, indexTitle: String, baseRef: String,
+        navigationDepth: Int, addressTypes: [String], offsets: [String: SefariaJSONValue],
+        referenceDepth: Int, nestingDepth: Int, prefersHebrew: Bool, remaining: inout Int
+    ) throws -> [LibraryTOCNode] {
+        let values: [SefariaJSONValue]
+        if navigationDepth == 1 {
+            // Pinned Mobile line 429 constructs Array(contentCounts) here.
+            // Its supported contract is a scalar count. An array would become
+            // one ambiguous JS entry; do not invent canonical references.
+            guard case .number = counts, let count = try mobileInteger(counts) else {
+                throw LibraryBackendError.invalidResponse("Mobile TOC depth-one count is not scalar")
+            }
+            guard count <= remaining else {
+                throw LibraryBackendError.invalidResponse("Mobile TOC exceeds the node budget")
+            }
+            values = Array(repeating: .number(1), count: count)
+        } else if case .array(let array) = counts {
+            values = array
+        } else {
+            throw LibraryBackendError.invalidResponse("Mobile TOC content-count dimensions do not match")
+        }
+        let offset = try mobileInteger(offsets["1"]) ?? 0
+        let type = addressTypes.first
+        return try values.enumerated().compactMap { index, count in
+            try consumeMobileNode(depth: nestingDepth, remaining: &remaining)
+            guard try mobileHasContent(count, depth: nestingDepth + 1, remaining: &remaining) else { return nil }
+            let position = index + offset
+            let address: String
+            if type == "Talmud" {
+                address = "\(position / 2 + 1)\(position.isMultiple(of: 2) ? "a" : "b")"
+            } else if type == "Folio" {
+                address = "\(position / 4 + 1)\(["a", "b", "c", "d"][position % 4])"
+            } else { address = String(position + 1) }
+            let ref = append(address: address, to: baseRef, depth: referenceDepth)
+            let title: String
+            if !prefersHebrew { title = address }
+            else if type == "Talmud" { title = TalmudHebrewAddressFormatter.format(address: address) }
+            else if type == "Folio" {
+                title = "\(hebrewNumeral(from: position / 4 + 1)),\(["א", "ב", "ג", "ד"][position % 4])"
+            } else if referenceDepth == 0 { title = "פרק \(hebrewNumeral(from: position + 1))" }
+            else { title = hebrewNumeral(from: position + 1) }
+            if navigationDepth > 2 {
+                let childOffsets = try mobileChildOffsets(offsets, index: index)
+                let children = try mobileContentNodes(count, indexTitle: indexTitle, baseRef: ref,
+                    navigationDepth: navigationDepth - 1, addressTypes: Array(addressTypes.dropFirst()),
+                    offsets: childOffsets, referenceDepth: referenceDepth + 1,
+                    nestingDepth: nestingDepth + 1, prefersHebrew: prefersHebrew,
+                    remaining: &remaining)
+                return LibraryTOCNode(locator: locator(indexTitle: indexTitle, ref: ref),
+                    title: title, children: children)
+            }
+            // Original mobile zoomed sections retain the first actual inner
+            // section in the canonical ref; never renumber a sparse count array.
+            let terminal = try mobileRefTerminal(count, depth: nestingDepth + 1, remaining: &remaining)
+            return LibraryTOCNode(locator: locator(indexTitle: indexTitle, ref: ref + terminal),
+                title: title, children: [])
+        }
+    }
+
+    private static func mobileInteger(_ value: SefariaJSONValue?) throws -> Int? {
+        guard let value, value != .null else { return nil }
+        guard case .number(let number) = value, number.isFinite,
+              number >= 0, number <= 1_000_000, number.rounded() == number else {
+            throw LibraryBackendError.invalidResponse("Mobile TOC count or offset is invalid")
+        }
+        return Int(number)
+    }
+
+    private static func mobileHasContent(
+        _ value: SefariaJSONValue, depth: Int, remaining: inout Int
+    ) throws -> Bool {
+        try consumeMobileNode(depth: depth, remaining: &remaining)
+        if case .number = value { return try mobileInteger(value)! > 0 }
+        guard case .array(let children) = value else {
+            throw LibraryBackendError.invalidResponse("Mobile TOC content count is malformed")
+        }
+        var found = false
+        for child in children {
+            // Validate every child, including those after the first nonzero one.
+            if try mobileHasContent(child, depth: depth + 1, remaining: &remaining) { found = true }
+        }
+        return found
+    }
+
+    private static func mobileRefTerminal(
+        _ value: SefariaJSONValue, depth: Int, remaining: inout Int
+    ) throws -> String {
+        try consumeMobileNode(depth: depth, remaining: &remaining)
+        if case .number = value { return "" }
+        guard case .array(let values) = value else {
+            throw LibraryBackendError.invalidResponse("Mobile TOC terminal count is malformed")
+        }
+        for (index, value) in values.enumerated() {
+            if try mobileHasContent(value, depth: depth + 1, remaining: &remaining) {
+                return ":\(index + 1)" + (try mobileRefTerminal(value, depth: depth + 1, remaining: &remaining))
+            }
+        }
+        throw LibraryBackendError.invalidResponse("Mobile TOC terminal has no content")
+    }
+
+    private static func mobileChildOffsets(
+        _ offsets: [String: SefariaJSONValue], index: Int
+    ) throws -> [String: SefariaJSONValue] {
+        var child: [String: SefariaJSONValue] = [:]
+        for (key, value) in offsets where key != "1" {
+            guard let depth = Int(key), depth > 1, depth <= 32,
+                  case .array(let values) = value, values.indices.contains(index) else {
+                throw LibraryBackendError.invalidResponse("Mobile TOC nested offsets are malformed")
+            }
+            child[String(depth - 1)] = values[index]
+        }
+        return child
+    }
+
+    private static func consumeMobileNode(depth: Int, remaining: inout Int) throws {
+        try Task.checkCancellation()
+        guard depth <= 64, remaining > 0 else {
+            throw LibraryBackendError.invalidResponse("Mobile TOC exceeds its bounded schema")
+        }
+        remaining -= 1
     }
 
     static func nodes(

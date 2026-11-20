@@ -1,0 +1,58 @@
+{
+  "origin": "Original Sefaria-Mobile textToc API /api/v2/index with_content_counts=1; full unmodified response bytes",
+  "pinnedMobileCommit": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+  "source": [
+    "offlineOnline.js:88-104",
+    "api.js:177-180",
+    "ReaderTextTableOfContents.js:355-446",
+    "sefaria.js:1641-1652,1707-1716"
+  ],
+  "payloads": [
+    {
+      "work": "Genesis",
+      "url": "https://www.sefaria.org/api/v2/index/Genesis?with_content_counts=1",
+      "observedAt": "2026-11-20T11:07:22.368355+00:00",
+      "status": 200,
+      "bytes": 14544,
+      "sha256": "564cacdb5ef7e9045d0a7878fcf0b756b7875fb81e0b1217f8162b99549b8c28",
+      "file": "Genesis.json"
+    },
+    {
+      "work": "Berakhot",
+      "url": "https://www.sefaria.org/api/v2/index/Berakhot?with_content_counts=1",
+      "observedAt": "2026-11-20T11:07:22.370873+00:00",
+      "status": 200,
+      "bytes": 16468,
+      "sha256": "09ff8efde6869c5923de2bf10ac990ac86116897703f7cca55ebbb1304ce8f1f",
+      "file": "Berakhot.json"
+    },
+    {
+      "work": "Eruvin",
+      "url": "https://www.sefaria.org/api/v2/index/Eruvin?with_content_counts=1",
+      "observedAt": "2026-11-20T11:07:22.372920+00:00",
+      "status": 200,
+      "bytes": 18282,
+      "sha256": "0d1344986afba38328e5b377363075e77b4e8b2730264976d6a35d0960796a7b",
+      "file": "Eruvin.json"
+    },
+    {
+      "work": "Rashi on Genesis",
+      "url": "https://www.sefaria.org/api/v2/index/Rashi_on_Genesis?with_content_counts=1",
+      "observedAt": "2026-11-20T11:07:22.918578+00:00",
+      "status": 200,
+      "bytes": 18351,
+      "sha256": "05793f5e2576360ba832a32a094b44a79268552287ac2a8585e702e5d5e477cd",
+      "file": "Rashi_on_Genesis.json"
+    },
+    {
+      "work": "Pesach Haggadah",
+      "url": "https://www.sefaria.org/api/v2/index/Pesach_Haggadah?with_content_counts=1",
+      "observedAt": "2026-11-20T11:07:22.923110+00:00",
+      "status": 200,
+      "bytes": 19938,
+      "sha256": "f6b7f1c23364b21bcdd08732b642d4e313f89dedf990c0bf43936500672d5c3e",
+      "file": "Pesach_Haggadah.json"
+    }
+  ],
+  "syntheticControls": "Offsets, malformed payloads, empty schema, cancellation and protocol errors are explicitly fixture controls, not downloaded corpus or Native UI results."
+}

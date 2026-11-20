@@ -1,0 +1,1634 @@
+{
+  "recordedAt": "2026-11-20T12:04:07.327801+00:00",
+  "native": "NOT_RUN",
+  "appleSDK": "NOT_RUN",
+  "artifacts": [
+    {
+      "source": "baseline-attempt1/COMMANDS.json",
+      "artifact": "raw/baseline-attempt1/COMMANDS.json.gz",
+      "rawBytes": 3682,
+      "rawSHA256": "5fba258757cdad63f7f0ca8a96b6cf7548c58ff88ebd2254a691761c3a6ff3c4",
+      "artifactSHA256": "f13a23a89677f034d2d4a21d35f75b938acd98f4675031312955ca6513502f01"
+    },
+    {
+      "source": "baseline-attempt1/compile.stderr.log",
+      "artifact": "raw/baseline-attempt1/compile.stderr.log.gz",
+      "rawBytes": 2395,
+      "rawSHA256": "37326c7889345d2b21f5eb87d499937c82c5c58497c2a51e260c3623c2e7401d",
+      "artifactSHA256": "c316b2a9bb19ffa6849e7d82e6fb1b81d5b5bdfd8d2a2c3169293418aa9bd30c"
+    },
+    {
+      "source": "baseline-attempt1/compile.stdout.log",
+      "artifact": "raw/baseline-attempt1/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "baseline-attempt1/inputs/CASES.json",
+      "artifact": "raw/baseline-attempt1/inputs/CASES.json.gz",
+      "rawBytes": 2597,
+      "rawSHA256": "434ff9ac12d53cec71f332245431f18afe625789cbda42330d81a663569d7203",
+      "artifactSHA256": "28685de78f400cbce0b320d60497cdf6f2ea478e5f218216ac84516ac65499b6"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Fixtures/Berakhot.json",
+      "artifact": "raw/baseline-attempt1/inputs/Fixtures/Berakhot.json.gz",
+      "rawBytes": 16468,
+      "rawSHA256": "09ff8efde6869c5923de2bf10ac990ac86116897703f7cca55ebbb1304ce8f1f",
+      "artifactSHA256": "e32db59531f2de6ebe4983c1ebd1c23c1d69db1a593293d5715580a449b990e2"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Fixtures/Eruvin.json",
+      "artifact": "raw/baseline-attempt1/inputs/Fixtures/Eruvin.json.gz",
+      "rawBytes": 18282,
+      "rawSHA256": "0d1344986afba38328e5b377363075e77b4e8b2730264976d6a35d0960796a7b",
+      "artifactSHA256": "157a7368ee41120fc7c16b569fc8e46c60b32ace244701e37d111a50518a09bf"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Fixtures/Genesis.json",
+      "artifact": "raw/baseline-attempt1/inputs/Fixtures/Genesis.json.gz",
+      "rawBytes": 14544,
+      "rawSHA256": "564cacdb5ef7e9045d0a7878fcf0b756b7875fb81e0b1217f8162b99549b8c28",
+      "artifactSHA256": "3c83dac48868ad3366089b4a36c29729cf38976daed75c10dc59403b25d99e4b"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Fixtures/Pesach_Haggadah.json",
+      "artifact": "raw/baseline-attempt1/inputs/Fixtures/Pesach_Haggadah.json.gz",
+      "rawBytes": 19938,
+      "rawSHA256": "f6b7f1c23364b21bcdd08732b642d4e313f89dedf990c0bf43936500672d5c3e",
+      "artifactSHA256": "f8c1f9a61b26c6af440756dea563961f864de0f807c7f1fe975d85e8ba24fb33"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Fixtures/PROVENANCE.json",
+      "artifact": "raw/baseline-attempt1/inputs/Fixtures/PROVENANCE.json.gz",
+      "rawBytes": 2314,
+      "rawSHA256": "49667d7b1894a878649f8ad9d303d330932f120fd99b73aad77eb58c0ded7562",
+      "artifactSHA256": "2fa285badd1794e186ec0fdafa00580141fdf4c238f13bb7e96d2f576032253f"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Fixtures/Rashi_on_Genesis.json",
+      "artifact": "raw/baseline-attempt1/inputs/Fixtures/Rashi_on_Genesis.json.gz",
+      "rawBytes": 18351,
+      "rawSHA256": "05793f5e2576360ba832a32a094b44a79268552287ac2a8585e702e5d5e477cd",
+      "artifactSHA256": "14e501eb8fd93841bc21c9b162227cfbee8d9911443704399968caf69afb2572"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift.gz",
+      "rawBytes": 6741,
+      "rawSHA256": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+      "artifactSHA256": "859b1d94e685cbbcf8fcde6d69f3bca37afa81ae44ce398d04326d483be5d37c"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 21866,
+      "rawSHA256": "9aa0913e30f11146dcc2268bdcb1b609ed9ef0996fce6967467e9edb583a8c99",
+      "artifactSHA256": "996cccb2c73ddcc5767c80b65262cf6c7f8bb484e9aecd360a132c551e22ea47"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/Sefaria/Offline/SefariaExportModels.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/Sefaria/Offline/SefariaExportModels.swift.gz",
+      "rawBytes": 16634,
+      "rawSHA256": "2a1316aa7d0dc9a1f0bf1ee1b85d6bebe08f61ba5a867e1e8957c4adbaae2453",
+      "artifactSHA256": "0ef1f1286141f7e38af63d185f05493502a122ee96a1966aced6ac9be1469c47"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift.gz",
+      "rawBytes": 6402,
+      "rawSHA256": "d02ba5d277eaf2915f711943fe3c5e1489a8175526d2b7c1b71b081f2e01730d",
+      "artifactSHA256": "c06c19ef5889990e51e64aeb06f6bc612eaf2b8639fd03f0add4944b475db46e"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift.gz",
+      "rawBytes": 14409,
+      "rawSHA256": "f5c039dd22134182e8c1eda871f6bd4ecaa6b916edf24ca7643ea72a1f907df8",
+      "artifactSHA256": "4de29e2f6b04aa55b1a6c2a6af5f61b2ac8b8e6b3f8db7a944f10c3c1bb41e3e"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift.gz",
+      "rawBytes": 4566,
+      "rawSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+      "artifactSHA256": "74a19e12492ea6f29bf736426e2451e4b3afa7de003d8a074bed7bc19f19ed93"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/Boundary.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/Boundary.swift.gz",
+      "rawBytes": 3017,
+      "rawSHA256": "1f83aa1970cb310fab6126b1cc4dac3da0d28141cbf0347177af05f0efadc831",
+      "artifactSHA256": "54ff8c969ed0f1e12f4091b72daff560db8fc9ef3ac634d7b6ee60db4fd89b90"
+    },
+    {
+      "source": "baseline-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/MobileNavigationAcceptance.swift",
+      "artifact": "raw/baseline-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/MobileNavigationAcceptance.swift.gz",
+      "rawBytes": 15235,
+      "rawSHA256": "4de7a2bf29e920e172b9abac33bf256516a02b2dee3b5aa953f456bdaf060925",
+      "artifactSHA256": "285642cc553a392d925b8c82e9c7507f7ae3fe59a999ab4abaa9b6022f388b5e"
+    },
+    {
+      "source": "baseline-attempt1/INPUTS.json",
+      "artifact": "raw/baseline-attempt1/INPUTS.json.gz",
+      "rawBytes": 7302,
+      "rawSHA256": "cad099ae3f118ac0e3d685ac0955cccdab0c83852db0af575cae2320c8e2c72c",
+      "artifactSHA256": "692293bff9ba43a57cea517e1ad40c0119ce554f300fc47f52dbbc2823c7e892"
+    },
+    {
+      "source": "baseline-attempt1/RESULT.json",
+      "artifact": "raw/baseline-attempt1/RESULT.json.gz",
+      "rawBytes": 1704,
+      "rawSHA256": "37c0a9d60e874d156b1a815128d2195481ba5cb998e239dabc6655156050bcd3",
+      "artifactSHA256": "a4f590b894a634b454b84db7bd6ab24d3218b5999cf12387cf593908eddf5a89"
+    },
+    {
+      "source": "baseline-attempt2/CASES.json",
+      "artifact": "raw/baseline-attempt2/CASES.json.gz",
+      "rawBytes": 8427,
+      "rawSHA256": "959067144d03159b2963c5cf1a567cb3fe784c32ea2066487838ee361cb19dee",
+      "artifactSHA256": "8fb6fa214795baf1d3bd19becf35d57e1a0daba1c389d7c607de32190f155b85"
+    },
+    {
+      "source": "baseline-attempt2/COMMANDS.json",
+      "artifact": "raw/baseline-attempt2/COMMANDS.json.gz",
+      "rawBytes": 3682,
+      "rawSHA256": "1d9e5e35bc348edbb156c03a840a4938751a47edf40badc00c25aacd9af4afcb",
+      "artifactSHA256": "98ed76546035d5ddfe2d45d3edd07f12ed507598f58c443d544357a9c7b4aff6"
+    },
+    {
+      "source": "baseline-attempt2/compile.stderr.log",
+      "artifact": "raw/baseline-attempt2/compile.stderr.log.gz",
+      "rawBytes": 339,
+      "rawSHA256": "28bfaf38b3a3c63863dcca3418e5b7bc90ac89f539d19a5d64934b04675df95d",
+      "artifactSHA256": "0f0441186838bf052681c1acc069e43c8b01d3a66541f000048513c1f6e90af6"
+    },
+    {
+      "source": "baseline-attempt2/compile.stdout.log",
+      "artifact": "raw/baseline-attempt2/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "baseline-attempt2/inputs/CASES.json",
+      "artifact": "raw/baseline-attempt2/inputs/CASES.json.gz",
+      "rawBytes": 2597,
+      "rawSHA256": "434ff9ac12d53cec71f332245431f18afe625789cbda42330d81a663569d7203",
+      "artifactSHA256": "28685de78f400cbce0b320d60497cdf6f2ea478e5f218216ac84516ac65499b6"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Fixtures/Berakhot.json",
+      "artifact": "raw/baseline-attempt2/inputs/Fixtures/Berakhot.json.gz",
+      "rawBytes": 16468,
+      "rawSHA256": "09ff8efde6869c5923de2bf10ac990ac86116897703f7cca55ebbb1304ce8f1f",
+      "artifactSHA256": "e32db59531f2de6ebe4983c1ebd1c23c1d69db1a593293d5715580a449b990e2"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Fixtures/Eruvin.json",
+      "artifact": "raw/baseline-attempt2/inputs/Fixtures/Eruvin.json.gz",
+      "rawBytes": 18282,
+      "rawSHA256": "0d1344986afba38328e5b377363075e77b4e8b2730264976d6a35d0960796a7b",
+      "artifactSHA256": "157a7368ee41120fc7c16b569fc8e46c60b32ace244701e37d111a50518a09bf"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Fixtures/Genesis.json",
+      "artifact": "raw/baseline-attempt2/inputs/Fixtures/Genesis.json.gz",
+      "rawBytes": 14544,
+      "rawSHA256": "564cacdb5ef7e9045d0a7878fcf0b756b7875fb81e0b1217f8162b99549b8c28",
+      "artifactSHA256": "3c83dac48868ad3366089b4a36c29729cf38976daed75c10dc59403b25d99e4b"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Fixtures/Pesach_Haggadah.json",
+      "artifact": "raw/baseline-attempt2/inputs/Fixtures/Pesach_Haggadah.json.gz",
+      "rawBytes": 19938,
+      "rawSHA256": "f6b7f1c23364b21bcdd08732b642d4e313f89dedf990c0bf43936500672d5c3e",
+      "artifactSHA256": "f8c1f9a61b26c6af440756dea563961f864de0f807c7f1fe975d85e8ba24fb33"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Fixtures/PROVENANCE.json",
+      "artifact": "raw/baseline-attempt2/inputs/Fixtures/PROVENANCE.json.gz",
+      "rawBytes": 2314,
+      "rawSHA256": "49667d7b1894a878649f8ad9d303d330932f120fd99b73aad77eb58c0ded7562",
+      "artifactSHA256": "2fa285badd1794e186ec0fdafa00580141fdf4c238f13bb7e96d2f576032253f"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Fixtures/Rashi_on_Genesis.json",
+      "artifact": "raw/baseline-attempt2/inputs/Fixtures/Rashi_on_Genesis.json.gz",
+      "rawBytes": 18351,
+      "rawSHA256": "05793f5e2576360ba832a32a094b44a79268552287ac2a8585e702e5d5e477cd",
+      "artifactSHA256": "14e501eb8fd93841bc21c9b162227cfbee8d9911443704399968caf69afb2572"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift.gz",
+      "rawBytes": 6741,
+      "rawSHA256": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+      "artifactSHA256": "859b1d94e685cbbcf8fcde6d69f3bca37afa81ae44ce398d04326d483be5d37c"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 21866,
+      "rawSHA256": "9aa0913e30f11146dcc2268bdcb1b609ed9ef0996fce6967467e9edb583a8c99",
+      "artifactSHA256": "996cccb2c73ddcc5767c80b65262cf6c7f8bb484e9aecd360a132c551e22ea47"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/Sefaria/Offline/SefariaExportModels.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/Sefaria/Offline/SefariaExportModels.swift.gz",
+      "rawBytes": 16634,
+      "rawSHA256": "2a1316aa7d0dc9a1f0bf1ee1b85d6bebe08f61ba5a867e1e8957c4adbaae2453",
+      "artifactSHA256": "0ef1f1286141f7e38af63d185f05493502a122ee96a1966aced6ac9be1469c47"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift.gz",
+      "rawBytes": 6402,
+      "rawSHA256": "d02ba5d277eaf2915f711943fe3c5e1489a8175526d2b7c1b71b081f2e01730d",
+      "artifactSHA256": "c06c19ef5889990e51e64aeb06f6bc612eaf2b8639fd03f0add4944b475db46e"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift.gz",
+      "rawBytes": 14409,
+      "rawSHA256": "f5c039dd22134182e8c1eda871f6bd4ecaa6b916edf24ca7643ea72a1f907df8",
+      "artifactSHA256": "4de29e2f6b04aa55b1a6c2a6af5f61b2ac8b8e6b3f8db7a944f10c3c1bb41e3e"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift.gz",
+      "rawBytes": 4566,
+      "rawSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+      "artifactSHA256": "74a19e12492ea6f29bf736426e2451e4b3afa7de003d8a074bed7bc19f19ed93"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Tests/HQ/sefaria-mobile-navigation/Boundary.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Tests/HQ/sefaria-mobile-navigation/Boundary.swift.gz",
+      "rawBytes": 3017,
+      "rawSHA256": "1f83aa1970cb310fab6126b1cc4dac3da0d28141cbf0347177af05f0efadc831",
+      "artifactSHA256": "54ff8c969ed0f1e12f4091b72daff560db8fc9ef3ac634d7b6ee60db4fd89b90"
+    },
+    {
+      "source": "baseline-attempt2/inputs/Tests/HQ/sefaria-mobile-navigation/MobileNavigationAcceptance.swift",
+      "artifact": "raw/baseline-attempt2/inputs/Tests/HQ/sefaria-mobile-navigation/MobileNavigationAcceptance.swift.gz",
+      "rawBytes": 15237,
+      "rawSHA256": "4c4cbdcb9ea40eae812c7505bac415dc9527fc98e9b48d35f20217285380f262",
+      "artifactSHA256": "0834e6dcac7ed365ca11b92daaf8b20d4cbee1ed868e7bc27e1246f133a78ab9"
+    },
+    {
+      "source": "baseline-attempt2/INPUTS.json",
+      "artifact": "raw/baseline-attempt2/INPUTS.json.gz",
+      "rawBytes": 7302,
+      "rawSHA256": "685cee3582d6baeb0b679ad86a9a55784caabf3daa2c67674543983fbe30e06d",
+      "artifactSHA256": "660ebb70af2539ad539fe5c05be69cc212d8b68abe3428e51a1be384ad0e4ec1"
+    },
+    {
+      "source": "baseline-attempt2/RESULT.json",
+      "artifact": "raw/baseline-attempt2/RESULT.json.gz",
+      "rawBytes": 3242,
+      "rawSHA256": "59b646638a89fad6378589443d4a755c89d22bba15073013e490bfcb8bb48d5d",
+      "artifactSHA256": "683d2ea989e038dc118ca64d64ea64a5937324c380027aac2e6d15577a21484e"
+    },
+    {
+      "source": "baseline-attempt2/runtime.stderr.log",
+      "artifact": "raw/baseline-attempt2/runtime.stderr.log.gz",
+      "rawBytes": 842,
+      "rawSHA256": "1bdecff5a71ac99e989438d4c8d17fc65045e36d0e0b5bbd249e8a6e4c923f6b",
+      "artifactSHA256": "30d35a46378b0a7f818527a0546100fc138c20df3eb84b39c98910f30c8440dd"
+    },
+    {
+      "source": "baseline-attempt2/runtime.stdout.log",
+      "artifact": "raw/baseline-attempt2/runtime.stdout.log.gz",
+      "rawBytes": 6158,
+      "rawSHA256": "5d0580f114f17b50c6cffab29574e5cf265ca3b9fa916829dc13c2c0938b4e52",
+      "artifactSHA256": "79aaefa52c80ba08b641febdd36524e80f5e99a7e776a5c15e0c8279433af3d6"
+    },
+    {
+      "source": "candidate-attempt1/CASES.json",
+      "artifact": "raw/candidate-attempt1/CASES.json.gz",
+      "rawBytes": 10161,
+      "rawSHA256": "4630e9a6dbcf64dcccc7786151078b7b51cc3022b8d1876840ff6fb223efcfd7",
+      "artifactSHA256": "051a9a621aaade67967d23d976043a515f3b61029dcf3e5a10020aab530b0806"
+    },
+    {
+      "source": "candidate-attempt1/COMMANDS.json",
+      "artifact": "raw/candidate-attempt1/COMMANDS.json.gz",
+      "rawBytes": 3739,
+      "rawSHA256": "17de7120f20a372788fa0a79f3f69750e00d15314b4947831ba905c9d044aa8b",
+      "artifactSHA256": "47f2a05d78ae5d485e4834a297fccbafbc0c3c87cda272d5c5601934f96b2701"
+    },
+    {
+      "source": "candidate-attempt1/compile.stderr.log",
+      "artifact": "raw/candidate-attempt1/compile.stderr.log.gz",
+      "rawBytes": 341,
+      "rawSHA256": "4798e4d843e1442a2eb1b8c85743a4a93d6bc3e46a461a060853f7ecf4540d6a",
+      "artifactSHA256": "d9fe725dbb7bf64536b7b623a597d853482e0038a8c649474cc9849c8d6d3362"
+    },
+    {
+      "source": "candidate-attempt1/compile.stdout.log",
+      "artifact": "raw/candidate-attempt1/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "candidate-attempt1/inputs/CASES.json",
+      "artifact": "raw/candidate-attempt1/inputs/CASES.json.gz",
+      "rawBytes": 2597,
+      "rawSHA256": "434ff9ac12d53cec71f332245431f18afe625789cbda42330d81a663569d7203",
+      "artifactSHA256": "28685de78f400cbce0b320d60497cdf6f2ea478e5f218216ac84516ac65499b6"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Fixtures/Berakhot.json",
+      "artifact": "raw/candidate-attempt1/inputs/Fixtures/Berakhot.json.gz",
+      "rawBytes": 16468,
+      "rawSHA256": "09ff8efde6869c5923de2bf10ac990ac86116897703f7cca55ebbb1304ce8f1f",
+      "artifactSHA256": "e32db59531f2de6ebe4983c1ebd1c23c1d69db1a593293d5715580a449b990e2"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Fixtures/Eruvin.json",
+      "artifact": "raw/candidate-attempt1/inputs/Fixtures/Eruvin.json.gz",
+      "rawBytes": 18282,
+      "rawSHA256": "0d1344986afba38328e5b377363075e77b4e8b2730264976d6a35d0960796a7b",
+      "artifactSHA256": "157a7368ee41120fc7c16b569fc8e46c60b32ace244701e37d111a50518a09bf"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Fixtures/Genesis.json",
+      "artifact": "raw/candidate-attempt1/inputs/Fixtures/Genesis.json.gz",
+      "rawBytes": 14544,
+      "rawSHA256": "564cacdb5ef7e9045d0a7878fcf0b756b7875fb81e0b1217f8162b99549b8c28",
+      "artifactSHA256": "3c83dac48868ad3366089b4a36c29729cf38976daed75c10dc59403b25d99e4b"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Fixtures/Pesach_Haggadah.json",
+      "artifact": "raw/candidate-attempt1/inputs/Fixtures/Pesach_Haggadah.json.gz",
+      "rawBytes": 19938,
+      "rawSHA256": "f6b7f1c23364b21bcdd08732b642d4e313f89dedf990c0bf43936500672d5c3e",
+      "artifactSHA256": "f8c1f9a61b26c6af440756dea563961f864de0f807c7f1fe975d85e8ba24fb33"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Fixtures/PROVENANCE.json",
+      "artifact": "raw/candidate-attempt1/inputs/Fixtures/PROVENANCE.json.gz",
+      "rawBytes": 2314,
+      "rawSHA256": "49667d7b1894a878649f8ad9d303d330932f120fd99b73aad77eb58c0ded7562",
+      "artifactSHA256": "2fa285badd1794e186ec0fdafa00580141fdf4c238f13bb7e96d2f576032253f"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Fixtures/Rashi_on_Genesis.json",
+      "artifact": "raw/candidate-attempt1/inputs/Fixtures/Rashi_on_Genesis.json.gz",
+      "rawBytes": 18351,
+      "rawSHA256": "05793f5e2576360ba832a32a094b44a79268552287ac2a8585e702e5d5e477cd",
+      "artifactSHA256": "14e501eb8fd93841bc21c9b162227cfbee8d9911443704399968caf69afb2572"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift.gz",
+      "rawBytes": 6741,
+      "rawSHA256": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+      "artifactSHA256": "859b1d94e685cbbcf8fcde6d69f3bca37afa81ae44ce398d04326d483be5d37c"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 33660,
+      "rawSHA256": "5d06053d78d336ed321ada75cd19b85a1a805bf3f14624164dd58c053cfc1a63",
+      "artifactSHA256": "73758ff5c7caea231a71487eb550ba0753613357733975e04c3d966abced6526"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/Sefaria/Offline/SefariaExportModels.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/Sefaria/Offline/SefariaExportModels.swift.gz",
+      "rawBytes": 16634,
+      "rawSHA256": "2a1316aa7d0dc9a1f0bf1ee1b85d6bebe08f61ba5a867e1e8957c4adbaae2453",
+      "artifactSHA256": "0ef1f1286141f7e38af63d185f05493502a122ee96a1966aced6ac9be1469c47"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift.gz",
+      "rawBytes": 5319,
+      "rawSHA256": "bb9f06fb97100295f873f3f39cc39e89229569d5550aa2aca7440ace00375594",
+      "artifactSHA256": "7246154cfc1f8a89e4aff6ea57b51ee664fea8c52ab04579439c9d842025eb1b"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift.gz",
+      "rawBytes": 14409,
+      "rawSHA256": "f5c039dd22134182e8c1eda871f6bd4ecaa6b916edf24ca7643ea72a1f907df8",
+      "artifactSHA256": "4de29e2f6b04aa55b1a6c2a6af5f61b2ac8b8e6b3f8db7a944f10c3c1bb41e3e"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift.gz",
+      "rawBytes": 4566,
+      "rawSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+      "artifactSHA256": "74a19e12492ea6f29bf736426e2451e4b3afa7de003d8a074bed7bc19f19ed93"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/Boundary.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/Boundary.swift.gz",
+      "rawBytes": 3017,
+      "rawSHA256": "1f83aa1970cb310fab6126b1cc4dac3da0d28141cbf0347177af05f0efadc831",
+      "artifactSHA256": "54ff8c969ed0f1e12f4091b72daff560db8fc9ef3ac634d7b6ee60db4fd89b90"
+    },
+    {
+      "source": "candidate-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/MobileNavigationAcceptance.swift",
+      "artifact": "raw/candidate-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/MobileNavigationAcceptance.swift.gz",
+      "rawBytes": 15237,
+      "rawSHA256": "4c4cbdcb9ea40eae812c7505bac415dc9527fc98e9b48d35f20217285380f262",
+      "artifactSHA256": "0834e6dcac7ed365ca11b92daaf8b20d4cbee1ed868e7bc27e1246f133a78ab9"
+    },
+    {
+      "source": "candidate-attempt1/INPUTS.json",
+      "artifact": "raw/candidate-attempt1/INPUTS.json.gz",
+      "rawBytes": 7302,
+      "rawSHA256": "919049fa701cfeaa49a3c2b18b3c90dd2b11888cc424a35f1df2a5599bac7231",
+      "artifactSHA256": "410cba78222bd1c5cee06be617cec350a0ae246c250899cad2366b82df701808"
+    },
+    {
+      "source": "candidate-attempt1/RESULT.json",
+      "artifact": "raw/candidate-attempt1/RESULT.json.gz",
+      "rawBytes": 1961,
+      "rawSHA256": "bf6c55c82f09ee5fd2f645b9316e78106bdb2bbfabf2fec9d26cc6230f07b9b0",
+      "artifactSHA256": "dfe32c679bd2922cbebd6bc04cdb549d7a35dad01a53116a95409263085a9e60"
+    },
+    {
+      "source": "candidate-attempt1/runtime.stderr.log",
+      "artifact": "raw/candidate-attempt1/runtime.stderr.log.gz",
+      "rawBytes": 840,
+      "rawSHA256": "9662a6ea3dbeb4642c32d7099b34c9db1853ee0c5ce7cd1fbed69a02488da983",
+      "artifactSHA256": "dac6ab48a74969813e5304e266286bfaa8a9e0b1cc059e76cea4be19d79076e1"
+    },
+    {
+      "source": "candidate-attempt1/runtime.stdout.log",
+      "artifact": "raw/candidate-attempt1/runtime.stdout.log.gz",
+      "rawBytes": 7424,
+      "rawSHA256": "71fdb69ed6151087b43b6762a029e6ad85ee77380c8a956e6a781bdfdf76fb6a",
+      "artifactSHA256": "3eef7791a4846d21c0c412e3b11c9122df3633562a08131c666814d2dd6e9ea1"
+    },
+    {
+      "source": "language-regression-attempt1/CASES.json",
+      "artifact": "raw/language-regression-attempt1/CASES.json.gz",
+      "rawBytes": 13994,
+      "rawSHA256": "5d5475237a2de007fbd947d5fd276740127f63328fc3c5738de49f83e6abe240",
+      "artifactSHA256": "21c71b821d941d6fe60d3350c83b83a2a74bc50fba46ce9b2014fee80b97881a"
+    },
+    {
+      "source": "language-regression-attempt1/COMMANDS.json",
+      "artifact": "raw/language-regression-attempt1/COMMANDS.json.gz",
+      "rawBytes": 2931,
+      "rawSHA256": "6730021ac0d2b0a471198481216a99d93cf9e694dcb091623e7403dcc9a9862f",
+      "artifactSHA256": "31a1237dae6a70ccd40ee4025f14911d81d7a90f11a73bf010780fdc3576ec8f"
+    },
+    {
+      "source": "language-regression-attempt1/compile.stderr.log",
+      "artifact": "raw/language-regression-attempt1/compile.stderr.log.gz",
+      "rawBytes": 365,
+      "rawSHA256": "c1a35074283d022318d905fd6634212fff7e66798e69d1ad52d503f210906ee7",
+      "artifactSHA256": "c36a5125b54058e9295a30c4f8548c4d40a9d1fa8291f8becddf933f54851537"
+    },
+    {
+      "source": "language-regression-attempt1/compile.stdout.log",
+      "artifact": "raw/language-regression-attempt1/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/SefariaNavigationLanguageCases.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/SefariaNavigationLanguageCases.swift.gz",
+      "rawBytes": 11648,
+      "rawSHA256": "682237cf4f12bb1f45a25491fe8520041edff8c3685deb67a9acf3dead51bafa",
+      "artifactSHA256": "4f960a669daebe9a322083623e3a79f7496535b7c131593b46dcdf5ccedab04d"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/SefariaNavigationLanguageMain.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/SefariaNavigationLanguageMain.swift.gz",
+      "rawBytes": 561,
+      "rawSHA256": "4579226b763636049b95541cade08a4f8c032b38de6375a9d1055eec7fa82532",
+      "artifactSHA256": "cb5f0c08792ebfc5fef35553309b5b16c23fb8b38b8acf318f637adf5ae37eba"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 33660,
+      "rawSHA256": "5d06053d78d336ed321ada75cd19b85a1a805bf3f14624164dd58c053cfc1a63",
+      "artifactSHA256": "73758ff5c7caea231a71487eb550ba0753613357733975e04c3d966abced6526"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/index-complex.json",
+      "artifact": "raw/language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/index-complex.json.gz",
+      "rawBytes": 569,
+      "rawSHA256": "e9bdf73ab92e7b716e95f7aef845b082abd35d4aa95558edc427b41d64d8608e",
+      "artifactSHA256": "f212e4fd25223ea75352a56adfe2dce29ba246c65d9a425b0021360f8616217e"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/offline-metadata.json",
+      "artifact": "raw/language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/offline-metadata.json.gz",
+      "rawBytes": 445,
+      "rawSHA256": "7d71bbbadde6542fc851bd1a3e05005d20067c6f670d1d6de1d2f704696a96df",
+      "artifactSHA256": "7836931403f732465496cae9e2d3900d78268ce8f03233caacc3e8f6dadccc60"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/packages.json",
+      "artifact": "raw/language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/packages.json.gz",
+      "rawBytes": 402,
+      "rawSHA256": "60fa10d86c15ec8b4b03535daaafdab373121d2af61f3dcc4198bf9a7d4aa2ef",
+      "artifactSHA256": "fa846a1399fb1534b34904e227a5257486c85603849c93b9f47d924a0e5212f0"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/search.json",
+      "artifact": "raw/language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/search.json.gz",
+      "rawBytes": 246,
+      "rawSHA256": "8316b9f0ac63195a7f2c507992674af07e0110afb9c5e7e32bacdfe376a68eb0",
+      "artifactSHA256": "720d1124a7ca3cd9bda67d8f0c1f28f548a48cbe8ed21d6af5fb5fee1f243e1a"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-berakhot.json",
+      "artifact": "raw/language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-berakhot.json.gz",
+      "rawBytes": 272,
+      "rawSHA256": "6896077fa561d11c0ad4eee12f9c9b4d9a0ad7273dc2e919c9019f10fc6246ab",
+      "artifactSHA256": "ede2a51dc40da55dc1f4a74927730f52ebba3660ff754766f49e22841a565dc4"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-commentary.json",
+      "artifact": "raw/language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-commentary.json.gz",
+      "rawBytes": 342,
+      "rawSHA256": "60860766cc6aba1ff968b11c0ab2a2fb49ccd76133aa71300163022b272ed6d1",
+      "artifactSHA256": "5cefea831715215faf8c77708df97e3d80b52370a831b9cd1c636af98c3f432f"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-genesis.json",
+      "artifact": "raw/language-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-genesis.json.gz",
+      "rawBytes": 613,
+      "rawSHA256": "fa4b7aa4c423e6fef2fc5e37743a3ee98a694d8330852b3504b22ae011334f2a",
+      "artifactSHA256": "17870c0ef03e98b9511f20ee316f01e55e869800d5e8a3f0187bfa4464633b60"
+    },
+    {
+      "source": "language-regression-attempt1/inputs/Vendor/SefariaNativeTests/TestSupport.swift",
+      "artifact": "raw/language-regression-attempt1/inputs/Vendor/SefariaNativeTests/TestSupport.swift.gz",
+      "rawBytes": 720,
+      "rawSHA256": "396a9e94156d50e63a09b2e3821332b2994bc6d8787161244b62781a90c5eb93",
+      "artifactSHA256": "9b141b1b4d4a78b53faadf9cf1ae3aff23915cdcdb4fc90bf21d5aa7a91edee1"
+    },
+    {
+      "source": "language-regression-attempt1/INPUTS.json",
+      "artifact": "raw/language-regression-attempt1/INPUTS.json.gz",
+      "rawBytes": 5120,
+      "rawSHA256": "9238bb1f936f082239cc6aeb520410abac21743baec3bcd4bc6092027b0ac1ff",
+      "artifactSHA256": "8a4bf1035e0fc14ec5ed271c965ef2321e4c4f8c0874cdca7dfcfe7cae431313"
+    },
+    {
+      "source": "language-regression-attempt1/RESULT.json",
+      "artifact": "raw/language-regression-attempt1/RESULT.json.gz",
+      "rawBytes": 2801,
+      "rawSHA256": "104056af10fa2e370228647e64f9501aaac5371229414793d7d81a2a0b3d9d83",
+      "artifactSHA256": "55842e8243824a66b8c7bf0e6d1362ce86d47c06f98e48d8af519983dac02608"
+    },
+    {
+      "source": "language-regression-attempt1/runtime.stderr.log",
+      "artifact": "raw/language-regression-attempt1/runtime.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "language-regression-attempt1/runtime.stdout.log",
+      "artifact": "raw/language-regression-attempt1/runtime.stdout.log.gz",
+      "rawBytes": 10713,
+      "rawSHA256": "93447fa442d36be79b5ea2b82a46d32e07faa5d8c421a8ed6b4e3dee482a5522",
+      "artifactSHA256": "b374e34e94bdbf2adea46f7f489f5831c247d2717f91b1cfac1454af305a6903"
+    },
+    {
+      "source": "original-regression-attempt1/COMMANDS.json",
+      "artifact": "raw/original-regression-attempt1/COMMANDS.json.gz",
+      "rawBytes": 8904,
+      "rawSHA256": "6dfaeff0fec201ec45cf505a95f21fb7919a6a96b1d3c616d38e29aa759b2eb7",
+      "artifactSHA256": "b2b3fc6c0734cebb2158ec7c6649e84d6323a013d35fd5babada477c244a8474"
+    },
+    {
+      "source": "original-regression-attempt1/compile.stderr.log",
+      "artifact": "raw/original-regression-attempt1/compile.stderr.log.gz",
+      "rawBytes": 365,
+      "rawSHA256": "2586637976bbc2f119f3cb47192e3441d53fae1d334236576d32b25996d56725",
+      "artifactSHA256": "95886e8b6f8b77ed70f08fddb8b9e4f54ac10dc3d3e72c9b0bd241fecfea7f4e"
+    },
+    {
+      "source": "original-regression-attempt1/compile.stdout.log",
+      "artifact": "raw/original-regression-attempt1/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Core/SearchEngine/SearchMode.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Core/SearchEngine/SearchMode.swift.gz",
+      "rawBytes": 729,
+      "rawSHA256": "04f15624ba90aae8bd49a2384608cc7ce40c6f1bf92b5fd1a01ab8489702527e",
+      "artifactSHA256": "a0f33eaffde8c682da32d359930fca4d34ceafaed48a88f4d236b54f8c1ef0fc"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/LibraryBackend/BackendCoordinator.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/LibraryBackend/BackendCoordinator.swift.gz",
+      "rawBytes": 32158,
+      "rawSHA256": "508838569fe94061c169871f74f9dcebeaa2adf7cc1b19907453b31d3d5f8332",
+      "artifactSHA256": "1f477294b7f8fccea975ff50d999a1a714120dc4154b9bb5b2178f4ddb4e3486"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/LibraryBackend/LegacyIdentityRegistry.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/LibraryBackend/LegacyIdentityRegistry.swift.gz",
+      "rawBytes": 10587,
+      "rawSHA256": "0b54b8405de81bd73b64584283299b9d463cf5ae5d10754b97257c98f5e642fe",
+      "artifactSHA256": "76324810676823c07fb2c85461589d526dd67ca0f12208d8f3b7017eab2aed14"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift.gz",
+      "rawBytes": 6741,
+      "rawSHA256": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+      "artifactSHA256": "859b1d94e685cbbcf8fcde6d69f3bca37afa81ae44ce398d04326d483be5d37c"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/LibraryBackend/MaktabahSearchSnippetFormatter.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/LibraryBackend/MaktabahSearchSnippetFormatter.swift.gz",
+      "rawBytes": 6543,
+      "rawSHA256": "5451ab37151f881feef36996ac7fa052ee973d95d2e640843285cb8528ac1551",
+      "artifactSHA256": "59abc2f44fc73ef6af71392647c204c09d6fc12d95568e74b54b4fb153a1a80f"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift.gz",
+      "rawBytes": 20847,
+      "rawSHA256": "5a42c4d09d55207eab25d0690c4125da0899037741ecdb12f13e27b92e8b42fc",
+      "artifactSHA256": "93f521654d4a0aadca3a8572a74d9e26a4c553ebc160249dead15b316eedd0ec"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Core/String+OtzariaText.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Core/String+OtzariaText.swift.gz",
+      "rawBytes": 5186,
+      "rawSHA256": "e62731fccc95328cb6284809e6e4b464ab83e064ed2117d7da1bf8c0ff9a826a",
+      "artifactSHA256": "26f1c706fd1984a46aefbdd309a38c931eff6532d4c3d9a1fee4e6dcfe74a0cb"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Domain/OtzariaModels.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Domain/OtzariaModels.swift.gz",
+      "rawBytes": 4723,
+      "rawSHA256": "12ad63da275f52eb98b8c89fae7b71c0189756fb482e5d461106a64af44e9c68",
+      "artifactSHA256": "2cacb6b7341a9bfa8e96578b9b0841db5a3304f7f6574acc4e3668569fe53eb4"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift.gz",
+      "rawBytes": 12327,
+      "rawSHA256": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "artifactSHA256": "d42b0b43e7c230a3072cde1b2f1e1b738ce9f8fbabd550194d95defe3997b06e"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaLineAnchor.swift.gz",
+      "rawBytes": 199,
+      "rawSHA256": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6",
+      "artifactSHA256": "c60de4e0093d94090ee40f35c4545c245caa64f7da17dcc8c3bd9622a4230a61"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaReadingUnit.swift.gz",
+      "rawBytes": 3536,
+      "rawSHA256": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb",
+      "artifactSHA256": "0ccb140223add4558c4484267eafe1daad457bcdc2e2fc00b862bf16ef332230"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift.gz",
+      "rawBytes": 2146,
+      "rawSHA256": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02",
+      "artifactSHA256": "e4cccc8b24c920b9c98a0ea9cedde0d82372bcbde17e32e49e280a597aa3c100"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift.gz",
+      "rawBytes": 13357,
+      "rawSHA256": "97197c59f64f96073bae1b99154dbef788464a1485d80e9c68a9494cb0534ae5",
+      "artifactSHA256": "7b42ec46618a1f4420507f2439025bac8660b0f87ff85177eef6c2b1e1fe47a1"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Search/OtzariaSearchMode.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Search/OtzariaSearchMode.swift.gz",
+      "rawBytes": 738,
+      "rawSHA256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876",
+      "artifactSHA256": "ba4c3559f92cf239974ae75ae14e1cba89a13c6e902889a83630a5dcbda155bc"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Otzaria/Search/OtzariaSearchModels.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Otzaria/Search/OtzariaSearchModels.swift.gz",
+      "rawBytes": 18733,
+      "rawSHA256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9",
+      "artifactSHA256": "725398d38e9cada30ca204ba4b6893bf52e1520a340e4220b15ea971d152e172"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Cache/SefariaDiskCache.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Cache/SefariaDiskCache.swift.gz",
+      "rawBytes": 2149,
+      "rawSHA256": "11aaa12a3b50e5121f62651408518ed5c10c826cbd1bb5ed34362df81bb3ebac",
+      "artifactSHA256": "c980cc55261d4a475f185ff14753bb9244e6970f484c00c1481d3284908b0136"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 33660,
+      "rawSHA256": "5d06053d78d336ed321ada75cd19b85a1a805bf3f14624164dd58c053cfc1a63",
+      "artifactSHA256": "73758ff5c7caea231a71487eb550ba0753613357733975e04c3d966abced6526"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Downloads/SefariaPackagePolicy.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Downloads/SefariaPackagePolicy.swift.gz",
+      "rawBytes": 1203,
+      "rawSHA256": "1d601a8a035b135e6ca85ea2a86bb6f5c19d7ea32792626b494aad56b5c466fe",
+      "artifactSHA256": "f542c7096b7aa47da145b9c6909a04f2e5240815042bc60cf8350db8267e9cf2"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift.gz",
+      "rawBytes": 5696,
+      "rawSHA256": "5d640f6d8f94926b99d815a39dbea963cf64d360ee0fc5d683f62c8b67a64c19",
+      "artifactSHA256": "6361a65b8403e80d0d64da130843782bb668b406c179d46a3d126ab1baf26a4c"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Network/SefariaNetworkConfiguration.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Network/SefariaNetworkConfiguration.swift.gz",
+      "rawBytes": 2368,
+      "rawSHA256": "649ee30d66557af5ee27126306bc7700e7f6f9166aabec41d6fc2960a4e11ee3",
+      "artifactSHA256": "fa554db403530a574c0a332e88fd99add0a4c433545bede96bd88bff9d080d6f"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Network/SefariaRemoteStore.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Network/SefariaRemoteStore.swift.gz",
+      "rawBytes": 37494,
+      "rawSHA256": "fa7e1a1db54ef8bc61190e21a9d84ab8323827e8d286ababe89699930c64ef77",
+      "artifactSHA256": "cbc9ced81701486d0c6455a0dd95256bfc7fd4984ad53cc2d481023215eb0b5b"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Offline/SefariaExportModels.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Offline/SefariaExportModels.swift.gz",
+      "rawBytes": 16634,
+      "rawSHA256": "2a1316aa7d0dc9a1f0bf1ee1b85d6bebe08f61ba5a867e1e8957c4adbaae2453",
+      "artifactSHA256": "0ef1f1286141f7e38af63d185f05493502a122ee96a1966aced6ac9be1469c47"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/Sefaria/Reading/SefariaHybridNavigationStore.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/Sefaria/Reading/SefariaHybridNavigationStore.swift.gz",
+      "rawBytes": 2628,
+      "rawSHA256": "4cb3827881b30d90c27bdbecb008ee1d87915cee3997a48d579113aa3238d1b6",
+      "artifactSHA256": "04fb82b5e8c3a9f7dac283b1aed556ff69b4028ace5bacd1a94e215cedc78cb4"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Source/ZayitSearch/UnifiedSearchScope.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Source/ZayitSearch/UnifiedSearchScope.swift.gz",
+      "rawBytes": 383,
+      "rawSHA256": "cab28b0ad32261adaa4ba0f40fdfa7f3ea54432ff820d218a3938e7c1f46eeb1",
+      "artifactSHA256": "bfa2fe975d00b29a449c749e9e52e8af505ad71cfcce91b9cec262b4c3021000"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/index-complex.json",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/index-complex.json.gz",
+      "rawBytes": 569,
+      "rawSHA256": "e9bdf73ab92e7b716e95f7aef845b082abd35d4aa95558edc427b41d64d8608e",
+      "artifactSHA256": "f212e4fd25223ea75352a56adfe2dce29ba246c65d9a425b0021360f8616217e"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/offline-metadata.json",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/offline-metadata.json.gz",
+      "rawBytes": 445,
+      "rawSHA256": "7d71bbbadde6542fc851bd1a3e05005d20067c6f670d1d6de1d2f704696a96df",
+      "artifactSHA256": "7836931403f732465496cae9e2d3900d78268ce8f03233caacc3e8f6dadccc60"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/packages.json",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/packages.json.gz",
+      "rawBytes": 402,
+      "rawSHA256": "60fa10d86c15ec8b4b03535daaafdab373121d2af61f3dcc4198bf9a7d4aa2ef",
+      "artifactSHA256": "fa846a1399fb1534b34904e227a5257486c85603849c93b9f47d924a0e5212f0"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/search.json",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/search.json.gz",
+      "rawBytes": 246,
+      "rawSHA256": "8316b9f0ac63195a7f2c507992674af07e0110afb9c5e7e32bacdfe376a68eb0",
+      "artifactSHA256": "720d1124a7ca3cd9bda67d8f0c1f28f548a48cbe8ed21d6af5fb5fee1f243e1a"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-berakhot.json",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-berakhot.json.gz",
+      "rawBytes": 272,
+      "rawSHA256": "6896077fa561d11c0ad4eee12f9c9b4d9a0ad7273dc2e919c9019f10fc6246ab",
+      "artifactSHA256": "ede2a51dc40da55dc1f4a74927730f52ebba3660ff754766f49e22841a565dc4"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-commentary.json",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-commentary.json.gz",
+      "rawBytes": 342,
+      "rawSHA256": "60860766cc6aba1ff968b11c0ab2a2fb49ccd76133aa71300163022b272ed6d1",
+      "artifactSHA256": "5cefea831715215faf8c77708df97e3d80b52370a831b9cd1c636af98c3f432f"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-genesis.json",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaMobileReference/Fixtures/texts-genesis.json.gz",
+      "rawBytes": 613,
+      "rawSHA256": "fa4b7aa4c423e6fef2fc5e37743a3ee98a694d8330852b3504b22ae011334f2a",
+      "artifactSHA256": "17870c0ef03e98b9511f20ee316f01e55e869800d5e8a3f0187bfa4464633b60"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaNativeTests/BackendCoordinatorTests.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaNativeTests/BackendCoordinatorTests.swift.gz",
+      "rawBytes": 10910,
+      "rawSHA256": "3c8e6efd1efc6ba94c99398f57a28eb2abc946daef780fedebefa74949aace84",
+      "artifactSHA256": "e829fa881953814c755e216ddffdc87df65ce15c7463ea6deaf2d1007d081f10"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaNativeTests/DecodingTests.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaNativeTests/DecodingTests.swift.gz",
+      "rawBytes": 46321,
+      "rawSHA256": "a38ed3671488407ddb8d33e2b097466a407e1463fd33959aa1c4d21882d54575",
+      "artifactSHA256": "5256722cecc8b0be505f07d3a86e28e96c871535a5a4dc82d8b1706661d37d80"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaNativeTests/LegacyIdentityRegistryTests.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaNativeTests/LegacyIdentityRegistryTests.swift.gz",
+      "rawBytes": 4085,
+      "rawSHA256": "c96ad9dfb9ea4edae8d92b2101f755ba817ae4f1a2dc4b4ab3f0222559949827",
+      "artifactSHA256": "10f709da9da92616270bc5c292b55799b1b8ce10205ccf50786b2e668289ec99"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaNativeTests/LocatorAndRefTests.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaNativeTests/LocatorAndRefTests.swift.gz",
+      "rawBytes": 4073,
+      "rawSHA256": "9c2aef103d0c8cc1ddcf12f646301b243637fc0e9cbf64dbc9e5f5b62f137152",
+      "artifactSHA256": "84edd357345c5abaace165aaf71d645722ae596ab8c502bf54394d560ed2cc5f"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaNativeTests/NavigationAndPackageTests.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaNativeTests/NavigationAndPackageTests.swift.gz",
+      "rawBytes": 39413,
+      "rawSHA256": "24f2019fd99345f85add2cb9ddffb776fd936c524fdaa09cb96388543dd2789f",
+      "artifactSHA256": "05c3c7bc351643db05f2b4252e6f6caf6b0bf99d79a959675c4916406039dc1e"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaNativeTests/SefariaNativeTestMain.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaNativeTests/SefariaNativeTestMain.swift.gz",
+      "rawBytes": 2089,
+      "rawSHA256": "a653ce179200d6cd70fcc948086710ce29759edb975f7bee36d57cb974559d1b",
+      "artifactSHA256": "5275c0eaf3764ce2d100b641d39b9f920a35e8bfc73f2ea2ed1c73ca2d22c8b1"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaNativeTests/TestSupport.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaNativeTests/TestSupport.swift.gz",
+      "rawBytes": 720,
+      "rawSHA256": "396a9e94156d50e63a09b2e3821332b2994bc6d8787161244b62781a90c5eb93",
+      "artifactSHA256": "9b141b1b4d4a78b53faadf9cf1ae3aff23915cdcdb4fc90bf21d5aa7a91edee1"
+    },
+    {
+      "source": "original-regression-attempt1/inputs/Vendor/SefariaNativeTests/UnifiedSearchArchitectureTests.swift",
+      "artifact": "raw/original-regression-attempt1/inputs/Vendor/SefariaNativeTests/UnifiedSearchArchitectureTests.swift.gz",
+      "rawBytes": 34128,
+      "rawSHA256": "74414e9424089a8f93db8be3f49ac5227410a1dbba4610ead1e528a678bafc27",
+      "artifactSHA256": "77bfe02d2c23f630e5e30de6f799d44878d96934887863b05fa78af52c79b003"
+    },
+    {
+      "source": "original-regression-attempt1/INPUTS.json",
+      "artifact": "raw/original-regression-attempt1/INPUTS.json.gz",
+      "rawBytes": 15270,
+      "rawSHA256": "d2765805d09f5149709a56864cbc826dcfe3121cd8a04091ec04397e1d88d242",
+      "artifactSHA256": "41c74f5a7113b9e98a7cc57d3ebc0a4084c945da1eec411384e61201f03565c1"
+    },
+    {
+      "source": "original-regression-attempt1/ORIGINAL_WORKFLOW_STEP.txt",
+      "artifact": "raw/original-regression-attempt1/ORIGINAL_WORKFLOW_STEP.txt.gz",
+      "rawBytes": 2702,
+      "rawSHA256": "dec3bae72c093d2d8b493e366fbbb455a12fac45d9d302190c2f175d6a7d39fa",
+      "artifactSHA256": "7d2e807f744485334740fa9477de1b17709270ee9f8c0fa5460b8af1592805ac"
+    },
+    {
+      "source": "original-regression-attempt1/RESULT.json",
+      "artifact": "raw/original-regression-attempt1/RESULT.json.gz",
+      "rawBytes": 1437,
+      "rawSHA256": "c0775da1345c8285b3f4a15cfce907ad61815248a7240b54a472b091d43d7b21",
+      "artifactSHA256": "da62d3f071e249d2c5b98dd084f8e5fbc0a7ebb7f2a78d84ff146e56d18f6471"
+    },
+    {
+      "source": "original-regression-attempt1/runtime.stderr.log",
+      "artifact": "raw/original-regression-attempt1/runtime.stderr.log.gz",
+      "rawBytes": 422,
+      "rawSHA256": "2264095bb76c5add5b85aa56a24657e99114e6b7062ec2a3f4457de05c5a8d62",
+      "artifactSHA256": "5c2cbc434347425827b9f15605ec195fd6234caf75625fe50cac0ceb0de8d09b"
+    },
+    {
+      "source": "original-regression-attempt1/runtime.stdout.log",
+      "artifact": "raw/original-regression-attempt1/runtime.stdout.log.gz",
+      "rawBytes": 93,
+      "rawSHA256": "1ecdc9fb1ada4aa4b7777437aab7c44d78bcdc6b2b258a38d2105ceb98f2e5c8",
+      "artifactSHA256": "bf3673a190fa6cd6f947486d3baea1e0629457eda96a968176e895d6c39043b6"
+    },
+    {
+      "source": "bounds-baseline-attempt1/CASES.json",
+      "artifact": "raw/bounds-baseline-attempt1/CASES.json.gz",
+      "rawBytes": 790,
+      "rawSHA256": "9325fa99b032ca5c43ac8d8384a18848c381f1877f3edd5a8908ee01ab99cd1c",
+      "artifactSHA256": "ab017bbb6c0512b8d4df70b2469480f3ca28032e5689d9a65009620d18476f92"
+    },
+    {
+      "source": "bounds-baseline-attempt1/COMMANDS.json",
+      "artifact": "raw/bounds-baseline-attempt1/COMMANDS.json.gz",
+      "rawBytes": 2295,
+      "rawSHA256": "4947ed9fa1afb96154f209a207d0620a8348a5709aad9004d48f469aae0b61df",
+      "artifactSHA256": "0cd77aba6f2eabc6a9acdd0ed8d6fc62fef4f8bb2f538b6d726b268470335c98"
+    },
+    {
+      "source": "bounds-baseline-attempt1/compile.stderr.log",
+      "artifact": "raw/bounds-baseline-attempt1/compile.stderr.log.gz",
+      "rawBytes": 329,
+      "rawSHA256": "a47142fc5a9e35f76b7de192a4f46c33e2c70c4918b00385c50c1ae291968aad",
+      "artifactSHA256": "6161e638b74ea2ef7e0b13b1d9e52adb625e44ef51ed36cec56bae55ffa5e6ef"
+    },
+    {
+      "source": "bounds-baseline-attempt1/compile.stdout.log",
+      "artifact": "raw/bounds-baseline-attempt1/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "bounds-baseline-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/bounds-baseline-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "bounds-baseline-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/bounds-baseline-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "bounds-baseline-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/bounds-baseline-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "bounds-baseline-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/bounds-baseline-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "bounds-baseline-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/bounds-baseline-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "bounds-baseline-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/bounds-baseline-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 33660,
+      "rawSHA256": "5d06053d78d336ed321ada75cd19b85a1a805bf3f14624164dd58c053cfc1a63",
+      "artifactSHA256": "73758ff5c7caea231a71487eb550ba0753613357733975e04c3d966abced6526"
+    },
+    {
+      "source": "bounds-baseline-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/bounds-baseline-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "bounds-baseline-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/MobileBoundAcceptance.swift",
+      "artifact": "raw/bounds-baseline-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/MobileBoundAcceptance.swift.gz",
+      "rawBytes": 3416,
+      "rawSHA256": "0805ef9efe3c40afb114ee5cfe17c944dbba59a85b6299d1bfbfcc4912947e71",
+      "artifactSHA256": "5cacc0d40bc06bb1f1fb2ea55830662734ab65a167adc2f15670a4e7474d2b57"
+    },
+    {
+      "source": "bounds-baseline-attempt1/INPUTS.json",
+      "artifact": "raw/bounds-baseline-attempt1/INPUTS.json.gz",
+      "rawBytes": 1737,
+      "rawSHA256": "ec86602ea76fe8e60faeb5a20602382347ef877fbbe9f5784c9012451e5742c6",
+      "artifactSHA256": "9d13d82907b4642bf185d88015803f8b401e5f7a4d547059af49ff3bd49305e7"
+    },
+    {
+      "source": "bounds-baseline-attempt1/RESULT.json",
+      "artifact": "raw/bounds-baseline-attempt1/RESULT.json.gz",
+      "rawBytes": 761,
+      "rawSHA256": "cb3d54607fab7a4b120d09c5dd035c78990de6d0f998cea646dc8041d249c776",
+      "artifactSHA256": "5d7d8e8ebd7db66ea2b4f0f0c9aaf2370ee05f4b77ea3c7e9785f57d77e9d026"
+    },
+    {
+      "source": "bounds-baseline-attempt1/runtime.stderr.log",
+      "artifact": "raw/bounds-baseline-attempt1/runtime.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "bounds-baseline-attempt1/runtime.stdout.log",
+      "artifact": "raw/bounds-baseline-attempt1/runtime.stdout.log.gz",
+      "rawBytes": 645,
+      "rawSHA256": "fc736cdc2408462f5b814de8f16262ddb6b3102fb8c98ec68b7bbc2b12f79da1",
+      "artifactSHA256": "8cf8e164d6129571fec14c9879ec4a28d9c87f2e196c50e143d8acf98cbe28ca"
+    },
+    {
+      "source": "bounds-candidate-attempt1/CASES.json",
+      "artifact": "raw/bounds-candidate-attempt1/CASES.json.gz",
+      "rawBytes": 797,
+      "rawSHA256": "177c8ae9366f0bc2257686db2d3721eadf5160fb1716a86983e24615fadd2bce",
+      "artifactSHA256": "0ad8f9adae750a09a6a25a6d776123f5c6f1576e8f3a5316686d320401d0a091"
+    },
+    {
+      "source": "bounds-candidate-attempt1/COMMANDS.json",
+      "artifact": "raw/bounds-candidate-attempt1/COMMANDS.json.gz",
+      "rawBytes": 2304,
+      "rawSHA256": "b56ee02534bfaf05798ed7f6324928b2a034e9492355dd87e770d7988cb893ff",
+      "artifactSHA256": "73ea1f0085e17dfc1c23d01cde44ae543397c814da84903c244dc72e8cbc45c2"
+    },
+    {
+      "source": "bounds-candidate-attempt1/compile.stderr.log",
+      "artifact": "raw/bounds-candidate-attempt1/compile.stderr.log.gz",
+      "rawBytes": 331,
+      "rawSHA256": "52c01065e6c8d350054699258b1cb9271cd4ff150bdb7bf42bf37781f8808c3e",
+      "artifactSHA256": "c85e325b61c514978fa5264addedb655d3d8d836beb563ad66a752605a21c3ed"
+    },
+    {
+      "source": "bounds-candidate-attempt1/compile.stdout.log",
+      "artifact": "raw/bounds-candidate-attempt1/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "bounds-candidate-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/bounds-candidate-attempt1/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "bounds-candidate-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/bounds-candidate-attempt1/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "bounds-candidate-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/bounds-candidate-attempt1/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "bounds-candidate-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/bounds-candidate-attempt1/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "bounds-candidate-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/bounds-candidate-attempt1/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "bounds-candidate-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/bounds-candidate-attempt1/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 34284,
+      "rawSHA256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+      "artifactSHA256": "0d7d358715a8f555b290e27b42c450b97c1b43c5914f3c7feb9b641203970721"
+    },
+    {
+      "source": "bounds-candidate-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/bounds-candidate-attempt1/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "bounds-candidate-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/MobileBoundAcceptance.swift",
+      "artifact": "raw/bounds-candidate-attempt1/inputs/Tests/HQ/sefaria-mobile-navigation/MobileBoundAcceptance.swift.gz",
+      "rawBytes": 3416,
+      "rawSHA256": "0805ef9efe3c40afb114ee5cfe17c944dbba59a85b6299d1bfbfcc4912947e71",
+      "artifactSHA256": "5cacc0d40bc06bb1f1fb2ea55830662734ab65a167adc2f15670a4e7474d2b57"
+    },
+    {
+      "source": "bounds-candidate-attempt1/INPUTS.json",
+      "artifact": "raw/bounds-candidate-attempt1/INPUTS.json.gz",
+      "rawBytes": 1744,
+      "rawSHA256": "25042fabf10a237e79418e98fd97429712efea6173300a5a4e29234e51482b50",
+      "artifactSHA256": "a1b3e0edcd8b997865fee99f46f51a7c3081ff31b8725c6514343d27cb95d1da"
+    },
+    {
+      "source": "bounds-candidate-attempt1/RESULT.json",
+      "artifact": "raw/bounds-candidate-attempt1/RESULT.json.gz",
+      "rawBytes": 573,
+      "rawSHA256": "dc8804fadc401316963394ef5b696f17e802bf41b89ddd0d5add48ce65dc5a0f",
+      "artifactSHA256": "3857d99ae398ce7f443ca49081d42dbb8611ab800dfcf68d4a46700782254dc6"
+    },
+    {
+      "source": "bounds-candidate-attempt1/runtime.stderr.log",
+      "artifact": "raw/bounds-candidate-attempt1/runtime.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "bounds-candidate-attempt1/runtime.stdout.log",
+      "artifact": "raw/bounds-candidate-attempt1/runtime.stdout.log.gz",
+      "rawBytes": 652,
+      "rawSHA256": "cec4b4f14ebdafd9e7cf426b0479fa204ddf72cb0439fbcfcb77f0585635447e",
+      "artifactSHA256": "964a713c89a670c5ffea4238819e954b7ca06525ccb651a3c218e19bfe33f03e"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/CASES.json",
+      "artifact": "raw/candidate-attempt2-peerfix/CASES.json.gz",
+      "rawBytes": 10161,
+      "rawSHA256": "251a3481079cf19c26714181d028cb25251b3e9a9c14a17a0e3b8f53599c1139",
+      "artifactSHA256": "3be8884cf52a1bba62ec48a63829510b8ee69655330b60fd1bbc8ad3e6dcc60d"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/COMMANDS.json",
+      "artifact": "raw/candidate-attempt2-peerfix/COMMANDS.json.gz",
+      "rawBytes": 3867,
+      "rawSHA256": "5f210c455385e02cd4b8ec5e0cc2abec9850fd8e21dd65f7ae5805757eb94e33",
+      "artifactSHA256": "f91fe48821be1153ebd905718e618b60567c2915c468b31458cfc045889265b5"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/compile.stderr.log",
+      "artifact": "raw/candidate-attempt2-peerfix/compile.stderr.log.gz",
+      "rawBytes": 357,
+      "rawSHA256": "2740c704c5d387f847d4e17887f1db67b40f126774caffe3145440b5b1e1cde7",
+      "artifactSHA256": "05ea48be0b4f733b5417b4280e482cb81a862699e3aaf403c209f60c553f4c96"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/compile.stdout.log",
+      "artifact": "raw/candidate-attempt2-peerfix/compile.stdout.log.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/CASES.json",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/CASES.json.gz",
+      "rawBytes": 2597,
+      "rawSHA256": "434ff9ac12d53cec71f332245431f18afe625789cbda42330d81a663569d7203",
+      "artifactSHA256": "28685de78f400cbce0b320d60497cdf6f2ea478e5f218216ac84516ac65499b6"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Fixtures/Berakhot.json",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Fixtures/Berakhot.json.gz",
+      "rawBytes": 16468,
+      "rawSHA256": "09ff8efde6869c5923de2bf10ac990ac86116897703f7cca55ebbb1304ce8f1f",
+      "artifactSHA256": "e32db59531f2de6ebe4983c1ebd1c23c1d69db1a593293d5715580a449b990e2"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Fixtures/Eruvin.json",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Fixtures/Eruvin.json.gz",
+      "rawBytes": 18282,
+      "rawSHA256": "0d1344986afba38328e5b377363075e77b4e8b2730264976d6a35d0960796a7b",
+      "artifactSHA256": "157a7368ee41120fc7c16b569fc8e46c60b32ace244701e37d111a50518a09bf"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Fixtures/Genesis.json",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Fixtures/Genesis.json.gz",
+      "rawBytes": 14544,
+      "rawSHA256": "564cacdb5ef7e9045d0a7878fcf0b756b7875fb81e0b1217f8162b99549b8c28",
+      "artifactSHA256": "3c83dac48868ad3366089b4a36c29729cf38976daed75c10dc59403b25d99e4b"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Fixtures/Pesach_Haggadah.json",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Fixtures/Pesach_Haggadah.json.gz",
+      "rawBytes": 19938,
+      "rawSHA256": "f6b7f1c23364b21bcdd08732b642d4e313f89dedf990c0bf43936500672d5c3e",
+      "artifactSHA256": "f8c1f9a61b26c6af440756dea563961f864de0f807c7f1fe975d85e8ba24fb33"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Fixtures/PROVENANCE.json",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Fixtures/PROVENANCE.json.gz",
+      "rawBytes": 2314,
+      "rawSHA256": "49667d7b1894a878649f8ad9d303d330932f120fd99b73aad77eb58c0ded7562",
+      "artifactSHA256": "2fa285badd1794e186ec0fdafa00580141fdf4c238f13bb7e96d2f576032253f"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Fixtures/Rashi_on_Genesis.json",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Fixtures/Rashi_on_Genesis.json.gz",
+      "rawBytes": 18351,
+      "rawSHA256": "05793f5e2576360ba832a32a094b44a79268552287ac2a8585e702e5d5e477cd",
+      "artifactSHA256": "14e501eb8fd93841bc21c9b162227cfbee8d9911443704399968caf69afb2572"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift.gz",
+      "rawBytes": 5433,
+      "rawSHA256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "artifactSHA256": "312ef5e1ee59b146d8ca16c905cd80ddecd6445f94139eb2ee4d7b92ef694578"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift.gz",
+      "rawBytes": 2831,
+      "rawSHA256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "artifactSHA256": "be4101adedaf3f89e648312a5dc8318b9d6ea9504ab6d715d95347b04bc11bc0"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/LibraryBackend/LibraryBackendModels.swift.gz",
+      "rawBytes": 31937,
+      "rawSHA256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "artifactSHA256": "24ea52fd02a9c55f08527330dc8529907435486fb9667e32a5c78023e2d18843"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/LibraryBackend/LibraryBackendProtocols.swift.gz",
+      "rawBytes": 6741,
+      "rawSHA256": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+      "artifactSHA256": "859b1d94e685cbbcf8fcde6d69f3bca37afa81ae44ce398d04326d483be5d37c"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift.gz",
+      "rawBytes": 2067,
+      "rawSHA256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "artifactSHA256": "2bec8680d279d0ee8ec84f1451a7498872844c3b607733982f85771b9a9fe1b0"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/Sefaria/Domain/SefariaModels.swift.gz",
+      "rawBytes": 12258,
+      "rawSHA256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "artifactSHA256": "da620a790ae69390ca4e9a9cc8b1f315aad39de5b1bd49413c6d7e024ed44803"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift.gz",
+      "rawBytes": 34284,
+      "rawSHA256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+      "artifactSHA256": "0d7d358715a8f555b290e27b42c450b97c1b43c5914f3c7feb9b641203970721"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/Sefaria/Network/SefariaDTOs.swift.gz",
+      "rawBytes": 22303,
+      "rawSHA256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "artifactSHA256": "eaec24db2622687a3c449c8a6a1518de9a85d797ceff4c063211bc5ab3811cb8"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/Sefaria/Offline/SefariaExportModels.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/Sefaria/Offline/SefariaExportModels.swift.gz",
+      "rawBytes": 16634,
+      "rawSHA256": "2a1316aa7d0dc9a1f0bf1ee1b85d6bebe08f61ba5a867e1e8957c4adbaae2453",
+      "artifactSHA256": "0ef1f1286141f7e38af63d185f05493502a122ee96a1966aced6ac9be1469c47"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift.gz",
+      "rawBytes": 5319,
+      "rawSHA256": "bb9f06fb97100295f873f3f39cc39e89229569d5550aa2aca7440ace00375594",
+      "artifactSHA256": "7246154cfc1f8a89e4aff6ea57b51ee664fea8c52ab04579439c9d842025eb1b"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift.gz",
+      "rawBytes": 14409,
+      "rawSHA256": "f5c039dd22134182e8c1eda871f6bd4ecaa6b916edf24ca7643ea72a1f907df8",
+      "artifactSHA256": "4de29e2f6b04aa55b1a6c2a6af5f61b2ac8b8e6b3f8db7a944f10c3c1bb41e3e"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift.gz",
+      "rawBytes": 4566,
+      "rawSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+      "artifactSHA256": "74a19e12492ea6f29bf736426e2451e4b3afa7de003d8a074bed7bc19f19ed93"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Tests/HQ/sefaria-mobile-navigation/Boundary.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Tests/HQ/sefaria-mobile-navigation/Boundary.swift.gz",
+      "rawBytes": 3017,
+      "rawSHA256": "1f83aa1970cb310fab6126b1cc4dac3da0d28141cbf0347177af05f0efadc831",
+      "artifactSHA256": "54ff8c969ed0f1e12f4091b72daff560db8fc9ef3ac634d7b6ee60db4fd89b90"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/inputs/Tests/HQ/sefaria-mobile-navigation/MobileNavigationAcceptance.swift",
+      "artifact": "raw/candidate-attempt2-peerfix/inputs/Tests/HQ/sefaria-mobile-navigation/MobileNavigationAcceptance.swift.gz",
+      "rawBytes": 15237,
+      "rawSHA256": "4c4cbdcb9ea40eae812c7505bac415dc9527fc98e9b48d35f20217285380f262",
+      "artifactSHA256": "0834e6dcac7ed365ca11b92daaf8b20d4cbee1ed868e7bc27e1246f133a78ab9"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/INPUTS.json",
+      "artifact": "raw/candidate-attempt2-peerfix/INPUTS.json.gz",
+      "rawBytes": 7302,
+      "rawSHA256": "7dff9a18f240ca88fc39c54e1f7236f9c9f21f90af24b1a657e35d60ca7659c9",
+      "artifactSHA256": "8d2e44571be6179de30fa3031a620a551b8f3282064e2ffecbfd7568c9c05c86"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/RESULT.json",
+      "artifact": "raw/candidate-attempt2-peerfix/RESULT.json.gz",
+      "rawBytes": 1973,
+      "rawSHA256": "c97dc2ab0cbcc2604590d692b7d21cada1ebe820b17483fc13440f8a883b8170",
+      "artifactSHA256": "be089d9e200c38e92296d169060b5d4f001a081609034545bad21562677965a1"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/runtime.stderr.log",
+      "artifact": "raw/candidate-attempt2-peerfix/runtime.stderr.log.gz",
+      "rawBytes": 842,
+      "rawSHA256": "a8eb319d420922b38e727c83598e0c47b233f8ef4694c78851be877980219c23",
+      "artifactSHA256": "902a0edf514fec84ef4881db53db816e54be22acfdc816933a7c69540aed8aa5"
+    },
+    {
+      "source": "candidate-attempt2-peerfix/runtime.stdout.log",
+      "artifact": "raw/candidate-attempt2-peerfix/runtime.stdout.log.gz",
+      "rawBytes": 7424,
+      "rawSHA256": "ab43108cba5c96dafc8ffd1af3bb6c99c0c2430db867d59f9ec770702c51e8ac",
+      "artifactSHA256": "34a105c644ab7e476e8c2bb863806b0b9cd74b2fcb0d93c71acdddc443a91126"
+    },
+    {
+      "source": "original-api.js",
+      "artifact": "provenance/original-api.js.gz",
+      "rawBytes": 24962,
+      "rawSHA256": "b834cd3cbac609bcce11cad8d3a98185d36c1a03ff771f39cf5bba2a13356331",
+      "artifactSHA256": "99034e487b9d76f69c2f7390ff4913df4e52a1c155d1100519ad1c388a9c6470"
+    },
+    {
+      "source": "original-offline.js",
+      "artifact": "provenance/original-offline.js.gz",
+      "rawBytes": 22388,
+      "rawSHA256": "b34f8fd88c62d1e1458401fb59118443f062a4d1aaadff9e62bf45d69027471f",
+      "artifactSHA256": "91786c75e77cc0ff5bcdd12fb87f74a624e77aa607bba7d1d3927f72867c2f15"
+    },
+    {
+      "source": "original-offlineOnline.js",
+      "artifact": "provenance/original-offlineOnline.js.gz",
+      "rawBytes": 3849,
+      "rawSHA256": "cd0d0ecb3578eb63fae1515547a567cf2c4c1ed075a89b901e36292caa7a794e",
+      "artifactSHA256": "1e9149d1be7ecb9971b4a295e5d84d90023cd24c2def205738b6c41b67e81b14"
+    },
+    {
+      "source": "original-ReaderTextTableOfContents.js",
+      "artifact": "provenance/original-ReaderTextTableOfContents.js.gz",
+      "rawBytes": 21915,
+      "rawSHA256": "72f01a4dc5cde70441ef2f449394da8613ac9b2b4fc4d8ee4586c8b90cb86a60",
+      "artifactSHA256": "e3fa1b7294f0df714e1dcee3db712373dbee31d6568e727fe953a362e0b5e651"
+    },
+    {
+      "source": "original-sefaria.js",
+      "artifact": "provenance/original-sefaria.js.gz",
+      "rawBytes": 73213,
+      "rawSHA256": "893e9449c48b9ae56a4a186710dcc2de5e1b65b047e8a2ca098355e190df36e9",
+      "artifactSHA256": "d923c69563a2dfd1dbd103cbbb2849f595d1f963bf20bc760763e8b52916d6aa"
+    },
+    {
+      "source": "original-source-tree.json",
+      "artifact": "provenance/original-source-tree.json.gz",
+      "rawBytes": 229987,
+      "rawSHA256": "64a8df868deba07cccbdc1b40a3a1c96b32af494b9d291b27c26d07e91052aa9",
+      "artifactSHA256": "80d696ee4f3e0df3223cc370fb88c1763352875855da298212754ab854f6f881"
+    },
+    {
+      "currentSource": "Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "rawBytes": 34284,
+      "rawSHA256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+      "canonicalLFSHA256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e"
+    },
+    {
+      "currentSource": "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift",
+      "rawBytes": 5319,
+      "rawSHA256": "bb9f06fb97100295f873f3f39cc39e89229569d5550aa2aca7440ace00375594",
+      "canonicalLFSHA256": "bb9f06fb97100295f873f3f39cc39e89229569d5550aa2aca7440ace00375594"
+    },
+    {
+      "currentSource": "tools/hq-sefaria-mobile-navigation.py",
+      "rawBytes": 6973,
+      "rawSHA256": "2bcec1956c066d02877b70950392c87796ccd78397f611fc81471c06ebe4a12c",
+      "canonicalLFSHA256": "2bcec1956c066d02877b70950392c87796ccd78397f611fc81471c06ebe4a12c"
+    },
+    {
+      "currentSource": "tools/hq-sefaria-mobile-bounds.py",
+      "rawBytes": 4417,
+      "rawSHA256": "5793ff76af6e425eca6b1ce681bb69316e334f2cdf8169f379173019b51aefa2",
+      "canonicalLFSHA256": "5793ff76af6e425eca6b1ce681bb69316e334f2cdf8169f379173019b51aefa2"
+    }
+  ]
+}
