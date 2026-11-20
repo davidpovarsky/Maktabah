@@ -1,0 +1,50 @@
+{
+  "base": "64ca371ab5813a7e45d79c925a821ad06c4f093d",
+  "checks": [
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256LF": "2051b29d661467b8af2376fb48a7900ea486d8664607003db85b7cbd69e1af9c",
+      "originalSourcePreserved": true,
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios18.0",
+        "-D",
+        "DEBUG",
+        "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\Source\\ChavrusaText\\UIRoutingHost\\Integration\\MaktabahNativeRoutingComposition.swift"
+      ],
+      "exitCode": 0,
+      "startedUTC": "2026-11-20T04:27:13.672940+00:00",
+      "log": "build\\occurrence-native-20261120\\source-preflight\\MaktabahNativeRoutingComposition.parse.log"
+    },
+    {
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256LF": "25705118db531ce2e4ebc6b2e609fbbb9df4808d89b76b35c6eaa2c21eb5b59b",
+      "originalSourcePreserved": true,
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios18.0",
+        "-D",
+        "DEBUG",
+        "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\Maktabah-iOSUITests\\NativeRoutingAcceptanceTests.swift"
+      ],
+      "exitCode": 0,
+      "startedUTC": "2026-11-20T04:27:14.018345+00:00",
+      "log": "build\\occurrence-native-20261120\\source-preflight\\NativeRoutingAcceptanceTests.parse.log"
+    }
+  ],
+  "newNativeCaseNames": [
+    "testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+    "testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone"
+  ],
+  "syntaxOnly": true,
+  "appleSDKTypecheck": "NOT_RUN",
+  "nativeExecution": "NOT_RUN",
+  "corePermissionAdmissionNative": "NOT_RUN",
+  "registryQualified": false
+}

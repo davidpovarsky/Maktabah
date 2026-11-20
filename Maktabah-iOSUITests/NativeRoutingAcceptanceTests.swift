@@ -1629,7 +1629,7 @@ extension NativeRoutingPhoneAcceptanceTests {
 // result, synthesize an acknowledgement, or bypass the normal bootstrap.
 extension NativeRoutingAcceptanceTests {
     private func actionProbeURL(kind: String, token: UUID, phase: String) throws -> URL {
-        XCTAssertTrue(["notes", "search", "commentary"].contains(kind))
+        XCTAssertTrue(["notes", "search", "commentary", "count"].contains(kind))
         XCTAssertTrue(["trigger.txt", "result.json", "closed.json"].contains(phase))
         let documents = try actualReaderLogURL().deletingLastPathComponent().deletingLastPathComponent()
         XCTAssertEqual(documents.lastPathComponent, "Documents")
@@ -1792,6 +1792,174 @@ extension NativeRoutingAcceptanceTests {
         try runCoreOriginalSearchResults(expectedPad: true)
     }
 
+
+    // Independent all-18,879-row SQLite/Zstandard oracle, never search hit totals:
+    // docs/hq-integration/occurrence-app-20261120/whole-app-acceptance/unqualified/
+    // INDEPENDENT_MINI_SQL_ORACLE.json
+    // SHA d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8.
+    // book:1 / אברהם has 109 distinct token positions in 98 source rows.
+    @MainActor fileprivate func runCoreOriginalExactTokenCount(expectedPad: Bool) throws {
+        let token = UUID(), query = "אברהם"
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", "count", "-nativeActionAcceptanceToken", token.uuidString])
+        let oracle = try systemReaderOracleDocument()
+        let source = try XCTUnwrap(oracle.rows.first { $0.bookId == 1 && $0.lineIndex == 0 })
+        // This is the existing public Reader route, before the count baseline.
+        // It binds the disposable caller's allowed work to the actual Reader.
+        try openInExistingProcess(try readerURL(bookID: source.bookId, lineIndex: source.lineIndex))
+        try requireSystemReaderSource(source)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+
+        // Warm ONLY through an actual original user submission. No DEBUG helper
+        // creates an engine, fills its cache, installs data or overrides readiness.
+        let search = findTabButton(hebrew: "חיפוש", english: "Search")
+        XCTAssertTrue(search.waitForExistence(timeout: 10)); XCTAssertTrue(search.isHittable); search.tap()
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+        let field = fields.firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 20)); XCTAssertEqual(fields.count, 1)
+        XCTAssertTrue(field.isHittable); field.tap(); field.typeText(query + "\n")
+        XCTAssertEqual(field.value as? String, query)
+        let row = app.buttons.matching(NSPredicate(format:
+            "identifier BEGINSWITH %@", "search-result-preview-toggle-")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 90)); XCTAssertTrue(row.isHittable)
+        let application = app!
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                !application.descendants(matching: .any).matching(identifier: "global-search-loading").firstMatch.exists
+                    && !application.descendants(matching: .any).matching(identifier: "global-search-dirty").firstMatch.exists
+                    && !application.buttons["global-search-cancel"].exists
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 90), .completed)
+        let visibleRowID = String(row.identifier.dropFirst("search-result-preview-toggle-".count))
+        XCTAssertFalse(visibleRowID.isEmpty)
+        capture("native-core-count-original-search-warmup")
+        let library = findTabButton(hebrew: "ספרייה", english: "Library")
+        XCTAssertTrue(library.waitForExistence(timeout: 10)); XCTAssertTrue(library.isHittable); library.tap()
+        try requireSystemReaderSource(source)
+        try requirePreservedOriginalWorkspace(original)
+        let before = try actualNativeReceiptLines()
+
+        try triggerOriginalAction("count", token: token)
+        let proof = try readOriginalActionProof("count", token: token)
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        XCTAssertEqual(proof["originalSourceUnchanged"] as? Bool, true)
+        XCTAssertEqual(proof["originalSearchUnchanged"] as? Bool, true)
+        XCTAssertEqual(proof["originalSearchQuery"] as? String, query)
+        XCTAssertGreaterThan(try XCTUnwrap(proof["originalSearchSubmission"] as? Int), 0)
+        XCTAssertEqual(proof["originalSearchHasSubmitted"] as? Bool, true)
+        XCTAssertEqual(proof["originalSearchIsSearching"] as? Bool, false)
+        XCTAssertEqual(proof["originalSearchResultsAreDirty"] as? Bool, false)
+        XCTAssertEqual(proof["originalSearchBookIDs"] as? [Int], [])
+        XCTAssertTrue(try XCTUnwrap(proof["originalSearchRowIDs"] as? [String]).contains(visibleRowID))
+        try requireOriginalActionRef(try XCTUnwrap(proof["originalReaderLocator"] as? [String: Any]),
+                                     bookID: source.bookId, lineIndex: source.lineIndex)
+        let request = try XCTUnwrap(proof["coreRequest"] as? [String: Any])
+        XCTAssertEqual(request["requestId"] as? String, token.uuidString)
+        XCTAssertEqual(request["requestedPresentation"] as? String, "headless")
+        let result = try XCTUnwrap(proof["coreResult"] as? [String: Any])
+        XCTAssertEqual(result["apiVersion"] as? Int, 1)
+        XCTAssertEqual(result["requestId"] as? String, token.uuidString)
+        XCTAssertEqual(result["action"] as? String, "search.countOccurrences")
+        XCTAssertEqual(result["status"] as? String, "completed")
+        XCTAssertEqual(result["backend"] as? String, "otzaria")
+        XCTAssertEqual(try XCTUnwrap(result["backendGeneration"] as? NSNumber),
+                       try XCTUnwrap(proof["originalBackendGeneration"] as? NSNumber))
+        XCTAssertNil(result["effects"]); XCTAssertNil(result["error"])
+        XCTAssertNil(result["candidates"]); XCTAssertNil(result["next"])
+        let data = try XCTUnwrap(result["data"] as? [String: Any])
+        XCTAssertEqual(data["count"] as? Int, 109)
+        XCTAssertEqual(data["matchingDocuments"] as? Int, 98)
+        XCTAssertNotEqual(data["count"] as? Int, data["matchingDocuments"] as? Int,
+                          "A search hit/document total must never substitute for occurrence positions")
+        XCTAssertEqual(data["countUnit"] as? String, "matching_occurrences")
+        XCTAssertEqual(data["precision"] as? String, "exact")
+        XCTAssertEqual(data["normalizedToken"] as? String, query)
+        let counted = try XCTUnwrap(data["query"] as? [String: Any])
+        XCTAssertEqual(counted["backend"] as? String, "otzaria")
+        XCTAssertEqual(counted["text"] as? String, query)
+        XCTAssertEqual(counted["matchMode"] as? String, "exact")
+        XCTAssertEqual(counted["countUnit"] as? String, "matching_occurrences")
+        let refs = try XCTUnwrap(counted["scopeWorkRefs"] as? [[String: Any]])
+        XCTAssertEqual(refs.count, 1)
+        let ref = try XCTUnwrap(refs.first)
+        XCTAssertEqual(ref["backend"] as? String, "otzaria"); XCTAssertEqual(ref["workKey"] as? String, "book:1")
+        let requestArguments = try XCTUnwrap(request["arguments"] as? [String: Any])
+        for key in ["text", "matchMode", "countUnit"] {
+            XCTAssertEqual(requestArguments[key] as? String, counted[key] as? String)
+        }
+        XCTAssertEqual(try JSONSerialization.data(withJSONObject: try XCTUnwrap(requestArguments["scopeWorkRefs"]), options: .sortedKeys),
+                       try JSONSerialization.data(withJSONObject: refs, options: .sortedKeys))
+        let permissionQuery = try XCTUnwrap(data["searchQuery"] as? [String: Any])
+        XCTAssertEqual(permissionQuery["backend"] as? String, "otzaria")
+        XCTAssertEqual(permissionQuery["text"] as? String, query)
+        XCTAssertEqual(permissionQuery["matchMode"] as? String, "exact")
+        XCTAssertEqual(try JSONSerialization.data(withJSONObject: try XCTUnwrap(permissionQuery["scopeWorkRefs"]), options: .sortedKeys),
+                       try JSONSerialization.data(withJSONObject: refs, options: .sortedKeys))
+
+        let evidence = try XCTUnwrap(data["evidence"] as? [String: Any])
+        XCTAssertEqual(evidence["contract"] as? String, "otzaria-exact-token-positions-v1")
+        XCTAssertEqual(evidence["engineRevision"] as? String, "d5d59d1269bdf87fb0a6901cf31941726a0c699b")
+        XCTAssertEqual(evidence["artifactIdentity"] as? String, "08a5ddf76ae187e3ca29c1b483637f1dc8e2a2dcb7001cdb7fe3327236234e83")
+        XCTAssertEqual(evidence["databaseSHA256"] as? String, oracle.databaseSHA256)
+        XCTAssertEqual(evidence["expectedIndexedDocuments"] as? Int, 18_879)
+        XCTAssertEqual(evidence["observedIndexedDocuments"] as? Int, 18_879)
+        XCTAssertEqual(evidence["completeManagedArtifact"] as? Bool, true)
+        let snapshot = try XCTUnwrap(evidence["engineSnapshotSHA256"] as? String)
+        XCTAssertNotNil(snapshot.range(of: "^[0-9a-f]{64}$", options: .regularExpression))
+        let visitedDocuments = try XCTUnwrap(evidence["visitedDocuments"] as? Int)
+        let visitedPositions = try XCTUnwrap(evidence["visitedPositions"] as? Int)
+        XCTAssertGreaterThanOrEqual(visitedDocuments, 98); XCTAssertLessThanOrEqual(visitedDocuments, 1_000_000)
+        XCTAssertGreaterThanOrEqual(visitedPositions, 109); XCTAssertLessThanOrEqual(visitedPositions, 10_000_000)
+
+        try requireOriginalCountRefusal(proof, prefix: "unsupported",
+                                        status: "not_supported", code: "occurrence_query_unavailable")
+        try requireOriginalCountRefusal(proof, prefix: "preCancelled", status: "cancelled", code: "cancelled")
+        let requestIDs = try ["coreRequest", "unsupportedRequest", "preCancelledRequest"].map { key in
+            try XCTUnwrap((proof[key] as? [String: Any])?["requestId"] as? String)
+        }
+        XCTAssertEqual(Set(requestIDs).count, 3)
+        XCTAssertEqual(try actualNativeReceiptLines(), before,
+                       "Headless count/refusals must not queue any native navigation effect")
+        try requireSystemReaderSource(source)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertFalse(app.otherElements["global-search-screen"].exists)
+        XCTAssertFalse(app.textViews["annotation-note-text"].exists)
+        XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch.exists)
+        let independent: [String: Any] = [
+            "oracleSHA256": "d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8",
+            "databaseSHA256": oracle.databaseSHA256, "rowsScanned": 18_879,
+            "query": query, "workKey": "book:1", "occurrences": 109, "matchingDocuments": 98,
+            "countSource": "Independent original SQLite/Zstandard rows, not engine search hit totals",
+            "cancellationScope": "Core pre-cancelled admission; in-flight behavior is a separate bridge gate",
+        ]
+        let attachment = XCTAttachment(data: try JSONSerialization.data(withJSONObject: independent, options: .sortedKeys),
+                                       uniformTypeIdentifier: "public.json")
+        attachment.name = "native-count-independent-sql-expectation"; attachment.lifetime = .keepAlways; add(attachment)
+        capture("native-core-count-exact-positions-preserves-original-reader")
+    }
+    private func requireOriginalCountRefusal(_ proof: [String: Any], prefix: String,
+                                             status: String, code: String) throws {
+        let request = try XCTUnwrap(proof[prefix + "Request"] as? [String: Any])
+        let result = try XCTUnwrap(proof[prefix + "Result"] as? [String: Any])
+        XCTAssertNotNil((request["requestId"] as? String).flatMap(UUID.init(uuidString:)))
+        XCTAssertEqual(result["apiVersion"] as? Int, 1)
+        XCTAssertEqual(result["requestId"] as? String, request["requestId"] as? String)
+        XCTAssertEqual(result["action"] as? String, "search.countOccurrences")
+        XCTAssertEqual(result["status"] as? String, status)
+        XCTAssertEqual(result["backend"] as? String, "otzaria")
+        let failure = try XCTUnwrap(result["error"] as? [String: Any])
+        XCTAssertEqual(failure["code"] as? String, code)
+        XCTAssertEqual(failure["retryable"] as? Bool, false)
+        XCTAssertNil(result["data"], "A refusal must carry no numeric partial or fallback hit count")
+        XCTAssertNil(result["effects"]); XCTAssertNil(result["candidates"]); XCTAssertNil(result["next"])
+    }
+    @MainActor func testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad() throws {
+        try runCoreOriginalExactTokenCount(expectedPad: true)
+    }
+
     // Independently extracted from exact miniTest10 v6 DB d3d9bfcc...5a9edef.
     // Original link 6529212, type COMMENTARY side0, no suppressed side/coverage;
     // exactly one related destination for this base and commentary work.
@@ -1875,5 +2043,11 @@ extension NativeRoutingPhoneAcceptanceTests {
     }
     @MainActor func testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone() throws {
         try runCoreSourceCommentary(expectedPad: false)
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone() throws {
+        try runCoreOriginalExactTokenCount(expectedPad: false)
     }
 }

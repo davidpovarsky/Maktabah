@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_9ec0cee47ec0",
+    "type": "job_result",
+    "source": "script_run@host_7ec8382e82747448",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_7ec8382e82747448",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795148833.398703,
+    "started_at": "2026-11-20T04:27:13.466082+00:00",
+    "finished_at": "2026-11-20T04:27:14.216594+00:00",
+    "duration_s": 0.75,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 120,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift parse 0 <unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\r\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\r\n\r\nMaktabah-iOSUITests/NativeRoutingAcceptanceTests.swift parse 0 <unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\r\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\r\n\r\n{\r\n  \"base\": \"64ca371ab5813a7e45d79c925a821ad06c4f093d\",\r\n  \"checks\": [\r\n    {\r\n      \"file\": \"Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift\",\r\n      \"sha256LF\": \"2051b29d661467b8af2376fb48a7900ea486d8664607003db85b7cbd69e1af9c\",\r\n      \"originalSourcePreserved\": true,\r\n      \"command\": [\r\n        \"swiftc\",\r\n        \"-frontend\",\r\n        \"-parse\",\r\n        \"-target\",\r\n        \"arm64-apple-ios18.0\",\r\n        \"-D\",\r\n        \"DEBUG\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-occurrence-app-tests-20261120\\\\Source\\\\ChavrusaText\\\\UIRoutingHost\\\\Integration\\\\MaktabahNativeRoutingComposition.swift\"\r\n      ],\r\n      \"exitCode\": 0,\r\n      \"startedUTC\": \"2026-11-20T04:27:13.672940+00:00\",\r\n      \"log\": \"build\\\\occurrence-native-20261120\\\\source-preflight\\\\MaktabahNativeRoutingComposition.parse.log\"\r\n    },\r\n    {\r\n      \"file\": \"Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift\",\r\n      \"sha256LF\": \"25705118db531ce2e4ebc6b2e609fbbb9df4808d89b76b35c6eaa2c21eb5b59b\",\r\n      \"originalSourcePreserved\": true,\r\n      \"command\": [\r\n        \"swiftc\",\r\n        \"-frontend\",\r\n        \"-parse\",\r\n        \"-target\",\r\n        \"arm64-apple-ios18.0\",\r\n        \"-D\",\r\n        \"DEBUG\",\r\n        \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-occurrence-app-tests-20261120\\\\Maktabah-iOSUITests\\\\NativeRoutingAcceptanceTests.swift\"\r\n      ],\r\n      \"exitCode\": 0,\r\n      \"startedUTC\": \"2026-11-20T04:27:14.018345+00:00\",\r\n      \"log\": \"build\\\\occurrence-native-20261120\\\\source-preflight\\\\NativeRoutingAcceptanceTests.parse.log\"\r\n    }\r\n  ],\r\n  \"newNativeCaseNames\": [\r\n    \"testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad\",\r\n    \"testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone\"\r\n  ],\r\n  \"syntaxOnly\": true,\r\n  \"appleSDKTypecheck\": \"NOT_RUN\",\r\n  \"nativeExecution\": \"NOT_RUN\",\r\n  \"corePermissionAdmissionNative\": \"NOT_RUN\",\r\n  \"registryQualified\": false\r\n}"
+  }
+}
