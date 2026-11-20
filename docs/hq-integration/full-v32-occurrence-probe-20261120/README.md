@@ -111,3 +111,7 @@ result; they are not required to match between different application processes.
 Actual Apple SDK compilation and the full-v32 install/reopen run remain pending
 on the integrated pinned source. Existing old-consumer Native evidence and the
 mini-only Native selection do not qualify this new full-corpus d5 probe.
+
+## Additional DTO validation
+
+The exact committed reporter and original request/model code passed four standalone Windows encoding checks. See [DTO_ROUNDTRIP.md](DTO_ROUNDTRIP.md) for the actual results and synthetic-boundary limits. Full Apple install/reopen occurrence execution remains pending.

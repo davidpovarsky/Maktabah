@@ -8,5 +8,40 @@
     "bytes": 165,
     "sha256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539",
     "gzip_sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e"
+  },
+  "dto/RESULT.json": {
+    "bytes": 2445,
+    "sha256": "9d687aa1e1ef4e2e1d367e77edbf54537fc88486caeec1896a234a669d55ae2d",
+    "gzip_sha256": "54c7e0518e289b5e4600418855e7de83340486e6148a7acacb0878602e4d1e50"
+  },
+  "dto/compile.log": {
+    "bytes": 281,
+    "sha256": "424c49bf16e1dea63271c4a31a8e510862d172f5b2ee4d4794210b0901a02ef6",
+    "gzip_sha256": "f549283ae680c013e4e9fd6cc7cf3831b3e4154923cca56e107950b688291eec"
+  },
+  "dto/execution.log": {
+    "bytes": 259,
+    "sha256": "ea1c8284ac5a062b182a3d6d449857ca6d3197e828f738450261577963bd94f1",
+    "gzip_sha256": "4860635801ef318679584e63a95ec040d70828b6783464a1b997ef6ad8c10a3f"
+  },
+  "dto/OriginalModels.swift": {
+    "bytes": 12270,
+    "sha256": "d5b2c7cc4de30f0dd579a0193682bcce64a00604454de85176d21aa983f1c89e",
+    "gzip_sha256": "d53144063160f6a813084b8d865caaa58afbd8ffc59d2433059db8e735308aa7"
+  },
+  "dto/OriginalBuildInfo.swift": {
+    "bytes": 482,
+    "sha256": "6d2c06bcb9a40ea20aae746263250e0e5028efcf0f0a2db915d51f5956d033c1",
+    "gzip_sha256": "917340014aa92e92e59f45c1a08463715f1a02e240a5d5dff6530d3634806970"
+  },
+  "dto/OccurrenceReportAcceptance.swift": {
+    "bytes": 9664,
+    "sha256": "c8c7b1b0d28712e63ec5189f69d736e58550de013c89062540a8475b4f7fb12a",
+    "gzip_sha256": "6a892444e3dfe5074798ba9a7d80161eaf8164daa1e3f35ce3f237fc497f096c"
+  },
+  "dto/executed_launcher.py": {
+    "bytes": 10486,
+    "sha256": "827197ca4ca8431610f731f765e66774181ca7de116da3161c295b4a9baeed05",
+    "gzip_sha256": "ba96b6e57457d4df8e458d88789bda81b83902c12cad76f27887de4ee4dda480"
   }
 }
