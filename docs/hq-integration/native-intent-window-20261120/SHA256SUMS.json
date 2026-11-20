@@ -1,0 +1,12 @@
+{
+  "evidence/baseline-attempt01/compile.log.gz": "10fbeb8d2c41cf6f24c91b129ccf781e6ee2d16a324f25f172aacba18c6d58bb",
+  "evidence/baseline-attempt01/invocation.json.gz": "bac9174f5e464e0555692adfb7441678e97e176f641653907a1ff335cf5c18b3",
+  "evidence/baseline-attempt01/RESULT.json.gz": "04f75e9a4af033cbd82ff40214730fe7f1bfaa56cb07bde476e260f86dc0d3c8",
+  "evidence/baseline-attempt02/compile.log.gz": "5b0288d196eae12812bcd51e7edf6f3279cb1c1c705dc17c0691c018d729cc15",
+  "evidence/baseline-attempt02/invocation.json.gz": "7e8733375c36844e146a7f94728ff7a305baa856a4747b7138cb107fca34a75f",
+  "evidence/baseline-attempt02/RESULT.json.gz": "f3b7c5d3be1ac1f014a8848bbc84c0cfe74b66e07e2906f6b4fcf738ec8b8237",
+  "evidence/baseline-attempt02/tests.log.gz": "64549987d3890f49ab4886852c46b4d5f0d7f5c3a85ddf749097a48fb0e089b3",
+  "RAW_SHA256SUMS.json": "6c6dce04c93895a6b724c91672ee1765ae8f426fc685bb0cf650486ba141e782",
+  "README.md": "f9857d57bf8ffcfb0563f918eb4af9ff58757b659c56fab3a0b8273845609795",
+  "source-comparison.json": "b99d602e24c52d4b856bf665f1d32b115d0068d3706d676f6b4e693f5d3cb968"
+}

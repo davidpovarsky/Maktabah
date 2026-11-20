@@ -1,0 +1,44 @@
+{
+  "evidence/baseline-attempt01/compile.log": {
+    "bytes": 24837,
+    "sha256": "306acb9cafc288a1c65baff2688dbe3e14a77ee845c430e515c300b7970960d2",
+    "retained_as": "evidence/baseline-attempt01/compile.log.gz",
+    "gzip_sha256": "10fbeb8d2c41cf6f24c91b129ccf781e6ee2d16a324f25f172aacba18c6d58bb"
+  },
+  "evidence/baseline-attempt01/invocation.json": {
+    "bytes": 1370,
+    "sha256": "423b98fbfae9e0aabfb7a09d3fc46037ee723781ff690d434b6d80cacb358d63",
+    "retained_as": "evidence/baseline-attempt01/invocation.json.gz",
+    "gzip_sha256": "bac9174f5e464e0555692adfb7441678e97e176f641653907a1ff335cf5c18b3"
+  },
+  "evidence/baseline-attempt01/RESULT.json": {
+    "bytes": 26164,
+    "sha256": "e56989a023f96193df374fa1da2b05dd2353025243a14b7424350ddb801d6c92",
+    "retained_as": "evidence/baseline-attempt01/RESULT.json.gz",
+    "gzip_sha256": "04f75e9a4af033cbd82ff40214730fe7f1bfaa56cb07bde476e260f86dc0d3c8"
+  },
+  "evidence/baseline-attempt02/compile.log": {
+    "bytes": 526,
+    "sha256": "e6d932ace3ed64e684324a24413a51d0f59c04dfc3fdc6efb51a6ad2b95b3595",
+    "retained_as": "evidence/baseline-attempt02/compile.log.gz",
+    "gzip_sha256": "5b0288d196eae12812bcd51e7edf6f3279cb1c1c705dc17c0691c018d729cc15"
+  },
+  "evidence/baseline-attempt02/invocation.json": {
+    "bytes": 1558,
+    "sha256": "a6f4a6703367a79fe4336febb50a3175adbdb6a1917a08744a5127e321226a5d",
+    "retained_as": "evidence/baseline-attempt02/invocation.json.gz",
+    "gzip_sha256": "7e8733375c36844e146a7f94728ff7a305baa856a4747b7138cb107fca34a75f"
+  },
+  "evidence/baseline-attempt02/RESULT.json": {
+    "bytes": 26585,
+    "sha256": "e41d052db49b7942e9f84e6469f2a46a9baac2c4d88f51bed6e702371788056c",
+    "retained_as": "evidence/baseline-attempt02/RESULT.json.gz",
+    "gzip_sha256": "f3b7c5d3be1ac1f014a8848bbc84c0cfe74b66e07e2906f6b4fcf738ec8b8237"
+  },
+  "evidence/baseline-attempt02/tests.log": {
+    "bytes": 2146,
+    "sha256": "c30e534261a4a7112d5e226e1c1d2b0160250d770a967597561bfc67f191e268",
+    "retained_as": "evidence/baseline-attempt02/tests.log.gz",
+    "gzip_sha256": "64549987d3890f49ab4886852c46b4d5f0d7f5c3a85ddf749097a48fb0e089b3"
+  }
+}
