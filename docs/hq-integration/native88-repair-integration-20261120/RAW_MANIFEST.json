@@ -1,0 +1,51 @@
+[
+  {
+    "source": "build/native88-repair-integration-20261120/MERGES.json",
+    "original_bytes": 2024,
+    "original_sha256": "89c982bdc2bdedb80a95b891f4a45c0ef1b16873ddadfe80796077cebdb1d268",
+    "stored": "raw/MERGES.json.gz",
+    "stored_sha256": "6a9b10202d1dd0aba6683433de03cea44fc2406d1ec590c10f79aa1ae4bdbd05"
+  },
+  {
+    "source": "build/native88-repair-integration-20261120/ROOT_SDK_IOS_MERGES.json",
+    "original_bytes": 603,
+    "original_sha256": "fea15da149a3f91d7864fd1ba2cf2f0914cd17db68c0770a0a11081f8cac17ca",
+    "stored": "raw/ROOT_SDK_IOS_MERGES.json.gz",
+    "stored_sha256": "6d89a23bdc97a51a52e523562cb8f05de8455827dff1a0985d96da8b27fdebde"
+  },
+  {
+    "source": "build/qualified-occurrence-freeze-20261120/supersession/DECISIONS.json",
+    "original_bytes": 3537,
+    "original_sha256": "922b9c147ce5fd813237661d84a99fa7481e26ea41997851d84a80cbdeb05349",
+    "stored": "raw/DECISIONS.json.gz",
+    "stored_sha256": "d00c8e4a1b54bafb42ff9d1446aff0b5de4790b850a24d5e4f6d68ec5271417c"
+  },
+  {
+    "source": "build/qualified-occurrence-freeze-20261120/supersession/44684629656-decision.json",
+    "original_bytes": 1666,
+    "original_sha256": "7fe8fbd407deadcce451ab87228101694a99f4e3c585f4cf0a38693c681d6e4a",
+    "stored": "raw/44684629656-decision.json.gz",
+    "stored_sha256": "7c4459cd52cdd87ad268b91bda0df378e4650df928699537afe9e10cd6eb80ed"
+  },
+  {
+    "source": "build/qualified-occurrence-freeze-20261120/supersession/44684629656-before-cancel.json",
+    "original_bytes": 1557,
+    "original_sha256": "05e4d83abb60bbbb3a077a20720bc4ade22037ac59cb25cb4f7cc3b32e9cb160",
+    "stored": "raw/44684629656-before-cancel.json.gz",
+    "stored_sha256": "7130dd66311ea4e027ff754a5b3914fdfe1a1c97f147ceb1f14d60f3f6b6acb8"
+  },
+  {
+    "source": "build/qualified-occurrence-freeze-20261120/watch/44684629656-watch1-start.json",
+    "original_bytes": 268,
+    "original_sha256": "0cc7e0ce9fff368648a1985572b1c8090fd3b3d10fa2664a41a8af89071aff5f",
+    "stored": "raw/44684629656-watch1-start.json.gz",
+    "stored_sha256": "6340f4168c7558b7d25865d90eb9e34b983262dc6cac404602f5e2b065fc3047"
+  },
+  {
+    "source": "build/qualified-occurrence-freeze-20261120/watch/44684629656-watch1-result.json",
+    "original_bytes": 366,
+    "original_sha256": "832539ad80cc01dc2816dcdc5de401ae97f9fd55cebb81713783949306cfe05f",
+    "stored": "raw/44684629656-watch1-result.json.gz",
+    "stored_sha256": "070a1f3f8aec34c24b53b84af21dcec7c873e7af2cb135c7c609725066d88c7e"
+  }
+]

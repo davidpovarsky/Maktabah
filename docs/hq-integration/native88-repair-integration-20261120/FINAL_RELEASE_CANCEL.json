@@ -1,0 +1,58 @@
+{
+  "id": 44684629656,
+  "head_sha": "b07f229e85fe894722566ad9444de31d0ba4490f",
+  "head_branch": "codex/otzaria-qualified-release96-20261120",
+  "status": "completed",
+  "conclusion": "cancelled",
+  "run_attempt": 1,
+  "created_at": "2026-11-20T05:59:18Z",
+  "updated_at": "2026-11-20T06:20:41Z",
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684629656",
+  "jobs": [
+    {
+      "id": 136115936869,
+      "name": "R27 real UI environment and acceptance",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_id": 44684629656,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136115938148,
+      "name": "Focused unsigned Maktabah-iOS (no runtime or data)",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44684629656,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136115938419,
+      "name": "Validate Sefaria-Mobile Embedded Build and Runtime",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44684629656,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136115938460,
+      "name": "Books Updates Apple safety checks (no app runtime acceptance)",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44684629656,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 136115938590,
+      "name": "Focused SDK and workspace checks (no app/runtime acceptance)",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 44684629656,
+      "logs_url": null,
+      "steps": null
+    }
+  ]
+}

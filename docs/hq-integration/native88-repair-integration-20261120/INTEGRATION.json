@@ -1,0 +1,12 @@
+{
+  "recorded_at_utc": "2026-11-20T06:53:33.147220+00:00",
+  "combined_source_commit": "c24f71123818576e06cafdc8474a525be0f30811",
+  "r27_exact_git_lf_sha256": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+  "r27_native_fix_commit": "d05fbdd1abad848282000ba0e225cab686d4210f",
+  "root_repairs_commit": "269d0216e435fab837bd69e9867e7b4fd8723b71",
+  "sdk_evidence_commit": "359524dc789788f5377b856304ca602930ff61e7",
+  "normal_ios_evidence_commit": "1017db8df6fc5b416bd935aa7536f083c57c8778",
+  "native_executed_new_source": 0,
+  "full_release_accepted": false,
+  "next": "Merge bounded original GlobalHistory readiness/diagnostics, freeze exact inputs, execute isolated diagnostic13; Notes source cause remains unresolved"
+}

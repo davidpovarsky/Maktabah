@@ -1,0 +1,100 @@
+{
+  "first_update": {
+    "data": [
+      {
+        "gid": "1219614315863536",
+        "name": "[RESEARCH] מנוע פעולות אחוד לאוצריא — ארכיטקטורה וסקירת פתרונות קיימים"
+      },
+      {
+        "gid": "1219614472017979",
+        "name": "[RESEARCH] פעולות חיפוש, ספירה, פתיחת מפרשים והכנת הערות דרך API אחוד"
+      },
+      {
+        "gid": "1219602987688812",
+        "name": "[P2][R05–R08] רגרסיות race, שפה, HTML, נתונים ואופליין"
+      },
+      {
+        "gid": "1220107239748221",
+        "name": "[רוני | QA][MAIN_SESSION] XCTest/XCUITest + iPad פיזי — פרופילים/קבוצות/טאבים"
+      },
+      {
+        "gid": "1220546245946205",
+        "name": "[P1][IN_PROGRESS][GLOBAL SEARCH UX] עיצוב מחדש של החיפוש הגלובלי — Native SwiftUI/UIKit + Liquid Glass + Sidebar + סינון תוצאות"
+      },
+      {
+        "gid": "1220542361203468",
+        "name": "UI-03 | Scene Navigation Orchestrator — פתיחת מסכים, פאנלים ורכיבים במצב מדויק"
+      }
+    ],
+    "failed": [],
+    "summary": "Updated 6 of 6 tasks."
+  },
+  "readback": [
+    {
+      "task": "1219614315863536",
+      "previous_modified_at": "2026-11-20T06:44:22.410Z",
+      "marker_readback": true,
+      "completed": false
+    },
+    {
+      "task": "1219614472017979",
+      "previous_modified_at": "2026-11-20T06:44:22.481Z",
+      "marker_readback": true,
+      "completed": false
+    },
+    {
+      "task": "1219602987688812",
+      "previous_modified_at": "2026-11-20T06:44:22.387Z",
+      "marker_readback": true,
+      "completed": false
+    },
+    {
+      "task": "1220107239748221",
+      "previous_modified_at": "2026-11-20T06:44:22.429Z",
+      "marker_readback": true,
+      "completed": false
+    },
+    {
+      "task": "1220546245946205",
+      "previous_modified_at": "2026-11-20T06:44:22.474Z",
+      "marker_readback": true,
+      "completed": false
+    },
+    {
+      "task": "1220542361203468",
+      "previous_modified_at": "2026-11-20T06:44:22.461Z",
+      "marker_readback": true,
+      "completed": false
+    }
+  ],
+  "timestamp_correction": {
+    "data": [
+      {
+        "gid": "1219614315863536",
+        "name": "[RESEARCH] מנוע פעולות אחוד לאוצריא — ארכיטקטורה וסקירת פתרונות קיימים"
+      },
+      {
+        "gid": "1219614472017979",
+        "name": "[RESEARCH] פעולות חיפוש, ספירה, פתיחת מפרשים והכנת הערות דרך API אחוד"
+      },
+      {
+        "gid": "1219602987688812",
+        "name": "[P2][R05–R08] רגרסיות race, שפה, HTML, נתונים ואופליין"
+      },
+      {
+        "gid": "1220107239748221",
+        "name": "[רוני | QA][MAIN_SESSION] XCTest/XCUITest + iPad פיזי — פרופילים/קבוצות/טאבים"
+      },
+      {
+        "gid": "1220546245946205",
+        "name": "[P1][IN_PROGRESS][GLOBAL SEARCH UX] עיצוב מחדש של החיפוש הגלובלי — Native SwiftUI/UIKit + Liquid Glass + Sidebar + סינון תוצאות"
+      },
+      {
+        "gid": "1220542361203468",
+        "name": "UI-03 | Scene Navigation Orchestrator — פתיחת מסכים, פאנלים ורכיבים במצב מדויק"
+      }
+    ],
+    "failed": [],
+    "summary": "Updated 6 of 6 tasks."
+  }
+}
