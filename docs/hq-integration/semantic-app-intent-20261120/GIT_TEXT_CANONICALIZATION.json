@@ -1,0 +1,18 @@
+{
+  "observed": "git diff --cached --check stopped before any commit on CRLF in two new JSON files",
+  "swiftSourceChanged": false,
+  "inventory": {
+    "path": "Tests/HQ/semantic-app-intent/CASES.json",
+    "testedWorkingRawSHA256": "955b88144a6a4b7d70468da81b1975422331480f802ed0f153562affdf47ec61",
+    "canonicalGitLFSHA256": "7e60e33a347829e709692314cbc76d1af78cfc5471a4fda6457b7cbb123d50a7",
+    "workingBytesUnchanged": true,
+    "jsonValuesIdentical": true
+  },
+  "preservation": {
+    "rawSHA256": "c980b51b4c166da84cd44ed48d44d2fcb36f7a93d07e83e4e9b61911a4fcde99",
+    "canonicalGitLFSHA256": "2e5838ac3214bc25a26da3ec6bb113ea46eda2e3bfa9c46df5e402a52d44f5d0",
+    "originalRawRetained": "RAW_MANIFEST run/PRESERVATION.json"
+  },
+  "scope": "Git text canonicalization only; no Swift or JSON semantic change",
+  "recordedAt": "2026-11-20T13:25:19.319029+00:00"
+}

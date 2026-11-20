@@ -1,0 +1,55 @@
+{
+  "base": "d78d3750ef429875568253b32410edf22becf55c",
+  "nativeOriginalDeclarationsAndAllPriorAssertionsPreserved": true,
+  "nativeWholeFileExactInverse": true,
+  "nativeTwoSetupCorrections": [
+    {
+      "marker": "func runCoreOriginalExactTokenCount(",
+      "before": "d5a3e509dd7fec025c04bdc6de96bcc66703412e46d3572a587330da501db2cd",
+      "after": "77d4787e35ca989c7d8fc0a718b9a1b6bee30b43f622d01cbb430537cf4a8c11",
+      "inverse": "one newTab:true argument only"
+    },
+    {
+      "marker": "func runSemanticCountThenResults(",
+      "before": "39da60e9709f181b7d0a01ba0e9284a41653cb136deb575d6f5e96b6a2691239",
+      "after": "91f3f9f6b510ad56d127670d3d184248f6fb8532513324ac6aae644fbd897674",
+      "inverse": "one newTab:true argument only"
+    }
+  ],
+  "nativeAddedReceiptAssertions": [
+    "        XCTAssertEqual(proof[\"productionConsumer\"] as? String, \"NativeReaderIntentService.open\")\n",
+    "        XCTAssertEqual(proof[\"appIntentsSystemExecution\"] as? String, \"NOT_RUN\")\n",
+    "        let receiptIDs = try XCTUnwrap(proof[\"nativeReceiptRequestIDs\"] as? [String])\n",
+    "        XCTAssertEqual(receiptIDs, try steps.map { try XCTUnwrap($0[\"requestId\"] as? String) })\n",
+    "        let receiptScenes = try XCTUnwrap(proof[\"nativeReceiptSceneIDs\"] as? [String])\n",
+    "        XCTAssertEqual(receiptScenes.count, 2); XCTAssertEqual(Set(receiptScenes).count, 1)\n"
+  ],
+  "factoryOriginalBodyPreservedExceptPublicFailureContract": true,
+  "oldFactoryBodySHA256": "950c68b84b6102ad98190e235900b5bb48c1c0b3733d0c89566131b7f59b0918",
+  "newFactoryBodySHA256": "8f14a8075f7a28ec4b1696b16da1dd1a65dfc289eed4740c591b9ffd421661ec",
+  "original10ServiceTestsByteIdentical": true,
+  "original60HostCaseNamesInSameOrder": true,
+  "newHostControls": 42,
+  "protectedPaths": [
+    "Source/Otzaria/Actions",
+    "Source/Otzaria/UIRouting",
+    "Vendor",
+    "Maktabah.xcodeproj",
+    ".github/workflows",
+    "Scripts/CI"
+  ],
+  "protectedDiff": [],
+  "protectedGitTrees": {
+    "Source/Otzaria/Actions": "040000 tree 5d0ee482c8f10726fe3863792dac94c18e94d792\tSource/Otzaria/Actions",
+    "Source/Otzaria/UIRouting": "040000 tree 9c25ca5c7a78676497b4cde7159a22c92bc9f88b\tSource/Otzaria/UIRouting",
+    "Vendor": "040000 tree 4065c0e62af325e83a65fe0c70270985229807ae\tVendor",
+    "Maktabah.xcodeproj": "040000 tree f80e996fa5144a7be76a7ccad8c2939e1d03d9b5\tMaktabah.xcodeproj",
+    ".github/workflows": "040000 tree 570a91456c784861dc9a17bedca0535e3fdc4a15\t.github/workflows",
+    "Scripts/CI": "040000 tree 035972970b3cea7676371d2529993bb1fc6e0902\tScripts/CI"
+  },
+  "finalServiceInputs125Unchanged": true,
+  "finalHostInputsUnchanged": true,
+  "nativeExecutions": 0,
+  "appleTypecheck": "NOT_RUN",
+  "systemSiriShortcutsUI": "NOT_RUN"
+}

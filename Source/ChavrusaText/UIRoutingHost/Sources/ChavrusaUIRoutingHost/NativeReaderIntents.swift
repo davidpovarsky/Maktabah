@@ -68,14 +68,21 @@ public struct OpenBookAtLocationIntent: AppIntent {
     @Parameter(title: "Chapter or passage") public var location: NativeBookLocationEntity
     @Parameter(title: "Window", query: NativeReaderWindowEntityQuery()) public var window: NativeDestinationEntity
     @Parameter(title: "Open in a new tab", default: true) public var newTab: Bool
+    @Parameter(title: "Commentary book (optional)") public var commentaryBook: NativeBookEntity?
+    @Parameter(title: "Unsaved note proposal (with commentary)") public var proposedNote: String?
     @Dependency private var service: NativeReaderIntentService
     public static var parameterSummary: some ParameterSummary {
-        Summary("Open \(\.$book) at \(\.$location) in \(\.$window)") { \.$newTab }
+        Summary("Open \(\.$book) at \(\.$location) in \(\.$window)") {
+            \.$newTab
+            \.$commentaryBook
+            \.$proposedNote
+        }
     }
     public init() {}
     public func perform() async throws -> some IntentResult {
         let result = try await service.open(workIdentifier: book.id, locationIdentifier: location.id,
-            windowIdentifier: window.id, newTab: newTab)
+            windowIdentifier: window.id, newTab: newTab,
+            commentaryWorkIdentifier: commentaryBook?.id, proposedText: proposedNote)
         try NativeIntentOutcome.requireVisibleAcknowledgement(result)
         return .result()
     }

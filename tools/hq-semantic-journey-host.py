@@ -34,6 +34,9 @@ MARKERS = (
     "private func semanticJourneyInvocation(",
     "private func advanceSemanticJourney(",
     "private func advanceSemanticSearchJourney(",
+    "private func semanticJourneys(manager:",
+    "private func semanticJourneys(owner:",
+    "private func validateReaderIntentJourneyOwner(",
 )
 
 
@@ -175,10 +178,10 @@ def main() -> int:
                       failed=sum(x[0] == "FAIL" for x in cases), cases=cases,
                       executableSHA256=digest(executable.read_bytes()))
     expected_cases = json.loads((root / INVENTORY).read_text(encoding="utf-8"))
-    if len(expected_cases) != 60 or len(set(expected_cases)) != 60:
-        raise ValueError("host case inventory must contain exactly 60 unique names")
+    if len(expected_cases) != 102 or len(set(expected_cases)) != 102:
+        raise ValueError("host case inventory must contain exactly 102 unique names (60 original plus 42 factory/intent-owner controls)")
     result["caseInventoryExact"] = [x[1] for x in result.get("cases", [])] == expected_cases
-    result["success"] = (result["sourceUnchanged"] and result["caseInventoryExact"] and result["executed"] == 60 and result["passed"] == 60
+    result["success"] = (result["sourceUnchanged"] and result["caseInventoryExact"] and result["executed"] == 102 and result["passed"] == 102
                          and result["failed"] == 0 and result.get("runtime", {}).get("exitCode") == 0
                          and not result.get("runtime", {}).get("timedOut", True))
     if not result["success"]:
