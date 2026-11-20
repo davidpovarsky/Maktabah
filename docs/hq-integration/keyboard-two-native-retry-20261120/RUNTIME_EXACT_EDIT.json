@@ -1,0 +1,26 @@
+{
+  "path": "Scripts/CI/runtime27.py",
+  "replacements": [
+    {
+      "before": "def execution_groups(contract):\n",
+      "after": "def case_contract_path(requested):\n    \"\"\"Default original scope, or the reviewed iPad11 keyboard diagnostic.\"\"\"\n    if requested is None:\n        return ROOT / \"docs/hq-integration/runtime27/R27_CASES.json\"\n    allowed = {\n        \"docs/hq-integration/runtime27/keyboard-two-ipad11.json\",\n    }\n    if requested not in allowed:\n        raise ValueError(\"Unreviewed explicit runtime27 case-manifest path\")\n    return ROOT / requested\n\n\ndef execution_groups(contract):\n"
+    },
+    {
+      "before": "    controller = runtime27_interruption.InterruptController()\n    try:\n",
+      "after": "    controller = runtime27_interruption.InterruptController()\n    contract_path = case_contract_path(None)\n    try:\n        contract_path = case_contract_path(os.environ.get(\"RUNTIME27_CASE_MANIFEST\"))\n"
+    },
+    {
+      "before": "        contract_path = ROOT / \"docs/hq-integration/runtime27/R27_CASES.json\"\n        contract = json.loads(contract_path.read_text())\n",
+      "after": "        contract = json.loads(contract_path.read_text())\n"
+    },
+    {
+      "before": "collect_cases(report, json.loads((ROOT / \"docs/hq-integration/runtime27/R27_CASES.json\").read_text()))",
+      "after": "collect_cases(report, json.loads(contract_path.read_text()))"
+    }
+  ],
+  "old_r27_pin": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+  "new_r27_pin": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+  "original_sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583",
+  "candidate_sha256": "0166030ae0a2c1fd2955964571b77d74b354dfc9cb78f5a7326b433e56d5688f",
+  "whole_body_inverse_exact": true
+}

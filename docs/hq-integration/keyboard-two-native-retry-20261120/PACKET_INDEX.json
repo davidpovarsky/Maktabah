@@ -1,0 +1,506 @@
+{
+  "schema_version": 1,
+  "source": "3248dfb5d45b3ae12372be4292dc330cd4608de7",
+  "records": [
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/README.md",
+      "bytes": 3948,
+      "sha256": "c0cb6bfd5b4cf55ff5a576cfa2cc0dc94571ee15aa417f4ccb33903c1bf7067c",
+      "git_blob": "95665dd2aa4aa32f273d4215f6c57a0f4ee85101"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/RUNTIME_EXACT_EDIT.json",
+      "bytes": 1821,
+      "sha256": "5e811c36f9eff2394a24a4b9680f2437b957cabc4049b0fbc1c216c464254d3d",
+      "git_blob": "b71af2d63b578b72d88d7c55d5596504af434b0b"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/SOURCE_BINDING.json",
+      "bytes": 7201,
+      "sha256": "9f5511c3b23c01d1867a859ffcfd555f4313b327d14210f1d809cc604afe40a1",
+      "git_blob": "bdd54ef2ae3780d2a3a21082ae5a542915371349"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/FINAL_BINDING_PROOF.json.gz",
+      "bytes": 534,
+      "sha256": "72a383d0a5c545e966bb0e7efdaf821ba689e565fe0327aefc9db6731237c75e",
+      "git_blob": "84ed4d81397186bcbcfcb4d1121568f4a3b57bea",
+      "uncompressed_bytes": 839,
+      "uncompressed_sha256": "3cecd53dd3b408f0a741b41d3b8eb1d42ebb02c9533e5a9c879543431096a43b"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/TEMPLATE_DELTA.patch.gz",
+      "bytes": 4247,
+      "sha256": "c887e0d885b4637610de0bb93084e94fcf6bfa9a6eee0a6ec8233e408516e45b",
+      "git_blob": "b778d54027d4158513233f27532af656a449bf46",
+      "uncompressed_bytes": 14361,
+      "uncompressed_sha256": "8e14a418b7050446acba8d78386fdd50f17371307c40b74888e8271f2cd473bf"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/TEMPLATE_INPUTS.json.gz",
+      "bytes": 2312,
+      "sha256": "8d619a5a0e093bc82f675a171324d9482ab24f5430eb79e9a7b8b0d63c0741ca",
+      "git_blob": "b89028f19cd539806d61484fb24bb8bf8b1b4d16",
+      "uncompressed_bytes": 7396,
+      "uncompressed_sha256": "f06f41243c75929623b26b99bcc7f514b232aaf34c638eed96c16cec2e95ef08"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/TEMPLATE_PROOF.json.gz",
+      "bytes": 1233,
+      "sha256": "471599150c348b0e1df080470a3fdcb08a4738b2ad605a5ba1cf730acaeff32e",
+      "git_blob": "7226bd8255183eab9519e4e154beffe6f4069448",
+      "uncompressed_bytes": 3642,
+      "uncompressed_sha256": "274da21a8eaefc024830c115fcace98f8b79a11563257e47a1fff80cddb013e6"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/authority/KEYBOARD_M.json.gz",
+      "bytes": 736,
+      "sha256": "2b0142a676c1d458719957daf3d800f93b687c08007203172e7ce1d4e5d9a634",
+      "git_blob": "2bf6f242b3661597bd6628e543e62a0b7de9e95a",
+      "uncompressed_bytes": 1690,
+      "uncompressed_sha256": "c0a54446acef7b3ad04d5e63af0d0e4412eda2abb03e8ddd9388b2e7fe7233ae"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/authority/KEYBOARD_SOURCE_TREE.json.gz",
+      "bytes": 45457,
+      "sha256": "f329defc755a3557208f34f5245a9acbb4cc80e1501f8d73d42471de78f1c24e",
+      "git_blob": "35507ec74c661eeaefe4cf8f008ffb2d6ec7e068",
+      "uncompressed_bytes": 327427,
+      "uncompressed_sha256": "6f93ea6e7656bd37dc9c2a23fee69c843901fb6906b7a041f880a4c348d5866e"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/authority/KEYBOARD_TREE.json.gz",
+      "bytes": 2213,
+      "sha256": "b46abfa8987062ae5efa38107ca09dbfe8acaf81cbc0a704ba97e510724d6a6a",
+      "git_blob": "652495a60fe24d5c4fead7852ecb40cbb65e61b4",
+      "uncompressed_bytes": 12247,
+      "uncompressed_sha256": "1c64004d92b0898b699a959c9a4269d87c9d858b9bc075eaf6bfeea1d78c78ec"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift.gz",
+      "bytes": 42147,
+      "sha256": "d419c5c4ddb493b3bf5ebecd4a1320f027f51e3e66f197b82d6e4c9cdcde335b",
+      "git_blob": "a8d93d99a18b96c2508707041bee732f58ac105d",
+      "uncompressed_bytes": 198505,
+      "uncompressed_sha256": "4799a197b842565bc80cf9bda44a22f026814160168dfa8b0ac3d2c614bd9733"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift.gz",
+      "bytes": 27926,
+      "sha256": "ca2b906e130d8783497419575e420a31d6edd0ab99d2b9f609cf27b5582f648d",
+      "git_blob": "4ba50c6356ee19688e8eaf5732e44135eabc4567",
+      "uncompressed_bytes": 160603,
+      "uncompressed_sha256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift.gz",
+      "bytes": 6774,
+      "sha256": "a1925989a554328ee218e1a21d681cd7ed07188801a3f3afcc9279c7f12cb1f9",
+      "git_blob": "d6d6c375dc1928da764aaae754dc04705de289ca",
+      "uncompressed_bytes": 32077,
+      "uncompressed_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Maktabah.xcodeproj/project.pbxproj.gz",
+      "bytes": 85534,
+      "sha256": "16a2967d3ceb685b847ef5eef865e9de454b4b53afa02268879b75127f257c75",
+      "git_blob": "8fc7d109b03ad0f2424455bce825b90f24f62512",
+      "uncompressed_bytes": 596038,
+      "uncompressed_sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Scripts/CI/hq-stage2-focused-apple.inputs.json.gz",
+      "bytes": 1755,
+      "sha256": "e950cb1cdd20ddaea9b2e417e69988f137fbdd886e45ecc180fce582a6f57cb1",
+      "git_blob": "f4ae9cf53ff916e711016fde5e8091965595dae8",
+      "uncompressed_bytes": 4333,
+      "uncompressed_sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Scripts/CI/hq-stage2-focused-apple.py.gz",
+      "bytes": 13577,
+      "sha256": "623bd1dac344bef1718a58b054b5358260650b498e49f487926162e9256b3cdb",
+      "git_blob": "3106d1a3eebdf21341809f93124d7338aef077b0",
+      "uncompressed_bytes": 47630,
+      "uncompressed_sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Scripts/CI/hq-stage2-otzaria-test-additions.json.gz",
+      "bytes": 2786,
+      "sha256": "b04220c227dfe7c3b21306418dcdf1836f7e99bde9d5004a317053c5dce0de5e",
+      "git_blob": "35be642be565c4350d8134c979d764016f507063",
+      "uncompressed_bytes": 19318,
+      "uncompressed_sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Scripts/CI/run-faithful-ipad-matrix.py.gz",
+      "bytes": 11079,
+      "sha256": "f2a21049e38f86537190a16a4b0a53da60bc467b3e9b9602558fe9aff6a5b0c1",
+      "git_blob": "dc544fb0323bc070926975759d647f79727ae6ec",
+      "uncompressed_bytes": 49924,
+      "uncompressed_sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Scripts/CI/runtime27-release-manifest.json.gz",
+      "bytes": 11910,
+      "sha256": "ade682cc51b30a67252391477857cea465f66bb7ad1dfc1c48c60494523f93c9",
+      "git_blob": "42805c59d2f19ae8b30b1d0ed2de290527e513ab",
+      "uncompressed_bytes": 56247,
+      "uncompressed_sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Scripts/CI/runtime27.py.gz",
+      "bytes": 7945,
+      "sha256": "97ce322736a03e8de2ac0e4244c29e26724b9301a95b7fceeb0b61e7a0ecb5a9",
+      "git_blob": "4a437d86d7ccb7e94d6723a5f92ad615b55f1dd5",
+      "uncompressed_bytes": 26341,
+      "uncompressed_sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Scripts/CI/runtime27_interruption.py.gz",
+      "bytes": 2467,
+      "sha256": "4699c464e2ddfe95ce69732d19c54befa7468258311697180a314408933cca7c",
+      "git_blob": "e483f0465c141f4143217b85cdf92c1b73b9d49e",
+      "uncompressed_bytes": 7650,
+      "uncompressed_sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Scripts/CI/select-runtime27-toolchain.py.gz",
+      "bytes": 2320,
+      "sha256": "bef6def53ab001bd8cba40d6f324a003c082e12e288b9f040eb55323a8100c0b",
+      "git_blob": "a2a6b21d8d910eda6ce75f13e8d29299e9cc9f00",
+      "uncompressed_bytes": 6377,
+      "uncompressed_sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/Scripts/CI/verify-faithful-xctest.py.gz",
+      "bytes": 2175,
+      "sha256": "f0f8c179f04aad2a3f0ecae0c088229f52e3076ee3e43829fc273494c0cd2842",
+      "git_blob": "8d823bca96f13566944067a84461bee6f983bf94",
+      "uncompressed_bytes": 6009,
+      "uncompressed_sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/docs/hq-integration/runtime27/R27_CASES.json.gz",
+      "bytes": 39232,
+      "sha256": "f7a328df9c28c0a33618ffddcb532181e50c89a9877126efb09c7559f5c69b34",
+      "git_blob": "6b3d03f661499209929feca749b309bd83ec588c",
+      "uncompressed_bytes": 200381,
+      "uncompressed_sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/base/tools/verify_xcresult_zero_skips.py.gz",
+      "bytes": 3327,
+      "sha256": "6605d6630b79d01cb7004148f2a86a874743377f99aea08b45016a2b6f1e3731",
+      "git_blob": "d127b5af7141640b86b9c09caac1a47dfe0a4739",
+      "uncompressed_bytes": 10243,
+      "uncompressed_sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/evidence/VALIDATION.json.gz",
+      "bytes": 1266,
+      "sha256": "ae7e2aeb5f81de6176e637b75ebc62573d1b1f148b6f702834d82d3fb9112dc1",
+      "git_blob": "1295f39c8910d67e50557b0f5cc7bf537af5846c",
+      "uncompressed_bytes": 6587,
+      "uncompressed_sha256": "d1977722443f2affd65f7d2a57507c4d620c7e5b13b8e614c50fbd1048eab3b6"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/evidence/controls-attempt1/RESULT.json.gz",
+      "bytes": 420,
+      "sha256": "ebe818e7d2f8da83d5981bcb190ad23272226a4633e9e0fd731d8a108ea72ce6",
+      "git_blob": "1a52f0e89bb941f7f81386f06faf357edee406eb",
+      "uncompressed_bytes": 661,
+      "uncompressed_sha256": "c4f17b758aa3dc81b54bbb14b97d092abdae52544696d477c5b7d5efafe38c05"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/evidence/controls-attempt1/stderr.log.gz",
+      "bytes": 880,
+      "sha256": "92086c461ae16486d90732b01ac48504fb9c16882b01883784b6b5c59711179a",
+      "git_blob": "e1ca46d239af76d2cac751c2b3c7dd7fcc44ff55",
+      "uncompressed_bytes": 4617,
+      "uncompressed_sha256": "7cdd0c920a91be7865eb332959b6badbdab48822d1ff08c174b1af59e5f203a6"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/evidence/controls-attempt1/stdout.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/finalize_source.py.gz",
+      "bytes": 2851,
+      "sha256": "64366544ebe57b2479c221320abb11890743623ade5c871198c146409361f2b2",
+      "git_blob": "158d3aa0893ae648d8bacde0ceeb342e7ff1dae1",
+      "uncompressed_bytes": 7615,
+      "uncompressed_sha256": "59cb9961a354869038ad810da21650341ab9a8b742ee578fb0bcca386f3dbdd5"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/prepare_template.py.gz",
+      "bytes": 3932,
+      "sha256": "0a12ad4a14ba8d2e33d9750f8973a3de21ec2ebcec3b982dd7b1dbc1dd84f319",
+      "git_blob": "9cc54692d8aef65e5146aab0977e6d7f5b43ed0f",
+      "uncompressed_bytes": 12154,
+      "uncompressed_sha256": "ebae930701c5f20a9f3e03bb5548e14bb1a6edd1741382eb9d38eeeedca92448"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/prior-route/.github/workflows/otzaria-keyboard-global-focused-native.yml.gz",
+      "bytes": 2538,
+      "sha256": "6243205e87c52db9b2f8c17863d9a9aa3a74550e3dcb8701e9d8951db5e4235f",
+      "git_blob": "0e830c142a1ca5b87786c3816a3315764c68ea60",
+      "uncompressed_bytes": 8266,
+      "uncompressed_sha256": "33ba993a3b89db0b29a5895405122bedc0165b185c2d658d452edd0137dd1521"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/prior-route/Scripts/CI/keyboard-global-focused-native.py.gz",
+      "bytes": 7149,
+      "sha256": "4f1b24945cb5dc1d79d4a82a36e9dd0fedd83f984b80f2a73cec8d3612364aa6",
+      "git_blob": "e2872f636c2fe5db6cb627411dbd3297f1c737d2",
+      "uncompressed_bytes": 24198,
+      "uncompressed_sha256": "73c6414f5b4fe23ab9ea6b5b6a3e017b8aaf55d344377f9230970235fb7a6909"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/prior-route/Scripts/CI/test-keyboard-global-focused-native.py.gz",
+      "bytes": 4574,
+      "sha256": "221a7186a1d9fe3dfcecfeccd99d906e5609d23245a25f18f8e39ebd52caf8e7",
+      "git_blob": "ef6ffe9d4b3ca87c8f74a84d1c602131289fa679",
+      "uncompressed_bytes": 17303,
+      "uncompressed_sha256": "85061dc49a865604baa16febe58d26cbfc40fc599c75e6892ca7073bb81e0e75"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/seal_packet.py.gz",
+      "bytes": 3720,
+      "sha256": "28a0b63c3b04c7ff133a519c501198640c1f0962590d3f2b792b555fefa5bcc1",
+      "git_blob": "72dac2e33678ef85d55d3bba1a18ca752f50b4c7",
+      "uncompressed_bytes": 9040,
+      "uncompressed_sha256": "f805af9fede2b5b16abf27ab50ad3caa8b4a88c121670fff9e048659622a8c02"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/evidence/validate_route.py.gz",
+      "bytes": 3842,
+      "sha256": "083e9b389e17e6a3e585713cfc6b4580cb05fae879438db982a628cb5f2f29c1",
+      "git_blob": "579cfee329913e4b2352308c5eb156f2526da98d",
+      "uncompressed_bytes": 9972,
+      "uncompressed_sha256": "1cbd27d441132d5b0b06fe7155b7534489813a7df4844b0b88dd858fff330be5"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/ALL_FIVE_ARTIFACTS_VERIFIED.json.gz",
+      "bytes": 476,
+      "sha256": "4a34dcf69a7d26cb330ab79abe256e76e9f783384a4b5f226945a3e23633d462",
+      "git_blob": "9891ee87a5a0efd6df6e32e12f7d706a538612ef",
+      "uncompressed_bytes": 1359,
+      "uncompressed_sha256": "dc5cd5127f5934e79037fbd4750a97e9efcfcd05ad9fba3c80ecf76e41af5f6f"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/ESCAPE_HANDOFF.json.gz",
+      "bytes": 3831,
+      "sha256": "84bd4e4a849a2941de4236cd6dec4e43768645b79f65056a0cf3ece8d516336b",
+      "git_blob": "7e4cc4cc4872da36da44e0e895402662be210333",
+      "uncompressed_bytes": 20534,
+      "uncompressed_sha256": "ea9b80eb383079fdf1b3ffbd900473401c0d55ba1e70a306f12dd2bf77639737"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/api/ARTIFACTS.json.gz",
+      "bytes": 861,
+      "sha256": "f0b48c6136110b0e3e2e1453e0279d14b8672ed7063588c102ad1795950ac5bd",
+      "git_blob": "3ce61e6b1dda257bf0efb7f01e11922a3c82e996",
+      "uncompressed_bytes": 3872,
+      "uncompressed_sha256": "8fd6e9901c7b79c35f484049a0ba387d3fd9fedadd0207d83efa38621b181120"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/api/JOBS.json.gz",
+      "bytes": 1660,
+      "sha256": "f632d38d7f9599906ac3a0d3cc74d02d0a463fc286edc14913d89cd022508084",
+      "git_blob": "850b9e24c9cd6cf6b3be7024b855f270063c6869",
+      "uncompressed_bytes": 12015,
+      "uncompressed_sha256": "d452b2d0191945f861891527b338965a18d4072323a3d6d10894c3f8fa4ceb86"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/api/RUN.json.gz",
+      "bytes": 1720,
+      "sha256": "38f67a8bd69e44b5debf18f0d19c76ed1126170e3c591d4b07857864f516f982",
+      "git_blob": "8063e538b44ba6c4873d7ee24f5b46cc064ac522",
+      "uncompressed_bytes": 13052,
+      "uncompressed_sha256": "e543cbe209ddccb250dde89a621e689833284315bd622b0884a6fc1ce27a9c57"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/artifacts/keyboard-global-focused-native/RESULT_AFTER.json.gz",
+      "bytes": 360,
+      "sha256": "e170e4a3b2429e6c06cae681cff8952a6db78cd2452365a92b9ab3dced17c282",
+      "git_blob": "fb322320dc423de33c37cd5af906d939c80f0084",
+      "uncompressed_bytes": 594,
+      "uncompressed_sha256": "6b68419525d0eb29b344a8c697f11d5aa1da116af362ec26cf7510f1147a2ab4"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/artifacts/keyboard-global-focused-native/RESULT_BEFORE.json.gz",
+      "bytes": 368,
+      "sha256": "4d1c8f9b216b3660bffa280d48ffa5c989f9ca552a7c4becbe2bd9b9d1dcd5bb",
+      "git_blob": "f1ecf18cd1a0664df0745306a56545dcbed46387",
+      "uncompressed_bytes": 593,
+      "uncompressed_sha256": "5bdf6917457e8ecc927fdff71f99a69f6ebdd7a8b272f47a93ae64bca3820984"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/artifacts/keyboard-global-focused-native/SOURCE_AFTER.json.gz",
+      "bytes": 24652,
+      "sha256": "819c1895ea8eab101fbb02fc64f440d9478dd817d3807d277ff6055f8a9b259e",
+      "git_blob": "db780e2b779a360f125e8dbc605282ba31a90013",
+      "uncompressed_bytes": 73882,
+      "uncompressed_sha256": "e77e9007fe7ad839e3001b6d34291682b45af0eaa6c067cd7d05a972033d0b0b"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/artifacts/keyboard-global-focused-native/SOURCE_BEFORE.json.gz",
+      "bytes": 106078,
+      "sha256": "93c0ac9788ef65087aa20855bed1a4282812f28bd7fded068f300f166e64bc22",
+      "git_blob": "bc4de30fc5e8a634a890ff4a4bbec4d50b605f35",
+      "uncompressed_bytes": 313169,
+      "uncompressed_sha256": "8831e5298408130caf7ef51678676c9fa1b4713d51c49f6921e152dfce2277ed"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/artifacts/native-routing-logs-11-reader/collection.json.gz",
+      "bytes": 384,
+      "sha256": "daef25713d9a32033c952ff1484522c02d3dceeb5cbd5f5b871f89d422fad3a6",
+      "git_blob": "aca158cfb695b8e4e847c1a6355e810967d4f98d",
+      "uncompressed_bytes": 551,
+      "uncompressed_sha256": "de952462522021e795ec0b341fd04ada1b9e14a58a1f3c89ae660ac27bdc32d2"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/artifacts/native-routing-logs-11-reader/otzaria-reader.log.gz",
+      "bytes": 2961,
+      "sha256": "d47bb78bce81669e8c7cb6e096a4b95af7f66b91628ec485c124d78b462c54e7",
+      "git_blob": "9b0139d9a0b723961f707345f8096d83133fb44c",
+      "uncompressed_bytes": 46009,
+      "uncompressed_sha256": "f425a8070f59203fe1d80775f31065a12a1261110d74cb9f65e195c73806fba1"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/artifacts/runtime27/result.json.gz",
+      "bytes": 13307,
+      "sha256": "5849b3f117ef333f18a6054b62b4fa37064fcdfe4cf6e2c7bd91cf1bcc90b874",
+      "git_blob": "86c35f0d9f2bf14320895c173ca7dfaafdbce6bc",
+      "uncompressed_bytes": 150381,
+      "uncompressed_sha256": "9bcbf18c2a58266aff904c30c0324469fcd1739cf9ec357de40bf95d3e54f1fe"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/artifacts/runtime27/verified-11-reader.summary.json.gz",
+      "bytes": 958,
+      "sha256": "17c00a19deab0008c4eb51bd8838bac9bdd01c27428e12c0f0b75235500b3efb",
+      "git_blob": "a071b43a558d70c3e7e1730217841792050e7332",
+      "uncompressed_bytes": 2918,
+      "uncompressed_sha256": "8454f63b2381ff997a59390d0232a5f933d66cd09d80f690c0f47cae29dbf577"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/prior-native6/artifacts/runtime27/verified-11-reader.tests.json.gz",
+      "bytes": 1126,
+      "sha256": "b8633c604061b0552c938dc323a286ecfa778776438496276cb841dcde090849",
+      "git_blob": "4c1fdb45279da0c8e2e9871244ee68e7d26967e8",
+      "uncompressed_bytes": 5693,
+      "uncompressed_sha256": "5a8dd3686d3ed1a5bd0b313612c1686b7e409051e2e15e3668eed7b3754b33d4"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/source/PROPOSED.patch.gz",
+      "bytes": 367,
+      "sha256": "e42b68f40be6784410401865f3fcc88671f359fa33b6e1d86a3f6ce854af1420",
+      "git_blob": "8688579dde820d45810942acc5232d405751963d",
+      "uncompressed_bytes": 816,
+      "uncompressed_sha256": "0cedc87a689dfde894bd2928b6ff1cc582bbce91770ebad51bdcc67710343bf3"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/source/SOURCE_INVERSE.json.gz",
+      "bytes": 763,
+      "sha256": "a632a28d7f42465cf7d6b0e44c09b6cdf314e5d645724b5f59fa1196da5ebf44",
+      "git_blob": "f2fece580ac7b6046ffee1b5f347dff901a5fb32",
+      "uncompressed_bytes": 1232,
+      "uncompressed_sha256": "e1a7ef208e969e9b73c0d2a4f9ee63d40d42794fbf88118ae2e8663987f40846"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/source/SOURCE_PUBLICATION.json.gz",
+      "bytes": 662,
+      "sha256": "d3a80c7eac269d949fdbd4da4c23952296d69e5a8aa70ab8f1719c68f7dda0f8",
+      "git_blob": "0d1efce8e5d450ff82130bca28a5ba6ea2ade5a1",
+      "uncompressed_bytes": 998,
+      "uncompressed_sha256": "0b81c76348cbb3da355ac3e4a9e4c54d17278df7667fd87e32dda1ee31aadfe3"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/source/base/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift.gz",
+      "bytes": 5432,
+      "sha256": "18e5babf1b2f32c49e4492be7e9ce9df0639bfaa6ee7c46d37f512833286ec65",
+      "git_blob": "0683de7f44cf0f70daa5dc218ad5318866111948",
+      "uncompressed_bytes": 19558,
+      "uncompressed_sha256": "bed4981eae7f8fbddf68f69fe8bd28fb6ccfad99ef22646f51465b5e851bee59"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/source/candidate/Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift.gz",
+      "bytes": 5510,
+      "sha256": "769a75d8a5ff73f88082e192e79bf911e42119cf59ff5e5c59cb0690bec555c8",
+      "git_blob": "8623c085252b1c9e153da97b8fc35ad919f7039a",
+      "uncompressed_bytes": 19860,
+      "uncompressed_sha256": "fdc8499d22bbbca821328283e92275348d227b8114060487a0634ae9640de711"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/unfinalized/.github/workflows/otzaria-keyboard-two-native-retry.yml.gz",
+      "bytes": 2514,
+      "sha256": "1d31a589f00e44b85bd2facd8e04b4c6edccdaaa4c86a1e9c405eb2d4452341e",
+      "git_blob": "dad5d1059c5f3434523195c037a807e4b8bf2c56",
+      "uncompressed_bytes": 8064,
+      "uncompressed_sha256": "84c762e01a52805fa8c1e71a95ca740ef2a85c6da0abe51aaf7301c4ffdecb35"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/unfinalized/Scripts/CI/hq-stage2-focused-apple.inputs.json.gz",
+      "bytes": 1665,
+      "sha256": "31eca27efd100e72be33c0f9983df51cbaa088ebd9ace21d51f835f258e8990a",
+      "git_blob": "7be1d180787138329cf9658504090f38792fe381",
+      "uncompressed_bytes": 4217,
+      "uncompressed_sha256": "5de6b703dad70e86c01a0e05cb2a8c70cf777b1081dbeb598dd2a9ce5424484b"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/unfinalized/Scripts/CI/hq-stage2-otzaria-test-additions.json.gz",
+      "bytes": 2787,
+      "sha256": "2040dff5c8ac840af083bb73436a772fa41c58b8f013d7dee73d33493d973672",
+      "git_blob": "4addaca489ea7960970ba9fb1eeb20c2d9b309d9",
+      "uncompressed_bytes": 19318,
+      "uncompressed_sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/unfinalized/Scripts/CI/keyboard-two-native-retry.py.gz",
+      "bytes": 7029,
+      "sha256": "db68fd402849d577ab0a13793590c4e4a85b8f7dae18646b8aabb7b402ba7e7c",
+      "git_blob": "d8481d8e508618715972edc9e677fce31cb270b0",
+      "uncompressed_bytes": 23635,
+      "uncompressed_sha256": "bdce28e2142e17ac05e026e41b6bf1ec598d3306e63639566c95666f71330403"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/unfinalized/Scripts/CI/runtime27.py.gz",
+      "bytes": 8063,
+      "sha256": "1ac831c1943f87af6cd66c814b079d67b83d70e1dcf7b8efb992a240f33e11f9",
+      "git_blob": "5ba715060b690625daecbee212b9932a2aa68aac",
+      "uncompressed_bytes": 26788,
+      "uncompressed_sha256": "0166030ae0a2c1fd2955964571b77d74b354dfc9cb78f5a7326b433e56d5688f"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/unfinalized/docs/hq-integration/keyboard-two-native-retry-20261120/RUNTIME_EXACT_EDIT.json.gz",
+      "bytes": 774,
+      "sha256": "9b12c3b83ef6db1840d2e2bd9220163cdf538323f557a3e5cc8c6b661636f2b2",
+      "git_blob": "0f3a78dbeabd554826b58efd030b429ee44ce125",
+      "uncompressed_bytes": 1821,
+      "uncompressed_sha256": "5e811c36f9eff2394a24a4b9680f2437b957cabc4049b0fbc1c216c464254d3d"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/unfinalized/docs/hq-integration/keyboard-two-native-retry-20261120/SOURCE_BINDING.json.gz",
+      "bytes": 2058,
+      "sha256": "07d5cff4ee17b4e2fde25123ede45f0ae449b4d67d810c926296e57372940be9",
+      "git_blob": "55248f23f0730678012fb4bbb2316d69e8d62c95",
+      "uncompressed_bytes": 6903,
+      "uncompressed_sha256": "9be29b81c6d142f7c74a52f8d1cf6d01e2222a2e2705f1d5d7c5e1aaa6e86bd9"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-two-native-retry-20261120/unfinalized/docs/hq-integration/runtime27/keyboard-two-ipad11.json.gz",
+      "bytes": 38094,
+      "sha256": "acb089f3401cf01294027b6551d7587c99be09b5809b9bf83ecb41bc568a9969",
+      "git_blob": "c52002e87eb75d4a571c89155bf8165928386004",
+      "uncompressed_bytes": 190398,
+      "uncompressed_sha256": "031c25cb5575100529f0cdf467b7ab5937e380868cbc7202170954a24036819e"
+    }
+  ],
+  "qualification": "36 Python controls plus71 source checks; Native0",
+  "activation": false
+}
