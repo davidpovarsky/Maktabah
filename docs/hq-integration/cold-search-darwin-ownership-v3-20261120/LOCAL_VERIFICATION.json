@@ -1,0 +1,19 @@
+{
+  "all_other_fixture_and_product_inputs_byte_identical": true,
+  "archive_bytes": 1221829,
+  "archive_crc_members": 253,
+  "archive_sha256": "749005417942333ac26205ed58ed7dc7dc943157dd8adfb775dfab664a6a95a6",
+  "git_bound_v2_inputs": 16,
+  "original_case_statements_inverse": "BYTE_IDENTICAL",
+  "same_case_ids": 32,
+  "status": "PASS_RETAINED_V2_FAILURE_AND_V3_SOURCE_ONLY",
+  "v2_actual": {
+    "Native_UI": 0,
+    "candidate_failed": 1,
+    "candidate_passed": 31,
+    "observed_missing_refusal": "source_changed",
+    "preguard_qualified": true,
+    "real_engine": 0
+  },
+  "v3_swift_execution": "NOT_RUN"
+}

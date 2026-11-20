@@ -260,7 +260,25 @@ private func failureTag(_ error: Error) -> String {
         await checks.run("missing_index_is_not_created") {
             let source = try OwnershipSource.make("missing-index")
             try FileManager.default.removeItem(at: source.index)
-            try await refuses(["filesystem_or_boundary_error", "unavailable"]) { try await source.prepare() }
+            // Capture the actual missing-path URL before this invocation. The
+            // previous existing-directory URL instead tests a source change on
+            // Darwin; retain that observation without weakening the real guard.
+            let missingIndex = OtzariaSearchIndexManager.shared.indexURL(for: source.database)
+            try require(!FileManager.default.fileExists(atPath: missingIndex.path)
+                && missingIndex.standardizedFileURL.path == source.index.standardizedFileURL.path,
+                "fixture_missing_index_path_not_absent")
+            OwnershipFixtureEvidence.sourceSetup.update {
+                $0.append(["caseSetup": "missing-index-invocation",
+                           "previousExistingURL": source.index.absoluteString,
+                           "currentMissingURL": missingIndex.absoluteString,
+                           "currentMissingHasDirectoryPath": String(missingIndex.hasDirectoryPath),
+                           "originalExactURLEquality": String(source.index == missingIndex)])
+            }
+            let missing = OwnershipSource(database: source.database, index: missingIndex,
+                profile: source.profile, revision: source.revision, fingerprint: source.fingerprint,
+                sidecar: source.sidecar, hashes: source.hashes,
+                bridge: source.bridge, generation: source.generation)
+            try await refuses(["filesystem_or_boundary_error", "unavailable"]) { try await missing.prepare() }
             try require(!FileManager.default.fileExists(atPath: source.index.path), "missing_index_created")
             try source.requireNoOpenOrPublication()
         }

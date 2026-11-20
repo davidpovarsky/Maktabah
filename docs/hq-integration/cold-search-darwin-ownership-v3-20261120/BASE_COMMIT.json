@@ -1,0 +1,35 @@
+{
+  "sha": "96f2b8a34259032c9328d972b8eacbdc94121e81",
+  "node_id": "C_kwDOTEwysNoAKDk2ZjJiOGEzNDI1OTAzMmM5MzI4ZDk3MmI4ZWFjYmRjOTQxMjFlODE",
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/96f2b8a34259032c9328d972b8eacbdc94121e81",
+  "html_url": "https://github.com/davidpovarsky/Maktabah/commit/96f2b8a34259032c9328d972b8eacbdc94121e81",
+  "author": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T16:07:32Z"
+  },
+  "committer": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T16:07:32Z"
+  },
+  "tree": {
+    "sha": "57f85214a2ec1fc3591eae58c7a750900c680047",
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/trees/57f85214a2ec1fc3591eae58c7a750900c680047"
+  },
+  "message": "test(search): bind Darwin ownership fixtures to canonical source and deterministic cache barrier\n\nPreserve the original 32 cases, product deadlines, production code and first failed Apple evidence. Include complete original artifact and independently verified source provenance.",
+  "parents": [
+    {
+      "sha": "3ef8f6c410074a633dda5c33121d429ccf543ef3",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/3ef8f6c410074a633dda5c33121d429ccf543ef3",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/commit/3ef8f6c410074a633dda5c33121d429ccf543ef3"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

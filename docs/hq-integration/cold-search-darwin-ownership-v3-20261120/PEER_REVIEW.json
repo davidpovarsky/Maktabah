@@ -1,0 +1,13 @@
+{
+  "reviewer": "/root/github_native_audit",
+  "scope": "READ_ONLY_SOURCE_ONLY",
+  "conclusion": "NO_CONCRETE_BLOCKER",
+  "findings": [
+    "Actual manager URL recaptured only after removal and confirmed same normalized path/absence",
+    "Profile/revision/fingerprint/bridge/generation remain original",
+    "Original refusal set, default1500ms, no-create and no-open remain",
+    "Does not widen refusal set to hide source_changed; source ABA controls remain separate"
+  ],
+  "swift_executed": 0,
+  "native_ui_executed": 0
+}

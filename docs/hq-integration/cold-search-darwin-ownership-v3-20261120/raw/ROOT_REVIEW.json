@@ -1,0 +1,67 @@
+{
+  "status": "ACTUAL_V2_FAILURE_INDEPENDENTLY_VERIFIED",
+  "reviewed_at": "2026-11-20T16:13:29.099576+00:00",
+  "run": 44770208643,
+  "attempt": 1,
+  "head": "96f2b8a34259032c9328d972b8eacbdc94121e81",
+  "job": 136405525120,
+  "started_at": "2026-11-20T16:08:00Z",
+  "completed_at": "2026-11-20T16:09:58Z",
+  "artifact": 14645498790,
+  "bytes": 1221829,
+  "sha256": "749005417942333ac26205ed58ed7dc7dc943157dd8adfb775dfab664a6a95a6",
+  "outer_crc_members": 253,
+  "canonical_source_members": 16,
+  "stages": {
+    "pre-guard1": {
+      "completed": 1,
+      "passed": 0,
+      "failures": [
+        {
+          "code": "stale_constructor_performed_more_native_work",
+          "id": "constructor_generation_switch_stops_further_native_work",
+          "outcome": "failed"
+        }
+      ],
+      "qualified": true,
+      "compile_exit": 0,
+      "runtime_exit": 1,
+      "runtime_seconds": 0.043206583999989334,
+      "source_unchanged": true,
+      "refusal_mismatches": []
+    },
+    "candidate32": {
+      "completed": 32,
+      "passed": 31,
+      "failures": [
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "missing_index_is_not_created",
+          "outcome": "failed"
+        }
+      ],
+      "qualified": false,
+      "compile_exit": 0,
+      "runtime_exit": 1,
+      "runtime_seconds": 2.169859666999997,
+      "source_unchanged": true,
+      "refusal_mismatches": [
+        {
+          "expected": "filesystem_or_boundary_error,unavailable",
+          "observed": "source_changed"
+        }
+      ]
+    }
+  },
+  "source_before_after_unchanged": true,
+  "original_qualifier_replayed": true,
+  "real_C_engine_executed": 0,
+  "Native_UI_executed": 0,
+  "v2_URL_observation": "Actual before-creation URL without directory hint differs from same-manager URL after creation. Original product exact guard retained.",
+  "cache_barrier_observation": {
+    "caseSetup": "cache-deadline-barrier",
+    "freeOuterOwners": "database-mutation-fixture,migration-fixture,otzaria-search-mutation-fixture",
+    "observedAttempt": "2",
+    "reachedSecondAttempt": "true"
+  }
+}
