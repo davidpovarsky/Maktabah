@@ -1,0 +1,10 @@
+{
+  "base_commit": "a826e66ab2710f1d3c05342da5b39b79e8c30c44",
+  "file": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+  "base_sha256": "10d57f821cdffe726bd34e12f34786ad22b28ec17a3fbd95f16439694120d27c",
+  "candidate_sha256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+  "candidate_git_blob": "b2a58dff91dfa13ce0bb01e0a4b53eb2cb9eec28",
+  "exact_inverse": true,
+  "all_existing_assertions_unchanged": true,
+  "new_swift_executions": 0
+}

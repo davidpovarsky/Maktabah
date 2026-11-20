@@ -3,7 +3,7 @@ name: Exact cold-search Core acceptance (isolated)
 on:
   push:
     branches:
-      - codex/otzaria-cold-search-core-apple-20261120
+      - codex/otzaria-cold-search-core-apple-v2-20261120
 
 permissions:
   contents: read
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   core-source-acceptance:
-    if: ${{ github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-cold-search-core-apple-20261120' }}
+    if: ${{ github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-cold-search-core-apple-v2-20261120' }}
     runs-on: xcode-27
     timeout-minutes: 50
     steps:
@@ -28,7 +28,7 @@ jobs:
         run: >-
           python3 tools/hq-cold-search-core-acceptance.py --verify-only
           --output build/cold-search-core-preflight
-          --expected-inputs-sha256 59a9e89f2bf16f556917577509de64c1c3f99052e7d1509e0c5bf1d9c04226e6
+          --expected-inputs-sha256 34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff
       - name: Verify the actual-leaf evidence verifier
         run: python3 Tests/HQ/cold-search/test_core_driver.py
       - name: Select the original existing Apple SDK toolchain
@@ -39,7 +39,7 @@ jobs:
         run: >-
           python3 tools/hq-cold-search-core-acceptance.py
           --output build/cold-search-core-apple
-          --expected-inputs-sha256 59a9e89f2bf16f556917577509de64c1c3f99052e7d1509e0c5bf1d9c04226e6
+          --expected-inputs-sha256 34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff
       - name: Retain authentic source, commands, XCTest leaves and diagnostics
         if: always()
         uses: actions/upload-artifact@v4

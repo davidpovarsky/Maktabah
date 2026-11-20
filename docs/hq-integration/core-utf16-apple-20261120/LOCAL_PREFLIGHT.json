@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "cold-search-utf16-repair-20261120/candidate/tools/hq-cold-search-core-acceptance.py",
+    "--repo",
+    "cold-search-utf16-repair-20261120/candidate",
+    "--verify-only",
+    "--output",
+    "cold-search-utf16-repair-20261120/v2-local-preflight",
+    "--expected-inputs-sha256",
+    "34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff"
+  ],
+  "returncode": 0,
+  "observed_at": "2026-11-20T15:38:06.832119+00:00",
+  "scope": "Manifest/source/inventory preflight only; no Swift execution",
+  "swift_tests_executed": 0
+}

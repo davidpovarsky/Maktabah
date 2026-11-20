@@ -30,7 +30,7 @@ NEW_TEST = PACKAGE + "/Tests/OtzariaActionCoreTests/Engine/ColdSearchExecutionOf
 FIXTURE = "docs/hq-actions-bridge/embedded-handler-fixtures.json"
 INPUTS = "Tests/HQ/cold-search/CORE_INPUTS.json"
 WORKFLOW = ".github/workflows/otzaria-cold-search-core-validation.yml"
-BRANCH = "refs/heads/codex/otzaria-cold-search-core-apple-20261120"
+BRANCH = "refs/heads/codex/otzaria-cold-search-core-apple-v2-20261120"
 
 
 def digest(data: bytes) -> str:

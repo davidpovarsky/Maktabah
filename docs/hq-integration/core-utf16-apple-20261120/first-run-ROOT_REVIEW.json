@@ -1,0 +1,34 @@
+{
+  "status": "VERIFIED_ACTUAL_APPLE_CORE_FAILURE",
+  "reviewed_at": "2026-11-20T15:28:58.190478+00:00",
+  "run_id": 44762582027,
+  "artifact_id": 14642357201,
+  "artifact_sha256": "333dc94f24ce2c5dcd2270a236c5807ce2be4cb6d348c861550a4e08f655d81b",
+  "source_commit": "a826e66ab2710f1d3c05342da5b39b79e8c30c44",
+  "original_core_cases": 174,
+  "new_cold_cases": 20,
+  "baseline": {
+    "pass": 11,
+    "fail": 9,
+    "skip": 0,
+    "qualified": true
+  },
+  "candidate": {
+    "pass": 193,
+    "fail": 1,
+    "skip": 0,
+    "new_twenty_passed": 20,
+    "failed_cases": [
+      {
+        "id": "NoteDraftActionTests/testInvalidMissingOversizedOrSplitUTF16SelectionCannotGuessFallback",
+        "outcome": "failed",
+        "seconds": 0.296
+      }
+    ]
+  },
+  "source_archive_canonical_git_blobs": 61,
+  "all_source_before_after_equal": true,
+  "actual_python_mac_controls": 13,
+  "new_test_execution_during_replay": 0,
+  "app_or_darwin_lock_or_native_engine_or_ui_credit": false
+}

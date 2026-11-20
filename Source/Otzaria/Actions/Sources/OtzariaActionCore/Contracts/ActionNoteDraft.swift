@@ -75,6 +75,16 @@ public enum ActionNoteDraftSelection {
               originalRange.length <= 20_000, let range = Range(originalRange, in: sourceText) else {
             throw ActionPortError.notSupported
         }
+        // Foundation may produce a String range for the interior of a UTF-16
+        // surrogate pair on Apple platforms. Prove both original code-unit
+        // endpoints are exact scalar boundaries before slicing the source.
+        let sourceUTF16 = sourceText.utf16
+        let lowerUTF16 = sourceUTF16.index(sourceUTF16.startIndex, offsetBy: originalRange.location)
+        let upperUTF16 = sourceUTF16.index(lowerUTF16, offsetBy: originalRange.length)
+        guard lowerUTF16.samePosition(in: sourceText.unicodeScalars) != nil,
+              upperUTF16.samePosition(in: sourceText.unicodeScalars) != nil else {
+            throw ActionPortError.notSupported
+        }
         let snippet = String(sourceText[range])
         guard snippet.unicodeScalars.count <= 10_000 else { throw ActionPortError.notSupported }
         if let selected = request.selectedText, !selected.utf8.elementsEqual(snippet.utf8) {
