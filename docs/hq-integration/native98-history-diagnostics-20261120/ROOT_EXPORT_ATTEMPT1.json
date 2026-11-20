@@ -1,0 +1,8 @@
+{
+  "status": "EXPORT_ASSERTION_FAILED_BEFORE_MERGE",
+  "cause": "apply_patch text transfer appended one additional newline; exact Git raw response preserved separately and used without newline modification",
+  "export_bytes": 31727,
+  "canonical_bytes": 31726,
+  "source_or_tests_changed": false,
+  "test_cases_executed": 0
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "name": "propagate_existing_additional_arguments",
+    "old": "            ] + (fontSize.map { [\"-textViewFontSize\", String($0)] } ?? []),",
+    "new": "            ] + (fontSize.map { [\"-textViewFontSize\", String($0)] } ?? []) + readerAdditionalLaunchArguments,"
+  }
+]

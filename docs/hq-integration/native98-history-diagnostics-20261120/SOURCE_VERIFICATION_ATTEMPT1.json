@@ -1,0 +1,10 @@
+{
+  "status": "VERIFIER_SETUP_FAILURE",
+  "scriptSHA256": "1e3511bb1534979153b3669500371696f0bc0053d71d9d564d24b592f0d171a5",
+  "exitCode": 1,
+  "failedCheck": "Global whole-file marker `let settled = XCTNSPredicateExpectation` was nonunique; verification aborted before block comparison.",
+  "correction": "Scope the exact original History method before checking its unchanged subblocks. No Swift source change.",
+  "SwiftTestsExecuted": 0,
+  "AppleTypecheck": "NOT_RUN",
+  "Native": "NOT_RUN"
+}

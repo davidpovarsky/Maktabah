@@ -1,0 +1,71 @@
+{
+  "scope": "Read-only existing route, not dispatched here; a new bound push wrapper is separately assigned to Root review.",
+  "workflow": ".github/workflows/sefaria-embedded-validation.yml",
+  "workflowGitBlob": "ac42069b4dbbe57898c45e280513412c8df41ee7",
+  "job": "ui-sdk-check-only",
+  "timeoutMinutes": 15,
+  "inputs": {
+    "run_simulator_tests": false,
+    "validation_runner": "xcode-27",
+    "source_ref": "",
+    "run_production_release": false,
+    "ui_sdk_check_only": true,
+    "books_updates_check_only": false,
+    "hq_stage2_focused": false,
+    "hq_stage2_expected_sha": "",
+    "runtime27_mode": "off",
+    "ui_diagnostic_cases": ""
+  },
+  "steps": [
+    "actions/checkout@v4 of immutable dispatched ref",
+    "Scripts/CI/select-runtime27-toolchain.py --github-env --report build/artifacts/ui-acceptance-typecheck.toolchain.json",
+    "Scripts/CI/typecheck-faithful-ui-tests.py",
+    "Scripts/CI/test-faithful-workspace.py",
+    "always upload original faithful-ui-sdk-check evidence"
+  ],
+  "compile": {
+    "driver": "Scripts/CI/typecheck-faithful-ui-tests.py",
+    "gitBlob": "0102957b43d9e4a71cd122046418dd33b55b8210",
+    "arguments": [
+      "-c",
+      "-whole-module-optimization",
+      "-swift-version",
+      "6",
+      "-enable-testing",
+      "-D",
+      "DEBUG",
+      "-target",
+      "arm64-apple-ios27.0-simulator"
+    ],
+    "fullFiles": [
+      "MaktabahUITestBase.swift",
+      "FaithfulReaderUIAcceptanceTests.swift",
+      "Build8401SevenDefectsAcceptanceTests.swift",
+      "PullNavigationAcceptanceTests.swift",
+      "SefariaEmbeddedAcceptanceTests.swift",
+      "NativeRoutingAcceptanceTests.swift",
+      "GlobalSearchNativeAcceptanceTests.swift",
+      "R27NativeInteractionAcceptanceTests.swift",
+      "Sidebar11201AcceptanceTests.swift",
+      "HanlinConsumerAcceptanceTests.swift",
+      "BookHistoryScopeAcceptanceTests.swift"
+    ]
+  },
+  "originalRemainingGates": [
+    "actual SDK/toolchain pair",
+    "original source membership",
+    "selected declaration parsing (separate from codegeneration)",
+    "original pinned Hanlin preparation",
+    "UIRoutingHost SDK package build",
+    "original SQLite/source regressions",
+    "original workspace contracts"
+  ],
+  "limits": [
+    "No full18-file target claim",
+    "No Native UI execution",
+    "No full app composition/build claim",
+    "No Core174/194 XCTest execution claim",
+    "No final four-pin M/F acceptance preflight: this route binds actual HEAD and per-file source hashes"
+  ],
+  "observedExecution": "NOT_RUN"
+}

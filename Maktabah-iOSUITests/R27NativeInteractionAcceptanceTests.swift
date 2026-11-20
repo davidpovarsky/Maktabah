@@ -24,7 +24,7 @@ class R27NativeUIBase: FaithfulReaderUIBase {
                 "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
                 "-studyWorkspaceTestingNamespace", workspaceNamespace,
                 "-textViewBackgroundColorLight", String(background)
-            ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []),
+            ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []) + readerAdditionalLaunchArguments,
             language: language,
             locale: language == "he" ? "he_IL" : "en_US"
         )

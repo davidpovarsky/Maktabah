@@ -1,0 +1,29 @@
+[
+  {
+    "name": "UnifiedSearchSessionController.swift",
+    "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+    "sourceSHA": "f0dcb09be6c73f306d14ac2527b0c1d21a6e03b1",
+    "gitBlob": "8e62133937df4349a7d9a3c6ed1d9e17deb0e337",
+    "bytes": 34057,
+    "sha256": "26222438075d476c96c34d1b3416a11dbd0630c1664a97c679d509e555850937",
+    "scope": "read-only existing source; not modified"
+  },
+  {
+    "name": "sefaria-embedded-validation.yml",
+    "path": ".github/workflows/sefaria-embedded-validation.yml",
+    "sourceSHA": "f0dcb09be6c73f306d14ac2527b0c1d21a6e03b1",
+    "gitBlob": "ac42069b4dbbe57898c45e280513412c8df41ee7",
+    "bytes": 44363,
+    "sha256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4",
+    "scope": "read-only existing source; not modified"
+  },
+  {
+    "name": "typecheck-faithful-ui-tests.py",
+    "path": "Scripts/CI/typecheck-faithful-ui-tests.py",
+    "sourceSHA": "f0dcb09be6c73f306d14ac2527b0c1d21a6e03b1",
+    "gitBlob": "0102957b43d9e4a71cd122046418dd33b55b8210",
+    "bytes": 24211,
+    "sha256": "07e2c054f1c826631a946db4d868f7f1d8d85c34d5bb511feb2d5976fd5d40e4",
+    "scope": "read-only existing source; not modified"
+  }
+]

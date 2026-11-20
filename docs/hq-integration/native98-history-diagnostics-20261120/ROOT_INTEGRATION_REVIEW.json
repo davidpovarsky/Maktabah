@@ -1,0 +1,23 @@
+{
+  "status": "SOURCE_INTEGRATION_VERIFIED",
+  "verified_at": "2026-11-20T15:18:41.505233+00:00",
+  "parent_head": "b82fe8843803bdd6fbecc6bf0262bdcdfb9e2e28",
+  "incoming_commit": "e23e8fde506c80187e87a19a390ddb3317b663b6",
+  "source_base": "f0dcb09be6c73f306d14ac2527b0c1d21a6e03b1",
+  "verified_incoming_git_blobs": 22,
+  "combined": {
+    "bytes": 196355,
+    "sha256": "00d8ba990af59931666f7b95ee04419edd538c23f7e4aa0e7949f2a9958a84f1",
+    "git_blob": "479ba206e76aa69b90cf8f04ae55ee5a99d60186"
+  },
+  "three_way_merge_conflicts": 0,
+  "merge_commutative": true,
+  "inverse_history_exact_groups": true,
+  "inverse_groups_exact_history": true,
+  "existing_case_declarations": 40,
+  "Swift_parse": "NOT_RUN",
+  "Apple_typecheck": "NOT_RUN",
+  "Native": "NOT_RUN",
+  "new_cases_executed": 0,
+  "retained_export_attempt1": "ROOT_EXPORT_ATTEMPT1.json"
+}

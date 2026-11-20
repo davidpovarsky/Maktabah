@@ -1,0 +1,36 @@
+{
+  "baseSHA": "f0dcb09be6c73f306d14ac2527b0c1d21a6e03b1",
+  "files": {
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+      "baseGitBlob": "44f9285689ca55bfff25d4bdc7272476e57a94cf",
+      "candidateGitBlob": "036d0f82577b4fd17fd3cc5dc18526362c34cac3",
+      "baseSHA256": "a61c37fdb602c466f2e6925f22726feb2c253247007ecaa9ddaf919fba9daeee",
+      "candidateSHA256": "55b860b1943aea56fd344a3c46908c3f58d8e9a6cfcadd84c9561595c004074c",
+      "baseBytes": 184053,
+      "candidateBytes": 190723,
+      "exactInverse": true
+    },
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": {
+      "baseGitBlob": "49bd17ba27078ecc957495365788ced1b5a41626",
+      "candidateGitBlob": "26ddbe5bbd20d759424bf253756e9c755ba50a58",
+      "baseSHA256": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+      "candidateSHA256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f",
+      "baseBytes": 31726,
+      "candidateBytes": 31760,
+      "exactInverse": true
+    }
+  },
+  "FaithfulChanges": [
+    "passive_file_and_trace_helpers",
+    "same_bounded_reader_result",
+    "preference_failure_diagnostics",
+    "existing_debug_flag_opt_in",
+    "history_only_lifetime",
+    "attachments_only"
+  ],
+  "R27Change": "propagate_existing_additional_arguments",
+  "originalReadResourceKeysPreserved": true,
+  "SwiftParse": "NOT_RUN",
+  "AppleTypecheck": "NOT_RUN",
+  "Native": "NOT_RUN"
+}
