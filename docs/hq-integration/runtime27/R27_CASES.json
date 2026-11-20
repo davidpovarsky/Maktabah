@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+  "source_test_commit": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+  "app_source": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "All90 selected Native cases: all88 original plus2 current-work Hanlin consent/revoke cases;71 iPad27 and19 iPhone27. Zero skips required. Original realUI installation, engines, owners and exact-source oracles remain mandatory; prior-source passes are not transferred.",
@@ -1346,7 +1346,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+  "application_source_sha": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -1960,5 +1960,26 @@
       "store": 11
     },
     "original_sdk": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+  },
+  "native_repair_and_inspector_freeze_20261120": {
+    "application_source_sha": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+    "previous_pins": {
+      "application_source_sha": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+      "app_source": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+      "source_test_commit": "c37b72374b65a44d54cdcffea2e39f5818a12aac"
+    },
+    "native_search_source": "4fee5615914e0987c98f0b999e48f4f9ef49eab0",
+    "inspector_source_and_actual_host_fixture": "8457e48f585bc1c74f686088db7ab6b6cd87d46f",
+    "inspector_fixture_actual_baseline": {
+      "pass": 16,
+      "fail": 8
+    },
+    "inspector_fixture_actual_candidate": {
+      "pass": 24,
+      "fail": 0
+    },
+    "full_phase_required_cases_unchanged": 90,
+    "native_executed_at_this_source": 0,
+    "acceptance": "PENDING_ACTUAL_NATIVE; host doubles do not establish UIKit acceptance"
   }
 }
