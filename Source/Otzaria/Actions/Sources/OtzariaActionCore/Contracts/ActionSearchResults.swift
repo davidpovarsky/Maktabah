@@ -12,6 +12,14 @@ public struct ActionSearchResultsQuery: Sendable, Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.search == rhs.search && lhs.search.text.utf8.elementsEqual(rhs.search.text.utf8)
     }
+    /// Canonical projection into the existing strict UI action. Construction
+    /// has already rejected nondefault pagination; every semantic field stays
+    /// intact, including byte-exact text, scope revisions, mode and sort order.
+    public func actionArguments() throws -> ActionObject {
+        var fields = try ActionJSON.encoded(search).object ?? [:]
+        fields.removeValue(forKey: "offset"); fields.removeValue(forKey: "limit")
+        return ["searchQuery": .object(fields)]
+    }
     public static func arguments(_ arguments: ActionObject, backend: ActionBackendID) throws -> Self {
         guard arguments["searchHandle"] == nil else { throw ActionPortError.notSupported }
         guard let object = arguments["searchQuery"]?.object else { throw ActionContractError.invalid("searchQuery") }

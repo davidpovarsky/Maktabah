@@ -1,0 +1,138 @@
+{
+  "sourceCommit": "fb83df7f8bbbd5f0e6ae13113d45982af666779a",
+  "base": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "branch": "codex/otzaria-semantic-compound-20261120",
+  "capturedAt": "2026-11-20T11:07:19.621209+00:00",
+  "coreAttempts": [
+    {
+      "name": "baseline-commentary",
+      "completed": 23,
+      "passed": 21,
+      "failedCompleted": 2
+    },
+    {
+      "name": "candidate-core-attempt1",
+      "completed": 0,
+      "passed": 0,
+      "failedCompleted": 0,
+      "compileFailure": true
+    },
+    {
+      "name": "candidate-core-attempt2-lifetime-red",
+      "completed": 142,
+      "passed": 141,
+      "failedCompleted": 1,
+      "crashedCase": "SemanticJourneyTests.testCountOpensByteExactOriginalQueryWithSameScopeAndDistinctDocumentCount",
+      "declaredNotCompleted": 31
+    },
+    {
+      "name": "candidate-core-attempt3-complete-red",
+      "completed": 173,
+      "passed": 166,
+      "failedCompleted": 7
+    },
+    {
+      "name": "candidate-core-attempt4-lifetime-red",
+      "completed": 174,
+      "passed": 172,
+      "failedCompleted": 2
+    },
+    {
+      "name": "candidate-core-attempt5-green",
+      "completed": 174,
+      "passed": 174,
+      "failedCompleted": 0
+    }
+  ],
+  "lifetimeRedCases": [
+    "SemanticJourneyTests.testReadRevokedDuringResultsPresentationDiscardsNumberButPreservesNativeEffect",
+    "SemanticJourneyTests.testSourceChangedDuringResultsPresentationDiscardsNumberButDoesNotEraseReceipt"
+  ],
+  "originalCoreCases": 137,
+  "newMetadataCases": 4,
+  "newJourneyCases": 33,
+  "hostOriginalMembers": 7,
+  "hostCases": 60,
+  "appleTypecheck": "NOT_RUN",
+  "nativeCompound": "NOT_RUN",
+  "modelTransmission": "NOT_RUN",
+  "scopeRevisionGuard": "unchanged; explicit refusal retained",
+  "reviews": [
+    {
+      "reviewer": "root/github_native_audit",
+      "scope": "initial semantic ownership and receipt/source continuations",
+      "kind": "source-only",
+      "result": "initial review found no blocker; subsequent review found same-object source projection gap; intermediate 40-case fixture insufficient for that invariant"
+    },
+    {
+      "reviewer": "root/github_native_audit",
+      "scope": "final original source guard at Composition 888-904",
+      "kind": "source-only",
+      "result": "full epoch/projection/locale equality closes same-instance gap; unchanged receipt/directory guards; nil viewer metadata boundary agrees with original Search projection; no additional blocker in this delta"
+    }
+  ],
+  "baselineExecutableRetained": {
+    "path": "C:\\Users\\DAVID\\Code\\Maktabah-semantic-compound-20261120\\build\\semantic-compound-20261120\\baseline-commentary\\OtzariaActionCorePackageTests.xctest",
+    "sha256": "e1eea5b6bc287929ffec464e765967e94b042b98194d7c7bfe6ac5b9623c979e"
+  },
+  "intermediateSourceCommit": "c6986ae19b43827402cddab512fa42aee4be5f30",
+  "hostOriginalMappingDeclarations": 3,
+  "hostOriginalCaseNamesPreserved": 40,
+  "hostAttempts": [
+    {
+      "name": "host-attempt1",
+      "completed": 40,
+      "passed": 40,
+      "failed": 0,
+      "sourceCommit": "c6986ae19b43827402cddab512fa42aee4be5f30",
+      "scopeLimitation": "simplified mapping values did not cover same-source-object ownership changes"
+    },
+    {
+      "name": "host-attempt2-projection-red",
+      "completed": 60,
+      "passed": 42,
+      "failed": 18,
+      "productSourceCommit": "c6986ae19b43827402cddab512fa42aee4be5f30",
+      "fixtureSourceCommit": "fb83df7f8bbbd5f0e6ae13113d45982af666779a"
+    },
+    {
+      "name": "host-attempt3-projection-green",
+      "completed": 60,
+      "passed": 60,
+      "failed": 0,
+      "sourceCommit": "fb83df7f8bbbd5f0e6ae13113d45982af666779a"
+    }
+  ],
+  "projectionRedCases": [
+    "search_source_epoch_revision_aba_refused",
+    "search_source_epoch_source_id_refused",
+    "search_profile_identity_change_refused",
+    "search_group_identity_change_refused",
+    "search_profile_membership_change_refused",
+    "search_group_membership_change_refused",
+    "search_active_tab_change_refused",
+    "search_active_tab_disappearance_refused",
+    "search_tab_membership_change_refused",
+    "search_target_book_identity_change_refused",
+    "search_target_work_identity_change_refused",
+    "search_target_backend_change_refused",
+    "search_target_reader_lifetime_change_refused",
+    "search_target_reader_disappearance_refused",
+    "search_locale_change_refused",
+    "search_visible_reader_content_change_refused",
+    "search_visible_work_source_change_refused",
+    "search_visible_selection_change_refused"
+  ],
+  "coreUnchangedSince174Pass": true,
+  "packagingAttempts": [
+    {
+      "attempt": 1,
+      "verifierExit": 1,
+      "reason": "CRLF line matching; retained raw bytes and original verifier"
+    },
+    {
+      "attempt": 2,
+      "change": "normalize only text parsing to match original driver; preserve raw SHA checks"
+    }
+  ]
+}

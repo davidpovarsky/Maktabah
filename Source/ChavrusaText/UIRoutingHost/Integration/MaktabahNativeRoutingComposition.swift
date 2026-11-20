@@ -151,6 +151,24 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
     private var searchResultsInvocations: [UUID: SearchResultsInvocation] = [:]
 
+    /// One bounded compound call retains the original source observation. Only
+    /// an acknowledged commentary reader may advance it to the new tab.
+    private final class SemanticJourneyOwner {
+        let sceneID: UIStableID
+        let managerID: ObjectIdentifier
+        let context: ActionExecutionContext
+        var observation: HanlinSourceObservation
+        init(sceneID: UIStableID, managerID: ObjectIdentifier, context: ActionExecutionContext,
+             observation: HanlinSourceObservation) {
+            self.sceneID = sceneID; self.managerID = managerID
+            self.context = context; self.observation = observation
+        }
+    }
+    private struct SemanticJourneyInvocation {
+        let owner: SemanticJourneyOwner
+        let request: ActionRequest
+    }
+
 
     init(backend: any ActionSynchronousBackendStatePort & ActionResolverDataPort & ActionSearchPort) throws {
         self.backend = backend
@@ -732,9 +750,168 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
 
 
+    /// An explicit trusted caller must supply its live read authority. This API
+    /// does not grant corpus access, expose a Hanlin tool, or send a message.
+    func countThenOpenSearchResults(query: ActionOccurrenceQuery, manager: iOSNavigationManager,
+                                    readAuthority: @escaping @MainActor () throws -> ActionExecutionContext) async throws -> ActionSemanticJourneyResult {
+        let journey = try await semanticJourneys(manager: manager, readAuthority: readAuthority)
+        return await journey.countThenOpenResults(query)
+    }
+
+    func openCommentaryThenPrepareDraft(baseLocator: ActionTextRef, workRef: ActionWorkRef? = nil,
+                                        commentaryQuery: String? = nil, proposedText: String? = nil,
+                                        manager: iOSNavigationManager) async throws -> ActionSemanticJourneyResult {
+        let journey = try await semanticJourneys(manager: manager)
+        return await journey.commentaryThenPrepareDraft(baseLocator: baseLocator, workRef: workRef,
+            commentaryQuery: commentaryQuery, proposedText: proposedText)
+    }
+
+    func resolveCommentaryThenPrepareDraft(backend: ActionBackendID, baseWorkQuery: String, section: String,
+                                           commentaryQuery: String, proposedText: String? = nil,
+                                           manager: iOSNavigationManager) async throws -> ActionSemanticJourneyResult {
+        let journey = try await semanticJourneys(manager: manager)
+        return await journey.resolveCommentaryThenPrepareDraft(backend: backend, baseWorkQuery: baseWorkQuery,
+            section: section, commentaryQuery: commentaryQuery, proposedText: proposedText)
+    }
+
+    private func semanticJourneys(manager: iOSNavigationManager,
+                                  readAuthority: (@MainActor () throws -> ActionExecutionContext)? = nil) async throws -> ActionSemanticJourneys {
+        let end = deadline(), managerID = ObjectIdentifier(manager)
+        let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: managerID)
+        }
+        guard let entry = scenes[sceneID], entry.managerID == managerID, contexts[sceneID] == nil else {
+            throw UIRouteError(.unavailable, "native_scene_busy")
+        }
+        let observed = try hanlinSource(sceneID: sceneID, entry: entry)
+        let owner = SemanticJourneyOwner(sceneID: sceneID, managerID: managerID,
+            context: context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend), observation: observed)
+        let navigation: ActionSemanticJourneys.Authority = { [self] in
+            try validateSemanticJourney(owner)
+            return .init(context: owner.context, snapshot: owner.observation.backend)
+        }
+        let read: ActionSemanticJourneys.Authority?
+        if let readAuthority {
+            read = { [self] in
+                try validateSemanticJourney(owner)
+                let context = try readAuthority()
+                guard context.foregroundSceneID == owner.sceneID.rawValue else { throw ActionPortError.staleState }
+                return .init(context: context, snapshot: owner.observation.backend)
+            }
+        } else { read = nil }
+        return .init(core: core, navigationAuthority: navigation, readAuthority: read) { [self, manager] request, authority in
+            try validateSemanticJourney(owner)
+            guard authority.context == owner.context, authority.snapshot == owner.observation.backend else {
+                throw ActionPortError.staleState
+            }
+            let continuing = SemanticJourneyInvocation(owner: owner, request: request)
+            do {
+                switch request.action {
+                case "search.openResults":
+                    let query = try ActionSearchResultsQuery.arguments(request.arguments, backend: authority.snapshot.backend)
+                    return try await openSearchResults(query: query, manager: manager, continuing: continuing)
+                case "reader.openCommentary":
+                    guard let base = try request.arguments["baseLocator"]?.decoded(as: ActionTextRef.self) else { throw ActionPortError.invalidResponse }
+                    return try await openCommentary(baseLocator: base,
+                        workRef: request.arguments["workRef"]?.decoded(as: ActionWorkRef.self),
+                        commentaryQuery: request.arguments["commentaryQuery"]?.string,
+                        manager: manager, continuing: continuing)
+                case "notes.prepareDraft":
+                    guard let locator = try request.arguments["locator"]?.decoded(as: ActionTextRef.self) else { throw ActionPortError.invalidResponse }
+                    return try await prepareNoteDraft(locator: locator, selectedText: nil,
+                        proposedText: request.arguments["proposedText"]?.string,
+                        manager: manager, continuing: continuing)
+                default: throw ActionPortError.notSupported
+                }
+            } catch let error as UIRouteError { throw ActionNavigationError(error.status, error.code) }
+        }
+    }
+
+    private func validateSemanticJourney(_ owner: SemanticJourneyOwner) throws {
+        try Task.checkCancellation()
+        guard let entry = scenes[owner.sceneID], entry.managerID == owner.managerID,
+              contexts[owner.sceneID] == nil else { throw ActionPortError.staleState }
+        do {
+            guard try hanlinSource(sceneID: owner.sceneID, entry: entry) == owner.observation else { throw ActionPortError.staleState }
+        } catch { throw ActionPortError.staleState }
+    }
+
+    private func semanticJourneyInvocation(_ continuing: SemanticJourneyInvocation?, fallback: ActionRequest,
+                                           context: ActionExecutionContext, sceneID: UIStableID,
+                                           observed: HanlinSourceObservation) throws -> (ActionRequest, ActionExecutionContext) {
+        guard let continuing else { return (fallback, context) }
+        try validateSemanticJourney(continuing.owner)
+        let request = continuing.request, encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys]
+        guard continuing.owner.sceneID == sceneID, continuing.owner.observation == observed,
+              request.action == fallback.action, request.expectedBackend == fallback.expectedBackend,
+              request.expectedGeneration == fallback.expectedGeneration,
+              request.requestedPresentation == fallback.requestedPresentation,
+              try encoder.encode(request.arguments) == encoder.encode(fallback.arguments) else {
+            throw ActionPortError.staleState
+        }
+        return (request, continuing.owner.context)
+    }
+
+    private func advanceSemanticJourney(_ owner: SemanticJourneyOwner, receipt: UISceneReceipt) throws {
+        guard let entry = scenes[owner.sceneID], entry.managerID == owner.managerID,
+              contexts[owner.sceneID] == owner.context,
+              receipt.sceneID == owner.sceneID, receipt.backendSnapshot == owner.observation.backend,
+              let reader = receipt.coreReceipt, reader.destination.presentationMode == .newTab else {
+            throw ActionPortError.staleState
+        }
+        let current = try directory.synchronousScene(sceneID: owner.sceneID, context: owner.context,
+            backend: backend.currentBackendSnapshot())
+        guard current.revision == receipt.appliedSceneRevision, current.visibleRoute == receipt.route,
+              current.backendSnapshot == receipt.backendSnapshot else { throw ActionPortError.staleState }
+        let observed = try hanlinSource(sceneID: owner.sceneID, entry: entry)
+        guard observed.backend == owner.observation.backend,
+              observed.readerContent?.sectionLocator == reader.destination.sectionLocator,
+              observed.readerContent?.focusLocator == reader.destination.focusLocator else { throw ActionPortError.staleState }
+        owner.observation = observed
+    }
+
+    /// A count remains withheld until its read authority is checked again after
+    /// the results UI await. Only our exact observed search transition may move
+    /// the scene witness; this never renews the caller's separate read grant.
+    private func advanceSemanticSearchJourney(_ owner: SemanticJourneyOwner, receipt: UISceneReceipt) throws {
+        guard let entry = scenes[owner.sceneID], entry.managerID == owner.managerID,
+              contexts[owner.sceneID] == owner.context,
+              receipt.sceneID == owner.sceneID, receipt.backendSnapshot == owner.observation.backend,
+              receipt.coreReceipt == nil, receipt.route.destination.rawValue == "native.search.results" else {
+            throw ActionPortError.staleState
+        }
+        let current = try directory.synchronousScene(sceneID: owner.sceneID, context: owner.context,
+            backend: backend.currentBackendSnapshot())
+        guard current.revision == receipt.appliedSceneRevision, current.visibleRoute == receipt.route,
+              current.backendSnapshot == receipt.backendSnapshot else { throw ActionPortError.staleState }
+        let observed = try hanlinSource(sceneID: owner.sceneID, entry: entry)
+        let prior = owner.observation
+        // The original Viewer -> Search mode switch does not change the mapping
+        // projection or its epoch. Never adopt another profile/group/tab/reader
+        // merely because the mapping-source object survived the UI await.
+        // Off Viewer, its visible reader metadata can become unobservable (nil);
+        // any metadata still observed must retain the original value. The
+        // caller's separate live read authority is checked again before publish.
+        guard observed.backend == prior.backend, observed.source == prior.source,
+              observed.epoch == prior.epoch, observed.projection == prior.projection,
+              observed.locale == prior.locale,
+              observed.readerContent == nil || observed.readerContent == prior.readerContent,
+              observed.currentWorkReadSource == nil || observed.currentWorkReadSource == prior.currentWorkReadSource,
+              observed.selectedRange == nil || observed.selectedRange == prior.selectedRange else {
+            throw ActionPortError.staleState
+        }
+        owner.observation = observed
+    }
+
     /// Explicit local submission into the original global results UI. Paging
     /// and result ownership remain with that existing session and its engines.
     func openSearchResults(query: ActionSearchResultsQuery, manager: iOSNavigationManager) async throws -> ActionResult {
+        try await openSearchResults(query: query, manager: manager, continuing: nil)
+    }
+
+    private func openSearchResults(query: ActionSearchResultsQuery, manager: iOSNavigationManager,
+                                   continuing: SemanticJourneyInvocation?) async throws -> ActionResult {
         let end = deadline(), managerID = ObjectIdentifier(manager)
         let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
             try await waitForMount(managerID: managerID)
@@ -745,12 +922,12 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             throw UIRouteError(.unavailable, "native_scene_busy")
         }
         let observed = try hanlinSource(sceneID: sceneID, entry: entry)
-        let context = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
-        var fields = try ActionJSON.encoded(query.search).object ?? [:]
-        fields.removeValue(forKey: "offset"); fields.removeValue(forKey: "limit")
-        let request = ActionRequest(action: "search.openResults", arguments: ["searchQuery": .object(fields)],
+        let localContext = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
+        let localRequest = ActionRequest(action: "search.openResults", arguments: try query.actionArguments(),
             expectedBackend: query.search.backend, expectedGeneration: observed.backend.generation,
             requestedPresentation: .foreground)
+        let (request, context) = try semanticJourneyInvocation(continuing, fallback: localRequest,
+            context: localContext, sceneID: sceneID, observed: observed)
         let pending = SearchResultsInvocation(sceneID: sceneID, context: context, observation: observed, query: query)
         searchResultsInvocations[request.requestId] = pending
         defer {
@@ -761,6 +938,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         if result.status == .completed {
             guard let receipt = pending.receipt else { throw ActionPortError.invalidResponse }
             record(.acknowledged(receipt))
+            if let continuing {
+                do { try advanceSemanticSearchJourney(continuing.owner, receipt: receipt) }
+                catch { throw Self.uncertainNativeEffect(error) }
+            }
         }
         return result
     }
@@ -841,6 +1022,12 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     /// content scope, note write or new agent tool is granted by this entry.
     func openCommentary(baseLocator: ActionTextRef, workRef: ActionWorkRef? = nil,
                         commentaryQuery: String? = nil, manager: iOSNavigationManager) async throws -> ActionResult {
+        try await openCommentary(baseLocator: baseLocator, workRef: workRef, commentaryQuery: commentaryQuery,
+            manager: manager, continuing: nil)
+    }
+
+    private func openCommentary(baseLocator: ActionTextRef, workRef: ActionWorkRef?, commentaryQuery: String?,
+                                manager: iOSNavigationManager, continuing: SemanticJourneyInvocation?) async throws -> ActionResult {
         let end = deadline(), managerID = ObjectIdentifier(manager)
         let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
             try await waitForMount(managerID: managerID)
@@ -849,13 +1036,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
               commentaryInvocations.count < 16,
               !commentaryInvocations.values.contains(where: { $0.sceneID == sceneID }) else { throw UIRouteError(.unavailable, "native_scene_busy") }
         let observed = try hanlinSource(sceneID: sceneID, entry: entry)
-        let context = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
+        let localContext = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
         var arguments: ActionObject = ["baseLocator": try .encoded(baseLocator)]
         if let workRef { arguments["workRef"] = try .encoded(workRef) }
         if let commentaryQuery { arguments["commentaryQuery"] = .string(commentaryQuery) }
-        let request = ActionRequest(action: "reader.openCommentary", arguments: arguments,
+        let localRequest = ActionRequest(action: "reader.openCommentary", arguments: arguments,
             expectedBackend: baseLocator.backend, expectedGeneration: observed.backend.generation,
             requestedPresentation: .foreground)
+        let (request, context) = try semanticJourneyInvocation(continuing, fallback: localRequest,
+            context: localContext, sceneID: sceneID, observed: observed)
         let pending = CommentaryInvocation(sceneID: sceneID, context: context, observation: observed)
         commentaryInvocations[request.requestId] = pending
         defer {
@@ -867,6 +1056,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         if result.status == .completed {
             guard let receipt = readerInvocations[request.requestId]?.receipt else { throw ActionPortError.invalidResponse }
             record(.acknowledged(receipt))
+            if let continuing {
+                do { try advanceSemanticJourney(continuing.owner, receipt: receipt) }
+                catch { throw Self.uncertainNativeEffect(error) }
+            }
         }
         return result
     }
@@ -917,6 +1110,12 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     /// the Annotation nor exports selected text through a new agent tool.
     func prepareNoteDraft(locator: ActionTextRef, selectedText: String? = nil,
                           proposedText: String? = nil, manager: iOSNavigationManager) async throws -> ActionResult {
+        try await prepareNoteDraft(locator: locator, selectedText: selectedText, proposedText: proposedText,
+            manager: manager, continuing: nil)
+    }
+
+    private func prepareNoteDraft(locator: ActionTextRef, selectedText: String?, proposedText: String?,
+                                  manager: iOSNavigationManager, continuing: SemanticJourneyInvocation?) async throws -> ActionResult {
         let end = deadline(), managerID = ObjectIdentifier(manager)
         let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
             try await waitForMount(managerID: managerID)
@@ -926,14 +1125,16 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
               !noteDraftInvocations.values.contains(where: { $0.sceneID == sceneID }),
               entry.session.canPrepareNoteDraft() else { throw UIRouteError(.unavailable, "exact_note_selection_unavailable") }
         let observed = try hanlinSource(sceneID: sceneID, entry: entry)
-        let context = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
+        let localContext = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
         let draft = ActionNoteDraftRequest(locator: locator, selectedText: selectedText, proposedText: proposedText)
         var arguments: ActionObject = ["locator": try .encoded(locator)]
         if let selectedText { arguments["selectedText"] = .string(selectedText) }
         if let proposedText { arguments["proposedText"] = .string(proposedText) }
-        let request = ActionRequest(action: "notes.prepareDraft", arguments: arguments,
+        let localRequest = ActionRequest(action: "notes.prepareDraft", arguments: arguments,
             expectedBackend: locator.backend, expectedGeneration: observed.backend.generation,
             requestedPresentation: .foreground)
+        let (request, context) = try semanticJourneyInvocation(continuing, fallback: localRequest,
+            context: localContext, sceneID: sceneID, observed: observed)
         let pending = NoteDraftInvocation(sceneID: sceneID, context: context, observation: observed, request: draft)
         noteDraftInvocations[request.requestId] = pending
         defer {

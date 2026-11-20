@@ -1,0 +1,15 @@
+{
+  "status": "PASS_EVIDENCE_VERIFICATION_ONLY",
+  "sourceCommit": "fb83df7f8bbbd5f0e6ae13113d45982af666779a",
+  "sealedFiles": 76,
+  "corePassed": 174,
+  "originalCorePreserved": 137,
+  "hostPassed": 60,
+  "originalHostPreserved": 40,
+  "hostProjectionRed": {
+    "passed": 42,
+    "failed": 18
+  },
+  "nativeCompound": "NOT_RUN",
+  "appleTypecheck": "NOT_RUN"
+}
