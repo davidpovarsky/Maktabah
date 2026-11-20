@@ -1,0 +1,18 @@
+{
+  "NativeAcceptance": "INCOMPLETE",
+  "appOrTestsExecuted": false,
+  "archiveBytes": 35944918,
+  "canonicalReceiptChecks": 4,
+  "captureFullArchiveVerified": false,
+  "failed": 9,
+  "packagingFailuresRetained": 3,
+  "packetFiles": 46,
+  "passed": 22,
+  "skipped": 0,
+  "status": "EVIDENCE_BYTES_AND_ACCOUNTING_VERIFIED",
+  "uniqueXCresultLeaves": 31,
+  "withoutCompleteLeaves": 67,
+  "workflow": "cancelled",
+  "zipCRC": "PASS",
+  "zipMembers": 102
+}

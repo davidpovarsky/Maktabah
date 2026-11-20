@@ -1,0 +1,11 @@
+{
+  "operation": "GitHub create_blob for exact original ZIP",
+  "originalBytes": 35944918,
+  "base64Characters": 47926560,
+  "originalSHA256": "1dec4baa131deaa5cfdb1f2f62b3dea6a84ee7713bccf67a2e62a41f1ff72310",
+  "observedError": "HTTP 400: MCP request body is invalid or exceeds the 16 MiB limit",
+  "blobSHAReturned": false,
+  "treeOrCommitOrRefChangedByAttempt": false,
+  "resolution": "Five lossless contiguous original-byte parts, each request below 16 MiB; reassembly and full original SHA/CRC required",
+  "scope": "EVIDENCE_PUBLICATION_ONLY; no test execution"
+}

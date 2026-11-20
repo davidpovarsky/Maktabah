@@ -1,0 +1,335 @@
+{
+  "schema": 1,
+  "entries": [
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part01",
+      "origin": "Contiguous unchanged original ZIP bytes",
+      "originalBytes": 8388576,
+      "originalSHA256": "64a2d1ec7ef7263a62de3553d5211dcc705d42d9897c14e8644781448d8c200f",
+      "storedBytes": 8388576,
+      "storedSHA256": "64a2d1ec7ef7263a62de3553d5211dcc705d42d9897c14e8644781448d8c200f",
+      "gitBlob": "8c6f6c3da7ed9140fd88dad0351aa6041a9f17d9",
+      "compression": "none"
+    },
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part02",
+      "origin": "Contiguous unchanged original ZIP bytes",
+      "originalBytes": 8388576,
+      "originalSHA256": "6d566093833157ea93e8e611bad841491aa256b83428578c3aa0b9247dacd65d",
+      "storedBytes": 8388576,
+      "storedSHA256": "6d566093833157ea93e8e611bad841491aa256b83428578c3aa0b9247dacd65d",
+      "gitBlob": "8b91d5e4777e243eaad21e88b65b2e780671998a",
+      "compression": "none"
+    },
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part03",
+      "origin": "Contiguous unchanged original ZIP bytes",
+      "originalBytes": 8388576,
+      "originalSHA256": "eaf17ffa081617e63bd7aad4516c675235875bd06aaa4a44cff8436c14ca0aea",
+      "storedBytes": 8388576,
+      "storedSHA256": "eaf17ffa081617e63bd7aad4516c675235875bd06aaa4a44cff8436c14ca0aea",
+      "gitBlob": "a5449e044bffb37ec845f30f6f32c9ae0edbcac9",
+      "compression": "none"
+    },
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part04",
+      "origin": "Contiguous unchanged original ZIP bytes",
+      "originalBytes": 8388576,
+      "originalSHA256": "ce02450ec88452cd95df8187b7eb7e1fbdbd341f5faad68c31ce998278211b0b",
+      "storedBytes": 8388576,
+      "storedSHA256": "ce02450ec88452cd95df8187b7eb7e1fbdbd341f5faad68c31ce998278211b0b",
+      "gitBlob": "36b2dd099903899de5331c4571424b70d756db21",
+      "compression": "none"
+    },
+    {
+      "path": "raw/archive/runtime27-evidence-14632383919.zip.part05",
+      "origin": "Contiguous unchanged original ZIP bytes",
+      "originalBytes": 2390614,
+      "originalSHA256": "c40dda47bdd3cf31961142a18ddd63a7a2885b49fb6a081abe792e5d4577b595",
+      "storedBytes": 2390614,
+      "storedSHA256": "c40dda47bdd3cf31961142a18ddd63a7a2885b49fb6a081abe792e5d4577b595",
+      "gitBlob": "e4d88d85b2e79d188c788c495fed16dc3d187e6d",
+      "compression": "none"
+    },
+    {
+      "path": "raw/selected/hq-stage2/result.json.gz",
+      "origin": "Exact ZIP member: hq-stage2/result.json",
+      "originalBytes": 83530,
+      "originalSHA256": "f7c51b6b7e3960839d90b48c1268b35bd3e44b766d7778563c628f56ac28d39a",
+      "storedBytes": 23971,
+      "storedSHA256": "9d70bca2d674cde59b679d6f445a6adb208fbca32f56d9360689d469c3037721",
+      "gitBlob": "b2f8eab5fe30a2634ee52b0231063fd1ee830689",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/hq-stage2/actual-source-inputs.json.gz",
+      "origin": "Exact ZIP member: hq-stage2/actual-source-inputs.json",
+      "originalBytes": 113162,
+      "originalSHA256": "b81fad5515bbbdff152e1bf23d03c57fdbc2785f929d43d0b865bc02f2f0d96f",
+      "storedBytes": 36474,
+      "storedSHA256": "5f0547f7feed57d5b79906d169e06b8ffe1eb4051ba7055d28b125a3735e046f",
+      "gitBlob": "a91ec0c5fe0b7d23c921cd8000e2263bc70d0a1c",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/hq-stage2/simulator-build-for-testing.log.gz",
+      "origin": "Exact ZIP member: hq-stage2/simulator-build-for-testing.log",
+      "originalBytes": 22039478,
+      "originalSHA256": "a342d546b1f2c0d58e61fd9426f8539f12055ec49aaf75e011121fae103afe93",
+      "storedBytes": 1088562,
+      "storedSHA256": "f1dfd73036537d99bd944c4aa370da957ab483450b3d978b8110508989b3d1f9",
+      "gitBlob": "c5e2d7b46ea472b5821b16a2de3196f29c3bfa16",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/test-simulator-11.log.gz",
+      "origin": "Exact ZIP member: artifacts/test-simulator-11.log",
+      "originalBytes": 262387,
+      "originalSHA256": "23a3e52329ad60253ee97fe4d5a9a63d95ea20fb77e36ee4fc605057acc5147f",
+      "storedBytes": 26515,
+      "storedSHA256": "a86c6522a6d022d0be88c3d25497a2643ce4a300df58eb37fd3659aaecd4dd7e",
+      "gitBlob": "d1a5d19332ea27648c3e4e321b510d11ef9711b2",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/test-simulator-11-search.log.gz",
+      "origin": "Exact ZIP member: artifacts/test-simulator-11-search.log",
+      "originalBytes": 344345,
+      "originalSHA256": "3f5c027a3dd08806d85402b460d26230fcd261e9bee5f107763f811425075a9d",
+      "storedBytes": 32089,
+      "storedSHA256": "47a166825c9b04cdcf82deaafbd806a9a66529f8d45bd37db729bf62204fa968",
+      "gitBlob": "d69a12796f1aaf73c020d9f122138b9ba35e510b",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/test-simulator-11-index.log.gz",
+      "origin": "Exact ZIP member: artifacts/test-simulator-11-index.log",
+      "originalBytes": 31400,
+      "originalSHA256": "991148106b5e5c00cd65e72ec4dc95b6683b65420cc062452196c4373484bab9",
+      "storedBytes": 5484,
+      "storedSHA256": "e2044cb96c880bfb4e2068742f064b5ef2ae1e28e43f2b5830ec978272161d74",
+      "gitBlob": "0b42455a2d50fc3d38a538b4468a25f99e8f6904",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/test-case-execution-11.json.gz",
+      "origin": "Exact ZIP member: artifacts/test-case-execution-11.json",
+      "originalBytes": 4518,
+      "originalSHA256": "50a9dc493925a1763118984301e7942873ff083618082ab7d3bd4bd222f4a3cc",
+      "storedBytes": 663,
+      "storedSHA256": "905e0602257492bffd847554ade2b93f3984a6b6318b165034f4cbcd298eeab9",
+      "gitBlob": "c3bb02626d49ea87442a0ad9e6af70d3a18fe78d",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/test-case-execution-11-search.json.gz",
+      "origin": "Exact ZIP member: artifacts/test-case-execution-11-search.json",
+      "originalBytes": 9550,
+      "originalSHA256": "c57078145acaa70de260eed8ce5d1f976a1175f846c29711e8564f6671359f0a",
+      "storedBytes": 1016,
+      "storedSHA256": "5608e01609d9316cd9b812974a9899c602814f905f2733ca8d2c441e32d7a6b5",
+      "gitBlob": "831cdb7cbce6d567a4daccd3eea084b40825a313",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/faithful-ipad-matrix.json.gz",
+      "origin": "Exact ZIP member: artifacts/faithful-ipad-matrix.json",
+      "originalBytes": 80676,
+      "originalSHA256": "51c6746a71f86bc9e28c9cb7c2728d7e990fa40362de91eebb57dcf764a64233",
+      "storedBytes": 5735,
+      "storedSHA256": "c06185f25fd2b212462bd15220a09ce7bad321ba5fc324333c35f781d91178e4",
+      "gitBlob": "24e9910db8c9e4772cc63cc29f72803a80c2d0d6",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/native-routing-logs-11/otzaria-reader.log.gz",
+      "origin": "Exact ZIP member: artifacts/native-routing-logs-11/otzaria-reader.log",
+      "originalBytes": 235488,
+      "originalSHA256": "2ab5c09583a7a1f4d95ef3ff60bb87cb179b6d1b2e5fb90528994f6b23d6f803",
+      "storedBytes": 12473,
+      "storedSHA256": "8e44c38d10435f51d87a7ec79b823ec6970bd7d55dd32b43624e6cb86a4c2cef",
+      "gitBlob": "ea4d9a16ca053b16439d5ad73dbf4392ea911b0a",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/native-matrix-driver.log.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/native-matrix-driver.log",
+      "originalBytes": 704470,
+      "originalSHA256": "540de9cd291a28f327be9727b5a32abe3e04d2214a9803468699e68f125f881c",
+      "storedBytes": 81216,
+      "storedSHA256": "a8fce28eab031e608efce4ad9bd61c16fe220e4385df9b34aa8f481ae64dd2b1",
+      "gitBlob": "5f5ca386da4c946cd332b8647e5c2d76600eebf9",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/selected-test-declarations.json.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/selected-test-declarations.json",
+      "originalBytes": 29370,
+      "originalSHA256": "d20854050dbf367ee2a4c010cfd52c8b0c5048a381b8559d1f7fb5586de1effb",
+      "storedBytes": 2669,
+      "storedSHA256": "fdabb246f409da0a80f1d576e61bbf47eedcce54334977080e0412a9fa92a5ea",
+      "gitBlob": "35ac71e91e3d9fc174a93c1bed27202ce453a269",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/toolchain-selection.json.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/toolchain-selection.json",
+      "originalBytes": 13019,
+      "originalSHA256": "f5fc638c4180a94953681031d7aa2e54dd45748af40827f441595de58d4f6581",
+      "storedBytes": 804,
+      "storedSHA256": "961dbe720a929468712398fb466100c5e80357fcaee5caca9f50e217744c98cd",
+      "gitBlob": "36f2272317b947c6d76aab73d6a2dddea82b057b",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/miniTest10-native-fixture-install-11-index.json.gz",
+      "origin": "Exact ZIP member: artifacts/miniTest10-native-fixture-install-11-index.json",
+      "originalBytes": 1793,
+      "originalSHA256": "1722158dd4fefe4710407b7b8e0f3c11b37e016d05165d7f29080e2b250b39f1",
+      "storedBytes": 886,
+      "storedSHA256": "4d915720756957eaea78c38179dcbe0fba64713462bcaaf9a56ba6266353cc40",
+      "gitBlob": "bd51d6b2449ddbfc8c4dfc11b951e7211acb57dd",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/fixture-oracle-11-index.json.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/fixture-oracle-11-index.json",
+      "originalBytes": 1071,
+      "originalSHA256": "1e409e13f66f73ef00e6022b16e62ae99982228025677b2fb000d7f2468e812f",
+      "storedBytes": 670,
+      "storedSHA256": "6b13e960947825b67a8c10e72cb6850d578e6941c098612ae3d74e4b052b2918",
+      "gitBlob": "528cf7eb5c0b0583c23a4ce88d2624ff7ac067f2",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/verified-11.json.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/verified-11.json",
+      "originalBytes": 316,
+      "originalSHA256": "a7de24510ae75286f89be444fc169546d88c3b6b401ab3b20abab56315a62011",
+      "storedBytes": 255,
+      "storedSHA256": "8969c02770126da1c9b5fce4115437d2a9fadaff31b9b9b677f7d783940f2f22",
+      "gitBlob": "d6994f726d45ebc71f32c121c06cc91cd84ae4a3",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/verified-11.summary.json.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/verified-11.summary.json",
+      "originalBytes": 5531,
+      "originalSHA256": "f08a0540c17395f71332f97646ff365e9e2e7be3ec89c608f6616bc025523f28",
+      "storedBytes": 1460,
+      "storedSHA256": "e6a00516d1725800294610899820faa0e501a45c764adc560765f9bc4006c9d9",
+      "gitBlob": "22815d060c01374ad5fb897c9ee16f00d9ada4f5",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/verified-11.tests.json.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/verified-11.tests.json",
+      "originalBytes": 12244,
+      "originalSHA256": "4eb64416c408f6faf91c62e5db1db6eef0aa9e23c572ea08e8aae45bb15c8460",
+      "storedBytes": 1868,
+      "storedSHA256": "bc4e5501c3b8a744ae45b57df685c066bfb47e071efb5a3a2419526e82a52cd1",
+      "gitBlob": "c7e530a1bcc0a95070b7203c7bdc5c8c2b51e4c7",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/verified-11-search.json.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/verified-11-search.json",
+      "originalBytes": 316,
+      "originalSHA256": "fec56f27bb4acee727ce77fd44703ee647bf00ee701b631b7f104f007485eeed",
+      "storedBytes": 253,
+      "storedSHA256": "f76e6a6b21b96d80acc4df4116b0935319c6843db266dca41a37b529109dae43",
+      "gitBlob": "544bbc87c8ea76d18fd2e9122bb92cab17f4b72e",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/verified-11-search.summary.json.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/verified-11-search.summary.json",
+      "originalBytes": 2385,
+      "originalSHA256": "8c36846139a915d69f5274f43f15a595a4e3e1dbe8335b4595d88273c9e30ca6",
+      "storedBytes": 963,
+      "storedSHA256": "1a42ad8697320403386d3eefccf41eb11ac034b9be4d038d7026e8b8afb6d28e",
+      "gitBlob": "40c015b084a1a6590540dfcc364d81b5084fc52d",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/selected/artifacts/runtime27/verified-11-search.tests.json.gz",
+      "origin": "Exact ZIP member: artifacts/runtime27/verified-11-search.tests.json",
+      "originalBytes": 16272,
+      "originalSHA256": "f330a3b64e1fdd885b889188fbbe8dd6fd9016c89dbcf3dd6008b3489394f751",
+      "storedBytes": 2240,
+      "storedSHA256": "75c58b8f5131b0557f2a2d0498b62648dfdc6ff2275b67aca1034e9d1b7215c3",
+      "gitBlob": "a8f7ecb40f234a812e56b206386285a9cf50d690",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/sealing/attempt1-result.json.gz",
+      "origin": "Actual Sentinel evidence-packaging receipt; no test execution",
+      "originalBytes": 1000,
+      "originalSHA256": "aa88bb1a4c513956469d8012963fc8823c3315b14af4cbd55e70d49dcc43566a",
+      "storedBytes": 516,
+      "storedSHA256": "7109efb9767ebe031798df99f34d1eaf8faffa5380275b4e334b596adf4f25e3",
+      "gitBlob": "4bad5526e4559537249574f6708845f38beb7b2d",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/sealing/attempt1-source.py.gz",
+      "origin": "Exact submitted evidence-only script; attempt3 failed before process launch",
+      "originalBytes": 19280,
+      "originalSHA256": "1b388d0c612f9e3a90d6424355bdaa0d9bf2e9ca0b09317eaa11e2ba77ca4e86",
+      "storedBytes": 8045,
+      "storedSHA256": "7db1b72b389932e34e2089a5e8f696f5b07620ce45b6105097c687cae4300fd1",
+      "gitBlob": "3bc14ef01926e352a6d66b293a864f5a8df24b01",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/sealing/attempt2-result.json.gz",
+      "origin": "Actual Sentinel evidence-packaging receipt; no test execution",
+      "originalBytes": 2000,
+      "originalSHA256": "e0491e6671a04d89423249ee88b1a27aec43b88cd1a8fc832763d54f2290ec7b",
+      "storedBytes": 881,
+      "storedSHA256": "f97343760c2215a1d612cac9e112a2de9be830c0a0c59f3fc31baf89090b64a2",
+      "gitBlob": "d75d23871b00ebf8e87e9a84409fd129edf8b677",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/sealing/attempt2-source.py.gz",
+      "origin": "Exact submitted evidence-only script; attempt3 failed before process launch",
+      "originalBytes": 20599,
+      "originalSHA256": "40b9213ac54aeb19221e34c3412abe7495b1b14b0eb18f8f9230779f6986a527",
+      "storedBytes": 8438,
+      "storedSHA256": "348cbdc157f69c9ffa87c633f82de1b26b18f68c09d0dd2fb90ab8b4fd8a32cf",
+      "gitBlob": "3134d12a92a40864d14f05fb555f26d0f9fd51ca",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/sealing/attempt3-result.json.gz",
+      "origin": "Actual Sentinel evidence-packaging receipt; no test execution",
+      "originalBytes": 625,
+      "originalSHA256": "f1dc6fa134ede96eb63ca5a85423909936878a8851d8f84c5d89692f47135e66",
+      "storedBytes": 351,
+      "storedSHA256": "6e2c1b90bc206eb80a2b0419fbed28ef87f9cb32c82a42590c9b9589d2bd96d6",
+      "gitBlob": "fad82b32f325ac8ea6b5dc4df05e08258f1ee65c",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/sealing/attempt3-source.py.gz",
+      "origin": "Exact submitted evidence-only script; attempt3 failed before process launch",
+      "originalBytes": 21259,
+      "originalSHA256": "97abdf7b990abe64d1b713cb4dd0c77f27af7cdf0388dc3bf2a92c1bd7c1d3d3",
+      "storedBytes": 8621,
+      "storedSHA256": "4b7d1e0032d211d15816ea43c0f35e653764ed0a7f13e8ddd82b4d5a783cb6b1",
+      "gitBlob": "366a4cb13b46fca64722b0e3fc77c21bdfe139f1",
+      "compression": "gzip_mtime0"
+    },
+    {
+      "path": "raw/source/windows-finalizer-NOT_EXECUTED.py.gz",
+      "origin": "Prepared after attempt3; never executed while host offline",
+      "originalBytes": 86272,
+      "originalSHA256": "af21c9b44f8c2d250e678fc5d77be7a548a24fa4a48bc86dbcd961ea397d0ef7",
+      "storedBytes": 12992,
+      "storedSHA256": "005a3f6dd0bc3ba822f4d4e76c197c55366eab67e38bdc30b6afb723c945de4e",
+      "gitBlob": "d399daf405de020d794c97fb0377f591eb372e87",
+      "compression": "gzip_mtime0"
+    }
+  ]
+}
