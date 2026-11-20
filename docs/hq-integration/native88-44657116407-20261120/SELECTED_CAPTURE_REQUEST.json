@@ -1,0 +1,156 @@
+[
+  {
+    "zipEntry": "visual-11/99701F94-580E-475A-888D-88D30F0F6F81.png",
+    "case": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad()",
+    "name": "native-route-final-screen_0_6EC7E810-0E62-47A7-8FDE-DC492BD8F00B.png",
+    "timestamp": 1795143029.353,
+    "bytes": 484160
+  },
+  {
+    "zipEntry": "visual-11/028CE410-A877-4398-B51E-B2F249114D43.txt",
+    "case": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad()",
+    "name": "native-route-final-hierarchy_0_9C5370BD-02A5-40AB-A0AE-73BFFEB04B7E.txt",
+    "timestamp": 1795143029.036,
+    "bytes": 33222
+  },
+  {
+    "zipEntry": "visual-11/BD4ACE06-EF75-49B9-A021-E4293B3C552B.txt",
+    "case": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad()",
+    "name": "native-reader-independent-text-source_0_84CDEFFE-29A0-4D02-9618-A9F5729117DC.txt",
+    "timestamp": 1795142975.297,
+    "bytes": 464
+  },
+  {
+    "zipEntry": "visual-11/39EEC547-1E15-4984-AF3A-03396DAC87BB.txt",
+    "case": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad()",
+    "name": "native-reader-independent-text-source_0_90C89B45-6616-46BA-9483-DE0C72A8379D.txt",
+    "timestamp": 1795142975.293,
+    "bytes": 464
+  },
+  {
+    "zipEntry": "visual-11/67960B6A-32AD-4C2A-A775-4D1525B66DB4.txt",
+    "case": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad()",
+    "name": "native-reader-independent-source-metadata_0_C2D499D4-E58B-4176-8A0A-546DF04465B0.txt",
+    "timestamp": 1795142962.985,
+    "bytes": 384
+  },
+  {
+    "zipEntry": "visual-11/DD43C205-4C9A-4715-978B-A4D9504DA0FA.png",
+    "case": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad()",
+    "name": "native-route-final-screen_0_5D42C301-99EB-4435-A7B3-25524BFE5A47.png",
+    "timestamp": 1795143067.194,
+    "bytes": 505602
+  },
+  {
+    "zipEntry": "visual-11/B9E0C663-C2F1-46D9-B92F-993E00BCC849.txt",
+    "case": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad()",
+    "name": "native-route-final-hierarchy_0_661D6945-C93C-4AE5-9B7B-6F2C70BB9FAE.txt",
+    "timestamp": 1795143066.872,
+    "bytes": 41077
+  },
+  {
+    "zipEntry": "visual-11/A7F47F5F-E3E8-4616-9B8D-AB036FCCF002.json",
+    "case": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad()",
+    "name": "native-core-notes-result_0_D3F79446-0439-434D-9481-FFA37FB4D50F.json",
+    "timestamp": 1795143065.077,
+    "bytes": 490
+  },
+  {
+    "zipEntry": "visual-11/1F598939-67B2-4CF2-94C3-0AE973EEA345.png",
+    "case": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace()",
+    "name": "r27-final-native-screen_0_AC13DCBA-2B15-4A51-9376-DABBF319FF6F.png",
+    "timestamp": 1795143122.627,
+    "bytes": 600485
+  },
+  {
+    "zipEntry": "visual-11/6DBBD0C0-1A81-4F48-B1FE-9A07484E18F4.txt",
+    "case": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace()",
+    "name": "r27-final-native-hierarchy_0_70F89CBB-25B8-4276-A977-2B596188ED90.txt",
+    "timestamp": 1795143122.38,
+    "bytes": 43638
+  },
+  {
+    "zipEntry": "visual-11-search/A8379DA1-EC2E-4E41-AC5D-4F25821A632F.png",
+    "case": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+    "name": "r27-final-native-screen_0_1C4FA8F0-3262-4F53-8442-9F8C4700E3F4.png",
+    "timestamp": 1795146159.965,
+    "bytes": 276938
+  },
+  {
+    "zipEntry": "visual-11-search/04B1C157-C72F-4F6D-90DF-8B42F0B81AD1.txt",
+    "case": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+    "name": "r27-final-native-hierarchy_0_4DC5CC1E-7818-4CF3-BA06-77D8B732EDC1.txt",
+    "timestamp": 1795146159.584,
+    "bytes": 28685
+  },
+  {
+    "zipEntry": "visual-11-window/7E820C84-B3B4-4391-8B36-22E7B1DA690E.png",
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "name": "r27-final-native-screen_0_6E6DDE5C-B9C6-4C54-B151-26F2ECF3B2BC.png",
+    "timestamp": 1795152552.332,
+    "bytes": 937280
+  },
+  {
+    "zipEntry": "visual-11-window/B613FBFF-494C-4FFD-80CC-201554D770E9.txt",
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "name": "r27-final-native-hierarchy_0_307820B8-ABAD-4B1F-94A7-C2676307024E.txt",
+    "timestamp": 1795152552.045,
+    "bytes": 19026
+  },
+  {
+    "zipEntry": "visual-11-window/F3FA8229-5E21-444A-B22F-FDD8F5FE5662.png",
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "name": "r27-visible-palette-dismissed-screen_0_C47CF37E-56E5-4134-8DFA-401BB762A108.png",
+    "timestamp": 1795152363.173,
+    "bytes": 3660395
+  },
+  {
+    "zipEntry": "visual-11-window/D628EFA0-66D7-489A-ADDF-34AE38C78709.txt",
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "name": "r27-visible-palette-dismissed-hierarchy_0_E38EC08E-5CD8-4DD1-96AE-778895AD6DFE.txt",
+    "timestamp": 1795152362.605,
+    "bytes": 20318
+  },
+  {
+    "zipEntry": "visual-11-window/40A04965-DE0E-471F-8890-5842E8124223.png",
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "name": "r27-real-narrow-palette-filtered-screen_0_B46D9FA0-8842-47EE-A02E-67457D4BFE58.png",
+    "timestamp": 1795152354.335,
+    "bytes": 2291980
+  },
+  {
+    "zipEntry": "visual-11-window/54DFD606-D1EE-4D50-B13B-86CC34139D97.txt",
+    "case": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+    "name": "r27-real-narrow-palette-filtered-hierarchy_0_3864B15D-4268-4FC1-9D93-5B5B4009950F.txt",
+    "timestamp": 1795152353.659,
+    "bytes": 29961
+  },
+  {
+    "zipEntry": "visual-11-window/8A965CB2-0360-49AB-9AE5-87D62E19D654.png",
+    "case": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+    "name": "r27-final-native-screen_0_413CC76C-D112-4318-BDD1-7403775AA767.png",
+    "timestamp": 1795152797.96,
+    "bytes": 941819
+  },
+  {
+    "zipEntry": "visual-11-window/A6180895-5CB6-4292-A063-5EDA4160DC2D.txt",
+    "case": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+    "name": "r27-final-native-hierarchy_0_DE26E267-7BA7-4073-8953-EE947C788706.txt",
+    "timestamp": 1795152797.62,
+    "bytes": 19026
+  },
+  {
+    "zipEntry": "visual-11-window/E19077D6-DE9E-4751-B395-70DE46C84553.png",
+    "case": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+    "name": "r27-hid-narrow-filtered-after-one-escape-screen_0_EAAAB34E-2764-474D-BDE7-AF4FE4299E3C.png",
+    "timestamp": 1795152770.213,
+    "bytes": 3660162
+  },
+  {
+    "zipEntry": "visual-11-window/182107AA-A5BD-4D0C-82D8-7F46B0F3139C.txt",
+    "case": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+    "name": "r27-hid-narrow-filtered-after-one-escape-hierarchy_0_D956BD85-F58A-4FAF-908A-22513AD96334.txt",
+    "timestamp": 1795152769.668,
+    "bytes": 20318
+  }
+]

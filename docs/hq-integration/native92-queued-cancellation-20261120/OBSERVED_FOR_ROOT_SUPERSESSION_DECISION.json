@@ -1,0 +1,59 @@
+{
+  "conclusion": "",
+  "headSha": "b07f229e85fe894722566ad9444de31d0ba4490f",
+  "jobs": [
+    {
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "databaseId": 136115875853,
+      "name": "R27 real UI environment and acceptance",
+      "startedAt": "2026-11-20T05:59:09Z",
+      "status": "queued",
+      "steps": [],
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684611471/job/136115875853"
+    },
+    {
+      "completedAt": "2026-11-20T05:59:09Z",
+      "conclusion": "skipped",
+      "databaseId": 136115877184,
+      "name": "Validate Sefaria-Mobile Embedded Build and Runtime",
+      "startedAt": "2026-11-20T05:59:09Z",
+      "status": "completed",
+      "steps": [],
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684611471/job/136115877184"
+    },
+    {
+      "completedAt": "2026-11-20T05:59:09Z",
+      "conclusion": "skipped",
+      "databaseId": 136115877211,
+      "name": "Books Updates Apple safety checks (no app runtime acceptance)",
+      "startedAt": "2026-11-20T05:59:09Z",
+      "status": "completed",
+      "steps": [],
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684611471/job/136115877211"
+    },
+    {
+      "completedAt": "2026-11-20T05:59:09Z",
+      "conclusion": "skipped",
+      "databaseId": 136115877452,
+      "name": "Focused SDK and workspace checks (no app/runtime acceptance)",
+      "startedAt": "2026-11-20T05:59:09Z",
+      "status": "completed",
+      "steps": [],
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684611471/job/136115877452"
+    },
+    {
+      "completedAt": "2026-11-20T05:59:09Z",
+      "conclusion": "skipped",
+      "databaseId": 136115877587,
+      "name": "Focused unsigned Maktabah-iOS (no runtime or data)",
+      "startedAt": "2026-11-20T05:59:09Z",
+      "status": "completed",
+      "steps": [],
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684611471/job/136115877587"
+    }
+  ],
+  "status": "queued",
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684611471",
+  "observedUTC": "2026-11-20T06:17:30.130796+00:00"
+}

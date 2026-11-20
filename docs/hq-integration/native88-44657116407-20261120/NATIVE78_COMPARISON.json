@@ -1,0 +1,178 @@
+[
+  {
+    "case_id": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "XCTAssertGreaterThanOrEqual failed: (\"0.0\") is less than (\"15.0\")",
+        "source": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+          "lineNumber": 480
+        }
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Passed",
+    "native88Failure": [],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "XCTAssertTrue failed - A hidden panel or model flag is not visible presentation",
+        "source": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+          "lineNumber": 1499
+        }
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "XCTAssertTrue failed",
+        "source": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+          "lineNumber": 639
+        }
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The actual original UIKit surface must acknowledge through Core",
+        "source": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+          "lineNumber": 990
+        }
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+        "source": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+          "lineNumber": 1562
+        }
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+        "source": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+          "lineNumber": 1275
+        }
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "XCTAssertTrue failed",
+        "source": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+          "lineNumber": 89
+        }
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "Test exceeded execution time allowance of 10 minutes",
+        "source": null
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "XCTAssertTrue failed",
+        "source": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+          "lineNumber": 445
+        }
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "Failed",
+    "native88Failure": [
+      {
+        "text": "XCTAssertTrue failed",
+        "source": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+          "lineNumber": 445
+        }
+      }
+    ],
+    "native88PartialPhoneLog": null
+  },
+  {
+    "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "NOT_RUN",
+    "native88Failure": [],
+    "native88PartialPhoneLog": {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "result": "failed",
+      "seconds": 62.754
+    }
+  },
+  {
+    "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+    "native78": "Failed",
+    "native88VerifiedLeaf": "NOT_RUN",
+    "native88Failure": [],
+    "native88PartialPhoneLog": {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+      "result": "failed",
+      "seconds": 25.156
+    }
+  }
+]

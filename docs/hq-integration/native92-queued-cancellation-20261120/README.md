@@ -1,0 +1,5 @@
+# Native92 queued run superseded before execution
+
+Run https://github.com/davidpovarsky/Maktabah/actions/runs/44684611471 is CANCELLED on exact workflow checkout b07f229e85fe894722566ad9444de31d0ba4490f, intended app source2e6f08659b347a755aef4e4fe6c00d9592ba700d. It selected92 cases (72 iPad/20 iPhone) but executed zero build/test steps. Every final GitHub job has an empty steps list; the runtime job was still queued in the06:17:30UTC observation. Root requested cancellation at06:20:38 after a fresh queued-source check, to preserve resources for a corrected immutable source after Native88 revealed unchanged harness failures. This is not a product/test failure, success, or accepted92-case result. The immutable branch was not modified.
+
+The sole finite watcher job_c35a3abaf749 ended at06:20:56.733UTC with gh exit1 on cancellation. It was not renewed. FINAL_RUN.json retains actual GitHub metadata; the two watcher records retain exact source/selection. The original finite budget was3380s; it did not expire. The collector did not request cancellation. No Native88 results are transferred to this unexecuted source.

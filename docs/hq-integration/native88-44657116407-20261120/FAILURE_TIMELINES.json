@@ -1,0 +1,288 @@
+[
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "originalEntry": "artifacts/test-simulator-11.log",
+    "originalEntrySHA256": "ad0aa1e2d501c61ae708040bb5c7b685aa5fe5ff72032abe7ee91e092b99a04a",
+    "originalActivityBytes": 8156,
+    "originalActivitySHA256": "888dc64cf39ec5e46661319531125a8d5b8997c99f83562b7d52b9bc257ecb2e",
+    "savedAs": "failure-timelines/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad.log.gz",
+    "failureExcerpts": [
+      "    t =    50.45s Find the \"reader-text\" TextView\n    t =    51.48s Find the \"reader-text\" TextView\n    t =    52.40s Find the \"reader-text\" TextView\n    t =    53.43s Find the \"reader-text\" TextView\n    t =    54.44s Find the \"reader-text\" TextView\n    t =    55.48s Find the \"reader-text\" TextView\n    t =    56.48s Find the \"reader-text\" TextView\n    t =    57.48s Find the \"reader-text\" TextView\n    t =    58.43s Find the \"reader-text\" TextView\n    t =    59.40s Find the \"reader-text\" TextView\n    t =    60.43s Find the \"reader-text\" TextView\n    t =    61.47s Find the \"reader-text\" TextView\n    t =    62.47s Find the \"reader-text\" TextView\n    t =    63.40s Find the \"reader-text\" TextView\n    t =    64.40s Find the \"reader-text\" TextView\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1206: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original TextKit text and exact source locator must both match independent SQL\n    t =    65.06s Tear Down\n    t =    65.06s     Requesting snapshot of accessibility hierarchy for app with pid 13493"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+    "originalEntry": "artifacts/test-simulator-11.log",
+    "originalEntrySHA256": "ad0aa1e2d501c61ae708040bb5c7b685aa5fe5ff72032abe7ee91e092b99a04a",
+    "originalActivityBytes": 5508,
+    "originalActivitySHA256": "b4fd3a3696d8087ebd5e73a2922579a3550db235db25752cf6ef3df357c2abd5",
+    "savedAs": "failure-timelines/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad.log.gz",
+    "failureExcerpts": [
+      "    t =    24.64s Find the \"reader-text\" TextView\n    t =    24.86s Find the \"reader-current-locator\" StaticText\n    t =    25.05s Waiting 6.0s for \"reader-rendered-highlight-diagnostics\" Other to exist\n    t =    26.09s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-rendered-highlight-diagnostics\" Other`\n    t =    26.09s         Checking existence of `\"reader-rendered-highlight-diagnostics\" Other`\n    t =    26.26s Find the \"reader-rendered-highlight-diagnostics\" Other\n    t =    26.44s Find the \"reader-text\" TextView\n    t =    26.63s Find the \"reader-text\" TextView\n    t =    26.81s Waiting 6.0s for \"reader-rendered-highlight-diagnostics\" Other to exist\n    t =    27.83s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-rendered-highlight-diagnostics\" Other`\n    t =    27.83s         Checking existence of `\"reader-rendered-highlight-diagnostics\" Other`\n    t =    28.04s Find the \"reader-rendered-highlight-diagnostics\" Other\n    t =    28.28s Requesting snapshot of accessibility hierarchy for app with pid 17440\n    t =    29.02s Requesting snapshot of accessibility hierarchy for app with pid 17440\n    t =    35.36s Added attachment named 'native-core-notes-result.json'\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1642: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad] : XCTAssertEqual failed: (\"Optional(\"cancelled\")\") is not equal to (\"Optional(\"completed\")\")\n    t =    35.38s Tear Down\n    t =    35.38s     Requesting snapshot of accessibility hierarchy for app with pid 17440"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+    "originalEntry": "artifacts/test-simulator-11.log",
+    "originalEntrySHA256": "ad0aa1e2d501c61ae708040bb5c7b685aa5fe5ff72032abe7ee91e092b99a04a",
+    "originalActivityBytes": 1315,
+    "originalActivitySHA256": "e53a24cb6bdf646d486de2fc975a7ba314fc9c6a5283d4ba2c188e95d714a1bb",
+    "savedAs": "failure-timelines/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad.log.gz",
+    "failureExcerpts": [
+      "Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad]' started.\n    t =     0.00s Start Test at 2026-11-20 02:51:07.484\n    t =     0.03s Set Up\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1718: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad] : XCTUnwrap failed: expected non-nil value of type \"String\"\n    t =     0.04s Tear Down\n    t =     0.04s     Requesting snapshot of accessibility hierarchy for app with pid 17440"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "originalEntry": "artifacts/test-simulator-11.log",
+    "originalEntrySHA256": "ad0aa1e2d501c61ae708040bb5c7b685aa5fe5ff72032abe7ee91e092b99a04a",
+    "originalActivityBytes": 16567,
+    "originalActivitySHA256": "4291b3f3291fb1007932dd507ad78c2e92f4cc6d7d15103948171d87dba8ba9b",
+    "savedAs": "failure-timelines/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace.log.gz",
+    "failureExcerpts": [
+      "    t =    48.69s     Checking `Expect predicate `existsNoRetry == 1` for object \"עריכה\" Button`\n    t =    48.69s         Checking existence of `\"עריכה\" Button`\n    t =    48.92s Find the \"עריכה\" Button\n    t =    49.12s     Collecting debug information to assist test failure triage\n    t =    49.12s         Requesting snapshot of accessibility hierarchy for app with pid 19490\n    t =    49.48s     Requesting snapshot of accessibility hierarchy for app with pid 19490\n    t =    49.84s     Find: Descendants matching type Button\n    t =    49.84s     Find: Elements matching predicate '\"עריכה\" IN identifiers'\n    t =    49.91s     Requesting snapshot of accessibility hierarchy for app with pid 19490\n    t =    50.23s     Find: Descendants matching type Button\n    t =    50.23s     Find: Elements matching predicate '\"עריכה\" IN identifiers'\n    t =    50.24s     Requesting snapshot of accessibility hierarchy for app with pid 19490\n    t =    50.67s     Find: Descendants matching type Button\n    t =    50.68s     Requesting snapshot of accessibility hierarchy for app with pid 19490\n    t =    51.29s     Requesting snapshot of accessibility hierarchy for app with pid 19490\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:149: error: -[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace] : Failed to get matching snapshot: Find single matching element. Multiple matching elements found for <XCUIElementQuery: 0x10b13e5d0>.\nSparse tree of matches:\n→Application, pid: 19490, label: 'ChavrusaText'"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "originalEntry": "artifacts/test-simulator-11-search.log",
+    "originalEntrySHA256": "ba4d3147dd31732f8ea08db45e22bf1de6fb5d3dc2d38f35dc3d518a7cffa308",
+    "originalActivityBytes": 5774,
+    "originalActivitySHA256": "5d673650061bab2b16a1ddd43a5103d37d475c9cc43a9a1364fbb259436d1692",
+    "savedAs": "failure-timelines/testHeaderAndHistoryNativeAccessibilityAudit.log.gz",
+    "failureExcerpts": [
+      "    t =    81.80s Find the \"global-search-history-heading\" StaticText\n    t =    83.00s Find the \"global-search-history-heading\" StaticText\n    t =    83.78s Waiting 15.0s for \"global-search-query\" Any to exist\n    t =    84.83s     Checking `Expect predicate `existsNoRetry == 1` for object \"global-search-query\" Any`\n    t =    84.83s         Checking existence of `\"global-search-query\" Any`\n    t =    85.29s Find the \"global-search-query\" Any\n    t =    85.62s Find the \"global-search-query\" TextField\n    t =    85.95s Get number of matches for: Elements matching predicate '\"global-search-query\" IN identifiers'\n    t =    86.11s Get number of matches for: Elements matching predicate '\"global-search-query\" IN identifiers'\n    t =    86.41s Find the \"global-search-query\" TextField\n    t =    87.34s Waiting 15.0s for \"global-search-options\" Any to exist\n    t =    88.40s     Checking `Expect predicate `existsNoRetry == 1` for object \"global-search-options\" Any`\n    t =    88.40s         Checking existence of `\"global-search-options\" Any`\n    t =    88.98s Find the \"global-search-options\" Any\n    t =    89.53s Find the \"global-search-history-heading\" StaticText\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift:480: error: -[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHeaderAndHistoryNativeAccessibilityAudit] : XCTAssertGreaterThanOrEqual failed: (\"0.0\") is less than (\"15.0\")\n    t =    97.13s Tear Down\n    t =    97.13s     Requesting snapshot of accessibility hierarchy for app with pid 36646"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "originalEntry": "artifacts/test-simulator-11-search.log",
+    "originalEntrySHA256": "ba4d3147dd31732f8ea08db45e22bf1de6fb5d3dc2d38f35dc3d518a7cffa308",
+    "originalActivityBytes": 16837,
+    "originalActivitySHA256": "472ff702b12f5ed09de2a4ac4fd58fd9715cdb6b670665cb3bdd3c65b7519882",
+    "savedAs": "failure-timelines/testNormalBootstrapGlobalHistoryUsesActualSubmit.log.gz",
+    "failureExcerpts": [
+      "    t =    92.64s         Checking existence of `\"global-search-history-בדיקת היסטוריה 1167448C-76EA-4BB7-8A42-42E7DB7AFAB3\" Button`\n    t =    93.63s         Capturing element debug description\n    t =    94.66s     Checking `Expect predicate `existsNoRetry == 1` for object \"global-search-history-בדיקת היסטוריה 1167448C-76EA-4BB7-8A42-42E7DB7AFAB3\" Button`\n    t =    94.66s         Checking existence of `\"global-search-history-בדיקת היסטוריה 1167448C-76EA-4BB7-8A42-42E7DB7AFAB3\" Button`\n    t =    95.62s         Capturing element debug description\n    t =    96.59s     Checking `Expect predicate `existsNoRetry == 1` for object \"global-search-history-בדיקת היסטוריה 1167448C-76EA-4BB7-8A42-42E7DB7AFAB3\" Button`\n    t =    96.59s         Checking existence of `\"global-search-history-בדיקת היסטוריה 1167448C-76EA-4BB7-8A42-42E7DB7AFAB3\" Button`\n    t =    97.31s         Capturing element debug description\n    t =    97.59s     Checking `Expect predicate `existsNoRetry == 1` for object \"global-search-history-בדיקת היסטוריה 1167448C-76EA-4BB7-8A42-42E7DB7AFAB3\" Button`\n    t =    97.59s         Checking existence of `\"global-search-history-בדיקת היסטוריה 1167448C-76EA-4BB7-8A42-42E7DB7AFAB3\" Button`\n    t =    97.84s         Capturing element debug description\n    t =    97.84s     Checking existence of `\"global-search-history-בדיקת היסטוריה 1167448C-76EA-4BB7-8A42-42E7DB7AFAB3\" Button`\n    t =    98.82s Collecting debug information to assist test failure triage\n    t =    98.82s     Requesting snapshot of accessibility hierarchy for app with pid 11276\n    t =    99.21s Get number of matches for: Elements matching predicate '\"global-search-history-בדיקת היסטוריה 1167448C-76EA-4BB7-8A42-42E7DB7AFAB3\" IN identifiers'\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:712: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapGlobalHistoryUsesActualSubmit] : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - The exact genuine submitted history query must occur once\n    t =    99.58s Tear Down\n    t =    99.58s     Requesting snapshot of accessibility hierarchy for app with pid 11276"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 6920,
+    "originalActivitySHA256": "21d6636847d03b5c19a3fc2d7bba320bdbb65c63be7150f730eb2f15b3abf3b3",
+    "savedAs": "failure-timelines/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt.log.gz",
+    "failureExcerpts": [
+      "    t =    52.38s     Find the \"Open\" Button\n    t =    52.44s     Check for interrupting elements affecting \"Open\" Button\n    t =    52.53s     Synthesize event\n    t =    53.04s     Wait for com.apple.springboard to idle\n    t =    54.49s Get number of matches for: Descendants matching type Alert\n    t =    54.53s Added attachment named 'actual-system-open-confirmation'\n    t =    54.53s Wait for com.davidpovarsky.chavrusatext to become Running Foreground\n    t =    54.53s Requesting snapshot of accessibility hierarchy for app with pid 26153\n    t =    55.14s Requesting snapshot of accessibility hierarchy for app with pid 26153\n    t =    55.21s Added attachment named 'actual-warm-system-url-process-identity'\n    t =    55.21s Waiting 20.0s for \"Annotations\" NavigationBar to exist\n    t =    56.28s     Checking `Expect predicate `existsNoRetry == 1` for object \"Annotations\" NavigationBar`\n    t =    56.28s         Checking existence of `\"Annotations\" NavigationBar`\n    t =    56.37s Checking existence of `\"History & Favorites\" NavigationBar`\n    t =    56.49s Checking existence of `\"Unable to open link\" Alert`\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:711: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt\n    t =    72.60s Tear Down\n    t =    72.60s     Requesting snapshot of accessibility hierarchy for app with pid 26153"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 2168,
+    "originalActivitySHA256": "acb22049bc4c51f1a44d480f9eff1a5746e9cb7028b294fc7597eb4589795cba",
+    "savedAs": "failure-timelines/testColdHistoryURLWaitsForActualSceneMount.log.gz",
+    "failureExcerpts": [
+      "    t =     0.06s     Launch com.davidpovarsky.chavrusatext\n    t =     0.06s         Terminate com.davidpovarsky.chavrusatext:26153\n2026-11-20 04:01:16.115 xcodebuild[22528:588681] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL\n2026-11-20 04:01:16.115 xcodebuild[22528:588681] [MT] IDELaunchParametersSnapshot: no debugger version\n    t =     8.02s         Setting up automation session\n    t =    14.84s         Wait for com.davidpovarsky.chavrusatext to idle\n    t =    21.73s Waiting 40.0s for \"library-column\" Other to exist\n    t =    22.79s     Checking `Expect predicate `existsNoRetry == 1` for object \"library-column\" Other`\n    t =    22.79s         Checking existence of `\"library-column\" Other`\n    t =    26.99s Checking existence of `\"History & Favorites\" NavigationBar`\n    t =    37.35s Requesting snapshot of accessibility hierarchy for app with pid 28023\n    t =    60.31s Requesting snapshot of accessibility hierarchy for app with pid 28023\n    t =    64.20s Added attachment named 'native-cold-before-hierarchy'\n    t =    65.14s Added attachment named 'native-cold-before-screen'\n    t =    65.14s Terminate com.davidpovarsky.chavrusatext:28023\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:300: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testColdHistoryURLWaitsForActualSceneMount] : Failed to terminate com.davidpovarsky.chavrusatext:28023: Failed to terminate com.davidpovarsky.chavrusatext:0\n    t =   125.23s Tear Down\n    t =   125.23s     Added attachment named 'native-route-final-hierarchy'"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 2389,
+    "originalActivitySHA256": "cfd3b715b3726345457ccbd9f840a48bea7a7d81d41ff95a8442ba7a993a2a18",
+    "savedAs": "failure-timelines/testGlobalSearchPublicRootPreservesOriginalPrivateQuery.log.gz",
+    "failureExcerpts": [
+      "    t =     0.12s Set Up\n    t =     0.12s     Open com.davidpovarsky.chavrusatext\n    t =     0.12s         Launch com.davidpovarsky.chavrusatext\n2026-11-20 04:03:37.191 xcodebuild[22528:588681] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL\n2026-11-20 04:03:37.210 xcodebuild[22528:588681] [MT] IDELaunchParametersSnapshot: no debugger version\n    t =    15.57s             Setting up automation session\n    t =    26.26s             Wait for com.davidpovarsky.chavrusatext to idle\n    t =    34.74s     Waiting 40.0s for \"library-column\" Other to exist\n    t =    35.79s         Checking `Expect predicate `existsNoRetry == 1` for object \"library-column\" Other`\n    t =    35.79s             Checking existence of `\"library-column\" Other`\n    t =    38.53s     Wait for com.davidpovarsky.chavrusatext to become Running Foreground\n    t =    38.53s     Requesting snapshot of accessibility hierarchy for app with pid 28455\n    t =    39.62s     Requesting snapshot of accessibility hierarchy for app with pid 28455\n    t =    39.99s     Get number of matches for: Descendants matching type Alert\n    t =    40.06s     Checking existence of `\"History & Favorites\" NavigationBar`\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:192: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testGlobalSearchPublicRootPreservesOriginalPrivateQuery] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Owned system URL transport must acknowledge the exact request\n    t =    61.58s Tear Down\n    t =    61.58s         Requesting snapshot of accessibility hierarchy for app with pid 28455"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 5651,
+    "originalActivitySHA256": "ce0d96c85b9997cb1258d1ed7b10bb436f70baa98846bd27ca8c8af542f99ef1",
+    "savedAs": "failure-timelines/testPublicV2InspectorPreservesOriginalReaderAndWorkspace.log.gz",
+    "failureExcerpts": [
+      "    t =    35.20s     Requesting snapshot of accessibility hierarchy for app with pid 33313\n    t =    35.69s     Get number of matches for: Descendants matching type Alert\n    t =    35.75s     Checking existence of `\"History & Favorites\" NavigationBar`\n    t =    38.00s Added attachment named 'actual-system-url-transport-only'\n    t =    39.05s     Get number of matches for: Descendants matching type Alert\n    t =    39.14s     Checking existence of `\"Unable to open link\" Alert`\n    t =    39.60s     Get number of matches for: Descendants matching type Alert\n    t =    39.63s     Wait for com.davidpovarsky.chavrusatext to become Running Foreground\n    t =    39.63s     Requesting snapshot of accessibility hierarchy for app with pid 33313\n    t =    41.09s     Requesting snapshot of accessibility hierarchy for app with pid 33313\n    t =    41.47s Added attachment named 'actual-warm-system-url-process-identity'\n    t =    41.47s     Waiting 30.0s for \"torah-inspector-panel\" Any to exist\n    t =    42.53s         Checking `Expect predicate `existsNoRetry == 1` for object \"torah-inspector-panel\" Any`\n    t =    42.53s             Checking existence of `\"torah-inspector-panel\" Any`\n    t =    43.33s     Find the \"torah-inspector-panel\" Any\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1499: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testPublicV2InspectorPreservesOriginalReaderAndWorkspace] : XCTAssertTrue failed - A hidden panel or model flag is not visible presentation\n    t =    44.36s Tear Down\n    t =    44.36s         Requesting snapshot of accessibility hierarchy for app with pid 33313"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 5518,
+    "originalActivitySHA256": "4c8d435cf49625650d5c724b603134fd0986c86bcfb0edf52d9cd447647ae321",
+    "savedAs": "failure-timelines/testPublicV2InspectorRequiresVisibleOriginalReader.log.gz",
+    "failureExcerpts": [
+      "    t =    28.72s     Requesting snapshot of accessibility hierarchy for app with pid 35698\n    t =    30.19s     Requesting snapshot of accessibility hierarchy for app with pid 35698\n    t =    30.88s     Get number of matches for: Descendants matching type Alert\n    t =    30.92s     Checking existence of `\"History & Favorites\" NavigationBar`\n    t =    34.57s Added attachment named 'actual-system-url-transport-only'\n    t =    35.64s     Get number of matches for: Descendants matching type Alert\n    t =    35.67s     Checking existence of `\"Unable to open link\" Alert`\n    t =    35.92s     Get number of matches for: Descendants matching type Alert\n    t =    35.95s     Wait for com.davidpovarsky.chavrusatext to become Running Foreground\n    t =    35.95s     Requesting snapshot of accessibility hierarchy for app with pid 35698\n    t =    36.66s     Requesting snapshot of accessibility hierarchy for app with pid 35698\n    t =    36.89s Added attachment named 'actual-warm-system-url-process-identity'\n    t =    36.89s     Waiting 20.0s for \"global-search-screen\" Other to exist\n    t =    37.92s         Checking `Expect predicate `existsNoRetry == 1` for object \"global-search-screen\" Other`\n    t =    37.92s             Checking existence of `\"global-search-screen\" Other`\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:711: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testPublicV2InspectorRequiresVisibleOriginalReader] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt\n    t =    53.11s Tear Down\n    t =    53.11s         Requesting snapshot of accessibility hierarchy for app with pid 35698"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 11308,
+    "originalActivitySHA256": "65c3846aa5e81717ea36f0e7531203d0193613fcb2610c6a6f192329cd4565f7",
+    "savedAs": "failure-timelines/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader.log.gz",
+    "failureExcerpts": [
+      "    t =    57.87s     Requesting snapshot of accessibility hierarchy for app with pid 38181\n    t =    58.86s     Requesting snapshot of accessibility hierarchy for app with pid 38181\n    t =    59.25s     Get number of matches for: Descendants matching type Alert\n    t =    59.28s     Checking existence of `\"History & Favorites\" NavigationBar`\n    t =    63.79s Added attachment named 'actual-system-url-transport-only'\n    t =    64.81s     Get number of matches for: Descendants matching type Alert\n    t =    64.83s     Checking existence of `\"Unable to open link\" Alert`\n    t =    64.96s     Get number of matches for: Descendants matching type Alert\n    t =    64.98s     Wait for com.davidpovarsky.chavrusatext to become Running Foreground\n    t =    64.98s     Requesting snapshot of accessibility hierarchy for app with pid 38181\n    t =    65.33s     Requesting snapshot of accessibility hierarchy for app with pid 38181\n    t =    65.43s Added attachment named 'actual-warm-system-url-process-identity'\n    t =    65.43s     Waiting 15.0s for \"History & Favorites\" NavigationBar to exist\n    t =    66.50s         Checking `Expect predicate `existsNoRetry == 1` for object \"History & Favorites\" NavigationBar`\n    t =    66.50s             Checking existence of `\"History & Favorites\" NavigationBar`\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:261: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testPublicV2LibraryPreservesPrivateQueryAndOriginalReader] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Actual canonical native receipt did not reach the app's real reader log\n    t =    81.64s Tear Down\n    t =    81.64s         Requesting snapshot of accessibility hierarchy for app with pid 38181"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 11598,
+    "originalActivitySHA256": "00dc7e6bc6bc0748765abbdf348529dda8fc5b3743552755448311119fb5bb98",
+    "savedAs": "failure-timelines/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab.log.gz",
+    "failureExcerpts": [
+      "    t =    59.11s     Waiting 6.0s for \"reader-rendered-highlight-diagnostics\" Other to exist\n    t =    60.17s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-rendered-highlight-diagnostics\" Other`\n    t =    60.17s             Checking existence of `\"reader-rendered-highlight-diagnostics\" Other`\n    t =    60.39s     Find the \"reader-rendered-highlight-diagnostics\" Other\n    t =    60.60s     Find the \"reader-header-title\" StaticText\n    t =    61.89s Added attachment named 'actual-current-reader-core-receipt'\n    t =    61.90s Added attachment named 'native-current-reader-receipt'\n    t =    62.96s     Requesting snapshot of accessibility hierarchy for app with pid 45574\n    t =    63.89s     Requesting snapshot of accessibility hierarchy for app with pid 45574\n    t =    64.32s Added attachment named 'native-new-tab-same-book-distinct-owner-hierarchy'\n    t =    64.80s Added attachment named 'native-new-tab-same-book-distinct-owner-screen'\n    t =    64.80s     Waiting 10.0s for \"reader-document-tab-7E2B3464-1527-4E91-B495-D1B56A1734D4\" Any to exist\n    t =    65.84s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-document-tab-7E2B3464-1527-4E91-B495-D1B56A1734D4\" Any`\n    t =    65.84s             Checking existence of `\"reader-document-tab-7E2B3464-1527-4E91-B495-D1B56A1734D4\" Any`\n    t =    66.43s     Find the \"reader-document-tab-7E2B3464-1527-4E91-B495-D1B56A1734D4\" Any\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:639: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab] : XCTAssertTrue failed\n    t =    67.54s Tear Down\n    t =    67.54s         Requesting snapshot of accessibility hierarchy for app with pid 45574"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 3403,
+    "originalActivitySHA256": "c68b70470c67ef55938ba3149c155c5f5cc9ec7507aa75e555a6de1be5cc57f1",
+    "savedAs": "failure-timelines/testPublicV2SearchQueryFocusUsesOriginalFirstResponder.log.gz",
+    "failureExcerpts": [
+      "    t =    17.61s     Requesting snapshot of accessibility hierarchy for app with pid 53758\n    t =    18.77s     Requesting snapshot of accessibility hierarchy for app with pid 53758\n    t =    19.25s     Get number of matches for: Descendants matching type Alert\n    t =    19.28s     Checking existence of `\"History & Favorites\" NavigationBar`\n    t =    23.92s Added attachment named 'actual-system-url-transport-only'\n    t =    24.95s     Get number of matches for: Descendants matching type Alert\n    t =    25.00s     Checking existence of `\"Unable to open link\" Alert`\n    t =    26.05s     Get number of matches for: Descendants matching type Alert\n    t =    26.08s     Wait for com.davidpovarsky.chavrusatext to become Running Foreground\n    t =    26.08s     Requesting snapshot of accessibility hierarchy for app with pid 53758\n    t =    27.11s     Requesting snapshot of accessibility hierarchy for app with pid 53758\n    t =    27.46s Added attachment named 'actual-warm-system-url-process-identity'\n    t =    27.46s     Waiting 20.0s for \"global-search-screen\" Other to exist\n    t =    28.47s         Checking `Expect predicate `existsNoRetry == 1` for object \"global-search-screen\" Other`\n    t =    28.47s             Checking existence of `\"global-search-screen\" Other`\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:711: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testPublicV2SearchQueryFocusUsesOriginalFirstResponder] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt\n    t =    43.76s Tear Down\n    t =    43.77s         Requesting snapshot of accessibility hierarchy for app with pid 53758"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 12556,
+    "originalActivitySHA256": "8bf4a42017c15c33919855f8a42a9c806fc7f134a1f87c159a3b7060617b6658",
+    "savedAs": "failure-timelines/testPublicV2TOCPreservesPrivateFilterAndOriginalReader.log.gz",
+    "failureExcerpts": [
+      "    t =    67.73s     Checking existence of `\"Unable to open link\" Alert`\n    t =    68.01s     Checking existence of `\"History & Favorites\" NavigationBar`\n    t =    68.65s     Get number of matches for: Descendants matching type Alert\n    t =    68.71s     Checking existence of `\"Unable to open link\" Alert`\n    t =    70.19s     Checking existence of `\"History & Favorites\" NavigationBar`\n    t =    71.71s     Get number of matches for: Descendants matching type Alert\n    t =    71.77s     Checking existence of `\"Unable to open link\" Alert`\n    t =    72.23s     Get number of matches for: Descendants matching type Alert\n    t =    72.27s     Wait for com.davidpovarsky.chavrusatext to become Running Foreground\n    t =    72.27s     Requesting snapshot of accessibility hierarchy for app with pid 55641\n    t =    74.10s     Requesting snapshot of accessibility hierarchy for app with pid 55641\n    t =    74.69s Added attachment named 'actual-warm-system-url-process-identity'\n    t =    74.69s     Waiting 15.0s for \"library-column\" Other to exist\n    t =    75.71s         Checking `Expect predicate `existsNoRetry == 1` for object \"library-column\" Other`\n    t =    75.71s             Checking existence of `\"library-column\" Other`\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:990: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testPublicV2TOCPreservesPrivateFilterAndOriginalReader] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The actual original UIKit surface must acknowledge through Core\n    t =    91.08s Tear Down\n    t =    91.08s         Requesting snapshot of accessibility hierarchy for app with pid 55641"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 4300,
+    "originalActivitySHA256": "b94499b99c02a20bf19b76a0f2b2a448cdedbd9227cafe379ce24b28859ad5ff",
+    "savedAs": "failure-timelines/testSystemAppIntentShowsOriginalReaderInspector.log.gz",
+    "failureExcerpts": [
+      "    t =    17.18s     Find the Target Application 'com.davidpovarsky.chavrusatext'\n    t =    18.38s     Checking `Expect predicate `BLOCKPREDICATE(0x115a7ba80)` for object \"reader-text\" TextView`\n    t =    18.38s         Find the \"reader-text\" TextView\n    t =    18.57s     Waiting 10.0s for \"reader-header-title\" StaticText to exist\n    t =    19.58s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-header-title\" StaticText`\n    t =    19.58s             Checking existence of `\"reader-header-title\" StaticText`\n    t =    19.74s     Find the \"reader-header-title\" StaticText\n    t =    19.91s     Find the \"reader-text\" TextView\n    t =    20.08s     Find the \"reader-current-locator\" StaticText\n    t =    20.23s     Waiting 6.0s for \"reader-rendered-highlight-diagnostics\" Other to exist\n    t =    21.24s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-rendered-highlight-diagnostics\" Other`\n    t =    21.24s             Checking existence of `\"reader-rendered-highlight-diagnostics\" Other`\n    t =    21.41s     Find the \"reader-rendered-highlight-diagnostics\" Other\n    t =    21.57s     Find the \"reader-header-title\" StaticText\n    t =    21.74s     Find the \"reader-current-locator\" StaticText\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1562: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testSystemAppIntentShowsOriginalReaderInspector] : failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"\n    t =    22.35s Tear Down\n    t =    22.36s         Requesting snapshot of accessibility hierarchy for app with pid 71506"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 4538,
+    "originalActivitySHA256": "84860475404bd1fbe62f39644eb8012f88487c3a51c60c7967ac9076473095ab",
+    "savedAs": "failure-timelines/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader.log.gz",
+    "failureExcerpts": [
+      "    t =    17.02s     Find the Target Application 'com.davidpovarsky.chavrusatext'\n    t =    18.20s     Checking `Expect predicate `BLOCKPREDICATE(0x116c6b0f0)` for object \"reader-text\" TextView`\n    t =    18.20s         Find the \"reader-text\" TextView\n    t =    18.45s     Waiting 10.0s for \"reader-header-title\" StaticText to exist\n    t =    19.52s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-header-title\" StaticText`\n    t =    19.52s             Checking existence of `\"reader-header-title\" StaticText`\n    t =    19.75s     Find the \"reader-header-title\" StaticText\n    t =    20.01s     Find the \"reader-text\" TextView\n    t =    20.28s     Find the \"reader-current-locator\" StaticText\n    t =    20.51s     Waiting 6.0s for \"reader-rendered-highlight-diagnostics\" Other to exist\n    t =    21.51s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-rendered-highlight-diagnostics\" Other`\n    t =    21.52s             Checking existence of `\"reader-rendered-highlight-diagnostics\" Other`\n    t =    21.79s     Find the \"reader-rendered-highlight-diagnostics\" Other\n    t =    22.06s     Find the \"reader-header-title\" StaticText\n    t =    22.37s     Find the \"reader-current-locator\" StaticText\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1275: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader] : failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"\n    t =    23.34s Tear Down\n    t =    23.34s         Requesting snapshot of accessibility hierarchy for app with pid 72654"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 4429,
+    "originalActivitySHA256": "7700f688cacd7fe0601381ddb9745bd2d349d242e97722732e42729c390ec86c",
+    "savedAs": "failure-timelines/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation.log.gz",
+    "failureExcerpts": [
+      "    t =    19.71s     Find the Target Application 'com.davidpovarsky.chavrusatext'\n    t =    20.86s     Checking `Expect predicate `BLOCKPREDICATE(0x115aa1290)` for object \"reader-text\" TextView`\n    t =    20.86s         Find the \"reader-text\" TextView\n    t =    21.04s     Waiting 10.0s for \"reader-header-title\" StaticText to exist\n    t =    22.10s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-header-title\" StaticText`\n    t =    22.10s             Checking existence of `\"reader-header-title\" StaticText`\n    t =    22.26s     Find the \"reader-header-title\" StaticText\n    t =    22.42s     Find the \"reader-text\" TextView\n    t =    22.58s     Find the \"reader-current-locator\" StaticText\n    t =    22.73s     Waiting 6.0s for \"reader-rendered-highlight-diagnostics\" Other to exist\n    t =    23.81s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-rendered-highlight-diagnostics\" Other`\n    t =    23.83s             Checking existence of `\"reader-rendered-highlight-diagnostics\" Other`\n    t =    24.09s     Find the \"reader-rendered-highlight-diagnostics\" Other\n    t =    24.26s     Find the \"reader-header-title\" StaticText\n    t =    24.44s     Find the \"reader-current-locator\" StaticText\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1288: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testSystemBookIntentRejectsDifferentBookLocationWithoutMutation] : failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"\n    t =    25.00s Tear Down\n    t =    25.00s         Requesting snapshot of accessibility hierarchy for app with pid 73739"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 4405,
+    "originalActivitySHA256": "20684b635081aa049116f6878b40cf5b758eae64c5023189d367e919efd13fae",
+    "savedAs": "failure-timelines/testSystemBookIntentRejectsMissingSourceWithoutMutation.log.gz",
+    "failureExcerpts": [
+      "    t =    17.01s     Find the Target Application 'com.davidpovarsky.chavrusatext'\n    t =    18.20s     Checking `Expect predicate `BLOCKPREDICATE(0x114955770)` for object \"reader-text\" TextView`\n    t =    18.21s         Find the \"reader-text\" TextView\n    t =    18.39s     Waiting 10.0s for \"reader-header-title\" StaticText to exist\n    t =    19.45s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-header-title\" StaticText`\n    t =    19.45s             Checking existence of `\"reader-header-title\" StaticText`\n    t =    19.62s     Find the \"reader-header-title\" StaticText\n    t =    19.81s     Find the \"reader-text\" TextView\n    t =    20.01s     Find the \"reader-current-locator\" StaticText\n    t =    20.25s     Waiting 6.0s for \"reader-rendered-highlight-diagnostics\" Other to exist\n    t =    21.25s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-rendered-highlight-diagnostics\" Other`\n    t =    21.26s             Checking existence of `\"reader-rendered-highlight-diagnostics\" Other`\n    t =    21.47s     Find the \"reader-rendered-highlight-diagnostics\" Other\n    t =    21.70s     Find the \"reader-header-title\" StaticText\n    t =    22.00s     Find the \"reader-current-locator\" StaticText\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1288: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testSystemBookIntentRejectsMissingSourceWithoutMutation] : failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"\n    t =    22.72s Tear Down\n    t =    22.73s         Requesting snapshot of accessibility hierarchy for app with pid 74920"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
+    "originalEntry": "artifacts/test-simulator-11-reader.log",
+    "originalEntrySHA256": "24e5dc57dc3f61eea53e33fc0acc1c429da45f16450c8769ecd8e5eb4503a23b",
+    "originalActivityBytes": 4502,
+    "originalActivitySHA256": "ea03577ea4108933a5e050465373fcba0a22bc031f7834b349fb8ae2f059d989",
+    "savedAs": "failure-timelines/testSystemBookIntentResolvesNamedChapterThroughOriginalCore.log.gz",
+    "failureExcerpts": [
+      "    t =    17.78s     Find the Target Application 'com.davidpovarsky.chavrusatext'\n    t =    19.04s     Checking `Expect predicate `BLOCKPREDICATE(0x115a8b000)` for object \"reader-text\" TextView`\n    t =    19.04s         Find the \"reader-text\" TextView\n    t =    19.26s     Waiting 10.0s for \"reader-header-title\" StaticText to exist\n    t =    20.29s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-header-title\" StaticText`\n    t =    20.29s             Checking existence of `\"reader-header-title\" StaticText`\n    t =    20.51s     Find the \"reader-header-title\" StaticText\n    t =    20.76s     Find the \"reader-text\" TextView\n    t =    21.05s     Find the \"reader-current-locator\" StaticText\n    t =    21.35s     Waiting 6.0s for \"reader-rendered-highlight-diagnostics\" Other to exist\n    t =    22.40s         Checking `Expect predicate `existsNoRetry == 1` for object \"reader-rendered-highlight-diagnostics\" Other`\n    t =    22.41s             Checking existence of `\"reader-rendered-highlight-diagnostics\" Other`\n    t =    22.62s     Find the \"reader-rendered-highlight-diagnostics\" Other\n    t =    22.85s     Find the \"reader-header-title\" StaticText\n    t =    23.08s     Find the \"reader-current-locator\" StaticText\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1272: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testSystemBookIntentResolvesNamedChapterThroughOriginalCore] : failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"\n    t =    24.20s Tear Down\n    t =    24.20s         Requesting snapshot of accessibility hierarchy for app with pid 76486"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+    "originalEntry": "artifacts/test-simulator-11-sidebar.log",
+    "originalEntrySHA256": "2ce038d2dec33ad1c87f1384757f813c34982108e7303de06bb425bb03f08d8c",
+    "originalActivityBytes": 18310,
+    "originalActivitySHA256": "f0ce9c31e38a26a0e0c0232578061385b78f05e4890e65a05b4a9c404939a231",
+    "savedAs": "failure-timelines/testBookSearchRetainsControlsWithoutGlobalHistory.log.gz",
+    "failureExcerpts": [
+      "    t =   158.13s     Checking `Expect predicate `existsNoRetry == 1` for object \"10\" TextField`\n    t =   158.13s         Checking existence of `\"10\" TextField`\n    t =   158.70s         Capturing element debug description\n    t =   159.09s     Checking `Expect predicate `existsNoRetry == 1` for object \"10\" TextField`\n    t =   159.09s         Checking existence of `\"10\" TextField`\n    t =   159.50s         Capturing element debug description\n    t =   160.14s     Checking `Expect predicate `existsNoRetry == 1` for object \"10\" TextField`\n    t =   160.14s         Checking existence of `\"10\" TextField`\n    t =   160.51s         Capturing element debug description\n    t =   161.06s     Checking `Expect predicate `existsNoRetry == 1` for object \"10\" TextField`\n    t =   161.06s         Checking existence of `\"10\" TextField`\n    t =   161.34s         Capturing element debug description\n    t =   161.34s     Checking existence of `\"10\" TextField`\n    t =   161.88s Collecting debug information to assist test failure triage\n    t =   161.88s     Requesting snapshot of accessibility hierarchy for app with pid 4080\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift:89: error: -[Maktabah_iOSUITests.BookHistoryScopeAcceptanceTests testBookSearchRetainsControlsWithoutGlobalHistory] : XCTAssertTrue failed\n    t =   164.04s Tear Down\nTest Case '-[Maktabah_iOSUITests.BookHistoryScopeAcceptanceTests testBookSearchRetainsControlsWithoutGlobalHistory]' failed (164.587 seconds)."
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+    "originalEntry": "artifacts/test-simulator-11-sidebar.log",
+    "originalEntrySHA256": "2ce038d2dec33ad1c87f1384757f813c34982108e7303de06bb425bb03f08d8c",
+    "originalActivityBytes": 131308,
+    "originalActivitySHA256": "c6d317770826bbf6fcafeb7996123ba97e4220908ba2221e8b68af53e10fa880",
+    "savedAs": "failure-timelines/testSidebarBodyPagingLTR.log.gz",
+    "failureExcerpts": [],
+    "tailIfNoExplicitError": "    t =   605.79s         Wait for com.apple.springboard to idle\n    t =   605.86s Ignoring failure to get hierarchy for remote element in process 3733 (Error getting main window kAXErrorServerNotFound)\n    t =   605.86s Ignoring failure to get hierarchy for remote element in process 3733 (Error getting main window kAXErrorServerNotFound)\n    t =   606.04s     Synthesize event\n    t =   606.05s         Find the \"reader-sidebar-pager\" Other\n    t =   606.67s         Find the \"reader-sidebar-pager\" Other\n    t =   607.39s         Find the \"reader-sidebar-pager\" Other\n    t =   608.24s         Find the \"reader-sidebar-pager\" Other\n    t =   609.54s         Find the \"reader-sidebar-pager\" Other\n    t =   610.88s     Wait for com.davidpovarsky.chavrusatext to idle\n    t =   611.39s Find the \"reader-sidebar-page-0\" Button\n    t =   612.32s Added attachment named 'DIAGNOSTIC-sidebar-11201-en-body-paging'\n    t =   612.32s Find the Target Application 'com.davidpovarsky.chavrusatext'\n    t =   612.64s Requesting snapshot of accessibility hierarchy for app with pid 7893\n    t =   614.46s Requesting snapshot of accessibility hierarchy for app with pid 7893\n    t =   615.01s Added attachment named 'DIAGNOSTIC-sidebar-11201-en-body-paging-ui-tree'\n    t =   615.12s Tear Down\n    t =   615.44s     Added attachment named 'DIAGNOSTIC-sidebar-11201-final'\n    t =   615.44s     Find the Target Application 'com.davidpovarsky.chavrusatext'\n    t =   615.72s     Requesting snapshot of accessibility hierarchy for app with pid 7893\n    t =   617.80s     Requesting snapshot of accessibility hierarchy for app with pid 7893\n    t =   619.84s     Added attachment named 'DIAGNOSTIC-sidebar-11201-final-ui-tree'\n    t =   619.84s     Setting device orientation to Portrait\n    t =   619.87s         Device orientation changed to Portrait\n    t =   620.94s         Interface orientation changed to Portrait\n    t =   621.30s         Wait for com.davidpovarsky.chavrusatext to idle\n    t =   624.04s         Wait for com.apple.springboard to idle\n\n\n*** If you believe this error represents a bug, please attach the result bundle at /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-sidebar.xcresult\n\n2026-11-20 04:57:25.619197+0000 Maktabah-iOSUITests-Runner[36378:874838] [Default] Running tests...\n2026-11-20 04:57:25.978906+0000 Maktabah-iOSUITests-Runner[36378:874838] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.\n    t =      nans Interface orientation changed to Portrait\n\nRestarting after unexpected exit, crash, or test timeout; summary will include totals from previous launches.\n\nTest Suite 'Selected tests' started at 2026-11-20 04:57:34.392.\nTest Suite 'Maktabah-iOSUITests.xctest' started at 2026-11-20 04:57:34.394.\nTest Suite 'Sidebar11201AcceptanceTests' started at 2026-11-20 04:57:34.394."
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "originalEntry": "artifacts/test-simulator-11-window.log",
+    "originalEntrySHA256": "c544a95fb2850055d3c501789dc4e6035071176d663329f400dc73587ce81936",
+    "originalActivityBytes": 29554,
+    "originalActivitySHA256": "f2c913edd05c58a3070bdd1bf9cec049a9d1cddb9728a399e37f4d289643c379",
+    "savedAs": "failure-timelines/testNormalBootstrapNativeWindowResizePaletteAndInspector.log.gz",
+    "failureExcerpts": [
+      "    t =   254.64s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-study-toggle\" Button`\n    t =   254.64s         Checking existence of `\"reader-study-toggle\" Button`\n    t =   255.02s         Capturing element debug description\n    t =   255.70s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-study-toggle\" Button`\n    t =   255.70s         Checking existence of `\"reader-study-toggle\" Button`\n    t =   257.11s         Capturing element debug description\n    t =   257.64s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-study-toggle\" Button`\n    t =   257.64s         Checking existence of `\"reader-study-toggle\" Button`\n    t =   258.29s         Capturing element debug description\n    t =   258.61s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-study-toggle\" Button`\n    t =   258.61s         Checking existence of `\"reader-study-toggle\" Button`\n    t =   259.91s         Capturing element debug description\n    t =   259.91s     Checking existence of `\"reader-study-toggle\" Button`\n    t =   262.49s Collecting debug information to assist test failure triage\n    t =   262.49s     Requesting snapshot of accessibility hierarchy for app with pid 79692\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:445: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapNativeWindowResizePaletteAndInspector] : XCTAssertTrue failed\n    t =   264.26s Tear Down\n    t =   264.26s     Find the Window (First Match)"
+    ],
+    "tailIfNoExplicitError": null
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+    "originalEntry": "artifacts/test-simulator-11-window.log",
+    "originalEntrySHA256": "c544a95fb2850055d3c501789dc4e6035071176d663329f400dc73587ce81936",
+    "originalActivityBytes": 29150,
+    "originalActivitySHA256": "30e94db617032703d450f4fab82d5f7407d0da5b37c0c9c8105311b60acb21f9",
+    "savedAs": "failure-timelines/testNormalBootstrapPaletteHIDComparison.log.gz",
+    "failureExcerpts": [
+      "    t =   169.58s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-study-toggle\" Button`\n    t =   169.58s         Checking existence of `\"reader-study-toggle\" Button`\n    t =   169.75s         Capturing element debug description\n    t =   170.61s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-study-toggle\" Button`\n    t =   170.61s         Checking existence of `\"reader-study-toggle\" Button`\n    t =   170.88s         Capturing element debug description\n    t =   171.59s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-study-toggle\" Button`\n    t =   171.59s         Checking existence of `\"reader-study-toggle\" Button`\n    t =   171.83s         Capturing element debug description\n    t =   172.57s     Checking `Expect predicate `existsNoRetry == 1` for object \"reader-study-toggle\" Button`\n    t =   172.57s         Checking existence of `\"reader-study-toggle\" Button`\n    t =   172.76s         Capturing element debug description\n    t =   172.76s     Checking existence of `\"reader-study-toggle\" Button`\n    t =   172.98s Collecting debug information to assist test failure triage\n    t =   172.98s     Requesting snapshot of accessibility hierarchy for app with pid 92508\n/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift:445: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapPaletteHIDComparison] : XCTAssertTrue failed\n    t =   173.34s Tear Down\n    t =   173.34s     Find the Window (First Match)"
+    ],
+    "tailIfNoExplicitError": null
+  }
+]
