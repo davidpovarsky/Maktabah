@@ -1,0 +1,15 @@
+{
+  "status": "SOURCE_PRESERVATION_VERIFIED",
+  "checks": [
+    "Faithful: hashes, exact forward/inverse and existing case declarations",
+    "R27: hashes, exact forward/inverse and existing case declarations",
+    "Unchanged namespace/Return, 90s settlement, persistence, cold relaunch and final UI oracles",
+    "Original bounded regular/non-symlink file admission; trace opt-in and metadata-only attachment scope",
+    "R27 single argument append; empty default preserves existing arguments and ordering",
+    "Exact existing DEBUG trace and original SDK route input blobs"
+  ],
+  "SwiftParse": "NOT_RUN",
+  "AppleTypecheck": "NOT_RUN",
+  "Native": "NOT_RUN",
+  "testCasesExecuted": 0
+}

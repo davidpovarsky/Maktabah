@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "baseSHA": "f0dcb09be6c73f306d14ac2527b0c1d21a6e03b1",
+  "scope": "test-side passive History diagnostics; 0 Swift/Apple/Native executions",
+  "files": [
+    {
+      "path": "CHANGE_MAP.json",
+      "bytes": 10072,
+      "sha256": "21e5f784416e7027a5169a5c1ac4c048dc33560e042aee02a3c0db827f102e1c",
+      "gitBlob": "28ebf822e4f8a1a254d3db5350eb21e59e1c08c8"
+    },
+    {
+      "path": "PROPOSED.patch",
+      "bytes": 11246,
+      "sha256": "99cdef0664abfcc0a5440087b87faaf6d35c78eff08688c177965d6e227c3af5",
+      "gitBlob": "4c2141e08522c13e4e54ec18ca08fae3612cb223"
+    },
+    {
+      "path": "R27_CHANGE_MAP.json",
+      "bytes": 284,
+      "sha256": "39f1cf464c7c60f7ec275125ccf03d720ef37219df4b76fa0b8747340229be07",
+      "gitBlob": "6cc1f74e6186030d7b48019893f667660ad7a962"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5579,
+      "sha256": "c36245d95dd3296206dced7c3b7255138063b080d74ebea999dcecaadbe3e26d",
+      "gitBlob": "af5089c404b19e09e43562cd3eca94defef736ed"
+    },
+    {
+      "path": "READ_ONLY_INPUTS.json",
+      "bytes": 1199,
+      "sha256": "763c475d3458e7cef7069a1fb2e62471d4d4392922f0b913175d4ac19f9a5700",
+      "gitBlob": "ea924af14dad655dfb88793dfda808080749fb14"
+    },
+    {
+      "path": "SDK_ROUTE.json",
+      "bytes": 2530,
+      "sha256": "7686c63f74b3ac1c6ed57c7890bbd6f294e216110dc1cd76ac92abca8f2ad1a9",
+      "gitBlob": "aa6566a9030a90563765e7a5d2cc32204e13e3cc"
+    },
+    {
+      "path": "SOURCE_COMPARISON.json",
+      "bytes": 1439,
+      "sha256": "b552ce55f69364a80e8eb0b85a30e4f0452c448645e8e5a28d64e7684336411c",
+      "gitBlob": "80bdeba5c348e9855ec1e51f9b7300b55dbdb6bf"
+    },
+    {
+      "path": "SOURCE_REVIEW.json",
+      "bytes": 719,
+      "sha256": "9447be4e94ade738c282f02f5d05fd87597ff0291c4d552cf86cea7b58202cdb",
+      "gitBlob": "b1439dd4e4a67c58cb696bd0655a3053f4bee571"
+    },
+    {
+      "path": "SOURCE_VERIFICATION.json",
+      "bytes": 690,
+      "sha256": "881e976b14256c3101b16da6112db8bd42d4f6876bf8e861fafcb4b3f1610633",
+      "gitBlob": "8738b796ea1bb8001359f745547b66f9a1e4d3be"
+    },
+    {
+      "path": "SOURCE_VERIFICATION_ATTEMPT1.json",
+      "bytes": 497,
+      "sha256": "1d073a1efb089502bff5096dba8ca62315077db86b24c33149ffd4305cb0d8eb",
+      "gitBlob": "cb62242ea3473650520b0858c65d6e59bee013b4"
+    },
+    {
+      "path": "VERIFY_PACKET.py",
+      "bytes": 5650,
+      "sha256": "7446e58851c85e307ddc9fa16e529af45560f161cd55eed617c67d940757f66b",
+      "gitBlob": "cb689ee68f9d09533dc5eb869e6f2b8592126c39"
+    },
+    {
+      "path": "raw/Faithful.baseline.swift.gz",
+      "bytes": 38771,
+      "sha256": "d973bfaff4fb527f224079f1f9c88f133ead606f3a59a1e2eab33e8b3bc8e4a2",
+      "gitBlob": "5f129ea82719b63869ec5eb5200690ab3f387d05"
+    },
+    {
+      "path": "raw/Faithful.candidate.swift.gz",
+      "bytes": 40529,
+      "sha256": "9106011d09fc47260d9d70478ba105fbd8ab48e4c96b6a14c542a722432a1e16",
+      "gitBlob": "d13b540a24098e288134b18e93e9d2cb7641851e"
+    },
+    {
+      "path": "raw/R27.baseline.swift.gz",
+      "bytes": 6676,
+      "sha256": "cf26c37df23b7218c6c7416c0369e76ceece47224dc774ebb7e59a6c9dd84262",
+      "gitBlob": "1e8340a5bf1a9fe268b217f0f5d1ee0de0e4a3e2"
+    },
+    {
+      "path": "raw/R27.candidate.swift.gz",
+      "bytes": 6688,
+      "sha256": "1038f71e70d4a764efa5abc9c65a5546785091a38d7c0e80e84d0daf405f89a3",
+      "gitBlob": "24e8e2459dd37cf1221443c3a5c3aa8e90345ea6"
+    },
+    {
+      "path": "raw/UnifiedSearchSessionController.swift.gz",
+      "bytes": 7964,
+      "sha256": "a2e261c7a0234ba41e287d5da7ac1d258e6f21a955b8a2d94b985748172d9504",
+      "gitBlob": "9eda167c407ab4beebe0842ae3286c2ffe131d4c"
+    },
+    {
+      "path": "raw/VERIFY_PACKET.attempt1.py.gz",
+      "bytes": 2036,
+      "sha256": "576e1a39494dd6ed7136552064f765044898c67eaea7d06be2d830a9cd157f37",
+      "gitBlob": "d0c3afc4b8ba291546225ff8e9df0ad9f816f631"
+    },
+    {
+      "path": "raw/sefaria-embedded-validation.yml.gz",
+      "bytes": 8652,
+      "sha256": "a8c8cc46e9b0d64e05e1eb4299b38ae0ebdbaf52336b720254bc0b13bc25c93d",
+      "gitBlob": "c2f42e216cee5dc41f4053790ec25e29f11da54e"
+    },
+    {
+      "path": "raw/typecheck-faithful-ui-tests.py.gz",
+      "bytes": 6366,
+      "sha256": "313c865ef0b10fbe8d0318bebc84c7f6f062f1e85912f0346aa99d8d8989a26b",
+      "gitBlob": "fddc2e7125c757e0bc0fda1f25b1a95d780097aa"
+    }
+  ]
+}

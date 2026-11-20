@@ -1,0 +1,212 @@
+--- a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -30,25 +30,115 @@
+     let details: [String: Any]
+ }
+ 
++/// Passive evidence only. Acceptance still requires the same bounded regular
++/// preference file, parsed dictionary, installation pin and exact query count.
++private struct NativeGlobalHistoryFileObservation {
++    let data: Data?
++    let details: [String: Any]
++}
++
++private func observeNativeGlobalHistoryFile(_ url: URL, maximum: Int) -> NativeGlobalHistoryFileObservation {
++    var details: [String: Any] = ["maximumBytes": maximum, "bytesRead": 0]
++    func failed(_ stage: String, _ reason: String, _ error: Error? = nil) -> NativeGlobalHistoryFileObservation {
++        var result = details
++        result["status"] = "unavailable"; result["stage"] = stage; result["reason"] = reason
++        if let error {
++            let value = error as NSError
++            result["errorDomain"] = value.domain; result["errorCode"] = value.code
++        }
++        return .init(data: nil, details: result)
++    }
++    let values: URLResourceValues
++    do {
++        values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
++    } catch {
++        let value = error as NSError
++        let missing = (value.domain == NSCocoaErrorDomain &&
++            [NSFileNoSuchFileError, NSFileReadNoSuchFileError].contains(value.code))
++            || (value.domain == NSPOSIXErrorDomain && value.code == 2)
++        return failed("metadata", missing ? "missing" : "metadata_read_failed", error)
++    }
++    details["regularFile"] = values.isRegularFile
++    details["symbolicLink"] = values.isSymbolicLink
++    guard values.isSymbolicLink != true else { return failed("type", "symlink") }
++    guard values.isRegularFile == true else {
++        return failed("type", values.isRegularFile == false ? "nonregular" : "regular_status_unavailable")
++    }
++    guard values.isSymbolicLink == false else { return failed("type", "symlink_status_unavailable") }
++    let handle: FileHandle
++    do { handle = try FileHandle(forReadingFrom: url) }
++    catch { return failed("open", "open_failed", error) }
++    defer { try? handle.close() }
++    do {
++        var bytes = Data()
++        while bytes.count <= maximum {
++            guard let chunk = try handle.read(upToCount: min(65536, maximum + 1 - bytes.count)),
++                  !chunk.isEmpty else {
++                details["status"] = "read"; details["bytesRead"] = bytes.count
++                return .init(data: bytes, details: details)
++            }
++            bytes.append(chunk)
++            details["bytesRead"] = bytes.count
++        }
++    } catch { return failed("read", "read_failed", error) }
++    return failed("budget", "oversize")
++}
++
++/// Existing DEBUG provider/publication observations, never an admission or
++/// history-writer oracle. Missing events cannot establish that Return was lost.
++private func observeNativeGlobalSearchTrace(in container: URL, namespace: String) -> [String: Any] {
++    guard UUID(uuidString: namespace) != nil else { return ["status": "invalid_namespace"] }
++    let file = container.appendingPathComponent("Documents/OtzariaLogs/search-native-" + namespace + ".jsonl")
++    let read = observeNativeGlobalHistoryFile(file, maximum: 8 * 1024 * 1024)
++    var result: [String: Any] = [
++        "fileRead": read.details,
++        "admissionObservation": "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL",
++        "historyWriterOwnerObservation": "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL",
++        "inMemoryHistoryObservation": "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL"
++    ]
++    guard let data = read.data else { return result }
++    var records: [[String: Any]] = []
++    var rejected = 0
++    for line in data.split(separator: 10) where !line.isEmpty {
++        guard let value = (try? JSONSerialization.jsonObject(with: Data(line))) as? [String: Any],
++              value["schemaVersion"] as? Int == 1,
++              value["namespace"] as? String == namespace,
++              value["profileID"] as? String == "miniTest10",
++              let sessionID = value["sessionID"] as? String, UUID(uuidString: sessionID) != nil,
++              let event = value["event"] as? String, ["provider", "published"].contains(event),
++              let engine = value["engine"] as? String, ["otzaria", "zayit"].contains(engine) else {
++            rejected += 1
++            continue
++        }
++        var observed: [String: Any] = [
++            "schemaVersion": 1, "namespace": namespace, "sessionID": sessionID,
++            "event": event, "engine": engine, "profileID": "miniTest10"
++        ]
++        for key in ["submissionRevision", "searchGeneration", "backendGeneration"] {
++            if let number = value[key] as? UInt64 { observed[key] = number }
++        }
++        if let hasMore = value["hasMore"] as? Bool { observed["hasMore"] = hasMore }
++        if let request = value["request"] as? [String: Any],
++           let digest = request["querySHA256"] as? String, digest.utf8.count == 64,
++           digest.utf8.allSatisfy({ ($0 >= 48 && $0 <= 57) || ($0 >= 97 && $0 <= 102) }) {
++            observed["querySHA256"] = digest
++        }
++        records.append(observed)
++    }
++    result["acceptedRecordCount"] = records.count
++    result["rejectedRecordCount"] = rejected
++    result["lastRecords"] = Array(records.suffix(32))
++    result["truncatedToLastRecords"] = records.count > 32
++    return result
++}
++
+ private func observeNativeGlobalHistory(
+     in parent: URL, namespace: String, query: String,
+     expectedContainer: URL? = nil, expectedMetadata: Data? = nil
+ ) -> NativeGlobalHistoryObservation {
+     let bundleID = "com.davidpovarsky.chavrusatext"
+     func boundedRegularFile(_ url: URL, maximum: Int) -> Data? {
+-        guard let values = try? url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey]),
+-              values.isRegularFile == true, values.isSymbolicLink == false,
+-              let handle = try? FileHandle(forReadingFrom: url) else { return nil }
+-        defer { try? handle.close() }
+-        do {
+-            var bytes = Data()
+-            while bytes.count <= maximum {
+-                guard let chunk = try handle.read(upToCount: min(65536, maximum + 1 - bytes.count)),
+-                      !chunk.isEmpty else { return bytes }
+-                bytes.append(chunk)
+-            }
+-        } catch { return nil }
+-        return nil
++        observeNativeGlobalHistoryFile(url, maximum: maximum).data
+     }
+     func dictionary(_ bytes: Data) -> [String: Any]? {
+         (try? PropertyListSerialization.propertyList(from: bytes, format: nil)) as? [String: Any]
+@@ -94,7 +184,23 @@
+     details["installationPinned"] = pinned
+     details["installationMatchesInitialBytes"] = installationMatches
+     let preference = container.appendingPathComponent("Library/Preferences/" + bundleID + ".plist")
+-    let preferences = boundedRegularFile(preference, maximum: 1024 * 1024).flatMap(dictionary)
++    let preferenceRead = observeNativeGlobalHistoryFile(preference, maximum: 1024 * 1024)
++    details["preferenceFileRead"] = preferenceRead.details
++    var preferences: [String: Any]?
++    if let bytes = preferenceRead.data {
++        do {
++            let decoded = try PropertyListSerialization.propertyList(from: bytes, format: nil)
++            preferences = decoded as? [String: Any]
++            details["preferenceParse"] = preferences == nil ? "dictionary_root_required" : "dictionary"
++        } catch {
++            let value = error as NSError
++            details["preferenceParse"] = "parse_failed"
++            details["preferenceParseErrorDomain"] = value.domain
++            details["preferenceParseErrorCode"] = value.code
++        }
++    } else {
++        details["preferenceParse"] = "NOT_ATTEMPTED_READ_UNAVAILABLE"
++    }
+     let history = preferences?["SearchHistory"] as? [String] ?? []
+     let count = history.filter { $0 == query }.count
+     details["preferenceReadable"] = preferences != nil
+@@ -147,7 +253,10 @@
+     let workspaceNamespace = UUID().uuidString
+     private var viewportURL: URL?
+     var readerTestTier: TestTier { .smoke }
+-    var readerAdditionalLaunchArguments: [String] { [] }
++    private var recordsGlobalHistoryTrace = false
++    var readerAdditionalLaunchArguments: [String] {
++        recordsGlobalHistoryTrace ? ["-GlobalSearchNativeTraceEnabled", "YES"] : []
++    }
+     struct Viewport: Codable {
+         struct Presentation: Codable {
+             let wantsOverview: Bool; let isViewLoaded: Bool; let isInWindow: Bool
+@@ -943,6 +1052,9 @@
+ 
+     @discardableResult
+     func exerciseGlobalHistorySubmission(enabled: Bool) -> String {
++        let previousTrace = recordsGlobalHistoryTrace
++        recordsGlobalHistoryTrace = true
++        defer { recordsGlobalHistoryTrace = previousTrace }
+         let query = "בדיקת היסטוריה " + UUID().uuidString
+         launchReader(enabled: enabled, scenario: "search")
+         let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+@@ -957,6 +1069,22 @@
+             details["stage"] = stage
+             details["nativeHistoryRowVisible"] = nativeHistoryRowVisible
+             details["waiterResult"] = waiterResult.map { String(describing: $0) }
++            // Read only at the existing attachment points, never in settlement
++            // predicates; the original DEBUG writer supplies any actual state.
++            if let container = observation.container {
++                details["originalPassiveSearchTrace"] = observeNativeGlobalSearchTrace(
++                    in: container, namespace: workspaceNamespace)
++            }
++            let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
++            let fieldCount = fields.count
++            details["originalQueryFieldCount"] = fieldCount
++            if fieldCount == 1 {
++                let field = fields.element
++                details["originalQueryFieldValue"] = field.value as? String
++                details["originalQueryFieldMatchesExpected"] = field.value as? String == query
++                details["originalQueryFieldEnabled"] = field.isEnabled
++                details["originalQueryFieldHittable"] = field.isHittable
++            }
+             details["originalUIStates"] = [
+                 "history": app.collectionViews["global-search-history"].exists,
+                 "loading": app.otherElements["global-search-loading"].exists,
+--- a/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift
+@@ -24,7 +24,7 @@
+                 "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
+                 "-studyWorkspaceTestingNamespace", workspaceNamespace,
+                 "-textViewBackgroundColorLight", String(background)
+-            ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []),
++            ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []) + readerAdditionalLaunchArguments,
+             language: language,
+             locale: language == "he" ? "he_IL" : "en_US"
+         )
