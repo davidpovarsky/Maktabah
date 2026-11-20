@@ -1,0 +1,250 @@
+[
+  {
+    "caseID": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+    "group": "11",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 164.5888819694519,
+    "failure": null
+  },
+  {
+    "caseID": "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
+    "group": "11",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 142.7740479707718,
+    "failure": null
+  },
+  {
+    "caseID": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "group": "11",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Failed",
+    "durationSeconds": 69.29350006580353,
+    "failure": "XCTAssertTrue failed"
+  },
+  {
+    "caseID": "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+    "group": "11",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Failed",
+    "durationSeconds": 52.93774700164795,
+    "failure": "XCTAssertTrue failed: throwing \"NSInternalInconsistencyException: Invalid query - string identifier 'This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared.' exceeds maximum length of 128 characters. You can work around this limitation by constructing a query with a custom NSPredicate that specifies the property (label, title, value, placeholderValue, or identifier) to match against.\" - Opening the reader chat must not imply permission to read the current book"
+  },
+  {
+    "caseID": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "group": "11",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Failed",
+    "durationSeconds": 82.30646002292633,
+    "failure": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original TextKit text and exact source locator must both match independent SQL"
+  },
+  {
+    "caseID": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+    "group": "11",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Failed",
+    "durationSeconds": 52.893243074417114,
+    "failure": "XCTAssertEqual failed: (\"Optional(\"cancelled\")\") is not equal to (\"Optional(\"completed\")\")"
+  },
+  {
+    "caseID": "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+    "group": "11",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Failed",
+    "durationSeconds": 50.00303506851196,
+    "failure": "XCTAssertEqual failed: (\"Optional(\"unavailable\")\") is not equal to (\"Optional(\"completed\")\")"
+  },
+  {
+    "caseID": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+    "group": "11",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Failed",
+    "durationSeconds": 600,
+    "failure": "Test exceeded execution time allowance of 10 minutes"
+  },
+  {
+    "caseID": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "group": "11",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Failed",
+    "durationSeconds": 115.87043499946594,
+    "failure": "XCTAssertTrue failed"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 162.7115799188614,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 62.32276999950409,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 89.20191395282745,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Failed",
+    "durationSeconds": 68.59259700775146,
+    "failure": "Dynamic Type font sizes are partially unsupported"
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 53.77497398853302,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 59.84773802757263,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 146.37271201610565,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 82.51744401454926,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 83.01189601421356,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 99.46060407161713,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 208.51364707946777,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 58.18798100948334,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 96.99079501628876,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 61.52204608917236,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 254.0307960510254,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 114.83943593502045,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 157.52509605884552,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 142.50286400318146,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 196.65212392807007,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 106.0993139743805,
+    "failure": null
+  },
+  {
+    "caseID": "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Passed",
+    "durationSeconds": 64.82741594314575,
+    "failure": null
+  },
+  {
+    "caseID": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "group": "11-search",
+    "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+    "result": "Failed",
+    "durationSeconds": 129.3365650177002,
+    "failure": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "atUTC": "2026-11-20T12:56:16.548614+00:00",
+  "runID": 44723902453,
+  "checkout": "60a57972acb28739ec738565083bf17fb7503028",
+  "branch": "codex/otzaria-native98-signature-reviewed-20261120",
+  "appTestSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "selected": 98,
+  "byDevice": {
+    "ipad11": 78,
+    "iphone": 20
+  },
+  "catalog": 98,
+  "trees": {
+    "Source": "c7732ce8cc0ba7d1a12a1e5c04d9cdb8d8f0fbc9",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah-iOSUITests": "2ba71c125cd1e1b165a5bf147cb67802266a69dd",
+    "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+  },
+  "caseManifestSHA256": "e4f3fd204cdbc40c3aaa1616e84046ff6aaf4238f776cb41912838987af6cd75",
+  "nativeOutcome": "NOT_EVALUATED_ARTIFACTS_REQUIRED"
+}

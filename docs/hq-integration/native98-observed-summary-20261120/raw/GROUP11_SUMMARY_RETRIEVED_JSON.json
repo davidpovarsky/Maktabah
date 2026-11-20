@@ -1,0 +1,94 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "3D007451-04A3-4D27-A569-D345E46345A1",
+        "deviceName": "Faithful 11-inch 1dd5446c",
+        "modelName": "iPad Pro 11-inch (M5)",
+        "osBuildNumber": "24B8117",
+        "osVersion": "27.2",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 7,
+      "passedTests": 2,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Maktabah-iOS · Built with macOS 27.0.1",
+  "expectedFailures": 0,
+  "failedTests": 7,
+  "finishTime": 1795177415.26,
+  "passedTests": 2,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1795175867.164,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original TextKit text and exact source locator must both match independent SQL",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 5,
+      "testIdentifierString": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+      "testName": "testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"Optional(\"cancelled\")\") is not equal to (\"Optional(\"completed\")\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 6,
+      "testIdentifierString": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+      "testName": "testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"Optional(\"unavailable\")\") is not equal to (\"Optional(\"completed\")\")",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 7,
+      "testIdentifierString": "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+      "testName": "testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad()"
+    },
+    {
+      "failureText": "Test exceeded execution time allowance of 10 minutes",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 8,
+      "testIdentifierString": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+      "testName": "testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 3,
+      "testIdentifierString": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "testName": "testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed: throwing \"NSInternalInconsistencyException: Invalid query - string identifier 'This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared.' exceeds maximum length of 128 characters. You can work around this limitation by constructing a query with a custom NSPredicate that specifies the property (label, title, value, placeholderValue, or identifier) to match against.\" - Opening the reader chat must not imply permission to read the current book",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 4,
+      "testIdentifierString": "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+      "testName": "testOriginalReaderChatReturnsToSameNativeWorkspace()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 9,
+      "testIdentifierString": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "testName": "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace()"
+    }
+  ],
+  "title": "Test - Maktabah-iOS",
+  "topInsights": [],
+  "totalTestCount": 9
+}

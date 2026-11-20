@@ -1,0 +1,41 @@
+{
+  "runID": 44723902453,
+  "checkout": "60a57972acb28739ec738565083bf17fb7503028",
+  "branch": "codex/otzaria-native98-signature-reviewed-20261120",
+  "appTestSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "startedUTC": "2026-11-20T12:56:19.300981+00:00",
+  "deadlineUTC": "2026-11-20T13:52:39.300981+00:00",
+  "limitSeconds": 3380,
+  "wrapperPID": 38576,
+  "command": [
+    "gh",
+    "run",
+    "watch",
+    "44723902453",
+    "--repo",
+    "davidpovarsky/Maktabah",
+    "--exit-status",
+    "--interval",
+    "30"
+  ],
+  "watcherPID": 30888,
+  "watchExitCode": 1,
+  "watcherState": "WATCH_PROCESS_FINISHED",
+  "watcherObservedEndUTC": "2026-11-20T13:41:21.564231+00:00",
+  "workflowOutcome": "cancelled",
+  "workflowStatus": "completed",
+  "workflowHeadVerified": true,
+  "workflowUpdatedAtUTC": "2026-11-20T13:41:08Z",
+  "actualJobCompletedAtUTC": {
+    "136246398292": "2026-11-20T13:41:08Z",
+    "136246399536": "2026-11-20T11:00:07Z",
+    "136246399765": "2026-11-20T11:00:07Z",
+    "136246451435": "2026-11-20T11:00:07Z",
+    "136246464197": "2026-11-20T11:00:07Z",
+    "136322951588": "2026-11-20T13:41:08Z",
+    "136322952749": "2026-11-20T13:41:08Z"
+  },
+  "artifactCount": 2,
+  "nativeOutcome": "NOT_EVALUATED_ARTIFACTS_REQUIRED"
+}
+WATCHER_WRAPPER_RETURN_CODE 0

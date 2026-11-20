@@ -1,0 +1,19 @@
+{
+  "status": "SOURCE_AND_OBSERVED_RESULT_PACKET_VALIDATED",
+  "atUTC": "2026-11-20T14:42:16.731791+00:00",
+  "sourceManifestExactSHA": true,
+  "uniqueRequiredIDs": 98,
+  "sourceMatchedCompleteLeaves": 31,
+  "pass": 22,
+  "fail": 9,
+  "skippedWithinVerifiedLeaves": 0,
+  "unverifiedCases": 67,
+  "rawIndexFailure": 1,
+  "startedUnknown": 1,
+  "noStartObserved": 65,
+  "summaryCanonicalHashesMatched": true,
+  "fullZIPIncluded": false,
+  "captureFullSHAClaimed": false,
+  "applicationOrAcceptanceRerun": false,
+  "newerSourceNativeCredit": false
+}

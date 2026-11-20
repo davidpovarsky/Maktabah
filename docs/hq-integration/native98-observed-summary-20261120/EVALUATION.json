@@ -1,0 +1,769 @@
+{
+  "schema": 1,
+  "scope": "Truthful durable observation summary; full verified local ZIP and complete capture-range package remain unpublished while Sentinel is offline",
+  "run": {
+    "id": 44723902453,
+    "head": "60a57972acb28739ec738565083bf17fb7503028",
+    "appSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "branch": "codex/otzaria-native98-signature-reviewed-20261120",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "cancelled",
+    "jobStartedAt": "2026-11-20T11:08:25Z",
+    "jobCompletedAt": "2026-11-20T13:41:08Z",
+    "runtimeStep": {
+      "name": "Inspect real Xcode27 tools or execute reviewed native cases",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "number": 11,
+      "started_at": "2026-11-20T11:09:34Z",
+      "completed_at": "2026-11-20T13:29:03Z"
+    },
+    "watcherObservedEndUTC": "2026-11-20T13:41:21.564231+00:00",
+    "cancellationActor": "UNKNOWN",
+    "cancellationCause": "NOT_ESTABLISHED"
+  },
+  "selection": {
+    "required": 98,
+    "requiredIPad": 78,
+    "requiredIPhone": 20,
+    "groups": [
+      {
+        "label": "11",
+        "count": 9,
+        "hid": false
+      },
+      {
+        "label": "11-search",
+        "count": 22,
+        "hid": false
+      },
+      {
+        "label": "11-index",
+        "count": 5,
+        "hid": false
+      },
+      {
+        "label": "11-reader",
+        "count": 35,
+        "hid": false
+      },
+      {
+        "label": "11-sidebar",
+        "count": 5,
+        "hid": false
+      },
+      {
+        "label": "11-window",
+        "count": 2,
+        "hid": true
+      },
+      {
+        "label": "phone",
+        "count": 20,
+        "hid": false
+      }
+    ],
+    "unchangedOriginalManifest": true
+  },
+  "build": {
+    "status": "SIMULATOR_BUILD_FOR_REAL_UI_PASS",
+    "actualSourceInputsVerified": 996,
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdkVersion": "27.2",
+    "buildStageRuntimeNOT_RUN": "Pre-UI stage only; actual later UI leaves evaluated separately"
+  },
+  "verified": {
+    "total": 31,
+    "passed": 22,
+    "failed": 9,
+    "skipped": 0,
+    "allIPad": true,
+    "IPhone": 0
+  },
+  "unverified": {
+    "total": 67,
+    "rawCompletedFailure": 1,
+    "rawStartedUnknown": 1,
+    "noStartObserved": 65,
+    "rawIndexFailureSeconds": 203.536
+  },
+  "cases": [
+    {
+      "caseID": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 53.77497398853302,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 62.32276999950409,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 61.52204608917236,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 99.46060407161713,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 89.20191395282745,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 83.01189601421356,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Failed",
+      "durationSeconds": 68.59259700775146,
+      "failure": "Dynamic Type font sizes are partially unsupported"
+    },
+    {
+      "caseID": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "group": "11-window",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "group": "11-window",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "group": "11-sidebar",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "group": "11-sidebar",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+      "group": "11-sidebar",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+      "group": "11-sidebar",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 114.83943593502045,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 157.52509605884552,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 106.0993139743805,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 58.18798100948334,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 82.51744401454926,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 146.37271201610565,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 64.82741594314575,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 96.99079501628876,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 162.7115799188614,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 59.84773802757263,
+      "failure": null
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 254.0307960510254,
+      "failure": null
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 142.50286400318146,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 196.65212392807007,
+      "failure": null
+    },
+    {
+      "caseID": "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 208.51364707946777,
+      "failure": null
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
+      "group": "11",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 142.7740479707718,
+      "failure": null
+    },
+    {
+      "caseID": "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+      "group": "11",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Failed",
+      "durationSeconds": 52.93774700164795,
+      "failure": "XCTAssertTrue failed: throwing \"NSInternalInconsistencyException: Invalid query - string identifier 'This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared.' exceeds maximum length of 128 characters. You can work around this limitation by constructing a query with a custom NSPredicate that specifies the property (label, title, value, placeholderValue, or identifier) to match against.\" - Opening the reader chat must not imply permission to read the current book"
+    },
+    {
+      "caseID": "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+      "group": "11-sidebar",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "group": "11-search",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Failed",
+      "durationSeconds": 129.3365650177002,
+      "failure": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch"
+    },
+    {
+      "caseID": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+      "group": "11",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Failed",
+      "durationSeconds": 52.893243074417114,
+      "failure": "XCTAssertEqual failed: (\"Optional(\"cancelled\")\") is not equal to (\"Optional(\"completed\")\")"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+      "group": "11",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Failed",
+      "durationSeconds": 50.00303506851196,
+      "failure": "XCTAssertEqual failed: (\"Optional(\"unavailable\")\") is not equal to (\"Optional(\"completed\")\")"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+      "group": "11",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Failed",
+      "durationSeconds": 82.30646002292633,
+      "failure": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original TextKit text and exact source locator must both match independent SQL"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "group": "11",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Failed",
+      "durationSeconds": 115.87043499946594,
+      "failure": "XCTAssertTrue failed"
+    },
+    {
+      "caseID": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "group": "11",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Passed",
+      "durationSeconds": 164.5888819694519,
+      "failure": null
+    },
+    {
+      "caseID": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "group": "11",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Failed",
+      "durationSeconds": 69.29350006580353,
+      "failure": "XCTAssertTrue failed"
+    },
+    {
+      "caseID": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+      "group": "11-reader",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+      "group": "phone",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+      "group": "11",
+      "evidence": "COMPLETE_XCRESULT_LEAF_PREVIOUSLY_VERIFIED_ON_HOST",
+      "result": "Failed",
+      "durationSeconds": 600,
+      "failure": "Test exceeded execution time allowance of 10 minutes"
+    },
+    {
+      "caseID": "SearchDataNativeAcceptanceTests/testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount",
+      "group": "11-index",
+      "evidence": "RAW_LOG_STARTED_WITHOUT_TERMINAL_RESULT",
+      "result": "UNKNOWN_AFTER_START"
+    },
+    {
+      "caseID": "SearchDataNativeAcceptanceTests/testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch",
+      "group": "11-index",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "SearchDataNativeAcceptanceTests/testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch",
+      "group": "11-index",
+      "evidence": "RAW_LOG_FAILED_NO_COMPLETE_XCRESULT",
+      "result": "RAW_FAILED"
+    },
+    {
+      "caseID": "SearchDataNativeAcceptanceTests/testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks",
+      "group": "11-index",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    },
+    {
+      "caseID": "SearchDataNativeAcceptanceTests/testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry",
+      "group": "11-index",
+      "evidence": "NO_START_OBSERVED_IN_RETAINED_ARTIFACTS",
+      "result": "NOT_OBSERVED_STARTED"
+    }
+  ],
+  "full98Acceptance": "NOT_ACCEPTED",
+  "full98ZeroSkips": "NOT_PROVEN",
+  "HID": "NOT_OBSERVED_STARTED",
+  "physicalDevice": "NOT_RUN",
+  "smallArtifact": {
+    "artifactID": 14632383919,
+    "name": "runtime27-evidence",
+    "bytes": 35944918,
+    "sha256": "1dec4baa131deaa5cfdb1f2f62b3dea6a84ee7713bccf67a2e62a41f1ff72310",
+    "CRC": "PASS",
+    "members": 102,
+    "startedAt": "2026-11-20T13:40:23.783805+00:00",
+    "finishedAt": "2026-11-20T13:41:33.796323+00:00",
+    "localVerification": "FULL_SHA_AND_ALL_102_CRC_ACTUALLY_VERIFIED",
+    "publishedRawZIP": false
+  },
+  "captureArtifact": {
+    "id": 14632274701,
+    "size": 775094118,
+    "advertisedSHA256": "7ce28dc10dbdfb6a52fe15e0eb0ec4bfaef746f8165974d060367cf61594a69d",
+    "fullArchiveHashVerified": false,
+    "selectedRangeProof": "Previously verified per selected CRC/range; full proof files retained on offline Windows"
+  },
+  "comparisonSource": "0a493e0a362e88405fabe7a08ff60fb51820496f",
+  "newerSourceNativeCredit": "NONE"
+}

@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "publication": "OBSERVATION_PROJECTIONS_ONLY; full local ZIP publication pending host recovery",
+  "entries": [
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/EVALUATION.json",
+      "bytes": 30565,
+      "sha256": "2503ce08b54f140e51164f99c06373b843c9319f0357df8de72da4e4b34be220",
+      "gitBlob": "1deeb19d84a802c71ae53767381f19b0dcff5ac7"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/FROZEN_R27_CASES.json",
+      "bytes": 182846,
+      "sha256": "e4f3fd204cdbc40c3aaa1616e84046ff6aaf4238f776cb41912838987af6cd75",
+      "gitBlob": "de6b215e40a169fefaba0a05304b3332094e951f"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/ACTUAL_LEAF_PROJECTION.json",
+      "bytes": 10411,
+      "sha256": "a6e8e5c3c828e977502a1687a51ab40b9c93dc9751be29ceed9534e3b642cb84",
+      "gitBlob": "5ca41533137148b49ed3e82ce73d836bab06be9f"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/GITHUB_RUN.json",
+      "bytes": 12779,
+      "sha256": "cdfb65b1c6a5881abe565148489a94af5e51f60c076c1611b96498e55e7badef",
+      "gitBlob": "0683f5fb5b9fb15a622950cd50f4414dd33d81f9"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/GITHUB_JOBS.json",
+      "bytes": 10517,
+      "sha256": "ebf89b33dcc10510c741d12c417d2addee259f878b2e1d4a9c274a8d6040be03",
+      "gitBlob": "cd66a82be2b8aef7b90a832f79281f094f84d657"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/GITHUB_ARTIFACTS.json",
+      "bytes": 1517,
+      "sha256": "2d3624bef4c6745136483d5120c38f1645be270359e7d5ffff149024a68e5a56",
+      "gitBlob": "e3582d73893f60834d0a83a21a00bcf227740de5"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/WATCHER_RESULT.txt",
+      "bytes": 1321,
+      "sha256": "6094bc1f3afc50a6bb18f0e02be54803fc2b8e5f173bb5e9988c5611617224d3",
+      "gitBlob": "2b3f8ca8083df436ee526922a0c4d39dd66b9e1a"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/SMALL_ARTIFACT_VERIFICATION.json",
+      "bytes": 303,
+      "sha256": "6c3f49995c7b35222ce6806c30960a2d0c6fd97c30f5892257c787acabcb7d9c",
+      "gitBlob": "6bcf561c338184d60659f3fdfc41d8daa1f4fef2"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/SOURCE_BINDING_EXPECTATIONS.json",
+      "bytes": 773,
+      "sha256": "23a5d9366d9d02ad2c6234259f74c36a76cebdefc40cb25d615544e1b2765b7c",
+      "gitBlob": "d3242f0a42b7ace7bb8892aea440333c8bbfe09c"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/BUILD_RESULT_RETRIEVED_JSON.json",
+      "bytes": 83530,
+      "sha256": "f7c51b6b7e3960839d90b48c1268b35bd3e44b766d7778563c628f56ac28d39a",
+      "gitBlob": "8e9e0e88e02184ce20d077414689a91a6cf6c933"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/GROUP11_SUMMARY_RETRIEVED_JSON.json",
+      "bytes": 5527,
+      "sha256": "38d714e23dec6b024900b3ee93ad4804273d7d5362c723c635b8c7d1b5a51bef",
+      "gitBlob": "56bb033920a380e87bc312230fde6fad1005af0e"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/SEARCH_SUMMARY_RETRIEVED_JSON.json",
+      "bytes": 2381,
+      "sha256": "87757e250cfbc84eca12f243cdeb49dfc6446ad482c258bc7a4480299c083a84",
+      "gitBlob": "183be6990f337d2bb69e27b632b3f5655062f6b0"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/RAW_CASE_FINDINGS_RETRIEVED.txt",
+      "bytes": 8197,
+      "sha256": "2c81d9593902cb2e3659cafb1610242020a83c5316ba5ff17ef908d900d6b3f3",
+      "gitBlob": "db7d86762b9fb1f8b99bb086da83cc9c0959dea0"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/RAW_RESULT_PROJECTION_RETRIEVED.txt",
+      "bytes": 90017,
+      "sha256": "82c56a701e31fc5223a6dd2532dbc2b853383716b3ffe105122566b2e54af554",
+      "gitBlob": "07359a9a08d62f07f50178a40b53dc76fec2d5d0"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/CASE_INVENTORY_RETRIEVED.txt",
+      "bytes": 11792,
+      "sha256": "617d0338b747f2a7f1c34a54fdb95905770d03922ab16535168a5cc4a3ad306f",
+      "gitBlob": "c758e72c6612a3f352f3851f627c60eeccaea83d"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/raw/SEAL_HASH_DISTINCTION_RETRIEVED.txt",
+      "bytes": 2604,
+      "sha256": "107d56e3cdc600523d101a115c8609572375f5f2cf87a28dcf8b5fd8981f7bc7",
+      "gitBlob": "cf8b1db14b855e6e55ab0324e66f3f8f974b1522"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/README.md",
+      "bytes": 7086,
+      "sha256": "f1ffe7e73e9231058927313380c0c93f82e0988cf478ee9dc27ec460a001c6e9",
+      "gitBlob": "531e174490f32045cb5057483e944929f3ef040e"
+    },
+    {
+      "path": "docs/hq-integration/native98-observed-summary-20261120/PACKET_VALIDATION.json",
+      "bytes": 547,
+      "sha256": "58c75ef68eb3f8faa8c0b9ae4b9eaa72e6445cebd93bdc216b54f26f8c74375a",
+      "gitBlob": "4d34a76c6c66b601d5e52620480f6b3cb4031a1b"
+    }
+  ]
+}

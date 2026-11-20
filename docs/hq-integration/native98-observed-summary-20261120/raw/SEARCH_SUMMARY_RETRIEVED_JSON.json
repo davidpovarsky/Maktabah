@@ -1,0 +1,59 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "648194A7-22A9-4104-844C-29513D099290",
+        "deviceName": "Faithful 11-inch 8d6e378f",
+        "modelName": "iPad Pro 11-inch (M5)",
+        "osBuildNumber": "24B8117",
+        "osVersion": "27.2",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 2,
+      "passedTests": 20,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Maktabah-iOS · Built with macOS 27.0.1",
+  "expectedFailures": 0,
+  "failedTests": 2,
+  "finishTime": 1795180672.782,
+  "passedTests": 20,
+  "result": "Failed",
+  "runtimeWarnings": [
+    {
+      "issueType": "Runtime Warning",
+      "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+    }
+  ],
+  "skippedTests": 0,
+  "startTime": 1795178101.917,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "Dynamic Type font sizes are partially unsupported",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 4,
+      "testIdentifierString": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+      "testName": "testHeaderAndHistoryNativeAccessibilityAudit()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 22,
+      "testIdentifierString": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "testName": "testNormalBootstrapGlobalHistoryUsesActualSubmit()"
+    }
+  ],
+  "title": "Test - Maktabah-iOS",
+  "topInsights": [],
+  "totalTestCount": 22
+}

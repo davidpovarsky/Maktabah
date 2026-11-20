@@ -1,0 +1,532 @@
+FILE artifacts/faithful-ipad-matrix.json BYTES 80676
+{"appSHA": "60a57972acb28739ec738565083bf17fb7503028", "testSHA": "60a57972acb28739ec738565083bf17fb7503028", "baseline": false, "configuration": "Debug", "dataProfile": "miniTest10", "devices": [{"size": "11", "label": "11", "type": {"productFamily": "iPad", "bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPad Pro 11-inch (M5).simdevicetype", "maxRuntimeVersion": 4294967295, "maxRuntimeVersionString": "65535.255.255", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-12GB", "modelIdentifier": "iPad17,2", "minRuntimeVersionString": "26.0.0", "minRuntimeVersion": 1703936, "name": "iPad Pro 11-inch (M5)"}, "runtime": {"isAvailable": true, "version": "27.2", "isInternal": false, "buildversion": "24B8117", "supportedArchitectures": ["arm64"], "supportedDeviceTypes": [{"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 18 Pro.simdevicetype", "name": "iPhone 18 Pro", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-18-Pro"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 18 Pro Max.simdevicetype", "name": "iPhone 18 Pro Max", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-18-Pro-Max"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17 Pro.simdevicetype", "name": "iPhone 17 Pro", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17 Pro Max.simdevicetype", "name": "iPhone 17 Pro Max", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17e.simdevicetype", "name": "iPhone 17e", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17e"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone Air.simdevicetype", "name": "iPhone Air", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-Air"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 17.simdevicetype", "name": "iPhone 17", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16 Pro.simdevicetype", "name": "iPhone 16 Pro", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16-Pro"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16 Pro Max.simdevicetype", "name": "iPhone 16 Pro Max", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16-Pro-Max"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16e.simdevicetype", "name": "iPhone 16e", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16e"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16.simdevicetype", "name": "iPhone 16", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 16 Plus.simdevicetype", "name": "iPhone 16 Plus", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-16-Plus"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15 Pro.simdevicetype", "name": "iPhone 15 Pro", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15 Pro Max.simdevicetype", "name": "iPhone 15 Pro Max", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro-Max"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15.simdevicetype", "name": "iPhone 15", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 15 Plus.simdevicetype", "name": "iPhone 15 Plus", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-15-Plus"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14 Pro.simdevicetype", "name": "iPhone 14 Pro", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Pro"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14 Pro Max.simdevicetype", "name": "iPhone 14 Pro Max", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Pro-Max"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14.simdevicetype", "name": "iPhone 14", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 14 Plus.simdevicetype", "name": "iPhone 14 Plus", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Plus"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone SE (3rd generation).simdevicetype", "name": "iPhone SE (3rd generation)", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13 Pro.simdevicetype", "name": "iPhone 13 Pro", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13-Pro"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13 Pro Max.simdevicetype", "name": "iPhone 13 Pro Max", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13-Pro-Max"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13.simdevicetype", "name": "iPhone 13", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 13 mini.simdevicetype", "name": "iPhone 13 mini", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-13-mini"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12 Pro.simdevicetype", "name": "iPhone 12 Pro", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12-Pro"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12 Pro Max.simdevicetype", "name": "iPhone 12 Pro Max", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12-Pro-Max"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12.simdevicetype", "name": "iPhone 12", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone 12 mini.simdevicetype", "name": "iPhone 12 mini", "productFamily": "iPhone", "identifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-12-mini"}, {"bundlePath": "/Library/Developer/CoreSimulator/Profiles/DeviceTypes/iPhone SE (2nd generation).simdevicetype", "name": "iPhone SE (2nd generation)", "productFamily": "iPhone", "identifier": "com.apple.Core
+FILE artifacts/runtime27/verified-11.json BYTES 316
+{"status": "FAIL", "scope": "focused-ui", "database_open": "NOT_VERIFIED_BY_TEST_COUNTS", "summary_sha256": "08b738ac07bad95640536e27f0196cfcd40dff7018b19e8078b63b11484572ad", "tests_sha256": "3e1c5ee5b997efbf08690949d5f5b6123e6908718a69c4996e7ac73a0a96f265", "error": "xcresult summary did not pass"}
+FILE artifacts/runtime27/verified-11-search.json BYTES 316
+{"status": "FAIL", "scope": "focused-ui", "database_open": "NOT_VERIFIED_BY_TEST_COUNTS", "summary_sha256": "c3e97b44469289f2fecab36dbe787bed994925319ddca8fcce63c1d4d9690d93", "tests_sha256": "dc87490d6877996ca80a4d4f65be2ec6d2c890dda159412e198b6dbac5b59203", "error": "xcresult summary did not pass"}
+FILE artifacts/runtime27/verified-11.tests.json BYTES 12244
+{"keys": ["devices", "testNodes", "testPlanConfigurations"]}
+FILE artifacts/runtime27/verified-11-search.tests.json BYTES 16272
+{"keys": ["devices", "testNodes", "testPlanConfigurations"]}
+FILE artifacts/test-case-execution-11.json BYTES 4518
+{"suites": [{"suite": "HanlinReaderConsumerAcceptanceTests", "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending", "expected": ["testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending"], "passed": [], "failed": ["testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending"], "missing": ["testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending"], "status": "FAIL"}, {"suite": "NativeRoutingAcceptanceTests", "selection": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad", "expected": ["testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad"], "passed": [], "failed": ["testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad"], "missing": ["testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad"], "status": "FAIL"}, {"suite": "NativeRoutingAcceptanceTests", "selection": "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad", "expected": ["testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad"], "passed": [], "failed": ["testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad"], "missing": ["testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad"], "status": "FAIL"}, {"suite": "NativeRoutingAcceptanceTests", "selection": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad", "expected": ["testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad"], "passed": [], "failed": ["testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad"], "missing": ["testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad"], "status": "FAIL"}, {"suite": "StudyProfileNativeAcceptanceTests", "selection": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace", "expected": ["testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"], "passed": [], "failed": ["testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"], "missing": ["testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"], "status": "FAIL"}, {"suite": "FaithfulReaderUIAcceptanceTests", "selection": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace", "expected": ["testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace"], "passed": ["testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "HanlinConsumerAcceptanceTests", "selection": "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart", "expected": ["testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart"], "passed": ["testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "HanlinReaderConsumerAcceptanceTests", "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace", "expected": ["testOriginalReaderChatReturnsToSameNativeWorkspace"], "passed": [], "failed": ["testOriginalReaderChatReturnsToSameNativeWorkspace"], "missing": ["testOriginalReaderChatReturnsToSameNativeWorkspace"], "status": "FAIL"}, {"suite": "StudyGroupStressNativeAcceptanceTests", "selection": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore", "expected": ["testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"], "passed": [], "failed": [], "missing": ["testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"], "status": "FAIL"}], "status": "FAIL"}
+FILE artifacts/test-case-execution-11-search.json BYTES 9550
+{"suites": [{"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry", "expected": ["testHebrewHeaderUsesActualRTLGeometry"], "passed": ["testHebrewHeaderUsesActualRTLGeometry"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry", "expected": ["testEnglishHeaderUsesActualLTRGeometry"], "passed": ["testEnglishHeaderUsesActualLTRGeometry"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear", "expected": ["testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear"], "passed": ["testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls", "expected": ["testOtzariaDefaultAdvancedFormExposesRealConditionalControls"], "passed": ["testOtzariaDefaultAdvancedFormExposesRealConditionalControls"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings", "expected": ["testExactAndFuzzyHideAdvancedOtzariaBindings"], "passed": ["testExactAndFuzzyHideAdvancedOtzariaBindings"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission", "expected": ["testOptionsDismissalReturnsToSameQueryWithoutSubmission"], "passed": ["testOptionsDismissalReturnsToSameQueryWithoutSubmission"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit", "expected": ["testHeaderAndHistoryNativeAccessibilityAudit"], "passed": [], "failed": ["testHeaderAndHistoryNativeAccessibilityAudit"], "missing": ["testHeaderAndHistoryNativeAccessibilityAudit"], "status": "FAIL"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow", "expected": ["testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow"], "passed": ["testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection", "expected": ["testZayitLoadedTitleSubstringUsesActualMountedProjection"], "passed": ["testZayitLoadedTitleSubstringUsesActualMountedProjection"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging", "expected": ["testZayitZeroMatchProjectionRetainsRealExplicitPaging"], "passed": ["testZayitZeroMatchProjectionRetainsRealExplicitPaging"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader", "expected": ["testReturnProducesOriginalRowsWithPersistentHeader"], "passed": ["testReturnProducesOriginalRowsWithPersistentHeader"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun", "expected": ["testModeEditRequiresExplicitRerun"], "passed": ["testModeEditRequiresExplicitRerun"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity", "expected": ["testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity"], "passed": ["testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore", "expected": ["testZeroMatchProjectionRetainsExplicitLoadMore"], "passed": ["testZeroMatchProjectionRetainsExplicitLoadMore"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch", "expected": ["testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch"], "passed": ["testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions", "expected": ["testEmbeddedOffersExactOnlyAndNoIgnoredOptions"], "passed": ["testEmbeddedOffersExactOnlyAndNoIgnoredOptions"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls", "expected": ["testLegacyAdvancedUsesItsOwnSourceControls"], "passed": ["testLegacyAdvancedUsesItsOwnSourceControls"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine", "expected": ["testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"], "passed": ["testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight", "expected": ["testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"], "passed": ["testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata", "expected": ["testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata"], "passed": ["testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "GlobalSearchNativeAcceptanceTests", "selection": "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred", "expected": ["testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"], "passed": ["testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"], "failed": [], "missing": [], "status": "EXECUTED_PASS"}, {"suite": "R27NativePadTests", "selection": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit", "expected": ["testNormalBootstrapGlobalHistoryUsesActualSubmit"], "passed": [], "faile
+FILE artifacts/runtime27/native-matrix-driver.log BYTES 704470
+66: Faithful 11-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1, "timeoutSeconds": 600}
+74:     /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=3D007451-04A3-4D27-A569-D345E46345A1" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending" "-only-testing:Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad" "-only-testing:Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad" "-only-testing:Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad" "-only-testing:Maktabah-iOSUITests/StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace" "-only-testing:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace" "-only-testing:Maktabah-iOSUITests/HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart" "-only-testing:Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace" "-only-testing:Maktabah-iOSUITests/StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+217: Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace]' started.
+394: Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace]' passed (164.589 seconds).
+398: Test Case '-[Maktabah_iOSUITests.HanlinConsumerAcceptanceTests testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart]' started.
+416:     t =    28.14s     Check for interrupting elements affecting "otzaria-hanlin-global-launch" Button
+430:     t =    35.11s     Check for interrupting elements affecting "otzaria-hanlin-model" TextField
+437:     t =    41.42s     Check for interrupting elements affecting "otzaria-hanlin-model" TextField
+448:     t =    45.18s     Check for interrupting elements affecting "otzaria-hanlin-api-key" SecureTextField
+455:     t =    47.97s     Check for interrupting elements affecting "otzaria-hanlin-api-key" SecureTextField
+466:     t =    51.34s     Check for interrupting elements affecting "otzaria-hanlin-connect" Button
+477:     t =    55.28s     Check for interrupting elements affecting "otzaria-hanlin-composer" TextView
+484:     t =    59.82s     Check for interrupting elements affecting "otzaria-hanlin-composer" TextView
+502:     t =    69.66s     Check for interrupting elements affecting "otzaria-hanlin-close" Button
+516:     t =    75.33s     Check for interrupting elements affecting "otzaria-hanlin-global-launch" Button
+530:     t =    80.63s     Check for interrupting elements affecting "otzaria-hanlin-history" Button
+547:     t =    87.24s     Check for interrupting elements affecting "otzaria-hanlin-saved-D3C9D370-37DF-4871-A8F8-916D794227DA" Button
+565:     t =    93.94s     Check for interrupting elements affecting "otzaria-hanlin-close" Button
+588:     t =   122.84s     Check for interrupting elements affecting "otzaria-hanlin-global-launch" Button
+602:     t =   128.19s     Check for interrupting elements affecting "otzaria-hanlin-history" Button
+613:     t =   131.48s     Check for interrupting elements affecting "otzaria-hanlin-saved-D3C9D370-37DF-4871-A8F8-916D794227DA" Button
+635:     t =   138.84s     Check for interrupting elements affecting "otzaria-hanlin-close" Button
+643: Test Case '-[Maktabah_iOSUITests.HanlinConsumerAcceptanceTests testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart]' passed (142.774 seconds).
+647: Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending]' started.
+701:     t =    38.99s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+769: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:274: error: -[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending] : XCTAssertTrue failed
+780: Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending]' failed (69.294 seconds).
+781: Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalReaderChatReturnsToSameNativeWorkspace]' started.
+841:     t =    42.60s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+853: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:179: error: -[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalReaderChatReturnsToSameNativeWorkspace] : XCTAssertTrue failed: throwing "NSInternalInconsistencyException: Invalid query - string identifier 'This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared.' exceeds maximum length of 128 characters. You can work around this limitation by constructing a query with a custom NSPredicate that specifies the property (label, title, value, placeholderValue, or identifier) to match against." - Opening the reader chat must not imply permission to read the current book
+864: Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalReaderChatReturnsToSameNativeWorkspace]' failed (52.938 seconds).
+868: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad]' started.
+929:     t =    39.77s     Check for interrupting elements affecting "Open" Button
+976: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1272: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad] : XCTAssertEqual failed: ("XCTWaiterResult(rawValue: 2)") is not equal to ("XCTWaiterResult(rawValue: 1)") - The original TextKit text and exact source locator must both match independent SQL
+983: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad]' failed (82.306 seconds).
+984: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad]' started.
+1041: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1707: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad] : XCTAssertEqual failed: ("Optional("cancelled")") is not equal to ("Optional("completed")")
+1048: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad]' failed (52.893 seconds).
+1049: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad]' started.
+1100:     t =    41.06s     Check for interrupting elements affecting "magnifyingglass" Button
+1109: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1707: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad] : XCTAssertEqual failed: ("Optional("unavailable")") is not equal to ("Optional("completed")")
+1118: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad]' failed (50.003 seconds).
+1122: Test Case '-[Maktabah_iOSUITests.StudyGroupStressNativeAcceptanceTests testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore]' started.
+1177:     t =    40.52s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1216:     t =    54.74s     Check for interrupting elements affecting "סיום" Button
+1248:     t =    66.42s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1277:     t =    74.77s     Check for interrupting elements affecting "study-group-actions-menu" Button
+1292:     t =    79.15s     Check for interrupting elements affecting "square.on.square" Button
+1305:     t =    87.21s     Check for interrupting elements affecting "שם" TextField
+1317:     t =    89.56s     Check for interrupting elements affecting "שמירה" Button
+1354:     t =   106.18s     Check for interrupting elements affecting "study-group-actions-menu" Button
+1369:     t =   110.45s     Check for interrupting elements affecting "square.on.square" Button
+1382:     t =   116.30s     Check for interrupting elements affecting "שם" TextField
+1394:     t =   118.84s     Check for interrupting elements affecting "שמירה" Button
+1434:     t =   138.03s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+1460:     t =   150.54s     Check for interrupting elements affecting "סיום" Button
+1494:     t =   162.92s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1526:     t =   174.37s     Check for interrupting elements affecting "רצף א" Button
+1552:     t =   185.35s     Check for interrupting elements affecting "סיום" Button
+1586:     t =   199.62s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1618:     t =   211.68s     Check for interrupting elements affecting "רצף ב" Button
+1644:     t =   225.52s     Check for interrupting elements affecting "סיום" Button
+1678:     t =   239.43s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1718:     t =   253.78s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+1749:     t =   264.20s     Check for interrupting elements affecting "רצף א" Button
+1780:     t =   275.79s     Check for interrupting elements affecting "רצף ב" Button
+1811:     t =   288.12s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+1842:     t =   299.26s     Check for interrupting elements affecting "רצף א" Button
+1873:     t =   310.05s     Check for interrupting elements affecting "רצף ב" Button
+1904:     t =   321.08s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+1935:     t =   331.19s     Check for interrupting elements affecting "רצף א" Button
+1966:     t =   342.28s     Check for interrupting elements affecting "רצף ב" Button
+1997:     t =   358.66s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2028:     t =   368.92s     Check for interrupting elements affecting "רצף א" Button
+2059:     t =   380.03s     Check for interrupting elements affecting "רצף ב" Button
+2090:     t =   392.66s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2121:     t =   403.61s     Check for interrupting elements affecting "רצף א" Button
+2152:     t =   416.36s     Check for interrupting elements affecting "רצף ב" Button
+2183:     t =   428.25s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2214:     t =   440.14s     Check for interrupting elements affecting "רצף א" Button
+2245:     t =   452.71s     Check for interrupting elements affecting "רצף ב" Button
+2276:     t =   464.38s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2307:     t =   475.76s     Check for interrupting elements affecting "רצף א" Button
+2338:     t =   488.14s     Check for interrupting elements affecting "רצף ב" Button
+2369:     t =   501.58s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2400:     t =   513.72s     Check for interrupting elements affecting "רצף א" Button
+2431:     t =   526.00s     Check for interrupting elements affecting "רצף ב" Button
+2462:     t =   540.31s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2493:     t =   553.91s     Check for interrupting elements affecting "רצף א" Button
+2524:     t =   566.56s     Check for interrupting elements affecting "רצף ב" Button
+2555:     t =   579.50s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2586:     t =   591.61s     Check for interrupting elements affecting "רצף א" Button
+2602: Test Case '-[Maktabah_iOSUITests.StudyGroupStressNativeAcceptanceTests testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore]' exceeded execution time allowance of 10 minutes. The test may have hung; check Xcode's test report for additional diagnostics. If the test requires additional time, use -[XCTestCase executionTimeAllowance] or one of xcodebuild's command-line overrides.
+2618:     t =   607.90s     Check for interrupting elements affecting "רצף ב" Button
+2649:     t =   626.23s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2680:     t =   645.54s     Check for interrupting elements affecting "רצף א" Button
+2711:     t =   662.72s     Check for interrupting elements affecting "רצף ב" Button
+2742:     t =   680.76s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2773:     t =   695.52s     Check for interrupting elements affecting "רצף א" Button
+2796: Restarting after unexpected exit, crash, or test timeout; summary will include totals from previous launches.
+2801: Test Case '-[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace]' started.
+2838:     t =    32.52s     Check for interrupting elements affecting "study-profile-menu" Button
+2853:     t =    37.04s     Check for interrupting elements affecting "person.crop.circle.badge.plus" Button
+2868:     t =    43.30s     Check for interrupting elements affecting "פרופיל לימוד חדש" Button
+2883:     t =    49.80s     Check for interrupting elements affecting "שם הפרופיל" TextField
+2895:     t =    55.37s     Check for interrupting elements affecting "שם הפרופיל" TextField
+2907:     t =    57.77s     Check for interrupting elements affecting "שמירה" Button
+2925:     t =    63.31s     Check for interrupting elements affecting "study-profile-actions-CC34DE47-9D55-4033-ABB2-CB7DF6EBEE48" Button
+2944:     t =    69.27s     Check for interrupting elements affecting "pencil" Button
+2963:     t =    75.51s     Check for interrupting elements affecting "study-profile-color" Button
+3025: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:2485: error: -[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace] : XCTAssertTrue failed
+3036: Test Case '-[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace]' failed (115.870 seconds).
+3463: Faithful 11-search-inch: INSTALLING {"bundle": "com.davidpovarsky.chavrusatext", "attempt": 1, "timeoutSeconds": 600}
+3471:     /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=648194A7-22A9-4104-844C-29513D099290" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-search.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred" "-only-testing:Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
+3511: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testEmbeddedOffersExactOnlyAndNoIgnoredOptions]' started.
+3532:     t =    55.78s     Check for interrupting elements affecting "magnifyingglass" Button
+3558:     t =   119.84s     Check for interrupting elements affecting "global-search-mode" Button
+3576:     t =   128.09s     Check for interrupting elements affecting "global-search-mode-exact" Button
+3588:     t =   134.55s     Check for interrupting elements affecting "global-search-options" Button
+3613:     t =   155.13s     Check for interrupting elements affecting "global-search-options-done" Button
+3626: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testEmbeddedOffersExactOnlyAndNoIgnoredOptions]' passed (162.712 seconds).
+3627: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testEnglishHeaderUsesActualLTRGeometry]' started.
+3647:     t =    22.90s     Check for interrupting elements affecting "magnifyingglass" Button
+3716: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testEnglishHeaderUsesActualLTRGeometry]' passed (62.323 seconds).
+3717: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testExactAndFuzzyHideAdvancedOtzariaBindings]' started.
+3737:     t =    18.70s     Check for interrupting elements affecting "magnifyingglass" Button
+3765:     t =    33.33s     Check for interrupting elements affecting "global-search-mode" Button
+3777:     t =    36.30s     Check for interrupting elements affecting "global-search-mode-exact" Button
+3791:     t =    43.54s     Check for interrupting elements affecting "global-search-options" Button
+3816:     t =    55.58s     Check for interrupting elements affecting "global-search-options-done" Button
+3830:     t =    61.29s     Check for interrupting elements affecting "global-search-mode" Button
+3842:     t =    64.55s     Check for interrupting elements affecting "global-search-mode-fuzzy" Button
+3856:     t =    71.19s     Check for interrupting elements affecting "global-search-options" Button
+3881:     t =    83.83s     Check for interrupting elements affecting "global-search-options-done" Button
+3894: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testExactAndFuzzyHideAdvancedOtzariaBindings]' passed (89.202 seconds).
+3895: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHeaderAndHistoryNativeAccessibilityAudit]' started.
+391
+TAIL
+    t =     0.65s     Interface orientation changed to Landscape Right
+    t =     0.79s     Wait for com.apple.springboard to idle
+    t =     1.48s Open com.davidpovarsky.chavrusatext
+    t =     1.48s     Launch com.davidpovarsky.chavrusatext
+2026-11-20 13:36:13.589 xcodebuild[43081:629750] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-20 13:36:13.590 xcodebuild[43081:629750] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     6.59s         Setting up automation session
+    t =    20.74s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    32.92s Get number of matches for: Descendants matching type Alert
+    t =    33.72s Waiting 60.0s for "reader-text" TextView to exist
+    t =    34.76s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    34.76s         Checking existence of `"reader-text" TextView`
+    t =    36.34s Find the "reader-text" TextView
+    t =    36.67s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    36.89s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    38.28s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    38.29s     Find the "reader-text" TextView
+    t =    39.34s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    40.39s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    40.39s         Checking existence of `"reader-header-title" StaticText`
+    t =    40.85s Find the "reader-header-title" StaticText
+    t =    41.31s Find the "reader-text" TextView
+    t =    41.90s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    42.93s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    42.93s         Checking existence of `"reader-current-locator" StaticText`
+    t =    43.40s Find the "reader-current-locator" StaticText
+    t =    43.88s Find the "reader-header-title" StaticText
+    t =    44.48s Added attachment named 'search-data-original-fixture-ownership'
+    t =    44.48s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "חיפוש" OR label CONTAINS[c] "Search"'
+    t =    44.85s Checking existence of `Button (Element at index 0)`
+    t =    45.25s Find the Button (Element at index 0)
+    t =    45.72s Checking existence of `"magnifyingglass" Button`
+    t =    46.09s Checking existence of `"magnifyingglass" Button`
+    t =    46.42s Find the "magnifyingglass" Button
+    t =    46.75s Find the Window (First Match)
+    t =    46.81s Tap "magnifyingglass" Button[0.50, 0.50]
+    t =    46.81s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    46.82s     Find the "magnifyingglass" Button
+    t =    47.21s     Check for interrupting elements affecting "magnifyingglass" Button
+    t =    47.54s         Wait for com.apple.springboard to idle
+    t =    47.73s Ignoring failure to get hierarchy for remote element in process 48176 (Error getting main window kAXErrorServerNotFound)
+    t =    47.73s Ignoring failure to get hierarchy for remote element in process 48176 (Error getting main window kAXErrorServerNotFound)
+    t =    47.74s     Synthesize event
+    t =    47.75s         Find the "magnifyingglass" Button
+    t =    48.13s         Find the "magnifyingglass" Button
+FILE artifacts/test-simulator-11.log BYTES 262387
+2:     /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=3D007451-04A3-4D27-A569-D345E46345A1" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending" "-only-testing:Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad" "-only-testing:Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad" "-only-testing:Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad" "-only-testing:Maktabah-iOSUITests/StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace" "-only-testing:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace" "-only-testing:Maktabah-iOSUITests/HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart" "-only-testing:Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace" "-only-testing:Maktabah-iOSUITests/StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+145: Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace]' started.
+322: Test Case '-[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace]' passed (164.589 seconds).
+326: Test Case '-[Maktabah_iOSUITests.HanlinConsumerAcceptanceTests testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart]' started.
+344:     t =    28.14s     Check for interrupting elements affecting "otzaria-hanlin-global-launch" Button
+358:     t =    35.11s     Check for interrupting elements affecting "otzaria-hanlin-model" TextField
+365:     t =    41.42s     Check for interrupting elements affecting "otzaria-hanlin-model" TextField
+376:     t =    45.18s     Check for interrupting elements affecting "otzaria-hanlin-api-key" SecureTextField
+383:     t =    47.97s     Check for interrupting elements affecting "otzaria-hanlin-api-key" SecureTextField
+394:     t =    51.34s     Check for interrupting elements affecting "otzaria-hanlin-connect" Button
+405:     t =    55.28s     Check for interrupting elements affecting "otzaria-hanlin-composer" TextView
+412:     t =    59.82s     Check for interrupting elements affecting "otzaria-hanlin-composer" TextView
+430:     t =    69.66s     Check for interrupting elements affecting "otzaria-hanlin-close" Button
+444:     t =    75.33s     Check for interrupting elements affecting "otzaria-hanlin-global-launch" Button
+458:     t =    80.63s     Check for interrupting elements affecting "otzaria-hanlin-history" Button
+475:     t =    87.24s     Check for interrupting elements affecting "otzaria-hanlin-saved-D3C9D370-37DF-4871-A8F8-916D794227DA" Button
+493:     t =    93.94s     Check for interrupting elements affecting "otzaria-hanlin-close" Button
+516:     t =   122.84s     Check for interrupting elements affecting "otzaria-hanlin-global-launch" Button
+530:     t =   128.19s     Check for interrupting elements affecting "otzaria-hanlin-history" Button
+541:     t =   131.48s     Check for interrupting elements affecting "otzaria-hanlin-saved-D3C9D370-37DF-4871-A8F8-916D794227DA" Button
+563:     t =   138.84s     Check for interrupting elements affecting "otzaria-hanlin-close" Button
+571: Test Case '-[Maktabah_iOSUITests.HanlinConsumerAcceptanceTests testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart]' passed (142.774 seconds).
+575: Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending]' started.
+629:     t =    38.99s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+697: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:274: error: -[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending] : XCTAssertTrue failed
+708: Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending]' failed (69.294 seconds).
+709: Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalReaderChatReturnsToSameNativeWorkspace]' started.
+769:     t =    42.60s     Check for interrupting elements affecting "otzaria-hanlin-reader-launch" Button
+781: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift:179: error: -[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalReaderChatReturnsToSameNativeWorkspace] : XCTAssertTrue failed: throwing "NSInternalInconsistencyException: Invalid query - string identifier 'This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared.' exceeds maximum length of 128 characters. You can work around this limitation by constructing a query with a custom NSPredicate that specifies the property (label, title, value, placeholderValue, or identifier) to match against." - Opening the reader chat must not imply permission to read the current book
+792: Test Case '-[Maktabah_iOSUITests.HanlinReaderConsumerAcceptanceTests testOriginalReaderChatReturnsToSameNativeWorkspace]' failed (52.938 seconds).
+796: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad]' started.
+857:     t =    39.77s     Check for interrupting elements affecting "Open" Button
+904: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1272: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad] : XCTAssertEqual failed: ("XCTWaiterResult(rawValue: 2)") is not equal to ("XCTWaiterResult(rawValue: 1)") - The original TextKit text and exact source locator must both match independent SQL
+911: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad]' failed (82.306 seconds).
+912: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad]' started.
+969: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1707: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad] : XCTAssertEqual failed: ("Optional("cancelled")") is not equal to ("Optional("completed")")
+976: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad]' failed (52.893 seconds).
+977: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad]' started.
+1028:     t =    41.06s     Check for interrupting elements affecting "magnifyingglass" Button
+1037: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:1707: error: -[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad] : XCTAssertEqual failed: ("Optional("unavailable")") is not equal to ("Optional("completed")")
+1046: Test Case '-[Maktabah_iOSUITests.NativeRoutingAcceptanceTests testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad]' failed (50.003 seconds).
+1050: Test Case '-[Maktabah_iOSUITests.StudyGroupStressNativeAcceptanceTests testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore]' started.
+1105:     t =    40.52s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1144:     t =    54.74s     Check for interrupting elements affecting "סיום" Button
+1176:     t =    66.42s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1205:     t =    74.77s     Check for interrupting elements affecting "study-group-actions-menu" Button
+1220:     t =    79.15s     Check for interrupting elements affecting "square.on.square" Button
+1233:     t =    87.21s     Check for interrupting elements affecting "שם" TextField
+1245:     t =    89.56s     Check for interrupting elements affecting "שמירה" Button
+1282:     t =   106.18s     Check for interrupting elements affecting "study-group-actions-menu" Button
+1297:     t =   110.45s     Check for interrupting elements affecting "square.on.square" Button
+1310:     t =   116.30s     Check for interrupting elements affecting "שם" TextField
+1322:     t =   118.84s     Check for interrupting elements affecting "שמירה" Button
+1362:     t =   138.03s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+1388:     t =   150.54s     Check for interrupting elements affecting "סיום" Button
+1422:     t =   162.92s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1454:     t =   174.37s     Check for interrupting elements affecting "רצף א" Button
+1480:     t =   185.35s     Check for interrupting elements affecting "סיום" Button
+1514:     t =   199.62s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1546:     t =   211.68s     Check for interrupting elements affecting "רצף ב" Button
+1572:     t =   225.52s     Check for interrupting elements affecting "סיום" Button
+1606:     t =   239.43s     Check for interrupting elements affecting "reader-tabs-overview" Button
+1646:     t =   253.78s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+1677:     t =   264.20s     Check for interrupting elements affecting "רצף א" Button
+1708:     t =   275.79s     Check for interrupting elements affecting "רצף ב" Button
+1739:     t =   288.12s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+1770:     t =   299.26s     Check for interrupting elements affecting "רצף א" Button
+1801:     t =   310.05s     Check for interrupting elements affecting "רצף ב" Button
+1832:     t =   321.08s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+1863:     t =   331.19s     Check for interrupting elements affecting "רצף א" Button
+1894:     t =   342.28s     Check for interrupting elements affecting "רצף ב" Button
+1925:     t =   358.66s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+1956:     t =   368.92s     Check for interrupting elements affecting "רצף א" Button
+1987:     t =   380.03s     Check for interrupting elements affecting "רצף ב" Button
+2018:     t =   392.66s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2049:     t =   403.61s     Check for interrupting elements affecting "רצף א" Button
+2080:     t =   416.36s     Check for interrupting elements affecting "רצף ב" Button
+2111:     t =   428.25s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2142:     t =   440.14s     Check for interrupting elements affecting "רצף א" Button
+2173:     t =   452.71s     Check for interrupting elements affecting "רצף ב" Button
+2204:     t =   464.38s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2235:     t =   475.76s     Check for interrupting elements affecting "רצף א" Button
+2266:     t =   488.14s     Check for interrupting elements affecting "רצף ב" Button
+2297:     t =   501.58s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2328:     t =   513.72s     Check for interrupting elements affecting "רצף א" Button
+2359:     t =   526.00s     Check for interrupting elements affecting "רצף ב" Button
+2390:     t =   540.31s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2421:     t =   553.91s     Check for interrupting elements affecting "רצף א" Button
+2452:     t =   566.56s     Check for interrupting elements affecting "רצף ב" Button
+2483:     t =   579.50s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2514:     t =   591.61s     Check for interrupting elements affecting "רצף א" Button
+2530: Test Case '-[Maktabah_iOSUITests.StudyGroupStressNativeAcceptanceTests testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore]' exceeded execution time allowance of 10 minutes. The test may have hung; check Xcode's test report for additional diagnostics. If the test requires additional time, use -[XCTestCase executionTimeAllowance] or one of xcodebuild's command-line overrides.
+2546:     t =   607.90s     Check for interrupting elements affecting "רצף ב" Button
+2577:     t =   626.23s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2608:     t =   645.54s     Check for interrupting elements affecting "רצף א" Button
+2639:     t =   662.72s     Check for interrupting elements affecting "רצף ב" Button
+2670:     t =   680.76s     Check for interrupting elements affecting "כל הכרטיסיות" Button
+2701:     t =   695.52s     Check for interrupting elements affecting "רצף א" Button
+2724: Restarting after unexpected exit, crash, or test timeout; summary will include totals from previous launches.
+2729: Test Case '-[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace]' started.
+2766:     t =    32.52s     Check for interrupting elements affecting "study-profile-menu" Button
+2781:     t =    37.04s     Check for interrupting elements affecting "person.crop.circle.badge.plus" Button
+2796:     t =    43.30s     Check for interrupting elements affecting "פרופיל לימוד חדש" Button
+2811:     t =    49.80s     Check for interrupting elements affecting "שם הפרופיל" TextField
+2823:     t =    55.37s     Check for interrupting elements affecting "שם הפרופיל" TextField
+2835:     t =    57.77s     Check for interrupting elements affecting "שמירה" Button
+2853:     t =    63.31s     Check for interrupting elements affecting "study-profile-actions-CC34DE47-9D55-4033-ABB2-CB7DF6EBEE48" Button
+2872:     t =    69.27s     Check for interrupting elements affecting "pencil" Button
+2891:     t =    75.51s     Check for interrupting elements affecting "study-profile-color" Button
+2953: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:2485: error: -[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace] : XCTAssertTrue failed
+2964: Test Case '-[Maktabah_iOSUITests.StudyProfileNativeAcceptanceTests testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace]' failed (115.870 seconds).
+FILE artifacts/test-simulator-11-search.log BYTES 344345
+2:     /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=648194A7-22A9-4104-844C-29513D099290" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-search.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata" "-only-testing:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred" "-only-testing:Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit"
+42: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testEmbeddedOffersExactOnlyAndNoIgnoredOptions]' started.
+63:     t =    55.78s     Check for interrupting elements affecting "magnifyingglass" Button
+89:     t =   119.84s     Check for interrupting elements affecting "global-search-mode" Button
+107:     t =   128.09s     Check for interrupting elements affecting "global-search-mode-exact" Button
+119:     t =   134.55s     Check for interrupting elements affecting "global-search-options" Button
+144:     t =   155.13s     Check for interrupting elements affecting "global-search-options-done" Button
+157: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testEmbeddedOffersExactOnlyAndNoIgnoredOptions]' passed (162.712 seconds).
+158: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testEnglishHeaderUsesActualLTRGeometry]' started.
+178:     t =    22.90s     Check for interrupting elements affecting "magnifyingglass" Button
+247: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testEnglishHeaderUsesActualLTRGeometry]' passed (62.323 seconds).
+248: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testExactAndFuzzyHideAdvancedOtzariaBindings]' started.
+268:     t =    18.70s     Check for interrupting elements affecting "magnifyingglass" Button
+296:     t =    33.33s     Check for interrupting elements affecting "global-search-mode" Button
+308:     t =    36.30s     Check for interrupting elements affecting "global-search-mode-exact" Button
+322:     t =    43.54s     Check for interrupting elements affecting "global-search-options" Button
+347:     t =    55.58s     Check for interrupting elements affecting "global-search-options-done" Button
+361:     t =    61.29s     Check for interrupting elements affecting "global-search-mode" Button
+373:     t =    64.55s     Check for interrupting elements affecting "global-search-mode-fuzzy" Button
+387:     t =    71.19s     Check for interrupting elements affecting "global-search-options" Button
+412:     t =    83.83s     Check for interrupting elements affecting "global-search-options-done" Button
+425: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testExactAndFuzzyHideAdvancedOtzariaBindings]' passed (89.202 seconds).
+426: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHeaderAndHistoryNativeAccessibilityAudit]' started.
+446:     t =    25.45s     Check for interrupting elements affecting "magnifyingglass" Button
+495: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift:482: error: -[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHeaderAndHistoryNativeAccessibilityAudit] : Dynamic Type font sizes are partially unsupported
+501: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHeaderAndHistoryNativeAccessibilityAudit]' failed (68.593 seconds).
+502: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHebrewHeaderUsesActualRTLGeometry]' started.
+522:     t =    20.11s     Check for interrupting elements affecting "magnifyingglass" Button
+591: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHebrewHeaderUsesActualRTLGeometry]' passed (53.775 seconds).
+592: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testLegacyAdvancedUsesItsOwnSourceControls]' started.
+612:     t =    23.50s     Check for interrupting elements affecting "magnifyingglass" Button
+640:     t =    40.73s     Check for interrupting elements affecting "global-search-options" Button
+665:     t =    53.49s     Check for interrupting elements affecting "global-search-options-done" Button
+678: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testLegacyAdvancedUsesItsOwnSourceControls]' passed (59.848 seconds).
+679: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity]' started.
+699:     t =    59.22s     Check for interrupting elements affecting "magnifyingglass" Button
+731:     t =    76.16s     Check for interrupting elements affecting "global-search-query" TextField
+741:     t =    91.55s     Check for interrupting elements affecting "global-search-query" TextField
+766:     t =   113.25s     Check for interrupting elements affecting "global-search-result-filter-toggle" Button
+778:     t =   119.37s     Check for interrupting elements affecting "global-search-result-filter" TextField
+787:     t =   122.03s     Check for interrupting elements affecting "global-search-result-filter" TextField
+818:     t =   136.93s     Check for interrupting elements affecting "global-search-result-filter-done" Button
+834: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity]' passed (146.373 seconds).
+835: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testModeEditRequiresExplicitRerun]' started.
+855:     t =    21.45s     Check for interrupting elements affecting "magnifyingglass" Button
+887:     t =    37.59s     Check for interrupting elements affecting "global-search-query" TextField
+897:     t =    41.38s     Check for interrupting elements affecting "global-search-query" TextField
+913:     t =    50.07s     Check for interrupting elements affecting "global-search-mode" Button
+925:     t =    59.05s     Check for interrupting elements affecting "global-search-mode-exact" Button
+952:     t =    75.01s     Check for interrupting elements affecting "global-search-rerun" Button
+968: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testModeEditRequiresExplicitRerun]' passed (82.517 seconds).
+969: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testOptionsDismissalReturnsToSameQueryWithoutSubmission]' started.
+989:     t =    18.81s     Check for interrupting elements affecting "magnifyingglass" Button
+1021:     t =    39.25s     Check for interrupting elements affecting "global-search-query" TextField
+1030:     t =    46.10s     Check for interrupting elements affecting "global-search-query" TextField
+1043:     t =    56.06s     Check for interrupting elements affecting "global-search-options" Button
+1062:     t =    63.50s     Check for interrupting elements affecting "global-search-options-done" Button
+1085: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testOptionsDismissalReturnsToSameQueryWithoutSubmission]' passed (83.012 seconds).
+1086: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testOtzariaDefaultAdvancedFormExposesRealConditionalControls]' started.
+1106:     t =    21.58s     Check for interrupting elements affecting "magnifyingglass" Button
+1138:     t =    37.76s     Check for interrupting elements affecting "global-search-mode" Button
+1151:     t =    42.01s     Check for interrupting elements affecting "global-search-mode-advanced" Button
+1163:     t =    46.80s     Check for interrupting elements affecting "global-search-options" Button
+1190:     t =    64.86s     Check for interrupting elements affecting "global-search-negative-query" TextField
+1200:     t =    69.71s     Check for interrupting elements affecting "global-search-negative-query" TextField
+1217:     t =    84.64s     Check for interrupting elements affecting "global-search-options-content" CollectionView
+1235:     t =    93.25s     Check for interrupting elements affecting "global-search-options-done" Button
+1250: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testOtzariaDefaultAdvancedFormExposesRealConditionalControls]' passed (99.461 seconds).
+1251: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred]' started.
+1272:     t =    16.11s     Check for interrupting elements affecting "magnifyingglass" Button
+1304:     t =    31.64s     Check for interrupting elements affecting "global-search-query" TextField
+1314:     t =    36.73s     Check for interrupting elements affecting "global-search-query" TextField
+1331:     t =    45.57s     Check for interrupting elements affecting "global-search-result-filter-toggle" Button
+1343:     t =    51.90s     Check for interrupting elements affecting "global-search-result-filter" TextField
+1352:     t =    54.75s     Check for interrupting elements affecting "global-search-result-filter" TextField
+1376:     t =    65.49s     Check for interrupting elements affecting "Load more results" Button
+1413:     t =    85.18s     Check for interrupting elements affecting "global-search-result-filter-done" Button
+1431:     t =    93.53s     Check for interrupting elements affecting "global-search-results" CollectionView
+1444:     t =    99.38s     Check for interrupting elements affecting "global-search-results" CollectionView
+1457:     t =   104.99s     Check for interrupting elements affecting "global-search-results" CollectionView
+1470:     t =   110.35s     Check for interrupting elements affecting "global-search-results" CollectionView
+1483:     t =   115.48s     Check for interrupting elements affecting "global-search-results" CollectionView
+1496:     t =   120.79s     Check for interrupting elements affecting "global-search-results" CollectionView
+1509:     t =   126.17s     Check for interrupting elements affecting "global-search-results" CollectionView
+1522:     t =   131.97s     Check for interrupting elements affecting "global-search-results" CollectionView
+1535:     t =   137.94s     Check for interrupting elements affecting "global-search-results" CollectionView
+1548:     t =   145.40s     Check for interrupting elements affecting "global-search-results" CollectionView
+1561:     t =   152.21s     Check for interrupting elements affecting "global-search-results" CollectionView
+1574:     t =   159.35s     Check for interrupting elements affecting "global-search-results" CollectionView
+1587:     t =   164.93s     Check for interrupting elements affecting "search-result-preview-toggle-otzaria:otzaria-book:103:17179869323:138" Button
+1604:     t =   181.14s     Check for interrupting elements affecting "search-result-open-otzaria:otzaria-book:103:17179869323:138" Button
+1646: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred]' passed (208.514 seconds).
+1647: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testReturnProducesOriginalRowsWithPersistentHeader]' started.
+1667:     t =    23.85s     Check for interrupting elements affecting "magnifyingglass" Button
+1699:     t =    38.83s     Check for interrupting elements affecting "global-search-query" TextField
+1709:     t =    42.97s     Check for interrupting elements affecting "global-search-query" TextField
+1744: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testReturnProducesOriginalRowsWithPersistentHeader]' passed (58.188 seconds).
+1745: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch]' started.
+1765:     t =    22.03s     Check for interrupting elements affecting "magnifyingglass" Button
+1797:     t =    37.75s     Check for interrupting elements affecting "global-search-query" TextField
+1807:     t =    42.68s     Check for interrupting elements affecting "global-search-query" TextField
+1834:     t =    68.41s     Check for interrupting elements affecting "magnifyingglass" Button
+1863:     t =    87.31s     Check for interrupting elements affecting "global-search-history-בראשית" Button
+1886: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch]' passed (96.991 seconds).
+1887: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear]' started.
+1907:     t =    23.98s     Check for interrupting elements affecting "magnifyingglass" Button
+1939:     t =    38.91s     Check for interrupting elements affecting "global-search-query" TextField
+1948:     t =    42.64s     Check for interrupting elements affecting "global-search-query" TextField
+1968:     t =    52.07s     Check for interrupting elements affecting "מחיקת המלל" Button
+1982: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear]' passed (61.522 seconds).
+1983: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine]' started.
+2005:     t =    31.36s     Check for interrupting elements affecting "magnifyingglass" Button
+2039:     t =   151.48s     Check for interrupting elements affecting "global-search-mode" Button
+2051:     t =   155.29s     Check for interrupting elements affecting "global-search-mode-zayit" Button
+2069:     t =   168.14s     Check for interrupting elements affecting "global-search-options" Button
+2087:     t =   178.12s     Check for interrupting elements affecting "global-search-zayit-match" Button
+2099:     t =   181.73s     Check for interrupting elements affecting "גמיש — מרחק 5 מילים" Button
+2113:     t =   191.80s     Check for interrupting elements affecting "global-search-options-done" Button
+2133:     t =   204.28s     Check for interrupting elements affecting "global-search-query" TextField
+2143:     t =   208.09s     Check for interrupting elements affecting "global-search-query" TextField
+2164:     t =   216.97s     Check for interrupting elements affecting "search-result-preview-toggle-zayit:miniTest10:1" Button
+2181:     t =   233.90s     Check for interrupting elements affecting "search-result-open-zayit:miniTest10:1" Button
+2209: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine]' passed (254.031 seconds).
+2210: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow]' started.
+2231:     t =    26.98s     Check for interrupting elements affecting "magnifyingglass" Button
+2259:     t =    47.50s     Check for interrupting elements affecting "global-search-mode" Button
+2271:     t =    51.40s     Check for interrupting elements affecting "global-search-mode-zayit" Button
+2289:     t =    61.03s     Check for interrupting elements affecting "global-search-options" Button
+2307:     t =    67.42s     Check for interrupting elements affecting "global-search-zayit-match" Button
+2319:     t =    73.12s     Check for interrupting elements affecting "גמיש — מרחק 5 מילים" Button
+2333:     t =    85.06s     Check for interrupting elements affecting "global-search-options-done" Button
+2353:     t =    95.52s     Check for interrupting elements affecting "global-search-query" TextField
+2363:     t =    99.11s     Check for interrupting elements affecting "global-search-query" TextField
+2392: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow]' passed (114.839 seconds).
+2393: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testZayitLoadedTitleSubstringUsesActualMountedProjection]' started.
+2414:     t =    21.51s     Check for interrupting elements affecting "magnifyingglass" Button
+2442:     t =    34.77s     Check for interrupting elements affecting "global-search-mode" Button
+2454:     t =    38.37s     Check for interrupting elements affecting "global-search-mode-zayit" Button
+2472:     t =    49.64s     Check for interrupting elements affecting "global-search-options" Button
+2490:     t =    58.19s     Check for interrupting elements affecting "global-search-zayit-match" Button
+2502:     t =    62.20s     Check for interrupting elements affecting "גמיש — מרחק 5 מילים" Button
+2516:     t =    72.12s     Check for interrupting elements affecting "global-search-options-done" Button
+2536:     t =    85.47s     Check for interrupting elements affecting "global-search-query" TextField
+2546:     t =    92.56s     Check for interrupting elements affecting "global-search-query" TextField
+2576:     t =   117.23s     Check for interrupting elements affecting "global-search-result-filter-toggle" Button
+2588:     t =   123.61s     Check for interrupting elements affecting "global-search-result-filter" TextField
+2598:     t =   126.24s     Check for interrupting elements affecting "global-search-result-filter" TextField
+2651:     t =   150.10s     Check for interrupting elements affecting "global-search-result-filter-done" Button
+2669: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testZayitLoadedTitleSubstringUsesActualMountedProjection]' passed (157.525 seconds).
+2670: Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight]' started.
+2692:     t =    26.13s     Check for interrupting elements affecting "magnifyingglass" Button
+2720:     t =    39.86s     Check for interrupting elements affecting "global-search-mode" Button
+2732:     t =    43.65s     Check for interrupting elements affecting "global-search-mode-zayit" Button
+2750:     t =    53.31s     Check for interrupting elements affecting "global-search-options" Button
+2768:     t =    60.55s     Check for interrupting elements affecting "global-search-zayit-match" Button
+2780:     t =    64.11s     Check for interrupting elements affecting "גמיש — מרחק 5 מילים" Button
+2794:     t =    69.75s     Check for interrupting elements affecting "global-search-options-done" Button
+2814:     t =    78.43s     Check for interrupting elements affecting "global-search-qu
+FILE artifacts/test-simulator-11-index.log BYTES 31400
+2:     /Applications/Xcode_27.2.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -parallel-testing-enabled NO -destination "platform=iOS Simulator,id=01B6729E-1693-4D75-BB60-D9424C7AD5E9" -derivedDataPath build/DerivedData -resultBundlePath /Users/runner/work/Maktabah/Maktabah/build/artifacts/result-11-index.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 "-only-testing:Maktabah-iOSUITests/SearchDataNativeAcceptanceTests/testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount" "-only-testing:Maktabah-iOSUITests/SearchDataNativeAcceptanceTests/testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch" "-only-testing:Maktabah-iOSUITests/SearchDataNativeAcceptanceTests/testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch" "-only-testing:Maktabah-iOSUITests/SearchDataNativeAcceptanceTests/testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks" "-only-testing:Maktabah-iOSUITests/SearchDataNativeAcceptanceTests/testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry"
+42: Test Case '-[Maktabah_iOSUITests.SearchDataNativeAcceptanceTests testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch]' started.
+86:     t =    45.31s     Check for interrupting elements affecting "magnifyingglass" Button
+100:     t =    58.69s     Check for interrupting elements affecting "global-search-more" Button
+115:     t =    62.79s     Check for interrupting elements affecting "global-search-data" Button
+185:     t =   130.03s     Check for interrupting elements affecting "magnifyingglass" Button
+201:     t =   135.54s     Check for interrupting elements affecting "global-search-more" Button
+216:     t =   139.27s     Check for interrupting elements affecting "global-search-data" Button
+253:     t =   155.55s     Check for interrupting elements affecting "search-data-screen" CollectionView
+267:     t =   159.90s     Check for interrupting elements affecting "search-data-repair-otzaria" Button
+305: /Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift:1344: error: -[Maktabah_iOSUITests.SearchDataNativeAcceptanceTests testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch] : XCTAssertEqual failed: ("["d5505a92bd97467a88867ecc6a74de8c.pos": "33ce86ccbbad16ecaa289484579f38201e3092005533b6e33be064ba6e411659", "otzaria_index_meta.json": "768dfd7417528f6f561f484e64b43d8f9438f3123b483547671641d68e0fcc0a", "meta.json": "871d3ee5c095e6ed7cee6cfd2e66358a2b8e9863718b97ee08d662846beaef3d", "d5505a92bd97467a88867ecc6a74de8c.store": "20d76fa5fe0c486f55996eefc11607b3df30f34aa0fddf9e00de652fb67f2480", "d5505a92bd97467a88867ecc6a74de8c.fast": "429cdf186c96da66106a3030efdd80992aa757ad3a64927757eac2a2313644d7", "otzaria_prebuilt_installation.json": "5f4283759f49ed2bb392536bab6ac3260f6238ef20bf9a869b600d2145c4c3ba", "d5505a92bd97467a88867ecc6a74de8c.idx": "e52486a050e44993a2f29cd3550e77ec0bb2932277fbf0abc06baa5ad416bac3", "d5505a92bd97467a88867ecc6a74de8c.term": "61054d07ab3d484eadcad2e984602507ece9fcff0f8fc10cc62253b5ab056960", "d5505a92bd97467a88867ecc6a74de8c.fieldnorm": "97a8dddcc0c7bd2ced2bdc2f4da4d0c385996cacac8472873735049a1a797188"]") is not equal to ("["d5505a92bd97467a88867ecc6a74de8c.fieldnorm": "97a8dddcc0c7bd2ced2bdc2f4da4d0c385996cacac8472873735049a1a797188", "otzaria_prebuilt_installation.json": "5f4283759f49ed2bb392536bab6ac3260f6238ef20bf9a869b600d2145c4c3ba", "otzaria_index_meta.json": "f0319223893cce1e7f3e62837ec16be660f23ac652c2ae5fda65996151d79b6e", "d5505a92bd97467a88867ecc6a74de8c.idx": "e52486a050e44993a2f29cd3550e77ec0bb2932277fbf0abc06baa5ad416bac3", "d5505a92bd97467a88867ecc6a74de8c.pos": "33ce86ccbbad16ecaa289484579f38201e3092005533b6e33be064ba6e411659", "d5505a92bd97467a88867ecc6a74de8c.store": "20d76fa5fe0c486f55996eefc11607b3df30f34aa0fddf9e00de652fb67f2480", "meta.json": "871d3ee5c095e6ed7cee6cfd2e66358a2b8e9863718b97ee08d662846beaef3d", "d5505a92bd97467a88867ecc6a74de8c.term": "61054d07ab3d484eadcad2e984602507ece9fcff0f8fc10cc62253b5ab056960", "d5505a92bd97467a88867ecc6a74de8c.fast": "429cdf186c96da66106a3030efdd80992aa757ad3a64927757eac2a2313644d7"]")
+314: Test Case '-[Maktabah_iOSUITests.SearchDataNativeAcceptanceTests testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch]' failed (203.536 seconds).
+315: Test Case '-[Maktabah_iOSUITests.SearchDataNativeAcceptanceTests testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount]' started.
+358:     t =    47.21s     Check for interrupting elements affecting "magnifyingglass" Button
+TAIL
+2026-11-20 13:36:13.590 xcodebuild[43081:629750] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     6.59s         Setting up automation session
+    t =    20.74s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    32.92s Get number of matches for: Descendants matching type Alert
+    t =    33.72s Waiting 60.0s for "reader-text" TextView to exist
+    t =    34.76s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-text" TextView`
+    t =    34.76s         Checking existence of `"reader-text" TextView`
+    t =    36.34s Find the "reader-text" TextView
+    t =    36.67s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    36.89s Find the Target Application 'com.davidpovarsky.chavrusatext'
+    t =    38.28s Checking `Expect predicate `value MATCHES "(?s).{31,}"` for object "reader-text" TextView`
+    t =    38.29s     Find the "reader-text" TextView
+    t =    39.34s Waiting 10.0s for "reader-header-title" StaticText to exist
+    t =    40.39s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-header-title" StaticText`
+    t =    40.39s         Checking existence of `"reader-header-title" StaticText`
+    t =    40.85s Find the "reader-header-title" StaticText
+    t =    41.31s Find the "reader-text" TextView
+    t =    41.90s Waiting 15.0s for "reader-current-locator" StaticText to exist
+    t =    42.93s     Checking `Expect predicate `existsNoRetry == 1` for object "reader-current-locator" StaticText`
+    t =    42.93s         Checking existence of `"reader-current-locator" StaticText`
+    t =    43.40s Find the "reader-current-locator" StaticText
+    t =    43.88s Find the "reader-header-title" StaticText
+    t =    44.48s Added attachment named 'search-data-original-fixture-ownership'
+    t =    44.48s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "חיפוש" OR label CONTAINS[c] "Search"'
+    t =    44.85s Checking existence of `Button (Element at index 0)`
+    t =    45.25s Find the Button (Element at index 0)
+    t =    45.72s Checking existence of `"magnifyingglass" Button`
+    t =    46.09s Checking existence of `"magnifyingglass" Button`
+    t =    46.42s Find the "magnifyingglass" Button
+    t =    46.75s Find the Window (First Match)
+    t =    46.81s Tap "magnifyingglass" Button[0.50, 0.50]
+    t =    46.81s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    46.82s     Find the "magnifyingglass" Button
+    t =    47.21s     Check for interrupting elements affecting "magnifyingglass" Button
+    t =    47.54s         Wait for com.apple.springboard to idle
+    t =    47.73s Ignoring failure to get hierarchy for remote element in process 48176 (Error getting main window kAXErrorServerNotFound)
+    t =    47.73s Ignoring failure to get hierarchy for remote element in process 48176 (Error getting main window kAXErrorServerNotFound)
+    t =    47.74s     Synthesize event
+    t =    47.75s         Find the "magnifyingglass" Button
+    t =    48.13s         Find the "magnifyingglass" Button
+    t =    48.54s         Find the "magnifyingglass" Button
+    t =    49.23s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    51.56s Checking existence of `"global-search-more" Button`
+    t =    51.96s Checking existence of `"global-search-more" Button`
+    t =    52.26s Find the "global-search-more" Button
+FILE artifacts/native-routing-logs-11/otzaria-reader.log BYTES 235488
+FILE artifacts/runtime27/url-delivery-11.jsonl BYTES 182
