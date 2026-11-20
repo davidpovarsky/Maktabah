@@ -1,0 +1,20 @@
+[
+  {
+    "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+    "originalRegionUnchanged": true,
+    "regionSHA256": "ca35ba536a56ef10f423a98bc015bf945d35067b97792b1bc0c524dc7d95dcf2",
+    "originalRegion": "    func runSearch() {\n        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)\n        guard !trimmed.isEmpty else {\n            clearResults()\n            return\n        }\n        guard !(isSearching && submittedConfiguration == requestConfiguration) else { return }\n        stopEngineWork()\n        submittedConfiguration = requestConfiguration\n        configurationInvalidated = false\n        hasSubmitted = true\n        wasCancelled = false\n        errorMessage = nil\n        hasMore = false\n        guard availableScopes.contains(scope) else {\n            results = []\n            errorMessage = \"שיטת חיפוש זו אינה נתמכת במקור הפעיל. בחרו שיטה זמינה.\"\n            return\n        }\n        if let message = optionsValidationMessage {\n            results = []\n            errorMessage = message\n            return\n        }\n        submissionRevision += 1\n        acceptsEngineUpdates = true\n        resultKitabFilter = \"\"\n        allowsAutomaticPaging = true\n        #if os(iOS)\n        searchViewModel?.addToHistory(trimmed)\n        #endif\n        #if DEBUG\n        NSLog(\"[GlobalSearch] submit revision=%d generation=%d backend=%@ scope=%@\", submissionRevision, searchGeneration,\n              BackendCoordinator.shared.activeBackendID.rawValue, scope.rawValue)\n        #endif\n\n        if isSefaria {\n            runSefariaSearch(query: trimmed)\n        } else if scope == .zayit {\n            runZayitSearch(query: trimmed)\n        } else {\n            runOtzariaSearch(query: trimmed)\n        }\n    }\n\n"
+  },
+  {
+    "path": "Source/Features/Search/ViewModel/Extensions/Search+iOS.swift",
+    "originalRegionUnchanged": true,
+    "regionSHA256": "d8673d0e7be649fb54ef9517c92e4e3c7c7726d9cfaff1c42c605b26995da500",
+    "originalRegion": "    func loadHistory() {\n        searchHistory = UserDefaults.standard.stringArray(forKey: historyKey) ?? []\n    }\n\n    func addToHistory(_ query: String) {\n        let trimmed = query.trimmingCharacters(in: .whitespaces)\n        guard !trimmed.isEmpty else { return }\n        var current = searchHistory\n        current.removeAll { $0 == trimmed }\n        current.insert(trimmed, at: 0)\n        if current.count > 20 {\n            current = Array(current.prefix(20))\n        }\n        searchHistory = current\n        UserDefaults.standard.set(current, forKey: historyKey)\n    }\n\n    func removeFromHistory(_ query: String) {\n        var current = searchHistory\n        current.removeAll { $0 == query }\n        searchHistory = current\n        UserDefaults.standard.set(current, forKey: historyKey)\n    }\n}\n"
+  },
+  {
+    "path": "Source/Features/Search/iOS/SearchModeView.swift",
+    "originalRegionUnchanged": true,
+    "regionSHA256": "846ba7077b464c7a65cefa76e77e624fb50ee28d285da2f529fd16722597f7c8",
+    "originalRegion": "        .onAppear {\n            observeNativePresentation()\n            session.searchViewModel = viewModel\n            if !session.availableScopes.contains(session.scope), !session.hasSubmitted {\n                session.scope = session.availableScopes.first ?? session.scope\n            }\n            if session.selectedBookIds != viewModel.selectedBookIds {\n                session.selectedBookIds = viewModel.selectedBookIds\n            }\n            if BackendCoordinator.shared.usesNativeMaktabahDataPath {\n                ftsManager.checkNeedsMigration()\n            }\n        }\n        .onChange(of: nativeRoutingSession.map(ObjectIdentifier.init), initial: true) { _, _ in\n            observeNativePresentation()\n        }\n        .onDisappear {\n            nativeRoutingSession?.removeSearchPresentation(owner: nativePresentationOwner)\n        }\n"
+  }
+]

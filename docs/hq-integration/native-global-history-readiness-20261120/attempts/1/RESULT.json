@@ -1,0 +1,45 @@
+{
+  "source": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\Maktabah-iOSUITests\\FaithfulReaderUIAcceptanceTests.swift",
+  "workingSourceSHA256": "97371c8cb9419739fd2dd768eacd4362872ad1669ff676b1ceb6255f872ee3c5",
+  "gitLFSourceSHA256": "d8851fef710921dd9f56aa0baeeb0a1a3b9186d4a2ce12e62f1cdd49347871f3",
+  "extractedCompleteBlocksSHA256": [
+    "1f56e3b1fb64f04a57cf322a527b3a65c375fb5eaca0b29c09b70eae16ff19d9",
+    "c1a56fedceb62bef75039975ca7ebd8e51333f88ba435e0b9d93365c5ecb40c1"
+  ],
+  "generatedSHA256": "8737cecfa8042b5f2cc2b168ecd0b9644cd41caf9e2749804f091ef1b3b3a788",
+  "boundary": "Complete source helpers; explicit disposable test-owned XML plists. No app/CFPreferences/Simulator/Apple/Native execution.",
+  "diskFreeBefore": 1277218816,
+  "commands": [
+    {
+      "kind": "compile",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-parse-as-library",
+        "-j",
+        "1",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-global-history-readiness-20261120\\fixture\\NativeHistoryObservationAcceptance.swift",
+        "-o",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-global-history-readiness-20261120\\fixture\\NativeHistoryObservationAcceptance.exe"
+      ],
+      "startedUTC": "2026-11-20T06:52:35.598096+00:00",
+      "finishedUTC": "2026-11-20T06:52:38.667925+00:00",
+      "returncode": 0,
+      "warningCount": 2,
+      "outputSHA256": "a050e075b78a3b3e3be7b014130339c08da2f431b5ec58eccaf7d4d3933ee1a9"
+    },
+    {
+      "kind": "runtime",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-global-history-readiness-20261120\\fixture\\NativeHistoryObservationAcceptance.exe",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-global-history-readiness-20261120\\fixture\\owned-plists"
+      ],
+      "startedUTC": "2026-11-20T06:52:38.667925+00:00",
+      "finishedUTC": "2026-11-20T06:52:44.559961+00:00",
+      "returncode": 3221225501,
+      "warningCount": 0,
+      "outputSHA256": "979d470fcdaaeef2d1e29a629fa4a123a87c0c14d1b8f4697227dc9e049b5efc"
+    }
+  ],
+  "sourceUnchanged": true,
+  "status": "FAIL"
+}

@@ -1,0 +1,182 @@
+{
+  "files": [
+    {
+      "path": "attempts/1/Acceptance.swift",
+      "bytes": 9403,
+      "sha256": "dcb03781c79247d398010325b67d15e439390ef6723275bd978c559ceff3cd8b"
+    },
+    {
+      "path": "attempts/1/compile.log.gz",
+      "bytes": 711,
+      "sha256": "e5c993bb173befe7297a748dc83c23fa6a0eb549f4c18a043fc5cb2d4c53743b",
+      "uncompressedSHA256": "a050e075b78a3b3e3be7b014130339c08da2f431b5ec58eccaf7d4d3933ee1a9"
+    },
+    {
+      "path": "attempts/1/NativeHistoryObservationAcceptance.swift",
+      "bytes": 15064,
+      "sha256": "8737cecfa8042b5f2cc2b168ecd0b9644cd41caf9e2749804f091ef1b3b3a788"
+    },
+    {
+      "path": "attempts/1/RESULT.json",
+      "bytes": 2336,
+      "sha256": "f0ec6991ae97f67a2276578a1f21f1d192eb5784de2bad1dcea1b2356adcabc8"
+    },
+    {
+      "path": "attempts/1/run-fixture.py",
+      "bytes": 4045,
+      "sha256": "e9b28cc814244c6fa31c9eda0b2a906d675b0f8f359054b818f9425b326edfe0"
+    },
+    {
+      "path": "attempts/1/runtime.log.gz",
+      "bytes": 459,
+      "sha256": "28ea6dd338ec60b98858fafeecbf51caa44147c5d2a8808f8a8b09d85b40ad5d",
+      "uncompressedSHA256": "979d470fcdaaeef2d1e29a629fa4a123a87c0c14d1b8f4697227dc9e049b5efc"
+    },
+    {
+      "path": "attempts/2/Acceptance.swift",
+      "bytes": 9546,
+      "sha256": "eefe6767d17649d253ef93f50e1c837cf85b4353a8078e5d9405ddd6fab73313"
+    },
+    {
+      "path": "attempts/2/compile.log.gz",
+      "bytes": 180,
+      "sha256": "b94640750592902f2814362d2e03157e03d721f51de25f7c05c266c67d2d516f",
+      "uncompressedSHA256": "68fbf429d44185005499771bface5b758494225374faa03f1b85321b7c0e7650"
+    },
+    {
+      "path": "attempts/2/NativeHistoryObservationAcceptance.swift",
+      "bytes": 15207,
+      "sha256": "0afd4ddd9e3e3eb09814e643bcc8b51d13e0f198ff6899afd9f0e4d5cc87ba98"
+    },
+    {
+      "path": "attempts/2/RESULT.json",
+      "bytes": 4255,
+      "sha256": "9288973e7d629b87f7b8720f5111c9148b930e192ae84ba7317e6137b4cc6ca3"
+    },
+    {
+      "path": "attempts/2/run-fixture.py",
+      "bytes": 4209,
+      "sha256": "0e5b20ec58715a5642c4a5a9318648ed7974fcf9a87f6913f30057162e6a8a7b"
+    },
+    {
+      "path": "attempts/2/runtime.log.gz",
+      "bytes": 367,
+      "sha256": "fb2c9b0b16baea14aff370be32df260f36b0eac87e788c0c98c9f84908efc7d8",
+      "uncompressedSHA256": "b2cfadde332290f6c0e9944437157e9aa19670cd7e10a4d6d56e5ff7abd5070c"
+    },
+    {
+      "path": "attempts/3/Acceptance.swift",
+      "bytes": 9695,
+      "sha256": "e144a4589ad94cec0878c8e88b20c93daf6043bf8f5f9fc009d7bde9d4d201d8"
+    },
+    {
+      "path": "attempts/3/BEFORE_HELPER_FIX.swift.gz",
+      "bytes": 29498,
+      "sha256": "0a871c2993b0dbfae834012ee2b05cb9ec6271c4d6057fa0984741cb3b27f89c",
+      "uncompressedSHA256": "97371c8cb9419739fd2dd768eacd4362872ad1669ff676b1ceb6255f872ee3c5"
+    },
+    {
+      "path": "attempts/3/compile.log.gz",
+      "bytes": 181,
+      "sha256": "7b4eb9f27333911d0ade94f5b117d224fdd9b7f588b341d686ac1134b0acbe47",
+      "uncompressedSHA256": "16a5c93b9da356ff1cab71fcd2e43618a44c92cb1d019445e29ccdc9832dcd92"
+    },
+    {
+      "path": "attempts/3/NativeHistoryObservationAcceptance.swift",
+      "bytes": 15356,
+      "sha256": "c8b1276c3937a5d1952beff08bb9f8820fd0a75b165c442ff97c73500fb4d545"
+    },
+    {
+      "path": "attempts/3/RESULT.json",
+      "bytes": 4185,
+      "sha256": "388a5c961740aee0cb63f9857dc6753fff1ca5ae38309f5ff1bf61fa06c43896"
+    },
+    {
+      "path": "attempts/3/run-fixture.py",
+      "bytes": 4207,
+      "sha256": "0eb11e05166c914f458c5d6537fe6e002a59b60c8b18507658206f099324fc8b"
+    },
+    {
+      "path": "attempts/3/runtime.log.gz",
+      "bytes": 368,
+      "sha256": "b923974facdc3b0f0289a844a4e6f6fd88f23c93292dd6b01f2a9c50f4a0c460",
+      "uncompressedSHA256": "248294ec37d64b41ec2b292be86f33856be116afd5a9206854b258c0968534ac"
+    },
+    {
+      "path": "attempts/4/compile.log.gz",
+      "bytes": 181,
+      "sha256": "8ae820b96ef03881b0cc55e9c5355db1f2123b5152effce66c8e7b4a397720ed",
+      "uncompressedSHA256": "d068be697a19aff59dbea7afc0a5fc42fd37baee1c90814848c9afe638bce395"
+    },
+    {
+      "path": "attempts/4/NativeHistoryObservationAcceptance.swift",
+      "bytes": 15416,
+      "sha256": "15ab9c8fe4be604e379976937d6e9de902dd40acc7b0feeb9e031e2d56d2bced"
+    },
+    {
+      "path": "attempts/4/RESULT.json",
+      "bytes": 4186,
+      "sha256": "78b8e9321a4b081a308a7785980a7b4d910b17235c899c74b8b3edc9cfca495d"
+    },
+    {
+      "path": "attempts/4/runtime.log.gz",
+      "bytes": 362,
+      "sha256": "bc99de7fbd9ba1049d05a4992ac6a67119328aafef9be81c2f5ce75753b3f4f4",
+      "uncompressedSHA256": "0d08c6f1597cf66b6430a9d5feacbcbb44fa476f29ca8961eb5e72c5b3124ef0"
+    },
+    {
+      "path": "Faithful.syntax-parse.log.gz",
+      "bytes": 138,
+      "sha256": "0accb7414d1b283247df2941affbb7d14666e47fa2f56707573d81bff21f86e3",
+      "uncompressedSHA256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153"
+    },
+    {
+      "path": "fixture/Acceptance.swift",
+      "bytes": 9695,
+      "sha256": "e144a4589ad94cec0878c8e88b20c93daf6043bf8f5f9fc009d7bde9d4d201d8"
+    },
+    {
+      "path": "original/native88-final-ax.txt.gz",
+      "bytes": 4035,
+      "sha256": "7eb1bdc3d169cb5a361f63d1693771c5a4092bacd59f5d2a0c7eadef8519e1ad",
+      "uncompressedSHA256": "7b2bdbfc51820a5e0cb53b668a1f4bb0b57eea58b39a12d097e9b7b769640af8"
+    },
+    {
+      "path": "original/native88-history-timeline.log.gz",
+      "bytes": 2055,
+      "sha256": "9c363822af99fa903de18a4e5fbbd7f5f73b9c618d5b9a4e09fdeab5623cc92e",
+      "uncompressedSHA256": "eea9ac1a4b3218d33955ff44c3dc58b55c6ee5e59ea2d63220aaca4017ebeab2"
+    },
+    {
+      "path": "ORIGINAL_EVIDENCE.json",
+      "bytes": 837,
+      "sha256": "0cd88709933de6abb850d979c9a92b04823ecd24b931588973197c094134697b"
+    },
+    {
+      "path": "ORIGINAL_SUBMIT_SOURCE.json",
+      "bytes": 4020,
+      "sha256": "188064d2fb62944b4c55ff88ce0320fc2666c317a787d08f882928ac506da2ae"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6764,
+      "sha256": "1e17eaed02b4d58ccfce48ca5a611705f61f0ef4bef7e6ddeb93ec5d6bb9e206"
+    },
+    {
+      "path": "run-fixture.py",
+      "bytes": 4207,
+      "sha256": "3057f1c5930f432051a8e66dc483beec87b9a1f4f117a6873653583d62fc8e91"
+    },
+    {
+      "path": "SOURCE_PRESERVATION.json",
+      "bytes": 1348,
+      "sha256": "54141b04224a201bf64390cc2d75ea7acf0a8e3288bc4606b78212d809d972f8"
+    },
+    {
+      "path": "SYNTAX_PARSE.json",
+      "bytes": 662,
+      "sha256": "bf925f0afb3f6cd8d19ab5877c328764bae54ee34116f616b169a2f5b1e3ed7b"
+    }
+  ],
+  "qualifiedScope": "Read-only XCTest ownership readiness controls12/12; original Native88 rootcause unproven; candidate Native NOT_RUN"
+}

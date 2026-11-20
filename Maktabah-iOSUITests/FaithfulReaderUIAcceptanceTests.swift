@@ -20,6 +20,99 @@ private func matchingTestSidecars(in containers: URL, namespace: String) -> [URL
     }.filter { FileManager.default.fileExists(atPath: $0.path) }
 }
 
+
+/// Read-only evidence from this Simulator installation. The runner's pre-install
+/// container UUID is only a parent hint: XCTest may reinstall the app.
+private struct NativeGlobalHistoryObservation {
+    let container: URL?
+    let metadataBytes: Data?
+    let persistedExactlyOnce: Bool
+    let details: [String: Any]
+}
+
+private func observeNativeGlobalHistory(
+    in parent: URL, namespace: String, query: String,
+    expectedContainer: URL? = nil, expectedMetadata: Data? = nil
+) -> NativeGlobalHistoryObservation {
+    let bundleID = "com.davidpovarsky.chavrusatext"
+    func boundedRegularFile(_ url: URL, maximum: Int) -> Data? {
+        guard let values = try? url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey]),
+              values.isRegularFile == true, values.isSymbolicLink == false,
+              let handle = try? FileHandle(forReadingFrom: url) else { return nil }
+        defer { try? handle.close() }
+        do {
+            var bytes = Data()
+            while bytes.count <= maximum {
+                guard let chunk = try handle.read(upToCount: min(65536, maximum + 1 - bytes.count)),
+                      !chunk.isEmpty else { return bytes }
+                bytes.append(chunk)
+            }
+        } catch { return nil }
+        return nil
+    }
+    func dictionary(_ bytes: Data) -> [String: Any]? {
+        (try? PropertyListSerialization.propertyList(from: bytes, format: nil)) as? [String: Any]
+    }
+    let root = parent.standardizedFileURL
+    let children = (try? FileManager.default.contentsOfDirectory(
+        at: root, includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey],
+        options: [.skipsHiddenFiles])) ?? []
+    let candidates: [(URL, Data)] = children.compactMap { child in
+        let container = child.standardizedFileURL
+        guard UUID(uuidString: container.lastPathComponent) != nil,
+              container.deletingLastPathComponent().pathComponents == root.pathComponents,
+              let values = try? container.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey]),
+              values.isDirectory == true, values.isSymbolicLink == false,
+              let metadata = boundedRegularFile(
+                container.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist"),
+                maximum: 65536),
+              dictionary(metadata)?["MCMMetadataIdentifier"] as? String == bundleID else { return nil }
+        return (container, metadata)
+    }
+    var details: [String: Any] = [
+        "metadataBundleIdentifier": bundleID,
+        "matchingInstallationCount": candidates.count,
+        "candidateContainerIDs": candidates.map { $0.0.lastPathComponent },
+        "queryPersistedExactlyOnce": false
+    ]
+    guard candidates.count == 1, let (container, metadata) = candidates.first else {
+        details["observationError"] = "missing_or_ambiguous_original_installation"
+        return .init(container: nil, metadataBytes: nil, persistedExactlyOnce: false, details: details)
+    }
+    // Feature-off deliberately has no workspace sidecar. If the existing UUID
+    // sidecar is present, it must corroborate this same original installation.
+    let sidecars = matchingTestSidecars(in: root, namespace: namespace)
+    let namespaceMatches = sidecars.isEmpty || (sidecars.count == 1 &&
+        sidecars[0].standardizedFileURL.pathComponents.starts(with: container.pathComponents))
+    let pinned = expectedContainer != nil && expectedMetadata != nil
+    let installationMatches = pinned &&
+        expectedContainer?.standardizedFileURL.pathComponents == container.pathComponents && expectedMetadata == metadata
+    details["containerID"] = container.lastPathComponent
+    details["metadataByteCount"] = metadata.count
+    details["namespaceSidecarCount"] = sidecars.count
+    details["namespaceMatchesInstallation"] = namespaceMatches
+    details["installationPinned"] = pinned
+    details["installationMatchesInitialBytes"] = installationMatches
+    let preference = container.appendingPathComponent("Library/Preferences/" + bundleID + ".plist")
+    let preferences = boundedRegularFile(preference, maximum: 1024 * 1024).flatMap(dictionary)
+    let history = preferences?["SearchHistory"] as? [String] ?? []
+    let count = history.filter { $0 == query }.count
+    details["preferenceReadable"] = preferences != nil
+    details["historyCount"] = history.count
+    details["submittedQueryCount"] = count
+    if let preferences {
+        details["recordSearchHistory"] = preferences["recordSearchHistory"] as? Bool ?? true
+    }
+    let persisted = installationMatches && namespaceMatches && preferences != nil && count == 1
+    details["queryPersistedExactlyOnce"] = persisted
+    if !namespaceMatches { details["observationError"] = "namespace_installation_mismatch" }
+    else if pinned && !installationMatches { details["observationError"] = "original_installation_changed" }
+    else if preferences == nil { details["observationError"] = "original_preferences_unreadable" }
+    return .init(container: namespaceMatches ? container : nil,
+                 metadataBytes: namespaceMatches ? metadata : nil,
+                 persistedExactlyOnce: persisted, details: details)
+}
+
 /// Runs the supplied prototype in its own app, never demo code in Maktabah.
 final class SafariPrototypeReferenceTests: XCTestCase {
     func testOriginalCompactAndExpandedToolbarOracle() {
@@ -746,6 +839,46 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertEqual(fields.count, 1, "Require the single original global query field")
         XCTAssertTrue(globalInput.elementType == .searchField || globalInput.elementType == .textField)
         XCTAssertTrue(app.collectionViews["global-search-history"].waitForExistence(timeout: 20))
+        func attachHistoryObservation(_ observation: NativeGlobalHistoryObservation, stage: String,
+                                      nativeHistoryRowVisible: Bool? = nil, waiterResult: XCTWaiter.Result? = nil) {
+            var details = observation.details
+            details["stage"] = stage
+            details["nativeHistoryRowVisible"] = nativeHistoryRowVisible
+            details["waiterResult"] = waiterResult.map { String(describing: $0) }
+            details["originalUIStates"] = [
+                "history": app.collectionViews["global-search-history"].exists,
+                "loading": app.otherElements["global-search-loading"].exists,
+                "cancel": app.buttons["global-search-cancel"].exists,
+                "error": app.otherElements["global-search-error"].exists,
+                "missingIndex": app.otherElements["global-search-missing-index"].exists,
+                "dirty": app.otherElements["global-search-dirty"].exists,
+                "cancelled": app.otherElements["global-search-cancelled"].exists,
+                "empty": app.otherElements["global-search-empty"].exists
+            ]
+            let data = (try? JSONSerialization.data(withJSONObject: details, options: [.prettyPrinted, .sortedKeys])) ?? Data()
+            let diagnostic = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+            diagnostic.name = "global-history-native-persistence-" + stage
+            diagnostic.lifetime = .keepAlways
+            add(diagnostic)
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = "global-history-original-state-" + stage
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
+        guard let containers = try? workspaceContainerParent() else {
+            XCTFail("The matrix must provide the original Simulator container parent")
+            return query
+        }
+        let initial = observeNativeGlobalHistory(in: containers, namespace: workspaceNamespace, query: query)
+        attachHistoryObservation(initial, stage: "before-submit")
+        guard let originalContainer = initial.container, let originalMetadata = initial.metadataBytes else {
+            XCTFail("Require one source-identified original app installation before submitting")
+            return query
+        }
+        func historyObservation() -> NativeGlobalHistoryObservation {
+            observeNativeGlobalHistory(in: containers, namespace: workspaceNamespace, query: query,
+                                       expectedContainer: originalContainer, expectedMetadata: originalMetadata)
+        }
         tap(globalInput)
         // NativeGlobalSearchField.textFieldShouldReturn submits through the
         // original session; there is no Start Search button in this header.
@@ -757,10 +890,18 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 !application.collectionViews["global-search-history"].exists
                     && !application.otherElements["global-search-loading"].exists
                     && !application.buttons["global-search-cancel"].exists
+                    && historyObservation().persistedExactlyOnce
             }
         }, object: nil)
-        XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 90), .completed,
-                       "The original Return submission must settle before the history relaunch")
+        let settledResult = XCTWaiter.wait(for: [settled], timeout: 90)
+        let beforeTermination = historyObservation()
+        // UserDefaults writes are observed, never forced. Do not terminate merely
+        // because a loading/history view disappeared, or replace a native writer.
+        attachHistoryObservation(beforeTermination, stage: "before-terminate", waiterResult: settledResult)
+        XCTAssertEqual(settledResult, .completed,
+                       "The original Return submission must settle and persist in its own installation before relaunch")
+        XCTAssertTrue(beforeTermination.persistedExactlyOnce,
+                      "The exact submitted query must be written once by the original app before termination")
         // The current original screen shows inline history before a submission,
         // not on refocus of existing results. Relaunch its actual session and
         // require the same query persisted by the original submit action.
@@ -779,34 +920,14 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             .matching(identifier: "global-search-history-" + query)
         let historyRow = historyRows.firstMatch
         let historyIsVisible = historyRow.waitForExistence(timeout: 20)
+        let afterRelaunch = historyObservation()
+        // Attach before assertions: continueAfterFailure=false previously aborted
+        // this case before its persistence diagnostic could be retained.
+        attachHistoryObservation(afterRelaunch, stage: "after-relaunch", nativeHistoryRowVisible: historyIsVisible)
+        XCTAssertTrue(afterRelaunch.persistedExactlyOnce,
+                      "The same original installation must retain the exact query after relaunch")
         XCTAssertEqual(historyRows.count, 1, "The exact genuine submitted history query must occur once")
         XCTAssertTrue(historyRow.label.contains(query))
-        // Observe only these two known preferences. Never dump all app defaults
-        // or seed a history entry: the native submit action remains the writer.
-        do {
-            let containers = try FileManager.default.contentsOfDirectory(at: workspaceContainerParent(), includingPropertiesForKeys: nil)
-            var observations: [[String: Any]] = []
-            for container in containers {
-                let preference = container.appendingPathComponent("Library/Preferences/com.davidpovarsky.chavrusatext.plist")
-                guard let data = try? Data(contentsOf: preference),
-                      let values = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any] else { continue }
-                let history = values["SearchHistory"] as? [String] ?? []
-                observations.append(["historyCount": history.count, "submittedQueryPersisted": history.contains(query),
-                                     "recordSearchHistory": values["recordSearchHistory"] as? Bool ?? true])
-            }
-            let data = try JSONSerialization.data(withJSONObject: ["matchingPreferenceFiles": observations.count,
-                                                                   "observations": observations,
-                                                                   "nativeHistoryRowVisible": historyIsVisible], options: [.prettyPrinted, .sortedKeys])
-            let diagnostic = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
-            diagnostic.name = "global-history-native-persistence-diagnostic"
-            diagnostic.lifetime = .keepAlways
-            add(diagnostic)
-        } catch {
-            let diagnostic = XCTAttachment(string: "Read-only history observation failed: \(error)")
-            diagnostic.name = "global-history-native-persistence-diagnostic-error"
-            diagnostic.lifetime = .keepAlways
-            add(diagnostic)
-        }
         XCTAssertTrue(historyIsVisible, "A submitted global query must appear in the original global history")
         XCTAssertTrue(historyRow.isHittable, "The submitted history row must actually be visible and usable above the native keyboard")
         XCTAssertLessThanOrEqual(historyRow.frame.maxY, app.keyboards.firstMatch.frame.minY + 2,

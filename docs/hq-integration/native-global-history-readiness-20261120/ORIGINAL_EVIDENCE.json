@@ -1,0 +1,14 @@
+{
+  "run": 44657116407,
+  "checkout": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+  "appAndTestSource": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "fullVerifiedArtifactZIP_SHA256": "ced48935baf6c27a7df229b1e438ae30113fcad7939ccfa5783ad4262723872c",
+  "originalLogEntry": "artifacts/test-simulator-11-search.log",
+  "originalLogSHA256": "ba4d3147dd31732f8ea08db45e22bf1de6fb5d3dc2d38f35dc3d518a7cffa308",
+  "exactCaseTimelineSHA256": "eea9ac1a4b3218d33955ff44c3dc58b55c6ee5e59ea2d63220aaca4017ebeab2",
+  "originalAXAttachment": "04B1C157-C72F-4F6D-90DF-8B42F0B81AD1.txt",
+  "originalAXSHA256": "7b2bdbfc51820a5e0cb53b668a1f4bb0b57eea58b39a12d097e9b7b769640af8",
+  "preferencesDiagnosticExecuted": false,
+  "reason": "continueAfterFailure=false aborted at exact row-count assertion before later diagnostic",
+  "rootCause": "UNPROVEN"
+}
