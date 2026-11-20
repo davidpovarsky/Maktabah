@@ -1,0 +1,39 @@
+{
+  "run": 44657123753,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657123753",
+  "checkout": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+  "application_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "overall": "FAILURE",
+  "artifact_id": 14596960766,
+  "artifact_bytes": 39831942,
+  "artifact_sha256": "cd78d3553d5149c2b94c3ccb97ec16f0ef50351e1e3f09c7fb2a794ebde77689",
+  "actual_original_app_and_XCTest_build": "PASS",
+  "actual_source_input_verifications": 888,
+  "actual_binary_sha256": {
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app": "b7d970e66c339305f61a1eda4f46602dc525a0130f64789cdd366132d81c016b",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app": "be33a374b491e45da7cb146dbf1ef21aac7c38f861686a6b6b9086eb5e354b9d",
+    "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest": "e4603729edd79be31904c1f066f26f4b92cf59382088684c138fb30dabdb98c9"
+  },
+  "sdk": "Xcode27.2/AppleSwift6.4.2/iOS27.2Simulator",
+  "executed_release_UI": 0,
+  "executed_release_oracles": 0,
+  "failure": "Prepared test does not match the current registered native target",
+  "prepared_sidebar_expected_stale": "3fa01d7595ea9849701658e36e098065f465d6411ce651823f874debadc78223",
+  "prepared_sidebar_actual_git_blob": "691635310a71e3e18569214b926e86efd2a4931a8d81a6b9b02443d9c3fcb947",
+  "reviewed_sidebar_source_commit": "606a48df3ae834f687d69ad16a26e11768fc85eb",
+  "correction": "Review already-integrated stronger native category disclosure-state helper, update prepared-source SHA to its exact Git blob, check full manifest before expensive app build, retain second final validation and all original release gates. Update only obsolete94 expected test totals to96 including alreadyfrozen2profile-color cases.",
+  "actual_corrected_producer_controls": {
+    "before_pass": 11,
+    "before_fail": 1,
+    "before_error": 1,
+    "after_pass": 13,
+    "after_fail": 0
+  },
+  "actual_unchanged_release_gate_controls_pass": 23,
+  "full_release_UI_requirements": 96,
+  "separate_oracle_requirements": 2,
+  "configuration_source_data_profile_device_and_cases_unchanged": true,
+  "application_XCTest_SDK_source_unchanged": true,
+  "corrected_apple_status": "NOT_RUN",
+  "recorded_at": "2026-11-20T03:01:57.646363+00:00"
+}

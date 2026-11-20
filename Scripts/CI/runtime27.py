@@ -252,6 +252,17 @@ def main():
             return 0
         if report["mode"] not in {"ui", "release"}:
             raise RuntimeError("Unknown runtime mode")
+        if report["mode"] == "release":
+            # Validate the full unchanged release contract before the expensive
+            # app build. The producer validates it again against final inputs.
+            release_manifest = runpy.run_path(str(ROOT / "Scripts/CI/runtime27-release.py"))["load_manifest"](ROOT)
+            report["release_manifest_preflight"] = {
+                "status": "DECLARATIONS_AND_PREPARED_SOURCE_MATCH",
+                "manifest_sha256": hashlib.sha256((ROOT / "Scripts/CI/runtime27-release-manifest.json").read_bytes()).hexdigest(),
+                "required_ui_executions": sum(len(row["required_ui_cases"]) for row in release_manifest["configurations"]),
+                "required_oracle_executions": sum(len(row.get("required_oracle_cases", [])) for row in release_manifest["configurations"]),
+                "native_executed": 0,
+            }
         # Fail cheap on the exact owned native component before restoring/building
         # the full app. This is real SDK module compilation, never runtime acceptance.
         sdk_path = capture(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], "sdk-path.txt").strip()

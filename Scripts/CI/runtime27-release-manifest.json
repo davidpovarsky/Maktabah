@@ -149,7 +149,7 @@
   "prepared_source_requirements": [
     {
       "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
-      "sha256": "3fa01d7595ea9849701658e36e098065f465d6411ce651823f874debadc78223",
+      "sha256": "691635310a71e3e18569214b926e86efd2a4931a8d81a6b9b02443d9c3fcb947",
       "required_cases": [
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
@@ -187,5 +187,14 @@
       "production": "Actual Release binary without DEBUG scenario over preprovisioned original production corpus."
     },
     "helper_git_blob_sha256": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d"
+  },
+  "release_prepared_source_review_20261120": {
+    "previous_sidebar_sha256": "3fa01d7595ea9849701658e36e098065f465d6411ce651823f874debadc78223",
+    "current_sidebar_sha256": "691635310a71e3e18569214b926e86efd2a4931a8d81a6b9b02443d9c3fcb947",
+    "reviewed_source_commit": "606a48df3ae834f687d69ad16a26e11768fc85eb",
+    "review": "Observe actual original rendered disclosure chevrons instead of treating a virtualized offscreen child as a collapsed category; original paging cases and all96UI+2oracles retained.",
+    "observed_failure_run": 44657123753,
+    "native_executed_in_failed_release_run": 0,
+    "configuration_changes": false
   }
 }

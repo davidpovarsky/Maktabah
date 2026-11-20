@@ -66,9 +66,11 @@ def load_manifest(root=ROOT):
             "Full release XCTest methods are missing from the actual target")
     for source in manifest.get("prepared_source_requirements", []):
         path = root / source["path"]
+        observed = digest(path) if path.is_file() else "MISSING"
         require(path.is_file() and path.resolve().is_relative_to((root / "Maktabah-iOSUITests").resolve())
-                and digest(path) == source["sha256"],
-                "Prepared test does not match the current registered native target")
+                and observed == source["sha256"],
+                "Prepared test does not match the current registered native target: "
+                + source["path"] + "; expected " + source["sha256"] + "; observed " + observed)
         require(set(source["required_cases"]) <= set(identities),
                 "Prepared native test omitted from release execution")
     return manifest
