@@ -80,6 +80,12 @@ job output. `source-snapshot/` retains complete executed source inputs.
 `input/` contains the independent oracle, original manifest, owned-copy proof
 and actual C build record. No executable or corpus is duplicated in Git.
 
-`SHA256SUMS.json` seals 46 input/result files by raw and stored SHA256; every
+`SHA256SUMS.json` seals 52 input/result files by raw and stored SHA256; every
 compressed entry was decompressed and verified after packaging. This README
 is explanatory text and is not one of those raw sealed inputs.
+
+Six original text files used native CRLF line endings. Their exact executed bytes
+are preserved under `raw/original-bytes/` as gzip; the corresponding uncompressed
+files are readable LF-only views. Both forms are sealed separately. The original
+oracle, C build record, package lock and verification hashes refer to the exact
+original bytes. This packaging correction does not change any executed input.

@@ -12,13 +12,13 @@
       "gzip": true
     },
     {
-      "path": "Package.resolved",
+      "path": "raw/original-bytes/Package.resolved.gz",
       "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\Package.resolved",
       "rawBytes": 648,
       "rawSHA256": "e9040baae6a312a5e8c66a2b53f3297c46b459d061a7c7f325243e1dea8e6cff",
-      "storedBytes": 648,
-      "storedSHA256": "e9040baae6a312a5e8c66a2b53f3297c46b459d061a7c7f325243e1dea8e6cff",
-      "gzip": false
+      "storedBytes": 317,
+      "storedSHA256": "57025d8781733f5a37011d41a1befe4a918adeb55a99e1e35a0fd9bf0f43192b",
+      "gzip": true
     },
     {
       "path": "raw/resolve.log.gz",
@@ -300,13 +300,13 @@
       "gzip": false
     },
     {
-      "path": "VERIFICATION.json",
+      "path": "raw/original-bytes/VERIFICATION.json.gz",
       "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\verification.json",
       "rawBytes": 27836,
       "rawSHA256": "d031ee848ea3cf216048707406a0464c05f62b42a5bf7c1f82f3807388f1949b",
-      "storedBytes": 27836,
-      "storedSHA256": "d031ee848ea3cf216048707406a0464c05f62b42a5bf7c1f82f3807388f1949b",
-      "gzip": false
+      "storedBytes": 7680,
+      "storedSHA256": "ffffd2763ed8b7d93eaab420eb694760261f3e14a7d9b2c6fe44e790ae050a21",
+      "gzip": true
     },
     {
       "path": "raw/qualified-attempt1-launch.json.gz",
@@ -354,31 +354,31 @@
       "gzip": true
     },
     {
-      "path": "input/fixture-descriptor.json",
+      "path": "raw/original-bytes/input/fixture-descriptor.json.gz",
       "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\fixture-descriptor.json",
       "rawBytes": 1117,
       "rawSHA256": "d3e2923d1315d6d069d5ff72b0a6396cfb09d75749cb948a519bae2924668085",
-      "storedBytes": 1117,
-      "storedSHA256": "d3e2923d1315d6d069d5ff72b0a6396cfb09d75749cb948a519bae2924668085",
-      "gzip": false
+      "storedBytes": 445,
+      "storedSHA256": "d0d0859769dda21e8074c429bfff27aadc2d968a827d892c7f52d1ad280f7035",
+      "gzip": true
     },
     {
-      "path": "input/INPUT_COPY_VERIFIED.json",
+      "path": "raw/original-bytes/input/INPUT_COPY_VERIFIED.json.gz",
       "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\INPUT_COPY_VERIFIED.json",
       "rawBytes": 2494,
       "rawSHA256": "9cfc73558697c2c4cf0fb8a698066c3f2e242860c53c717c8ad6dc0afaaa5b56",
-      "storedBytes": 2494,
-      "storedSHA256": "9cfc73558697c2c4cf0fb8a698066c3f2e242860c53c717c8ad6dc0afaaa5b56",
-      "gzip": false
+      "storedBytes": 1051,
+      "storedSHA256": "7138b2e775855f116e55c9bbb66af4e4ce871a5d9174ab8ad74b2a39452a1a4a",
+      "gzip": true
     },
     {
-      "path": "input/INDEPENDENT_MINI_SQL_ORACLE.json",
+      "path": "raw/original-bytes/input/INDEPENDENT_MINI_SQL_ORACLE.json.gz",
       "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\owned-mini-d31cd065-951a-4924-9b37-4a63a990ec6e\\SQL_ORACLE.json",
       "rawBytes": 10166,
       "rawSHA256": "d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8",
-      "storedBytes": 10166,
-      "storedSHA256": "d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8",
-      "gzip": false
+      "storedBytes": 1439,
+      "storedSHA256": "15466357b685b85528259abd4eec4341df731e9e043e2c203da6154edf3a76f6",
+      "gzip": true
     },
     {
       "path": "input/original-mini-manifest.json",
@@ -390,13 +390,13 @@
       "gzip": false
     },
     {
-      "path": "input/C_STATIC_LIBRARY_BUILD.json",
+      "path": "raw/original-bytes/input/C_STATIC_LIBRARY_BUILD.json.gz",
       "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\c-staticlib-build.json",
       "rawBytes": 958,
       "rawSHA256": "602d2d6325f897aec704c36f235577d2228ae5da88fe3361374cd0c4aa20a17e",
-      "storedBytes": 958,
-      "storedSHA256": "602d2d6325f897aec704c36f235577d2228ae5da88fe3361374cd0c4aa20a17e",
-      "gzip": false
+      "storedBytes": 568,
+      "storedSHA256": "4b6f3d1094ed811799c594b79051b16357b972ade4a5ec7cdacc7e421f606c6b",
+      "gzip": true
     },
     {
       "path": "CASES.json",
@@ -415,6 +415,66 @@
       "storedBytes": 1723,
       "storedSHA256": "92a52824e7223b511c9ddde0cf597f1b9c9efe6df3b514722242ce460060f7a3",
       "gzip": false
+    },
+    {
+      "path": "Package.resolved",
+      "source": "Readable LF-normalized view; original bytes preserved in raw/original-bytes/Package.resolved.gz",
+      "rawBytes": 626,
+      "rawSHA256": "be51cadd647858233f78691590bcddcfc555acecb041eb836f462f3a9fef38df",
+      "storedBytes": 626,
+      "storedSHA256": "be51cadd647858233f78691590bcddcfc555acecb041eb836f462f3a9fef38df",
+      "gzip": false,
+      "normalization": "CRLF to LF only"
+    },
+    {
+      "path": "VERIFICATION.json",
+      "source": "Readable LF-normalized view; original bytes preserved in raw/original-bytes/VERIFICATION.json.gz",
+      "rawBytes": 27303,
+      "rawSHA256": "41fa90afaae73cdf8f05c3a9b8117d94e9306ffd47d8ca6eda4b84449fe20234",
+      "storedBytes": 27303,
+      "storedSHA256": "41fa90afaae73cdf8f05c3a9b8117d94e9306ffd47d8ca6eda4b84449fe20234",
+      "gzip": false,
+      "normalization": "CRLF to LF only"
+    },
+    {
+      "path": "input/fixture-descriptor.json",
+      "source": "Readable LF-normalized view; original bytes preserved in raw/original-bytes/input/fixture-descriptor.json.gz",
+      "rawBytes": 1107,
+      "rawSHA256": "edfd40ee60e64ec3b9dfed2db1442daacc30b9db993cc2c47170ac48120c59f7",
+      "storedBytes": 1107,
+      "storedSHA256": "edfd40ee60e64ec3b9dfed2db1442daacc30b9db993cc2c47170ac48120c59f7",
+      "gzip": false,
+      "normalization": "CRLF to LF only"
+    },
+    {
+      "path": "input/INPUT_COPY_VERIFIED.json",
+      "source": "Readable LF-normalized view; original bytes preserved in raw/original-bytes/input/INPUT_COPY_VERIFIED.json.gz",
+      "rawBytes": 2448,
+      "rawSHA256": "63caf024b7c13b89696ecc374dde1a3cc0717f980c9127883d3379cdec476506",
+      "storedBytes": 2448,
+      "storedSHA256": "63caf024b7c13b89696ecc374dde1a3cc0717f980c9127883d3379cdec476506",
+      "gzip": false,
+      "normalization": "CRLF to LF only"
+    },
+    {
+      "path": "input/INDEPENDENT_MINI_SQL_ORACLE.json",
+      "source": "Readable LF-normalized view; original bytes preserved in raw/original-bytes/input/INDEPENDENT_MINI_SQL_ORACLE.json.gz",
+      "rawBytes": 9763,
+      "rawSHA256": "5193a01adb3b63762ffc790be4b42e432a75438a5a0f67ac795ac06d2543411b",
+      "storedBytes": 9763,
+      "storedSHA256": "5193a01adb3b63762ffc790be4b42e432a75438a5a0f67ac795ac06d2543411b",
+      "gzip": false,
+      "normalization": "CRLF to LF only"
+    },
+    {
+      "path": "input/C_STATIC_LIBRARY_BUILD.json",
+      "source": "Readable LF-normalized view; original bytes preserved in raw/original-bytes/input/C_STATIC_LIBRARY_BUILD.json.gz",
+      "rawBytes": 930,
+      "rawSHA256": "94f6a7aef581fb24cbe57fc55fc6f0ce6ff130277bc6b54fd825bf8215ffaec1",
+      "storedBytes": 930,
+      "storedSHA256": "94f6a7aef581fb24cbe57fc55fc6f0ce6ff130277bc6b54fd825bf8215ffaec1",
+      "gzip": false,
+      "normalization": "CRLF to LF only"
     }
   ]
 }
