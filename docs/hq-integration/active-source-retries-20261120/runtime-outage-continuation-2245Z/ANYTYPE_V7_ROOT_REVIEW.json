@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "status": "ROOT_SOURCE_REVIEW_ONLY_NO_NEW_TEST_CREDIT",
+  "actual_tree": "0bbca165a7c33c38a3cb1f4a42a49b9484f49431",
+  "base_tree": "3dc209f9156abcf47cb8c3b153468a43d6688fba",
+  "leaves": 9310,
+  "declared_paths": 26,
+  "all_leaf_modes_sha_exact": true,
+  "inverses": [
+    {
+      "path": "Tools/OriginalEditor/amplitude_simulator_signing.py",
+      "whole_inverse": true
+    },
+    {
+      "path": "Tools/OriginalEditor/test_amplitude_simulator_signing.py",
+      "whole_inverse": true
+    },
+    {
+      "path": "Tools/OriginalEditor/run_framework_acceptance.py",
+      "whole_inverse": true
+    },
+    {
+      "path": "Tools/OriginalEditor/framework_profile.json",
+      "whole_inverse": true
+    },
+    {
+      "path": "Tools/OriginalEditor/framework_profile.py",
+      "whole_inverse": true
+    },
+    {
+      "path": ".github/workflows/pinkha-original-editor-framework.yml",
+      "whole_inverse": true
+    },
+    {
+      "path": "Tools/PinkhaNativeDerived/install_verified_heart.py",
+      "whole_inverse": true
+    },
+    {
+      "path": "Tools/OriginalEditor/test_framework.py",
+      "whole_inverse": true
+    },
+    {
+      "path": "Tools/OriginalEditor/run_source_controls.py",
+      "whole_inverse": true
+    }
+  ],
+  "actual_input_count": 30,
+  "actual_input_bytes": 539951,
+  "docs_payload_count": 16,
+  "protected": [
+    {
+      "path": "Anytype",
+      "sha": "bd7385d4e7f9741a1b2bb900ec30bc84cc975d22",
+      "mode": "040000",
+      "unchanged": true
+    },
+    {
+      "path": "AnytypeTests",
+      "sha": "bd056b09241c864d0b0cdf1a4c941a26e7d34e25",
+      "mode": "040000",
+      "unchanged": true
+    },
+    {
+      "path": "AnyTypeTests",
+      "sha": "74c5bfcd96916769a8ae5aa57f684797644cd329",
+      "mode": "040000",
+      "unchanged": true
+    },
+    {
+      "path": "Anytype.xcodeproj",
+      "sha": "dc120dd32ea58d21a849cf2d11ad82feca5bd30c",
+      "mode": "040000",
+      "unchanged": true
+    },
+    {
+      "path": "Modules",
+      "sha": "c8163bff54e6ba631e82ce5475f226989846d341",
+      "mode": "040000",
+      "unchanged": true
+    },
+    {
+      "path": "OriginalEditorFramework",
+      "sha": "45f7506b34fdd66139ab4974117ef284f9335b84",
+      "mode": "040000",
+      "unchanged": true
+    }
+  ],
+  "source_review_only": true,
+  "Python_Swift_Native": "NOT_RUN",
+  "author_head": "7fb63538482265e703e462d8a8066402641d1b07",
+  "source_commit": "5f7383722ad4eefd4e249c7c00665d9e422ff6d8",
+  "sole_source_parent": "f179a616e5e22fc785bb97dc5ffa5ec1621441b3",
+  "index_sha256": "de7562b892326293cdcff432a9108d1b239f2e9ec8fcfc9aeb5045c7ccffb45a",
+  "reviewed_branch": "codex/otzaria-original-editor-framework-v7-reviewed-20261120",
+  "root_signing_review": "Exact same-offset 18byte preimage residue, architecture-specific pagehashes, fixed16KiB LINKEDIT ceiling and 20byte prefix mask; strict actual codesign and full consumer gates retained",
+  "peer_runner_review": "B identified escaping SystemExit0; final a1e08ecc catches BaseException and returns failure. Root read exact143 discovery/start/success/zero-skip result requirements.",
+  "historical_limits": "v6 native codesign exit0 then parserFAIL; strict/signatures/consumer/runtime NOT_RUN; full other1011 distribution poststate not observed; old final local packet replay not completed; original archive authority retained"
+}

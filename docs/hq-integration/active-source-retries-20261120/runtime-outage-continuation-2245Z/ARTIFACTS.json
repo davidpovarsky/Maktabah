@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "base": "3e07d6a4b0c8b2b6996edebb3b66978d61b0fbe8",
+  "files": [
+    {
+      "path": "docs/hq-integration/active-source-retries-20261120/runtime-outage-continuation-2245Z/OWNER_ACTIVE_CHECKPOINT.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5aecbe62018acef336b921c5cbcba641d42cf6a3",
+      "bytes": 7391,
+      "sha256": "6c3887c498307d839a30e38276c67d6081bee90143cd5f3e1563df5ca5cd84b2"
+    },
+    {
+      "path": "docs/hq-integration/active-source-retries-20261120/runtime-outage-continuation-2245Z/SOURCE_UNION_PREPARATION.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c8dea095f2dbd6bb74372a5890ce398be7d011e",
+      "bytes": 12441,
+      "sha256": "3df52679b380399e62dbc399bd6d877669ac9ddaba4b83b7544701aa45e3002a"
+    },
+    {
+      "path": "docs/hq-integration/active-source-retries-20261120/runtime-outage-continuation-2245Z/proposed-union/project.pbxproj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d536b1539153ffabff775bf384a8b080cac1e4b",
+      "bytes": 598838,
+      "sha256": "0c5f97bfd0fdc78b8c00877d74bae3824dbbfa376833e08131cab247bda42e37"
+    },
+    {
+      "path": "docs/hq-integration/active-source-retries-20261120/runtime-outage-continuation-2245Z/SIDE_V2_ROOT_REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "694dadf3182fdc1d8bc22d0c7701116de402971c",
+      "bytes": 5488,
+      "sha256": "6881bb4f2355829031fb3bba59d44b7af5de08e726e68b1651067761b646fec3"
+    },
+    {
+      "path": "docs/hq-integration/active-source-retries-20261120/runtime-outage-continuation-2245Z/ANYTYPE_V7_ROOT_REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b4ff50536be3582c7d4fc277133e9bc664cdd45",
+      "bytes": 3334,
+      "sha256": "ca4dec246063f11515e747bfb7fb4c2024d4bba5f3f18e068d20103ce4237649"
+    },
+    {
+      "path": "docs/hq-integration/active-source-retries-20261120/runtime-outage-continuation-2245Z/combined_v1_fullapp_log.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0891d5d858d87a92507b4a8aeae756b1764abcce",
+      "bytes": 61429,
+      "sha256": "5c54d056833efe5fabf62a8bdda2a1f2f90798afa3200b3fb5e280f85bb90227"
+    },
+    {
+      "path": "docs/hq-integration/active-source-retries-20261120/runtime-outage-continuation-2245Z/combined_v1_aggregate_log.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8291223f6904eba83fc3a9ba90edf2214c27699",
+      "bytes": 20760,
+      "sha256": "cd67ca047f13a762c07e8afda509323ac62dc5b78bd15e283e7abde5a583f559"
+    },
+    {
+      "path": "docs/hq-integration/active-source-retries-20261120/runtime-outage-continuation-2245Z/combined_v2_fullapp_log.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "639239670ad62a5dcd6e7c8e5d178f72a446d5b3",
+      "bytes": 62990,
+      "sha256": "912364ed38749b14db58cba78c45c123e77f02683a65e592bc545e2abb547e65"
+    },
+    {
+      "path": "docs/hq-integration/active-source-retries-20261120/runtime-outage-continuation-2245Z/combined_v2_aggregate_log.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65cbcef662b47d26adbfc6431c861118f6926dae",
+      "bytes": 20782,
+      "sha256": "c77be6518c7a318f55ec39144ed99c35467dc63afdf1cec5e7d964e417945ee8"
+    }
+  ],
+  "index_self_excluded": true,
+  "scope": "Documentation only; exactrawterminaljoblogs and explicit source-only provisionalunion; no new acceptance"
+}

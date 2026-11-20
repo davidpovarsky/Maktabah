@@ -1,0 +1,154 @@
+{
+  "schema": 1,
+  "status": "ROOT_SOURCE_REVIEW_ONLY",
+  "reviewed_at": "2026-11-20 22:33:23 UTC",
+  "parent": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+  "base_tree": "4483f421ec28c282ae81251d616c6e73d1af4584",
+  "original_F": "a1d11a78152f9d6826c90646fcd72cf7711f12ff",
+  "original_run": 44811999303,
+  "source_repair": "Root and C read original three-file patch; actual immutable M includes only those source replacements plus six review documents; no candidate Swift or Native credit",
+  "source_review": true,
+  "publication_sha256": "cca69684371340744d7a3738da31cd7fb229fa3d8e6e1410fa0d2705bce42a93",
+  "files": 15,
+  "bytes": 580965,
+  "inverses": [
+    {
+      "path": "Scripts/CI/native-study-sheet-native-v2.py",
+      "exact": true
+    },
+    {
+      "path": "Scripts/CI/test-native-study-sheet-native-v2.py",
+      "exact": true
+    },
+    {
+      "path": ".github/workflows/otzaria-native-study-sheet-native-v2.yml",
+      "exact": true
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "exact": true
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-ipad11.json",
+      "exact": true
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-iphone.json",
+      "exact": true
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "exact": true
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "exact": true
+    }
+  ],
+  "binding_records": 22,
+  "protected_trees": {
+    "Source": "9823059f3346705c5c98f4645257dde28248470a",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8dc15c688bc821891a2adca213aff8b1b882acad",
+    "Maktabah-iOSUITests": "d9754e8f411a40dbc13efc98110780854fc40ba7"
+  },
+  "new_Python_Swift_Native": "NOT_RUN",
+  "required_actual_gates": "47 Python controls; original Foundation baseline5/candidate25; same11 iPad+1phone Native cases/full app/Sefaria55; aggregate exactF/run/attempt. New executions not yet run.",
+  "new_ref": "refs/heads/codex/otzaria-native-study-sheet-native-v2-20261120",
+  "workflow": ".github/workflows/otzaria-native-study-sheet-native-v2.yml",
+  "original_104_assertions_and_case_deadlines": "retained; two real exact-value assertions added in source M",
+  "capture_limit": "Original capture processor CI succeeded; outer132CRC verified by Root before outage; extra Rootselected119 replay not completed",
+  "runtime": "Local runtime unavailable; source inspection via API and in-memory JS only",
+  "elements": [
+    {
+      "path": ".github/workflows/otzaria-native-study-sheet-native-v2.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d601594b7b777844d97c5a41204c1f61a18a3fd4"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/ADAPTATION_PROOF.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1d6bf8f7a2b7919e9e0eefdd70e93131691085f"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/ARTIFACTS.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3395f6abe101dc1313caf69b1c725d0231c3e9af"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d62a03ebefea5ba3239cd2d488237eb58d9d180"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/REBIND_ONLY.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db03d0786887055565f09572b10c56e018a8b1e9"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/RUNTIME_EXACT_EDIT.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03b05d3c076714628e29e525ee41c9fd2a6db058"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/SOURCE_BINDING.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca2042aee5cd60303de189080924645584773686"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/SOURCE_PUBLICATION_PROOF.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3bf364997263c36105e58217fb82cc2ab8326480"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-ipad11.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50cf4dbdde612913e002593f3d11039de5c6cadd"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-iphone.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73d8dde838131c4f968290fdf73ac06616bf9f21"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c43c384b081694990452a9009e2aa8cc44ea72f7"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbdc7fee445b3bf9ab9cb50fa249a313974d0a7b"
+    },
+    {
+      "path": "Scripts/CI/native-study-sheet-native-v2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df8bc780b90b4dc6a7109a0c1d1ad30fbaaf8098"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cfc9858197f238cae11098f5a703deec8949a999"
+    },
+    {
+      "path": "Scripts/CI/test-native-study-sheet-native-v2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "656b4a595e135bcc59cd8b73eb496884ee4e8239"
+    }
+  ]
+}

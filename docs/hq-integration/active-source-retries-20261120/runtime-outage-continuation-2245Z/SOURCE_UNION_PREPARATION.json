@@ -1,0 +1,323 @@
+{
+  "schema": 1,
+  "scope": "Source preparation only; no application/Swift/Native execution or source merge",
+  "base": "3e07d6a4b0c8b2b6996edebb3b66978d61b0fbe8",
+  "base_tree": "a978e48f9a411d6b32bd229294baa9d10f1a33c3",
+  "overlays": [
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8eeb06489f5d8076e12f95ae489dd5d554fb786",
+      "component": "global",
+      "base_blob": "a22264dfb0ffec5e19365861914c14c325188dd8"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b51c924f3215f6042e8df355cb9e8c74b7650e11",
+      "component": "keyboard",
+      "base_blob": "faa66a32b45ef8407a137fc5c5b133c3273b5e22"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fea867c79e7acc97f441b37b72c92accaddcdf29",
+      "component": "api",
+      "base_blob": null
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1ddaf0ff4a243d9cef5850c144941728927f650",
+      "component": "api",
+      "base_blob": null
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "feffbb8b323e9ed2b1212f4d7a1adaab4f8ecca3",
+      "component": "api",
+      "base_blob": "e1aeea55762ad6550052559e9ea0a45246171c50"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4d77f1dbaa8650c5336dcc7c0483a9ef17a13e5",
+      "component": "api",
+      "base_blob": "5e4fbd410327133847213a6bdb866ebe6d894422"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d35ea064eb70ddfa4d09f6313098b0db8c5bd26",
+      "component": "api",
+      "base_blob": "c9f6fdbbb5737cd66b3157c44ceb9acffd7f3e1d"
+    },
+    {
+      "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6834a1beab5ffa38ddedf3404392c3be138a73c5",
+      "component": "api",
+      "base_blob": "4139a39a84601622b6882994b8dbf4d457967208"
+    },
+    {
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+      "component": "api",
+      "base_blob": "bc237e0b42c3c65b275d883a318a9ef525c95037"
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+      "component": "api",
+      "base_blob": "86512a8286560aedb248da4abea1a41f5c96ea0e"
+    },
+    {
+      "path": "Tests/HQ/annotation-disconnect/AnnotationRepositoryDisconnectAcceptance.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c9596801f94749a82c254f05a86e432ea55761a",
+      "component": "api",
+      "base_blob": null
+    },
+    {
+      "path": "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudAcceptance.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df96549af006a148c4c1b4ef5c82a3afc8ee443e",
+      "component": "api",
+      "base_blob": null
+    },
+    {
+      "path": "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0056a307f0aede09d39bf0c15665db3f9fb18c9c",
+      "component": "api",
+      "base_blob": null
+    },
+    {
+      "path": "tools/hq-annotation-disconnect-acceptance.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b71db9898af73964c56b88824566cfff310e21ca",
+      "component": "api",
+      "base_blob": null
+    },
+    {
+      "path": "tools/hq-local-annotation-cloud-acceptance.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11117d25545434adbd698e713eb4542422312cc9",
+      "component": "api",
+      "base_blob": null
+    },
+    {
+      "path": "tools/test-local-cloud-pending-sql.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b54c68b2ec400239c90ad7e0ee829c2930316c42",
+      "component": "api",
+      "base_blob": null
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40be553b5ec0ebcf917b6c876e02e12bfbd845bd",
+      "component": "side",
+      "base_blob": null
+    },
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "014e14471892a2f822ae349b7b9bc6f83321928a",
+      "component": "side",
+      "base_blob": null
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c0d862e202c6a2f7ecff178b5d161aa6fcfc98e",
+      "component": "side",
+      "base_blob": "0324b71b4b1e2863fa8ec02e8cd3d36155cb4ced"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0a61c57c4d22efc88baed96e9a7fa36b752e74a",
+      "component": "side",
+      "base_blob": "6c523085be22903b3899d6e9bd202ca2204dbe09"
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetLifecycleAcceptance.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47fa809e8a533869f2fe6ef24737aac9f253a53a",
+      "component": "side",
+      "base_blob": null
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerAcceptance.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7a90e105dd590f25d9ebd0ca5139d3c3300a3b1",
+      "component": "side",
+      "base_blob": null
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerBoundary.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "562a079989959d863a4fd1b150967a83952de1c0",
+      "component": "side",
+      "base_blob": null
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/test_native_study_sheet_contract.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72f2e65db84553b28dc9841519046c889a22e5e7",
+      "component": "side",
+      "base_blob": null
+    },
+    {
+      "path": "tools/hq-native-study-sheet-lifecycle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c21f5736dda42da711d177a5b342a03d0c5acf3",
+      "component": "side",
+      "base_blob": null
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3eea06e0db02cbd725da61102920835621991b05",
+      "component": "motion",
+      "base_blob": "2f2f3a288cf47c2a15161dc462fbde20ce259cc9"
+    }
+  ],
+  "project": {
+    "schema": 1,
+    "original": {
+      "git_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+      "bytes": 596038,
+      "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+    },
+    "cloud": {
+      "git_blob": "eaf385c363750e04688a4cda181f40597f22f315",
+      "additions": [
+        {
+          "before_line": 1398,
+          "line": "\t\t748C74D5CF6846864D4BB910 /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };"
+        },
+        {
+          "before_line": 1398,
+          "line": "\t\tAA0B2A425A2CDC8BAD52AF7C /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };"
+        },
+        {
+          "before_line": 1399,
+          "line": "\t\tFEB4253270577A8B5205C105 /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };"
+        },
+        {
+          "before_line": 1399,
+          "line": "\t\t3D61193ECD8DA163968A5427 /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };"
+        },
+        {
+          "before_line": 1400,
+          "line": "\t\t9D3E374BD59EC6A061949F0F /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };"
+        },
+        {
+          "before_line": 1400,
+          "line": "\t\tD3E72B183F56A898BFD45419 /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };"
+        },
+        {
+          "before_line": 2191,
+          "line": "\t\t5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift\"; sourceTree = \"<group>\"; };"
+        },
+        {
+          "before_line": 2191,
+          "line": "\t\t6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift\"; sourceTree = \"<group>\"; };"
+        },
+        {
+          "before_line": 2278,
+          "line": "\t\t\t\t5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */,"
+        },
+        {
+          "before_line": 2278,
+          "line": "\t\t\t\t6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */,"
+        },
+        {
+          "before_line": 4303,
+          "line": "\t\t\t\t748C74D5CF6846864D4BB910 /* AnnotationLocalEditorCloudKit.swift in Sources */,"
+        },
+        {
+          "before_line": 4303,
+          "line": "\t\t\t\tAA0B2A425A2CDC8BAD52AF7C /* AnnotationLocalEditorCloudOwnership.swift in Sources */,"
+        },
+        {
+          "before_line": 4659,
+          "line": "\t\t\t\tFEB4253270577A8B5205C105 /* AnnotationLocalEditorCloudKit.swift in Sources */,"
+        },
+        {
+          "before_line": 4659,
+          "line": "\t\t\t\t3D61193ECD8DA163968A5427 /* AnnotationLocalEditorCloudOwnership.swift in Sources */,"
+        },
+        {
+          "before_line": 5020,
+          "line": "\t\t\t\t9D3E374BD59EC6A061949F0F /* AnnotationLocalEditorCloudKit.swift in Sources */,"
+        },
+        {
+          "before_line": 5020,
+          "line": "\t\t\t\tD3E72B183F56A898BFD45419 /* AnnotationLocalEditorCloudOwnership.swift in Sources */,"
+        }
+      ]
+    },
+    "side": {
+      "git_blob": "eb1ab4a38d41a135c2cddf6a8e109c51edb6fc74",
+      "additions": [
+        {
+          "before_line": 112,
+          "line": "\t\tACDA26A151221078C4296F37 /* NativeStudySheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */; };"
+        },
+        {
+          "before_line": 1971,
+          "line": "\t\tCF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeStudySheetPresenter.swift; sourceTree = \"<group>\"; };"
+        },
+        {
+          "before_line": 3778,
+          "line": "\t\t\t\tCF725657C84191F3E5BCC1A6 /* NativeStudySheetPresenter.swift */,"
+        },
+        {
+          "before_line": 5075,
+          "line": "\t\t\t\tACDA26A151221078C4296F37 /* NativeStudySheetPresenter.swift in Sources */,"
+        }
+      ]
+    },
+    "union": {
+      "bytes": 598838,
+      "sha256": "0c5f97bfd0fdc78b8c00877d74bae3824dbbfa376833e08131cab247bda42e37"
+    },
+    "all_three_whole_inverses_exact": true,
+    "known_preoutage_checkpoint_sha256": "0c5f97bfd0fdc78b8c00877d74bae3824dbbfa376833e08131cab247bda42e37",
+    "checkpoint_exact": true,
+    "actual_Xcode_execution": "NOT_RUN"
+  },
+  "existing_inputs_and_source_pins": "All26nonproject overlay baseblobs exactlymatchactualintegration; no code conflict beyondproject; allcomponentcandidate blobs retained exactly. Qualification pending actualroutes. No otherprojectbyteschanged."
+}

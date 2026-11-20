@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "at": "2026-11-20 22:47:09 UTC",
+  "status": "IN_PROGRESS_NO_NEW_TASK_COMPLETION",
+  "local_runtime": "UNAVAILABLE since approximately22:04UTC; no new local Python/Swift or archive replay claimed",
+  "sentinel": {
+    "connected": 0,
+    "host": "host_7ec8382e82747448",
+    "last_disconnected": "2026-11-20T14:28:02.410547+00:00",
+    "reason": "connection_lost"
+  },
+  "integration": {
+    "Maktabah": "3e07d6a4b0c8b2b6996edebb3b66978d61b0fbe8",
+    "Anytype": "7264ea5f6da0400f099d0833b0294d7b1a20c395",
+    "scope": "Integration product source not advanced by any of the active isolated routes"
+  },
+  "active_routes": [
+    {
+      "name": "SideSheetv2",
+      "repo": "Maktabah",
+      "run": 44829996984,
+      "F": "085a721308589ddb3b48e0fc2ccb68701e442d5e",
+      "tree": "6cdff6cb2f73b3ccd47cbcb596d9eb82e96e2694",
+      "M": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+      "branch": "codex/otzaria-native-study-sheet-native-v2-20261120",
+      "state": "ACTIVE; FoundationAPI SUCCESS22:35:20, actual47Python OK in terminal log; rawFoundation25 not independently opened; Native11+1 pending",
+      "root_review_blob": "694dadf3182fdc1d8bc22d0c7701116de402971c"
+    },
+    {
+      "name": "Core194Combinedv3",
+      "repo": "Maktabah",
+      "run": 44830431710,
+      "F": "da20cace0519d7a3e0aaca6e7cd14d51b5a3d210",
+      "tree": "357cc3f483363cc4fb0a636afca27094c655b40a",
+      "M": "bd855c02fcef94a732f584c5992aeacec6b1b21d",
+      "branch": "codex/otzaria-annotation-core194-combined-apple-v3-20261120",
+      "state": "QUEUED at latest RootAPI; both originalApplejobs required; all54Corepins now bound;42Python not yet run",
+      "index_sha256": "f2ac30d38b8f89bc6cd4c03102232397773c5c715c3102d4091eacd7f32e41ed"
+    },
+    {
+      "name": "AnytypeFrameworkv7",
+      "repo": "anytype-swift",
+      "run": 44830592801,
+      "F": "7fb63538482265e703e462d8a8066402641d1b07",
+      "tree": "0bbca165a7c33c38a3cb1f4a42a49b9484f49431",
+      "M": "5f7383722ad4eefd4e249c7c00665d9e422ff6d8",
+      "branch": "codex/otzaria-original-editor-framework-v7-reviewed-20261120",
+      "state": "QUEUED at activation; exact143controls plus nativeframework/consumer gates unqualified; historicalbd7385 product, not49/Host union",
+      "root_review_blob": "2b4ff50536be3582c7d4fc277133e9bc664cdd45"
+    },
+    {
+      "name": "Global4v2",
+      "repo": "Maktabah",
+      "run": 44827605476,
+      "F": "0b0c442067a2857703d30e642d5b9e990b13e24f",
+      "tree": "179385f4e9d5d4cd3afe03bd7a6829d13c875a87",
+      "M": "cb252c143955d037ab0cef4df556b1e8fcd4c334",
+      "branch": "codex/otzaria-global-tab-ownership-native-v2-20261120",
+      "state": "ACTIVE last A observation; original2methods×2devices4; no qualifiedNative leaves"
+    },
+    {
+      "name": "Focused4v3",
+      "repo": "Maktabah",
+      "run": 44824325684,
+      "F": "a1cdbb59a55b47a767fe261325c7a97ecf8045eb",
+      "tree": "a80bf84f780f40cc78d28300acedb5debc8ae2e2",
+      "M": "1bf1da14c0c3d74bb790331d8df365accac905f9",
+      "branch": "codex/otzaria-reader-inspector-focused-native-v3-20261120",
+      "state": "ACTIVE last A observation; same4originalmethods; no transferred3/4 fromv2"
+    }
+  ],
+  "terminal_limits": [
+    {
+      "name": "Keyboard2",
+      "run": 44815692689,
+      "F": "5a79a0ec9c150b91381c5e91462d6d9805371f1d",
+      "job": 136563293289,
+      "conclusion": "FAILURE22:21:55; aggregateFAILURE22:22:24",
+      "known": "Actual XCTest ran and xcodebuild65; exports for both named cases exist",
+      "unknown": "Exact original UIleaf counts and failing assertions remain UNVERIFIED during runtime outage; B preparing authenticated read-only artifact inspection, no UI rerun"
+    },
+    {
+      "name": "Combinedv1",
+      "run": 44821378113,
+      "F": "b511249f5a75337b328325e8c5e83c2b78030a7a",
+      "result": "39/40Python then componentFAIL; actual fullapp postgate PASS_ORIGINAL_FULL_APP_COMPILE22:07:33.873 and jobSUCCESS22:07:44; aggregateFAIL"
+    },
+    {
+      "name": "Combinedv2",
+      "run": 44824168387,
+      "F": "52585e91a591c35f7e3e62a495fedb02def2f7de",
+      "result": "ActualCore194PASS plusbaseline20=11/9; component postgateKeyError for omittedCoreIntegration; actualfullapp postgatePASS22:31:31.784 and jobSUCCESS22:31:45; aggregateFAIL",
+      "artifact": {
+        "id": 14674435032,
+        "bytes": 5847910,
+        "sha256": "fc1be8fcce3fbe2bdd4ecdcc5a7c9230ae1470678cc8868482cbb13eec9efc31",
+        "Root_CRC": 12,
+        "raw_replay": "not completed"
+      }
+    },
+    {
+      "name": "Anytypev6",
+      "run": 44822310098,
+      "F": "f179a616e5e22fc785bb97dc5ffa5ec1621441b3",
+      "result": "131MaccontrolsPASS,genuineframeworkbuild0,nativecodesign0,parserFAIL; post-sign strict/consumer/runtimeNOT_RUN",
+      "limit": "Full after inventory of other1011 distributionfiles absent; final local README/replay unsealed, no false1022filepreservationclaim"
+    },
+    {
+      "name": "SideSheetOriginal",
+      "run": 44811999303,
+      "F": "a1d11a78152f9d6826c90646fcd72cf7711f12ff",
+      "result": "Foundation25PASS,phone1PASS,iPad2PASS9FAIL0skip; Root originaliPad/phone source/product/rawproof passed preoutage",
+      "capture": "Capture-only run44825211647 actualCI1954CRC119selection; outer132CRC verifiedRoot; extraRootselected119 replay interrupted/noPASS"
+    }
+  ],
+  "source_union": {
+    "state": "PROVISIONAL_ONLY_NO_SOURCE_COMMIT_REF_OR_NATIVE_ACTIVATION",
+    "base": "3e07d6a4b0c8b2b6996edebb3b66978d61b0fbe8",
+    "source_paths": 27,
+    "non_project_paths": 26,
+    "overlap": "Only project.pbxproj; exact20additive lines from originalCloud16 andSide4",
+    "pbx_sha256": "0c5f97bfd0fdc78b8c00877d74bae3824dbbfa376833e08131cab247bda42e37",
+    "pbx_old_checkpoint_exact": true,
+    "keyboard_status": "The proposedKeyboard2source remains failed/unqualified and may be replaced before final freeze",
+    "finalNative116Release114": "UNFINALIZED; no executable refs; same originalIDs/assertions/deadlines required"
+  },
+  "host_work": {
+    "state": "C reauthors actualpreparedHost/publishinglifetime changes againstcanonicalqualified49 after localonlydraftbecameinaccessible",
+    "historical_patch_sha256": "6a0e8975244ad5b717f03dd0f343ee7f8f577d74f2697a260444f7c96262073142694",
+    "new_gap": "Originalnonempty header ObjectAlignValue→ObjectTypeProvider.shared resolvesglobalstorage/subscription; nil-detailsconstruction alone cannotqualifyfullrenderedHost",
+    "actual_new_Swift": "NOT_RUN"
+  },
+  "collectors": {
+    "A": "Keyboard2original,Focused4v3,Global4v2,Sidev2; boundedrunmetadata, noactivejoblogs",
+    "B": "Authenticatedread-only Keyboard2evidenceinspection route, noNative",
+    "C": "Anytypev7 periodic/terminal plusHostproduction/testsource; Areadonly33protocolmap",
+    "Root": "Combinedv1/v2terminalv3; soleintegration/executableref/Asanawriter"
+  },
+  "external_blocks": [
+    "No connected SentinelX host",
+    "Original V32 BooksUpdates provider/schema/migration identity unavailable; preserve legacyDB/WAL",
+    "Trusted upstream owner Ed25519 publickey/signatures unavailable; never invent identity",
+    "AppStore/licensing/privateABI decisions and live account/device gates remain unqualified"
+  ],
+  "actions_not_taken": [
+    "No rerun or cancellation",
+    "No force/reset",
+    "No task completed without actual acceptance",
+    "No production/TestFlight/defaultmain promotion"
+  ]
+}
