@@ -264,6 +264,15 @@ final class BackendCoordinator {
         let profileID: String
         let databasePath: String?
         let searchFingerprint: Data?
+        let databaseSelectionRevision: UInt64?
+
+        init(databaseGeneration: UInt64, searchRevision: UInt64, profileID: String,
+             databasePath: String?, searchFingerprint: Data?, databaseSelectionRevision: UInt64? = nil) {
+            self.databaseGeneration = databaseGeneration; self.searchRevision = searchRevision
+            self.profileID = profileID; self.databasePath = databasePath
+            self.searchFingerprint = searchFingerprint
+            self.databaseSelectionRevision = databaseSelectionRevision
+        }
     }
 
     private var resourceWitnesses: [BackendID: ResourceWitness] = [:]

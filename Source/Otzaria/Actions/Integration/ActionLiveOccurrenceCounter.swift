@@ -7,6 +7,7 @@ enum ActionLiveOccurrenceCounter {
     private struct Capture: Equatable, Sendable {
         let databasePath: String
         let databaseGeneration: UInt64
+        let databaseSelectionRevision: UInt64
         let profileID: String
         let searchRevision: UInt64
         let searchFingerprint: Data
@@ -91,15 +92,17 @@ enum ActionLiveOccurrenceCounter {
         try Task.checkCancellation()
         let bridge = OtzariaMaktabahBridge.shared
         let access = OtzariaDatabaseAccessController.shared
+        let selection = access.selectionObservation()
         let generation = bridge.generationSnapshot()
         let profile = OtzariaDataProfileRegistry.activeProfileID
-        guard access.source == .managedInternal, let path = bridge.databasePath else {
+        guard selection.source == .managedInternal, let path = selection.url?.path,
+              path == bridge.databasePath else {
             throw ActionOccurrenceFailure.incompleteCoverage
         }
         let storage = try OtzariaDatabaseStorage(profileID: profile)
         let canonicalURL = storage.finalDatabaseURL.standardizedFileURL
         guard URL(fileURLWithPath: path).standardizedFileURL == canonicalURL,
-              access.currentURL?.standardizedFileURL == canonicalURL else {
+              selection.url?.standardizedFileURL == canonicalURL else {
             throw ActionOccurrenceFailure.incompleteCoverage
         }
         let manager = OtzariaSearchIndexManager.shared
@@ -121,27 +124,36 @@ enum ActionLiveOccurrenceCounter {
         let source = try OtzariaExactOccurrenceSource(buildInfo: build,
             originalUpstreamBase: "265a14ea54f959a3e266d6e8acfa3a3b98101d68")
         let finalObservation = repository.resourceObservation(databasePath: path)
-        guard access.source == .managedInternal, access.currentURL?.standardizedFileURL == canonicalURL,
+        guard selection == access.selectionObservation(),
               generation == bridge.generationSnapshot(), path == bridge.databasePath,
               profile == OtzariaDataProfileRegistry.activeProfileID,
               observation.revision == finalObservation.revision,
               fingerprint == finalObservation.fingerprint else { throw ActionOccurrenceFailure.staleIndex }
         try Task.checkCancellation()
-        return Capture(databasePath: path, databaseGeneration: generation, profileID: profile,
+        return Capture(databasePath: path, databaseGeneration: generation,
+            databaseSelectionRevision: selection.revision, profileID: profile,
             searchRevision: observation.revision, searchFingerprint: fingerprint,
             source: source, coverage: coverage)
     }
 
     private static func smallMetadata(at url: URL) throws -> Data {
+        let maximum = 1_048_576
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
-        guard let size = attributes[.size] as? NSNumber, size.uint64Value <= 1_048_576 else {
+        guard let size = attributes[.size] as? NSNumber, size.uint64Value <= UInt64(maximum),
+              attributes[.type] as? FileAttributeType == .typeRegular else {
             throw ActionOccurrenceFailure.incompleteCoverage
         }
         let handle = try FileHandle(forReadingFrom: url)
         defer { try? handle.close() }
-        let bytes = try handle.read(upToCount: 1_048_577) ?? Data()
-        guard !bytes.isEmpty, bytes.count <= 1_048_576 else { throw ActionOccurrenceFailure.incompleteCoverage }
-        return bytes
+        var bytes = Data()
+        while bytes.count <= maximum {
+            guard let chunk = try handle.read(upToCount: maximum + 1 - bytes.count), !chunk.isEmpty else {
+                guard !bytes.isEmpty else { throw ActionOccurrenceFailure.incompleteCoverage }
+                return bytes
+            }
+            bytes.append(chunk)
+        }
+        throw ActionOccurrenceFailure.incompleteCoverage
     }
 
     private static func check(_ invocation: ActionPortInvocation) throws {
@@ -173,6 +185,7 @@ enum ActionLiveOccurrenceCounter {
         let version = 1
         let actionSnapshot: ActionBackendSnapshot
         let databaseGeneration: UInt64
+        let databaseSelectionRevision: UInt64
         let searchRevision: UInt64
         let searchFingerprintSHA256: String
         let typedManifestSHA256: String
@@ -186,6 +199,7 @@ enum ActionLiveOccurrenceCounter {
         init(invocation: ActionPortInvocation, capture: Capture, proof: OtzariaExactOccurrenceResult.Proof) {
             actionSnapshot = invocation.snapshot
             databaseGeneration = capture.databaseGeneration
+            databaseSelectionRevision = capture.databaseSelectionRevision
             searchRevision = capture.searchRevision
             searchFingerprintSHA256 = ActionOccurrenceCoveragePolicy.sha256(capture.searchFingerprint)
             typedManifestSHA256 = capture.coverage.typedManifestSHA256

@@ -21,14 +21,17 @@ enum ActionLiveBackendBridge {
             currentEpoch: { SefariaJSRPCBridge.shared.currentSessionEpoch },
             resourceWitness: {
                 let bridge = OtzariaMaktabahBridge.shared
+                let selection = OtzariaDatabaseAccessController.shared.selectionObservation()
                 let generation = bridge.generationSnapshot()
-                let path = bridge.databasePath
+                let path = selection.url?.path
                 let profile = OtzariaDataProfileRegistry.activeProfileID
                 let search = OtzariaTantivySearchRepository.shared.resourceObservation(databasePath: path)
-                guard generation == bridge.generationSnapshot(), path == bridge.databasePath,
+                guard selection == OtzariaDatabaseAccessController.shared.selectionObservation(),
+                      generation == bridge.generationSnapshot(), path == bridge.databasePath,
                       profile == OtzariaDataProfileRegistry.activeProfileID else { throw ActionPortError.staleState }
                 return .init(databaseGeneration: generation, searchRevision: search.revision,
-                    profileID: profile, databasePath: path, searchFingerprint: search.fingerprint)
+                    profileID: profile, databasePath: path, searchFingerprint: search.fingerprint,
+                    databaseSelectionRevision: selection.revision)
             },
             readiness: { snapshot in
                 var result = ActionBackendRuntimeEvidence(snapshot: snapshot)
@@ -99,7 +102,9 @@ private enum ActionLiveReadinessProof {
             let category = try database.fetch(query: "SELECT 1 FROM category LIMIT 1") { $0.int(at: 0) }.first == 1
             return book && category
         }) == true
-        guard databaseReady, let path = OtzariaMaktabahBridge.shared.databasePath else { return (databaseReady, false, .unavailable) }
+        let selection = OtzariaDatabaseAccessController.shared.selectionObservation()
+        guard databaseReady, let path = selection.url?.path,
+              path == OtzariaMaktabahBridge.shared.databasePath else { return (databaseReady, false, .unavailable) }
         let profile = OtzariaDataProfileRegistry.activeProfileID
         do {
             let manager = OtzariaSearchIndexManager.shared
@@ -109,7 +114,7 @@ private enum ActionLiveReadinessProof {
             guard let identity = manager.storedIdentity(indexURL: url) else { return (true, false, .unavailable) }
             var expectedCount: UInt64?
             var trustedManifest: OtzariaSearchArtifactManifest?
-            if OtzariaDatabaseAccessController.shared.source == .managedInternal {
+            if selection.source == .managedInternal {
                 guard let databaseBytes = Int64(exactly: current.fileSize) else { return (true, false, .unavailable) }
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
@@ -131,7 +136,8 @@ private enum ActionLiveReadinessProof {
                 return (true, false, .unavailable)
             }
             let count = OtzariaTantivySearchRepository.shared.observedOpenIndexDocumentCount(databasePath: path)
-            guard profile == OtzariaDataProfileRegistry.activeProfileID,
+            guard selection == OtzariaDatabaseAccessController.shared.selectionObservation(),
+                  profile == OtzariaDataProfileRegistry.activeProfileID,
                   path == OtzariaMaktabahBridge.shared.databasePath else { return (true, false, .unknown) }
             guard let count else { return (true, true, .unknown) }
             return (true, true, count > 0 && (expectedCount == nil || count == expectedCount) ? .ready : .unavailable)

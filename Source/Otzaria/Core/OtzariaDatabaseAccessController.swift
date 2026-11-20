@@ -4,7 +4,7 @@ import SQLite3
 final class OtzariaDatabaseAccessController: @unchecked Sendable {
     static let shared = OtzariaDatabaseAccessController()
 
-    enum Source: Equatable {
+    enum Source: Equatable, Sendable {
         case externalBookmark
         case managedInternal
     }
@@ -32,8 +32,34 @@ final class OtzariaDatabaseAccessController: @unchecked Sendable {
         }
     }
 
-    private(set) var currentURL: URL?
-    private(set) var source: Source?
+    struct SelectionObservation: Equatable, Sendable {
+        let url: URL?
+        let source: Source?
+        let revision: UInt64
+    }
+
+    // All selection publications use this owner. Readers never observe a URL
+    // from one selection paired with the source kind from another, and a
+    // supported A -> B -> A transition still changes the revision.
+    private let selectionLock = NSLock()
+    private var selectedURL: URL?
+    private var selectedSource: Source?
+    private var selectionRevision: UInt64 = 0
+
+    var currentURL: URL? { selectionObservation().url }
+    var source: Source? { selectionObservation().source }
+
+    func selectionObservation() -> SelectionObservation {
+        selectionLock.lock(); defer { selectionLock.unlock() }
+        return .init(url: selectedURL, source: selectedSource, revision: selectionRevision)
+    }
+
+    private func publishSelection(url: URL?, source: Source?) {
+        selectionLock.lock(); defer { selectionLock.unlock() }
+        selectedURL = url
+        selectedSource = source
+        selectionRevision &+= 1
+    }
 
     private let bookmarkStore = OtzariaSecurityScopedBookmarkStore()
     private let legacyPathKey = "otzaria_seforim_database_path"
@@ -80,8 +106,7 @@ final class OtzariaDatabaseAccessController: @unchecked Sendable {
                     try bookmarkStore.save(url: restored.url)
                 }
                 scopedAccess = access
-                currentURL = restored.url
-                source = .externalBookmark
+                publishSelection(url: restored.url, source: .externalBookmark)
                 markExternalSelection()
                 return restored.url
             } catch {
@@ -102,8 +127,7 @@ final class OtzariaDatabaseAccessController: @unchecked Sendable {
             defaults.set(false, forKey: legacySelectionKey)
             defaults.set(true, forKey: legacyMigrationCompletedKey)
             defaults.removeObject(forKey: legacyPathKey)
-            currentURL = managedURL
-            source = .managedInternal
+            publishSelection(url: managedURL, source: .managedInternal)
             return managedURL
         }
 
@@ -123,8 +147,7 @@ final class OtzariaDatabaseAccessController: @unchecked Sendable {
 
             scopedAccess?.stop()
             scopedAccess = access
-            currentURL = url
-            source = .externalBookmark
+            publishSelection(url: url, source: .externalBookmark)
             markExternalSelection()
             return url
         } catch {
@@ -144,8 +167,7 @@ final class OtzariaDatabaseAccessController: @unchecked Sendable {
         scopedAccess?.stop()
         scopedAccess = nil
         bookmarkStore.forget()
-        currentURL = url
-        source = .managedInternal
+        publishSelection(url: url, source: .managedInternal)
 
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: managedSelectionKey)
@@ -158,8 +180,7 @@ final class OtzariaDatabaseAccessController: @unchecked Sendable {
     func clearSelection(deleteManagedInternalDatabase: Bool = false) {
         scopedAccess?.stop()
         scopedAccess = nil
-        currentURL = nil
-        source = nil
+        publishSelection(url: nil, source: nil)
         bookmarkStore.forget()
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: legacySelectionKey)

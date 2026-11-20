@@ -1,0 +1,41 @@
+{
+  "reviewed_baseline": "fbd6088c2e92599a9a196925b36c55362721a1ae",
+  "findings": [
+    "Detached capture read unsynchronized URL/source selection fields; generation alone did not cover all original selection writes.",
+    "One FileHandle read could be short and did not verify a regular file."
+  ],
+  "correction": [
+    "All5 original selection publication sites now atomically update the same original owner URL/source pair and monotonically advance its revision.",
+    "Computed original URL/source getters use the owner lock; bridge path getter therefore reads through that lock without a new bridge authority.",
+    "Original coordinator resource witness and count pre/post witness include selection revision, including supported ABA.",
+    "Only regular metadata files are read through bounded EOF loop, maximum+1 sentinel; empty/oversize rejected."
+  ],
+  "independent_review": "hanlin_api_integration reviewed all5 publications and lock order; no remaining source blocker found. Selection lock never spans filesystem/bridge/repository callbacks.",
+  "scope": "source review and syntax only; no observed crash or race-runtime/typecheck/Apple claim",
+  "files": [
+    {
+      "file": "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift",
+      "sha256": "4f91544a300f07c4bbbfc3caa3e907cac9a0e6ae48ee9fbe6c1c8f4bce9d371f",
+      "syntax_exit": 0,
+      "output": ""
+    },
+    {
+      "file": "Source/LibraryBackend/BackendCoordinator.swift",
+      "sha256": "e49db02fc03063936b4463973d55e273fb5ca6b34e27f395535bc3596de82e9f",
+      "syntax_exit": 0,
+      "output": ""
+    },
+    {
+      "file": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+      "sha256": "21e15bd52979da3582ffeec9dc0e15b1e74a9296afc20d3222e21994db9df6a1",
+      "syntax_exit": 0,
+      "output": ""
+    },
+    {
+      "file": "Source/Otzaria/Actions/Integration/ActionLiveOccurrenceCounter.swift",
+      "sha256": "a2714a549da0c6f929644dc393d9139d3787d9d224802471e3fa385466e3d8a4",
+      "syntax_exit": 0,
+      "output": ""
+    }
+  ]
+}
