@@ -2094,7 +2094,14 @@ final class StudyProfileNativeAcceptanceTests: R27NativeUIBase {
 
     private func openProfileEditor(id: String) {
         tap(app.buttons["study-profile-actions-\(id)"])
-        tap(app.buttons["עריכה"])
+        let editActions = app.collectionViews.cells.buttons.matching(
+            NSPredicate(format: "identifier == %@ AND label == %@", "pencil", "עריכה")
+        )
+        XCTAssertTrue(editActions.firstMatch.waitForExistence(timeout: 15),
+                      "The selected profile's original Edit menu action must appear")
+        XCTAssertEqual(editActions.count, 1,
+                       "The profile Edit action must be distinct from the navigation bar's reordering Edit button")
+        tap(editActions.element)
         XCTAssertTrue(profileColorPicker().waitForExistence(timeout: 10))
     }
 
