@@ -1,0 +1,39 @@
+{
+  "finding": "No concrete blocker found in the reviewed source.",
+  "limits": [
+    "No independent API reauthentication of M bd855 was performed in this review.",
+    "The entire underlying Swift application and all old helper bodies were not re-audited; review followed original called result/classifier functions and source closure checks.",
+    "Linux aggregate replays Core leaves and retention integrity; complete original Apple component validators execute on the Apple producer. This is explicit in the route.",
+    "No actual Swift, Apple full-app build, live CloudKit, or Native UI claim."
+  ],
+  "observations": [
+    "Original Core classification is replayed against actual raw XCTest leaves and exact original174+20 inventory; expected baseline20 failure remains distinct from candidate194 success.",
+    "Original Cloud/local43+cold2+48+exchange28+crash2+SQL13 validator is called on the Apple producer with exact stage outcomes; Repository RED and10 GREEN use original source copies, process receipts, markers, executable hashes and independent cold reads.",
+    "continue-on-error preserves subsequent evidence collection only; always-run post gates inspect step.outcome, and aggregate requires both successful actual jobs plus successful gate and upload steps.",
+    "Producer and consumer use the same uppercase RESULT_BEFORE/RESULT_AFTER receipt names; identities bind repository/ref/event/head/run/attempt and two separate jobs.",
+    "Before/after complete execution inputs and protected product trees must agree; raw Core replay is bound to the same aggregate checkout.",
+    "Full original4200s app compile is a required separate job, not inferred from component tests; both actual CloudKit callers must appear in retained compiler SwiftFileList bytes.",
+    "Latest retention delta requires both actual executable bytes and all11 marker directories, including empty directories; aggregate verifies retained hashes without executing Apple binaries or opening old absolute paths.",
+    "Failed/partial execution cannot produce aggregate PASS; raw packaging cannot turn a failure into success."
+  ],
+  "observed_at": "2026-11-20T21:26:53.759674+00:00",
+  "read": [
+    "Complete new producer/aggregate driver",
+    "Complete workflow",
+    "Original Core verify_inputs/parse_xctest/classify_run called by the new consumer",
+    "Original complete Cloud verify_results adapter and declaration contract"
+  ],
+  "reviewer": "/root/asana_audit",
+  "scope": "Independent source-only review; no code edits, test execution, Swift compilation, or Apple/Native result credit",
+  "source": {
+    "binding_sha256": "5868a4b6adc2fc8fc2d4dfc195ca4a8704176aebad071db58fd20227993fc122",
+    "driver": {
+      "path": "annotation-combined-core194-apple-20261120/candidate/Scripts/CI/annotation-combined-core194-apple.py",
+      "sha256": "08c1aef2f88649b07cbd73c04cfad8edfcabd5f57d8d3996e22548187757c7c9"
+    },
+    "workflow": {
+      "path": "annotation-combined-core194-apple-20261120/candidate/.github/workflows/otzaria-annotation-core194-combined-apple.yml",
+      "sha256": "9bafb5e072fcbe051f052a549f16e798321ac6cb2f597f68ebca555e203d32ca"
+    }
+  }
+}

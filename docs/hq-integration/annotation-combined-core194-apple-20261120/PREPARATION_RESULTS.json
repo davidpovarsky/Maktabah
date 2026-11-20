@@ -1,0 +1,48 @@
+{
+  "Core_manifest": {
+    "cold_cases": 20,
+    "entries": 62,
+    "original_cases": 174,
+    "unique_files": 59
+  },
+  "Native_executed": 0,
+  "Swift_executed": 0,
+  "new_Apple_Core194": "NOT_RUN",
+  "new_Apple_components": "NOT_RUN",
+  "new_controls": {
+    "added_final_controls": "Required executable hash retention and both binaries/all11 marker directories; no Apple execution.",
+    "corrected": {
+      "errors": 0,
+      "executed": 38,
+      "failures": 0,
+      "passed": 38,
+      "skips": 0
+    },
+    "final": {
+      "errors": 0,
+      "executed": 40,
+      "failures": 0,
+      "passed": 40,
+      "skips": 0
+    },
+    "initial": {
+      "cause": "Control expected62 files; original manifest has62 entries resolving to59 distinct paths. Original source inventory and cases were unchanged.",
+      "errors": 0,
+      "executed": 38,
+      "failures": 1,
+      "passed": 37,
+      "skips": 0
+    }
+  },
+  "new_full_app_compile": "NOT_RUN",
+  "original_control_source_changes": 0,
+  "original_controls": {
+    "Core_driver_python": 13,
+    "SQLite_premises": 13,
+    "cloud_python": 43,
+    "repository_python": 26
+  },
+  "original_result_validator_function_bodies": 13,
+  "setup_attempt_preserved": "Expected wording mismatch before source write, zero controls; corrected to exact retained helper diagnostic text.",
+  "status": "PASS_PREPARATION_PYTHON_SQLITE_SOURCE_ONLY"
+}

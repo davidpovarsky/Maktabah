@@ -659,10 +659,10 @@
   "scope": "ORIGINAL_CORE_XCTEST_WITH_EXPLICIT_PROVIDER_UI_DOUBLES",
   "support_inputs": [
     {
-      "bytes": 16973,
-      "git_blob": "2f89bd845f0d65c765b500fc16b866c190b97bc6",
+      "bytes": 16987,
+      "git_blob": "5d46c7781dd3071a977c737c2810135f920ccad3",
       "path": "tools/hq-cold-search-core-acceptance.py",
-      "sha256": "64f0c0dd045137ab3b59da5c5146e9a226488c0865bd4b2f9df4576abe3e319a"
+      "sha256": "30f5dd6e564a81f8cda5d345f3981151ef116126b343e8306dee75d6340586aa"
     },
     {
       "bytes": 5228,

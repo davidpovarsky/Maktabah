@@ -1,0 +1,19 @@
+{
+  "status": "ROOT_FROZEN49_HASH_BLOB_AND_ARCHIVE_VERIFIED",
+  "files": 49,
+  "bytes": 1422499,
+  "gzip_members": 21,
+  "base": "bd855c02fcef94a732f584c5992aeacec6b1b21d",
+  "base_tree": "3c08a3de2102dd80df64f79dd56035a689d26edb",
+  "publication_sha256": "69e83ec3eb84271fe15de866d6835479ca381a8cf85c6fba74596f4af7b6411a",
+  "artifact_index": {
+    "bytes": 15861,
+    "git_blob": "b4fd5010213f0c0a319699f600b0007e078b7f77",
+    "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/ARTIFACTS.json",
+    "sha256": "9cb809e9c84edcabe9b4f085e75f617c5991c263f618831266150066f070a55e"
+  },
+  "Swift_tests_executed": 0,
+  "Native_tests_executed": 0,
+  "runtime_source_review": "whole driver+workflow, exact metadata inverses, final binary and marker retention reviewed",
+  "peer_review": "926b1cca0bde72b6bf4426e9246c6b7c79b3f8babc4ea2c4fca92e518087fdbf"
+}

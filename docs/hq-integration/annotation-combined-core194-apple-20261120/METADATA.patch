@@ -1,0 +1,303 @@
+--- a/tools/hq-annotation-disconnect-acceptance.py
++++ b/tools/hq-annotation-disconnect-acceptance.py
+@@ -27,7 +27,7 @@
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ SOURCE_BASE = "7af3a06d48ccbe77acef180cb99d120971c3804e"
+-CORE_TREE = "5d0ee482c8f10726fe3863792dac94c18e94d792"
++CORE_TREE = "a89104250c1aedf75e6aa95ed3f111a4dc597217"
+ REPOSITORY = "Source/Features/Annotations/Database/AnnotationRepository.swift"
+ BASELINE_SHA256 = "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af"
+ BASELINE_GIT_BLOB = "86512a8286560aedb248da4abea1a41f5c96ea0e"
+@@ -385,7 +385,7 @@
+         sdk = subprocess.check_output(["xcrun", "--sdk", "macosx", "--show-sdk-path"], text=True, timeout=30).strip()
+         require((Path(sdk) / "usr/include/sqlite3.h").is_file(), "Original Apple SQLite3 SDK required")
+         require(git(ROOT, "rev-parse", "HEAD:Source/Otzaria/Actions").decode().strip() == CORE_TREE,
+-                "This gate qualifies original Core5d0, not a different Core tree")
++                "This gate requires the reviewed combined Core tree")
+         cloud = load_cloud()
+         declaration_names((ROOT / FIXTURE).read_text())
+         paths = sorted(set(cloud.source_provenance(ROOT)) | {SELF, FIXTURE})
+--- a/tools/hq-cold-search-core-acceptance.py
++++ b/tools/hq-cold-search-core-acceptance.py
+@@ -29,8 +29,8 @@
+ NEW_TEST = PACKAGE + "/Tests/OtzariaActionCoreTests/Engine/ColdSearchExecutionOfflineTests.swift"
+ FIXTURE = "docs/hq-actions-bridge/embedded-handler-fixtures.json"
+ INPUTS = "Tests/HQ/cold-search/CORE_INPUTS.json"
+-WORKFLOW = ".github/workflows/otzaria-cold-search-core-validation.yml"
+-BRANCH = "refs/heads/codex/otzaria-cold-search-core-apple-v2-20261120"
++WORKFLOW = ".github/workflows/otzaria-annotation-core194-combined-apple.yml"
++BRANCH = "refs/heads/codex/otzaria-annotation-core194-combined-apple-20261120"
+ 
+ 
+ def digest(data: bytes) -> str:
+--- a/Tests/HQ/cold-search/CORE_INPUTS.json
++++ b/Tests/HQ/cold-search/CORE_INPUTS.json
+@@ -659,10 +659,10 @@
+   "scope": "ORIGINAL_CORE_XCTEST_WITH_EXPLICIT_PROVIDER_UI_DOUBLES",
+   "support_inputs": [
+     {
+-      "bytes": 16973,
+-      "git_blob": "2f89bd845f0d65c765b500fc16b866c190b97bc6",
++      "bytes": 16987,
++      "git_blob": "5d46c7781dd3071a977c737c2810135f920ccad3",
+       "path": "tools/hq-cold-search-core-acceptance.py",
+-      "sha256": "64f0c0dd045137ab3b59da5c5146e9a226488c0865bd4b2f9df4576abe3e319a"
++      "sha256": "30f5dd6e564a81f8cda5d345f3981151ef116126b343e8306dee75d6340586aa"
+     },
+     {
+       "bytes": 5228,
+--- a/Scripts/CI/hq-stage2-otzaria-test-additions.json
++++ b/Scripts/CI/hq-stage2-otzaria-test-additions.json
+@@ -475,7 +475,7 @@
+     }
+   ],
+   "excluded_build_inputs": {
+-    "Maktabah.xcodeproj/project.pbxproj": "2741615644741d39b0b19c6146f9c459323dabab",
++    "Maktabah.xcodeproj/project.pbxproj": "eaf385c363750e04688a4cda181f40597f22f315",
+     "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
+     "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
+     "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+--- a/Scripts/CI/hq-stage2-focused-apple.inputs.json
++++ b/Scripts/CI/hq-stage2-focused-apple.inputs.json
+@@ -1,10 +1,68 @@
+ {
+-  "application_source_sha": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
++  "application_source_sha": "bd855c02fcef94a732f584c5992aeacec6b1b21d",
+   "application_trees": {
+-    "Source": "c7732ce8cc0ba7d1a12a1e5c04d9cdb8d8f0fbc9",
+-    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+-    "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
++    "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
++    "Source": "efeee8e2366dfa1155f9c029cff1de5c6441f39b",
++    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+   },
++  "artifacts": [
++    {
++      "destination": "Vendor/OtzariaSearchEngine",
++      "id": 14596463166,
++      "name": "ios-build-otzaria-xcframework",
++      "producer_attempt": 1,
++      "producer_job": 136041463727,
++      "producer_job_name": "Build or restore Otzaria framework",
++      "producer_required_steps": [
++        "Build Otzaria production semantic XCFramework",
++        "Verify Otzaria framework and semantic host build",
++        "Confirm exact pinned and pristine upstream checkout",
++        "Run actions/upload-artifact@v4"
++      ],
++      "producer_run": 44661774024,
++      "producer_run_conclusion": "failure",
++      "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
++      "sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
++      "size_in_bytes": 201330360,
++      "tar": "OtzariaSearchEngine.xcframework.tar"
++    },
++    {
++      "destination": "Vendor/ZayitSearchPort/build",
++      "id": 14595389912,
++      "name": "ios-build-zayit-xcframework",
++      "producer_attempt": 1,
++      "producer_job": 136041463406,
++      "producer_job_name": "Build or restore Zayit framework",
++      "producer_required_steps": [
++        "Build Zayit XCFramework",
++        "Verify Zayit framework",
++        "Run actions/upload-artifact@v4"
++      ],
++      "producer_run": 44661774024,
++      "producer_run_conclusion": "failure",
++      "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
++      "sha256": "64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
++      "size_in_bytes": 123727544,
++      "tar": "MaktabahZayitSearch.xcframework.tar"
++    },
++    {
++      "destination": "build",
++      "id": 12763481138,
++      "name": "ios-build-swift-packages",
++      "producer_run": 40566258679,
++      "sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd",
++      "tar": "SourcePackages.tar"
++    },
++    {
++      "id": 13658066283,
++      "name": "sefaria-embedded-validation-manifests",
++      "producer_run": 42577170165,
++      "sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda"
++    }
++  ],
++  "embedded_js_overlay_paths": [
++    "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
++  ],
+   "engine_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+   "engine_trees": {
+     "Vendor/OtzariaSearchEngine": "5a6c6501c021ffadcde31254239617f10cd1a362",
+@@ -12,98 +70,40 @@
+     "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+     "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
+   },
+-  "sefaria_gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
++  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
++  "otzaria_test_additions_sha256": "650702d476423eec1ca31d767692d3bf29212b6f596d99aed7f9aef36af51a19",
++  "rebuild_zayit_framework": false,
++  "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
+   "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
+-  "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
+   "resources": {
+     "sources/calendar.json": {
+-      "size": 1651059,
+-      "sha256": "9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7"
++      "sha256": "9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7",
++      "size": 1651059
+     },
+     "sources/hebrew_categories.json": {
+-      "size": 16121,
+-      "sha256": "f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d"
++      "sha256": "f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d",
++      "size": 16121
+     },
+     "sources/packages.json": {
+-      "size": 238990,
+-      "sha256": "3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba"
++      "sha256": "3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba",
++      "size": 238990
+     },
+     "sources/people.json": {
+-      "size": 52354,
+-      "sha256": "b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4"
++      "sha256": "b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4",
++      "size": 52354
+     },
+     "sources/search_toc.json": {
+-      "size": 829599,
+-      "sha256": "6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05"
++      "sha256": "6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05",
++      "size": 829599
+     },
+     "sources/toc.json": {
+-      "size": 4172545,
+-      "sha256": "0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963"
++      "sha256": "0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963",
++      "size": 4172545
+     },
+     "sources/topic_toc.json": {
+-      "size": 1810962,
+-      "sha256": "282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c"
++      "sha256": "282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c",
++      "size": 1810962
+     }
+   },
+-  "artifacts": [
+-    {
+-      "id": 14596463166,
+-      "name": "ios-build-otzaria-xcframework",
+-      "sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+-      "tar": "OtzariaSearchEngine.xcframework.tar",
+-      "destination": "Vendor/OtzariaSearchEngine",
+-      "producer_run": 44661774024,
+-      "size_in_bytes": 201330360,
+-      "producer_attempt": 1,
+-      "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+-      "producer_run_conclusion": "failure",
+-      "producer_job": 136041463727,
+-      "producer_job_name": "Build or restore Otzaria framework",
+-      "producer_required_steps": [
+-        "Build Otzaria production semantic XCFramework",
+-        "Verify Otzaria framework and semantic host build",
+-        "Confirm exact pinned and pristine upstream checkout",
+-        "Run actions/upload-artifact@v4"
+-      ]
+-    },
+-    {
+-      "id": 14595389912,
+-      "name": "ios-build-zayit-xcframework",
+-      "sha256": "64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+-      "tar": "MaktabahZayitSearch.xcframework.tar",
+-      "destination": "Vendor/ZayitSearchPort/build",
+-      "producer_run": 44661774024,
+-      "size_in_bytes": 123727544,
+-      "producer_attempt": 1,
+-      "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+-      "producer_run_conclusion": "failure",
+-      "producer_job": 136041463406,
+-      "producer_job_name": "Build or restore Zayit framework",
+-      "producer_required_steps": [
+-        "Build Zayit XCFramework",
+-        "Verify Zayit framework",
+-        "Run actions/upload-artifact@v4"
+-      ]
+-    },
+-    {
+-      "id": 12763481138,
+-      "name": "ios-build-swift-packages",
+-      "sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd",
+-      "tar": "SourcePackages.tar",
+-      "destination": "build",
+-      "producer_run": 40566258679
+-    },
+-    {
+-      "id": 13658066283,
+-      "name": "sefaria-embedded-validation-manifests",
+-      "sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda",
+-      "producer_run": 42577170165
+-    }
+-  ],
+-  "embedded_js_overlay_paths": [
+-    "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+-  ],
+-  "rebuild_zayit_framework": false,
+-  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+-  "otzaria_test_additions_sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
++  "sefaria_gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c"
+ }
+--- a/Scripts/CI/local-annotation-cloud-apple.inputs.json
++++ b/Scripts/CI/local-annotation-cloud-apple.inputs.json
+@@ -1,9 +1,9 @@
+ {
+   "application_trees": {
+     "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+-    "Source": "6e02950f8501da4e2bedfa90b41438b4081fdb1a",
+-    "Tests": "deaf2b40e4e852d13c4aadea6d9c8dd26bd76584",
+-    "tools": "cb52d9a96e01f1aaf6888dded9cc2f28bcc82424"
++    "Source": "efeee8e2366dfa1155f9c029cff1de5c6441f39b",
++    "Tests": "110be114e5e6d1f6e158e75346d9a3b697d52453",
++    "tools": "5c3af112994df2d7a1918cfbdc7e40a753e19e07"
+   },
+   "case_names": {
+     "cloud": [
+@@ -150,18 +150,18 @@
+   "cloud_count": 48,
+   "common_original_source_sha": "b19d30d9db402ef267e0d3afcc4dece0be013f24",
+   "component_count": 43,
+-  "core_tree_sha": "5d0ee482c8f10726fe3863792dac94c18e94d792",
++  "core_tree_sha": "a89104250c1aedf75e6aa95ed3f111a4dc597217",
+   "exchange_count": 28,
+   "exchange_crash_gates": 2,
+   "local_cold_gates": 2,
+-  "reviewed_source_sha": "c1e0d33117154d578206195ef021d41fc2fa2b12",
++  "reviewed_source_sha": "bd855c02fcef94a732f584c5992aeacec6b1b21d",
+   "route": {
+     "branch": "codex/otzaria-local-annotation-cloud-apple-reviewed-20261120",
+     "repository": "davidpovarsky/Maktabah",
+     "workflow": ".github/workflows/otzaria-local-annotation-cloud-apple.yml"
+   },
+   "schema": "otzaria-local-annotation-cloud-apple-v1",
+-  "scope": "Prepared exact Apple Foundation ownership48 plus unchanged local43/cold2 and exchange28/crash2. Pinned original Core5d0, not later Core194. No live CloudKit, UI, Anytype mount or physical claims. Root activation required.",
++  "scope": "Original complete Cloud/local result validator on the combined source. The historical route field identifies this unchanged validator namespace; active authority is the combined route. Core194 executes separately in the same required component job. No live CloudKit, Native UI, Anytype mount or physical claims.",
+   "source_pins": {
+     "Maktabah.xcodeproj/project.pbxproj": {
+       "bytes": 598318,
+@@ -214,9 +214,9 @@
+       "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a"
+     },
+     "Source/Core/CloudKit/CloudKitCoreManager.swift": {
+-      "bytes": 13523,
+-      "git_blob": "6e5a7901cac7d53acf5e8b6f4b7e1a3e09755c65",
+-      "sha256": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68"
++      "bytes": 13869,
++      "git_blob": "6834a1beab5ffa38ddedf3404392c3be138a73c5",
++      "sha256": "1d9de7832d00dd566e3fb3b50214a39ce48c3fd07b8e4b0a148bfeca0916fa34"
+     },
+     "Source/Core/CloudKit/CloudKitSyncable.swift": {
+       "bytes": 1329,

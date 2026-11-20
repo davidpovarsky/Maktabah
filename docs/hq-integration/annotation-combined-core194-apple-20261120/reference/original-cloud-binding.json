@@ -1,0 +1,363 @@
+{
+  "application_trees": {
+    "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+    "Source": "6e02950f8501da4e2bedfa90b41438b4081fdb1a",
+    "Tests": "deaf2b40e4e852d13c4aadea6d9c8dd26bd76584",
+    "tools": "cb52d9a96e01f1aaf6888dded9cc2f28bcc82424"
+  },
+  "case_names": {
+    "cloud": [
+      "disabled_original_client_has_no_container_or_transport",
+      "missing_client_saves_locally_and_retains_original_pending",
+      "missing_precommit_identity_never_adopts_later_account",
+      "failed_precommit_identity_never_retries_after_commit",
+      "account_notification_during_preparation_rejects_old_lookup_result",
+      "source_write_during_preparation_refuses_before_local_commit",
+      "owner_retirement_during_preparation_is_one_way",
+      "exact_success_acknowledges_once_without_legacy_upload_or_metadata_loss",
+      "original_annotation_cloud_record_mapping_preserves_uuid_zone_and_plain_note",
+      "original_two_second_debouncer_delivers_one_retained_instance",
+      "retirement_during_debounce_prevents_upload",
+      "profile_disconnect_reopen_during_debounce_never_revives_connection",
+      "account_aba_during_debounce_keeps_old_epoch_retired",
+      "permission_loss_during_debounce_prevents_upload",
+      "debounced_different_record_never_reaches_transport",
+      "admitted_remote_success_after_editor_retirement_is_retained_without_ack",
+      "admitted_remote_success_after_profile_aba_cannot_ack_captured_db",
+      "admitted_remote_success_after_account_aba_cannot_ack",
+      "admitted_remote_success_after_permission_loss_cannot_ack",
+      "new_same_uuid_revision_during_upload_preserves_newer_pending",
+      "same_connection_same_second_replacement_refuses_old_ack",
+      "foreign_original_pending_replacement_refuses_old_ack",
+      "foreign_pending_aba_with_identical_values_refuses_old_ack",
+      "unrelated_same_connection_write_conservatively_defers_ack",
+      "original_tag_write_during_upload_defers_ack_and_keeps_tags",
+      "remote_error_preserves_actual_error_and_original_pending_without_retry",
+      "remote_error_after_retirement_preserves_error_and_refuses_delivery",
+      "no_precommit_worker_request_never_adopts_later_destination",
+      "changed_worker_after_ack_keeps_actual_ack_but_refuses_new_destination",
+      "permission_loss_after_ack_defers_worker_without_rollback_claim",
+      "account_notification_after_ack_defers_worker_without_rollback_claim",
+      "editor_retirement_after_ack_defers_worker_without_rollback_claim",
+      "worker_uses_exact_captured_request_and_retains_actual_outcome",
+      "worker_failure_does_not_rewrite_remote_success_or_committed_ack",
+      "retirement_after_worker_admission_retains_actual_worker_effect",
+      "prepared_operation_is_consumed_once_with_no_duplicate_commit_or_upload",
+      "foreign_session_cannot_consume_preparation_or_steal_original_owner",
+      "retired_before_owned_save_does_not_commit_local_or_remote",
+      "durable_replay_retains_receipt_without_new_publication_witness",
+      "outer_transaction_cannot_masquerade_as_owned_durable_commit",
+      "aliased_account_lifetime_refused_without_recursive_lock_or_delete",
+      "account_retired_at_locked_entry_preserves_account_changed_category",
+      "new_pending_after_ack_prevents_late_worker_and_delivery",
+      "later_original_delete_is_never_erased_by_successful_old_upload",
+      "ambiguous_case_variant_pending_is_not_deleted_by_first_match",
+      "account_observation_is_synchronous_one_way_and_owner_scoped",
+      "source_change_during_post_upload_account_lookup_refuses_ack",
+      "busy_preparation_rejects_second_operation_without_shared_state_change"
+    ],
+    "exchange": [
+      "actual_platform_SHA256_known_vectors",
+      "constructor_is_inert_and_capability_stays_off",
+      "exact_rich_bytes_preview_and_unknown_fields_survive_reopen",
+      "unknown_version_is_exact_quarantine_without_execution",
+      "all_original_handles_close_before_reopen_and_retry",
+      "duplicate_escaped_keys_malformed_UTF8_and_numbers_are_rejected",
+      "invalid_UUID_base64_types_and_scope_are_rejected",
+      "oversized_payload_fails_intact_without_rows",
+      "schema_constraints_reject_fractional_revision_and_invalid_status",
+      "unknown_ledger_schema_fails_closed",
+      "missing_or_ambiguous_original_UUID_is_not_backfilled",
+      "same_second_source_edit_rejects_stale_witness",
+      "tag_locator_and_embedded_NUL_each_change_source_witness",
+      "source_metadata_and_revision_mismatch_do_not_write",
+      "dangling_original_tag_link_changes_witness_and_rejects_stale_commit",
+      "idempotent_retry_binds_exact_payload_and_destination_set",
+      "ACK_is_bound_to_destination_account_space_UUID_revision_digest_and_message",
+      "old_ACK_does_not_consume_newer_revision_or_account",
+      "nested_enqueue_failure_rolls_back_source_cloud_queue_and_ledger",
+      "outer_failure_after_inner_release_rolls_back_everything",
+      "successful_outer_transaction_preserves_original_cloud_queue_semantics",
+      "tombstone_requires_prior_identity_and_absent_original_source",
+      "known_inbox_is_review_only_exact_idempotent_and_account_scoped",
+      "incoming_digest_and_identity_mismatch_are_rejected",
+      "corrupt_payload_and_orphan_outbox_fail_closed",
+      "pre_cancelled_commit_and_ACK_do_not_write",
+      "cancellation_after_real_enqueue_rolls_back_before_commit",
+      "eight_concurrent_same_revision_writers_have_one_atomic_winner"
+    ],
+    "local": [
+      "legacy_read_has_no_schema_or_original_mutation",
+      "same_uuid_atomic_two_block_body_and_plain_preview",
+      "all_original_metadata_tags_and_uuid_preserved",
+      "original_queue_upload_delete_preserved_and_no_exchange_destination",
+      "original_store_cache_reads_committed_preview",
+      "original_cloudkit_boundary_receives_plain_record_once_without_requeue",
+      "exact_retry_returns_same_version_without_duplicate_publication",
+      "same_mutation_different_body_is_conflict",
+      "new_revision_preserves_immutable_previous_bytes",
+      "second_session_stale_revision_cannot_overwrite",
+      "normal_save_invalidates_old_rich_intent_without_altering_normal_path",
+      "original_tag_change_invalidates_source_witness",
+      "changed_original_row_is_rejected_by_post_worker_read_publication",
+      "changed_version_is_rejected_by_post_worker_read_publication",
+      "pending_original_delete_cannot_be_resurrected",
+      "missing_original_annotation_is_not_recreated",
+      "ambiguous_uuid_is_never_selected_by_first_match",
+      "profile_switch_and_return_never_revives_old_owner",
+      "disconnect_reconnect_same_file_requires_fresh_session",
+      "retire_before_save_has_no_schema_or_write",
+      "read_and_cancel_does_not_save_or_backfill",
+      "foreign_session_snapshot_is_denied",
+      "unsupported_body_format_is_readable_but_never_overwritten",
+      "future_envelope_is_retained_and_read_only",
+      "unknown_envelope_and_rich_metadata_survive_supported_edit",
+      "altered_snapshot_document_cannot_remove_preserved_unknown_fields",
+      "unknown_local_commit_marker_is_not_reinterpreted",
+      "future_database_schema_is_not_migrated_by_read",
+      "partial_schema_is_not_repaired_by_read",
+      "corrupt_body_digest_is_rejected",
+      "payload_bound_failure_rolls_back_preview_schema_and_queue",
+      "sqlite_failure_after_preview_rolls_back_entire_commit",
+      "retirement_during_original_sql_rolls_back_before_commit",
+      "normal_plain_save_preserves_rich_bytes_but_marks_body_stale",
+      "lowercase_original_uuid_bytes_are_not_restamped",
+      "nul_preview_is_rejected_before_original_sqlite_string_binding",
+      "empty_format_contract_has_no_implicit_editor_default",
+      "format_conversion_is_not_implicit_even_when_both_are_known",
+      "replay_of_older_head_cannot_replace_or_publish_newer_body",
+      "retirement_during_publication_reports_real_commit_without_owner_delivery",
+      "orphaned_version_is_not_treated_as_a_legacy_empty_note",
+      "original_exchange_api_still_rejects_empty_destinations",
+      "ordinary_original_save_and_tags_still_work_on_legacy_note"
+    ],
+    "sql": [
+      "seconds_only_original_queue_removal_can_erase_newer_replacement",
+      "same_connection_same_second_replacement_advances_total_changes",
+      "foreign_original_same_second_replacement_advances_data_version",
+      "foreign_identical_row_replacement_advances_data_version",
+      "foreign_noop_update_does_not_claim_a_new_pending_enqueue",
+      "foreign_committed_pending_aba_advances_data_version",
+      "foreign_delete_recreate_same_rowid_advances_data_version",
+      "foreign_commit_after_read_cannot_upgrade_stale_ack_transaction",
+      "foreign_rollback_has_no_committed_pending_change",
+      "own_write_stamp_survives_outer_commit_for_post_commit_validation",
+      "unrelated_write_is_conservatively_detectable",
+      "exact_candidate_delete_preserves_unrelated_original_pending_delete",
+      "candidate_delete_never_removes_later_delete_operation"
+    ]
+  },
+  "cloud_count": 48,
+  "common_original_source_sha": "b19d30d9db402ef267e0d3afcc4dece0be013f24",
+  "component_count": 43,
+  "core_tree_sha": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+  "exchange_count": 28,
+  "exchange_crash_gates": 2,
+  "local_cold_gates": 2,
+  "reviewed_source_sha": "c1e0d33117154d578206195ef021d41fc2fa2b12",
+  "route": {
+    "branch": "codex/otzaria-local-annotation-cloud-apple-reviewed-20261120",
+    "repository": "davidpovarsky/Maktabah",
+    "workflow": ".github/workflows/otzaria-local-annotation-cloud-apple.yml"
+  },
+  "schema": "otzaria-local-annotation-cloud-apple-v1",
+  "scope": "Prepared exact Apple Foundation ownership48 plus unchanged local43/cold2 and exchange28/crash2. Pinned original Core5d0, not later Core194. No live CloudKit, UI, Anytype mount or physical claims. Root activation required.",
+  "source_pins": {
+    "Maktabah.xcodeproj/project.pbxproj": {
+      "bytes": 598318,
+      "git_blob": "eaf385c363750e04688a4cda181f40597f22f315",
+      "sha256": "49625ef0f05c3f0c7052ea9b1e069591f635c6dd581e33e1fe70a32d7b41582d"
+    },
+    "Scripts/CI/select-runtime27-toolchain.py": {
+      "bytes": 6377,
+      "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+      "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+    },
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": {
+      "bytes": 33283,
+      "git_blob": "c58864a98532c50c5b158c5e9ffbf0775ea92136",
+      "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918"
+    },
+    "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": {
+      "bytes": 8619,
+      "git_blob": "30602a567c239852fc56de436e35f939c5486997",
+      "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f"
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift": {
+      "bytes": 3982,
+      "git_blob": "fea867c79e7acc97f441b37b72c92accaddcdf29",
+      "sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71"
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift": {
+      "bytes": 14853,
+      "git_blob": "a1ddaf0ff4a243d9cef5850c144941728927f650",
+      "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17"
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift": {
+      "bytes": 3885,
+      "git_blob": "feffbb8b323e9ed2b1212f4d7a1adaab4f8ecca3",
+      "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb"
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift": {
+      "bytes": 25713,
+      "git_blob": "d4d77f1dbaa8650c5336dcc7c0483a9ef17a13e5",
+      "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972"
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift": {
+      "bytes": 9240,
+      "git_blob": "1d35ea064eb70ddfa4d09f6313098b0db8c5bd26",
+      "sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765"
+    },
+    "Source/Core/CloudKit/AnnotationSyncHandler.swift": {
+      "bytes": 3504,
+      "git_blob": "30096dd4533109d2c0975de0db9399ab7b932cd2",
+      "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a"
+    },
+    "Source/Core/CloudKit/CloudKitCoreManager.swift": {
+      "bytes": 13523,
+      "git_blob": "6e5a7901cac7d53acf5e8b6f4b7e1a3e09755c65",
+      "sha256": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68"
+    },
+    "Source/Core/CloudKit/CloudKitSyncable.swift": {
+      "bytes": 1329,
+      "git_blob": "b7f647b4e7b51d328ac5eaa58675fa62f14f786f",
+      "sha256": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d"
+    },
+    "Source/Core/CloudKit/CloudKitUploadDebouncer.swift": {
+      "bytes": 1979,
+      "git_blob": "c8db3d4141369ba5217e9bff72367c9d4afe0100",
+      "sha256": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2"
+    },
+    "Source/Core/CloudKit/SyncPendingStore.swift": {
+      "bytes": 3534,
+      "git_blob": "52f4039c55aac40b8cccb9cf01441cecda1ef3a8",
+      "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+    },
+    "Source/Core/Configuration/AppConfig.swift": {
+      "bytes": 25258,
+      "git_blob": "bc1029dfe8b08a5acbe9e4a131da19fb10f98c94",
+      "sha256": "2af554f74d3a0900a94e1ac9129b9518190b7b88742929e8c18b5b5bfb79079a"
+    },
+    "Source/Core/Configuration/ReusableFunc.swift": {
+      "bytes": 14942,
+      "git_blob": "9804cb1132925d130b9045a062ca99d46e907260",
+      "sha256": "dcfbf50da4a828231dcaeb0d83da6eaecbaade6bfc7e47ad691ad026853e87b7"
+    },
+    "Source/Core/Database/CloudKitSyncManager.swift": {
+      "bytes": 41539,
+      "git_blob": "cb400f59c5154688532524622544e135634d5cca",
+      "sha256": "f5bbfde7f1c2c3e10bba5cbb7ea7066db321b1ecdd80ee5e15a27c7f556763ad"
+    },
+    "Source/Core/Database/SQLiteDatabase.swift": {
+      "bytes": 14916,
+      "git_blob": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    "Source/Features/Annotations/Database/AnnotationRepository.swift": {
+      "bytes": 45376,
+      "git_blob": "3dedc2068864b9076d84dc7322a1e7371b7895d4",
+      "sha256": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8"
+    },
+    "Source/Features/Annotations/Database/AnnotationStore.swift": {
+      "bytes": 15022,
+      "git_blob": "aed5ca06c5839a1169ac0e41b02967d028047df6",
+      "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37"
+    },
+    "Source/Features/Annotations/Models/Annotation.swift": {
+      "bytes": 6351,
+      "git_blob": "e88cffe612ba294d9b818fbb09fc05d5b86a3991",
+      "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+    },
+    "Source/Features/Annotations/Models/Annotation.xcstrings": {
+      "bytes": 17370,
+      "git_blob": "238e8bb2a3e2a676fb59e2af888a96e8c93553ff",
+      "sha256": "1a5364d2a5f36c614f91933d1225547db1ed92614a9ac3615f3219d1445b88ba"
+    },
+    "Source/Features/Annotations/Models/AnnotationChangeTypes.swift": {
+      "bytes": 1589,
+      "git_blob": "d82cc1be0d2fb1a21b0e97ff25954ca4f1f382ee",
+      "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b"
+    },
+    "Source/Features/Annotations/Models/AnnotationEvent.swift": {
+      "bytes": 270,
+      "git_blob": "42b8ba3d8d37d56aab4d83a4fd1354b2f3f8d7cc",
+      "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21"
+    },
+    "Source/Features/Annotations/Models/AnnotationNode.swift": {
+      "bytes": 4413,
+      "git_blob": "aefdacf6d13ea0c13d6fde3ed0b160421006290a",
+      "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392"
+    },
+    "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift": {
+      "bytes": 20313,
+      "git_blob": "64cd681bfcdb89cb41073162cc2cc0af96d65cf6",
+      "sha256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c"
+    },
+    "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift": {
+      "bytes": 35544,
+      "git_blob": "79b114b591ef7346093646ee01ccbfb7ceff43ce",
+      "sha256": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de"
+    },
+    "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift": {
+      "bytes": 11957,
+      "git_blob": "eb4ca0f06fb46b42175f1b3a08c4db09a4ec447c",
+      "sha256": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8"
+    },
+    "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudAcceptance.swift": {
+      "bytes": 44287,
+      "git_blob": "df96549af006a148c4c1b4ef5c82a3afc8ee443e",
+      "sha256": "0eb0914e8a1c92559fcb574efcec487d8dc97c276bf4a6a503d3320821285b8c"
+    },
+    "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift": {
+      "bytes": 599,
+      "git_blob": "0056a307f0aede09d39bf0c15665db3f9fb18c9c",
+      "sha256": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7"
+    },
+    "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift": {
+      "bytes": 39693,
+      "git_blob": "467f45f7859ad03824d030be1855c2b27a1a98a5",
+      "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a"
+    },
+    "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift": {
+      "bytes": 3758,
+      "git_blob": "0f8bf29a30d63aa7769b723973784839a44300c9",
+      "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46"
+    },
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": {
+      "bytes": 443,
+      "git_blob": "af39c8673dcda19785f6f1259474c39941f5a5a0",
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    "tools/hq-annotation-exchange-acceptance.py": {
+      "bytes": 11654,
+      "git_blob": "4f87f3a4f4b61144fd3bcf6ee8b1975e5708fb72",
+      "sha256": "e5bb838def64d8a64f8228889d6d371dfe3968b4ee0ec521cd122f58428eb97f"
+    },
+    "tools/hq-local-annotation-cloud-acceptance.py": {
+      "bytes": 13582,
+      "git_blob": "11117d25545434adbd698e713eb4542422312cc9",
+      "sha256": "9ef5252edfb7c47235279775da201715ff22ee9e1b81dab698c8d4bb2f429bbd"
+    },
+    "tools/hq-local-annotation-editor-acceptance.py": {
+      "bytes": 16135,
+      "git_blob": "d1ad554013d77c7c80e3cce8c6c17509455ff345",
+      "sha256": "76bd98bf2fe2c8df4332b13e25399a85a95d0e653e2db1f00ebe723eef423a14"
+    },
+    "tools/test-local-annotation-editor-gate.py": {
+      "bytes": 8865,
+      "git_blob": "b6f0e88657f7f0586175f14b325fd784a95d747c",
+      "sha256": "ebf4567506838f61a1f3838b82efd44196ddc5810290ab09a8dc8d671d775054"
+    },
+    "tools/test-local-annotation-editor-sql.py": {
+      "bytes": 14698,
+      "git_blob": "fa91b24b351651d7ddd62a0c2894d0b7fb418759",
+      "sha256": "24cd22170829f162b76b845c667f259a5925a756f4791e8b80c8880bc00d8b4f"
+    },
+    "tools/test-local-cloud-pending-sql.py": {
+      "bytes": 14533,
+      "git_blob": "b54c68b2ec400239c90ad7e0ee829c2930316c42",
+      "sha256": "d321cd6512c69fec1c8ae7b3bfaddf8d356792f97d0bf3769727b1815a0e04f8"
+    }
+  },
+  "source_sealed": true
+}

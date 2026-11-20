@@ -1,0 +1,390 @@
+{
+  "files": [
+    {
+      "bytes": 11989,
+      "git_blob": "eab6713ce62fd4bc687d570067408fb5147a0e7b",
+      "mode": "100644",
+      "path": ".github/workflows/otzaria-annotation-core194-combined-apple.yml",
+      "sha256": "9bafb5e072fcbe051f052a549f16e798321ac6cb2f597f68ebca555e203d32ca",
+      "type": "blob"
+    },
+    {
+      "bytes": 5714,
+      "git_blob": "2b450b1adcc95d26571e103a2acad406c786b7db",
+      "mode": "100644",
+      "path": ".github/workflows/otzaria-local-annotation-cloud-apple.yml",
+      "sha256": "3cdc4d9faa08c79ce7b66effbcd0dc0920030338b3dd7316974369b44a6abc4f",
+      "type": "blob"
+    },
+    {
+      "bytes": 40947,
+      "git_blob": "796a1ced321a5f976e4c61005758638f16551c9e",
+      "mode": "100644",
+      "path": "Scripts/CI/annotation-combined-core194-apple.inputs.json",
+      "sha256": "5868a4b6adc2fc8fc2d4dfc195ca4a8704176aebad071db58fd20227993fc122",
+      "type": "blob"
+    },
+    {
+      "bytes": 60568,
+      "git_blob": "10b6375c41cbc7abbd11d6e5d92482a2eff9ae78",
+      "mode": "100644",
+      "path": "Scripts/CI/annotation-combined-core194-apple.py",
+      "sha256": "08c1aef2f88649b07cbd73c04cfad8edfcabd5f57d8d3996e22548187757c7c9",
+      "type": "blob"
+    },
+    {
+      "bytes": 21773,
+      "git_blob": "7cdea6fa72a8abfb407f71948cd0e6bb7a02dea9",
+      "mode": "100644",
+      "path": "Scripts/CI/annotation-disconnect-apple.inputs.json",
+      "sha256": "83cb3bfec717c2a1a9cea5c0662335ba7a762abc03788e777d8b2f7399741855",
+      "type": "blob"
+    },
+    {
+      "bytes": 27172,
+      "git_blob": "72a3bc23ea32e72a5a0364a196d5596099f5e68b",
+      "mode": "100644",
+      "path": "Scripts/CI/annotation-disconnect-apple.py",
+      "sha256": "d5d1842259590866b68c11180422a20c2432ab07daba73623196ea5861f52568",
+      "type": "blob"
+    },
+    {
+      "bytes": 4333,
+      "git_blob": "401931f2f39d47bc56790f267e03d622218a0ea3",
+      "mode": "100644",
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "sha256": "3633976680f64c0918685633ba1cf650afd4c1b2a9930e1898cac0d6c2667ead",
+      "type": "blob"
+    },
+    {
+      "bytes": 19318,
+      "git_blob": "05b1879352e4abe926e6de7fe17603de428746cf",
+      "mode": "100644",
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "sha256": "650702d476423eec1ca31d767692d3bf29212b6f596d99aed7f9aef36af51a19",
+      "type": "blob"
+    },
+    {
+      "bytes": 19352,
+      "git_blob": "b3f7cf43689e33ef3527b78cd959a04cf79b229a",
+      "mode": "100644",
+      "path": "Scripts/CI/local-annotation-cloud-apple.inputs.json",
+      "sha256": "2f34f4b4fa3b51acc1602d925d10f042589d4eef4cf7846da692af55d47a28a3",
+      "type": "blob"
+    },
+    {
+      "bytes": 30332,
+      "git_blob": "d13ca7d1be66bafa5c0a9d450eb98881975d7537",
+      "mode": "100644",
+      "path": "Scripts/CI/local-annotation-cloud-apple.py",
+      "sha256": "f39979e99c8d3172bc105b17ff0f6e373b65e9de9f2dd34efffce83f933f5fd6",
+      "type": "blob"
+    },
+    {
+      "bytes": 36634,
+      "git_blob": "fc42896c927e2c73ab7be49279417b2f78bbfe2e",
+      "mode": "100644",
+      "path": "Scripts/CI/test-annotation-combined-core194-apple.py",
+      "sha256": "dfadccfbe5b2dd0ecad9dce42183b394e7e9352e763bb21bfc63d4320cece60f",
+      "type": "blob"
+    },
+    {
+      "bytes": 21310,
+      "git_blob": "e76c28302de51e1ae55c70e28c0fc442e7737b3c",
+      "mode": "100644",
+      "path": "Scripts/CI/test-annotation-disconnect-apple.py",
+      "sha256": "2dd6666c359cc2d8ff0a281851a546a0be20993b0fef5427b05f6976a539783c",
+      "type": "blob"
+    },
+    {
+      "bytes": 29447,
+      "git_blob": "57e2909492663413c6770e476ca7657a3fe18fea",
+      "mode": "100644",
+      "path": "Scripts/CI/test-local-annotation-cloud-apple.py",
+      "sha256": "1b2a21f84ae9690b283844b3907608b8338a9e3c067f941f36fd356d532ad059",
+      "type": "blob"
+    },
+    {
+      "bytes": 38973,
+      "git_blob": "444bc6d61c091d2c7c7e4a9fe03b181480dc8e44",
+      "mode": "100644",
+      "path": "Tests/HQ/cold-search/CORE_INPUTS.json",
+      "sha256": "e777d6a4301950c65daed3825b4458e73ea1f68b948978bdd7614e4ca5716266",
+      "type": "blob"
+    },
+    {
+      "bytes": 13950,
+      "git_blob": "a66b4bb6d548b7e0af0df1e57b17296a7bf9ed47",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/METADATA.patch",
+      "sha256": "5faaf7c9d4757a4bb7efeb550a31fceda7863e52b112a87025190844c290f89d",
+      "type": "blob"
+    },
+    {
+      "bytes": 4172,
+      "git_blob": "c5c671d72279192c058a1dff40b2e69ce66bf95d",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/METADATA_INVERSES.json",
+      "sha256": "9bf69cd84f7fcadd208f1353f5e8509811a966f9adfa9049f55885d19f96d9ac",
+      "type": "blob"
+    },
+    {
+      "bytes": 1958,
+      "git_blob": "8bd13b86e711ccbbfdefb97ecd6d5de2373a3eb9",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/ORIGINAL_VALIDATOR_BODY_PROOF.json",
+      "sha256": "af89c27683d2918d371e62027fe2b1404f1182d7116696a2b785427b593fe92f",
+      "type": "blob"
+    },
+    {
+      "bytes": 3166,
+      "git_blob": "0b638903387adb2a1c5726c566b581946c74d233",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/PEER_SOURCE_REVIEW.json",
+      "sha256": "926b1cca0bde72b6bf4426e9246c6b7c79b3f8babc4ea2c4fca92e518087fdbf",
+      "type": "blob"
+    },
+    {
+      "bytes": 1391,
+      "git_blob": "0c9a243cebbdd130ea4a42c11e6b6b69e9dfbf5a",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/PREPARATION_RESULTS.json",
+      "sha256": "53f5d65ea3c7c2c761ab086d061a57ad5440b3b6b4425bd8f87ec951fd474220",
+      "type": "blob"
+    },
+    {
+      "bytes": 6325,
+      "git_blob": "b10b2ead28f4698ba505ba36831d1d79e993b1da",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/README.md",
+      "sha256": "0438226532cb2f2f8be5bf4bdcebb33d0f49e393b988a608bd3ca84468200f1b",
+      "type": "blob"
+    },
+    {
+      "bytes": 38489,
+      "git_blob": "3c979ff319d8d4a507bef454678b1e442d20b4f0",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/SOURCE_AUTHORITY.json",
+      "sha256": "cac52f4e91a7664fd1b945b83492ea114afbe50fed0e430194a2c6909f2587e4",
+      "type": "blob"
+    },
+    {
+      "bytes": 355184,
+      "git_blob": "c760e43c05300f9b06423ac7e146445bda3be41d",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/BASE_GIT_TREE.json.gz",
+      "sha256": "196bbe02dfa88b2db1d24084af6b6ca3e15804857e1eda704b7947eea8e3cab5",
+      "type": "blob"
+    },
+    {
+      "bytes": 466608,
+      "git_blob": "ef46bcb1c4d7e7085d91b59651ae3aef3418c7f5",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/M_SOURCE_INPUTS.zip",
+      "sha256": "44c7bbe819f85863449f000fce8da723ff3520d394413300e9f596046858d1f1",
+      "type": "blob"
+    },
+    {
+      "bytes": 2614,
+      "git_blob": "94fe1ac4085d9acfff75e5d10d283bd7a6768982",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/attempt1-source--.github--workflows--otzaria-annotation-core194-combined-apple.yml.gz",
+      "sha256": "8443e8e8de829ae53564cf7e4da006f72992b50c40ee3d421f00aac1a3ce5769",
+      "type": "blob"
+    },
+    {
+      "bytes": 14385,
+      "git_blob": "aad36b4a6ee58c784ad226c3f0fe6a04dd86c6f4",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/attempt1-source--Scripts--CI--annotation-combined-core194-apple.inputs.json.gz",
+      "sha256": "e3f6e5840b936c04524b26f3b172dd6d54dfccd9245ea1c4f739a628e9297069",
+      "type": "blob"
+    },
+    {
+      "bytes": 15870,
+      "git_blob": "458c78a13d4611628cfe4d112b89708de540bff6",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/attempt1-source--Scripts--CI--annotation-combined-core194-apple.py.gz",
+      "sha256": "5d20f372de7b7d005f5957c1eb8bda126ee3a986e3ad52e39b986442eb11e78b",
+      "type": "blob"
+    },
+    {
+      "bytes": 8932,
+      "git_blob": "0e011ee6e3ff721460e421a848ee4ca39a21d121",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/attempt1-source--Scripts--CI--test-annotation-combined-core194-apple.py.gz",
+      "sha256": "bc3c7ea9848c868a9850c1ccc03db69ba7bbf5f3798356025177598da86e0c33",
+      "type": "blob"
+    },
+    {
+      "bytes": 1354,
+      "git_blob": "adaa598acb6ca1ebc1a5a98f349c35b24aebe933",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build--controls-attempt1--RESULT.json.gz",
+      "sha256": "fc472972374b08d2ecf1030d83008570b23b7bae9bfaf41d6a707b571165060a",
+      "type": "blob"
+    },
+    {
+      "bytes": 355,
+      "git_blob": "2b1a7197453a8845a79d2e68ca3f74a38e1f6dd5",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build--controls-attempt1--SOURCE.json.gz",
+      "sha256": "74c92479a3f84fdcfd217a88af608d7866251e1476d2cabcc9a4219a97196c36",
+      "type": "blob"
+    },
+    {
+      "bytes": 1366,
+      "git_blob": "8e845e7c59bfcacfec7646be693608c1ee668eb8",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build--controls-attempt2--RESULT.json.gz",
+      "sha256": "f5b26e877b1a3796aaf6a63a38278752d75f2396402345d7c974bc1402ebf947",
+      "type": "blob"
+    },
+    {
+      "bytes": 1436,
+      "git_blob": "162fb0fb2c9241018fd8416b6a9ff881902cd5c3",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build--controls-attempt3--RESULT.json.gz",
+      "sha256": "948918e78b2bd370c5b5532cdeff90889da5884b94364adb92ecb4e437b0132f",
+      "type": "blob"
+    },
+    {
+      "bytes": 1227,
+      "git_blob": "e2f57c8085d38d5e00ad7aa1eab2a5824dd3ee97",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build--original-sql13-attempt1--RESULT.json.gz",
+      "sha256": "335ef05b23c0c743b849a510efe6feeb5c7b6c966fd0d619d9272efc3035b898",
+      "type": "blob"
+    },
+    {
+      "bytes": 1439,
+      "git_blob": "ebb4a9500d1d0a0f71212899476625e881ee477f",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build--original26-attempt1--RESULT.json.gz",
+      "sha256": "3ee56275a182807a5999b73882f12c35b964e3ee333f926e766c2ee8c10a5f9b",
+      "type": "blob"
+    },
+    {
+      "bytes": 4142,
+      "git_blob": "87995569fe0fc53d0bed68a7aea7d4b643d10489",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build--original43-attempt1--RESULT.json.gz",
+      "sha256": "f0d2001cb00cfb949160327ae3c04e0971321e1c3ae3803a413aed3e98d50c2b",
+      "type": "blob"
+    },
+    {
+      "bytes": 1669,
+      "git_blob": "0c1df591b6ae9a5ae1b0ce8d12dccf4652a0217c",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build-controls-attempt1.log.gz",
+      "sha256": "2904d79311c44791016a4b4c7c41c21a740f835e5dacb648071cf5ffc0e5ed3e",
+      "type": "blob"
+    },
+    {
+      "bytes": 1473,
+      "git_blob": "a6078a82a88b48449c10cf5841c5f8fda78a92a3",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build-controls-attempt2.log.gz",
+      "sha256": "89c6f3920013ae52247d9baee4140bfb197e22bf1046f762ac12816ab651f4d2",
+      "type": "blob"
+    },
+    {
+      "bytes": 1544,
+      "git_blob": "3fca984e15f886f1e2a4b3ef212edac030e791c6",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build-controls-attempt3.log.gz",
+      "sha256": "6d201e7b7b7d68d3cea3fe30025bccd0a84250f1f4177976de89c50a35a1f02e",
+      "type": "blob"
+    },
+    {
+      "bytes": 916,
+      "git_blob": "4edcba0e5c7e0ba61db3cdf4043e6fbfd18b79dd",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build-original26-attempt1.log.gz",
+      "sha256": "621e32b9aa086aa7867a153ed7b6398a00daae67863473eb513ff4f8a28915a4",
+      "type": "blob"
+    },
+    {
+      "bytes": 1060,
+      "git_blob": "9e3e8425807cb8471ffffc2d9b13fdf347195064",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build-original43-attempt1.log.gz",
+      "sha256": "4ac5a9ee9e66bd7120ded426c05589339e901ce0306c41be8ccdb982ce81cdcc",
+      "type": "blob"
+    },
+    {
+      "bytes": 444,
+      "git_blob": "0ea93bb8e6f2788f05692cb1ae42f8f57b6a1e76",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build-original_core_driver-attempt1.log.gz",
+      "sha256": "5ae9f1bcbfbd4db299bd134a1726056f0bc9eb4f9c0d8357f66dc7a237494d2a",
+      "type": "blob"
+    },
+    {
+      "bytes": 97,
+      "git_blob": "9660de77373cb9d0e5822fddc751b5dae69d2b00",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/build-original_sql13-attempt1.log.gz",
+      "sha256": "d35273b4e98ee78f005f4ea1aeafdbe7589c48c416d9a1e20042c01a55c8339f",
+      "type": "blob"
+    },
+    {
+      "bytes": 221,
+      "git_blob": "cdb786d0fb2e92d160c3c0101cc4f1c8a0a1af38",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/evidence--PREPARATION_ATTEMPT1.json.gz",
+      "sha256": "50e65559cb0031c2cac2fcd7865c964be57dcf7549f58a5314831a560de7dadc",
+      "type": "blob"
+    },
+    {
+      "bytes": 2100,
+      "git_blob": "d1e716ef9716c470eb7dad94d808d71055cf4ea0",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/raw/evidence--PREPARATION_ATTEMPT1.py.gz",
+      "sha256": "baf881ac59895cab99f0807f7fdb0a5c3f4db236eef2b832ee207ee3a8d47524",
+      "type": "blob"
+    },
+    {
+      "bytes": 19262,
+      "git_blob": "8a51e2b47b0237de65a1702a7ef64645a4ea11f4",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/reference/original-cloud-binding.json",
+      "sha256": "87c20b9a4a394ba30fb49d55f2282c31230c7c6ba93c3e90114c62efc94e258f",
+      "type": "blob"
+    },
+    {
+      "bytes": 5104,
+      "git_blob": "2ae1c3c6ab64cd0ef930fabb186bac61d9e2ad95",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-combined-core194-apple-20261120/verify-prepared-route.py",
+      "sha256": "449c5e1c2ae35fa3daa2fa1a06f53cac2a700bdf504e4d03c7f83f447a24b704",
+      "type": "blob"
+    },
+    {
+      "bytes": 19284,
+      "git_blob": "4a5d1c68082a505f92925490a22c9516d5c970a4",
+      "mode": "100644",
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/compile-types-v3/REPOSITORY_API.json",
+      "sha256": "25393d84b6d5f0e2048ccd6562fe558b6599633d2612877611e11cce820ca5d6",
+      "type": "blob"
+    },
+    {
+      "bytes": 24252,
+      "git_blob": "dc0de14212b41e02f925e023e4a1b44ce4503a5a",
+      "mode": "100644",
+      "path": "tools/hq-annotation-disconnect-acceptance.py",
+      "sha256": "e0d46e6e0a52fe8a9671529f7fa692a990fbfea5e0b5dad24770f4efb5c61cf4",
+      "type": "blob"
+    },
+    {
+      "bytes": 16987,
+      "git_blob": "5d46c7781dd3071a977c737c2810135f920ccad3",
+      "mode": "100644",
+      "path": "tools/hq-cold-search-core-acceptance.py",
+      "sha256": "30f5dd6e564a81f8cda5d345f3981151ef116126b343e8306dee75d6340586aa",
+      "type": "blob"
+    }
+  ],
+  "schema": "sealed-combined-route-packet-v1",
+  "source": "bd855c02fcef94a732f584c5992aeacec6b1b21d"
+}
