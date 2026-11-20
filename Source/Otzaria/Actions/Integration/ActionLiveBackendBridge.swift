@@ -84,7 +84,8 @@ enum ActionLiveBackendBridge {
                 try await EmbeddedActionRPC.validate(ref, invocation: invocation)
             }, embeddedCatalog: { invocation in
                 try await EmbeddedActionRPC.catalog(invocation: invocation)
-            })
+            }, occurrenceReadiness: ActionLiveOccurrenceCounter.readiness,
+               occurrenceCounter: ActionLiveOccurrenceCounter.count)
     }
 }
 
@@ -105,10 +106,9 @@ private enum ActionLiveReadinessProof {
             let url = manager.indexURL(for: path)
             let current = try manager.currentFingerprint(databasePath: path)
             let build = try OtzariaSearchEngineBridge.buildInfo()
-            guard let identity = manager.storedIdentity(indexURL: url),
-                  OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(identity, currentDatabase: current, build: build),
-                  try OtzariaSearchEngineBridge.checkCompatibility(indexURL: url).compatible else { return (true, false, .unavailable) }
+            guard let identity = manager.storedIdentity(indexURL: url) else { return (true, false, .unavailable) }
             var expectedCount: UInt64?
+            var trustedManifest: OtzariaSearchArtifactManifest?
             if OtzariaDatabaseAccessController.shared.source == .managedInternal {
                 guard let databaseBytes = Int64(exactly: current.fileSize) else { return (true, false, .unavailable) }
                 let decoder = JSONDecoder()
@@ -121,7 +121,15 @@ private enum ActionLiveReadinessProof {
                 try OtzariaSearchArtifactPolicy.validate(manifest, database: database,
                     databaseBytes: databaseBytes, build: build)
                 expectedCount = UInt64(exactly: manifest.lexicalArtifact.documentCount)
+                trustedManifest = manifest
             } else if identity.database != current { return (true, false, .unavailable) }
+            // A directional read contract needs the independently validated
+            // original producer manifest before the existing identity check.
+            guard OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(identity,
+                      currentDatabase: current, build: build, trustedManifest: trustedManifest),
+                  try OtzariaSearchEngineBridge.checkCompatibility(indexURL: url).compatible else {
+                return (true, false, .unavailable)
+            }
             let count = OtzariaTantivySearchRepository.shared.observedOpenIndexDocumentCount(databasePath: path)
             guard profile == OtzariaDataProfileRegistry.activeProfileID,
                   path == OtzariaMaktabahBridge.shared.databasePath else { return (true, false, .unknown) }

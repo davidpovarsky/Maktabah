@@ -1,0 +1,45 @@
+{
+  "model_inputs": [
+    {
+      "path": "Source\\Otzaria\\Search\\Distribution\\OtzariaSearchArtifactManifest.swift",
+      "sha256": "770a6f0f8e5752049fd2c98171d7698ea5b91aa3d87d5fb5f08833f2579591e5"
+    },
+    {
+      "path": "Source\\Otzaria\\Bootstrap\\OtzariaDatabaseDownloadModels.swift",
+      "sha256": "5f25f7fa325ba27cc58fd631ef252cd8e08407f47e1a9dc74d653911893e662c"
+    },
+    {
+      "path": "build\\occurrence-app-20261120\\manifest-canonical\\ProfileBoundary.swift",
+      "sha256": "cc67af0085af1d4df1bb117329c93c4c36da710ae218e711d026fa037dc41a7c"
+    },
+    {
+      "path": "build\\occurrence-app-20261120\\manifest-canonical\\CanonicalManifest.swift",
+      "sha256": "dc8d2b5ccada9a48ce322d8feb713c3bb7fdd51cefbd5ed4a4274be201c28e38"
+    }
+  ],
+  "compile_exit": 0,
+  "duration_seconds": 53.81032872200012,
+  "manifests": [
+    {
+      "profile": "miniTest10-v6",
+      "raw_sha256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+      "typed_sha256": "63fdf6750863292061ec1a4f73072355cf8f92c2a64ec7029b1ca895bb3135de",
+      "typed_bytes": 3535,
+      "artifact_identity": "08a5ddf76ae187e3ca29c1b483637f1dc8e2a2dcb7001cdb7fe3327236234e83",
+      "database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+      "documents": 18879,
+      "stdout": "canonical_typed_manifest_bytes=3535 artifact=08a5ddf76ae187e3ca29c1b483637f1dc8e2a2dcb7001cdb7fe3327236234e83"
+    },
+    {
+      "profile": "full-v32",
+      "raw_sha256": "34319ced48e76f22a5ae2df23745a03332160ddab2dd64244a5c917e0ce00a57",
+      "typed_sha256": "c8c2a35a86bae5bf9012c71ac027078a25a5ff8ef584547965ad6ef41cd4db9f",
+      "typed_bytes": 5520,
+      "artifact_identity": "102293b3a63c7f73fa05298457073804e57e020486753f8f6b8f7964ce29f17e",
+      "database_sha256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765",
+      "documents": 7080797,
+      "stdout": "canonical_typed_manifest_bytes=5520 artifact=102293b3a63c7f73fa05298457073804e57e020486753f8f6b8f7964ce29f17e"
+    }
+  ],
+  "scope": "complete original Codable models, actual Swift JSONEncoder sortedKeys+withoutEscapingSlashes; semantic content pins, not original raw JSON hashes; no artifact qualification asserted"
+}

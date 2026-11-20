@@ -1,0 +1,41 @@
+{
+  "scope": "syntax only; not typecheck, XCTest, runtime or Apple",
+  "files": [
+    {
+      "file": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+      "sha256": "80f10260cff6dc026a1ef07a5d07e9afac178ecb575fccd8d7223683865e551f",
+      "parse_exit": 0,
+      "diagnostics": ""
+    },
+    {
+      "file": "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift",
+      "sha256": "adb28e0c298e24d12f53ade035d8d6f3f1026b77dadc17938fdc0925738d4abc",
+      "parse_exit": 0,
+      "diagnostics": ""
+    },
+    {
+      "file": "Source/Otzaria/Actions/Integration/ActionOccurrenceCoveragePolicy.swift",
+      "sha256": "7639a143299383ff9bce06f942f5fa8fd7c720d5c3c5fbe8a9fd2092eb20a48e",
+      "parse_exit": 0,
+      "diagnostics": ""
+    },
+    {
+      "file": "Source/Otzaria/Actions/Integration/ActionLiveOccurrenceCounter.swift",
+      "sha256": "01474a222c9badb16d828254e2f245840366c85cf299ed5d044e5c5e584236e0",
+      "parse_exit": 0,
+      "diagnostics": ""
+    },
+    {
+      "file": "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift",
+      "sha256": "d5b2c7cc4de30f0dd579a0193682bcce64a00604454de85176d21aa983f1c89e",
+      "parse_exit": 0,
+      "diagnostics": ""
+    },
+    {
+      "file": "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift",
+      "sha256": "482b266edf323ac49c8d9068ec6474f62e6c0e9fc0d859b1654a54eb9fc53598",
+      "parse_exit": 0,
+      "diagnostics": ""
+    }
+  ]
+}

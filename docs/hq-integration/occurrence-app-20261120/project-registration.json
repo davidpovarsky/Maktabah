@@ -1,0 +1,84 @@
+{
+  "files": [
+    {
+      "file": "Search/OtzariaExactOccurrenceModels.swift",
+      "file_reference": "F3D4379F1684D2EC923A5F45",
+      "build_reference": "621609BD78BD7727EF7ABCE8",
+      "existing_target_anchor": "4F8A0BC7E981AEBBFFB4825A"
+    },
+    {
+      "file": "Search/OtzariaExactOccurrenceModels.swift",
+      "file_reference": "F3D4379F1684D2EC923A5F45",
+      "build_reference": "1ECEA89930E2CB726019F133",
+      "existing_target_anchor": "A94DBD84766950781F6B9DE1"
+    },
+    {
+      "file": "Search/OtzariaExactOccurrenceModels.swift",
+      "file_reference": "F3D4379F1684D2EC923A5F45",
+      "build_reference": "0D322D1D9F633A1AFE401074",
+      "existing_target_anchor": "1B3CB8CCEBD0480AC2E676CB"
+    },
+    {
+      "file": "Search/OtzariaExactOccurrenceOperation.swift",
+      "file_reference": "50DAE20D05123E43D5D4AC0E",
+      "build_reference": "FF6F2C5D88653B72B6978794",
+      "existing_target_anchor": "4F8A0BC7E981AEBBFFB4825A"
+    },
+    {
+      "file": "Search/OtzariaExactOccurrenceOperation.swift",
+      "file_reference": "50DAE20D05123E43D5D4AC0E",
+      "build_reference": "77626BD0CAC8E2428A88F0BB",
+      "existing_target_anchor": "A94DBD84766950781F6B9DE1"
+    },
+    {
+      "file": "Search/OtzariaExactOccurrenceOperation.swift",
+      "file_reference": "50DAE20D05123E43D5D4AC0E",
+      "build_reference": "BA9022BBA589D9AB7CB55EF6",
+      "existing_target_anchor": "1B3CB8CCEBD0480AC2E676CB"
+    },
+    {
+      "file": "Actions/Integration/ActionOccurrenceCoveragePolicy.swift",
+      "file_reference": "D0484FE7FC64F330F16C8C5A",
+      "build_reference": "94A3D0C76D647D289B857109",
+      "existing_target_anchor": "4F8A0BC7E981AEBBFFB4825A"
+    },
+    {
+      "file": "Actions/Integration/ActionOccurrenceCoveragePolicy.swift",
+      "file_reference": "D0484FE7FC64F330F16C8C5A",
+      "build_reference": "6D689CE9D7D7418D5F23E4DF",
+      "existing_target_anchor": "A94DBD84766950781F6B9DE1"
+    },
+    {
+      "file": "Actions/Integration/ActionOccurrenceCoveragePolicy.swift",
+      "file_reference": "D0484FE7FC64F330F16C8C5A",
+      "build_reference": "F904F00CC96FE017113ADD55",
+      "existing_target_anchor": "1B3CB8CCEBD0480AC2E676CB"
+    },
+    {
+      "file": "Actions/Integration/ActionLiveOccurrenceCounter.swift",
+      "file_reference": "DF1DBD3D3E948B3DD85ABEC2",
+      "build_reference": "D2F86FB13C3717CFF8A90CF5",
+      "existing_target_anchor": "4F8A0BC7E981AEBBFFB4825A"
+    },
+    {
+      "file": "Actions/Integration/ActionLiveOccurrenceCounter.swift",
+      "file_reference": "DF1DBD3D3E948B3DD85ABEC2",
+      "build_reference": "AB5F4859B86BDD4C5689FBE1",
+      "existing_target_anchor": "A94DBD84766950781F6B9DE1"
+    },
+    {
+      "file": "Actions/Integration/ActionLiveOccurrenceCounter.swift",
+      "file_reference": "DF1DBD3D3E948B3DD85ABEC2",
+      "build_reference": "CD43474CAD4598816EBBACB7",
+      "existing_target_anchor": "1B3CB8CCEBD0480AC2E676CB"
+    }
+  ],
+  "baseline_duplicate_matches_unchanged": {
+    "240682637A5169A63619E577": 2,
+    "FB254BD29A50C530E907662A": 2,
+    "FDB5242B5960EB1507BD74A6": 2,
+    "3373C7B02164CDBB77BFFF48": 2,
+    "C2CCE35AFE445BF8BEF37C5F": 2
+  },
+  "earlier_overbroad_assertion": "detected only existing IDs; no duplicate introduced"
+}
