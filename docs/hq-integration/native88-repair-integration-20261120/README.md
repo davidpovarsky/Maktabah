@@ -9,3 +9,7 @@ The immutable b07 Native92 and Release96 requests were cancelled only after exac
 The runtime27 exact R27 test-file pin now matches the authenticated canonical Git LF bytes of the compact-window repair (53f9db5...). The earlier d4ff fingerprint remains in historical evidence. No hash comparison was removed, no oracle replaced, no case dropped.
 
 The six relevant Asana tasks were updated and retained OPEN. The receipt contains result/readback metadata, including correction of the human-readable timestamp to the actual update minute. GlobalHistory and Notes still require actual Native diagnosis; the normal iOS Inspector standalone hang remains a separate investigation.
+
+## Complete-scope result classification
+
+The actual contract now contains 9 original plus 83 supplemental cases. The result label previously compared the selected set only with the 9 original rows, so an entirely successful 92-case run would still be labeled as a subset. The label now compares with both lists, matching the existing group/collection schema. An explicit diagnostic flag always keeps the subset label, even if it selects all 92. Every exit/count/fail/skip guard is byte-preserved. Four actual-AST classification controls use the real 92-case contract and selected subsets; these are metadata tests only, with zero Native executions. The original R27 and Release case declarations, selections and oracles are untouched.

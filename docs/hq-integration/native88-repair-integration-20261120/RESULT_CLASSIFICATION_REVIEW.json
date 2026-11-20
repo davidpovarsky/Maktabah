@@ -1,0 +1,50 @@
+{
+  "recorded_at_utc": "2026-11-20T06:58:17.069981+00:00",
+  "original_cases": 9,
+  "supplemental_cases": 83,
+  "full_count": 92,
+  "classification_controls": [
+    {
+      "case": "complete92",
+      "selected": 92,
+      "diagnostic_only": false,
+      "expected_label": "EXECUTED_PASS",
+      "original_label": "SELECTED_UI_EXECUTED_PASS",
+      "candidate_label": "EXECUTED_PASS",
+      "candidate_pass": true
+    },
+    {
+      "case": "focused13",
+      "selected": 13,
+      "diagnostic_only": true,
+      "expected_label": "SELECTED_UI_EXECUTED_PASS",
+      "original_label": "SELECTED_UI_EXECUTED_PASS",
+      "candidate_label": "SELECTED_UI_EXECUTED_PASS",
+      "candidate_pass": true
+    },
+    {
+      "case": "diagnostic_all92",
+      "selected": 92,
+      "diagnostic_only": true,
+      "expected_label": "SELECTED_UI_EXECUTED_PASS",
+      "original_label": "SELECTED_UI_EXECUTED_PASS",
+      "candidate_label": "SELECTED_UI_EXECUTED_PASS",
+      "candidate_pass": true
+    },
+    {
+      "case": "incomplete91",
+      "selected": 91,
+      "diagnostic_only": false,
+      "expected_label": "SELECTED_UI_EXECUTED_PASS",
+      "original_label": "SELECTED_UI_EXECUTED_PASS",
+      "candidate_label": "SELECTED_UI_EXECUTED_PASS",
+      "candidate_pass": true
+    }
+  ],
+  "controls_passed": 4,
+  "controls_failed": 0,
+  "inverse_restores_original_exactly": true,
+  "all_native_exit_pass_fail_skip_guards_unchanged": true,
+  "native_executed": 0,
+  "boundary": "Actual result-label AST on real contract selections only; no simulated XCTest results and no runtime acceptance"
+}

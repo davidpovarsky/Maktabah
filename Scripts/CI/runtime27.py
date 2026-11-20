@@ -370,8 +370,8 @@ def main():
         if code or report["executed_ui_pass"] != expected_count or report["executed_ui_fail"] or report["executed_ui_skip"]:
             raise RuntimeError("Required real UI subset failed, skipped or did not completely execute")
         selected = {identity for group in groups for identity in group["case_ids"]}
-        full_phase = {case["case_id"] for case in contract["cases"]}
-        report["status"] = "EXECUTED_PASS" if selected == full_phase else "SELECTED_UI_EXECUTED_PASS"
+        full_phase = {case["case_id"] for case in contract["cases"] + contract.get("supplemental_cases", [])}
+        report["status"] = "EXECUTED_PASS" if selected == full_phase and not contract.get("diagnostic_only", False) else "SELECTED_UI_EXECUTED_PASS"
         return 0
     except KeyboardInterrupt as error:
         controller.mark_interrupted(error)
