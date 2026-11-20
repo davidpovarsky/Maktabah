@@ -47,6 +47,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let epoch: StudyWorkspaceMappingEpoch
         let projection: StudyWorkspaceMappingProjection
         let readerContent: ActionReaderDestination?
+        let currentWorkReadSource: MaktabahNativeSceneProjection.HanlinCurrentWorkReadSource?
         let selectedRange: UIUTF16Range?
         let locale: String
     }
@@ -432,12 +433,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let (_, entry, active) = try hanlinRegistration(for: session.context)
         guard active.session == session, entry.managerID == ObjectIdentifier(manager) else { throw HanlinHostError.staleContext }
         guard active.observed.backend.backend == .otzaria,
-              let content = active.observed.readerContent,
-              let tabID = active.observed.projection.activeTabID, manager.activeTabId == tabID else { return nil }
+              let source = active.observed.currentWorkReadSource,
+              let tabID = active.observed.projection.activeTabID, manager.activeTabId == tabID,
+              let mapped = active.observed.projection.targets[tabID],
+              mapped.backend == .otzaria, mapped.readerOwner == source.readerOwner else { return nil }
         let tabs = manager.openTabs.filter { $0.id == tabID }
-        guard tabs.count == 1, let tab = tabs.first,
+        guard tabs.count == 1, let tab = tabs.first, ObjectIdentifier(tab.viewModel) == source.readerOwner,
               let locator = tab.book.backendLocator, locator.backend == .otzaria,
-              locator.workKey == content.sectionLocator.workKey else { return nil }
+              mapped.bookID == tab.book.id, mapped.workKey == locator.workKey,
+              locator.workKey == source.loaded.sectionLocator.workKey else { return nil }
         return try .init(workRef: .init(backend: .otzaria, workKey: locator.workKey), title: tab.book.title)
     }
 
@@ -500,6 +504,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
         return .init(backend: snapshot, source: ObjectIdentifier(mapping.source),
             epoch: mapping.epoch, projection: mapping.projection, readerContent: content,
+            currentWorkReadSource: try entry.session.hanlinCurrentWorkReadSource(),
             selectedRange: try entry.session.hanlinSelectionRange(), locale: Locale.current.identifier)
     }
 

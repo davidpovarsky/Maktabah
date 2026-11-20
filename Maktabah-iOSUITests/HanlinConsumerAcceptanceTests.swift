@@ -205,12 +205,52 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
         let originalText = try XCTUnwrap(app.textViews["reader-text"].value as? String)
         let originalOwner = try originalWorkspaceOwner()
         let expectedTitle = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
-        let launchID = isPad ? "otzaria-hanlin-reader-launch" : "otzaria-hanlin-global-launch"
+        let launchID = "otzaria-hanlin-reader-launch"
         func tap(_ element: XCUIElement) {
             XCTAssertTrue(element.waitForExistence(timeout: 30))
             XCTAssertTrue(element.isHittable, "Use the real native control")
             element.tap()
         }
+        func openChatFromOriginalReader() throws {
+            let direct = app.buttons.matching(identifier: launchID)
+            let overflow = app.navigationBars.buttons.matching(identifier: "TopOverflowBarButtonItem")
+            func visible(_ query: XCUIElementQuery) -> [XCUIElement] {
+                query.allElementsBoundByIndex.filter {
+                    $0.exists && $0.isHittable && !$0.frame.isEmpty
+                        && app.frame.intersection($0.frame).width > 1
+                        && app.frame.intersection($0.frame).height > 1
+                }
+            }
+            let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                MainActor.assumeIsolated { !visible(direct).isEmpty || !visible(overflow).isEmpty }
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed)
+            var actions = visible(direct)
+            if actions.isEmpty {
+                let nativeOverflow = visible(overflow)
+                guard nativeOverflow.count == 1 else {
+                    XCTFail("Expected one original reader toolbar overflow")
+                    throw NSError(domain: "HanlinNativeConsent", code: 1)
+                }
+                nativeOverflow[0].tap()
+                // UIKit may surface an original toolbar action by its source
+                // label inside the menu. This fallback exists only after the
+                // exact native overflow was opened, with a unique hittable item.
+                let menuAction = app.buttons.matching(NSPredicate(
+                    format: "identifier == %@ OR label == %@", launchID, "Study chat"))
+                let appeared = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                    MainActor.assumeIsolated { !visible(menuAction).isEmpty }
+                }, object: nil)
+                XCTAssertEqual(XCTWaiter.wait(for: [appeared], timeout: 10), .completed)
+                actions = visible(menuAction)
+            }
+            guard actions.count == 1 else {
+                XCTFail("Expected one original reader Study chat action")
+                throw NSError(domain: "HanlinNativeConsent", code: 2)
+            }
+            actions[0].tap()
+        }
+
         func closeChat() {
             let close = app.buttons["otzaria-hanlin-close"]
             tap(close)
@@ -229,7 +269,7 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
                 predicate: NSPredicate(format: "value == %@", draft), object: editor)], timeout: 20), .completed)
         }
 
-        tap(app.buttons[launchID])
+        try openChatFromOriginalReader()
         let consent = app.switches["otzaria-hanlin-allow-current-book"]
         XCTAssertTrue(consent.waitForExistence(timeout: 20))
         XCTAssertEqual(consent.value as? String, "0")
@@ -243,7 +283,7 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
         closeChat()
 
         // Reopen the exact saved SDK conversation through its existing history UI.
-        tap(app.buttons[launchID])
+        try openChatFromOriginalReader()
         tap(app.buttons["otzaria-hanlin-history"])
         let rows = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "otzaria-hanlin-saved-"))
         XCTAssertEqual(rows.count, 1)

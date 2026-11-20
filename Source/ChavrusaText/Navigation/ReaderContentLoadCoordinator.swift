@@ -67,6 +67,15 @@ final class ReaderContentLoadCoordinator: @unchecked Sendable {
         return token
     }
 
+    /// Read the existing immutable request identity under the same lock used by
+    /// begin/invalidate. Consumers can detect same-work reload/ABA without a
+    /// second generation counter or a change to content publication semantics.
+    func currentRequestToken() -> ReaderContentRequestToken? {
+        lock.lock()
+        defer { lock.unlock() }
+        return activeToken
+    }
+
     /// Verifies whether the provided token is still the active, non-superseded load request.
     func isTokenActive(_ token: ReaderContentRequestToken) -> Bool {
         lock.lock()

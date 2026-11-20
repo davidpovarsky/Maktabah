@@ -573,6 +573,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             searchFieldAvailable: searchFieldAvailable, inspectorAvailable: inspectorAvailable,
             witnessedInspectorVisible: inspectorWitnessed ? true : reader?.state.inspectorVisible)
     }
+    /// Independent source identity for the explicit current-work consent offer;
+    /// this does not relax the native route's surface or visibility receipt.
+    func hanlinCurrentWorkReadSource() throws -> MaktabahNativeSceneProjection.HanlinCurrentWorkReadSource? {
+        try project().hanlinCurrentWorkReadSource()
+    }
     /// A freshness facet from the existing scene projection; no selected text or content grant.
     func hanlinSelectionRange() throws -> UIUTF16Range? { try project().identity().selectedRange }
     func ownsInspectorReader(_ reader: ReaderViewModel) -> Bool {

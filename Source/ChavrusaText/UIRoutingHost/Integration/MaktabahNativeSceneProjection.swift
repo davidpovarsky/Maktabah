@@ -131,6 +131,62 @@ struct MaktabahNativeSceneProjection {
         }
     }
 
+    /// Read metadata from the exact loaded original Reader for a bounded user
+    /// consent offer. This is independent of the stricter native-route receipt:
+    /// Otzaria may load the containing unit for an exact requested source line.
+    struct HanlinCurrentWorkReadSource: Equatable {
+        let readerOwner: ObjectIdentifier
+        let requestToken: ReaderContentRequestToken
+        let requested: LibraryReaderDestination
+        let loaded: LibraryReaderDestination
+    }
+
+    func hanlinCurrentWorkReadSource() throws -> HanlinCurrentWorkReadSource? {
+        try Task.checkCancellation()
+        guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer,
+              BackendCoordinator.shared.activeBackendID == .otzaria,
+              let activeID = manager.activeTabId else { return nil }
+        let tabs = manager.openTabs.filter { $0.id == activeID }
+        guard tabs.count == 1, let tab = tabs.first,
+              MaktabahApp.isIpad || manager.selectedBook === tab.book,
+              let book = tab.book.backendLocator, book.backend == .otzaria,
+              tab.viewModel.currentBook?.id == tab.book.id,
+              tab.viewModel.currentBook?.backendLocator == book,
+              case .loaded = tab.viewModel.state,
+              let requested = tab.viewModel.currentDestination,
+              requested.sectionLocator.backend == book.backend,
+              requested.sectionLocator.workKey == book.workKey,
+              let section = tab.viewModel.backendSection,
+              section.locator.backend == book.backend, section.locator.workKey == book.workKey,
+              let render = tab.viewModel.backendRenderModel, !render.text.isEmpty,
+              (render.text as NSString).isEqual(to: tab.viewModel.contentText),
+              let token = tab.viewModel.contentLoadCoordinator.currentRequestToken(),
+              token.backend == book.backend, token.workKey == book.workKey,
+              token.sectionLocator == requested.sectionLocator,
+              section.segments.allSatisfy({
+                  $0.locator.backend == book.backend && $0.locator.workKey == book.workKey
+              }) else { return nil }
+
+        func containsRenderedSource(_ locator: TextLocator) -> Bool {
+            let source = section.segments.filter { $0.locator == locator }
+            let rendered = render.renderedSegments.filter { $0.locator == locator }
+            return source.count == 1 && rendered.count == 1
+                && rendered[0].segment == source[0] && rendered[0].visualRange.length > 0
+        }
+        if requested.sectionLocator != section.locator {
+            guard case .legacyLine(let requestedLine) = requested.sectionLocator.position, requestedLine >= 0,
+                  case .legacyLine(let loadedLine) = section.locator.position, loadedLine >= 0,
+                  containsRenderedSource(requested.sectionLocator) else { return nil }
+        }
+        if let focus = requested.focusLocator {
+            guard focus.backend == book.backend, focus.workKey == book.workKey,
+                  containsRenderedSource(focus) else { return nil }
+        }
+        guard tab.viewModel.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: book) else { return nil }
+        return .init(readerOwner: ObjectIdentifier(tab.viewModel), requestToken: token, requested: requested,
+            loaded: .init(sectionLocator: section.locator, focusLocator: requested.focusLocator))
+    }
+
     /// Independently read the original rendered view. NativeSurfaceWitness
     /// separately proves container visibility, presentation and scene ownership.
     func hasRenderedReaderEvidence(sceneID: UIStableID) -> Bool {
