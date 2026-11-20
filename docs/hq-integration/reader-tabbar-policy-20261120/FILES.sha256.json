@@ -1,0 +1,35 @@
+{
+  "basis": "Exact staged Git blobs; this manifest excludes itself",
+  "files": [
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "bytes": 21324,
+      "sha256": "2297c3ce7bc5b29613688e34670af94a56d0513672414f61863e485e2a42219e"
+    },
+    {
+      "path": "docs/hq-integration/reader-tabbar-policy-20261120/EVIDENCE.json",
+      "bytes": 8542,
+      "sha256": "3380bf56358a170e4e8b94a117ced6b4d952b56ee2bfa1b3b2e9b8e4eeadf26a"
+    },
+    {
+      "path": "docs/hq-integration/reader-tabbar-policy-20261120/PAIRED_CAPTURE_REFERENCES.json",
+      "bytes": 2346,
+      "sha256": "42e028a8bfbc83f4cb594e7baec4e9e8d90722547ee59105180300442a5ab6a1"
+    },
+    {
+      "path": "docs/hq-integration/reader-tabbar-policy-20261120/README.md",
+      "bytes": 4186,
+      "sha256": "54680cdd58d613273afb4b485f3573a919acec24346ab2dc3d88f2852e13548f"
+    },
+    {
+      "path": "docs/hq-integration/reader-tabbar-policy-20261120/SOURCE_COMPARISON.json",
+      "bytes": 818,
+      "sha256": "0bbf6454105cedd89086b5537c0ea365683341e49d4bd95ff1fba80d99165bd0"
+    },
+    {
+      "path": "docs/hq-integration/reader-tabbar-policy-20261120/VALIDATION.json",
+      "bytes": 1002,
+      "sha256": "c1dbd06bb87ea084b389a0fb16470cda30240c4d7f9d799434e2c3e305407d08"
+    }
+  ]
+}

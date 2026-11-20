@@ -161,7 +161,13 @@ struct iPadLayout: View {
         .background(Color.appBackground.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
         .environment(\.chavrusaReaderNavigationChromeVisible, sidebar.navigationChrome.isVisible)
-        .toolbarVisibility(sidebar.navigationChrome.isVisible ? .visible : .hidden, for: .tabBar)
+        // Reader chrome must not set the enclosing TabView policy for another global tab.
+        .toolbarVisibility(
+            selectedTab == .viewer
+                ? (sidebar.navigationChrome.isVisible ? .visible : .hidden)
+                : .automatic,
+            for: .tabBar
+        )
         .background {
             ReaderSceneIdentityReader(
                 observeWindow: { owner, window in

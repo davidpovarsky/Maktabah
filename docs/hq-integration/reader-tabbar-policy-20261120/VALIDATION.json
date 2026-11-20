@@ -1,0 +1,20 @@
+{
+  "startedUTC": "2026-11-20T08:13:21.616997+00:00",
+  "finishedUTC": "2026-11-20T08:13:21.872598+00:00",
+  "durationSeconds": 0.25,
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-frontend",
+    "-parse",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\Source\\UI\\iOS\\Views\\iPadLayout.swift"
+  ],
+  "compilerVersion": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "",
+  "normalizedSourceSHA256": "2297c3ce7bc5b29613688e34670af94a56d0513672414f61863e485e2a42219e",
+  "validationScope": "Whole original iPadLayout syntax parse only; no SwiftUI module typecheck and no Native execution",
+  "appleSDKTypecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "newBehaviorUnitTests": "NOT_RUN: actual display behavior remains reserved for unchanged Native cases; no implementation-mirroring mocks"
+}

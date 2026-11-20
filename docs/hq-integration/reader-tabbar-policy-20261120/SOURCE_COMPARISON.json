@@ -1,0 +1,18 @@
+{
+  "observedAtUTC": "2026-11-20T08:12:30.358470+00:00",
+  "baselineHEAD": "33fad8b4767d6c242fc4b9b15e2d346eacb741e3",
+  "historicalAppSource": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "integratedComparisonSource": "a68b79e2f5b93ee59ffc33f70d34f1bb8a3ddef3",
+  "source": "Source/UI/iOS/Views/iPadLayout.swift",
+  "historicalAndIntegratedAndOwnBaselineExact": true,
+  "beforeSHA256": "2be4758ac9cd189d5854c88badf0c57af1ae43777ad1aae387fe3175575ea849",
+  "afterSHA256": "2297c3ce7bc5b29613688e34670af94a56d0513672414f61863e485e2a42219e",
+  "exactSingleReplacementInverseRestoresEntireFile": true,
+  "changedProductionFiles": [
+    "Source/UI/iOS/Views/iPadLayout.swift"
+  ],
+  "otherProductionChanges": false,
+  "nativeAcceptance": "NOT_RUN",
+  "appleTypecheck": "NOT_RUN",
+  "freeDiskBytesObserved": 12360011776
+}

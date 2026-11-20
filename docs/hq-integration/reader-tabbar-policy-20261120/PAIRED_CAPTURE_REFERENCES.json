@@ -1,0 +1,46 @@
+{
+  "evidenceCommit": "f2a4eef9004710be8040e183d8713dc28f73c2c7",
+  "files": [
+    {
+      "path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/0480EF09-3546-4615-B854-58523D140C2C.png",
+      "gitBlobBytes": 155492,
+      "sha256": "82341063fc27c841809e50cabbc02d95ccdb1f952a187376d5b3056b8110303d"
+    },
+    {
+      "path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/14DD56F6-A9C4-4237-B923-5CA434B9B671.png",
+      "gitBlobBytes": 169034,
+      "sha256": "c2a8a974dc581801adfba926b9294fe4b9a252adde3d0e8fbe7c2e1ddba14cd7"
+    },
+    {
+      "path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/37F830E9-C873-47D2-BCF2-374C8AA6D511.png",
+      "gitBlobBytes": 217175,
+      "sha256": "40c5e05dc82a9a834ed2501619eba38dbc746e447584d50faad17155fd903174"
+    },
+    {
+      "path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/4A89F386-AC6D-45CF-AA1C-F5FD391F62E1.txt.gz",
+      "gitBlobBytes": 1676,
+      "sha256": "b44b2f9ffed250e89c2c1aae08460cfad0d625cf899aeb976edc575f2814b21d"
+    },
+    {
+      "path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/4E73FF3A-2611-4DCF-91A0-5D00BA3080D5.png",
+      "gitBlobBytes": 217517,
+      "sha256": "d6f026fc761d876fc92f4dbd790c3565deea97bce1ed9f34df2de86272513d75"
+    },
+    {
+      "path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/541EAC01-ACDC-4A96-9BC2-F6BF28A4B6DA.txt.gz",
+      "gitBlobBytes": 1650,
+      "sha256": "c3105629067f982d9d7dd13406e5255cacdb095154799c2be3f0ab20fbe8b58b"
+    },
+    {
+      "path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/5A77BF50-5D05-4CC7-AE44-A6192E5BA7D4.txt.gz",
+      "gitBlobBytes": 2988,
+      "sha256": "d555300ebbdfe478c86bb825a03a7ed17a44721c49613d7ac9f12b277ac7ef2f"
+    },
+    {
+      "path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/C53E3F98-6D90-46D0-9591-236DE62275DD.txt.gz",
+      "gitBlobBytes": 2962,
+      "sha256": "21d4ed949a42fe218ce83c930b43ea5041d3f4ba6013a67bb2efea4d5f97a58b"
+    }
+  ],
+  "duplicateCaptureCopiesCreated": false
+}
