@@ -11,8 +11,10 @@ struct BoundaryRoute: Equatable, ExpressibleByStringLiteral {
     init(stringLiteral value: String) { destination = .init(rawValue: value) }
 }
 struct UIUTF16Range: Equatable { let location: Int; let length: Int }
-struct StudyWorkspaceMappingEpoch: Equatable { let value: UInt64 }
-struct StudyWorkspaceMappingProjection: Equatable { let revision: UInt64 }
+// The app backend enum is a boundary; the three mapping value declarations and
+// their synthesized equality are copied verbatim from the original app source.
+typealias BackendID = ActionBackendID
+/* ORIGINAL_MAPPING_TYPES */
 enum MaktabahNativeSceneProjection {
     struct HanlinCurrentWorkReadSource: Equatable { let revision: UInt64 }
 }
@@ -85,6 +87,13 @@ enum ControlFailure: Error { case failed(String) }
     private let otherManager = BoundaryIdentity()
     private let sourceA = BoundaryIdentity()
     private let sourceB = BoundaryIdentity()
+    private let readerA = BoundaryIdentity()
+    private let readerB = BoundaryIdentity()
+    private let epochSourceID = UUID(uuidString: "00000000-0000-0000-0000-000000000001")!
+    private let profileID = UUID(uuidString: "00000000-0000-0000-0000-000000000002")!
+    private let groupID = UUID(uuidString: "00000000-0000-0000-0000-000000000003")!
+    private let tabID = UUID(uuidString: "00000000-0000-0000-0000-000000000004")!
+    private let otherID = UUID(uuidString: "00000000-0000-0000-0000-000000000005")!
     private let scene = UIStableID(rawValue: "boundary-scene")
     private let base = ActionTextRef(backend: .otzaria, workKey: "book:1", position: .legacyLine(1))
     private let section = ActionTextRef(backend: .otzaria, workKey: "book:2", position: .legacyLine(20))
@@ -93,13 +102,30 @@ enum ControlFailure: Error { case failed(String) }
         .init(subjectID: "boundary-navigation", origin: .inApp,
               allowedBackends: [.otzaria], scopes: [.discovery, .navigation], foregroundSceneID: scene.rawValue)
     }
-    private func observation(epoch: UInt64 = 1, projection: UInt64 = 1, source: ObjectIdentifier? = nil,
+    private func mappingProjection(version: UInt64 = 1, profile: UUID? = nil, group: UUID? = nil,
+                                   profiles: Set<UUID>? = nil, groups: Set<UUID>? = nil,
+                                   active: UUID? = nil, clearActive: Bool = false,
+                                   target: StudyWorkspaceMappingTarget? = nil,
+                                   additionalTarget: Bool = false) -> StudyWorkspaceMappingProjection {
+        let actualTarget = target ?? .init(backend: .otzaria, bookID: Int(version),
+            workKey: "book:\(version)", readerOwner: ObjectIdentifier(readerA))
+        var targets = [tabID: actualTarget]
+        if additionalTarget { targets[otherID] = actualTarget }
+        return .init(profileID: profile ?? profileID, groupID: group ?? groupID,
+            profileIDs: profiles ?? [profileID], groupIDs: groups ?? [groupID],
+            activeTabID: clearActive ? nil : (active ?? tabID), targets: targets)
+    }
+    private func observation(epoch: UInt64 = 1, epochSource: UUID? = nil, projection: UInt64 = 1,
+                             actualProjection: StudyWorkspaceMappingProjection? = nil, source: ObjectIdentifier? = nil,
                              reader: ActionReaderDestination? = nil, range: UIUTF16Range? = nil,
-                             locale: String = "he", readRevision: UInt64 = 1) -> HanlinSourceObservation {
+                             locale: String = "he", readRevision: UInt64 = 1,
+                             hideReader: Bool = false, hideWorkSource: Bool = false) -> HanlinSourceObservation {
         .init(backend: backend.current, source: source ?? ObjectIdentifier(sourceA),
-              epoch: .init(value: epoch), projection: .init(revision: projection),
-              readerContent: reader ?? .init(sectionLocator: base),
-              currentWorkReadSource: .init(revision: readRevision), selectedRange: range, locale: locale)
+              epoch: .init(sourceID: epochSource ?? epochSourceID, revision: epoch),
+              projection: actualProjection ?? mappingProjection(version: projection),
+              readerContent: hideReader ? nil : (reader ?? .init(sectionLocator: base)),
+              currentWorkReadSource: hideWorkSource ? nil : .init(revision: readRevision),
+              selectedRange: range, locale: locale)
     }
     private func setup() -> SemanticJourneyOwner {
         let observed = observation()
@@ -124,7 +150,9 @@ enum ControlFailure: Error { case failed(String) }
     }
     private func searchReceipt(for owner: SemanticJourneyOwner) -> UISceneReceipt {
         contexts[scene] = owner.context
-        sourceObservation = observation(epoch: 2, projection: 2)
+        // The original currentMode/global tab switch is absent from the mapping
+        // projection. Search hides Viewer metadata; it cannot change its owner.
+        sourceObservation = observation(hideReader: true, hideWorkSource: true)
         directory.visibleRoute = "native.search.results"
         return .init(sceneID: scene, backendSnapshot: backend.current, coreReceipt: nil,
                      appliedSceneRevision: 9, route: "native.search.results")
@@ -258,6 +286,53 @@ enum ControlFailure: Error { case failed(String) }
                 try controls.refused { try f.advanceSemanticSearchJourney(owner, receipt: receipt) }
                 try controls.require(owner.observation == original)
             }
+        }
+        for (name, mutate) in [
+            ("search_source_epoch_revision_aba_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(epoch: 3) }),
+            ("search_source_epoch_source_id_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(epochSource: f.otherID) }),
+            ("search_profile_identity_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(profile: f.otherID)) }),
+            ("search_group_identity_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(group: f.otherID)) }),
+            ("search_profile_membership_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(profiles: [f.profileID, f.otherID])) }),
+            ("search_group_membership_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(groups: [f.groupID, f.otherID])) }),
+            ("search_active_tab_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(active: f.otherID, additionalTarget: true)) }),
+            ("search_active_tab_disappearance_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(clearActive: true)) }),
+            ("search_tab_membership_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(additionalTarget: true)) }),
+            ("search_target_book_identity_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(target: .init(backend: .otzaria, bookID: 2, workKey: "book:1", readerOwner: ObjectIdentifier(f.readerA)))) }),
+            ("search_target_work_identity_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(target: .init(backend: .otzaria, bookID: 1, workKey: "book:2", readerOwner: ObjectIdentifier(f.readerA)))) }),
+            ("search_target_backend_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(target: .init(backend: .sefaria, bookID: 1, workKey: "book:1", readerOwner: ObjectIdentifier(f.readerA)))) }),
+            ("search_target_reader_lifetime_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(target: .init(backend: .otzaria, bookID: 1, workKey: "book:1", readerOwner: ObjectIdentifier(f.readerB)))) }),
+            ("search_target_reader_disappearance_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(actualProjection: f.mappingProjection(target: .init(backend: .otzaria, bookID: 1, workKey: "book:1", readerOwner: nil))) }),
+            ("search_locale_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(locale: "en") }),
+            ("search_visible_reader_content_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(reader: .init(sectionLocator: f.section)) }),
+            ("search_visible_work_source_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(readRevision: 2) }),
+            ("search_visible_selection_change_refused", { (f: MaktabahNativeRoutingComposition) in f.observation(range: .init(location: 7, length: 2)) })
+        ] {
+            controls.run(name) {
+                let f = Self(), owner = f.setup(), original = owner.observation
+                let receipt = f.searchReceipt(for: owner)
+                f.sourceObservation = mutate(f)
+                try controls.refused { try f.advanceSemanticSearchJourney(owner, receipt: receipt) }
+                try controls.require(owner.observation == original, "unrelated source change replaced the retained owner")
+            }
+        }
+        controls.run("search_same_projection_all_visible_metadata_preserved") {
+            let f = Self(), owner = f.setup(), original = owner.observation
+            let receipt = f.searchReceipt(for: owner)
+            f.sourceObservation = original
+            try f.advanceSemanticSearchJourney(owner, receipt: receipt)
+            try controls.require(owner.observation == original)
+        }
+        controls.run("search_own_transition_hides_only_viewer_metadata") {
+            let f = Self(), owner = f.setup()
+            owner.observation = f.observation(range: .init(location: 3, length: 8))
+            f.sourceObservation = owner.observation
+            let original = owner.observation, context = owner.context
+            let receipt = f.searchReceipt(for: owner)
+            try f.advanceSemanticSearchJourney(owner, receipt: receipt)
+            try controls.require(owner.observation.epoch == original.epoch)
+            try controls.require(owner.observation.projection == original.projection)
+            try controls.require(owner.observation.readerContent == nil && owner.observation.currentWorkReadSource == nil && owner.observation.selectedRange == nil)
+            try controls.require(owner.context == context && owner.context.contentRights.isEmpty && !owner.context.scopes.contains(.contentRead))
         }
         let cancelled = Task { @MainActor in
             let f = Self(), owner = f.setup()

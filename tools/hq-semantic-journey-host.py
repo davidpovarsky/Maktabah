@@ -18,7 +18,14 @@ import time
 
 
 COMPOSITION = "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+MAPPING = "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift"
 BOUNDARY = "Tests/HQ/semantic-journeys/NativeJourneyBoundary.swift"
+INVENTORY = "Tests/HQ/semantic-journeys/HOST_CASES.json"
+MAPPING_MARKERS = (
+    "struct StudyWorkspaceMappingEpoch:",
+    "struct StudyWorkspaceMappingTarget:",
+    "struct StudyWorkspaceMappingProjection:",
+)
 MARKERS = (
     "fileprivate struct HanlinSourceObservation:",
     "private final class SemanticJourneyOwner {",
@@ -113,7 +120,8 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=False)
     original = root / COMPOSITION
     boundary = root / BOUNDARY
-    before = {COMPOSITION: digest(original.read_bytes()), BOUNDARY: digest(boundary.read_bytes())}
+    before = {path: digest((root / path).read_bytes()) for path in
+              (COMPOSITION, MAPPING, BOUNDARY, INVENTORY, "tools/hq-semantic-journey-host.py")}
     core_input = json.loads((args.core_evidence / "INPUTS.json").read_text(encoding="utf-8"))
     core_result = json.loads((args.core_evidence / "RESULT.json").read_text(encoding="utf-8"))
     if not (core_result["exitCode"] == 0 and not core_result["timedOut"] and core_result["sourceUnchanged"]
@@ -125,12 +133,16 @@ def main() -> int:
             raise ValueError(f"Core input changed since verified build: {path}")
     source = original.read_text(encoding="utf-8-sig")
     members = [member(source, marker) for marker in MARKERS]
+    mapping_source = (root / MAPPING).read_text(encoding="utf-8-sig")
+    mapping_members = [member(mapping_source, marker) for marker in MAPPING_MARKERS]
     template = boundary.read_text(encoding="utf-8-sig")
     token = "    /* ORIGINAL_COMPOSITION_MEMBERS */"
-    if template.count(token) != 1:
+    mapping_token = "/* ORIGINAL_MAPPING_TYPES */"
+    if template.count(token) != 1 or template.count(mapping_token) != 1:
         raise ValueError("boundary insertion marker is not unique")
     generated = output / "NativeJourneyOriginalMembers.swift"
-    generated.write_text(template.replace(token, "\n\n".join(members)), encoding="utf-8", newline="\n")
+    generated.write_text(template.replace(token, "\n\n".join(members)).replace(
+        mapping_token, "\n\n".join(mapping_members)), encoding="utf-8", newline="\n")
     debug = args.core_cache.resolve() / "x86_64-unknown-windows-msvc" / "debug"
     objects = sorted((debug / "OtzariaActionCore.build").glob("*.o"))
     if not objects or not (debug / "Modules" / "OtzariaActionCore.swiftmodule").is_file():
@@ -145,6 +157,8 @@ def main() -> int:
               "coreResultSHA256": digest((args.core_evidence / "RESULT.json").read_bytes()),
               "coreModuleSHA256": digest((debug / "Modules" / "OtzariaActionCore.swiftmodule").read_bytes()),
               "members": [{"marker": marker, "sha256": digest(value.encode("utf-8"))} for marker, value in zip(MARKERS, members)],
+              "mappingMembers": [{"marker": marker, "sha256": digest(value.encode("utf-8"))}
+                                 for marker, value in zip(MAPPING_MARKERS, mapping_members)],
               "objects": {str(p): digest(p.read_bytes()) for p in objects}, "generatedSHA256": digest(generated.read_bytes())}
     (output / "INPUTS.json").write_text(json.dumps(inputs, indent=2) + "\n", encoding="utf-8")
     env = os.environ.copy()
@@ -160,11 +174,11 @@ def main() -> int:
         result.update(executed=len(cases), passed=sum(x[0] == "PASS" for x in cases),
                       failed=sum(x[0] == "FAIL" for x in cases), cases=cases,
                       executableSHA256=digest(executable.read_bytes()))
-    expected_cases = json.loads((root / "Tests/HQ/semantic-journeys/HOST_CASES.json").read_text(encoding="utf-8"))
-    if len(expected_cases) != 40 or len(set(expected_cases)) != 40:
-        raise ValueError("host case inventory must contain exactly40 unique names")
+    expected_cases = json.loads((root / INVENTORY).read_text(encoding="utf-8"))
+    if len(expected_cases) != 60 or len(set(expected_cases)) != 60:
+        raise ValueError("host case inventory must contain exactly 60 unique names")
     result["caseInventoryExact"] = [x[1] for x in result.get("cases", [])] == expected_cases
-    result["success"] = (result["sourceUnchanged"] and result["caseInventoryExact"] and result["executed"] == 40 and result["passed"] == 40
+    result["success"] = (result["sourceUnchanged"] and result["caseInventoryExact"] and result["executed"] == 60 and result["passed"] == 60
                          and result["failed"] == 0 and result.get("runtime", {}).get("exitCode") == 0
                          and not result.get("runtime", {}).get("timedOut", True))
     if not result["success"]:

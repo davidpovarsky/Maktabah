@@ -886,7 +886,19 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         guard current.revision == receipt.appliedSceneRevision, current.visibleRoute == receipt.route,
               current.backendSnapshot == receipt.backendSnapshot else { throw ActionPortError.staleState }
         let observed = try hanlinSource(sceneID: owner.sceneID, entry: entry)
-        guard observed.backend == owner.observation.backend, observed.source == owner.observation.source else {
+        let prior = owner.observation
+        // The original Viewer -> Search mode switch does not change the mapping
+        // projection or its epoch. Never adopt another profile/group/tab/reader
+        // merely because the mapping-source object survived the UI await.
+        // Off Viewer, its visible reader metadata can become unobservable (nil);
+        // any metadata still observed must retain the original value. The
+        // caller's separate live read authority is checked again before publish.
+        guard observed.backend == prior.backend, observed.source == prior.source,
+              observed.epoch == prior.epoch, observed.projection == prior.projection,
+              observed.locale == prior.locale,
+              observed.readerContent == nil || observed.readerContent == prior.readerContent,
+              observed.currentWorkReadSource == nil || observed.currentWorkReadSource == prior.currentWorkReadSource,
+              observed.selectedRange == nil || observed.selectedRange == prior.selectedRange else {
             throw ActionPortError.staleState
         }
         owner.observation = observed
