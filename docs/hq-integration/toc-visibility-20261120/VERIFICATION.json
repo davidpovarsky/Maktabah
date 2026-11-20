@@ -1,0 +1,92 @@
+{
+  "baseSHA": "d0c649794e4262ffdea0e13635d5c8237668bd6e",
+  "productionSource": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+  "candidateSourceSHA256LF": "cc8c3e97dbefcdc7cd9bdc0441c720eb4213b0009bd61c533ee2a50813029a1d",
+  "setupFailure": {
+    "attempt": "baseline-attempt01",
+    "compileExit": 1,
+    "executed": 0,
+    "reason": "FixtureMarker omitted original enclosing Evidence namespace alias; fixed boundary only."
+  },
+  "red": {
+    "attempt": "baseline-attempt02",
+    "executed": 28,
+    "passed": 26,
+    "failed": [
+      "library_late_geometry_without_callback",
+      "toc_late_geometry_without_callback"
+    ],
+    "warnings": 0,
+    "executableSHA256": "24a90a943d7a6e38877b8196ce868021af1500471f1f8939d6f392c576f4d355"
+  },
+  "green": {
+    "attempt": "candidate-attempt01",
+    "executed": 28,
+    "passed": 28,
+    "failed": [],
+    "warnings": 0,
+    "executableSHA256": "f7637805832ca3f2039f551e5d678cfb525b823e5956393b1325e3d7b63af71a"
+  },
+  "caseInventory": [
+    "library_late_geometry_without_callback",
+    "toc_late_geometry_without_callback",
+    "library_late_geometry_with_callback",
+    "toc_late_geometry_with_callback",
+    "reader_existing_poll_waits_for_geometry",
+    "note_draft_existing_poll_waits_for_geometry",
+    "library_exact98_percent_remains_accepted",
+    "library_below98_percent_remains_refused",
+    "toc_not_appeared_remains_refused",
+    "library_inactive_scene_remains_refused",
+    "library_hidden_ancestor_remains_refused",
+    "library_low_alpha_remains_refused",
+    "library_modal_above_remains_refused",
+    "library_detached_window_remains_refused",
+    "library_empty_bounds_remains_refused",
+    "library_foreign_scene_remains_refused",
+    "toc_old_submission_remains_refused",
+    "library_wrong_surface_state_remains_refused",
+    "library_deadline_stops_observation",
+    "toc_cancellation_stops_observation",
+    "library_replaced_submission_cannot_borrow_poll",
+    "toc_unmounted_owner_stops_observation",
+    "search_unrelated_destination_not_polled",
+    "search_results_unrelated_destination_not_polled",
+    "inspector_unrelated_destination_not_polled",
+    "settings_unrelated_destination_not_polled",
+    "reader_missing_rendered_evidence_remains_refused",
+    "note_draft_invalid_editor_owner_remains_refused"
+  ],
+  "sourceComparison": {
+    "lineEndingPolicy": "Raw executed input hashes retained; source equality comparisons normalize CRLF to LF via text decoding only.",
+    "outsideWaitMethodUnchanged": true,
+    "unchangedSessionMethodSHA256LF": {
+      "func observeVisibility(for": "c5fc5b7629d02bf8c3c6e8f6629a914b3cc1f9c4b316d10a2641b1c376dac37a",
+      "func observe(_ evidence:": "20ce20152b86a68e8f42d84840aa956e88de8d05887e248a63789198738fa6b0",
+      "func endObservation(requestID:": "325c064d902035962e73f2d2e1cdc27cd10864464ea1f1148fab411cd8d001b9"
+    },
+    "wholeOriginalWitnessUnchanged": true,
+    "witnessCurrentEvidenceSHA256LF": "3f26498646f9b5bb02739fa7c43e1841d87db819d03dc590197d70e0642f49ae",
+    "originalExtractionHelperUnchangedFromBase": true,
+    "originalExtractionHelperSHA256LF": "381d3664061c73ecd81db3b1551e5126af3a22770ef5e5686151d4a173a75dc9",
+    "fixtureAndCasesIdenticalRedGreen": true,
+    "allOriginalPackageInputsIdenticalRedGreen": true
+  },
+  "archive": {
+    "path": "RAW_EXECUTION_EVIDENCE.zip",
+    "bytes": 78538,
+    "sha256": "72c486e8682a215d165ebed481a0f8a1f6fbafa978f4dd4447271c4a3baa91c1",
+    "allEntriesVerified": true
+  },
+  "limits": {
+    "appleSDKTypecheck": "NOT_RUN",
+    "nativeCandidate": "NOT_RUN",
+    "originalNative78": "FAIL",
+    "nativePasses": 0,
+    "corePermissionAdmission": "NOT_RUN",
+    "finalDirectoryOrchestratorReceipt": "NOT_RUN",
+    "physicalIPad": "NOT_RUN"
+  },
+  "finishedUTC": "2026-11-20T04:52:10.776140+00:00",
+  "packagedUTC": "2026-11-20T04:55:16.750906+00:00"
+}

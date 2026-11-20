@@ -1,0 +1,15 @@
+{
+  "lineEndingPolicy": "Raw executed input hashes retained; source equality comparisons normalize CRLF to LF via text decoding only.",
+  "outsideWaitMethodUnchanged": true,
+  "unchangedSessionMethodSHA256LF": {
+    "func observeVisibility(for": "c5fc5b7629d02bf8c3c6e8f6629a914b3cc1f9c4b316d10a2641b1c376dac37a",
+    "func observe(_ evidence:": "20ce20152b86a68e8f42d84840aa956e88de8d05887e248a63789198738fa6b0",
+    "func endObservation(requestID:": "325c064d902035962e73f2d2e1cdc27cd10864464ea1f1148fab411cd8d001b9"
+  },
+  "wholeOriginalWitnessUnchanged": true,
+  "witnessCurrentEvidenceSHA256LF": "3f26498646f9b5bb02739fa7c43e1841d87db819d03dc590197d70e0642f49ae",
+  "originalExtractionHelperUnchangedFromBase": true,
+  "originalExtractionHelperSHA256LF": "381d3664061c73ecd81db3b1551e5126af3a22770ef5e5686151d4a173a75dc9",
+  "fixtureAndCasesIdenticalRedGreen": true,
+  "allOriginalPackageInputsIdenticalRedGreen": true
+}

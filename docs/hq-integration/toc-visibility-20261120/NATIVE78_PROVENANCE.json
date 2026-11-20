@@ -1,0 +1,26 @@
+{
+  "runID": 44633736259,
+  "runURL": "https://github.com/davidpovarsky/Maktabah/actions/runs/44633736259",
+  "checkoutSHA": "7d05dd0bb25a7df307b35174e49e18d0f22eecee",
+  "applicationSourceSHA": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
+  "fixtureBaseSHA": "d0c649794e4262ffdea0e13635d5c8237668bd6e",
+  "caseID": "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+  "nativeResult": "FAIL",
+  "witnessCurrentEvidenceSHA256BothSources": "3f26498646f9b5bb02739fa7c43e1841d87db819d03dc590197d70e0642f49ae",
+  "sourceAddedInDownstreamCommit": "d337c60896c6ef24af277697e6012ae1595c0335",
+  "rawLog": {
+    "fullLogSHA256": "22654bcfa1a4cf9d3e7566b79d661dc1a10899d7abe7d98b95df6e0a59f4d726",
+    "fullLogBytes": 311732,
+    "firstLine": 1395,
+    "lastLine": 1433,
+    "excerptSHA256": "96af824537c67d0691d84d5d8fe4bc399ba8fdb36a5b1ca83773e1d8922c90ff"
+  },
+  "observedTimeline": [
+    "00:56:38.786Z: original TOC navigation receipt acknowledged",
+    "00:57:10.227Z: original pager moved from contents to library",
+    "00:57:10.615Z: library appeared=true, contained=false, visible=false",
+    "00:57:15.252Z: original deadline exceeded; no intervening witness sample in retained log",
+    "00:57:15.467Z: library contained=true while modal=true, after timeout"
+  ],
+  "inference": "The log exposes an unsampled geometry interval. It does not prove the library met98% containment before its original deadline. Request-scoped re-reading may observe a valid transition without a fresh layout callback; real Native rerun is still required."
+}

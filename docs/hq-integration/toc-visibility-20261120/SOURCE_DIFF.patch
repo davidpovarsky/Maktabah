@@ -1,0 +1,14 @@
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
+index e52f0f6b..0fac668d 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
+@@ -441,3 +441,3 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+-        // A container's deduplicated layout callback can precede TextKit's
+-        // paint/scroll restoration. Observe that same live UIKit witness only
+-        // while this original reader request is waiting; never echo the route.
++        // A container's deduplicated layout callback can precede final geometry
++        // or TextKit paint/scroll restoration. Observe the same live UIKit
++        // witness only while its original request is waiting; never echo the route.
+@@ -445 +445 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+-        if ["native.reader", "native.reader.noteDraft"].contains(command.route.route.destination.rawValue) {
++        if ["native.reader", "native.reader.noteDraft", "native.library", "native.reader.toc"].contains(command.route.route.destination.rawValue) {
