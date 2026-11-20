@@ -1,0 +1,18 @@
+{
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-frontend",
+    "-parse",
+    "Source\\ChavrusaText\\Search\\UI\\GlobalSearchHistoryContent.swift"
+  ],
+  "startedUTC": "2026-11-20T07:56:46.336486+00:00",
+  "finishedUTC": "2026-11-20T07:56:46.454368+00:00",
+  "returncode": 0,
+  "stdoutBytes": 0,
+  "stderrBytes": 0,
+  "scope": "Swift syntax parse only. Apple SwiftUI typecheck and Native accessibility audit NOT_RUN.",
+  "sourceSHA256": "9e46465ad6490329db3704e0c33ffb12c3a420bc087f770051d067dd00515dd3",
+  "baselineSHA256": "3c591f21c7b545a0d612f01f9cdd86bef543503ad1f7d91be71dc24cb8235b14",
+  "exactInverseRestoresOriginal": true,
+  "completeUnfilteredAuditUnchangedSHA256": "fdcf38a22fa039bbd4a8f8183c1e3d6a93ceca889af6cc0ee6e0e7146e2c42b1"
+}

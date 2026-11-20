@@ -11,7 +11,8 @@ struct GlobalSearchHistoryContent: View {
             Section {
                 if viewModel.searchHistory.isEmpty {
                     ContentUnavailableView("חיפוש בטקסט הספרים", systemImage: "magnifyingglass",
-                                           description: Text("הקלידו מילים ולחצו על חיפוש."))
+                                           description: Text("הקלידו מילים ולחצו על חיפוש.")
+                                               .foregroundStyle(Color.primary))
                 } else {
                     ForEach(viewModel.searchHistory, id: \.self) { query in
                         Button {
