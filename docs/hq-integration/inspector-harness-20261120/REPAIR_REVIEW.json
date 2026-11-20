@@ -1,0 +1,77 @@
+{
+  "generatedUTC": "2026-11-20T07:12:21.159067+00:00",
+  "candidateParent": "c27f07af946ed4fc0e34b490af5403770cddfa88",
+  "originalCIHead": "127ee9eddc2a9aea05c45ccf41420bb0cdd47705",
+  "baseAppHead": "f064b5517f560e2b52838bf321214baa3fb09e2c",
+  "originalSDKGitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "sourceChanged": [],
+  "changedOperationalPaths": [
+    "Vendor/SefariaNativeTests/DecodingTests.swift",
+    "Vendor/SefariaNativeTests/SefariaNativeTestMain.swift"
+  ],
+  "decodingOriginalLF_SHA256": "fe884cb079dd1bcd8dff3b6099edd64d70f5e9b1afc8162b16dfa8f992a6e705",
+  "decodingCandidateLF_SHA256": "a38ed3671488407ddb8d33e2b097466a407e1463fd33959aa1c4d21882d54575",
+  "decodingInverseExact": true,
+  "mainOriginalLF_SHA256": "ade960355994c1c4408176d6ea01b725cdc03c29879826d21077cbd8743e6469",
+  "mainCandidateLF_SHA256": "a653ce179200d6cd70fcc948086710ce29759edb975f7bee36d57cb974559d1b",
+  "mainInverseExact": true,
+  "originalAssertionsPreservedByExactInverse": true,
+  "newExecutedAssertions": 10,
+  "currentVs127eeInputChanges": [
+    {
+      "path": "Source/LibraryBackend/BackendCoordinator.swift",
+      "baselineLF_SHA256": "a179355611cc079de57576a4a0b072bd0c62ceae731743da0c9dfc4d134e4b67",
+      "currentLF_SHA256": "508838569fe94061c169871f74f9dcebeaa2adf7cc1b19907453b31d3d5f8332"
+    },
+    {
+      "path": "Vendor/SefariaNativeTests/DecodingTests.swift",
+      "baselineLF_SHA256": "fe884cb079dd1bcd8dff3b6099edd64d70f5e9b1afc8162b16dfa8f992a6e705",
+      "currentLF_SHA256": "a38ed3671488407ddb8d33e2b097466a407e1463fd33959aa1c4d21882d54575"
+    },
+    {
+      "path": "Vendor/SefariaNativeTests/SefariaNativeTestMain.swift",
+      "baselineLF_SHA256": "ade960355994c1c4408176d6ea01b725cdc03c29879826d21077cbd8743e6469",
+      "currentLF_SHA256": "a653ce179200d6cd70fcc948086710ce29759edb975f7bee36d57cb974559d1b"
+    }
+  ],
+  "trace": {
+    "observedPassedAssertions": 102,
+    "observedCompletedStages": [
+      "LocatorAndRefTests"
+    ],
+    "finalLine": "EXPECT PASS CONTAINS total reflects exact count after streams exhausted",
+    "completedHarness": false,
+    "runtimeTimeoutSeconds": 120,
+    "causeAttribution": "Concrete local fixture total-relation mismatch; same macOS cause remains unverified until Apple rerun."
+  },
+  "controlled": {
+    "actualAssertionsObserved": 448,
+    "stages": [
+      "LocatorAndRefTests",
+      "DecodingTests",
+      "NavigationAndPackageTests",
+      "LegacyIdentityRegistryTests",
+      "BackendCoordinatorTests",
+      "UnifiedSearchArchitectureTests"
+    ],
+    "runtimeSeconds": 3.516,
+    "compileWarnings": 0
+  },
+  "current": {
+    "completedStages": [
+      "LocatorAndRefTests",
+      "DecodingTests",
+      "NavigationAndPackageTests",
+      "LegacyIdentityRegistryTests",
+      "BackendCoordinatorTests",
+      "UnifiedSearchArchitectureTests"
+    ],
+    "runtimeSeconds": 3.39,
+    "compileWarnings": 0,
+    "perAssertionTrace": false
+  },
+  "preservedOriginalRuntimeBudgetSeconds": 120,
+  "nativePasses": 0,
+  "appleCompilePasses": 0,
+  "originalMainConditionalExclusionsUnchanged": true
+}
