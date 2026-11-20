@@ -40,6 +40,8 @@ def main():
     parser.add_argument("--artifacts-dir", required=True, type=Path)
     parser.add_argument("--baseline-flows", action="store_true")
     parser.add_argument("--swiftc", default="swiftc")
+    parser.add_argument("--compile-timeout-seconds", type=int, default=120)
+    parser.add_argument("--compiler-jobs", type=int, default=1)
     options = parser.parse_args()
     out = options.artifacts_dir.resolve()
     out.mkdir(parents=True, exist_ok=True)
@@ -95,6 +97,7 @@ def main():
     fixtures = [ROOT / "Tests/HQ/search/IndexReadCompatibilityBoundary.swift",
                 ROOT / "Tests/HQ/search/IndexReadCompatibilityFixtures.swift"]
     command = [options.swiftc, "-parse-as-library", "-swift-version", "6", "-strict-concurrency=complete",
+               "-j", str(options.compiler_jobs),
                *map(str, owned.glob("*.swift")), *map(str, fixtures), "-o", str(exe)]
     report = dict(observed_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),
         base=BASE, flow_source="baseline" if options.baseline_flows else "working_tree",
@@ -105,6 +108,7 @@ def main():
         runner_sha256=digest(Path(__file__).read_bytes()),
         manifest_sha256={name:digest((ROOT/name).read_bytes()) for name in [
             "Tests/HQ/search/Fixtures/otzaria-miniTest10-v6-manifest.json",
+            "Tests/HQ/search/Fixtures/actual-265-d5-build-info-20261120.json",
             "docs/hq-search/manifests/otzaria-search-manifest.json"]},
         generated_swift_sha256={p.name:digest(p.read_bytes()) for p in owned.glob("*.swift")},
         swift_version=subprocess.check_output([options.swiftc,"--version"],text=True,encoding="utf-8").strip(),
@@ -115,7 +119,9 @@ def main():
             "Controlled profile/provider, FFI compatibility/count/open, raw fixture extractor, storage lock/capacity/backup metadata",
             "Flow-only candidate policy authority invokes candidate probe; never changes production qualification"],
         actual_old_index_runtime_executed=0, native_executed=0, owned_directory=str(owned))
-    compile_result = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", timeout=120)
+    report["compile_timeout_seconds"] = options.compile_timeout_seconds
+    report["compiler_jobs"] = options.compiler_jobs
+    compile_result = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", timeout=options.compile_timeout_seconds)
     (out / "compile.log").write_text(compile_result.stdout + compile_result.stderr, encoding="utf-8")
     report["compile_exit"] = compile_result.returncode
     code = compile_result.returncode

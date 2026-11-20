@@ -1,0 +1,59 @@
+{
+  "provenance": {
+    "purpose": "Actual unmodified C ABI build_info responses; not synthesized from the archive manifest.",
+    "sourceRun": "runtime/miniTest10-v6/attempt3",
+    "engineIndexInput": "immutable original miniTest10-v6 producer265",
+    "producer": {
+      "rawRunSHA256": "2af2127a69a6416c61107c78be5152376fdf7a471f13f4a9af4465d94c38bfab",
+      "consumerExecutableSHA256": "d290337b7eb0e89caccfdd11975c5781073babf017b17b60ada89c24445a1039",
+      "rawLogSHA256": "8810fdce885aeb0cbc9250096d53aee8aa1d801e59e1ebbd3d23dfbc2687d198",
+      "librarySHA256": "16f6d54b9bacc49d708da4017051ebac0825c1f2adae163bf53a3908bb8b6cf7"
+    },
+    "consumer": {
+      "rawRunSHA256": "9b115cd7eed3f37b5060bd673fd87e5f62d909b7610ba7a4ea639bd123f6ba20",
+      "consumerExecutableSHA256": "4af6a44eb2b7cd4f65d2200f0695bf4bbc677010e7ee4f0f7d6070faf70ace32",
+      "rawLogSHA256": "0df17eb587f6a459f73ec14ddeeae2234ca2ab705df111feb6bb21a0dc086f0c",
+      "librarySHA256": "7f23e3e87aa604b410f9cd21f1b56aab2d30596c697d46c8fb19ad160e34c7a0"
+    }
+  },
+  "producer": {
+    "ok": true,
+    "value": {
+      "upstreamRepository": "Otzaria/otzaria_search_engine",
+      "upstreamBranch": "refactor",
+      "upstreamCommit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+      "engineVersion": "0.1.0",
+      "indexSchemaVersion": 4,
+      "defaultGenerationOrder": 5,
+      "semanticEnabled": false,
+      "semanticSidecarRevision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
+      "syncedAt": "2026-08-23T22:08:01Z",
+      "adapterVersion": "0.1.0",
+      "resourceHashes": {
+        "Vendor/OtzariaSearchEngine/Resources/dictionary.json": "cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69",
+        "Vendor/OtzariaSearchEngine/Resources/Acronyms.json": "cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f"
+      }
+    },
+    "error": null
+  },
+  "consumer": {
+    "ok": true,
+    "value": {
+      "upstreamRepository": "davidpovarsky/otzaria_search_engine",
+      "upstreamBranch": "codex/otzaria-exact-occurrences-20261120",
+      "upstreamCommit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+      "engineVersion": "0.1.0",
+      "indexSchemaVersion": 4,
+      "defaultGenerationOrder": 5,
+      "semanticEnabled": false,
+      "semanticSidecarRevision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
+      "syncedAt": "2026-11-20T01:36:23Z",
+      "adapterVersion": "0.1.0",
+      "resourceHashes": {
+        "Vendor/OtzariaSearchEngine/Resources/dictionary.json": "cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69",
+        "Vendor/OtzariaSearchEngine/Resources/Acronyms.json": "cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f"
+      }
+    },
+    "error": null
+  }
+}
