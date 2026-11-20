@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct GlobalSearchHistoryContent: View {
     let session: UnifiedSearchSessionController
@@ -28,13 +29,7 @@ struct GlobalSearchHistoryContent: View {
                 }
             } header: {
                 HStack {
-                    // Hierarchical .primary still inherits the native section
-                    // header's subdued style. Use the dynamic system label color
-                    // explicitly against the original sepia/system background.
-                    Text("חיפושים אחרונים")
-                        .foregroundStyle(Color(uiColor: .label))
-                        .accessibilityAddTraits(.isHeader)
-                        .accessibilityIdentifier("global-search-history-heading")
+                    NativeSearchHistoryHeading()
                     Spacer()
                     if !viewModel.searchHistory.isEmpty {
                         Button("נקה הכול") {
@@ -43,11 +38,6 @@ struct GlobalSearchHistoryContent: View {
                         .accessibilityIdentifier("global-search-history-clear")
                     }
                 }
-                // Keep the heading and Clear action as their own native
-                // accessibility elements. Combining this split-view section
-                // header gave its text the entire window's AX frame, including
-                // the unrelated book sidebar, rather than its rendered bounds.
-                .accessibilityElement(children: .contain)
             }
             .listRowBackground(Color.appBackground)
         }
@@ -56,5 +46,34 @@ struct GlobalSearchHistoryContent: View {
         .scrollDismissesKeyboard(.interactively)
         .background(Color.appBackground)
         .accessibilityIdentifier("global-search-history")
+    }
+}
+
+/// A real UILabel supplies the heading's own accessibility frame. The native
+/// List section host otherwise synthesizes a second, window-wide text element
+/// even when its SwiftUI HStack uses `.contain` (Native run 44633736259).
+private struct NativeSearchHistoryHeading: UIViewRepresentable {
+    func makeUIView(context: Context) -> UILabel {
+        let label = UILabel()
+        label.text = "חיפושים אחרונים"
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+        label.textColor = .label
+        label.numberOfLines = 0
+        label.textAlignment = .natural
+        label.isAccessibilityElement = true
+        label.accessibilityTraits.insert(.header)
+        label.accessibilityIdentifier = "global-search-history-heading"
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return label
+    }
+
+    func updateUIView(_ label: UILabel, context: Context) {}
+
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: UILabel, context: Context) -> CGSize? {
+        let width = max(0, proposal.width ?? uiView.intrinsicContentSize.width)
+        let fitted = uiView.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
+        return CGSize(width: min(width, fitted.width), height: fitted.height)
     }
 }

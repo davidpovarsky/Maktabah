@@ -369,6 +369,7 @@ class TabsBarCell: UICollectionViewCell {
         label.primaryColor = theme.barTintColor
         label.text = nil
         label.accessibilityLabel = nil
+        label.accessibilityIdentifier = nil
         faviconImage.image = nil
 
         separatorView.backgroundColor = theme.tabsBarSeparatorColor
