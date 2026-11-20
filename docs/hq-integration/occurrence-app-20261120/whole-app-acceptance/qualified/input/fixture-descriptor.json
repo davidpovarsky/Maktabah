@@ -1,0 +1,10 @@
+{
+  "root": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\owned-mini-d31cd065-951a-4924-9b37-4a63a990ec6e",
+  "ownerMarker": "otzaria-occurrence-app-disposable-v1:owned-mini-d31cd065-951a-4924-9b37-4a63a990ec6e\n",
+  "miniManifest": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\owned-mini-d31cd065-951a-4924-9b37-4a63a990ec6e\\original-mini-manifest.json",
+  "fullManifest": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\docs\\hq-integration\\occurrence-app-20261120\\manifest-authentication\\full-v32-typed.json",
+  "sqlOracle": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\owned-mini-d31cd065-951a-4924-9b37-4a63a990ec6e\\SQL_ORACLE.json",
+  "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "miniManifestSHA256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+  "sqlOracleSHA256": "d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8"
+}

@@ -1,0 +1,420 @@
+{
+  "version": 1,
+  "createdUTC": "2026-11-20T05:49:47.621775+00:00",
+  "files": [
+    {
+      "path": "raw/compile.log.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\compile.log",
+      "rawBytes": 2272,
+      "rawSHA256": "5ff96908f0d5dac4581ad45ca9fb0273dfae4b455c9b58a79555acf8169b3654",
+      "storedBytes": 556,
+      "storedSHA256": "6d0b4d68de0a05d11efd669686745aaebf4a3fde7623e535bb953b64e1b85fab",
+      "gzip": true
+    },
+    {
+      "path": "Package.resolved",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\Package.resolved",
+      "rawBytes": 648,
+      "rawSHA256": "e9040baae6a312a5e8c66a2b53f3297c46b459d061a7c7f325243e1dea8e6cff",
+      "storedBytes": 648,
+      "storedSHA256": "e9040baae6a312a5e8c66a2b53f3297c46b459d061a7c7f325243e1dea8e6cff",
+      "gzip": false
+    },
+    {
+      "path": "raw/resolve.log.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\resolve.log",
+      "rawBytes": 87,
+      "rawSHA256": "47cad8148a50e9e6e31da9095197360216148a623a16c82babf7cfbc2eed2fce",
+      "storedBytes": 95,
+      "storedSHA256": "8a97d088ef312569b13a4d1108b4a9b5283495fbed846fdac6094162b55d2819",
+      "gzip": true
+    },
+    {
+      "path": "RUNTIME_RESULT.json",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\runtime-result.json",
+      "rawBytes": 6090,
+      "rawSHA256": "20376c32ce5da6113e92613344a2313c018f6967b2ebcab6310eee756b914533",
+      "storedBytes": 6090,
+      "storedSHA256": "20376c32ce5da6113e92613344a2313c018f6967b2ebcab6310eee756b914533",
+      "gzip": false
+    },
+    {
+      "path": "raw/runtime.log.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\runtime.log",
+      "rawBytes": 1749,
+      "rawSHA256": "04128997a97ad033c3a59288526872055210df33be184539a623c4b5b26be6d8",
+      "storedBytes": 694,
+      "storedSHA256": "a7b7d3b9d939451958012eb04724d1c5e362d631da67fe7c10d38be0fd1a6689",
+      "gzip": true
+    },
+    {
+      "path": "source-snapshot/ActionLiveOccurrenceCounter.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\ActionLiveOccurrenceCounter.swift.gz",
+      "rawBytes": 3321,
+      "rawSHA256": "282cb0a58deeb27979ab39a33b35c1841fa3b346715859839317821832378ec1",
+      "storedBytes": 3321,
+      "storedSHA256": "282cb0a58deeb27979ab39a33b35c1841fa3b346715859839317821832378ec1",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/ActionOccurrenceCoveragePolicy.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\ActionOccurrenceCoveragePolicy.swift.gz",
+      "rawBytes": 1765,
+      "rawSHA256": "eb923e7c79ac06901f7f8a1721c3a2c6e0d4bc06bcbb1f165fe9bb0a339aba98",
+      "storedBytes": 1765,
+      "storedSHA256": "eb923e7c79ac06901f7f8a1721c3a2c6e0d4bc06bcbb1f165fe9bb0a339aba98",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/CASES.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\CASES.json.gz",
+      "rawBytes": 747,
+      "rawSHA256": "78649a22f60c4fce4cf5f68554672f8526db3efd18a3b86e22db875dd25eea89",
+      "storedBytes": 747,
+      "storedSHA256": "78649a22f60c4fce4cf5f68554672f8526db3efd18a3b86e22db875dd25eea89",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OccurrenceAppAcceptance.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OccurrenceAppAcceptance.swift.gz",
+      "rawBytes": 2337,
+      "rawSHA256": "f86ff745a964d8ed502b6710ae1b7b4212115a7cf950899c047f85d16e952e35",
+      "storedBytes": 2337,
+      "storedSHA256": "f86ff745a964d8ed502b6710ae1b7b4212115a7cf950899c047f85d16e952e35",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OccurrenceAppBoundaries.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OccurrenceAppBoundaries.swift.gz",
+      "rawBytes": 1906,
+      "rawSHA256": "d9082c2e430f08b56af7ba7ff5ce5c56a32c2f13a942675ebb880e91c0352ed4",
+      "storedBytes": 1906,
+      "storedSHA256": "d9082c2e430f08b56af7ba7ff5ce5c56a32c2f13a942675ebb880e91c0352ed4",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OccurrenceAppCounterCases.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OccurrenceAppCounterCases.swift.gz",
+      "rawBytes": 1818,
+      "rawSHA256": "75f80dc931b83a8e061bb061b867c37eafe12866b806ef2cfb4cfae8ec88ea40",
+      "storedBytes": 1818,
+      "storedSHA256": "75f80dc931b83a8e061bb061b867c37eafe12866b806ef2cfb4cfae8ec88ea40",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OccurrenceAppFixtures.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OccurrenceAppFixtures.swift.gz",
+      "rawBytes": 3310,
+      "rawSHA256": "2f9f10c06fd19be58cd38fee8e3a541c2a9a922defe0419058c4d3077bbeee1c",
+      "storedBytes": 3310,
+      "storedSHA256": "2f9f10c06fd19be58cd38fee8e3a541c2a9a922defe0419058c4d3077bbeee1c",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OccurrenceAppOwnerCases.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OccurrenceAppOwnerCases.swift.gz",
+      "rawBytes": 1155,
+      "rawSHA256": "807b7d583efff3633f88c72baa9b2c3cec61d90493cd5cd633d4513e9baf6a66",
+      "storedBytes": 1155,
+      "storedSHA256": "807b7d583efff3633f88c72baa9b2c3cec61d90493cd5cd633d4513e9baf6a66",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OccurrenceAppPolicyCases.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OccurrenceAppPolicyCases.swift.gz",
+      "rawBytes": 2833,
+      "rawSHA256": "4904f7424192036d5d2969d7c9189404fcf8546dd5ba9a7f7b976e938e8452b1",
+      "storedBytes": 2833,
+      "storedSHA256": "4904f7424192036d5d2969d7c9189404fcf8546dd5ba9a7f7b976e938e8452b1",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OccurrenceAppQualifiedCases.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OccurrenceAppQualifiedCases.swift.gz",
+      "rawBytes": 3594,
+      "rawSHA256": "a7148673fc73bd846f24a7e275a3e13f621a22585f39e0adcc937ecaebf4910b",
+      "storedBytes": 3594,
+      "storedSHA256": "a7148673fc73bd846f24a7e275a3e13f621a22585f39e0adcc937ecaebf4910b",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaDatabaseAccessController.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaDatabaseAccessController.swift.gz",
+      "rawBytes": 3219,
+      "rawSHA256": "c9c7d9edc5baa5145ed58521168fe731846ed24afea3905974e3c9542c1832a7",
+      "storedBytes": 3219,
+      "storedSHA256": "c9c7d9edc5baa5145ed58521168fe731846ed24afea3905974e3c9542c1832a7",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaDatabaseDownloadModels.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaDatabaseDownloadModels.swift.gz",
+      "rawBytes": 2946,
+      "rawSHA256": "8b1839cab8745995d16f3b1f4dcadd502987ec466fd8e8680c99b6c1e0ea635c",
+      "storedBytes": 2946,
+      "storedSHA256": "8b1839cab8745995d16f3b1f4dcadd502987ec466fd8e8680c99b6c1e0ea635c",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaDataProfile.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaDataProfile.swift.gz",
+      "rawBytes": 1161,
+      "rawSHA256": "48c890cb50ccf75967f0071710c7cca5cdadac9113b010eeeef8507a21ae6b3b",
+      "storedBytes": 1161,
+      "storedSHA256": "48c890cb50ccf75967f0071710c7cca5cdadac9113b010eeeef8507a21ae6b3b",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaDataProfileRegistry.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaDataProfileRegistry.swift.gz",
+      "rawBytes": 884,
+      "rawSHA256": "728938ab664bd2c8e85ddc7fada180bb65f654d705f271b7484c5695c45d1bad",
+      "storedBytes": 884,
+      "storedSHA256": "728938ab664bd2c8e85ddc7fada180bb65f654d705f271b7484c5695c45d1bad",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaExactOccurrenceModels.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaExactOccurrenceModels.swift.gz",
+      "rawBytes": 3035,
+      "rawSHA256": "d53144063160f6a813084b8d865caaa58afbd8ffc59d2433059db8e735308aa7",
+      "storedBytes": 3035,
+      "storedSHA256": "d53144063160f6a813084b8d865caaa58afbd8ffc59d2433059db8e735308aa7",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaExactOccurrenceOperation.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaExactOccurrenceOperation.swift.gz",
+      "rawBytes": 2189,
+      "rawSHA256": "c9e92a5ca2aba72c2232d5a6436c56dce5a0d86db36241811a601ce745431a16",
+      "storedBytes": 2189,
+      "storedSHA256": "c9e92a5ca2aba72c2232d5a6436c56dce5a0d86db36241811a601ce745431a16",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaSearchArtifactManifest.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaSearchArtifactManifest.swift.gz",
+      "rawBytes": 1964,
+      "rawSHA256": "42c0931025387431e71f0a745960a87ed020f03a1995100683287afe637d5e29",
+      "storedBytes": 1964,
+      "storedSHA256": "42c0931025387431e71f0a745960a87ed020f03a1995100683287afe637d5e29",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaSearchArtifactPolicy.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaSearchArtifactPolicy.swift.gz",
+      "rawBytes": 4326,
+      "rawSHA256": "070a94e016d224ef815e6cd005a734776d4f5f25ae37f1b500cd55b75b182def",
+      "storedBytes": 4326,
+      "storedSHA256": "070a94e016d224ef815e6cd005a734776d4f5f25ae37f1b500cd55b75b182def",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaSearchEngineBridge.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaSearchEngineBridge.swift.gz",
+      "rawBytes": 4796,
+      "rawSHA256": "82f21af4219899133598378bc570104d62f978887fce2999cef88d43bdfd1517",
+      "storedBytes": 4796,
+      "storedSHA256": "82f21af4219899133598378bc570104d62f978887fce2999cef88d43bdfd1517",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaSearchMode.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaSearchMode.swift.gz",
+      "rawBytes": 319,
+      "rawSHA256": "fc560aa6aad48d6261d14ab45fb784c8d59dd89c5f9bb7cdab39396a8d73d9f2",
+      "storedBytes": 319,
+      "storedSHA256": "fc560aa6aad48d6261d14ab45fb784c8d59dd89c5f9bb7cdab39396a8d73d9f2",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaSearchModels.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaSearchModels.swift.gz",
+      "rawBytes": 4385,
+      "rawSHA256": "1aa79082c28a7bca410287a13ba2db2ff8e8e9e62a27b1469a3bb11c4cb60313",
+      "storedBytes": 4385,
+      "storedSHA256": "1aa79082c28a7bca410287a13ba2db2ff8e8e9e62a27b1469a3bb11c4cb60313",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OtzariaTantivySearchRepository.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OtzariaTantivySearchRepository.swift.gz",
+      "rawBytes": 4964,
+      "rawSHA256": "157c2602a90a7c9d89354a6e9eca5440d4ba56aaa3217365c4f57926eaf96ccc",
+      "storedBytes": 4964,
+      "storedSHA256": "157c2602a90a7c9d89354a6e9eca5440d4ba56aaa3217365c4f57926eaf96ccc",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/OwnerTestAccess.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\OwnerTestAccess.swift.gz",
+      "rawBytes": 320,
+      "rawSHA256": "2a6ffdb6729a45ddf58b2585235ea8f925d001f021e1e2f509c41554cd84274a",
+      "storedBytes": 320,
+      "storedSHA256": "2a6ffdb6729a45ddf58b2585235ea8f925d001f021e1e2f509c41554cd84274a",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/Package.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\Package.swift.gz",
+      "rawBytes": 776,
+      "rawSHA256": "c170d508104ce8670b13a54ee7218124cc193035ea2892dbf1c6be398c9ad8e7",
+      "storedBytes": 776,
+      "storedSHA256": "c170d508104ce8670b13a54ee7218124cc193035ea2892dbf1c6be398c9ad8e7",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/prepare-input.py.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\prepare-input.py.gz",
+      "rawBytes": 2108,
+      "rawSHA256": "de092f2ecc060ae41083b785a7f0c8b4897d96deae16a5d4ebaed0938a25d4f9",
+      "storedBytes": 2108,
+      "storedSHA256": "de092f2ecc060ae41083b785a7f0c8b4897d96deae16a5d4ebaed0938a25d4f9",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/run-acceptance.py.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\run-acceptance.py.gz",
+      "rawBytes": 4659,
+      "rawSHA256": "601aa32b2373ac1a663ba17ab7940f1c3e6a1211d1470b9a5e3317efdd28b598",
+      "storedBytes": 4659,
+      "storedSHA256": "601aa32b2373ac1a663ba17ab7940f1c3e6a1211d1470b9a5e3317efdd28b598",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/SQLiteDatabase.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\SQLiteDatabase.swift.gz",
+      "rawBytes": 3692,
+      "rawSHA256": "682fd3fe17e5f852ef0c3cf6141473debd3e3158771dc2c121ca01d622b4a365",
+      "storedBytes": 3692,
+      "storedSHA256": "682fd3fe17e5f852ef0c3cf6141473debd3e3158771dc2c121ca01d622b4a365",
+      "gzip": false
+    },
+    {
+      "path": "source-snapshot/UnusedZstdBoundary.swift.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\source-snapshot\\UnusedZstdBoundary.swift.gz",
+      "rawBytes": 321,
+      "rawSHA256": "e29750baf9b68ed0f8fd819da7133c739af7a991a2f8f84a78187d4db8a0522a",
+      "storedBytes": 321,
+      "storedSHA256": "e29750baf9b68ed0f8fd819da7133c739af7a991a2f8f84a78187d4db8a0522a",
+      "gzip": false
+    },
+    {
+      "path": "VERIFICATION.json",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1\\verification.json",
+      "rawBytes": 27836,
+      "rawSHA256": "d031ee848ea3cf216048707406a0464c05f62b42a5bf7c1f82f3807388f1949b",
+      "storedBytes": 27836,
+      "storedSHA256": "d031ee848ea3cf216048707406a0464c05f62b42a5bf7c1f82f3807388f1949b",
+      "gzip": false
+    },
+    {
+      "path": "raw/qualified-attempt1-launch.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1-launch.json",
+      "rawBytes": 1594,
+      "rawSHA256": "27c067aa36a0a00605483070bd64182db67fda4e7bcf53639667c56f271d2e7a",
+      "storedBytes": 642,
+      "storedSHA256": "b4a36d810996bd63c339620fef022140447485e4e9ac4bdd2c4b617c25325350",
+      "gzip": true
+    },
+    {
+      "path": "raw/qualified-attempt1-runner.log.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1-runner.log",
+      "rawBytes": 24186,
+      "rawSHA256": "04fc452f1521b4ce2056b20e5682ec66cd61013a907fe57a621e6fec10f7aabc",
+      "storedBytes": 7545,
+      "storedSHA256": "03a288893c6fc05431dd78464ca1c3524ffc191cde3acb0280868d0ba86a5b9c",
+      "gzip": true
+    },
+    {
+      "path": "raw/qualified-attempt1-job.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-attempt1-job.json",
+      "rawBytes": 127,
+      "rawSHA256": "5de876219ee0a4c50cc09dc16af8fd19c71de3698407396e2fc61dceca572f1d",
+      "storedBytes": 131,
+      "storedSHA256": "1c68a87bf2a83800293dc1b9b34d1dbd9c367738426ce8983789af6970996605",
+      "gzip": true
+    },
+    {
+      "path": "raw/qualified-launch-plan.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\qualified-launch-plan.json",
+      "rawBytes": 3349,
+      "rawSHA256": "eda767e43cc930c9bf5c4096c1b11ff0484b09ca76605df44f85fca0a44dbbe5",
+      "storedBytes": 1410,
+      "storedSHA256": "7e33faa5ff5b4aaad21a22f4a37b3c63a5c05e482a1036d6f9872c8d99d362b2",
+      "gzip": true
+    },
+    {
+      "path": "raw/SENTINEL_JOB.json.gz",
+      "source": "SentinelX notifications_get(job_0451adace126)",
+      "rawBytes": 5763,
+      "rawSHA256": "b81f093e281ff8c13a4117a4da37b7add309d9dc402ad3628ca6e0af53152958",
+      "storedBytes": 1711,
+      "storedSHA256": "c7ff23bf4f24e9b28ecfff3beb18996af06015b0dafaa60941a9b684d89691d7",
+      "gzip": true
+    },
+    {
+      "path": "input/fixture-descriptor.json",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\fixture-descriptor.json",
+      "rawBytes": 1117,
+      "rawSHA256": "d3e2923d1315d6d069d5ff72b0a6396cfb09d75749cb948a519bae2924668085",
+      "storedBytes": 1117,
+      "storedSHA256": "d3e2923d1315d6d069d5ff72b0a6396cfb09d75749cb948a519bae2924668085",
+      "gzip": false
+    },
+    {
+      "path": "input/INPUT_COPY_VERIFIED.json",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\INPUT_COPY_VERIFIED.json",
+      "rawBytes": 2494,
+      "rawSHA256": "9cfc73558697c2c4cf0fb8a698066c3f2e242860c53c717c8ad6dc0afaaa5b56",
+      "storedBytes": 2494,
+      "storedSHA256": "9cfc73558697c2c4cf0fb8a698066c3f2e242860c53c717c8ad6dc0afaaa5b56",
+      "gzip": false
+    },
+    {
+      "path": "input/INDEPENDENT_MINI_SQL_ORACLE.json",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\owned-mini-d31cd065-951a-4924-9b37-4a63a990ec6e\\SQL_ORACLE.json",
+      "rawBytes": 10166,
+      "rawSHA256": "d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8",
+      "storedBytes": 10166,
+      "storedSHA256": "d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8",
+      "gzip": false
+    },
+    {
+      "path": "input/original-mini-manifest.json",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120\\build\\occurrence-app-20261120\\input\\owned-mini-d31cd065-951a-4924-9b37-4a63a990ec6e\\original-mini-manifest.json",
+      "rawBytes": 4467,
+      "rawSHA256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+      "storedBytes": 4467,
+      "storedSHA256": "ae3bd170dc4650806a9fdda1beefe682eeefb5abde886363d6feac999603f8d4",
+      "gzip": false
+    },
+    {
+      "path": "input/C_STATIC_LIBRARY_BUILD.json",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\build\\occurrence-bridge-20261120\\c-staticlib-build.json",
+      "rawBytes": 958,
+      "rawSHA256": "602d2d6325f897aec704c36f235577d2228ae5da88fe3361374cd0c4aa20a17e",
+      "storedBytes": 958,
+      "storedSHA256": "602d2d6325f897aec704c36f235577d2228ae5da88fe3361374cd0c4aa20a17e",
+      "gzip": false
+    },
+    {
+      "path": "CASES.json",
+      "source": "Tests/HQ/occurrence-app/CASES.json",
+      "rawBytes": 3119,
+      "rawSHA256": "88eccacd01ddb9b29c11494a354d9d40c6a45905f5671f773080b3d5213fdc78",
+      "storedBytes": 3119,
+      "storedSHA256": "88eccacd01ddb9b29c11494a354d9d40c6a45905f5671f773080b3d5213fdc78",
+      "gzip": false
+    },
+    {
+      "path": "SUMMARY.json",
+      "source": "Derived only from verified original run and unchanged case source",
+      "rawBytes": 1723,
+      "rawSHA256": "92a52824e7223b511c9ddde0cf597f1b9c9efe6df3b514722242ce460060f7a3",
+      "storedBytes": 1723,
+      "storedSHA256": "92a52824e7223b511c9ddde0cf597f1b9c9efe6df3b514722242ce460060f7a3",
+      "gzip": false
+    }
+  ]
+}
