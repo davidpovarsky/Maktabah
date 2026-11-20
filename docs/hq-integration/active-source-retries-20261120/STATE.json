@@ -1,0 +1,150 @@
+{
+  "checkpoint_utc": "2026-11-20T11:17:58.823039+00:00",
+  "integrated_head_before_evidence_commit": "64d07e4219aa9035552f4b98e29de4c07e1cefee",
+  "native_release": {
+    "M": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "F": "60a57972acb28739ec738565083bf17fb7503028",
+    "native_run": 44723902453,
+    "release_run": 44723918854,
+    "required_native": 98,
+    "required_release_ui": 96,
+    "required_release_oracles": 2
+  },
+  "normal_ios": {
+    "run": 44716258538,
+    "F": "e9050ad8998a070c92c73a881b0d7deb6e216e88",
+    "M": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+    "latest_known": "IN_PROGRESS; B sole renewed finite watcher"
+  },
+  "anytype16": {
+    "run": 44722898086,
+    "F": "11bfb0db63d7d446be01d0b2b70ac9cadc471a7f",
+    "M": "67a23f718548ee80dbb084e57933115a07601ea3",
+    "required": 16,
+    "latest_known": "IN_PROGRESS original Debug-Anytype build/test step; result not yet evaluated"
+  },
+  "core": {
+    "source": "fb83df7f8bbbd5f0e6ae13113d45982af666779a",
+    "evidence": "3bc062fed639d0213dfb30c87cb35bd71ac80bcb",
+    "merge": "64d07e4219aa9035552f4b98e29de4c07e1cefee",
+    "core_passed": 174,
+    "host_passed": 60,
+    "apple_native_compound": "NOT_RUN",
+    "included_in_active_frozen_native_release": false
+  },
+  "anytype_ownership": {
+    "source": "5e936f2afa5f8fd371d1bef8b0521d9b8a3f20b6",
+    "evidence": "1c8058112d95cb1278f5746cc0ad3ae4565d0ddb",
+    "portable_passed": 30,
+    "new_apple_declarations": 8,
+    "included_in_active16": false,
+    "historical_revocation": "Requires further original document lifetime wiring; in progress"
+  },
+  "watchers": {
+    "native": {
+      "agent": "/root/asana_audit",
+      "job": "job_3904686f09e6",
+      "pid": 40252,
+      "deadline_utc": "2026-11-20T11:58:43.323900Z"
+    },
+    "release": {
+      "agent": "/root",
+      "job": "job_9da23fee5579",
+      "pid": 34084,
+      "started_utc": "2026-11-20T11:01:45.172744Z",
+      "finite_seconds": 3380
+    },
+    "anytype16": {
+      "agent": "/root",
+      "job": "job_1e7a8cc25b7b",
+      "pid": 10096,
+      "started_utc": "2026-11-20T10:54:07.389391Z",
+      "finite_seconds": 3380
+    },
+    "normal_ios": {
+      "agent": "/root/hanlin_api_integration",
+      "job": "job_f6d2777d5de0",
+      "previous_expired": "job_d7f693901a8e; only its owned gh PID was stopped"
+    }
+  },
+  "asana_updates": [
+    {
+      "task": "1219602987688812",
+      "story": "1220736664118251",
+      "created_at": "2026-11-20T11:02:59.591Z",
+      "stage": "Native98_Release96_retry_dispatched"
+    },
+    {
+      "task": "1220539645638524",
+      "story": "1220736754987770",
+      "created_at": "2026-11-20T11:03:01.649Z",
+      "stage": "Native98_Release96_retry_dispatched"
+    },
+    {
+      "task": "1220542361203468",
+      "story": "1220736755033139",
+      "created_at": "2026-11-20T11:03:03.893Z",
+      "stage": "Native98_Release96_retry_dispatched"
+    },
+    {
+      "task": "1220107239748221",
+      "story": "1220736808814746",
+      "created_at": "2026-11-20T11:03:06.167Z",
+      "stage": "Native98_Release96_retry_dispatched"
+    },
+    {
+      "task": "1219614315863536",
+      "story": "1220736755004766",
+      "created_at": "2026-11-20T11:03:08.199Z",
+      "stage": "Native98_Release96_retry_dispatched"
+    },
+    {
+      "task": "1219614472017979",
+      "story": "1220736754865126",
+      "created_at": "2026-11-20T11:03:09.928Z",
+      "stage": "Native98_Release96_retry_dispatched"
+    },
+    {
+      "task": "1219850068707719",
+      "story": "1220736808940819",
+      "created_at": "2026-11-20T11:03:12.041Z",
+      "stage": "Native98_Release96_retry_dispatched"
+    },
+    {
+      "task": "1219614315863536",
+      "story": "1220737004374587",
+      "created_at": "2026-11-20T11:14:34.261Z",
+      "stage": "Core174_Host60_merged"
+    },
+    {
+      "task": "1219614472017979",
+      "story": "1220752116077286",
+      "created_at": "2026-11-20T11:14:40.486Z",
+      "stage": "Core174_Host60_merged"
+    },
+    {
+      "task": "1219614268854015",
+      "story": "1220737029274508",
+      "created_at": "2026-11-20T11:14:43.424Z",
+      "stage": "Core174_Host60_merged"
+    },
+    {
+      "task": "1220542361203468",
+      "story": "1220752124130140",
+      "created_at": "2026-11-20T11:14:45.323Z",
+      "stage": "Core174_Host60_merged"
+    },
+    {
+      "task": "1220545194715722",
+      "story": "1220737029284688",
+      "created_at": "2026-11-20T11:14:47.457Z",
+      "stage": "Original_editor_ownership30"
+    }
+  ],
+  "original_handoff_sha256": "3a5c39f9e7f7ad9b4001da1e4eae850cce9845e36ce5d79b4e37d3d11055daaa",
+  "last_full_inventory": {
+    "open": 59,
+    "complete": 22,
+    "note": "Last verified inventory after two architecture-only closures; no further task was closed in this phase"
+  }
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "path": "OWNER_ACTIVE_CHECKPOINT_20261120_111758Z.md",
+    "bytes": 8683,
+    "sha256": "84d0df8c5897b73323e4f4ed1600065312faec5240db242824c3362ac50e4968"
+  },
+  {
+    "path": "receipts/anytype16_dispatch/INTENT.json.gz",
+    "bytes": 417,
+    "sha256": "bbc886f2eeb5c01473a7755b920489c489b14113f3a3fcfa88dcc75be137b613"
+  },
+  {
+    "path": "receipts/anytype16_dispatch/VERIFIED.json.gz",
+    "bytes": 569,
+    "sha256": "492654fd04304f62a70fdb205eac1388f4a9c883ec65829cb8531ab815849838"
+  },
+  {
+    "path": "receipts/core_merge/evidence-verification.stderr.log.gz",
+    "bytes": 20,
+    "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  {
+    "path": "receipts/core_merge/evidence-verification.stdout.log.gz",
+    "bytes": 263,
+    "sha256": "b9d4906c332ae63de49d1243835e2df23d1ad30563612696f42fc266f43aef34"
+  },
+  {
+    "path": "receipts/core_merge/MERGE.json.gz",
+    "bytes": 753,
+    "sha256": "19b15ae46440757433decbbae8c25115fda0026978fe690780d39c6bd50f5692"
+  },
+  {
+    "path": "receipts/core_merge/merge.log.gz",
+    "bytes": 1886,
+    "sha256": "1935d79a59769c216e1c43b555cc173346f516695fdf21db6ab5419842bb921d"
+  },
+  {
+    "path": "receipts/freeze_review/FINAL_PREFLIGHT_RECEIPT.json.gz",
+    "bytes": 389,
+    "sha256": "56c4a486801053d7e0c4dc4effc930ff6e8454f089cb25cde118195436b73cd8"
+  },
+  {
+    "path": "receipts/freeze_review/ROOT_REVIEW_AND_REFS.json.gz",
+    "bytes": 329,
+    "sha256": "f5f4f802fd890c302dcaae6c738420e6d5255f2c846c787631f3edb3d82895c2"
+  },
+  {
+    "path": "receipts/native_dispatch/DISPATCH.stderr.gz",
+    "bytes": 20,
+    "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  {
+    "path": "receipts/native_dispatch/DISPATCH.stdout.gz",
+    "bytes": 20,
+    "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  {
+    "path": "receipts/native_dispatch/INTENT.json.gz",
+    "bytes": 448,
+    "sha256": "30ff213c1a2ba23f2a23c92d26e42a1b9b91b2f8cc8423d0a1e865bfbc60d9d7"
+  },
+  {
+    "path": "receipts/native_dispatch/REQUEST.json.gz",
+    "bytes": 237,
+    "sha256": "a6712a3e985981401dc1e29b07e668b528f2fa46b297ae73070568d50860764f"
+  },
+  {
+    "path": "receipts/native_dispatch/RUNS_AFTER_1.json.gz",
+    "bytes": 56,
+    "sha256": "ca83adcbcfbc9933e8ab5a5f882bf542498c0233324ae168e9bdbed48108e735"
+  },
+  {
+    "path": "receipts/native_dispatch/RUNS_AFTER_2.json.gz",
+    "bytes": 1618,
+    "sha256": "c9621a7cc8fef70c4ca2ede42c761ee523109e4809aec40d8250160081a888fa"
+  },
+  {
+    "path": "receipts/native_dispatch/RUNS_BEFORE.json.gz",
+    "bytes": 56,
+    "sha256": "ca83adcbcfbc9933e8ab5a5f882bf542498c0233324ae168e9bdbed48108e735"
+  },
+  {
+    "path": "receipts/native_dispatch/VERIFIED.json.gz",
+    "bytes": 598,
+    "sha256": "91e8f8082264a2307404b697be73dcd1ecd3ed281f9b594e56751cdba72056af"
+  },
+  {
+    "path": "receipts/release_dispatch/DISPATCH.stderr.gz",
+    "bytes": 20,
+    "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  {
+    "path": "receipts/release_dispatch/DISPATCH.stdout.gz",
+    "bytes": 20,
+    "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  {
+    "path": "receipts/release_dispatch/INTENT.json.gz",
+    "bytes": 451,
+    "sha256": "7e548f231b1a31a8eb34f6019f0a8534e24f9a34e7a7f836a0e2c39d203f59d1"
+  },
+  {
+    "path": "receipts/release_dispatch/REQUEST.json.gz",
+    "bytes": 236,
+    "sha256": "ecc3aba3c855433fc24c1e9d5e0dd8918a385a1758f87e33e4ec6ac04f6d37f0"
+  },
+  {
+    "path": "receipts/release_dispatch/RUNS_AFTER_1.json.gz",
+    "bytes": 56,
+    "sha256": "ca83adcbcfbc9933e8ab5a5f882bf542498c0233324ae168e9bdbed48108e735"
+  },
+  {
+    "path": "receipts/release_dispatch/RUNS_AFTER_2.json.gz",
+    "bytes": 56,
+    "sha256": "ca83adcbcfbc9933e8ab5a5f882bf542498c0233324ae168e9bdbed48108e735"
+  },
+  {
+    "path": "receipts/release_dispatch/RUNS_AFTER_3.json.gz",
+    "bytes": 1619,
+    "sha256": "5780010de2a80bc57f492913a92cacf22cb18a4850b573b57372d5da26a79cb0"
+  },
+  {
+    "path": "receipts/release_dispatch/RUNS_BEFORE.json.gz",
+    "bytes": 56,
+    "sha256": "ca83adcbcfbc9933e8ab5a5f882bf542498c0233324ae168e9bdbed48108e735"
+  },
+  {
+    "path": "receipts/release_dispatch/VERIFIED.json.gz",
+    "bytes": 598,
+    "sha256": "dd429a0ca00f011a7ab05462c89c4d169d6d93dfcd69c54c8dd696e4e2fc6949"
+  },
+  {
+    "path": "STATE.json",
+    "bytes": 4771,
+    "sha256": "ef94b7ba4434b98de27486dd9f437e5fab4f07faec91aae4bfd04a483a8eee6c"
+  }
+]
