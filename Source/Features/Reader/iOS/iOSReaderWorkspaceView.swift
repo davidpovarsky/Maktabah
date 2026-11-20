@@ -102,6 +102,7 @@ struct iOSReaderWorkspaceView: View {
     @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
     @State private var nativeNoteEditorOwnerID = UUID()
+    @State private var nativeNoteEditorPresentationID = UUID()
     @State private var noteErrorMessage: String?
     @State private var pendingNotesDidChange: TorahInspectorHostActions.NotesDidChange?
 
@@ -501,6 +502,7 @@ struct iOSReaderWorkspaceView: View {
     @ViewBuilder
     private var annotationEditor: some View {
         if let editingAnnotation {
+            let presentationID = nativeNoteEditorPresentationID
             iOSAnnotationEditorSheet(
                 annotation: editingAnnotation,
                 onSave: { updated in
@@ -533,7 +535,8 @@ struct iOSReaderWorkspaceView: View {
                 },
                 onNativeTextView: { textView in
                     nativeRoutingSession?.noteEditorTextViewChanged(
-                        id: nativeNoteEditorOwnerID, reader: viewModel, textView: textView)
+                        id: nativeNoteEditorOwnerID, reader: viewModel,
+                        presentationID: presentationID, textView: textView)
                 }
             )
             .modifier(MaktabahNativeRoutingSurface(kind: .noteDraft,
@@ -543,7 +546,16 @@ struct iOSReaderWorkspaceView: View {
 
     private func attachNativeNoteEditor() {
         nativeRoutingSession?.attachNoteEditor(
-            id: nativeNoteEditorOwnerID, reader: viewModel, annotation: $editingAnnotation)
+            id: nativeNoteEditorOwnerID, reader: viewModel,
+            annotation: Binding(get: { editingAnnotation }, set: { setEditingAnnotation($0) }),
+            presentationID: { nativeNoteEditorPresentationID })
+    }
+
+    private func setEditingAnnotation(_ value: Annotation?) {
+        // One identity per original sheet entry, including reopening the same
+        // unsaved value. Callback closures capture this value, never a live getter.
+        if value != nil { nativeNoteEditorPresentationID = UUID() }
+        editingAnnotation = value
     }
 
     private var annotationEditorBinding: Binding<Bool> {
@@ -551,7 +563,7 @@ struct iOSReaderWorkspaceView: View {
             get: { editingAnnotation != nil },
             set: { isPresented in
                 if !isPresented {
-                    editingAnnotation = nil
+                    setEditingAnnotation(nil)
                     pendingNotesDidChange = nil
                 }
             }
@@ -706,7 +718,7 @@ struct iOSReaderWorkspaceView: View {
                 viewModel.currentContentId &+= 1
             }
             #endif
-            editingAnnotation = draft
+            setEditingAnnotation(draft)
         } catch {
             noteErrorMessage = error.localizedDescription
         }
@@ -717,9 +729,9 @@ struct iOSReaderWorkspaceView: View {
     ) {
         guard let id = Int64(note.id) else { return }
         if let annotation = viewModel.currentAnnotations.first(where: { $0.id == id }) {
-            editingAnnotation = annotation
+            setEditingAnnotation(annotation)
         } else if let annotation = AnnotationManager.shared.loadAnnotationById(id) {
-            editingAnnotation = annotation
+            setEditingAnnotation(annotation)
         }
     }
 
@@ -742,7 +754,7 @@ struct iOSReaderWorkspaceView: View {
         #if DEBUG
         iOSAnnotationEditorSheet.appendDebugLog("[finishEditingAnnotation] called\n")
         #endif
-        editingAnnotation = nil
+        setEditingAnnotation(nil)
         inspectorSession.repository.invalidateAllNotes()
         NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
         let completion = pendingNotesDidChange

@@ -306,19 +306,35 @@ struct MaktabahNativeSceneBindings {
     let id: UUID
     weak var reader: ReaderViewModel?
     private let annotation: Binding<Annotation?>
+    private let presentationID: @MainActor () -> UUID
+    private var retiredPresentationID: UUID?
     weak var textView: UITextView?
     private(set) var presentationActive = false
-    func observeTextView(_ value: UITextView?) {
+    @discardableResult
+    func observeTextView(_ value: UITextView?, presentationID: UUID) -> Bool {
+        // Reader ownership survives sheet dismissal/reopening. Only the
+        // presentation captured by this original editor may publish a view.
+        guard current != nil, self.presentationID() == presentationID,
+              retiredPresentationID != presentationID else { return false }
+        if value == nil {
+            // onDisappear closes this presentation even when its asynchronous
+            // onCreated callback has not arrived. Late creation cannot revive it.
+            retiredPresentationID = presentationID
+        }
         textView = value
         if value != nil { presentationActive = true }
+        return true
     }
     func didDismiss() {
         guard current == nil else { return }
+        retiredPresentationID = presentationID()
         presentationActive = false
         textView = nil
     }
-    init(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>) {
+    init(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>,
+         presentationID: @escaping @MainActor () -> UUID) {
         self.id = id; self.reader = reader; self.annotation = annotation
+        self.presentationID = presentationID
     }
     var current: Annotation? { annotation.wrappedValue }
     func present(_ draft: Annotation) throws {

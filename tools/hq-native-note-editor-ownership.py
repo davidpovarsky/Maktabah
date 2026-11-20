@@ -82,7 +82,7 @@ passed = re.findall(r"^PASS (.+)$", run.stdout, re.M) if run else []
 failed = re.findall(r"^FAIL (.+)$", run.stdout, re.M) if run else []
 integration_checks = {
     "presentation_argument_is_bound": bound,
-    "workspace_has_one_original_annotation_assignment": len(re.findall(r"\beditingAnnotation\s*=", source[WORKSPACE])) == 1,
+    "workspace_has_one_original_annotation_assignment": len(re.findall(r"\beditingAnnotation\s*=(?!=)", source[WORKSPACE])) == 1,
     "callback_captures_presentation_before_async_creation":
         "let presentationID = nativeNoteEditorPresentationID" in source[WORKSPACE]
         and "presentationID: presentationID, textView: textView" in source[WORKSPACE],

@@ -156,10 +156,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                 || (command?.route.route.destination.rawValue == "native.reader.noteDraft" && noteDraftBinding?.isApplied == true))
     }
 
-    func attachNoteEditor(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>) {
+    func attachNoteEditor(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>,
+                          presentationID: @escaping @MainActor () -> UUID) {
         if noteEditorOwner?.id == id, noteEditorOwner?.reader === reader { return }
         if noteDraftBinding != nil { presentation.revoke() }
-        noteEditorOwner = .init(id: id, reader: reader, annotation: annotation)
+        noteEditorOwner = .init(id: id, reader: reader, annotation: annotation, presentationID: presentationID)
         try? nativeStateChanged()
     }
     func detachNoteEditor(id: UUID) {
@@ -168,9 +169,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         presentation.revoke()
         try? nativeStateChanged()
     }
-    func noteEditorTextViewChanged(id: UUID, reader: ReaderViewModel, textView: UITextView?) {
+    func noteEditorTextViewChanged(id: UUID, reader: ReaderViewModel, presentationID: UUID, textView: UITextView?) {
         guard let owner = noteEditorOwner, owner.id == id, owner.reader === reader else { return }
-        owner.observeTextView(textView)
+        guard owner.observeTextView(textView, presentationID: presentationID) else { return }
         try? nativeStateChanged()
     }
     func noteEditorDidDismiss(id: UUID) {
