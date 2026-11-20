@@ -1,0 +1,41 @@
+{
+  "utc": "2026-11-20T09:32:58.736614+00:00",
+  "original_test_exact_prefix": true,
+  "added_tests": 5,
+  "parse": [
+    {
+      "name": "ui",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift"
+      ],
+      "exit_code": 0,
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\r\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\r\n"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift"
+      ],
+      "exit_code": 0,
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\r\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\r\n"
+    }
+  ],
+  "diff_check": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "warning: in the working copy of 'Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/ZayitSearch/UnifiedSearchWorkspaceView.swift', LF will be replaced by CRLF the next time Git touches it\n"
+  },
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "new_test_lf_sha256": "1381aecb54f678a336f8e863f9fe6b4fcc8e775f909207e95297fd9b1e94beae"
+}

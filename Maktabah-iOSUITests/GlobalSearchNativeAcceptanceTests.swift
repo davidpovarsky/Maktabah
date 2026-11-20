@@ -1008,3 +1008,457 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
     }
 
 }
+
+
+// MARK: - Original Search Data status and repair on the owned miniature fixture
+
+private enum SearchDataNativeFixtureError: Error { case rejected(String) }
+
+private func requireSearchDataFixture(_ condition: Bool, _ reason: String) throws {
+    guard condition else {
+        XCTFail(reason)
+        throw SearchDataNativeFixtureError.rejected(reason)
+    }
+}
+
+private func searchDataFileBytes(_ url: URL, maximum: Int = 128 * 1024 * 1024) throws -> Data {
+    let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+    try requireSearchDataFixture(values.isRegularFile == true && values.isSymbolicLink == false,
+                                 "The owned fixture file must be regular and must not be a symbolic link")
+    try requireSearchDataFixture((values.fileSize ?? maximum + 1) <= maximum, "Bound the miniature fixture read")
+    return try Data(contentsOf: url)
+}
+
+private func searchDataDigest(_ data: Data) -> String {
+    SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+}
+
+private func searchDataIndexInventory(_ root: URL, includeSecondaryIdentity: Bool = false) throws -> [String: String] {
+    try requireSearchDataFixture(root.standardizedFileURL.path == root.resolvingSymlinksInPath().path,
+                                 "Do not follow a fixture path through symbolic links")
+    let files = try XCTUnwrap(FileManager.default.enumerator(
+        at: root, includingPropertiesForKeys: [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey, .fileSizeKey]))
+    var result: [String: String] = [:]
+    var bytes = 0
+    for case let file as URL in files {
+        let values = try file.resourceValues(forKeys: [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey])
+        try requireSearchDataFixture(values.isSymbolicLink == false, "Index fixtures cannot contain symbolic links")
+        if values.isDirectory == true { continue }
+        try requireSearchDataFixture(values.isRegularFile == true, "Index fixtures must contain only regular files")
+        let path = Array(file.standardizedFileURL.pathComponents.dropFirst(root.standardizedFileURL.pathComponents.count))
+        try requireSearchDataFixture(file.standardizedFileURL.pathComponents.starts(with: root.standardizedFileURL.pathComponents)
+            && !path.isEmpty && !path.contains(".."), "Every inventory item must remain inside the exact owned index")
+        let relative = path.joined(separator: "/")
+        let data = try searchDataFileBytes(file)
+        bytes += data.count
+        try requireSearchDataFixture(bytes <= 256 * 1024 * 1024 && result.count < 256,
+                                     "Only the bounded miniTest10 index may be inventoried")
+        // Tantivy owns these empty OS lock files. They are not index payload.
+        if [".tantivy-meta.lock", ".tantivy-writer.lock"].contains(relative) {
+            try requireSearchDataFixture(data.isEmpty, "Only empty original Tantivy lock files may be excluded")
+            continue
+        }
+        if relative == "otzaria_search_identity.json" && !includeSecondaryIdentity { continue }
+        result[relative] = searchDataDigest(data)
+    }
+    try requireSearchDataFixture(result["meta.json"] != nil && result["otzaria_prebuilt_installation.json"] != nil,
+                                 "The original Tantivy index and trusted installation manifest must both exist")
+    return result
+}
+
+private struct SearchDataNativeFixture {
+    let appContainer: URL
+    let root: URL
+    let index: URL
+    let database: URL
+    let databaseManifest: URL
+    let ownerMetadata: URL
+    let ownerMetadataBytes: Data
+    let databaseDigest: String
+    let databaseManifestBytes: Data
+    let indexPayload: [String: String]
+    let documentCount: Int
+
+    func verifyOwner() throws {
+        for directory in [root, index.deletingLastPathComponent(), database.deletingLastPathComponent(),
+                          appContainer.appendingPathComponent("Documents", isDirectory: true)] {
+            try requireSearchDataFixture(directory.standardizedFileURL.path == directory.resolvingSymlinksInPath().path,
+                                         "Every fixture and backup parent must retain its canonical owned path")
+        }
+        try requireSearchDataFixture(try searchDataFileBytes(ownerMetadata, maximum: 65536) == ownerMetadataBytes,
+                                     "The original owned Simulator container must be unchanged")
+    }
+
+    func verifyBooksAndOwner() throws {
+        try verifyOwner()
+        try requireSearchDataFixture(searchDataDigest(try searchDataFileBytes(database)) == databaseDigest,
+                                     "Search repair must preserve the exact canonical miniature book database")
+        try requireSearchDataFixture(try searchDataFileBytes(databaseManifest, maximum: 1024 * 1024) == databaseManifestBytes,
+                                     "Search repair must preserve the original database installation manifest")
+    }
+}
+
+@MainActor
+private final class SearchDataNativeRestoration {
+    let restore: @MainActor () throws -> Void
+    init(_ restore: @escaping @MainActor () throws -> Void) { self.restore = restore }
+    func run() throws { try restore() }
+}
+
+/// Actual status text, original controls, original engine and real miniature
+/// artifact installation. No readiness override or replacement engine is used.
+final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
+    override var readerTestTier: TestTier { .realUI }
+
+    @MainActor
+    private func launchSearchDataReader() throws {
+        XCTAssertTrue(isPad, "This additional source-bound gate requires an iPad Simulator")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(backend: "otzaria")
+        _ = try assertTarget(backend: "otzaria")
+        try requireSearchDataFixture(app.launchEnvironment["OTZARIA_DATA_PROFILE"] == "miniTest10"
+            && !app.launchArguments.contains("-smokeBypassBootstrap")
+            && !app.launchArguments.contains("-OTZARIA_SHARED_ROOT_OVERRIDE")
+            && app.launchEnvironment["OTZARIA_SHARED_ROOT_OVERRIDE"] == nil,
+            "Only the normal miniature bootstrap with original storage ownership is allowed")
+        for (key, value) in [("-OtzariaDataProfile", "miniTest10"),
+                             ("-studyWorkspaceTestingNamespace", workspaceNamespace),
+                             ("-preferredBackend", "otzaria")] {
+            let matches = app.launchArguments.indices.filter { app.launchArguments[$0] == key }
+            try requireSearchDataFixture(matches.count == 1, "Require one explicit original launch argument: \(key)")
+            let index = try XCTUnwrap(matches.first)
+            try requireSearchDataFixture(app.launchArguments.indices.contains(index + 1)
+                && app.launchArguments[index + 1] == value, "Reject an unexpected fixture or namespace")
+        }
+    }
+
+    @MainActor
+    private func fixture() throws -> SearchDataNativeFixture {
+        try requireSearchDataFixture(UUID(uuidString: workspaceNamespace) != nil, "Require this test's isolated UUID")
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let suffix = ["Library", "Application Support", "ChavrusaText", "StudyWorkspace", "UITests", workspaceNamespace + ".json"]
+        try requireSearchDataFixture(Array(sidecar.pathComponents.suffix(suffix.count)) == suffix, "Require the exact owned sidecar")
+        var container = sidecar
+        for _ in suffix { container.deleteLastPathComponent() }
+        let parent = try workspaceContainerParent().standardizedFileURL
+        try requireSearchDataFixture(container.deletingLastPathComponent() == parent
+            && UUID(uuidString: container.lastPathComponent) != nil, "Require the current original app installation")
+        let simulatorData = parent.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let udid = try XCTUnwrap(ProcessInfo.processInfo.environment["SIMULATOR_UDID"])
+        try requireSearchDataFixture(UUID(uuidString: udid) != nil
+            && simulatorData.lastPathComponent == "data"
+            && simulatorData.deletingLastPathComponent().lastPathComponent.lowercased() == udid.lowercased()
+            && Array(parent.pathComponents.suffix(3)) == ["Containers", "Data", "Application"],
+            "Never access data outside this owned disposable Simulator")
+        func metadata(_ owner: URL) throws -> (URL, Data, String?) {
+            let url = owner.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist")
+            let bytes = try searchDataFileBytes(url, maximum: 65536)
+            let value = try XCTUnwrap(PropertyListSerialization.propertyList(from: bytes, format: nil) as? [String: Any])
+            return (url, bytes, value["MCMMetadataIdentifier"] as? String)
+        }
+        let appOwner = try metadata(container)
+        try requireSearchDataFixture(appOwner.2 == "com.davidpovarsky.chavrusatext", "The sidecar must belong to the original app")
+        let groups = simulatorData.appendingPathComponent("Containers/Shared/AppGroup", isDirectory: true)
+        let children = (try? FileManager.default.contentsOfDirectory(
+            at: groups, includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey])) ?? []
+        try requireSearchDataFixture(children.count <= 256, "Bound App Group discovery to this Simulator")
+        var owners: [(URL, URL, Data)] = []
+        for child in children {
+            let values = try child.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+            guard values.isDirectory == true, values.isSymbolicLink == false,
+                  UUID(uuidString: child.lastPathComponent) != nil,
+                  let value = try? metadata(child), value.2 == "group.com.davidpovarsky.itorah" else { continue }
+            owners.append((child, value.0, value.1))
+        }
+        try requireSearchDataFixture(owners.count <= 1, "Ambiguous original App Group ownership is a failure")
+        let owner = owners.first ?? (container.appendingPathComponent("Library/Application Support/Maktabah-Debug", isDirectory: true),
+                                     appOwner.0, appOwner.1)
+        let root = owner.0.standardizedFileURL
+        try requireSearchDataFixture(root.pathComponents.starts(with: simulatorData.pathComponents)
+            && root.path == root.resolvingSymlinksInPath().path, "Do not follow storage outside the exact Simulator")
+        let profile = root.appendingPathComponent("Otzaria/Profiles/miniTest10", isDirectory: true)
+        let database = profile.appendingPathComponent("database/seforim.db")
+        let databaseManifest = profile.appendingPathComponent("database/seforim-installation.json")
+        let databaseBytes = try searchDataFileBytes(database)
+        let digest = searchDataDigest(databaseBytes)
+        try requireSearchDataFixture(databaseBytes.count == 15470592
+            && digest == "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+            "Only the existing source-pinned miniTest10 v6 database is eligible for fault injection")
+        let databaseManifestBytes = try searchDataFileBytes(databaseManifest, maximum: 1024 * 1024)
+        let databaseRecord = try XCTUnwrap(JSONSerialization.jsonObject(with: databaseManifestBytes) as? [String: Any])
+        try requireSearchDataFixture(databaseRecord["profileID"] as? String == "miniTest10"
+            && databaseRecord["profileVersion"] as? Int == 6, "The original database manifest must corroborate the profile")
+        let index = profile.appendingPathComponent("otzariaSearch/managed-library", isDirectory: true)
+        for extensionName in ["previous", "building", "installing"] {
+            try requireSearchDataFixture(!FileManager.default.fileExists(atPath: index.appendingPathExtension(extensionName).path),
+                                         "Do not mutate a fixture with an existing pending replacement")
+        }
+        let install = try XCTUnwrap(JSONSerialization.jsonObject(with: searchDataFileBytes(
+            index.appendingPathComponent("otzaria_prebuilt_installation.json"), maximum: 1024 * 1024)) as? [String: Any])
+        let source = try XCTUnwrap(install["sourceDatabase"] as? [String: Any])
+        let lexical = try XCTUnwrap(install["lexicalArtifact"] as? [String: Any])
+        let count = try XCTUnwrap(lexical["documentCount"] as? Int)
+        try requireSearchDataFixture(install["profileID"] as? String == "miniTest10"
+            && install["profileVersion"] as? Int == 6
+            && source["databaseSHA256"] as? String == digest && count == 18879,
+            "Require the genuine installed miniature artifact, never a manufactured index")
+        let result = SearchDataNativeFixture(appContainer: container, root: root, index: index,
+            database: database, databaseManifest: databaseManifest, ownerMetadata: owner.1,
+            ownerMetadataBytes: owner.2, databaseDigest: digest, databaseManifestBytes: databaseManifestBytes,
+            indexPayload: try searchDataIndexInventory(index), documentCount: count)
+        try result.verifyBooksAndOwner()
+        let proof: [String: Any] = ["simulatorUDID": udid, "namespace": workspaceNamespace,
+            "storageRoot": root.path, "databaseSHA256": digest,
+            "indexPayloadSHA256": result.indexPayload, "expectedDocuments": count,
+            "scope": "owned miniature fixture identity; actual UI status and query are separate assertions"]
+        let attachment = XCTAttachment(data: try JSONSerialization.data(withJSONObject: proof, options: [.sortedKeys]), uniformTypeIdentifier: "public.json")
+        attachment.name = "search-data-original-fixture-ownership"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+        return result
+    }
+
+    @MainActor
+    @discardableResult
+    private func backupForMutation(_ value: SearchDataNativeFixture) throws -> Int {
+        app.terminate()
+        try requireSearchDataFixture(app.state == .notRunning, "Close every app engine before changing an owned fixture")
+        try value.verifyBooksAndOwner()
+        let original = try searchDataIndexInventory(value.index, includeSecondaryIdentity: true)
+        let permissions = try XCTUnwrap((try FileManager.default.attributesOfItem(
+            atPath: value.index.deletingLastPathComponent().path)[.posixPermissions]) as? NSNumber).intValue
+        try requireSearchDataFixture(permissions & 0o222 != 0, "The original owned index parent must be writable")
+        let backup = value.appContainer.appendingPathComponent("Documents/search-data-" + workspaceNamespace, isDirectory: true)
+        try requireSearchDataFixture(!FileManager.default.fileExists(atPath: backup.path), "Never overwrite another backup")
+        try FileManager.default.copyItem(at: value.index, to: backup)
+        try requireSearchDataFixture(try searchDataIndexInventory(backup, includeSecondaryIdentity: true) == original,
+                                     "The complete original index backup must be byte-verified before any mutation")
+        let application = app!
+        let restore = SearchDataNativeRestoration {
+            application.terminate()
+            try requireSearchDataFixture(application.state == .notRunning, "Stop the original app before fixture restoration")
+            // Book-integrity failures must not prevent cleanup of this test's
+            // index fault. Changed storage ownership still forbids any write.
+            try value.verifyOwner()
+            try FileManager.default.setAttributes([.posixPermissions: permissions],
+                atPath: value.index.deletingLastPathComponent().path)
+            try requireSearchDataFixture(try searchDataIndexInventory(backup, includeSecondaryIdentity: true) == original,
+                                         "Never restore an altered or unverified backup")
+            for extensionName in ["previous", "building", "installing"] {
+                let temporary = value.index.appendingPathExtension(extensionName)
+                if FileManager.default.fileExists(atPath: temporary.path) {
+                    // fixture() proved these exact sibling paths absent before
+                    // the test. Never touch downloads or another profile.
+                    let values = try temporary.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+                    try requireSearchDataFixture(values.isDirectory == true && values.isSymbolicLink == false
+                        && temporary.deletingLastPathComponent() == value.index.deletingLastPathComponent()
+                        && temporary.standardizedFileURL.path == temporary.resolvingSymlinksInPath().path,
+                        "Only this test's exact original staging/previous directories may be removed")
+                    try FileManager.default.removeItem(at: temporary)
+                }
+            }
+            if FileManager.default.fileExists(atPath: value.index.path) { try FileManager.default.removeItem(at: value.index) }
+            try FileManager.default.moveItem(at: backup, to: value.index)
+            try requireSearchDataFixture(try searchDataIndexInventory(value.index, includeSecondaryIdentity: true) == original,
+                                         "Restore the exact original fixture bytes even after a test failure")
+            let restoredMode = try XCTUnwrap((try FileManager.default.attributesOfItem(
+                atPath: value.index.deletingLastPathComponent().path)[.posixPermissions]) as? NSNumber).intValue
+            try requireSearchDataFixture(restoredMode == permissions, "Restore the exact original POSIX permissions")
+            try value.verifyBooksAndOwner()
+        }
+        addTeardownBlock { try await restore.run() }
+        return permissions
+    }
+
+    @MainActor
+    private func openSearchData() throws {
+        let tab = findTabButton(hebrew: "חיפוש", english: "Search")
+        XCTAssertTrue(tab.exists || tab.waitForExistence(timeout: 30))
+        tap(tab)
+        let more = app.buttons["global-search-more"]
+        XCTAssertTrue(more.exists || more.waitForExistence(timeout: 30))
+        tap(more)
+        tap(app.buttons["global-search-data"])
+        XCTAssertTrue(app.staticTexts["search-data-otzaria-status"].waitForExistence(timeout: 30))
+    }
+
+    @MainActor
+    private func status(_ predicate: NSPredicate, named name: String, timeout: TimeInterval = 60) {
+        let target = app.staticTexts["search-data-otzaria-status"]
+        let list = app.descendants(matching: .any)["search-data-screen"]
+        for _ in 0..<6 {
+            if target.exists && target.isHittable { break }
+            XCTAssertTrue(list.exists)
+            list.swipeDown()
+        }
+        XCTAssertTrue(target.exists && target.isHittable, "Observe the visible original status row")
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: predicate, object: target)], timeout: timeout), .completed,
+                       "The original Search Data status must reflect the actual engine and on-disk fixture")
+        let attachment = XCTAttachment(string: target.label + "\n" + app.debugDescription)
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        add(attachment)
+        capture(name)
+    }
+
+    @MainActor
+    private func ready(_ value: SearchDataNativeFixture, named name: String, timeout: TimeInterval = 60) {
+        status(NSPredicate(format: "label == %@", "האינדקס מוכן (\(value.documentCount) מסמכים)"), named: name, timeout: timeout)
+    }
+
+    @MainActor
+    private func dataAction(_ identifier: String, earlier: Bool = false) throws -> XCUIElement {
+        let action = app.buttons[identifier]
+        let list = app.descendants(matching: .any)["search-data-screen"]
+        for _ in 0..<6 {
+            if action.exists && action.isHittable { return action }
+            XCTAssertTrue(list.exists)
+            if earlier { list.swipeDown() } else { list.swipeUp() }
+        }
+        XCTFail("The original Search Data action must be reachable: \(identifier)")
+        throw SearchDataNativeFixtureError.rejected(identifier)
+    }
+
+    @MainActor
+    private func actualQueryAfterClosingData() throws {
+        tap(try dataAction("search-data-close", earlier: true))
+        let field = app.descendants(matching: .any)["global-search-query"]
+        XCTAssertTrue(field.waitForExistence(timeout: 20))
+        tap(field)
+        if let value = field.value as? String, !value.isEmpty, value != field.placeholderValue {
+            let clear = field.buttons.allElementsBoundByIndex.filter(\.isHittable)
+            XCTAssertEqual(clear.count, 1)
+            tap(try XCTUnwrap(clear.first))
+        }
+        field.typeText("בראשית ברא\n") // Existing canonical miniTest10 golden query.
+        let row = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "search-result-preview-toggle-")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 90), "A ready label alone cannot establish real search results")
+        XCTAssertTrue(row.isHittable)
+        capture("search-data-original-query-results")
+    }
+
+    @MainActor
+    private func verifyRecoveredAndCold(_ value: SearchDataNativeFixture) throws {
+        ready(value, named: "search-data-after-recovery", timeout: 180)
+        try value.verifyBooksAndOwner()
+        XCTAssertEqual(try searchDataIndexInventory(value.index), value.indexPayload)
+        try actualQueryAfterClosingData()
+        app.terminate()
+        try launchSearchDataReader()
+        try openSearchData()
+        ready(value, named: "search-data-after-repaired-cold-launch")
+        try actualQueryAfterClosingData()
+        try value.verifyBooksAndOwner()
+        XCTAssertEqual(try searchDataIndexInventory(value.index), value.indexPayload)
+    }
+
+    @MainActor
+    func testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount() throws {
+        try launchSearchDataReader()
+        let value = try fixture()
+        try openSearchData()
+        ready(value, named: "search-data-healthy-original-status")
+        try actualQueryAfterClosingData()
+        app.terminate()
+        try launchSearchDataReader()
+        try openSearchData()
+        ready(value, named: "search-data-healthy-cold-status")
+        try actualQueryAfterClosingData()
+        try value.verifyBooksAndOwner()
+        XCTAssertEqual(try searchDataIndexInventory(value.index), value.indexPayload)
+    }
+
+    @MainActor
+    func testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch() throws {
+        try launchSearchDataReader()
+        let value = try fixture()
+        try openSearchData()
+        ready(value, named: "search-data-before-secondary-metadata-loss")
+        try backupForMutation(value)
+        let identity = value.index.appendingPathComponent("otzaria_search_identity.json")
+        _ = try searchDataFileBytes(identity, maximum: 1024 * 1024)
+        try FileManager.default.removeItem(at: identity)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: identity.path))
+        try launchSearchDataReader()
+        try openSearchData()
+        ready(value, named: "search-data-trusted-secondary-metadata-recovered")
+        let recovered = try searchDataFileBytes(identity, maximum: 1024 * 1024)
+        XCTAssertNotNil(try JSONSerialization.jsonObject(with: recovered) as? [String: Any])
+        try verifyRecoveredAndCold(value)
+        XCTAssertEqual(try searchDataFileBytes(identity, maximum: 1024 * 1024), recovered,
+                       "A second cold validation must retain the recovered canonical identity")
+    }
+
+    @MainActor
+    func testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch() throws {
+        try launchSearchDataReader()
+        let value = try fixture()
+        try openSearchData()
+        ready(value, named: "search-data-before-corrupt-owned-meta")
+        try backupForMutation(value)
+        let meta = value.index.appendingPathComponent("meta.json")
+        _ = try searchDataFileBytes(meta)
+        let corrupt = Data("owned miniTest10 Native negative fixture; deliberately invalid JSON\n".utf8)
+        try corrupt.write(to: meta, options: .atomic)
+        XCTAssertEqual(try searchDataFileBytes(meta), corrupt)
+        try launchSearchDataReader()
+        try openSearchData()
+        status(NSPredicate(format: "label BEGINSWITH %@", "נדרש תיקון לאינדקס:"), named: "search-data-real-corruption-fails-closed")
+        try value.verifyBooksAndOwner()
+        tap(try dataAction("search-data-repair-otzaria"))
+        try verifyRecoveredAndCold(value)
+    }
+
+    @MainActor
+    func testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks() throws {
+        try launchSearchDataReader()
+        let value = try fixture()
+        try openSearchData()
+        ready(value, named: "search-data-before-original-remove")
+        try backupForMutation(value)
+        try launchSearchDataReader()
+        try openSearchData()
+        ready(value, named: "search-data-original-remove-precondition")
+        tap(try dataAction("search-data-remove-otzaria"))
+        status(NSPredicate(format: "label == %@", "האינדקס עדיין לא נבנה"), named: "search-data-original-removal-is-not-ready")
+        XCTAssertFalse(FileManager.default.fileExists(atPath: value.index.path))
+        try value.verifyBooksAndOwner()
+        tap(try dataAction("search-data-repair-otzaria"))
+        try verifyRecoveredAndCold(value)
+    }
+
+    @MainActor
+    func testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry() throws {
+        try launchSearchDataReader()
+        let value = try fixture()
+        try openSearchData()
+        ready(value, named: "search-data-before-owned-install-write-denial")
+        let permissions = try backupForMutation(value)
+        let meta = value.index.appendingPathComponent("meta.json")
+        try Data("owned miniTest10 repair failure fixture; deliberately invalid JSON\n".utf8)
+            .write(to: meta, options: .atomic)
+        try launchSearchDataReader()
+        try openSearchData()
+        status(NSPredicate(format: "label BEGINSWITH %@", "נדרש תיקון לאינדקס:"), named: "search-data-before-real-install-failure")
+        let beforeFailure = try searchDataIndexInventory(value.index, includeSecondaryIdentity: true)
+        let parent = value.index.deletingLastPathComponent()
+        // Actual filesystem denial on this disposable miniature index parent.
+        // The teardown registered before the mutation restores both permissions
+        // and complete original bytes, including after assertion failure.
+        try FileManager.default.setAttributes([.posixPermissions: permissions & ~0o222], atPath: parent.path)
+        try requireSearchDataFixture(!FileManager.default.isWritableFile(atPath: parent.path),
+                                     "Require an actual OS write denial; never inject a fake failed status")
+        tap(try dataAction("search-data-repair-otzaria"))
+        status(NSPredicate(format: "label BEGINSWITH %@", "שגיאת אינדוקס:"), named: "search-data-real-install-failure-is-visible", timeout: 180)
+        try value.verifyBooksAndOwner()
+        XCTAssertEqual(try searchDataIndexInventory(value.index, includeSecondaryIdentity: true), beforeFailure,
+                       "A failed replacement must preserve even the original damaged index for recovery")
+        let retry = try dataAction("search-data-repair-otzaria")
+        XCTAssertTrue(retry.isEnabled && retry.isHittable, "The original repair control must remain actionable after failure")
+        try FileManager.default.setAttributes([.posixPermissions: permissions], atPath: parent.path)
+        try requireSearchDataFixture(FileManager.default.isWritableFile(atPath: parent.path), "Restore the real write precondition")
+        tap(retry)
+        try verifyRecoveredAndCold(value)
+    }
+
+}

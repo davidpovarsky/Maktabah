@@ -1,0 +1,13 @@
+{
+  "utc": "2026-11-20T09:30:35.414602+00:00",
+  "base": "8c022ed13d37e3ee18994b72e4723fcabb92a269",
+  "original_test_exact_prefix": true,
+  "original_ui_exact_inverse": true,
+  "original_test_sha256": "fdcf38a22fa039bbd4a8f8183c1e3d6a93ceca889af6cc0ee6e0e7146e2c42b1",
+  "new_test_sha256": "66de41056c17691e892a81ec19408bf3d7fdb93c60fc3f522ccb454e10e07ffd",
+  "new_ui_sha256": "f37faabf742fe6ca2b7d3a3d5c045cc38f7a520547c14e6da55d554164e99cf4",
+  "added_tests": 4,
+  "ui_changes": "only accessibility identifiers on original existing content and controls",
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN"
+}

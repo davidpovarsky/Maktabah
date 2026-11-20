@@ -1,0 +1,9 @@
+{
+  "original_upstream": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "original_upstream_ls_tree": "",
+  "protected_sdk_or_project_changes": false,
+  "independent_review": "SOURCE_ONLY; final ownership/restoration re-read after two concrete cleanup fixes",
+  "final_test_lf_sha256": "24f29576684b0d28ab3a8ca7966ca26aa4e2d5d602af377113a3a4db04432e49",
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN"
+}

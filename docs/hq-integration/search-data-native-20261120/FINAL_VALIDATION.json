@@ -1,0 +1,15 @@
+{
+  "at_utc": "2026-11-20T09:48:31.188329+00:00",
+  "base": "8c022ed13d37e3ee18994b72e4723fcabb92a269",
+  "original_test_exact_prefix": true,
+  "original_ui_exact_inverse": true,
+  "test_lf_sha256": "24f29576684b0d28ab3a8ca7966ca26aa4e2d5d602af377113a3a4db04432e49",
+  "ui_lf_sha256": "f37faabf742fe6ca2b7d3a3d5c045cc38f7a520547c14e6da55d554164e99cf4",
+  "parse_exit_code": 0,
+  "parse_stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\r\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\r\n",
+  "diff_check_exit_code": 0,
+  "added_cases": 5,
+  "review": "Independent source review; corrected restore ordering and exact formerly absent staging cleanup",
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN"
+}
