@@ -1,0 +1,30 @@
+{
+  "at_utc": "2026-11-20T09:03:41.786787+00:00",
+  "base": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "branch": "codex/otzaria-reduce-motion-original-switch-20261120",
+  "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "before_git_lf_sha256": "387879fcc00f2d90f8bb03319c59faf392f093062fcd0d1551a6c34009f9bb11",
+  "after_git_lf_sha256": "92abf09a2e01e8a1c027ea85b1d457b7440fe8aea6360d60bd61c48fdc99b13c",
+  "exact_inverse": true,
+  "existing_test_method_and_all_original_assertions_preserved": true,
+  "original_system_enable_and_restore_15_second_oracles_unchanged": true,
+  "system_settings_language": "original forced English retained",
+  "only_tap_target_changed": "original switch at normalized trailing0.95/vertical0.5 with finite native-window and hittability guards; no fallback or retry",
+  "before_each_actual_tap": "original Settings AX/native geometry/system status retained without mutating preferences",
+  "syntax_command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native88-harness-repairs-20261120\\Maktabah-iOSUITests\\FaithfulReaderUIAcceptanceTests.swift"
+  ],
+  "syntax_exit": 0,
+  "syntax_warning_count": 2,
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "original_failure_run": 44665679661,
+  "original_video_sha256": "8374c72049b875bbf41590170b6b39e4433d2ea1fa83d96e7080d955b6634257",
+  "original_toggle_event_sha256": "420ced866c285e7bc91210ee9297ce51e6acefdf1b5ca492e1d174b8526f640f",
+  "initial_edit_guard": "Rejected ambiguous unanchored indentation before source mutation; exact line anchor used on retry"
+}

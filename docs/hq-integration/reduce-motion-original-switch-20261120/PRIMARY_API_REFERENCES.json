@@ -1,0 +1,22 @@
+{
+  "retrieved_at_utc": "2026-11-20T09:09:35.601585+00:00",
+  "primary_api_references": [
+    {
+      "url": "https://developer.apple.com/documentation/xcuiautomation/xcuielement/coordinate%28withnormalizedoffset%3A%29",
+      "used_for": "Normalized coordinate is relative to the original element frame"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/xcuiautomation/xcuielementattributes/frame",
+      "used_for": "Element frame uses screen coordinates"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/xcuiautomation/xcuicoordinate/screenpoint",
+      "used_for": "Screen point is computed from the current referenced-element frame"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/uikit/uiaccessibility/isreducemotionenabled",
+      "used_for": "Preserved original system Reduce Motion state oracle"
+    }
+  ],
+  "no_private_orientation_enum_assumed": true
+}

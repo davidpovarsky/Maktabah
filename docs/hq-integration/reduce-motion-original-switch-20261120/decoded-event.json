@@ -1,0 +1,333 @@
+{
+  "$version": 100000,
+  "$archiver": "NSKeyedArchiver",
+  "$top": {
+    "root": {
+      "plist_UID": 1
+    }
+  },
+  "$objects": [
+    "$null",
+    {
+      "originalOffset.dx": {
+        "plist_UID": 11
+      },
+      "parentWindowSize": {
+        "plist_UID": 21
+      },
+      "orientation": {
+        "plist_UID": 3
+      },
+      "targetProcessID": 51127,
+      "endsPersistentState": false,
+      "$class": {
+        "plist_UID": 26
+      },
+      "displayID": {
+        "plist_UID": 3
+      },
+      "systemAutomationProperties": {
+        "plist_UID": 19
+      },
+      "originalOffset.dy": {
+        "plist_UID": 11
+      },
+      "beginsPersistentState": false,
+      "name": {
+        "plist_UID": 2
+      },
+      "eventPaths": {
+        "plist_UID": 4
+      }
+    },
+    "tap",
+    1,
+    {
+      "NS.objects": [
+        {
+          "plist_UID": 5
+        }
+      ],
+      "$class": {
+        "plist_UID": 17
+      }
+    },
+    {
+      "targetFrame.width": {
+        "plist_UID": 11
+      },
+      "targetFrame.x": {
+        "plist_UID": 11
+      },
+      "$class": {
+        "plist_UID": 18
+      },
+      "pathType": {
+        "plist_UID": 3
+      },
+      "targetFrame.y": {
+        "plist_UID": 11
+      },
+      "deviceID": {
+        "plist_UID": 8
+      },
+      "pointerEvents": {
+        "plist_UID": 6
+      },
+      "speedFactor": {
+        "plist_UID": 11
+      },
+      "eventStream": {
+        "plist_UID": 0
+      },
+      "targetFrame.height": {
+        "plist_UID": 11
+      },
+      "index": {
+        "plist_UID": 3
+      }
+    },
+    {
+      "NS.objects": [
+        {
+          "plist_UID": 7
+        },
+        {
+          "plist_UID": 14
+        }
+      ],
+      "$class": {
+        "plist_UID": 17
+      }
+    },
+    {
+      "pressure": {
+        "plist_UID": 11
+      },
+      "eventType": {
+        "plist_UID": 3
+      },
+      "clickCount": {
+        "plist_UID": 8
+      },
+      "duration": {
+        "plist_UID": 11
+      },
+      "verticalLineScroll": {
+        "plist_UID": 8
+      },
+      "keyCode": {
+        "plist_UID": 8
+      },
+      "gesturePhase": {
+        "plist_UID": 8
+      },
+      "deltaVector.dy": {
+        "plist_UID": 11
+      },
+      "$class": {
+        "plist_UID": 13
+      },
+      "destination.y": {
+        "plist_UID": 11
+      },
+      "buttonType": {
+        "plist_UID": 8
+      },
+      "keyModifierFlags": {
+        "plist_UID": 8
+      },
+      "gestureStage": {
+        "plist_UID": 8
+      },
+      "typingSpeed": {
+        "plist_UID": 8
+      },
+      "destination.x": {
+        "plist_UID": 11
+      },
+      "deviceID": {
+        "plist_UID": 8
+      },
+      "offset": {
+        "plist_UID": 11
+      },
+      "deltaVector.dx": {
+        "plist_UID": 11
+      },
+      "coordinate.y": {
+        "plist_UID": 10
+      },
+      "mergeModifierFlagsWithCurrentFlags": {
+        "plist_UID": 12
+      },
+      "coordinate.x": {
+        "plist_UID": 9
+      },
+      "keyPhase": {
+        "plist_UID": 8
+      },
+      "shouldRedact": {
+        "plist_UID": 12
+      },
+      "string": {
+        "plist_UID": 0
+      },
+      "key": {
+        "plist_UID": 0
+      }
+    },
+    0,
+    704.0,
+    765.0,
+    0.0,
+    false,
+    {
+      "$classname": "XCPointerEvent",
+      "$classes": [
+        "XCPointerEvent",
+        "NSObject"
+      ]
+    },
+    {
+      "pressure": {
+        "plist_UID": 11
+      },
+      "eventType": {
+        "plist_UID": 15
+      },
+      "clickCount": {
+        "plist_UID": 8
+      },
+      "duration": {
+        "plist_UID": 11
+      },
+      "verticalLineScroll": {
+        "plist_UID": 8
+      },
+      "keyCode": {
+        "plist_UID": 8
+      },
+      "gesturePhase": {
+        "plist_UID": 8
+      },
+      "deltaVector.dy": {
+        "plist_UID": 11
+      },
+      "$class": {
+        "plist_UID": 13
+      },
+      "destination.y": {
+        "plist_UID": 11
+      },
+      "buttonType": {
+        "plist_UID": 8
+      },
+      "keyModifierFlags": {
+        "plist_UID": 8
+      },
+      "gestureStage": {
+        "plist_UID": 8
+      },
+      "typingSpeed": {
+        "plist_UID": 8
+      },
+      "destination.x": {
+        "plist_UID": 11
+      },
+      "deviceID": {
+        "plist_UID": 8
+      },
+      "offset": {
+        "plist_UID": 16
+      },
+      "deltaVector.dx": {
+        "plist_UID": 11
+      },
+      "coordinate.y": {
+        "plist_UID": 10
+      },
+      "mergeModifierFlagsWithCurrentFlags": {
+        "plist_UID": 12
+      },
+      "coordinate.x": {
+        "plist_UID": 9
+      },
+      "keyPhase": {
+        "plist_UID": 8
+      },
+      "shouldRedact": {
+        "plist_UID": 12
+      },
+      "string": {
+        "plist_UID": 0
+      },
+      "key": {
+        "plist_UID": 0
+      }
+    },
+    3,
+    0.05,
+    {
+      "$classname": "NSMutableArray",
+      "$classes": [
+        "NSMutableArray",
+        "NSArray",
+        "NSObject"
+      ]
+    },
+    {
+      "$classname": "XCPointerEventPath",
+      "$classes": [
+        "XCPointerEventPath",
+        "NSObject"
+      ]
+    },
+    {
+      "NS.keys": [],
+      "NS.objects": [],
+      "$class": {
+        "plist_UID": 20
+      }
+    },
+    {
+      "$classname": "NSDictionary",
+      "$classes": [
+        "NSDictionary",
+        "NSObject"
+      ]
+    },
+    {
+      "NS.keys": [
+        {
+          "plist_UID": 22
+        },
+        {
+          "plist_UID": 23
+        }
+      ],
+      "NS.objects": [
+        {
+          "plist_UID": 24
+        },
+        {
+          "plist_UID": 25
+        }
+      ],
+      "$class": {
+        "plist_UID": 20
+      }
+    },
+    "Width",
+    "Height",
+    1210.0,
+    834.0,
+    {
+      "$classname": "XCSynthesizedEventRecord",
+      "$classes": [
+        "XCSynthesizedEventRecord",
+        "NSObject"
+      ]
+    }
+  ]
+}

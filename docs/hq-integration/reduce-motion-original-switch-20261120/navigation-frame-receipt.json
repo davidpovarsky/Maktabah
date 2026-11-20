@@ -1,0 +1,143 @@
+{
+  "sourceVideo": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-remaining-roots-20261120\\captures-attempt1\\entries\\visual-11\\F07DBC55-AAD8-441D-9648-C1D44A1EDC6C.mp4",
+  "sourceVideoSHA256": "8374c72049b875bbf41590170b6b39e4433d2ea1fa83d96e7080d955b6634257",
+  "sourceVideoBytes": 4387065,
+  "probe": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "mime_codec_string": "avc1.640032",
+        "width": 1668,
+        "height": 2420,
+        "coded_width": 1668,
+        "coded_height": 2420,
+        "has_b_frames": 2,
+        "pix_fmt": "yuv420p",
+        "level": 50,
+        "color_range": "tv",
+        "color_space": "bt709",
+        "color_transfer": "iec61966-2-1",
+        "color_primaries": "smpte432",
+        "chroma_location": "left",
+        "field_order": "progressive",
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "600/1",
+        "avg_frame_rate": "3725/1357",
+        "time_base": "1/600",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 32568,
+        "duration": "54.280000",
+        "bit_rate": "646100",
+        "bits_per_raw_sample": "8",
+        "nb_frames": "149",
+        "extradata_size": 36,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "creation_time": "2026-11-20T05:08:08.000000Z",
+          "language": "und",
+          "handler_name": "Core Media Video",
+          "vendor_id": "[0][0][0][0]",
+          "encoder": "H.264"
+        },
+        "side_data_list": [
+          {
+            "side_data_type": "Display Matrix",
+            "displaymatrix": "\n00000000:            0      -65536           0\n00000001:        65536           0           0\n00000002:            0           0  1073741824\n",
+            "rotation": 90
+          }
+        ]
+      }
+    ],
+    "format": {
+      "filename": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-remaining-roots-20261120\\captures-attempt1\\entries\\visual-11\\F07DBC55-AAD8-441D-9648-C1D44A1EDC6C.mp4",
+      "nb_streams": 1,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "format_long_name": "QuickTime / MOV",
+      "start_time": "0.000000",
+      "duration": "54.280000",
+      "size": "4387065",
+      "bit_rate": "646582",
+      "probe_score": 100,
+      "tags": {
+        "major_brand": "qt  ",
+        "minor_version": "0",
+        "compatible_brands": "qt  ",
+        "creation_time": "2026-11-20T05:08:08.000000Z"
+      }
+    }
+  },
+  "method": "Decode existing authenticated video frames only; no crop, scale, marker or retouch.",
+  "frames": [
+    {
+      "second": 20.0,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-normalios-toolchain-20261120\\build\\release-reduce-motion-44665679661\\frame-20.png",
+      "bytes": 419962,
+      "sha256": "f23e10cdc6dcb9cbb33676a322e729001d8c890c8654a57f3ff9820402f16dc2",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.EXE",
+        "-v",
+        "error",
+        "-ss",
+        "20",
+        "-i",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-remaining-roots-20261120\\captures-attempt1\\entries\\visual-11\\F07DBC55-AAD8-441D-9648-C1D44A1EDC6C.mp4",
+        "-frames:v",
+        "1",
+        "C:\\Users\\DAVID\\Code\\Maktabah-normalios-toolchain-20261120\\build\\release-reduce-motion-44665679661\\frame-20.png"
+      ],
+      "stderr": "",
+      "returncode": 0
+    },
+    {
+      "second": 29.5,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-normalios-toolchain-20261120\\build\\release-reduce-motion-44665679661\\frame-29.5.png",
+      "bytes": 465501,
+      "sha256": "ff50fe77a92b76408ecbfd43955ea09bcb2c6b45f5bc5753ddbd4ce91d7ac517",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.EXE",
+        "-v",
+        "error",
+        "-ss",
+        "29.5",
+        "-i",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-remaining-roots-20261120\\captures-attempt1\\entries\\visual-11\\F07DBC55-AAD8-441D-9648-C1D44A1EDC6C.mp4",
+        "-frames:v",
+        "1",
+        "C:\\Users\\DAVID\\Code\\Maktabah-normalios-toolchain-20261120\\build\\release-reduce-motion-44665679661\\frame-29.5.png"
+      ],
+      "stderr": "",
+      "returncode": 0
+    }
+  ]
+}

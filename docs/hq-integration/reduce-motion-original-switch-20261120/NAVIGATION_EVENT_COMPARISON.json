@@ -1,0 +1,32 @@
+[
+  {
+    "entry": "visual-11/6B1261AE-3B37-48D7-A250-0049F8525D0A",
+    "sha256": "01e31162ba5c6be2114c28b99fece1b48e74298d8c0e85994180b0929430d7f0",
+    "bytes": 1903,
+    "raw_coordinate": {
+      "x": 301.5,
+      "y": 405.5
+    },
+    "orientation": 1,
+    "parentWindowSize": {
+      "Width": 1210.0,
+      "Height": 834.0
+    },
+    "targetProcessID": 51127
+  },
+  {
+    "entry": "visual-11/1D4684C6-7F72-4100-8AB8-4BE727AB96BA",
+    "sha256": "d67728e9435271d50747d07a0a6efe3562846df6d0627304929c148e28886afc",
+    "bytes": 1903,
+    "raw_coordinate": {
+      "x": 443.5,
+      "y": 95.25
+    },
+    "orientation": 1,
+    "parentWindowSize": {
+      "Width": 1210.0,
+      "Height": 834.0
+    },
+    "targetProcessID": 51127
+  }
+]

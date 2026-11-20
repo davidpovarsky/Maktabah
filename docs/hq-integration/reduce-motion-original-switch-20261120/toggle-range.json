@@ -1,0 +1,61 @@
+{
+  "artifactID": 14608653727,
+  "archiveBytes": 3113031780,
+  "advertisedDigest": "sha256:f2d23d3ffe3f2181d0e3ac7178bc207845a9a6fc0979a2c0b97af478974bdecb",
+  "fullArchiveHashVerified": false,
+  "method": "Authenticated redirect and exact HTTP206 ranges; selected CRC validation",
+  "ranges": [
+    {
+      "start": 3113031758,
+      "end": 3113031779,
+      "bytes": 22,
+      "sha256": "9f80a4058d3f1a65c1fc4822c0a3b13c0c42db31fa8bf81df6d6b0ea89cc80e0",
+      "file": "ranges/range-3113031758-3113031779.bin"
+    },
+    {
+      "start": 3113031738,
+      "end": 3113031757,
+      "bytes": 20,
+      "sha256": "02e6020e1aeebec2fc47761c98a1aea9805a28a221a33fe0fe7dda41b912675e",
+      "file": "ranges/range-3113031738-3113031757.bin"
+    },
+    {
+      "start": 3111903650,
+      "end": 3113031757,
+      "bytes": 1128108,
+      "sha256": "7c3c5587b779cd0511747d9a74d5ba55e32a52756fca02d3cd78869285cead56",
+      "file": "ranges/range-3111903650-3113031757.bin"
+    },
+    {
+      "start": 2660870916,
+      "end": 2660870945,
+      "bytes": 30,
+      "sha256": "5837e65facb9c69bf7ca6b7cd5c7cefcf809f8065a34f38f5e4480038030ac02",
+      "file": "ranges/range-2660870916-2660870945.bin"
+    },
+    {
+      "start": 2660870946,
+      "end": 2660870991,
+      "bytes": 46,
+      "sha256": "78028e69f649b9a3823b92d7a16e8644876771f0e6ed118b2eca32ad71ded844",
+      "file": "ranges/range-2660870946-2660870991.bin"
+    },
+    {
+      "start": 2660870992,
+      "end": 2660872343,
+      "bytes": 1352,
+      "sha256": "d65649c1be07917176b2945258d0e23bf9fb7a7808a58e225d6771707833a0e6",
+      "file": "ranges/range-2660870992-2660872343.bin"
+    }
+  ],
+  "transferredBytes": 1129578,
+  "selected": [
+    {
+      "zipEntry": "visual-11/C9635CA8-DD1A-42AA-91F4-7504423D6C30",
+      "bytes": 1879,
+      "sha256": "420ced866c285e7bc91210ee9297ce51e6acefdf1b5ca492e1d174b8526f640f",
+      "crc32": "6c1e571f",
+      "crcValidatedByZipFile": true
+    }
+  ]
+}
