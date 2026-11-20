@@ -281,6 +281,7 @@ print(json.dumps({"actualSQLiteStatus": report["actualSQLite"]["status"],
 source_regression_code = 0
 for label, driver in [
     ("hebrew-ranges", "tools/hq-hebrew-match-ranges.py"),
+    ("book-page-cache", "tools/hq-book-page-cache-regression.py"),
     ("inspector-owner", "tools/hq-native-inspector-ownership.py"),
     ("hanlin-navigation-contract", "tools/hq-hanlin-navigation-transition.py"),
     ("hanlin-consumer-store", "tools/hq-hanlin-consumer-store.py"),
