@@ -1,0 +1,40 @@
+{
+  "source_sha": "86e817f6c9b9f3d8726832280c6ee9916bfcf7ad",
+  "sections": [
+    {
+      "section": "11 complete UI files code generation",
+      "warning_occurrences": 2844,
+      "source_location_warning_headers": 1422,
+      "compiler_error_headers": 0
+    },
+    {
+      "section": "Compiler declaration regression checks (not Native):",
+      "warning_occurrences": 0,
+      "source_location_warning_headers": 0,
+      "compiler_error_headers": 0
+    },
+    {
+      "section": "=== Exact native sidebar adapter SDK compilation ===",
+      "warning_occurrences": 0,
+      "source_location_warning_headers": 0,
+      "compiler_error_headers": 0
+    },
+    {
+      "section": "=== Actual native reader TextKit witness SDK compilation ===",
+      "warning_occurrences": 0,
+      "source_location_warning_headers": 0,
+      "compiler_error_headers": 0
+    },
+    {
+      "section": "=== Native routing host SDK compilation ===",
+      "warning_occurrences": 4,
+      "source_location_warning_headers": 0,
+      "compiler_error_headers": 0
+    }
+  ],
+  "UI_warning_occurrences": 2844,
+  "UI_source_location_warning_headers": 1422,
+  "combined_log_warning_occurrences": 2848,
+  "raw_log": "ui-acceptance-typecheck.log in retained original artifact",
+  "filtered_or_ignored": false
+}

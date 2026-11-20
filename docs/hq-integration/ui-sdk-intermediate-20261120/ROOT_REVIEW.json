@@ -1,0 +1,29 @@
+{
+  "reviewed_at": "2026-11-20T15:36:07.177076+00:00",
+  "base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "base_tree": "5128feff6992aab17b368775e3b5d7ec7e33cc82",
+  "packet_index_sha256": "25633bdbf20d99d298dfbd534cf69417c07823b54268454fb89d1b2227a641e8",
+  "all_11_packet_seals_verified": true,
+  "four_actual_Git_source_trees_verified": true,
+  "four_original_Git_input_blobs_verified": true,
+  "original_workflow_archive_byte_exact": true,
+  "original_four_steps_and_permissions_and_15_minute_budget_preserved": true,
+  "exact_single_branch_read_only_no_cancel_route": true,
+  "guard_review": "Repository/event/ref/actual SHA/clean tracked checkout; before/after trees, complete 11 SDK test sources and committed driver closure; original failures remain fatal",
+  "existing_local_python_controls": {
+    "methods": 12,
+    "result": "PASS",
+    "root_reran": false,
+    "raw_log_verified": true,
+    "scope": "Explicit Git/environment boundary doubles and actual temporary files"
+  },
+  "root_source_review": "No concrete blocker found; only two new runtime files",
+  "AppleSDK": "NOT_RUN",
+  "Swift": "NOT_RUN",
+  "Native": "NOT_RUN",
+  "limits": [
+    "11 complete test files, not all 18",
+    "Does not include a826 Core source or establish full app behavior",
+    "No Native or app acceptance credit"
+  ]
+}

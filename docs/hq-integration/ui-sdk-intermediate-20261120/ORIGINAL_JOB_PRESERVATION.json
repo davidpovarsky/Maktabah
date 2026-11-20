@@ -1,0 +1,59 @@
+{
+  "originalWorkflowGitBlob": "ac42069b4dbbe57898c45e280513412c8df41ee7",
+  "originalHasGlobalEnv": false,
+  "permissionsUnchanged": true,
+  "originalTimeoutMinutes": "15",
+  "newTimeoutMinutes": "15",
+  "exactPreservedSteps": [
+    {
+      "name": "Select the same existing SDK and runtime pair as Native acceptance",
+      "originalStep": {
+        "name": "Select the same existing SDK and runtime pair as Native acceptance",
+        "run": "python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/artifacts/ui-acceptance-typecheck.toolchain.json"
+      },
+      "newStepEqual": true
+    },
+    {
+      "name": "Typecheck black-box tests with the actual iPad SDK",
+      "originalStep": {
+        "name": "Typecheck black-box tests with the actual iPad SDK",
+        "run": "python3 Scripts/CI/typecheck-faithful-ui-tests.py"
+      },
+      "newStepEqual": true
+    },
+    {
+      "name": "Verify actual portable workspace contracts on macOS",
+      "originalStep": {
+        "name": "Verify actual portable workspace contracts on macOS",
+        "run": "python3 Scripts/CI/test-faithful-workspace.py"
+      },
+      "newStepEqual": true
+    },
+    {
+      "name": "Upload exact SDK and compiler diagnostics",
+      "originalStep": {
+        "name": "Upload exact SDK and compiler diagnostics",
+        "if": "always()",
+        "uses": "actions/upload-artifact@v4",
+        "with": {
+          "name": "faithful-ui-sdk-check",
+          "path": "build/artifacts/ui-acceptance-typecheck.*\nbuild/artifacts/xcuiautomation-voiceover-sdk.txt\nbuild/artifacts/toolbar-sdk-compile.*\nbuild/artifacts/workspace-compile.log\nbuild/artifacts/workspace-test-results.log\n"
+        }
+      },
+      "newStepEqual": true
+    }
+  ],
+  "fixedInputs": {
+    "ui_sdk_check_only": true,
+    "validation_runner": "xcode-27",
+    "runtime27_mode": "off",
+    "source_ref": "",
+    "run_production_release": false,
+    "books_updates_check_only": false,
+    "hq_stage2_focused": false,
+    "ui_diagnostic_cases": ""
+  },
+  "activation": "NOT_ACTIVATED",
+  "AppleSDK": "NOT_RUN",
+  "Native": "NOT_RUN"
+}

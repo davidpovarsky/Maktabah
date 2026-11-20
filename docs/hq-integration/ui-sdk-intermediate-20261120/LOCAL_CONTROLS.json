@@ -1,0 +1,33 @@
+{
+  "command": [
+    "python3",
+    "native-ui-sdk-intermediate-route-20261120/test_wrapper_contract.py"
+  ],
+  "returncode": 0,
+  "scope": "Python guard/authority controls with explicit Git/environment boundary doubles and real disposable files; not SDK/Swift/Native",
+  "inputs": [
+    {
+      "path": "candidate/.github/workflows/otzaria-ui-sdk-intermediate.yml",
+      "bytes": 2057,
+      "sha256": "e67d8e97c13b3073fa4600d9826fdbcb43654187ed3195a208a52606a293a4ff"
+    },
+    {
+      "path": "candidate/Scripts/CI/verify-ui-sdk-intermediate-source.py",
+      "bytes": 6007,
+      "sha256": "1e81f07d3076ac188770c896a1ac4d57d46821d4ffe28c0024468a8114808440"
+    },
+    {
+      "path": "test_wrapper_contract.py",
+      "bytes": 8515,
+      "sha256": "8aa1bfd4198b98c20c41a1fd24755f80f988ecdf94353556773820c3aa33b3a0"
+    },
+    {
+      "path": "original-workflow.yml",
+      "bytes": 44363,
+      "sha256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4"
+    }
+  ],
+  "Native": "NOT_RUN",
+  "AppleSDK": "NOT_RUN",
+  "Swift": "NOT_RUN"
+}

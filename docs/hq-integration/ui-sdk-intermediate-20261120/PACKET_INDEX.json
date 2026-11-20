@@ -1,0 +1,76 @@
+{
+  "baseSource": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "files": [
+    {
+      "path": ".github/workflows/otzaria-ui-sdk-intermediate.yml",
+      "bytes": 2057,
+      "sha256": "e67d8e97c13b3073fa4600d9826fdbcb43654187ed3195a208a52606a293a4ff",
+      "gitBlob": "83b8b22b8183cab82b2f549649f0a75b91152fdc"
+    },
+    {
+      "path": "Scripts/CI/verify-ui-sdk-intermediate-source.py",
+      "bytes": 6007,
+      "sha256": "1e81f07d3076ac188770c896a1ac4d57d46821d4ffe28c0024468a8114808440",
+      "gitBlob": "eafdcd9e20360fd6ef883fee0c1d793a19cbe25b"
+    },
+    {
+      "path": "docs/hq-integration/ui-sdk-intermediate-20261120/LOCAL_CONTROLS.json",
+      "bytes": 1061,
+      "sha256": "884d5fe40b4753ac7afc79e1361e1b51322f83fb71d2ba3930b7e1d76aa205de",
+      "gitBlob": "751a4753e84fdce9e0106fbc741fcd0471a1e93d"
+    },
+    {
+      "path": "docs/hq-integration/ui-sdk-intermediate-20261120/ORIGINAL_JOB_PRESERVATION.json",
+      "bytes": 2109,
+      "sha256": "4a4c3200a488269809912ea1bb6a889aa722bd2b648673f481ac5fa8c0ccdea7",
+      "gitBlob": "4dadfb70d10768fb4ef7bbd4486101011ff11388"
+    },
+    {
+      "path": "docs/hq-integration/ui-sdk-intermediate-20261120/README.md",
+      "bytes": 4661,
+      "sha256": "2a1f83d6d6e03c5d0edbd779e9990619484a81d684774ce7843c29fe79bb5c98",
+      "gitBlob": "b684eacd8cf5edd487eac08b6b37a1eb37003d43"
+    },
+    {
+      "path": "docs/hq-integration/ui-sdk-intermediate-20261120/raw/E603_GIT_PROVENANCE.json.gz",
+      "bytes": 4447,
+      "sha256": "1e6d1c23ddb2f39661f190bc8c0ffa5df181a71517fbeaebe68d7f1f7780a193",
+      "gitBlob": "57404926ba0f87c6271851f0dcafac5a9e8b3870"
+    },
+    {
+      "path": "docs/hq-integration/ui-sdk-intermediate-20261120/raw/controls.log.gz",
+      "bytes": 510,
+      "sha256": "e4679782c57b22c9140b3f8eeadece0246cc5345df0225faabfa8436d692f80b",
+      "gitBlob": "99b9afc3eacb58a7b8f01dfd44644f33bc9e68c0"
+    },
+    {
+      "path": "docs/hq-integration/ui-sdk-intermediate-20261120/raw/original-workflow.yml.gz",
+      "bytes": 8652,
+      "sha256": "a8c8cc46e9b0d64e05e1eb4299b38ae0ebdbaf52336b720254bc0b13bc25c93d",
+      "gitBlob": "c2f42e216cee5dc41f4053790ec25e29f11da54e"
+    },
+    {
+      "path": "docs/hq-integration/ui-sdk-intermediate-20261120/raw/otzaria-ui-sdk-intermediate.yml.gz",
+      "bytes": 833,
+      "sha256": "64e5b7f2877bdee9a35e0d8434b4eaf41e2d51ec4aa94cef854e09a10cd8741b",
+      "gitBlob": "01bfa191d439095e8418cb642835d1a11e8bab7e"
+    },
+    {
+      "path": "docs/hq-integration/ui-sdk-intermediate-20261120/raw/test_wrapper_contract.py.gz",
+      "bytes": 2723,
+      "sha256": "a749a5341c9e10c72b30cfbda786022e2b8a77131a3afb5c5e75f6fcb0a63386",
+      "gitBlob": "e867a30efeefc1b8fff99237395a284cbad138e2"
+    },
+    {
+      "path": "docs/hq-integration/ui-sdk-intermediate-20261120/raw/verify-ui-sdk-intermediate-source.py.gz",
+      "bytes": 2616,
+      "sha256": "8fb4eb72cf552ea91944d25773a9b7b7cf984f3ec4ed05d5df7e12b86d467e5d",
+      "gitBlob": "40072ec52d47802f8a91ab58c1a2925a3325687b"
+    }
+  ],
+  "nonDocumentFiles": [
+    ".github/workflows/otzaria-ui-sdk-intermediate.yml",
+    "Scripts/CI/verify-ui-sdk-intermediate-source.py"
+  ],
+  "runtimeExecutions": 0
+}

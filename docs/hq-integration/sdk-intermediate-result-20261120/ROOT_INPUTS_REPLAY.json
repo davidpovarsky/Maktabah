@@ -1,0 +1,158 @@
+{
+  "source_sha": "86e817f6c9b9f3d8726832280c6ee9916bfcf7ad",
+  "reviewed_application_source": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "source_trees": {
+    "Maktabah-iOSUITests": "4ca3b75613f63f104db613a05518516b304f0ead",
+    "Maktabah.xcodeproj": "f80e996fa5144a7be76a7ccad8c2939e1d03d9b5",
+    "Source": "2c44edd5258cb0ea121472d76c4aef23ccbefc4d",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "source_observation_before_after_equal": true,
+  "root_fetched_git_inputs_independently_recomputed": [
+    {
+      "bytes": 2057,
+      "git_blob": "83b8b22b8183cab82b2f549649f0a75b91152fdc",
+      "path": ".github/workflows/otzaria-ui-sdk-intermediate.yml",
+      "sha256": "e67d8e97c13b3073fa4600d9826fdbcb43654187ed3195a208a52606a293a4ff"
+    },
+    {
+      "bytes": 44363,
+      "git_blob": "ac42069b4dbbe57898c45e280513412c8df41ee7",
+      "path": ".github/workflows/sefaria-embedded-validation.yml",
+      "sha256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4"
+    },
+    {
+      "bytes": 5480,
+      "git_blob": "39636e8abaac379d996e51d5717390590f5d4d98",
+      "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+      "sha256": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce"
+    },
+    {
+      "bytes": 14183,
+      "git_blob": "05a97fe61782a0c96900c2c23ff992435a751c90",
+      "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+      "sha256": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab"
+    },
+    {
+      "bytes": 196355,
+      "git_blob": "479ba206e76aa69b90cf8f04ae55ee5a99d60186",
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "sha256": "00d8ba990af59931666f7b95ee04419edd538c23f7e4aa0e7949f2a9958a84f1"
+    },
+    {
+      "bytes": 89243,
+      "git_blob": "07dc9da3b401c8396a869d593e8c20bd30b35102",
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "sha256": "548a940d0f9715674822753679c236604735c0857ef241cbc7adacf6f46fd0d3"
+    },
+    {
+      "bytes": 19027,
+      "git_blob": "feeae0d69a3881aa15faa2be085273dd4ef97111",
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "sha256": "f55e88d3577b79f1146b762aa85f93f7c7582f6f0ffae63efba5db61b91db2b6"
+    },
+    {
+      "bytes": 9285,
+      "git_blob": "f0f7296544e040d69dbf98917777925439468d80",
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+    },
+    {
+      "bytes": 160603,
+      "git_blob": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f"
+    },
+    {
+      "bytes": 4954,
+      "git_blob": "c3ef8fc552967872a3313cff28a35d35be2a95a1",
+      "path": "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+      "sha256": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5"
+    },
+    {
+      "bytes": 31760,
+      "git_blob": "26ddbe5bbd20d759424bf253756e9c755ba50a58",
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f"
+    },
+    {
+      "bytes": 27748,
+      "git_blob": "9175d3f728caac49b975d8409f01a6efdd101e28",
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "sha256": "d4d78663f69d64d0507dd5941cba364e31c9d1c81c9de4625880132c059341dd"
+    },
+    {
+      "bytes": 19775,
+      "git_blob": "65befdcc2d7884edb0976fac0005c03676c4e2ac",
+      "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8"
+    },
+    {
+      "bytes": 4333,
+      "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    {
+      "bytes": 4117,
+      "git_blob": "2b3d439abe961e77cf81538043a77d6be50c3904",
+      "path": "Scripts/CI/prepare-hanlin-sdk.py",
+      "sha256": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404"
+    },
+    {
+      "bytes": 26341,
+      "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "path": "Scripts/CI/runtime27.py",
+      "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583"
+    },
+    {
+      "bytes": 6377,
+      "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+    },
+    {
+      "bytes": 1805,
+      "git_blob": "777da2ddd5f941a2ebe1b884fe75367534e4862b",
+      "path": "Scripts/CI/test-faithful-workspace.py",
+      "sha256": "13dd6477d2b142c4637f6f79231f17d379e0e042a0bceb715d8693a1cd4cbec5"
+    },
+    {
+      "bytes": 4710,
+      "git_blob": "345477a37faedb3992c13f954fd12f2cfd08dd93",
+      "path": "Scripts/CI/test-verify-faithful-xctest.py",
+      "sha256": "a97fc97872023abe8763dd38ce04aacd12b434626916e722c564c1cdd669a9d6"
+    },
+    {
+      "bytes": 24211,
+      "git_blob": "0102957b43d9e4a71cd122046418dd33b55b8210",
+      "path": "Scripts/CI/typecheck-faithful-ui-tests.py",
+      "sha256": "07e2c054f1c826631a946db4d868f7f1d8d85c34d5bb511feb2d5976fd5d40e4"
+    },
+    {
+      "bytes": 6009,
+      "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+    },
+    {
+      "bytes": 7113,
+      "git_blob": "f1430aff9f5db79f386cc7c8edfd28fdd75806ab",
+      "path": "Scripts/CI/verify-otzaria-xcode-project.py",
+      "sha256": "c3bc822db4b816989217de154fdcb56266e897a2e1212f894a7a9cd33b36c4ee"
+    },
+    {
+      "bytes": 6007,
+      "git_blob": "eafdcd9e20360fd6ef883fee0c1d793a19cbe25b",
+      "path": "Scripts/CI/verify-ui-sdk-intermediate-source.py",
+      "sha256": "1e81f07d3076ac188770c896a1ac4d57d46821d4ffe28c0024468a8114808440"
+    },
+    {
+      "bytes": 200381,
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+    }
+  ],
+  "scope": "Root fetched original Git API objects once; reviewer recomputed their exact bytes/SHA256/Git blobs and compared all24 to actual Apple before/after receipts. No new source fetch or compiler."
+}
