@@ -2,23 +2,38 @@
 import SwiftUI
 import UIKit
 
+/// Optional owner-bound callbacks for the scene-owned iPad presentation.
+/// Legacy phone callers keep the original binding/dismissal behavior.
+@MainActor
+struct ReaderOverviewPresentationLifecycle {
+    let id: UUID
+    let willPresent: () -> Bool
+    let didPresent: () -> Void
+    let didDismiss: () -> Void
+    let didDismantle: () -> Void
+}
+
 /// The pinned browser presents its overview over the current browser context.
 /// This context-sized anchor keeps the existing reader hierarchy in place;
 /// it neither rehosts the reader nor writes its scroll/selection state.
 struct ReaderOverviewPresentation<Overview: View>: View {
     @Binding var isPresented: Bool
     let onDismiss: () -> Void
+    let lifecycle: ReaderOverviewPresentationLifecycle?
     let overview: Overview
 
     init(isPresented: Binding<Bool>, onDismiss: @escaping () -> Void = {},
+         lifecycle: ReaderOverviewPresentationLifecycle? = nil,
          @ViewBuilder overview: () -> Overview) {
         _isPresented = isPresented
         self.onDismiss = onDismiss
+        self.lifecycle = lifecycle
         self.overview = overview()
     }
 
     var body: some View {
-        ReaderOverviewPresentationAnchor(isPresented: $isPresented, onDismiss: onDismiss, overview: overview)
+        ReaderOverviewPresentationAnchor(isPresented: $isPresented, onDismiss: onDismiss,
+                                         lifecycle: lifecycle, overview: overview)
             // A transparent representable still has a SwiftUI hosting layer.
             // The closed presentation must not intercept reader pan gestures.
             .allowsHitTesting(isPresented)
@@ -28,6 +43,7 @@ struct ReaderOverviewPresentation<Overview: View>: View {
 private struct ReaderOverviewPresentationAnchor<Overview: View>: UIViewControllerRepresentable {
     @Binding var isPresented: Bool
     let onDismiss: () -> Void
+    let lifecycle: ReaderOverviewPresentationLifecycle?
     let overview: Overview
 
     func makeUIViewController(context: Context) -> ReaderOverviewPresentationController {
@@ -48,6 +64,7 @@ private struct ReaderOverviewPresentationAnchor<Overview: View>: UIViewControlle
     func updateUIViewController(_ controller: ReaderOverviewPresentationController, context: Context) {
         controller.configure(
             isPresented: isPresented,
+            lifecycle: lifecycle,
             // A new hosting controller owns its own navigation/accessibility
             // graph. Forward only semantic public values, never the source
             // host's complete environment and private graph ownership.
@@ -72,6 +89,9 @@ final class ReaderOverviewPresentationController: UIViewController {
     private var wantsOverview = false
     private var overview = AnyView(EmptyView())
     private var onDismiss: (() -> Void)?
+    private var lifecycle: ReaderOverviewPresentationLifecycle?
+    private var activeLifecycle: ReaderOverviewPresentationLifecycle?
+    private var activeOnDismiss: (() -> Void)?
     private var hostingController: UIHostingController<AnyView>?
     private weak var presentationContext: UIViewController?
     private var previousDefinesPresentationContext: Bool?
@@ -102,11 +122,15 @@ final class ReaderOverviewPresentationController: UIViewController {
         scheduleUpdate()
     }
 
-    func configure(isPresented: Bool, overview: AnyView, onDismiss: @escaping () -> Void) {
+    func configure(isPresented: Bool, lifecycle: ReaderOverviewPresentationLifecycle? = nil,
+                   overview: AnyView, onDismiss: @escaping () -> Void) {
         wantsOverview = isPresented
         self.overview = overview
         self.onDismiss = onDismiss
-        hostingController?.rootView = overview
+        self.lifecycle = lifecycle
+        if activeLifecycle?.id == lifecycle?.id {
+            hostingController?.rootView = overview
+        }
         scheduleUpdate()
     }
 
@@ -114,9 +138,21 @@ final class ReaderOverviewPresentationController: UIViewController {
         wantsOverview = false
         onDismiss = nil
         overview = AnyView(EmptyView())
+        let retired = activeLifecycle ?? lifecycle
+        lifecycle = nil
+        activeLifecycle = nil
+        activeOnDismiss = nil
         if let controller = hostingController {
-            controller.dismiss(animated: false)
+            // Retire this exact controller before its older dismissal callback
+            // can touch a newer hosting controller or owner.
             hostingController = nil
+            if controller.presentingViewController != nil {
+                controller.dismiss(animated: false) { retired?.didDismantle() }
+            } else {
+                retired?.didDismantle()
+            }
+        } else {
+            retired?.didDismantle()
         }
         restorePresentationContext()
     }
@@ -135,8 +171,26 @@ final class ReaderOverviewPresentationController: UIViewController {
         guard let view = viewIfLoaded, view.window != nil,
               view.bounds.width > 0, view.bounds.height > 0,
               !isTransitioning else { return }
-        if wantsOverview, hostingController == nil {
+        if let controller = hostingController,
+           !wantsOverview || activeLifecycle?.id != lifecycle?.id {
+            let completed = activeLifecycle
+            let completedDismissal = activeOnDismiss
+            isTransitioning = true
+            controller.dismiss(animated: false) { [weak self, weak controller] in
+                guard let self, let controller, self.hostingController === controller else { return }
+                self.hostingController = nil
+                self.activeLifecycle = nil
+                self.activeOnDismiss = nil
+                if self.lifecycle?.id == completed?.id { self.lifecycle = nil }
+                self.restorePresentationContext()
+                self.isTransitioning = false
+                completedDismissal?()
+                completed?.didDismiss()
+                self.scheduleUpdate()
+            }
+        } else if wantsOverview, hostingController == nil {
             guard let context = parent, context.presentedViewController == nil else { return }
+            if let lifecycle, !lifecycle.willPresent() { return }
             let controller = UIHostingController(rootView: overview)
             controller.modalPresentationStyle = .overCurrentContext
             controller.isModalInPresentation = true
@@ -148,24 +202,26 @@ final class ReaderOverviewPresentationController: UIViewController {
             presentationContext = context
             previousDefinesPresentationContext = context.definesPresentationContext
             context.definesPresentationContext = true
+            activeLifecycle = lifecycle
+            activeOnDismiss = onDismiss
             hostingController = controller
             isTransitioning = true
             // The browser's WebKit snapshot transition has no reader-domain
             // equivalent. Change the whole context without inventing motion.
-            context.present(controller, animated: false) { [weak self] in
-                self?.isTransitioning = false
-                self?.scheduleUpdate()
-            }
-        } else if !wantsOverview, let controller = hostingController {
-            isTransitioning = true
-            controller.dismiss(animated: false) { [weak self] in
-                guard let self else { return }
-                self.hostingController = nil
-                self.restorePresentationContext()
+            context.present(controller, animated: false) { [weak self, weak controller] in
+                guard let self, let controller, self.hostingController === controller else { return }
+                if let window = controller.viewIfLoaded?.window, window === self.viewIfLoaded?.window {
+                    self.activeLifecycle?.didPresent()
+                }
                 self.isTransitioning = false
-                self.onDismiss?()
                 self.scheduleUpdate()
             }
+        } else if !wantsOverview, hostingController == nil, let cancelled = lifecycle {
+            // A request can close before the anchor ever presents UIKit. This
+            // callback still verifies the same original request identity.
+            lifecycle = nil
+            onDismiss?()
+            cancelled.didDismiss()
         }
     }
 

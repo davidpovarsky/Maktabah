@@ -149,6 +149,65 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertTrue(element.frame.intersects(app.frame), "Control must be inside the actual app viewport", file: file, line: line)
         element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
+    func readerLibraryPaletteLauncher() -> XCUIElement {
+        let actions = app.buttons.matching(identifier: "reader-command-palette-launcher")
+        XCTAssertTrue(actions.firstMatch.waitForExistence(timeout: 30))
+        XCTAssertEqual(actions.count, 1, "Use the current original native library palette action uniquely")
+        let action = actions.firstMatch
+        XCTAssertTrue(action.isHittable, "The actual palette action must be reachable")
+        XCTAssertTrue(!action.frame.isEmpty && app.frame.contains(action.frame),
+                      "The palette action must stay inside the actual application window")
+        return action
+    }
+
+    /// The original native ReaderTabsView is intentionally mounted only with
+    /// multiple documents. Establish that precondition through two real books,
+    /// then return to the original document before measuring its viewport.
+    func openSecondOriginalBookAndReturn() throws {
+        let initialTitle = app.staticTexts["reader-header-title"].label
+        let initialLocator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(initialTitle.isEmpty)
+        tap(readerLibraryPaletteLauncher())
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 20))
+        let clear = palette.buttons["Clear search"]
+        if clear.exists { tap(clear) }
+        let results = palette.scrollViews.buttons
+        XCTAssertTrue(results.firstMatch.waitForExistence(timeout: 30))
+        let candidate = try XCTUnwrap(results.allElementsBoundByIndex.first {
+            !$0.label.isEmpty && $0.label != initialTitle
+                && $0.isHittable && $0.frame.intersects(palette.frame)
+        }, "Choose a second genuine book from the original visible command results")
+        let secondTitle = candidate.label
+        tap(candidate)
+        assertReaderHasText()
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "label == %@", secondTitle),
+            object: app.staticTexts["reader-header-title"]
+        )], timeout: 30), .completed)
+        let strip = app.descendants(matching: .any)["reader-document-tabs"]
+        XCTAssertTrue(strip.waitForExistence(timeout: 30))
+        let original = strip.buttons.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ AND label == %@", "reader-document-tab-", initialTitle))
+        let added = strip.buttons.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ AND label == %@", "reader-document-tab-", secondTitle))
+        XCTAssertEqual(original.count, 1)
+        XCTAssertEqual(added.count, 1)
+        XCTAssertNotEqual(original.firstMatch.identifier, added.firstMatch.identifier,
+                          "The two real UI commands must create distinct document identities")
+        if !original.firstMatch.isHittable { strip.swipeRight() }
+        if !original.firstMatch.isHittable { strip.swipeLeft() }
+        XCTAssertTrue(original.firstMatch.isHittable, "Return using the actual visible original tab button")
+        tap(original.firstMatch)
+        assertReaderHasText()
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "label == %@", initialTitle),
+            object: app.staticTexts["reader-header-title"]
+        )], timeout: 30), .completed)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, initialLocator,
+                       "Return to the original navigation unit before the viewport assertions")
+    }
+
     func readerBottomChromeAction() -> XCUIElement {
         let more = app.buttons.matching(identifier: "reader-more-menu").allElementsBoundByIndex.filter {
             !$0.frame.isEmpty && $0.frame.intersects(app.frame) && $0.isHittable
@@ -250,15 +309,19 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     }
 
     func assertSourceActionsInsideNativeToolbarHost() {
-        let hosts = app.navigationBars.staticTexts.containing(.button, identifier: "reader-tabs-overview")
-        XCTAssertEqual(hosts.count, 1, "Identify the actual native principal hosting container uniquely")
+        let hosts = app.navigationBars.containing(.button, identifier: "reader-tabs-overview")
+        XCTAssertEqual(hosts.count, 1, "Identify the current original native navigation bar uniquely")
         let host = hosts.firstMatch
         XCTAssertTrue(host.exists)
-        for identifier in ["reader-tabs-overview", "reader-open-book"] {
-            let action = app.buttons[identifier]
-            XCTAssertTrue(action.exists)
+        for identifier in ["reader-tabs-overview", "reader-command-palette-launcher"] {
+            let actions = host.buttons.matching(identifier: identifier)
+            XCTAssertEqual(actions.count, 1, "The source action must belong to this native toolbar")
+            let action = actions.firstMatch
+            XCTAssertTrue(action.exists && action.isHittable)
+            XCTAssertFalse(action.frame.isEmpty)
             XCTAssertTrue(host.frame.insetBy(dx: -1, dy: -1).contains(action.frame),
-                          "Source actions must stay inside the native title view's real hit-test bounds")
+                          "Source actions must stay inside the actual native toolbar's hit-test bounds")
+            XCTAssertTrue(app.frame.contains(action.frame))
         }
     }
 
@@ -555,9 +618,9 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         geometry.lifetime = .keepAlways
         add(geometry)
         if enabled {
-            let field = app.textFields["reader-library-search-field"]
+            let field = readerLibraryPaletteLauncher()
             XCTAssertTrue(field.waitForExistence(timeout: 15))
-            XCTAssertTrue(field.isHittable, "The actual library field must remain reachable in the native narrow window")
+            XCTAssertTrue(field.isHittable, "The actual library palette action must remain reachable in the native narrow window")
             field.tap()
             let palette = app.descendants(matching: .any)["reader-library-command-palette"]
             XCTAssertTrue(palette.waitForExistence(timeout: 15))
@@ -944,7 +1007,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.descendants(matching: .any)["study-groups-overview"].waitForExistence(timeout: 15))
         try assertSpoken(["סיום", "פעולות בקבוצת הכרטיסיות", bookTitle], name: "candidate-native-voiceover-overview-speech")
         tap(app.buttons["סיום"])
-        tap(app.textFields["reader-library-search-field"])
+        tap(readerLibraryPaletteLauncher())
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
         XCTAssertTrue(palette.waitForExistence(timeout: 15))
         let input = palette.textFields.firstMatch
@@ -1053,7 +1116,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
         assertReaderHasText()
-        let field = app.textFields["reader-library-search-field"]
+        let field = readerLibraryPaletteLauncher()
         XCTAssertTrue(field.waitForExistence(timeout: 30))
         let originalFieldFrame = field.frame
         let fieldPoint = field.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
@@ -1071,13 +1134,15 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let collapsed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: palette)
         XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed,
                        "The original palette's Escape handler must dismiss through keyboard focus")
-        XCTAssertEqual(field.value as? String, "בראשית", "Collapse must retain the canonical library query")
         let restoredFieldFrame = field.frame
         XCTAssertEqual(restoredFieldFrame.minX, originalFieldFrame.minX, accuracy: 1)
         XCTAssertEqual(restoredFieldFrame.minY, originalFieldFrame.minY, accuracy: 1)
         XCTAssertEqual(restoredFieldFrame.width, originalFieldFrame.width, accuracy: 1)
         XCTAssertEqual(restoredFieldFrame.height, originalFieldFrame.height, accuracy: 1)
         fieldPoint.click()
+        XCTAssertTrue(input.waitForExistence(timeout: 15))
+        XCTAssertEqual(input.value as? String, "בראשית",
+                       "Reopening the original palette without typing must retain the canonical library query")
         XCTAssertTrue(result.waitForExistence(timeout: 30))
         let resultPoint = result.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
         resultPoint.hover()
@@ -1187,7 +1252,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
         assertReaderHasText()
-        tap(app.textFields["reader-library-search-field"])
+        tap(readerLibraryPaletteLauncher())
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
         XCTAssertTrue(palette.waitForExistence(timeout: 15))
         let input = palette.textFields.firstMatch
@@ -1199,7 +1264,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(book)
         assertReaderHasText()
         XCTAssertFalse(palette.exists)
-        XCTAssertTrue(app.textFields["reader-library-search-field"].exists)
+        XCTAssertTrue(readerLibraryPaletteLauncher().exists)
     }
 
     @MainActor
@@ -1243,7 +1308,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             capture("candidate-reader-detail-en-\(orientation.isLandscape ? "landscape" : "portrait")")
         }
         XCUIDevice.shared.orientation = .landscapeLeft
-        tap(app.textFields["reader-library-search-field"])
+        tap(readerLibraryPaletteLauncher())
         XCTAssertTrue(app.descendants(matching: .any)["reader-library-command-palette"].waitForExistence(timeout: 15))
         capture("candidate-command-palette-en")
     }
@@ -1314,6 +1379,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(recordViewport: true)
         assertReaderHasText()
+        try openSecondOriginalBookAndReturn()
         XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30))
         capture("candidate-reader-landscape")
         let tocDot = app.buttons["reader-sidebar-page-1"]
@@ -1378,9 +1444,8 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         assertReaderHasText()
         let initialTitle = app.staticTexts["reader-header-title"].label
         XCTAssertFalse(initialTitle.isEmpty)
-        XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30))
         assertSourceActionsInsideNativeToolbarHost()
-        let field = app.textFields["reader-library-search-field"]
+        let field = readerLibraryPaletteLauncher()
         tap(field)
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
         XCTAssertTrue(palette.waitForExistence(timeout: 15))
@@ -1400,6 +1465,8 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(result)
         assertReaderHasText()
         XCTAssertFalse(palette.exists)
+        XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30),
+                      "The original strip must appear after the second genuine library book opens")
         capture("candidate-library-opened-reader-no-fixture-selection")
         tap(app.buttons["כל הכרטיסיות"])
         retainNativeEvidence("candidate-overview-after-toolbar-action")
@@ -1493,6 +1560,14 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(recordViewport: true)
         assertReaderHasText()
+        try openSecondOriginalBookAndReturn()
+        let sidebarPage = app.buttons["reader-sidebar-page-0"]
+        if sidebarPage.exists && sidebarPage.isHittable {
+            tap(readerSidebarToggle())
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "hittable == false"), object: sidebarPage
+            )], timeout: 15), .completed, "Establish the closed-sidebar precondition before testing opening it")
+        }
         let text = app.textViews["reader-text"]
         let originalObject = try viewport().object
         let strip = app.descendants(matching: .any)["reader-document-tabs"]
@@ -1563,8 +1638,8 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists,
                        "An empty group must not expose a blank document strip")
         XCTAssertTrue(app.buttons["reader-tabs-overview"].exists)
-        XCTAssertTrue(app.buttons["reader-open-book"].exists,
-                      "Both original Safari actions must remain available without books")
+        XCTAssertTrue(readerLibraryPaletteLauncher().exists,
+                      "The original native overview and library palette actions must remain available without books")
         capture("candidate-library-no-open-books-toolbar")
         try attachWorkspaceSnapshot("empty-group-sidecar-before-cold-launch")
         app.terminate()
@@ -1576,7 +1651,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(restored, .completed, "Wait for the actual asynchronous sidecar projection, retaining the empty-reader requirement")
         XCTAssertFalse(app.textViews["reader-text"].exists, "The empty sidecar group must suppress stale legacy-session resurrection")
         XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists)
-        XCTAssertTrue(app.buttons["reader-open-book"].exists)
+        XCTAssertTrue(readerLibraryPaletteLauncher().exists)
         tap(app.buttons["כל הכרטיסיות"])
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Empty selection must survive app relaunch without importing old tabs again")
         XCTAssertTrue(app.descendants(matching: .any)["study-group-selector"].exists)
@@ -1729,17 +1804,41 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
         }
     }
 
+    private func observeProductionCurrentDocumentID() -> UUID? {
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(title.isEmpty)
+        tap(app.buttons["reader-tabs-overview"])
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        XCTAssertTrue(overview.waitForExistence(timeout: 15))
+        let cards = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ AND label BEGINSWITH %@", "tab-switcher-", title + ", "))
+        XCTAssertTrue(cards.firstMatch.waitForExistence(timeout: 15))
+        XCTAssertEqual(cards.count, 1, "Observe the exact real selected book's original overview card uniquely")
+        let card = cards.firstMatch
+        XCTAssertTrue(!card.frame.isEmpty && card.frame.intersects(overview.frame))
+        let prefix = card.identifier.hasPrefix("tab-switcher-grid-cell-")
+            ? "tab-switcher-grid-cell-" : "tab-switcher-list-cell-"
+        let id = UUID(uuidString: String(card.identifier.dropFirst(prefix.count)))
+        XCTAssertNotNil(id, "Observe the actual original-source card's document identity")
+        tap(overview.buttons["סיום"])
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: overview
+        )], timeout: 15), .completed)
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator,
+                       "Identity observation must not navigate or substitute the current reader")
+        return id
+    }
+
     private func requireProductionDocumentCount(_ count: Int) {
         if observedProductionWorkspace == nil {
             guard let hint = ProcessInfo.processInfo.environment["FAITHFUL_PRODUCTION_WORKSPACE_FILE"] else {
                 XCTFail("The production matrix must provide its native installation container hint"); return
             }
-            let title = app.staticTexts["reader-header-title"].label
-            let tab = app.descendants(matching: .any).matching(NSPredicate(
-                format: "identifier BEGINSWITH %@ AND label == %@", "reader-document-tab-", title)).firstMatch
-            XCTAssertTrue(tab.waitForExistence(timeout: 15))
-            guard let documentID = UUID(uuidString: String(tab.identifier.dropFirst("reader-document-tab-".count))) else {
-                XCTFail("Observe the actual original-source tab's document identity"); return
+            guard let documentID = observeProductionCurrentDocumentID() else {
+                XCTFail("Observe the actual original-source document identity before locating its ordinary sidecar"); return
             }
             var containers = URL(fileURLWithPath: hint)
             for _ in 0..<6 { containers.deleteLastPathComponent() }
@@ -1769,8 +1868,8 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
         XCTAssertEqual(input.value as? String, query)
     }
 
-    private func openProductionBook(named title: String) {
-        tap(app.textFields["reader-library-search-field"])
+    private func openProductionBook(named title: String, isFirstDocument: Bool = false) {
+        tap(readerLibraryPaletteLauncher())
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
         XCTAssertTrue(palette.waitForExistence(timeout: 20))
         let input = palette.textFields.firstMatch
@@ -1785,6 +1884,13 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
         XCTAssertEqual(XCTWaiter.wait(for: [rendered], timeout: 30), .completed)
         let value = text.value as? String ?? ""
         XCTAssertFalse(value.contains("Error Domain") || value.contains("Content ID not found") || value.contains("no such table"))
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        if isFirstDocument {
+            // The original strip's count>1 contract is unchanged. Verify the
+            // sole real document through its original overview card instead.
+            XCTAssertNotNil(observeProductionCurrentDocumentID())
+            return
+        }
         let strip = app.descendants(matching: .any)["reader-document-tabs"]
         let selectedTitle = strip.descendants(matching: .any).matching(
             NSPredicate(format: "identifier BEGINSWITH %@ AND label == %@", "reader-document-tab-", title)).firstMatch
@@ -1797,7 +1903,7 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
 
     private func exerciseThirtyRealProductionDocuments(initialTitle: String) {
         requireProductionDocumentCount(1)
-        tap(app.textFields["reader-library-search-field"])
+        tap(readerLibraryPaletteLauncher())
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
         XCTAssertTrue(palette.waitForExistence(timeout: 20))
         let input = palette.textFields.firstMatch
@@ -1842,7 +1948,7 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
             XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
             tap(app.buttons["סיום"])
             XCTAssertFalse(app.textViews["reader-text"].exists)
-            openProductionBook(named: initialTitle)
+            openProductionBook(named: initialTitle, isFirstDocument: true)
             requireProductionDocumentCount(1)
         }
     }
@@ -1852,7 +1958,7 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
         launchWithTier(.production, backend: "otzaria")
         dismissAlertsIfNeeded()
         tap(findTabButton(hebrew: "ספר", english: "Library"))
-        tap(app.textFields["reader-library-search-field"])
+        tap(readerLibraryPaletteLauncher())
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
         XCTAssertTrue(palette.waitForExistence(timeout: 30))
         let input = palette.textFields.firstMatch

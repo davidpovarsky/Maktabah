@@ -61,6 +61,7 @@ struct MaktabahNativeSceneBindings {
     var isPresentationReady: Bool {
         !DonationManager.shared.showDonationSheet && manager.selectedBookForInfo == nil
             && !manager.showingTabsList && manager.activeReaderViewModel?.isPopoverPresented != true
+            && sidebar?.overview.blocksRouting != true
     }
 
     func apply(_ command: UISceneCommand, reservedTab: iOSNavigationManager.ReaderTab? = nil) throws {

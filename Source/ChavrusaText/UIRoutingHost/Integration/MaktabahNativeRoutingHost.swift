@@ -94,6 +94,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             .onChange(of: showSettings) { _, _ in refreshProjection(workspaceChanged: false) }
             .onChange(of: columnVisibility) { _, _ in refreshProjection(workspaceChanged: false) }
             .onChange(of: sidebar?.page) { _, _ in refreshProjection(workspaceChanged: false) }
+            .onChange(of: sidebar?.overview) { _, _ in refreshProjection(workspaceChanged: false) }
             .onDisappear {
                 hanlinChat?.retire(); hanlinChat = nil
                 if let session { MaktabahNativeRoutingComposition.shared.unmount(session) }

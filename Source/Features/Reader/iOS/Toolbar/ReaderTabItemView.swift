@@ -10,6 +10,7 @@ import SwiftUI
 struct ReaderTabsView: View {
     @Environment(iOSNavigationManager.self) var bManager
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @Environment(\.chavrusaReaderNavigationChromeVisible) private var chromeVisible
 
     private var isCompactHeight: Bool {
         verticalSizeClass == .compact
@@ -39,6 +40,14 @@ struct ReaderTabsView: View {
             .padding(.vertical, isCompactHeight ? 2 : 4)
             .background(Color(.systemBackground).opacity(0.4))
             .clipShape(RoundedRectangle(cornerRadius: 30))
+            .accessibilityIdentifier(chromeVisible == nil ? "" : "reader-document-tabs")
+            // The enabled iPad host can collapse the original strip. Nil
+            // preserves the original phone and feature-off sizing policy.
+            .frame(height: chromeVisible == false ? 0 : nil)
+            .opacity(chromeVisible == false ? 0 : 1)
+            .clipped()
+            .allowsHitTesting(chromeVisible != false)
+            .accessibilityHidden(chromeVisible == false)
             .onAppear {
                 if let activeId = bManager.activeTabId {
                     DispatchQueue.main.async {
