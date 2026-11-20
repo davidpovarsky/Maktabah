@@ -1,0 +1,24 @@
+{
+  "branch": "codex/otzaria-occurrence-framework-20261120",
+  "exact_checkout": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+  "workflow": "ios-build.yml",
+  "inputs": {
+    "run_heavy_otzaria_acceptance": "false",
+    "run_corpus_acceptance": "false",
+    "run_live_sefaria_smoke": "false"
+  },
+  "dispatch_output": "https://github.com/davidpovarsky/Maktabah/actions/runs/44661774024\n",
+  "dispatched_at_utc": "2026-11-20T02:34:33.671942+00:00",
+  "scope": "Original Apple framework build; Swift wrapper and Native corpus acceptance are not included.",
+  "previous_client_attempt": {
+    "exit": 1,
+    "message": "could not parse provided JSON: json: cannot unmarshal bool into Go value of type string",
+    "workflow_dispatched": false
+  },
+  "run": 44661774024,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44661774024",
+  "verified_github_head": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+  "observed_status": "queued",
+  "actual_outcome": "PENDING",
+  "watcher_job": "job_d74cc24ed43f"
+}
