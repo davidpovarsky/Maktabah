@@ -1292,6 +1292,7 @@
 		A42DDBE8569676110112B7FE /* ReaderSidebarPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */; };
 		9188F501FA26158F8E9E93DE /* StudyWorkspaceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */; };
 		80083054F71F56EACF16965B /* StudyWorkspaceNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */; };
+		3323288CD52CDAF06CEC202F /* StudyGroupSwitchPerformanceObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9336519789154002DB5A1B7 /* StudyGroupSwitchPerformanceObservation.swift */; };
 		0A17F7E8BBDA06247E7CAF65 /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */; };
 		B51EE7D17CE12DEE940894A0 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */; };
 		F2AD42BF9D75E1CCC26788D5 /* StudyWorkspaceMappingOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B5E7CFC1C5368638997DD /* StudyWorkspaceMappingOwnership.swift */; };
@@ -2112,6 +2113,7 @@
 		E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderSidebarPager.swift"; sourceTree = "<group>"; };
 		4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceModels.swift"; sourceTree = "<group>"; };
 		6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"; sourceTree = "<group>"; };
+		C9336519789154002DB5A1B7 /* StudyGroupSwitchPerformanceObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyGroupSwitchPerformanceObservation.swift"; sourceTree = "<group>"; };
 		7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspacePersistence.swift"; sourceTree = "<group>"; };
 		38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceStore.swift"; sourceTree = "<group>"; };
 		5F7B5E7CFC1C5368638997DD /* StudyWorkspaceMappingOwnership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift; sourceTree = SOURCE_ROOT; };
@@ -2287,6 +2289,7 @@
 				5F7B5E7CFC1C5368638997DD /* StudyWorkspaceMappingOwnership.swift */,
 				7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */,
 				6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */,
+				C9336519789154002DB5A1B7 /* StudyGroupSwitchPerformanceObservation.swift */,
 				4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */,
 				E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */,
 				77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */,
@@ -5019,6 +5022,7 @@
 				A42DDBE8569676110112B7FE /* ReaderSidebarPager.swift in Sources */,
 				9188F501FA26158F8E9E93DE /* StudyWorkspaceModels.swift in Sources */,
 				80083054F71F56EACF16965B /* StudyWorkspaceNavigationAdapter.swift in Sources */,
+				3323288CD52CDAF06CEC202F /* StudyGroupSwitchPerformanceObservation.swift in Sources */,
 				0A17F7E8BBDA06247E7CAF65 /* StudyWorkspacePersistence.swift in Sources */,
 				B51EE7D17CE12DEE940894A0 /* StudyWorkspaceStore.swift in Sources */,
 				F2AD42BF9D75E1CCC26788D5 /* StudyWorkspaceMappingOwnership.swift in Sources */,

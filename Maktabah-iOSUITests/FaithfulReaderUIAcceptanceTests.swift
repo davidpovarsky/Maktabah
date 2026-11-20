@@ -2638,16 +2638,123 @@ private final class GroupStressEvidence {
     }
 }
 
+// MARK: Actual app process observations for the original groups100 case
+
+private struct GroupStressApplicationMetric: Codable, Sendable {
+    let schema: Int
+    let timingScope: String
+    let memoryMetric: String
+    let memoryScope: String
+    let namespace: String
+    let operationID: UUID
+    let launchID: UUID
+    let sequence: Int
+    let processID: Int32
+    let sceneID: String
+    let fromGroupID: UUID?
+    let toGroupID: UUID
+    let observedGroupID: UUID?
+    let fromDocumentID: UUID?
+    let observedDocumentID: UUID?
+    let beforeRevision: UInt64?
+    let afterRevision: UInt64?
+    let fromBackend: String
+    let observedBackend: String
+    let footprintBeforeBytes: UInt64?
+    let footprintAfterBytes: UInt64?
+    let elapsedSeconds: Double
+    let returnedNormally: Bool
+}
+
+private struct GroupStressMetricExpectation: Sendable {
+    let sceneID: String
+    let fromGroupID: UUID
+    let toGroupID: UUID
+    let fromDocumentID: UUID
+    let toDocumentID: UUID
+    let observedBeforeRevision: UInt64
+    let observedAfterRevision: UInt64
+}
+
+/// Reads the real app container's original reader log. Matching is independently
+/// bound to the UI/sidecar observations, not to a flag claiming a successful test.
+private struct GroupStressMetricReader: Sendable {
+    enum Failure: Error { case missingOrInvalidEvidence }
+    let url: URL
+    let namespace: String
+    let expected: [GroupStressMetricExpectation]
+
+    func samples() throws -> [GroupStressApplicationMetric] {
+        let resource = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
+        guard resource.isRegularFile == true, resource.isSymbolicLink == false else {
+            throw Failure.missingOrInvalidEvidence
+        }
+        let text = try String(contentsOf: url, encoding: .utf8)
+        let prefix = "[NativeGroupSwitchPerformance] "
+        return try text.split(separator: "\n").compactMap { line in
+            guard let range = line.range(of: prefix) else { return nil }
+            let bytes = Data(line[range.upperBound...].utf8)
+            let sample = try JSONDecoder().decode(GroupStressApplicationMetric.self, from: bytes)
+            return sample.namespace == namespace ? sample : nil
+        }
+    }
+
+    func matched() throws -> [GroupStressApplicationMetric] {
+        let records = try samples()
+        guard expected.count == 100 else { throw Failure.missingOrInvalidEvidence }
+        var selected: [GroupStressApplicationMetric] = []
+        for observation in expected {
+            let matches = records.filter { sample in
+                guard sample.sceneID == observation.sceneID,
+                      sample.fromGroupID == observation.fromGroupID,
+                      sample.toGroupID == observation.toGroupID,
+                      sample.observedGroupID == observation.toGroupID,
+                      sample.fromDocumentID == observation.fromDocumentID,
+                      sample.observedDocumentID == observation.toDocumentID,
+                      let before = sample.beforeRevision, let after = sample.afterRevision else { return false }
+                // Ordinary checkpoints may advance revision between the UI
+                // observations and tap. The actual commit must lie inside them.
+                return before >= observation.observedBeforeRevision && after > before
+                    && after <= observation.observedAfterRevision
+            }
+            guard matches.count == 1, let sample = matches.first,
+                  sample.schema == 1, sample.returnedNormally,
+                  sample.fromBackend == "otzaria", sample.observedBackend == "otzaria",
+                  sample.processID > 0, sample.elapsedSeconds.isFinite, sample.elapsedSeconds >= 0,
+                  sample.timingScope == "original group operation through ordinary session persistence",
+                  sample.memoryMetric == "phys_footprint_bytes",
+                  sample.memoryScope == "operation boundary samples; not continuous peak RSS",
+                  (sample.footprintBeforeBytes ?? 0) > 0, (sample.footprintAfterBytes ?? 0) > 0 else {
+                throw Failure.missingOrInvalidEvidence
+            }
+            selected.append(sample)
+        }
+        guard Set(selected.map(\.operationID)).count == 100,
+              Set(selected.map(\.launchID)).count == 1,
+              Set(selected.map(\.processID)).count == 1,
+              let first = selected.first,
+              selected.enumerated().allSatisfy({ $0.element.sequence == first.sequence + $0.offset }) else {
+            throw Failure.missingOrInvalidEvidence
+        }
+        return selected
+    }
+}
+
+// END Actual app process observations
+
 /// Additional iPad/miniTest10 coverage. This does not replace any original case,
 /// full-production-data acceptance, physical-device testing, or a latency gate.
 final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
     override var readerTestTier: TestTier { .realUI }
+    override var readerAdditionalLaunchArguments: [String] {
+        super.readerAdditionalLaunchArguments + ["-StudyGroupPerformanceEnabled", "YES"]
+    }
 
     @MainActor
     func testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore() throws {
         XCTAssertTrue(isPad, "This additional case requires the original iPad group UI")
         XCUIDevice.shared.orientation = .landscapeLeft
-        launchReader(backend: "otzaria")
+        launchReader(backend: "otzaria", tier: .realUI)
         let initialLocator = try assertTarget(backend: "otzaria")
         let url = try verifiedGroupStressSidecar()
         // A fresh UUID sidecar can import real legacy tabs. Use the existing
@@ -2715,6 +2822,7 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
         }
         addTeardownBlock { await evidence.attachReport() }
 
+        var performanceExpectations: [GroupStressMetricExpectation] = []
         for step in 1...100 {
             let target = try XCTUnwrap(baseline.groups.first { $0.name == names[(step - 1) % names.count] })
             let previous = try XCTUnwrap(workspace.current)
@@ -2740,6 +2848,11 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
             XCTAssertEqual(current.document.session.id, targetDocument.session.id)
             XCTAssertEqual(current.scene.profileID, profileID)
             try assertOriginalGroupMembership(workspace, matches: baseline)
+            performanceExpectations.append(.init(
+                sceneID: previous.sceneID, fromGroupID: previous.group.id, toGroupID: current.group.id,
+                fromDocumentID: previous.document.session.id, toDocumentID: current.document.session.id,
+                observedBeforeRevision: try XCTUnwrap(observation["beforeRevision"] as? UInt64),
+                observedAfterRevision: workspace.revision))
             observation["state"] = "committed"
             observation["afterRevision"] = workspace.revision
             observation["observedGroupID"] = current.group.id.uuidString
@@ -2753,6 +2866,7 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
         }
         XCTAssertEqual(evidence.completedTransitions, 100)
         XCTAssertEqual(evidence.transitions.count, 100)
+        try captureGroupApplicationMetrics(sidecar: url, expected: performanceExpectations)
         let final = try XCTUnwrap(workspace.current)
         try attachWorkspaceSnapshot("groups100-after-100-original-commits")
         retainNativeEvidence("groups100-after-100-original-commits")
@@ -2760,7 +2874,7 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
         XCTAssertEqual(try assertTarget(backend: "otzaria"), locators[final.group.id])
 
         app.terminate()
-        launchReader(scenario: "catalog", backend: "otzaria")
+        launchReader(scenario: "catalog", backend: "otzaria", tier: .realUI)
         XCTAssertEqual(try verifiedGroupStressSidecar().standardizedFileURL, url.standardizedFileURL,
                        "Cold launch must retain this same installed app and owned namespace")
         let finalLocator = try XCTUnwrap(locators[final.group.id])
@@ -2785,6 +2899,54 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
         closeGroupStressOverview()
         XCTAssertEqual(try assertTarget(backend: "otzaria"), finalLocator)
         evidence.coldRestoreVerified = true
+    }
+
+
+    @MainActor
+    private func captureGroupApplicationMetrics(sidecar: URL, expected: [GroupStressMetricExpectation]) throws {
+        var container = sidecar
+        for _ in 0..<6 { container.deleteLastPathComponent() }
+        let reader = GroupStressMetricReader(
+            url: container.appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log"),
+            namespace: workspaceNamespace, expected: expected)
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            (try? reader.matched()) != nil
+        }, object: nil)
+        let result = XCTWaiter.wait(for: [ready], timeout: 10)
+        // Retain available real observations even if the additional evidence
+        // requirement fails. Never substitute XCTest IPC duration or a constant.
+        if let raw = try? reader.samples(), let bytes = try? JSONEncoder().encode(raw) {
+            let attachment = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+            attachment.name = "groups100-application-raw-boundary-samples"
+            attachment.lifetime = .keepAlways
+            add(attachment)
+        }
+        XCTAssertEqual(result, .completed, "Require 100 uniquely matched actual app operation/memory observations")
+        let samples = try reader.matched()
+        let elapsedMS = samples.map { $0.elapsedSeconds * 1000 }.sorted()
+        func percentile(_ fraction: Double) -> Double {
+            elapsedMS[max(0, Int(ceil(Double(elapsedMS.count) * fraction)) - 1)]
+        }
+        let footprint = samples.flatMap { [$0.footprintBeforeBytes!, $0.footprintAfterBytes!] }
+        let value: [String: Any] = [
+            "schema": 1, "namespace": workspaceNamespace, "count": samples.count,
+            "timingScope": samples[0].timingScope, "percentileMethod": "nearest rank",
+            "p50OperationMilliseconds": percentile(0.50),
+            "p95OperationMilliseconds": percentile(0.95),
+            "maxOperationMilliseconds": elapsedMS.last!,
+            "memoryMetric": samples[0].memoryMetric, "memoryScope": samples[0].memoryScope,
+            "boundarySampleCount": footprint.count,
+            "firstFootprintBytes": samples[0].footprintBeforeBytes!,
+            "lastFootprintBytes": samples.last!.footprintAfterBytes!,
+            "maxObservedBoundaryFootprintBytes": footprint.max()!,
+            "performanceThresholdDefined": false,
+            "scope": "Debug iPad Simulator miniTest10; not first-pixel, physical-device, full-corpus, CPU or continuous-peak acceptance"
+        ]
+        let report = XCTAttachment(data: try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]),
+                                  uniformTypeIdentifier: "public.json")
+        report.name = "groups100-application-operation-memory-summary"
+        report.lifetime = .keepAlways
+        add(report)
     }
 
     @MainActor

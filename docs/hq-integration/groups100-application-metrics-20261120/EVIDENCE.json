@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "preparedAt": "2026-11-20T11:58:21.867495+00:00",
+  "sourceCommit": "42c9afa7b9ec8386c0fccd8fa5e9d3403b70abeb",
+  "base": "d1ffa2bae34cd982ea7f081a7a463bacd2495f88",
+  "branch": "codex/otzaria-groups100-performance-20261120",
+  "sourceFiles": [
+    "Source/ChavrusaText/StudyWorkspace/StudyGroupSwitchPerformanceObservation.swift",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Maktabah.xcodeproj/project.pbxproj",
+    "tools/test_groups100_performance.swift",
+    "tools/hq-groups100-performance-checks.py"
+  ],
+  "originalNativeCase": "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+  "controlsExecuted": 37,
+  "controlsPassed": 37,
+  "controlsFailed": 0,
+  "controlFinishedAt": "2026-11-20T11:49:33.267000+00:00",
+  "compilerWarnings": 0,
+  "syntaxFilesPassed": 3,
+  "syntaxWarningsPerFile": 2,
+  "nativeExecuted": 0,
+  "appleTypecheck": "NOT_RUN",
+  "actualApplicationMetrics": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "fullProductionCorpus": "NOT_RUN",
+  "performanceThresholdDefined": false,
+  "timingScope": "original group operation through ordinary session persistence",
+  "memoryMetric": "phys_footprint_bytes",
+  "memoryScope": "operation boundary samples; not continuous peak RSS",
+  "newNativeDeclarations": 0,
+  "originalFilesInversePreserved": [
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Maktabah.xcodeproj/project.pbxproj"
+  ],
+  "rawFiles": 24,
+  "testBoundaries": [
+    "OtzariaDataProfileRegistry explicit mini value",
+    "OtzariaFileLogger in-memory recording writer",
+    "100 fake memory/time records for independent reader rejection controls"
+  ],
+  "originalMemoryReader": "Source/Otzaria/Search/OtzariaIndexFileLogger.swift",
+  "sourceOraclesUnchanged": true,
+  "activeCIRefsModified": false
+}

@@ -318,6 +318,22 @@ final class StudyWorkspaceNavigationAdapter {
 
     func switchGroup(to id: UUID, documentID: UUID? = nil, manager: iOSNavigationManager, restoringBackend: BackendID? = nil) async throws {
         guard !isSwitching, store.snapshot?.groups.contains(where: { $0.id == id }) == true else { throw StudyWorkspaceError.invalidMembership }
+        #if DEBUG
+        let performance = StudyGroupSwitchPerformanceObservation.begin(
+            sceneID: sceneID, fromGroupID: liveGroupID, toGroupID: id,
+            fromDocumentID: manager.activeTabId, beforeRevision: store.snapshot?.revision,
+            backend: BackendCoordinator.shared.activeBackendID.rawValue)
+        var performanceReturnedNormally = false
+        defer {
+            if let performance {
+                StudyGroupSwitchPerformanceObservation.finish(
+                    performance, returnedNormally: performanceReturnedNormally,
+                    observedGroupID: liveGroupID, observedDocumentID: manager.activeTabId,
+                    afterRevision: store.snapshot?.revision,
+                    backend: BackendCoordinator.shared.activeBackendID.rawValue)
+            }
+        }
+        #endif
         isSwitching = true
         defer { isSwitching = false }
         let previousTabs = manager.openTabs
@@ -421,6 +437,9 @@ final class StudyWorkspaceNavigationAdapter {
             })
         }
         manager.persistCurrentSession(immediate: true)
+        #if DEBUG
+        performanceReturnedNormally = true
+        #endif
     }
 
     private func matches(_ tab: iOSNavigationManager.ReaderTab, _ document: ReaderDocumentTab) -> Bool {

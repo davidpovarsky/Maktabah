@@ -1,0 +1,10 @@
+{
+  "status": "PASS_SOURCE_AND_RECORDED_EVIDENCE_ONLY",
+  "sourceCommit": "42c9afa7b9ec8386c0fccd8fa5e9d3403b70abeb",
+  "sealedFiles": 31,
+  "sourceInputs": 7,
+  "controls": 37,
+  "originalNativeDeclarationsPreserved": 40,
+  "nativeExecuted": 0,
+  "actualApplicationMetrics": "NOT_RUN"
+}
