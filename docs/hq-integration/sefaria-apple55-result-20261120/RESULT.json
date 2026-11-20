@@ -1,0 +1,111 @@
+{
+  "at_utc": "2026-11-20T14:41:20.867285+00:00",
+  "status": "VERIFIED_APPLE_FOUNDATION_55_PASS",
+  "run": 44743177022,
+  "artifact_id": 14634164383,
+  "source": "ce56baedf0fec15f61a117e5649e8c6865781120",
+  "artifact_bytes": 59956,
+  "artifact_sha256": "7fc1d299c61bf9d34eb8674cf4b262f880a7189b9b0de4171d49fc66f6ad94d7",
+  "zip_members_crc_and_sha_verified": 56,
+  "raw_index_entries_verified": 31,
+  "source_inputs": {
+    "Source/LibraryBackend/LibraryBackendModels.swift": {
+      "bytes": 31937,
+      "sha256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "fe2fbcb9f07762e0d35949b098b55d079a3c95d2"
+    },
+    "Source/LibraryBackend/LibraryPresentationPolicy+Display.swift": {
+      "bytes": 2067,
+      "sha256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "59173d54ed1be62eb25e6f1100771d8b10fb7547"
+    },
+    "Source/Sefaria/Domain/SefariaModels.swift": {
+      "bytes": 12258,
+      "sha256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "2f6c00bebbbbf7ca13cf4374111b09ec1c29e584"
+    },
+    "Source/Sefaria/Domain/SefariaNavigationParser.swift": {
+      "bytes": 34284,
+      "sha256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "86b7b97047426083516f40a9034ef7765b7c6a2f"
+    },
+    "Source/Sefaria/Network/SefariaDTOs.swift": {
+      "bytes": 22303,
+      "sha256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "b11caf953f373918d3e17e5741a8e94e343eeeb5"
+    },
+    "Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift": {
+      "bytes": 5433,
+      "sha256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "fe5593bf2c47ea70002c3debd2a36648ecc48c6b"
+    },
+    "Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift": {
+      "bytes": 2831,
+      "sha256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "da1faba53fa3f37cb85187313b53f2b0ed6af489"
+    },
+    "Source/Sefaria/Network/SefariaHTTPClient.swift": {
+      "bytes": 18702,
+      "sha256": "7e064e33a19f032e2175c0d4658f97c23e0fd70d77bc1eabe9e535e7b3aabefd",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "0e2e6d99e014809bc4066f10da6a16f6d3a8537f"
+    },
+    "Tests/HQ/sefaria-mobile-navigation/TOCTransportAcceptanceAppendix.swift": {
+      "bytes": 14167,
+      "sha256": "6e3533132d0d643875d42f3f7af54380475450a190996bb261c3ca245d06977e",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "1a4466ad5d56329c64e0df650340432ed4d6636a"
+    },
+    "tools/hq-sefaria-toc-transport.py": {
+      "bytes": 8768,
+      "sha256": "451bd2ea7e1722ec34cec24447da40fa8b54f964885c96def2e8a26ec216fcbd",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "d5519abb6fc5e6cfba46a7a1266e518ea501f832"
+    },
+    "tools/hq-sefaria-navigation-language.py": {
+      "bytes": 12770,
+      "sha256": "040f7c495014990c226b04a35c1b039622dc2f49bb60b86b18314f8985900fba",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "0940ece4e2736abe951e4b063702d74eba8e2bf3"
+    },
+    "Scripts/CI/sefaria-toc-apple55.py": {
+      "bytes": 14675,
+      "sha256": "682fa506c34af463844327850c5df0119b4c0c8fab0249527949b424809e465f",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "cda603645479664a09481ab5b1685162fceedaad"
+    },
+    "Scripts/CI/runtime27_interruption.py": {
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+      "gitBlobExact": true,
+      "git_blob_from_exact_bytes": "1fb612721275dc2f3109a955ec97403789e7f7c6"
+    }
+  },
+  "whole_production_files": 8,
+  "test_only_appendices": 1,
+  "actual_mode_case_pairs": 55,
+  "mode_counts": {
+    "failure-retry": 26,
+    "cancel-held": 26,
+    "lifetime": 3
+  },
+  "raw_compile_returncode": 0,
+  "compiler": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)",
+  "xcode": "Xcode 27.2\nBuild version 27B52",
+  "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434",
+  "original_gate_verifier_reexecuted": true,
+  "new_swift_compiles": 0,
+  "new_test_executions": 0,
+  "native_ui": "NOT_RUN",
+  "ios_sdk": "NOT_RUN",
+  "embedded_hermes": "NOT_RUN",
+  "real_network": "NOT_RUN",
+  "physical_offline": "NOT_RUN"
+}

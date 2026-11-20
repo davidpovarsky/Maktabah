@@ -1,0 +1,345 @@
+{
+  "artifact_id": 14634164383,
+  "bytes": 59956,
+  "sha256": "7fc1d299c61bf9d34eb8674cf4b262f880a7189b9b0de4171d49fc66f6ad94d7",
+  "members": [
+    {
+      "path": "artifacts/runtime27/toolchain-selection.json",
+      "bytes": 13019,
+      "crc32": "c7b8831a",
+      "sha256": "f581c2564c7afd36a9e9800644565e6006d9013d594297685b89c426bb826f21"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/GATE_COMMANDS.json",
+      "bytes": 4688,
+      "crc32": "8a846f2f",
+      "sha256": "c9523aeb97c43dccb1befe0aae9911aefe4661ee52f62310a2e100c2a885776f"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/RAW_INDEX.json",
+      "bytes": 5549,
+      "crc32": "1d5d4b43",
+      "sha256": "78ee3537b1a25479666e85758fa89681b615c665dd18cc65a0b7b84c0d0c547a"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/RESULT.json",
+      "bytes": 6401,
+      "crc32": "11b4644f",
+      "sha256": "0626e37f03977c38d94111bbf54c32cb319c938808ff556ea6d68f12521d11b4"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/SOURCE_INPUTS.json",
+      "bytes": 2455,
+      "crc32": "c028e9c4",
+      "sha256": "03aceaf24008065232d825cd622fbce4903b70dee0bc5868205ae6d18d431c5b"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/driver.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/driver.stdout.log",
+      "bytes": 1472,
+      "crc32": "a7c03ea3",
+      "sha256": "7434b41482411f8e8988cbe5f8da9eb68617d33fdf623bb6851a66f0c2aa5819"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/iphoneos-sdk.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/iphoneos-sdk.stdout.log",
+      "bytes": 5,
+      "crc32": "4f490a66",
+      "sha256": "53e1ae253beb3b8a3b99dd2d4ec1eb641d392378329fcdccb560779fdf46de0b"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/iphonesimulator-sdk.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/iphonesimulator-sdk.stdout.log",
+      "bytes": 5,
+      "crc32": "4f490a66",
+      "sha256": "53e1ae253beb3b8a3b99dd2d4ec1eb641d392378329fcdccb560779fdf46de0b"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/macos-sdk-path.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/macos-sdk-path.stdout.log",
+      "bytes": 104,
+      "crc32": "777df8b9",
+      "sha256": "ef0267694b48b092db5b5d7800411bba8eaad357d65f739b69b5c8b262c50409"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/macos-sdk-version.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/macos-sdk-version.stdout.log",
+      "bytes": 5,
+      "crc32": "4f490a66",
+      "sha256": "53e1ae253beb3b8a3b99dd2d4ec1eb641d392378329fcdccb560779fdf46de0b"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/macos-version.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/macos-version.stdout.log",
+      "bytes": 66,
+      "crc32": "ac820be6",
+      "sha256": "4ef10a0fc370704ea84699cf3851e51488598c5f1ab35cb572eb6b96278a8e5c"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/CASES_EXPECTED.json",
+      "bytes": 2199,
+      "crc32": "1d6a38e2",
+      "sha256": "a239e6807274654726b573e9aef4de025c6c18abe5d3e6f360247d8b20b1f014"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/COMMANDS.json",
+      "bytes": 2652,
+      "crc32": "c894ac20",
+      "sha256": "a0332dd6d32a8d79b9e2bb5aeddceeb46c4602961dcbb6c58f7ac7d4cf8c93d7"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/INPUTS.json",
+      "bytes": 4310,
+      "crc32": "9899f903",
+      "sha256": "e9363f6bab4bd8ec807a4b1c87faaaa53f0ec78aa8670c5502d924a16431da31"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/RESULT.json",
+      "bytes": 1471,
+      "crc32": "a872b2c8",
+      "sha256": "32c763be5f52bcf0107a85e7201eb764d599a62c2066df8250b1cc591671ba5e"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/cancel-held/CASES.json",
+      "bytes": 1929,
+      "crc32": "09a2e7ea",
+      "sha256": "4c4efa77914e2076457cb630928b0ef86089ad1c6c22f37761761d470f2f65d8"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/cancel-held/runtime.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/cancel-held/runtime.stdout.log",
+      "bytes": 1461,
+      "crc32": "455b1f8f",
+      "sha256": "ad721dcf1b3839f555cba4c702fe1ada78ff10339e82156a077f8f43040123e6"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/cancel-held/sefaria-toc-94945B2B-18AF-48CB-872B-3543C1FA1DE8-E6E1C8BB-0296-4F17-A8B5-F0E0F5900D1C-armed.json",
+      "bytes": 341,
+      "crc32": "064d7eaa",
+      "sha256": "72441c83b6efd2c73b023734ec82a584cfb04c9c18df5ae7b744286ef0eae486"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/cancel-held/sefaria-toc-94945B2B-18AF-48CB-872B-3543C1FA1DE8-E6E1C8BB-0296-4F17-A8B5-F0E0F5900D1C-held.json",
+      "bytes": 340,
+      "crc32": "31df5dae",
+      "sha256": "4e7ad2a475984c947b757c2156d57c3a8bd63e8197b906ec61acf510ccd88e2f"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/cancel-held/sefaria-toc-94945B2B-18AF-48CB-872B-3543C1FA1DE8-E6E1C8BB-0296-4F17-A8B5-F0E0F5900D1C-tagged.json",
+      "bytes": 341,
+      "crc32": "46f8a67e",
+      "sha256": "35443715fc88f510a23f88c8c7aa10e5daa2c4e41c4e6d85c9af1663f8bc64c1"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/compile.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/failure-retry/CASES.json",
+      "bytes": 1933,
+      "crc32": "b8e8f9e0",
+      "sha256": "d3a55d857d92a138a5de7c96ac6a810061bb3758340bed2329b9eea25e7c5704"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/compile.stdout.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/failure-retry/runtime.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/failure-retry/runtime.stdout.log",
+      "bytes": 1465,
+      "crc32": "206eae56",
+      "sha256": "8124bb81f45e27891e18c438e69132765ccb3baf8ac44f896badb7022c8fbbff"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/failure-retry/sefaria-toc-3789760F-57BF-4DAD-BEC3-C247F39D036F-1B07B195-F3FA-4476-AC33-4CAF1E539411-armed.json",
+      "bytes": 341,
+      "crc32": "65279d89",
+      "sha256": "aa457b444da2aa51bd122bbc9f070feaa6acf7eb99f74cc4bed69f89501e9eb2"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/failure-retry/sefaria-toc-3789760F-57BF-4DAD-BEC3-C247F39D036F-1B07B195-F3FA-4476-AC33-4CAF1E539411-failed.json",
+      "bytes": 345,
+      "crc32": "fb3a05a7",
+      "sha256": "681caf8f53d329de2b98813fbb8c06ff56907d9deb09e5aa833d84d128908226"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/failure-retry/sefaria-toc-3789760F-57BF-4DAD-BEC3-C247F39D036F-1B07B195-F3FA-4476-AC33-4CAF1E539411-held.json",
+      "bytes": 339,
+      "crc32": "6c373107",
+      "sha256": "cce0cf6ca7600254c765bebec6ed304cdefc9eb93818ddd7287369f573fcb95a"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/failure-retry/sefaria-toc-3789760F-57BF-4DAD-BEC3-C247F39D036F-1B07B195-F3FA-4476-AC33-4CAF1E539411-release.json",
+      "bytes": 144,
+      "crc32": "b220e766",
+      "sha256": "2aa56f837e64b3683b988e5cec07c74380c7b8af4df275431a567dc603f0f17e"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/failure-retry/sefaria-toc-3789760F-57BF-4DAD-BEC3-C247F39D036F-1B07B195-F3FA-4476-AC33-4CAF1E539411-tagged.json",
+      "bytes": 340,
+      "crc32": "a51c0ca6",
+      "sha256": "a013f584b7a0f256623407b3ab6c3702022ac2c0c96ca02b51753381a324995c"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/inputs/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "bytes": 5433,
+      "crc32": "32c2d76b",
+      "sha256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/inputs/Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "bytes": 2831,
+      "crc32": "ab6c2631",
+      "sha256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/inputs/Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 31937,
+      "crc32": "01bf0ffc",
+      "sha256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/inputs/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "bytes": 2067,
+      "crc32": "eab88422",
+      "sha256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/inputs/Source/Sefaria/Domain/SefariaModels.swift",
+      "bytes": 12258,
+      "crc32": "61f5b1d2",
+      "sha256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/inputs/Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "bytes": 34284,
+      "crc32": "2cbb6fe0",
+      "sha256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/inputs/Source/Sefaria/Network/SefariaDTOs.swift",
+      "bytes": 22303,
+      "crc32": "348044e1",
+      "sha256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/inputs/Source/Sefaria/Network/SefariaHTTPClient.swift",
+      "bytes": 32870,
+      "crc32": "0adbccc0",
+      "sha256": "62320ee2f52b027874bed04c1abae824b35e50925b06fc474a9eb6b041257f9c"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/lifetime/CASES.json",
+      "bytes": 253,
+      "crc32": "33bb8a7d",
+      "sha256": "c0b7c2a17a00c851f9ffa40323b22057ea63b1132c794dd1ebdeec7d5225302b"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/lifetime/runtime.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/raw/lifetime/runtime.stdout.log",
+      "bytes": 199,
+      "crc32": "bade61db",
+      "sha256": "915ca57a0eb5abe883696ec1378893d5b45958f6e7c56fce5c6b5c9cb7eb3f32"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/swift-target-info.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/swift-target-info.stdout.log",
+      "bytes": 1017,
+      "crc32": "0f900f2d",
+      "sha256": "a5f6be3a251f941aed6af06b0a81f46acf5db0aabee5a74e551f58da7216a250"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/swift-version.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/swift-version.stdout.log",
+      "bytes": 98,
+      "crc32": "318ccacc",
+      "sha256": "4b59da256292ae42e3f04ef6d06ea3e139678613a3cd3d0dc37a6757c0bd290a"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/swiftc-path.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/swiftc-path.stdout.log",
+      "bytes": 99,
+      "crc32": "a1604902",
+      "sha256": "e5f642a67aebf696758b27fbd02f5956a8ca96aa668f401d9bd084db54083210"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/xcode.stderr.log",
+      "bytes": 0,
+      "crc32": "00000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/sefaria-toc-apple55/xcode.stdout.log",
+      "bytes": 31,
+      "crc32": "ff4998b5",
+      "sha256": "67c5b47bcf0e788aecae2f9b3af345813bdf7fe736faefb9666a7f4b2bf27ba7"
+    }
+  ],
+  "status": "ZIP_SHA_SIZE_CRC_VERIFIED",
+  "at": "2026-11-20T14:31:59.092873+00:00"
+}
