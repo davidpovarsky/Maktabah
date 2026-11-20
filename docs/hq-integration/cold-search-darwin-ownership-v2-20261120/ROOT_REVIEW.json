@@ -1,0 +1,36 @@
+{
+  "reviewed_at": "2026-11-20T16:01:08.226377+00:00",
+  "parent": "3ef8f6c410074a633dda5c33121d429ccf543ef3",
+  "parent_tree": "5306b6ca524608bc3787424857777563533ed600",
+  "all42_prepared_files_hash_verified": true,
+  "original_run": {
+    "id": 44765987116,
+    "head": "3ef8f6c410074a633dda5c33121d429ccf543ef3",
+    "artifact": 14646590409,
+    "bytes": 1203409,
+    "sha256": "8f3314fbd0e7be164d42aecc684c4baa6370bc74af2942808a5f79998c8c19a7",
+    "outer_crc_members": 239,
+    "source_zip_members_bound_to_Git": 16,
+    "candidate_passed": 18,
+    "candidate_failed": 14,
+    "preguard_failure": "candidate_handle_not_closed",
+    "preguard_qualified": false,
+    "both_compiler_exits": 0,
+    "both_runtime_exits": 1,
+    "original_qualifier_replayed": true
+  },
+  "source_review": "All four changed files reviewed; production, Cdouble, original driver/oracles and original32 IDs unchanged",
+  "url_fix": "Fixture obtains exact same-manager URL after creating index and records original precreation URL/directory flags; product exact URL equality unchanged. Original failure cause remains inference until v2 records actual forms.",
+  "cache_barrier": "With cache held, inner validate cannot execute; callback2 is next outer retry before all acquisitions. Original38 assertion calls preserved; two assertions added. Cancellation before barrier release, always-release defers, default1500ms product deadline unchanged. Removes timing-sample ambiguity, not a product latency allowance.",
+  "workflow_inverse_exact_except_owned_ref_and_manifest_hash": true,
+  "v2_local_verification": "Source/generation only",
+  "Swift_v2": "NOT_RUN",
+  "Darwin_v2": "NOT_RUN",
+  "real_C_engine": "NOT_RUN",
+  "Native": "NOT_RUN",
+  "additional_published_evidence": [
+    "complete first artifact ZIP",
+    "exact source patch",
+    "Root source/API authority and review"
+  ]
+}

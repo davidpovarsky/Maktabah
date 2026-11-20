@@ -25,11 +25,15 @@ private func failureTag(_ error: Error) -> String {
 @MainActor private func refuses(_ accepted: Set<String>, _ body: @MainActor () async throws -> Void) async throws {
     var observed: String?
     do { try await body() } catch { observed = failureTag(error) }
+    OwnershipFixtureEvidence.refusals.update {
+        $0.append(["expected": accepted.sorted().joined(separator: ","), "observed": observed ?? "no_error"])
+    }
     try require(observed.map { accepted.contains($0) } == true, "wrong_or_missing_refusal")
 }
 
 @MainActor private final class OwnershipChecks {
     private var rows: [[String: String]] = []
+    private var nativeBoundaryObservations: [[String: String]] = []
     let only = ProcessInfo.processInfo.environment["COLD_OWNERSHIP_ONLY"]
     func run(_ name: String, _ body: @MainActor () async throws -> Void) async {
         if let only, only != name { return }
@@ -41,13 +45,20 @@ private func failureTag(_ error: Error) -> String {
         } catch {
             rows.append(["id": name, "outcome": "failed", "code": failureTag(error)])
         }
+        let native = OwnershipNativeDouble.stats()
+        nativeBoundaryObservations.append(["id": name, "constructors": String(native.constructors),
+            "closes": String(native.closes), "counts": String(native.counts),
+            "dictionaries": String(native.dictionaries), "compatibilities": String(native.compatibilities)])
         save()
     }
     private func save() {
         let output = URL(fileURLWithPath: ProcessInfo.processInfo.environment["COLD_OWNERSHIP_REPORT"]!)
         let value: [String: Any] = ["scope": "FOUNDATION_OWNERSHIP_WITH_EXPLICIT_NATIVE_CONSTRUCTOR_DOUBLE",
                                   "actualCOrRustEngineExecuted": 0, "nativeUIExecuted": 0,
-                                  "checks": rows]
+                                  "checks": rows,
+                                  "fixtureSourceSetup": OwnershipFixtureEvidence.sourceSetup.read(),
+                                  "refusalObservations": OwnershipFixtureEvidence.refusals.read(),
+                                  "nativeBoundaryObservations": nativeBoundaryObservations]
         do {
             try JSONSerialization.data(withJSONObject: value, options: [.prettyPrinted, .sortedKeys]).write(to: output, options: .atomic)
         } catch { print("OWNERSHIP_REPORT_WRITE_FAILED"); exit(72) }
@@ -166,21 +177,36 @@ private func failureTag(_ error: Error) -> String {
             let source = try OwnershipSource.make("cache-deadline")
             let held = try OwnershipHeldLock(repository: .shared)
             let attempts = OwnershipBox(0)
+            let atSecondAttempt = DispatchSemaphore(value: 0)
+            let resumeSecondAttempt = DispatchSemaphore(value: 0)
+            defer { held.release.signal(); resumeSecondAttempt.signal() }
             let task = Task.detached { try await source.prepare(validate: {
-                attempts.update { $0 += 1 }; try source.validate()
-            }) }
-            try await Task<Never, Never>.sleep(nanoseconds: 15_000_000)
-            var observed = Set<String>()
-            let end = DispatchTime.now().uptimeNanoseconds + 70_000_000
-            while observed.count < 3 && DispatchTime.now().uptimeNanoseconds < end {
-                for name in ["migration-fixture", "database-mutation-fixture", "otzaria-search-mutation-fixture"] {
-                    if try ITorahStorageLock.tryWithLock(name: name, block: { true }) == true { observed.insert(name) }
+                attempts.update { $0 += 1 }
+                if attempts.read() == 2 {
+                    // With the real cache lock held, the inner source callback
+                    // cannot run. This is the next original outer-loop callback,
+                    // before acquisition: all previous storage owners must be free.
+                    atSecondAttempt.signal()
+                    try require(ownershipSignalArrived(resumeSecondAttempt, before: .now() + 1),
+                                "fixture_second_attempt_not_released")
                 }
-                try await Task<Never, Never>.sleep(nanoseconds: 1_000_000)
+                try source.validate()
+            }) }
+            defer { task.cancel() }
+            let reachedSecondAttempt = ownershipSignalArrived(atSecondAttempt, before: .now() + 1)
+            var observed = Set<String>()
+            for name in ["migration-fixture", "database-mutation-fixture", "otzaria-search-mutation-fixture"] {
+                if try ITorahStorageLock.tryWithLock(name: name, block: { true }) == true { observed.insert(name) }
+            }
+            OwnershipFixtureEvidence.sourceSetup.update {
+                $0.append(["caseSetup": "cache-deadline-barrier", "reachedSecondAttempt": String(reachedSecondAttempt),
+                           "observedAttempt": String(attempts.read()), "freeOuterOwners": observed.sorted().joined(separator: ",")])
             }
             task.cancel()
+            resumeSecondAttempt.signal()
             try held.finish()
             try await refuses(["cancelled"]) { try await task.value }
+            try require(reachedSecondAttempt, "fixture_second_attempt_not_observed")
             try require(attempts.read() > 1, "no_actual_repeated_cache_attempt")
             try require(observed.count == 3, "outer_storage_owner_retained_across_wait")
             try source.requireNoOpenOrPublication()

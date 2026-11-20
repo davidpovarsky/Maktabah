@@ -22,6 +22,11 @@ enum OwnershipEnvironment {
     }
 }
 
+enum OwnershipFixtureEvidence {
+    static let sourceSetup = OwnershipBox<[[String: String]]>([])
+    static let refusals = OwnershipBox<[[String: String]]>([])
+}
+
 enum ITorahSharedContainer {
     static var otzariaRootURL: URL { OwnershipEnvironment.current.read().directory.appendingPathComponent("Shared") }
 }
@@ -124,8 +129,21 @@ struct OwnershipSource: Sendable {
         let database = directory.appendingPathComponent("seforim.db")
         // This is an explicit metadata-only file double, not an SQLite fixture.
         try Data("metadata-only-db-double".utf8).write(to: database)
-        let index = directory.appendingPathComponent("Index")
-        try FileManager.default.createDirectory(at: index, withIntermediateDirectories: true)
+        let beforeCreation = directory.appendingPathComponent("Index")
+        try FileManager.default.createDirectory(at: beforeCreation, withIntermediateDirectories: true)
+        // The original repository requires exact manager URL identity. Ask the
+        // fixture's same manager after the directory exists, while retaining
+        // the implicit pre-creation URL as evidence of the first-run boundary.
+        let index = OtzariaSearchIndexManager.shared.indexURL(for: database.path)
+        try require(beforeCreation.standardizedFileURL.path == index.standardizedFileURL.path,
+                    "fixture_manager_changed_index_path")
+        OwnershipFixtureEvidence.sourceSetup.update { rows in
+            rows.append(["caseSetup": name, "beforeCreationURL": beforeCreation.absoluteString,
+                         "managerExistingURL": index.absoluteString,
+                         "beforeCreationHasDirectoryPath": String(beforeCreation.hasDirectoryPath),
+                         "managerHasDirectoryPath": String(index.hasDirectoryPath),
+                         "originalExactURLEquality": String(beforeCreation == index)])
+        }
         let sidecar = Data("{\"fixture\":\"native-compatibility-double\"}".utf8)
         for (name, bytes) in [("meta.json", Data("{\"fixture\":\"tantivy-metadata-double\"}".utf8)),
                               ("identity.json", Data("{\"fixture\":\"identity-double\"}".utf8)),

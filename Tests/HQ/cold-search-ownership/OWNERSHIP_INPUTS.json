@@ -63,6 +63,7 @@
       "sha256": "f5297d1540cc3d7072e905a1895f91bf3800e5b5899db99d6f396683b0fb1950"
     }
   },
+  "fixture_base_commit": "3ef8f6c410074a633dda5c33121d429ccf543ef3",
   "inputs": [
     {
       "bytes": 29224,
@@ -119,16 +120,16 @@
       "sha256": "23df24a82b1203b981286ca119c843f3a3add4b3551fbb1d9b96dde5406ae7a9"
     },
     {
-      "bytes": 10975,
-      "git_blob": "283aa18a3c19f69d08cdfe2aef40bc47ca640c77",
+      "bytes": 12138,
+      "git_blob": "ebb6f4f1985aaec2bfe3ad701675bcfeafa357b2",
       "path": "Tests/HQ/cold-search-ownership/OwnershipBoundary.swift",
-      "sha256": "4298b197fd2120d33391b2a0eeb07cf02aca8e09f4caf47654ce2e8645f1fe8d"
+      "sha256": "d23ea88cc298eaa83f322bed228eec1ac0eb74d34dd969184ce454f47bb5b9b1"
     },
     {
-      "bytes": 23057,
-      "git_blob": "4905fa0d499c9cccfbdf745d195ce3b05298d0c7",
+      "bytes": 24911,
+      "git_blob": "329257d2e2c552b86cee123379d73fa42c01b7f5",
       "path": "Tests/HQ/cold-search-ownership/OwnershipCases.swift",
-      "sha256": "dc77899c0a5c8de7053867ba87ea467478d21c6a8bb9ef99df9b4cb57e507cbf"
+      "sha256": "c23be0887cd788af514668c143d53aa7b4f34c7e15cadb25612bbe0c4a1b9703"
     },
     {
       "bytes": 3318,

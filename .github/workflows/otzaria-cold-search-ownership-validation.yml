@@ -3,7 +3,7 @@ name: Exact cold-search Darwin ownership checks
 on:
   push:
     branches:
-      - codex/otzaria-cold-search-ownership-apple-20261120
+      - codex/otzaria-cold-search-ownership-v2-20261120
 
 permissions:
   actions: read
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   darwin-ownership:
-    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-cold-search-ownership-apple-20261120' }}
+    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-cold-search-ownership-v2-20261120' }}
     runs-on: xcode-27
     timeout-minutes: 25
     steps:
@@ -33,10 +33,10 @@ jobs:
           head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
           assert re.fullmatch(r"[0-9a-f]{40}", os.environ["GITHUB_SHA"]) and head == os.environ["GITHUB_SHA"]
           assert os.environ["GITHUB_REPOSITORY"] == "davidpovarsky/Maktabah"
-          assert os.environ["GITHUB_REF"] == "refs/heads/codex/otzaria-cold-search-ownership-apple-20261120"
+          assert os.environ["GITHUB_REF"] == "refs/heads/codex/otzaria-cold-search-ownership-v2-20261120"
           assert not subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=no"], text=True)
           pins = {
-              "Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json": "85d72a500037ff914fe47b2cc33094a104df8d13cbddcfac9294236dbe0bbdb2",
+              "Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json": "cdfae26afdc8854b8433a385ca3497d14c772db240529d0b4f43749f557dbfb9",
               "tools/hq-cold-search-ownership.py": "06226561f58167cbf0dbf3ec070e1255037eaceda9c7b7640010548745d398aa",
               "Scripts/CI/select-runtime27-toolchain.py": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8",
           }
@@ -57,7 +57,7 @@ jobs:
           python3 tools/hq-cold-search-ownership.py
           --repo .
           --output build/cold-search-ownership
-          --expected-inputs-sha256 85d72a500037ff914fe47b2cc33094a104df8d13cbddcfac9294236dbe0bbdb2
+          --expected-inputs-sha256 cdfae26afdc8854b8433a385ca3497d14c772db240529d0b4f43749f557dbfb9
       - name: Preserve actual source, compiler, and ownership evidence
         if: always()
         uses: actions/upload-artifact@v4
