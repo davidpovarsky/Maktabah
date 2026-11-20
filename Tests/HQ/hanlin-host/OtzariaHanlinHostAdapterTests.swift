@@ -9,6 +9,16 @@ import OtzariaActionCore
 private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchPort, OtzariaHanlinNavigationAuthority {
     var binding: OtzariaHanlinBinding
     var reads = 0
+    var searchReads = 0
+    var metadataReads = 0
+    var serveReadActions = false
+    var wrongSearchWork = false
+    var searchHold = false
+    var searchEntered = false
+    var searchBlocked: CheckedContinuation<Void, Never>?
+    var searchObservedCancellation = false
+    var lastSearchQuery: ActionSearchQuery?
+    var authorityRevoked = false
     var unavailableActions = Set<String>()
     var hold = false
     var entered = false
@@ -29,9 +39,13 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
             holdAuthority = false; authorityEntered = true
             await withCheckedContinuation { authorityBlocked = $0 }
         }
+        guard !authorityRevoked else { throw HanlinHostError.staleContext }
         return binding
     }
-    func current(for context: HanlinHostContext) async throws -> OtzariaHanlinBinding { binding }
+    func current(for context: HanlinHostContext) async throws -> OtzariaHanlinBinding {
+        guard !authorityRevoked else { throw HanlinHostError.staleContext }
+        return binding
+    }
     func snapshot() async throws -> ActionBackendSnapshot { binding.backend }
     func report(for backend: ActionBackendID) async throws -> ActionBackendReport {
         reads += 1
@@ -47,10 +61,48 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
     func assess(action: String, arguments: ActionObject, invocation: ActionPortInvocation) async throws -> ActionCapabilityAssessment {
         .init(registered: true, supported: true, availableNow: true)
     }
-    func resolveWork(_ query: ActionResolveWorkQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionWorkRef> { throw ActionPortError.unavailable }
-    func resolveReference(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> { throw ActionPortError.unavailable }
+    func resolveWork(_ query: ActionResolveWorkQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionWorkRef> {
+        guard serveReadActions else { throw ActionPortError.unavailable }
+        metadataReads += 1
+        return .unique(query.workRef ?? .init(backend: query.backend, workKey: "book:2"))
+    }
+    func resolveReference(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> {
+        guard serveReadActions else { throw ActionPortError.unavailable }
+        metadataReads += 1
+        return .unique(.init(backend: query.backend, workKey: query.workRef?.workKey ?? "book:2", position: .legacyLine(0)))
+    }
     func validateDestination(_ destination: ActionReaderDestination, invocation: ActionPortInvocation) async throws -> ActionReaderDestination { throw ActionPortError.unavailable }
-    func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage { throw ActionPortError.unavailable }
+    func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage {
+        guard serveReadActions else { throw ActionPortError.unavailable }
+        searchReads += 1; lastSearchQuery = query; searchEntered = true
+        if searchHold { await withCheckedContinuation { searchBlocked = $0 } }
+        searchObservedCancellation = Task.isCancelled
+        let work = wrongSearchWork ? "book:2" : (query.scopeWorkRefs.first?.workKey ?? "book:1")
+        return .init(hits: [.init(id: "fixture-hit", locator: .init(backend: query.backend, workKey: work, position: .legacyLine(0)),
+            title: "Fixture work", snippet: wrongSearchWork ? "FORBIDDEN_OTHER_WORK" : "Allowed fixture excerpt")],
+            total: 1, precision: .exact, nextOffset: nil)
+    }
+    func enableReadActions() { serveReadActions = true }
+    func setSearchHold() { searchHold = true }
+    func setWrongSearchWork() { wrongSearchWork = true }
+    func releaseSearch() { searchBlocked?.resume(); searchBlocked = nil }
+    func revokeAuthority() { authorityRevoked = true }
+    func replaceSearchContext(_ context: ActionExecutionContext) {
+        binding = .init(context: binding.context, executionContext: binding.executionContext, backend: binding.backend,
+            catalogRevision: binding.catalogRevision, availableReadActions: binding.availableReadActions,
+            searchExecutionContext: context)
+    }
+    func removeSearchGrant() {
+        binding = .init(context: binding.context, executionContext: binding.executionContext, backend: binding.backend,
+            catalogRevision: binding.catalogRevision, availableReadActions: binding.availableReadActions)
+    }
+    func waitForSearch() async throws {
+        let deadline = ContinuousClock.now + .seconds(5)
+        while !searchEntered {
+            guard ContinuousClock.now < deadline else { throw NSError(domain: "SearchWasNotEntered", code: 1) }
+            try await Task.sleep(for: .milliseconds(5))
+        }
+    }
     func open(_ destination: HanlinHostDestination, binding: OtzariaHanlinBinding) async throws -> HanlinHostNavigationResult {
         if wrongReceipt { return .presented(requestID: UUID(), context: destination.context,
             objectReference: destination.objectReference, blockReference: destination.blockReference) }
@@ -118,7 +170,8 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
             objectReference: old.objectReference, selectionReferences: old.selectionReferences,
             sourceRevision: old.sourceRevision)
         binding = .init(context: context, executionContext: binding.executionContext, backend: binding.backend,
-            catalogRevision: binding.catalogRevision, availableReadActions: binding.availableReadActions)
+            catalogRevision: binding.catalogRevision, availableReadActions: binding.availableReadActions,
+            searchExecutionContext: binding.searchExecutionContext)
     }
 }
 
@@ -152,8 +205,8 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
                             raw: String? = "{}", outputLimit: Int = 65_536,
                             guarantee: HanlinHostWriteGuarantee = .readOnly,
                             provider: String? = nil, revision: UInt64? = nil,
-                            deadline: Date? = nil) throws -> HanlinHostInvocation {
-        let tool = try XCTUnwrap(catalog.tools.first { $0.route.logicalToolID.localToolID.rawValue == "system.list-backends" })
+                            deadline: Date? = nil, toolID: String = "system.list-backends") throws -> HanlinHostInvocation {
+        let tool = try XCTUnwrap(catalog.tools.first { $0.route.logicalToolID.localToolID.rawValue == toolID })
         let logical = HanlinLogicalToolID(providerInstanceID: try provider.map { try .init(validating: $0) }
             ?? tool.route.logicalToolID.providerInstanceID, localToolID: tool.route.logicalToolID.localToolID)
         let request = HanlinToolInvocationRequest(id: try .init(validating: "inv-" + UUID().uuidString.lowercased()),
@@ -443,6 +496,335 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
         do { _ = try await dispatcher.openWithContextTransition(destination, session: session); XCTFail("Queued source click was repeated") }
         catch let error as HanlinHostError { XCTAssertEqual(error, .duplicateInvocation) }
         let count = await fixture.navigationCount; XCTAssertEqual(count, 1)
+    }
+
+    // The following tests execute the original Core, actual downstream issuer /
+    // adapter, and where named the unmodified original SDK dispatcher. Backend
+    // contents and native source observations are explicit fixture doubles.
+    private func scopedSetup() async throws
+        -> (Fixture, OtzariaHanlinHostAdapter, HanlinHostSession, HanlinHostCatalog, ActionExecutionContext) {
+        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture-profile",
+            workspace: "fixture-group", space: "otzaria"), sceneID: UUID(), generation: UUID(),
+            objectReference: "fixture-original-reader", sourceRevision: "fixture-source-and-configuration")
+        let metadata = ActionExecutionContext(subjectID: "fixture-native-owner", origin: .internalAI,
+            allowedBackends: [.otzaria], scopes: [.discovery, .navigation], foregroundSceneID: "fixture-native-scene")
+        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture book")
+        let binding = OtzariaHanlinBinding(context: context, executionContext: metadata,
+            backend: .init(backend: .otzaria, generation: 73), catalogRevision: .init(73),
+            availableReadActions: ["system.listBackends", "catalog.resolveWork", "catalog.resolveReference", "search.query"],
+            searchExecutionContext: try scope.searchContext(from: metadata))
+        let fixture = Fixture(binding: binding)
+        await fixture.enableReadActions()
+        let core = try ActionExecutor(state: fixture, resolver: fixture, search: fixture)
+        let adapter = try OtzariaHanlinHostAdapter(core: core, authority: fixture)
+        let session = HanlinHostSession(conversationID: UUID(), context: context)
+        let catalog = try await adapter.catalog(for: context)
+        await fixture.resetReads()
+        return (fixture, adapter, session, catalog, metadata)
+    }
+
+    private var scopedQuery: String {
+        #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:1"}],"limit":2}"#
+    }
+
+    private func completedAction(_ result: HanlinHostExecutionResult) throws -> ActionResult {
+        guard case .completed(let blocks) = result.result.outcome, case .text(let value) = blocks.first else {
+            XCTFail("Expected actual Core completion"); throw HanlinHostError.invalidRecord
+        }
+        return try JSONDecoder().decode(ActionResult.self, from: Data(value.utf8))
+    }
+
+    func testScopedReadIssuerRejectsUnknownBackendAndNoncanonicalWork() throws {
+        for backend in [ActionBackendID.sefaria, .sefariaEmbedded] {
+            XCTAssertThrowsError(try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: backend, workKey: "book:1"), title: "Fixture"))
+        }
+        for key in ["book:0", "book:-1", "book:01", "book:1extra", "Genesis", ""] {
+            XCTAssertThrowsError(try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: key), title: "Fixture"))
+        }
+        XCTAssertThrowsError(try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1", catalogRevision: "guessed"), title: "Fixture"))
+        XCTAssertThrowsError(try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: " "))
+    }
+
+    func testScopedReadIssuerKeepsMetadataContextAndBoundsOnlySearch() async throws {
+        let (fixture, _, session, _, originalMetadata) = try await scopedSetup()
+        let binding = try await fixture.current(for: session)
+        XCTAssertEqual(binding.executionContext, originalMetadata)
+        XCTAssertTrue(binding.executionContext.contentRights.isEmpty)
+        XCTAssertNil(binding.executionContext.allowedWorkKeys)
+        let read = try XCTUnwrap(binding.searchExecutionContext)
+        XCTAssertEqual(read.contentRights, [.otzaria])
+        XCTAssertEqual(read.allowedBackends, [.otzaria])
+        XCTAssertEqual(read.allowedWorkKeys, [.otzaria: ["book:1"]])
+        XCTAssertEqual(read.scopes, [.contentRead])
+        XCTAssertEqual(read.foregroundSceneID, originalMetadata.foregroundSceneID)
+        XCTAssertEqual(read.maxActions, 20)
+        XCTAssertEqual(read.maxResultBytes, 32_768)
+    }
+
+    func testScopedReadIssuerRejectsMissingForegroundOrForeignOrigin() throws {
+        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
+        for context in [
+            ActionExecutionContext(subjectID: "fixture", origin: .internalAI, allowedBackends: [.otzaria], scopes: [.discovery]),
+            ActionExecutionContext(subjectID: "fixture", origin: .mcp, allowedBackends: [.otzaria], scopes: [.discovery], foregroundSceneID: "scene"),
+            ActionExecutionContext(subjectID: "fixture", origin: .internalAI, allowedBackends: [.otzaria, .sefaria], scopes: [.discovery], foregroundSceneID: "scene")
+        ] { XCTAssertThrowsError(try scope.searchContext(from: context)) }
+    }
+
+    func testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery() async throws {
+        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        let value = try await adapter.execute(invocation(session, catalog, raw: scopedQuery, toolID: "search.query")) { _ in }
+        let result = try completedAction(value)
+        XCTAssertEqual(result.action, "search.query")
+        XCTAssertEqual(result.status, .completed)
+        XCTAssertEqual(result.backendGeneration, 73)
+        XCTAssertEqual(value.effectState, .confirmedNoEffect)
+        let observed = await fixture.lastSearchQuery
+        XCTAssertEqual(observed?.scopeWorkRefs, [.init(backend: .otzaria, workKey: "book:1")])
+        XCTAssertEqual(observed?.limit, 2)
+        let count = await fixture.searchReads; XCTAssertEqual(count, 1)
+    }
+
+    func testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead() async throws {
+        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        for raw in [
+            #"{"backend":"otzaria","text":"fixture"}"#,
+            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[]}"#,
+            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:2"}]}"#,
+            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:1"},{"backend":"otzaria","workKey":"book:2"}]}"#
+        ] {
+            let value = try await adapter.execute(invocation(session, catalog, raw: raw, toolID: "search.query")) { _ in }
+            guard case .failed = value.result.outcome else { return XCTFail("Out-of-scope search completed") }
+        }
+        let count = await fixture.searchReads; XCTAssertEqual(count, 0)
+    }
+
+    func testModelArgumentsCannotChooseContentContextOrBackend() async throws {
+        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        for raw in [
+            #"{"backend":"sefaria","text":"fixture","scopeWorkRefs":[{"backend":"sefaria","workKey":"book:1"}]}"#,
+            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:1"}],"contentRights":["otzaria"]}"#,
+            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:1"}],"searchExecutionContext":"unrestricted"}"#
+        ] {
+            let value = try await adapter.execute(invocation(session, catalog, raw: raw, toolID: "search.query")) { _ in }
+            guard case .failed = value.result.outcome else { return XCTFail("Model supplied host authority") }
+        }
+        let count = await fixture.searchReads; XCTAssertEqual(count, 0)
+    }
+
+    func testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead() async throws {
+        let (fixture, adapter, session, oldCatalog, _) = try await scopedSetup()
+        await fixture.removeSearchGrant()
+        let current = try await adapter.catalog(for: session.context)
+        XCTAssertEqual(Set(current.tools.map { $0.route.logicalToolID.localToolID.rawValue }),
+            ["system.list-backends", "catalog.resolve-work", "catalog.resolve-reference"])
+        let value = try await adapter.execute(invocation(session, oldCatalog, raw: scopedQuery, toolID: "search.query")) { _ in }
+        guard case .failed = value.result.outcome else { return XCTFail("Removed read authority accepted an old descriptor") }
+        let count = await fixture.searchReads; XCTAssertEqual(count, 0)
+    }
+
+    func testScopedSearchUsesActualCoreAvailabilityWithoutHidingOldMetadata() async throws {
+        let (fixture, adapter, session, _, _) = try await scopedSetup()
+        await fixture.setUnavailable(["search.query"])
+        let current = try await adapter.catalog(for: session.context)
+        XCTAssertEqual(Set(current.tools.map { $0.route.logicalToolID.localToolID.rawValue }),
+            ["system.list-backends", "catalog.resolve-work", "catalog.resolve-reference"])
+    }
+
+    func testScopedReadDoesNotRestrictOriginalMetadataForAnotherWork() async throws {
+        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        let requests: [(String, String)] = [
+            ("system.list-backends", "{}"),
+            ("catalog.resolve-work", #"{"backend":"otzaria","workRef":{"backend":"otzaria","workKey":"book:2"}}"#),
+            ("catalog.resolve-reference", #"{"backend":"otzaria","workRef":{"backend":"otzaria","workKey":"book:2"},"section":"fixture"}"#)
+        ]
+        for (name, raw) in requests {
+            let value = try await adapter.execute(invocation(session, catalog, raw: raw, toolID: name)) { _ in }
+            XCTAssertEqual(try completedAction(value).status, .completed, name)
+        }
+        let metadata = await fixture.metadataReads; XCTAssertEqual(metadata, 2)
+        let searches = await fixture.searchReads; XCTAssertEqual(searches, 0)
+    }
+
+    func testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork() async throws {
+        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        await fixture.setWrongSearchWork()
+        let value = try await adapter.execute(invocation(session, catalog, raw: scopedQuery, toolID: "search.query")) { _ in }
+        guard case .failed = value.result.outcome else { return XCTFail("Foreign work excerpt escaped") }
+        XCTAssertFalse(String(decoding: try JSONEncoder().encode(value), as: UTF8.self).contains("FORBIDDEN_OTHER_WORK"))
+        let count = await fixture.searchReads; XCTAssertEqual(count, 1)
+    }
+
+    func testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult() async throws {
+        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        await fixture.setSearchHold()
+        let call = try invocation(session, catalog, raw: scopedQuery, toolID: "search.query")
+        let work = Task { try await adapter.execute(call) { _ in } }
+        do { try await fixture.waitForSearch() }
+        catch { work.cancel(); await fixture.releaseSearch(); throw error }
+        await fixture.removeSearchGrant()
+        await fixture.releaseSearch()
+        do { _ = try await work.value; XCTFail("Revoked read result escaped") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .staleContext) }
+    }
+
+    func testScopedSearchCancellationReachesOriginalCoreWorker() async throws {
+        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        await fixture.setSearchHold()
+        let call = try invocation(session, catalog, raw: scopedQuery, toolID: "search.query")
+        let work = Task { try await adapter.execute(call) { _ in } }
+        do { try await fixture.waitForSearch() }
+        catch { work.cancel(); await fixture.releaseSearch(); throw error }
+        await adapter.cancel(call.request.id)
+        await fixture.releaseSearch()
+        let value = try await work.value
+        guard case .failed(let error) = value.result.outcome else { return XCTFail("Cancelled search completed") }
+        XCTAssertEqual(error.code, .cancelled)
+        let cancelled = await fixture.searchObservedCancellation; XCTAssertTrue(cancelled)
+    }
+
+    func testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges() async throws {
+        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        let tool = try XCTUnwrap(catalog.tools.first { $0.route.logicalToolID.localToolID.rawValue == "search.query" })
+        let dispatcher = HanlinHostDispatcher(host: adapter)
+        let value = try await dispatcher.dispatch(alias: tool.route.alias, argumentsJSON: scopedQuery,
+            providerCallID: "fixture-scoped-call", runID: UUID(), step: 0, session: session, catalog: catalog,
+            limits: .init(maximumOutputBytes: 65_536))
+        XCTAssertEqual(try completedAction(value).status, .completed)
+        let count = await fixture.searchReads; XCTAssertEqual(count, 1)
+    }
+
+    func testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead() async throws {
+        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
+        await fixture.setSearchHold()
+        let tool = try XCTUnwrap(catalog.tools.first { $0.route.logicalToolID.localToolID.rawValue == "search.query" })
+        let dispatcher = HanlinHostDispatcher(host: adapter)
+        let query = scopedQuery
+        let work = Task {
+            try await dispatcher.dispatch(alias: tool.route.alias, argumentsJSON: query,
+                providerCallID: "fixture-revoked-call", runID: UUID(), step: 0, session: session, catalog: catalog,
+                limits: .init(maximumOutputBytes: 65_536))
+        }
+        do { try await fixture.waitForSearch() }
+        catch { work.cancel(); await fixture.releaseSearch(); throw error }
+        await fixture.revokeAuthority()
+        await dispatcher.invalidate(session)
+        await fixture.releaseSearch()
+        do { _ = try await work.value; XCTFail("Retired SDK session exposed content") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .staleContext) }
+        let cancelled = await fixture.searchObservedCancellation; XCTAssertTrue(cancelled)
+    }
+
+    // Actual consent state uses the full native observation; this explicit
+    // portable witness tests lifecycle without claiming UIKit/scene execution.
+    private struct ConsentSource: Equatable {
+        var backendGeneration = 7
+        var rpcEpoch = 3
+        var profile = "profile"
+        var group = "group"
+        var source = "original-source"
+        var sourceRevision = 8
+        var tab = "original-tab"
+        var work = "book:1"
+        var selection = "none"
+    }
+
+    @MainActor
+    func testConsentConsumesOnlyOnceForExactDismissalSourceAndConfiguration() async throws {
+        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture", workspace: "group", space: "otzaria"),
+            sceneID: UUID(), generation: UUID())
+        let session = HanlinHostSession(conversationID: UUID(), context: context)
+        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
+        let id = UUID(), source = ConsentSource()
+        let consent = OtzariaHanlinCurrentWorkReadConsent(session: session, scope: scope, configurationID: id, source: source)
+        XCTAssertEqual(try consent.consume(dismissedSessionID: session.id, currentSource: source,
+            namespace: context.namespace, configurationID: id), scope)
+        XCTAssertThrowsError(try consent.consume(dismissedSessionID: session.id, currentSource: source,
+            namespace: context.namespace, configurationID: id))
+    }
+
+    @MainActor
+    func testConsentRejectsEveryChangedSourceDimensionWithoutGrant() async throws {
+        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture", workspace: "group", space: "otzaria"),
+            sceneID: UUID(), generation: UUID())
+        let session = HanlinHostSession(conversationID: UUID(), context: context)
+        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
+        let id = UUID(), source = ConsentSource()
+        var changed: [ConsentSource] = []
+        var v = source; v.backendGeneration += 1; changed.append(v)
+        v = source; v.rpcEpoch += 1; changed.append(v)
+        v = source; v.profile = "other"; changed.append(v)
+        v = source; v.group = "other"; changed.append(v)
+        v = source; v.source = "replacement"; changed.append(v)
+        v = source; v.sourceRevision += 1; changed.append(v)
+        v = source; v.tab = "other"; changed.append(v)
+        v = source; v.work = "book:2"; changed.append(v)
+        v = source; v.selection = "changed"; changed.append(v)
+        for candidate in changed {
+            let consent = OtzariaHanlinCurrentWorkReadConsent(session: session, scope: scope, configurationID: id, source: source)
+            XCTAssertThrowsError(try consent.consume(dismissedSessionID: session.id, currentSource: candidate,
+                namespace: context.namespace, configurationID: id))
+            XCTAssertThrowsError(try consent.consume(dismissedSessionID: session.id, currentSource: source,
+                namespace: context.namespace, configurationID: id), "Rejected witness must not become usable after a later source restoration")
+        }
+    }
+
+    @MainActor
+    func testConsentRejectsChangedConfigurationOrNamespaceAndRevocation() async throws {
+        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture", workspace: "group", space: "otzaria"),
+            sceneID: UUID(), generation: UUID())
+        let session = HanlinHostSession(conversationID: UUID(), context: context)
+        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
+        let id = UUID(), source = ConsentSource()
+        let foreign = try HanlinConversationNamespace(app: "otzaria", account: "other-account", workspace: "group", space: "otzaria")
+        for mode in 0..<3 {
+            let consent = OtzariaHanlinCurrentWorkReadConsent(session: session, scope: scope, configurationID: id, source: source)
+            if mode == 2 { consent.revoke() }
+            XCTAssertThrowsError(try consent.consume(dismissedSessionID: session.id, currentSource: source,
+                namespace: mode == 1 ? foreign : context.namespace, configurationID: mode == 0 ? UUID() : id))
+        }
+    }
+
+    @MainActor
+    func testSupersededDismissalCannotConsumeCurrentConsentEvenWhileDismissing() async throws {
+        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture", workspace: "group", space: "otzaria"),
+            sceneID: UUID(), generation: UUID())
+        let current = HanlinHostSession(conversationID: UUID(), context: context)
+        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
+        let id = UUID(), source = ConsentSource()
+        let consent = OtzariaHanlinCurrentWorkReadConsent(session: current, scope: scope, configurationID: id, source: source)
+        XCTAssertThrowsError(try consent.consume(dismissedSessionID: UUID(), currentSource: source,
+            namespace: context.namespace, configurationID: id))
+        XCTAssertEqual(try consent.consume(dismissedSessionID: current.id, currentSource: source,
+            namespace: context.namespace, configurationID: id), scope)
+    }
+
+    func testSeparateReadContextWithoutContentRightsStaysClosed() async throws {
+        let (fixture, adapter, session, oldCatalog, metadata) = try await scopedSetup()
+        let denied = ActionExecutionContext(subjectID: metadata.subjectID, correlationID: metadata.correlationID,
+            origin: .internalAI, allowedBackends: [.otzaria], contentRights: [], scopes: [.contentRead],
+            allowedWorkKeys: [.otzaria: ["book:1"]], foregroundSceneID: metadata.foregroundSceneID)
+        await fixture.replaceSearchContext(denied)
+        let current = try await adapter.catalog(for: session.context)
+        XCTAssertEqual(current.tools.count, 3)
+        XCTAssertFalse(current.tools.contains { $0.route.logicalToolID.localToolID.rawValue == "search.query" })
+        let value = try await adapter.execute(invocation(session, oldCatalog, raw: scopedQuery, toolID: "search.query")) { _ in }
+        guard case .failed(let error) = value.result.outcome else { return XCTFail("Missing content rights were inferred") }
+        XCTAssertEqual(error.details, .object(["actionStatus": .string("failed"), "actionCode": .string("content_rights_required")]))
+        let count = await fixture.searchReads; XCTAssertEqual(count, 0)
+    }
+
+    func testSeparateReadContextCannotBelongToAnotherSceneOrSubject() async throws {
+        for foreignScene in [false, true] {
+            let (fixture, adapter, session, _, metadata) = try await scopedSetup()
+            let foreign = ActionExecutionContext(subjectID: foreignScene ? metadata.subjectID : "foreign-subject",
+                correlationID: metadata.correlationID, origin: .internalAI, allowedBackends: [.otzaria],
+                contentRights: [.otzaria], scopes: [.contentRead], allowedWorkKeys: [.otzaria: ["book:1"]],
+                foregroundSceneID: foreignScene ? "foreign-scene" : metadata.foregroundSceneID)
+            await fixture.replaceSearchContext(foreign)
+            do { _ = try await adapter.catalog(for: session.context); XCTFail("Foreign content context accepted") }
+            catch let error as HanlinHostError { XCTAssertEqual(error, .denied) }
+            let count = await fixture.searchReads; XCTAssertEqual(count, 0)
+        }
     }
 
 }

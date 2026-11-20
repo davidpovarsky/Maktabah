@@ -64,6 +64,20 @@ final class OtzariaHanlinConversationStoreTests: XCTestCase {
         XCTAssertEqual(try reopened.loadMetadata(identity.conversationID, namespace: identity.context.namespace), original)
         XCTAssertEqual(original.draft, "", "User history must never be overloaded into SDK draft metadata")
         XCTAssertTrue(try Data(contentsOf: file(root, identity)).count > 100)
+
+        // A permission change retires the old SDK lease and reopens the SAME
+        // conversation under a fresh generation. Reading it must not rewrite
+        // rich history, the Unicode draft, or the original SDK metadata.
+        let beforeRotation = try Data(contentsOf: file(root, identity))
+        scoped.revoke()
+        let successor = HanlinHostSession(conversationID: identity.conversationID,
+            context: .init(namespace: identity.context.namespace, sceneID: identity.context.sceneID,
+                generation: UUID(), sourceRevision: "explicit-current-work-connection"))
+        let resumed = OtzariaHanlinScopedConversationStore(identity: successor, store: reopened, validateOwner: {})
+        XCTAssertEqual(try resumed.history()?.0, history)
+        XCTAssertEqual(try resumed.load(successor.conversationID, namespace: successor.context.namespace), original)
+        XCTAssertEqual(try Data(contentsOf: file(root, identity)), beforeRotation)
+        XCTAssertThrowsError(try scoped.saveHistory(history, replacing: 0))
     }
 
     func testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden() async throws {

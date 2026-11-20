@@ -9,17 +9,98 @@ import OtzariaActionCore
 public struct OtzariaHanlinBinding: Sendable, Equatable {
     public let context: HanlinHostContext
     public let executionContext: ActionExecutionContext
+    /// Optional host-issued content authority for search only. Metadata and
+    /// navigation keep their original context; model arguments cannot select it.
+    public let searchExecutionContext: ActionExecutionContext?
     public let backend: ActionBackendSnapshot
     public let catalogRevision: HanlinCatalogRevision
     public let availableReadActions: Set<String>
 
     public init(context: HanlinHostContext, executionContext: ActionExecutionContext,
                 backend: ActionBackendSnapshot, catalogRevision: HanlinCatalogRevision,
-                availableReadActions: Set<String>) {
+                availableReadActions: Set<String>, searchExecutionContext: ActionExecutionContext? = nil) {
         self.context = context; self.executionContext = executionContext
         self.backend = backend; self.catalogRevision = catalogRevision
         self.availableReadActions = availableReadActions
+        self.searchExecutionContext = searchExecutionContext
     }
+
+    // This dispatch is a fixed host mapping, never an argument or model field.
+    fileprivate func executionContext(for action: String) -> ActionExecutionContext {
+        action == "search.query" ? (searchExecutionContext ?? executionContext) : executionContext
+    }
+}
+
+/// One original Otzaria work, confirmed by the native reader owner. A license
+/// string, opening a chat, selection text, or model argument never constructs
+/// this permission. The explicit native connection consent is its issuer.
+struct OtzariaHanlinCurrentWorkReadScope: Sendable, Equatable {
+    let workRef: ActionWorkRef
+    let title: String
+
+    init(workRef: ActionWorkRef, title: String) throws {
+        guard workRef.backend == .otzaria, workRef.catalogRevision == nil,
+              workRef.workKey.hasPrefix("book:"),
+              let bookID = Int64(workRef.workKey.dropFirst(5)), bookID > 0,
+              Int(exactly: bookID) != nil, workRef.workKey == "book:" + String(bookID),
+              !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              title.utf8.count <= 4_096 else { throw HanlinHostError.denied }
+        self.workRef = workRef; self.title = title
+    }
+
+    func searchContext(from metadata: ActionExecutionContext) throws -> ActionExecutionContext {
+        guard metadata.origin == .internalAI, metadata.allowedBackends == [.otzaria],
+              metadata.scopes.contains(.discovery),
+              let scene = metadata.foregroundSceneID, !scene.isEmpty,
+              metadata.contentRights.isEmpty, !metadata.scopes.contains(.contentRead) else {
+            throw HanlinHostError.denied
+        }
+        return .init(subjectID: metadata.subjectID, correlationID: metadata.correlationID,
+            origin: metadata.origin, allowedBackends: [.otzaria], contentRights: [.otzaria],
+            scopes: [.contentRead], allowedWorkKeys: [.otzaria: [workRef.workKey]],
+            foregroundSceneID: scene, maxActions: min(metadata.maxActions, 20),
+            maxResultBytes: min(metadata.maxResultBytes, 32_768))
+    }
+
+    func modelInstructions() throws -> String {
+        let scope = String(decoding: try JSONEncoder().encode([workRef]), as: UTF8.self)
+        return "The user authorized bounded read-only search of exactly the current Otzaria work for this connection. "
+            + "Use search.query only with backend \"otzaria\" and scopeWorkRefs " + scope
+            + ". Include this exact scope in every search. Do not read selections, change library data, or infer access to other works. "
+            + "Catalog metadata actions retain their original public metadata scope."
+    }
+}
+
+/// A transient user-action continuation, not Codable and never persisted. The
+/// native owner supplies its full original source observation as Source. Only
+/// its exact sheet dismissal may consume this witness, once, for the exact
+/// immutable model configuration selected at the user action.
+@MainActor
+final class OtzariaHanlinCurrentWorkReadConsent<Source: Equatable> {
+    let session: HanlinHostSession
+    let scope: OtzariaHanlinCurrentWorkReadScope
+    let configurationID: UUID
+    private let source: Source
+    private var available = true
+
+    init(session: HanlinHostSession, scope: OtzariaHanlinCurrentWorkReadScope,
+         configurationID: UUID, source: Source) {
+        self.session = session; self.scope = scope
+        self.configurationID = configurationID; self.source = source
+    }
+
+    func consume(dismissedSessionID: UUID, currentSource: Source,
+                 namespace: HanlinConversationNamespace, configurationID: UUID) throws -> OtzariaHanlinCurrentWorkReadScope {
+        guard available else { throw HanlinHostError.staleContext }
+        // A late dismissal belonging to another sheet must not retire this one.
+        guard dismissedSessionID == session.id else { throw HanlinHostError.staleContext }
+        available = false
+        guard currentSource == source, namespace == session.context.namespace,
+              configurationID == self.configurationID else { throw HanlinHostError.staleContext }
+        return scope
+    }
+
+    func revoke() { available = false }
 }
 
 /// App-owned seam, deliberately not an SDK permission store or second executor.
@@ -86,7 +167,15 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
         // Policy and current backend readiness belong to the SAME original Core.
         // A local name allowlist is only this transport's read-only surface.
         let advertised = await core.advertisedActions(for: binding.backend.backend, context: binding.executionContext)
-        let catalog = try makeCatalog(binding, advertised: Set(advertised.map(\.id)))
+        var actionIDs = Set(advertised.map(\.id))
+        if let searchContext = binding.searchExecutionContext {
+            // Only the fixed search action may use this separately issued grant.
+            // Ask the same Core policy/readiness implementation, not a host copy.
+            actionIDs.remove("search.query")
+            let readActions = await core.advertisedActions(for: binding.backend.backend, context: searchContext)
+            if readActions.contains(where: { $0.id == "search.query" }) { actionIDs.insert("search.query") }
+        }
+        let catalog = try makeCatalog(binding, advertised: actionIDs)
         // A projection is not a permission grant. Recheck after the Core await.
         guard try await checkedBinding(context) == binding else { throw HanlinHostError.staleContext }
         return catalog
@@ -143,7 +232,8 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
             throw HanlinHostError.storageLimitExceeded
         }
         seen.insert(request.id)
-        let task = Task { [core] in await core.execute(canonical, context: binding.executionContext) }
+        let executionContext = binding.executionContext(for: action)
+        let task = Task { [core] in await core.execute(canonical, context: executionContext) }
         workers[request.id] = task
         defer { workers.removeValue(forKey: request.id) }
         let result = await withTaskCancellationHandler {
@@ -155,7 +245,7 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
         guard try await checkedBinding(binding.context) == binding else { throw HanlinHostError.staleContext }
         if cancelled.contains(invocationID), result.status != .cancelled { throw CancellationError() }
         let encoded = try JSONEncoder().encode(result)
-        guard encoded.count <= min(request.limits.maximumOutputBytes, binding.executionContext.maxResultBytes) else {
+        guard encoded.count <= min(request.limits.maximumOutputBytes, executionContext.maxResultBytes) else {
             throw HanlinHostError.outputLimitExceeded
         }
         let outcome: HanlinToolOutcome
@@ -255,6 +345,17 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
               value.executionContext.scopes.contains(.discovery),
               value.executionContext.allowedBackends.contains(value.backend.backend),
               value.executionContext.maxResultBytes > 0 else { throw HanlinHostError.denied }
+        if let read = value.searchExecutionContext {
+            // A separate content context must still belong to this same native
+            // subject, scene and invocation budget. Core alone checks its rights.
+            guard read.subjectID == value.executionContext.subjectID,
+                  read.correlationID == value.executionContext.correlationID,
+                  read.origin == value.executionContext.origin,
+                  read.foregroundSceneID == value.executionContext.foregroundSceneID,
+                  read.allowedBackends == value.executionContext.allowedBackends else {
+                throw HanlinHostError.denied
+            }
+        }
     }
 
     private func makeCatalog(_ binding: OtzariaHanlinBinding, advertised: Set<String>? = nil) throws -> HanlinHostCatalog {

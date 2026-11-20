@@ -177,8 +177,10 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
         XCTAssertTrue(app.textFields["otzaria-hanlin-model"].waitForExistence(timeout: 20),
                       "The real reader entry must expose the explicit original model configuration")
         XCTAssertTrue(app.staticTexts[
-            "This conversation uses your messages and permitted catalog metadata. Book text and selections are not shared."
+            "This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared."
         ].exists, "Opening the reader chat must not imply permission to read the current book")
+        XCTAssertEqual(app.switches["otzaria-hanlin-allow-current-book"].value as? String, "0",
+                       "The actual source-bound read offer must default to OFF")
         capture("hanlin-reader-original-chat-presented")
 
         XCTAssertTrue(close.isHittable)
@@ -195,4 +197,111 @@ final class HanlinReaderConsumerAcceptanceTests: R27NativeUIBase {
         XCTAssertTrue(app.buttons["otzaria-hanlin-reader-launch"].isHittable)
         capture("hanlin-reader-original-after-chat-dismissal")
     }
+    @MainActor
+    private func exerciseCurrentWorkReadConsent() throws {
+        if isPad { XCUIDevice.shared.orientation = .landscapeLeft }
+        launchReader(backend: "otzaria", language: "en")
+        let originalLocator = try assertTarget(backend: "otzaria")
+        let originalText = try XCTUnwrap(app.textViews["reader-text"].value as? String)
+        let originalOwner = try originalWorkspaceOwner()
+        let expectedTitle = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        let launchID = isPad ? "otzaria-hanlin-reader-launch" : "otzaria-hanlin-global-launch"
+        func tap(_ element: XCUIElement) {
+            XCTAssertTrue(element.waitForExistence(timeout: 30))
+            XCTAssertTrue(element.isHittable, "Use the real native control")
+            element.tap()
+        }
+        func closeChat() {
+            let close = app.buttons["otzaria-hanlin-close"]
+            tap(close)
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: close)], timeout: 30), .completed)
+        }
+        func fillConnection() {
+            let model = app.textFields["otzaria-hanlin-model"]
+            tap(model); model.typeText("unused-native-consent-proof")
+            let key = app.secureTextFields["otzaria-hanlin-api-key"]
+            tap(key); key.typeText("ui-no-send-credential")
+        }
+        func requireDraft(_ editor: XCUIElement, _ draft: String) {
+            XCTAssertTrue(editor.waitForExistence(timeout: 30))
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "value == %@", draft), object: editor)], timeout: 20), .completed)
+        }
+
+        tap(app.buttons[launchID])
+        let consent = app.switches["otzaria-hanlin-allow-current-book"]
+        XCTAssertTrue(consent.waitForExistence(timeout: 20))
+        XCTAssertEqual(consent.value as? String, "0")
+        XCTAssertEqual(app.staticTexts["otzaria-hanlin-consent-book-title"].label, expectedTitle)
+        fillConnection()
+        tap(app.buttons["otzaria-hanlin-connect"])
+        let editor = app.textViews["otzaria-hanlin-composer"]
+        let draft = "טיוטה נשמרת במתן ובביטול הרשאה\nOriginal current-work consent draft"
+        tap(editor); editor.typeText(draft); requireDraft(editor, draft)
+        XCTAssertFalse(app.buttons["otzaria-hanlin-end-book-access"].exists)
+        closeChat()
+
+        // Reopen the exact saved SDK conversation through its existing history UI.
+        tap(app.buttons[launchID])
+        tap(app.buttons["otzaria-hanlin-history"])
+        let rows = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "otzaria-hanlin-saved-"))
+        XCTAssertEqual(rows.count, 1)
+        let savedID = rows.firstMatch.identifier
+        tap(rows.firstMatch)
+        requireDraft(editor, draft)
+        tap(app.buttons["otzaria-hanlin-reconnect"])
+        XCTAssertTrue(consent.waitForExistence(timeout: 20))
+        XCTAssertEqual(consent.value as? String, "0", "History must not restore read consent")
+        let form = app.descendants(matching: .any)["otzaria-hanlin-connection-form"].firstMatch
+        XCTAssertTrue(form.waitForExistence(timeout: 20))
+        for _ in 0..<4 where !consent.isHittable { form.swipeUp() }
+        tap(consent)
+        XCTAssertEqual(consent.value as? String, "1")
+        let model = app.textFields["otzaria-hanlin-model"]
+        for _ in 0..<4 where !model.isHittable { form.swipeDown() }
+        fillConnection()
+        tap(app.buttons["otzaria-hanlin-connect"])
+
+        // No test action invokes Send. This uses the real local SDK constructor;
+        // network silence is not instrumented or claimed by this UI case.
+        let revoke = app.buttons["otzaria-hanlin-end-book-access"]
+        XCTAssertTrue(revoke.waitForExistence(timeout: 30),
+                      "A grant must be issued only through the actual old sheet dismissal and new source-qualified session")
+        requireDraft(editor, draft)
+        XCTAssertEqual(app.buttons.matching(identifier: "otzaria-hanlin-close").count, 1)
+        let send = app.buttons["otzaria-hanlin-send"]
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "enabled == true"), object: send)], timeout: 30), .completed,
+            "The original SDK must configure the exact carried connection without a fake success flag")
+        capture("hanlin-current-work-consent-after-original-dismiss-reopen")
+
+        tap(revoke)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: revoke)], timeout: 30), .completed)
+        requireDraft(editor, draft)
+        XCTAssertTrue(app.buttons["otzaria-hanlin-reconnect"].waitForExistence(timeout: 20))
+        XCTAssertFalse(send.isEnabled, "Revocation must discard the model connection and require explicit reconnection")
+        tap(app.buttons["otzaria-hanlin-history"])
+        XCTAssertEqual(rows.count, 1)
+        XCTAssertEqual(rows.firstMatch.identifier, savedID, "Grant/revoke must preserve the exact saved conversation UUID")
+        capture("hanlin-current-work-consent-revoked-same-saved-conversation")
+        closeChat()
+        XCTAssertEqual(try assertTarget(backend: "otzaria"), originalLocator)
+        XCTAssertTrue(try XCTUnwrap(app.textViews["reader-text"].value as? String).utf8.elementsEqual(originalText.utf8))
+        XCTAssertEqual(try originalWorkspaceOwner(), originalOwner)
+    }
+
+    @MainActor
+    func testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending() throws {
+        XCTAssertTrue(isPad, "Select this case only on the declared iPad destination")
+        try exerciseCurrentWorkReadConsent()
+    }
+
+    @MainActor
+    func testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending() throws {
+        XCTAssertFalse(isPad, "Select this case only on the declared phone destination")
+        try exerciseCurrentWorkReadConsent()
+    }
+
 }
