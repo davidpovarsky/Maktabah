@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "scope": "Canonical bytes staged in Git; gzip files retain byte-sensitive raw evidence. This index excludes itself.",
+  "target_source": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "files": [
+    {
+      "path": "ANCESTRY_PROOF.json",
+      "git_bytes": 3078,
+      "git_sha256": "0e19b9ed577775448039ea4183187b8f7af4e37a04263f29a2a1534ef606a7de"
+    },
+    {
+      "path": "BEFORE.json",
+      "git_bytes": 2783,
+      "git_sha256": "ea2ac24418809fa0878f1db4a9691de007d722a65fabe44c3c390b32f231ea9e"
+    },
+    {
+      "path": "BOUNDED_FETCH.json",
+      "git_bytes": 478,
+      "git_sha256": "883981c20e4b4cbb6639f783ad226b2175da85b9c0ee1c513a652e6fb7685229"
+    },
+    {
+      "path": "CURRENT_32_ROW_RECONCILIATION.json",
+      "git_bytes": 57206,
+      "git_sha256": "dbaa0eebf9b07dd0cdebddb5ba423a8a6d877574e7f2ecc7b422bdb96b42ab06"
+    },
+    {
+      "path": "FETCH_AFTER.json",
+      "git_bytes": 1947,
+      "git_sha256": "ef9bfcf1b7cfb0e5efe70b1268e539d3ebeb283bd4afd7d68ebc64b31c1eeac4"
+    },
+    {
+      "path": "FETCH_BEFORE.json",
+      "git_bytes": 1107,
+      "git_sha256": "58169df376a327a31075ca5bd4001f526fa55b375fb39d1e4ca398126c5b3965"
+    },
+    {
+      "path": "GITHUB_COMPARE.json",
+      "git_bytes": 847,
+      "git_sha256": "4f9b213159ac3f110c2e6ca3109366b29152521707656298191f1d7b66e71670"
+    },
+    {
+      "path": "GITHUB_COMPARE.raw.json.gz",
+      "git_bytes": 250850,
+      "git_sha256": "243be31579ada2a5f2124e805607a661994afd21fa4a0ec2ffa6e2c94a9e4ec0"
+    },
+    {
+      "path": "HISTORICAL_PORT_LEDGER.git-lf.json.gz",
+      "git_bytes": 5801,
+      "git_sha256": "a65ee6372ea9825602eaac11569f6a428ead337a51d8bb118b2723cbf3300924"
+    },
+    {
+      "path": "INITIAL_CURRENT_32_ROW_RECONCILIATION.json",
+      "git_bytes": 57194,
+      "git_sha256": "f2478eca735d72ad1b59484b66e8c72efb04da84959b2b7c1995b2027aec7289"
+    },
+    {
+      "path": "INITIAL_VERIFIER.stderr.log.gz",
+      "git_bytes": 305,
+      "git_sha256": "c143cab55075cd88925eaeaa02727432cb5b348c4ccfbd2c819ab39ed19f974f"
+    },
+    {
+      "path": "INITIAL_VERIFIER.stdout.json.gz",
+      "git_bytes": 20,
+      "git_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "INITIAL_VERIFIER_EXECUTION.json",
+      "git_bytes": 668,
+      "git_sha256": "5aee51aed9ccd1a9fd6d4292edd3297aa3edb00a89be7b35e909b8a111786dbb"
+    },
+    {
+      "path": "INITIAL_verify-reconciliation.py",
+      "git_bytes": 6936,
+      "git_sha256": "81170595d7d47d858cd4676d10a925c749ae022f9882960d4cd75b2e004e7255"
+    },
+    {
+      "path": "LIBRARY_BYTE_CHECK.json",
+      "git_bytes": 15102,
+      "git_sha256": "1089edc5e88efb88f1acb1f881b018cbda8ae5813fbeed1048da8920692fbd62"
+    },
+    {
+      "path": "LIBRARY_HISTORICAL.git-lf.swift.txt.gz",
+      "git_bytes": 2348,
+      "git_sha256": "a8b402462a9e36b8a6255576bc028bc50b52a89fef5b077bcb20d8ea6c8ff0d0"
+    },
+    {
+      "path": "LIBRARY_HISTORICAL.reconstructed-crlf.swift.txt.gz",
+      "git_bytes": 2363,
+      "git_sha256": "e770c7191d31288665cdb80c29abb0bb5265bb80f324e703fb4a4a168b537740"
+    },
+    {
+      "path": "LIBRARY_HISTORICAL_MATCH.json",
+      "git_bytes": 2981,
+      "git_sha256": "a9441b83c15967f224765376c7dc64619fac2630d82f03389cf1505f0b425fed"
+    },
+    {
+      "path": "LIBRARY_HISTORICAL_TO_CURRENT.patch.gz",
+      "git_bytes": 1470,
+      "git_sha256": "f9873f32c4e0d15c418b8b2df90eef6be62735d2d7eff5381ac439e043bf1583"
+    },
+    {
+      "path": "LIBRARY_RENAME_HISTORY.txt",
+      "git_bytes": 1356,
+      "git_sha256": "9f41907a7a07e999cee6280d5cf3a9b8ff0b87558722806a2ab63a50b9220cbe"
+    },
+    {
+      "path": "LIBRARY_TIMELINE.json",
+      "git_bytes": 1528,
+      "git_sha256": "43ce0ef09ab0c5dceb804225e31791647dc98a8a6168928949f5d271001d6ddd"
+    },
+    {
+      "path": "PRIOR_RECONCILIATION.git-lf.json.gz",
+      "git_bytes": 5002,
+      "git_sha256": "0ffacaf0b13f118a7102d984fe9732f29508c0568fb322cd2635ad56ea27276e"
+    },
+    {
+      "path": "README.md",
+      "git_bytes": 10187,
+      "git_sha256": "02130689e93b4425a4c21598aca2c5b0651e4105b1ca3fc56b49ab9ea8cb41c6"
+    },
+    {
+      "path": "SHALLOW_AFTER.txt.gz",
+      "git_bytes": 59,
+      "git_sha256": "4ee98d431b48ab63b34357fbe041abb883e9d76d5a0e456248eb95b3aae0f8ab"
+    },
+    {
+      "path": "SHALLOW_BEFORE.txt.gz",
+      "git_bytes": 59,
+      "git_sha256": "167b7301215491e95f940829908a8da4dc356ed0738315ad687f2395ee6e8f94"
+    },
+    {
+      "path": "SHALLOW_LIMITS.json",
+      "git_bytes": 4830,
+      "git_sha256": "f977b3648bfd13fdb973241e345ec9b493830871b2e7ae0fcfe66781f0e11027"
+    },
+    {
+      "path": "SIX_SOURCE_EVOLUTIONS.json",
+      "git_bytes": 7823,
+      "git_sha256": "7ca55ded7044da1b4468d1d9efb01923c1ffee358c548732b91c96a57953162b"
+    },
+    {
+      "path": "SOURCE_PRESERVATION.json",
+      "git_bytes": 600,
+      "git_sha256": "4fc79a1b56a67b162ebcad942e2f18925a97e65a8acfe2bd14254b38e8c898dc"
+    },
+    {
+      "path": "UPSTREAM_HEAD_OBSERVATION.json",
+      "git_bytes": 215,
+      "git_sha256": "25a04f05453071b1b34a0215877798b9b1e3fa3754202b69d4dccb4b648683fb"
+    },
+    {
+      "path": "VERIFIER.stderr.log.gz",
+      "git_bytes": 20,
+      "git_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "VERIFIER.stdout.json.gz",
+      "git_bytes": 2250,
+      "git_sha256": "856c295532e5d2a5a018d74cc92d9b422bf20b70e302adaeb0f1053b702fa90b"
+    },
+    {
+      "path": "VERIFIER_EXECUTION.json",
+      "git_bytes": 764,
+      "git_sha256": "a1508372f1a4e94905cfd2e01d9c5667de7c2b489f14d5ee44f20047413b6e14"
+    },
+    {
+      "path": "VERIFIER_SUMMARY.json",
+      "git_bytes": 319,
+      "git_sha256": "0ae241006207a5095985c7f5f832f9037d22922952b643ec42043adf20810149"
+    },
+    {
+      "path": "evolution-ChavrusaReaderHost.patch.gz",
+      "git_bytes": 1129,
+      "git_sha256": "9d4b521bbefed5f370c72423d8527a5d433fd6ad1a1db0989f7f1b67436e4d85"
+    },
+    {
+      "path": "evolution-CommandPaletteView.patch.gz",
+      "git_bytes": 2810,
+      "git_sha256": "2b7aa29fabe3dfe6be1acddef4c91156e46f282cfcd2264775f0fed41a9cabc5"
+    },
+    {
+      "path": "evolution-LibraryCommandPaletteAdapter.patch.gz",
+      "git_bytes": 1470,
+      "git_sha256": "f9873f32c4e0d15c418b8b2df90eef6be62735d2d7eff5381ac439e043bf1583"
+    },
+    {
+      "path": "evolution-ReaderOverviewPresentation.patch.gz",
+      "git_bytes": 2156,
+      "git_sha256": "299b3b5c7f9094528a60b6b348a5f870b9a3795151a8515f0c7154a46dc5928b"
+    },
+    {
+      "path": "evolution-TabsBarCell.patch.gz",
+      "git_bytes": 295,
+      "git_sha256": "4b48efddf1d4753542fc83620dcf15d81c1d888142e873cd08b2f4e7b0961290"
+    },
+    {
+      "path": "evolution-TabsBarView.patch.gz",
+      "git_bytes": 340,
+      "git_sha256": "ddb2ae496caa0b31c2a898753e049bec539d9674cf1ee5912cb4c78ecb29666b"
+    },
+    {
+      "path": "verify-reconciliation.py",
+      "git_bytes": 7400,
+      "git_sha256": "e1b313674e56b09c05a57a9a329bd85e0774bfac62d604777dd06d72ed21301f"
+    }
+  ]
+}

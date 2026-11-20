@@ -1,0 +1,13 @@
+{
+  "observed_at": "2026-11-20T09:23:17.672081+00:00",
+  "collector_head_before_and_after": "859fd664b0ce225d8e62ea806bc2907aaac9ba5b",
+  "target_source": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "tracked_source_delta": "",
+  "status_before_staging": "?? docs/hq-integration/sec-provenance-reconciliation-20261120/\n",
+  "only_new_documentation": true,
+  "historical_records_modified": false,
+  "native_tests_executed": 0,
+  "compiler_invocations": 0,
+  "ci_dispatches": 0,
+  "note": "Git metadata changed only through the recorded bounded fetch; shared repository remains partially shallow."
+}

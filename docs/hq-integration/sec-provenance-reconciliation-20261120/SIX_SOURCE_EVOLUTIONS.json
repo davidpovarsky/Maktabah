@@ -1,0 +1,112 @@
+[
+  {
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "historical_revision": "e815a6da7df54dccafbd4efcec96a7a34e759175",
+    "historical_blob": "ec877e55bdeab8f7ef3258dc53d1a167d7c891a9",
+    "historical_git_sha256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f",
+    "historical_representation": "git_bytes",
+    "historical_represented_sha256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f",
+    "expected_historical_sha256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f",
+    "current_git_sha256": "0aeaf779e901813d4059b9117cc73416657da4916b23a4c2a31a118cae4dc18d",
+    "is_ancestor_exit": 0,
+    "evolution_patch": "evolution-CommandPaletteView.patch.gz",
+    "evolution_patch_sha256": "202df7b315478dd22ee2cdd4ea3b3c95a2a4a65d1b202c92064ce83237ae9f96",
+    "recent_path_changes_bound": 12,
+    "recent_path_changes": [
+      "d786ea1dfb0121316cf11373c2c542e9de0300b9 2026-11-16T04:07:47+02:00 Reconcile secure U native input and sidebar selection on frozen integration [skip ci]",
+      "40e642349814568ccae4437cb914f01f0c12420b 2026-11-15T16:13:26+02:00 fix: give palette a native Cancel action for visible dismissal [skip ci]",
+      "5c6670b6f213f8a0defb1eadc32260e85c976dc6 2026-11-15T14:10:06+02:00 diagnostics: observe Escape descriptors and UIKit command resolution [skip ci]",
+      "914fa87f5b93e2667571001cd0c762ef58589d88 2026-11-15T11:30:11+02:00 diagnostics: trace palette focus and Escape delivery without input content [skip ci]",
+      "75ea765de3d768402bf89798b6006b2aea7f9477 2026-11-15T10:43:00+02:00 fix: retain native palette focus intent outside SwiftUI focus binding [skip ci]",
+      "83c13b412e8c38ec354b112d699d53c83d2352d8 2026-11-15T10:40:52+02:00 fix: handle palette Escape in the focused native text input [skip ci]"
+    ]
+  },
+  {
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+    "historical_revision": "bfc7f5a6aa849ab7e9a892cf63c693a8f49ac8a1",
+    "historical_blob": "fdb3fca061ba710068df31429665967ce26672ac",
+    "historical_git_sha256": "8ae46e5812f2782c0a5a197b62f4ec39d504ae68f75dc9be7779a3b440fbcbf0",
+    "historical_representation": "git_bytes",
+    "historical_represented_sha256": "8ae46e5812f2782c0a5a197b62f4ec39d504ae68f75dc9be7779a3b440fbcbf0",
+    "expected_historical_sha256": "8ae46e5812f2782c0a5a197b62f4ec39d504ae68f75dc9be7779a3b440fbcbf0",
+    "current_git_sha256": "de87ae23a776b6fd1ff9575ce52a0510f955dd64731f6da797385f0ecbbcca60",
+    "is_ancestor_exit": 0,
+    "evolution_patch": "evolution-TabsBarView.patch.gz",
+    "evolution_patch_sha256": "48d76939bb88d3dc40bc3f024bc721c305fb2779ab3a2c042b6ccf92ea337be8",
+    "recent_path_changes_bound": 12,
+    "recent_path_changes": [
+      "4fee5615914e0987c98f0b999e48f4f9ef49eab0 2026-11-20T06:04:09+02:00 fix: retain native book-search controls and bounded history heading accessibility"
+    ]
+  },
+  {
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+    "historical_revision": "bfc7f5a6aa849ab7e9a892cf63c693a8f49ac8a1",
+    "historical_blob": "4ec4eaea382e318afd67e62a18e95a6cbbeebbb8",
+    "historical_git_sha256": "8a2162616db8a5ecb15bc81d2fc0f7ac866007377aeb10f855bde79d4e48f503",
+    "historical_representation": "git_bytes",
+    "historical_represented_sha256": "8a2162616db8a5ecb15bc81d2fc0f7ac866007377aeb10f855bde79d4e48f503",
+    "expected_historical_sha256": "8a2162616db8a5ecb15bc81d2fc0f7ac866007377aeb10f855bde79d4e48f503",
+    "current_git_sha256": "0e70441a20ec8e2e6292756daa0013d99d8df7059fa06cf8dae54b4d8ca5087e",
+    "is_ancestor_exit": 0,
+    "evolution_patch": "evolution-TabsBarCell.patch.gz",
+    "evolution_patch_sha256": "0ba8c419059df0dbc7f068f13a68f17f6d5b1abdf5b002cdae5a094dd218ebb4",
+    "recent_path_changes_bound": 12,
+    "recent_path_changes": [
+      "4fee5615914e0987c98f0b999e48f4f9ef49eab0 2026-11-20T06:04:09+02:00 fix: retain native book-search controls and bounded history heading accessibility"
+    ]
+  },
+  {
+    "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "historical_revision": "dd7b1eb5119544ed28c12d1ea4a3653dddce9842",
+    "historical_blob": "c9aee7e586b096b81ccea6ac3c8e12471556063c",
+    "historical_git_sha256": "2f7b6765c4eb500f53b74a7261c372ad3c9d738d40f104705f4f02c938fdb0e2",
+    "historical_representation": "lf_to_crlf",
+    "historical_represented_sha256": "d4f5c45680c8cf72001a0a0d83b5e62a97368dbc68b6ea229985028cf86ae66a",
+    "expected_historical_sha256": "d4f5c45680c8cf72001a0a0d83b5e62a97368dbc68b6ea229985028cf86ae66a",
+    "current_git_sha256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239",
+    "is_ancestor_exit": 0,
+    "evolution_patch": "evolution-LibraryCommandPaletteAdapter.patch.gz",
+    "evolution_patch_sha256": "fde0ff8035bad20f5a4e12ae1737b07738c3e95c5d2263dc744be39916592a12",
+    "recent_path_changes_bound": 12,
+    "recent_path_changes": [
+      "d786ea1dfb0121316cf11373c2c542e9de0300b9 2026-11-16T04:07:47+02:00 Reconcile secure U native input and sidebar selection on frozen integration [skip ci]",
+      "914fa87f5b93e2667571001cd0c762ef58589d88 2026-11-15T11:30:11+02:00 diagnostics: trace palette focus and Escape delivery without input content [skip ci]",
+      "83c13b412e8c38ec354b112d699d53c83d2352d8 2026-11-15T10:40:52+02:00 fix: handle palette Escape in the focused native text input [skip ci]"
+    ]
+  },
+  {
+    "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+    "historical_revision": "20bff505d3ee735d43201a35f4f9cd2e1fd56894",
+    "historical_blob": "d6755c1a51afff26b82e52c8f58e885467ed45e6",
+    "historical_git_sha256": "b6d75d5796b2806e563e90ffa526ca6a336213c2d611114b064225a8c2308e25",
+    "historical_representation": "git_bytes",
+    "historical_represented_sha256": "b6d75d5796b2806e563e90ffa526ca6a336213c2d611114b064225a8c2308e25",
+    "expected_historical_sha256": "b6d75d5796b2806e563e90ffa526ca6a336213c2d611114b064225a8c2308e25",
+    "current_git_sha256": "4fa4ee2fd966b346b66fa19ed405e9a68e3ae45d08eac40ed948d29de435a91d",
+    "is_ancestor_exit": 0,
+    "evolution_patch": "evolution-ChavrusaReaderHost.patch.gz",
+    "evolution_patch_sha256": "497819c8fe175980be571b01170fe7920ea19609e205557553123a570e500126",
+    "recent_path_changes_bound": 12,
+    "recent_path_changes": [
+      "4ce1a92911a7c4a175d11629cc88902a53da7ac3 2026-11-20T03:34:22+02:00 Restore original iPad overview and current Release controls",
+      "80c3c148d396bc70ffe5ffefb49d698764692fea 2026-11-20T01:42:44+02:00 feat(actions): route semantic search through original native search owner"
+    ]
+  },
+  {
+    "destination": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+    "historical_revision": "bfc7f5a6aa849ab7e9a892cf63c693a8f49ac8a1",
+    "historical_blob": "f11dc1ae25e99267ce53278b3b66cbd9f98c34fe",
+    "historical_git_sha256": "6eed61dc4d43ab7064cc84773b2a09f6a670a8cd4e87b1de12061daaced00c63",
+    "historical_representation": "git_bytes",
+    "historical_represented_sha256": "6eed61dc4d43ab7064cc84773b2a09f6a670a8cd4e87b1de12061daaced00c63",
+    "expected_historical_sha256": "6eed61dc4d43ab7064cc84773b2a09f6a670a8cd4e87b1de12061daaced00c63",
+    "current_git_sha256": "4a8699f9efacc4d10265618f3d691d97400c48f17492d59650ffba309bce989c",
+    "is_ancestor_exit": 0,
+    "evolution_patch": "evolution-ReaderOverviewPresentation.patch.gz",
+    "evolution_patch_sha256": "159c0d1a95a7dc7d456c342b3ca6790b2ec5eb7725f8e823d1e50198f183c9a3",
+    "recent_path_changes_bound": 12,
+    "recent_path_changes": [
+      "4ce1a92911a7c4a175d11629cc88902a53da7ac3 2026-11-20T03:34:22+02:00 Restore original iPad overview and current Release controls"
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-11-20T09:21:42.569456+00:00",
+  "finished_at": "2026-11-20T09:21:48.334967+00:00",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "docs\\hq-integration\\sec-provenance-reconciliation-20261120\\verify-reconciliation.py",
+    "--repo",
+    "."
+  ],
+  "exit": 0,
+  "verifier_sha256": "e1b313674e56b09c05a57a9a329bd85e0774bfac62d604777dd06d72ed21301f",
+  "stdout_sha256": "8a945edb3eaa08b035dc548a2a139c2b6f2db667b585281488ba3463b5ebd7c0",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Read-only exact-source provenance verification; no Native/compiler/runtime tests",
+  "stdout_file": "VERIFIER.stdout.json.gz",
+  "stderr_file": "VERIFIER.stderr.log.gz"
+}

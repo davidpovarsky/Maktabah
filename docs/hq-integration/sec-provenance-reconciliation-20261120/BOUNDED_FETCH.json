@@ -1,0 +1,23 @@
+{
+  "command": [
+    "git",
+    "-c",
+    "gc.auto=0",
+    "-c",
+    "maintenance.auto=false",
+    "fetch",
+    "--no-tags",
+    "--no-write-fetch-head",
+    "--no-auto-maintenance",
+    "--filter=blob:none",
+    "--deepen=32",
+    "upstream",
+    "d46af139b3a265399c16d87f5923acd8e3444024"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "started_at": "2026-11-20T09:11:43.393952+00:00",
+  "finished_at": "2026-11-20T09:11:46.119860+00:00",
+  "depth_increment_bound": 32
+}

@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-11-20T09:20:28.801356+00:00",
+  "finished_at": "2026-11-20T09:20:28.963710+00:00",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "docs\\hq-integration\\sec-provenance-reconciliation-20261120\\verify-reconciliation.py",
+    "--repo",
+    "."
+  ],
+  "exit": 1,
+  "verifier_sha256": "81170595d7d47d858cd4676d10a925c749ae022f9882960d4cd75b2e004e7255",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "7be05487b081a21ef82079bdf9e9996df3dc812ec20dd2efe87574156bbf901f",
+  "scope": "Read-only source/history verification, no Native/compiler/runtime tests"
+}
