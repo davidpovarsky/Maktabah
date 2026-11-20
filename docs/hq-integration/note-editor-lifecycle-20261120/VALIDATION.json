@@ -1,0 +1,55 @@
+{
+  "observed_at": "2026-11-20T00:07:01.791545+00:00",
+  "base_commit": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+  "first_source_fix": "19e74a6b3379b7da221806aff90ef8a06320f75f",
+  "final_source_fix": "7c6b7998796d817ac915ea4973658236f79234a1",
+  "branch": "codex/otzaria-note-editor-lifecycle-20261120",
+  "host_id": "host_7ec8382e82747448",
+  "jobs": {
+    "original_red": "job_a247d91e0b8a",
+    "first_red_green": "job_8e22e50ef6bb",
+    "dismissal_red_green": "job_b145889f8c6f"
+  },
+  "source_validation": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": {
+      "observed_sha256": "66a985ed1241dd0ac57c2d6fbabc2b19f5437a49dd74142f664539b7d1c8d7d9",
+      "committed_sha256": "66a985ed1241dd0ac57c2d6fbabc2b19f5437a49dd74142f664539b7d1c8d7d9",
+      "unchanged_since_run": true,
+      "matches_committed_source": true
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+      "observed_sha256": "8608a19d6c0e278070d00c36d315a4a8434ed228e0f761e806632ff6ea7f4054",
+      "committed_sha256": "8608a19d6c0e278070d00c36d315a4a8434ed228e0f761e806632ff6ea7f4054",
+      "unchanged_since_run": true,
+      "matches_committed_source": true
+    },
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": {
+      "observed_sha256": "b6eb02b5f5146bd74203e697409053cd559ffafc2e9a93e8c45888d37b13a111",
+      "committed_sha256": "b6eb02b5f5146bd74203e697409053cd559ffafc2e9a93e8c45888d37b13a111",
+      "unchanged_since_run": true,
+      "matches_committed_source": true
+    }
+  },
+  "independent_review": {
+    "reviewer": "github_native_audit",
+    "kind": "read-only source review; no independent test execution",
+    "initial_finding": "19e74 rejected live-draft dismissal in owner but Session still invalidated scene; missing dismissal presentation token could retire a later closing presentation.",
+    "reviewed_final_source": "7c6b7998796d817ac915ea4973658236f79234a1",
+    "result": "No additional blocking source finding. Immutable dismissal token, exact live-token guard, duplicate guard, conditional scene invalidation and original Binding setter verified."
+  },
+  "upstream_provenance": {
+    "repository": "https://github.com/bismillah-100/Maktabah",
+    "observed_main": "d46af139b3a265399c16d87f5923acd8e3444024",
+    "recursive_tree_entries": 709,
+    "truncated": false,
+    "three_edited_app_paths_present": false,
+    "classification": "All three edited app files are fork-owned; Workspace lives in a shared Source/Features namespace. No original editor/persistence file or imported SDK changed."
+  },
+  "native_passes": 0,
+  "remaining_gates": [
+    "Exact integrated source Apple compile/typecheck",
+    "Original SwiftUI sheet show/cancel/reopen and actual onDismiss callback retention/order",
+    "Original note Save/Cancel, persistence, source selection, RTL/accessibility and scene/background regression",
+    "Physical iPad/device acceptance remains outside this portable fixture"
+  ]
+}

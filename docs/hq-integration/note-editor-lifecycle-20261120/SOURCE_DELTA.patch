@@ -1,0 +1,189 @@
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
+index 72bf995b..c4a3dd78 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
+@@ -306,19 +306,38 @@ struct MaktabahNativeSceneBindings {
+     let id: UUID
+     weak var reader: ReaderViewModel?
+     private let annotation: Binding<Annotation?>
++    private let presentationID: @MainActor () -> UUID
++    private var retiredPresentationID: UUID?
+     weak var textView: UITextView?
+     private(set) var presentationActive = false
+-    func observeTextView(_ value: UITextView?) {
++    @discardableResult
++    func observeTextView(_ value: UITextView?, presentationID: UUID) -> Bool {
++        // Reader ownership survives sheet dismissal/reopening. Only the
++        // presentation captured by this original editor may publish a view.
++        guard current != nil, self.presentationID() == presentationID,
++              retiredPresentationID != presentationID else { return false }
++        if value == nil {
++            // onDisappear closes this presentation even when its asynchronous
++            // onCreated callback has not arrived. Late creation cannot revive it.
++            retiredPresentationID = presentationID
++        }
+         textView = value
+         if value != nil { presentationActive = true }
++        return true
+     }
+-    func didDismiss() {
+-        guard current == nil else { return }
++    @discardableResult
++    func didDismiss(presentationID: UUID) -> Bool {
++        guard current == nil, self.presentationID() == presentationID,
++              presentationActive || textView != nil || retiredPresentationID != presentationID else { return false }
++        retiredPresentationID = presentationID
+         presentationActive = false
+         textView = nil
++        return true
+     }
+-    init(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>) {
++    init(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>,
++         presentationID: @escaping @MainActor () -> UUID) {
+         self.id = id; self.reader = reader; self.annotation = annotation
++        self.presentationID = presentationID
+     }
+     var current: Annotation? { annotation.wrappedValue }
+     func present(_ draft: Annotation) throws {
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
+index e9ade0f5..438948e0 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
+@@ -156,10 +156,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+                 || (command?.route.route.destination.rawValue == "native.reader.noteDraft" && noteDraftBinding?.isApplied == true))
+     }
+ 
+-    func attachNoteEditor(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>) {
++    func attachNoteEditor(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>,
++                          presentationID: @escaping @MainActor () -> UUID) {
+         if noteEditorOwner?.id == id, noteEditorOwner?.reader === reader { return }
+         if noteDraftBinding != nil { presentation.revoke() }
+-        noteEditorOwner = .init(id: id, reader: reader, annotation: annotation)
++        noteEditorOwner = .init(id: id, reader: reader, annotation: annotation, presentationID: presentationID)
+         try? nativeStateChanged()
+     }
+     func detachNoteEditor(id: UUID) {
+@@ -168,14 +169,14 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
+         presentation.revoke()
+         try? nativeStateChanged()
+     }
+-    func noteEditorTextViewChanged(id: UUID, reader: ReaderViewModel, textView: UITextView?) {
++    func noteEditorTextViewChanged(id: UUID, reader: ReaderViewModel, presentationID: UUID, textView: UITextView?) {
+         guard let owner = noteEditorOwner, owner.id == id, owner.reader === reader else { return }
+-        owner.observeTextView(textView)
++        guard owner.observeTextView(textView, presentationID: presentationID) else { return }
+         try? nativeStateChanged()
+     }
+-    func noteEditorDidDismiss(id: UUID) {
++    func noteEditorDidDismiss(id: UUID, presentationID: UUID) {
+         guard let owner = noteEditorOwner, owner.id == id else { return }
+-        owner.didDismiss()
++        guard owner.didDismiss(presentationID: presentationID) else { return }
+         try? nativeStateChanged()
+     }
+     func ownsNoteEditor(_ reader: ReaderViewModel, draft: Annotation) -> Bool {
+diff --git a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+index 74abde86..fff4be3a 100644
+--- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+@@ -102,6 +102,7 @@ struct iOSReaderWorkspaceView: View {
+     @State private var inspectorContentID = UUID()
+     @State private var editingAnnotation: Annotation?
+     @State private var nativeNoteEditorOwnerID = UUID()
++    @State private var nativeNoteEditorPresentationID = UUID()
+     @State private var noteErrorMessage: String?
+     @State private var pendingNotesDidChange: TorahInspectorHostActions.NotesDidChange?
+ 
+@@ -206,6 +207,7 @@ struct iOSReaderWorkspaceView: View {
+     }
+ 
+     var body: some View {
++        let dismissingNoteEditorPresentationID = nativeNoteEditorPresentationID
+         Group {
+             if !useWideLayout, compactUsesContentsFallback {
+                 tocColumn
+@@ -278,7 +280,8 @@ struct iOSReaderWorkspaceView: View {
+             compactStudyPanel
+         }
+         .sheet(isPresented: annotationEditorBinding, onDismiss: {
+-            nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID)
++            nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID,
++                presentationID: dismissingNoteEditorPresentationID)
+         }) {
+             annotationEditor
+         }
+@@ -501,6 +504,7 @@ struct iOSReaderWorkspaceView: View {
+     @ViewBuilder
+     private var annotationEditor: some View {
+         if let editingAnnotation {
++            let presentationID = nativeNoteEditorPresentationID
+             iOSAnnotationEditorSheet(
+                 annotation: editingAnnotation,
+                 onSave: { updated in
+@@ -533,7 +537,8 @@ struct iOSReaderWorkspaceView: View {
+                 },
+                 onNativeTextView: { textView in
+                     nativeRoutingSession?.noteEditorTextViewChanged(
+-                        id: nativeNoteEditorOwnerID, reader: viewModel, textView: textView)
++                        id: nativeNoteEditorOwnerID, reader: viewModel,
++                        presentationID: presentationID, textView: textView)
+                 }
+             )
+             .modifier(MaktabahNativeRoutingSurface(kind: .noteDraft,
+@@ -543,7 +548,16 @@ struct iOSReaderWorkspaceView: View {
+ 
+     private func attachNativeNoteEditor() {
+         nativeRoutingSession?.attachNoteEditor(
+-            id: nativeNoteEditorOwnerID, reader: viewModel, annotation: $editingAnnotation)
++            id: nativeNoteEditorOwnerID, reader: viewModel,
++            annotation: Binding(get: { editingAnnotation }, set: { setEditingAnnotation($0) }),
++            presentationID: { nativeNoteEditorPresentationID })
++    }
++
++    private func setEditingAnnotation(_ value: Annotation?) {
++        // One identity per original sheet entry, including reopening the same
++        // unsaved value. Callback closures capture this value, never a live getter.
++        if value != nil { nativeNoteEditorPresentationID = UUID() }
++        editingAnnotation = value
+     }
+ 
+     private var annotationEditorBinding: Binding<Bool> {
+@@ -551,7 +565,7 @@ struct iOSReaderWorkspaceView: View {
+             get: { editingAnnotation != nil },
+             set: { isPresented in
+                 if !isPresented {
+-                    editingAnnotation = nil
++                    setEditingAnnotation(nil)
+                     pendingNotesDidChange = nil
+                 }
+             }
+@@ -706,7 +720,7 @@ struct iOSReaderWorkspaceView: View {
+                 viewModel.currentContentId &+= 1
+             }
+             #endif
+-            editingAnnotation = draft
++            setEditingAnnotation(draft)
+         } catch {
+             noteErrorMessage = error.localizedDescription
+         }
+@@ -717,9 +731,9 @@ struct iOSReaderWorkspaceView: View {
+     ) {
+         guard let id = Int64(note.id) else { return }
+         if let annotation = viewModel.currentAnnotations.first(where: { $0.id == id }) {
+-            editingAnnotation = annotation
++            setEditingAnnotation(annotation)
+         } else if let annotation = AnnotationManager.shared.loadAnnotationById(id) {
+-            editingAnnotation = annotation
++            setEditingAnnotation(annotation)
+         }
+     }
+ 
+@@ -742,7 +756,7 @@ struct iOSReaderWorkspaceView: View {
+         #if DEBUG
+         iOSAnnotationEditorSheet.appendDebugLog("[finishEditingAnnotation] called\n")
+         #endif
+-        editingAnnotation = nil
++        setEditingAnnotation(nil)
+         inspectorSession.repository.invalidateAllNotes()
+         NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
+         let completion = pendingNotesDidChange
