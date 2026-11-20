@@ -1,0 +1,504 @@
+{
+  "artifactId": 14626257677,
+  "label": "build",
+  "archiveBytes": 1618660,
+  "archiveSha256": "42978dc266c442eae2023c01b6ff944d752f052a5cf60b76588b441d9c16447a",
+  "allEntriesCRCVerified": true,
+  "entries": [
+    {
+      "path": "artifacts/runtime27/CommandPalette.abi.json",
+      "bytes": 149,
+      "sha256": "4277ac6b49f8511196028a5ac20f5b1b1dfa754c24615d34068089f0b1739728",
+      "crc32": "a8bd602e"
+    },
+    {
+      "path": "artifacts/runtime27/CommandPalette.swiftdoc",
+      "bytes": 29836,
+      "sha256": "4e127ab5d827cdc39975c02e02d04295e48dacd14fe12c6a424453e2eee0a000",
+      "crc32": "4a26dd66"
+    },
+    {
+      "path": "artifacts/runtime27/CommandPalette.swiftmodule",
+      "bytes": 188328,
+      "sha256": "5cb1a17ddd226e709705ce55c0000e1ee29acffa9d926292c1d870e819279e5b",
+      "crc32": "ccd040b1"
+    },
+    {
+      "path": "artifacts/prototype-reference-manifest.json",
+      "bytes": 401,
+      "sha256": "6d23315898796d247e254d840b276590e701f79f0b71790ca409004540f29cd3",
+      "crc32": "8e69d9a5"
+    },
+    {
+      "path": "artifacts/runtime27/CommandPalette.swiftsourceinfo",
+      "bytes": 37164,
+      "sha256": "cc73ba1d1e056dc021295b5056e588c2a9e3ce4a2eb9b014f6a1e9d326abf2c2",
+      "crc32": "b89ec11b"
+    },
+    {
+      "path": "artifacts/runtime27/Maktabah-iOS_iphonesimulator27.2-arm64.xctestrun",
+      "bytes": 4992,
+      "sha256": "e8074d3ac6336b468191ea466f66df6801df09f3c04dfeba3a819d27a0389277",
+      "crc32": "c2175b56"
+    },
+    {
+      "path": "artifacts/runtime27/ReaderSidebarSplit.abi.json",
+      "bytes": 149,
+      "sha256": "4277ac6b49f8511196028a5ac20f5b1b1dfa754c24615d34068089f0b1739728",
+      "crc32": "a8bd602e"
+    },
+    {
+      "path": "artifacts/runtime27/ReaderSidebarSplit.swift",
+      "bytes": 12387,
+      "sha256": "8a27001a429a00f2bdb690d5afe2620514d669ea2c166e6d0180898e99bb4d0f",
+      "crc32": "2fd51d9b"
+    },
+    {
+      "path": "artifacts/runtime27/ReaderSidebarSplit.swiftdoc",
+      "bytes": 412,
+      "sha256": "7684c9b795806c924db4837d0aa0adde2dbadeb4bdda87a389cd6bf5c63ebaff",
+      "crc32": "7dfca882"
+    },
+    {
+      "path": "artifacts/runtime27/ReaderSidebarSplit.swiftmodule",
+      "bytes": 39696,
+      "sha256": "6ff8e1f60519300ea976f1baae9059b3598aa3415baf646d069a4c0b29bd6b6b",
+      "crc32": "f1b52e99"
+    },
+    {
+      "path": "artifacts/runtime27/ReaderSidebarSplit.swiftsourceinfo",
+      "bytes": 676,
+      "sha256": "2c5a0770d9456789b85b47cd54fa09f7c71f90072879ae78f0aaa967793d4f15",
+      "crc32": "698ebcf6"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/actual-source-inputs.json",
+      "bytes": 113162,
+      "sha256": "b81fad5515bbbdff152e1bf23d03c57fdbc2785f929d43d0b865bc02f2f0d96f",
+      "crc32": "0717e187"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/generated-privacy.diff",
+      "bytes": 2618,
+      "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e",
+      "crc32": "dde2a370"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "bytes": 877,
+      "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+      "crc32": "0cf24b94"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "bytes": 855,
+      "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+      "crc32": "10470de0"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "bytes": 1482,
+      "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+      "crc32": "ddedeecd"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "bytes": 776,
+      "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+      "crc32": "efb09f89"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "bytes": 1233,
+      "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+      "crc32": "82c8ab68"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/privacy-generated.xcprivacy",
+      "bytes": 1386,
+      "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+      "crc32": "621daac8"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/privacy-original.xcprivacy",
+      "bytes": 1132,
+      "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+      "crc32": "9873bf8c"
+    },
+    {
+      "path": "artifacts/runtime27/after-release-build-inputs/source-review.json",
+      "bytes": 2041,
+      "sha256": "6384f0d4a3cb3534fa4544827efebceea8bb7296106f3125d9e62ea8d00b1eb7",
+      "crc32": "81438ac6"
+    },
+    {
+      "path": "artifacts/runtime27/build-for-testing-driver.log",
+      "bytes": 32209,
+      "sha256": "06bb1d7833d20e612cbc4c3b816c87850c08cdd65295ba37f235b3c45c8b1a45",
+      "crc32": "70dbd65c"
+    },
+    {
+      "path": "artifacts/runtime27/checkout.txt",
+      "bytes": 41,
+      "sha256": "fccb38b6afa9f13bd98a4e3551eb3fea9adb146057b8d3bd7100448d45435a0c",
+      "crc32": "6c764177"
+    },
+    {
+      "path": "artifacts/runtime27/device-types.json",
+      "bytes": 66366,
+      "sha256": "f663b275b7760a98ef28ff760c8efc49703530dd1b45c3d70fa755047bb799a0",
+      "crc32": "2f2a14e2"
+    },
+    {
+      "path": "artifacts/runtime27/hid-prepare.log",
+      "bytes": 1623,
+      "sha256": "4a4494bbaf4d5cb206499a9a47ca8f5e0f124039b67568dcf62fa5211d002e7e",
+      "crc32": "34694dd8"
+    },
+    {
+      "path": "artifacts/runtime27/hid-tools.json",
+      "bytes": 908,
+      "sha256": "90151b972f590edd1a52facf48af8b1eebf88f736109391363907a245409ba19",
+      "crc32": "577343c8"
+    },
+    {
+      "path": "artifacts/runtime27/ios-simulator-skill-SKILL.md",
+      "bytes": 31145,
+      "sha256": "3a77551b707c65b648d681926cb91131abaf99603bf2415f16f389169b0b3524",
+      "crc32": "6740da09"
+    },
+    {
+      "path": "artifacts/runtime27/maestro-mobile-testing-skill-SKILL.md",
+      "bytes": 8582,
+      "sha256": "1efab8198f938cc35c62e867e166669009e15c4d5b9718b017ca1d3394c6e02e",
+      "crc32": "c7975600"
+    },
+    {
+      "path": "artifacts/runtime27/palette-compiled-images.json",
+      "bytes": 70543,
+      "sha256": "f264e0088b03e51a8538162b151f0344d530a1348e2844f59b6cf4ae557ffd97",
+      "crc32": "187e858c"
+    },
+    {
+      "path": "artifacts/runtime27/palette-sdk-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "artifacts/runtime27/release-build-result.json",
+      "bytes": 159374,
+      "sha256": "775f55eaeba1033b4087e60e81299fc638d62e4d1adef9da26d737ef1c3ae4c5",
+      "crc32": "1735ec5c"
+    },
+    {
+      "path": "artifacts/runtime27/release-manifest.json",
+      "bytes": 50236,
+      "sha256": "5f698a786980d9bf4712b545603e512225c4ce36a04b0f2cc3b30529e050612a",
+      "crc32": "2c279770"
+    },
+    {
+      "path": "artifacts/runtime27/release-prototype-build.log",
+      "bytes": 126462,
+      "sha256": "62dd3eb9c96c5ecaf9423f5768fb9f287fa4d04358c1f83b50d7e092b3bc0b27",
+      "crc32": "7d0a04c7"
+    },
+    {
+      "path": "artifacts/runtime27/result.json",
+      "bytes": 159374,
+      "sha256": "775f55eaeba1033b4087e60e81299fc638d62e4d1adef9da26d737ef1c3ae4c5",
+      "crc32": "1735ec5c"
+    },
+    {
+      "path": "artifacts/runtime27/runtimes.json",
+      "bytes": 60604,
+      "sha256": "36ebd6aa7511b32a5156b5fdf0d396860258da4204c6f795fe0bc27d5e81b5a3",
+      "crc32": "f200ff8e"
+    },
+    {
+      "path": "artifacts/runtime27/sdk-path.txt",
+      "bytes": 122,
+      "sha256": "92c82fa07d52363870501f4948ecb272f58936234d562ae09569cce2c660f9fa",
+      "crc32": "feabc55a"
+    },
+    {
+      "path": "artifacts/runtime27/sdk.txt",
+      "bytes": 5,
+      "sha256": "53e1ae253beb3b8a3b99dd2d4ec1eb641d392378329fcdccb560779fdf46de0b",
+      "crc32": "4f490a66"
+    },
+    {
+      "path": "artifacts/runtime27/selected-test-declarations.json",
+      "bytes": 29370,
+      "sha256": "d20854050dbf367ee2a4c010cfd52c8b0c5048a381b8559d1f7fb5586de1effb",
+      "crc32": "db7d8e8c"
+    },
+    {
+      "path": "artifacts/runtime27/sidebar-sdk-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "artifacts/runtime27/simctl-io-help.txt",
+      "bytes": 3082,
+      "sha256": "92112a0d59ad838e81969c268208fec75540f84d129463b9934c55b7b9658192",
+      "crc32": "2f3c2d49"
+    },
+    {
+      "path": "artifacts/runtime27/simctl-ui-help.txt",
+      "bytes": 1776,
+      "sha256": "2fa67269b4a75d4856edcaf9f65ed4bd830bd0ecae95e370173fa8ed2fe87084",
+      "crc32": "ad928ec8"
+    },
+    {
+      "path": "artifacts/runtime27/swift.txt",
+      "bytes": 128,
+      "sha256": "d849343ee11751405c8d0d742f4cd9a491ff81f34d44991240350843cbdcf492",
+      "crc32": "c95518f6"
+    },
+    {
+      "path": "artifacts/runtime27/test-tree.txt",
+      "bytes": 41,
+      "sha256": "b431c57e8e9a201beb5dcb0b60ba5004f3d40b6f273115d91949ed1e00504ab8",
+      "crc32": "71d38819"
+    },
+    {
+      "path": "artifacts/runtime27/xcode.txt",
+      "bytes": 31,
+      "sha256": "67c5b47bcf0e788aecae2f9b3af345813bdf7fe736faefb9666a7f4b2bf27ba7",
+      "crc32": "ff4998b5"
+    },
+    {
+      "path": "artifacts/runtime27/toolchain-selection.json",
+      "bytes": 17538,
+      "sha256": "4674159a9126081fbe2661338b0281d589098d78ee2a64120987d1ed3f5413dd",
+      "crc32": "098af82b"
+    },
+    {
+      "path": "artifacts/runtime27/xcresult-summary-help.txt",
+      "bytes": 708,
+      "sha256": "f43baf1c328035098abe5cd86d6d567a7f0b7c7401cee9dd1fa13f30fd859d0c",
+      "crc32": "467b8959"
+    },
+    {
+      "path": "artifacts/runtime27/xcresult-activities-help.txt",
+      "bytes": 906,
+      "sha256": "e80cf964c098897bbae0deb206caf0829d5379c9a407417dd7ed643222394099",
+      "crc32": "ce147c80"
+    },
+    {
+      "path": "artifacts/runtime27/xcresult-summary-schema.json",
+      "bytes": 5804,
+      "sha256": "f34fbf46fd9142f1fd81d58e16103ced727e159154f670b6da1e8ea8277ba4e1",
+      "crc32": "f0c8e545"
+    },
+    {
+      "path": "artifacts/runtime27/xcresult-test-details-help.txt",
+      "bytes": 817,
+      "sha256": "c9df4ff7540e5cfd1dcc921747b6fda93c4d0975c35bec7f3c81d49f50c09248",
+      "crc32": "831f0c85"
+    },
+    {
+      "path": "artifacts/runtime27/xcresult-tests-help.txt",
+      "bytes": 713,
+      "sha256": "05e739bd36fd23e17662990069b7a69d00b3e2c59a5643a53979720111e8843f",
+      "crc32": "20702f38"
+    },
+    {
+      "path": "artifacts/runtime27/xcresult-tests-schema.json",
+      "bytes": 3740,
+      "sha256": "b8730b0df1f904e98aaeba227201d4a3dccfdd67a28859857793767eb188bcd7",
+      "crc32": "e9cfa77c"
+    },
+    {
+      "path": "hq-stage2/ExpoModulesProvider.swift",
+      "bytes": 1246,
+      "sha256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1",
+      "crc32": "497ff62d"
+    },
+    {
+      "path": "hq-stage2/actual-source-inputs.json",
+      "bytes": 113162,
+      "sha256": "b81fad5515bbbdff152e1bf23d03c57fdbc2785f929d43d0b865bc02f2f0d96f",
+      "crc32": "0717e187"
+    },
+    {
+      "path": "hq-stage2/generated-Maktabah-project.pbxproj",
+      "bytes": 610513,
+      "sha256": "49a56733df47ce06aafe50be22c584e3f91ca7d518772c5e0ddc6f15fa79aa9e",
+      "crc32": "5d342ad3"
+    },
+    {
+      "path": "hq-stage2/generated-pods-project.diff",
+      "bytes": 409488,
+      "sha256": "49fdaa2048215a7ce4685eca9d47af6a2ed1593f4fb07396849b2ebb5a1895da",
+      "crc32": "0ce0fbfb"
+    },
+    {
+      "path": "hq-stage2/generated-privacy.diff",
+      "bytes": 2618,
+      "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e",
+      "crc32": "dde2a370"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-after.log",
+      "bytes": 679,
+      "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+      "crc32": "684fed2b"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-inputs-after.json",
+      "bytes": 61045,
+      "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+      "crc32": "0443c256"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk-inputs.json",
+      "bytes": 61045,
+      "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+      "crc32": "0443c256"
+    },
+    {
+      "path": "hq-stage2/hanlin-sdk.log",
+      "bytes": 679,
+      "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+      "crc32": "684fed2b"
+    },
+    {
+      "path": "hq-stage2/maktabah_zayit_search.h.log",
+      "bytes": 300,
+      "sha256": "87b20fd3d731cc694a3b004a15f295a72a38e5df7f98e837dc0c0985aa184aea",
+      "crc32": "fd7085b1"
+    },
+    {
+      "path": "hq-stage2/matching-embedded-bundle.log",
+      "bytes": 741,
+      "sha256": "29e34f5a221dbe07dfb7ef9fb331dda2800bf2d7e16ee02b9031012ff5922482",
+      "crc32": "82f7285f"
+    },
+    {
+      "path": "hq-stage2/native-script-permissions.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "hq-stage2/otzaria_search_engine.h.log",
+      "bytes": 304,
+      "sha256": "15648f23bbe5f5f15ae65af39bbabc45ce85e2c62b7786375e77c01f6246eab6",
+      "crc32": "1619658f"
+    },
+    {
+      "path": "hq-stage2/pinned-sharp-inputs.log",
+      "bytes": 991,
+      "sha256": "78560d94294e7adc970a8f8eb5ffee5288bdf8f10e966c59249bbe32e9ff5c45",
+      "crc32": "b445597c"
+    },
+    {
+      "path": "hq-stage2/pod-install.log",
+      "bytes": 31886,
+      "sha256": "ef5d1e56a841acfe68167e984e10f9e64fe21db352e123fd553d989c06b0b682",
+      "crc32": "461d12ce"
+    },
+    {
+      "path": "hq-stage2/npm-ci.log",
+      "bytes": 3331,
+      "sha256": "bfdefea498fef44f17fb16ae12b21912669245fda0519c37b115afa27499b5e8",
+      "crc32": "31883e98"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "bytes": 877,
+      "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+      "crc32": "0cf24b94"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "bytes": 855,
+      "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+      "crc32": "10470de0"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "bytes": 1482,
+      "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+      "crc32": "ddedeecd"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "bytes": 776,
+      "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+      "crc32": "efb09f89"
+    },
+    {
+      "path": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "bytes": 1233,
+      "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+      "crc32": "82c8ab68"
+    },
+    {
+      "path": "hq-stage2/privacy-generated.xcprivacy",
+      "bytes": 1386,
+      "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+      "crc32": "621daac8"
+    },
+    {
+      "path": "hq-stage2/privacy-original.xcprivacy",
+      "bytes": 1132,
+      "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+      "crc32": "9873bf8c"
+    },
+    {
+      "path": "hq-stage2/react-source-checkout.log",
+      "bytes": 453,
+      "sha256": "b278da59b8bfd20172192fee69776965913a069701ec217aba71aa99075b6248",
+      "crc32": "6a5c37f3"
+    },
+    {
+      "path": "hq-stage2/resolve-packages.log",
+      "bytes": 4898,
+      "sha256": "e6e85cbacc5fd21061fda592a167e25f0eb6af839d89482f24af1eaa69c11e01",
+      "crc32": "13c477a4"
+    },
+    {
+      "path": "hq-stage2/resolved-Package.resolved",
+      "bytes": 4432,
+      "sha256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+      "crc32": "71bee3ea"
+    },
+    {
+      "path": "hq-stage2/resolved-Podfile.lock",
+      "bytes": 100298,
+      "sha256": "9a7f88b1d9ebbf4d14f8b6f1efd1fb2d15ac63983bf16ffd3e9ea011f9a55ce7",
+      "crc32": "b37aa330"
+    },
+    {
+      "path": "hq-stage2/result.json",
+      "bytes": 83530,
+      "sha256": "b7810d93cc536b0e5342b71909370f5fcb51f8f154ab02d1cdd8dd5e35292dce",
+      "crc32": "212d0f27"
+    },
+    {
+      "path": "hq-stage2/simulator-build-for-testing.log",
+      "bytes": 22071152,
+      "sha256": "b489aefa8d7ebc9e38f2fea26afdcbcbdcb7b8cfadf8d3141aea1ddf89568ee6",
+      "crc32": "5593d79d"
+    },
+    {
+      "path": "hq-stage2/workspace-Package.resolved",
+      "bytes": 4432,
+      "sha256": "e8442e70806c4a7109302ace87e041a499f28f0bf5b70a223cca5a09d5da661c",
+      "crc32": "71bee3ea"
+    },
+    {
+      "path": "hq-stage2/target-membership.log",
+      "bytes": 130,
+      "sha256": "e6f76fa612a3aae1670b92cd31f717631cdcc74f36b83def82465bfc9adf6b7f",
+      "crc32": "0c5c3cb5"
+    }
+  ],
+  "runId": 44723918854,
+  "attempt": 1,
+  "checkout": "60a57972acb28739ec738565083bf17fb7503028"
+}

@@ -1,0 +1,612 @@
+--- M87/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ 7733/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -30,25 +30,115 @@
+     let details: [String: Any]
+ }
+ 
++/// Passive evidence only. Acceptance still requires the same bounded regular
++/// preference file, parsed dictionary, installation pin and exact query count.
++private struct NativeGlobalHistoryFileObservation {
++    let data: Data?
++    let details: [String: Any]
++}
++
++private func observeNativeGlobalHistoryFile(_ url: URL, maximum: Int) -> NativeGlobalHistoryFileObservation {
++    var details: [String: Any] = ["maximumBytes": maximum, "bytesRead": 0]
++    func failed(_ stage: String, _ reason: String, _ error: Error? = nil) -> NativeGlobalHistoryFileObservation {
++        var result = details
++        result["status"] = "unavailable"; result["stage"] = stage; result["reason"] = reason
++        if let error {
++            let value = error as NSError
++            result["errorDomain"] = value.domain; result["errorCode"] = value.code
++        }
++        return .init(data: nil, details: result)
++    }
++    let values: URLResourceValues
++    do {
++        values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
++    } catch {
++        let value = error as NSError
++        let missing = (value.domain == NSCocoaErrorDomain &&
++            [NSFileNoSuchFileError, NSFileReadNoSuchFileError].contains(value.code))
++            || (value.domain == NSPOSIXErrorDomain && value.code == 2)
++        return failed("metadata", missing ? "missing" : "metadata_read_failed", error)
++    }
++    details["regularFile"] = values.isRegularFile
++    details["symbolicLink"] = values.isSymbolicLink
++    guard values.isSymbolicLink != true else { return failed("type", "symlink") }
++    guard values.isRegularFile == true else {
++        return failed("type", values.isRegularFile == false ? "nonregular" : "regular_status_unavailable")
++    }
++    guard values.isSymbolicLink == false else { return failed("type", "symlink_status_unavailable") }
++    let handle: FileHandle
++    do { handle = try FileHandle(forReadingFrom: url) }
++    catch { return failed("open", "open_failed", error) }
++    defer { try? handle.close() }
++    do {
++        var bytes = Data()
++        while bytes.count <= maximum {
++            guard let chunk = try handle.read(upToCount: min(65536, maximum + 1 - bytes.count)),
++                  !chunk.isEmpty else {
++                details["status"] = "read"; details["bytesRead"] = bytes.count
++                return .init(data: bytes, details: details)
++            }
++            bytes.append(chunk)
++            details["bytesRead"] = bytes.count
++        }
++    } catch { return failed("read", "read_failed", error) }
++    return failed("budget", "oversize")
++}
++
++/// Existing DEBUG provider/publication observations, never an admission or
++/// history-writer oracle. Missing events cannot establish that Return was lost.
++private func observeNativeGlobalSearchTrace(in container: URL, namespace: String) -> [String: Any] {
++    guard UUID(uuidString: namespace) != nil else { return ["status": "invalid_namespace"] }
++    let file = container.appendingPathComponent("Documents/OtzariaLogs/search-native-" + namespace + ".jsonl")
++    let read = observeNativeGlobalHistoryFile(file, maximum: 8 * 1024 * 1024)
++    var result: [String: Any] = [
++        "fileRead": read.details,
++        "admissionObservation": "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL",
++        "historyWriterOwnerObservation": "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL",
++        "inMemoryHistoryObservation": "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL"
++    ]
++    guard let data = read.data else { return result }
++    var records: [[String: Any]] = []
++    var rejected = 0
++    for line in data.split(separator: 10) where !line.isEmpty {
++        guard let value = (try? JSONSerialization.jsonObject(with: Data(line))) as? [String: Any],
++              value["schemaVersion"] as? Int == 1,
++              value["namespace"] as? String == namespace,
++              value["profileID"] as? String == "miniTest10",
++              let sessionID = value["sessionID"] as? String, UUID(uuidString: sessionID) != nil,
++              let event = value["event"] as? String, ["provider", "published"].contains(event),
++              let engine = value["engine"] as? String, ["otzaria", "zayit"].contains(engine) else {
++            rejected += 1
++            continue
++        }
++        var observed: [String: Any] = [
++            "schemaVersion": 1, "namespace": namespace, "sessionID": sessionID,
++            "event": event, "engine": engine, "profileID": "miniTest10"
++        ]
++        for key in ["submissionRevision", "searchGeneration", "backendGeneration"] {
++            if let number = value[key] as? UInt64 { observed[key] = number }
++        }
++        if let hasMore = value["hasMore"] as? Bool { observed["hasMore"] = hasMore }
++        if let request = value["request"] as? [String: Any],
++           let digest = request["querySHA256"] as? String, digest.utf8.count == 64,
++           digest.utf8.allSatisfy({ ($0 >= 48 && $0 <= 57) || ($0 >= 97 && $0 <= 102) }) {
++            observed["querySHA256"] = digest
++        }
++        records.append(observed)
++    }
++    result["acceptedRecordCount"] = records.count
++    result["rejectedRecordCount"] = rejected
++    result["lastRecords"] = Array(records.suffix(32))
++    result["truncatedToLastRecords"] = records.count > 32
++    return result
++}
++
+ private func observeNativeGlobalHistory(
+     in parent: URL, namespace: String, query: String,
+     expectedContainer: URL? = nil, expectedMetadata: Data? = nil
+ ) -> NativeGlobalHistoryObservation {
+     let bundleID = "com.davidpovarsky.chavrusatext"
+     func boundedRegularFile(_ url: URL, maximum: Int) -> Data? {
+-        guard let values = try? url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey]),
+-              values.isRegularFile == true, values.isSymbolicLink == false,
+-              let handle = try? FileHandle(forReadingFrom: url) else { return nil }
+-        defer { try? handle.close() }
+-        do {
+-            var bytes = Data()
+-            while bytes.count <= maximum {
+-                guard let chunk = try handle.read(upToCount: min(65536, maximum + 1 - bytes.count)),
+-                      !chunk.isEmpty else { return bytes }
+-                bytes.append(chunk)
+-            }
+-        } catch { return nil }
+-        return nil
++        observeNativeGlobalHistoryFile(url, maximum: maximum).data
+     }
+     func dictionary(_ bytes: Data) -> [String: Any]? {
+         (try? PropertyListSerialization.propertyList(from: bytes, format: nil)) as? [String: Any]
+@@ -94,7 +184,23 @@
+     details["installationPinned"] = pinned
+     details["installationMatchesInitialBytes"] = installationMatches
+     let preference = container.appendingPathComponent("Library/Preferences/" + bundleID + ".plist")
+-    let preferences = boundedRegularFile(preference, maximum: 1024 * 1024).flatMap(dictionary)
++    let preferenceRead = observeNativeGlobalHistoryFile(preference, maximum: 1024 * 1024)
++    details["preferenceFileRead"] = preferenceRead.details
++    var preferences: [String: Any]?
++    if let bytes = preferenceRead.data {
++        do {
++            let decoded = try PropertyListSerialization.propertyList(from: bytes, format: nil)
++            preferences = decoded as? [String: Any]
++            details["preferenceParse"] = preferences == nil ? "dictionary_root_required" : "dictionary"
++        } catch {
++            let value = error as NSError
++            details["preferenceParse"] = "parse_failed"
++            details["preferenceParseErrorDomain"] = value.domain
++            details["preferenceParseErrorCode"] = value.code
++        }
++    } else {
++        details["preferenceParse"] = "NOT_ATTEMPTED_READ_UNAVAILABLE"
++    }
+     let history = preferences?["SearchHistory"] as? [String] ?? []
+     let count = history.filter { $0 == query }.count
+     details["preferenceReadable"] = preferences != nil
+@@ -147,7 +253,10 @@
+     let workspaceNamespace = UUID().uuidString
+     private var viewportURL: URL?
+     var readerTestTier: TestTier { .smoke }
+-    var readerAdditionalLaunchArguments: [String] { [] }
++    private var recordsGlobalHistoryTrace = false
++    var readerAdditionalLaunchArguments: [String] {
++        recordsGlobalHistoryTrace ? ["-GlobalSearchNativeTraceEnabled", "YES"] : []
++    }
+     struct Viewport: Codable {
+         struct Presentation: Codable {
+             let wantsOverview: Bool; let isViewLoaded: Bool; let isInWindow: Bool
+@@ -943,6 +1052,9 @@
+ 
+     @discardableResult
+     func exerciseGlobalHistorySubmission(enabled: Bool) -> String {
++        let previousTrace = recordsGlobalHistoryTrace
++        recordsGlobalHistoryTrace = true
++        defer { recordsGlobalHistoryTrace = previousTrace }
+         let query = "בדיקת היסטוריה " + UUID().uuidString
+         launchReader(enabled: enabled, scenario: "search")
+         let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+@@ -957,6 +1069,22 @@
+             details["stage"] = stage
+             details["nativeHistoryRowVisible"] = nativeHistoryRowVisible
+             details["waiterResult"] = waiterResult.map { String(describing: $0) }
++            // Read only at the existing attachment points, never in settlement
++            // predicates; the original DEBUG writer supplies any actual state.
++            if let container = observation.container {
++                details["originalPassiveSearchTrace"] = observeNativeGlobalSearchTrace(
++                    in: container, namespace: workspaceNamespace)
++            }
++            let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
++            let fieldCount = fields.count
++            details["originalQueryFieldCount"] = fieldCount
++            if fieldCount == 1 {
++                let field = fields.element
++                details["originalQueryFieldValue"] = field.value as? String
++                details["originalQueryFieldMatchesExpected"] = field.value as? String == query
++                details["originalQueryFieldEnabled"] = field.isEnabled
++                details["originalQueryFieldHittable"] = field.isHittable
++            }
+             details["originalUIStates"] = [
+                 "history": app.collectionViews["global-search-history"].exists,
+                 "loading": app.otherElements["global-search-loading"].exists,
+@@ -2481,7 +2609,30 @@
+     private func chooseProfileColor(named name: String) {
+         let picker = profileColorPicker()
+         XCTAssertTrue(picker.isHittable)
+-        tap(picker)
++        guard let currentValue = picker.value as? String, !currentValue.isEmpty else {
++            XCTFail("The identified native Picker must expose its current value before interaction")
++            return
++        }
++        let valueLabels = picker.staticTexts.matching(NSPredicate(format: "label == %@", currentValue))
++        guard valueLabels.count == 1 else {
++            XCTFail("Tap the unique exact current-value label inside the identified native Picker")
++            return
++        }
++        let valueLabel = valueLabels.element
++        let pickerFrame = picker.frame
++        let valueFrame = valueLabel.frame
++        let windowFrame = app.windows.firstMatch.frame
++        let finiteFrames = [pickerFrame, valueFrame, windowFrame].allSatisfy {
++            !$0.isNull && !$0.isInfinite && !$0.isEmpty
++                && $0.minX.isFinite && $0.minY.isFinite
++                && $0.width.isFinite && $0.height.isFinite
++        }
++        guard picker.isHittable, valueLabel.isHittable, finiteFrames,
++              pickerFrame.contains(valueFrame), windowFrame.contains(valueFrame) else {
++            XCTFail("The current-value label must be hittable and fully inside its Picker and actual window")
++            return
++        }
++        tap(valueLabel)
+         tap(app.buttons.matching(NSPredicate(format: "label == %@", name)).firstMatch)
+         XCTAssertEqual(picker.value as? String, name, "Selection must be visible in the original native Picker before Save")
+     }
+@@ -2572,6 +2723,51 @@
+ }
+ 
+ @MainActor
++private enum GroupStressSnapshot {
++    // All attributes below come from one actual XCTest snapshot. No snapshot
++    // survives a tap, workspace transition, or predicate evaluation.
++    static func descendants(of root: any XCUIElementSnapshot) -> [any XCUIElementSnapshot] {
++        var result: [any XCUIElementSnapshot] = []
++        for child in root.children {
++            result.append(child)
++            result.append(contentsOf: descendants(of: child))
++        }
++        return result
++    }
++
++    static func matches(_ element: any XCUIElementSnapshot, identifying name: String) -> Bool {
++        // Preserve XCUIElementQuery's string-subscript identifying properties.
++        element.identifier == name || element.title == name || element.label == name
++            || element.value as? String == name || element.placeholderValue == name
++    }
++
++    static func documentCards(under overview: any XCUIElementSnapshot) -> [any XCUIElementSnapshot] {
++        @MainActor
++        func visit(_ node: any XCUIElementSnapshot, insideCollection: Bool) -> [any XCUIElementSnapshot] {
++            var result: [any XCUIElementSnapshot] = []
++            for child in node.children {
++                if insideCollection, child.elementType == .cell,
++                   child.identifier.hasPrefix("tab-switcher-grid-cell-") {
++                    result.append(child)
++                }
++                result.append(contentsOf: visit(child, insideCollection:
++                    insideCollection || child.elementType == .collectionView))
++            }
++            return result
++        }
++        // The original scope is overview.collectionViews.cells, not all cards
++        // anywhere in the app. Visit each descendant once even for nested lists.
++        return visit(overview, insideCollection: false)
++    }
++
++    static func finitePositive(_ frame: CGRect) -> Bool {
++        !frame.isNull && !frame.isInfinite && !frame.isEmpty
++            && frame.minX.isFinite && frame.minY.isFinite
++            && frame.width.isFinite && frame.height.isFinite
++    }
++}
++
++@MainActor
+ private final class GroupStressNativeObservation {
+     let application: XCUIApplication
+     let url: URL
+@@ -2594,18 +2790,36 @@
+               current.group.name == name, current.group.tabs.count == 1,
+               sceneID.map({ current.sceneID == $0 }) ?? true,
+               afterRevision.map({ workspace.revision > $0 }) ?? true else { return nil }
++        guard let snapshot = try? application.snapshot() else { return nil }
++        let elements = GroupStressSnapshot.descendants(of: snapshot)
++        let overviews = elements.filter { GroupStressSnapshot.matches($0, identifying: "study-groups-overview") }
++        guard overviews.count == 1, let overviewSnapshot = overviews.first,
++              !elements.contains(where: {
++                  $0.elementType == .alert
++                      && GroupStressSnapshot.matches($0, identifying: "לא ניתן לשנות את סביבת הלימוד")
++              }) else { return nil }
++        let segments = elements.filter {
++            $0.elementType == .segmentedControl && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
++        }
++        let controls = segments.isEmpty ? elements.filter {
++            $0.elementType == .button && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
++        } : segments
++        guard controls.count == 1, let controlSnapshot = controls.first,
++              controlSnapshot.isEnabled, controlSnapshot.value as? String == name else { return nil }
++        let cards = GroupStressSnapshot.documentCards(under: overviewSnapshot)
++        let expectedCardID = "tab-switcher-grid-cell-" + current.document.session.id.uuidString
++        guard cards.count == 1, let cardSnapshot = cards.first,
++              cardSnapshot.identifier == expectedCardID, cardSnapshot.isSelected else { return nil }
++
++        // Hittability is a live XCUIElement property, not a frame approximation
++        // or snapshot attribute. Keep both original real hit-test requirements.
+         let overview = application.descendants(matching: .any)["study-groups-overview"]
+-        guard overview.exists, !application.alerts["לא ניתן לשנות את סביבת הלימוד"].exists else { return nil }
+-        let segments = application.segmentedControls["study-group-selector"]
+-        let control = segments.exists ? segments : application.buttons["study-group-selector"]
+-        guard control.exists, control.isEnabled, control.isHittable,
+-              control.value as? String == name else { return nil }
+-        let cards = overview.collectionViews.cells.matching(NSPredicate(
+-            format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-"))
+-        guard cards.count == 1 else { return nil }
+-        let card = cards.element(boundBy: 0)
+-        guard card.identifier == "tab-switcher-grid-cell-" + current.document.session.id.uuidString,
+-              card.isSelected, card.isHittable else { return nil }
++        let control = controlSnapshot.elementType == .segmentedControl
++            ? application.segmentedControls["study-group-selector"]
++            : application.buttons["study-group-selector"]
++        let card = overview.collectionViews.cells.matching(NSPredicate(
++            format: "identifier == %@", expectedCardID)).element
++        guard control.isHittable, card.isHittable else { return nil }
+         return workspace
+     }
+ }
+@@ -2638,16 +2852,123 @@
+     }
+ }
+ 
++// MARK: Actual app process observations for the original groups100 case
++
++private struct GroupStressApplicationMetric: Codable, Sendable {
++    let schema: Int
++    let timingScope: String
++    let memoryMetric: String
++    let memoryScope: String
++    let namespace: String
++    let operationID: UUID
++    let launchID: UUID
++    let sequence: Int
++    let processID: Int32
++    let sceneID: String
++    let fromGroupID: UUID?
++    let toGroupID: UUID
++    let observedGroupID: UUID?
++    let fromDocumentID: UUID?
++    let observedDocumentID: UUID?
++    let beforeRevision: UInt64?
++    let afterRevision: UInt64?
++    let fromBackend: String
++    let observedBackend: String
++    let footprintBeforeBytes: UInt64?
++    let footprintAfterBytes: UInt64?
++    let elapsedSeconds: Double
++    let returnedNormally: Bool
++}
++
++private struct GroupStressMetricExpectation: Sendable {
++    let sceneID: String
++    let fromGroupID: UUID
++    let toGroupID: UUID
++    let fromDocumentID: UUID
++    let toDocumentID: UUID
++    let observedBeforeRevision: UInt64
++    let observedAfterRevision: UInt64
++}
++
++/// Reads the real app container's original reader log. Matching is independently
++/// bound to the UI/sidecar observations, not to a flag claiming a successful test.
++private struct GroupStressMetricReader: Sendable {
++    enum Failure: Error { case missingOrInvalidEvidence }
++    let url: URL
++    let namespace: String
++    let expected: [GroupStressMetricExpectation]
++
++    func samples() throws -> [GroupStressApplicationMetric] {
++        let resource = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
++        guard resource.isRegularFile == true, resource.isSymbolicLink == false else {
++            throw Failure.missingOrInvalidEvidence
++        }
++        let text = try String(contentsOf: url, encoding: .utf8)
++        let prefix = "[NativeGroupSwitchPerformance] "
++        return try text.split(separator: "\n").compactMap { line in
++            guard let range = line.range(of: prefix) else { return nil }
++            let bytes = Data(line[range.upperBound...].utf8)
++            let sample = try JSONDecoder().decode(GroupStressApplicationMetric.self, from: bytes)
++            return sample.namespace == namespace ? sample : nil
++        }
++    }
++
++    func matched() throws -> [GroupStressApplicationMetric] {
++        let records = try samples()
++        guard expected.count == 100 else { throw Failure.missingOrInvalidEvidence }
++        var selected: [GroupStressApplicationMetric] = []
++        for observation in expected {
++            let matches = records.filter { sample in
++                guard sample.sceneID == observation.sceneID,
++                      sample.fromGroupID == observation.fromGroupID,
++                      sample.toGroupID == observation.toGroupID,
++                      sample.observedGroupID == observation.toGroupID,
++                      sample.fromDocumentID == observation.fromDocumentID,
++                      sample.observedDocumentID == observation.toDocumentID,
++                      let before = sample.beforeRevision, let after = sample.afterRevision else { return false }
++                // Ordinary checkpoints may advance revision between the UI
++                // observations and tap. The actual commit must lie inside them.
++                return before >= observation.observedBeforeRevision && after > before
++                    && after <= observation.observedAfterRevision
++            }
++            guard matches.count == 1, let sample = matches.first,
++                  sample.schema == 1, sample.returnedNormally,
++                  sample.fromBackend == "otzaria", sample.observedBackend == "otzaria",
++                  sample.processID > 0, sample.elapsedSeconds.isFinite, sample.elapsedSeconds >= 0,
++                  sample.timingScope == "original group operation through ordinary session persistence",
++                  sample.memoryMetric == "phys_footprint_bytes",
++                  sample.memoryScope == "operation boundary samples; not continuous peak RSS",
++                  (sample.footprintBeforeBytes ?? 0) > 0, (sample.footprintAfterBytes ?? 0) > 0 else {
++                throw Failure.missingOrInvalidEvidence
++            }
++            selected.append(sample)
++        }
++        guard Set(selected.map(\.operationID)).count == 100,
++              Set(selected.map(\.launchID)).count == 1,
++              Set(selected.map(\.processID)).count == 1,
++              let first = selected.first,
++              selected.enumerated().allSatisfy({ $0.element.sequence == first.sequence + $0.offset }) else {
++            throw Failure.missingOrInvalidEvidence
++        }
++        return selected
++    }
++}
++
++// END Actual app process observations
++
+ /// Additional iPad/miniTest10 coverage. This does not replace any original case,
+ /// full-production-data acceptance, physical-device testing, or a latency gate.
+ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
+     override var readerTestTier: TestTier { .realUI }
++    override var readerAdditionalLaunchArguments: [String] {
++        super.readerAdditionalLaunchArguments + ["-StudyGroupPerformanceEnabled", "YES"]
++    }
+ 
+     @MainActor
+     func testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore() throws {
+         XCTAssertTrue(isPad, "This additional case requires the original iPad group UI")
+         XCUIDevice.shared.orientation = .landscapeLeft
+-        launchReader(backend: "otzaria")
++        launchReader(backend: "otzaria", tier: .realUI)
+         let initialLocator = try assertTarget(backend: "otzaria")
+         let url = try verifiedGroupStressSidecar()
+         // A fresh UUID sidecar can import real legacy tabs. Use the existing
+@@ -2715,6 +3036,7 @@
+         }
+         addTeardownBlock { await evidence.attachReport() }
+ 
++        var performanceExpectations: [GroupStressMetricExpectation] = []
+         for step in 1...100 {
+             let target = try XCTUnwrap(baseline.groups.first { $0.name == names[(step - 1) % names.count] })
+             let previous = try XCTUnwrap(workspace.current)
+@@ -2733,13 +3055,22 @@
+             evidence.transitions.append(observation)
+             evidence.record(observation)
+             selectOriginalStressGroup(named: target.name)
++            let selectionReturnedAt = ProcessInfo.processInfo.systemUptime
+             workspace = try waitForOriginalGroup(named: target.name, at: url,
+                                                   sceneID: original.sceneID, afterRevision: workspace.revision)
++            let observationReturnedAt = ProcessInfo.processInfo.systemUptime
++            observation["automationSelectionElapsedSeconds"] = selectionReturnedAt - start
++            observation["automationObservationElapsedSeconds"] = observationReturnedAt - selectionReturnedAt
+             let current = try XCTUnwrap(workspace.current)
+             XCTAssertEqual(current.group.id, target.id)
+             XCTAssertEqual(current.document.session.id, targetDocument.session.id)
+             XCTAssertEqual(current.scene.profileID, profileID)
+             try assertOriginalGroupMembership(workspace, matches: baseline)
++            performanceExpectations.append(.init(
++                sceneID: previous.sceneID, fromGroupID: previous.group.id, toGroupID: current.group.id,
++                fromDocumentID: previous.document.session.id, toDocumentID: current.document.session.id,
++                observedBeforeRevision: try XCTUnwrap(observation["beforeRevision"] as? UInt64),
++                observedAfterRevision: workspace.revision))
+             observation["state"] = "committed"
+             observation["afterRevision"] = workspace.revision
+             observation["observedGroupID"] = current.group.id.uuidString
+@@ -2753,6 +3084,7 @@
+         }
+         XCTAssertEqual(evidence.completedTransitions, 100)
+         XCTAssertEqual(evidence.transitions.count, 100)
++        try captureGroupApplicationMetrics(sidecar: url, expected: performanceExpectations)
+         let final = try XCTUnwrap(workspace.current)
+         try attachWorkspaceSnapshot("groups100-after-100-original-commits")
+         retainNativeEvidence("groups100-after-100-original-commits")
+@@ -2760,7 +3092,7 @@
+         XCTAssertEqual(try assertTarget(backend: "otzaria"), locators[final.group.id])
+ 
+         app.terminate()
+-        launchReader(scenario: "catalog", backend: "otzaria")
++        launchReader(scenario: "catalog", backend: "otzaria", tier: .realUI)
+         XCTAssertEqual(try verifiedGroupStressSidecar().standardizedFileURL, url.standardizedFileURL,
+                        "Cold launch must retain this same installed app and owned namespace")
+         let finalLocator = try XCTUnwrap(locators[final.group.id])
+@@ -2785,6 +3117,54 @@
+         closeGroupStressOverview()
+         XCTAssertEqual(try assertTarget(backend: "otzaria"), finalLocator)
+         evidence.coldRestoreVerified = true
++    }
++
++
++    @MainActor
++    private func captureGroupApplicationMetrics(sidecar: URL, expected: [GroupStressMetricExpectation]) throws {
++        var container = sidecar
++        for _ in 0..<6 { container.deleteLastPathComponent() }
++        let reader = GroupStressMetricReader(
++            url: container.appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log"),
++            namespace: workspaceNamespace, expected: expected)
++        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
++            (try? reader.matched()) != nil
++        }, object: nil)
++        let result = XCTWaiter.wait(for: [ready], timeout: 10)
++        // Retain available real observations even if the additional evidence
++        // requirement fails. Never substitute XCTest IPC duration or a constant.
++        if let raw = try? reader.samples(), let bytes = try? JSONEncoder().encode(raw) {
++            let attachment = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
++            attachment.name = "groups100-application-raw-boundary-samples"
++            attachment.lifetime = .keepAlways
++            add(attachment)
++        }
++        XCTAssertEqual(result, .completed, "Require 100 uniquely matched actual app operation/memory observations")
++        let samples = try reader.matched()
++        let elapsedMS = samples.map { $0.elapsedSeconds * 1000 }.sorted()
++        func percentile(_ fraction: Double) -> Double {
++            elapsedMS[max(0, Int(ceil(Double(elapsedMS.count) * fraction)) - 1)]
++        }
++        let footprint = samples.flatMap { [$0.footprintBeforeBytes!, $0.footprintAfterBytes!] }
++        let value: [String: Any] = [
++            "schema": 1, "namespace": workspaceNamespace, "count": samples.count,
++            "timingScope": samples[0].timingScope, "percentileMethod": "nearest rank",
++            "p50OperationMilliseconds": percentile(0.50),
++            "p95OperationMilliseconds": percentile(0.95),
++            "maxOperationMilliseconds": elapsedMS.last!,
++            "memoryMetric": samples[0].memoryMetric, "memoryScope": samples[0].memoryScope,
++            "boundarySampleCount": footprint.count,
++            "firstFootprintBytes": samples[0].footprintBeforeBytes!,
++            "lastFootprintBytes": samples.last!.footprintAfterBytes!,
++            "maxObservedBoundaryFootprintBytes": footprint.max()!,
++            "performanceThresholdDefined": false,
++            "scope": "Debug iPad Simulator miniTest10; not first-pixel, physical-device, full-corpus, CPU or continuous-peak acceptance"
++        ]
++        let report = XCTAttachment(data: try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]),
++                                  uniformTypeIdentifier: "public.json")
++        report.name = "groups100-application-operation-memory-summary"
++        report.lifetime = .keepAlways
++        add(report)
+     }
+ 
+     @MainActor
+@@ -2847,12 +3227,44 @@
+ 
+     @MainActor
+     private func selectOriginalStressGroup(named name: String) {
+-        let selector = app.segmentedControls["study-group-selector"]
+-        if selector.exists {
+-            XCTAssertTrue(selector.isEnabled)
+-            let targets = selector.buttons.matching(NSPredicate(format: "label == %@", name))
+-            XCTAssertEqual(targets.count, 1)
+-            tap(targets.element(boundBy: 0))
++        guard let snapshot = try? app.snapshot() else {
++            XCTFail("Require a fresh actual app snapshot before the original group action")
++            return
++        }
++        let elements = GroupStressSnapshot.descendants(of: snapshot)
++        let selectors = elements.filter {
++            $0.elementType == .segmentedControl && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
++        }
++        if !selectors.isEmpty {
++            guard selectors.count == 1, let selectorSnapshot = selectors.first,
++                  selectorSnapshot.isEnabled else {
++                XCTFail("Require the unique enabled original segmented group selector")
++                return
++            }
++            let targets = GroupStressSnapshot.descendants(of: selectorSnapshot).filter {
++                $0.elementType == .button && $0.label == name
++            }
++            guard targets.count == 1, let target = targets.first,
++                  let windowSnapshot = elements.first(where: { $0.elementType == .window }),
++                  [selectorSnapshot.frame, target.frame, windowSnapshot.frame].allSatisfy({ GroupStressSnapshot.finitePositive($0) }),
++                  selectorSnapshot.frame.contains(target.frame),
++                  windowSnapshot.frame.contains(target.frame) else {
++                XCTFail("Require the exact original group button wholly inside its selector and actual window")
++                return
++            }
++            let selector = app.segmentedControls["study-group-selector"]
++            let liveTarget = selector.buttons.matching(NSPredicate(format: "label == %@", name)).element
++            let window = app.windows.firstMatch
++            guard liveTarget.isHittable, liveTarget.frame == target.frame,
++                  window.frame == windowSnapshot.frame else {
++                XCTFail("The original group button and window must remain live and match the fresh snapshot")
++                return
++            }
++            // A real XCTest tap at the same validated button midpoint, relative
++            // to its original window. Preserve ordinary XCTest idle handling.
++            window.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
++                .withOffset(CGVector(dx: target.frame.midX - windowSnapshot.frame.minX,
++                                     dy: target.frame.midY - windowSnapshot.frame.minY)).tap()
+         } else {
+             let menu = app.buttons["study-group-selector"]
+             XCTAssertTrue(menu.exists && menu.isEnabled)

@@ -1,0 +1,11 @@
+--- M87/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift
++++ 7733/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift
+@@ -24,7 +24,7 @@
+                 "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
+                 "-studyWorkspaceTestingNamespace", workspaceNamespace,
+                 "-textViewBackgroundColorLight", String(background)
+-            ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []),
++            ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []) + readerAdditionalLaunchArguments,
+             language: language,
+             locale: language == "he" ? "he_IL" : "en_US"
+         )

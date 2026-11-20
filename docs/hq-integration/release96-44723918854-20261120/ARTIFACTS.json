@@ -1,0 +1,224 @@
+{
+  "files": [
+    {
+      "bytes": 3051,
+      "path": "ARTIFACTS_METADATA.json",
+      "sha256": "1dd8985a8ffb580fcfdae74003da091b72fce21108291e9d222926971aa2352f"
+    },
+    {
+      "bytes": 7689,
+      "path": "AUTHENTIC_RESULT_REVIEW.json",
+      "sha256": "3b1d130e0eb4e8e2d03f36ce51f5bb58dac7fe99646e4b575c2c502cd91728e8"
+    },
+    {
+      "bytes": 12325,
+      "path": "JOBS_METADATA.json",
+      "sha256": "77fd2a8053912718d24c35239cb8b62e58d53fbabf53fdfa6f2e662329d753e3"
+    },
+    {
+      "bytes": 10841,
+      "path": "README.md",
+      "sha256": "fe77f3090417a34063402c0e33854ac2bf9ce36752171c1ddd9a521c92b7e0aa"
+    },
+    {
+      "bytes": 12779,
+      "path": "RUN_METADATA.json",
+      "sha256": "c966bdc679e37757095f9e4724458ea199516a7d47d1a683ced94bfb44b1095e"
+    },
+    {
+      "bytes": 3117,
+      "path": "SOURCE_AUTHORITY.json",
+      "sha256": "f88bee533fecfa95b6641db6ae1be2820c80f6482f06b6a800bb31175335916c"
+    },
+    {
+      "bytes": 12839,
+      "path": "UNVERIFIED_IPAD13_STDOUT.json",
+      "sha256": "2a0647c4807ae77d4b0521408f1c99a54e14bc4f857128e05e11eec4a3aad89c"
+    },
+    {
+      "bytes": 17859,
+      "path": "VERIFICATION-14626257677.json",
+      "sha256": "974ab960c8763696bcb021c504d8ed47dc6ee228942d76eb0a607e99234944f5"
+    },
+    {
+      "bytes": 13176,
+      "path": "VERIFICATION-14647558906.json",
+      "sha256": "0702d6b6467e5b12347083c9fb3ec77f24fc0c28347908d386331cb5a4bc996c"
+    },
+    {
+      "bytes": 20745,
+      "path": "VERIFIED_IPAD11_CASES.json",
+      "sha256": "3f096ad496269c4d8462506ecb0fb22214323c69b36de4c98e7f4ad73ffbb5e6"
+    },
+    {
+      "bytes": 4679,
+      "path": "VERIFY_PACKET.py",
+      "sha256": "c3fc4a39b13146119a94f9c73469937260a98cf315f9ad667c71635e2cb6e639"
+    },
+    {
+      "bytes": 1618660,
+      "path": "raw/artifact-14626257677.zip",
+      "sha256": "42978dc266c442eae2023c01b6ff944d752f052a5cf60b76588b441d9c16447a"
+    },
+    {
+      "bytes": 10170377,
+      "path": "raw/artifact-14647558906.zip",
+      "sha256": "fb87af0c12fc727d682419c19cc04833ed6825f1732708f1803ab0ae1328cf19"
+    },
+    {
+      "bytes": 12615,
+      "path": "raw/job-136246453842.log.gz",
+      "sha256": "76ae4f0d04791e2a8302f46c56af65b997252ac042c99ea773f01c2277eae098",
+      "uncompressed_bytes": 64941,
+      "uncompressed_sha256": "bc6a137bbf767e4091d7d13eaa5900ca2b0c4719c678336a95803cd1ba7de087"
+    },
+    {
+      "bytes": 14475,
+      "path": "raw/job-136270631605.log.gz",
+      "sha256": "d112da539377d5da6d76577491fa2d5e6325c4d97702b0d354e960bb18b4487e",
+      "uncompressed_bytes": 66249,
+      "uncompressed_sha256": "09d5cbdbe0c58dbf36c16dcdb12494ba0860f38446ae89a1539e4cc764468d59"
+    },
+    {
+      "bytes": 4470,
+      "path": "raw/selected/faithful-ipad-matrix.json.gz",
+      "sha256": "db9fd1040b8da35620b0aa6f498ce5cd86d288ae94ce195ce4a79df0684e650c",
+      "uncompressed_bytes": 52652,
+      "uncompressed_sha256": "046be737b57d5f2e4a330c2c7f31fd0040e8caf5f0b93a3b687499ed192068fa"
+    },
+    {
+      "bytes": 1748,
+      "path": "raw/selected/runtime27/handoff-build-import-native.json.gz",
+      "sha256": "f3ba2dd8bca111fdc54aa4faea69a80962103ab18956bd81c497c82acc967016",
+      "uncompressed_bytes": 7808,
+      "uncompressed_sha256": "80d52c3156fc2ab75d76eff0fbee413d282b988090555e790312311cb2594fa9"
+    },
+    {
+      "bytes": 10799,
+      "path": "raw/selected/runtime27/release-manifest.json.gz",
+      "sha256": "650539b70a30dbc6a05c36b9b1149f43818d7006c4062aa34e5e27eae26fe5aa",
+      "uncompressed_bytes": 50236,
+      "uncompressed_sha256": "5f698a786980d9bf4712b545603e512225c4ce36a04b0f2cc3b30529e050612a"
+    },
+    {
+      "bytes": 330,
+      "path": "raw/selected/runtime27/release-native-failure.json.gz",
+      "sha256": "82e5c4015d8fbe4a44b9381766ead7f64319185890b18afe77792f2be7ea3928",
+      "uncompressed_bytes": 439,
+      "uncompressed_sha256": "3777238c8730a0d3def2e1865dc621b220d2d2197977b32f2cfe99f7fb159d3d"
+    },
+    {
+      "bytes": 283,
+      "path": "raw/selected/runtime27/release-native-matrix-driver.log.interrupted.json.gz",
+      "sha256": "90544517a21cf22e385eead05c330024fd65f0601777865334c2b82919ba0eee",
+      "uncompressed_bytes": 401,
+      "uncompressed_sha256": "57e5ac2dc95dac39561c70121d9a42201959f03c806d32a7dcfe2456eeeb8f6a"
+    },
+    {
+      "bytes": 13127,
+      "path": "raw/selected/runtime27/release-native-result.json.gz",
+      "sha256": "c80af5a486e92915ed805f19e773a3ea58cd95cc04c2e3daee93370bd5fa35d0",
+      "uncompressed_bytes": 159882,
+      "uncompressed_sha256": "3e29809b91f7807ab7d4472aacc4bf3dd49f7f6214a286a9aac7d8a74beb4166"
+    },
+    {
+      "bytes": 253,
+      "path": "raw/selected/runtime27/verified-11.json.gz",
+      "sha256": "b9653172afd4eb8c09deedfc3f4f1ae176dd43ffb3a153f5d0ebe9d87399fd10",
+      "uncompressed_bytes": 316,
+      "uncompressed_sha256": "dc942d3563e18413a9a64f230425101b76c8d3d1a57b05cf3655c219cf964243"
+    },
+    {
+      "bytes": 2376,
+      "path": "raw/selected/runtime27/verified-11.summary.json.gz",
+      "sha256": "56239dd626c6620ced93bc8ab316292bf6bb41a604b6f1ab591fc007f9643ec1",
+      "uncompressed_bytes": 17015,
+      "uncompressed_sha256": "0f47c41ce05c357e4a85ebb08caf4e4a32fee7ee5e02807ade46ff66793a3e58"
+    },
+    {
+      "bytes": 4548,
+      "path": "raw/selected/runtime27/verified-11.tests.json.gz",
+      "sha256": "25b813957209a7288c33047d618ab3a46d4be248425e7553bb3548262dc85b9d",
+      "uncompressed_bytes": 50204,
+      "uncompressed_sha256": "a9a604e253490434cf9f7b11cdf2fdc2e0ca5a4386e64a0a2fdb5805092c035d"
+    },
+    {
+      "bytes": 3882,
+      "path": "raw/source/current/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift.gz",
+      "sha256": "a3699ff01e07ed257173ca897b909b6514ca8e8e0de7eb6b0476b0b0cbc38cd0",
+      "uncompressed_bytes": 14183,
+      "uncompressed_sha256": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab"
+    },
+    {
+      "bytes": 41738,
+      "path": "raw/source/current/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift.gz",
+      "sha256": "bf368155ba7c17d03c211b741cdd32693fb522738672702ac4dfef4d256e99e8",
+      "uncompressed_bytes": 196355,
+      "uncompressed_sha256": "00d8ba990af59931666f7b95ee04419edd538c23f7e4aa0e7949f2a9958a84f1"
+    },
+    {
+      "bytes": 6688,
+      "path": "raw/source/current/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift.gz",
+      "sha256": "1038f71e70d4a764efa5abc9c65a5546785091a38d7c0e80e84d0daf405f89a3",
+      "uncompressed_bytes": 31760,
+      "uncompressed_sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f"
+    },
+    {
+      "bytes": 5247,
+      "path": "raw/source/current/Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift.gz",
+      "sha256": "406e2552908fa0b92f3bef922ed0ad70648915ee597b3c7f4470133b1f5b8da3",
+      "uncompressed_bytes": 19775,
+      "uncompressed_sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8"
+    },
+    {
+      "bytes": 3882,
+      "path": "raw/source/failed/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift.gz",
+      "sha256": "a3699ff01e07ed257173ca897b909b6514ca8e8e0de7eb6b0476b0b0cbc38cd0",
+      "uncompressed_bytes": 14183,
+      "uncompressed_sha256": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab"
+    },
+    {
+      "bytes": 36588,
+      "path": "raw/source/failed/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift.gz",
+      "sha256": "c5987e7fdbd739211e4891a98f7776d243e498f4e532ef757cb1d94914ba763a",
+      "uncompressed_bytes": 174503,
+      "uncompressed_sha256": "51bebde38ca03e8318e5330001d39fcc517d8fbe68977e0a7652bdd76129c9d1"
+    },
+    {
+      "bytes": 6676,
+      "path": "raw/source/failed/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift.gz",
+      "sha256": "cf26c37df23b7218c6c7416c0369e76ceece47224dc774ebb7e59a6c9dd84262",
+      "uncompressed_bytes": 31726,
+      "uncompressed_sha256": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b"
+    },
+    {
+      "bytes": 5247,
+      "path": "raw/source/failed/Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift.gz",
+      "sha256": "406e2552908fa0b92f3bef922ed0ad70648915ee597b3c7f4470133b1f5b8da3",
+      "uncompressed_bytes": 19775,
+      "uncompressed_sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8"
+    },
+    {
+      "bytes": 0,
+      "path": "source-deltas/Build8401SevenDefectsAcceptanceTests.swift.patch",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 32803,
+      "path": "source-deltas/FaithfulReaderUIAcceptanceTests.swift.patch",
+      "sha256": "af7cedb53ba462e85add54aa02aad137f45abe000026813e3fe8509a8c1f2e89"
+    },
+    {
+      "bytes": 671,
+      "path": "source-deltas/R27NativeInteractionAcceptanceTests.swift.patch",
+      "sha256": "e0f9bc5f065578f49b638773dc1e26d797a95809c577db915d059f227070f398"
+    },
+    {
+      "bytes": 0,
+      "path": "source-deltas/Sidebar11201AcceptanceTests.swift.patch",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "retained historical Release evidence; zero new app execution"
+}

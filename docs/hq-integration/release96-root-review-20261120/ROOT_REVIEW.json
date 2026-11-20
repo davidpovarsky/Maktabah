@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "source_run": 44723918854,
+  "attempt": 1,
+  "frozen_ci_source": "60a57972acb28739ec738565083bf17fb7503028",
+  "application_source": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "application_tree": "9dfca47bf4879b42065200477f98a7690122c9be",
+  "packet_index_sha256": "68c3fb4d39a48b9b36ad26da9b10d30720ca1d6c087a9134c5de34567e1f4b1d",
+  "read_only_packet_replay_exit_code": 0,
+  "payloads_replayed": 36,
+  "source_blobs_independently_authenticated": 8,
+  "complete_downloads": [
+    {
+      "id": 14626257677,
+      "bytes": 1618660,
+      "sha256": "42978dc266c442eae2023c01b6ff944d752f052a5cf60b76588b441d9c16447a",
+      "crc_members": 82,
+      "root_download_and_complete_hash_verified": true
+    },
+    {
+      "id": 14647558906,
+      "bytes": 10170377,
+      "sha256": "fb87af0c12fc727d682419c19cc04833ed6825f1732708f1803ab0ae1328cf19",
+      "crc_members": 59,
+      "root_download_and_complete_hash_verified": true
+    }
+  ],
+  "api_artifacts": {
+    "total_count": 4,
+    "artifacts": [
+      {
+        "id": 14647594631,
+        "node_id": "MDg6QXJ0aWZhY3QxNDY0NzU5NDYzMQ==",
+        "name": "runtime27-release-native-captures",
+        "size_in_bytes": 3271556396,
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647594631",
+        "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647594631/zip",
+        "expired": false,
+        "digest": "sha256:ea8232db03a3f78c9fd722a1f5777e43f638bef7f4d115a7c0eef9a6319f2457",
+        "created_at": "2026-11-20T16:28:02Z",
+        "updated_at": "2026-11-20T16:28:02Z",
+        "expires_at": "2027-02-18T11:00:14Z",
+        "workflow_run": {
+          "id": 44723918854,
+          "repository_id": 1280062128,
+          "head_repository_id": 1280062128,
+          "head_branch": "codex/otzaria-release96-signature-reviewed-20261120",
+          "head_sha": "60a57972acb28739ec738565083bf17fb7503028"
+        }
+      },
+      {
+        "id": 14647558906,
+        "node_id": "MDg6QXJ0aWZhY3QxNDY0NzU1ODkwNg==",
+        "name": "runtime27-release-native-evidence",
+        "size_in_bytes": 10170377,
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647558906",
+        "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647558906/zip",
+        "expired": false,
+        "digest": "sha256:fb87af0c12fc727d682419c19cc04833ed6825f1732708f1803ab0ae1328cf19",
+        "created_at": "2026-11-20T16:24:16Z",
+        "updated_at": "2026-11-20T16:24:16Z",
+        "expires_at": "2027-02-18T11:00:14Z",
+        "workflow_run": {
+          "id": 44723918854,
+          "repository_id": 1280062128,
+          "head_repository_id": 1280062128,
+          "head_branch": "codex/otzaria-release96-signature-reviewed-20261120",
+          "head_sha": "60a57972acb28739ec738565083bf17fb7503028"
+        }
+      },
+      {
+        "id": 14626257677,
+        "node_id": "MDg6QXJ0aWZhY3QxNDYyNjI1NzY3Nw==",
+        "name": "runtime27-release-build-evidence",
+        "size_in_bytes": 1618660,
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14626257677",
+        "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14626257677/zip",
+        "expired": false,
+        "digest": "sha256:42978dc266c442eae2023c01b6ff944d752f052a5cf60b76588b441d9c16447a",
+        "created_at": "2026-11-20T11:51:59Z",
+        "updated_at": "2026-11-20T11:51:59Z",
+        "expires_at": "2027-02-18T11:00:14Z",
+        "workflow_run": {
+          "id": 44723918854,
+          "repository_id": 1280062128,
+          "head_repository_id": 1280062128,
+          "head_branch": "codex/otzaria-release96-signature-reviewed-20261120",
+          "head_sha": "60a57972acb28739ec738565083bf17fb7503028"
+        }
+      },
+      {
+        "id": 14625024766,
+        "node_id": "MDg6QXJ0aWZhY3QxNDYyNTAyNDc2Ng==",
+        "name": "runtime27-release-build-handoff",
+        "size_in_bytes": 341780081,
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14625024766",
+        "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14625024766/zip",
+        "expired": false,
+        "digest": "sha256:43e7206991b96361712624d59262002b34ed4c701e17982e013c8deea3187ce9",
+        "created_at": "2026-11-20T11:50:50Z",
+        "updated_at": "2026-11-20T11:50:50Z",
+        "expires_at": "2027-02-18T11:00:14Z",
+        "workflow_run": {
+          "id": 44723918854,
+          "repository_id": 1280062128,
+          "head_repository_id": 1280062128,
+          "head_branch": "codex/otzaria-release96-signature-reviewed-20261120",
+          "head_sha": "60a57972acb28739ec738565083bf17fb7503028"
+        }
+      }
+    ]
+  },
+  "large_capture_status": "Metadata authenticated only; full3.27GB ZIP not downloaded/hash-verified by root at this review. Separate read-only processor is in preparation.",
+  "result": {
+    "build": "SUCCESS",
+    "native": "FAILURE",
+    "original_outer_timeout_seconds": 16200,
+    "production": "SKIPPED",
+    "ipad11_app_passed": 31,
+    "ipad11_app_failed": 23,
+    "ipad11_oracle_passed": 1,
+    "ipad11_unique_actual_leaves": 55,
+    "ipad11_skipped": 0,
+    "ipad13_final_summary_and_receipt": "ABSENT; no qualified lane total",
+    "ipad13_stdout_only": {
+      "unique_starts": 34,
+      "ordinary_terminal_pass": 15,
+      "ordinary_terminal_fail": 14,
+      "timed_out_600s_without_ordinary_terminal": 4,
+      "prototype_oracle": "INTERRUPTED",
+      "profile_color": "NOT_STARTED"
+    },
+    "large_text": "NOT_REACHED",
+    "phone": "NOT_REACHED",
+    "final_aggregate_counts": null,
+    "full_acceptance": false
+  },
+  "new_native_or_swift_tests_run_by_root": 0,
+  "scope": "Historical exact-source failure evidence only. No product/CI/test mutation, no later-source or final116/114 success credit."
+}

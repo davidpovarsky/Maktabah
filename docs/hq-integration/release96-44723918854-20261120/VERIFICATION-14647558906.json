@@ -1,0 +1,366 @@
+{
+  "artifactId": 14647558906,
+  "label": "native",
+  "archiveBytes": 10170377,
+  "archiveSha256": "fb87af0c12fc727d682419c19cc04833ed6825f1732708f1803ab0ae1328cf19",
+  "allEntriesCRCVerified": true,
+  "entries": [
+    {
+      "path": "faithful-ipad-matrix.json",
+      "bytes": 52652,
+      "sha256": "046be737b57d5f2e4a330c2c7f31fd0040e8caf5f0b93a3b687499ed192068fa",
+      "crc32": "41fdf2ae"
+    },
+    {
+      "path": "miniTest10-native-fixture-install-11.json",
+      "bytes": 1791,
+      "sha256": "47ed87632ce16736a3b90e5004c092c354b599d477db2c382cd8af95845290b9",
+      "crc32": "16d1c49b"
+    },
+    {
+      "path": "miniTest10-native-fixture-install-13.json",
+      "bytes": 1794,
+      "sha256": "afd625db89f5d2a20ae0ec54174b7db3de007de443b269e894ad8f4bdae75e6d",
+      "crc32": "021ede84"
+    },
+    {
+      "path": "native-routing-logs-11/collection.json",
+      "bytes": 539,
+      "sha256": "7c558f71312937147f7fd60818e22815adfc214671f3a38f97fcdf5780bddf61",
+      "crc32": "f7b6e1c3"
+    },
+    {
+      "path": "native-routing-logs-11/otzaria-reader.log",
+      "bytes": 1077172,
+      "sha256": "75632f2e006e4f37a80b1deb935013a0476e067f40cab9dc11b849077d5257eb",
+      "crc32": "646242db"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/actual-source-inputs.json",
+      "bytes": 113162,
+      "sha256": "b81fad5515bbbdff152e1bf23d03c57fdbc2785f929d43d0b865bc02f2f0d96f",
+      "crc32": "0717e187"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/generated-privacy.diff",
+      "bytes": 2618,
+      "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e",
+      "crc32": "dde2a370"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "bytes": 877,
+      "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd",
+      "crc32": "0cf24b94"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "bytes": 855,
+      "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef",
+      "crc32": "10470de0"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "bytes": 1482,
+      "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38",
+      "crc32": "ddedeecd"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "bytes": 776,
+      "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d",
+      "crc32": "efb09f89"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "bytes": 1233,
+      "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c",
+      "crc32": "82c8ab68"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/privacy-generated.xcprivacy",
+      "bytes": 1386,
+      "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5",
+      "crc32": "621daac8"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/privacy-original.xcprivacy",
+      "bytes": 1132,
+      "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1",
+      "crc32": "9873bf8c"
+    },
+    {
+      "path": "runtime27/after-release-build-inputs/source-review.json",
+      "bytes": 2041,
+      "sha256": "6384f0d4a3cb3534fa4544827efebceea8bb7296106f3125d9e62ea8d00b1eb7",
+      "crc32": "81438ac6"
+    },
+    {
+      "path": "runtime27/fixture-oracle-11.json",
+      "bytes": 1547,
+      "sha256": "0e97c59494aac9b6e185068671892bc1b84a766c82feb75a3cec3473809e29cb",
+      "crc32": "c57d00c2"
+    },
+    {
+      "path": "runtime27/fixture-oracle-13.json",
+      "bytes": 1071,
+      "sha256": "6032d42a414089763481d8d4fd17c7062b2cb4808b2023222b92319b08942f67",
+      "crc32": "b59f1fd2"
+    },
+    {
+      "path": "runtime27/handoff-build-import-native.json",
+      "bytes": 7808,
+      "sha256": "80d52c3156fc2ab75d76eff0fbee413d282b988090555e790312311cb2594fa9",
+      "crc32": "514816c9"
+    },
+    {
+      "path": "runtime27/hid-11-0.log",
+      "bytes": 3126,
+      "sha256": "1b89c8be63d947200d9f4bb18e6a9c75d852b4e34e6a12b3ff0af24ab07315a7",
+      "crc32": "67773b4c"
+    },
+    {
+      "path": "runtime27/hid-11-1.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "runtime27/hid-11.jsonl",
+      "bytes": 713,
+      "sha256": "44c7a1b4d1ab46b1dcc411b2688aa4ff5acba977e113cce0f1f70d39c65442cb",
+      "crc32": "af1cd71d"
+    },
+    {
+      "path": "runtime27/hid-tools.json",
+      "bytes": 908,
+      "sha256": "adb143ef9c39764bb9a8b12046effa5da32a21affe31b4baa1d12304edf71104",
+      "crc32": "d8f90545"
+    },
+    {
+      "path": "runtime27/native-toolchain-selection.json",
+      "bytes": 13019,
+      "sha256": "f1de2bb1cc8d1642270ba5bc245330f2bd925739fbe568bbd33d5278a5851e97",
+      "crc32": "a6b88a45"
+    },
+    {
+      "path": "runtime27/recording-11.log",
+      "bytes": 263,
+      "sha256": "00536ab5f51cb943429d510706b528b4b863f4cac092738606b172819c67ed80",
+      "crc32": "dc350c04"
+    },
+    {
+      "path": "runtime27/recording-13.log",
+      "bytes": 263,
+      "sha256": "5a8d67e44e3aadd70f77e4324a81e68822e38cd57e3e96af22acb38a55b6e320",
+      "crc32": "ac19adbe"
+    },
+    {
+      "path": "runtime27/release-build-handoff-import-native.log",
+      "bytes": 30,
+      "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e",
+      "crc32": "ce717251"
+    },
+    {
+      "path": "runtime27/release-build-result.json",
+      "bytes": 159374,
+      "sha256": "775f55eaeba1033b4087e60e81299fc638d62e4d1adef9da26d737ef1c3ae4c5",
+      "crc32": "1735ec5c"
+    },
+    {
+      "path": "runtime27/release-hid-prepare.log",
+      "bytes": 1623,
+      "sha256": "383305cf7696d54b0df2e9b2ce9e76ae558411e89d4e0cfbc09d2c39e8876a4a",
+      "crc32": "635be6b9"
+    },
+    {
+      "path": "runtime27/release-manifest.json",
+      "bytes": 50236,
+      "sha256": "5f698a786980d9bf4712b545603e512225c4ce36a04b0f2cc3b30529e050612a",
+      "crc32": "2c279770"
+    },
+    {
+      "path": "runtime27/release-native-failure.json",
+      "bytes": 439,
+      "sha256": "3777238c8730a0d3def2e1865dc621b220d2d2197977b32f2cfe99f7fb159d3d",
+      "crc32": "6d2720ee"
+    },
+    {
+      "path": "runtime27/release-native-matrix-driver.log",
+      "bytes": 2398880,
+      "sha256": "d8ddc31d698bc2facda8e0846cf06f0cc5fee3f474d56c9a4668105fbc7f9b0a",
+      "crc32": "d7dc7dc1"
+    },
+    {
+      "path": "runtime27/release-native-matrix-driver.log.interrupted.json",
+      "bytes": 401,
+      "sha256": "57e5ac2dc95dac39561c70121d9a42201959f03c806d32a7dcfe2456eeeb8f6a",
+      "crc32": "dfddff48"
+    },
+    {
+      "path": "runtime27/release-native-result.json",
+      "bytes": 159882,
+      "sha256": "3e29809b91f7807ab7d4472aacc4bf3dd49f7f6214a286a9aac7d8a74beb4166",
+      "crc32": "3c5d5022"
+    },
+    {
+      "path": "runtime27/result.json",
+      "bytes": 159882,
+      "sha256": "3e29809b91f7807ab7d4472aacc4bf3dd49f7f6214a286a9aac7d8a74beb4166",
+      "crc32": "3c5d5022"
+    },
+    {
+      "path": "runtime27/verified-11.json",
+      "bytes": 316,
+      "sha256": "dc942d3563e18413a9a64f230425101b76c8d3d1a57b05cf3655c219cf964243",
+      "crc32": "38b06a57"
+    },
+    {
+      "path": "runtime27/verified-11.summary.json",
+      "bytes": 17015,
+      "sha256": "0f47c41ce05c357e4a85ebb08caf4e4a32fee7ee5e02807ade46ff66793a3e58",
+      "crc32": "d704f5e0"
+    },
+    {
+      "path": "runtime27/verified-11.tests.json",
+      "bytes": 50204,
+      "sha256": "a9a604e253490434cf9f7b11cdf2fdc2e0ca5a4386e64a0a2fdb5805092c035d",
+      "crc32": "bdd345d1"
+    },
+    {
+      "path": "simulator-failure-11-devices.log",
+      "bytes": 22711,
+      "sha256": "9ccf1b7ac13a5582d663dec79dd982505b5b05ce0abed3e71856684e24a5c423",
+      "crc32": "fbd29e31"
+    },
+    {
+      "path": "simulator-failure-11-screenshot.log",
+      "bytes": 251,
+      "sha256": "44053acb209e2676a43862f27b6cc11f87628af90bfbdf77d0c40e9bba691350",
+      "crc32": "b22e4959"
+    },
+    {
+      "path": "simulator-failure-11-services.log",
+      "bytes": 1001219,
+      "sha256": "801904280d91d4cf3cef04c51016f88807d9592b3c5834d3037bad2d67a5d8f4",
+      "crc32": "3cc9121a"
+    },
+    {
+      "path": "simulator-failure-11.png",
+      "bytes": 4701937,
+      "sha256": "33cf58032febb9035c33f48a9f1669d333857109764aab1627ab52920465f39f",
+      "crc32": "d24af520"
+    },
+    {
+      "path": "simulator-install-recovery-11-com.example.safaritoolbarsearch-devices.log",
+      "bytes": 22711,
+      "sha256": "be517d282fa32a84a7f2dc3963564c5721d3428e6ea0bc02995c83cd19969426",
+      "crc32": "c1a98f84"
+    },
+    {
+      "path": "simulator-install-recovery-11-com.example.safaritoolbarsearch-screenshot.log",
+      "bytes": 251,
+      "sha256": "7c2060e04c2b2b59f0ea349d337e9661cc6f359de6e4537e806d0119ab1b91c1",
+      "crc32": "317a922f"
+    },
+    {
+      "path": "simulator-install-recovery-11-com.example.safaritoolbarsearch-services.log",
+      "bytes": 634625,
+      "sha256": "bad0c4b7cb7613e27c33fffd308dfc1b1ae51af2d544587d5c749812bd4caa05",
+      "crc32": "3f10eed3"
+    },
+    {
+      "path": "simulator-install-recovery-11-com.example.safaritoolbarsearch.png",
+      "bytes": 4696961,
+      "sha256": "140e025fa0682f3dffed55fb4d5281229455d18e123e96813b8e86a578371d28",
+      "crc32": "cc887168"
+    },
+    {
+      "path": "simulator-install-recovery-13-com.example.safaritoolbarsearch-devices.log",
+      "bytes": 64,
+      "sha256": "26820f1b2b5ca84452c8a2cf4d0899d5678e2422dbba7f3843c50fb4ff6a30e2",
+      "crc32": "2075c5cb"
+    },
+    {
+      "path": "simulator-install-recovery-13-com.example.safaritoolbarsearch-services.log",
+      "bytes": 556789,
+      "sha256": "97fda0caa588eee4f6401e70dd48d1e422fc8bfb5c3fa14af7a3430d7ca7bb02",
+      "crc32": "8a2c9d65"
+    },
+    {
+      "path": "test-case-execution-11.json",
+      "bytes": 23965,
+      "sha256": "f26b09357479d82315b59ca1b11c1df6a8613bd464ef6ec211a581dfb5897fc5",
+      "crc32": "98ee5112"
+    },
+    {
+      "path": "test-simulator-11.log",
+      "bytes": 1297802,
+      "sha256": "4588507b62222607e52b5093628a21189cf40ffb175b9ced67d0e7e4b3d5d2a9",
+      "crc32": "b8d97852"
+    },
+    {
+      "path": "simulator-install-recovery-13-com.example.safaritoolbarsearch-screenshot.log",
+      "bytes": 64,
+      "sha256": "26820f1b2b5ca84452c8a2cf4d0899d5678e2422dbba7f3843c50fb4ff6a30e2",
+      "crc32": "2075c5cb"
+    },
+    {
+      "path": "test-simulator-13.log",
+      "bytes": 917454,
+      "sha256": "3444cc41f9c312889e9a440636400ec097fe46ed56fab930dcf2434fb1d834de",
+      "crc32": "5317b17d"
+    },
+    {
+      "path": "viewport-reports-11/faithful-reader-1D025CD6-2A26-49C8-8176-F4E83D0A0684.viewport.json",
+      "bytes": 249,
+      "sha256": "697f57943df5cc6a91c10139e8ee768a1200dba823b85b41748a528e55a7aa40",
+      "crc32": "2f9f02d2"
+    },
+    {
+      "path": "viewport-reports-11/faithful-reader-24DD35BF-06C8-4A51-A7AE-C17E8584B542.viewport.json",
+      "bytes": 267,
+      "sha256": "cb58392aff233eaa8322bb30c2e0085141dcb962ff352077526622c20927d1c8",
+      "crc32": "c67b278c"
+    },
+    {
+      "path": "viewport-reports-11/faithful-reader-2876AF0D-1142-4D08-A37C-36EF1137F3A4.viewport.json",
+      "bytes": 253,
+      "sha256": "1f092ff82fc5ea4b026a6fd5f146be13a4b3276be53ffcd7122f6df100a4b493",
+      "crc32": "b6571ed7"
+    },
+    {
+      "path": "viewport-reports-11/faithful-reader-4E1BD084-E8BF-41D0-B05B-20D47BE90CDD.viewport.json",
+      "bytes": 262,
+      "sha256": "dba2194a97c0504076a3015f739813d1a7fff60f91731abb7ec1f0adac59cc18",
+      "crc32": "d1da6105"
+    },
+    {
+      "path": "viewport-reports-11/faithful-reader-5D7FE535-74B2-4493-B0F7-EF3687F65C13.viewport.json",
+      "bytes": 252,
+      "sha256": "733a3babe5f9db0b1ef41c9ab440cae24c344b0504bf0313990d9b562c02f158",
+      "crc32": "56e75f78"
+    },
+    {
+      "path": "viewport-reports-11/faithful-reader-741900EF-1698-4448-9650-AED7DD527481.viewport.json",
+      "bytes": 250,
+      "sha256": "388153c545c98084a0b70cbb5e10aebf46cb2e65ea2c43efee2c61f272b6aee7",
+      "crc32": "b2e58cb5"
+    },
+    {
+      "path": "viewport-reports-11/faithful-reader-D98C0285-748B-46CD-A7CA-B3CCB7C6256A.viewport.json",
+      "bytes": 253,
+      "sha256": "62f4200b51650391eac773140e94e6095084691969223bc5af1a30abbcdb43ac",
+      "crc32": "f98f7f08"
+    },
+    {
+      "path": "viewport-reports-11/faithful-reader-FFB828D7-C1C8-4887-ABB2-C39AF330A9DE.viewport.json",
+      "bytes": 252,
+      "sha256": "f9ee2e594705a7179322d409307b81f336afb1735665db99c186d27cce068cc2",
+      "crc32": "5b726afe"
+    }
+  ],
+  "runId": 44723918854,
+  "attempt": 1,
+  "checkout": "60a57972acb28739ec738565083bf17fb7503028"
+}

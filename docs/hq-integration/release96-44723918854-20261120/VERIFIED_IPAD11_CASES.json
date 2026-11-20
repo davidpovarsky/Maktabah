@@ -1,0 +1,578 @@
+[
+  {
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+    "duration_seconds": 72.34721493721008,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_RealSearchFlowHighlightAndClear",
+    "duration_seconds": 77.62173807621002,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+    "duration_seconds": 57.85832595825195,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original RTL close gesture must remove this exact document",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+          "lineNumber": 163
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testB1_B2_PagingTransitionsPreserveReaderStability",
+    "duration_seconds": 42.81887900829315,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState",
+    "duration_seconds": 39.12979698181152,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testF1_SefariaHebrewLocaleRTLAndHebrewHeaders",
+    "duration_seconds": 36.267170906066895,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testF2_HebrewTOCStructureAndDafLabels",
+    "duration_seconds": 42.9266060590744,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+    "duration_seconds": 134.88266396522522,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+    "duration_seconds": 52.03252696990967,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+    "duration_seconds": 43.00366795063019,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "duration_seconds": 48.173251032829285,
+    "failures": [
+      {
+        "name": "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1721
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+    "duration_seconds": 49.08859205245972,
+    "failures": [
+      {
+        "name": "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1721
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+    "duration_seconds": 113.88394808769226,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "duration_seconds": 48.2770140171051,
+    "failures": [
+      {
+        "name": "XCTAssertEqualWithAccuracy failed: (\"1210.0\") is not equal to (\"802.0\") +/- (\"1.0\") - FloatingPanel must overlay Reader without reserving an opaque column",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1744
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+    "duration_seconds": 64.8313900232315,
+    "failures": [
+      {
+        "name": "XCTAssertEqualWithAccuracy failed: (\"834.0\") is not equal to (\"426.0\") +/- (\"1.0\") - FloatingPanel must overlay Reader without reserving an opaque column",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1744
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+    "duration_seconds": 145.61442494392395,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 454
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+    "duration_seconds": 105.60132503509521,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 454
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+    "duration_seconds": 198.66757702827454,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+    "duration_seconds": 600,
+    "failures": [
+      {
+        "name": "Test exceeded execution time allowance of 10 minutes",
+        "nodeType": "Failure Message"
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+    "duration_seconds": 136.1349140405655,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1014
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+    "duration_seconds": 100.81859493255615,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+    "duration_seconds": 92.19120001792908,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+    "duration_seconds": 55.84002900123596,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+    "duration_seconds": 49.04801404476166,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+    "duration_seconds": 71.212641954422,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original overflow must expose Library Options or its actual actions",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1249
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    "duration_seconds": 70.65685498714447,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original palette's Escape handler must dismiss through keyboard focus",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1472
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+    "duration_seconds": 102.54845404624939,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - A deliberate downward reader scroll must collapse the document strip",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1953
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+    "duration_seconds": 600,
+    "failures": [
+      {
+        "name": "Test exceeded execution time allowance of 10 minutes",
+        "nodeType": "Failure Message"
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+    "duration_seconds": 600,
+    "failures": [
+      {
+        "name": "Test exceeded execution time allowance of 10 minutes",
+        "nodeType": "Failure Message"
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+    "duration_seconds": 309.22098100185394,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+    "duration_seconds": 320.3415209054947,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+    "duration_seconds": 90.51722192764282,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Capture only after native rotation and the original bottom toolbar settle inside the window",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 454
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+    "duration_seconds": 36.23373508453369,
+    "failures": [
+      {
+        "name": "failed - The original switch tap must stay inside its finite visible native window",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1590
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+    "duration_seconds": 277.6382050514221,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+    "duration_seconds": 600,
+    "failures": [
+      {
+        "name": "Test exceeded execution time allowance of 10 minutes",
+        "nodeType": "Failure Message"
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+    "duration_seconds": 143.12461602687836,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1014
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+    "duration_seconds": 30.615072011947632,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+    "duration_seconds": 308.7833480834961,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+    "duration_seconds": 98.49977099895477,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+    "duration_seconds": 66.77623093128204,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "PullNavigationAcceptanceTests/testPullNavigationCommitBothDirectionsWithoutDuplicates",
+    "duration_seconds": 46.867982029914856,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "PullNavigationAcceptanceTests/testPullNavigationRetreatCancelDoesNotChangeContent",
+    "duration_seconds": 52.726189970970154,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+    "duration_seconds": 92.95632803440094,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "duration_seconds": 138.06335496902466,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 1014
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+    "duration_seconds": 59.03406298160553,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "duration_seconds": 144.92390203475952,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Opening the actual native overflow must reveal the original Study Tools action",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 382
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+    "duration_seconds": 52.9889839887619,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle",
+    "duration_seconds": 20.0347660779953,
+    "failures": [],
+    "kind": "oracle",
+    "result": "Passed"
+  },
+  {
+    "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaCatalogAndAppLaunch",
+    "duration_seconds": 23.9527770280838,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic",
+    "duration_seconds": 36.6195729970932,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaReaderPresentation",
+    "duration_seconds": 18.03411102294922,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "SefariaEmbeddedAcceptanceTests/testThreeBackendSwitchRegression",
+    "duration_seconds": 32.326700925827026,
+    "failures": [],
+    "kind": "application",
+    "result": "Passed"
+  },
+  {
+    "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+    "duration_seconds": 541.7089250087738,
+    "failures": [
+      {
+        "name": "XCTAssertTrue failed",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+          "lineNumber": 202
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+    "duration_seconds": 528.7907490730286,
+    "failures": [
+      {
+        "name": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+          "lineNumber": 325
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  },
+  {
+    "case_id": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "duration_seconds": 123.69166696071625,
+    "failures": [
+      {
+        "name": "XCTAssertTrue failed",
+        "nodeType": "Failure Message",
+        "sourceLocation": {
+          "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "lineNumber": 2485
+        }
+      }
+    ],
+    "kind": "application",
+    "result": "Failed"
+  }
+]

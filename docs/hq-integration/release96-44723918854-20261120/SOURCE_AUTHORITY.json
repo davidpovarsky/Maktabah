@@ -1,0 +1,66 @@
+[
+  {
+    "path": "failed/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "gitPath": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "gitCommit": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "gitBlob": "74511397738909ee1100194b1cd088e5a42ef7dd",
+    "bytes": 174503,
+    "sha256": "51bebde38ca03e8318e5330001d39fcc517d8fbe68977e0a7652bdd76129c9d1"
+  },
+  {
+    "path": "failed/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+    "gitPath": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+    "gitCommit": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "gitBlob": "05a97fe61782a0c96900c2c23ff992435a751c90",
+    "bytes": 14183,
+    "sha256": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab"
+  },
+  {
+    "path": "failed/Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+    "gitPath": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+    "gitCommit": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "gitBlob": "65befdcc2d7884edb0976fac0005c03676c4e2ac",
+    "bytes": 19775,
+    "sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8"
+  },
+  {
+    "path": "failed/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "gitPath": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "gitCommit": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "gitBlob": "49bd17ba27078ecc957495365788ced1b5a41626",
+    "bytes": 31726,
+    "sha256": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b"
+  },
+  {
+    "path": "current/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "gitPath": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "gitCommit": "7733f3557bd98aee063a74fb838a7cf82ebf2b30",
+    "gitBlob": "479ba206e76aa69b90cf8f04ae55ee5a99d60186",
+    "bytes": 196355,
+    "sha256": "00d8ba990af59931666f7b95ee04419edd538c23f7e4aa0e7949f2a9958a84f1"
+  },
+  {
+    "path": "current/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+    "gitPath": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+    "gitCommit": "7733f3557bd98aee063a74fb838a7cf82ebf2b30",
+    "gitBlob": "05a97fe61782a0c96900c2c23ff992435a751c90",
+    "bytes": 14183,
+    "sha256": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab"
+  },
+  {
+    "path": "current/Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+    "gitPath": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+    "gitCommit": "7733f3557bd98aee063a74fb838a7cf82ebf2b30",
+    "gitBlob": "65befdcc2d7884edb0976fac0005c03676c4e2ac",
+    "bytes": 19775,
+    "sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8"
+  },
+  {
+    "path": "current/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "gitPath": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "gitCommit": "7733f3557bd98aee063a74fb838a7cf82ebf2b30",
+    "gitBlob": "26ddbe5bbd20d759424bf253756e9c755ba50a58",
+    "bytes": 31760,
+    "sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f"
+  }
+]

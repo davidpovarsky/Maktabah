@@ -1,0 +1,234 @@
+{
+  "never_started": [
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+  ],
+  "no_terminal_stdout": [
+    "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+    "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+    "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+    "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+    "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
+  ],
+  "qualification": "STDOUT_OBSERVATIONS_ONLY_NO_FINAL_XCRESULT",
+  "required": [
+    "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+    "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+    "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+    "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+    "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+    "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+    "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+    "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+    "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+    "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+    "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+    "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+    "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+    "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+    "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+    "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+    "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+    "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+    "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+    "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+    "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+    "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+    "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+    "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+    "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
+  ],
+  "started": [
+    "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+    "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+    "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+    "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+    "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+    "FaithfulReaderUIAcceptanceTests/testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+    "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+    "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+    "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+    "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+    "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+    "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+    "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+    "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+    "FaithfulReaderUIAcceptanceTests/testSidebarPreservesOriginalTextKitViewport",
+    "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+    "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+    "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+    "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+    "FaithfulReaderUIAcceptanceTests/testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+    "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+    "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+    "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+    "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+    "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+    "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
+  ],
+  "terminal_stdout": [
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+      "duration_seconds": 122.087,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "duration_seconds": 46.064,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+      "duration_seconds": 48.028,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "duration_seconds": 113.341,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "duration_seconds": 52.838,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateReaderThemes",
+      "duration_seconds": 110.64,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "duration_seconds": 62.456,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "duration_seconds": 48.058,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+      "duration_seconds": 348.118,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "duration_seconds": 92.832,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "duration_seconds": 90.64,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+      "duration_seconds": 118.366,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+      "duration_seconds": 133.318,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
+      "duration_seconds": 100.984,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+      "duration_seconds": 60.416,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+      "duration_seconds": 48.977,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+      "duration_seconds": 84.033,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "duration_seconds": 79.429,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "duration_seconds": 111.322,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+      "duration_seconds": 306.67,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+      "duration_seconds": 333.707,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceToolbarPaletteAndOverview",
+      "duration_seconds": 81.978,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "duration_seconds": 35.365,
+      "stdout_result": "failed"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+      "duration_seconds": 256.898,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalGlobalSearchHistoryThroughNativeControls",
+      "duration_seconds": 87.525,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+      "duration_seconds": 34.882,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+      "duration_seconds": 378.884,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalReaderThemes",
+      "duration_seconds": 118.68,
+      "stdout_result": "passed"
+    },
+    {
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+      "duration_seconds": 78.299,
+      "stdout_result": "passed"
+    }
+  ],
+  "warning": "Four cases emitted the original 600-second execution-time allowance issue and lack an ordinary terminal line. The oracle started immediately before outer interruption. No verified-13 summary/tests or final case execution receipt is present. Do not promote these observations to qualified aggregate PASS/FAIL counts."
+}
