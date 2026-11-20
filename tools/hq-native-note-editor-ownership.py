@@ -49,7 +49,9 @@ owner_start = source[BINDINGS].index("@MainActor final class MaktabahNativeNoteE
 owner_end = source[BINDINGS].index("\n/// Retain a proven original", owner_start)
 owner = source[BINDINGS][owner_start:owner_end]
 callback = method(source[SESSION], "    func noteEditorTextViewChanged(")
+dismissal = method(source[SESSION], "    func noteEditorDidDismiss(")
 bound = "presentationID: UUID" in callback
+bound_dismissal = "presentationID: UUID" in dismissal
 if bound:
     setter = method(source[WORKSPACE], "    private func setEditingAnnotation(")
     # Access is widened only in the explicit workspace double so the test can
@@ -61,6 +63,7 @@ else:
 fixture = (ROOT / FIXTURE).read_text(encoding="utf-8")
 unit_text = fixture
 for marker, actual in (("// ACTUAL_NOTE_OWNER", owner), ("// ACTUAL_SCENE_CALLBACK", callback),
+                      ("// ACTUAL_SCENE_DISMISSAL", dismissal),
                       ("// ACTUAL_WORKSPACE_SETTER", setter)):
     assert unit_text.count(marker) == 1
     unit_text = unit_text.replace(marker, actual)
@@ -71,6 +74,7 @@ compiler = shutil.which("swiftc")
 if not compiler: raise SystemExit("swiftc is required")
 command = [compiler, "-swift-version", "6", "-strict-concurrency=complete", "-parse-as-library"]
 if bound: command += ["-D", "BOUND_PRESENTATION"]
+if bound_dismissal: command += ["-D", "BOUND_DISMISSAL"]
 command += [str(unit), "-o", str(exe)]
 build = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", timeout=120)
 (output / "compile.log").write_bytes((build.stdout + build.stderr).encode("utf-8"))
@@ -88,9 +92,12 @@ integration_checks = {
         and "presentationID: presentationID, textView: textView" in source[WORKSPACE],
     "owner_reads_live_presentation_id": "presentationID: { nativeNoteEditorPresentationID }" in source[WORKSPACE],
     "original_binding_uses_actual_setter": "set: { setEditingAnnotation($0) }" in source[WORKSPACE],
+    "dismissal_callback_captures_presentation": bound_dismissal
+        and "let dismissingNoteEditorPresentationID = nativeNoteEditorPresentationID" in source[WORKSPACE]
+        and "presentationID: dismissingNoteEditorPresentationID" in source[WORKSPACE],
 }
 code = build.returncode or (run.returncode if run else 1)
-if len(passed) != 13 or failed or (bound and not all(integration_checks.values())): code = 1
+if len(passed) != 15 or failed or (bound and not all(integration_checks.values())): code = 1
 report = {
     "observed_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
     "source_ref": args.source_ref or "WORKTREE",
@@ -98,6 +105,7 @@ report = {
     "source_files": {path: hashlib.sha256(value).hexdigest() for path, value in raw.items()},
     "extracted_owner_sha256": hashlib.sha256(owner.encode()).hexdigest(),
     "extracted_callback_sha256": hashlib.sha256(callback.encode()).hexdigest(),
+    "extracted_dismissal_callback_sha256": hashlib.sha256(dismissal.encode()).hexdigest(),
     "compiled_setter_sha256": hashlib.sha256(setter.encode()).hexdigest(),
     "fixture_sha256": hashlib.sha256(fixture.encode()).hexdigest(),
     "driver_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),

@@ -29,6 +29,7 @@ enum ActionPortError: Error { case staleState }
     init(_ owner: MaktabahNativeNoteEditorOwner) { noteEditorOwner = owner }
     func nativeStateChanged() throws { revision += 1 }
     // ACTUAL_SCENE_CALLBACK
+    // ACTUAL_SCENE_DISMISSAL
 }
 
 @MainActor final class World {
@@ -69,8 +70,16 @@ enum ActionPortError: Error { case staleState }
 #endif
     }
     func dismiss() {
+        let id = workspace.nativeNoteEditorPresentationID
         workspace.setEditingAnnotation(nil)
-        owner.didDismiss()
+        dismissed(presentation: id)
+    }
+    func dismissed(presentation: UUID) {
+#if BOUND_DISMISSAL
+        scene.noteEditorDidDismiss(id: owner.id, presentationID: presentation)
+#else
+        scene.noteEditorDidDismiss(id: owner.id)
+#endif
     }
 }
 
@@ -169,11 +178,33 @@ private struct FixtureFailure: Error {}
             try require(w.owner.current == nil && !w.owner.presentationActive)
         }
         check("dismissal_does_not_clear_live_new_draft") {
-            let w = World(), view = UITextView(), id = w.begin()
-            w.callback(view, presentation: id); w.owner.didDismiss()
-            try require(w.owner.textView === view && w.owner.presentationActive && w.owner.current != nil)
+            let w = World(), old = UITextView(), view = UITextView(), oldID = w.begin()
+            w.callback(old, presentation: oldID); w.dismiss()
+            let id = w.begin(); w.callback(view, presentation: id)
+            let revision = w.scene.revision
+            w.dismissed(presentation: oldID)
+            try require(w.owner.textView === view && w.owner.presentationActive
+                && w.owner.current != nil && w.scene.revision == revision)
         }
-        print("RESULT \(13 - failures)/13 passed")
+        check("old_dismissal_cannot_retire_closing_new_presentation") {
+            let w = World(), old = UITextView(), current = UITextView(), oldID = w.begin()
+            w.callback(old, presentation: oldID); w.dismiss()
+            let currentID = w.begin(); w.callback(current, presentation: currentID)
+            w.workspace.setEditingAnnotation(nil)
+            let revision = w.scene.revision
+            w.dismissed(presentation: oldID)
+            try require(w.owner.presentationActive && w.owner.textView === current && w.scene.revision == revision)
+            w.dismissed(presentation: currentID)
+            try require(!w.owner.presentationActive && w.owner.textView == nil && w.scene.revision == revision + 1)
+        }
+        check("duplicate_dismissal_cannot_invalidate_scene") {
+            let w = World(), view = UITextView(), id = w.begin()
+            w.callback(view, presentation: id); w.dismiss()
+            let revision = w.scene.revision
+            w.dismissed(presentation: id)
+            try require(!w.owner.presentationActive && w.owner.textView == nil && w.scene.revision == revision)
+        }
+        print("RESULT \(15 - failures)/15 passed")
         if failures != 0 { exit(1) }
     }
 }

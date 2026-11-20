@@ -325,11 +325,14 @@ struct MaktabahNativeSceneBindings {
         if value != nil { presentationActive = true }
         return true
     }
-    func didDismiss() {
-        guard current == nil else { return }
-        retiredPresentationID = presentationID()
+    @discardableResult
+    func didDismiss(presentationID: UUID) -> Bool {
+        guard current == nil, self.presentationID() == presentationID,
+              presentationActive || textView != nil || retiredPresentationID != presentationID else { return false }
+        retiredPresentationID = presentationID
         presentationActive = false
         textView = nil
+        return true
     }
     init(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>,
          presentationID: @escaping @MainActor () -> UUID) {

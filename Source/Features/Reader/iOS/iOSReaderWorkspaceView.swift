@@ -207,6 +207,7 @@ struct iOSReaderWorkspaceView: View {
     }
 
     var body: some View {
+        let dismissingNoteEditorPresentationID = nativeNoteEditorPresentationID
         Group {
             if !useWideLayout, compactUsesContentsFallback {
                 tocColumn
@@ -279,7 +280,8 @@ struct iOSReaderWorkspaceView: View {
             compactStudyPanel
         }
         .sheet(isPresented: annotationEditorBinding, onDismiss: {
-            nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID)
+            nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID,
+                presentationID: dismissingNoteEditorPresentationID)
         }) {
             annotationEditor
         }

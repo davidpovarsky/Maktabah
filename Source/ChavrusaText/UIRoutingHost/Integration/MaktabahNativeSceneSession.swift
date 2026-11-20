@@ -174,9 +174,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         guard owner.observeTextView(textView, presentationID: presentationID) else { return }
         try? nativeStateChanged()
     }
-    func noteEditorDidDismiss(id: UUID) {
+    func noteEditorDidDismiss(id: UUID, presentationID: UUID) {
         guard let owner = noteEditorOwner, owner.id == id else { return }
-        owner.didDismiss()
+        guard owner.didDismiss(presentationID: presentationID) else { return }
         try? nativeStateChanged()
     }
     func ownsNoteEditor(_ reader: ReaderViewModel, draft: Annotation) -> Bool {
