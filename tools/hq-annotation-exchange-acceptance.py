@@ -60,9 +60,9 @@ def main():
     before = {p: sha(ROOT / p) for p in provenance}
     for source in SOURCES:
         shutil.copyfile(ROOT / source, target / Path(source).name)
-    module = package / "Sources/SQLite3"
-    module.mkdir()
     linker = []
+    sqlite_target = ""
+    sqlite_dependency = ""
     if os.name == "nt":
         sdk_root = Path(os.environ.get("ProgramFiles(x86)", r"C:\Program Files (x86)")) / "Windows Kits/10"
         sdk = next((p for p in sorted((sdk_root / "Include").glob("*"), reverse=True)
@@ -70,29 +70,40 @@ def main():
         if sdk is None:
             raise RuntimeError("Existing Windows SDK winsqlite headers required")
         header = (sdk / "um/winsqlite/winsqlite3.h").as_posix()
-        library = "winsqlite3"
+        module = package / "Sources/SQLite3"
+        module.mkdir()
+        (module / "module.modulemap").write_text(
+            'module SQLite3 [system] { header ' + json.dumps(header) + ' link "winsqlite3" export * }\n',
+            encoding="utf-8")
+        sqlite_target = '.systemLibrary(name: "SQLite3"),'
+        sqlite_dependency = '"SQLite3", '
+        sqlite_module_provider = "Generated Windows winsqlite3 system target"
         linker = ['.unsafeFlags(["-L", ' + json.dumps((sdk_root / "Lib" / sdk.name / "um/x64").as_posix()) + '])', '.linkedLibrary("bcrypt")']
     elif sys.platform == "darwin":
         sdk = Path(subprocess.check_output(["xcrun", "--sdk", "macosx", "--show-sdk-path"], text=True).strip())
-        header = (sdk / "usr/include/sqlite3.h").as_posix()
-        library = "sqlite3"
+        if not (sdk / "usr/include/sqlite3.h").is_file():
+            raise RuntimeError("Installed Apple SDK SQLite headers required")
+        # The Apple SDK already supplies SQLite3. A second SPM system module
+        # with the same name breaks Swift/Clang dependency scanning before tests.
+        # Use the same SDK-owned module as the original SQLite acceptance driver.
+        sqlite_module_provider = "Original Apple SDK SQLite3 module"
+        linker = ['.linkedLibrary("sqlite3")']
     else:
         raise RuntimeError("Runner supports installed Windows and Apple toolchains")
-    (module / "module.modulemap").write_text(
-        'module SQLite3 [system] { header ' + json.dumps(header) + ' link "' + library + '" export * }\n', encoding="utf-8")
     manifest = '''// swift-tools-version: 6.0
 import PackageDescription
 let package = Package(name: "AnnotationExchangeAcceptance",
     platforms: [.macOS(.v14)],
     dependencies: [.package(path: CORE_PATH)],
     targets: [
-        .systemLibrary(name: "SQLite3"),
+        SQLITE_TARGET
         .executableTarget(name: "ExchangeAcceptance",
-            dependencies: ["SQLite3", .product(name: "OtzariaActionCore", package: "actions")],
+            dependencies: [SQLITE_DEPENDENCY.product(name: "OtzariaActionCore", package: "actions")],
             swiftSettings: [.unsafeFlags(["-strict-concurrency=complete"])],
             linkerSettings: [LINKER_SETTINGS])
     ], swiftLanguageModes: [.v6])
 '''.replace("CORE_PATH", json.dumps(core.as_posix())).replace("LINKER_SETTINGS", ", ".join(linker))
+    manifest = manifest.replace("SQLITE_TARGET", sqlite_target).replace("SQLITE_DEPENDENCY", sqlite_dependency)
     (package / "Package.swift").write_text(manifest, encoding="utf-8")
     command = [swift, "build", "--package-path", str(package), "--scratch-path", str(owned / "swift-build"), "-j", "4"]
     report = {
@@ -105,6 +116,7 @@ let package = Package(name: "AnnotationExchangeAcceptance",
         "build_command": command,
         "owned_directory": str(owned),
         "actual_sqlite": True,
+        "sqlite_module_provider": sqlite_module_provider,
         "actual_original_sync_pending_store": True,
         "original_annotation_repository_runtime_executed": False,
         "digest_provider": "Windows CNG BCrypt SHA256" if os.name == "nt" else "Production CryptoKit SHA256",

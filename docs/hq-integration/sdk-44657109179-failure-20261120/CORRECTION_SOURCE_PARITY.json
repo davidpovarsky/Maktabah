@@ -1,0 +1,15 @@
+{
+  "application_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "native_checkout": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+  "source_trees": {
+    "Source": "aa2cfe9491a389aeafb38edf9b3601c2a9b77bc3",
+    "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+    "Maktabah.xcodeproj": "0504a80db4dcd844871922ccf68d419eccb478f0",
+    "Maktabah-iOSUITests": "0ad58fec0ca52e25a7ea1163f55d2cf649321068"
+  },
+  "source_files_changed": [],
+  "only_executable_change": "tools/hq-annotation-exchange-acceptance.py",
+  "corrected_driver_windows_cases": 28,
+  "corrected_driver_windows_process_recovery_gates": 2,
+  "corrected_driver_apple_status": "NOT_RUN"
+}

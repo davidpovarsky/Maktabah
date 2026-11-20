@@ -1,0 +1,2 @@
+ACTUAL_SQLITE 3.53.4
+CRASH_JOURNAL_MODE wal; synchronous=2

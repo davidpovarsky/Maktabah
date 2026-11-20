@@ -1,0 +1,23 @@
+{
+  "run": 44657109179,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44657109179",
+  "checkout": "fe4df7c39aec242d00046bc454c81963ba4285a0",
+  "application_and_test_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "overall_workflow_status": "FAILURE",
+  "artifact_id": 14594367485,
+  "artifact_bytes": 213247,
+  "artifact_sha256": "c86e390ab0740a6900e77d719e447f2b16b11a4e893fbfdaebb3a1736650c84c",
+  "actual_ui_sdk_compile": "SDK_COMPILE_PASS",
+  "ui_compiler_warnings": 2668,
+  "actual_ui_executed": 0,
+  "native_declarations": 88,
+  "actual_sqlite_cases": 25,
+  "actual_sqlite_version": "3.54.0",
+  "actual_cache_cases": 26,
+  "annotation_cases_executed": 0,
+  "annotation_failure": "Duplicate generated SQLite3 system module collides with original Apple SDK module; compile failure before execution.",
+  "workspace61_status": "NOT_RUN_STEP_SKIPPED_AFTER_AGGREGATE_FAILURE",
+  "correction_scope": "Only annotation acceptance package setup; use original Apple SDK SQLite3 on Darwin, retain generated Windows winsqlite3 module. Production ledger/envelope/SQLite and all28+2 assertions unchanged.",
+  "corrected_apple_status": "NOT_RUN",
+  "recorded_at_utc": "2026-11-20T02:20:25.738229+00:00"
+}

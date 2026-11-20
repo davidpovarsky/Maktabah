@@ -1,0 +1,7 @@
+# Actual Apple SDK failure and narrow fixture correction
+
+Run44657109179 on exact checkoutfe4df7c39aec242d00046bc454c81963ba4285a0 failed its aggregate gate. Original iPad XCTest SDK compile/code generation passed with88 selected declarations and2668 warnings; no Native UI executed. The repaired original SQLite fixture executed25/25 on Apple SQLite3.54.0 (no optional source-DB oracle was supplied here); BookPageCache executed26/26. Annotation exchange executed0 cases because its generated SQLite3 system-library module redefined the SDK module. Workspace61 was skipped by the workflow after aggregate failure.
+
+The exact original artifact ZIP and compiler log are preserved with authenticated GitHub size/digest. The correction changes only fixture package construction: Darwin imports the SDK-owned SQLite3 module; Windows retains its winsqlite3 module and bcrypt link. No production code or28+2 assertion was changed. Corrected Apple acceptance is still NOT_RUN at this checkpoint.
+
+The corrected shared driver was actually rerun on Windows: all28 component cases and both real process termination/reopen gates passed, with input bytes unchanged. This checks preservation of its Windows branch; it does not validate the corrected Apple branch. Source/Vendor/project/XCTest trees remain identical to the current Native/Release freeze. Those in-progress runs do not need replacing for this harness-only correction.
