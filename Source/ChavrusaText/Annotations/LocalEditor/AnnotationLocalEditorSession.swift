@@ -10,11 +10,14 @@ final class AnnotationLocalEditorSession {
     let databaseURL: URL
     private let persistence: AnnotationLocalEditorPersistence
     private let didCommit: @MainActor @Sendable (AnnotationLocalEditorCommitted, Bool) -> Void
+    private let didCommitOwnedCloud: (@MainActor @Sendable (AnnotationLocalEditorCommitted, Bool) -> Void)?
     private var busy = false
 
     fileprivate init(persistence: AnnotationLocalEditorPersistence,
+                     didCommitOwnedCloud: (@MainActor @Sendable (AnnotationLocalEditorCommitted, Bool) -> Void)? = nil,
                      didCommit: @escaping @MainActor @Sendable (AnnotationLocalEditorCommitted, Bool) -> Void) {
         self.persistence = persistence; self.didCommit = didCommit
+        self.didCommitOwnedCloud = didCommitOwnedCloud
         id = persistence.sessionID; annotationUUID = persistence.annotationUUID
         databaseURL = persistence.connection.databaseURL
     }
@@ -87,7 +90,12 @@ extension AnnotationStore {
         let persistence = try AnnotationLocalEditorPersistence(connection: connection, annotationID: id,
             annotationUUID: uuid, sessionID: UUID(), owner: AnnotationLocalEditorLifetime(),
             formats: supportedFormats, digest: AnnotationExchangePlatformDigest())
-        return AnnotationLocalEditorSession(persistence: persistence) { [self] saved, canDeliver in
+        return AnnotationLocalEditorSession(persistence: persistence, didCommitOwnedCloud: { [self] _, _ in
+            // Same original cache/tree publication, without dispatching a second
+            // unowned upload alongside the explicitly prepared owned operation.
+            clearAllCaches()
+            events.send(.treeInvalidated)
+        }) { [self] saved, canDeliver in
             // Invalidate rather than installing an old-profile row into the
             // shared cache. This event has no annotation payload and remains
             // safe if a profile switch occurs during an admitted publication.
@@ -101,6 +109,64 @@ extension AnnotationStore {
             events.send(.treeInvalidated)
             // If publication was retired, the original sync_pending upload is
             // already durable in its own profile DB. No ACK is fabricated.
+        }
+    }
+}
+
+extension AnnotationLocalEditorSession {
+    /// Explicit opt-in. The existing normal save method and its CloudKit path
+    /// remain unchanged. Missing actual identity still permits a local commit
+    /// but permanently defers this preparation's upload; it never adopts an
+    /// account discovered only after the commit.
+    func prepareOwnedCloudSave(_ intent: AnnotationLocalEditorIntent) async throws -> AnnotationLocalEditorCloudPreparation {
+        try await prepareOwnedCloudSave(intent, client: AnnotationLocalEditorCloudClient.original())
+    }
+
+    /// Internal component boundary. Application callers use the overload above;
+    /// tests must declare their identity/transport/wait doubles explicitly.
+    func prepareOwnedCloudSave(_ intent: AnnotationLocalEditorIntent,
+                               client: AnnotationLocalEditorCloudClient?) async throws -> AnnotationLocalEditorCloudPreparation {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        guard didCommitOwnedCloud != nil else { throw AnnotationLocalEditorCloudDeferral.invalidPublication }
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached { try await AnnotationLocalEditorCloudPreparation.prepare(intent: intent, storage: storage, client: client) }
+        return try await withTaskCancellationHandler {
+            let prepared = try await worker.value
+            try storage.requireUnchanged(intent.snapshot)
+            try Task.checkCancellation()
+            return prepared
+        } onCancel: {
+            owner.retire()
+            worker.cancel()
+        }
+    }
+
+    func saveOwnedCloud(_ preparation: AnnotationLocalEditorCloudPreparation) async throws -> AnnotationLocalEditorCloudSaveOutcome {
+        guard !busy else { throw AnnotationLocalEditorError.busy }
+        guard isCurrent else { throw AnnotationLocalEditorError.retired }
+        guard let didCommitOwnedCloud else { throw AnnotationLocalEditorCloudDeferral.invalidPublication }
+        try preparation.consume(for: persistence)
+        busy = true
+        defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached { try storage.commitForOwnedCloud(preparation.intent) }
+        return try await withTaskCancellationHandler {
+            let committed = try await worker.value
+            let saved = committed.saved
+            if !saved.receipt.replayed { didCommitOwnedCloud(saved, storage.canDeliver(saved)) }
+            let outcome: AnnotationLocalEditorOutcome = storage.canDeliver(saved)
+                ? .committed(saved) : .completedWithoutOwnership(saved.receipt)
+            // The actual local commit is returned immediately. The publication
+            // handle retains the real remote/ACK/worker outcome independently of
+            // whether the original editor survives the subsequent awaits.
+            let publication = AnnotationLocalEditorCloudPublication(storage: storage, preparation: preparation, committed: committed)
+            return .init(local: outcome, publication: publication)
+        } onCancel: {
+            owner.retire()
+            worker.cancel()
         }
     }
 }

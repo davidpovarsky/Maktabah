@@ -1,0 +1,302 @@
+{
+  "F": "5bf1ddfc4a4b04dede8e8bdcaecabf3a7a5dddcd",
+  "M": "c1e0d33117154d578206195ef021d41fc2fa2b12",
+  "actual_CI": {
+    "Apple_toolchain": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "Repository_baseline_deadline_seconds": 12,
+    "Repository_baseline_observed_seconds": 12.018773124999996,
+    "Repository_candidate_deadline_seconds": 20,
+    "Repository_compile_seconds": 67.29694041600004,
+    "Repository_distinct_execution_PIDs": [
+      8734,
+      9118,
+      9119,
+      9124,
+      9125,
+      9126,
+      9128,
+      9129,
+      9130,
+      9131,
+      9134
+    ],
+    "SDK": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk",
+    "SQLite_premise_controls": 13,
+    "component_boundary": "Whole original Store/Repository/SQLite/ledger/session/Core/debouncer/CK mapping; explicit account/transport/wait and unrelated catalog/UI/localization doubles",
+    "expected_RED_counts_as_pass": false,
+    "full_after_gate": "PASS_APPLE_REPOSITORY_RED10_LOCAL43_COLD2_CLOUD48_EXCHANGE28_CRASH2",
+    "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "local_cold_process_PIDs": [
+      5265,
+      5272,
+      5278
+    ],
+    "original_cloud_gate_controls": 43,
+    "original_exchange_abrupt_exit_reopen_gates": 2,
+    "original_exchange_cases": 28,
+    "original_local_cases": 43,
+    "original_local_cold_reopen_gates": 2,
+    "outcomes": {
+      "controls": "success",
+      "exchange": "success",
+      "local": "success",
+      "race": "success",
+      "toolchain": "success"
+    },
+    "owned_cloud_cases": 48,
+    "repository_candidate_cases": 10,
+    "repository_cold_SQLite_reads": 11,
+    "repository_expected_original_deadlock_RED": 1,
+    "source_before_after_identical": true,
+    "source_inputs": 102,
+    "source_tar_members_each": 103,
+    "wrapper_controls": 26,
+    "zip_members_CRC": 569
+  },
+  "artifact": {
+    "digest": "sha256:cd309d6806f1b0591b017564cbb807531114bf0564c7db63991a006f6a0f68fb",
+    "id": 14664188280,
+    "name": "annotation-disconnect-original-red10-local43-cold2-cloud48-exchange28-crash2",
+    "size_in_bytes": 1742796
+  },
+  "attempt": 1,
+  "independent_offline_replay": {
+    "SQLite_version_difference": {
+      "actual_CI_Python_reader": "3.54.1",
+      "offline_Linux_reader": "3.40.1"
+    },
+    "actual_CI_binary_hash_gate": "PASS in authenticated actual after gate; not independently rerun offline",
+    "archive_and_exact_Git_source": "PASS",
+    "candidate_raw_receipt_and_actual_CI_gate_only_count": 7,
+    "candidate_scopes": [
+      {
+        "name": "progress_default",
+        "result": {
+          "markers": [
+            {
+              "event": "fixture_ready",
+              "sequence": 1,
+              "uptimeNanoseconds": 376927257500
+            },
+            {
+              "event": "transaction_acquired_and_uncommitted_write",
+              "sequence": 2,
+              "uptimeNanoseconds": 376930378083
+            },
+            {
+              "event": "disconnect_requested",
+              "sequence": 3,
+              "uptimeNanoseconds": 376959217375
+            },
+            {
+              "event": "repository_state_read_while_database_held",
+              "sequence": 4,
+              "uptimeNanoseconds": 376973428041
+            },
+            {
+              "event": "original_repository_exec_requested",
+              "sequence": 5,
+              "uptimeNanoseconds": 376988877875
+            },
+            {
+              "event": "original_repository_exec_returned",
+              "sequence": 6,
+              "uptimeNanoseconds": 376990118041
+            },
+            {
+              "event": "transaction_returned",
+              "sequence": 7,
+              "uptimeNanoseconds": 376990842583
+            },
+            {
+              "event": "disconnect_returned",
+              "sequence": 8,
+              "uptimeNanoseconds": 376996316833
+            }
+          ],
+          "name": "progress_default",
+          "result": {
+            "name": "progress_default",
+            "sourceKind": "candidate",
+            "status": "PASS"
+          },
+          "status": "PASS"
+        },
+        "unchanged_verify_candidate": "PASS"
+      },
+      {
+        "name": "progress_captured",
+        "result": {
+          "markers": [
+            {
+              "event": "fixture_ready",
+              "sequence": 1,
+              "uptimeNanoseconds": 377038773958
+            },
+            {
+              "event": "transaction_acquired_and_uncommitted_write",
+              "sequence": 2,
+              "uptimeNanoseconds": 377039511416
+            },
+            {
+              "event": "disconnect_requested",
+              "sequence": 3,
+              "uptimeNanoseconds": 377085756708
+            },
+            {
+              "event": "repository_state_read_while_database_held",
+              "sequence": 4,
+              "uptimeNanoseconds": 377132215958
+            },
+            {
+              "event": "original_repository_exec_requested",
+              "sequence": 5,
+              "uptimeNanoseconds": 377159305708
+            },
+            {
+              "event": "original_repository_exec_returned",
+              "sequence": 6,
+              "uptimeNanoseconds": 377161310958
+            },
+            {
+              "event": "transaction_returned",
+              "sequence": 7,
+              "uptimeNanoseconds": 377161937458
+            },
+            {
+              "event": "disconnect_returned",
+              "sequence": 8,
+              "uptimeNanoseconds": 377170280625
+            }
+          ],
+          "name": "progress_captured",
+          "result": {
+            "name": "progress_captured",
+            "sourceKind": "candidate",
+            "status": "PASS"
+          },
+          "status": "PASS"
+        },
+        "unchanged_verify_candidate": "PASS"
+      },
+      {
+        "name": "stale_capture_queued_during_replacement",
+        "result": {
+          "markers": [
+            {
+              "event": "replacement_published_before_old_database_release",
+              "sequence": 1,
+              "uptimeNanoseconds": 377287235083
+            }
+          ],
+          "name": "stale_capture_queued_during_replacement",
+          "result": {
+            "name": "stale_capture_queued_during_replacement",
+            "sourceKind": "candidate",
+            "status": "PASS"
+          },
+          "status": "PASS"
+        },
+        "unchanged_verify_candidate": "PASS"
+      },
+      {
+        "actual_CI_full_gate": "PASS",
+        "empty_markers_directory_created_for_replay": false,
+        "name": "stale_database_with_current_lifetime_cannot_detach",
+        "original_error": "Actual numbered markers missing",
+        "raw_CASE_json_matches_CI_result": true,
+        "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED"
+      },
+      {
+        "actual_CI_full_gate": "PASS",
+        "empty_markers_directory_created_for_replay": false,
+        "name": "current_database_with_stale_lifetime_cannot_detach",
+        "original_error": "Actual numbered markers missing",
+        "raw_CASE_json_matches_CI_result": true,
+        "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED"
+      },
+      {
+        "actual_CI_full_gate": "PASS",
+        "empty_markers_directory_created_for_replay": false,
+        "name": "matched_capture_detaches_only_original_owner",
+        "original_error": "Actual numbered markers missing",
+        "raw_CASE_json_matches_CI_result": true,
+        "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED"
+      },
+      {
+        "actual_CI_full_gate": "PASS",
+        "empty_markers_directory_created_for_replay": false,
+        "name": "nil_default_disconnect_preserves_later_setup",
+        "original_error": "Actual numbered markers missing",
+        "raw_CASE_json_matches_CI_result": true,
+        "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED"
+      },
+      {
+        "actual_CI_full_gate": "PASS",
+        "empty_markers_directory_created_for_replay": false,
+        "name": "repeated_default_disconnect_is_idempotent",
+        "original_error": "Actual numbered markers missing",
+        "raw_CASE_json_matches_CI_result": true,
+        "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED"
+      },
+      {
+        "actual_CI_full_gate": "PASS",
+        "empty_markers_directory_created_for_replay": false,
+        "name": "reopen_preserves_rows_queue_and_retires_old_connection",
+        "original_error": "Actual numbered markers missing",
+        "raw_CASE_json_matches_CI_result": true,
+        "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED"
+      },
+      {
+        "actual_CI_full_gate": "PASS",
+        "empty_markers_directory_created_for_replay": false,
+        "name": "rollback_then_disconnect_preserves_original_note",
+        "original_error": "Actual numbered markers missing",
+        "raw_CASE_json_matches_CI_result": true,
+        "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED"
+      }
+    ],
+    "complete_unchanged_verify_original_gates": "PASS; exact result equals actual CI after.original_gates",
+    "fabricated_binaries_or_empty_marker_directories": 0,
+    "full_verify_race": "NOT_REPLAYABLE: required Apple executables omitted by artifact upload",
+    "offline_Native_executed": 0,
+    "offline_Swift_executed": 0,
+    "original_validator_changes": 0,
+    "retained_first_replay_failure": "ATTEMPT1: unchanged candidate verifier rejected omitted empty markers directory",
+    "unchanged_cold_read": "11 actual retained databases opened read-only; all semantic fields match",
+    "unchanged_source_report_and_verify_copies": "PASS",
+    "unchanged_verify_baseline": "PASS qualification of expected RED, not a successful product case",
+    "unchanged_verify_candidate_complete_count": 3
+  },
+  "integration": {
+    "additions": 8,
+    "all_candidate_bytes_are_actually_tested_M_bytes": true,
+    "all_unlisted_leaves_modes_preserved": true,
+    "base": "1146a249fdd94c345371c67a8d763f16223017ee",
+    "base_tree": "13d91ed50ac92ef4355fb430a0be8b13fc480ce1",
+    "current_integrated_Core_preserved": "a89104250c1aedf75e6aa95ed3f111a4dc597217",
+    "historical_driver_Core_pin_preserved": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+    "isolated_SideSheet_project": "Not in integration base1146; eventual merge must combine its four separate PBX additions with these sixteen, preserving both exact hunks",
+    "new_combined_refreeze_required": true,
+    "no_ref_mutation_or_CI_activation": true,
+    "paths": 15,
+    "project_changes": "16 additive PBX membership lines for two Cloud files in three existing targets",
+    "replacements": 7
+  },
+  "job": 136538641362,
+  "job_completed_at": "2026-11-20T20:12:07Z",
+  "job_started_at": "2026-11-20T20:07:39Z",
+  "observed_conclusion": "success",
+  "qualification_limits": {
+    "Anytype_editor_or_framework": "NOT_RUN",
+    "app_UI_Native_or_physical_device": "NOT_RUN",
+    "combined_latest_application": "NOT_RUN; exact narrow integration proposal only",
+    "current_Core194": "NOT_RUN in v4; tested closure retains historical Core tree 5d0ee482c8f10726fe3863792dac94c18e94d792",
+    "live_CloudKit_transport_or_remote_account": "NOT_RUN",
+    "post_admission_remote_rollback": "NOT_GUARANTEED; actual remote effect may precede later source retirement",
+    "worker_network_delivery": "NOT_RUN; explicit transport/wait doubles"
+  },
+  "run": 44808496839,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44808496839",
+  "status": "QUALIFIED_ACTUAL_APPLE_COMPONENT_RESULT_WITH_SCOPED_OFFLINE_REPLAY"
+}

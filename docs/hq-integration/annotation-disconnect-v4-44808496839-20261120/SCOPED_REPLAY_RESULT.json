@@ -1,0 +1,695 @@
+{
+  "status": "PASS_SCOPED_UNCHANGED_READ_ONLY_VALIDATORS",
+  "scope": "independent read-only evidence qualification, not new Swift/Native execution",
+  "source_run": 44808496839,
+  "source_head": "5bf1ddfc4a4b04dede8e8bdcaecabf3a7a5dddcd",
+  "source_inputs": 102,
+  "offline_swift_executed": 0,
+  "offline_native_executed": 0,
+  "steps": {
+    "unchanged_complete_original_cloud_local_exchange_gate": {
+      "status": "PASS",
+      "result": {
+        "cloud_cases": 48,
+        "sqlite_premise_controls": 13,
+        "whole_source_cloud_compiled_copy": {
+          "LocalAnnotationEditorAcceptance": {
+            "Source/Features/Annotations/Models/Annotation.swift": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+            "Source/Features/Annotations/Models/AnnotationNode.swift": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392",
+            "Source/Features/Annotations/Models/AnnotationChangeTypes.swift": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+            "Source/Features/Annotations/Models/AnnotationEvent.swift": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+            "Source/Features/Annotations/Database/AnnotationRepository.swift": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8",
+            "Source/Features/Annotations/Database/AnnotationStore.swift": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+            "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+            "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+            "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+            "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+            "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+            "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71",
+            "Source/Core/CloudKit/CloudKitCoreManager.swift": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68",
+            "Source/Core/CloudKit/CloudKitUploadDebouncer.swift": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2",
+            "Source/Core/CloudKit/CloudKitSyncable.swift": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d",
+            "Source/Core/CloudKit/AnnotationSyncHandler.swift": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a",
+            "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7",
+            "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a"
+          },
+          "LocalAnnotationCloudOwnershipAcceptance": {
+            "Source/Features/Annotations/Models/Annotation.swift": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+            "Source/Features/Annotations/Models/AnnotationNode.swift": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392",
+            "Source/Features/Annotations/Models/AnnotationChangeTypes.swift": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+            "Source/Features/Annotations/Models/AnnotationEvent.swift": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+            "Source/Features/Annotations/Database/AnnotationRepository.swift": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8",
+            "Source/Features/Annotations/Database/AnnotationStore.swift": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+            "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+            "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+            "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+            "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+            "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+            "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71",
+            "Source/Core/CloudKit/CloudKitCoreManager.swift": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68",
+            "Source/Core/CloudKit/CloudKitUploadDebouncer.swift": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2",
+            "Source/Core/CloudKit/CloudKitSyncable.swift": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d",
+            "Source/Core/CloudKit/AnnotationSyncHandler.swift": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a",
+            "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7",
+            "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudAcceptance.swift": "0eb0914e8a1c92559fcb574efcec487d8dc97c276bf4a6a503d3320821285b8c",
+            "generated:exact_original_fixture_prefix": "a428473214415145751bd5e00b9f7d935d0dea90efefd6e4c4bf9e37422a3389"
+          }
+        },
+        "local_cases": 43,
+        "local_cold_reopen_gates": 2,
+        "local_actual_process_ids": [
+          5265,
+          5272,
+          5278
+        ],
+        "exchange_cases": 28,
+        "exchange_abrupt_process_reopen_gates": 2,
+        "local_compiled_copy": {
+          "sources": {
+            "Source/Features/Annotations/Models/Annotation.swift": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+            "Source/Features/Annotations/Models/AnnotationChangeTypes.swift": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+            "Source/Features/Annotations/Models/AnnotationEvent.swift": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+            "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+            "Source/Features/Annotations/Models/AnnotationNode.swift": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392",
+            "Source/Features/Annotations/Database/AnnotationRepository.swift": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8",
+            "Source/Features/Annotations/Database/AnnotationStore.swift": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+            "Source/Core/CloudKit/AnnotationSyncHandler.swift": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a",
+            "Source/Core/CloudKit/CloudKitCoreManager.swift": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68",
+            "Source/Core/CloudKit/CloudKitSyncable.swift": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d",
+            "Source/Core/CloudKit/CloudKitUploadDebouncer.swift": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2",
+            "Tests/HQ/local-annotation-cloud/LocalAnnotationCloudBoundary.swift": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7",
+            "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a",
+            "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46",
+            "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+            "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+            "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+            "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+          },
+          "package_sha256": "a74ae3d0f4ccf43746048d3b71dbb856b76534c6e7584b3cb4b65fe390440ed8"
+        },
+        "exchange_compiled_copy": {
+          "sources": {
+            "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de",
+            "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+            "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8",
+            "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+            "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+            "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+            "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+          },
+          "package_sha256": "25c322e726f8efe82f175dd24617aa67241d4c805e259ab7ba6b4748a442c17a"
+        },
+        "local_independent_sqlite": {
+          "database_path": "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cold-profile/Annotations.sqlite",
+          "versions": 2,
+          "tags": 2,
+          "same_annotation_uuid": true,
+          "same_original_row": true,
+          "zero_external_destinations": true,
+          "payload_hashes": [
+            "7ca74cbf6e60aaa20d58177177eb1ddd608bcdbc306b425477d9e8bb3e998dfd",
+            "7cb63c58f143ce648ad4a88044412a68fad02752beb546f33fbc712189bf4de0"
+          ]
+        },
+        "exchange_raw_payload_sha256": "1ec5d78ea1971ac472ad074b3c008790cba52afac3e1d8d1129c4800e2d4b169",
+        "exchange_original_queue_sha256": "f33c9e36585dd3f9aba90481bcae94fc2cb6ecb0a39290f373fbef01ae70bfbd",
+        "local_result_sha256": "83268eb7ba566c2425a863586eaa32877b44f176707c35bc4ae6b5942d1a0184",
+        "exchange_result_sha256": "33b962fd5c26b04a867ca7e485441ba5d69ac34717fcfab771ad6db73c1e8aa5"
+      }
+    },
+    "unchanged_race_source_report_and_compiled_copies": {
+      "status": "PASS",
+      "result": {
+        "targets": [
+          "DisconnectBaseline",
+          "DisconnectCandidate"
+        ],
+        "source_counts": {
+          "DisconnectBaseline": 24,
+          "DisconnectCandidate": 24
+        },
+        "whole_source_and_fixture_prefix_exact": true,
+        "source_report_exact": true
+      }
+    },
+    "bounded_raw_process_receipts_and_actual_CI_binary_gate_scope": {
+      "status": "PASS",
+      "result": {
+        "distinct_execution_PIDs": [
+          8734,
+          9118,
+          9119,
+          9124,
+          9125,
+          9126,
+          9128,
+          9129,
+          9130,
+          9131,
+          9134
+        ],
+        "actual_baseline_seconds": 12.018773124999996,
+        "baseline_timeout_seconds": 12,
+        "candidate_timeout_seconds": 20,
+        "raw_command_and_log_matches": 13,
+        "reported_actual_CI_executable_hashes": {
+          "/Users/runner/work/Maktabah/Maktabah/build/annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/swift-build/out/Products/Debug/DisconnectBaseline": "ab2e573feb6036a8cd5b2dc7acff74828fea0f5f81d3707b85296687c707c689",
+          "/Users/runner/work/Maktabah/Maktabah/build/annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/swift-build/out/Products/Debug/DisconnectCandidate": "246a66d87d31e61a406531178295fc4a4b5d01d826a654985556e316204d2c9e"
+        },
+        "executables_retained_in_artifact": false,
+        "full_verify_race_offline": "NOT_REPLAYABLE: two required Apple binaries absent; no validator alteration or substituted binary",
+        "actual_CI_full_verify_race_gate": {
+          "candidate_green": 10,
+          "cold_reads": 11,
+          "original_red": 1,
+          "original_red_counts_as_pass": false,
+          "status": "PASS_ACTUAL_REPOSITORY_RED_AND10_GREEN"
+        }
+      }
+    },
+    "unchanged_verify_baseline_five_markers_and_expected_owned_timeout": {
+      "status": "PASS",
+      "result": {
+        "status": "EXPECTED_ORIGINAL_DEADLOCK_REPRODUCED",
+        "counts_as_pass": false,
+        "markers": [
+          {
+            "sequence": 1,
+            "uptimeNanoseconds": 364732758500,
+            "event": "fixture_ready"
+          },
+          {
+            "sequence": 2,
+            "uptimeNanoseconds": 364733431833,
+            "event": "transaction_acquired_and_uncommitted_write"
+          },
+          {
+            "sequence": 3,
+            "uptimeNanoseconds": 364764701083,
+            "event": "disconnect_requested"
+          },
+          {
+            "sequence": 4,
+            "uptimeNanoseconds": 364783631166,
+            "event": "captured_lifetime_retired_before_transaction_release"
+          },
+          {
+            "sequence": 5,
+            "uptimeNanoseconds": 364784181208,
+            "event": "original_repository_exec_requested"
+          }
+        ],
+        "original_repository_sha256": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af"
+      }
+    },
+    "candidate_results_with_explicit_empty_directory_retention_boundary": {
+      "status": "PASS",
+      "result": {
+        "unchanged_function_complete_replays": 3,
+        "raw_result_and_CI_gate_only": 7,
+        "actual_CI_candidate10": "PASS",
+        "rows": [
+          {
+            "name": "progress_default",
+            "unchanged_verify_candidate": "PASS",
+            "result": {
+              "name": "progress_default",
+              "status": "PASS",
+              "markers": [
+                {
+                  "uptimeNanoseconds": 376927257500,
+                  "event": "fixture_ready",
+                  "sequence": 1
+                },
+                {
+                  "uptimeNanoseconds": 376930378083,
+                  "event": "transaction_acquired_and_uncommitted_write",
+                  "sequence": 2
+                },
+                {
+                  "uptimeNanoseconds": 376959217375,
+                  "event": "disconnect_requested",
+                  "sequence": 3
+                },
+                {
+                  "uptimeNanoseconds": 376973428041,
+                  "event": "repository_state_read_while_database_held",
+                  "sequence": 4
+                },
+                {
+                  "uptimeNanoseconds": 376988877875,
+                  "event": "original_repository_exec_requested",
+                  "sequence": 5
+                },
+                {
+                  "uptimeNanoseconds": 376990118041,
+                  "event": "original_repository_exec_returned",
+                  "sequence": 6
+                },
+                {
+                  "uptimeNanoseconds": 376990842583,
+                  "event": "transaction_returned",
+                  "sequence": 7
+                },
+                {
+                  "uptimeNanoseconds": 376996316833,
+                  "event": "disconnect_returned",
+                  "sequence": 8
+                }
+              ],
+              "result": {
+                "name": "progress_default",
+                "status": "PASS",
+                "sourceKind": "candidate"
+              }
+            }
+          },
+          {
+            "name": "progress_captured",
+            "unchanged_verify_candidate": "PASS",
+            "result": {
+              "name": "progress_captured",
+              "status": "PASS",
+              "markers": [
+                {
+                  "sequence": 1,
+                  "uptimeNanoseconds": 377038773958,
+                  "event": "fixture_ready"
+                },
+                {
+                  "sequence": 2,
+                  "uptimeNanoseconds": 377039511416,
+                  "event": "transaction_acquired_and_uncommitted_write"
+                },
+                {
+                  "sequence": 3,
+                  "uptimeNanoseconds": 377085756708,
+                  "event": "disconnect_requested"
+                },
+                {
+                  "sequence": 4,
+                  "uptimeNanoseconds": 377132215958,
+                  "event": "repository_state_read_while_database_held"
+                },
+                {
+                  "sequence": 5,
+                  "uptimeNanoseconds": 377159305708,
+                  "event": "original_repository_exec_requested"
+                },
+                {
+                  "sequence": 6,
+                  "uptimeNanoseconds": 377161310958,
+                  "event": "original_repository_exec_returned"
+                },
+                {
+                  "sequence": 7,
+                  "uptimeNanoseconds": 377161937458,
+                  "event": "transaction_returned"
+                },
+                {
+                  "sequence": 8,
+                  "uptimeNanoseconds": 377170280625,
+                  "event": "disconnect_returned"
+                }
+              ],
+              "result": {
+                "sourceKind": "candidate",
+                "name": "progress_captured",
+                "status": "PASS"
+              }
+            }
+          },
+          {
+            "name": "stale_capture_queued_during_replacement",
+            "unchanged_verify_candidate": "PASS",
+            "result": {
+              "name": "stale_capture_queued_during_replacement",
+              "status": "PASS",
+              "markers": [
+                {
+                  "event": "replacement_published_before_old_database_release",
+                  "sequence": 1,
+                  "uptimeNanoseconds": 377287235083
+                }
+              ],
+              "result": {
+                "sourceKind": "candidate",
+                "status": "PASS",
+                "name": "stale_capture_queued_during_replacement"
+              }
+            }
+          },
+          {
+            "name": "stale_database_with_current_lifetime_cannot_detach",
+            "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED",
+            "original_error": "Actual numbered markers missing",
+            "raw_CASE_json_matches_CI_result": true,
+            "actual_CI_full_gate": "PASS",
+            "empty_markers_directory_created_for_replay": false
+          },
+          {
+            "name": "current_database_with_stale_lifetime_cannot_detach",
+            "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED",
+            "original_error": "Actual numbered markers missing",
+            "raw_CASE_json_matches_CI_result": true,
+            "actual_CI_full_gate": "PASS",
+            "empty_markers_directory_created_for_replay": false
+          },
+          {
+            "name": "matched_capture_detaches_only_original_owner",
+            "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED",
+            "original_error": "Actual numbered markers missing",
+            "raw_CASE_json_matches_CI_result": true,
+            "actual_CI_full_gate": "PASS",
+            "empty_markers_directory_created_for_replay": false
+          },
+          {
+            "name": "nil_default_disconnect_preserves_later_setup",
+            "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED",
+            "original_error": "Actual numbered markers missing",
+            "raw_CASE_json_matches_CI_result": true,
+            "actual_CI_full_gate": "PASS",
+            "empty_markers_directory_created_for_replay": false
+          },
+          {
+            "name": "repeated_default_disconnect_is_idempotent",
+            "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED",
+            "original_error": "Actual numbered markers missing",
+            "raw_CASE_json_matches_CI_result": true,
+            "actual_CI_full_gate": "PASS",
+            "empty_markers_directory_created_for_replay": false
+          },
+          {
+            "name": "reopen_preserves_rows_queue_and_retires_old_connection",
+            "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED",
+            "original_error": "Actual numbered markers missing",
+            "raw_CASE_json_matches_CI_result": true,
+            "actual_CI_full_gate": "PASS",
+            "empty_markers_directory_created_for_replay": false
+          },
+          {
+            "name": "rollback_then_disconnect_preserves_original_note",
+            "unchanged_verify_candidate": "NOT_FULLY_REPLAYABLE_EMPTY_DIRECTORY_NOT_RETAINED",
+            "original_error": "Actual numbered markers missing",
+            "raw_CASE_json_matches_CI_result": true,
+            "actual_CI_full_gate": "PASS",
+            "empty_markers_directory_created_for_replay": false
+          }
+        ]
+      }
+    },
+    "unchanged_cold_read_actual11_DBs": {
+      "status": "PASS",
+      "result": {
+        "actual_offline_read_only_SQLite_checks": 11,
+        "local_sqlite_version": "3.53.1",
+        "CI_reader_sqlite_version": "3.54.1",
+        "records": [
+          {
+            "case": "baseline-deadlock",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "progress/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "8FFF9788-4FE6-4D51-BC57-63E204FD74C3",
+              "note": "original plain note",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "progress_default",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "progress/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "C3A99927-E826-4DBA-BEF0-F1C09AD32A55",
+              "note": "committed-original-repository-helper",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "progress_captured",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "progress/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "2877116C-73FF-451B-8DDA-A89423595505",
+              "note": "committed-original-repository-helper",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "stale_capture_queued_during_replacement",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "stale-wait/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "19B2CE91-0D11-4064-9774-BEC65AC20F1C",
+              "note": "original plain note",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "stale_database_with_current_lifetime_cannot_detach",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "wrong-database/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "4932D622-28F9-4DB7-BBE2-2299971F5469",
+              "note": "original plain note",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "current_database_with_stale_lifetime_cannot_detach",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "wrong-lifetime/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "5B89B2BA-5CC8-499D-A37F-E0CED4BD18B2",
+              "note": "original plain note",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "matched_capture_detaches_only_original_owner",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "matched/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "0B8096C2-FB22-4AD7-B2E9-26B7208E0620",
+              "note": "original plain note",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "nil_default_disconnect_preserves_later_setup",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "after-nil/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "BB9CAA0E-85F8-41E5-962D-89397C0FC917",
+              "note": "original plain note",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "repeated_default_disconnect_is_idempotent",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "repeated/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "3DE58EBE-87DF-4DB1-BD13-F59743EBFF52",
+              "note": "original plain note",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "reopen_preserves_rows_queue_and_retires_old_connection",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "reopen/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "FF2F80D6-331F-46EA-B109-CADB865ACAF1",
+              "note": "original plain note",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          },
+          {
+            "case": "rollback_then_disconnect_preserves_original_note",
+            "unchanged_cold_read_result": {
+              "status": "PASS_READ_ONLY_SQLITE",
+              "reader": "Python sqlite3 mode=ro after process reap",
+              "database": "rollback/Annotations.sqlite",
+              "sqlite_version": "3.53.1",
+              "row_id": 1,
+              "annotation_uuid": "7F027D9E-1E38-4C09-8BE7-3401E2A299EE",
+              "note": "original plain note",
+              "annotation_count": 1,
+              "tag_count": 2,
+              "pending_count": 2,
+              "integrity": "ok",
+              "uncommitted_note_absent": true
+            },
+            "differences_from_actual_CI_receipt": {
+              "sqlite_version": {
+                "CI": "3.54.1",
+                "offline": "3.53.1"
+              }
+            },
+            "all_semantic_fields_equal": true
+          }
+        ],
+        "comparison_scope": "same original unchanged SQL/refusal checks; engine-version observation may differ and is retained, not overwritten"
+      }
+    }
+  },
+  "errors": [],
+  "recorded_DEVELOPER_DIR_for_receipt_comparison_only": "/Applications/Xcode_27.2.app/Contents/Developer",
+  "source_before_after_identical": true
+}

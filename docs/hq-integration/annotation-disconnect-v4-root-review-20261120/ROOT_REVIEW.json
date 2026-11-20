@@ -1,0 +1,44 @@
+{
+  "status": "ROOT_VERIFIED_COMPONENT_RESULT_SOURCE_STAGE_ONLY_INTEGRATION_BLOCKED_PENDING_API_COMPATIBILITY",
+  "base_commit": "1146a249fdd94c345371c67a8d763f16223017ee",
+  "base_tree": "13d91ed50ac92ef4355fb430a0be8b13fc480ce1",
+  "qualified_F": "5bf1ddfc4a4b04dede8e8bdcaecabf3a7a5dddcd",
+  "qualified_M": "c1e0d33117154d578206195ef021d41fc2fa2b12",
+  "actual_run": 44808496839,
+  "component_result": {
+    "ZIP_files_CRC_verified": 569,
+    "actual_CI_scope": "local43+cold2+cloud48+exchange28+reopen2+expected-original-RED+candidate10",
+    "artifact": 14664188280,
+    "full_verify_race_offline": "NOT_REPLAYED: required Apple binaries are absent",
+    "job": 136538641362,
+    "new_combined_source_qualification": "NOT_RUN",
+    "offline_Native": 0,
+    "offline_Swift": 0,
+    "proposed_paths": 15,
+    "proposed_product_only_tree": "842707504dc2618ee2c8c71e1fbe57fa99ec0b34",
+    "run": 44808496839,
+    "source_before_after_identical": true,
+    "source_inputs_Git_verified": 102,
+    "source_tar_members_each": 103,
+    "status": "PASS_READ_ONLY_PACKET_AND_EXACT_SOURCE_PROPOSAL",
+    "unchanged_local_replay": "complete original Cloud/Local/Exchange; Repository scoped3+7 with disclosed retention boundary"
+  },
+  "sealed_paths": 51,
+  "production_test_helper_paths": 15,
+  "evidence_docs": 36,
+  "packet_manifest_sha256": "9616fabd380ac29972a812b8de37922e1e7bf4a97c2da226eb8ee8ecd8ab4809",
+  "source_review": "Full eight production deltas and PBX16 additions read. Original local-save path and defaults retained. Historical helper Core5d pin retained; combined current Actions/Core194 qualification is pending.",
+  "integration_blocker": {
+    "path": "Source/Core/Database/CloudKitSyncManager.swift",
+    "canonical_blob": "cb400f59c5154688532524622544e135634d5cca",
+    "original_trailing_closure_call_lines": [
+      506,
+      853
+    ],
+    "issue": "New optional completionNotification before optional completion has already caused actual Swift mismatch in the v3 wrapper. These two unchanged real production callers have the same original trailing-closure form and were outside the compiled23-file component closure. Preserve the original callable signature through a distinct required-label opt-in overload and qualify on Apple before advancing integration ref.",
+    "actual_new_caller_compile": "NOT_RUN; source compatibility risk inferred from exact previously observed compiler mismatch"
+  },
+  "integration_ref_updated": false,
+  "whole_application_native_qualified": false,
+  "root_tests_reexecuted": 0
+}

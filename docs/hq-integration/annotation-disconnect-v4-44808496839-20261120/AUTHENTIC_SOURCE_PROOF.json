@@ -1,0 +1,55 @@
+{
+  "status": "PASS_AUTHENTIC_ARCHIVE_AND_GIT_SOURCE_ONLY",
+  "run": {
+    "id": 44808496839,
+    "head_sha": "5bf1ddfc4a4b04dede8e8bdcaecabf3a7a5dddcd",
+    "head_branch": "codex/otzaria-annotation-disconnect-apple-v4-reviewed-20261120",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "event": "push"
+  },
+  "job": {
+    "id": 136538641362,
+    "started_at": "2026-11-20T20:07:39Z",
+    "completed_at": "2026-11-20T20:12:07Z",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "artifact": {
+    "id": 14664188280,
+    "name": "annotation-disconnect-original-red10-local43-cold2-cloud48-exchange28-crash2",
+    "size_in_bytes": 1742796,
+    "digest": "sha256:cd309d6806f1b0591b017564cbb807531114bf0564c7db63991a006f6a0f68fb"
+  },
+  "ZIP_members": 569,
+  "ZIP_crc_verified": 569,
+  "ZIP_files_match_retained_extraction": true,
+  "source_before_after_identical": true,
+  "source_files": 102,
+  "source_tree": "b9c57c6d231e4a42a262d4806bb1451d6f632116",
+  "source_archives": {
+    "before": {
+      "sha256": "57c62c5faf5d1ee6afe37d3262d0a296ba165bebc5f90b7780b108fd0a33570c",
+      "bytes": 374550,
+      "members": 103,
+      "all102_Git_blobs_match_F": true
+    },
+    "after": {
+      "sha256": "ab718ecc9b06c7224474fc873cb6c99263bb3c581aab878d9a8d72ab5d9df9f4",
+      "bytes": 374549,
+      "members": 103,
+      "all102_Git_blobs_match_F": true
+    }
+  },
+  "baseline_repository_api": {
+    "commit": "7af3a06d48ccbe77acef180cb99d120971c3804e",
+    "git_blob": "86512a8286560aedb248da4abea1a41f5c96ea0e",
+    "sha256": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af",
+    "bytes": 44176,
+    "connector_normalization": "none"
+  },
+  "original_CI_after_gate": "PASS_APPLE_REPOSITORY_RED10_LOCAL43_COLD2_CLOUD48_EXCHANGE28_CRASH2",
+  "offline_Swift_executed": 0,
+  "offline_Native_executed": 0
+}

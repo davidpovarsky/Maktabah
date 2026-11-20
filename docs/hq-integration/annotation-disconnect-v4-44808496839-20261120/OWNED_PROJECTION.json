@@ -1,0 +1,12 @@
+{
+  "root": "/Users/runner/work/Maktabah/Maktabah",
+  "fresh_absence_verified": true,
+  "owner": "hanlin_api_integration",
+  "purpose": "read-only unchanged v4 result validator projection",
+  "source_run": 44808496839,
+  "source_head": "5bf1ddfc4a4b04dede8e8bdcaecabf3a7a5dddcd",
+  "created_from_verified_artifact": 14664188280,
+  "artifact_sha256": "cd309d6806f1b0591b017564cbb807531114bf0564c7db63991a006f6a0f68fb",
+  "source_members": 103,
+  "evidence_members": 569
+}

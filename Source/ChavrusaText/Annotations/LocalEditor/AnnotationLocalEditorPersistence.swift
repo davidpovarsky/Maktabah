@@ -261,3 +261,167 @@ final class AnnotationLocalEditorPersistence: Sendable {
         return .init(receipt: receipt, snapshot: current)
     }
 }
+
+// MARK: - Explicit owned CloudKit completion on the same captured handle
+
+extension AnnotationLocalEditorPersistence {
+    /// The original local commit remains inside its original transaction code.
+    /// This outer transaction captures a provisional pending witness after all
+    /// of our writes, then finalizes it only after the actual outer COMMIT.
+    /// Finalization refusal never discards the already-committed local receipt.
+    func commitForOwnedCloud(_ intent: AnnotationLocalEditorIntent) throws -> AnnotationLocalEditorCloudCommitted {
+        var saved: AnnotationLocalEditorCommitted?
+        var provisional: AnnotationLocalEditorCloudWitness?
+        try connection.database.withSerializedAccess {
+            guard sqlite3_get_autocommit(connection.database.dbPointer) != 0 else {
+                throw AnnotationLocalEditorCloudDeferral.invalidPublication
+            }
+            try connection.database.transaction {
+                let result = try commit(intent)
+                saved = result
+                if !result.receipt.replayed {
+                    let pending = try cloudPendingLocked(recordID: result.snapshot.annotation.ckRecordId)
+                    guard pending?.operation == "upload" else { throw AnnotationLocalEditorCloudDeferral.pendingChanged }
+                    provisional = .init(saved: result, pending: pending, writes: try cloudWritesLocked())
+                }
+            }
+        }
+        guard let saved else { throw AnnotationLocalEditorError.corruptRecord }
+        guard !saved.receipt.replayed else { return .init(saved: saved, witness: nil, refusal: .durableReplay) }
+        guard let provisional else { return .init(saved: saved, witness: nil, refusal: .pendingChanged) }
+        do {
+            try withCloudLifetimes(account: nil) {
+                try connection.database.transaction { try validateCloudWitnessLocked(provisional) }
+            }
+            return .init(saved: saved, witness: provisional, refusal: nil)
+        } catch {
+            return .init(saved: saved, witness: nil, refusal: isOwned ? .pendingChanged : .ownerRetired)
+        }
+    }
+
+    func requireCloudWitness(_ witness: AnnotationLocalEditorCloudWitness,
+                             account: AnnotationLocalEditorLifetime) throws {
+        try withCloudLifetimes(account: account) {
+            try connection.database.transaction { try validateCloudWitnessLocked(witness) }
+        }
+    }
+
+    /// Requires a real successful upload at the caller. This method never calls
+    /// a live coordinator. It validates and deletes only this exact pending
+    /// version under DB→editor→connection→account, retaining those lifetimes
+    /// through the original COMMIT. Any unrelated/intervening write defers ACK.
+    func acknowledgeCloud(_ witness: AnnotationLocalEditorCloudWitness,
+                          account: AnnotationLocalEditorLifetime) throws -> AnnotationLocalEditorCloudWitness? {
+        try withCloudLifetimes(account: account) {
+            var next: AnnotationLocalEditorCloudWitness?
+            try connection.database.transaction {
+                try validateCloudWitnessLocked(witness)
+                guard let pending = witness.pending, pending.operation == "upload",
+                      witness.writes.totalChanges < Int64.max else {
+                    throw AnnotationLocalEditorCloudDeferral.pendingChanged
+                }
+                try connection.database.execute(query: """
+                    DELETE FROM sync_pending WHERE rowid = ? AND ck_record_id = ? COLLATE BINARY
+                    AND operation = 'upload' AND queued_at = ?;
+                    """, parameters: [pending.rowID, pending.recordID, pending.queuedAt])
+                guard sqlite3_changes64(connection.database.dbPointer) == 1 else {
+                    throw AnnotationLocalEditorCloudDeferral.pendingChanged
+                }
+                let writes = try cloudWritesLocked()
+                guard writes.totalChanges == witness.writes.totalChanges + 1,
+                      writes.dataVersion == witness.writes.dataVersion,
+                      try cloudPendingLocked(recordID: witness.saved.snapshot.annotation.ckRecordId) == nil else {
+                    throw AnnotationLocalEditorCloudDeferral.pendingChanged
+                }
+                try validateCloudSavedLocked(witness.saved)
+                next = .init(saved: witness.saved, pending: nil, writes: writes)
+            }
+            // Reaching here means DELETE really committed. Never add a throwing
+            // ownership/cancellation check after it or describe it as rollback.
+            return next
+        }
+    }
+
+    private func withCloudLifetimes<Value>(account: AnnotationLocalEditorLifetime?,
+                                            _ body: () throws -> Value) throws -> Value {
+        // Production construction always creates distinct lifetimes. Refuse a
+        // malformed injected boundary instead of recursively locking a Mutex.
+        guard owner !== connection.lifetime,
+              account.map({ $0 !== owner && $0 !== connection.lifetime }) ?? true else {
+            throw AnnotationLocalEditorCloudDeferral.invalidPublication
+        }
+        return try connection.database.withSerializedAccess {
+            guard sqlite3_get_autocommit(connection.database.dbPointer) != 0 else {
+                throw AnnotationLocalEditorCloudDeferral.invalidPublication
+            }
+            return try owner.withCurrent {
+                try connection.lifetime.withCurrent {
+                    if let account {
+                        // Distinguish refusal of the account lease itself from
+                        // errors thrown by the protected body. Capturing the
+                        // latter as Result avoids reentering the lifetime Mutex.
+                        let result: Result<Value, any Error>
+                        do { result = try account.withCurrent { Result(catching: body) } }
+                        catch AnnotationLocalEditorError.retired {
+                            throw AnnotationLocalEditorCloudDeferral.accountChanged
+                        }
+                        return try result.get()
+                    }
+                    return try body()
+                }
+            }
+        }
+    }
+
+    /// Caller owns the DB and all required lifetimes. Do not call isOwned/read/
+    /// requireCurrent here: those would reenter a nonrecursive lifetime Mutex.
+    private func validateCloudWitnessLocked(_ witness: AnnotationLocalEditorCloudWitness) throws {
+        guard try cloudWritesLocked() == witness.writes else { throw AnnotationLocalEditorCloudDeferral.pendingChanged }
+        try validateCloudSavedLocked(witness.saved)
+        guard try cloudPendingLocked(recordID: witness.saved.snapshot.annotation.ckRecordId) == witness.pending,
+              try cloudWritesLocked() == witness.writes else {
+            throw AnnotationLocalEditorCloudDeferral.pendingChanged
+        }
+    }
+
+    private func validateCloudSavedLocked(_ saved: AnnotationLocalEditorCommitted) throws {
+        try requireSnapshotOwner(saved.snapshot)
+        let current = try snapshotLocked()
+        guard let version = current.version, current.source == saved.snapshot.source,
+              current.version == saved.snapshot.version, current.revision == saved.snapshot.revision,
+              saved.receipt.namespace == Self.namespace, saved.receipt.annotationUUID == annotationUUID,
+              saved.receipt.mutationID == version.mutationID, saved.receipt.revision == version.revision,
+              saved.receipt.payloadDigest == version.payloadDigest, !saved.receipt.replayed,
+              saved.receipt.deliveries.isEmpty else { throw AnnotationLocalEditorCloudDeferral.sourceChanged }
+    }
+
+    private func cloudWritesLocked() throws -> AnnotationLocalEditorCloudWriteStamp {
+        let total = sqlite3_total_changes64(connection.database.dbPointer)
+        let versions = try connection.database.fetch(query: "PRAGMA data_version;") { $0.int64(at: 0) }
+        guard total >= 0, versions.count == 1, let version = versions.first, version >= 0 else {
+            throw AnnotationLocalEditorCloudDeferral.pendingChanged
+        }
+        return .init(totalChanges: total, dataVersion: version)
+    }
+
+    private func cloudPendingLocked(recordID: String?) throws -> AnnotationLocalEditorCloudPendingRow? {
+        guard let recordID, !recordID.isEmpty else { throw AnnotationLocalEditorCloudDeferral.invalidRecord }
+        let rows = try connection.database.fetch(query: """
+            SELECT rowid, ck_record_id, operation, queued_at FROM sync_pending
+            WHERE ck_record_id = ? COLLATE NOCASE;
+            """, parameters: [recordID]) { row -> AnnotationLocalEditorCloudPendingRow in
+            guard let key = row.string(at: 1), let operation = row.string(at: 2) else {
+                throw AnnotationLocalEditorCloudDeferral.pendingChanged
+            }
+            return .init(rowID: row.int64(at: 0), recordID: key, operation: operation, queuedAt: row.int64(at: 3))
+        }
+        guard rows.count <= 1 else { throw AnnotationLocalEditorCloudDeferral.pendingChanged }
+        if let row = rows.first {
+            guard row.rowID > 0, row.recordID.utf8.elementsEqual(recordID.utf8),
+                  row.operation == "upload", row.queuedAt >= 0 else {
+                throw AnnotationLocalEditorCloudDeferral.pendingChanged
+            }
+        }
+        return rows.first
+    }
+}

@@ -1,0 +1,48 @@
+{
+  "next_combined_regression": {
+    "activation_owner": "Root only",
+    "first": "bind all unchanged original component source inputs plus the actual new Core194 tree to a new immutable reviewed source closure",
+    "full_application": "separate actual Apple app build and required full Native116/Release114 remain required; SideSheet has its own isolated route",
+    "historical_evidence": "retain this actual Core5d v4 run and helpers untouched; a future source-bound metadata update cannot relabel this result",
+    "preserve": "same original43/cold2, cloud48, exchange28/process2, Repository expectedRED/10GREEN, all process budgets, exact cold SQL and marker oracles",
+    "state": "UNFINALIZED; Root supplies actual integrated commit after review/merge"
+  },
+  "owned_cloud": {
+    "acknowledgement": "exact original source, local revision, pending operation, captured connection and account lifetime are checked under database→editor→connection→account lock order",
+    "default_path": "existing save and original upload/debouncer path are retained; no implicit rich-body or exchange transport",
+    "entry": "explicit prepareOwnedCloudSave followed by saveOwnedCloud, existing saved annotation/session only",
+    "nil_identity": "local commit may remain durable while upload preparation stays deferred; a later discovered account is not adopted",
+    "original_core": "optional completionNotification defaults to original notifyWorkerToSync; original async wrapper explicitly names completion to preserve actual Swift6.4 overload binding",
+    "transport": "awaits and CloudKit callbacks remain outside the critical sections; already-admitted remote work is not rolled back by retirement"
+  },
+  "project": {
+    "added_lines": [
+      "\t\t748C74D5CF6846864D4BB910 /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };\n",
+      "\t\tAA0B2A425A2CDC8BAD52AF7C /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };\n",
+      "\t\tFEB4253270577A8B5205C105 /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };\n",
+      "\t\t3D61193ECD8DA163968A5427 /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };\n",
+      "\t\t9D3E374BD59EC6A061949F0F /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };\n",
+      "\t\tD3E72B183F56A898BFD45419 /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };\n",
+      "\t\t5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift\"; sourceTree = \"<group>\"; };\n",
+      "\t\t6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift\"; sourceTree = \"<group>\"; };\n",
+      "\t\t\t\t5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */,\n",
+      "\t\t\t\t6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */,\n",
+      "\t\t\t\t748C74D5CF6846864D4BB910 /* AnnotationLocalEditorCloudKit.swift in Sources */,\n",
+      "\t\t\t\tAA0B2A425A2CDC8BAD52AF7C /* AnnotationLocalEditorCloudOwnership.swift in Sources */,\n",
+      "\t\t\t\tFEB4253270577A8B5205C105 /* AnnotationLocalEditorCloudKit.swift in Sources */,\n",
+      "\t\t\t\t3D61193ECD8DA163968A5427 /* AnnotationLocalEditorCloudOwnership.swift in Sources */,\n",
+      "\t\t\t\t9D3E374BD59EC6A061949F0F /* AnnotationLocalEditorCloudKit.swift in Sources */,\n",
+      "\t\t\t\tD3E72B183F56A898BFD45419 /* AnnotationLocalEditorCloudOwnership.swift in Sources */,\n"
+    ],
+    "base_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+    "only16CloudMembershipAdditions": true,
+    "original_lines_removed": 0,
+    "tested_proposed_blob": "eaf385c363750e04688a4cda181f40597f22f315"
+  },
+  "repository": {
+    "after": "capture database/lifetime under short state lock, release it, then acquire original database serialization before matching state owner and checkpoint",
+    "before": "state lock held while checkpoint waits for database; a transaction holding database can need state",
+    "unchanged_semantics": "fresh replacement is never detached by a captured stale database or lifetime; nil/default and repeated disconnect remain supported"
+  },
+  "scope": "narrow actual-tested product/test/helper integration; no historical whole-tree replacement"
+}

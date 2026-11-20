@@ -1396,8 +1396,14 @@
 		9D6C002E3485E64BCFCAB334 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
 		2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
 		387C03A49E4420CA3ECF3308 /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
+		748C74D5CF6846864D4BB910 /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };
+		AA0B2A425A2CDC8BAD52AF7C /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };
 		2636D2D8F62C8C21A825A12A /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
+		FEB4253270577A8B5205C105 /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };
+		3D61193ECD8DA163968A5427 /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };
 		D627561A0D3655B435E380A6 /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
+		9D3E374BD59EC6A061949F0F /* AnnotationLocalEditorCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */; };
+		D3E72B183F56A898BFD45419 /* AnnotationLocalEditorCloudOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2189,6 +2195,8 @@
 		CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorModels.swift"; sourceTree = "<group>"; };
 		60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift"; sourceTree = "<group>"; };
 		5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorSession.swift"; sourceTree = "<group>"; };
+		5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorCloudKit.swift"; sourceTree = "<group>"; };
+		6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorCloudOwnership.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2276,6 +2284,8 @@
 				CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */,
 				60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */,
 				5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */,
+				5A359700A2506E3711CC0577 /* AnnotationLocalEditorCloudKit.swift */,
+				6C3BED4CF01EECC5A846C415 /* AnnotationLocalEditorCloudOwnership.swift */,
 				9F5BEF33F7E721EEC8281795 /* Global Search UI */,
 				93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */,
 				177DC9EB2AB8099576B13411 /* ThirdPartyNotices */,
@@ -4301,6 +4311,8 @@
 				C4D9F799C43B95EC13DAFE68 /* AnnotationLocalEditorModels.swift in Sources */,
 				339269F3BD193BCD1D8B9A27 /* AnnotationLocalEditorPersistence.swift in Sources */,
 				387C03A49E4420CA3ECF3308 /* AnnotationLocalEditorSession.swift in Sources */,
+				748C74D5CF6846864D4BB910 /* AnnotationLocalEditorCloudKit.swift in Sources */,
+				AA0B2A425A2CDC8BAD52AF7C /* AnnotationLocalEditorCloudOwnership.swift in Sources */,
 				E87B9F1B268D74CCA1A03D7E /* TorahAnnotationEnvelope.swift in Sources */,
 				12625FDCCD291F169D6788B2 /* MaktabahBookUpdateSafety.swift in Sources */,
 				E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */,
@@ -4657,6 +4669,8 @@
 				FDFFEE666030424CBE21238A /* AnnotationLocalEditorModels.swift in Sources */,
 				9D6C002E3485E64BCFCAB334 /* AnnotationLocalEditorPersistence.swift in Sources */,
 				2636D2D8F62C8C21A825A12A /* AnnotationLocalEditorSession.swift in Sources */,
+				FEB4253270577A8B5205C105 /* AnnotationLocalEditorCloudKit.swift in Sources */,
+				3D61193ECD8DA163968A5427 /* AnnotationLocalEditorCloudOwnership.swift in Sources */,
 				D063CFCD71B1E5C5250AE920 /* TorahAnnotationEnvelope.swift in Sources */,
 				36A587F9D67487F899E8D564 /* MaktabahBookUpdateSafety.swift in Sources */,
 								CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
@@ -5018,6 +5032,8 @@
 				AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */,
 				2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */,
 				D627561A0D3655B435E380A6 /* AnnotationLocalEditorSession.swift in Sources */,
+				9D3E374BD59EC6A061949F0F /* AnnotationLocalEditorCloudKit.swift in Sources */,
+				D3E72B183F56A898BFD45419 /* AnnotationLocalEditorCloudOwnership.swift in Sources */,
 				EA8CD1F296E0EA146F79764C /* TorahAnnotationEnvelope.swift in Sources */,
 				DFC8CE07B634812E1D8AF37E /* MaktabahNativeIntents.swift in Sources */,
 				98A05700AC19A0B451C190A6 /* OtzariaHanlinHostAdapter.swift in Sources */,

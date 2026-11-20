@@ -122,11 +122,33 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
     }
 
     func disconnect() {
-        state.withLock { s in
-            s.localEditorLifetime.retire()
-            s.db?.checkpoint()
-            s.db = nil
-            s.syncPendingStore = nil
+        // Capture once, then release state before waiting for this database.
+        // An existing transaction may need repository state to finish its
+        // original writes; holding state while checkpoint waits would deadlock.
+        let captured = state.withLock { (database: $0.db, lifetime: $0.localEditorLifetime) }
+        guard let database = captured.database else {
+            state.withLock { s in
+                guard s.db == nil, s.localEditorLifetime === captured.lifetime else { return }
+                s.localEditorLifetime.retire()
+                s.syncPendingStore = nil
+            }
+            return
+        }
+        disconnect(database: database, lifetime: captured.lifetime)
+    }
+
+    // Retire only the captured generation. If another connection replaces it
+    // while this call waits, that new connection is not this teardown's owner.
+    // The original no-argument path always enters through this implementation.
+    func disconnect(database: SQLiteDatabase, lifetime: AnnotationLocalEditorLifetime) {
+        database.withSerializedAccess {
+            state.withLock { s in
+                guard s.db === database, s.localEditorLifetime === lifetime else { return }
+                lifetime.retire()
+                database.checkpoint()
+                s.db = nil
+                s.syncPendingStore = nil
+            }
         }
     }
 

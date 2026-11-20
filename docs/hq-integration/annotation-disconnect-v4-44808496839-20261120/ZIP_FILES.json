@@ -1,0 +1,3416 @@
+[
+  {
+    "path": "annotation-disconnect-route/after.json",
+    "bytes": 54140,
+    "sha256": "40da5153d36a54f0d03d3b4f6bc9a87432216a3f4c36b14228b70602a1939dec",
+    "crc32": "758cb4a4"
+  },
+  {
+    "path": "annotation-disconnect-route/before.json",
+    "bytes": 41216,
+    "sha256": "6fbee56014428fcc9543c6bb5b6a1601dfa61edce331aa24d2f52cdd9e9970eb",
+    "crc32": "004ffa0f"
+  },
+  {
+    "path": "annotation-disconnect-route/bootstrap.json",
+    "bytes": 604,
+    "sha256": "3f68de63f01379a93631e1d01f883910886f617cff1937a2b0d1351c0ea5596c",
+    "crc32": "9e44e1bb"
+  },
+  {
+    "path": "annotation-disconnect-route/python-controls/RESULT.json",
+    "bytes": 6195,
+    "sha256": "0465e302b07c314981a5f5aeb4b5c962e838254ac138580a6492c81bc9afd218",
+    "crc32": "3090a234"
+  },
+  {
+    "path": "annotation-disconnect-route/python-controls.log",
+    "bytes": 4031,
+    "sha256": "7dcd98ef1b38a2adbcb94cd3c1e5f207a34eb2cf64e1aef8a3b12988e8a92b5b",
+    "crc32": "ed32d4f4"
+  },
+  {
+    "path": "annotation-disconnect-route/source-after.tar.gz",
+    "bytes": 374549,
+    "sha256": "ab718ecc9b06c7224474fc873cb6c99263bb3c581aab878d9a8d72ab5d9df9f4",
+    "crc32": "236deb31"
+  },
+  {
+    "path": "annotation-disconnect-route/source-before.tar.gz",
+    "bytes": 374550,
+    "sha256": "57c62c5faf5d1ee6afe37d3262d0a296ba165bebc5f90b7780b108fd0a33570c",
+    "crc32": "1e5d4c8f"
+  },
+  {
+    "path": "local-annotation-cloud-route/python-controls/RESULT.json",
+    "bytes": 20854,
+    "sha256": "6bd6546d6a64d63014b1e63740ada922687d5a27c0d97ccaf12603002a279092",
+    "crc32": "aaf9010e"
+  },
+  {
+    "path": "local-annotation-cloud-route/python-controls.log",
+    "bytes": 5404,
+    "sha256": "a19f8a1f712e8398edd4f8f7cac77a22400da91e464e6904317e662a4c1470d1",
+    "crc32": "ce25c3bb"
+  },
+  {
+    "path": "local-annotation-cloud-route/sql-premises/RESULT.json",
+    "bytes": 5627,
+    "sha256": "05ad972f5203091dfc28e799581c9948a2e08b4c6f7053793e35b49136bd938b",
+    "crc32": "9992c41d"
+  },
+  {
+    "path": "local-annotation-cloud-route/toolchain.json",
+    "bytes": 13019,
+    "sha256": "6933c7e1244da642f0ae8b16ff310f44865fc6a1bc22587b5da72c041b05480b",
+    "crc32": "06dc345c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/RESULT.json",
+    "bytes": 55342,
+    "sha256": "83268eb7ba566c2425a863586eaa32877b44f176707c35bc4ae6b5942d1a0184",
+    "crc32": "1bd1876c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/binary-path.log",
+    "bytes": 151,
+    "sha256": "db3962a4b68a9456d9ef8d07991cb37e221b7b7f9d75fbe5031d11133b28fe96",
+    "crc32": "c170b460"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/cloud-cases.log",
+    "bytes": 3208,
+    "sha256": "68147bd5eecb40e67cf8f01cb4fd092daa814d41e7bf0f3e623b471e46d87f87",
+    "crc32": "d47aed7d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/cold-reopen-final.log",
+    "bytes": 51,
+    "sha256": "532a869f7d5e43607842292cc1b3fc7fef8f3b4f8d1e7e4163dc5963995af474",
+    "crc32": "07254ba3"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/cold-reopen.log",
+    "bytes": 45,
+    "sha256": "5750aeb1fcd96af3ed5d44a6f745be82c8f2ace69709bd6825a61231294188b4",
+    "crc32": "59645c2e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/cold-write.log",
+    "bytes": 44,
+    "sha256": "f4aeaaee079d21d2e46c2ed3e8da03b2b31a7845a9d83a5aaa18988042735e79",
+    "crc32": "47c4d6b5"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/compile.log",
+    "bytes": 1358,
+    "sha256": "cb7f103899f0d2545184346dffb033d0786d9d7f7820c75e4b25b6b855dbbe68",
+    "crc32": "57e82747"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/component-cases.log",
+    "bytes": 2519,
+    "sha256": "3b3c441dfdff649a92a9694eb85fbb36d2be9b80c16af35bd65abdb255d90e93",
+    "crc32": "45b24f35"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/CASES.json",
+    "bytes": 5186,
+    "sha256": "88d8aafb18a98b2119f81077e2785b9c181b6906c4f262426223b31c647172d3",
+    "crc32": "6692d215"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/aliased-lifetime/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "d326c7ac38e6432c858943858655228690b3a2f5e2378a687b25f4d8e5cce602",
+    "crc32": "3b25b9fa"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/aliased-lifetime/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "d870bc41ca2ce7fa4cff7752a65756ba25e8b413a399e6b7b624e85d9f57c0ee",
+    "crc32": "1ccbb656"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/aliased-lifetime/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/ambiguous-pending/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "860df54bd18910f71de2d555e767b36fc614f6e7f64df08f0c7aceb3269d84f6",
+    "crc32": "9ef5f576"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/ambiguous-pending/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "2fa3f1009c36dc736a1d43c1f2a8e85ddcabe46064a5bed34274b1e93be97583",
+    "crc32": "94c7e66f"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/ambiguous-pending/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/before-save-retired/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "149bac374c528d1a568787952f8a2af04e5ed51ce0a62ed563686e0ff05a5cbb",
+    "crc32": "85497870"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/before-save-retired/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "76189644c5d63d16b9a66551994c8a5db95eb69cabb55c531e17df4f73442367",
+    "crc32": "1634c2e5"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/busy-prepare/Annotations.sqlite",
+    "bytes": 4096,
+    "sha256": "2e96884c16791c7d4bde90a6db2c9da33c2a2aab3e52088adc148c368552a423",
+    "crc32": "ec945948"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/before-save-retired/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/busy-prepare/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "9a78c495becba701acd53ba326374e490c1fe79d90fae36cc99bd51eab2d5cd9",
+    "crc32": "86dd5830"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/busy-prepare/Annotations.sqlite-wal",
+    "bytes": 238992,
+    "sha256": "105004b04c637cde2c394ab2b18bcbde4075849de0b6f6748d91996e790dcc7e",
+    "crc32": "ac0c183f"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-account/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "47fe3635abe37f750f05817fccf5bc0420f170e08305b338f051901fd153cfed",
+    "crc32": "ed6f6782"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-account/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "9e2ecff39a6f2b4df63ef97a3dceb5d61ce8809225b6fa1c9b119dda33c4d9d5",
+    "crc32": "d72bd017"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-account/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-owner/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "b13e0e010ce4dfb0b8bc7c895d58dbb2ca5b81d5192ddb99c2e7160ab2ae65cc",
+    "crc32": "25a4eb26"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-owner/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "8b35150f833df707dc2b3822bdaf021fa58aab361e948fff12f0cdac7ebd6aeb",
+    "crc32": "ab2ef53d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-owner/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-permission/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "9de00aa2adc15ec2062c4f86fd8aa6386ebc2aba2b031f104f833e74fb2f5436",
+    "crc32": "bcca21aa"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-permission/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-profile/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "7b033de541f6daac4f539dc5ab5ca2dc064e42f1d92dd7dc315261e3b99fe6dc",
+    "crc32": "4ac8b00e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-permission/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "53d58906f3d4cbcd089da513292a54600cb851d49a7a9d47252700aa90353d00",
+    "crc32": "f76414b7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-profile/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "3ea89937e49041b28a71663820b61f586982898d4b0b9b76fdc90ff67354482e",
+    "crc32": "27977126"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-profile/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-tamper/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "206126269869a882a3dc3570569a4e98dbb78551250c05844dfd0329c97ed6d8",
+    "crc32": "60e0e4a1"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-tamper/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "0a8f62ae30f61615ed84c0e1c74ce15b3fb6fe0f9765a79f9932371c78ba2cd6",
+    "crc32": "2eb83fc0"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/debounce-tamper/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/durable-replay/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "4fc2d8f5ffda084f396ba912d4cf4cae60e24da795c5a5b7e57a867ada190168",
+    "crc32": "980dbe75"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/durable-replay/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "95832a1cf3749715466bdac31b0466ec7821b6b5a359b383bece298299b05b12",
+    "crc32": "8707963d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/durable-replay/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/failed-identity/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "b7ba2370ccf0ad342ba55dbc7e4ce73ef40c18f66146d837073180846230a6cd",
+    "crc32": "778cfe02"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/failed-identity/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "17055f9f25c7487bfa34c8e91ee8b85847220e12bb132805852881b643bf52e7",
+    "crc32": "85409090"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/failed-identity/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/foreign-session/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "e9f28791ca2aea16fd6778206b7d769dc4f9b8257e8a28afb5286371c9498473",
+    "crc32": "02a5e090"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/foreign-session/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "f68760e9bc90c6427e28268f4a38958b8bbb7493ea08b3ef039f3ded4a00dc17",
+    "crc32": "abf1f538"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/foreign-session/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/locked-account-retired/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "c0da1b3f1193392c4a6cc7677d855491e2affb75a5e57c2609da1618653f2653",
+    "crc32": "462e24b6"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/locked-account-retired/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "87a3e34102db0282442397d4590037b602187dc4ecc67cc7d7785588a6567115",
+    "crc32": "05d950f7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/locked-account-retired/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/missing-client/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "937859a4ff0d6e7f3d8aaa44da275071e0fe19843aeba5dc47100f3068e98b1b",
+    "crc32": "d2c6fcf1"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/missing-client/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/missing-client/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "a059dfd26a9dfc922f99f414378b6f0cf47a3736bd6c66822cd5607eae77e24e",
+    "crc32": "ee8182d6"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/missing-identity/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "5caab6d4d9b7aa84ccf7ce8e27884578bb97e1e36227747e01d355c533319f02",
+    "crc32": "15492465"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/missing-identity/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "2f247e0fc3a60fde806850ff9315cec29a59f6cd7e850357b7758bc35e897e99",
+    "crc32": "1654d39c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/missing-identity/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/one-use/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "7dabe58cb01e036be055e33ab8c73ab52c194d6161dd0676af81c14dac3a40d0",
+    "crc32": "e5ce22fd"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/one-use/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "0ef93974810c07f96f1998fc2680a07c99cb74bbaa622b875b5400f65e845a54",
+    "crc32": "46dececc"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/one-use/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/outer-transaction/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "b9f8c277303389dbdd039f902b6eb2e8b0c3ccf0f6d00224270b38aa595c256a",
+    "crc32": "8fa3d2a6"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/outer-transaction/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "b94611f9bb20f455d674e7c4afbe5130c501de74ab6a2092d88272bc3aaa4035",
+    "crc32": "2d731dfd"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/outer-transaction/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/post-ack-new-pending/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "ae498e07a2219f5ba795612d015ce7d8efa899cc7a320892484e2f58f7d4da33",
+    "crc32": "5cfa299b"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/post-ack-new-pending/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "f542bb29fcfa83a5dc220dd92c1cc0ce76506207d356979b732ad0855d47af4c",
+    "crc32": "baee64dc"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/post-ack-new-pending/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/post-upload-lookup/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "82fb7cc23f3a866c7157e42ed01011f9f25548ad5405ae9dc104636cbe478188",
+    "crc32": "079d2bc3"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/post-upload-lookup/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "db56aa1d90674e995ba76d0011a081acf3393594d60285bb1e04c3d6afbbd824",
+    "crc32": "8a1cdeb3"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/post-upload-lookup/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/prepare-account/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "990c65b9bd5cee923432fd78d18d5f4ef729c104e75ab0ee9f9445adb0525e3d",
+    "crc32": "29cf1bf4"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/prepare-account/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "34a98b37069b0dfa602bab462d46b54be3300df798f2f992b93254eae779f983",
+    "crc32": "974aecf9"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/prepare-account/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/prepare-owner/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "ecad905dfa8531dd81a441cf6ad02966a9ef8eadade604fc89d08eddc4837a7b",
+    "crc32": "137afff1"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/prepare-owner/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "02ae0558199c91288d1d4bbede0ad0003d502a7e8fa527b8065065a7b1ef54a6",
+    "crc32": "1bc2147e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/prepare-owner/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/prepare-source/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "138c951e198ede6e0d143026194ec4ffa12a50a4bec1a9669344de33f5c0b59b",
+    "crc32": "00995413"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/prepare-source/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "7e51302507ac3c100e1e85cd1b4b7463c1eb5ef351f1e5b3ba804568e6e6bbbb",
+    "crc32": "dee48c21"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/prepare-source/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/real-debouncer/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "18ca1f87fb1fdee6eb3f392d7843581bea6d56024ca3c1a063e97bd8ff414209",
+    "crc32": "a937a8a7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/real-debouncer/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "5e8a660a6b08cdd0cced6bbd97d5d5bf6b1e1821631c39dc740548c8d5f28326",
+    "crc32": "29d3995b"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/real-debouncer/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/record-mapping/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "7fd422372081d94ee59283b8cc13ab36fe222aef36d3a1bee210f47f3d079fa0",
+    "crc32": "fdcefafd"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/record-mapping/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "501076a6859fc2db15372acb175fbb7863945064c1c9b5535291e9a36fec13f3",
+    "crc32": "fa8d0034"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/record-mapping/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/success/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "08f13217273cd81afef9f51af4a9fe28cd9ce485b72040802f613db7be9d4224",
+    "crc32": "5a4f3682"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/success/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-account/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "a6e0caf5eb942f52f0b0bc003946126661dac89b4e864b6448b9cd3a14030be5",
+    "crc32": "4bc48f09"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/success/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "b2e174ab0353604d971d97292513161aaca3981b1a53c458d6e44a80182b4e30",
+    "crc32": "228de363"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-account/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "80d427dd83aa3d87bf494a26e4c45b41102f46181258f1b42fc94efb746573aa",
+    "crc32": "d5c89e00"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-error-owner/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "9346794113c4431b2c6d0c809572ffe9d3defbdb5e4f7d07a743fa0b40128d31",
+    "crc32": "52deb183"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-error-owner/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "279a85021c57fd044201cdd551e6710f7a53ab91dbe2511933b717bd81468a06",
+    "crc32": "4abcc8b9"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-account/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-error-owner/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-failure/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "e34ee79581bda6ee11e3b504e1a4d016fc0327836ebc7dc569b5467ad5fa60ed",
+    "crc32": "6a3a2e88"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-failure/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "f31c894ef3fd014fee6db30507326775b4ea014271149eed95ef007c5d1004bc",
+    "crc32": "0a5c7817"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-failure/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-foreign-aba/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "2a8f9bd35e482106de9af6d98e8d936617f1f263ea2125e5934e801d6d0a9870",
+    "crc32": "557b2259"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-foreign-aba/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "1b4fb61338763bee3889cc53a4c7ea5fec425dc77a460a2735d5b539e6d5a3f6",
+    "crc32": "15eded04"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-foreign-replace/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "cd588695217acc25312664200935828764ddb37d8d23ccb601e87064c8e85a16",
+    "crc32": "3b5b357a"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-foreign-aba/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-foreign-replace/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "c94958a520387a13b2338973a8c774975dc025ef43ce54cebaf76085face8622",
+    "crc32": "837b2085"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-foreign-replace/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-later-delete/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "eac4ccde8f9a55721423017528524bea9ff4a4d4b70318fcec3f256b749ccfc4",
+    "crc32": "80202376"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-later-delete/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "a742dbb19c5aacae12b8d306990b0ee57c7fc889c84e4eb1e1cd39c52a3b549c",
+    "crc32": "b77f6fd7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-later-delete/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-local-replace/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "0c79e56c6d77920c2ab7931fe1fcd08b4e5a12d37380bf979d71fa88bd05f05d",
+    "crc32": "020c9af5"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-local-replace/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "eddd75e65eee8693deecc585f55431f12176b0e2c4828a6ca9bab4a4787125c0",
+    "crc32": "2ea85ec8"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-local-replace/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-new-revision/Annotations.sqlite",
+    "bytes": 114688,
+    "sha256": "a6e40325922ad0d99ca4793e23aecc98119b2932fa08b3c82aedd98f63a0a14f",
+    "crc32": "4c2af999"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-new-revision/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "52bc310d68b98254986c7f72403b452f23e616ee02d657d8c05431231c490cfc",
+    "crc32": "c08ad2d8"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-new-revision/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-owner/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "52ab773e7f37ec88c7e8a9d0faae774bdb21370dace311525bcc28c493a6cb7b",
+    "crc32": "8642923a"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-owner/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "4c3ab57b49f1b609e059eb233f36f53da41a2d6a949edf75b7330d7228fc7aad",
+    "crc32": "d2199fc7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-owner/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-permission/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "c7d833755ed04b8d665d7de52d0b4045b368a89472b0421c3cb7b4a01c63a5c7",
+    "crc32": "22082168"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-permission/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "48aeac4c76cb5fdf0522c4764759da26aab97f81879952f60bff4e6285949034",
+    "crc32": "9ebec10b"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-permission/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-profile/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "bc728c64b4f4a0fc51d9e769325e2eccc4b21894a10294495dc5aa0bcbb3c53e",
+    "crc32": "c5d21acd"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-profile/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-profile/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "fc31aa08a1633145295e9842daf57d10bcb2ff54421214dde0bde7f74392ce8c",
+    "crc32": "6fa07411"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-tags/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "2abd4fce96785b58dd664eb7026953cb38b10a2c3bedaafee62899f8b077325e",
+    "crc32": "b7d52d8d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-tags/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "7c58ff3a4ea78201d8e25d009995cb381938f21a94ddf086f2f01e6d9c237188",
+    "crc32": "a2a853a7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-tags/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-unrelated/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "f13a2204bc52039abf2a095389c65f26c44c2a72c1e5ec66861bd706e859e9b6",
+    "crc32": "58939f8d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-unrelated/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "2fc4591c95139dd1b7bbef75dae0d1a6872266dd7bcb1f87283d3487dac3182b",
+    "crc32": "33f78562"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/upload-unrelated/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-account/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "8a89cce6983bc4dcdd89d0acbb30ef3e2542bcf8cb219471d3646e1c8e871e17",
+    "crc32": "022dec50"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-account/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "16fcf74af23776c6fea76f8821d32d903e218e7b06f0af50e55fb007a12d0f23",
+    "crc32": "18f9eff3"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-account/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-change/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "b8b1d51dfc64b3d558de403d25f118276d3717fd95e556da3d9e7b64f303cfc2",
+    "crc32": "ccf449ad"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-failure/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "a0439dd7beccc1ab35b83f28cd297c7c5da91fa700658faf56ba13c1c179e15a",
+    "crc32": "8f2e06bd"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-change/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "a859b18c52a81dc74a292375d285ae1e88c967f329f742f32e51bd3dc283b9d9",
+    "crc32": "8f59df78"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-change/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-failure/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "38179638b2ac5970667797661f032a4f0fba4bb5c9890c8287448eb74bbf9c80",
+    "crc32": "6eb77b2f"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-failure/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-inflight/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "492caf728d3c0a3db781d8dd4242288a8fe7353187e0777c181e30b91d53560b",
+    "crc32": "32c756c1"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-inflight/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "ecf643e3ea32f09b9016f82a0094837e062c8152d0086d195a6ca3d363e08747",
+    "crc32": "dda02633"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-inflight/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-no-request/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "29b8930a5e13041c2fa9df64fc1bf9665640fe615b1a7a9f855a2fddd639c736",
+    "crc32": "243e0953"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-no-request/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "a7a1d73264c48ab98c7fbfd4ae9365b140f7bd8cc3f80bcbb1bb01dea136bc1f",
+    "crc32": "03d6e72e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-no-request/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-owner/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "e4fa5c656c95c5058fdbacd78bb9fa12cd08a236270c860f7d8c641da779aff8",
+    "crc32": "f6144a12"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-owner/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "85e5a328dd35b11043ca3f635b371cc141c1a4a7026f0d897e8d466638e20b57",
+    "crc32": "8f96d4cf"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-owner/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-permission/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "a1927442aee29ced04f068319349d335b5dc4d7dc1e549b20b7d44296f77e569",
+    "crc32": "51ccaedd"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-permission/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "e02543fb6c56d3339735185de4b9b49444556ea5f8c937160df800cf0651a8e0",
+    "crc32": "ee01e20a"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-permission/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-success/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "fe761306235c878aec9c34f6415139dec985948359fa2cc59031fe3ea7b05cbb",
+    "crc32": "b7258a83"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-success/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "70722608652e5eedc418e404b3b9a2c64f9e2fc97ea893f5b51bb10f9d914f01",
+    "crc32": "c829d8f2"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/cloud-fixtures/worker-success/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/CASES.json",
+    "bytes": 4289,
+    "sha256": "c27c99ae9ba11d8f7e2533241f36737e4b92c4787d5a4251342dad0017ed15f6",
+    "crc32": "0829c7ec"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/ambiguous/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "a4c59ad88d0987f0e9485ca29cc006417f2a2f20ec4591c64f4cd663ea91807f",
+    "crc32": "62874af4"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/ambiguous/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "ea72ff4a06cd8a62b90d1067d40513508629be003ecbead2deaa59074cbae9c7",
+    "crc32": "38644912"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/ambiguous/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/body/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "0ae30ebfe0f6e329d3a33743157bc485ad1a3e18959a93d6dc53ac669b0ae5f9",
+    "crc32": "5dd0edf2"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/body/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "52537d80bc2e35f53bf3455de6fec47c7f4cb851fe2c82523bb891fc7986728c",
+    "crc32": "29c71ce7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/body/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cache/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "1b5b1bf705363de83af26c9487f0e8e029b4fadf848bfeb7316946a1d532d9ff",
+    "crc32": "48bca7c3"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cache/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "5bfa8ba8d2c2f1de8988ff079732bd722d0adcca60eb7ccae4e0bb56eb616d7d",
+    "crc32": "13196f7d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cache/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cancel/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "f1b69f44ba856ed34d800d7acebc98bd00e9fdbeca76086fc32160f7ac615aa3",
+    "crc32": "03fe14c8"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cancel/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "0be4d209406cd2b1180ee21ec5fbe5b6378d45942dd66e1b9d9687bcb1cdadf4",
+    "crc32": "68f2545d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cancel/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cloud/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "27c878bb9d8dd01029d05e01b4109af071fcd5ddcb0faa7cd1daf9b844da94e4",
+    "crc32": "cd944947"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cloud/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "2b5ae9266ad025cd2bed175e2a07d1f83b82a86b1f90b7af9b53b3354e9bfc16",
+    "crc32": "e555f421"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cloud/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cold-expected-1.json",
+    "bytes": 5309,
+    "sha256": "1b6525879b6da7bbc3679d51c45479ac7c6130f33dec9928cbd1b2c33bac95fe",
+    "crc32": "a6bf0994"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cold-expected-2.json",
+    "bytes": 5432,
+    "sha256": "45a61277a4473bc8197d350f45a26bb4c63f1a06684723f25a88f010ef8c7687",
+    "crc32": "2c6ae457"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cold-profile/Annotations.sqlite",
+    "bytes": 4096,
+    "sha256": "2e96884c16791c7d4bde90a6db2c9da33c2a2aab3e52088adc148c368552a423",
+    "crc32": "ec945948"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cold-profile/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "eea3f76cbe5dddea969bbdaf2bada88567091cd1acd6fa3fed1a5790f9aa951e",
+    "crc32": "a99857c4"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cold-profile/Annotations.sqlite-wal",
+    "bytes": 271952,
+    "sha256": "91ced07d53c5254972aa2c79f663a4b0608c2e92dc89adfd6dd7d85de3c9ec14",
+    "crc32": "b09418bd"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cold-reopen-final.json",
+    "bytes": 475,
+    "sha256": "8cfee80e6a3c19f33d3ccc5cd2b0a073afd5d15380919e3b6a05f779f0032b8d",
+    "crc32": "8473e3e9"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cold-reopen.json",
+    "bytes": 469,
+    "sha256": "9743e5a8a67675175f0373405ce6a4a2c0902597d871d2f0a0275ff65e19090e",
+    "crc32": "137f80d3"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/cold-write.json",
+    "bytes": 441,
+    "sha256": "45b0d879cbf6c77d53c370c901913c923a013fc6b67f4f1a8eb5bda22ae8ea5f",
+    "crc32": "c1984897"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/conflict/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "d83c8e202dacedc7fcf1269ff6c6a3c40d8d7c9ec6a0e8ab98685541076f719f",
+    "crc32": "bcb291de"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/conflict/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "093548100092b7a7f6df401756529e933d7c48e8109c7fbc7c542a83923702fb",
+    "crc32": "d14c2d16"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/conflict/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/conversion/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "2c84fc5bf8db44fd2a656fcff1991b7adbf471d39f0d79bd6de0076c8f294f9f",
+    "crc32": "90ac35c0"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/conversion/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "c0a45732b2c9eaf7e3fe5dbe256d3f4c723cc458f63af5a5a3c62507dbeea02a",
+    "crc32": "50e4c831"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/conversion/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/delete-wins/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "48d4ac3c128e886ec65131309e1b6b348a40463770d4d50e0ed1a06b810bf306",
+    "crc32": "fca6a1ac"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/delete-wins/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "c9bfdfe9c9e4a2ecaa25bfbd622e93f093a2d7d409d2ac458852e2b68c1a7c3b",
+    "crc32": "c9bc6e60"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/delete-wins/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/digest/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "b2c5db8033814c5a3f074839464a81ce1cb1c6c24909f3dd51c5d37d5419890f",
+    "crc32": "c0063008"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/digest/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "42fcc40a562d290917a962dc566fbdf9981326251b35183d81450b85ffee7716",
+    "crc32": "b636a352"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/digest/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/exchange-empty/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "a8a71c1293f62db33b32117be25374800f91b04d0cefbeecbcbed821bad8bb60",
+    "crc32": "232f18af"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/exchange-empty/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "8653d3e728ee63f41cda4b1baf0206b936f956959a7d17f52087234c67734036",
+    "crc32": "f2a97291"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/foreign-owner/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "657de3fa7b3f7d7ede41f89951405c7238e7100e03442a1fe9b3f9ebca357e29",
+    "crc32": "e5ec0c44"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/exchange-empty/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/foreign-owner/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "5830ae428921180f68ee57d83b25229ea62a6e9830ea4b6e54882476f818f6c9",
+    "crc32": "9b30ce30"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/forged-document/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "35735d0d8d5d398824c5484a712b00d53b86b8f3be2546e6e27a16484ea62442",
+    "crc32": "8d263233"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/foreign-owner/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/forged-document/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/forged-document/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "5eb9f853dfc3c303547ed856e4e01df5c237a24aa0a99381c614f54dfc38457e",
+    "crc32": "0ce77f5e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/future-envelope/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "71c8e9a8c691975df756db6b8c31bb57d854bc8dab3ccf4e283d6b276731bae0",
+    "crc32": "aafde13b"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/future-envelope/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "71a0b91e347b2f0bce20acecc0ef5f7da9a47386cbd15ca9ab808aba0f044ef1",
+    "crc32": "cd888d42"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/future-envelope/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/future-schema/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "bfc0642940a7260ff4d323629b9e12a7740928ddf11ac57a5b89aee6e228dafe",
+    "crc32": "f9b3467d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/future-schema/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "83a5f13295ad30069db220dd8b3231fb57966df7aa510e72e6366a60cd03c671",
+    "crc32": "3f182185"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/future-schema/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/large/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "759a4c6cc4f78a31883414bd6b80ade438a8a9f7d965d158edc0d0e9e834d28b",
+    "crc32": "3986f988"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/large/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "45778f75faec1d84c41e02796ddd4103da1661e69cee9c2b516a6792607a5d13",
+    "crc32": "151c21b6"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/large/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/legacy/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "9ecf95a95d425bd37d76e0ca06988cee13f329be24c5587bbaa9dd71d0d060f8",
+    "crc32": "df44dab1"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/legacy/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "cc6448edbdce15d0866a7547368cd0fa3ad3f576c22582b1c778d488c25ea294",
+    "crc32": "01cd6b0b"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/legacy/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/metadata/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "cbc779890efeeb66929abfd0b3e1be400eaa0c6c5d63eed7fce5d505ae841c14",
+    "crc32": "ca2a0d9c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/metadata/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "3c21ea2c3da36e1b658be38fda8efac40caea2aaf9d1119a7fa0f846fe0f1fd0",
+    "crc32": "43498fe7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/metadata/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/missing/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "66b9c0888d77380120033f1ab7f063351a5a45fe99d99c9229bfac7b585b61e3",
+    "crc32": "202c229d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/missing/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "df3b5c21617e8b301ed26696c0003d59aa5cdcf93123b551995ebf61829a52f6",
+    "crc32": "9dfc1243"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/missing/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/no-format/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "31980dc94604ae517aa36e4f203475bd1b6cb1012b3e8b297b23fa47c8b31097",
+    "crc32": "006a60f8"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/no-format/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "cd1e5d9f8b15bdf551558712d8dbd0f3669fdf018f643479d7f23fe8c272a1ab",
+    "crc32": "7918e395"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/no-format/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/normal/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "2b58ef3c66828e708cd3c9ac5695ac47730ae319d9a24752a123fe9261089351",
+    "crc32": "37dc2d6f"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/normal/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/normal-after-rich/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "c6e7073ef2cb009bd226fbf76e0166d00bf8f873cdd7ed875bd43cebd0a2d7e3",
+    "crc32": "0ffe83ca"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/normal-after-rich/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "f45e3acdecd60798c3692ee9f5fedbe5dc40a74cd4cfbfa8e5a8d707c0232da2",
+    "crc32": "19bddd11"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/normal/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "6c88abeb69c127b35dd392f7d29a515f6c847cda62cde83eb330e019d1d19a51",
+    "crc32": "c06d46d8"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/normal-after-rich/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/nul/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "082093474153581cafb1879d5cc1d6bc1fc6a67f160457f5355456d4dd4551f0",
+    "crc32": "4a9abfc6"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/nul/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/nul/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "bcedb4018013b022c48343886c9a8515062b9209434290c2a999bb5a28d54689",
+    "crc32": "5794de80"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/old-replay/Annotations.sqlite",
+    "bytes": 114688,
+    "sha256": "8291d79b9c87ee633e1e500c50293f62f194433e8fe2b96c14251f308b1d4794",
+    "crc32": "e0e7421c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/old-replay/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/ordinary/Annotations.sqlite",
+    "bytes": 4096,
+    "sha256": "2e96884c16791c7d4bde90a6db2c9da33c2a2aab3e52088adc148c368552a423",
+    "crc32": "ec945948"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/old-replay/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "10ad5d5aa1a3ba8c5ef6607ca05994f3c99ed94a82edeb54ead9fb423a26c15f",
+    "crc32": "9bbabe60"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/ordinary/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "aad000f6bcc78dc70392d5e9f016123343af140beb9f6e16518fb1b71cc13bc2",
+    "crc32": "7304cba2"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/orphan/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "eb16ea92afd03f8f53558778319231fc484c8aa38d947f2dd02931fabc928123",
+    "crc32": "9b987469"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/ordinary/Annotations.sqlite-wal",
+    "bytes": 185432,
+    "sha256": "93d322c3f9147993a1a419d5d52e97e9976b9620ef4b6758aa5bdbe87668397f",
+    "crc32": "4400ff9a"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/orphan/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "017cdfbc50a3d673e81a3a41a0cca18c578dee9760349fb6322cfaf2944db6e0",
+    "crc32": "e37a389e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/orphan/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/partial-schema/Annotations.sqlite",
+    "bytes": 53248,
+    "sha256": "da84fdfb27e154b0c4019e28f0ae2f4508ad9a9b4c46395e0c910c77fa2db623",
+    "crc32": "51ca0603"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/partial-schema/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/partial-schema/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "a24ebec79f3b6886dc4d75d446329bceaf3e5b0c267f9727f259a9db52c338b9",
+    "crc32": "b812e319"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/profile-a/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "bc9d225c502661b95336e1239895b49ff52d7857fc8bc0f099c8124fed294058",
+    "crc32": "490a08e9"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/profile-a/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "0ccc070e58b6dad4c0671f718802c64b5ab1e6da4d29058b10fcba76031cf1d6",
+    "crc32": "61689888"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/profile-a/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/profile-b/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "21718e13b88ad13b4cc8283996a3087f2103b915033ae65687c481751472fe68",
+    "crc32": "e8d5c509"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/profile-b/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "30ae5e2a37c8921fb7ff84c1e5f7e015197b02703284ed1d2b88d86b918b2c40",
+    "crc32": "aefb4c3b"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/profile-b/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/queue/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "7b744650a20cca8eff7ae46eaf4b4ae1924bf6381064958d331e0be8d74a9957",
+    "crc32": "f20e4d43"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/queue/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "e6f471a88d5d61a57abc882583d77987fb9a845f4d4246e18869d20e7b73ab8a",
+    "crc32": "4921077d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/queue/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/read-publication-source/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "27da2138b18598929a8ec3349ba29e379d61ae9d9a2d84514580cb887d5eb415",
+    "crc32": "91217f67"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/read-publication-source/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "0952315ca4418ebf6c47ae979805baf6a2ffe87f236f9b37d9a7a9faaa5152d3",
+    "crc32": "ed8838b8"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/read-publication-source/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/read-publication-version/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "796ebfc3f04f4ff82583dc49ddc38be52eeb45be4d44819562d764238096a34a",
+    "crc32": "86ff70c3"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/read-publication-version/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "daf6f818f74ab77979c70010ef74ee88c4be2942122b233bb4c70728662c98e7",
+    "crc32": "af9428bc"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/read-publication-version/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/reconnect/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "287c212db22ef23a08453d4fa80f284c0535c7e91cfb4a113995c3c862775ede",
+    "crc32": "d76d1567"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/reconnect/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "a0afe833a9d47ddc849015bc954b9712eca8205a876dec8f0fe0704928b5b9ec",
+    "crc32": "5de6beaa"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/reconnect/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retire/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "f49b3dcec78e2afab38bca8a7dd7292935e4c172289597cd3052ac6001f4ec5e",
+    "crc32": "418b0e07"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retire/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "e1460422362ffaa476c97b0b4672424b10c17fde969daa769e2a9b64b4344ff9",
+    "crc32": "a9777855"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retire/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retire-publication/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "bf3b4e5e8d63f5591ec3e24729b659ca029b9a8d128bdcd5f1e02d9d5a4db10e",
+    "crc32": "fb8a3229"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retire-publication/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "cda3170603bb848ff14a0d3d27412dd7641a43e448ffff0671b805ef59c6ad08",
+    "crc32": "9e7e1ba3"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retire-publication/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retire-sql/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "c574de3b95abc897173c14b9201a8ce3c0af784ff91a7f5935b56b81cd8ff9f7",
+    "crc32": "0bf29ad9"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retire-sql/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retry/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "82247f683e962801654ffdcb10f8862e34522b95cd31f463a05e34ca10c26506",
+    "crc32": "de1d3e88"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retire-sql/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "54bbea766c7e0cc59e657feea2038f548356dbbfc6cf5465d817ad74750afb80",
+    "crc32": "8e9f2b28"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retry/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/revision/Annotations.sqlite",
+    "bytes": 114688,
+    "sha256": "af8ab9c3cf1ab610cec20620a6222cde8224982172acec679bc231700eba87fc",
+    "crc32": "5f1fb933"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/retry/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "ff23444e68752ac9b78d397c213bf5926a5d435afb6092a3b39c3bcd32ade7d5",
+    "crc32": "22acd899"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/revision/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "8de834b9aba1f549ebd4f6c712cb9578e6a493cccc82a51f6556e87ccd8372cf",
+    "crc32": "570ca1fb"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/revision/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/rollback/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "7a441afe05086a0a3eed63558e56b4c1fc6eda7057c600fb94420894fe1a416c",
+    "crc32": "600315f3"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/rollback/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "36f6888f625e5b4c427a8e4a6ae9e58ebdd3743991468a09d335d6b989747c5d",
+    "crc32": "53dd0976"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/rollback/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/stale/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "bcefd10c015510cb6ba870f119a131bb13717cfbaecc9ddfd52f188143babded",
+    "crc32": "bfede1a5"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/stale/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "fc16813679466854ddc353b505d2ebf2475c001bf48735749843f2f6d16faa51",
+    "crc32": "810fe833"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/stale/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/tags/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "7955219e13b47c5b63d0d961869a03d6380c054f8c6b880af388076c65e1aa3f",
+    "crc32": "96080387"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/tags/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "19f6131ee36e8ce675809702da8d6f4587cf13f2e1575c8bbb9f92f12837f760",
+    "crc32": "be13a79d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/tags/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/unknown-body/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "b17ea8047522b1e3e4354a3898f88d6ca7d3955c9c18abefbdeb0ece084e77ed",
+    "crc32": "82c34cf1"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/unknown-body/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "9f70be2e0ca47c8ef6b6300bc8786a8d7db4a1840986e5b675eda94adae78cb7",
+    "crc32": "160a57ed"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/unknown-body/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/unknown-marker/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "0d0703b1f263ef1f298bd7d224cf490f3a698ebbb106a1a5a51f36492047a857",
+    "crc32": "84674b03"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/unknown-marker/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "98bd522a98234bf5bfb05c455fc98f84dfdd1033d993c36c77cfafda930bbdca",
+    "crc32": "3c2aa04f"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/unknown-marker/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/unknown-metadata/Annotations.sqlite",
+    "bytes": 114688,
+    "sha256": "f62dabd46c2f501fdf70e8b28ab27e9f6949882f93b6f2e81768166546aebf07",
+    "crc32": "83d1a8ec"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/unknown-metadata/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "71499952caba8c3b2dafb7adda468bfcae391525114c4ab076080838760abc9f",
+    "crc32": "ec368c15"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/unknown-metadata/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/uuid-case/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "9e998a2791729a98566ea35af38c5ad3d599686df425ec89981b9a76508421eb",
+    "crc32": "b7f2114e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/uuid-case/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/fixtures/uuid-case/Annotations.sqlite",
+    "bytes": 106496,
+    "sha256": "ad128870e51ec24c8f5175c2a7dbd9063d5e4e853c87415266c82088053334d6",
+    "crc32": "56b85a31"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Package.swift",
+    "bytes": 895,
+    "sha256": "a74ae3d0f4ccf43746048d3b71dbb856b76534c6e7584b3cb4b65fe390440ed8",
+    "crc32": "b7050f4c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/Annotation.swift",
+    "bytes": 6351,
+    "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+    "crc32": "6ba0f38f"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationChangeTypes.swift",
+    "bytes": 1589,
+    "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+    "crc32": "b8faf0dc"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationEvent.swift",
+    "bytes": 270,
+    "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+    "crc32": "31791591"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationExchangeLedger.swift",
+    "bytes": 33283,
+    "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+    "crc32": "c8f6930f"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorCloudKit.swift",
+    "bytes": 3982,
+    "sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71",
+    "crc32": "1f6564f7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorCloudOwnership.swift",
+    "bytes": 14853,
+    "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17",
+    "crc32": "b7c711c6"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorModels.swift",
+    "bytes": 3885,
+    "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+    "crc32": "27488dfa"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorPersistence.swift",
+    "bytes": 25713,
+    "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+    "crc32": "0707877b"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationLocalEditorSession.swift",
+    "bytes": 9240,
+    "sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+    "crc32": "2f207ef4"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationNode.swift",
+    "bytes": 4413,
+    "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392",
+    "crc32": "563ae95d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationRepository.swift",
+    "bytes": 45376,
+    "sha256": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8",
+    "crc32": "84eea94e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationStore.swift",
+    "bytes": 15022,
+    "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+    "crc32": "a5da9455"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/AnnotationSyncHandler.swift",
+    "bytes": 3504,
+    "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a",
+    "crc32": "12e2ca7e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/CloudKitCoreManager.swift",
+    "bytes": 13523,
+    "sha256": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68",
+    "crc32": "c112228c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/CloudKitSyncable.swift",
+    "bytes": 1329,
+    "sha256": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d",
+    "crc32": "d547fd4e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/CloudKitUploadDebouncer.swift",
+    "bytes": 1979,
+    "sha256": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2",
+    "crc32": "9555cec7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/LocalAnnotationCloudAcceptance.swift",
+    "bytes": 44287,
+    "sha256": "0eb0914e8a1c92559fcb574efcec487d8dc97c276bf4a6a503d3320821285b8c",
+    "crc32": "f92b4db4"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/LocalAnnotationCloudBoundary.swift",
+    "bytes": 599,
+    "sha256": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7",
+    "crc32": "3366da8c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/LocalAnnotationEditorBoundary.swift",
+    "bytes": 3758,
+    "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46",
+    "crc32": "5846e4c7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/OriginalLocalFixture.swift",
+    "bytes": 5569,
+    "sha256": "a428473214415145751bd5e00b9f7d935d0dea90efefd6e4c4bf9e37422a3389",
+    "crc32": "df810e54"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/SQLiteDatabase.swift",
+    "bytes": 14916,
+    "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "crc32": "a28235f2"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/SyncPendingStore.swift",
+    "bytes": 3534,
+    "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+    "crc32": "9db44e40"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/TorahAnnotationEnvelope.swift",
+    "bytes": 8619,
+    "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+    "crc32": "f24c6cae"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationCloudOwnershipAcceptance/UnusedZstdBoundary.swift",
+    "bytes": 443,
+    "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "crc32": "df3e8146"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/Annotation.swift",
+    "bytes": 6351,
+    "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+    "crc32": "6ba0f38f"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationChangeTypes.swift",
+    "bytes": 1589,
+    "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+    "crc32": "b8faf0dc"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationEvent.swift",
+    "bytes": 270,
+    "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+    "crc32": "31791591"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationExchangeLedger.swift",
+    "bytes": 33283,
+    "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+    "crc32": "c8f6930f"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorCloudKit.swift",
+    "bytes": 3982,
+    "sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71",
+    "crc32": "1f6564f7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorCloudOwnership.swift",
+    "bytes": 14853,
+    "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17",
+    "crc32": "b7c711c6"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorModels.swift",
+    "bytes": 3885,
+    "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+    "crc32": "27488dfa"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorPersistence.swift",
+    "bytes": 25713,
+    "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+    "crc32": "0707877b"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationLocalEditorSession.swift",
+    "bytes": 9240,
+    "sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+    "crc32": "2f207ef4"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationNode.swift",
+    "bytes": 4413,
+    "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392",
+    "crc32": "563ae95d"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationRepository.swift",
+    "bytes": 45376,
+    "sha256": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8",
+    "crc32": "84eea94e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationStore.swift",
+    "bytes": 15022,
+    "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+    "crc32": "a5da9455"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/AnnotationSyncHandler.swift",
+    "bytes": 3504,
+    "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a",
+    "crc32": "12e2ca7e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/CloudKitCoreManager.swift",
+    "bytes": 13523,
+    "sha256": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68",
+    "crc32": "c112228c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/CloudKitSyncable.swift",
+    "bytes": 1329,
+    "sha256": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d",
+    "crc32": "d547fd4e"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/CloudKitUploadDebouncer.swift",
+    "bytes": 1979,
+    "sha256": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2",
+    "crc32": "9555cec7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/LocalAnnotationCloudBoundary.swift",
+    "bytes": 599,
+    "sha256": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7",
+    "crc32": "3366da8c"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/LocalAnnotationEditorAcceptance.swift",
+    "bytes": 39693,
+    "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a",
+    "crc32": "987e2c37"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/LocalAnnotationEditorBoundary.swift",
+    "bytes": 3758,
+    "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46",
+    "crc32": "5846e4c7"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/SQLiteDatabase.swift",
+    "bytes": 14916,
+    "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "crc32": "a28235f2"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/SyncPendingStore.swift",
+    "bytes": 3534,
+    "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+    "crc32": "9db44e40"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/TorahAnnotationEnvelope.swift",
+    "bytes": 8619,
+    "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+    "crc32": "f24c6cae"
+  },
+  {
+    "path": "local-annotation-cloud-acceptance/owned-69696404-9046-4b59-bb32-9718148bb835/package/Sources/LocalAnnotationEditorAcceptance/UnusedZstdBoundary.swift",
+    "bytes": 443,
+    "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "crc32": "df3e8146"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/RESULT.json",
+    "bytes": 27327,
+    "sha256": "33b962fd5c26b04a867ca7e485441ba5d69ac34717fcfab771ad6db73c1e8aa5",
+    "crc32": "4fafdd98"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/compile.log",
+    "bytes": 6486,
+    "sha256": "04adf6ebb5126018a053d652605e5f4326cec04e26d631d5b1ac679dcd4ee0f4",
+    "crc32": "c0529558"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/crash-after.log",
+    "bytes": 59,
+    "sha256": "1f9934c06d52b7ed61bce7b215b8433cc033bdf7e698869f3476f3269c4b7ec8",
+    "crc32": "a9e8fc8f"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/CASES.json",
+    "bytes": 3983,
+    "sha256": "0da614154bfe0b7ae0700b70f6dbca88f701154e6e20c0e1f63a51f279035a60",
+    "crc32": "d8bfc36c"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/acks.sqlite",
+    "bytes": 106496,
+    "sha256": "356348d3b203c90aaa5fe9a2d7d03ef3945d061c1dedeee0db3f8d2dc0fbc95f",
+    "crc32": "66994961"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/crash-before.log",
+    "bytes": 59,
+    "sha256": "1f9934c06d52b7ed61bce7b215b8433cc033bdf7e698869f3476f3269c4b7ec8",
+    "crc32": "a9e8fc8f"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/cancel-after-insert.sqlite",
+    "bytes": 106496,
+    "sha256": "0102378b777b49925a580c6d1d1e8645aa1197eb25443e6dab96f89bc7a5d632",
+    "crc32": "fba8f86a"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/cancel-before.sqlite",
+    "bytes": 106496,
+    "sha256": "adde93595b293eb558a178418cc1b2765aa5beb2a79f7f4ae5496f210607f2d7",
+    "crc32": "a84450cd"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/closed.sqlite",
+    "bytes": 106496,
+    "sha256": "bdb511b050f2f33a3c949ae25a90d558d5b2bc2b57c95ded86285c8e55a849d0",
+    "crc32": "e205c568"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/cloud-after-ledger.json",
+    "bytes": 215,
+    "sha256": "f33c9e36585dd3f9aba90481bcae94fc2cb6ecb0a39290f373fbef01ae70bfbd",
+    "crc32": "16c43678"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/cloud-before-ledger.json",
+    "bytes": 215,
+    "sha256": "f33c9e36585dd3f9aba90481bcae94fc2cb6ecb0a39290f373fbef01ae70bfbd",
+    "crc32": "16c43678"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/concurrent.sqlite",
+    "bytes": 106496,
+    "sha256": "cc5f05113871d3aa4c3992873ca8c422b71513703e6314accc25d81b4e55d74a",
+    "crc32": "6c647aaa"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/constraints.sqlite",
+    "bytes": 106496,
+    "sha256": "3ff09c2dc7b112b774b6c03dabf057b9f0edc5b8a7abd81cdb749c8ddb7b6e81",
+    "crc32": "3c93f3b0"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/corruption.sqlite",
+    "bytes": 106496,
+    "sha256": "96b91dc40211fda40512854a07d81b7c1166e46e0ee71848597d9f74a4c37084",
+    "crc32": "45e558c2"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/crash-after.json",
+    "bytes": 3884,
+    "sha256": "b82d5f6cdadb01e4bc333f65cd4b3e5bd70ea759b53e033be5ee20060ce34cd6",
+    "crc32": "6ebd516e"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/crash-after.sqlite",
+    "bytes": 106496,
+    "sha256": "2f5eb9cac23c54bc6184e157c92d34bd5b55134691666b58942b97bd181a970a",
+    "crc32": "e2468fd3"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/crash-after.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "bbc2b0998136fba5d31a8f3a39fe150111c35854b9335d7d30ac0ed21f186ba3",
+    "crc32": "23f1144a"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/crash-after.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/crash-before.json",
+    "bytes": 3885,
+    "sha256": "8bc1549338cb1d2343f3a950afdd056ee8ee0fe080c1afbc0113ef4b4f2ef6d0",
+    "crc32": "83fdcc48"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/crash-before.sqlite",
+    "bytes": 106496,
+    "sha256": "36c5ada2318f6eb02ec9aaa94f28fa1fed7d0b7c69b2c6c745876cd7c8fc7e8f",
+    "crc32": "bee7510a"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/crash-before.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "bd571dd956cdb59adeed91c98f2eb17525e0cb740b204e1e0eb47a0c1644b45f",
+    "crc32": "abe159ca"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/crash-before.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/enqueue-failure.sqlite",
+    "bytes": 106496,
+    "sha256": "989a482153a72d24510385b47d6708408106892f54f7382338de475e1d7c44a1",
+    "crc32": "22db0c9c"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/dangling-tag.sqlite",
+    "bytes": 106496,
+    "sha256": "1cf0e1753565f57754b7556be0866fae7e199954e99f78933f8022fe9dbc820a",
+    "crc32": "8a89b144"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/future-schema.sqlite",
+    "bytes": 53248,
+    "sha256": "a4ebf2b211f00105e8c4944fd48fa5b79a7a1a9886af4f0ff81bdeaa130c55e3",
+    "crc32": "7c7112bb"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/idempotency.sqlite",
+    "bytes": 106496,
+    "sha256": "e2c757555961608c9be846013d086b4d68ee9a9960d08cde4dbbe18297bf2052",
+    "crc32": "5f5cdb35"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/identity.sqlite",
+    "bytes": 106496,
+    "sha256": "7ef35aa52a3bfc87f60e5b0579d04238d352c850482f7799b6171a7c77a8a743",
+    "crc32": "eb9c5fde"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/inbox-mismatch.sqlite",
+    "bytes": 106496,
+    "sha256": "5d8f1557216253f14ef8bb6687640838c9e920208b19ae8d084874505b66f603",
+    "crc32": "59cec7dc"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/inbox.sqlite",
+    "bytes": 106496,
+    "sha256": "f57069de8f933fb3f12f5c1a21b6c880e685af5cd4438e8adcbaf6be103069a9",
+    "crc32": "42ffdf9c"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/inert.sqlite",
+    "bytes": 106496,
+    "sha256": "5d8f1557216253f14ef8bb6687640838c9e920208b19ae8d084874505b66f603",
+    "crc32": "59cec7dc"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/invalid.sqlite",
+    "bytes": 106496,
+    "sha256": "5d8f1557216253f14ef8bb6687640838c9e920208b19ae8d084874505b66f603",
+    "crc32": "59cec7dc"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/mismatch.sqlite",
+    "bytes": 106496,
+    "sha256": "5d8f1557216253f14ef8bb6687640838c9e920208b19ae8d084874505b66f603",
+    "crc32": "59cec7dc"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/never-existed.sqlite",
+    "bytes": 106496,
+    "sha256": "f8ad8b823d869ebdbd2cd92a2a618a81fe278dcc3fc56eec99af6ba9dc023702",
+    "crc32": "63171214"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/old-ack.sqlite",
+    "bytes": 114688,
+    "sha256": "52c596e4407fa5fe0b8746aa9d0f8d9f59562a35d8cb506a75bbbf80fda9412a",
+    "crc32": "49ab7d3b"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/outer-failure.sqlite",
+    "bytes": 106496,
+    "sha256": "5d8f1557216253f14ef8bb6687640838c9e920208b19ae8d084874505b66f603",
+    "crc32": "59cec7dc"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/outer-success.sqlite",
+    "bytes": 106496,
+    "sha256": "f1d3e7887f509fcccebf3f237e74a8607598662b943274ce9a0982400b2d0eb2",
+    "crc32": "d3feeb8b"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/oversize.sqlite",
+    "bytes": 106496,
+    "sha256": "5d8f1557216253f14ef8bb6687640838c9e920208b19ae8d084874505b66f603",
+    "crc32": "59cec7dc"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/rich-payload.json",
+    "bytes": 1667,
+    "sha256": "1ec5d78ea1971ac472ad074b3c008790cba52afac3e1d8d1129c4800e2d4b169",
+    "crc32": "94657bd9"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/rich-payload.sha256",
+    "bytes": 64,
+    "sha256": "231d3d92ea254ea42bb5ef58d8297f163a414fbab3d16d81e87f5d71fdcb148c",
+    "crc32": "b3c229c9"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/rich.sqlite",
+    "bytes": 106496,
+    "sha256": "5ef8c76fbb7b97bf357956711166e5bd0b393903b12a283a6b276ec900e6cc11",
+    "crc32": "1edcb0ce"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/same-second.sqlite",
+    "bytes": 106496,
+    "sha256": "45bf1b3233fc32b9fff7eb75bf4d526650ab4e5a6793110c32cd1f8b2863a75c",
+    "crc32": "40119630"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/source-bytes.sqlite",
+    "bytes": 106496,
+    "sha256": "ee07949fe179a43fdd8c0964eb147de731d25df6088768afff6d26ae7f02271d",
+    "crc32": "e8dbc081"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/tombstone.sqlite",
+    "bytes": 106496,
+    "sha256": "4d272e0e0fcd89e0e7700533d984eaa15b6c351d4bda1845c94bfc91d894485e",
+    "crc32": "099a7131"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/fixtures/unknown.sqlite",
+    "bytes": 106496,
+    "sha256": "aee860157f89e5f716c99e085b9ec0f6583794bdc2569a7feeeba8a53dfaf221",
+    "crc32": "7ecc7d0b"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/package/Package.swift",
+    "bytes": 575,
+    "sha256": "25c322e726f8efe82f175dd24617aa67241d4c805e259ab7ba6b4748a442c17a",
+    "crc32": "b6aaa4b3"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift",
+    "bytes": 35544,
+    "sha256": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de",
+    "crc32": "1c0a9e39"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/package/Sources/ExchangeAcceptance/AnnotationExchangeLedger.swift",
+    "bytes": 33283,
+    "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+    "crc32": "c8f6930f"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift",
+    "bytes": 11957,
+    "sha256": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8",
+    "crc32": "a452391b"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/package/Sources/ExchangeAcceptance/SQLiteDatabase.swift",
+    "bytes": 14916,
+    "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "crc32": "a28235f2"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/package/Sources/ExchangeAcceptance/SyncPendingStore.swift",
+    "bytes": 3534,
+    "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+    "crc32": "9db44e40"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/package/Sources/ExchangeAcceptance/TorahAnnotationEnvelope.swift",
+    "bytes": 8619,
+    "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+    "crc32": "f24c6cae"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/tests.log",
+    "bytes": 3361,
+    "sha256": "7284cc3c9a515c81ab6afce261a7604218663b5c8f28e48c7e9cbfa124b57c52",
+    "crc32": "b4754036"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/verify-crash-after.log",
+    "bytes": 73,
+    "sha256": "cfd98c102ca8b8abf4e8e31add161486a0fcc4ed231479c6de68d7613750a17d",
+    "crc32": "74f457a5"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/owned-1ccaa86b-1a1d-49fd-a11f-6c6c263ac55d/package/Sources/ExchangeAcceptance/UnusedZstdBoundary.swift",
+    "bytes": 443,
+    "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "crc32": "df3e8146"
+  },
+  {
+    "path": "local-annotation-cloud-exchange-regression/verify-crash-before.log",
+    "bytes": 74,
+    "sha256": "a24a932e2d9e7626bafc0c299192ef4c63a15992661292798a8a8f0dca998c9c",
+    "crc32": "788434db"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/BASELINE_RED.json",
+    "bytes": 1267,
+    "sha256": "77d34dc61eec81a5dfc5a5b00255c7b5f98d0f19836f5c439f436ad3dad725b2",
+    "crc32": "a93fbf4c"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/CASES.json",
+    "bytes": 9401,
+    "sha256": "8164d41a0d7eb3335afbb24bfabdab5552e8c7391f79dda7966fe926884b45d5",
+    "crc32": "d6497402"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/RESULT.json",
+    "bytes": 78098,
+    "sha256": "e053e9f0ca212e6058288be84417827257f3effb699c24f72cf920d7f4999a3f",
+    "crc32": "70d7122d"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/baseline-deadlock.command.json",
+    "bytes": 1010,
+    "sha256": "1b0874893c543564ddaa4d55802698ecb8082d0ed5eda6bb9316a8ba5143c5bc",
+    "crc32": "4a5f181b"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/baseline-deadlock.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/baseline-deadlock.stdout.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/binary-path.command.json",
+    "bytes": 1031,
+    "sha256": "28044ae8e51059323b584e2f0e7955794704feb5ac06547d0ba2451e495d33a4",
+    "crc32": "2a4dc165"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/binary-path.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/compile.command.json",
+    "bytes": 996,
+    "sha256": "c7f7d529a13faa4191ddaefc46ad76211564168c292ebf366e2f1fc2ccbdfb13",
+    "crc32": "38ab2f10"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/binary-path.stdout.log",
+    "bytes": 150,
+    "sha256": "f5cd347a9275835e90b67a568cc85a683d7d2fc7017a8bcc1d57ed23fdb811bc",
+    "crc32": "ea48bfd5"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/compile.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/compile.stdout.log",
+    "bytes": 1371,
+    "sha256": "8185000ea670c7a29c282880a6ea03172a9ac7bd372717a64424b509612948f9",
+    "crc32": "04b46172"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/current_database_with_stale_lifetime_cannot_detach.command.json",
+    "bytes": 1177,
+    "sha256": "f26e4f8371a155f9897827faffe2e24869a6f5073fc6b012eb6a4f53dcd7ae8e",
+    "crc32": "58c794b9"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/current_database_with_stale_lifetime_cannot_detach.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/current_database_with_stale_lifetime_cannot_detach.stdout.log",
+    "bytes": 56,
+    "sha256": "d47fa76427a3eb16acaa02bd29a3d3278a8d96a59d062f78622f82d5a58ea5fb",
+    "crc32": "35911906"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/matched_capture_detaches_only_original_owner.command.json",
+    "bytes": 1148,
+    "sha256": "4a2c162a6959d6243f81da5a418350ab48c4e62dd344eaf9ac437afe15cf8579",
+    "crc32": "e780aa3a"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/matched_capture_detaches_only_original_owner.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/matched_capture_detaches_only_original_owner.stdout.log",
+    "bytes": 50,
+    "sha256": "1ac864db4479282206f060eb1e3fee6dfa0a6b3517c60d1d514b8ee7276ffa5c",
+    "crc32": "5163afe0"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/nil_default_disconnect_preserves_later_setup.command.json",
+    "bytes": 1147,
+    "sha256": "8e3b84bedcfec7df8bb26d2458f2ee6a25356b61191a4c68ad2e27a0349d8cdf",
+    "crc32": "bfa5127a"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/nil_default_disconnect_preserves_later_setup.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/nil_default_disconnect_preserves_later_setup.stdout.log",
+    "bytes": 50,
+    "sha256": "334307c4de474cdb6ce2493c4424fc037824146a1860d3dc4d5f35cb56531c02",
+    "crc32": "09da553a"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/baseline-deadlock/COLD_EXPECTED.json",
+    "bytes": 244,
+    "sha256": "6e810b8b67f79b3be27fc4df538bc9730832514c8232f60a424abddd4c496062",
+    "crc32": "9daf6ba7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/baseline-deadlock/markers/001-fixture_ready.json",
+    "bytes": 71,
+    "sha256": "c49ee023ea7b72d3f589b658d0801f1321b8e5cc962a0e69d7184f8ee25d0d6b",
+    "crc32": "8c5cde16"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/baseline-deadlock/markers/002-transaction_acquired_and_uncommitted_write.json",
+    "bytes": 100,
+    "sha256": "cc4352b0ed6b10dbfa13cc9e469a66086430d3bbc19a7e9c84365387a794e2a7",
+    "crc32": "d5888a05"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/baseline-deadlock/markers/003-disconnect_requested.json",
+    "bytes": 78,
+    "sha256": "54300a0856df81be20f05fdedf9a28ff361900a0a2b68eb777f04063e5f6bd48",
+    "crc32": "87bf8c99"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/baseline-deadlock/markers/004-captured_lifetime_retired_before_transaction_release.json",
+    "bytes": 110,
+    "sha256": "d15c1bc60b21a4cc6527d6bcfa67a6b27739ccde8ed39b309ea33380f13adef1",
+    "crc32": "6fd6cc0d"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/baseline-deadlock/markers/005-original_repository_exec_requested.json",
+    "bytes": 92,
+    "sha256": "461502683b78d6f2873f2b28bb70f37c732a0a26e90669b2a7835277c0466445",
+    "crc32": "0a410b40"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/baseline-deadlock/progress/Annotations.sqlite",
+    "bytes": 4096,
+    "sha256": "2e96884c16791c7d4bde90a6db2c9da33c2a2aab3e52088adc148c368552a423",
+    "crc32": "ec945948"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/baseline-deadlock/progress/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "e9b18b0d773d058c541fc1f0db724b4228a2e67f04a1efbd29d11fe20ff3b584",
+    "crc32": "3970c6c5"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/baseline-deadlock/progress/Annotations.sqlite-wal",
+    "bytes": 148352,
+    "sha256": "1a66ff0e7d99771bcf13598fd5d33c2117772d93c2fb72ffc27c9a65c76edb8f",
+    "crc32": "8f2225c3"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/current_database_with_stale_lifetime_cannot_detach/CASE.json",
+    "bytes": 102,
+    "sha256": "cd9f18d911f15883c77e62350861816598470aaf3e08e2974b41a4cebf577203",
+    "crc32": "a6c9e85e"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/current_database_with_stale_lifetime_cannot_detach/COLD_EXPECTED.json",
+    "bytes": 200,
+    "sha256": "7fcc12c0779fb44c324257683042f09dbc1f0e5f9675e8eba05ca2bcdedbfbda",
+    "crc32": "951eb878"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/current_database_with_stale_lifetime_cannot_detach/wrong-lifetime/Annotations.sqlite",
+    "bytes": 4096,
+    "sha256": "2e96884c16791c7d4bde90a6db2c9da33c2a2aab3e52088adc148c368552a423",
+    "crc32": "ec945948"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/current_database_with_stale_lifetime_cannot_detach/wrong-lifetime/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "a62bc2963aebdf98627e22d4e91435847cdf9e9184b138aab2f8be4c8ea839cc",
+    "crc32": "e9070948"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/current_database_with_stale_lifetime_cannot_detach/wrong-lifetime/Annotations.sqlite-wal",
+    "bytes": 148352,
+    "sha256": "2fae331f004524c9193e7cd3344e7cee9f1e4a72c65211b1969a16ae99a1dc01",
+    "crc32": "72c16a6e"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/matched_capture_detaches_only_original_owner/CASE.json",
+    "bytes": 96,
+    "sha256": "273331567d725f0d7d9f0fbc0adf6ad26ca1e566f28b2e8e01d4a5177bd490b9",
+    "crc32": "6ae96819"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/matched_capture_detaches_only_original_owner/COLD_EXPECTED.json",
+    "bytes": 193,
+    "sha256": "37ed73a41deabf4e744fd8fdccc2fc9f141a3b6c6c67d69aae33053bc10ec919",
+    "crc32": "7d53ca23"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/matched_capture_detaches_only_original_owner/matched/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "0efc80cc47567a2a999728003760be6c5df23d9f7a375b8572d656089ae72f25",
+    "crc32": "2701ffd7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/matched_capture_detaches_only_original_owner/matched/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "crc32": "ddc506b6"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/matched_capture_detaches_only_original_owner/matched/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/nil_default_disconnect_preserves_later_setup/CASE.json",
+    "bytes": 96,
+    "sha256": "f3a0aa28751af6bab3546d9f9172b9f982df9b5a330f0324eb035a13465910e9",
+    "crc32": "381c1ac0"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/nil_default_disconnect_preserves_later_setup/COLD_EXPECTED.json",
+    "bytes": 195,
+    "sha256": "3cc9303b5fee39a858eaa58095ffa3c1b2a61f8d433c85f9519a27ad4666b14e",
+    "crc32": "a71e33f1"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/nil_default_disconnect_preserves_later_setup/after-nil/Annotations.sqlite",
+    "bytes": 4096,
+    "sha256": "2e96884c16791c7d4bde90a6db2c9da33c2a2aab3e52088adc148c368552a423",
+    "crc32": "ec945948"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/nil_default_disconnect_preserves_later_setup/after-nil/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "049afcafc0dcec301b4ea1cb4f22b737d2d3e445377ac6d6130f602f1ae26c86",
+    "crc32": "036d8bb7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/nil_default_disconnect_preserves_later_setup/after-nil/Annotations.sqlite-wal",
+    "bytes": 148352,
+    "sha256": "2269ae8dfb93b79f7c56ab26de7bc7721a9c69d105c77c950c966a46b049dddf",
+    "crc32": "3b7ef680"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/CASE.json",
+    "bytes": 69,
+    "sha256": "ef29fb8dbe01d6799b2e2c5ac28eab7e8a090d589eee9a617333859de6f461f4",
+    "crc32": "d82c32a9"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/COLD_EXPECTED.json",
+    "bytes": 261,
+    "sha256": "cbcc03a44ebd48aad530a007f0d8ea7dfe65c3b2c372294814b3aa175ff73551",
+    "crc32": "c6fb6d3d"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/markers/001-fixture_ready.json",
+    "bytes": 71,
+    "sha256": "33682fbec421198fb9dd2b393f123544668daa8709390ee24c46746899adea4d",
+    "crc32": "942893a3"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/markers/002-transaction_acquired_and_uncommitted_write.json",
+    "bytes": 100,
+    "sha256": "7db9488267d64aa0a481551c5bb5b59d9678e530cb1811af31c6e3ce3d0148d5",
+    "crc32": "faa6426f"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/markers/004-repository_state_read_while_database_held.json",
+    "bytes": 99,
+    "sha256": "23b61b9fd19dd30f4b6c258842fc7390a08b6f365d79fe0b2cbb04a597e71f7e",
+    "crc32": "d3673b5c"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/markers/003-disconnect_requested.json",
+    "bytes": 78,
+    "sha256": "e3ad5755ddbedf74c72d19cf4e16a108b39d770cccd4b6ab90c68499ab702599",
+    "crc32": "152a53bc"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/markers/005-original_repository_exec_requested.json",
+    "bytes": 92,
+    "sha256": "a63e5513ca85a506797b3975daa47a31fd82e3cb34bf5ccbb4721422209110ba",
+    "crc32": "7a887331"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/markers/006-original_repository_exec_returned.json",
+    "bytes": 91,
+    "sha256": "bbd2147323ef03c43b744ab21bba48b2fa3a22c8a6ed458213062bfd71aed56b",
+    "crc32": "c75b77e1"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/markers/007-transaction_returned.json",
+    "bytes": 78,
+    "sha256": "d3af67a884ff787e0aa22a94a5b2d499bb6b0becab45569d092aedf6f1ed0d65",
+    "crc32": "63627e24"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/markers/008-disconnect_returned.json",
+    "bytes": 77,
+    "sha256": "490cab620ed59c6d597f6de3b3068c81f97e69784747c162dd3cf3bdf59311c3",
+    "crc32": "8442cb04"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/progress/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "399418e682752a40590a5ed8a466ea72684ed1784249cccffd3385f12bccd4a8",
+    "crc32": "bd0e644f"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/progress/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "crc32": "ddc506b6"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_captured/progress/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/CASE.json",
+    "bytes": 68,
+    "sha256": "73a1afaf3147fbf3523ba4f24701c333952b4d8450c195be07dc320e9ad22823",
+    "crc32": "55bd6364"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/COLD_EXPECTED.json",
+    "bytes": 261,
+    "sha256": "be8dcdc371ff1d13a95759cf1bd8d70daa0234f58cf4e6ce9f2b85cf37f29bee",
+    "crc32": "3d80ab83"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/markers/001-fixture_ready.json",
+    "bytes": 71,
+    "sha256": "7aa4cc0ca8fbb66644962105104f4e7088566c127bda2270e8d3a5f091e1eb2b",
+    "crc32": "2908443b"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/markers/002-transaction_acquired_and_uncommitted_write.json",
+    "bytes": 100,
+    "sha256": "23232eb2cbecf2b95791a53141b0ef93671f814fc40b57a7badddc31e9c7394e",
+    "crc32": "e462ae09"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/markers/003-disconnect_requested.json",
+    "bytes": 78,
+    "sha256": "eaee74143ff3c256053412d5bbbc1afc6f1fd6ce4678477ed5352754a1ae3643",
+    "crc32": "57d9894f"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/markers/004-repository_state_read_while_database_held.json",
+    "bytes": 99,
+    "sha256": "63c2221bab83f9407b4ac3fb4633e6727e057dd5d16b02fcb5e72194a582ca81",
+    "crc32": "56f07fc5"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/markers/005-original_repository_exec_requested.json",
+    "bytes": 92,
+    "sha256": "82e9eedd867db5a987a7a08bc3befe495b9d04e531abacef682131857606d5d0",
+    "crc32": "cbfe2c86"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/markers/006-original_repository_exec_returned.json",
+    "bytes": 91,
+    "sha256": "2cccb12b7aa3770537dd4526d4370bf33de9fc3f92f72483378d04892e18b3f3",
+    "crc32": "474b4b75"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/markers/007-transaction_returned.json",
+    "bytes": 78,
+    "sha256": "24ff3f1197b540327b2c2d1af7748848aeae5bd37a2d9a4055e19dc9461852a8",
+    "crc32": "2fb026df"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/markers/008-disconnect_returned.json",
+    "bytes": 77,
+    "sha256": "3ef13246c85abce80556928bd0dcaa330a90363d96ba014380aa6e101e5ca031",
+    "crc32": "e45e9f5c"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/progress/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "cb822d531df7d05661dfca57b2880aae24f08febc48786f610f462a8a503b8ad",
+    "crc32": "06a7c85e"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/progress/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "crc32": "ddc506b6"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/progress_default/progress/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/reopen_preserves_rows_queue_and_retires_old_connection/CASE.json",
+    "bytes": 106,
+    "sha256": "a03017001bad8beef5b6a0f818af1b1ac00515991a7f863165ce7a5f2b93210a",
+    "crc32": "3cc6cb53"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/reopen_preserves_rows_queue_and_retires_old_connection/COLD_EXPECTED.json",
+    "bytes": 192,
+    "sha256": "aa1dd6def530185d7c2d6155e730e0cdba36c390b518c6d29dd9e0d317defe60",
+    "crc32": "f41737ce"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/reopen_preserves_rows_queue_and_retires_old_connection/reopen/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "404a800ec63b71981d4003049aa66b27d8d9e196071f337ce10b49a9419712d0",
+    "crc32": "1004cfd4"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/reopen_preserves_rows_queue_and_retires_old_connection/reopen/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "crc32": "ddc506b6"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/reopen_preserves_rows_queue_and_retires_old_connection/reopen/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/repeated_default_disconnect_is_idempotent/CASE.json",
+    "bytes": 93,
+    "sha256": "ead026721d890396bfce2ff85d51bbfac3ac4b1ae0eeecc1f882de8674c32202",
+    "crc32": "17d73a1b"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/repeated_default_disconnect_is_idempotent/COLD_EXPECTED.json",
+    "bytes": 194,
+    "sha256": "353546073be0ebec09f59eb30001359c48ac7d6af9317a513d3de8fafdbc5be7",
+    "crc32": "951f7d5c"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/repeated_default_disconnect_is_idempotent/repeated/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "df89c4217ed2ec2dcbb8c404449da1376aadb6178c85cfb2b5822c361c8c589a",
+    "crc32": "8332084a"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/repeated_default_disconnect_is_idempotent/repeated/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "crc32": "ddc506b6"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/repeated_default_disconnect_is_idempotent/repeated/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/rollback_then_disconnect_preserves_original_note/CASE.json",
+    "bytes": 100,
+    "sha256": "355391cc2892cc763ea23356d9261055d81c5ca95258a2315bc84f67e0531c56",
+    "crc32": "24789021"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/rollback_then_disconnect_preserves_original_note/COLD_EXPECTED.json",
+    "bytes": 194,
+    "sha256": "021fed1070494244d4653a3f83dab6a6c771d75f5ae85c383ad962e870a6d77b",
+    "crc32": "edc85dd1"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/rollback_then_disconnect_preserves_original_note/rollback/Annotations.sqlite",
+    "bytes": 49152,
+    "sha256": "683b3c5e3b8165a779d5301bdd6b5b7064a8c6006558c8838d7dcd65a488ec4f",
+    "crc32": "2c28f50d"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/rollback_then_disconnect_preserves_original_note/rollback/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "crc32": "ddc506b6"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/rollback_then_disconnect_preserves_original_note/rollback/Annotations.sqlite-wal",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_capture_queued_during_replacement/CASE.json",
+    "bytes": 91,
+    "sha256": "c59d55e5514f757b0a7cd82ea63b8fbd7a381b21129e41f6320f797d5978b39f",
+    "crc32": "d70bda7b"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_capture_queued_during_replacement/COLD_EXPECTED.json",
+    "bytes": 196,
+    "sha256": "aae3d5398c163bef1003cfdb43a4cfcb352cff5db2089d8419454edb8bbb4324",
+    "crc32": "3faca1ed"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_capture_queued_during_replacement/markers/001-replacement_published_before_old_database_release.json",
+    "bytes": 107,
+    "sha256": "fede9b3789a46758f1ee75f8a4d10638104c813d731049e1f0f5cd49c90d0ff9",
+    "crc32": "75e165d3"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_capture_queued_during_replacement/stale-wait/Annotations.sqlite",
+    "bytes": 4096,
+    "sha256": "2e96884c16791c7d4bde90a6db2c9da33c2a2aab3e52088adc148c368552a423",
+    "crc32": "ec945948"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_capture_queued_during_replacement/stale-wait/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "0da330fb7c4aa0d04b97ac93afb8e70701e69093b9894d3a90804bb4a831ad2f",
+    "crc32": "c8bbc835"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_capture_queued_during_replacement/stale-wait/Annotations.sqlite-wal",
+    "bytes": 148352,
+    "sha256": "4889b9113c3c5dbf13004df7c7ded321025aae55b5cc61a22c44ff3f7f22c0be",
+    "crc32": "51bfece4"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_database_with_current_lifetime_cannot_detach/CASE.json",
+    "bytes": 102,
+    "sha256": "bc71eac1e760966aac68a382172773d5da334e5b93edb02b5454f8588250cbc9",
+    "crc32": "53476ae0"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_database_with_current_lifetime_cannot_detach/COLD_EXPECTED.json",
+    "bytes": 200,
+    "sha256": "d7fda41e049975a04104bc6851234f87bff9633bb674171eab28c8899a9a7e7a",
+    "crc32": "55047016"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_database_with_current_lifetime_cannot_detach/wrong-database/Annotations.sqlite",
+    "bytes": 4096,
+    "sha256": "2e96884c16791c7d4bde90a6db2c9da33c2a2aab3e52088adc148c368552a423",
+    "crc32": "ec945948"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_database_with_current_lifetime_cannot_detach/wrong-database/Annotations.sqlite-shm",
+    "bytes": 32768,
+    "sha256": "198e3ffa7afe56a0f5dfe2339e464e2b69982b59148ee4fee806b7c9c05c1151",
+    "crc32": "1a76fe49"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/fixtures/stale_database_with_current_lifetime_cannot_detach/wrong-database/Annotations.sqlite-wal",
+    "bytes": 148352,
+    "sha256": "b59f0e480a31c6d676da26bfe03084887fbaee79b543542cb6948500e390e425",
+    "crc32": "8a1749f7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Package.swift",
+    "bytes": 811,
+    "sha256": "3df1b18c299cefca735ba44baed80e05fba57856772d38c58fcceb7d24f5f16a",
+    "crc32": "d3502300"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/Annotation.swift",
+    "bytes": 6351,
+    "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+    "crc32": "6ba0f38f"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationChangeTypes.swift",
+    "bytes": 1589,
+    "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+    "crc32": "b8faf0dc"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationEvent.swift",
+    "bytes": 270,
+    "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+    "crc32": "31791591"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationLocalEditorCloudKit.swift",
+    "bytes": 3982,
+    "sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71",
+    "crc32": "1f6564f7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationExchangeLedger.swift",
+    "bytes": 33283,
+    "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+    "crc32": "c8f6930f"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationLocalEditorCloudOwnership.swift",
+    "bytes": 14853,
+    "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17",
+    "crc32": "b7c711c6"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationLocalEditorModels.swift",
+    "bytes": 3885,
+    "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+    "crc32": "27488dfa"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationLocalEditorPersistence.swift",
+    "bytes": 25713,
+    "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+    "crc32": "0707877b"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationLocalEditorSession.swift",
+    "bytes": 9240,
+    "sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+    "crc32": "2f207ef4"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationNode.swift",
+    "bytes": 4413,
+    "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392",
+    "crc32": "563ae95d"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationRepository.swift",
+    "bytes": 44176,
+    "sha256": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af",
+    "crc32": "8d8bf6b6"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationRepositoryDisconnectAcceptance.swift",
+    "bytes": 20684,
+    "sha256": "fe03c32486a4ed0dd79f06b9cefeb2b022feaa89414f421ee8bd57a654a000d5",
+    "crc32": "51d6ab0d"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationStore.swift",
+    "bytes": 15022,
+    "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+    "crc32": "a5da9455"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/AnnotationSyncHandler.swift",
+    "bytes": 3504,
+    "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a",
+    "crc32": "12e2ca7e"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/CloudKitCoreManager.swift",
+    "bytes": 13523,
+    "sha256": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68",
+    "crc32": "c112228c"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/CloudKitSyncable.swift",
+    "bytes": 1329,
+    "sha256": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d",
+    "crc32": "d547fd4e"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/CloudKitUploadDebouncer.swift",
+    "bytes": 1979,
+    "sha256": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2",
+    "crc32": "9555cec7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/LocalAnnotationCloudBoundary.swift",
+    "bytes": 599,
+    "sha256": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7",
+    "crc32": "3366da8c"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/LocalAnnotationEditorBoundary.swift",
+    "bytes": 3758,
+    "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46",
+    "crc32": "5846e4c7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/OriginalLocalFixture.swift",
+    "bytes": 5569,
+    "sha256": "a428473214415145751bd5e00b9f7d935d0dea90efefd6e4c4bf9e37422a3389",
+    "crc32": "df810e54"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/SQLiteDatabase.swift",
+    "bytes": 14916,
+    "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "crc32": "a28235f2"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/SyncPendingStore.swift",
+    "bytes": 3534,
+    "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+    "crc32": "9db44e40"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/TorahAnnotationEnvelope.swift",
+    "bytes": 8619,
+    "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+    "crc32": "f24c6cae"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectBaseline/UnusedZstdBoundary.swift",
+    "bytes": 443,
+    "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "crc32": "df3e8146"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/Annotation.swift",
+    "bytes": 6351,
+    "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+    "crc32": "6ba0f38f"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationChangeTypes.swift",
+    "bytes": 1589,
+    "sha256": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+    "crc32": "b8faf0dc"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationEvent.swift",
+    "bytes": 270,
+    "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+    "crc32": "31791591"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationExchangeLedger.swift",
+    "bytes": 33283,
+    "sha256": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+    "crc32": "c8f6930f"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationLocalEditorCloudKit.swift",
+    "bytes": 3982,
+    "sha256": "40a9a5718d00a1e254345a016922bf1b6526e31ceb8540acf910c61069568d71",
+    "crc32": "1f6564f7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationLocalEditorCloudOwnership.swift",
+    "bytes": 14853,
+    "sha256": "f118f576851026d43cafbb0f6efb1595e76f9ab950dc0c0c95c6d61c5d641e17",
+    "crc32": "b7c711c6"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationLocalEditorPersistence.swift",
+    "bytes": 25713,
+    "sha256": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+    "crc32": "0707877b"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationLocalEditorModels.swift",
+    "bytes": 3885,
+    "sha256": "ba86b677d06ab610649c6cea3ec1c69382db6b15d0309bc472b0c97e3daa41eb",
+    "crc32": "27488dfa"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationLocalEditorSession.swift",
+    "bytes": 9240,
+    "sha256": "c5e67d67d93ba3c6620c0c7dbbd47ed4ef00305d17e05991da3e70dfb9a7e765",
+    "crc32": "2f207ef4"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationNode.swift",
+    "bytes": 4413,
+    "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392",
+    "crc32": "563ae95d"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationRepository.swift",
+    "bytes": 45376,
+    "sha256": "634d07799a2e3985ba7a16817856f8d8ccba3045519ad21dab805e3c9b8d1ef8",
+    "crc32": "84eea94e"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationRepositoryDisconnectAcceptance.swift",
+    "bytes": 20684,
+    "sha256": "fe03c32486a4ed0dd79f06b9cefeb2b022feaa89414f421ee8bd57a654a000d5",
+    "crc32": "51d6ab0d"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationStore.swift",
+    "bytes": 15022,
+    "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+    "crc32": "a5da9455"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/AnnotationSyncHandler.swift",
+    "bytes": 3504,
+    "sha256": "42f673842385504947fe5f4c798282a67920c1bd051cd67558723aa5defaea7a",
+    "crc32": "12e2ca7e"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/CloudKitCoreManager.swift",
+    "bytes": 13523,
+    "sha256": "e2512424f4de896b679be3702b345841bdab8436038d3f43c54557ce56cb9a68",
+    "crc32": "c112228c"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/CloudKitUploadDebouncer.swift",
+    "bytes": 1979,
+    "sha256": "20f36acf1114f2d13c3d7edbaa1979b5bdc89aa9caeabec00b818ee4cf59f9a2",
+    "crc32": "9555cec7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/CloudKitSyncable.swift",
+    "bytes": 1329,
+    "sha256": "439c932ab1686853198bb953ace1195f8acb57048b979c12d540e96d4443f69d",
+    "crc32": "d547fd4e"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/LocalAnnotationCloudBoundary.swift",
+    "bytes": 599,
+    "sha256": "080306f6c765208bd4e2012267eb9866181e4bc25285d7beea6578d405a771b7",
+    "crc32": "3366da8c"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/LocalAnnotationEditorBoundary.swift",
+    "bytes": 3758,
+    "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46",
+    "crc32": "5846e4c7"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/OriginalLocalFixture.swift",
+    "bytes": 5569,
+    "sha256": "a428473214415145751bd5e00b9f7d935d0dea90efefd6e4c4bf9e37422a3389",
+    "crc32": "df810e54"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/SQLiteDatabase.swift",
+    "bytes": 14916,
+    "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "crc32": "a28235f2"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/SyncPendingStore.swift",
+    "bytes": 3534,
+    "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+    "crc32": "9db44e40"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/TorahAnnotationEnvelope.swift",
+    "bytes": 8619,
+    "sha256": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+    "crc32": "f24c6cae"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/progress_captured.command.json",
+    "bytes": 1011,
+    "sha256": "d898b403862ef2a17f2e55172a589d442cf5423b1f75aafbbf1446c5c2c59cbc",
+    "crc32": "4921c1c9"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/owned-4dc0f4a6-4bcb-4c51-bfc8-2023de4432f7/package/Sources/DisconnectCandidate/UnusedZstdBoundary.swift",
+    "bytes": 443,
+    "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "crc32": "df3e8146"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/progress_captured.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/progress_captured.stdout.log",
+    "bytes": 23,
+    "sha256": "f126327dd9c15bae1570efc8e6c06e2473753f506ac3c69532f6e0e194aba7fd",
+    "crc32": "1afc1464"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/progress_default.command.json",
+    "bytes": 1007,
+    "sha256": "4177d69c5c0b29375b88d30796dc80f7f84b696ca3f9b1cee34f2fe2f8212900",
+    "crc32": "b0af5931"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/progress_default.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/progress_default.stdout.log",
+    "bytes": 22,
+    "sha256": "799762b8f8fdd6160e1addf4badded2fe05b93cf1feae68a854ed7d52c3d571a",
+    "crc32": "45c45c73"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/reopen_preserves_rows_queue_and_retires_old_connection.command.json",
+    "bytes": 1197,
+    "sha256": "2895a90a706846e39d316b4e2d14d0abf8d78f0abf58417a5ff667169c8953b0",
+    "crc32": "3a56c737"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/reopen_preserves_rows_queue_and_retires_old_connection.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/reopen_preserves_rows_queue_and_retires_old_connection.stdout.log",
+    "bytes": 60,
+    "sha256": "65c207d40a82c4749676756d19c41346ca428cacb11ccabd355988db5e30e351",
+    "crc32": "9d2122f9"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/repeated_default_disconnect_is_idempotent.command.json",
+    "bytes": 1133,
+    "sha256": "e1b3f0338dddbb0336621d98c5ba215b6c585ed908b64929a3df3d2b8451efe5",
+    "crc32": "abfdbf43"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/repeated_default_disconnect_is_idempotent.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/repeated_default_disconnect_is_idempotent.stdout.log",
+    "bytes": 47,
+    "sha256": "6492b5f717813a72c327e4fafa0c2273d3117edfa09f917812daf75f261863f0",
+    "crc32": "bd990d0f"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/rollback_then_disconnect_preserves_original_note.command.json",
+    "bytes": 1167,
+    "sha256": "f5277ef7605c71fed84ade506bb9d403faa7f2ae4ef00aaba405deb8fa26ce0b",
+    "crc32": "52085bf4"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/rollback_then_disconnect_preserves_original_note.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/rollback_then_disconnect_preserves_original_note.stdout.log",
+    "bytes": 54,
+    "sha256": "938f70fe08b5a602e4bb864784a7da6b34861d50a4936ef8670a972b12de9938",
+    "crc32": "28da20f3"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/stale_capture_queued_during_replacement.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/stale_capture_queued_during_replacement.command.json",
+    "bytes": 1122,
+    "sha256": "077c654133874eefb4d55591481118c5e67d72c6c59d8aaba97e98027e4fd256",
+    "crc32": "131fc313"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/stale_capture_queued_during_replacement.stdout.log",
+    "bytes": 45,
+    "sha256": "678c4f42400af3c6ee3b47cccb45070c88e876c806e5f4287f94be823b12a318",
+    "crc32": "e7da0009"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/stale_database_with_current_lifetime_cannot_detach.command.json",
+    "bytes": 1178,
+    "sha256": "e9e03cd6093b4d29fd9cfb4cb652c5c808c687b79c86eeb46488658660f7b6d8",
+    "crc32": "fcea585a"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/stale_database_with_current_lifetime_cannot_detach.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32": "00000000"
+  },
+  {
+    "path": "annotation-disconnect-acceptance/stale_database_with_current_lifetime_cannot_detach.stdout.log",
+    "bytes": 56,
+    "sha256": "969df5922ff484b9710c698152cac34cb20f1e8ce6206cde30d2a8a4f82bb979",
+    "crc32": "a25f2e34"
+  }
+]
