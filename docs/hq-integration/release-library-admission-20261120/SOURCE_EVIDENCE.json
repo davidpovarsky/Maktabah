@@ -1,0 +1,236 @@
+{
+  "records": [
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "commit": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b",
+      "ranges": [
+        {
+          "start": 148,
+          "end": 164,
+          "lines": [
+            "    private func standardToolbarItems(viewModel: LibraryViewModel) -> some ToolbarContent {",
+            "        ToolbarItem(placement: .topBarTrailing) {",
+            "            groupByMenu(viewModel: viewModel)",
+            "        }",
+            "",
+            "        ToolbarItem(placement: .topBarTrailing) {",
+            "            if AppConfig.isUsingBundleMode {",
+            "                downloadedFilterToggle(viewModel: viewModel)",
+            "            }",
+            "        }",
+            "",
+            "        CustomToolbarSpacer(placement: .topBarTrailing)",
+            "",
+            "        ToolbarItem(placement: .topBarTrailing) {",
+            "            optionsMenu(viewModel: viewModel)",
+            "        }",
+            "    }"
+          ]
+        },
+        {
+          "start": 195,
+          "end": 227,
+          "lines": [
+            "    private func optionsMenu(viewModel: LibraryViewModel) -> some View {",
+            "        Menu {",
+            "            Button {",
+            "                viewModel.enterSelectionMode()",
+            "            } label: {",
+            "                Label(.Library.select, systemImage: \"checkmark.circle\")",
+            "            }",
+            "",
+            "            if MaktabahBookUpdateSafety.isMaktabahActive {",
+            "            Button {",
+            "                viewModel.showingUpdateSheet = true",
+            "            } label: {",
+            "                let bookUpdates = String(localized: .Library.booksUpdates)",
+            "                Label(",
+            "                    viewModel.availableUpdateCount > 0",
+            "                        ? \"\\(bookUpdates) (\\(viewModel.availableUpdateCount))\"",
+            "                        : bookUpdates,",
+            "                    systemImage: \"arrow.triangle.2.circlepath\"",
+            "                )",
+            "            }",
+            "            }",
+            "",
+            "            Button {",
+            "                viewModel.showingImportSheet = true",
+            "            } label: {",
+            "                Label(String(localized: .Library.importBook), systemImage: \"plus.viewfinder\")",
+            "            }",
+            "        } label: {",
+            "            Image(systemName: \"ellipsis\")",
+            "        }",
+            "        .accessibilityLabel(String(localized: .Library.libraryOptions))",
+            "        .help(String(localized: .Library.libraryOptions))",
+            "    }"
+          ]
+        }
+      ],
+      "product_byte_identical_to_original_7e": true
+    },
+    {
+      "path": "Source/ChavrusaText/BookUpdates/MaktabahBookUpdateSafety.swift",
+      "commit": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "sha256": "02abd77e40076621ea526c22d8f5edd232d498e82a7f10eb968e758ca7033f4c",
+      "ranges": [
+        {
+          "start": 251,
+          "end": 265,
+          "lines": [
+            "    #if !HQ_UPDATES_FIXTURE",
+            "    /// Exhaustive on purpose: adding a backend must not opt it into a foreign",
+            "    /// catalog based on a saved raw string or usesNativeMaktabahDataPath.",
+            "    static func supportsLegacyUpdates(_ backend: BackendID) -> Bool {",
+            "        switch backend {",
+            "        case .otzaria, .sefaria, .sefariaEmbedded: false",
+            "        }",
+            "    }",
+            "",
+            "    @MainActor",
+            "    static var isMaktabahActive: Bool {",
+            "        // Otzaria also uses the legacy data path. That flag is not update ownership.",
+            "        // Current downstream-only BackendID cases intentionally all fail this gate.",
+            "        supportsLegacyUpdates(BackendCoordinator.shared.activeBackendID) && !BackendCoordinator.shared.isTransitioning",
+            "    }"
+          ]
+        }
+      ],
+      "product_byte_identical_to_original_7e": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "commit": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "sha256": "387879fcc00f2d90f8bb03319c59faf392f093062fcd0d1551a6c34009f9bb11",
+      "ranges": [
+        {
+          "start": 144,
+          "end": 187,
+          "lines": [
+            "/// Black-box tests use the actual production-default flags and original views.",
+            "/// A unique sidecar namespace isolates tests without changing canonical sessions/data.",
+            "class FaithfulReaderUIBase: MaktabahUITestBase {",
+            "    let workspaceNamespace = UUID().uuidString",
+            "    private var viewportURL: URL?",
+            "    var readerTestTier: TestTier { .smoke }",
+            "    var readerAdditionalLaunchArguments: [String] { [] }",
+            "    struct Viewport: Codable {",
+            "        struct Presentation: Codable {",
+            "            let wantsOverview: Bool; let isViewLoaded: Bool; let isInWindow: Bool",
+            "            let boundsWidth: Double; let boundsHeight: Double",
+            "            let parentClass: String; let presentedClass: String",
+            "            let hasHostingController: Bool; let isTransitioning: Bool",
+            "        }",
+            "        let source: Int; let offset: Double; let object: Int; let requestID: String",
+            "        let contentHeight: Double?; let viewportHeight: Double?; let contentOffsetY: Double?",
+            "        let topInset: Double?; let bottomInset: Double?",
+            "        let overviewPresentations: [Presentation]?",
+            "    }",
+            "    func launchReader(enabled: Bool = true, scenario: String = \"reader\", backend: String = \"otzaria\", language: String = \"he\", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil) {",
+            "        launchReader(enabled: enabled, scenario: scenario, backend: backend, language: language,",
+            "                     background: background, recordViewport: recordViewport, fontSize: fontSize,",
+            "                     tier: readerTestTier)",
+            "    }",
+            "",
+            "    /// The required tier keeps every original override signature intact.",
+            "    func launchReader(enabled: Bool = true, scenario: String = \"reader\", backend: String = \"otzaria\", language: String = \"he\", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil, tier: TestTier) {",
+            "        // The downstream observer reads the actual original source anchor;",
+            "        // never activate the baseline renderer's crash-prone file exporter.",
+            "        let prefix = (recordViewport ? ProcessInfo.processInfo.environment[\"FAITHFUL_VIEWPORT_DIRECTORY\"] : nil).map {",
+            "            URL(fileURLWithPath: $0).appendingPathComponent(\"faithful-\\(scenario)-\" + UUID().uuidString).path",
+            "        }",
+            "        viewportURL = prefix.map { URL(fileURLWithPath: $0 + \".viewport.json\") }",
+            "        // realUI intentionally omits a backend override in launchWithTier.",
+            "        // Preserve this helper's requested backend instead of inheriting a",
+            "        // previously persisted provider when the feature-off case relaunches.",
+            "        let backendArguments = tier == .realUI",
+            "            ? [\"-preferredBackend\", backend, \"-smokeBackend\", backend] : []",
+            "        launchWithTier(tier, scenario: scenario, backend: backend, extraArgs: backendArguments + [",
+            "            \"-ChavrusaTextFaithfulReaderUIEnabled\", enabled ? \"YES\" : \"NO\",",
+            "            \"-studyWorkspaceTestingNamespace\", workspaceNamespace,",
+            "            \"-textViewBackgroundColorLight\", String(background)",
+            "        ] + (fontSize.map { [\"-textViewFontSize\", String($0)] } ?? []) + readerAdditionalLaunchArguments, language: language, locale: language == \"he\" ? \"he_IL\" : \"en_US\",",
+            "        extraEnvironment: prefix.map { [\"CHAVRUSA_READER_VIEWPORT_REPORT\": $0] } ?? [:])"
+          ]
+        }
+      ],
+      "product_byte_identical_to_original_7e": null
+    }
+  ],
+  "localization": {
+    "path": "Source/Features/Library/Models/Library.xcstrings",
+    "sha256": "a3c5ae511f7e2a4c0ee90a562ba94574a4f395210615d0ff6371ee325758a90e",
+    "sourceLanguage": "en",
+    "original_keys": {
+      "Library Options": {
+        "extractionState": "manual",
+        "localizations": {
+          "ar": {
+            "stringUnit": {
+              "state": "translated",
+              "value": "خيارات المكتبة"
+            }
+          },
+          "id": {
+            "stringUnit": {
+              "state": "translated",
+              "value": "Opsi Perpustakaan"
+            }
+          }
+        }
+      },
+      "Select…": {
+        "extractionState": "manual",
+        "localizations": {
+          "ar": {
+            "stringUnit": {
+              "state": "translated",
+              "value": "تحديد…"
+            }
+          },
+          "id": {
+            "stringUnit": {
+              "state": "translated",
+              "value": "Pilih…"
+            }
+          }
+        }
+      },
+      "Import Book": {
+        "extractionState": "manual",
+        "localizations": {
+          "ar": {
+            "stringUnit": {
+              "state": "translated",
+              "value": "استيراد كتاب"
+            }
+          },
+          "id": {
+            "stringUnit": {
+              "state": "translated",
+              "value": "Impor Kitab"
+            }
+          }
+        }
+      },
+      "Books Updates": {
+        "extractionState": "manual",
+        "localizations": {
+          "ar": {
+            "stringUnit": {
+              "state": "translated",
+              "value": "تحديثات الكتب"
+            }
+          },
+          "id": {
+            "stringUnit": {
+              "state": "translated",
+              "value": "Pembaruan Kitab"
+            }
+          }
+        }
+      }
+    }
+  }
+}

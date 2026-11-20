@@ -1,0 +1,12 @@
+{
+  "gid": "1220539610434045",
+  "name": "[P0][11201][DATA-SAFETY] Books Updates — לחסום SQL/עדכונים במקור לא תואם ולתקן את מנגנון העדכון",
+  "completed": false,
+  "modified_at": "2026-11-20T00:21:22.745Z",
+  "permalink_url": "https://app.asana.com/1/1219597879016953/task/1220539610434045",
+  "acceptance_excerpt": "קבלה: על Otzaria production אין כפתור/פעולה שמנסים לעדכן Maktabah SQL, הנתונים הקיימים נשמרים גם אחרי restart; על fixture Maktabah מתאים, עדכון אמיתי מצליח ללא no such table; זרימות offline/interrupted/corrupt CSV fail-closed בלי קבצים חלופיים ריקים, בלי מחיקת ספרים, עם לוגים. XCTest/unit ומכשיר iPad; לא להריץ שוב Update selected על התקנה אמיתית עד שעובר gate. STATUS OPEN.",
+  "current_provider_decision_excerpt": "Per current single-manager product decision: no native Maktabah provider exists. All actual Otzaria/Sefaria/SefariaEmbedded sources explicitly reject the foreign legacy catalog; no invented backend, automatic switch, alternative updater or installed-data operation.",
+  "notes_text_utf8_sha256": "b5522c04ac8e6d51edb0906c8e309742af2ed346cee163b64d0f3af1036d99e9",
+  "source": "Asana get_task response read 2026-11-20; excerpts exact, full notes not reproduced.",
+  "scope_limit": "This repair checks safe Otzaria menu admission only. Compatible-provider update, native migration/recovery, and physical iPad acceptance remain OPEN/BLOCKED_PROVIDER."
+}
