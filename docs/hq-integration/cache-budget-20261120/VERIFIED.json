@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-11-20T01:26:33.829298+00:00",
+  "baseline": {
+    "passed": 16,
+    "failed": 10,
+    "compile_exit": 0,
+    "test_exit": 1
+  },
+  "production_cache_sha256": "55ce1d4b902d82ed1536f20ec8e21b265cd5739a4ae1c62094b95a07a4bae780",
+  "raw_budget_bytes": 33554432,
+  "processed_budget_bytes": 33554432,
+  "book_limit_each": 200,
+  "entry_limit_each": 5000,
+  "candidate": {
+    "passed": 26,
+    "failed": 0,
+    "compile_exit": 0,
+    "test_exit": 0
+  },
+  "peer_review": "no blocking source defect found; no additional executions",
+  "native": 0,
+  "physical": 0,
+  "rss": "NOT_MEASURED",
+  "ci_wiring": "Python AST PASS; Apple execution pending"
+}

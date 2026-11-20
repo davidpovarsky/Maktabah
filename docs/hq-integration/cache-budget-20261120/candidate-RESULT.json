@@ -1,0 +1,81 @@
+{
+  "observed_at": "2026-11-20T01:20:43.016432+00:00",
+  "source_ref": null,
+  "source_commit": "bd5142ca5da7c7fe6b658dba2323ac0b463b6672",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "inputs": {
+    "Source/Features/Reader/Cache/BookPageCache.swift": {
+      "sha256": "55ce1d4b902d82ed1536f20ec8e21b265cd5739a4ae1c62094b95a07a4bae780",
+      "bytes": 9206
+    },
+    "Source/LibraryBackend/LibraryBackendModels.swift": {
+      "sha256": "d1d9fa7bf0b20d3c32f2dbd73cc81f8028180524462f6386e77c5ce11e412a34",
+      "bytes": 32835
+    },
+    "Source/Core/TextProcessing/ArabicTextRenderer.swift": {
+      "sha256": "a1c6c07a582d76ddb8edcda92497a2297124816afe0d102fa16f723c2d34f5a2",
+      "bytes": 22887
+    },
+    "Source/Features/Reader/Models/BookContent.swift": {
+      "sha256": "cff47d89f3cf9070c4868950dcea256074907799ce51291001c9746de26c4b9f",
+      "bytes": 757
+    },
+    "Source/Features/Reader/Models/CleanedTextKey.swift": {
+      "sha256": "8d653c7dab29847c24ef331d8699c4aefd63083d7a2429689df1c41d712ec771",
+      "bytes": 476
+    },
+    "Source/Features/Reader/Models/ProcessedArabicContent.swift": {
+      "sha256": "2cb5a1c288695340a787b9dfd6e72e2f1617cb7869765498d599648da6558251",
+      "bytes": 1309
+    },
+    "Tests\\HQ\\cache\\BookPageCacheAcceptance.swift": {
+      "sha256": "9b6195af003f92fdae167c3c4f65b40e7f2787f5ca06ee9569c45f54d0d6dcce",
+      "bytes": 12610
+    }
+  },
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "C:\\Users\\DAVID\\Code\\Maktabah-cache-budget-20261120\\build\\cache-budget-20261120\\candidate\\ActualCacheAcceptance.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-cache-budget-20261120\\build\\cache-budget-20261120\\candidate\\cache-acceptance.exe"
+  ],
+  "generated_sha256": "6e4714d8970c99fb802bf60eff9275ea97f3e1245b9a13c51e4141a3d9afc1d0",
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "compile_exit": 0,
+  "test_exit": 0,
+  "passed": [
+    "Raw text and all original metadata survive unchanged",
+    "Same content ID stays scoped to its book",
+    "Small replacement returns only the current value",
+    "Processed value keeps its original immutable identity",
+    "Every renderer range and delta remains unchanged",
+    "All render flags and both text hashes remain isolated",
+    "Per-book removal clears raw and processed together",
+    "Per-book removal preserves another book",
+    "Global removal clears both stores",
+    "A raw page larger than the byte budget is not retained and invalidates the old identity",
+    "Large reference metadata contributes to retention cost",
+    "Both locator strings contribute to retention cost",
+    "Oversized processed text is not retained and invalidates the old identity",
+    "Range storage contributes to processed retention cost",
+    "Replacement event storage contributes to retention cost",
+    "Both delta event arrays contribute to retention cost",
+    "Retained raw payload across books stays within the byte budget",
+    "The latest fitting raw page remains usable",
+    "Retained raw payload within one book stays within the byte budget",
+    "Retained processed payload across books stays within the byte budget",
+    "The original book limit remains bounded",
+    "The page count remains bounded even for tiny values",
+    "A small processed value is retained while cached",
+    "Removal releases values; the ledger owns no payload",
+    "Capacity is reusable after clear",
+    "Concurrent reads writes and removals never return a foreign payload"
+  ],
+  "failed": [],
+  "status": "PASS"
+}
