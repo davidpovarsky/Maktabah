@@ -1185,7 +1185,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     func testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable() {
         XCUIDevice.shared.orientation = .landscapeLeft
-        launchReader(language: "en")
+        launchReader(backend: "otzaria", language: "en")
         assertReaderHasText()
         let originalLocator = app.staticTexts["reader-current-locator"].label
         let originalTitle = app.staticTexts["reader-header-title"].label
@@ -1225,10 +1225,33 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertEqual(downloaded.isSelected, selected)
             XCTAssertEqual(downloaded.value as? String, value)
         }
-        tap(bar.buttons["Library Options"])
         let options = app.collectionViews.containing(.button, identifier: "Select…").firstMatch
+        let directOptions = bar.buttons["Library Options"]
+        if directOptions.exists {
+            tap(directOptions)
+        } else {
+            // iPadOS can place the original Library menu in this toolbar's
+            // native overflow; use that same observed bar and its real action.
+            let overflow = bar.buttons.matching(identifier: "TopOverflowBarButtonItem")
+            XCTAssertEqual(overflow.count, 1, "Require one original Library toolbar overflow")
+            tap(overflow.element(boundBy: 0))
+            let submenu = app.collectionViews.cells.buttons.matching(identifier: "Library Options")
+            let presented = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                MainActor.assumeIsolated { options.exists || submenu.count > 0 }
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [presented], timeout: 15), .completed,
+                           "The original overflow must expose Library Options or its actual actions")
+            if !options.exists {
+                XCTAssertEqual(submenu.count, 1, "Require the unique original Library Options submenu")
+                tap(submenu.element(boundBy: 0))
+            }
+        }
         XCTAssertTrue(options.waitForExistence(timeout: 15))
-        XCTAssertEqual(options.cells.buttons.count, 3, "Retain original Select, book-update and import actions")
+        let actions = options.cells.buttons
+        XCTAssertEqual(actions.count, 2, "Otzaria retains the original Select and Import actions")
+        XCTAssertEqual(Set(actions.allElementsBoundByIndex.map { $0.label }), Set(["Select…", "Import Book"]))
+        XCTAssertFalse(actions.matching(NSPredicate(format: "label BEGINSWITH %@", "Books Updates")).firstMatch.exists,
+                       "The Otzaria fixture must not offer the foreign Maktabah SQL updater")
         tap(options.cells.buttons["Select…"])
         XCTAssertTrue(bar.buttons["Done"].waitForExistence(timeout: 15))
         XCTAssertTrue(bar.buttons["Delete"].exists)

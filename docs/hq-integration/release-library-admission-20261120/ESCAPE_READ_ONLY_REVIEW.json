@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "reviewedAtUTC": "2026-11-20T08:54:07.161318+00:00",
+  "reviewKind": "READ_ONLY_EXISTING_EVIDENCE_AND_SOURCE",
+  "runID": 44665679661,
+  "checkoutSHA": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+  "applicationSourceSHA": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "comparisonFreezeSHA": "e80cd5f2c27993351533f1be9d0890dfaa82cb42",
+  "case": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+  "configuration": "iPad11 Debug original Release acceptance matrix",
+  "firstObservedFailure": {
+    "originalLine": 1135,
+    "assertion": "reader-library-command-palette exists == false within 15 seconds",
+    "testRelativeSeconds": 66.04
+  },
+  "keyboardCommandTimeline": {
+    "typeKeyEscapeStarted": 47.05,
+    "eventSynthesis": 49.47,
+    "idleWaitStarted": 50.53
+  },
+  "sourceComparison": [
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "oldSHA256": "0aeaf779e901813d4059b9117cc73416657da4916b23a4c2a31a118cae4dc18d",
+      "currentSHA256": "0aeaf779e901813d4059b9117cc73416657da4916b23a4c2a31a118cae4dc18d",
+      "byteIdentical": true
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "oldSHA256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239",
+      "currentSHA256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239",
+      "byteIdentical": true
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "oldSHA256": "4fa4ee2fd966b346b66fa19ed405e9a68e3ae45d08eac40ed948d29de435a91d",
+      "currentSHA256": "4fa4ee2fd966b346b66fa19ed405e9a68e3ae45d08eac40ed948d29de435a91d",
+      "byteIdentical": true
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "oldSHA256": "43f3c338218db1b86a7e5978d85d2e2f447ff16f7570e1e7c24f2b8d56ec5de1",
+      "currentSHA256": "43f3c338218db1b86a7e5978d85d2e2f447ff16f7570e1e7c24f2b8d56ec5de1",
+      "byteIdentical": true
+    }
+  ],
+  "testMethod": {
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "oldLine": 1113,
+    "currentLine": 1419,
+    "sha256": "663039eaf21eb67be87173d2452fa3c8da36a2a109b30a5a71efa3a923868ef4",
+    "byteIdentical": true
+  },
+  "video": {
+    "artifactID": 14608653727,
+    "entry": "visual-11/B22E9734-1B54-4E53-ACDC-8F985A5A0572.mp4",
+    "bytes": 8624686,
+    "sha256": "71fda7addd7dfb9ee9b68be2564e8d362b7439bb287919819f0b6e2f86b6e452",
+    "wholeArtifactHashVerified": false,
+    "selectedEntryCRCAndSHAVerifiedBy": "captures-attempt1/RANGE_EVIDENCE.json",
+    "creationTimeUTC": "2026-11-20T04:41:21.000Z"
+  },
+  "frameReceipt": "FRAME_RECEIPT.json",
+  "visuallyInspectedFrameSeconds": [
+    43,
+    51,
+    64
+  ],
+  "uninspectedGeneratedFrameSeconds": [
+    48,
+    55
+  ],
+  "visualObservations": [
+    "Palette and insertion caret are present in inspected frames.",
+    "Palette, caret and software keyboard remain visible in frame 51 and frame 64 after the logged Escape command.",
+    "Keyboard layout differs between frame 51 and frame 64; this does not establish application receipt of Escape."
+  ],
+  "sourceObservations": [
+    "Original UITextField subclass implements a priority Escape UIKeyCommand, pressesBegan handling and an insertText escape fallback.",
+    "canPerformAction requires actual first responder and key window for the Escape selector.",
+    "dismissFromKeyboard requires actual first responder, resigns and invokes the onEscape callback.",
+    "Both original host closures set their existing local presentation State to false.",
+    "No deterministic reopen or lost-callback path has been established by this review."
+  ],
+  "limits": [
+    "Final debug attachment contains the XCTest query chain only, not an application responder/keyboard callback receipt.",
+    "The old record does not show whether UIKit dispatched the key command, whether the guard accepted it, or whether onDismiss ran.",
+    "The separate iPad13 case fails earlier at a viewport assertion and is not attributed to the Escape failure.",
+    "No new test, compile, UI operation, source edit or workflow dispatch performed for this review.",
+    "The historical failure cannot establish a current-source PASS or prove a specific responder defect."
+  ],
+  "outcome": "FIRST_FAILURE_CONFIRMED_CAUSE_NOT_DETERMINISTIC_FROM_RETAINED_EVIDENCE",
+  "nextNativeNeed": "Execute the original unchanged dismissal assertion; if it still fails, bounded fixed-stage diagnostics for key dispatch, responder/key-window guard and host dismissal can separate delivery from closure/state failure."
+}

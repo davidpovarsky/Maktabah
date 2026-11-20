@@ -1,0 +1,21 @@
+{
+  "base": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "branch": "codex/otzaria-release-library-admission-20261120",
+  "historical_docs_branch_head": "f9084816d63dcbf7a2e7878cc698241ea230c0b2",
+  "changed_operational_file": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "changed_method": "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+  "full_file_inverse_passed": true,
+  "all_other_methods_unchanged": true,
+  "all_existing_waits_unchanged": true,
+  "product_changed": false,
+  "native": "NOT_RUN",
+  "apple_typecheck": "NOT_RUN",
+  "added_bounded_preparation_wait": {
+    "seconds": 15,
+    "only_when": "The actual original Library native overflow is used",
+    "required_actual_observation": "Select menu or unique exact Library Options submenu; no alternate menu"
+  },
+  "original_Select_menu_wait_seconds": 15,
+  "full_file_inverse_to_exact_HEAD_git_blob": true,
+  "test_method_count_unchanged": true
+}

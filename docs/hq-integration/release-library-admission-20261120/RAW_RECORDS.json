@@ -1,0 +1,65 @@
+{
+  "ARTIFACT_METADATA.json": {
+    "file": "ARTIFACT_METADATA.json.raw.gz",
+    "gzip_bytes": 479,
+    "gzip_sha256": "3a75719a234ffd23c186cd43e5ab63a2fb34d4177ada85e859701fe982aa5339",
+    "uncompressed_bytes": 847,
+    "uncompressed_sha256": "f2391921970e0f035f3feaead0cdd6d8079c33cfa378416a45487b7d046e6b5f"
+  },
+  "RANGE_EVIDENCE.json": {
+    "file": "RANGE_EVIDENCE.json.raw.gz",
+    "gzip_bytes": 1548,
+    "gzip_sha256": "0a07469ff314312f0b8d4cc937811e614c2ba7ff6f8b4708b8dbac76b43ab623",
+    "uncompressed_bytes": 4879,
+    "uncompressed_sha256": "4e4662f47b20b9bdcbde4ffd085bc913bf671003213fdf3c91c528bd289de4a0"
+  },
+  "Library_AX": {
+    "file": "Library_AX.txt.gz",
+    "gzip_bytes": 7111,
+    "gzip_sha256": "ce1086d8aa872d063f838b43d64143a499d2907af9bcb3d1a46dfe30ccdeceff",
+    "uncompressed_bytes": 47582,
+    "uncompressed_sha256": "bb6db6521868484002430e2d164e15c62f7c4269a71b28bac09dfa2b6b8daab2"
+  },
+  "11-testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable.log.gz": {
+    "file": "11-testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable.log.gz",
+    "gzip_bytes": 2531,
+    "gzip_sha256": "2d60ea74a155dee74f7241edf0720a44edada7e18f7448881a75f981c6b8a692",
+    "uncompressed_bytes": 20967,
+    "uncompressed_sha256": "8f93d51ffeb91718e6fa302fc3f08e7baa36a6c116b2be2eb9af13b3ab545362"
+  },
+  "11-testSystemReduceMotionKeepsOriginalPaletteUsable.log.gz": {
+    "file": "11-testSystemReduceMotionKeepsOriginalPaletteUsable.log.gz",
+    "gzip_bytes": 968,
+    "gzip_sha256": "ba7d7b5ac28af522eca53ad16126d3bcf9549145fc6ffe1f94347658284fe043",
+    "uncompressed_bytes": 4269,
+    "uncompressed_sha256": "ac16abcfb52fa4e84c7339332daa8a0dfcc52192d1f6629f70e62ddbd9c3b6a7"
+  },
+  "13-testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable.log.gz": {
+    "file": "13-testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable.log.gz",
+    "gzip_bytes": 1181,
+    "gzip_sha256": "e4652dfa1b75eb22c086e77f944cc25c235bb6087224f06a5028fd8a263c1b64",
+    "uncompressed_bytes": 3730,
+    "uncompressed_sha256": "fba5974622cece4b4b9e7d2cd6335b634a8b6a6e38f066eeb7afa2139ec93906"
+  },
+  "13-testSystemReduceMotionKeepsOriginalPaletteUsable.log.gz": {
+    "file": "13-testSystemReduceMotionKeepsOriginalPaletteUsable.log.gz",
+    "gzip_bytes": 967,
+    "gzip_sha256": "8433d62f6b8a3286fc55945ecc87cbf136ae0c29ea7b77f219816197752dcc29",
+    "uncompressed_bytes": 4269,
+    "uncompressed_sha256": "a212628aedd55a1f8bbe194ca63dce8c4b4a59bc53746205f68e8b8891041eac"
+  },
+  "ESCAPE_READ_ONLY_REVIEW.json": {
+    "file": "ESCAPE_READ_ONLY_REVIEW.json.raw.gz",
+    "gzip_bytes": 2168,
+    "gzip_sha256": "dc6c978fb1e36d27a48744d074e605963eb1e3498eee1dc47f928364f877878e",
+    "uncompressed_bytes": 4710,
+    "uncompressed_sha256": "36eb921cc94127de6a89b7a2462f8e6ffd8fb210b88b0f164c56d58fbcba2546"
+  },
+  "source_diff": {
+    "file": "source-diff.patch.gz",
+    "gzip_bytes": 1212,
+    "gzip_sha256": "b8a53d9f5367eec4f37b0a90350bef90dc7a33c996dcc8516becc9d60d42bc15",
+    "uncompressed_bytes": 3251,
+    "uncompressed_sha256": "cf1876b3fe65e98d87a56f0184fc4aa79412071573a88177c7a3bfb2cf0fd329"
+  }
+}

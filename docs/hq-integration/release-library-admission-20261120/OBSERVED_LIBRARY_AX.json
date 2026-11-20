@@ -1,0 +1,31 @@
+{
+  "artifact": 14608653727,
+  "run": 44665679661,
+  "app_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "selected_attachment": "visual-11/709A0C9F-0D8A-4680-AF05-160BA9A7BB31.txt",
+  "raw_sha256": "bb6db6521868484002430e2d164e15c62f7c4269a71b28bac09dfa2b6b8daab2",
+  "observations": [
+    {
+      "line": 2,
+      "text": "  Window (Main), 0x1126a9a40, {{0.0, 0.0}, {1210.0, 834.0}} <AX element pid: 76891, elementOrHash.elementID: 4364042240.4>"
+    },
+    {
+      "line": 109,
+      "text": "                                  NavigationBar, 0x112406bc0, {{0.0, 86.0}, {320.0, 108.0}}, identifier: 'Library' <AX element pid: 76891, elementOrHash.elementID: 4420860928.50>"
+    },
+    {
+      "line": 114,
+      "text": "                                    Button, 0x112407200, {{148.5, 90.0}, {43.5, 36.0}}, label: 'Group By' <AX element pid: 76891, elementOrHash.elementID: 4470835072.60>"
+    },
+    {
+      "line": 115,
+      "text": "                                    Button, 0x112407340, {{212.0, 90.0}, {38.0, 36.0}}, identifier: 'TopOverflowBarButtonItem', label: 'More' <AX element pid: 76891, elementOrHash.elementID: 4442515456.61>"
+    },
+    {
+      "line": 131,
+      "text": "                                  NavigationBar, 0x1126ac780, {{0.0, 86.0}, {1210.0, 54.0}}, identifier: 'ספר החינוך' <AX element pid: 76891, elementOrHash.elementID: 4442013696.53>"
+    }
+  ],
+  "direct_Library_Options_occurrences": 0,
+  "claim_limit": "The original native overflow exists in the Library bar. Its post-tap menu content has not been observed in this evidence; the unchanged 15s menu wait and exact action assertions require real Native execution."
+}

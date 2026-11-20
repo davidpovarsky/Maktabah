@@ -1,0 +1,30 @@
+{
+  "source_video_sha256": "8374c72049b875bbf41590170b6b39e4433d2ea1fa83d96e7080d955b6634257",
+  "method": "ffmpeg original frame extraction only; no crop, scale, or retouch",
+  "frames": [
+    {
+      "second": 32,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-remaining-roots-20261120\\motion-frames\\frame-32.png",
+      "bytes": 475699,
+      "sha256": "ad663c2d51a719db65cd9f69a132faf1d6242b042101ef583af2039ec426f7c7"
+    },
+    {
+      "second": 34.5,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-remaining-roots-20261120\\motion-frames\\frame-34.5.png",
+      "bytes": 460033,
+      "sha256": "59663d0e0bb657deeed01690159817b2090cb01a7be4965f809067e3cf1a34a2"
+    },
+    {
+      "second": 40,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-remaining-roots-20261120\\motion-frames\\frame-40.png",
+      "bytes": 460033,
+      "sha256": "59663d0e0bb657deeed01690159817b2090cb01a7be4965f809067e3cf1a34a2"
+    },
+    {
+      "second": 48,
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\release-remaining-roots-20261120\\motion-frames\\frame-48.png",
+      "bytes": 460033,
+      "sha256": "59663d0e0bb657deeed01690159817b2090cb01a7be4965f809067e3cf1a34a2"
+    }
+  ]
+}
