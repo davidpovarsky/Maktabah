@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "status": "SEALED_PREPARATION_NO_NEW_PYTHON_SWIFT_OR_NATIVE_EXECUTION",
+  "application_source": "cb252c143955d037ab0cef4df556b1e8fcd4c334",
+  "prior_route": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+  "prior_terminal_evidence_commit": "3e07d6a4b0c8b2b6996edebb3b66978d61b0fbe8",
+  "records": [
+    {
+      "path": "Scripts/CI/global-tab-ownership-native-v2.py",
+      "mode": "100644",
+      "bytes": 23556,
+      "sha256": "966c76b0e9abfb37d785f9709482f49b194eb428938ebc217ef49f8d24740c59",
+      "git_blob": "0e3d60a176c3d76d6681890addca19fd5124b9e1",
+      "source_change": "METADATA_ONLY_REBIND",
+      "prior_path": "Scripts/CI/global-tab-ownership-native.py",
+      "prior_blob": "a6d6ea018fc539338bdeb34de957549ae647337f"
+    },
+    {
+      "path": "Scripts/CI/test-global-tab-ownership-native-v2.py",
+      "mode": "100644",
+      "bytes": 17263,
+      "sha256": "d51ddd1d61d7bd082e15db0a4a9fb9e7f62b3ba25b00ddb98ef35c90dc28ee96",
+      "git_blob": "2ebe222b92872f43272c5d58f4668902920b61e2",
+      "source_change": "METADATA_ONLY_REBIND",
+      "prior_path": "Scripts/CI/test-global-tab-ownership-native.py",
+      "prior_blob": "1d17036f145a8329266b059c2cb8f74d4129b594"
+    },
+    {
+      "path": ".github/workflows/otzaria-global-tab-ownership-native-v2.yml",
+      "mode": "100644",
+      "bytes": 8263,
+      "sha256": "a107c203d7d9b05a5b69fe76276a631d6dc5489b39e6dec6f9f917827c862309",
+      "git_blob": "bd0206dafa3972f25c6722b35946af2f1e7e3c69",
+      "source_change": "METADATA_ONLY_REBIND",
+      "prior_path": ".github/workflows/otzaria-global-tab-ownership-native.yml",
+      "prior_blob": "5e8bb6e5e3d1cefa388392a6bda88c6e688ac1c2"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "mode": "100644",
+      "bytes": 4333,
+      "sha256": "716563fa4e0830b002593420df7784260dbd4100df573bd692ed7d1a36a66474",
+      "git_blob": "c798ee96b6a4c17c8dbd0c4fe3eafe4f29df0718",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "prior_blob": "c798ee96b6a4c17c8dbd0c4fe3eafe4f29df0718"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "mode": "100644",
+      "bytes": 19318,
+      "sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313",
+      "git_blob": "23a8e81487a350e97bcb077ed7a01d2caec76f24",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "prior_blob": "23a8e81487a350e97bcb077ed7a01d2caec76f24"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "mode": "100644",
+      "bytes": 26874,
+      "sha256": "77e98c36446a91638e9a76354fdd89cda37cf1ecad6fd28fc63e8f6475761ba8",
+      "git_blob": "9e8cf57d2f091a44f469b3e6e37104746a1373b6",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "Scripts/CI/runtime27.py",
+      "prior_blob": "9e8cf57d2f091a44f469b3e6e37104746a1373b6"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/global-tab-ownership-ipad11.json",
+      "mode": "100644",
+      "bytes": 190559,
+      "sha256": "6049e47a66b12b17a1b1e0bff9ca521f49f685e87892e74333c6846210ffc37b",
+      "git_blob": "2ebfbeb446aeb4dbe7add52c55f0d1c09cf4370c",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "docs/hq-integration/runtime27/global-tab-ownership-ipad11.json",
+      "prior_blob": "2ebfbeb446aeb4dbe7add52c55f0d1c09cf4370c"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/global-tab-ownership-ipad13.json",
+      "mode": "100644",
+      "bytes": 190552,
+      "sha256": "4649ea13d5314f995f1fdc5bbb4e57ae04bcd24082dc8c91ef2cd0a6b0a1dc87",
+      "git_blob": "4e42a64ced35f9ef74e65bc2aed310e68f409e2b",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "docs/hq-integration/runtime27/global-tab-ownership-ipad13.json",
+      "prior_blob": "4e42a64ced35f9ef74e65bc2aed310e68f409e2b"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/SOURCE_BINDING.json",
+      "mode": "100644",
+      "bytes": 6871,
+      "sha256": "c53d1d0658ed200d6ba802ef0c5d09546575bc6da8d2886249ad5873ffae9c95",
+      "git_blob": "ec67486631311ff4ed10594e666fe2bf234f202a",
+      "source_change": "BYTE_IDENTICAL_METADATA_AT_VERSIONED_DOCS_PATH",
+      "prior_path": "docs/hq-integration/global-tab-ownership-native-20261120/SOURCE_BINDING.json",
+      "prior_blob": "ec67486631311ff4ed10594e666fe2bf234f202a"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/RUNTIME_EXACT_EDIT.json",
+      "mode": "100644",
+      "bytes": 1910,
+      "sha256": "59453cc90aa980707833c2c4f6f9b2aa9f2ff29d99086ee065818f2859c91d55",
+      "git_blob": "d8a13f97b4caf31bd4687a5247fa8f0949194309",
+      "source_change": "BYTE_IDENTICAL_METADATA_AT_VERSIONED_DOCS_PATH",
+      "prior_path": "docs/hq-integration/global-tab-ownership-native-20261120/RUNTIME_EXACT_EDIT.json",
+      "prior_blob": "d8a13f97b4caf31bd4687a5247fa8f0949194309"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/retained-v1/Scripts/CI/global-tab-ownership-native.py",
+      "mode": "100644",
+      "bytes": 23541,
+      "sha256": "f2892930479804ff408578e7b226ed3101e2317169f0ba6f9d2f047e93b1c7f9",
+      "git_blob": "a6d6ea018fc539338bdeb34de957549ae647337f",
+      "source_change": "RETAINED_PRIOR_SOURCE",
+      "prior_path": "Scripts/CI/global-tab-ownership-native.py",
+      "prior_blob": "a6d6ea018fc539338bdeb34de957549ae647337f"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/retained-v1/Scripts/CI/test-global-tab-ownership-native.py",
+      "mode": "100644",
+      "bytes": 17260,
+      "sha256": "6abc948ec154ff7b79d41aa1aeb76617925ada1e9ba5b9a94c475d9cac48910e",
+      "git_blob": "1d17036f145a8329266b059c2cb8f74d4129b594",
+      "source_change": "RETAINED_PRIOR_SOURCE",
+      "prior_path": "Scripts/CI/test-global-tab-ownership-native.py",
+      "prior_blob": "1d17036f145a8329266b059c2cb8f74d4129b594"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/retained-v1/.github/workflows/otzaria-global-tab-ownership-native.yml",
+      "mode": "100644",
+      "bytes": 8248,
+      "sha256": "a3baaeb7da2310354282a8b6b2833686f5e0559a0360a4c19b5cbbd7902250bf",
+      "git_blob": "5e8bb6e5e3d1cefa388392a6bda88c6e688ac1c2",
+      "source_change": "RETAINED_PRIOR_SOURCE",
+      "prior_path": ".github/workflows/otzaria-global-tab-ownership-native.yml",
+      "prior_blob": "5e8bb6e5e3d1cefa388392a6bda88c6e688ac1c2"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/retained-v1/PACKET_INDEX.json",
+      "mode": "100644",
+      "bytes": 28684,
+      "sha256": "e88c7036b03764e979453740a78ec44a5d9794ee7d9141265e54357d686ff9d7",
+      "git_blob": "13f41cba3e9dc55c7a237ec3f1bd2aaa85322d27",
+      "source_change": "RETAINED_PRIOR_INDEX",
+      "prior_blob": "13f41cba3e9dc55c7a237ec3f1bd2aaa85322d27"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/retained-v1/evidence/evidence/VALIDATION.json.gz",
+      "bytes": 1283,
+      "sha256": "f56a4aee514beeed4f9082bb667fceae90e95033a48c5b0fce1ad40edc116cae",
+      "git_blob": "b236459966f9c1b92c5d4592d0e37fdf8befccda",
+      "uncompressed_bytes": 7605,
+      "uncompressed_sha256": "691860d0feb7b99308fd87db4259ec10ebcaca3393543c77044d079ca56a4dbb",
+      "mode": "100644",
+      "source_change": "RETAINED_CANONICAL_GZIP_BLOB_NO_NEW_EXECUTION",
+      "prior_path": "docs/hq-integration/global-tab-ownership-native-20261120/evidence/evidence/VALIDATION.json.gz"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/retained-v1/evidence/evidence/controls/RESULT.json.gz",
+      "bytes": 421,
+      "sha256": "ebc3a535b1d7869167ee14cde66bee0cce4d55ceb2924aa05b0d9988fd8a632b",
+      "git_blob": "9a98a23484ec0a8dd13d36274c171981369e5803",
+      "uncompressed_bytes": 667,
+      "uncompressed_sha256": "4d655cf1a45f20d47056fff277954c9dd82753cf4e9c45adce755234f73cf88f",
+      "mode": "100644",
+      "source_change": "RETAINED_CANONICAL_GZIP_BLOB_NO_NEW_EXECUTION",
+      "prior_path": "docs/hq-integration/global-tab-ownership-native-20261120/evidence/evidence/controls/RESULT.json.gz"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/retained-v1/evidence/evidence/controls/stderr.log.gz",
+      "bytes": 882,
+      "sha256": "fe7d7bd861cfd30e85b094d691b01a54dee02684910e936e104989a788cd35f7",
+      "git_blob": "2e062008b8a67dd2a54f270b7127371c392568f4",
+      "uncompressed_bytes": 4589,
+      "uncompressed_sha256": "34065d8db3b05a671af14be31a6d203033aac032a37114decc6a0d4c91ddabda",
+      "mode": "100644",
+      "source_change": "RETAINED_CANONICAL_GZIP_BLOB_NO_NEW_EXECUTION",
+      "prior_path": "docs/hq-integration/global-tab-ownership-native-20261120/evidence/evidence/controls/stderr.log.gz"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/retained-v1/evidence/evidence/controls/stdout.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "100644",
+      "source_change": "RETAINED_CANONICAL_GZIP_BLOB_NO_NEW_EXECUTION",
+      "prior_path": "docs/hq-integration/global-tab-ownership-native-20261120/evidence/evidence/controls/stdout.log.gz"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/prior-global4/RESULT.json",
+      "mode": "100644",
+      "bytes": 3055,
+      "sha256": "4f0f987f73b42f5e0c6faed881dbf02781a438f9e4b428d6dbace0fad7225637",
+      "git_blob": "72d91686d1e7d515dc3173b3b3098f7d9a063224",
+      "source_change": "RETAINED_CANONICAL_TERMINAL_RECEIPT",
+      "prior_commit": "3e07d6a4b0c8b2b6996edebb3b66978d61b0fbe8",
+      "prior_path": "docs/hq-integration/global4-44813193123-20261120/RESULT.json",
+      "prior_blob": "72d91686d1e7d515dc3173b3b3098f7d9a063224"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/prior-global4/ROOT_REVIEW.json",
+      "mode": "100644",
+      "bytes": 878,
+      "sha256": "09ca79abb0bbb986242e56269be737f25b1106bcb2019b66ddc117800be83333",
+      "git_blob": "f0e36fb4682b083eb8bad73e452ad6f271bf3146",
+      "source_change": "RETAINED_CANONICAL_TERMINAL_RECEIPT",
+      "prior_commit": "3e07d6a4b0c8b2b6996edebb3b66978d61b0fbe8",
+      "prior_path": "docs/hq-integration/global4-44813193123-20261120/ROOT_REVIEW.json",
+      "prior_blob": "f0e36fb4682b083eb8bad73e452ad6f271bf3146"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/prior-global4/ARTIFACTS.json",
+      "mode": "100644",
+      "bytes": 6836,
+      "sha256": "b412b339e8f7efa857bb0c91b1e4bb628d721d9f8637ed639247e3ef1ef7f17a",
+      "git_blob": "627f073d7159f014725ce560c44551fe47529f21",
+      "source_change": "RETAINED_CANONICAL_TERMINAL_RECEIPT",
+      "prior_commit": "3e07d6a4b0c8b2b6996edebb3b66978d61b0fbe8",
+      "prior_path": "docs/hq-integration/global4-44813193123-20261120/ARTIFACTS.json",
+      "prior_blob": "627f073d7159f014725ce560c44551fe47529f21"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/authority/SOURCE_COMMIT.json",
+      "mode": "100644",
+      "bytes": 1603,
+      "sha256": "c701fa4133aa13e390d60ea820408b649a7fac96a1503849fc0f0232a45986f2",
+      "git_blob": "fd1c6f1f9fffd2bb423314c425b4b3a1527daf6b"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/authority/SOURCE_ROOT_TREE.json",
+      "mode": "100644",
+      "bytes": 12247,
+      "sha256": "fc1d19ab204c89ba8c2d6fcd64ec15a8492d3817699c352907ecedaa05badfae",
+      "git_blob": "ff19eaa3c42dc6655024add99e209b9f72e624cc"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/REBIND_PROOF.json",
+      "mode": "100644",
+      "bytes": 9080,
+      "sha256": "f9752fd4e6bd421b43953c1f047b223a0dc0aae099baec37b4024fc6452ef366",
+      "git_blob": "773e0ad0984fafeabdfde65c1721b60e99209ba9"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/CANONICAL_INPUTS.json",
+      "mode": "100644",
+      "bytes": 3717,
+      "sha256": "434188d72f2efbf67fd76505f56b1397f7a0a03b0b3d9facc9a1ec81c349828c",
+      "git_blob": "0f1f7427ec22a71bffd0bf59099c22fcb63098bc"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/QUALIFICATION.json",
+      "mode": "100644",
+      "bytes": 5181,
+      "sha256": "e0d355a7a56722805c79d008e401d1f0b55a0a44c8147663d9182ae7158b41fa",
+      "git_blob": "cfbcc26c902dba1981b8da0349b0bab27f65501a"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/PEER_SOURCE_REVIEW.json",
+      "mode": "100644",
+      "bytes": 879,
+      "sha256": "1392d79168940cd126bd13ba57788f6c6ed07ca8a5029290d9343abf93ce56b0",
+      "git_blob": "4f55ed44d47369df84265931213db4830f2c70f8"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/README.md",
+      "mode": "100644",
+      "bytes": 3885,
+      "sha256": "437495aa694fed6732c6920f03d7d124c3f64d18454e17344c59af27d91fde66",
+      "git_blob": "fdf50511ca9a6b857f31951b9f1ac7a90cfde5fd"
+    }
+  ]
+}

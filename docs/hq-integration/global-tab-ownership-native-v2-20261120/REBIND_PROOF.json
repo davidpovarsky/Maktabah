@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "status": "EXACT_METADATA_INVERSES_VERIFIED_IN_FUNCTIONS_JAVASCRIPT",
+  "immutable_application_source": "cb252c143955d037ab0cef4df556b1e8fcd4c334",
+  "source_tree": "71c49f8ac4404a1ffd2cc2640ec30ee1db6c7cba",
+  "prior_route": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+  "proposed_branch": "codex/otzaria-global-tab-ownership-native-v2-20261120",
+  "proposed_workflow": ".github/workflows/otzaria-global-tab-ownership-native-v2.yml",
+  "changed_files": [
+    {
+      "path": "Scripts/CI/global-tab-ownership-native-v2.py",
+      "base_path": "Scripts/CI/global-tab-ownership-native.py",
+      "record": {
+        "bytes": 23556,
+        "sha256": "966c76b0e9abfb37d785f9709482f49b194eb428938ebc217ef49f8d24740c59",
+        "git_blob": "0e3d60a176c3d76d6681890addca19fd5124b9e1"
+      },
+      "base_record": {
+        "bytes": 23541,
+        "sha256": "f2892930479804ff408578e7b226ed3101e2317169f0ba6f9d2f047e93b1c7f9",
+        "git_blob": "a6d6ea018fc539338bdeb34de957549ae647337f"
+      },
+      "edits": [
+        {
+          "before": "DOCS = \"docs/hq-integration/global-tab-ownership-native-20261120/\"",
+          "after": "DOCS = \"docs/hq-integration/global-tab-ownership-native-v2-20261120/\"",
+          "count": 1
+        },
+        {
+          "before": "REF = \"refs/heads/codex/otzaria-global-tab-ownership-native-20261120\"",
+          "after": "REF = \"refs/heads/codex/otzaria-global-tab-ownership-native-v2-20261120\"",
+          "count": 1
+        },
+        {
+          "before": "WORKFLOW = \".github/workflows/otzaria-global-tab-ownership-native.yml\"",
+          "after": "WORKFLOW = \".github/workflows/otzaria-global-tab-ownership-native-v2.yml\"",
+          "count": 1
+        },
+        {
+          "before": "SELF = \"Scripts/CI/global-tab-ownership-native.py\"",
+          "after": "SELF = \"Scripts/CI/global-tab-ownership-native-v2.py\"",
+          "count": 1
+        },
+        {
+          "before": "TESTS = \"Scripts/CI/test-global-tab-ownership-native.py\"",
+          "after": "TESTS = \"Scripts/CI/test-global-tab-ownership-native-v2.py\"",
+          "count": 1
+        }
+      ],
+      "whole_file_inverse_exact": true
+    },
+    {
+      "path": "Scripts/CI/test-global-tab-ownership-native-v2.py",
+      "base_path": "Scripts/CI/test-global-tab-ownership-native.py",
+      "record": {
+        "bytes": 17263,
+        "sha256": "d51ddd1d61d7bd082e15db0a4a9fb9e7f62b3ba25b00ddb98ef35c90dc28ee96",
+        "git_blob": "2ebe222b92872f43272c5d58f4668902920b61e2"
+      },
+      "base_record": {
+        "bytes": 17260,
+        "sha256": "6abc948ec154ff7b79d41aa1aeb76617925ada1e9ba5b9a94c475d9cac48910e",
+        "git_blob": "1d17036f145a8329266b059c2cb8f74d4129b594"
+      },
+      "edits": [
+        {
+          "before": "G = runpy.run_path(str(HERE / \"global-tab-ownership-native.py\"))",
+          "after": "G = runpy.run_path(str(HERE / \"global-tab-ownership-native-v2.py\"))",
+          "count": 1
+        }
+      ],
+      "whole_file_inverse_exact": true
+    },
+    {
+      "path": ".github/workflows/otzaria-global-tab-ownership-native-v2.yml",
+      "base_path": ".github/workflows/otzaria-global-tab-ownership-native.yml",
+      "record": {
+        "bytes": 8263,
+        "sha256": "a107c203d7d9b05a5b69fe76276a631d6dc5489b39e6dec6f9f917827c862309",
+        "git_blob": "bd0206dafa3972f25c6722b35946af2f1e7e3c69"
+      },
+      "base_record": {
+        "bytes": 8248,
+        "sha256": "a3baaeb7da2310354282a8b6b2833686f5e0559a0360a4c19b5cbbd7902250bf",
+        "git_blob": "5e8bb6e5e3d1cefa388392a6bda88c6e688ac1c2"
+      },
+      "edits": [
+        {
+          "before": "branches: [codex/otzaria-global-tab-ownership-native-20261120]",
+          "after": "branches: [codex/otzaria-global-tab-ownership-native-v2-20261120]",
+          "count": 1
+        },
+        {
+          "before": "Scripts/CI/global-tab-ownership-native.py",
+          "after": "Scripts/CI/global-tab-ownership-native-v2.py",
+          "count": 3
+        },
+        {
+          "before": "Scripts/CI/test-global-tab-ownership-native.py",
+          "after": "Scripts/CI/test-global-tab-ownership-native-v2.py",
+          "count": 1
+        }
+      ],
+      "whole_file_inverse_exact": true
+    }
+  ],
+  "unchanged_operational_files": [
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "mode": "100644",
+      "bytes": 4333,
+      "sha256": "716563fa4e0830b002593420df7784260dbd4100df573bd692ed7d1a36a66474",
+      "git_blob": "c798ee96b6a4c17c8dbd0c4fe3eafe4f29df0718",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "prior_blob": "c798ee96b6a4c17c8dbd0c4fe3eafe4f29df0718"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "mode": "100644",
+      "bytes": 19318,
+      "sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313",
+      "git_blob": "23a8e81487a350e97bcb077ed7a01d2caec76f24",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "prior_blob": "23a8e81487a350e97bcb077ed7a01d2caec76f24"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "mode": "100644",
+      "bytes": 26874,
+      "sha256": "77e98c36446a91638e9a76354fdd89cda37cf1ecad6fd28fc63e8f6475761ba8",
+      "git_blob": "9e8cf57d2f091a44f469b3e6e37104746a1373b6",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "Scripts/CI/runtime27.py",
+      "prior_blob": "9e8cf57d2f091a44f469b3e6e37104746a1373b6"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/global-tab-ownership-ipad11.json",
+      "mode": "100644",
+      "bytes": 190559,
+      "sha256": "6049e47a66b12b17a1b1e0bff9ca521f49f685e87892e74333c6846210ffc37b",
+      "git_blob": "2ebfbeb446aeb4dbe7add52c55f0d1c09cf4370c",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "docs/hq-integration/runtime27/global-tab-ownership-ipad11.json",
+      "prior_blob": "2ebfbeb446aeb4dbe7add52c55f0d1c09cf4370c"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/global-tab-ownership-ipad13.json",
+      "mode": "100644",
+      "bytes": 190552,
+      "sha256": "4649ea13d5314f995f1fdc5bbb4e57ae04bcd24082dc8c91ef2cd0a6b0a1dc87",
+      "git_blob": "4e42a64ced35f9ef74e65bc2aed310e68f409e2b",
+      "source_change": "BYTE_IDENTICAL_TO_PRIOR_ROUTE",
+      "prior_path": "docs/hq-integration/runtime27/global-tab-ownership-ipad13.json",
+      "prior_blob": "4e42a64ced35f9ef74e65bc2aed310e68f409e2b"
+    }
+  ],
+  "unchanged_binding_metadata_files": [
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/SOURCE_BINDING.json",
+      "mode": "100644",
+      "bytes": 6871,
+      "sha256": "c53d1d0658ed200d6ba802ef0c5d09546575bc6da8d2886249ad5873ffae9c95",
+      "git_blob": "ec67486631311ff4ed10594e666fe2bf234f202a",
+      "source_change": "BYTE_IDENTICAL_METADATA_AT_VERSIONED_DOCS_PATH",
+      "prior_path": "docs/hq-integration/global-tab-ownership-native-20261120/SOURCE_BINDING.json",
+      "prior_blob": "ec67486631311ff4ed10594e666fe2bf234f202a"
+    },
+    {
+      "path": "docs/hq-integration/global-tab-ownership-native-v2-20261120/RUNTIME_EXACT_EDIT.json",
+      "mode": "100644",
+      "bytes": 1910,
+      "sha256": "59453cc90aa980707833c2c4f6f9b2aa9f2ff29d99086ee065818f2859c91d55",
+      "git_blob": "d8a13f97b4caf31bd4687a5247fa8f0949194309",
+      "source_change": "BYTE_IDENTICAL_METADATA_AT_VERSIONED_DOCS_PATH",
+      "prior_path": "docs/hq-integration/global-tab-ownership-native-20261120/RUNTIME_EXACT_EDIT.json",
+      "prior_blob": "d8a13f97b4caf31bd4687a5247fa8f0949194309"
+    }
+  ],
+  "hash_implementation_controls": {
+    "known_vectors_passed": 4,
+    "canonical_git_blob_checks_passed": 10,
+    "source": "functions JavaScript; not Python test execution"
+  },
+  "preservation": {
+    "original_test_bodies": 36,
+    "original_test_name_inventory_exact": true,
+    "all_driver_function_bodies_exact": true,
+    "all_workflow_steps_and_receipt_paths_exact_after_identity_inverse": true,
+    "original_116_catalog": "UNCHANGED",
+    "original_114_release_ui_and_two_oracles": "UNCHANGED",
+    "native_selected_executions": 4,
+    "devices": [
+      "ipad11",
+      "ipad13"
+    ],
+    "methods_per_device": 2,
+    "fixture_container_timeout_seconds": 45,
+    "case_timeout_seconds": 600,
+    "matrix_timeout_seconds": 16200,
+    "job_timeout_minutes": 360,
+    "aggregate_timeout_minutes": 15,
+    "first_attempt_only": true,
+    "apple55_required": true,
+    "full_original_app_build_required": true,
+    "full_run_attempt_head_config_binding_retained": true
+  },
+  "new_python_execution": "NOT_RUN_LOCAL_RUNTIME_UNAVAILABLE",
+  "new_swift_execution": "NOT_RUN",
+  "new_native_execution": "NOT_RUN",
+  "full_git_source_gate": "NOT_RUN; FIRST ACTUAL CI STEP",
+  "no_new_tree_commit_or_ref": true,
+  "environment_limit": "exec-server transport disconnected; read-only preparation command did not start; no ambiguous source mutation"
+}

@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/README.md",
+      "mode": "100644",
+      "bytes": 6468,
+      "sha256": "3f316ecefe69bec46c5f6539ef213819c8d19018e796e3e91c8cbbd763eefee6",
+      "git_blob": "3f71f7c5b37f46f82addb8bee173f7f1ac0a3eb0"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/RESULT.json",
+      "mode": "100644",
+      "bytes": 3055,
+      "sha256": "4f0f987f73b42f5e0c6faed881dbf02781a438f9e4b428d6dbace0fad7225637",
+      "git_blob": "72d91686d1e7d515dc3173b3b3098f7d9a063224"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/AGGREGATE.zip",
+      "mode": "100644",
+      "bytes": 136046,
+      "sha256": "987d6624c0ba898a94e071781e8717904df81726c4bb9ec78ae67e5551926858",
+      "git_blob": "ed92927ba4000cee60159b8dc6af73a35c2bc3e7"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/AGGREGATE_JOB.log.gz",
+      "mode": "100644",
+      "bytes": 9911,
+      "sha256": "bf880977b607d5ac1c0e914b52e6ba539699d2f53a02d6d43b872109c7c93a8c",
+      "git_blob": "9a939e31faa416b6d316df088c9fd76ac1f2c794"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/ARTIFACTS_OBSERVED.json",
+      "mode": "100644",
+      "bytes": 3505,
+      "sha256": "754cc32938a5db1e53e329fe2e3771cd8e9571916a36829400857253c8049fdc",
+      "git_blob": "020493b8b7429d98cbd988a7e738e1eca1846648"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/EVIDENCE.zip",
+      "mode": "100644",
+      "bytes": 6474526,
+      "sha256": "d6fa367192c1df3080ec8e6ea5fa9f12b9faa8ff64b78ba91d3d5331af59c52c",
+      "git_blob": "3a5498c1b4ea7499cbc22536d72f4cc8808e69a0"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/F_CANONICAL_TREE.json.gz",
+      "mode": "100644",
+      "bytes": 355481,
+      "sha256": "ba9ef5fa36712ffa82125e1e3ac2a9e645421cf7cbad48665cee1a02caea9c04",
+      "git_blob": "aacb9fb0a95506cd2231b337395c638c831ae2c4"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/F_COMMIT.json",
+      "mode": "100644",
+      "bytes": 1637,
+      "sha256": "3ac2af33e77614790f6f71e0e0b4c3d9dd3fbd81178e87c8d1b94492ded85759",
+      "git_blob": "bbc1084a0e9d0a8b59327d95c9cf6886db6fcc66"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/JOB.log.gz",
+      "mode": "100644",
+      "bytes": 19141,
+      "sha256": "064af2db98732f8f2b19e221b69da03a6758370ece83dd3c91d095d03cbc8c8a",
+      "git_blob": "26a09364a26c2f56fe2e5a1f68f2307456fcd667"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/JOBS_OBSERVED.json",
+      "mode": "100644",
+      "bytes": 17059,
+      "sha256": "d50c11c823e31dca82468c1d5b0d435538dcdce26e0e09948b4c78719a6515b2",
+      "git_blob": "39a243455807fc5c5041bea3b29083bfb0565964"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/JOB_LOG_PERSISTENCE.json",
+      "mode": "100644",
+      "bytes": 1185,
+      "sha256": "bde3b6e6b1c0b1e4d6b90f4a522689217599848d3f506ffa49490eb7b08dc468",
+      "git_blob": "52b4519b6fadb9a91993e713762f3d3ed691c28e"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/LOCAL_VERIFIER_ATTEMPT1.json",
+      "mode": "100644",
+      "bytes": 552,
+      "sha256": "9d8df94ef603823fdcb20ba2d8c26718e48eab05ca576b3ca7a01718d433e9bb",
+      "git_blob": "50f71142676233ade951fe98516ef923b4219357"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/LOCAL_VERIFIER_ATTEMPT1.py.gz",
+      "mode": "100644",
+      "bytes": 4750,
+      "sha256": "332e85256c9643553d6dd20a2d4c551cd89102fd64c73b9e1369d0134f579fd6",
+      "git_blob": "7556c1af40ba8235ea5356f1f39963982b483aec"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/LOCAL_VERIFIER_ATTEMPT2.json",
+      "mode": "100644",
+      "bytes": 436,
+      "sha256": "924c7eb91b16309c757e918db6be19d94465a9a9800e9902e96a711182b950d6",
+      "git_blob": "8c29ba10638eeb2b608626cd495033c7a8c3e393"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/LOCAL_VERIFIER_ATTEMPT2.py.gz",
+      "mode": "100644",
+      "bytes": 3404,
+      "sha256": "17126150207244441289dd88c9a4006fb118a9d5d9216e9085ccd76962568ee9",
+      "git_blob": "8714b6f4a4a5c63f5d5c31d0405ca1184c86773d"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/RUN_OBSERVED.json",
+      "mode": "100644",
+      "bytes": 14405,
+      "sha256": "ff70e58f05c5ca228bec362141724d211e74fa4a001fb4928d23b29018d71780",
+      "git_blob": "8447ec81fddecfdb7ae7c78ff7bd9623d0feff5b"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/ipad13-CAPTURES.zip",
+      "mode": "100644",
+      "bytes": 162,
+      "sha256": "4cbc904306b14bd02781f5fe69396eff446388c0d0c5060931629249cea4c8e0",
+      "git_blob": "c15a95971722d28f8578d58b18a8c3fe8ca06a48"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/ipad13-EVIDENCE.zip",
+      "mode": "100644",
+      "bytes": 1930647,
+      "sha256": "f9c2778c1cea47e025f76095d8d00be2a36b314813edfd9f8d1a221bbecf50cf",
+      "git_blob": "54b16d8f1f978f650ca36e044331802d0710b505"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/raw/ipad13-JOB.log.gz",
+      "mode": "100644",
+      "bytes": 17520,
+      "sha256": "be48a28542504e1ccd666ef5d490afa59a57125a7bbfa89c6ca95c13d4c0d277",
+      "git_blob": "27581af9b09c1910e51b535a9f562bbc182e2f62"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/source/.github/workflows/otzaria-global-tab-ownership-native.yml",
+      "mode": "100644",
+      "bytes": 8248,
+      "sha256": "a3baaeb7da2310354282a8b6b2833686f5e0559a0360a4c19b5cbbd7902250bf",
+      "git_blob": "5e8bb6e5e3d1cefa388392a6bda88c6e688ac1c2"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/source/Scripts/CI/global-tab-ownership-native.py",
+      "mode": "100644",
+      "bytes": 23541,
+      "sha256": "f2892930479804ff408578e7b226ed3101e2317169f0ba6f9d2f047e93b1c7f9",
+      "git_blob": "a6d6ea018fc539338bdeb34de957549ae647337f"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/verify_failure.py",
+      "mode": "100644",
+      "bytes": 14930,
+      "sha256": "4bd606ff570fbb950311d02b88f84d5149c0e253521f6a8e9dedd8bf1f80537b",
+      "git_blob": "ff437b34773a17c496cf14d3cb443634fcba0536"
+    },
+    {
+      "path": "docs/hq-integration/global4-44813193123-20261120/verify_terminal.py",
+      "mode": "100644",
+      "bytes": 9008,
+      "sha256": "1008d585f9e55c003f9e1696e405c932cef8d32ebea09e6ed0f17e410a8983ad",
+      "git_blob": "cd56252afd7625952ab5843245a2925a65edb561"
+    }
+  ]
+}

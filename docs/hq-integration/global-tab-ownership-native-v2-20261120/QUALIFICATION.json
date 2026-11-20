@@ -1,0 +1,106 @@
+{
+  "source": "cb252c143955d037ab0cef4df556b1e8fcd4c334",
+  "prior_route": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+  "prior_native_evidence_commit": "3e07d6a4b0c8b2b6996edebb3b66978d61b0fbe8",
+  "prior_native_run": 44813193123,
+  "prior_native_result": "0 VERIFIED PASSES / 0 VERIFIED FAILURES; 2 CONFIRMED NOT_RUN + 2 UNVERIFIED AFTER INTERRUPTION; NO GEOMETRY VERDICT",
+  "current_state": "PREPARED_NOT_ACTIVATED",
+  "local_python": {
+    "status": "NOT_RUN",
+    "reason": "Local runtime unavailable; no replacement execution or fake Git"
+  },
+  "current_function_source_preservation": {
+    "status": "VERIFIED",
+    "method_names": [
+      "test_current_two_metadata_scopes_preserve_all_original116",
+      "test_original_default_scope_and_unique_guard_unchanged",
+      "test_current_exact_runtime_path_and_project_pin_inverse",
+      "test_default_and_exact_two_manifest_paths_only",
+      "test_finally_reuses_same_contract_path",
+      "test_unfinalized_binding_rejected",
+      "test_changed_original_oracle_rejected",
+      "test_missing_original_row_rejected",
+      "test_missing_global_selection_rejected",
+      "test_wrong_device_group_rejected",
+      "test_historical_or_full_phase_credit_rejected",
+      "test_original_runtime_body_edit_rejected",
+      "test_source_or_artifact_pin_edit_rejected",
+      "test_test_additions_exemption_edit_rejected",
+      "test_exact_immutable_child_permitted",
+      "test_wrong_head_ref_or_parent_rejected",
+      "test_unreviewed_product_or_test_tree_rejected",
+      "test_original_catalog_or_matrix_edit_rejected",
+      "test_two_and_two_matching_synthetic_outcomes",
+      "test_build_only_cannot_qualify_native",
+      "test_full_phase_status_cannot_qualify_subset",
+      "test_incomplete_or_wrong_head_build_rejected",
+      "test_wrong_actual_test_tree_rejected",
+      "test_one_ui_failure_rejected",
+      "test_skip_or_not_run_rejected",
+      "test_raw_missing_duplicate_or_expected_failure_leaf_rejected",
+      "test_raw_summary_disagrees_rejected",
+      "test_wrong_case_device_or_configuration_label_rejected",
+      "test_different_manifest_or_runtime_report_hash_rejected",
+      "test_aggregate_missing_configuration_rejected",
+      "test_aggregate_matrix_failure_even_after_four_labels_rejected",
+      "test_aggregate_wrong_run_attempt_head_or_config_rejected",
+      "test_aggregate_cannot_reuse_ipad11_as_ipad13",
+      "test_aggregate_source_drift_after_passing_cases_rejected",
+      "test_aggregate_missing_after_or_full_phase_claim_rejected",
+      "test_aggregate_consumes_receipts_written_by_actual_main"
+    ],
+    "assertions_unchanged": true,
+    "only_test_file_delta": "runpy import basename"
+  },
+  "original_control_evidence": {
+    "scope": "Retained v1 source-bound records only; not rerun or transferred as v2 execution",
+    "source_commit": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+    "records": [
+      {
+        "path": "docs/hq-integration/global-tab-ownership-native-20261120/evidence/evidence/VALIDATION.json.gz",
+        "bytes": 1283,
+        "sha256": "f56a4aee514beeed4f9082bb667fceae90e95033a48c5b0fce1ad40edc116cae",
+        "git_blob": "b236459966f9c1b92c5d4592d0e37fdf8befccda",
+        "uncompressed_bytes": 7605,
+        "uncompressed_sha256": "691860d0feb7b99308fd87db4259ec10ebcaca3393543c77044d079ca56a4dbb"
+      },
+      {
+        "path": "docs/hq-integration/global-tab-ownership-native-20261120/evidence/evidence/controls/RESULT.json.gz",
+        "bytes": 421,
+        "sha256": "ebc3a535b1d7869167ee14cde66bee0cce4d55ceb2924aa05b0d9988fd8a632b",
+        "git_blob": "9a98a23484ec0a8dd13d36274c171981369e5803",
+        "uncompressed_bytes": 667,
+        "uncompressed_sha256": "4d655cf1a45f20d47056fff277954c9dd82753cf4e9c45adce755234f73cf88f"
+      },
+      {
+        "path": "docs/hq-integration/global-tab-ownership-native-20261120/evidence/evidence/controls/stderr.log.gz",
+        "bytes": 882,
+        "sha256": "fe7d7bd861cfd30e85b094d691b01a54dee02684910e936e104989a788cd35f7",
+        "git_blob": "2e062008b8a67dd2a54f270b7127371c392568f4",
+        "uncompressed_bytes": 4589,
+        "uncompressed_sha256": "34065d8db3b05a671af14be31a6d203033aac032a37114decc6a0d4c91ddabda"
+      },
+      {
+        "path": "docs/hq-integration/global-tab-ownership-native-20261120/evidence/evidence/controls/stdout.log.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+        "uncompressed_bytes": 0,
+        "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "required_ci_gates": [
+    "Exact first-attempt context and source before",
+    "All36 original Python controls",
+    "Original toolchain selection",
+    "All55 original Sefaria Apple Foundation cases",
+    "Original full app build",
+    "Two unchanged methods on each original iPad configuration",
+    "Source after and actual raw xcresult replay",
+    "Same-run/attempt/head/config aggregate"
+  ],
+  "new_native_executions": 0,
+  "full_native116_acceptance": false,
+  "full_release114_acceptance": false
+}

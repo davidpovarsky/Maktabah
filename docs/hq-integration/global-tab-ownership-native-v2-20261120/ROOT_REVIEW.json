@@ -1,0 +1,15 @@
+{
+  "status": "ROOT_EXACT_SOURCE_METADATA_INVERSES_VERIFIED",
+  "parent": "cb252c143955d037ab0cef4df556b1e8fcd4c334",
+  "parent_tree": "71c49f8ac4404a1ffd2cc2640ec30ee1db6c7cba",
+  "prior_F": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+  "review_blob": "2100aa2559549175fdf10bc01239e046ea593173",
+  "delivery_blob": "738137c45c0be6aeab810ac984c74116e84dc1c0",
+  "sealed_files": 29,
+  "original_three_whole_file_inverses": "PASS_ROOT_ACTUAL_GIT_CONTENT",
+  "unchanged_operational_and_binding_inputs": 7,
+  "prior_test_bodies": 36,
+  "new_Python_or_Swift_or_Native_executions": 0,
+  "local_runtime": "UNAVAILABLE; no new local execution claimed",
+  "scope": "One original4 first-attempt revalidation after prior pre-app timeout and interruption; all original cases and bounds unchanged"
+}

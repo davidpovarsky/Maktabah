@@ -1,0 +1,35 @@
+{
+  "sha": "cb252c143955d037ab0cef4df556b1e8fcd4c334",
+  "node_id": "C_kwDOTEwysNoAKGNiMjUyYzE0Mzk1NWQwMzdhYjBjZWY0ZGY1NTZiMWU4ZmNkNGMzMzQ",
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/cb252c143955d037ab0cef4df556b1e8fcd4c334",
+  "html_url": "https://github.com/davidpovarsky/Maktabah/commit/cb252c143955d037ab0cef4df556b1e8fcd4c334",
+  "author": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T20:26:07Z"
+  },
+  "committer": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T20:26:07Z"
+  },
+  "tree": {
+    "sha": "71c49f8ac4404a1ffd2cc2640ec30ee1db6c7cba",
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/trees/71c49f8ac4404a1ffd2cc2640ec30ee1db6c7cba"
+  },
+  "message": "Scope Reader tab bar preference to the selected Reader\n\nKeep Reader content structurally stable and remove preference publishers from unrelated global tabs. Preserve all original layout, selection, scroll, and Native geometry oracles. Candidate runtime behavior remains pending the same four Global Native executions.",
+  "parents": [
+    {
+      "sha": "1146a249fdd94c345371c67a8d763f16223017ee",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/1146a249fdd94c345371c67a8d763f16223017ee",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/commit/1146a249fdd94c345371c67a8d763f16223017ee"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}

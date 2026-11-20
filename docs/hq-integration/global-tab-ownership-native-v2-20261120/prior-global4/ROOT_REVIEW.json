@@ -1,0 +1,18 @@
+{
+  "status": "ROOT_ACTUAL_TERMINAL_EVIDENCE_REPLAY_VERIFIED_NOT_NATIVE_PASS",
+  "source_run": 44813193123,
+  "source_head": "e34ee7b30c7c000e0416b76b3e757b22bc121169",
+  "source_parent": "cb252c143955d037ab0cef4df556b1e8fcd4c334",
+  "frozen_files": 24,
+  "frozen_bytes": 9062453,
+  "artifact_index_sha256": "b412b339e8f7efa857bb0c91b1e4bb628d721d9f8637ed639247e3ef1ef7f17a",
+  "integration_parent": "2dccc49b81492c172436a2ab6e3ac4fb5010c7f9",
+  "full_app_builds": "PASS both exact-source devices",
+  "verified_Native_leaves": 0,
+  "confirmed_NOT_RUN": 2,
+  "unverified_after_interruption": 2,
+  "actual_crcs_verified": 268,
+  "read_only_replay": "verify_terminal.py exit0; both original privacy aggregation receipts replayed",
+  "scope": "Documents/evidence only; no product, case, budget, default branch, or qualification changes",
+  "no_new_Swift_or_Native_executed": true
+}
