@@ -1,0 +1,21 @@
+{
+  "application_source_sha": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+  "previous_pins": {
+    "application_source_sha": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+    "app_source": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+    "source_test_commit": "c37b72374b65a44d54cdcffea2e39f5818a12aac"
+  },
+  "native_search_source": "4fee5615914e0987c98f0b999e48f4f9ef49eab0",
+  "inspector_source_and_actual_host_fixture": "8457e48f585bc1c74f686088db7ab6b6cd87d46f",
+  "inspector_fixture_actual_baseline": {
+    "pass": 16,
+    "fail": 8
+  },
+  "inspector_fixture_actual_candidate": {
+    "pass": 24,
+    "fail": 0
+  },
+  "full_phase_required_cases_unchanged": 90,
+  "native_executed_at_this_source": 0,
+  "acceptance": "PENDING_ACTUAL_NATIVE; host doubles do not establish UIKit acceptance"
+}

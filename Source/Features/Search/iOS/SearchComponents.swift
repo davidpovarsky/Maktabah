@@ -158,6 +158,7 @@ struct SearchHistoryOverlay: View {
 
             if viewModel.searchMode == .near {
                 TextField("10", value: $viewModel.nearDistance, format: .number)
+                    .accessibilityIdentifier("book-search-near-distance")
                     .focused($isDistanceFocused)
                     .keyboardType(.numberPad)
                     .multilineTextAlignment(.center)

@@ -1,0 +1,518 @@
+{
+  "source_sha": "e6ef4da1c2067061daa8f1f66e55e1e423a91cd5",
+  "sdk_sha": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+    "test",
+    "--scratch-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-read-actions-20261120\\build\\hh",
+    "-j",
+    "1",
+    "--disable-swift-testing",
+    "-Xswiftc",
+    "-strict-concurrency=complete"
+  ],
+  "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-read-actions-20261120\\build\\hanlin-read-actions-20261120\\host-initial\\package",
+  "timeout_s": 600,
+  "source_inputs": [
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinCatalogContracts.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinCatalogContracts.swift",
+      "sha256": "757478b238a1fc3144ef51c70275539502f959dd2aca9e67dbbf2449b24f7473",
+      "bytes": 9413
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinChatStructuredPart.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinChatStructuredPart.swift",
+      "sha256": "07479b91a7ce77a8fdf5d53f3cb16939d9d46b0287efbd50b8b20b446c8ea2fa",
+      "bytes": 3784
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinContractError.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinContractError.swift",
+      "sha256": "ad59a698345d7c218b3787c721b93fc6104ae462f7f11000d9204b1dd03e8518",
+      "bytes": 5423
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinDescriptors.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinDescriptors.swift",
+      "sha256": "6b4076de7b2416d108431276b147796352aa232d39507dca2f7f0b5cd5efa0d1",
+      "bytes": 44005
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinExposureContracts.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinExposureContracts.swift",
+      "sha256": "e7a39ee73d27678fd8a5405a6a176b31c68eab76c1828fbe02fa02f63c7decea",
+      "bytes": 21524
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinIdentifiers.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinIdentifiers.swift",
+      "sha256": "3b3651705d4ee066324e623f284718d985ce7e44d1b01d4a9c3a437ed3d7410a",
+      "bytes": 15313
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinJSONSchemaDocument.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinJSONSchemaDocument.swift",
+      "sha256": "d763b95edd959241d4c6931892802eb20f1bf90bd21037ed6371c4d68a5e661a",
+      "bytes": 4842
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinManifestSchema.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinManifestSchema.swift",
+      "sha256": "c1dd837d01913bc58b72d62cf47a9a21ef4bf1f23a1b3ccdaf93858e987c4d23",
+      "bytes": 565
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinMiniAppContracts.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinMiniAppContracts.swift",
+      "sha256": "eb880c3c00a789bcd21d8e0cbc353018e32b4e7d7f781415809781751515ae63",
+      "bytes": 6472
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinPermissionContracts.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPermissionContracts.swift",
+      "sha256": "f0911d44d578d35f2714b30e4aa925a953475d54fb4f9ee2da39cf0f8590fed3",
+      "bytes": 8912
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinPreparedRuntimeVersion.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPreparedRuntimeVersion.swift",
+      "sha256": "122b1d09c68e28907fdbce19986824d9bd6596d36bd6f08074c670a386f2f19c",
+      "bytes": 1109
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinPresentationContracts.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinPresentationContracts.swift",
+      "sha256": "e05fb0509136f303f621f292147d98db140f3e0f028e7431cc7064fb935e7a9b",
+      "bytes": 10661
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinRuntimeProfiles.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinRuntimeProfiles.swift",
+      "sha256": "43bffad1d4245d9a00924aab08ffd498a622d32321b5165ff036f0e425140262",
+      "bytes": 5825
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinScriptContracts.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinScriptContracts.swift",
+      "sha256": "d3af6a89f8e19dccdc17ff9f59f223875260a0b0d4d2b440e49170b599626180",
+      "bytes": 24323
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinSessionContracts.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinSessionContracts.swift",
+      "sha256": "03493cb4f2f414088282d97b2b4c0a01a918c0df1db78451974400bbfcba7386",
+      "bytes": 6805
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinSkillContracts.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinSkillContracts.swift",
+      "sha256": "cb8910c6d12ac4cc0f8546e89a0a514151fc9d3cd53d30aacd8abc479f2af99f",
+      "bytes": 3494
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinStoreFileAccess.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinStoreFileAccess.swift",
+      "sha256": "ee87c52bc778c1a3848c37e125a709378f69e032ca91f80cc58f250a3c81a3f5",
+      "bytes": 523
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinToolContracts.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinToolContracts.swift",
+      "sha256": "8ce9c0771689e43f24b42fb16b0f1bf2a545628e99f972b625af57314257156d",
+      "bytes": 7298
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinValue.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinValue.swift",
+      "sha256": "8284d64b8d9f0fc9212d6178860db6ce75dd15b212fb9214fea33fe1e51b9750",
+      "bytes": 56729
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinVersions.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinVersions.swift",
+      "sha256": "014a9f0d5d078b84cda43d805e8b95b89203cabd834254f4e30030805e8dad0f",
+      "bytes": 15847
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/HanlinWireProtocol.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/HanlinWireProtocol.swift",
+      "sha256": "13fc4ffbffef08ac7d439f6e9f961b4b94b05d6d0e45ba3cec6522709b7870d7",
+      "bytes": 6725
+    },
+    {
+      "package_path": "Sources/HanlinPlatformContracts/Resources/HanlinAppManifest.schema.json",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinPlatform/Sources/HanlinPlatformContracts/Resources/HanlinAppManifest.schema.json",
+      "sha256": "9443a12286831f386d9a7db06b833902d041fe46d990e2014885a10d99b612fb",
+      "bytes": 20017
+    },
+    {
+      "package_path": "Sources/HanlinHostContracts/HanlinConversationStore.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinConversationStore.swift",
+      "sha256": "7a19c8b974a35bae6fc16eebbd71684ab7bc3ed0526a15efa81e5c24d48848ed",
+      "bytes": 4841
+    },
+    {
+      "package_path": "Sources/HanlinHostContracts/HanlinHostContext.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostContext.swift",
+      "sha256": "fd308d1d583a0205fb1305677b87878d6e82396b21eb20082ddd335981be2f6f",
+      "bytes": 8843
+    },
+    {
+      "package_path": "Sources/HanlinHostContracts/HanlinHostEvents.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostEvents.swift",
+      "sha256": "1bd20a915332012ea2156260f062b138d519c1ecd6eabe0a7338587f6e8eba2b",
+      "bytes": 1989
+    },
+    {
+      "package_path": "Sources/HanlinHostContracts/HanlinHostIntegration.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostIntegration.swift",
+      "sha256": "5058e0e331612aa8d9eba2372f77530947719156efc7c8c40c0bee98144df7bf",
+      "bytes": 9102
+    },
+    {
+      "package_path": "Sources/HanlinHostContracts/HanlinHostInteraction.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostInteraction.swift",
+      "sha256": "067a6e3e0a8099e14345d2d67ca24b706bd352f4e28ce84aea6caa8360f627c5",
+      "bytes": 1621
+    },
+    {
+      "package_path": "Sources/HanlinHostContracts/HanlinHostNavigationTransition.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinHostContracts/HanlinHostNavigationTransition.swift",
+      "sha256": "4800f100ff21fd3ea3a4b8f6dde016f5e17eb7a07b328cf689d39ca9a86e2ea3",
+      "bytes": 3084
+    },
+    {
+      "package_path": "Sources/HanlinAgentCore/HanlinHostDispatcher.swift",
+      "source": "e00498e33f106cc43be0476ffa2e09329c8ca300:Packages/HanlinAgentSDK/Sources/HanlinAgentCore/HanlinHostDispatcher.swift",
+      "sha256": "8c7289779a6cce63dd58bb43a3ba877abfba357680609dc38c2dbd8cd8b738a1",
+      "bytes": 16079
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\ActionBackendArgumentTarget.swift",
+      "sha256": "b45b86613217cb29b5a8ec1e7949e5c0596b667d9c4688eccaa54dd458c4057a",
+      "bytes": 1651
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\ActionSearchArgumentMapping.swift",
+      "sha256": "82e9aaf357c02dc71b1fd1351cd9c66bdd8febf32a8601478e78dbb66ed629fc",
+      "bytes": 1775
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\ActionSearchSemantics.swift",
+      "sha256": "049d5c042b15047ead280b7a0346598be7e4403ad1aaa7b9b911170195ca3b3c",
+      "bytes": 4813
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\BackendSemanticProfile.swift",
+      "sha256": "abe595849a68bc2085ba95989186e687bb7a594d196e9db2530a8008e255f57a",
+      "bytes": 10438
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\BackendSemantics\\EmbeddedActionResponseProof.swift",
+      "sha256": "733681a6b082e6742208ea52408f65eee55466e06261fa3d6bbb21f0c5fd8bd8",
+      "bytes": 9584
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionCommentary.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionCommentary.swift",
+      "sha256": "ba5594dac623a0ab538823d82aa651b9f6f6289956eea101f33cb84d67c5ad0c",
+      "bytes": 2290
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionJSON.swift",
+      "sha256": "d3db8a15f38040009ebfc17500a09fab9a77278afb3e759548ea22dc60e1682a",
+      "bytes": 2676
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionNativeUIFailure.swift",
+      "sha256": "1252d0c656d3ef692abf3cc7b2d1c4bbb96ccb88167df9324a3db179408cc40f",
+      "bytes": 1295
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionNoteDraft.swift",
+      "sha256": "8ffbf896cf4f5b8380a81b5023b9bd1724b1a4d8ec4f644dc3466044f9080943",
+      "bytes": 4504
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionReferences.swift",
+      "sha256": "fde0a6c25a76c048c30df2ca13acf7e0849ca8a33289424daf59020743aad405",
+      "bytes": 6134
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionRequest.swift",
+      "sha256": "e0ce60ba449fa879e9c807c8cfc52eac3854ed02d778bd7f1d73fdc6569571fd",
+      "bytes": 6028
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionSchemaValidator.swift",
+      "sha256": "ea82447522e138106b85685578b38a203e918c5aea6c6370eb73b5e233a08930",
+      "bytes": 4658
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionSearch.swift",
+      "sha256": "124e68c87b8598538befde637b4411095fd601981778eaba7eaf8ec9bddd2ea0",
+      "bytes": 2396
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionSearchResults.swift",
+      "sha256": "418d4015ea20814ba608411cd99154f592c4adbb7a19bfc695cb7dee20b80ea9",
+      "bytes": 4861
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Contracts\\ActionWireCodec.swift",
+      "sha256": "7e75bc7f7118c31fa0266094318163b8a1c0a91241b3a3adc830e12241539f4b",
+      "bytes": 8600
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Engine\\ActionDeadline.swift",
+      "sha256": "9a627bb057d06f5210076d78732108ef220bd4799f3eb0216978b800c4455c28",
+      "bytes": 3226
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Engine\\ActionExecutor.swift",
+      "sha256": "aaef821190bda72a1c9cbe4cbb2df2295118ce633f46b6d7792e2bc3833a21d0",
+      "bytes": 43470
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Policy\\ActionExecutionContext.swift",
+      "sha256": "3d956c5969861fe5f63d9f2b0b2e48136e81234da5c5c628ae8edce867862eb7",
+      "bytes": 1702
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Policy\\ActionPolicy.swift",
+      "sha256": "573a5552c4ccf666f650b46b8a76a9f983a07fae7d40120ff42ab23b5fe64225",
+      "bytes": 4910
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Policy\\ActionValidation.swift",
+      "sha256": "53ba35292c7f4c724ec0311ee40b6c4e511ef5f78a35bc3ca904eaf141d24038",
+      "bytes": 8088
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Ports\\ActionNavigationAuthority.swift",
+      "sha256": "8389eae49240d9d26f967721332066d82d4f07e7e37a7aae9638fa5a40a893c1",
+      "bytes": 8409
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Ports\\ActionPorts.swift",
+      "sha256": "d8dac3b83d4b0b68a5031677aa12e02c1985765a9562db01b053c7dbd761a1c5",
+      "bytes": 4917
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Registry\\ActionRegistry.swift",
+      "sha256": "9bc1fe80904f2ebb26ca187ede4eb8618717a2aa2e981a042255d7f1395e9cc3",
+      "bytes": 1843
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resolver\\CatalogActionResolver+SourceSections.swift",
+      "sha256": "04b7bd6ff34c1664e6dcf6a95540946b0f7dccffdfc6291b4760cf55460be2dd",
+      "bytes": 2971
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resolver\\CatalogActionResolver.swift",
+      "sha256": "74c1611564660023b900bcc53be8ae476da51a54db64b0a9617bdc73b9b97549",
+      "bytes": 24216
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Resources/action-catalog.v1.json",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\action-catalog.v1.json",
+      "sha256": "21cf2f24255b9bae28fe4725d5394759ec12055e99e37f16fa7140cff755b503",
+      "bytes": 45036
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Resources/action-request.v1.schema.json",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\action-request.v1.schema.json",
+      "sha256": "5bdd92a543111ede8dfd74c40a284477b26ecf237f1d02b18d7e8a87a76af677",
+      "bytes": 1571
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Resources/action-result.v1.schema.json",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\action-result.v1.schema.json",
+      "sha256": "f4a25fdcd6aa05e16adaf990b9aa33b12fdc63c513163a23a86feec19ee5b724",
+      "bytes": 3859
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\backend-acceptance-cases.v1.json",
+      "sha256": "678d326932532f267a8a932c286e5cee4b4c982cc9f86ada6238ed532eee85ed",
+      "bytes": 98009
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\backend-capability-matrix.v1.json",
+      "sha256": "e8fb0933325e6c32b52422405e1e4988052d4fd81daac2cff1c019e862ca8965",
+      "bytes": 36996
+    },
+    {
+      "package_path": "Sources/OtzariaActionCore/Resources/examples.v1.json",
+      "source": "Source\\Otzaria\\Actions\\Sources\\OtzariaActionCore\\Resources\\examples.v1.json",
+      "sha256": "939e20a96b34c82699e118d58a9674cd610301f4cf17f451ff9eb93e7ca504a3",
+      "bytes": 10497
+    },
+    {
+      "package_path": "Sources/OtzariaHanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+      "source": "Source\\ChavrusaText\\HanlinHostAdapter\\OtzariaHanlinHostAdapter.swift",
+      "sha256": "b34abc9505a4b345c0951dad398f0d4a99f5d449b056f8ba68bd3f71a1ad502b",
+      "bytes": 24356
+    },
+    {
+      "package_path": "Tests/OtzariaHanlinHostAdapterTests/AdapterTests.swift",
+      "source": "Tests\\HQ\\hanlin-host\\OtzariaHanlinHostAdapterTests.swift",
+      "sha256": "bf85e04a25fb9bf04824f0172208c635f0f66e099a57ff7c4ebb6b452e943e14",
+      "bytes": 53221
+    }
+  ],
+  "original_driver_unchanged": true,
+  "invocation_delta": "Add --disable-swift-testing for XCTest-only fixtures. Same original generated package path and existing scratch cache; only actual adapter + exact-scope fixture source refreshed after all previous host input comparisons completed. All 62 original-source inputs verified before/after.",
+  "verifier_sha256": "5a1d173f73db80bddcef2a3253577f9309911910066832bd2f5a4ddb91f9505e",
+  "expected_case_count": 48,
+  "observed_at": "2026-11-20T03:13:47.508290+00:00",
+  "duration_s": 94.29699999996228,
+  "swift_process_exit_code": 0,
+  "status": "EXECUTED_PASS",
+  "test_verification": {
+    "suites": [
+      {
+        "suite": "OtzariaHanlinHostAdapterTests",
+        "selection": "OtzariaHanlinHostAdapterTests",
+        "expected": [
+          "testCatalogIsExactReadOnlyProjectionAndBackendQualified",
+          "testContentRightsHideSearchButPreserveCanonicalMetadataActions",
+          "testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights",
+          "testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions",
+          "testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait",
+          "testRealCoreExecutionPreservesGenerationBeyondDoublePrecision",
+          "testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts",
+          "testCanonicalSchemaRejectionNeverBecomesCompleted",
+          "testForeignProviderAndStaleCatalogAreRejected",
+          "testMutationGuaranteeIsRejectedBeforeDispatch",
+          "testReplayDoesNotExecuteAgain",
+          "testContextRevocationDuringReadSuppressesResult",
+          "testExplicitCancellationReachesOriginalCoreTask",
+          "testCancellationDuringAuthorityLookupNeverReachesCore",
+          "testOutputLimitAndExpiredDeadlineAreEnforced",
+          "testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected",
+          "testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID",
+          "testEmptyNativeForegroundIdentityIsDenied",
+          "testBackgroundNavigationIsDenied",
+          "testAPI12TransitionReturnsLiveCorrelatedSuccessor",
+          "testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats",
+          "testAPI12RejectsMismatchedNativeAcknowledgement",
+          "testAPI12RetainsReceiptWhenSuccessorWasRevoked",
+          "testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect",
+          "testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback",
+          "testAPI12DeniesBackgroundBeforeNativeEffect",
+          "testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession",
+          "testSDKDispatcherDoesNotRepeatQueuedHostTransition",
+          "testScopedReadIssuerRejectsUnknownBackendAndNoncanonicalWork",
+          "testScopedReadIssuerKeepsMetadataContextAndBoundsOnlySearch",
+          "testScopedReadIssuerRejectsMissingForegroundOrForeignOrigin",
+          "testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery",
+          "testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead",
+          "testModelArgumentsCannotChooseContentContextOrBackend",
+          "testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead",
+          "testScopedSearchUsesActualCoreAvailabilityWithoutHidingOldMetadata",
+          "testScopedReadDoesNotRestrictOriginalMetadataForAnotherWork",
+          "testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork",
+          "testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult",
+          "testScopedSearchCancellationReachesOriginalCoreWorker",
+          "testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges",
+          "testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead",
+          "testConsentConsumesOnlyOnceForExactDismissalSourceAndConfiguration",
+          "testConsentRejectsEveryChangedSourceDimensionWithoutGrant",
+          "testConsentRejectsChangedConfigurationOrNamespaceAndRevocation",
+          "testSupersededDismissalCannotConsumeCurrentConsentEvenWhileDismissing",
+          "testSeparateReadContextWithoutContentRightsStaysClosed",
+          "testSeparateReadContextCannotBelongToAnotherSceneOrSubject"
+        ],
+        "passed": [
+          "testCatalogIsExactReadOnlyProjectionAndBackendQualified",
+          "testContentRightsHideSearchButPreserveCanonicalMetadataActions",
+          "testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights",
+          "testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions",
+          "testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait",
+          "testRealCoreExecutionPreservesGenerationBeyondDoublePrecision",
+          "testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts",
+          "testCanonicalSchemaRejectionNeverBecomesCompleted",
+          "testForeignProviderAndStaleCatalogAreRejected",
+          "testMutationGuaranteeIsRejectedBeforeDispatch",
+          "testReplayDoesNotExecuteAgain",
+          "testContextRevocationDuringReadSuppressesResult",
+          "testExplicitCancellationReachesOriginalCoreTask",
+          "testCancellationDuringAuthorityLookupNeverReachesCore",
+          "testOutputLimitAndExpiredDeadlineAreEnforced",
+          "testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected",
+          "testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID",
+          "testEmptyNativeForegroundIdentityIsDenied",
+          "testBackgroundNavigationIsDenied",
+          "testAPI12TransitionReturnsLiveCorrelatedSuccessor",
+          "testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats",
+          "testAPI12RejectsMismatchedNativeAcknowledgement",
+          "testAPI12RetainsReceiptWhenSuccessorWasRevoked",
+          "testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect",
+          "testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback",
+          "testAPI12DeniesBackgroundBeforeNativeEffect",
+          "testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession",
+          "testSDKDispatcherDoesNotRepeatQueuedHostTransition",
+          "testScopedReadIssuerRejectsUnknownBackendAndNoncanonicalWork",
+          "testScopedReadIssuerKeepsMetadataContextAndBoundsOnlySearch",
+          "testScopedReadIssuerRejectsMissingForegroundOrForeignOrigin",
+          "testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery",
+          "testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead",
+          "testModelArgumentsCannotChooseContentContextOrBackend",
+          "testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead",
+          "testScopedSearchUsesActualCoreAvailabilityWithoutHidingOldMetadata",
+          "testScopedReadDoesNotRestrictOriginalMetadataForAnotherWork",
+          "testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork",
+          "testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult",
+          "testScopedSearchCancellationReachesOriginalCoreWorker",
+          "testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges",
+          "testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead",
+          "testConsentConsumesOnlyOnceForExactDismissalSourceAndConfiguration",
+          "testConsentRejectsEveryChangedSourceDimensionWithoutGrant",
+          "testConsentRejectsChangedConfigurationOrNamespaceAndRevocation",
+          "testSupersededDismissalCannotConsumeCurrentConsentEvenWhileDismissing",
+          "testSeparateReadContextWithoutContentRightsStaysClosed",
+          "testSeparateReadContextCannotBelongToAnotherSceneOrSubject"
+        ],
+        "failed": [],
+        "missing": [],
+        "status": "EXECUTED_PASS"
+      }
+    ],
+    "status": "EXECUTED_PASS"
+  },
+  "passed_count": 48,
+  "source_inputs_unchanged_after": true,
+  "warnings": 0,
+  "swift_log_sha256": "095d8b41134becfa220687ae6d4186f77792982861462462b11d7a9ed4f32784",
+  "native_ui_executed": 0,
+  "provider_executed": false,
+  "boundary": "Actual frozen SDK contracts + original HostDispatcher + actual Core + actual adapter; explicit source/backend/authority doubles. No app/AgentSession/provider/native UI execution."
+}

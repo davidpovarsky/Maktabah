@@ -1,0 +1,66 @@
+{
+  "observed_at": "2026-11-20T03:19:21.697722+00:00",
+  "source_commit": "e6ef4da1c2067061daa8f1f66e55e1e423a91cd5",
+  "sdk_commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "actual_suites": [
+    {
+      "name": "OtzariaHanlinHostAdapterTests",
+      "expected": 48,
+      "executed_pass": 48,
+      "failed": 0,
+      "missing": 0,
+      "duration_s": 94.29699999996228,
+      "warnings": 0,
+      "source_inputs": 62,
+      "result_sha256": "556cae66febd9b0cea24dac82bc572a43924cbd4f413086edaa7fcc94a3fe57a",
+      "log_sha256": "095d8b41134becfa220687ae6d4186f77792982861462462b11d7a9ed4f32784",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+        "test",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-read-actions-20261120\\build\\hh",
+        "-j",
+        "1",
+        "--disable-swift-testing",
+        "-Xswiftc",
+        "-strict-concurrency=complete"
+      ]
+    },
+    {
+      "name": "OtzariaHanlinConversationStoreTests",
+      "expected": 11,
+      "executed_pass": 11,
+      "failed": 0,
+      "missing": 0,
+      "duration_s": 113.32799999997951,
+      "warnings": 66,
+      "source_inputs": 36,
+      "result_sha256": "cc99eeb61c2c7ec5fe6b71ab932774ce7fabc35b759496ba9434f3266b1d002d",
+      "log_sha256": "7734974e860df0c9967dcc5ed426368a5727dc0ec349e2ff7fe74f677c459acc",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swift.EXE",
+        "test",
+        "--scratch-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-read-actions-20261120\\build\\hcs",
+        "-j",
+        "1",
+        "--disable-swift-testing",
+        "-Xswiftc",
+        "-strict-concurrency=complete"
+      ]
+    }
+  ],
+  "native_ui_executed": 0,
+  "provider_executed": false,
+  "apple_app_typecheck_executed": false,
+  "native_new_case_count_not_run": 2,
+  "total_executed_pass": 59,
+  "cold_store_diagnostic": {
+    "status": "FAIL",
+    "swift_process_exit_code": 124,
+    "passed_count": 0,
+    "expected_case_count": 11,
+    "duration_s": 601.2189999999828,
+    "source_inputs_unchanged_after": true
+  }
+}

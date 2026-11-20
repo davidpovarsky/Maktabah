@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "source_test_commit": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "source_test_commit": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "app_source": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "All88 unchanged selected Native cases:70 iPad27 and18 iPhone27; zero skips required. Actual installation, original engines/owners and exact-source oracles are mandatory. Launch tiers are explicit: Faithful smoke uses smokeBypassBootstrap, R27 realUI uses normal bootstrap then DEBUG fixture selection, and production Release uses the original preprovisioned corpus without DEBUG scenario. No prior-source acceptance transferred.",
+  "scope": "All90 selected Native cases: all88 original plus2 current-work Hanlin consent/revoke cases;71 iPad27 and19 iPhone27. Zero skips required. Original realUI installation, engines, owners and exact-source oracles remain mandatory; prior-source passes are not transferred.",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 88,
+  "required_nonzero_cases": 90,
   "expected_per_device": {
-    "ipad11": 70,
-    "iphone": 18
+    "ipad11": 71,
+    "iphone": 19
   },
   "cases": [
     {
@@ -155,6 +155,7 @@
       "label": "11",
       "size": "11",
       "case_ids": [
+        "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
         "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
         "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
         "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
@@ -260,6 +261,7 @@
       "label": "phone",
       "size": "phone",
       "case_ids": [
+        "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
         "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
         "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
         "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
@@ -370,7 +372,9 @@
     "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
     "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
     "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
-    "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace"
+    "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -959,6 +963,18 @@
       "device": "ipad11",
       "status": "NOT_RUN",
       "oracle": "Normal realUI bootstrap for disabled/enabled/disabled launches with no smoke bypass; original Library/TOC/Reader, no new sidecar while disabled, actual enabled pager/toolbar, original highlight counts and byte-identical persisted workspace after disabling."
+    },
+    {
+      "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original realUI reader/session, default-OFF current-work consent, real configuration enable/confirm and onDismiss, same saved native conversation/draft, explicit revoke then metadata-only reopening, original reader/workspace preserved, no Send action."
+    },
+    {
+      "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Same original explicit current-work consent/revoke flow on the actual phone reader owner, same saved native conversation/draft and source/workspace, no Send action."
     }
   ],
   "manager_native_review_history": [
@@ -1330,7 +1346,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "application_source_sha": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -1910,5 +1926,60 @@
       "realUI": "Original normal bootstrap followed by DEBUG fixture backend/book preselection; no fabricated engine results.",
       "production": "Actual Release binary without DEBUG scenario over preprovisioned original production corpus."
     }
+  },
+  "hanlin_read_consent_freeze_20261120": {
+    "at_utc": "2026-11-20T03:31:29.131779+00:00",
+    "application_and_test_source": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+    "previous_application_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+    "previous_manifest_working_file_sha256": "c26cf3277e8827f8f0509d1c962dd6830c97caad02922f4a91f0456822a93960",
+    "all_original_88_retained": true,
+    "new_native_cases": [
+      {
+        "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+        "device": "ipad11",
+        "status": "NOT_RUN",
+        "oracle": "Original realUI reader/session, default-OFF current-work consent, real configuration enable/confirm and onDismiss, same saved native conversation/draft, explicit revoke then metadata-only reopening, original reader/workspace preserved, no Send action."
+      },
+      {
+        "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+        "device": "iphone",
+        "status": "NOT_RUN",
+        "oracle": "Same original explicit current-work consent/revoke flow on the actual phone reader owner, same saved native conversation/draft and source/workspace, no Send action."
+      }
+    ],
+    "required_cases": 90,
+    "expected_per_device": {
+      "ipad11": 71,
+      "iphone": 19
+    },
+    "actual_native_executed": 0,
+    "tested_portable_source": "e6ef4da1c2067061daa8f1f66e55e1e423a91cd5",
+    "portable_evidence": "02e5f66a872f7e6f4df09ff2b99a610615c37738",
+    "actual_portable_results": {
+      "host": 48,
+      "store": 11
+    },
+    "original_sdk": "e00498e33f106cc43be0476ffa2e09329c8ca300"
+  },
+  "native_repair_and_inspector_freeze_20261120": {
+    "application_source_sha": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+    "previous_pins": {
+      "application_source_sha": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+      "app_source": "c37b72374b65a44d54cdcffea2e39f5818a12aac",
+      "source_test_commit": "c37b72374b65a44d54cdcffea2e39f5818a12aac"
+    },
+    "native_search_source": "4fee5615914e0987c98f0b999e48f4f9ef49eab0",
+    "inspector_source_and_actual_host_fixture": "8457e48f585bc1c74f686088db7ab6b6cd87d46f",
+    "inspector_fixture_actual_baseline": {
+      "pass": 16,
+      "fail": 8
+    },
+    "inspector_fixture_actual_candidate": {
+      "pass": 24,
+      "fail": 0
+    },
+    "full_phase_required_cases_unchanged": 90,
+    "native_executed_at_this_source": 0,
+    "acceptance": "PENDING_ACTUAL_NATIVE; host doubles do not establish UIKit acceptance"
   }
 }

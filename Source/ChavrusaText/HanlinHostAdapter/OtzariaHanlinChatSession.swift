@@ -8,6 +8,19 @@ import HanlinHostContracts
 import HanlinPresentationKit
 import HanlinRichUI
 
+/// One immutable, transient request from the native connection form. The nonce
+/// binds the user's current-work consent to this exact endpoint/model/key
+/// configuration without persisting or hashing a credential.
+@MainActor
+final class OtzariaHanlinConnectionRequest {
+    let id = UUID()
+    let configuration: HanlinChatModelConfiguration
+    init(endpoint: String, modelID: String, credential: String) throws {
+        configuration = try OtzariaHanlinChatSession.configuration(
+            endpoint: endpoint, modelID: modelID, credential: credential)
+    }
+}
+
 /// Scene-owned presentation state around the original SDK session and engine.
 /// The original Core/scene adapter remains the only source of host authority.
 @MainActor @Observable
@@ -35,6 +48,9 @@ final class OtzariaHanlinChatSession: Identifiable {
     private(set) var isStreaming = false
     private(set) var errorMessage: String?
     let presentationDescriptor: HostPresentationDescriptor
+    let currentWorkReadOffer: OtzariaHanlinCurrentWorkReadScope?
+    let currentWorkReadScope: OtzariaHanlinCurrentWorkReadScope?
+    private let requiredConfigurationID: UUID?
 
     typealias Activity = OtzariaHanlinToolActivity
 
@@ -42,6 +58,8 @@ final class OtzariaHanlinChatSession: Identifiable {
     @ObservationIgnored private let validateOwner: @MainActor () throws -> Void
     @ObservationIgnored private let onClose: @MainActor () -> Void
     @ObservationIgnored private let onNavigate: @MainActor (URL) async throws -> Void
+    @ObservationIgnored private let onConnectionConfigured: @MainActor (UUID) throws -> Void
+    @ObservationIgnored private let onRequestReadConnection: @MainActor (OtzariaHanlinConnectionRequest, OtzariaHanlinCurrentWorkReadScope) throws -> Void
     @ObservationIgnored private let sourceDestination: @MainActor (HanlinHostResultEvent) throws -> URL?
     @ObservationIgnored private var pendingHostResults: [String: HanlinHostResultEvent] = [:]
     @ObservationIgnored private let store: OtzariaHanlinScopedConversationStore
@@ -55,12 +73,21 @@ final class OtzariaHanlinChatSession: Identifiable {
 
     init(identity: HanlinHostSession, host: OtzariaHanlinHostAdapter,
          store: OtzariaHanlinScopedConversationStore,
+         currentWorkReadOffer: OtzariaHanlinCurrentWorkReadScope? = nil,
+         currentWorkReadScope: OtzariaHanlinCurrentWorkReadScope? = nil,
+         requiredConfigurationID: UUID? = nil,
+         onConnectionConfigured: @escaping @MainActor (UUID) throws -> Void = { _ in },
+         onRequestReadConnection: @escaping @MainActor (OtzariaHanlinConnectionRequest, OtzariaHanlinCurrentWorkReadScope) throws -> Void = { _, _ in throw HanlinHostError.denied },
          sourceDestination: @escaping @MainActor (HanlinHostResultEvent) throws -> URL?,
          validateOwner: @escaping @MainActor () throws -> Void,
          onClose: @escaping @MainActor () -> Void,
          onNavigate: @escaping @MainActor (URL) async throws -> Void) throws {
         self.identity = identity; self.host = host; self.store = store; self.sourceDestination = sourceDestination
         self.validateOwner = validateOwner; self.onClose = onClose; self.onNavigate = onNavigate
+        self.currentWorkReadOffer = currentWorkReadOffer; self.currentWorkReadScope = currentWorkReadScope
+        self.requiredConfigurationID = requiredConfigurationID
+        self.onConnectionConfigured = onConnectionConfigured; self.onRequestReadConnection = onRequestReadConnection
+        guard (currentWorkReadScope == nil) == (requiredConfigurationID == nil) else { throw HanlinHostError.denied }
         let descriptor = try OpenUICatalogs.host(appID: identity.context.namespace.app, research: true)
         presentationDescriptor = descriptor
         selectedProfile = descriptor.defaultProfile
@@ -143,19 +170,43 @@ final class OtzariaHanlinChatSession: Identifiable {
         try validateOwner()
     }
 
-    /// Explicit user input only. Credentials remain inside this presentation's
-    /// original engine; no persistent credential or shared-group discovery.
-    func configure(endpoint: String, modelID: String, credential: String) {
+    /// Explicit native input only. Reading is OFF unless this exact connection
+    /// form action requests the displayed current work. That action only queues
+    /// a source-bound dismissal/reopen; it never sends a model message.
+    func configure(endpoint: String, modelID: String, credential: String, allowCurrentWorkRead: Bool = false) {
         guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }
+        do {
+            let request = try OtzariaHanlinConnectionRequest(endpoint: endpoint, modelID: modelID, credential: credential)
+            if allowCurrentWorkRead {
+                guard currentWorkReadScope == nil, let offer = currentWorkReadOffer else { throw HanlinHostError.denied }
+                try validateOwner()
+                try onRequestReadConnection(request, offer)
+            } else {
+                configure(request)
+            }
+        } catch {
+            if !closed { errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.") }
+        }
+    }
+
+    /// Only the original owner may carry the same immutable request through an
+    /// actual sheet dismissal. A different request cannot reuse its read grant.
+    func configure(_ request: OtzariaHanlinConnectionRequest) {
+        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }
+        guard requiredConfigurationID == nil || requiredConfigurationID == request.id else {
+            onClose(); return
+        }
         isConnecting = true
         operation = Task { @MainActor [weak self] in
             guard let self else { return }
             defer { self.isConnecting = false; self.operation = nil }
             do {
-                try await self.requireCurrent()
-                let configuration = try Self.configuration(endpoint: endpoint, modelID: modelID, credential: credential)
+                try Task.checkCancellation()
+                try self.validateOwner()
+                let configuration = request.configuration
                 let engine = try HanlinAISDKAgentEngine(configuration: configuration,
                     fetch: HanlinAISDKProviderFactory.makeFetch(sessionConfiguration: .ephemeral))
+                try self.onConnectionConfigured(request.id)
                 try await self.requireCurrent()
                 let session = HanlinAgentSession(identity: self.identity, host: self.host, engine: engine, store: self.store)
                 session.onHostResult = { [weak self] event in
@@ -174,7 +225,12 @@ final class OtzariaHanlinChatSession: Identifiable {
                 self.isConfigured = true
                 self.errorMessage = nil
             } catch {
-                if !self.closed { self.errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.") }
+                if !self.closed {
+                    self.errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.")
+                    // A failed granted connection cannot be retried with a new
+                    // endpoint/key while retaining the previous user's consent.
+                    if self.currentWorkReadScope != nil { self.onClose() }
+                }
             }
         }
     }
@@ -220,8 +276,11 @@ final class OtzariaHanlinChatSession: Identifiable {
             defer { self.isStreaming = false; self.operation = nil }
             do {
                 try await self.requireCurrent()
+                let readInstructions = try self.currentWorkReadScope?.modelInstructions()
+                    ?? "This conversation has no permission to read a book or selection or modify library data."
                 let instructions = OpenUICatalogs.instructions(for: profile)
-                    + "\nUse only the host's current advertised catalog. This conversation has no permission to read a book or selection or modify library data. Do not invent citations or application actions."
+                    + "\nUse only the host's current advertised catalog. " + readInstructions
+                    + " Do not invent citations or application actions."
                 let stream = try await agent.stream(messages: history, systemPrompt: instructions,
                     modelReference: model, maxSteps: 8, presentationReference: profile.profile.reference.key)
                 for try await event in stream {

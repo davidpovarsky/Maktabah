@@ -1,0 +1,77 @@
+Building for debugging...
+[0/28] Write swift-version-2807070033DA82CF.txt
+[1/28] Write sources
+[6/28] Copying examples.v1.json
+[7/28] Copying backend-capability-matrix.v1.json
+[8/28] Copying backend-acceptance-cases.v1.json
+[9/28] Copying action-result.v1.schema.json
+[10/28] Copying action-request.v1.schema.json
+[11/28] Copying action-catalog.v1.json
+[12/28] Copying HanlinAppManifest.schema.json
+[13/28] Write sources
+[15/29] Emitting module OtzariaActionCore
+[16/42] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[17/42] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[18/42] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[19/42] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[20/42] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[21/42] Compiling OtzariaActionCore ActionCommentary.swift
+[22/42] Compiling OtzariaActionCore ActionJSON.swift
+[23/42] Compiling OtzariaActionCore ActionNativeUIFailure.swift
+[24/42] Compiling OtzariaActionCore ActionNoteDraft.swift
+[25/42] Compiling OtzariaActionCore ActionReferences.swift
+[26/42] Compiling OtzariaActionCore ActionRequest.swift
+[27/42] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[28/42] Compiling OtzariaActionCore ActionSearch.swift
+[29/55] Compiling OtzariaActionCore ActionSearchResults.swift
+[30/55] Compiling OtzariaActionCore ActionWireCodec.swift
+[31/55] Compiling OtzariaActionCore ActionDeadline.swift
+[32/55] Compiling OtzariaActionCore ActionExecutor.swift
+[33/55] Compiling OtzariaActionCore ActionExecutionContext.swift
+[34/55] Compiling OtzariaActionCore ActionPolicy.swift
+[35/55] Compiling OtzariaActionCore ActionValidation.swift
+[36/55] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[37/55] Compiling OtzariaActionCore ActionPorts.swift
+[38/55] Compiling OtzariaActionCore ActionRegistry.swift
+[39/55] Compiling OtzariaActionCore CatalogActionResolver+SourceSections.swift
+[40/55] Compiling OtzariaActionCore CatalogActionResolver.swift
+[41/55] Compiling OtzariaActionCore resource_bundle_accessor.swift
+[43/57] Emitting module HanlinPlatformContracts
+[44/79] Compiling HanlinPlatformContracts HanlinCatalogContracts.swift
+[45/79] Compiling HanlinPlatformContracts HanlinChatStructuredPart.swift
+[46/79] Compiling HanlinPlatformContracts HanlinContractError.swift
+[47/79] Compiling HanlinPlatformContracts HanlinDescriptors.swift
+[48/79] Compiling HanlinPlatformContracts HanlinExposureContracts.swift
+[49/79] Compiling HanlinPlatformContracts HanlinIdentifiers.swift
+[50/79] Compiling HanlinPlatformContracts HanlinJSONSchemaDocument.swift
+[51/79] Compiling HanlinPlatformContracts HanlinManifestSchema.swift
+[52/79] Compiling HanlinPlatformContracts HanlinMiniAppContracts.swift
+[53/79] Compiling HanlinPlatformContracts HanlinPermissionContracts.swift
+[54/79] Compiling HanlinPlatformContracts HanlinPreparedRuntimeVersion.swift
+[55/79] Compiling HanlinPlatformContracts HanlinPresentationContracts.swift
+[56/79] Compiling HanlinPlatformContracts HanlinRuntimeProfiles.swift
+[57/79] Compiling HanlinPlatformContracts HanlinScriptContracts.swift
+[58/79] Compiling HanlinPlatformContracts HanlinSessionContracts.swift
+[59/79] Compiling HanlinPlatformContracts HanlinSkillContracts.swift
+[60/79] Compiling HanlinPlatformContracts HanlinStoreFileAccess.swift
+[61/79] Compiling HanlinPlatformContracts HanlinToolContracts.swift
+[62/79] Compiling HanlinPlatformContracts HanlinValue.swift
+[63/79] Compiling HanlinPlatformContracts HanlinVersions.swift
+[64/79] Compiling HanlinPlatformContracts HanlinWireProtocol.swift
+[65/79] Compiling HanlinPlatformContracts resource_bundle_accessor.swift
+[66/80] Wrapping AST for OtzariaActionCore for debugging
+[67/80] Wrapping AST for HanlinPlatformContracts for debugging
+[69/81] Emitting module HanlinHostContracts
+[70/87] Compiling HanlinHostContracts HanlinConversationStore.swift
+[71/87] Compiling HanlinHostContracts HanlinHostContext.swift
+[72/87] Compiling HanlinHostContracts HanlinHostEvents.swift
+[73/87] Compiling HanlinHostContracts HanlinHostIntegration.swift
+[74/87] Compiling HanlinHostContracts HanlinHostInteraction.swift
+[75/87] Compiling HanlinHostContracts HanlinHostNavigationTransition.swift
+[76/88] Wrapping AST for HanlinHostContracts for debugging
+[78/89] Emitting module OtzariaHanlinHostAdapter
+[79/90] Compiling OtzariaHanlinHostAdapter OtzariaHanlinHostAdapter.swift
+[81/92] Emitting module HanlinAgentCore
+[82/93] Compiling HanlinAgentCore HanlinHostDispatcher.swift
+[83/94] Wrapping AST for OtzariaHanlinHostAdapter for debugging
+[84/94] Wrapping AST for HanlinAgentCore for debugging

@@ -636,6 +636,30 @@ extension NativeRoutingAcceptanceTests {
         if expectedPad {
             let originalTab = app.descendants(matching: .any)
                 .matching(identifier: "reader-document-tab-" + originalTabID.uuidString).firstMatch
+            let strip = app.descendants(matching: .any)
+                .matching(identifier: "reader-document-tab-strip").firstMatch
+            XCTAssertTrue(strip.waitForExistence(timeout: 10))
+            // The original UUID can be outside this narrow native scroll view
+            // after newTab scrolls to the new selection. Reveal it with real
+            // gestures; a visible but occluded control must still fail below.
+            for attempt in 0..<8 {
+                if originalTab.exists {
+                    if originalTab.isHittable { break }
+                    if originalTab.frame.maxX <= strip.frame.minX {
+                        strip.swipeRight()
+                    } else if originalTab.frame.minX >= strip.frame.maxX {
+                        strip.swipeLeft()
+                    } else {
+                        break
+                    }
+                } else if attempt < 4 {
+                    strip.swipeRight()
+                } else {
+                    // A nonmaterialized cell has no screen geometry. Search
+                    // both directions so the fallback does not assume LTR.
+                    strip.swipeLeft()
+                }
+            }
             XCTAssertTrue(originalTab.waitForExistence(timeout: 10)); XCTAssertTrue(originalTab.isHittable)
             originalTab.tap()
         } else {

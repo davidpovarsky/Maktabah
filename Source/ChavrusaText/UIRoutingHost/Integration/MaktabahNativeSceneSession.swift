@@ -519,7 +519,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         return .init(ready: mounted && foreground && isPresentationReady,
             historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty,
             tableOfContentsAvailable: bindings.isRootAvailable(.tableOfContents), witnessedReader: reader,
-            searchFieldAvailable: searchFieldAvailable, inspectorAvailable: inspectorAvailable)
+            searchFieldAvailable: searchFieldAvailable, inspectorAvailable: inspectorAvailable,
+            witnessedInspectorVisible: inspectorWitnessed ? true : reader?.state.inspectorVisible)
     }
     /// A freshness facet from the existing scene projection; no selected text or content grant.
     func hanlinSelectionRange() throws -> UIUTF16Range? { try project().identity().selectedRange }

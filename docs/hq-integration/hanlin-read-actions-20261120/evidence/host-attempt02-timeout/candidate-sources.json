@@ -1,0 +1,12 @@
+{
+  "source_base": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "utc": "2026-11-20T02:23:26.344604+00:00",
+  "files": {
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift": "8e214254f9550b060cc3a9a4e976ec55a550dfe82acd6413e81ffe05d509b7b4",
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift": "01e7fd67955b102c8716a96223ee041cd9d7be4bd5b9b616163f1a5baee4b5a0",
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift": "d2999c5a710b2d18ffc2407922de0cc70f46c757bccdba08abf221ad43d14a0e",
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift": "fd542378ea742c418044005600e114d5804ddcda76394ddaa916c4263355785b",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "496bc1a8afcfc6dc2e1b15e4cddf58c1783ab5be1b6dcaeed2f9fe09566b8960",
+    "Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift": "5e051ca8ab19dc96739acc698e40a7edf205360a96b535b4a9b9279aba7804e3"
+  }
+}
