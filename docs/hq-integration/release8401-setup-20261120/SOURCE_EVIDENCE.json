@@ -1,0 +1,76 @@
+{
+  "source": "a68b79e2f5b93ee59ffc33f70d34f1bb8a3ddef3",
+  "files": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "sha256_git_lf": "07b97c18906f58c02e9759f65e903f307438de3ebcf3dfd7818524486fe99ff6",
+      "excerpts": [
+        {
+          "first": 28,
+          "last": 49,
+          "text": "                iOSReaderWorkspaceView(\n                    book: activeTab.book,\n                    viewModel: activeTab.viewModel,\n                    initialContentId: activeTab.initialContentId,\n                    libraryColumnVisibility: $columnVisibility,\n                    preferredCompactColumn: $preferredCompactColumn\n                )\n                .id(activeTab.id)\n                .toolbar {\n                    if isRegularLayout, bManager.openTabs.count > 1 {\n                        ToolbarItem(placement: .principal) {\n                            ReaderTabsView()\n                        }\n                    } else if bManager.openTabs.count > 1 {\n                        ToolbarItem(placement: .topBarTrailing) {\n                            ReaderTabsView()\n                        }\n                    }\n                }\n            } else {\n                ThemeView {\n                    VStack(spacing: 16) {"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift",
+      "sha256_git_lf": "7c6895096df4760ff38804490fd356d14edd9a66fff1c5a4cb0a31442bf2b8a3",
+      "excerpts": [
+        {
+          "first": 70,
+          "last": 106,
+          "text": "}\n\nstruct ReaderTabItemView: View {\n    let tab: iOSNavigationManager.ReaderTab\n    let isActive: Bool\n    var isCompactHeight: Bool = false\n    let onSelect: () -> Void\n    let onClose: () -> Void\n\n    var body: some View {\n        HStack(alignment: .center, spacing: 6) {\n            if isActive {\n                Button(action: onClose) {\n                    Image(systemName: \"xmark\")\n                        .font(.system(size: isCompactHeight ? 9 : 10, weight: .medium))\n                        .foregroundColor(.white)\n                        .padding(isCompactHeight ? 2 : 3)\n                        .background(Color.secondary.opacity(0.7))\n                        .clipShape(Circle())\n                }\n                .accessibilityLabel(String(localized: \"Close Tab\"))\n                .accessibilityIdentifier(\"reader-close-document-tab-\" + tab.id.uuidString)\n                .help(String(localized: \"Close Tab\"))\n                .buttonStyle(.plain)\n            }\n\n            Button(action: onSelect) {\n                Text(tab.book.book)\n                    .fontWeight(isActive ? .medium : .regular)\n                    .lineLimit(1)\n                    .truncationMode(.tail)\n                    .frame(maxWidth: 250)\n                    .foregroundColor(\n                        isActive\n                            ? Color.accentColor\n                            : .primary\n                    )"
+        }
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "sha256_git_lf": "43f3c338218db1b86a7e5978d85d2e2f447ff16f7570e1e7c24f2b8d56ec5de1",
+      "excerpts": [
+        {
+          "first": 79,
+          "last": 100,
+          "text": "struct Exact9401ViewerToolbar: ViewModifier {\n    let manager: iOSNavigationManager\n    @State private var isPresented = false\n    @State private var showsProfiles = false\n    @Environment(\\.exact9401Workspace) private var workspace\n    @Environment(\\.chavrusaReaderSidebar) private var sidebar\n\n    func body(content: Content) -> some View {\n        content\n            .toolbar {\n                ToolbarItem(placement: .topBarTrailing) {\n                    Button {\n                        guard workspace?.attached == true, let sidebar else { return }\n                        isPresented = false\n                        showsProfiles = false\n                        sidebar.navigationChrome.reveal()\n                        sidebar.overview.request()\n                    } label: {\n                        Label(\"כל הכרטיסיות\", systemImage: \"square.on.square\")\n                    }\n                    .accessibilityIdentifier(\"reader-tabs-overview\")\n                    .disabled(workspace?.attached != true || sidebar == nil)"
+        }
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "sha256_git_lf": "c0fc974da17ea1d97135991e7d87ba98c5731814c90e54fadf04754d91a69b5c",
+      "excerpts": [
+        {
+          "first": 21,
+          "last": 43,
+          "text": "    var body: some View {\n        NavigationStack {\n            TabSwitcherPageHost(\n                documents: (workspace.group?.tabs ?? []).map {\n                    ReaderTabSwitcherDocument(id: $0.id, title: $0.session.bookTitle ?? \"ספר\", subtitle: $0.backend.displayName)\n                },\n                selectedID: workspace.activeDocumentID,\n                layoutMode: tabSwitcherLayout,\n                onSelect: openDocument,\n                onClose: closeDocument,\n                onReorder: { document, index in\n                    workspace.reorderDocument(document.id, to: index, manager: manager)\n                },\n                contextMenu: contextMenu\n            )\n            .overlay {\n                if workspace.group?.tabs.isEmpty != false {\n                    ContentUnavailableView {\n                        Label(\"אין כרטיסיות בקבוצה\", systemImage: \"book.closed\")\n                    } actions: {\n                        Button(\"פתח ספר מהספרייה\") { onClose(); onOpenLibrary() }\n                    }\n                }"
+        },
+        {
+          "first": 150,
+          "last": 166,
+          "text": "    private func closeDocument(_ document: ReaderTabSwitcherDocument) {\n        if manager.openTabs.contains(where: { $0.id == document.id }) {\n            manager.closeTab(id: document.id)\n            workspace.synchronize(manager)\n        } else if let group = workspace.group {\n            do {\n                let remaining = group.tabs.filter { $0.id != document.id }\n                try workspace.store.saveTabs(\n                    remaining,\n                    activeID: group.activeTabID == document.id ? remaining.first?.id : group.activeTabID,\n                    groupID: group.id\n                )\n            } catch {\n                workspace.errorMessage = error.localizedDescription\n            }\n        }\n    }"
+        }
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256_git_lf": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "excerpts": [
+        {
+          "first": 548,
+          "last": 577,
+          "text": "    private func removeDocument(id: UUID) {\n        guard let index = documents.firstIndex(where: { $0.id == id }) else { return }\n        documents.remove(at: index)\n        collectionView.performBatchUpdates {\n            collectionView.deleteItems(at: [IndexPath(item: index, section: 0)])\n        } completion: { [weak self] _ in\n            guard let self else { return }\n            self.pageDelegate?.page(self, didDeleteTab: id)\n        }\n    }\n}\n\nextension TabSwitcherPageViewController: UICollectionViewDataSource {\n    func numberOfSections(in collectionView: UICollectionView) -> Int { 1 }\n\n    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {\n        documents.count\n    }\n\n    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {\n        let identifier = layoutMode == .grid ? TabViewGridCell.reuseIdentifier : TabViewListCell.reuseIdentifier\n        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? TabViewCell else {\n            preconditionFailure(\"DuckDuckGo tab switcher cell registration is invalid\")\n        }\n        cell.delegate = self\n        if documents.indices.contains(indexPath.item) {\n            let document = documents[indexPath.item]\n            cell.configure(document: document, isCurrent: document.id == selectedID)\n            cell.accessibilityIdentifier = \"tab-switcher-\\(layoutMode.rawValue)-cell-\\(document.id.uuidString)\"\n        }"
+        }
+      ]
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "sha256_git_lf": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171",
+      "excerpts": [
+        {
+          "first": 405,
+          "last": 417,
+          "text": "                if runtime27_contract or release_manifest:\n                    # A stalled AX query consumed68 minutes in run44207959071.\n                    # Native XCTest must fail and retain that case, then permit\n                    # later required cases to execute; never retry to obtainPASS.\n                    command.extend([\"-test-timeouts-enabled\", \"YES\",\n                                    \"-default-test-execution-time-allowance\", \"600\",\n                                    \"-maximum-test-execution-time-allowance\", \"600\"])\n                command.extend(f\"-only-testing:Maktabah-iOSUITests/{suite}\" for suite in selection)\n                environment = os.environ.copy()\n                if release_manifest:\n                    environment[\"TEST_RUNNER_RUNTIME27_RECORD_CONFIGURATION\"] = \"1\"\n                container = subprocess.check_output([\"xcrun\", \"simctl\", \"get_app_container\", udid, \"com.davidpovarsky.chavrusatext\", \"data\"], text=True, timeout=45).strip()\n                environment[\"TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY\"] = str(Path(container) / \"Documents\")"
+        }
+      ]
+    }
+  ]
+}

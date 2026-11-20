@@ -1,0 +1,38 @@
+{
+  "DIAGNOSTIC38_DECLARATIONS.json": {
+    "bytes": 11862,
+    "sha256": "a1bba35a6da261f4e3ad2a3c4c22f633a7f6b7d6e49f8c5e7d62ca882bd680ca"
+  },
+  "DIAGNOSTIC38_RECIPE.json": {
+    "bytes": 17910,
+    "sha256": "426434bae9bc14e6f10064ac1ed8fdd5363f6002340acc63863f0673d85ddbe7"
+  },
+  "ORIGINAL_FAILURES.json": {
+    "bytes": 2615,
+    "sha256": "7d297be6f4953658ff21715e8bbb92341b1fec7e92eebd2512cf5d6b20fb2376"
+  },
+  "README.md": {
+    "bytes": 4610,
+    "sha256": "91761bffe8aca32cb64e94b5e6072b4c58e7d2760dbc3d7622b5cea19bda24e6"
+  },
+  "RESULT.json": {
+    "bytes": 2668,
+    "sha256": "025029443b7d04148361d011db0683782e7ceb4f52239eea36af8528848884fe"
+  },
+  "SOURCE_EVIDENCE.json": {
+    "bytes": 10089,
+    "sha256": "7617b73ac1c08003aa54086f8fd6ab70af71ab656d53d820b6509ef4e5e7c4e9"
+  },
+  "swift-parse.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "testA1_A2_SearchResultHighlightAndClearButton.log.gz": {
+    "bytes": 1280,
+    "sha256": "1403e55e7d2be10300dc4e543150c51f90b395e75b5eafa164f31a681a85ae9b"
+  },
+  "testA3_OrdinaryReaderHasNoClearSearchHighlightButton.log.gz": {
+    "bytes": 1401,
+    "sha256": "9b896ca43ce8e3547d18c55c8130b2ec381211b321e99ee5be8a0c8b09be247d"
+  }
+}

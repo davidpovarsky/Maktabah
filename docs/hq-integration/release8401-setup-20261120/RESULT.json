@@ -1,0 +1,55 @@
+{
+  "status": "SOURCE_SETUP_CORRECTION_ONLY_NATIVE_NOT_RUN",
+  "source_base": "a68b79e2f5b93ee59ffc33f70d34f1bb8a3ddef3",
+  "source_path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+  "source_sha256_git_lf_before": "6560cb3026ce1dd621e7a76ac6876857485fd096453eeb0cc8c5c9f5b9993654",
+  "source_sha256_git_lf_after": "669217d7b168b44c027ea03d5ed14c31dc3d3f2dde97b35f212f3ef0fbffc698",
+  "actual_old_native": {
+    "run": 44665679661,
+    "checkout": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+    "app": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+    "case": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+    "result": "FAILED",
+    "first_error_line": 118,
+    "execution_order": 3,
+    "before_window": true
+  },
+  "change": "Use original overview close-to-zero instead of strip that exists only with more than one book. Close exact observed UUIDs with original RTL swipe; require actual empty-group state.",
+  "preserved": {
+    "all_other_bytes_normalized": true,
+    "all_post_cleanup_relaunch_reader_and_highlight_oracles_identical": true,
+    "all_test_method_declarations": true,
+    "document_close_bound": 20,
+    "original_reader_wait_seconds": 15,
+    "original_native_case_timeout_seconds": 600,
+    "production_source_changed": false,
+    "canonical_manifests_changed": false
+  },
+  "new_setup_waits": "Existing20second setup existence gate reused for actual overview launcher and overview; original overview deletion15second gate reused per exact UUID and final genuine empty state. No post-relaunch or per-test oracle deadline relaxed.",
+  "swift_parse": {
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+      "-frontend",
+      "-parse",
+      "-swift-version",
+      "6",
+      "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\Maktabah-iOSUITests\\Build8401SevenDefectsAcceptanceTests.swift"
+    ],
+    "warnings": 0
+  },
+  "declaration_validation": "DECLARATIONS_MATCH",
+  "diagnostic_selected_count": 38,
+  "group_counts": {
+    "11": 9,
+    "11-search": 8,
+    "11-reader": 6,
+    "11-sidebar": 1,
+    "11-window": 4,
+    "phone": 10
+  },
+  "native_candidate": "NOT_RUN",
+  "apple_typecheck": "NOT_RUN",
+  "a1_positive_highlight_failure": "UNRESOLVED; original A1 retained for focused diagnosis, no source fix or pass inferred",
+  "peer_review": "A source-only review found no ownership/oracle issue; requested a bounded first-card readiness wait before snapshot count, now added. Apple/Native pending."
+}

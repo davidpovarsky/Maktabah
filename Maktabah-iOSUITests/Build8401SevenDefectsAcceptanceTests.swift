@@ -114,14 +114,37 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         // do not clear defaults, change the renderer or synthesize diagnostics.
         launchWithScenario("reader", backend: "sefaria")
         dismissAlertsIfNeeded()
-        let strip = app.descendants(matching: .any)["reader-document-tabs"]
-        XCTAssertTrue(strip.waitForExistence(timeout: 20))
-        let closeActions = strip.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "סגור "))
+        // The original document strip mounts only while more than one book
+        // is open. The source overview owns close-to-zero for the same group.
+        let overviewButton = app.buttons[isPad ? "reader-tabs-overview" : "reader-book-tabs-overview"]
+        XCTAssertTrue(overviewButton.waitForExistence(timeout: 20))
+        XCTAssertTrue(overviewButton.isHittable)
+        overviewButton.tap()
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        XCTAssertTrue(overview.waitForExistence(timeout: 20))
+        let cards = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ OR identifier BEGINSWITH %@",
+            "tab-switcher-grid-cell-", "tab-switcher-list-cell-"))
+        XCTAssertTrue(cards.firstMatch.exists || cards.firstMatch.waitForExistence(timeout: 20))
+        XCTAssertGreaterThan(cards.count, 0, "Observe the real retained reader documents before closing them")
         for _ in 0..<20 {
-            guard let close = closeActions.allElementsBoundByIndex.first(where: { $0.isHittable }) else { break }
-            close.tap()
+            guard let card = cards.allElementsBoundByIndex.first(where: { $0.isHittable }) else { break }
+            let identifier = card.identifier
+            let prefix = identifier.hasPrefix("tab-switcher-grid-cell-")
+                ? "tab-switcher-grid-cell-" : "tab-switcher-list-cell-"
+            XCTAssertNotNil(UUID(uuidString: String(identifier.dropFirst(prefix.count))),
+                            "Close only an observed original document UUID")
+            let exactCard = overview.collectionViews.cells.matching(identifier: identifier)
+            XCTAssertEqual(exactCard.count, 1, "The real document identity must be unique")
+            exactCard.firstMatch.swipeRight()
+            let removed = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: exactCard.firstMatch)
+            XCTAssertEqual(XCTWaiter.wait(for: [removed], timeout: 15), .completed,
+                           "The original RTL close gesture must remove this exact document")
         }
-        XCTAssertEqual(closeActions.count, 0, "Ordinary reading must start without retained search-origin documents")
+        XCTAssertEqual(cards.count, 0, "Ordinary reading must start without retained search-origin documents")
+        XCTAssertTrue(overview.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15),
+                      "The original empty-group state must confirm the last document was closed")
         app.terminate()
         // Launch normal reader without search provenance.
         launchWithScenario("reader", backend: "sefaria")

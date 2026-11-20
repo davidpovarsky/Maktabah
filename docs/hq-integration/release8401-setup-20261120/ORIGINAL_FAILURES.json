@@ -1,0 +1,56 @@
+[
+  {
+    "configuration_id": "ipad11-native",
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+    "status": "FAIL",
+    "failure_messages": [
+      "XCTAssertGreaterThan failed: (\"0\") is not greater than (\"0\") - Rendered attributed text must contain at least 1 search highlight range before clearing"
+    ],
+    "raw_locations_and_errors": [
+      {
+        "errors": [
+          "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift:26: error: -[Maktabah_iOSUITests.Build8401SevenDefectsAcceptanceTests testA1_A2_SearchResultHighlightAndClearButton] : XCTAssertGreaterThan failed: (\"0\") is not greater than (\"0\") - Rendered attributed text must contain at least 1 search highlight range before clearing"
+        ],
+        "locations": [
+          {
+            "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+            "line": 26
+          }
+        ]
+      }
+    ],
+    "basis": "artifacts/runtime27/verified-11.tests.json",
+    "summary_path": "artifacts/runtime27/verified-11.summary.json",
+    "first_observed_failure_bucket": "Actual rendered search highlight absent",
+    "execution_order": 1,
+    "relative_to_failed_candidate_window_case": "BEFORE",
+    "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+  },
+  {
+    "configuration_id": "ipad11-native",
+    "case_id": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+    "status": "FAIL",
+    "failure_messages": [
+      "XCTAssertTrue failed"
+    ],
+    "raw_locations_and_errors": [
+      {
+        "errors": [
+          "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift:118: error: -[Maktabah_iOSUITests.Build8401SevenDefectsAcceptanceTests testA3_OrdinaryReaderHasNoClearSearchHighlightButton] : XCTAssertTrue failed"
+        ],
+        "locations": [
+          {
+            "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+            "line": 118
+          }
+        ]
+      }
+    ],
+    "basis": "artifacts/runtime27/verified-11.tests.json",
+    "summary_path": "artifacts/runtime27/verified-11.summary.json",
+    "first_observed_failure_bucket": "Original ordinary-reader action admission",
+    "execution_order": 3,
+    "relative_to_failed_candidate_window_case": "BEFORE",
+    "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+  }
+]

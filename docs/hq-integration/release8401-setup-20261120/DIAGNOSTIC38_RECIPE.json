@@ -1,0 +1,286 @@
+{
+  "kind": "REVIEWED_DIAGNOSTIC_RECIPE_NOT_OPERATIONAL_MANIFEST",
+  "native_execution": "NOT_RUN",
+  "review_base": "a68b79e2f5b93ee59ffc33f70d34f1bb8a3ddef3",
+  "canonical_manifest": {
+    "path": "docs/hq-integration/runtime27/R27_CASES.json",
+    "sha256_git_lf": "2149e7bd2d8b16a24e1af813e89f6ce73477ebff50493d170a1676cfc84898cd",
+    "required_full": 92,
+    "by_device": {
+      "ipad11": 72,
+      "iphone": 20
+    }
+  },
+  "canonical_release": {
+    "path": "Scripts/CI/runtime27-release-manifest.json",
+    "sha256_git_lf": "3cdaf48f413a5ccb6f8e77c7180d503f1723e7a724640223db1a779146643675",
+    "ui_cases": 96,
+    "separate_oracles": 2,
+    "configurations": 5
+  },
+  "historical_selection_sources": {
+    "original13": {
+      "checkout": "d8cc18f80e905c66d73963951efac53b43a12080",
+      "manifest_sha256_git_lf": "5b6c08b8ccfb25c5d805b25ea97916b1bfe59d6ccdc77fae9c78b19f0eb01ebb",
+      "selected": 13
+    },
+    "repair12": {
+      "checkout": "6030087e27f75b26d9a9bb144ba9ba71eaddadc5",
+      "manifest_sha256_git_lf": "de9a8d6853290f818621f38ef86338c2d323050fd562146159e17d691474b841",
+      "selected": 12
+    }
+  },
+  "union_original_count": 25,
+  "union_original_by_device": {
+    "ipad11": 16,
+    "iphone": 9
+  },
+  "append_only_diagnostic_rows": [
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original landscape overview replacement, single real retained document, exact TextKit object/viewport/locator restoration.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original portrait overview replacement, single real retained document, exact TextKit object/viewport/locator restoration.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original landscape Inspector/tools mounted; both redundant headings absent; closing does not reserve a Reader column.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original portrait Inspector/tools mounted; both redundant headings absent; closing does not reserve a Reader column.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original feature-off versus candidate landscape Search navigation bar identities and geometry within original1point gates.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original feature-off versus candidate portrait Search navigation bar identities and geometry within original1point gates.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original feature-off versus candidate landscape Annotations navigation bar identities and geometry within original1point gates.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual original feature-off versus candidate portrait Annotations navigation bar identities and geometry within original1point gates.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original real native window resize, toolbar/window bounds, Reader locator, Search, overview and Inspector oracles.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original feature-off real native window resize reference with unchanged Reader and geometry oracles.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original phone overview replacement and exact TextKit object/viewport/locator restoration.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Unresolved actual positive rendered search highlight followed by original clear control and zero ranges; no prior PASS or weakened oracle.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    },
+    {
+      "case_id": "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original overview closes genuine retained UUIDs to zero, then cold ordinary Reader has no clear-search control and zero observed search ranges.",
+      "diagnostic_origin": "Existing full Release test; additional diagnostic selection only"
+    }
+  ],
+  "execution_case_ids": [
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+    "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+    "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+    "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+    "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+    "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+    "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+    "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton"
+  ],
+  "execution_groups": [
+    {
+      "label": "11",
+      "size": "11",
+      "case_ids": [
+        "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+        "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+        "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+        "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+        "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+        "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+        "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-search",
+      "size": "11",
+      "case_ids": [
+        "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+        "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+        "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+        "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+        "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-reader",
+      "size": "11",
+      "case_ids": [
+        "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+        "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+        "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+        "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+        "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-sidebar",
+      "size": "11",
+      "case_ids": [
+        "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory"
+      ],
+      "hid_comparison": false
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "case_ids": [
+        "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+        "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+        "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+        "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader"
+      ],
+      "hid_comparison": true
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "case_ids": [
+        "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+        "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+        "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+        "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+        "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+        "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+        "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport"
+      ],
+      "hid_comparison": false
+    }
+  ],
+  "expected_selected_count": 38,
+  "expected_selected_by_device": {
+    "ipad11": 28,
+    "iphone": 10
+  },
+  "diagnostic_catalog_after_append": 105,
+  "unselected_baseline_cases": 67,
+  "diagnostic_only": true,
+  "hid_comparison": true,
+  "baseline_metadata_policy": "Preserve canonical92 rows, requirements, history and original full expected metadata. Add explicit selected38 counts and diagnostic baseline references. Branch-only scope states38partial; never rewrite canonical92 or Release96+2.",
+  "runtime_mode": "ui",
+  "ui_diagnostic_cases_input": "Do not mix; this input belongs to the other workflow path.",
+  "viewport_environment": "Original matrix assigns TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY to the owned app Documents path for every group before xcodebuild. XCTest exposes FAITHFUL_VIEWPORT_DIRECTORY to unchanged overview/sidecar readers.",
+  "tiers": {
+    "original25": "Unchanged method/helper launch tiers; no new override or smoke bypass added.",
+    "additional11_faithful_methods": "Existing FaithfulReaderUIBase.readerTestTier=.smoke, including feature-off reference. Native UI does not imply realUI bootstrap.",
+    "additional2_build8401_methods": "Existing launchWithScenario default.smoke, backendsefaria. Real source UI and original diagnostics; no claim of normal bootstrap."
+  },
+  "transport": "Original NativeURLDelivery, HID only11-window, fixture SQL oracle and per-group disposable simulator remain active by exact selection predicates.",
+  "fingerprint_requirements": [
+    "After all fixes merge, root freezes final app/tests commit and actual Source/Vendor/Maktabah.xcodeproj trees in hq-stage2-focused-apple.inputs.json.",
+    "Update source_test_commit/app_source/application_source_sha to exact integrated source; retain producer artifacts/engine/resource pins and historical fingerprints.",
+    "Keep R27 canonical Git LF SHA53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b unless its original file actually changes and is reviewed.",
+    "Record exact current Build8401, Faithful, NativeRouting and Sidebar Git LF hashes in new freeze evidence; do not edit historical hashes.",
+    "Run original source-input preflight and validate_selections after freeze. Actual runtime independently records all XCTest file SHA256, helperSHA, testtree and exact checkout.",
+    "Canonical Release prepared_source_requirements must match final registered test source when the full Release is frozen; this diagnostic never bypasses or satisfies that separate gate."
+  ],
+  "constraints": [
+    "No duplicate same Suite/method across devices in one R27 contract; case IDs must be globally unique.",
+    "Two Trimmed methods contain four heading assertions; this selection has two leaves, not four device executions.",
+    "Every selected case retains original600s max/default time allowance; whole matrix16200s and job360min remain bounded.",
+    "Full result can only SELECTED_UI_EXECUTED_PASS because diagnostic_onlytrue; no prior pass reuse."
+  ]
+}
