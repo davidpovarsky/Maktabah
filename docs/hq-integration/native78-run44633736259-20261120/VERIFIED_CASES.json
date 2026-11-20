@@ -1,0 +1,981 @@
+{
+  "zip": {
+    "path": "native-audit/native78-14596339141.zip",
+    "bytes": 76651411,
+    "sha256": "5842cfdfe0748dcd7b2620a2dde895812bb2441694c36a63901a8530f1373968"
+  },
+  "checkout_sha": "7d05dd0bb25a7df307b35174e49e18d0f22eecee",
+  "application_sha": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "application_trees": {
+    "Source": "94e4b4f7dcc374509dafccfceaba0318d800aef7",
+    "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+    "Maktabah.xcodeproj": "1175aa91ffff58b465c635926ba3eebe9a80ae53"
+  },
+  "manifest_sha256": "bdadb6c5e7dc6edee5cfb4d2e04f26d50ce8388209b9a39795143ee2c449a06a",
+  "expected_count": 78,
+  "counts": {
+    "passed": 65,
+    "failed": 13,
+    "skipped": 0,
+    "not_run": 0,
+    "recorded": 78
+  },
+  "provenance_or_count_errors": [],
+  "groups": [
+    {
+      "label": "11-search",
+      "expected": 21,
+      "recorded": 21,
+      "passed": 20,
+      "failed": 1,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Failed",
+      "summary_failures": [
+        {
+          "failureText": "XCTAssertGreaterThanOrEqual failed: (\"0.0\") is less than (\"15.0\")",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 4,
+          "testIdentifierString": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+          "testName": "testHeaderAndHistoryNativeAccessibilityAudit()"
+        }
+      ],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "704A1AAA-B70D-48C7-AB48-31D9C8C72580",
+          "deviceName": "Faithful 11-inch a83e0d0b",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "label": "11-reader",
+      "expected": 34,
+      "recorded": 34,
+      "passed": 28,
+      "failed": 6,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Failed",
+      "summary_failures": [
+        {
+          "failureText": "failed - System URL acknowledgement must have the exact credential-free schema",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 4,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+          "testName": "testHistoryURLAfterBackgroundRequiresActualVisibleReceipt()"
+        },
+        {
+          "failureText": "XCTAssertTrue failed - A hidden panel or model flag is not visible presentation",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 6,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+          "testName": "testPublicV2InspectorPreservesOriginalReaderAndWorkspace()"
+        },
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 10,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+          "testName": "testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab()"
+        },
+        {
+          "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The actual original UIKit surface must acknowledge through Core",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 14,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+          "testName": "testPublicV2TOCPreservesPrivateFilterAndOriginalReader()"
+        },
+        {
+          "failureText": "failed: caught error: \"Error Domain=ChavrusaUIRoutingHost.NativeIntentOutcome Code=1 \"The destination changed. Choose it again.\" UserInfo={NSLocalizedDescription=The destination changed. Choose it again.}\"",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 22,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+          "testName": "testSystemAppIntentShowsOriginalReaderInspector()"
+        },
+        {
+          "failureText": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 23,
+          "testIdentifierString": "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+          "testName": "testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader()"
+        }
+      ],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "1E4F7919-8472-413E-B524-BFAA4940CC58",
+          "deviceName": "Faithful 11-inch e8395c79",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "label": "11-sidebar",
+      "expected": 5,
+      "recorded": 5,
+      "passed": 3,
+      "failed": 2,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Failed",
+      "summary_failures": [
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+          "testName": "testBookSearchRetainsControlsWithoutGlobalHistory()"
+        },
+        {
+          "failureText": "Test exceeded execution time allowance of 10 minutes",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 3,
+          "testIdentifierString": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+          "testName": "testSidebarBodyPagingLTR()"
+        }
+      ],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "80917A90-5517-4A06-9DD5-2C0A25AC531C",
+          "deviceName": "Faithful 11-inch 34a420ce",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "label": "11-window",
+      "expected": 2,
+      "recorded": 2,
+      "passed": 0,
+      "failed": 2,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Failed",
+      "summary_failures": [
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+          "testName": "testNormalBootstrapNativeWindowResizePaletteAndInspector()"
+        },
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 2,
+          "testIdentifierString": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+          "testName": "testNormalBootstrapPaletteHIDComparison()"
+        }
+      ],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "BCEF2A5D-90EE-4176-9671-EEC4718AED20",
+          "deviceName": "Faithful 11-inch 716c1e88",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "label": "11",
+      "expected": 2,
+      "recorded": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Passed",
+      "summary_failures": [],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "625EA0E5-0014-45EB-B079-D9F5101813F6",
+          "deviceName": "Faithful 11-inch 6f10d022",
+          "modelName": "iPad Pro 11-inch (M5)",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    },
+    {
+      "label": "phone",
+      "expected": 14,
+      "recorded": 14,
+      "passed": 12,
+      "failed": 2,
+      "skipped": 0,
+      "not_run": 0,
+      "summary_result": "Failed",
+      "summary_failures": [
+        {
+          "failureText": "Application 'com.davidpovarsky.chavrusatext' does not have a process ID",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 3,
+          "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+          "testName": "testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace()"
+        },
+        {
+          "failureText": "failed: caught error: \"Error Domain=ChavrusaUIRoutingHost.NativeIntentOutcome Code=1 \"The destination changed. Choose it again.\" UserInfo={NSLocalizedDescription=The destination changed. Choose it again.}\"",
+          "targetName": "Maktabah-iOSUITests",
+          "testIdentifier": 8,
+          "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector()",
+          "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+          "testName": "testPhoneSystemAppIntentShowsOriginalReaderInspector()"
+        }
+      ],
+      "devices": [
+        {
+          "architecture": "arm64",
+          "deviceId": "1726C04B-B816-42ED-B79A-67656BF68CED",
+          "deviceName": "Faithful phone-inch 7b9863a3",
+          "modelName": "iPhone 18 Pro",
+          "osBuildNumber": "24B8117",
+          "osVersion": "27.2",
+          "platform": "iOS Simulator"
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 93.11678099632263,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 36.5980019569397,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 76.0995010137558,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+      "group": "11-search",
+      "result": "Failed",
+      "duration_seconds": 37.35807192325592,
+      "failures": [
+        {
+          "text": "XCTAssertGreaterThanOrEqual failed: (\"0.0\") is less than (\"15.0\")",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+            "lineNumber": 480
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 48.061638951301575,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 54.769062995910645,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 93.84515595436096,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 66.27545094490051,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 64.26856100559235,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 79.95622897148132,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 185.40202605724335,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 53.542779088020325,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 97.87639498710632,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 66.66843795776367,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 108.89146506786346,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 95.69230794906616,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 125.7879159450531,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 131.40881896018982,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 196.75813794136047,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 95.97442507743835,
+      "failures": []
+    },
+    {
+      "case_id": "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+      "group": "11-search",
+      "result": "Passed",
+      "duration_seconds": 70.81886494159698,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 47.92736995220184,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 41.168493032455444,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 88.2798240184784,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 138.53534507751465,
+      "failures": [
+        {
+          "text": "failed - System URL acknowledgement must have the exact credential-free schema",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 197
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 132.88487493991852,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 34.34690797328949,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed - A hidden panel or model flag is not visible presentation",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 1499
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 56.47537302970886,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 84.78078103065491,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 78.8540940284729,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 63.48569202423096,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 639
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 53.3007869720459,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 42.857133984565735,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 111.7367889881134,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 91.93600392341614,
+      "failures": [
+        {
+          "text": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The actual original UIKit surface must acknowledge through Core",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 990
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 71.16614401340485,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 44.94515907764435,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 30.253530025482178,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 50.759064078330994,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 18.636436104774475,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 25.625179052352905,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 23.117151975631714,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 33.094499945640564,
+      "failures": [
+        {
+          "text": "failed: caught error: \"Error Domain=ChavrusaUIRoutingHost.NativeIntentOutcome Code=1 \"The destination changed. Choose it again.\" UserInfo={NSLocalizedDescription=The destination changed. Choose it again.}\"",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 1562
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+      "group": "11-reader",
+      "result": "Failed",
+      "duration_seconds": 36.175402998924255,
+      "failures": [
+        {
+          "text": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn’t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 1275
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 39.05863094329834,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 36.83076500892639,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 53.39393603801727,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 32.01539397239685,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 31.037118077278137,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 25.0051189661026,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 24.71370506286621,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 23.839986085891724,
+      "failures": []
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 57.550662994384766,
+      "failures": []
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 53.78903901576996,
+      "failures": []
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "group": "11-reader",
+      "result": "Passed",
+      "duration_seconds": 110.1923919916153,
+      "failures": []
+    },
+    {
+      "case_id": "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+      "group": "11-sidebar",
+      "result": "Failed",
+      "duration_seconds": 162.26884400844574,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+            "lineNumber": 89
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+      "group": "11-sidebar",
+      "result": "Passed",
+      "duration_seconds": 202.9833860397339,
+      "failures": []
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "group": "11-sidebar",
+      "result": "Failed",
+      "duration_seconds": 600,
+      "failures": [
+        {
+          "text": "Test exceeded execution time allowance of 10 minutes",
+          "source": null
+        }
+      ]
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "group": "11-sidebar",
+      "result": "Passed",
+      "duration_seconds": 543.454959988594,
+      "failures": []
+    },
+    {
+      "case_id": "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+      "group": "11-sidebar",
+      "result": "Passed",
+      "duration_seconds": 77.82735097408295,
+      "failures": []
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "group": "11-window",
+      "result": "Failed",
+      "duration_seconds": 193.1106060743332,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+            "lineNumber": 445
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "group": "11-window",
+      "result": "Failed",
+      "duration_seconds": 128.3369060754776,
+      "failures": [
+        {
+          "text": "XCTAssertTrue failed",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+            "lineNumber": 445
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
+      "group": "11",
+      "result": "Passed",
+      "duration_seconds": 216.1268049478531,
+      "failures": []
+    },
+    {
+      "case_id": "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+      "group": "11",
+      "result": "Passed",
+      "duration_seconds": 87.14436900615692,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 51.2856320142746,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 94.48082900047302,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "group": "phone",
+      "result": "Failed",
+      "duration_seconds": 173.67685794830322,
+      "failures": [
+        {
+          "text": "Application 'com.davidpovarsky.chavrusatext' does not have a process ID",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/MaktabahUITestBase.swift",
+            "lineNumber": 150
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 72.02261400222778,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 73.00714409351349,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 52.642194986343384,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 112.99957299232483,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+      "group": "phone",
+      "result": "Failed",
+      "duration_seconds": 34.79338502883911,
+      "failures": [
+        {
+          "text": "failed: caught error: \"Error Domain=ChavrusaUIRoutingHost.NativeIntentOutcome Code=1 \"The destination changed. Choose it again.\" UserInfo={NSLocalizedDescription=The destination changed. Choose it again.}\"",
+          "source": {
+            "filePath": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+            "lineNumber": 1598
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 59.82454299926758,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 32.48975598812103,
+      "failures": []
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 34.8430210351944,
+      "failures": []
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 43.70851993560791,
+      "failures": []
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 42.42819797992706,
+      "failures": []
+    },
+    {
+      "case_id": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "group": "phone",
+      "result": "Passed",
+      "duration_seconds": 120.76853001117706,
+      "failures": []
+    }
+  ],
+  "driver_status": "FAIL",
+  "driver_error": "Required real UI subset failed, skipped or did not completely execute",
+  "original_entry_hashes": {
+    "artifacts/runtime27/result.json": {
+      "bytes": 198969,
+      "sha256": "1cfb31aa3ea890ef643a6adab0d415d5dc703808bf5f9118946ef1687f57f8a0"
+    },
+    "hq-stage2/result.json": {
+      "bytes": 82673,
+      "sha256": "982e79287f736dfc0d7c74c8cce69969924c375bdb076bf7c705d85f1e98530e"
+    },
+    "artifacts/runtime27/verified-11-search.tests.json": {
+      "bytes": 14792,
+      "sha256": "4315b3c4c7e4c74ba75548284250e1af2af6cbebff643d5ad0e812ca041913a8"
+    },
+    "artifacts/runtime27/verified-11-search.summary.json": {
+      "bytes": 1769,
+      "sha256": "74cea2bcf03939ba32d00424ff4cb8309f7e0f64b6f6ccf75b9a4db4335f4eab"
+    },
+    "artifacts/runtime27/verified-11-reader.tests.json": {
+      "bytes": 25940,
+      "sha256": "6f33c9637f87d304a7f807d9c6d42977ecc75508dedd798eb3a7699a2c970b2c"
+    },
+    "artifacts/runtime27/verified-11-reader.summary.json": {
+      "bytes": 5225,
+      "sha256": "b7029822a2200b65b699adb16e61acc5c7714963f14480dbc60f34b59cb71429"
+    },
+    "artifacts/runtime27/verified-11-sidebar.tests.json": {
+      "bytes": 4935,
+      "sha256": "dd5a61ae52c2ac1ce3581207a38a2f522cd7bf359b1c5358eb1c13cf669b6df1"
+    },
+    "artifacts/runtime27/verified-11-sidebar.summary.json": {
+      "bytes": 1899,
+      "sha256": "abc6eaf59bb02c0599701fac166c72a6105cf4cace113b571b6138769347513d"
+    },
+    "artifacts/runtime27/verified-11-window.tests.json": {
+      "bytes": 3159,
+      "sha256": "683b15b7f92823faecd361216ce82319c258fa6420c52a25cb90b4915af9a6c1"
+    },
+    "artifacts/runtime27/verified-11-window.summary.json": {
+      "bytes": 1885,
+      "sha256": "6ffab2dc9feeec2adb7f78cf70c5859a8f7582d86bc27807965dd621b7f08d6e"
+    },
+    "artifacts/runtime27/verified-11.tests.json": {
+      "bytes": 2722,
+      "sha256": "f4aaecede5626afbc9127afba9e44f4a9b66d58971cb8c24df21935e7f4cb853"
+    },
+    "artifacts/runtime27/verified-11.summary.json": {
+      "bytes": 986,
+      "sha256": "dee8b8e89c549820ca03a654dd89eba552ef27121f5eef8a2d56b4087798e2c3"
+    },
+    "artifacts/runtime27/verified-phone.tests.json": {
+      "bytes": 11282,
+      "sha256": "d41b0cb3c40bba8d24e863b57548250d14c4eb8983d4f056072038010164fcf4"
+    },
+    "artifacts/runtime27/verified-phone.summary.json": {
+      "bytes": 2500,
+      "sha256": "bfd9c45d9fe1c892f2a9907a7ef05bf248a22f1db37bedb0ca9e0d9896fadad3"
+    }
+  },
+  "zero_skips_observed": true,
+  "all_required_executed": true,
+  "all_required_passed": false,
+  "new_execution_performed_by_this_review": false
+}

@@ -19,6 +19,16 @@ enum OtzariaLexicalIndexReadCompatibility {
     // user default, environment variable, schema equality, or git ancestry.
     private static let qualifiedContracts: Set<Contract> = []
 
+    // Exact required-resource projection reported by both real C binaries.
+    // The published artifact additionally records optional lexical.db; claiming
+    // that unreported file as a compiled runtime resource is not accepted.
+    static let requiredRuntimeResourceHashes = [
+        "Vendor/OtzariaSearchEngine/Resources/Acronyms.json":
+            "cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f",
+        "Vendor/OtzariaSearchEngine/Resources/dictionary.json":
+            "cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69",
+    ]
+
     static func qualifiedContract(
         manifest: OtzariaSearchArtifactManifest,
         consumer: OtzariaSearchEngineBuildInfo
@@ -55,7 +65,7 @@ enum OtzariaLexicalIndexReadCompatibility {
               producer.semanticSidecarRevision == "e836ea6cac05e695efdb03ef227e78cd1a624149",
               consumer.semanticSidecarRevision == producer.semanticSidecarRevision,
               manifest.resources.mapValues(\.sha256) == resources,
-              consumer.resourceHashes == resources else { return nil }
+              consumer.resourceHashes == requiredRuntimeResourceHashes else { return nil }
         return .original265ToExactOccurrencesD5
     }
 }
@@ -107,13 +117,15 @@ enum OtzariaSearchArtifactPolicy {
         manifest: OtzariaSearchArtifactManifest
     ) -> Bool {
         let producer = manifest.lexicalEngine
+        let requiredResources = OtzariaLexicalIndexReadCompatibility.requiredRuntimeResourceHashes
         return identity.upstreamCommit == producer.commit
             && identity.engineVersion == producer.engineVersion
             && identity.indexSchemaVersion == producer.indexSchemaVersion
             && identity.defaultGenerationOrder == producer.defaultGenerationOrder
             && identity.adapterVersion == producer.adapterVersion
             && identity.catalogueHash == manifest.lexicalArtifact.catalogueHash
-            && identity.resourceHashes == manifest.resources.mapValues(\.sha256)
+            && identity.resourceHashes == requiredResources
+            && requiredResources.allSatisfy { manifest.resources[$0.key]?.sha256 == $0.value }
     }
 
     /// Installing or repairing metadata records who PRODUCED the index, never
