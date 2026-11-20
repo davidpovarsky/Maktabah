@@ -1,0 +1,11 @@
+        guard delivered == .completed, let bytes = try? Data(contentsOf: ack),
+              let response = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+              Set(response.keys) == ["udid", "transport", "delivered", "nonce", "time"],
+              String(decoding: bytes, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil else {
+            XCTFail("System URL acknowledgement must have the exact credential-free schema")
+            return
+        }
+        XCTAssertEqual(response["nonce"] as? String, nonce)
+        XCTAssertEqual(response["udid"] as? String, udid)
+        XCTAssertEqual(response["transport"] as? String, "simctl-system-openurl")
+        XCTAssertEqual(response["delivered"] as? Bool, true)
