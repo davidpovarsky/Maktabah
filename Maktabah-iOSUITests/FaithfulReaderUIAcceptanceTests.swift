@@ -690,7 +690,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     }
 
     @MainActor
-    func exerciseNativeWindowResize(enabled: Bool) {
+    func exerciseNativeWindowResize(enabled: Bool) throws {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(enabled: enabled, scenario: "readerDetail")
         assertReaderHasText()
@@ -960,8 +960,8 @@ final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    func testOriginalWindowResizePreservesReader() {
-        exerciseNativeWindowResize(enabled: false)
+    func testOriginalWindowResizePreservesReader() throws {
+        try exerciseNativeWindowResize(enabled: false)
     }
 
     func testOriginalReaderThemes() {
@@ -1459,8 +1459,8 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    func testCandidateWindowResizePreservesOriginalReaderAndSearch() {
-        exerciseNativeWindowResize(enabled: true)
+    func testCandidateWindowResizePreservesOriginalReaderAndSearch() throws {
+        try exerciseNativeWindowResize(enabled: true)
     }
 
     func testNewManagementScreensExposeMeaningfulAccessibilityDescriptions() throws {

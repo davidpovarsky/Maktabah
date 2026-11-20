@@ -1,0 +1,34 @@
+{
+  "at_utc": "2026-11-20T07:41:44.230994+00:00",
+  "source_before": "c1f7a1f3d41ac7aeabed0cd27185edc8d30e9f9d",
+  "introducing_commit": "d05fbdd1abad848282000ba0e225cab686d4210f",
+  "known_source_defect": "A throwing originalStudyToolsActionInWindow call appeared in a non-throwing exerciseNativeWindowResize function; both XCTest callers require propagation",
+  "changes": [
+    [
+      "func exerciseNativeWindowResize(enabled: Bool) {",
+      "func exerciseNativeWindowResize(enabled: Bool) throws {"
+    ],
+    [
+      "func testOriginalWindowResizePreservesReader() {",
+      "func testOriginalWindowResizePreservesReader() throws {"
+    ],
+    [
+      "func testCandidateWindowResizePreservesOriginalReaderAndSearch() {",
+      "func testCandidateWindowResizePreservesOriginalReaderAndSearch() throws {"
+    ],
+    [
+      "        exerciseNativeWindowResize(enabled: false)",
+      "        try exerciseNativeWindowResize(enabled: false)"
+    ],
+    [
+      "        exerciseNativeWindowResize(enabled: true)",
+      "        try exerciseNativeWindowResize(enabled: true)"
+    ]
+  ],
+  "exact_inverse_preserves_all_other_bytes": true,
+  "before_raw_sha256": "06be409704bfd2ab18d064a51abc2c8ddfbe84963c76621b1bf956e1b1ff969f",
+  "after_raw_sha256": "95da15e21d94c610434119d542e4a9fe5347dfd4d4a46dea0d9a1e65d097a5a7",
+  "apple_typecheck": "PENDING",
+  "native_executed_for_fix": 0,
+  "no_guards_or_oracles_removed": true
+}
