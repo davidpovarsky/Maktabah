@@ -1,0 +1,68 @@
+{
+  "created_at": "2026-11-20T07:56:03.456106+00:00",
+  "base": "0ade6b47708c47cc26932105eb6de7743539b3bc",
+  "checks": {
+    "native_test_only_one_identifier_changed": true,
+    "workspace_only_two_public_content_mode_modifiers": true,
+    "session_only_detach_method_changed": true,
+    "original_fifteen_controls_unchanged": true,
+    "six_added_controls": true,
+    "unchanged:Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift": true,
+    "unchanged:Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePresentationObserver.swift": true,
+    "unchanged:Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved": true,
+    "unchanged:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": true,
+    "compiled_current_fragment:extracted_owner_sha256": true,
+    "compiled_current_fragment:extracted_callback_sha256": true,
+    "compiled_current_fragment:extracted_dismissal_callback_sha256": true,
+    "compiled_current_fragment:extracted_detach_sha256": true,
+    "compiled_current_fragment:compiled_setter_sha256": true,
+    "red_only_idle_detachment_failed": true,
+    "green_21_executed_no_warnings": true,
+    "unchanged:Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": true
+  },
+  "original_fixture_case_names": [
+    "live_original_editor_attaches",
+    "old_disappearance_cannot_clear_new_editor",
+    "old_creation_cannot_replace_new_editor",
+    "late_creation_after_dismissal_stays_inactive",
+    "disappearance_before_creation_is_terminal",
+    "stale_callbacks_do_not_invalidate_scene",
+    "identical_unsaved_values_have_distinct_presentations",
+    "new_presentation_is_accepted_after_retirement",
+    "owner_replacement_ignores_old_owner_id",
+    "reader_replacement_ignores_old_reader",
+    "current_sheet_blocks_until_dismissal",
+    "present_keeps_original_unsaved_binding_and_rejects_saved_annotation",
+    "dismissal_does_not_clear_live_new_draft",
+    "old_dismissal_cannot_retire_closing_new_presentation",
+    "duplicate_dismissal_cannot_invalidate_scene"
+  ],
+  "source_files": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": {
+      "raw_sha256": "d6f91be102032ea6d8212d1e9eaa075f6376f254b578ef173e1982aab33edda8",
+      "canonical_git_lf_sha256": "90a34895607e98f05b7cee448d7d96c17ee463a568f31b7fe3ebb3cd0ed4d11d",
+      "base_canonical_git_lf_sha256": "208cf8c5d887cf9acf3642f4e06b738ef8cadf0c4d81bc5743ee016c699922a9"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+      "raw_sha256": "3591fe32d08eafbf9b4c11fe070fd96df4bf83f4c0bb04cde95d835a66b205b6",
+      "canonical_git_lf_sha256": "3591fe32d08eafbf9b4c11fe070fd96df4bf83f4c0bb04cde95d835a66b205b6",
+      "base_canonical_git_lf_sha256": "2d93952f710b3777e2793bfcf716d6d6870c587ff93daa4e9136f969845d5d51"
+    },
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": {
+      "raw_sha256": "415f385f2301c82ec06706993c8f466cc51671b1e70fd6e35cac843532ee3b88",
+      "canonical_git_lf_sha256": "a14c2b6c9a49b0d86e18227d06509dded0804e37ee9f474b8907982020e69469",
+      "base_canonical_git_lf_sha256": "cadb9c4eba2859542a7560ca62f70a7e8856c83cd6411d6ed0d665477f2eb87b"
+    },
+    "Tests/HQ/navigation/NativeNoteEditorOwnerFixtures.swift": {
+      "raw_sha256": "dc5b1e2da8e2237b1f065018f6ca910f9fc26736a2ebd62fc1033fb6406ea57c",
+      "canonical_git_lf_sha256": "dc5b1e2da8e2237b1f065018f6ca910f9fc26736a2ebd62fc1033fb6406ea57c",
+      "base_canonical_git_lf_sha256": "3d21fdccb04965222cc79f7c94f42b0c02c20807cbbde83bbac719c10e62f4af"
+    },
+    "tools/hq-native-note-editor-ownership.py": {
+      "raw_sha256": "13023ee04fb7378776be0cc3b8e0ab2a967fa74b7fde312c130b21094db75045",
+      "canonical_git_lf_sha256": "13023ee04fb7378776be0cc3b8e0ab2a967fa74b7fde312c130b21094db75045",
+      "base_canonical_git_lf_sha256": "f40def1fde30368ab0dcd31a7503222c8665af8aab05db0e08f34574337d044d"
+    }
+  },
+  "native_passes": 0
+}

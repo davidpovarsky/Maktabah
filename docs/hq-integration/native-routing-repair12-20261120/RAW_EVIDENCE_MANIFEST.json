@@ -1,0 +1,228 @@
+{
+  "files": [
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\INDEPENDENT_REVIEW.json",
+      "file": "raw/INDEPENDENT_REVIEW.json.gz",
+      "raw_bytes": 17868,
+      "raw_sha256": "8984fca274129b7dbbfe3bca0eeeb5fa61ed8e9477fa531fff484fe3848aad78",
+      "stored_sha256": "66255c44c0449ee6bdd5203df3c055d48f607f24e2719db74039b78d77c2ecf3"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\SOURCE_INPUT_CHECKS.json",
+      "file": "raw/SOURCE_INPUT_CHECKS.json.gz",
+      "raw_bytes": 8524,
+      "raw_sha256": "d57ac63f5ee84c0ab838637e8e360c91169e1a868b3464dd793f1541c0abe922",
+      "stored_sha256": "ace1dacd2b8cdf8d8cbae1644311da9e6a63b86aff88df66bc5c6db0f21abd6b"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\selected-captures\\RANGE_EVIDENCE.json",
+      "file": "raw/RANGE_EVIDENCE.json.gz",
+      "raw_bytes": 17144,
+      "raw_sha256": "e961574ba5996a426194846bbf0bb32e656164c7ed724d1162fceb9a2222a2f3",
+      "stored_sha256": "af4d0d077cdb4af75028ae0e2d19ea14d96d36bdc8b64b125a7773655639ec6d"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\detach-red\\ExactNoteEditorOwner.swift",
+      "file": "raw/detach-red-ExactNoteEditorOwner.swift.gz",
+      "raw_bytes": 16746,
+      "raw_sha256": "3d24400f95a728ea3a0fb0a3c4df77c6c30f782bf007c9c9be3501d822df8fb2",
+      "stored_sha256": "8dc95c191faa5f1eb6f8670c269b2780f45a13a4d0e7e5ee7f3c69306df98c8f"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\detach-red\\RESULT.json",
+      "file": "raw/detach-red-RESULT.json.gz",
+      "raw_bytes": 4195,
+      "raw_sha256": "606e4f4183d372c1e97e407592823dff2ca3d6cc482cfec0626d42112a9767e7",
+      "stored_sha256": "acbb67868c11c811a8e85f1d570336f9e0d6bc88dfef6b4dfaeb25679c58c102"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\detach-red\\compile.log",
+      "file": "raw/detach-red-compile.log.gz",
+      "raw_bytes": 284,
+      "raw_sha256": "7622d5d5487e9f0f0226002c08abdb31033e516e30b089de87c31e5f4e8716e5",
+      "stored_sha256": "885253d194f24d24528a2db593ac16186055b27a4fb16e5da1a12bfb81cbb8aa"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\detach-red\\tests.log",
+      "file": "raw/detach-red-tests.log.gz",
+      "raw_bytes": 1098,
+      "raw_sha256": "7e11b07ef14b57a585741f225eadd1886e2d1abd3a9b65ce5e0b0eae63cf4c48",
+      "stored_sha256": "33c4c4453babc97cc9641a66079dae36d936139d99ab8d0905b1d7f58e4a02a3"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\detach-green\\ExactNoteEditorOwner.swift",
+      "file": "raw/detach-green-ExactNoteEditorOwner.swift.gz",
+      "raw_bytes": 17177,
+      "raw_sha256": "69539a8366e22f39feea2460f629687e71d5ac4966674ca1622eb4f4ea591566",
+      "stored_sha256": "c198f458f49d5b428eb5b22018beebc184eb92c4f1f9962748025d98e6de7f39"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\detach-green\\RESULT.json",
+      "file": "raw/detach-green-RESULT.json.gz",
+      "raw_bytes": 4165,
+      "raw_sha256": "3957bb54da078bf282472511bbb9e3509165d8fff3acd9d7abfe97e51396460e",
+      "stored_sha256": "4360b95a22584acc5d74bfe602f98ad065ddf39efdea96ee52375521a6f7a1e1"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\detach-green\\compile.log",
+      "file": "raw/detach-green-compile.log.gz",
+      "raw_bytes": 288,
+      "raw_sha256": "6d146cfb82be8a86d0f7b23a77b5212deb4a7f990c4527e16f29b4d9a0ac3457",
+      "stored_sha256": "040fb00254d25bee098cf86a961a6a26e7a2133c11cd83fc94ca97d517da0316"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\detach-green\\tests.log",
+      "file": "raw/detach-green-tests.log.gz",
+      "raw_bytes": 1098,
+      "raw_sha256": "00e65bee76ae15eac389337bfb4586fcb5f310f38517500c67dde1222f4c5e21",
+      "stored_sha256": "1443859fb174a4eae058bce8a7fc08b77f6aae5f102b44b086ed2615fb4cb4f5"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\DETACH_RED_GREEN.json",
+      "file": "raw/local-DETACH_RED_GREEN.json.gz",
+      "raw_bytes": 12792,
+      "raw_sha256": "cf3cbfc2635e6a42a835d13b864ddab617451446e44d1cb527cd9ac7380240bb",
+      "stored_sha256": "fd9b13547db6ab4010abf06fb708658f39393c9540e3c06bb164ff8d90240878"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\parse\\RESULT.json",
+      "file": "raw/local-RESULT.json.gz",
+      "raw_bytes": 2159,
+      "raw_sha256": "6cf146564e519b1d811af63cd955fe4effb815eb2b2b2a64ddc0152a3b0d38d8",
+      "stored_sha256": "619982061fb212c919e327e37e17dda5b034f50e8df6e8f6015b0a383283a2b7"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\parse\\MaktabahNativeSceneSession.log",
+      "file": "raw/local-MaktabahNativeSceneSession.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\parse\\iOSReaderWorkspaceView.log",
+      "file": "raw/local-iOSReaderWorkspaceView.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\build\\routing-repair12-20261120\\parse\\NativeRoutingAcceptanceTests.log",
+      "file": "raw/local-NativeRoutingAcceptanceTests.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\raw\\artifacts\\native-routing-logs-11-reader\\otzaria-reader.log",
+      "file": "raw/repair12-pad-routing.log.gz",
+      "raw_bytes": 85466,
+      "raw_sha256": "c15718ce447866a9d2c350607941126dfd6931accf691688a436614b4ed9af18",
+      "stored_sha256": "d670008f546885d825e1aad995b45e926c36a5ea7605aed596e5ab0aaf34eadd"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\raw\\artifacts\\native-routing-logs-phone\\otzaria-reader.log",
+      "file": "raw/repair12-phone-routing.log.gz",
+      "raw_bytes": 55398,
+      "raw_sha256": "7b3b398e1aa25da1f67c24588ecfbd7d218e38787461bc03d7b3161a06f7b813",
+      "stored_sha256": "721b2fc941a7b67f6a36949b5d81ebaea7b61eaac59e7ee504155a35d6b215d8"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\case-logs\\11-reader-NativeRoutingAcceptanceTests--testPublicV2InspectorPreservesOriginalReaderAndWorkspace.log",
+      "file": "raw/testPublicV2InspectorPreservesOriginalReaderAndWorkspace.log.gz",
+      "raw_bytes": 10015,
+      "raw_sha256": "92d282870b2f915d5538307dbc738e0b09804570168b439302f3d54ea719ee0c",
+      "stored_sha256": "8ff349a53580444f48da7b443a32402695cce9aa7b849eebd1f1637ac0d9cac7"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\case-logs\\11-reader-NativeRoutingAcceptanceTests--testPublicV2InspectorRequiresVisibleOriginalReader.log",
+      "file": "raw/testPublicV2InspectorRequiresVisibleOriginalReader.log.gz",
+      "raw_bytes": 5616,
+      "raw_sha256": "d7d0b214d1c6da31ed4bf25f41896b873dcac60417d2cf05305434c7a1f8410e",
+      "stored_sha256": "423a543730a56784d16894fe2e509fec4ff2cd4f6d06b095028c250e241a7c86"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\case-logs\\11-reader-NativeRoutingAcceptanceTests--testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader.log",
+      "file": "raw/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader.log.gz",
+      "raw_bytes": 12260,
+      "raw_sha256": "bbcbf9803dd8aa4040ec793b640ece4366a99060b93f5b2296403016893920b4",
+      "stored_sha256": "c5a6c1e326b069d0068a1d47af1165128ba94c4d3e771dfd36d85e77e637c6e0"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\case-logs\\11-reader-NativeRoutingAcceptanceTests--testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab.log",
+      "file": "raw/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab.log.gz",
+      "raw_bytes": 11799,
+      "raw_sha256": "b69f27cc2858b88c5b68a8ecb9d528bbc96a1bb4b432d580c2cf5c36ede4d261",
+      "stored_sha256": "086660325cbe5485ab438df01509ebbedbdec45461a528e9f53df6c0c0c7662c"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\case-logs\\11-reader-NativeRoutingAcceptanceTests--testSystemAppIntentShowsOriginalReaderInspector.log",
+      "file": "raw/testSystemAppIntentShowsOriginalReaderInspector.log.gz",
+      "raw_bytes": 5675,
+      "raw_sha256": "93e59cfdbe06c000ac5f9542d51d3848b0cca12401213b6732a94a5e7f510658",
+      "stored_sha256": "ecc6053116dac657178312cc3cb2212e7b4a76716a1c65cd6fdeeda5ae7dd4b1"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\case-logs\\phone-NativeRoutingPhoneAcceptanceTests--testPhoneSystemAppIntentShowsOriginalReaderInspector.log",
+      "file": "raw/testPhoneSystemAppIntentShowsOriginalReaderInspector.log.gz",
+      "raw_bytes": 5465,
+      "raw_sha256": "6b11e79a523dfa94fef2bce2865250f7b0a942e7b1caa2482136fc77b14a0e92",
+      "stored_sha256": "d39100fee14e6dcad5edf88b9bfd6eb26d66261940999673f23fc677c0151332"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\selected-captures\\entries\\visual-11-reader\\A1D58BBB-F4BD-43E3-831E-D9AF14A9BBB2.txt",
+      "file": "raw/A1D58BBB-F4BD-43E3-831E-D9AF14A9BBB2.txt.gz",
+      "raw_bytes": 38740,
+      "raw_sha256": "4884369edcf2d5ffe340bb38e86f31f8eb290b7538379834e9d6b30ce3281bf7",
+      "stored_sha256": "5b8a6ee86fc4efa712ea465951ca2d35ed7792e25e63609bbbf237bc59447ad4"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\selected-captures\\entries\\visual-11-reader\\E16C6AE3-DD93-4F9C-83DC-13A190495C6B.txt",
+      "file": "raw/E16C6AE3-DD93-4F9C-83DC-13A190495C6B.txt.gz",
+      "raw_bytes": 28033,
+      "raw_sha256": "c1840c4e61bfa687dcc6c94dbf3858e0fe5ac4297145a3cae0d8fbb10dd521f2",
+      "stored_sha256": "57f3728c2cfd7a01b106ed66c62c941c233077e7b98399532fb575bc25ca63eb"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\selected-captures\\entries\\visual-11-reader\\77C1F301-6B4C-42D1-9F48-FE13E23783E1.txt",
+      "file": "raw/77C1F301-6B4C-42D1-9F48-FE13E23783E1.txt.gz",
+      "raw_bytes": 28043,
+      "raw_sha256": "36d9f071b0d71b16991006bdcc24fd61e5a3c90fa9c0d57e992764dffc67a4d6",
+      "stored_sha256": "f90b438748deb26f96995cf3f6462e117ce64b8b5235dc6adccc1db3c2b5f1e2"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\selected-captures\\entries\\visual-11-reader\\88674C95-2FB8-48B5-BBF4-DC3BA2F72D0A.txt",
+      "file": "raw/88674C95-2FB8-48B5-BBF4-DC3BA2F72D0A.txt.gz",
+      "raw_bytes": 253,
+      "raw_sha256": "ecad2b98fa51862756aa533df6cb16b54d88be64e4d997b3e44e4364b09c1498",
+      "stored_sha256": "86bced41bc43c62b041a0b1f66aa30fdda9172fcb85aafba52411d939e2ba7bb"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\selected-captures\\entries\\visual-11-reader\\A15CF9C7-5942-46F2-9F81-07DAA975E0A1.json",
+      "file": "raw/A15CF9C7-5942-46F2-9F81-07DAA975E0A1.json.gz",
+      "raw_bytes": 3099,
+      "raw_sha256": "f8fdda464be9ff511c23e9d693876d89163c95fd2c151f0bbc0148976aaa37b0",
+      "stored_sha256": "ffb73f304ab2cfbb2084b6fb810e4c678bbd5b0d5fcc0eb874180330b154d235"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\selected-captures\\entries\\visual-11-reader\\8B332035-EF17-48EE-A5BF-CBB476AB8B7D.json",
+      "file": "raw/8B332035-EF17-48EE-A5BF-CBB476AB8B7D.json.gz",
+      "raw_bytes": 2023,
+      "raw_sha256": "7fcbd886511c3cf5116e22ff9bff2af189d3eca4bb55ddc19a2c6a3a1ee220fc",
+      "stored_sha256": "4e69bb813234173d3f3da9f1462aee7758e75129e572c9d6a380af6ce7c36772"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\selected-captures\\entries\\visual-11-reader\\F3ED2941-6FD4-461F-BE99-EE2011322F9F.png",
+      "file": "raw/F3ED2941-6FD4-461F-BE99-EE2011322F9F.png",
+      "raw_bytes": 876776,
+      "raw_sha256": "803038be4bfe4114250e76cd0cee5528cb4b74dd7d1f4192131c9f6c600c1513",
+      "stored_sha256": "803038be4bfe4114250e76cd0cee5528cb4b74dd7d1f4192131c9f6c600c1513"
+    },
+    {
+      "original_path": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-repair12-monitor-20261120\\selected-captures\\entries\\visual-11-reader\\1BD70927-3720-41CD-9F9E-C940AD9018AB.png",
+      "file": "raw/1BD70927-3720-41CD-9F9E-C940AD9018AB.png",
+      "raw_bytes": 238191,
+      "raw_sha256": "2f78bb9db417f5da264c6864e7d030f434e5ba6e8517e3247a0b9a8eaabd81b1",
+      "stored_sha256": "2f78bb9db417f5da264c6864e7d030f434e5ba6e8517e3247a0b9a8eaabd81b1"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-11-20T07:56:03.762887+00:00",
+  "repair12_run": 44673191816,
+  "checkout": "6030087e27f75b26d9a9bb144ba9ba71eaddadc5",
+  "app": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+  "actual_native_counts": {
+    "passed": 3,
+    "failed": 9,
+    "skipped": 0,
+    "not_run": 0,
+    "recorded": 12
+  },
+  "verified_small_artifact": {
+    "path": "build\\native-repair12-monitor-20261120\\runtime27-evidence.zip",
+    "bytes": 63017123,
+    "sha256": "5ff46397642ad94f64c351bbc2dfd5dd97f902602994e8b5354996ac4e00d958"
+  },
+  "captures": {
+    "artifact_id": 14609343962,
+    "archive_bytes": 435989487,
+    "advertised_digest": "sha256:8dc9c2cfd42f4fce06d02f6c815750be6898dc4fd371b5145d63db1f1a200b79",
+    "full_archive_hash_verified": false,
+    "selected_integrity": "Authenticated HTTP206, central-directory CRC plus per-entry SHA; see raw RANGE_EVIDENCE"
+  },
+  "candidate_base": "0ade6b47708c47cc26932105eb6de7743539b3bc",
+  "source_preservation_checks": 17,
+  "source_preservation_pass": true,
+  "portable_red": {
+    "passed": 20,
+    "failed": 1,
+    "warnings": 0,
+    "failed_case": "idle_reader_detach_preserves_pending_other_surface"
+  },
+  "portable_green": {
+    "passed": 21,
+    "failed": 0,
+    "warnings": 0
+  },
+  "swift_syntax": {
+    "passed": 3,
+    "typecheck": false
+  },
+  "apple_typecheck": "NOT_RUN",
+  "candidate_native": "NOT_RUN; original failed run retained, no retroactive PASS",
+  "system_inspector_generic_errors": "UNRESOLVED; current stage/code logging exists but original run gives only NSError1",
+  "evidence_bytes": 1196275
+}

@@ -402,6 +402,7 @@ struct iOSReaderWorkspaceView: View {
             .floatingPanel { _ in
                 inspectorPanel(showsCloseButton: true, chrome: .floatingPanel)
             }
+            .floatingPanelContentMode(.fitToBounds)
             .floatingPanelState($floatingPanelState)
             .floatingPanelLayout(StudyContentFloatingPanelLayout())
             .floatingPanelSurfaceAppearance(.transparent(cornerRadius: 26))
@@ -789,6 +790,7 @@ private struct SharedSidebarFloatingPanel<Panel: View>: ViewModifier {
                 .floatingPanel { _ in
                     if isFloating { panel }
                 }
+                .floatingPanelContentMode(.fitToBounds)
                 .floatingPanelState($state)
                 .floatingPanelLayout(StudyContentFloatingPanelLayout())
                 .floatingPanelSurfaceAppearance(.transparent(cornerRadius: 26))

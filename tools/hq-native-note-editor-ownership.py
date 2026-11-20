@@ -50,6 +50,7 @@ owner_end = source[BINDINGS].index("\n/// Retain a proven original", owner_start
 owner = source[BINDINGS][owner_start:owner_end]
 callback = method(source[SESSION], "    func noteEditorTextViewChanged(")
 dismissal = method(source[SESSION], "    func noteEditorDidDismiss(")
+detach = method(source[SESSION], "    func detachNoteEditor(")
 bound = "presentationID: UUID" in callback
 bound_dismissal = "presentationID: UUID" in dismissal
 if bound:
@@ -64,6 +65,7 @@ fixture = (ROOT / FIXTURE).read_text(encoding="utf-8")
 unit_text = fixture
 for marker, actual in (("// ACTUAL_NOTE_OWNER", owner), ("// ACTUAL_SCENE_CALLBACK", callback),
                       ("// ACTUAL_SCENE_DISMISSAL", dismissal),
+                      ("// ACTUAL_SCENE_DETACH", detach),
                       ("// ACTUAL_WORKSPACE_SETTER", setter)):
     assert unit_text.count(marker) == 1
     unit_text = unit_text.replace(marker, actual)
@@ -97,7 +99,7 @@ integration_checks = {
         and "presentationID: dismissingNoteEditorPresentationID" in source[WORKSPACE],
 }
 code = build.returncode or (run.returncode if run else 1)
-if len(passed) != 15 or failed or (bound and not all(integration_checks.values())): code = 1
+if len(passed) != 21 or failed or (bound and not all(integration_checks.values())): code = 1
 report = {
     "observed_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
     "source_ref": args.source_ref or "WORKTREE",
@@ -106,6 +108,7 @@ report = {
     "extracted_owner_sha256": hashlib.sha256(owner.encode()).hexdigest(),
     "extracted_callback_sha256": hashlib.sha256(callback.encode()).hexdigest(),
     "extracted_dismissal_callback_sha256": hashlib.sha256(dismissal.encode()).hexdigest(),
+    "extracted_detach_sha256": hashlib.sha256(detach.encode()).hexdigest(),
     "compiled_setter_sha256": hashlib.sha256(setter.encode()).hexdigest(),
     "fixture_sha256": hashlib.sha256(fixture.encode()).hexdigest(),
     "driver_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
@@ -115,7 +118,7 @@ report = {
     "test_exit": run.returncode if run else None, "passed": passed, "failed": failed,
     "integration_source_checks": integration_checks,
     "status": "PASS" if code == 0 else "FAIL", "native_passes": 0,
-    "boundary": "Exact original app owner and callback, plus candidate workspace setter (private widened only in the fixture). Real Swift 6/MainActor execution; explicit UIKit, SwiftUI Binding, Reader, Annotation and scene revision doubles. Historical API adapter passes no presentation identity to original source. No native UIKit lifecycle scheduling, presentation, visibility, persistence, Core or device acceptance.",
+    "boundary": "Exact original app owner, callback, dismissal and detachment, plus candidate workspace setter (private widened only in the fixture). Real Swift 6/MainActor execution; explicit UIKit, SwiftUI Binding, Reader, Annotation and scene revision/presentation revocation doubles. Historical API adapter passes no presentation identity to original source. No native UIKit lifecycle scheduling, presentation, visibility, persistence, Core or device acceptance.",
 }
 (output / "RESULT.json").write_bytes((json.dumps(report, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
 print(json.dumps(report, ensure_ascii=False))

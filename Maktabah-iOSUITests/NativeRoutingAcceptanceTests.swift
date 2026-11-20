@@ -693,7 +693,7 @@ extension NativeRoutingAcceptanceTests {
         let originalTab = app.descendants(matching: .any)
             .matching(identifier: "reader-document-tab-" + originalTabID.uuidString).firstMatch
         let strip = app.descendants(matching: .any)
-            .matching(identifier: "reader-document-tab-strip").firstMatch
+            .matching(identifier: "reader-document-tabs").firstMatch
         XCTAssertTrue(strip.waitForExistence(timeout: 10))
         // The original UUID can be outside this narrow native scroll view
         // after newTab scrolls to the new selection. Reveal it with real
