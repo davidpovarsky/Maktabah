@@ -228,6 +228,69 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertEqual(visible.count, 1, "The original bottom toolbar must expose one real visible native overflow action")
         return visible.first ?? overflow.firstMatch
     }
+
+    @MainActor
+    func originalStudyToolsActionInWindow() throws -> XCUIElement {
+        let labels = ["Open Study Tools", "פתיחת כלי לימוד"]
+        let identifier = "reader-study-toggle"
+
+        // Native88 exposes this original toolbar action directly in the restored
+        // wide window, but moves it into UIKit's top overflow at 375pt. Resolve
+        // that same user action through the real toolbar; never synthesize a
+        // command, resize the window, or select a generic button by position.
+        func visible(_ query: XCUIElementQuery) -> [XCUIElement] {
+            let bounds = app.windows.firstMatch.frame.insetBy(dx: -1, dy: -1)
+            return query.allElementsBoundByIndex.filter { element in
+                let frame = element.frame
+                return !frame.isEmpty && bounds.contains(frame) && element.isHittable
+            }
+        }
+        func uniqueOriginalAction(_ candidates: [XCUIElement]) throws -> XCUIElement {
+            XCTAssertEqual(candidates.count, 1,
+                           "Require one visible original Study Tools action in the current native window")
+            let action = try XCTUnwrap(candidates.count == 1 ? candidates.first : nil)
+            XCTAssertTrue(labels.contains(action.label),
+                          "The original source-owned action must open Study Tools")
+            return try XCTUnwrap(labels.contains(action.label) ? action : nil)
+        }
+
+        let directQuery = app.buttons.matching(identifier: identifier)
+        let overflowQuery = app.navigationBars.buttons.matching(identifier: "TopOverflowBarButtonItem")
+        let toolbarReady = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                !visible(directQuery).isEmpty || !visible(overflowQuery).isEmpty
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [toolbarReady], timeout: 15), .completed,
+                       "The actual window must expose the original Study Tools action or its native top overflow")
+        let direct = visible(directQuery)
+        if !direct.isEmpty {
+            return try uniqueOriginalAction(direct)
+        }
+
+        let overflows = visible(overflowQuery)
+        XCTAssertEqual(overflows.count, 1, "Do not choose between multiple visible native overflow controls")
+        let overflow = try XCTUnwrap(overflows.count == 1 ? overflows.first : nil)
+        overflow.tap()
+
+        // UIKit may expose the menu action by its original localized title.
+        // Both exact labels come from the unchanged source String Catalog.
+        let menuQuery = app.buttons.matching(NSPredicate(
+            format: "identifier == %@ OR label IN %@", identifier, labels))
+        let menuReady = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { !visible(menuQuery).isEmpty }
+        }, object: nil)
+        let outcome = XCTWaiter.wait(for: [menuReady], timeout: 15)
+        let evidence = XCTAttachment(string:
+            "actualWindow=\(app.windows.firstMatch.frame)\n\(app.debugDescription)")
+        evidence.name = "original-study-tools-native-overflow-hierarchy"
+        evidence.lifetime = .keepAlways
+        add(evidence)
+        XCTAssertEqual(outcome, .completed,
+                       "Opening the actual native overflow must reveal the original Study Tools action")
+        return try uniqueOriginalAction(visible(menuQuery))
+    }
+
     func readerSidebarToggle() -> XCUIElement {
         let custom = app.buttons["reader-host-sidebar-toggle"]
         let native = app.navigationBars.buttons.matching(NSPredicate(format:
@@ -632,14 +695,19 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed)
             let beforeInspector = getRenderedHighlightSnapshot()
             XCTAssertNotNil(beforeInspector)
-            let study = app.buttons["reader-study-toggle"]
+            let study = try originalStudyToolsActionInWindow()
             XCTAssertTrue(study.waitForExistence(timeout: 15), "Original study tools must remain available in a real compact window")
-            study.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            study.tap()
             let inspector = app.descendants(matching: .any)["torah-inspector-panel"]
             XCTAssertTrue(inspector.waitForExistence(timeout: 30))
             XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].exists)
             capture("candidate-window-narrow-original-floating-inspector", windowed: true)
-            study.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            let close = app.buttons["torah-inspector-close"]
+            XCTAssertTrue(close.waitForExistence(timeout: 15))
+            XCTAssertTrue(close.isHittable)
+            XCTAssertTrue(app.windows.firstMatch.frame.insetBy(dx: -1, dy: -1).contains(close.frame),
+                          "Close the actual original Inspector inside its current native window")
+            close.tap()
             let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: inspector)
             XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 15), .completed)
             assertReaderHasText()

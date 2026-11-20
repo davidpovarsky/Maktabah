@@ -1,0 +1,18 @@
+{
+  "source": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "workingFileSHA256": "f728c084c135c32351636cac5def1401face0092bf0e919722cfcb4cbbfb2ba2",
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios17.0-simulator",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+  ],
+  "returncode": 0,
+  "startedUTC": "2026-11-20T06:36:25.839290+00:00",
+  "finishedUTC": "2026-11-20T06:36:26.680413+00:00",
+  "warnings": 2,
+  "log": "FaithfulReaderUIAcceptanceTests.review-correction.parse.log",
+  "scope": "Windows syntax parse only; no Apple SDK typecheck, app or Native execution"
+}
