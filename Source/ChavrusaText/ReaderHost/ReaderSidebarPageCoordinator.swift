@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum ChavrusaTextReaderUI {
     static var isEnabled: Bool {
@@ -14,6 +15,32 @@ final class ReaderSidebarPageCoordinator {
     var page: Page = .library
     var contentsQuery = ""
     var requestsLibrary = false
+    var overview = ReaderOverviewPresentationState()
+    var navigationChrome = ReaderNavigationChromeState()
+    @ObservationIgnored private weak var navigationChromeWindowOwner: UIView?
+    @ObservationIgnored private weak var navigationChromeWindow: UIWindow?
+
+    func observeNavigationChromeWindow(owner: UIView, window: UIWindow?) {
+        if let window {
+            navigationChromeWindowOwner = owner
+            navigationChromeWindow = window
+        } else if navigationChromeWindowOwner === owner {
+            navigationChromeWindowOwner = nil
+            navigationChromeWindow = nil
+        }
+    }
+
+    func ownsNavigationChromeWindow(_ scrollView: UIScrollView, sceneID: String) -> Bool {
+        guard let window = navigationChromeWindow,
+              navigationChromeWindowOwner?.window === window,
+              scrollView.window === window,
+              window.isKeyWindow, !window.isHidden, window.alpha > 0,
+              let scene = window.windowScene,
+              scene.activationState == .foregroundActive,
+              scene.session.persistentIdentifier == sceneID
+        else { return false }
+        return true
+    }
     func showContents() { page = .contents }
     func showLibrary() { page = .library; requestsLibrary.toggle() }
 }
@@ -54,15 +81,30 @@ struct Exact9401ViewerToolbar: ViewModifier {
     @State private var isPresented = false
     @State private var showsProfiles = false
     @Environment(\.exact9401Workspace) private var workspace
+    @Environment(\.chavrusaReaderSidebar) private var sidebar
 
     func body(content: Content) -> some View {
         content
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        guard workspace?.attached == true, let sidebar else { return }
+                        isPresented = false
+                        showsProfiles = false
+                        sidebar.navigationChrome.reveal()
+                        sidebar.overview.request()
+                    } label: {
+                        Label("כל הכרטיסיות", systemImage: "square.on.square")
+                    }
+                    .accessibilityIdentifier("reader-tabs-overview")
+                    .disabled(workspace?.attached != true || sidebar == nil)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     OtzariaHanlinChatLaunchButton(identifier: "otzaria-hanlin-reader-launch")
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
+                        sidebar?.navigationChrome.reveal()
                         isPresented = true
                     } label: {
                         Label("חיפוש מהיר בספרייה", systemImage: "magnifyingglass")
@@ -73,6 +115,7 @@ struct Exact9401ViewerToolbar: ViewModifier {
                     if let workspace {
                         StudyProfileMenu(workspace: workspace, manager: manager, usesNativeToolbar: true) {
                             isPresented = false
+                            sidebar?.navigationChrome.reveal()
                             showsProfiles = true
                         }
                     }
@@ -98,6 +141,9 @@ struct Exact9401ViewerToolbar: ViewModifier {
                 }
             }
             .onChange(of: workspace?.selection?.profileID) { _, _ in isPresented = false }
+            .onChange(of: sidebar?.overview.requestID) { _, id in
+                if id != nil { isPresented = false; showsProfiles = false }
+            }
             .onDisappear { isPresented = false; showsProfiles = false }
     }
 }

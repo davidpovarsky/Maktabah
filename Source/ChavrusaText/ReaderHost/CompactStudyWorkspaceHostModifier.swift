@@ -15,12 +15,12 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
         !MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled
     }
 
-    /// Preserve the original presentation for iPad/flags off. The enabled
-    /// compact overview keeps its own presentation lifetime when the native
-    /// manager closes the last tab while creating an empty group.
+    /// Each enabled layout owns its existing study overview presentation.
+    /// The legacy sheet remains the original flags-off path. The iPad and
+    /// phone hosts retain their own lifetime when closing the last tab.
     static func legacyTabsPresentation(_ original: Binding<Bool>) -> Binding<Bool> {
-        Binding(get: { !isEnabled && original.wrappedValue }, set: {
-            if !isEnabled { original.wrappedValue = $0 }
+        Binding(get: { !ChavrusaTextReaderUI.isEnabled && original.wrappedValue }, set: {
+            if !ChavrusaTextReaderUI.isEnabled { original.wrappedValue = $0 }
         })
     }
 

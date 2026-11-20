@@ -1,0 +1,327 @@
+{
+  "base": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "source_scope": "exact extracted original logic; explicit UIKit/Binding doubles; Apple SDK/Native NOT_RUN",
+  "source_lf_sha256": {
+    "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift": "6bbf3c0763393bc28fa10a78f01b8c444b041f9b30659375920cc6b985e80fb0",
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": "43f3c338218db1b86a7e5978d85d2e2f447ff16f7570e1e7c24f2b8d56ec5de1",
+    "Source/UI/iOS/Views/iPadLayout.swift": "2be4758ac9cd189d5854c88badf0c57af1ae43777ad1aae387fe3175575ea849",
+    "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentationState.swift": "483ae8936b6986bd156a3ac8e5d8c50a07bb2151cb490ec8d3fee0a2f270683b",
+    "Source/ChavrusaText/ReaderHost/ReaderNavigationChromeState.swift": "db8795e7cf77585ca3883b3651eea1d1cfafdffc80e0d740264c9a76aa4914cc"
+  },
+  "legacy_red": {
+    "source_lf_sha256": "a35cc326b84fbcffd05ca385c7dc222c489747737f236db9bea971b4de14d5e6",
+    "compile_exit": 0,
+    "compile_stdout": "",
+    "compile_stderr": "   Creating library C:\\Users\\DAVID\\Code\\Maktabah-release-ui-selectors-20261120\\build\\overview-release-ui-20261120\\legacy-red.lib and object C:\\Users\\DAVID\\Code\\Maktabah-release-ui-selectors-20261120\\build\\overview-release-ui-20261120\\legacy-red.exp\n\n",
+    "run_exit": 1,
+    "run_stdout": "{\n  \"checks\" : 8,\n  \"failed\" : 2,\n  \"passed\" : 6,\n  \"results\" : [\n    {\n      \"name\" : \"legacy.get.ipad=false.enabled=false\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.set.ipad=false.enabled=false\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.get.ipad=false.enabled=true\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.set.ipad=false.enabled=true\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.get.ipad=true.enabled=false\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.set.ipad=true.enabled=false\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.get.ipad=true.enabled=true\",\n      \"passed\" : false\n    },\n    {\n      \"name\" : \"legacy.set.ipad=true.enabled=true\",\n      \"passed\" : false\n    }\n  ],\n  \"scope\" : \"exact-source portable logic with explicit UIKit\\/Binding doubles; Native NOT_RUN\"\n}\n",
+    "run_stderr": "",
+    "assertions": {
+      "checks": 8,
+      "failed": 2,
+      "passed": 6,
+      "results": [
+        {
+          "name": "legacy.get.ipad=false.enabled=false",
+          "passed": true
+        },
+        {
+          "name": "legacy.set.ipad=false.enabled=false",
+          "passed": true
+        },
+        {
+          "name": "legacy.get.ipad=false.enabled=true",
+          "passed": true
+        },
+        {
+          "name": "legacy.set.ipad=false.enabled=true",
+          "passed": true
+        },
+        {
+          "name": "legacy.get.ipad=true.enabled=false",
+          "passed": true
+        },
+        {
+          "name": "legacy.set.ipad=true.enabled=false",
+          "passed": true
+        },
+        {
+          "name": "legacy.get.ipad=true.enabled=true",
+          "passed": false
+        },
+        {
+          "name": "legacy.set.ipad=true.enabled=true",
+          "passed": false
+        }
+      ],
+      "scope": "exact-source portable logic with explicit UIKit/Binding doubles; Native NOT_RUN"
+    },
+    "seconds": 2.797
+  },
+  "lifecycle_green": {
+    "source_lf_sha256": "e0435e0cf829ac48abb19c2d8cd7d6c3de045bc520768ce1f08d852d6b145e9a",
+    "compile_exit": 0,
+    "compile_stdout": "",
+    "compile_stderr": "   Creating library C:\\Users\\DAVID\\Code\\Maktabah-release-ui-selectors-20261120\\build\\overview-release-ui-20261120\\lifecycle-green.lib and object C:\\Users\\DAVID\\Code\\Maktabah-release-ui-selectors-20261120\\build\\overview-release-ui-20261120\\lifecycle-green.exp\n\n",
+    "run_exit": 0,
+    "run_stdout": "{\n  \"checks\" : 62,\n  \"failed\" : 0,\n  \"passed\" : 62,\n  \"results\" : [\n    {\n      \"name\" : \"legacy.get.ipad=false.enabled=false\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.set.ipad=false.enabled=false\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.get.ipad=false.enabled=true\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.set.ipad=false.enabled=true\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.get.ipad=true.enabled=false\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.set.ipad=true.enabled=false\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.get.ipad=true.enabled=true\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"legacy.set.ipad=true.enabled=true\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"initial reader readiness\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"request blocks before UIKit mount\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"same request does not create second presentation\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"only current request can present\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"stale mount rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"unexpected dismissal before close rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"actual current mount accepted\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"duplicate mount rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"stale close rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"close remains blocked until actual dismissal\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"pending dismissal cannot reopen\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"duplicate close rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"stale dismissal cannot expose covered reader\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"matching actual dismissal releases reader\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"duplicate dismissal rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"new request has a new owner\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"old callbacks cannot retire new owner\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"close-before-mount retains block\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"late actual mount remains owned during close\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"late mounted dismissal releases exact owner\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"cancel before any UIKit mount releases only matching request\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"dismantle unmounted anchor releases exact request\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"dismantle actual owner releases mount and request\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"duplicate dismantle rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"original collapse threshold stays 32 points\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"original downward pan collapses\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"original restore threshold stays 18 points\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"original upward pan restores\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"nonfinite pan does not change chrome\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"original top-of-document reveal retained\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"actual matching anchor and sender window accepted\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"same scene but different actual window rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"old anchor detach cannot erase newer owner\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"anchor moved after registration rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"nonkey window rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"hidden window rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"transparent window rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"background scene rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"different scene session rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"detached sender rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"matching owner detach removes capability\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"deallocated owner cannot qualify retained window\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"actual selected original reader in owned active window collapses\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"different reader object cannot collapse this window\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"selected nonreader tab rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"inactive actual scene phase rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"unattached original workspace rejected\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"feature-off event cannot change chrome\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"requested overview blocks reader scroll\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"dismissing overview still blocks reader scroll\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"original reader popover blocks chrome\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"original inspector blocks chrome\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"different sending window is rejected before consumption\",\n      \"passed\" : true\n    },\n    {\n      \"name\" : \"original valid path remains usable after rejection controls\",\n      \"passed\" : true\n    }\n  ],\n  \"scope\" : \"exact-source portable logic with explicit UIKit\\/Binding doubles; Native NOT_RUN\"\n}\n",
+    "run_stderr": "",
+    "assertions": {
+      "checks": 62,
+      "failed": 0,
+      "passed": 62,
+      "results": [
+        {
+          "name": "legacy.get.ipad=false.enabled=false",
+          "passed": true
+        },
+        {
+          "name": "legacy.set.ipad=false.enabled=false",
+          "passed": true
+        },
+        {
+          "name": "legacy.get.ipad=false.enabled=true",
+          "passed": true
+        },
+        {
+          "name": "legacy.set.ipad=false.enabled=true",
+          "passed": true
+        },
+        {
+          "name": "legacy.get.ipad=true.enabled=false",
+          "passed": true
+        },
+        {
+          "name": "legacy.set.ipad=true.enabled=false",
+          "passed": true
+        },
+        {
+          "name": "legacy.get.ipad=true.enabled=true",
+          "passed": true
+        },
+        {
+          "name": "legacy.set.ipad=true.enabled=true",
+          "passed": true
+        },
+        {
+          "name": "initial reader readiness",
+          "passed": true
+        },
+        {
+          "name": "request blocks before UIKit mount",
+          "passed": true
+        },
+        {
+          "name": "same request does not create second presentation",
+          "passed": true
+        },
+        {
+          "name": "only current request can present",
+          "passed": true
+        },
+        {
+          "name": "stale mount rejected",
+          "passed": true
+        },
+        {
+          "name": "unexpected dismissal before close rejected",
+          "passed": true
+        },
+        {
+          "name": "actual current mount accepted",
+          "passed": true
+        },
+        {
+          "name": "duplicate mount rejected",
+          "passed": true
+        },
+        {
+          "name": "stale close rejected",
+          "passed": true
+        },
+        {
+          "name": "close remains blocked until actual dismissal",
+          "passed": true
+        },
+        {
+          "name": "pending dismissal cannot reopen",
+          "passed": true
+        },
+        {
+          "name": "duplicate close rejected",
+          "passed": true
+        },
+        {
+          "name": "stale dismissal cannot expose covered reader",
+          "passed": true
+        },
+        {
+          "name": "matching actual dismissal releases reader",
+          "passed": true
+        },
+        {
+          "name": "duplicate dismissal rejected",
+          "passed": true
+        },
+        {
+          "name": "new request has a new owner",
+          "passed": true
+        },
+        {
+          "name": "old callbacks cannot retire new owner",
+          "passed": true
+        },
+        {
+          "name": "close-before-mount retains block",
+          "passed": true
+        },
+        {
+          "name": "late actual mount remains owned during close",
+          "passed": true
+        },
+        {
+          "name": "late mounted dismissal releases exact owner",
+          "passed": true
+        },
+        {
+          "name": "cancel before any UIKit mount releases only matching request",
+          "passed": true
+        },
+        {
+          "name": "dismantle unmounted anchor releases exact request",
+          "passed": true
+        },
+        {
+          "name": "dismantle actual owner releases mount and request",
+          "passed": true
+        },
+        {
+          "name": "duplicate dismantle rejected",
+          "passed": true
+        },
+        {
+          "name": "original collapse threshold stays 32 points",
+          "passed": true
+        },
+        {
+          "name": "original downward pan collapses",
+          "passed": true
+        },
+        {
+          "name": "original restore threshold stays 18 points",
+          "passed": true
+        },
+        {
+          "name": "original upward pan restores",
+          "passed": true
+        },
+        {
+          "name": "nonfinite pan does not change chrome",
+          "passed": true
+        },
+        {
+          "name": "original top-of-document reveal retained",
+          "passed": true
+        },
+        {
+          "name": "actual matching anchor and sender window accepted",
+          "passed": true
+        },
+        {
+          "name": "same scene but different actual window rejected",
+          "passed": true
+        },
+        {
+          "name": "old anchor detach cannot erase newer owner",
+          "passed": true
+        },
+        {
+          "name": "anchor moved after registration rejected",
+          "passed": true
+        },
+        {
+          "name": "nonkey window rejected",
+          "passed": true
+        },
+        {
+          "name": "hidden window rejected",
+          "passed": true
+        },
+        {
+          "name": "transparent window rejected",
+          "passed": true
+        },
+        {
+          "name": "background scene rejected",
+          "passed": true
+        },
+        {
+          "name": "different scene session rejected",
+          "passed": true
+        },
+        {
+          "name": "detached sender rejected",
+          "passed": true
+        },
+        {
+          "name": "matching owner detach removes capability",
+          "passed": true
+        },
+        {
+          "name": "deallocated owner cannot qualify retained window",
+          "passed": true
+        },
+        {
+          "name": "actual selected original reader in owned active window collapses",
+          "passed": true
+        },
+        {
+          "name": "different reader object cannot collapse this window",
+          "passed": true
+        },
+        {
+          "name": "selected nonreader tab rejected",
+          "passed": true
+        },
+        {
+          "name": "inactive actual scene phase rejected",
+          "passed": true
+        },
+        {
+          "name": "unattached original workspace rejected",
+          "passed": true
+        },
+        {
+          "name": "feature-off event cannot change chrome",
+          "passed": true
+        },
+        {
+          "name": "requested overview blocks reader scroll",
+          "passed": true
+        },
+        {
+          "name": "dismissing overview still blocks reader scroll",
+          "passed": true
+        },
+        {
+          "name": "original reader popover blocks chrome",
+          "passed": true
+        },
+        {
+          "name": "original inspector blocks chrome",
+          "passed": true
+        },
+        {
+          "name": "different sending window is rejected before consumption",
+          "passed": true
+        },
+        {
+          "name": "original valid path remains usable after rejection controls",
+          "passed": true
+        }
+      ],
+      "scope": "exact-source portable logic with explicit UIKit/Binding doubles; Native NOT_RUN"
+    },
+    "seconds": 3.75
+  }
+}

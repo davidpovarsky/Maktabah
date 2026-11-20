@@ -1089,6 +1089,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         // MARK: - Pull-to-Navigate Scroll Detection
 
         func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, beginsDrag: true)
             manualDragStartOffset = scrollView.contentOffset.y
             didClearSearchForCurrentDrag = false
         }
@@ -1123,6 +1124,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
             let bottomOverscroll = offsetY - effectiveMaxOffsetY
 
             let isRestoring = (scrollView as? iOSCustomIbarotTextView)?.isRestoringScroll ?? false
+            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel)
             let transition = pullStateMachine.handleScroll(
                 topOverscroll: topOverscroll,
                 bottomOverscroll: bottomOverscroll,
@@ -1159,6 +1161,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         }
 
         func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, reachedTop: true)
             updateLastKnownScrollPosition(from: scrollView)
         }
 

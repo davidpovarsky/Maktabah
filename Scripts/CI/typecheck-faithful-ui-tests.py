@@ -149,6 +149,7 @@ toolbar_sources.extend(tabs_port / name for name in [
 # app/build-for-testing gate. Keep exact hashes and that boundary in evidence.
 app_composed_sidebar_sources = [
     Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"),
+    Path("Source/ChavrusaText/ReaderHost/ReaderOverviewPresentationState.swift"),
     Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"),
 ]
 report["appComposedSidebar"] = {

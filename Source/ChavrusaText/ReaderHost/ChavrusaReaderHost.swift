@@ -324,6 +324,7 @@ enum ChavrusaReaderScrollKey {
     static let translationY = "translationY"
     static let isAtTop = "isAtTop"
     static let beginsDrag = "beginsDrag"
+    static let scrollView = "scrollView"
 }
 
 /// Called only from the original scroll delegate's existing callbacks. No
@@ -337,6 +338,7 @@ enum ReaderNavigationChromeScrollReporter {
               beginsDrag || reachedTop || scrollView.isDragging || scrollView.isTracking || (scrollView.isDecelerating && isAtTop) else { return }
         NotificationCenter.default.post(name: .chavrusaReaderDidScroll, object: reader, userInfo: [
             ChavrusaReaderScrollKey.beginsDrag: beginsDrag,
+            ChavrusaReaderScrollKey.scrollView: scrollView,
             ChavrusaReaderScrollKey.translationY: scrollView.panGestureRecognizer.translation(in: scrollView).y,
             ChavrusaReaderScrollKey.isAtTop: isAtTop,
         ])

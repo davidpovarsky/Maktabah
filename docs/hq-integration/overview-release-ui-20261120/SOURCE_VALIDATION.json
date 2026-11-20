@@ -1,0 +1,117 @@
+{
+  "syntax_parse_only": {
+    "command": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios18.0",
+      "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift",
+      "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+      "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift",
+      "Source/UI/iOS/Views/iPadLayout.swift",
+      "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentationState.swift"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+    "scope": "syntax parsing only; final source after helper wait and flag-scoped passive strip ID"
+  },
+  "xcode_source_registration": {
+    "command": [
+      "python",
+      "Scripts/CI/verify-otzaria-xcode-project.py"
+    ],
+    "exit": 0,
+    "stdout": "Verified Maktabah-iOS app/package source ownership for 153 Otzaria Swift files, both search frameworks, and required dictionaries\n",
+    "stderr": ""
+  },
+  "diff_whitespace": {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "warning: in the working copy of 'Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/UI/iOS/Views/iPadLayout.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/UI/iOS/Wrappers/iOSIbarotTextView.swift', LF will be replaced by CRLF the next time Git touches it\n"
+  },
+  "original_test_membership": {
+    "base": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+    "before": 39,
+    "after": 39,
+    "unchanged_order_and_names": true,
+    "names": [
+      "testOriginalCompactAndExpandedToolbarOracle",
+      "testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions",
+      "testOriginalGlobalSearchHistoryThroughNativeControls",
+      "testOriginalWindowResizePreservesReader",
+      "testOriginalReaderThemes",
+      "testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots",
+      "testSourceOverviewReplacesReaderAndRestoresViewport",
+      "testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting",
+      "testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize",
+      "testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+      "testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+      "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+      "testOriginalBottomTOCActionOpensContentsFromLibraryPage",
+      "testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+      "testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers",
+      "testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "testPointerHoverClickAndHardwareKeyboardDismissal",
+      "testGroupCopyMoveRenameAndDeleteThroughRealMenus",
+      "testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "testCandidateWindowResizePreservesOriginalReaderAndSearch",
+      "testNewManagementScreensExposeMeaningfulAccessibilityDescriptions",
+      "testCandidateReaderThemes",
+      "testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+      "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+      "testCandidateTrimmedOriginalInspectorLandscape",
+      "testCandidateTrimmedOriginalInspectorPortrait",
+      "testSidebarPreservesOriginalTextKitViewport",
+      "testSourceToolbarPaletteAndOverview",
+      "testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll",
+      "testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar",
+      "testNewEmptyGroupAndRelaunchPersistence",
+      "testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
+      "testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
+      "testThreeProfilesWithThreeGroupsThroughNativeManagement",
+      "testRealProductionLibraryReaderAndGroupRestore",
+      "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+    ]
+  },
+  "original_delegate_preservation": {
+    "only_three_passive_calls_added": true,
+    "base_lf_sha256": "cb5d97e1f0a468c09485756507e6ac3701886495a695ace33eb14f275ed2a373",
+    "candidate_lf_sha256": "71fb1b96a0d07f8167aa46d1f8c295ad84fc64bb260aa63fb662dd45bc7a5ec1"
+  },
+  "r27_unchanged": [
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "unchanged": true,
+      "lf_sha256": "d4ff446db4acdbb61e0ad19c14696e5194bafbba239ef86876e85a2de30e70cc"
+    }
+  ],
+  "final_source_lf_sha256": {
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d",
+    "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift": "4fa4ee2fd966b346b66fa19ed405e9a68e3ae45d08eac40ed948d29de435a91d",
+    "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift": "6bbf3c0763393bc28fa10a78f01b8c444b041f9b30659375920cc6b985e80fb0",
+    "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift": "4a8699f9efacc4d10265618f3d691d97400c48f17492d59650ffba309bce989c",
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": "43f3c338218db1b86a7e5978d85d2e2f447ff16f7570e1e7c24f2b8d56ec5de1",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "cdf42ff721495d309d3949462ba9efbb3772e4cc3caf06bd208b01b9aac2d257",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "2bb3746e99b22b7bd8ce2092b498b927eed57bd912c46fa090530da91a78f155",
+    "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift": "7c6895096df4760ff38804490fd356d14edd9a66fff1c5a4cb0a31442bf2b8a3",
+    "Source/UI/iOS/Views/iPadLayout.swift": "2be4758ac9cd189d5854c88badf0c57af1ae43777ad1aae387fe3175575ea849",
+    "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift": "71fb1b96a0d07f8167aa46d1f8c295ad84fc64bb260aa63fb662dd45bc7a5ec1",
+    "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentationState.swift": "483ae8936b6986bd156a3ac8e5d8c50a07bb2151cb490ec8d3fee0a2f270683b"
+  }
+}

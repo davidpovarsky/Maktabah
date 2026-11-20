@@ -5,6 +5,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct iPadLayout: View {
     @Bindable var bManager: iOSNavigationManager
@@ -20,6 +21,19 @@ struct iPadLayout: View {
     @StateObject private var backendCoordinator = BackendCoordinator.shared
     @State private var searchPresentation = GlobalSearchPresentationCoordinator()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.exact9401Workspace) private var workspace
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    private var readerSidebarIsOpen: Bool {
+        horizontalSizeClass == .compact
+            ? preferredLibraryCompactColumn == .sidebar
+            : columnVisibility != .detailOnly
+    }
+
+    private var readerChromeAnimation: Animation? {
+        reduceMotion ? nil : .spring(response: 0.34, dampingFraction: 0.90)
+    }
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -146,6 +160,108 @@ struct iPadLayout: View {
         .navigationSplitViewStyle(.balanced)
         .background(Color.appBackground.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
+        .environment(\.chavrusaReaderNavigationChromeVisible, sidebar.navigationChrome.isVisible)
+        .toolbarVisibility(sidebar.navigationChrome.isVisible ? .visible : .hidden, for: .tabBar)
+        .background {
+            ReaderSceneIdentityReader(
+                observeWindow: { owner, window in
+                    sidebar.observeNavigationChromeWindow(owner: owner, window: window)
+                },
+                resolve: { _ in }
+            )
+            .frame(width: 0, height: 0)
+            .accessibilityHidden(true)
+        }
+        .onChange(of: bManager.activeTabId) { _, _ in revealReaderNavigationChrome() }
+        .onChange(of: bManager.activeReaderViewModel?.currentContentId) { _, _ in revealReaderNavigationChrome() }
+        .onChange(of: bManager.activeReaderViewModel?.readerInspectorVisible) { _, visible in
+            if visible == true { revealReaderNavigationChrome() }
+        }
+        .onChange(of: bManager.activeReaderViewModel?.isPopoverPresented) { _, visible in
+            if visible == true { revealReaderNavigationChrome() }
+        }
+        .onChange(of: readerSidebarIsOpen) { _, open in
+            if open { revealReaderNavigationChrome() }
+        }
+        .onChange(of: sidebar.overview.requestID) { _, id in
+            if id != nil { revealReaderNavigationChrome() }
+        }
+        .onChange(of: selectedTab) { _, _ in revealReaderNavigationChrome() }
+        .onDisappear { sidebar.navigationChrome.reveal() }
+        .onReceive(NotificationCenter.default.publisher(for: .chavrusaReaderDidScroll)) {
+            receiveReaderNavigationScroll($0)
+        }
+        .onChange(of: bManager.showingTabsList, initial: true) { _, showing in
+            if showing, workspace?.attached == true { sidebar.overview.request() }
+        }
+        .overlay { studyOverviewPresentation }
+    }
+
+    private func revealReaderNavigationChrome() {
+        withAnimation(readerChromeAnimation) { sidebar.navigationChrome.reveal() }
+    }
+
+    private func receiveReaderNavigationScroll(_ note: Notification) {
+        guard ChavrusaTextReaderUI.isEnabled, selectedTab == .viewer, scenePhase == .active,
+              let workspace, workspace.attached,
+              let source = note.object as? ReaderViewModel,
+              source === bManager.activeReaderViewModel,
+              !sidebar.overview.blocksRouting,
+              !source.isPopoverPresented, !source.readerInspectorVisible,
+              let scrollView = note.userInfo?[ChavrusaReaderScrollKey.scrollView] as? UIScrollView,
+              sidebar.ownsNavigationChromeWindow(scrollView, sceneID: workspace.sceneID),
+              let translationY = note.userInfo?[ChavrusaReaderScrollKey.translationY] as? CGFloat,
+              let isAtTop = note.userInfo?[ChavrusaReaderScrollKey.isAtTop] as? Bool
+        else { return }
+        if note.userInfo?[ChavrusaReaderScrollKey.beginsDrag] as? Bool == true {
+            sidebar.navigationChrome.beginDragging()
+        } else {
+            withAnimation(readerChromeAnimation) {
+                sidebar.navigationChrome.consume(translationY: translationY, isAtTop: isAtTop)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var studyOverviewPresentation: some View {
+        if let workspace, let id = sidebar.overview.requestID {
+            ReaderOverviewPresentation(
+                isPresented: Binding(
+                    get: { sidebar.overview.requestID == id && sidebar.overview.isRequested },
+                    set: { if !$0 { sidebar.overview.requestClose(id) } }
+                ),
+                lifecycle: .init(
+                    id: id,
+                    willPresent: { sidebar.overview.canPresent(id) },
+                    didPresent: { sidebar.overview.didMount(id) },
+                    didDismiss: { finishStudyOverview(id, workspace: workspace, dismantled: false) },
+                    didDismantle: { finishStudyOverview(id, workspace: workspace, dismantled: true) }
+                )
+            ) {
+                StudyGroupsOverview(
+                    workspace: workspace, manager: bManager,
+                    onOpenLibrary: {
+                        selectedTab = .viewer
+                        bManager.switchToMode(.viewer)
+                        sidebar.showLibrary()
+                        columnVisibility = .all
+                        preferredLibraryCompactColumn = .sidebar
+                    },
+                    onClose: { sidebar.overview.requestClose(id) }
+                )
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea()
+        }
+    }
+
+    private func finishStudyOverview(_ id: UUID, workspace: StudyWorkspaceNavigationAdapter, dismantled: Bool) {
+        let finished = dismantled
+            ? sidebar.overview.didDismantle(id)
+            : sidebar.overview.didDismiss(id)
+        guard finished else { return }
+        bManager.showingTabsList = false
+        workspace.synchronize(bManager)
     }
 
     /// Preserve the original flag-off three-column composition from

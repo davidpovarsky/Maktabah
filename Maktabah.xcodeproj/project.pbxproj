@@ -1324,6 +1324,7 @@
 		E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
 		E81108000000000000000004 /* CompactStudyWorkspaceHostModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000005; };
 		E81109000000000000000002 /* ReaderOverviewPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81109000000000000000001; };
+		515C0D06F1D72B5BE7843829 /* ReaderOverviewPresentationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2BB889246ACD2F627735F0; };
 		2AFA9DDCD22B555F95D3101F /* ActionAppIdentityBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD350FDBA74BE71A875EEC5; };
 		194BA2C5D63DD7A0E9C7CF99 /* ActionBackendCoordinatorFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472B7F434959A9F0E806751; };
 		4F8A0BC7E981AEBBFFB4825A /* ActionLiveBackendBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942E0C742F60E22D222A90; };
@@ -2123,6 +2124,7 @@
 		E81108000000000000000001 /* ReaderNavigationChromeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderNavigationChromeState.swift"; sourceTree = "<group>"; };
 		E81108000000000000000005 /* CompactStudyWorkspaceHostModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/CompactStudyWorkspaceHostModifier.swift"; sourceTree = "<group>"; };
 		E81109000000000000000001 /* ReaderOverviewPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderOverviewPresentation.swift"; sourceTree = "<group>"; };
+		8A2BB889246ACD2F627735F0 /* ReaderOverviewPresentationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderOverviewPresentationState.swift"; sourceTree = "<group>"; };
 		BBD350FDBA74BE71A875EEC5 /* ActionAppIdentityBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionAppIdentityBridge.swift"; sourceTree = "<group>"; };
 		7472B7F434959A9F0E806751 /* ActionBackendCoordinatorFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionBackendCoordinatorFacade.swift"; sourceTree = "<group>"; };
 		C2942E0C742F60E22D222A90 /* ActionLiveBackendBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionLiveBackendBridge.swift"; sourceTree = "<group>"; };
@@ -2265,6 +2267,7 @@
 				E81108000000000000000001 /* ReaderNavigationChromeState.swift */,
 				E81108000000000000000005 /* CompactStudyWorkspaceHostModifier.swift */,
 				E81109000000000000000001 /* ReaderOverviewPresentation.swift */,
+				8A2BB889246ACD2F627735F0 /* ReaderOverviewPresentationState.swift */,
 				65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */,
 				D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */,
 				A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */,
@@ -4964,6 +4967,7 @@
 				E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */,
 				E81108000000000000000004 /* CompactStudyWorkspaceHostModifier.swift in Sources */,
 				E81109000000000000000002 /* ReaderOverviewPresentation.swift in Sources */,
+				515C0D06F1D72B5BE7843829 /* ReaderOverviewPresentationState.swift in Sources */,
 				9F48806573E5763B8F00A49F /* ChavrusaReaderHost.swift in Sources */,
 				AD59215416546C4D4F912C89 /* ChavrusaReaderWorkspaceLayout.swift in Sources */,
 				81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */,
