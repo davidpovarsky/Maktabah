@@ -1241,7 +1241,7 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
             // index fault. Changed storage ownership still forbids any write.
             try value.verifyOwner()
             try FileManager.default.setAttributes([.posixPermissions: permissions],
-                atPath: value.index.deletingLastPathComponent().path)
+                ofItemAtPath: value.index.deletingLastPathComponent().path)
             try requireSearchDataFixture(try searchDataIndexInventory(backup, includeSecondaryIdentity: true) == original,
                                          "Never restore an altered or unverified backup")
             for extensionName in ["previous", "building", "installing"] {
@@ -1445,7 +1445,7 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
         // Actual filesystem denial on this disposable miniature index parent.
         // The teardown registered before the mutation restores both permissions
         // and complete original bytes, including after assertion failure.
-        try FileManager.default.setAttributes([.posixPermissions: permissions & ~0o222], atPath: parent.path)
+        try FileManager.default.setAttributes([.posixPermissions: permissions & ~0o222], ofItemAtPath: parent.path)
         try requireSearchDataFixture(!FileManager.default.isWritableFile(atPath: parent.path),
                                      "Require an actual OS write denial; never inject a fake failed status")
         tap(try dataAction("search-data-repair-otzaria"))
@@ -1455,7 +1455,7 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
                        "A failed replacement must preserve even the original damaged index for recovery")
         let retry = try dataAction("search-data-repair-otzaria")
         XCTAssertTrue(retry.isEnabled && retry.isHittable, "The original repair control must remain actionable after failure")
-        try FileManager.default.setAttributes([.posixPermissions: permissions], atPath: parent.path)
+        try FileManager.default.setAttributes([.posixPermissions: permissions], ofItemAtPath: parent.path)
         try requireSearchDataFixture(FileManager.default.isWritableFile(atPath: parent.path), "Restore the real write precondition")
         tap(retry)
         try verifyRecoveredAndCold(value)

@@ -1,0 +1,17 @@
+{
+  "base": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "branch": "codex/otzaria-native98-foundation-signature-20261120",
+  "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+  "changes": 3,
+  "canonicalBeforeSHA256": "24f29576684b0d28ab3a8ca7966ca26aa4e2d5d602af377113a3a4db04432e49",
+  "canonicalAfterSHA256": "9d8c1339233ad8d3c5ad74ccaaad04b94541d010617fc69b61e131a363a57a32",
+  "rawBeforeSHA256": "3e0a5e77b78d12c564e59e7dc8adf3221f4c09188cb9bf8ac9983bbfa53ce862",
+  "rawAfterSHA256": "c9d039479d308193f05f944aac993a36e3b1cb172b9afe8e0123b5bf67b59c47",
+  "inverseExact": true,
+  "lineNumbers": [
+    1244,
+    1448,
+    1458
+  ],
+  "scope": "Exactly three FileManager.setAttributes argument labels; no UI, timing, assertion, restoration, permission values or source product changes"
+}

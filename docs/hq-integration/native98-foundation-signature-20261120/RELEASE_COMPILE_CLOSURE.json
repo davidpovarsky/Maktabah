@@ -1,0 +1,71 @@
+{
+  "source": "e9050ad8998a070c92c73a881b0d7deb6e216e88",
+  "relatedReleaseRun": 44716099724,
+  "basis": "Source closure only; no current Release API observation or cancellation by this agent",
+  "conclusion": "Release mode performs the same build-for-testing before the matrix; the Maktabah-iOS scheme builds Maktabah-iOSUITests, whose synchronized group includes this unchanged file with no per-file exclusion. Different runtime selections do not exclude these three calls from compilation.",
+  "inputs": [
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "gitBlob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583",
+      "excerpts": [
+        {
+          "start": 255,
+          "end": 265,
+          "text": "        if report[\"mode\"] == \"release\":\n            # Validate the full unchanged release contract before the expensive\n            # app build. The producer validates it again against final inputs.\n            release_manifest = runpy.run_path(str(ROOT / \"Scripts/CI/runtime27-release.py\"))[\"load_manifest\"](ROOT)\n            report[\"release_manifest_preflight\"] = {\n                \"status\": \"DECLARATIONS_AND_PREPARED_SOURCE_MATCH\",\n                \"manifest_sha256\": hashlib.sha256((ROOT / \"Scripts/CI/runtime27-release-manifest.json\").read_bytes()).hexdigest(),\n                \"required_ui_executions\": sum(len(row[\"required_ui_cases\"]) for row in release_manifest[\"configurations\"]),\n                \"required_oracle_executions\": sum(len(row.get(\"required_oracle_cases\", [])) for row in release_manifest[\"configurations\"]),\n                \"native_executed\": 0,\n            }"
+        },
+        {
+          "start": 330,
+          "end": 340,
+          "text": "            if run_logged([sys.executable, \"Scripts/CI/runtime27-hid.py\", \"prepare\", \"--out\", str(OUT / \"hid-tools.json\")],\n                          \"hid-prepare.log\", 360, interrupt_controller=controller):\n                raise RuntimeError(\"Isolated native HID tool preflight failed; comparison UI NOT_RUN\")\n            report[\"idb\"] = \"PINNED_JOB_LOCAL_HID_COMPARISON_ORIGINAL_XCTEST_CASE_RETAINED\"\n        if run_logged([sys.executable, \"Scripts/CI/hq-stage2-focused-apple.py\", \"--build-for-testing\", \"--derived-data\", \"build/DerivedData\"],\n                      \"build-for-testing-driver.log\", 4200, interrupt_controller=controller):\n            raise RuntimeError(\"Real app/test build failed; UI cases NOT_RUN\")\n        products = ROOT / \"build/DerivedData/Build/Products/Debug-iphonesimulator\"\n        binaries = {}\n        for bundle in [products / \"Maktabah.app\", products / \"Maktabah-iOSUITests-Runner.app\"]:\n            info = plistlib.loads((bundle / \"Info.plist\").read_bytes())"
+        }
+      ]
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "gitBlob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+      "excerpts": [
+        {
+          "start": 687,
+          "end": 691,
+          "text": "        logged([sys.executable, \"Scripts/CI/verify-otzaria-xcode-project.py\"], \"target-membership.log\", report)\n        common = [\"-workspace\", \"Maktabah.xcworkspace\", \"-scheme\", \"Maktabah-iOS\", \"-clonedSourcePackagesDirPath\", \"build/SourcePackages\"]\n        help_text = subprocess.run([\"xcodebuild\", \"-help\"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True).stdout\n        require(\"-onlyUsePackageVersionsFromResolvedFile\" in help_text, \"Installed Xcode lacks pinned-only package resolution\")\n        logged([\"xcodebuild\", \"-resolvePackageDependencies\", *common, \"-onlyUsePackageVersionsFromResolvedFile\"], \"resolve-packages.log\", report)"
+        },
+        {
+          "start": 699,
+          "end": 717,
+          "text": "        authorize_pinned_equatable_macro(report)\n        if args.prepare_inputs_only:\n            prepare_original_hanlin(config, report, verify_only=True)\n            report.update(status=\"PREPARED_ORIGINAL_INPUTS_ONLY\", scope=\"RELEASE_INPUT_RESTORATION\",\n                          app_build_executed=False, runtime=\"NOT_RUN\", signing=False)\n            return 0\n        derived_data = checked_path(ROOT / \"build\", str(Path(args.derived_data).relative_to(\"build\")))\n        signing = ([\"CODE_SIGNING_ALLOWED=YES\", \"CODE_SIGNING_REQUIRED=YES\", \"CODE_SIGN_IDENTITY=-\"] if args.build_for_testing\n                   else [\"CODE_SIGNING_ALLOWED=NO\", \"CODE_SIGNING_REQUIRED=NO\", \"CODE_SIGN_IDENTITY=\"])\n        # Keep the app's Simulator destination while allowing SwiftPM macro tools\n        # to select the macOS host SDK. A global -sdk overrides those host targets.\n        report[\"sdk_selection\"] = \"PER_TARGET_FROM_ORIGINAL_SIMULATOR_DESTINATION\"\n        command = [\"xcodebuild\", \"build-for-testing\" if args.build_for_testing else \"build\", *common, \"-configuration\", \"Debug\",\n                   \"-destination\", \"generic/platform=iOS Simulator\", \"-derivedDataPath\", str(derived_data),\n                   \"-disableAutomaticPackageResolution\", \"-jobs\", \"2\", \"-showBuildTimingSummary\",\n                   *signing,\n                   \"ARCHS=arm64\", \"ONLY_ACTIVE_ARCH=YES\", \"ENABLE_USER_SCRIPT_SANDBOXING=NO\",\n                   \"RCT_NO_LAUNCH_PACKAGER=1\", \"SKIP_BUNDLING=1\", \"FAIL_ON_MISSING_BUNDLE=1\"]\n        logged(command, \"simulator-build-for-testing.log\" if args.build_for_testing else \"unsigned-app-build.log\", report)"
+        }
+      ]
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "gitBlob": "2741615644741d39b0b19c6146f9c459323dabab",
+      "sha256": "ac5e360aa4cb3d6c31354cba83ca72488bfef283067b2bd121231defa95c68df",
+      "excerpts": [
+        {
+          "start": 2180,
+          "end": 2185,
+          "text": "/* Begin PBXFileSystemSynchronizedRootGroup section */\n\t\tF30578032FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n\t\t\tpath = \"Maktabah-iOSUITests\";\n\t\t\tsourceTree = \"<group>\";\n\t\t};"
+        },
+        {
+          "start": 3881,
+          "end": 3902,
+          "text": "/* Begin PBXNativeTarget section */\n\t\tF30578012FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXNativeTarget;\n\t\t\tbuildConfigurationList = F305780B2FA46222005732C6 /* Build configuration list for PBXNativeTarget \"Maktabah-iOSUITests\" */;\n\t\t\tbuildPhases = (\n\t\t\t\tF30578042FA46222005732C6 /* Sources */,\n\t\t\t\tF30578052FA46222005732C6 /* Frameworks */,\n\t\t\t\tF30578062FA46222005732C6 /* Resources */,\n\t\t\t);\n\t\t\tbuildRules = (\n\t\t\t);\n\t\t\tdependencies = (\n\t\t\t\tF30578082FA46222005732C6 /* PBXTargetDependency */,\n\t\t\t);\n\t\t\tfileSystemSynchronizedGroups = (\n\t\t\t\tF30578032FA46222005732C6 /* Maktabah-iOSUITests */,\n\t\t\t);\n\t\t\tname = \"Maktabah-iOSUITests\";\n\t\t\tproductName = \"Maktabah-iOSUITests\";\n\t\t\tproductReference = F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */;\n\t\t\tproductType = \"com.apple.product-type.bundle.ui-testing\";\n\t\t};"
+        }
+      ]
+    },
+    {
+      "path": "Maktabah.xcodeproj/xcshareddata/xcschemes/Maktabah-iOS.xcscheme",
+      "gitBlob": "214f46a3458a1eb213e3c11e7b3fc1b5d31d9e26",
+      "sha256": "b2b0938a3f0e7d2e119fdb4624273725b6ae22f37a2a97db0534c17fa104176c",
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 73,
+          "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Scheme\n   LastUpgradeVersion = \"2630\"\n   version = \"1.7\">\n   <BuildAction\n      parallelizeBuildables = \"YES\"\n      buildImplicitDependencies = \"YES\"\n      buildArchitectures = \"Automatic\">\n      <BuildActionEntries>\n         <BuildActionEntry\n            buildForTesting = \"YES\"\n            buildForRunning = \"YES\"\n            buildForProfiling = \"YES\"\n            buildForArchiving = \"YES\"\n            buildForAnalyzing = \"YES\">\n            <BuildableReference\n               BuildableIdentifier = \"primary\"\n               BlueprintIdentifier = \"F30576DD2FA46222005732C6\"\n               BuildableName = \"Maktabah.app\"\n               BlueprintName = \"Maktabah-iOS\"\n               ReferencedContainer = \"container:Maktabah.xcodeproj\">\n            </BuildableReference>\n         </BuildActionEntry>\n         <BuildActionEntry\n            buildForTesting = \"YES\"\n            buildForRunning = \"NO\"\n            buildForProfiling = \"NO\"\n            buildForArchiving = \"NO\"\n            buildForAnalyzing = \"NO\">\n            <BuildableReference\n               BuildableIdentifier = \"primary\"\n               BlueprintIdentifier = \"F30578012FA46222005732C6\"\n               BuildableName = \"Maktabah-iOSUITests.xctest\"\n               BlueprintName = \"Maktabah-iOSUITests\"\n               ReferencedContainer = \"container:Maktabah.xcodeproj\">\n            </BuildableReference>\n         </BuildActionEntry>\n      </BuildActionEntries>\n   </BuildAction>\n   <TestAction\n      buildConfiguration = \"Debug\"\n      selectedDebuggerIdentifier = \"Xcode.DebuggerFoundation.Debugger.LLDB\"\n      selectedLauncherIdentifier = \"Xcode.DebuggerFoundation.Launcher.LLDB\"\n      shouldUseLaunchSchemeArgsEnv = \"YES\">\n      <Testables>\n         <TestableReference\n            skipped = \"NO\">\n            <BuildableReference\n               BuildableIdentifier = \"primary\"\n               BlueprintIdentifier = \"F30578012FA46222005732C6\"\n               BuildableName = \"Maktabah-iOSUITests.xctest\"\n               BlueprintName = \"Maktabah-iOSUITests\"\n               ReferencedContainer = \"container:Maktabah.xcodeproj\">\n            </BuildableReference>\n         </TestableReference>\n      </Testables>\n   </TestAction>\n   <LaunchAction\n      buildConfiguration = \"Debug\"\n      selectedDebuggerIdentifier = \"Xcode.DebuggerFoundation.Debugger.LLDB\"\n      selectedLauncherIdentifier = \"Xcode.DebuggerFoundation.Launcher.LLDB\"\n      launchStyle = \"0\"\n      useCustomWorkingDirectory = \"NO\"\n      ignoresPersistentStateOnLaunch = \"NO\"\n      debugDocumentVersioning = \"YES\"\n      debugServiceExtension = \"internal\"\n      allowLocationSimulation = \"YES\">\n      <BuildableProductRunnable\n         runnableDebuggingMode = \"0\">\n         <BuildableReference\n            BuildableIdentifier = \"primary\"\n            BlueprintIdentifier = \"F30576DD2FA46222005732C6\"\n            BuildableName = \"Maktabah.app\""
+        }
+      ]
+    }
+  ]
+}

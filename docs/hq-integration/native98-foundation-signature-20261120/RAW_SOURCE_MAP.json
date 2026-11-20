@@ -1,0 +1,110 @@
+[
+  {
+    "original": "build/native98-44716092729-monitor-20261120/AFTER_WATCH_RUN.json",
+    "retained": "raw/AFTER_WATCH_RUN.json.gz",
+    "originalBytes": 12784,
+    "originalSHA256": "105361884139afb0c8c82cab545f537db108e8383005bb22a55f2467fb7ff1c6"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/FINAL_ARTIFACTS.json",
+    "retained": "raw/FINAL_ARTIFACTS.json.gz",
+    "originalBytes": 935,
+    "originalSHA256": "a577ec86fc8593a4467c91c708fab40b137bd380ffc6a3b928966d75fb43ed79"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/FINAL_ARTIFACTS_PAGE_1.json",
+    "retained": "raw/FINAL_ARTIFACTS_PAGE_1.json.gz",
+    "originalBytes": 759,
+    "originalSHA256": "147bb42788ec6895915166aad314947becaf4186564c7d349e391e05251755bd"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/FINAL_JOBS.json",
+    "retained": "raw/FINAL_JOBS.json.gz",
+    "originalBytes": 13733,
+    "originalSHA256": "cb9479c0a2046b547a7e0ad3b68e3c17b19f4c38cec7cd3e9f3a1a8c803fc816"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/FINAL_JOBS_PAGE_1.json",
+    "retained": "raw/FINAL_JOBS_PAGE_1.json.gz",
+    "originalBytes": 10443,
+    "originalSHA256": "9760f38b2f52002f250f17ad6920900c3afd47d7cab6de35edf995be5f50abf4"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/PREWATCH_RUN.json",
+    "retained": "raw/PREWATCH_RUN.json.gz",
+    "originalBytes": 12781,
+    "originalSHA256": "777ea227fa084a600c4dd70e432ba8dc92960e86ab8c7e03b41371d3a3248e51"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/PREWATCH_PROCESSES.json",
+    "retained": "raw/PREWATCH_PROCESSES.json.gz",
+    "originalBytes": 131,
+    "originalSHA256": "135fe482b17d6e04d8bfd1eafcbef9a316293e39bb974e16dfa16d510ccd1e4d"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/WATCH_STARTED.json",
+    "retained": "raw/WATCH_STARTED.json.gz",
+    "originalBytes": 544,
+    "originalSHA256": "f6fe45dd6f6e0c5afc48c40da6f9e09af5c83ff84456b6f13624f04ac1606e34"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/WATCH_RESULT.json",
+    "retained": "raw/WATCH_RESULT.json.gz",
+    "originalBytes": 1240,
+    "originalSHA256": "b2b60d6492f91183549d53928bcb89292ba4fd70dc2fd8052fb9299378ddc2a5"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/WATCHER_SOURCE.py",
+    "retained": "raw/WATCHER_SOURCE.py.gz",
+    "originalBytes": 11068,
+    "originalSHA256": "53f7efd31723119f2beaa5adb413fd90a2cbc9fa3caf3c42f6761da02b446629"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/REQUEST.json",
+    "retained": "raw/REQUEST.json.gz",
+    "originalBytes": 215,
+    "originalSHA256": "e6af88a7f7b82f2669d73ac3763f9ddf88eecb260daf5e29ef052097ebe2520c"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/FINITE_WATCH.log",
+    "retained": "raw/FINITE_WATCH.log.gz",
+    "originalBytes": 66239,
+    "originalSHA256": "001e65c7ac93d24b10c4a5679ffb8f7bfdafca16d159e5380e7ea25b1015204b"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/SOURCE_BINDING_EXPECTATIONS.json",
+    "retained": "raw/SOURCE_BINDING_EXPECTATIONS.json.gz",
+    "originalBytes": 763,
+    "originalSHA256": "a0694426823994e28a372b19d7b2e558a4c852817d41be2c813cec3774c27554"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/EXPECTED_R27_CASES.git-lf.json",
+    "retained": "raw/EXPECTED_R27_CASES.git-lf.json.gz",
+    "originalBytes": 176570,
+    "originalSHA256": "c4a5a146448460b227327ddd1ce7ade42eb8d8e261c3d772c5ca2909630ace0d"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/BUILD_RESULT.raw.json",
+    "retained": "raw/BUILD_RESULT.raw.json.gz",
+    "originalBytes": 82806,
+    "originalSHA256": "d106c962dcfcd684d2ec4b94c96a747c715771af630278661f32ecb62af75ee2"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/RUNTIME_RESULT.raw.json",
+    "retained": "raw/RUNTIME_RESULT.raw.json.gz",
+    "originalBytes": 126160,
+    "originalSHA256": "6a8cb91a3c6db7ae40dafddb27b313a01482019201626fe9be5299cefe372838"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/DECLARATIONS.raw.json",
+    "retained": "raw/DECLARATIONS.raw.json.gz",
+    "originalBytes": 29370,
+    "originalSHA256": "d20854050dbf367ee2a4c010cfd52c8b0c5048a381b8559d1f7fb5586de1effb"
+  },
+  {
+    "original": "build/native98-44716092729-monitor-20261120/JUNIT.raw.xml",
+    "retained": "raw/JUNIT.raw.xml.gz",
+    "originalBytes": 34470,
+    "originalSHA256": "b70338471587bec6318b6d2270c6319b3d67d7deee7d5147024b3ef0e1219b78"
+  }
+]

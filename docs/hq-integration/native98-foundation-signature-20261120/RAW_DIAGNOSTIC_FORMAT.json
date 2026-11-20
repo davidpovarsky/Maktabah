@@ -1,0 +1,16 @@
+[
+  {
+    "originalName": "FIRST_ERROR.txt",
+    "retained": "FIRST_ERROR.txt.gz",
+    "originalBytes": 1721,
+    "originalSHA256": "e6d069b805fbdb04cd44179c64a696b1337afad4aa286099e3a3fabbebe7c91a",
+    "reason": "Preserve exact raw diagnostic whitespace without introducing trailing-whitespace source review failures"
+  },
+  {
+    "originalName": "foundation-signature/baseline.stderr.log",
+    "retained": "foundation-signature/baseline.stderr.log.gz",
+    "originalBytes": 2170,
+    "originalSHA256": "1feeb6ef68e0e35017338624d004a513ed4c0ccc2f0dcb3a5800bfaa75109ea2",
+    "reason": "Preserve exact raw diagnostic whitespace without introducing trailing-whitespace source review failures"
+  }
+]
