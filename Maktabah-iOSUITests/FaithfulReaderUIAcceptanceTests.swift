@@ -1172,6 +1172,12 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    private var recordsPaletteEscape = false
+    override var readerAdditionalLaunchArguments: [String] {
+        super.readerAdditionalLaunchArguments
+            + (recordsPaletteEscape ? ["-CommandPaletteEscapeTraceEnabled", "YES"] : [])
+    }
+
     @MainActor
     func testSourceOverviewReplacesReaderAndRestoresViewportLandscape() throws {
         try exerciseOverviewReplacement(orientation: .landscapeLeft, phone: false)
@@ -1417,6 +1423,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     }
 
     func testPointerHoverClickAndHardwareKeyboardDismissal() {
+        recordsPaletteEscape = true
         XCTAssertTrue(XCUIDevice.shared.supportsPointerInteraction,
                       "The required iPad Simulator must support real pointer events")
         XCUIDevice.shared.orientation = .landscapeLeft

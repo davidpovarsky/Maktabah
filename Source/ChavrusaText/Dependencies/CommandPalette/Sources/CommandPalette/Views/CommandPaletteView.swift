@@ -314,11 +314,17 @@ private struct PaletteSearchTextField: UIViewRepresentable {
     }
 
     static func dismantleUIView(_ field: PaletteTextField, coordinator: Coordinator) {
+        #if DEBUG
+        field.recordEscapeObservation(.dismantleBefore)
+        #endif
         field.delegate = nil
         field.onEscape = nil
         field.onUp = nil
         field.onDown = nil
         field.resignFirstResponder()
+        #if DEBUG
+        field.recordEscapeObservation(.dismantleAfter)
+        #endif
     }
 
     @MainActor final class Coordinator: NSObject, UITextFieldDelegate {
@@ -331,9 +337,15 @@ private struct PaletteSearchTextField: UIViewRepresentable {
         }
 
         func textFieldDidBeginEditing(_ textField: UITextField) {
+            #if DEBUG
+            (textField as? PaletteTextField)?.recordEscapeObservation(.focusBegin)
+            #endif
             parent.onFocusChange(true)
         }
         func textFieldDidEndEditing(_ textField: UITextField) {
+            #if DEBUG
+            (textField as? PaletteTextField)?.recordEscapeObservation(.focusEnd)
+            #endif
             parent.onFocusChange(false)
         }
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -352,16 +364,28 @@ private final class PaletteTextField: UITextField {
 
     override func didMoveToWindow() {
         super.didMoveToWindow()
+        #if DEBUG
+        recordEscapeObservation(.attached)
+        #endif
         reconcileFocus()
     }
 
     func reconcileFocus() {
+        #if DEBUG
+        recordEscapeObservation(.focusBefore)
+        #endif
         guard window != nil else { return }
         if wantsFocus, !isFirstResponder { becomeFirstResponder() }
         else if !wantsFocus, isFirstResponder { resignFirstResponder() }
+        #if DEBUG
+        recordEscapeObservation(.focusAfter)
+        #endif
     }
 
     override var keyCommands: [UIKeyCommand]? {
+        #if DEBUG
+        recordEscapeObservation(.keyCommands)
+        #endif
         // Native calibration verifies dispatch of these field-owned arrow
         // commands while the SwiftUI cancel shortcut leaves the palette
         // visible. Register Escape on the same first responder, using a
@@ -377,6 +401,10 @@ private final class PaletteTextField: UITextField {
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(dismissPaletteFromEscape(_:)) {
+            #if DEBUG
+            recordEscapeObservation(.canEscape,
+                accepted: isFirstResponder && window?.isKeyWindow == true && onEscape != nil)
+            #endif
             return isFirstResponder && window?.isKeyWindow == true && onEscape != nil
         }
         if action == #selector(up(_:)) || action == #selector(down(_:)) {
@@ -387,6 +415,9 @@ private final class PaletteTextField: UITextField {
 
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         let remaining = presses.filter { $0.key?.keyCode != .keyboardEscape }
+        #if DEBUG
+        recordEscapeObservation(.presses, accepted: remaining.count != presses.count)
+        #endif
         if remaining.count != presses.count { dismissFromKeyboard() }
         if !remaining.isEmpty { super.pressesBegan(Set(remaining), with: event) }
     }
@@ -394,19 +425,86 @@ private final class PaletteTextField: UITextField {
     override func insertText(_ text: String) {
         // Accept Escape delivered directly through UIKeyInput or presses,
         // without inserting the control character in the query.
+        #if DEBUG
+        if text == "\u{1b}" { recordEscapeObservation(.insertEscape) }
+        #endif
         if text == "\u{1b}" { dismissFromKeyboard() }
         else { super.insertText(text) }
     }
 
     private func dismissFromKeyboard() {
+        #if DEBUG
+        recordEscapeObservation(.dismissEnter)
+        #endif
         guard isFirstResponder else { return }
+        #if DEBUG
+        recordEscapeObservation(.dismissAdmitted)
+        #endif
         resignFirstResponder()
+        #if DEBUG
+        recordEscapeObservation(.dismissResigned)
+        #endif
         onEscape?()
+        #if DEBUG
+        recordEscapeObservation(.dismissReturned)
+        #endif
     }
 
-    @objc private func dismissPaletteFromEscape(_ command: UIKeyCommand) { dismissFromKeyboard() }
+    @objc private func dismissPaletteFromEscape(_ command: UIKeyCommand) {
+        #if DEBUG
+        recordEscapeObservation(.commandEscape)
+        #endif
+        dismissFromKeyboard()
+    }
     @objc private func up(_ command: UIKeyCommand) { onUp?() }
     @objc private func down(_ command: UIKeyCommand) { onDown?() }
+
+    #if DEBUG
+    fileprivate enum EscapeObservationStage: String {
+        case attached = "field.attached"
+        case focusBefore = "field.focus.before"
+        case focusAfter = "field.focus.after"
+        case focusBegin = "field.didBegin"
+        case focusEnd = "field.didEnd"
+        case dismantleBefore = "field.dismantle.before"
+        case dismantleAfter = "field.dismantle.after"
+        case keyCommands = "key.commands"
+        case canEscape = "key.can.escape"
+        case presses = "key.presses"
+        case insertEscape = "key.insert.escape"
+        case commandEscape = "key.command.escape"
+        case dismissEnter = "dismiss.enter"
+        case dismissAdmitted = "dismiss.admitted"
+        case dismissResigned = "dismiss.resigned"
+        case dismissReturned = "dismiss.returned"
+    }
+
+    /// Disposable fixture observations only. The host consumes this notification
+    /// through its existing persistent logger; no query or typed key is recorded.
+    fileprivate func recordEscapeObservation(_ stage: EscapeObservationStage, accepted: Bool? = nil) {
+        guard ProcessInfo.processInfo.environment["OTZARIA_DATA_PROFILE"] == "miniTest10",
+              ProcessInfo.processInfo.arguments.contains("-CommandPaletteEscapeTraceEnabled"),
+              UserDefaults.standard.bool(forKey: "CommandPaletteEscapeTraceEnabled"),
+              let namespace = UserDefaults.standard.string(forKey: "studyWorkspaceTestingNamespace"),
+              UUID(uuidString: namespace) != nil else { return }
+        var fields: [String: Any] = [
+            "stage": stage.rawValue,
+            "firstResponder": isFirstResponder,
+            "windowAttached": window != nil,
+            "keyWindow": window?.isKeyWindow == true,
+            "sceneForeground": window?.windowScene?.activationState == .foregroundActive,
+            "hasCallback": onEscape != nil,
+            "wantsFocus": wantsFocus
+        ]
+        if let accepted { fields["accepted"] = accepted }
+        if stage == .insertEscape || stage == .commandEscape || (stage == .presses && accepted == true) {
+            fields["escapeKeyCode"] = Int(UIKeyboardHIDUsage.keyboardEscape.rawValue)
+        }
+        NotificationCenter.default.post(
+            name: Notification.Name("ChavrusaCommandPaletteEscapeObservation"),
+            object: nil, userInfo: fields)
+    }
+    #endif
 }
 
 #endif

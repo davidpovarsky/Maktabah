@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "baseSHA": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "scope": "DEBUG_DIAGNOSTICS_SOURCE_AND_PORTABLE_COLLECTOR_ONLY",
+  "nativeExecuted": 0,
+  "appleTypecheckExecuted": false,
+  "files": [
+    {
+      "path": "raw/baseline-collector.json.gz",
+      "uncompressedPath": "baseline-collector.json",
+      "bytes": 2781,
+      "sha256": "bab5fb957f91013fefc65dd82f0c52883ab52e4dc3ba04add8ff473f1ce74473",
+      "gzipBytes": 893,
+      "gzipSHA256": "60a9414e7a03f048ee13bfd9ff106544f5ad4b4b0ceca4000ebb1e48a4618b44"
+    },
+    {
+      "path": "raw/baseline-collector.stderr.log.gz",
+      "uncompressedPath": "baseline-collector.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipBytes": 20,
+      "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/baseline-collector.stdout.log.gz",
+      "uncompressedPath": "baseline-collector.stdout.log",
+      "bytes": 2781,
+      "sha256": "bab5fb957f91013fefc65dd82f0c52883ab52e4dc3ba04add8ff473f1ce74473",
+      "gzipBytes": 893,
+      "gzipSHA256": "60a9414e7a03f048ee13bfd9ff106544f5ad4b4b0ceca4000ebb1e48a4618b44"
+    },
+    {
+      "path": "raw/candidate-collector.json.gz",
+      "uncompressedPath": "candidate-collector.json",
+      "bytes": 2211,
+      "sha256": "41d1a1c3b4399efe41ae019c34fd0fb375bc47cbc4a8c479898f58c2853c5c0b",
+      "gzipBytes": 738,
+      "gzipSHA256": "6353bb3e6829a62ba9530b0588760cc419598a452ca3ceacca6bd3a251d137cf"
+    },
+    {
+      "path": "raw/candidate-collector.stderr.log.gz",
+      "uncompressedPath": "candidate-collector.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipBytes": 20,
+      "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/candidate-collector.stdout.log.gz",
+      "uncompressedPath": "candidate-collector.stdout.log",
+      "bytes": 2211,
+      "sha256": "41d1a1c3b4399efe41ae019c34fd0fb375bc47cbc4a8c479898f58c2853c5c0b",
+      "gzipBytes": 738,
+      "gzipSHA256": "6353bb3e6829a62ba9530b0588760cc419598a452ca3ceacca6bd3a251d137cf"
+    },
+    {
+      "path": "raw/collector-attempt01/ATTEMPT_NOTE.json.gz",
+      "uncompressedPath": "collector-attempt01/ATTEMPT_NOTE.json",
+      "bytes": 722,
+      "sha256": "6d4e99bfbc574976012f2c977d7cf941bc10fd6d4bced2e80a8f7dcb5fb9a78a",
+      "gzipBytes": 461,
+      "gzipSHA256": "e426be5d9068939a15032ba549159dfbe125987b03664c3bc4a5bf3328b82ed1"
+    },
+    {
+      "path": "raw/collector-attempt01/baseline-collector.json.gz",
+      "uncompressedPath": "collector-attempt01/baseline-collector.json",
+      "bytes": 2800,
+      "sha256": "fa29acc3ba13e3679855d26b0b820609d21994d7f1f7b095b73ac344a728de80",
+      "gzipBytes": 895,
+      "gzipSHA256": "4be511dc69ddce72bd305f569cf4cb01de4590270972a8962f538c0ad910f646"
+    },
+    {
+      "path": "raw/collector-attempt01/baseline-collector.stderr.log.gz",
+      "uncompressedPath": "collector-attempt01/baseline-collector.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipBytes": 20,
+      "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/collector-attempt01/baseline-collector.stdout.log.gz",
+      "uncompressedPath": "collector-attempt01/baseline-collector.stdout.log",
+      "bytes": 2800,
+      "sha256": "fa29acc3ba13e3679855d26b0b820609d21994d7f1f7b095b73ac344a728de80",
+      "gzipBytes": 895,
+      "gzipSHA256": "4be511dc69ddce72bd305f569cf4cb01de4590270972a8962f538c0ad910f646"
+    },
+    {
+      "path": "raw/collector-attempt01/candidate-collector.json.gz",
+      "uncompressedPath": "collector-attempt01/candidate-collector.json",
+      "bytes": 2249,
+      "sha256": "0c33c072759ba3277e1d7c8cda256656082e83124f9335b3b526e379e8072f5e",
+      "gzipBytes": 757,
+      "gzipSHA256": "588e8776a36716cd99446c56f85fc9fc6f81fae65556a1cb4fc29367de6753e9"
+    },
+    {
+      "path": "raw/collector-attempt01/candidate-collector.stderr.log.gz",
+      "uncompressedPath": "collector-attempt01/candidate-collector.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipBytes": 20,
+      "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/collector-attempt01/candidate-collector.stdout.log.gz",
+      "uncompressedPath": "collector-attempt01/candidate-collector.stdout.log",
+      "bytes": 2249,
+      "sha256": "0c33c072759ba3277e1d7c8cda256656082e83124f9335b3b526e379e8072f5e",
+      "gzipBytes": 757,
+      "gzipSHA256": "588e8776a36716cd99446c56f85fc9fc6f81fae65556a1cb4fc29367de6753e9"
+    },
+    {
+      "path": "raw/collector-attempt01/test-palette-escape-diagnostics.py.gz",
+      "uncompressedPath": "collector-attempt01/test-palette-escape-diagnostics.py",
+      "bytes": 8791,
+      "sha256": "9f754da5d1eaf3d40540487ed7300551295c6ee5de064b037dd5a6d41fde498c",
+      "gzipBytes": 2982,
+      "gzipSHA256": "f3d0607de7034e8f348dd4a2be63577e318c7c31623d083d498911df08f6c62d"
+    },
+    {
+      "path": "raw/COLLECTOR_EXECUTION.json.gz",
+      "uncompressedPath": "COLLECTOR_EXECUTION.json",
+      "bytes": 1815,
+      "sha256": "43321be4d2f3d37993da9acc33b26659e14fe1774ce8b4d98b64b05e61568897",
+      "gzipBytes": 575,
+      "gzipSHA256": "0bfefd8727467a81031d011bac49c34a23c6c0756aa48484793cb5cd1bfa70ed"
+    },
+    {
+      "path": "raw/EDIT_INVERSE_MANIFEST.json.gz",
+      "uncompressedPath": "EDIT_INVERSE_MANIFEST.json",
+      "bytes": 21821,
+      "sha256": "b8b6c0641e625f5d95514217bd8af212663cf17619235d209bfda4706bcbf499",
+      "gzipBytes": 4134,
+      "gzipSHA256": "37b08b19430218f0e3b1946af4310f9f6a0fd3b6567afcc80c4a5353932bc6d8"
+    },
+    {
+      "path": "raw/original-run-faithful-ipad-matrix.py.gz",
+      "uncompressedPath": "original-run-faithful-ipad-matrix.py",
+      "bytes": 49298,
+      "sha256": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171",
+      "gzipBytes": 10908,
+      "gzipSHA256": "3761c0a1b4a8f9aa73e85dbe4f067dda97c8cee7cb2658a6419c4c99422b7ec8"
+    },
+    {
+      "path": "raw/parse-debug.stderr.log.gz",
+      "uncompressedPath": "parse-debug.stderr.log",
+      "bytes": 163,
+      "sha256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153",
+      "gzipBytes": 138,
+      "gzipSHA256": "0accb7414d1b283247df2941affbb7d14666e47fa2f56707573d81bff21f86e3"
+    },
+    {
+      "path": "raw/parse-debug.stdout.log.gz",
+      "uncompressedPath": "parse-debug.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipBytes": 20,
+      "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/parse-release.stderr.log.gz",
+      "uncompressedPath": "parse-release.stderr.log",
+      "bytes": 163,
+      "sha256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153",
+      "gzipBytes": 138,
+      "gzipSHA256": "0accb7414d1b283247df2941affbb7d14666e47fa2f56707573d81bff21f86e3"
+    },
+    {
+      "path": "raw/parse-release.stdout.log.gz",
+      "uncompressedPath": "parse-release.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipBytes": 20,
+      "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/source-validation-attempt01/parse-debug.stderr.log.gz",
+      "uncompressedPath": "source-validation-attempt01/parse-debug.stderr.log",
+      "bytes": 163,
+      "sha256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153",
+      "gzipBytes": 138,
+      "gzipSHA256": "0accb7414d1b283247df2941affbb7d14666e47fa2f56707573d81bff21f86e3"
+    },
+    {
+      "path": "raw/source-validation-attempt01/parse-debug.stdout.log.gz",
+      "uncompressedPath": "source-validation-attempt01/parse-debug.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipBytes": 20,
+      "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/source-validation-attempt01/parse-release.stderr.log.gz",
+      "uncompressedPath": "source-validation-attempt01/parse-release.stderr.log",
+      "bytes": 163,
+      "sha256": "e2878126c5fc3f3fcf0b97526a3fda8399e3c882bddf18b3e74a6f5bf5657153",
+      "gzipBytes": 138,
+      "gzipSHA256": "0accb7414d1b283247df2941affbb7d14666e47fa2f56707573d81bff21f86e3"
+    },
+    {
+      "path": "raw/source-validation-attempt01/parse-release.stdout.log.gz",
+      "uncompressedPath": "source-validation-attempt01/parse-release.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipBytes": 20,
+      "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "raw/source-validation-attempt01/SOURCE_PRESERVATION.json.gz",
+      "uncompressedPath": "source-validation-attempt01/SOURCE_PRESERVATION.json",
+      "bytes": 3261,
+      "sha256": "fce4794de62f0c27070b6da9bf3dae57a2c4ae02ac4e80adba3b49263aa35d9b",
+      "gzipBytes": 1083,
+      "gzipSHA256": "baabfd414e96647d667f8bc7ed7db791b6a3b1e3123446888d01711b397c3a42"
+    },
+    {
+      "path": "raw/source-validation-attempt01/SYNTAX_PARSE.json.gz",
+      "uncompressedPath": "source-validation-attempt01/SYNTAX_PARSE.json",
+      "bytes": 2836,
+      "sha256": "303eed524c25afa9b245686f9595a5b4f9cf4a7d2a6c225b94e8e2b92e6d462b",
+      "gzipBytes": 911,
+      "gzipSHA256": "c877394e6b8f45b019fd204d39f2670fc460581c5679fd4b6eb807bcf189203c"
+    },
+    {
+      "path": "raw/SOURCE_PRESERVATION.json.gz",
+      "uncompressedPath": "SOURCE_PRESERVATION.json",
+      "bytes": 3261,
+      "sha256": "3653af1d891aa3750cb542a941137e9e0328026fcf55de4fa4b214e26ebe6914",
+      "gzipBytes": 1080,
+      "gzipSHA256": "d70781492b339895ea3ca1f497bfeb411f6b913d9a9b0511453fe25289763e88"
+    },
+    {
+      "path": "raw/SYNTAX_PARSE.json.gz",
+      "uncompressedPath": "SYNTAX_PARSE.json",
+      "bytes": 2836,
+      "sha256": "ec2fb60aa05420c720ea7597a00450cb0316cb3c40d34b5da210502bba97b3f7",
+      "gzipBytes": 910,
+      "gzipSHA256": "1bf9dbdf42cf6b1f8e7f89baa13622511816241091f2a8f7ff67fd1d4d7b6cbe"
+    }
+  ]
+}

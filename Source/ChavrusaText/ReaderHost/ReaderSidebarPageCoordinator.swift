@@ -104,8 +104,14 @@ struct Exact9401ViewerToolbar: ViewModifier {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
+                        #if DEBUG
+                        LibraryCommandPaletteEscapeObservation.recordHost(.viewerOpenEnter, presented: isPresented)
+                        #endif
                         sidebar?.navigationChrome.reveal()
                         isPresented = true
+                        #if DEBUG
+                        LibraryCommandPaletteEscapeObservation.recordHost(.viewerOpenReturned, presented: isPresented)
+                        #endif
                     } label: {
                         Label("חיפוש מהיר בספרייה", systemImage: "magnifyingglass")
                     }
@@ -127,7 +133,15 @@ struct Exact9401ViewerToolbar: ViewModifier {
                         Color.black.opacity(0.13)
                             .ignoresSafeArea()
                             .onTapGesture { isPresented = false }
-                        LibraryCommandPaletteAdapter(manager: manager) { isPresented = false }
+                        LibraryCommandPaletteAdapter(manager: manager) {
+                            #if DEBUG
+                            LibraryCommandPaletteEscapeObservation.recordHost(.viewerCloseEnter, presented: isPresented)
+                            #endif
+                            isPresented = false
+                            #if DEBUG
+                            LibraryCommandPaletteEscapeObservation.recordHost(.viewerCloseReturned, presented: isPresented)
+                            #endif
+                        }
                             .gelatinMotionOnly()
                             .frame(maxWidth: min(CGFloat(690), max(0, geometry.size.width - 30)))
                             .padding(.top, 6)
@@ -140,6 +154,11 @@ struct Exact9401ViewerToolbar: ViewModifier {
                     StudyProfileManagementView(workspace: workspace, manager: manager)
                 }
             }
+            #if DEBUG
+            .onChange(of: isPresented) { _, presented in
+                LibraryCommandPaletteEscapeObservation.recordHost(.viewerStateChanged, presented: presented)
+            }
+            #endif
             .onChange(of: workspace?.selection?.profileID) { _, _ in isPresented = false }
             .onChange(of: sidebar?.overview.requestID) { _, id in
                 if id != nil { isPresented = false; showsProfiles = false }
