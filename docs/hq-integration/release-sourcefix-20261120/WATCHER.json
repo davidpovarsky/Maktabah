@@ -1,0 +1,9 @@
+{
+  "run_id": 44665679661,
+  "exact_checkout": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+  "application_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "sole_watcher_job": "job_084f2b216627",
+  "required_ui_cases": 96,
+  "required_separate_oracles": 2,
+  "executed_at_dispatch": 0
+}
