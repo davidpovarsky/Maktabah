@@ -1,0 +1,125 @@
+{
+  "application_and_test_source": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+  "prior_application_pin": "5d8ef991554b01ba6bf3d39222c5ef6cc00a264b",
+  "application_trees": {
+    "Source": "792d71b9f4c3029e8da8854df1d1c47fec010f77",
+    "Vendor": "fd589175514256438eb1a72a0d2efcd5284c247c",
+    "Maktabah.xcodeproj": "1175aa91ffff58b465c635926ba3eebe9a80ae53"
+  },
+  "test_tree": "11c88a7c4bf7c4f01a85ba6e7ca30cc899a5dbd5",
+  "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "native_selection": {
+    "count": 88,
+    "expected_per_device": {
+      "ipad11": 70,
+      "iphone": 18
+    },
+    "groups": {
+      "11": 7,
+      "11-search": 22,
+      "11-reader": 34,
+      "11-sidebar": 5,
+      "11-window": 2,
+      "phone": 18
+    },
+    "executed": 0,
+    "status": "NOT_RUN"
+  },
+  "release_selection": [
+    {
+      "id": "ipad11-native",
+      "ui_count": 54,
+      "oracle_count": 1
+    },
+    {
+      "id": "ipad13-native",
+      "ui_count": 34,
+      "oracle_count": 1
+    },
+    {
+      "id": "ipad13-largest-text",
+      "ui_count": 1,
+      "oracle_count": 0
+    },
+    {
+      "id": "iphone-native",
+      "ui_count": 6,
+      "oracle_count": 0
+    },
+    {
+      "id": "ipad13-production-release",
+      "ui_count": 1,
+      "oracle_count": 0
+    }
+  ],
+  "portable_package_evidence": {
+    "tested_source": "0bc6be41f03855412d7dd24ee72608a7824fb5a7",
+    "counts": {
+      "Core": 117,
+      "UIRouting": 99,
+      "NativeRoutingHost": 127
+    },
+    "new_executions": 0,
+    "unchanged_input_trees": [
+      {
+        "path": "Source/Otzaria/Actions",
+        "tested_git_tree": "dea7144c42bbd59b13aec2899954c253947c9274",
+        "frozen_git_tree": "dea7144c42bbd59b13aec2899954c253947c9274",
+        "identical": true
+      },
+      {
+        "path": "Source/Otzaria/UIRouting",
+        "tested_git_tree": "9c25ca5c7a78676497b4cde7159a22c92bc9f88b",
+        "frozen_git_tree": "9c25ca5c7a78676497b4cde7159a22c92bc9f88b",
+        "identical": true
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Sources",
+        "tested_git_tree": "c541afe51601d87f903550d0f44f2f2cd8454fa2",
+        "frozen_git_tree": "c541afe51601d87f903550d0f44f2f2cd8454fa2",
+        "identical": true
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Tests",
+        "tested_git_tree": "5d736dfda106e4ef3cc2e2eb9e46b1a10fff9050",
+        "frozen_git_tree": "5d736dfda106e4ef3cc2e2eb9e46b1a10fff9050",
+        "identical": true
+      }
+    ],
+    "host_package_and_lockfile_unchanged": true
+  },
+  "other_actual_portable_results": {
+    "workspace": 89,
+    "note_editor_ownership": 15,
+    "feature_off_lifecycle_assertions": 18,
+    "sqlite_full_source_cases": 26,
+    "v32_seed_regression": 3,
+    "v32_evidence_gate_controls": 15,
+    "reader_launch_contract_runtime_checks": 12
+  },
+  "source_review": {
+    "color": "root and hanlin_api_integration",
+    "feature_off": "root and asana_audit",
+    "notes_lifecycle": "root and github_native_audit"
+  },
+  "limits": [
+    "Portable result counts are heterogeneous; do not sum them as one XCTest suite.",
+    "No new Apple SDK, app build, Native UI, production installer or physical acceptance is claimed.",
+    "Exact dispatch checkout is a later metadata-only commit retaining these Source/Vendor/project/test trees."
+  ],
+  "pre_dispatch_failure": {
+    "source": "6f3a18aa7551c13c4484ddae0b7ea0fef48e339b",
+    "cause": "Shared launchReader signature was incompatible with original R27 override; found before dispatch, corrected through a required-tier overload retaining the original API and R27 file.",
+    "native_runs_dispatched_on_defect": 0,
+    "original_r27_file_unchanged": true
+  },
+  "release_selector_gate": "KNOWN_STALE_SELECTORS_UNDER_REPAIR; full Release not dispatched",
+  "prepared_declaration_validation": {
+    "status": "DECLARATIONS_MATCH",
+    "unique_methods": 138,
+    "native_cases": 88,
+    "release_ui_configured_executions": 96,
+    "separate_prototype_oracles": 2,
+    "native_executed": 0
+  }
+}

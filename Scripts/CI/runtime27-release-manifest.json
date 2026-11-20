@@ -62,7 +62,8 @@
         "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
         "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
         "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
-        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR"
+        "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+        "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
       ],
       "required_oracle_cases": [
         "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
@@ -105,7 +106,8 @@
         "FaithfulReaderUIAcceptanceTests/testNewEmptyGroupAndRelaunchPersistence",
         "FaithfulReaderUIAcceptanceTests/testHistoryRemainsGlobalAndIsAbsentFromBookSearch",
         "FaithfulReaderUIAcceptanceTests/testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch",
-        "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement"
+        "FaithfulReaderUIAcceptanceTests/testThreeProfilesWithThreeGroupsThroughNativeManagement",
+        "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
       ],
       "required_oracle_cases": [
         "SafariPrototypeReferenceTests/testOriginalCompactAndExpandedToolbarOracle"
@@ -163,5 +165,15 @@
         "state": "PREPARED_NOT_RUN; needs Q-selected target registration and independently derived fixture category paths before execution"
       }
     }
-  ]
+  ],
+  "profile_color_continuation_20261120": {
+    "source": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
+    "new_case": "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "configurations": [
+      "ipad11-native",
+      "ipad13-native"
+    ],
+    "native_status": "NOT_RUN",
+    "all_previous_ui_and_oracle_cases_preserved": true
+  }
 }

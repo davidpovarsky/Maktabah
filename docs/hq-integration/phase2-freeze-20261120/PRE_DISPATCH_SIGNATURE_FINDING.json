@@ -1,0 +1,13 @@
+{
+  "source": "6f3a18aa7551c13c4484ddae0b7ea0fef48e339b",
+  "utc": "2026-11-20T00:34:14.533158+00:00",
+  "status": "BLOCKED_BEFORE_DISPATCH",
+  "cause": "FaithfulReaderUIBase.launchReader signature extension invalidates existing R27NativeUIBase override; syntax parsing does not typecheck overrides. Preserve old signature with an explicit-tier overload.",
+  "new_ci_runs_dispatched": 0,
+  "only_integrator_created_metadata_restored": [
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    "Scripts/CI/hq-v32-prebuilt-native.py",
+    "Scripts/CI/runtime27-release-manifest.json",
+    "docs/hq-integration/runtime27/R27_CASES.json"
+  ]
+}
