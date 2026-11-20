@@ -1,0 +1,80 @@
+{
+  "remaining_shallow": [
+    "dc72ca81738620e0a671b5f2fd0b3a3f51614785"
+  ],
+  "boundary_details": [
+    {
+      "sha": "dc72ca81738620e0a671b5f2fd0b3a3f51614785",
+      "metadata": {
+        "command": [
+          "git",
+          "show",
+          "-s",
+          "--format=%H%n%P%n%aI%n%s",
+          "dc72ca81738620e0a671b5f2fd0b3a3f51614785"
+        ],
+        "exit": 0,
+        "stdout": "dc72ca81738620e0a671b5f2fd0b3a3f51614785\n\n2026-10-19T01:56:28+07:00\nfix(ios): correct AppDelegate launch signature and validate archives (#118)\n",
+        "stderr": ""
+      },
+      "ancestor_of_target": {
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "dc72ca81738620e0a671b5f2fd0b3a3f51614785",
+          "0f5111e8f8e379e17da558ddbe2aab5214ac0315"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "ancestor_of_upstream": {
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "dc72ca81738620e0a671b5f2fd0b3a3f51614785",
+          "d46af139b3a265399c16d87f5923acd8e3444024"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    }
+  ],
+  "replace_refs": {
+    "command": [
+      "git",
+      "replace",
+      "-l"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "ancestry_path_unique_count": {
+    "command": [
+      "git",
+      "rev-list",
+      "--ancestry-path",
+      "--count",
+      "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4..0f5111e8f8e379e17da558ddbe2aab5214ac0315"
+    ],
+    "exit": 0,
+    "stdout": "884\n",
+    "stderr": ""
+  },
+  "oldest_local_fork_only": {
+    "command": [
+      "git",
+      "log",
+      "--reverse",
+      "--format=%H %aI %s",
+      "d46af139b3a265399c16d87f5923acd8e3444024..0f5111e8f8e379e17da558ddbe2aab5214ac0315"
+    ],
+    "exit": 0,
+    "stdout": "c7b9a869db49eb38e69cd93737ec9617a76faef0 2026-02-06T07:06:48+07:00 Initial commit\ned27f494440d784943c5a59eee825e0e27c74eb2 2026-02-08T14:48:18+07:00 fitur: pembaruan kitab\n75b7bdc9228e29eb753498c9bd667d8c8e92af94 2026-02-11T13:56:20+07:00 fix: ensure robust book retrieval using getBook()\nae74bedcca3574c81cdc0be360c27ad98b38d208 2026-02-11T14:04:31+07:00 fix: enable immediate interaction for newly added annotations\nda8fc437d2e75b1f623731d535b19d0e1e4f4184 2026-02-11T14:22:03+07:00 fix: ensure part state is updated\nbb37c80697f859a5b1e9d4a3bc90c8d1cc60a2c1 2026-02-11T14:07:27+07:00 fix: ensure page slider reflects current page on initialization\ne412c7b4d93bd253bf7253ec985177ba8993e5c7 2026-02-11T14:20:38+07:00 fix: separate protocols for Narrator selection and tableView selection\n4d045371b38057c5dd98c17482585cdd84cbba90 2026-02-11T14:33:45+07:00 fix: allow searching regardless of sidebar expansion state\n989138a609c4faa8a84f7861f5df5b58e6308401 2026-02-11T14:39:29+07:00 fix: synchronize search state across different UI components\n4b5783e17504116f59b2d6f193a7c3695ac728c3 2026-02-11T14:44:17+07:00 fix: stabilize search state and refine savedResults handling\ndaa1c55638c2178f66392fa9fca83ac116757b1e 2026-02-11T14:46:19+07:00 enable toolbar separator only on macOS Tahoe+\n6137375d218821597f5c957e10c65ef13d79828b 2026-02-11T15:40:21+07:00 bump version to 1.3.1\n7959f974cfac839b71e8752bfc73216ce39b86a6 2026-02-18T19:30:48+07:00 update release.yml to instal custom font\nd4429704e6fa6123d5aea6ea350e74136e60eb17 2026-02-14T11:09:26+07:00 fix: rtl layout\nb2936a438769be5aaaab429b4a614cc91b84d5f6 2026-02-14T11:14:35+07:00 fix translation, new update method\nbb26808d6b624352e6f2f7729dafa687d52771b0 2026-02-14T17:27:25+07:00 fix: toggle diacritics, annotations folder\n8c98cc4140e1c8272f4e1ca6f3b8247973e5e179 2026-02-18T15:17:52+07:00 feat: consolidate splitview architecture and add state restoration\nde900385698dac2ae3d84c8cba8a4747a433d6f8 2026-02-18T18:00:06+07:00 feat: change annotation color menu to horizontal on IbarotTextView\nbbadc08848ac9895641f5086ad1d934da82f113c 2026-02-19T19:27:51+07:00 docs: add GPL v3 license and initial README\n27c62b0f171282a2cc2e6bb1ab6270a44cbbbf78 2026-02-21T23:38:54+07:00 fix: archive cache consistency after library changes\n48bdd712fe4061aa5f92e666f8e822aeb0b952f8 2026-02-21T23:41:44+07:00 fix: make a fresh state after open a new window/tabs\nb092f92dfd194c2ab05c91b1b8d3ad809499917a 2026-02-22T00:42:23+07:00 refactor(bookupdate): updating book with transaction\n01c6a132a40a2c3c67e17963e2efb1c8463f68bf 2026-02-22T00:43:16+07:00 fix(bookupdate): book version not updated after update complete\n291ed2c49ea606a50e91794aa4441f9e3c44e98d 2026-02-22T00:46:35+07:00 fix(bookupdate): non-versioned book as new book\n7029720215a18da6c33070c948255a791d387fc0 2026-02-22T01:28:39+07:00 feat(bookupdate): parallelize download stage with realtime downloaded status",
+    "stderr": ""
+  }
+}

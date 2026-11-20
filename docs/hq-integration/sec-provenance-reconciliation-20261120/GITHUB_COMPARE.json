@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-11-20T09:10:48.697978+00:00",
+  "command": [
+    "gh",
+    "api",
+    "repos/davidpovarsky/Maktabah/compare/d46af139b3a265399c16d87f5923acd8e3444024...0f5111e8f8e379e17da558ddbe2aab5214ac0315?per_page=1"
+  ],
+  "exit": 0,
+  "stderr": "",
+  "raw_bytes": 1303805,
+  "raw_sha256": "6b5844d1241eefef487ec1a32718b96a1c4ead7738d2c824d2a73dca612085ce",
+  "comparison": {
+    "html_url": "https://github.com/davidpovarsky/Maktabah/compare/d46af139b3a265399c16d87f5923acd8e3444024...0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+    "status": "diverged",
+    "ahead_by": 1387,
+    "behind_by": 22,
+    "total_commits": 1387
+  },
+  "base_commit": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "merge_base_commit": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "returned_commits": [
+    "aeda66f99d3110702b496cd950b76c31340156e1"
+  ]
+}

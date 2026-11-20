@@ -1,0 +1,373 @@
+{
+  "expected_historical_sha256": "d4f5c45680c8cf72001a0a0d83b5e62a97368dbc68b6ea229985028cf86ae66a",
+  "current": [
+    {
+      "label": "current_git_lf",
+      "bytes": 3151,
+      "sha256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239",
+      "crlf": 0,
+      "lf": 76,
+      "utf8_bom": false,
+      "matches": false
+    },
+    {
+      "label": "own_worktree_raw",
+      "bytes": 3227,
+      "sha256": "e113865f53f15903d2911a08cb4622849f867ba369bbf89553bd4a9a89225451",
+      "crlf": 76,
+      "lf": 76,
+      "utf8_bom": false,
+      "matches": false
+    }
+  ],
+  "commits_checked": 12,
+  "bound": 160,
+  "variants": [
+    {
+      "revision": "d786ea1dfb0121316cf11373c2c542e9de0300b9",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 3151,
+      "sha256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239"
+    },
+    {
+      "revision": "d786ea1dfb0121316cf11373c2c542e9de0300b9",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 3227,
+      "sha256": "e113865f53f15903d2911a08cb4622849f867ba369bbf89553bd4a9a89225451"
+    },
+    {
+      "revision": "d786ea1dfb0121316cf11373c2c542e9de0300b9",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 3154,
+      "sha256": "05363f1adb80e4f5b82e421156bd46ac09437794de8e3f6f03fcc871eb6fc189"
+    },
+    {
+      "revision": "d786ea1dfb0121316cf11373c2c542e9de0300b9",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 3230,
+      "sha256": "5538be8f6dc18141278bfa0859cc27d2d735c8deb0910bf35ec4df578900e169"
+    },
+    {
+      "revision": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 3151,
+      "sha256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239"
+    },
+    {
+      "revision": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 3227,
+      "sha256": "e113865f53f15903d2911a08cb4622849f867ba369bbf89553bd4a9a89225451"
+    },
+    {
+      "revision": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 3154,
+      "sha256": "05363f1adb80e4f5b82e421156bd46ac09437794de8e3f6f03fcc871eb6fc189"
+    },
+    {
+      "revision": "b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 3230,
+      "sha256": "5538be8f6dc18141278bfa0859cc27d2d735c8deb0910bf35ec4df578900e169"
+    },
+    {
+      "revision": "914fa87f5b93e2667571001cd0c762ef58589d88",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 3664,
+      "sha256": "db3c527cf6748a4ebf01ffa81a45fdf77cd0afdd52aaa8508460b5feb3c18782"
+    },
+    {
+      "revision": "914fa87f5b93e2667571001cd0c762ef58589d88",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 3753,
+      "sha256": "6ab98af5e60fae8841c30325c2f824737879bd6786c46c6573b8fc24c3128471"
+    },
+    {
+      "revision": "914fa87f5b93e2667571001cd0c762ef58589d88",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 3667,
+      "sha256": "01b5c26ef95278dbc6c5e72d739b35621829be619c98af5638b052e94e28ffe0"
+    },
+    {
+      "revision": "914fa87f5b93e2667571001cd0c762ef58589d88",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 3756,
+      "sha256": "434cfa2473c3dd81953de2fe61b1742764533b10b2dccb344474652b50f63cef"
+    },
+    {
+      "revision": "83c13b412e8c38ec354b112d699d53c83d2352d8",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 3151,
+      "sha256": "322159512454716200aed3329c435d000018b698ed25ee230da61b710443c239"
+    },
+    {
+      "revision": "83c13b412e8c38ec354b112d699d53c83d2352d8",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 3227,
+      "sha256": "e113865f53f15903d2911a08cb4622849f867ba369bbf89553bd4a9a89225451"
+    },
+    {
+      "revision": "83c13b412e8c38ec354b112d699d53c83d2352d8",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 3154,
+      "sha256": "05363f1adb80e4f5b82e421156bd46ac09437794de8e3f6f03fcc871eb6fc189"
+    },
+    {
+      "revision": "83c13b412e8c38ec354b112d699d53c83d2352d8",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 3230,
+      "sha256": "5538be8f6dc18141278bfa0859cc27d2d735c8deb0910bf35ec4df578900e169"
+    },
+    {
+      "revision": "dd7b1eb5119544ed28c12d1ea4a3653dddce9842",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 6178,
+      "sha256": "2f7b6765c4eb500f53b74a7261c372ad3c9d738d40f104705f4f02c938fdb0e2"
+    },
+    {
+      "revision": "dd7b1eb5119544ed28c12d1ea4a3653dddce9842",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 6343,
+      "sha256": "d4f5c45680c8cf72001a0a0d83b5e62a97368dbc68b6ea229985028cf86ae66a"
+    },
+    {
+      "revision": "dd7b1eb5119544ed28c12d1ea4a3653dddce9842",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 6181,
+      "sha256": "107dff94c852eab5449ad0335ac66d858ea10a66ee24f94ccada792d2ef7e398"
+    },
+    {
+      "revision": "dd7b1eb5119544ed28c12d1ea4a3653dddce9842",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 6346,
+      "sha256": "710ab53c12691e70dba581fa9236b38668c5c326d99d0be93464385dca94fa53"
+    },
+    {
+      "revision": "e873d13c7dd334ab7d9f4056a0f32ea1fb30f6ce",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 3171,
+      "sha256": "fb12e6a12a92ac72b628332664818d43c5e5dc1c1a296ee8051beaababea432f"
+    },
+    {
+      "revision": "e873d13c7dd334ab7d9f4056a0f32ea1fb30f6ce",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 3248,
+      "sha256": "c4f31f2f28b91da350e581191c6261c2ad2731151801ad71cb4d40a38d767505"
+    },
+    {
+      "revision": "e873d13c7dd334ab7d9f4056a0f32ea1fb30f6ce",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 3174,
+      "sha256": "7fdbbb9d7e2e52622231ccc8544e4995cca27cbcf6283585dce432c8ccd6842d"
+    },
+    {
+      "revision": "e873d13c7dd334ab7d9f4056a0f32ea1fb30f6ce",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 3251,
+      "sha256": "fa0488d138045232d3806e902833ddbda52d4ab1fa8ed5d6b343a0ab93aefc1d"
+    },
+    {
+      "revision": "661d53e0541779ae6c9ed7526cae5b1f273c708d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 5889,
+      "sha256": "4821a4e833e95cd5f57c5a6fc69c3acde26993cecb165dae07aad1d28672a132"
+    },
+    {
+      "revision": "661d53e0541779ae6c9ed7526cae5b1f273c708d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 6046,
+      "sha256": "6e7daa0f95f77b6a24e9b67f2f2025ba2b0c85b0f8e62b24c626498b58369a5e"
+    },
+    {
+      "revision": "661d53e0541779ae6c9ed7526cae5b1f273c708d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 5892,
+      "sha256": "0099d340e98b1c73c2977f92e0fabc23c45881f2bd119dfd9048f3894d31edfa"
+    },
+    {
+      "revision": "661d53e0541779ae6c9ed7526cae5b1f273c708d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 6049,
+      "sha256": "d0b052f39d81255ec9c31136cc30b1ebac2ca9386415d5882ea6f0359a47f992"
+    },
+    {
+      "revision": "e815a6da7df54dccafbd4efcec96a7a34e759175",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 5382,
+      "sha256": "e8b0fe882fb7ff666c98cedcc88b4d602886e98526ac62d8d5c9d820448af5dc"
+    },
+    {
+      "revision": "e815a6da7df54dccafbd4efcec96a7a34e759175",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 5529,
+      "sha256": "0226bf46a4346acbefc59cbe3618301ab096a05b7b213560d6230c35311b23ba"
+    },
+    {
+      "revision": "e815a6da7df54dccafbd4efcec96a7a34e759175",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 5385,
+      "sha256": "2d6f9546698ff058551e758efd431984808834e70047df43c49c5e3fc635b2ff"
+    },
+    {
+      "revision": "e815a6da7df54dccafbd4efcec96a7a34e759175",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 5532,
+      "sha256": "533d688959a993c61d32d4afd8c836f1c7f7c2c08e4a1e9b1c8bbdf6f32775f2"
+    },
+    {
+      "revision": "12afde1b2d6d1c6ba58fd706db308119cc8c06da",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 3091,
+      "sha256": "051756fa6d1a24a38b2c7a8fe4d5bcdd47754f2d2146acef5d6eecd01367e257"
+    },
+    {
+      "revision": "12afde1b2d6d1c6ba58fd706db308119cc8c06da",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 3163,
+      "sha256": "9aa75cc5bf6d61c8813f837ab2f142167bf1de545977c161a9a36c2f22b13e69"
+    },
+    {
+      "revision": "12afde1b2d6d1c6ba58fd706db308119cc8c06da",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 3094,
+      "sha256": "380ad43f96a3182cb315bd315ccbd3b657762f918719aca59c2600ae2be156a2"
+    },
+    {
+      "revision": "12afde1b2d6d1c6ba58fd706db308119cc8c06da",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 3166,
+      "sha256": "b07aa052103f05d5ad389c6ae25612a9275170f04c12d749c72842e388adbc80"
+    },
+    {
+      "revision": "5764a9548760400ff16a9e7de17529c0a0389e4d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 3081,
+      "sha256": "437222a525c37c3b77222e9e1cef23d9c76591b448d1a9cea06efdbab1be1ae2"
+    },
+    {
+      "revision": "5764a9548760400ff16a9e7de17529c0a0389e4d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 3153,
+      "sha256": "87fe177c476341885741d322bb0fbd1ecb0addd727e4f00d82d4f51a72b9a2ad"
+    },
+    {
+      "revision": "5764a9548760400ff16a9e7de17529c0a0389e4d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 3084,
+      "sha256": "87726d8dd5083e13b80f420e97e32ba2f4e8592728d26ba89ff0b37bb38a6f37"
+    },
+    {
+      "revision": "5764a9548760400ff16a9e7de17529c0a0389e4d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 3156,
+      "sha256": "22897d6275d7e364d38d5f4759641f5157dad465a4eeb32c11db35e9c13d9001"
+    },
+    {
+      "revision": "f06e06c3e4c03be45b1adcd4bb530ecde102907d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 2778,
+      "sha256": "a70abfd8d445e983eaa58cf25d22ae0476236d139dcd2a01a91ab630c8958356"
+    },
+    {
+      "revision": "f06e06c3e4c03be45b1adcd4bb530ecde102907d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 2846,
+      "sha256": "e3fce50628b81eca03bda79988aa6e27cb27dcaa1a7984802bb69a38c8addeb2"
+    },
+    {
+      "revision": "f06e06c3e4c03be45b1adcd4bb530ecde102907d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 2781,
+      "sha256": "4ab7838e02555b00cdd924bc7e6079352f1ca61982de5603ec3806411bb497e8"
+    },
+    {
+      "revision": "f06e06c3e4c03be45b1adcd4bb530ecde102907d",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 2849,
+      "sha256": "43b12f725928fbed7bf0ea11a94899488789078cf06e3d879e302892283cefea"
+    },
+    {
+      "revision": "2a46d52c90ff983cf9112fdc9e799ad4aba1b67e",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "git_bytes",
+      "bytes": 2915,
+      "sha256": "d32c3ba7b6f2365fdb5c204aec41c339ae7e43b05fc3a6b915a31c5b798c1288"
+    },
+    {
+      "revision": "2a46d52c90ff983cf9112fdc9e799ad4aba1b67e",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 2986,
+      "sha256": "f5d8ed4470140334bdf7b333057127ece199b0fdcc36fac4b3ad927fa5e3e2ab"
+    },
+    {
+      "revision": "2a46d52c90ff983cf9112fdc9e799ad4aba1b67e",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_git",
+      "bytes": 2918,
+      "sha256": "96d27d847eb6173a68c2065c91a4f59bd5a1d11eff9fa201578e050f136744bb"
+    },
+    {
+      "revision": "2a46d52c90ff983cf9112fdc9e799ad4aba1b67e",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "utf8_bom_crlf",
+      "bytes": 2989,
+      "sha256": "a230b071f413bff7bf128b25c9ebf6f56d0b81178b6d17cb668bb0acf6153e0f"
+    }
+  ],
+  "matches": [
+    {
+      "revision": "dd7b1eb5119544ed28c12d1ea4a3653dddce9842",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "mode": "lf_to_crlf",
+      "bytes": 6343,
+      "sha256": "d4f5c45680c8cf72001a0a0d83b5e62a97368dbc68b6ea229985028cf86ae66a"
+    }
+  ],
+  "rename_history_exit": 0
+}

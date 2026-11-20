@@ -1,0 +1,107 @@
+{
+  "observed_at": "2026-11-20T09:14:59.009563+00:00",
+  "target": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "upstream": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "merge-base",
+        "--all",
+        "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+        "d46af139b3a265399c16d87f5923acd8e3444024"
+      ],
+      "exit": 0,
+      "stdout": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+        "0f5111e8f8e379e17da558ddbe2aab5214ac0315"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+        "d46af139b3a265399c16d87f5923acd8e3444024"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "d46af139b3a265399c16d87f5923acd8e3444024",
+        "0f5111e8f8e379e17da558ddbe2aab5214ac0315"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-list",
+        "--left-right",
+        "--count",
+        "d46af139b3a265399c16d87f5923acd8e3444024...0f5111e8f8e379e17da558ddbe2aab5214ac0315"
+      ],
+      "exit": 0,
+      "stdout": "22\t1684\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "show",
+        "-s",
+        "--format=%H%n%P%n%aI%n%s",
+        "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4"
+      ],
+      "exit": 0,
+      "stdout": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4\n0e44f135005dc851297633ab0b1f4da4cd4f4ca6\n2026-10-20T07:56:21+07:00\ndocs: sync documentation post-v4.2 (#127)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "0f5111e8f8e379e17da558ddbe2aab5214ac0315:Source",
+        "0f5111e8f8e379e17da558ddbe2aab5214ac0315:Vendor",
+        "0f5111e8f8e379e17da558ddbe2aab5214ac0315:project.pbxproj"
+      ],
+      "exit": 128,
+      "stdout": "8c0c17c9df352161a025eb66a7a16114a32d41a3\n91a62524a787c3c0317db65ffda8c3d21dcb9497\n0f5111e8f8e379e17da558ddbe2aab5214ac0315:project.pbxproj\n",
+      "stderr": "fatal: path 'project.pbxproj' does not exist in '0f5111e8f8e379e17da558ddbe2aab5214ac0315'\n"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "0f5111e8f8e379e17da558ddbe2aab5214ac0315:Source",
+        "0f5111e8f8e379e17da558ddbe2aab5214ac0315:Vendor",
+        "0f5111e8f8e379e17da558ddbe2aab5214ac0315:Maktabah.xcodeproj/project.pbxproj"
+      ],
+      "exit": 0,
+      "stdout": "8c0c17c9df352161a025eb66a7a16114a32d41a3\n91a62524a787c3c0317db65ffda8c3d21dcb9497\n2741615644741d39b0b19c6146f9c459323dabab\n",
+      "stderr": ""
+    }
+  ],
+  "project_paths": [
+    "Maktabah.xcodeproj/project.pbxproj"
+  ]
+}

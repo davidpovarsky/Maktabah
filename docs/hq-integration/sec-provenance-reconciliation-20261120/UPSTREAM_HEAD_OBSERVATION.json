@@ -1,0 +1,12 @@
+{
+  "command": [
+    "git",
+    "ls-remote",
+    "--symref",
+    "upstream",
+    "HEAD"
+  ],
+  "exit": 0,
+  "stdout": "ref: refs/heads/main\tHEAD\nd46af139b3a265399c16d87f5923acd8e3444024\tHEAD\n",
+  "stderr": ""
+}

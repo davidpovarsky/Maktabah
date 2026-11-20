@@ -1,0 +1,36 @@
+d786ea1dfb0121316cf11373c2c542e9de0300b9
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+b9077d4a5f91ca5b4d1e1c2bda1f235a7791d78e
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+914fa87f5b93e2667571001cd0c762ef58589d88
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+83c13b412e8c38ec354b112d699d53c83d2352d8
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+dd7b1eb5119544ed28c12d1ea4a3653dddce9842
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+e873d13c7dd334ab7d9f4056a0f32ea1fb30f6ce
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+661d53e0541779ae6c9ed7526cae5b1f273c708d
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+e815a6da7df54dccafbd4efcec96a7a34e759175
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+12afde1b2d6d1c6ba58fd706db308119cc8c06da
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+5764a9548760400ff16a9e7de17529c0a0389e4d
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+f06e06c3e4c03be45b1adcd4bb530ecde102907d
+
+M	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
+2a46d52c90ff983cf9112fdc9e799ad4aba1b67e
+
+A	Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift

@@ -1,0 +1,29 @@
+{
+  "historical_manifest_revision": "dd7b1eb5119544ed28c12d1ea4a3653dddce9842",
+  "historical_manifest_sha256": "ed6f11b2c09690e25e7eeeb55e1f2b8fe4ee3360f4c4348310ea18436c1f7600",
+  "historical_row": {
+    "repo": "Owner Safari prototype",
+    "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+    "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered with the documented optional query binding and iOS native cancel-key adaptation. UIKit hosting background is clear/nonopaque so only the original rounded palette paints its material and shadow.",
+    "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+    "destinationSHA256": "d4f5c45680c8cf72001a0a0d83b5e62a97368dbc68b6ea229985028cf86ae66a"
+  },
+  "digest_introduction_history": [
+    "dd7b1eb5119544ed28c12d1ea4a3653dddce9842 2026-11-08T20:28:19+02:00 Anchor original palette to the actual toolbar and clear UIKit backing"
+  ],
+  "rename_or_copy_entries": [],
+  "addition_entries": [
+    "A\tSource/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+  ],
+  "source_ancestor_checks": {
+    "dd7b1eb5119544ed28c12d1ea4a3653dddce9842": {
+      "exit": 0,
+      "stderr": ""
+    },
+    "859fd664b0ce225d8e62ea806bc2907aaac9ba5b": {
+      "exit": 0,
+      "stderr": ""
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "historical_revision": "dd7b1eb5119544ed28c12d1ea4a3653dddce9842",
+  "blob": "c9aee7e586b096b81ccea6ac3c8e12471556063c",
+  "canonical_lf_sha256": "2f7b6765c4eb500f53b74a7261c372ad3c9d738d40f104705f4f02c938fdb0e2",
+  "canonical_lf_bytes": 6178,
+  "crlf_sha256": "d4f5c45680c8cf72001a0a0d83b5e62a97368dbc68b6ea229985028cf86ae66a",
+  "crlf_bytes": 6343,
+  "lf_count": 165,
+  "crlf_in_git": 0,
+  "commit": {
+    "command": [
+      "git",
+      "show",
+      "-s",
+      "--format=%H%n%P%n%aI%n%s",
+      "dd7b1eb5119544ed28c12d1ea4a3653dddce9842"
+    ],
+    "exit": 0,
+    "stdout": "dd7b1eb5119544ed28c12d1ea4a3653dddce9842\nc360179f3f3b988beaf50b5acb07cfa4dd077d43\n2026-11-08T20:28:19+02:00\nAnchor original palette to the actual toolbar and clear UIKit backing\n",
+    "stderr": ""
+  },
+  "historical_commit_is_ancestor": {
+    "command": [
+      "git",
+      "merge-base",
+      "--is-ancestor",
+      "dd7b1eb5119544ed28c12d1ea4a3653dddce9842",
+      "0f5111e8f8e379e17da558ddbe2aab5214ac0315"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "manifest_history": {
+    "command": [
+      "git",
+      "log",
+      "--all",
+      "-12",
+      "--format=%H %aI %s",
+      "--",
+      "docs/ipad-ui-rebuild/source-provenance.json"
+    ],
+    "exit": 0,
+    "stdout": "e1e4064bc6ae7c320ae5b83bee5fb0e0c8a36265 2026-11-09T21:23:32+02:00 Repair 10601 iPad surfaces and stage backend group transitions\n1b0641a7e9c1a743f05f46aa06c74e7658642265 2026-11-09T15:47:39+02:00 Fix experimental iPad inspector, themed chrome and backend group staging\n56a02eebd296f9ecb63e5c62b635af2e617b7881 2026-11-09T06:14:28+02:00 Present reader overview from its actual UIKit host context\n13fe48ca8836e912fbdc478ff0871c31ff7d670a 2026-11-09T05:10:49+02:00 Give the overview its own hosting accessibility graph and preserve semantic appearance\nfaadbf1b10a2ff6423a6d74186d2fa51b0c32551 2026-11-09T03:47:52+02:00 Size the native overview anchor and verify SwiftUI binding presentation\nf05b3f6cdaa596190a3099622ce86fdae3ddfe9c 2026-11-09T01:38:06+02:00 Keep the closed overview transparent to reader gestures and verify real overflow\n20bff505d3ee735d43201a35f4f9cd2e1fd56894 2026-11-09T00:02:12+02:00 Replace the overview sheet with the original browser context presentation\n0ed8f7ad6cebc5b0f5026ccc78414b96cfd9be92 2026-11-08T23:26:47+02:00 Hide the empty strip accessibility container and restore source drag transaction\n2fdb59277d0bd543d326e61ec6241c4ea25e08bf 2026-11-08T22:17:29+02:00 Retain source toolbar ideal width while accepting native constraints\ndd3dcf3a5b5ae7c07b9d9fd24a5096784af81007 2026-11-08T22:13:20+02:00 Apply the original reader theme to the loaded source tab strip\n2c5c35b07e191b1fbedd9a83daba1eb3748d66ae 2026-11-08T22:09:05+02:00 Fit the original toolbar inside native title hit-test bounds\ndd7b1eb5119544ed28c12d1ea4a3653dddce9842 2026-11-08T20:28:19+02:00 Anchor original palette to the actual toolbar and clear UIKit backing\n",
+    "stderr": ""
+  }
+}

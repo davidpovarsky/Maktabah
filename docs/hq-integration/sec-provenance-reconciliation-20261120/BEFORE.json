@@ -1,0 +1,85 @@
+{
+  "observed_at": "2026-11-20T09:09:46.442050+00:00",
+  "target": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "upstream_pin": "d46af139b3a265399c16d87f5923acd8e3444024",
+  "own_head": {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit": 0,
+    "stdout": "859fd664b0ce225d8e62ea806bc2907aaac9ba5b\n",
+    "stderr": ""
+  },
+  "status": {
+    "command": [
+      "git",
+      "status",
+      "--porcelain=v1"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "shallow_path": "C:\\Users\\DAVID\\Code\\Maktabah\\.git\\shallow",
+  "shallow_bytes": 41,
+  "shallow_sha256": "fc2b77e137e416af2c0d461b35428bf490a5f57db36e57e498000d636e3bb58f",
+  "shallow_count": 1,
+  "merge_base": {
+    "command": [
+      "git",
+      "merge-base",
+      "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "d46af139b3a265399c16d87f5923acd8e3444024"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "upstream_raw_commit": {
+    "command": [
+      "git",
+      "cat-file",
+      "-p",
+      "d46af139b3a265399c16d87f5923acd8e3444024"
+    ],
+    "exit": 0,
+    "stdout": "tree 2ee82dbafac771d763d2c96e08b56ab8095b8dd3\nparent 44fa15860d864634c8cffc5be61e302b9ce2f497\nauthor Ays <dev.kbcdrn@gmail.com> 1794452588 +0700\ncommitter GitHub <noreply@github.com> 1794452588 +0700\ngpgsig -----BEGIN PGP SIGNATURE-----\n \n wsFcBAABCAAQBQJq9SxsCRC1aQ7uu5UhlAAA1KEQAI/AbxD6qGvoQ9BOWyw2FJ8g\n vuqX0HqCFRzvO1uaNmZLY39RP3zuhRBRcw1hUB3i8nOkOr3WIR/k6a0hoxRUFOj+\n zQIhi3SmtDLiY6eYa04F6jJixAx0aZ3Xgj8DbGAHi/hSiJRmvF9NrITIZrBO2buh\n YaubAGmEsZ9MA8Rr2l9zIJRqcYHxt+SfREvXP2MAvWJ8/sX/Bgdkv77Imfgd8OHA\n FG1rlCS4ApA8gaw105H1Oz/3fHD+SVrNVMwdNccvA1dMi3DszyvZIOHPIzZ5vm+Y\n PTTMFRn1ykvz/CGGuqYToL7L272EbtCCeL/CgzUf2S+fQ3B1xwVr8hYytbrtgqB3\n z7zXCC8P+BKP8Zcl9kWQQmrtLHQiU+Sm5foxRr13BS5iO8rG/KgOSYw+MB8NfZBL\n 1pao0K8uQdGcBDNfCGMEftyIpM2x4Yz8JlGd8CP1O9y11G3b6achbuJSUmK/uTCt\n aIArDlEPc/5WTYT+gyHnzY3BRLsz+f8XSWnGsZ7HmCthsLa72HJhx54We1aXD6EZ\n FlOcV+JqnEN2k8Wj9biQxpIQdV3FnoY0h5SwWjG5+WUWl/rZjHz1RbgQTmqB3ZaS\n hEEbvcT84UrVa9fyAX5qPxUosIvUjLzyl2P9JEL14p8OnL9884k85fuvvMI6VSqn\n di/f//OGczYLgAwD80Mk\n =F5uH\n -----END PGP SIGNATURE-----\n \n\nchore: bump project version to 4.2.2 (#149)",
+    "stderr": ""
+  },
+  "attributes": {
+    "command": [
+      "git",
+      "check-attr",
+      "--all",
+      "--",
+      "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "core_autocrlf": {
+    "command": [
+      "git",
+      "config",
+      "--get",
+      "core.autocrlf"
+    ],
+    "exit": 0,
+    "stdout": "true\n",
+    "stderr": ""
+  },
+  "core_eol": {
+    "command": [
+      "git",
+      "config",
+      "--get",
+      "core.eol"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": ""
+  }
+}

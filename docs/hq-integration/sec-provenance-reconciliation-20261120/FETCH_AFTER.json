@@ -1,0 +1,68 @@
+{
+  "merge_base_all": {
+    "command": [
+      "git",
+      "merge-base",
+      "--all",
+      "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+      "d46af139b3a265399c16d87f5923acd8e3444024"
+    ],
+    "exit": 0,
+    "stdout": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4\n",
+    "stderr": ""
+  },
+  "shallow": {
+    "command": [
+      "git",
+      "rev-parse",
+      "--is-shallow-repository"
+    ],
+    "exit": 0,
+    "stdout": "true\n",
+    "stderr": ""
+  },
+  "shallow_file_exists": true,
+  "shallow_count": 1,
+  "shallow_sha256": "53da494ce7fac289d53a37630677cdbf65901a2aa1e9e1ef83bcca6647423ff3",
+  "object_counts": {
+    "command": [
+      "git",
+      "count-objects",
+      "-v"
+    ],
+    "exit": 0,
+    "stdout": "count: 4502\nsize: 59341\nin-pack: 43482\npacks: 16\nsize-pack: 656287\nprune-packable: 1861\ngarbage: 3\nsize-garbage: 0\n",
+    "stderr": "warning: garbage found: C:/Users/DAVID/Code/Maktabah/.git/worktrees/Maktabah-native-window-inspector-20261120/info\nwarning: garbage found: C:/Users/DAVID/Code/Maktabah/.git/worktrees/Maktabah-native-window-inspector-20261120/info/sparse-checkout\nwarning: garbage found: C:/Users/DAVID/Code/Maktabah/.git/worktrees/Maktabah-native-window-inspector-20261120/refs\n"
+  },
+  "upstream_config": {
+    "command": [
+      "git",
+      "config",
+      "--get-regexp",
+      "^remote[.]upstream[.]"
+    ],
+    "exit": 0,
+    "stdout": "remote.upstream.url https://github.com/bismillah-100/Maktabah.git\nremote.upstream.fetch +refs/heads/*:refs/remotes/upstream/*\nremote.upstream.promisor true\nremote.upstream.partialclonefilter blob:none\n",
+    "stderr": ""
+  },
+  "status": {
+    "command": [
+      "git",
+      "status",
+      "--porcelain=v1"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "own_head": {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit": 0,
+    "stdout": "859fd664b0ce225d8e62ea806bc2907aaac9ba5b\n",
+    "stderr": ""
+  }
+}

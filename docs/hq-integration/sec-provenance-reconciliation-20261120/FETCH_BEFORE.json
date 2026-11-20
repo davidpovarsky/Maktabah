@@ -1,0 +1,32 @@
+{
+  "git_version": {
+    "command": [
+      "git",
+      "--version"
+    ],
+    "exit": 0,
+    "stdout": "git version 2.52.0.windows.1\n",
+    "stderr": ""
+  },
+  "upstream_config": {
+    "command": [
+      "git",
+      "config",
+      "--get-regexp",
+      "^remote[.]upstream[.]"
+    ],
+    "exit": 0,
+    "stdout": "remote.upstream.url https://github.com/bismillah-100/Maktabah.git\nremote.upstream.fetch +refs/heads/*:refs/remotes/upstream/*\n",
+    "stderr": ""
+  },
+  "object_counts": {
+    "command": [
+      "git",
+      "count-objects",
+      "-v"
+    ],
+    "exit": 0,
+    "stdout": "count: 4502\nsize: 59341\nin-pack: 35474\npacks: 14\nsize-pack: 650484\nprune-packable: 1835\ngarbage: 3\nsize-garbage: 0\n",
+    "stderr": "warning: garbage found: C:/Users/DAVID/Code/Maktabah/.git/worktrees/Maktabah-native-window-inspector-20261120/info\nwarning: garbage found: C:/Users/DAVID/Code/Maktabah/.git/worktrees/Maktabah-native-window-inspector-20261120/info/sparse-checkout\nwarning: garbage found: C:/Users/DAVID/Code/Maktabah/.git/worktrees/Maktabah-native-window-inspector-20261120/refs\n"
+  }
+}
