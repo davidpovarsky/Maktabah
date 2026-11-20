@@ -1,0 +1,15 @@
+{
+  "DTO_ROUNDTRIP.md": "39a80af5b90ddad277669fcbc205c0d79a927f3209a5c37838cb23538a15140d",
+  "evidence/dto/compile.log.gz": "f549283ae680c013e4e9fd6cc7cf3831b3e4154923cca56e107950b688291eec",
+  "evidence/dto/executed_launcher.py.gz": "ba96b6e57457d4df8e458d88789bda81b83902c12cad76f27887de4ee4dda480",
+  "evidence/dto/execution.log.gz": "4860635801ef318679584e63a95ec040d70828b6783464a1b997ef6ad8c10a3f",
+  "evidence/dto/OccurrenceReportAcceptance.swift.gz": "6a892444e3dfe5074798ba9a7d80161eaf8164daa1e3f35ce3f237fc497f096c",
+  "evidence/dto/OriginalBuildInfo.swift.gz": "917340014aa92e92e59f45c1a08463715f1a02e240a5d5dff6530d3634806970",
+  "evidence/dto/OriginalModels.swift.gz": "d53144063160f6a813084b8d865caaa58afbd8ffc59d2433059db8e735308aa7",
+  "evidence/dto/RESULT.json.gz": "54c7e0518e289b5e4600418855e7de83340486e6148a7acacb0878602e4d1e50",
+  "evidence/SYNTAX.json.gz": "e03a8fefad68fd3d633a6c47f1be121e670a078f31178619dc8718e257fd8f7c",
+  "evidence/syntax.log.gz": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e",
+  "RAW_EVIDENCE_SHA256.json": "a8a72361fffe9b5704d55adbc91a26d723fc8baec60ae66ef43d00acd70c05d7",
+  "README.md": "d359478c89757e784e90466e61058029e7d4cdfdf5905af03ca494ac616cf7ba",
+  "SOURCE_PRESERVATION.json": "580ac6143ba57b526a025dc685dec31f12bc375cb1a0dadab065312281d0ee93"
+}
