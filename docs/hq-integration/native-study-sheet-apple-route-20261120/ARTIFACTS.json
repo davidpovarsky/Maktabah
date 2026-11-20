@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "status": "SEALED_SOURCE_AND_PYTHON_ONLY",
+  "source_commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+  "files": [
+    {
+      "path": ".github/workflows/otzaria-native-study-sheet-native.yml",
+      "bytes": 9786,
+      "sha256": "21fd72f850b358233591c2e0c01a2b6bf7d6b36dd93a5b21ba7752e3b9156598",
+      "git_blob": "aa3fc2c9e641c8b60e12da6143d021228208cb09",
+      "mode": "100644"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "bytes": 4333,
+      "sha256": "5e250cf162feba62bba444b5b26f0bd815d65960a0c53683a4624c506c389466",
+      "git_blob": "35018a2c620179c6db84a5cb23e4667191d28e2c",
+      "mode": "100644"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "bytes": 19318,
+      "sha256": "3ee6e29e4e4a3f1daadd40dabbdaf5b9a44dca38457cf5cfcf93c463754ae7be",
+      "git_blob": "bbdc7fee445b3bf9ab9cb50fa249a313974d0a7b",
+      "mode": "100644"
+    },
+    {
+      "path": "Scripts/CI/native-study-sheet-native.py",
+      "bytes": 32243,
+      "sha256": "8d2fd58b505e73c823d8ee42803cd9e25bac3e62dc4298accdb98438057abd4d",
+      "git_blob": "bfd12b72d134ca9534a57f97c1fcde24988e2908",
+      "mode": "100644"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "bytes": 26870,
+      "sha256": "a35f85c96ce264123a841356c5e335e0b81908433478f8b30f480bddd303f912",
+      "git_blob": "cfc9858197f238cae11098f5a703deec8949a999",
+      "mode": "100644"
+    },
+    {
+      "path": "Scripts/CI/test-native-study-sheet-native.py",
+      "bytes": 25931,
+      "sha256": "1339d308e96105dfcb6d4359622feb8f9885cff78969de328a46662edf67a5cb",
+      "git_blob": "9921b1e3df379b0fb43b0643c981bd0dadf79919",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/ATTEMPT1_METADATA.json",
+      "bytes": 418316,
+      "sha256": "8e30ed48eccd52d97770f6a3ed7c1754c89649aca8573d919e40080c3dc1f82d",
+      "git_blob": "aeaf69063dff3f0e1578c185c539c0d3e4c75d3c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/ATTEMPT1_WRAPPER.py",
+      "bytes": 31934,
+      "sha256": "d55076fb79206b5ed71026eff0f45a4e2b6818d628e91925cc3842205c4c5d8d",
+      "git_blob": "b99f8f5a3f5ee4411e6d8ecd9ad7ca2798d15e0e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/BASE_INPUTS.zip",
+      "bytes": 233806,
+      "sha256": "3517291f4bed879f3242908019200c356931e000bf4f7c8a848652ba64a52692",
+      "git_blob": "5ef16c479cb3ea97cdb8b10da97d6c0134fcde29",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/CANONICAL_BASE_INPUTS.json",
+      "bytes": 6948,
+      "sha256": "37b74659b7d276120ce85e49249e9e844361672177a362585aa893449a7ccd5b",
+      "git_blob": "c701b619f738b5ede846b8d2ed24fae0f5c504aa",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/PREDECESSOR_WORKFLOW.yml",
+      "bytes": 8266,
+      "sha256": "33ba993a3b89db0b29a5895405122bedc0165b185c2d658d452edd0137dd1521",
+      "git_blob": "7e5190059360368b9fc82462c5845c327af3970c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/PYTHON_ATTEMPT1.json",
+      "bytes": 334,
+      "sha256": "744607b894826ec7e51e729871a3ffa1d8468af1c62c0bf3bafbcae0ea06efd4",
+      "git_blob": "7d1a9db4b2ab93ac7f54c8c2e600500b03d82220",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/PYTHON_ATTEMPT1.stderr",
+      "bytes": 7241,
+      "sha256": "933a3b827ffd30adece03d7f9dac0bec957f7572146b73021f4c1ed428d561a8",
+      "git_blob": "5e5252637a7f064a5986b956abc30f875b40e6c0",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/PYTHON_ATTEMPT1.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/PYTHON_ATTEMPT2.stderr",
+      "bytes": 6273,
+      "sha256": "73cf9ffd4f574d6b92650a5fb8b0d594c12593429b5c046571bf93aab53270c3",
+      "git_blob": "1597fc17cc6a2df65744f84db8e09a5b6b7cb89c",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/PYTHON_ATTEMPT2.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/PYTHON_RESULT.json",
+      "bytes": 4617,
+      "sha256": "c178db566a9fff06cc91a5719602e1d330b47e60206331bd4479e7390cba802e",
+      "git_blob": "ae9dcc144d4f620bc569afb523af1336b87abfc8",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/README.md",
+      "bytes": 9259,
+      "sha256": "710747c7ee13a0b6b805902f433b2b7623bef324ad299de40f1b6f0cf7416126",
+      "git_blob": "d3891a965fe57156c392bd5386a10b6c2a542c39",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/RUNTIME_EXACT_EDIT.json",
+      "bytes": 1998,
+      "sha256": "df405a2eb5b5e90a5726016e3d14426dbc5418f46c8b24d61e63ed54556fef61",
+      "git_blob": "519ed051c67174631028247112434c145a78a8ce",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/SOURCE_BINDING.json",
+      "bytes": 11018,
+      "sha256": "143c7d298e33a79fbf5583ac14277687dbc5c474a43fa3a79e72e02b6ee875cc",
+      "git_blob": "3b25f411003343e61b345dcaf87664109b6521c7",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/SOURCE_COMMIT_READBACK.json",
+      "bytes": 1515,
+      "sha256": "07b08359cc05424b5f41e5f1e3ab0d70477ca1c81846790dec44f8ff9024adf9",
+      "git_blob": "2a43c39bd776a080cf1a3a525570ae8daef01f61",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/WORKFLOW_SOURCE_PROOF.json",
+      "bytes": 830,
+      "sha256": "ddbf712ceb12adcbb4bf855c2bab571740732442815ff4bb885ef4e1fb945630",
+      "git_blob": "031d7f0678775a2f120e5fefd7f4d7b87f9274bb",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/verify_packet.py",
+      "bytes": 4779,
+      "sha256": "927c7f277c0bfc630f525eb5fba2a54890946ff23d566f4531ec69e4231078dc",
+      "git_blob": "767d8cf93e02a5895cc82edb117aef05108c111b",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-ipad11.json",
+      "bytes": 202909,
+      "sha256": "37c56c9a68255d952fecb75326e188d2d34940994b1614c29ee479d463bf891b",
+      "git_blob": "e4c1c70cba9425918d172c103252a33b6cd631a5",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-iphone.json",
+      "bytes": 201016,
+      "sha256": "9bf43c8b7a3d64843455066d0014f873f73787a9ec8b0a1bdb48bd2b4ac7ad67",
+      "git_blob": "f1f6b994b359c16e82bbe22318e533ff0c165b58",
+      "mode": "100644"
+    }
+  ],
+  "Swift_executed": 0,
+  "Native_executed": 0,
+  "Foundation_candidate25": "NOT_RUN",
+  "Foundation_baseline5": "NOT_RUN",
+  "CI_activated": false
+}

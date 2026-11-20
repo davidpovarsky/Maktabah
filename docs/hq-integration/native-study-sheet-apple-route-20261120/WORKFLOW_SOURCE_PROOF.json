@@ -1,0 +1,22 @@
+{
+  "status": "SOURCE_INVERSE_ONLY",
+  "predecessor_workflow": "keyboard-global-focused-native-20261120/candidate/.github/workflows/otzaria-keyboard-global-focused-native.yml",
+  "predecessor_sha256": "33ba993a3b89db0b29a5895405122bedc0165b185c2d658d452edd0137dd1521",
+  "candidate_sha256": "21fd72f850b358233591c2e0c01a2b6bf7d6b36dd93a5b21ba7752e3b9156598",
+  "native_job_body_exact_after_explicit_names_and_selection": true,
+  "new_dependency": "actual Foundation25; baseline5 evaluated separately as exact3PASS2FAIL",
+  "max_parallel": 2,
+  "fail_fast": false,
+  "budgets_minutes": {
+    "foundation": 20,
+    "native_each": 360,
+    "aggregate": 15
+  },
+  "native_individual_case_seconds": 600,
+  "matrix_outer_seconds": 16200,
+  "permissions": {
+    "contents": "read",
+    "actions": "read"
+  },
+  "app_tests_executed": 0
+}

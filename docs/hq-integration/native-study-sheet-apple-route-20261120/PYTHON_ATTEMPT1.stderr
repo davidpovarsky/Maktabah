@@ -1,0 +1,63 @@
+test_actual_foundation_qualifier_accepts_exact_twenty_plus_five (__main__.FocusedBoundary.test_actual_foundation_qualifier_accepts_exact_twenty_plus_five) ... ok
+test_aggregate_cannot_reuse_ipad11_as_iphone (__main__.FocusedBoundary.test_aggregate_cannot_reuse_ipad11_as_iphone) ... ok
+test_aggregate_consumes_receipts_written_by_actual_main (__main__.FocusedBoundary.test_aggregate_consumes_receipts_written_by_actual_main) ... ok
+test_aggregate_matrix_failure_even_after_twelve_labels_rejected (__main__.FocusedBoundary.test_aggregate_matrix_failure_even_after_twelve_labels_rejected) ... ok
+test_aggregate_missing_after_or_full_phase_claim_rejected (__main__.FocusedBoundary.test_aggregate_missing_after_or_full_phase_claim_rejected) ... ok
+test_aggregate_missing_configuration_rejected (__main__.FocusedBoundary.test_aggregate_missing_configuration_rejected) ... ok
+test_aggregate_source_drift_after_passing_cases_rejected (__main__.FocusedBoundary.test_aggregate_source_drift_after_passing_cases_rejected) ... ok
+test_aggregate_wrong_run_attempt_head_or_config_rejected (__main__.FocusedBoundary.test_aggregate_wrong_run_attempt_head_or_config_rejected) ... ok
+test_build_only_cannot_qualify_native (__main__.FocusedBoundary.test_build_only_cannot_qualify_native) ... ok
+test_changed_original_oracle_rejected (__main__.FocusedBoundary.test_changed_original_oracle_rejected) ... ok
+test_current_exact_runtime_path_and_project_pin_inverse (__main__.FocusedBoundary.test_current_exact_runtime_path_and_project_pin_inverse) ... ok
+test_current_two_metadata_scopes_preserve_all_original116 (__main__.FocusedBoundary.test_current_two_metadata_scopes_preserve_all_original116) ... ERROR
+test_default_and_exact_two_manifest_paths_only (__main__.FocusedBoundary.test_default_and_exact_two_manifest_paths_only) ... ok
+test_different_manifest_or_runtime_report_hash_rejected (__main__.FocusedBoundary.test_different_manifest_or_runtime_report_hash_rejected) ... ok
+test_eleven_and_one_matching_synthetic_outcomes (__main__.FocusedBoundary.test_eleven_and_one_matching_synthetic_outcomes) ... ok
+test_exact_immutable_child_permitted (__main__.FocusedBoundary.test_exact_immutable_child_permitted) ... ok
+test_finally_reuses_same_contract_path (__main__.FocusedBoundary.test_finally_reuses_same_contract_path) ... ok
+test_foundation_compile_failure_is_zero_not_expected_red (__main__.FocusedBoundary.test_foundation_compile_failure_is_zero_not_expected_red) ... ok
+test_foundation_missing_lifecycle_or_owner_stage_rejected (__main__.FocusedBoundary.test_foundation_missing_lifecycle_or_owner_stage_rejected) ... ok
+test_foundation_product_drift_after_passing_controls_rejected (__main__.FocusedBoundary.test_foundation_product_drift_after_passing_controls_rejected) ... ok
+test_foundation_raw_same_but_wrong_source_rejected (__main__.FocusedBoundary.test_foundation_raw_same_but_wrong_source_rejected) ... ok
+test_foundation_signal_after_complete_rows_rejected (__main__.FocusedBoundary.test_foundation_signal_after_complete_rows_rejected) ... ok
+test_foundation_unbound_driver_or_execution_source_rejected (__main__.FocusedBoundary.test_foundation_unbound_driver_or_execution_source_rejected) ... ok
+test_foundation_wrong_baseline_refusal_or_timeout_rejected (__main__.FocusedBoundary.test_foundation_wrong_baseline_refusal_or_timeout_rejected) ... ok
+test_foundation_wrong_run_attempt_or_driver_exit_rejected (__main__.FocusedBoundary.test_foundation_wrong_run_attempt_or_driver_exit_rejected) ... ok
+test_full_phase_status_cannot_qualify_subset (__main__.FocusedBoundary.test_full_phase_status_cannot_qualify_subset) ... ok
+test_historical_or_full_phase_credit_rejected (__main__.FocusedBoundary.test_historical_or_full_phase_credit_rejected) ... ok
+test_incomplete_or_wrong_head_build_rejected (__main__.FocusedBoundary.test_incomplete_or_wrong_head_build_rejected) ... ok
+test_missing_foundation_artifact_cannot_qualify (__main__.FocusedBoundary.test_missing_foundation_artifact_cannot_qualify) ... ok
+test_missing_new_native_selection_rejected (__main__.FocusedBoundary.test_missing_new_native_selection_rejected) ... ok
+test_missing_original_row_rejected (__main__.FocusedBoundary.test_missing_original_row_rejected) ... ok
+test_one_ui_failure_rejected (__main__.FocusedBoundary.test_one_ui_failure_rejected) ... ok
+test_original_catalog_or_matrix_edit_rejected (__main__.FocusedBoundary.test_original_catalog_or_matrix_edit_rejected) ... ok
+test_original_default_scope_and_unique_guard_unchanged (__main__.FocusedBoundary.test_original_default_scope_and_unique_guard_unchanged) ... ok
+test_original_runtime_body_edit_rejected (__main__.FocusedBoundary.test_original_runtime_body_edit_rejected) ... ok
+test_raw_missing_duplicate_or_expected_failure_leaf_rejected (__main__.FocusedBoundary.test_raw_missing_duplicate_or_expected_failure_leaf_rejected) ... ok
+test_raw_summary_disagrees_rejected (__main__.FocusedBoundary.test_raw_summary_disagrees_rejected) ... ok
+test_skip_or_not_run_rejected (__main__.FocusedBoundary.test_skip_or_not_run_rejected) ... ok
+test_source_or_artifact_pin_edit_rejected (__main__.FocusedBoundary.test_source_or_artifact_pin_edit_rejected) ... ok
+test_test_additions_exemption_edit_rejected (__main__.FocusedBoundary.test_test_additions_exemption_edit_rejected) ... ok
+test_unfinalized_binding_rejected (__main__.FocusedBoundary.test_unfinalized_binding_rejected) ... ok
+test_unreviewed_product_or_test_tree_rejected (__main__.FocusedBoundary.test_unreviewed_product_or_test_tree_rejected) ... ok
+test_wrong_actual_test_tree_rejected (__main__.FocusedBoundary.test_wrong_actual_test_tree_rejected) ... ok
+test_wrong_case_device_or_configuration_label_rejected (__main__.FocusedBoundary.test_wrong_case_device_or_configuration_label_rejected) ... ok
+test_wrong_device_group_rejected (__main__.FocusedBoundary.test_wrong_device_group_rejected) ... ok
+test_wrong_head_ref_or_parent_rejected (__main__.FocusedBoundary.test_wrong_head_ref_or_parent_rejected) ... ok
+
+======================================================================
+ERROR: test_current_two_metadata_scopes_preserve_all_original116 (__main__.FocusedBoundary.test_current_two_metadata_scopes_preserve_all_original116)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/8c31d602ec0a/native-study-sheet-apple-route-20261120/build/local-source-projection/Scripts/CI/test-native-study-sheet-native.py", line 196, in test_current_two_metadata_scopes_preserve_all_original116
+    G["validate_manifest"](manifest, self.old_manifest, name)
+  File "/workspace/scratch/8c31d602ec0a/native-study-sheet-apple-route-20261120/build/local-source-projection/Scripts/CI/native-study-sheet-native.py", line 110, in validate_manifest
+    require([r["device"] for r in rows[116:]] == ["ipad11"] * 11 + ["iphone"]
+  File "/workspace/scratch/8c31d602ec0a/native-study-sheet-apple-route-20261120/build/local-source-projection/Scripts/CI/native-study-sheet-native.py", line 45, in require
+    raise ValueError(message)
+ValueError: Wrong diagnostic device or unexecuted credit
+
+----------------------------------------------------------------------
+Ran 46 tests in 0.252s
+
+FAILED (errors=1)

@@ -1,0 +1,104 @@
+{
+  "status": "PASS_PYTHON_SOURCE_AND_RECEIPT_CONTROLS_ONLY",
+  "executed": 47,
+  "passed": 47,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "exit_code": 0,
+  "case_ids": [
+    "test_actual_foundation_qualifier_accepts_exact_twenty_plus_five",
+    "test_actual_original_collector_accepts_new_metadata_without_execution_credit",
+    "test_aggregate_cannot_reuse_ipad11_as_iphone",
+    "test_aggregate_consumes_receipts_written_by_actual_main",
+    "test_aggregate_matrix_failure_even_after_twelve_labels_rejected",
+    "test_aggregate_missing_after_or_full_phase_claim_rejected",
+    "test_aggregate_missing_configuration_rejected",
+    "test_aggregate_source_drift_after_passing_cases_rejected",
+    "test_aggregate_wrong_run_attempt_head_or_config_rejected",
+    "test_build_only_cannot_qualify_native",
+    "test_changed_original_oracle_rejected",
+    "test_current_exact_runtime_path_and_project_pin_inverse",
+    "test_current_two_metadata_scopes_preserve_all_original116",
+    "test_default_and_exact_two_manifest_paths_only",
+    "test_different_manifest_or_runtime_report_hash_rejected",
+    "test_eleven_and_one_matching_synthetic_outcomes",
+    "test_exact_immutable_child_permitted",
+    "test_finally_reuses_same_contract_path",
+    "test_foundation_compile_failure_is_zero_not_expected_red",
+    "test_foundation_missing_lifecycle_or_owner_stage_rejected",
+    "test_foundation_product_drift_after_passing_controls_rejected",
+    "test_foundation_raw_same_but_wrong_source_rejected",
+    "test_foundation_signal_after_complete_rows_rejected",
+    "test_foundation_unbound_driver_or_execution_source_rejected",
+    "test_foundation_wrong_baseline_refusal_or_timeout_rejected",
+    "test_foundation_wrong_run_attempt_or_driver_exit_rejected",
+    "test_full_phase_status_cannot_qualify_subset",
+    "test_historical_or_full_phase_credit_rejected",
+    "test_incomplete_or_wrong_head_build_rejected",
+    "test_missing_foundation_artifact_cannot_qualify",
+    "test_missing_new_native_selection_rejected",
+    "test_missing_original_row_rejected",
+    "test_one_ui_failure_rejected",
+    "test_original_catalog_or_matrix_edit_rejected",
+    "test_original_default_scope_and_unique_guard_unchanged",
+    "test_original_runtime_body_edit_rejected",
+    "test_raw_missing_duplicate_or_expected_failure_leaf_rejected",
+    "test_raw_summary_disagrees_rejected",
+    "test_skip_or_not_run_rejected",
+    "test_source_or_artifact_pin_edit_rejected",
+    "test_test_additions_exemption_edit_rejected",
+    "test_unfinalized_binding_rejected",
+    "test_unreviewed_product_or_test_tree_rejected",
+    "test_wrong_actual_test_tree_rejected",
+    "test_wrong_case_device_or_configuration_label_rejected",
+    "test_wrong_device_group_rejected",
+    "test_wrong_head_ref_or_parent_rejected"
+  ],
+  "Swift_executed": 0,
+  "Native_executed": 0,
+  "Foundation_baseline5": "NOT_RUN; required3PASS2FAIL",
+  "Foundation_candidate25": "NOT_RUN",
+  "sources": [
+    {
+      "path": "Scripts/CI/native-study-sheet-native.py",
+      "sha256": "8d2fd58b505e73c823d8ee42803cd9e25bac3e62dc4298accdb98438057abd4d"
+    },
+    {
+      "path": "Scripts/CI/test-native-study-sheet-native.py",
+      "sha256": "1339d308e96105dfcb6d4359622feb8f9885cff78969de328a46662edf67a5cb"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "sha256": "a35f85c96ce264123a841356c5e335e0b81908433478f8b30f480bddd303f912"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "sha256": "5e250cf162feba62bba444b5b26f0bd815d65960a0c53683a4624c506c389466"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "sha256": "3ee6e29e4e4a3f1daadd40dabbdaf5b9a44dca38457cf5cfcf93c463754ae7be"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-20261120/SOURCE_BINDING.json",
+      "sha256": "143c7d298e33a79fbf5583ac14277687dbc5c474a43fa3a79e72e02b6ee875cc"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-ipad11.json",
+      "sha256": "37c56c9a68255d952fecb75326e188d2d34940994b1614c29ee479d463bf891b"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-iphone.json",
+      "sha256": "9bf43c8b7a3d64843455066d0014f873f73787a9ec8b0a1bdb48bd2b4ac7ad67"
+    }
+  ],
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "73cf9ffd4f574d6b92650a5fb8b0d594c12593429b5c046571bf93aab53270c3",
+  "initial_attempt": {
+    "executed": 46,
+    "passed": 45,
+    "errors": 1,
+    "failure_cause": "new iPad row device spelling rejected; no Swift or Native started"
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "source_sealed": true,
+  "source_commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+  "source_tree": "324aad3ea57a4d4807c4d01998a1fd89a10e179e",
+  "protected_trees": {
+    "Source": "78a7dc0e608496575fc044a844862d67a8fbfa2c",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "Maktabah.xcodeproj": "8dc15c688bc821891a2adca213aff8b1b882acad",
+    "Maktabah-iOSUITests": "2435c6790f039ca43d74f6cc29ebfca24c8ff5aa"
+  },
+  "original_r27_pin": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+  "r27_test_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+  "old_project_pin": "2741615644741d39b0b19c6146f9c459323dabab",
+  "project_blob": "eb1ab4a38d41a135c2cddf6a8e109c51edb6fc74",
+  "original_route": "d5d7928fed2b0a6324d07c5595af10413ac58f8e",
+  "native_executions": 0,
+  "activation": false,
+  "exact_base_records": [
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+      "bytes": 32077,
+      "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+      "bytes": 4333,
+      "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "bytes": 47630,
+      "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "fcf0d0791235a43378f5a595e803e23253c83a6f",
+      "bytes": 19318,
+      "sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "bytes": 49924,
+      "sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "bytes": 56247,
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "bytes": 26341,
+      "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583"
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+      "bytes": 6377,
+      "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+    },
+    {
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+      "bytes": 6009,
+      "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "bytes": 200381,
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+    },
+    {
+      "path": "tools/verify_xcresult_zero_skips.py",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b",
+      "bytes": 10243,
+      "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "eb1ab4a38d41a135c2cddf6a8e109c51edb6fc74",
+      "bytes": 596558,
+      "sha256": "6764dd597e95b44887b13f269d7e46efb0fc653fc5cd82fef00717de283fd75e"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "7bb0d01beee292c067478db8b4d0380ed405749f",
+      "bytes": 30723,
+      "sha256": "1660fba155d9e8d49d3b2a813c628f802dfc26c9040a18d13ae5064742464826"
+    },
+    {
+      "path": "tools/hq-native-study-sheet-lifecycle.py",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "6c21f5736dda42da711d177a5b342a03d0c5acf3",
+      "bytes": 7621,
+      "sha256": "02604301e7c5028d5c437c4222fa860f59a01b308acd04c4267ff5550b3ed1d7"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "d33ce1267578c3660c5e9672e8510b46d73fd9e0",
+      "bytes": 19687,
+      "sha256": "c73691fef3baaca3ca78942ab9f10b6511b9763a8f0e0360a9c1ccabd0ece759"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "28f48811b12618719daadfc43a56fe4b3557e414",
+      "bytes": 41890,
+      "sha256": "78216a596cef457919efa556eec39fbb2cea83b35751cc2c32f7d51d2575aba8"
+    },
+    {
+      "path": "Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "750fe0c6ee8be61b547c283675fa121c3827940a",
+      "bytes": 6150,
+      "sha256": "29e508a3beb1a3ad2beca914ba7198391ecb4ef0fb3fca1c6fe69768d4f97585"
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerBoundary.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "562a079989959d863a4fd1b150967a83952de1c0",
+      "bytes": 2705,
+      "sha256": "79fd91cc19d7c67f671394a518abd5fb9170cde98567e835741962888f554727"
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerAcceptance.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "e7a90e105dd590f25d9ebd0ca5139d3c3300a3b1",
+      "bytes": 3824,
+      "sha256": "f5f85b809058a41f83206c38065e4e42af735b4b8a58967c392b4c4aecdb92bc"
+    },
+    {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetLifecycleAcceptance.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "47fa809e8a533869f2fe6ef24737aac9f253a53a",
+      "bytes": 6945,
+      "sha256": "d21ec1114fbaf098639a59b1c30fa9c7dd726041205a10835a8cc17f1f6f351a"
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-20261120/interactive-dismissal-before.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "c4a87c12bf292ea55f10377ffe318fa8d046f2f4",
+      "bytes": 41578,
+      "sha256": "49afc852783ff955ac25d4a1fbcf0c5be9e6be8cf325cd56fc2aba03a7424134"
+    }
+  ],
+  "native_test_sha256": "1660fba155d9e8d49d3b2a813c628f802dfc26c9040a18d13ae5064742464826",
+  "presenter_sha256": "c73691fef3baaca3ca78942ab9f10b6511b9763a8f0e0360a9c1ccabd0ece759",
+  "source_packet_index_sha256": "fe0cabac489fcb8421c6141f964ff8eeab16eb28ec93bf6b2323bbe46b79a8c1",
+  "foundation_inputs": {
+    "tools/hq-native-study-sheet-lifecycle.py": {
+      "path": "tools/hq-native-study-sheet-lifecycle.py",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "6c21f5736dda42da711d177a5b342a03d0c5acf3",
+      "bytes": 7621,
+      "sha256": "02604301e7c5028d5c437c4222fa860f59a01b308acd04c4267ff5550b3ed1d7"
+    },
+    "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift": {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "d33ce1267578c3660c5e9672e8510b46d73fd9e0",
+      "bytes": 19687,
+      "sha256": "c73691fef3baaca3ca78942ab9f10b6511b9763a8f0e0360a9c1ccabd0ece759"
+    },
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "28f48811b12618719daadfc43a56fe4b3557e414",
+      "bytes": 41890,
+      "sha256": "78216a596cef457919efa556eec39fbb2cea83b35751cc2c32f7d51d2575aba8"
+    },
+    "Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift": {
+      "path": "Source/Otzaria/Reading/ReaderViewModel+OtzariaLineSources.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "750fe0c6ee8be61b547c283675fa121c3827940a",
+      "bytes": 6150,
+      "sha256": "29e508a3beb1a3ad2beca914ba7198391ecb4ef0fb3fca1c6fe69768d4f97585"
+    },
+    "Tests/HQ/native-study-sheet/NativeStudySheetOwnerBoundary.swift": {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerBoundary.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "562a079989959d863a4fd1b150967a83952de1c0",
+      "bytes": 2705,
+      "sha256": "79fd91cc19d7c67f671394a518abd5fb9170cde98567e835741962888f554727"
+    },
+    "Tests/HQ/native-study-sheet/NativeStudySheetOwnerAcceptance.swift": {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetOwnerAcceptance.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "e7a90e105dd590f25d9ebd0ca5139d3c3300a3b1",
+      "bytes": 3824,
+      "sha256": "f5f85b809058a41f83206c38065e4e42af735b4b8a58967c392b4c4aecdb92bc"
+    },
+    "Tests/HQ/native-study-sheet/NativeStudySheetLifecycleAcceptance.swift": {
+      "path": "Tests/HQ/native-study-sheet/NativeStudySheetLifecycleAcceptance.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "47fa809e8a533869f2fe6ef24737aac9f253a53a",
+      "bytes": 6945,
+      "sha256": "d21ec1114fbaf098639a59b1c30fa9c7dd726041205a10835a8cc17f1f6f351a"
+    },
+    "docs/hq-integration/native-study-sheet-20261120/interactive-dismissal-before.swift": {
+      "path": "docs/hq-integration/native-study-sheet-20261120/interactive-dismissal-before.swift",
+      "commit": "353888ed645c135da9cb229713d17a4594d1edb6",
+      "git_blob": "c4a87c12bf292ea55f10377ffe318fa8d046f2f4",
+      "bytes": 41578,
+      "sha256": "49afc852783ff955ac25d4a1fbcf0c5be9e6be8cf325cd56fc2aba03a7424134"
+    }
+  }
+}

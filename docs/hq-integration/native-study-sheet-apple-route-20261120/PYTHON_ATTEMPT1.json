@@ -1,0 +1,11 @@
+{
+  "status": "PYTHON_CONTROL_FAILURE_ONLY",
+  "controls": 46,
+  "passed": 45,
+  "errors": 1,
+  "failures": 0,
+  "Swift_executed": 0,
+  "Native_executed": 0,
+  "wrapper_sha256": "d55076fb79206b5ed71026eff0f45a4e2b6818d628e91925cc3842205c4c5d8d",
+  "stderr_sha256": "933a3b827ffd30adece03d7f9dac0bec957f7572146b73021f4c1ed428d561a8"
+}
