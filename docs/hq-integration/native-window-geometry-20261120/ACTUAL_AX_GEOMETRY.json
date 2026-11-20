@@ -1,0 +1,63 @@
+{
+  "at_utc": "2026-11-20T07:58:41.710165+00:00",
+  "scope": "Arithmetic over retained actual native AX evidence; not a new Native execution",
+  "evidence_commit": "f2a4eef9004710be8040e183d8713dc28f73c2c7",
+  "ax_path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/06D7DF1F-8EEB-4890-804D-2C4FCA12796B.txt.gz",
+  "ax_raw_sha256": "eb7834c01c256dd4470101cce6ed494b229c0de45e493760c7338baa00a5adcd",
+  "application_snapshot": [
+    0.0,
+    0.0,
+    375.0,
+    486.0
+  ],
+  "actual_window": [
+    418.0,
+    117.0,
+    375.0,
+    486.0
+  ],
+  "actual_toolbar_host": [
+    418.0,
+    127.0,
+    375.0,
+    54.0
+  ],
+  "observations": [
+    {
+      "identifier": "reader-tabs-overview",
+      "action_frame": [
+        680.0,
+        131.0,
+        42.0,
+        36.0
+      ],
+      "original_app_frame_contains": false,
+      "actual_window_contains": true,
+      "toolbar_host_contains": true
+    },
+    {
+      "identifier": "reader-command-palette-launcher",
+      "action_frame": [
+        558.0,
+        131.0,
+        40.0,
+        36.0
+      ],
+      "original_app_frame_contains": false,
+      "actual_window_contains": true,
+      "toolbar_host_contains": true
+    }
+  ],
+  "cleanup_ax_path": "docs/hq-integration/release96-44665679661-20261120/captures/captures-first/entries/visual-11/BD67AA4F-EC02-4832-AE02-38C273F47C8A.txt.gz",
+  "cleanup_raw_sha256": "75540eab3f1685c3a06b03d3b027896db5ed2bcc55795da07e3e306414161d17",
+  "actual_system_control_frame": [
+    439.0,
+    138.0,
+    41.0,
+    22.0
+  ],
+  "actual_system_control_identifier": "window-controls:com.davidpovarsky.chavrusatext",
+  "original_assertion_count": 386,
+  "candidate_assertion_count": 386,
+  "native_results": "NOT_RUN"
+}

@@ -241,7 +241,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         // An existing live snapshot already proves existence; retain the same
         // native wait for controls that have not appeared yet.
         XCTAssertTrue(element.exists || element.waitForExistence(timeout: 30), file: file, line: line)
-        XCTAssertTrue(element.frame.intersects(app.frame), "Control must be inside the actual app viewport", file: file, line: line)
+        XCTAssertTrue(element.frame.intersects(app.windows.firstMatch.frame), "Control must be inside the actual native window", file: file, line: line)
         element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
     func readerLibraryPaletteLauncher() -> XCUIElement {
@@ -250,7 +250,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertEqual(actions.count, 1, "Use the current original native library palette action uniquely")
         let action = actions.firstMatch
         XCTAssertTrue(action.isHittable, "The actual palette action must be reachable")
-        XCTAssertTrue(!action.frame.isEmpty && app.frame.contains(action.frame),
+        XCTAssertTrue(!action.frame.isEmpty && app.windows.firstMatch.frame.contains(action.frame),
                       "The palette action must stay inside the actual application window")
         return action
     }
@@ -305,7 +305,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
 
     func readerBottomChromeAction() -> XCUIElement {
         let more = app.buttons.matching(identifier: "reader-more-menu").allElementsBoundByIndex.filter {
-            !$0.frame.isEmpty && $0.frame.intersects(app.frame) && $0.isHittable
+            !$0.frame.isEmpty && $0.frame.intersects(app.windows.firstMatch.frame) && $0.isHittable
         }
         if let action = more.first {
             XCTAssertEqual(more.count, 1, "Observe one real visible reader More action")
@@ -316,7 +316,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         // that actual control to measure chrome, never the full-height Toolbar.
         let overflow = app.buttons.matching(identifier: "BottomOverflowBarButtonItem")
         let visible = overflow.allElementsBoundByIndex.filter {
-            !$0.frame.isEmpty && $0.frame.intersects(app.frame) && $0.isHittable
+            !$0.frame.isEmpty && $0.frame.intersects(app.windows.firstMatch.frame) && $0.isHittable
         }
         XCTAssertEqual(visible.count, 1, "The original bottom toolbar must expose one real visible native overflow action")
         return visible.first ?? overflow.firstMatch
@@ -419,7 +419,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let application = app!
         let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             MainActor.assumeIsolated {
-                let frame = application.frame
+                let frame = application.windows.firstMatch.frame
                 let landscape = XCUIDevice.shared.orientation.isLandscape
                 guard frame.width > 0, frame.height > 0,
                       (windowed || (frame.width > frame.height) == landscape) else { return false }
@@ -447,7 +447,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         attachment.name = settlement == .completed ? name : "UNSETTLED-" + name
         attachment.lifetime = .keepAlways
         add(attachment)
-        let hierarchy = XCTAttachment(string: "appFrame=\(app.frame)\norientation=\(XCUIDevice.shared.orientation.rawValue)\n\(app.debugDescription)")
+        let hierarchy = XCTAttachment(string: "appFrame=\(app.frame)\nactualWindow=\(app.windows.firstMatch.frame)\norientation=\(XCUIDevice.shared.orientation.rawValue)\n\(app.debugDescription)")
         hierarchy.name = name + "-ui-tree"
         hierarchy.lifetime = .keepAlways
         add(hierarchy)
@@ -460,7 +460,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         image.name = "DIAGNOSTIC-" + name
         image.lifetime = .keepAlways
         add(image)
-        let tree = XCTAttachment(string: "appFrame=\(app.frame)\n\(app.debugDescription)")
+        let tree = XCTAttachment(string: "appFrame=\(app.frame)\nactualWindow=\(app.windows.firstMatch.frame)\n\(app.debugDescription)")
         tree.name = "DIAGNOSTIC-" + name + "-ui-tree"
         tree.lifetime = .keepAlways
         add(tree)
@@ -479,7 +479,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             XCTAssertFalse(action.frame.isEmpty)
             XCTAssertTrue(host.frame.insetBy(dx: -1, dy: -1).contains(action.frame),
                           "Source actions must stay inside the actual native toolbar's hit-test bounds")
-            XCTAssertTrue(app.frame.contains(action.frame))
+            XCTAssertTrue(app.windows.firstMatch.frame.contains(action.frame))
         }
     }
 
@@ -695,26 +695,27 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         launchReader(enabled: enabled, scenario: "readerDetail")
         assertReaderHasText()
         let application = app!
+        let window = application.windows.firstMatch
         let originalLocator = app.staticTexts["reader-current-locator"].label
         capture(enabled ? "candidate-window-wide" : "baseline-window-wide")
         // Measure after the same strict native rotation/toolbar settling used
         // by the actual screenshot, rather than keeping an earlier frame.
-        let originalFrame = app.frame
+        let originalFrame = window.frame
         let restoration = NativeUIRestoration {
-            let current = application.frame
+            let current = window.frame
             if abs(current.width - originalFrame.width) > 2 || abs(current.height - originalFrame.height) > 2 {
                 let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-                // The actual 9401 resize video locates the system window
-                // controls at (42, 32) inside the resized native window.
-                // Open Apple's controls, then select its public Full Screen
-                // action; do not drag using mismatched desktop/app coordinates.
-                application.coordinate(withNormalizedOffset: .zero)
-                    .withOffset(CGVector(dx: 42, dy: 32)).tap()
+                // The retained Release failure exposes this exact public
+                // SpringBoard control in screen coordinates. An application
+                // frame can retain a zero origin after its native window moves.
+                let controls = springboard.buttons["window-controls:com.davidpovarsky.chavrusatext"]
+                let openedControls = controls.waitForExistence(timeout: 10) && controls.isHittable
+                if openedControls { controls.tap() }
                 let labels = ["Full Screen", "Enter Full Screen", "Zoom", "מסך מלא", "הצג במסך מלא"]
                 let predicate = NSPredicate(format: "label IN %@", labels)
                 let candidates = [application.buttons, application.menuItems, springboard.buttons, springboard.menuItems]
                 var selected = false
-                for query in candidates {
+                for query in candidates where openedControls {
                     let action = query.matching(predicate).firstMatch
                     if action.waitForExistence(timeout: 3), action.isHittable {
                         action.tap()
@@ -736,7 +737,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 }
                 let restored = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
                     MainActor.assumeIsolated {
-                        abs(application.frame.width - originalFrame.width) < 2 && abs(application.frame.height - originalFrame.height) < 2
+                        abs(window.frame.width - originalFrame.width) < 2 && abs(window.frame.height - originalFrame.height) < 2
                     }
                 }, object: nil)
                 XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 30), .completed,
@@ -746,11 +747,11 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         addTeardownBlock { await restoration.run() }
         // Apple's iPad windowing gesture: drag the system bottom-right handle.
         // This must change the actual window, not an injected size class/frame.
-        let handle = app.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1)).withOffset(CGVector(dx: -12, dy: -12))
-        let destination = app.coordinate(withNormalizedOffset: CGVector(dx: 0.55, dy: 0.7))
+        let handle = window.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1)).withOffset(CGVector(dx: -12, dy: -12))
+        let destination = window.coordinate(withNormalizedOffset: CGVector(dx: 0.55, dy: 0.7))
         handle.press(forDuration: 0.5, thenDragTo: destination)
         let resized = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            MainActor.assumeIsolated { application.frame.width < originalFrame.width - 80 }
+            MainActor.assumeIsolated { window.frame.width < originalFrame.width - 80 }
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [resized], timeout: 30), .completed,
                        "The native iPad window must actually resize; a simulated width is not acceptance")
@@ -771,7 +772,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator,
                        "Window reflow must preserve the actual navigation unit")
         XCTAssertTrue(readerBottomChromeAction().exists, "The original bottom toolbar must survive narrow window reflow")
-        let geometry = XCTAttachment(string: "wide=\(originalFrame)\nnarrow=\(app.frame)")
+        let geometry = XCTAttachment(string: "wide=\(originalFrame)\nnarrow=\(window.frame)\napplicationSnapshot=\(app.frame)")
         geometry.name = enabled ? "candidate-native-window-geometry" : "baseline-native-window-geometry"
         geometry.lifetime = .keepAlways
         add(geometry)

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native88-harness-repairs-20261120\\Maktabah-iOSUITests\\FaithfulReaderUIAcceptanceTests.swift"
+  ],
+  "exit": 0,
+  "warning_lines": 2,
+  "typecheck": "NOT_RUN; Windows cross-target syntax parsing is not an Apple SDK typecheck",
+  "native": "NOT_RUN",
+  "source_sha256": "1bb737a208657e874003343edfdb798c99e8700247630ba810e573d40a22b279"
+}

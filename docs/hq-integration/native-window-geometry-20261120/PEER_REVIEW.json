@@ -1,0 +1,17 @@
+{
+  "at_utc": "2026-11-20T08:01:14.033241+00:00",
+  "reviewer": "github_native_audit",
+  "scope": "read-only exact diff source review",
+  "result": "No blocker observed",
+  "preserved": [
+    "screen coordinate consistency",
+    "resize80pt",
+    "restore2pt",
+    "30s waits",
+    "locator/text/toolbar/overview gates",
+    "MainActor closure ownership",
+    "explicit failure when public control unavailable"
+  ],
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN"
+}
