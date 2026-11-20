@@ -32,6 +32,12 @@ def digest(path):
         return hashlib.file_digest(source, "sha256").hexdigest()
 
 
+def requires_native_hid(selected_cases):
+    # This original case sends real A/Delete/Escape HID events. A Release
+    # manifest uses no R27 execution-group object, but still needs that transport.
+    return "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector" in selected_cases
+
+
 def load_manifest(root=ROOT):
     manifest = read_json(root / "Scripts/CI/runtime27-release-manifest.json")
     rows = manifest.get("configurations", [])
@@ -103,10 +109,10 @@ def runtime_configuration_observations(log):
             "orientations": actual_orientations, "observation_count": len(records)}
 
 
-def collect_configurations(root, report, manifest):
+def collect_configurations(root, report, manifest, *, native_only=False):
     artifacts = root / "build/artifacts"
     matrix = read_json(artifacts / "faithful-ipad-matrix.json")
-    production = read_json(artifacts / "production-release-acceptance.json")
+    production = None if native_only else read_json(artifacts / "production-release-acceptance.json")
     manifest_sha = digest(root / "Scripts/CI/runtime27-release-manifest.json")
     require(matrix.get("appSHA") == report["checkout_sha"] and not matrix.get("baseline")
             and matrix.get("fullMatrixAcceptance") is True
@@ -116,14 +122,17 @@ def collect_configurations(root, report, manifest):
     devices = {value["size"]: value for value in matrix.get("devices", [])}
     require(len(matrix.get("devices", [])) == 3 and set(devices) == {"11", "13", "phone"},
             "Missing or duplicate full native device configurations")
-    require(production.get("appSHA") == report["checkout_sha"]
-            and production.get("configuration") == "Release"
-            and production.get("dataProfile") == "production"
-            and production.get("status") == "EXECUTED_PASS",
-            "No passing full-corpus Release UI execution on this source")
+    if not native_only:
+        require(production.get("appSHA") == report["checkout_sha"]
+                and production.get("configuration") == "Release"
+                and production.get("dataProfile") == "production"
+                and production.get("status") == "EXECUTED_PASS",
+                "No passing full-corpus Release UI execution on this source")
     configurations = []
     for required in manifest["configurations"]:
         production_case = required["data_profile"] == "production"
+        if native_only and production_case:
+            continue
         large = "content_size" in required
         device = production if production_case else devices[required["device_size"]]
         state = device.get("largeText", {}) if large else device
@@ -172,7 +181,8 @@ def run(report, run_logged, controller):
     (out / "release-manifest.json").write_bytes(manifest_path.read_bytes())
     for path in ["Scripts/CI/runtime27-release.py", "Scripts/CI/runtime27-release-manifest.json",
                  "Scripts/CI/run-faithful-production-release.py", "Scripts/CI/build-faithful-prototype-reference.py",
-                 "Scripts/CI/verify-runtime27-release-gate.py"]:
+                 "Scripts/CI/verify-runtime27-release-gate.py", "Scripts/CI/runtime27-release-stages.py",
+                 "Scripts/CI/runtime27_release_handoff.py"]:
         report["helper_inputs_sha256"][path] = digest(root / path)
     require(not os.environ.get("FAITHFUL_RUNTIME27_MANIFEST") and not os.environ.get("FAITHFUL_DIAGNOSTIC_CASES"),
             "Release cannot inherit a partial diagnostic selection")
@@ -181,15 +191,30 @@ def run(report, run_logged, controller):
     if run_logged([sys.executable, "Scripts/CI/build-faithful-prototype-reference.py"],
                   "release-prototype-build.log", 900, interrupt_controller=controller):
         raise RuntimeError("The byte-identical separate prototype oracle did not build")
+    stage = os.environ.get("RUNTIME27_RELEASE_STAGE")
+    require(stage in {None, "build"}, "Unknown Release build stage")
+    if stage == "build":
+        # Later jobs consume these exact products; this stage executes no UI.
+        reverify_original_inputs(root, report, out / "after-release-build-inputs")
+        report.update(status="RELEASE_BUILD_ONLY_PASS", release_stage="build",
+                      full_release_acceptance=False, executed_ui_pass=0,
+                      executed_ui_fail=0, executed_ui_skip=0,
+                      ui_not_run=report["requested_ui_case_count"])
+        return 0
     if run_logged([sys.executable, "Scripts/CI/run-faithful-ipad-matrix.py"],
                   "release-native-matrix-driver.log", 12600, interrupt_controller=controller):
         raise RuntimeError("The complete native matrix failed; production Release and distribution remain blocked")
     if run_logged([sys.executable, "Scripts/CI/run-faithful-production-release.py"],
                   "release-production-driver.log", 7200, interrupt_controller=controller):
         raise RuntimeError("The genuine full-corpus Release UI gate failed or did not execute")
+    build = reverify_original_inputs(root, report, out / "after-release-inputs")
+    return complete_release(root, report, manifest, manifest_sha, build)
+
+
+def reverify_original_inputs(root, report, after):
+    """The original final source auditor, also retained at the build handoff."""
     build = read_json(root / "build/hq-stage2/result.json")
     helper = runpy.run_path(str(root / "Scripts/CI/hq-stage2-focused-apple.py"))
-    after = out / "after-release-inputs"
     after.mkdir(parents=True, exist_ok=True)
     helper["verify_actual_sources"].__globals__["OUT"] = after
     verified_build = copy.deepcopy(build)
@@ -199,6 +224,11 @@ def run(report, run_logged, controller):
         "actual_source_inputs_verified": verified_build["actual_source_inputs_verified"],
         "actual_package_checkouts": verified_build["actual_package_checkouts"]
     }, indent=2) + "\n", encoding="utf-8")
+    return build
+
+
+def complete_release(root, report, manifest, manifest_sha, build):
+    """Only the original full five-configuration strict gate can grant release."""
     candidate = {**report, "status": "EXECUTED_PASS", "full_release_acceptance": True,
                  "configurations": collect_configurations(root, report, manifest)}
     gate = runpy.run_path(str(root / "Scripts/CI/verify-runtime27-release-gate.py"))

@@ -1,0 +1,38 @@
+{
+  "status": "YAML_AND_REVIEWED_JOB_DEPENDENCIES_PASS",
+  "parser": "PyYAML 6.0.3",
+  "source_sha256": "4447ad0c79c5afc1a6ba3325966cd4c39c73c6a527a82ed1d1e9ae958d1007d9",
+  "jobs": {
+    "runtime27": {
+      "name": "${{ inputs.runtime27_mode == 'release' && 'Release build and prototype' || 'R27 real UI environment and acceptance' }}",
+      "needs": null,
+      "if": "${{ !inputs.books_updates_check_only && (inputs.runtime27_mode == 'probe' || (inputs.runtime27_mode == 'ui' || inputs.runtime27_mode == 'release')) }}",
+      "timeout-minutes": "${{ inputs.runtime27_mode == 'release' && 210 || inputs.runtime27_mode == 'probe' && 300 || 360 }}",
+      "outputs": {
+        "release-build-artifact": "${{ steps.release_build_upload.outputs.artifact-id }}",
+        "release-build-archive-sha": "${{ steps.release_build_pack.outputs.archive_sha256 }}"
+      }
+    },
+    "runtime27-release-native": {
+      "name": "Release native matrix (partial acceptance)",
+      "needs": "runtime27",
+      "if": "${{ inputs.runtime27_mode == 'release' && needs.runtime27.result == 'success' }}",
+      "timeout-minutes": 345,
+      "outputs": {
+        "release-native-artifact": "${{ steps.release_native_upload.outputs.artifact-id }}",
+        "release-native-archive-sha": "${{ steps.release_native_pack.outputs.archive_sha256 }}"
+      }
+    },
+    "runtime27-release-production": {
+      "name": "Release production upgrade and final acceptance",
+      "needs": [
+        "runtime27",
+        "runtime27-release-native"
+      ],
+      "if": "${{ inputs.runtime27_mode == 'release' && needs.runtime27.result == 'success' && needs.runtime27-release-native.result == 'success' }}",
+      "timeout-minutes": 300,
+      "outputs": null
+    }
+  },
+  "actual_github_execution": "NOT_RUN"
+}

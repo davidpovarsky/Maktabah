@@ -1,0 +1,80 @@
+{
+  "status": "PORTABLE_ORCHESTRATION_CONTROLS_PASS",
+  "observed_at": "2026-11-20T07:29:19.877043+00:00",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "baseline_git_commit": "c24f71123818576e06cafdc8474a525be0f30811",
+  "results": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "Scripts/CI/test-runtime27-release-handoff.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.323,
+      "tests": 29,
+      "log": "verified-1.log",
+      "log_sha256": "5db70887678182734edcdb2cf4f03e7dca421ec7ca4b2b0dc19858d1f81ac0fb"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "Scripts/CI/test-runtime27-release-stages.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.196,
+      "tests": 19,
+      "log": "verified-2.log",
+      "log_sha256": "60302d7be2f5f5d07ae1a79325c63a800a6819c149cce635ecc6abbadc09c735"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "Scripts/CI/test-runtime27-release-gate.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.225,
+      "tests": 23,
+      "log": "verified-3.log",
+      "log_sha256": "4ee94c094d14abf9d9b18214977a9622b566d91397af1a543774189039aaf13c"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "Scripts/CI/verify-release-stage-preservation.py",
+        "--base",
+        "c24f71123818576e06cafdc8474a525be0f30811",
+        "--baseline-directory",
+        "/workspace/scratch/8c31d602ec0a/release-stage-split-base",
+        "--out",
+        "/workspace/scratch/8c31d602ec0a/release-stage-split-work/build/release-stage-split-tests/source-preservation.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.12,
+      "tests": null,
+      "log": "verified-4.log",
+      "log_sha256": "73f2eec66cd5349515329f7ed1530fb08738c4fdeb1f5f59d4849b4b4e50cad3"
+    }
+  ],
+  "tests_passed": 71,
+  "source_preservation_checks": 14,
+  "syntax_files": 8,
+  "source_sha256": {
+    "Scripts/CI/runtime27-release-stages.py": "ee597b8fff50eab2c163d02e94d2bab43b35e01f61d726b13e48676a8c5b8a39",
+    "Scripts/CI/runtime27_release_handoff.py": "28ab9a2a3d1f7426521fcb7401621fb46e8bc7f6de4e3d6c5bc556b69ccbd9dd",
+    "Scripts/CI/runtime27-release.py": "f97a9e2ea7ad1ae7f257ef944d28f26c67b87e996674b36f06462f943d8a1b13",
+    "Scripts/CI/run-faithful-ipad-matrix.py": "8302ea6464d163ef3d5765cc6fecdf51e09cade953b2d35a71ea857493738fe2",
+    "Scripts/CI/hq-stage2-focused-apple.py": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+    "Scripts/CI/test-runtime27-release-handoff.py": "81df1415c68ce53d0b94e65756e82322e3168d976329df2db376c768f82538e4",
+    "Scripts/CI/test-runtime27-release-stages.py": "1430048f32fa40b25fc24d5d1d12f14443f7a21aac1f2ea2c43495d9af6fbbac",
+    "Scripts/CI/verify-release-stage-preservation.py": "4f822a9d40d72fba463a8f6930259b68211046870e93edef7878cb23c08433fb"
+  },
+  "native_ui_executed": 0,
+  "actual_apple_release": "NOT_RUN",
+  "initial_stage_fixture_attempt": {
+    "log": "stages-attempt1.log",
+    "passed": 17,
+    "errors": 2,
+    "cause": "Synthetic positive fixture omitted XCTest Executed count. Original zero-skip guard correctly rejected it; fixture was corrected; acceptance guard unchanged."
+  }
+}

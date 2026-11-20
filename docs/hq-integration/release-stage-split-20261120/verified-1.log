@@ -1,0 +1,34 @@
+test_ambiguous_original_test_run_is_rejected (__main__.ArchiveTests.test_ambiguous_original_test_run_is_rejected) ... ok
+test_changed_extra_or_permission_modified_products_are_rejected (__main__.ArchiveTests.test_changed_extra_or_permission_modified_products_are_rejected) ... ok
+test_changed_inner_file_cannot_use_self_consistent_archive_hash (__main__.ArchiveTests.test_changed_inner_file_cannot_use_self_consistent_archive_hash) ... ok
+test_changed_member_permissions_are_rejected (__main__.ArchiveTests.test_changed_member_permissions_are_rejected) ... ok
+test_changed_member_type_is_rejected (__main__.ArchiveTests.test_changed_member_type_is_rejected) ... ok
+test_corrupt_archive_is_rejected_before_extraction (__main__.ArchiveTests.test_corrupt_archive_is_rejected_before_extraction) ... ok
+test_different_needs_output_is_rejected (__main__.ArchiveTests.test_different_needs_output_is_rejected) ... ok
+test_existing_different_product_is_never_overwritten (__main__.ArchiveTests.test_existing_different_product_is_never_overwritten) ... ok
+test_existing_external_parent_link_is_rejected (__main__.ArchiveTests.test_existing_external_parent_link_is_rejected) ... ok
+test_existing_identical_inventory_is_idempotent (__main__.ArchiveTests.test_existing_identical_inventory_is_idempotent) ... ok
+test_internal_versioned_framework_aliases_roundtrip (__main__.ArchiveTests.test_internal_versioned_framework_aliases_roundtrip) ... ok
+test_missing_extra_duplicate_members_are_rejected (__main__.ArchiveTests.test_missing_extra_duplicate_members_are_rejected) ... ok
+test_roundtrip_retains_every_byte_mode_and_original_plist (__main__.ArchiveTests.test_roundtrip_retains_every_byte_mode_and_original_plist) ... ok
+test_unknown_or_filtered_xctestrun_is_rejected (__main__.ArchiveTests.test_unknown_or_filtered_xctestrun_is_rejected) ... ok
+test_xctestrun_is_never_rewritten_or_replaced (__main__.ArchiveTests.test_xctestrun_is_never_rewritten_or_replaced) ... ok
+test_actual_changed_driver_bytes_are_rejected_independently_of_head (__main__.ProvenanceTests.test_actual_changed_driver_bytes_are_rejected_independently_of_head) ... ok
+test_actual_successful_predecessor_allowed_while_workflow_remains_active (__main__.ProvenanceTests.test_actual_successful_predecessor_allowed_while_workflow_remains_active) ... ok
+test_artifact_name_id_expiry_origin_and_digest_are_bound (__main__.ProvenanceTests.test_artifact_name_id_expiry_origin_and_digest_are_bound) ... ok
+test_failed_incomplete_stale_or_duplicate_producer_is_rejected (__main__.ProvenanceTests.test_failed_incomplete_stale_or_duplicate_producer_is_rejected) ... ok
+test_foreign_source_attempt_run_or_trigger_is_rejected (__main__.ProvenanceTests.test_foreign_source_attempt_run_or_trigger_is_rejected) ... ok
+test_matching_actual_driver_bytes_have_a_stable_proof (__main__.ProvenanceTests.test_matching_actual_driver_bytes_have_a_stable_proof) ... ok
+test_upload_must_belong_to_successful_producer_time_interval (__main__.ProvenanceTests.test_upload_must_belong_to_successful_producer_time_interval) ... ok
+test_all_immutable_context_fields_are_required (__main__.ReceiptTests.test_all_immutable_context_fields_are_required) ... ok
+test_archive_byte_counts_are_strict_and_bounded (__main__.ReceiptTests.test_archive_byte_counts_are_strict_and_bounded) ... ok
+test_bad_paths_are_rejected (__main__.ReceiptTests.test_bad_paths_are_rejected) ... ok
+test_full_acceptance_and_wrong_partial_status_are_rejected (__main__.ReceiptTests.test_full_acceptance_and_wrong_partial_status_are_rejected) ... ok
+test_link_escape_cycle_missing_and_depth_are_rejected (__main__.ReceiptTests.test_link_escape_cycle_missing_and_depth_are_rejected) ... ok
+test_missing_duplicate_privileged_special_inventory_is_rejected (__main__.ReceiptTests.test_missing_duplicate_privileged_special_inventory_is_rejected) ... ok
+test_product_link_cannot_borrow_mutable_evidence_outside_product_inventory (__main__.ReceiptTests.test_product_link_cannot_borrow_mutable_evidence_outside_product_inventory) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.142s
+
+OK

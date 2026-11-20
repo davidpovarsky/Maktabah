@@ -639,11 +639,23 @@ def verify_zayit_test_metadata(report, test_bundle=None):
 
 
 def main():
+    global OUT
     ap = argparse.ArgumentParser()
     ap.add_argument("--preflight-only", action="store_true", help="Source/input closure only; no SDK or downloads")
     ap.add_argument("--build-for-testing", action="store_true", help="Same exact inputs, real UI runner, simulator-only ad-hoc signing")
     ap.add_argument("--derived-data", default="build/hq-stage2/DerivedData")
+    ap.add_argument("--prepare-inputs-only", action="store_true",
+                    help="Restore and verify the original inputs for a later Release build; no Debug rebuild")
+    ap.add_argument("--preparation-evidence-dir",
+                    help="Separate build/ evidence directory required for input-only preparation")
     args = ap.parse_args()
+    if args.prepare_inputs_only:
+        require(args.build_for_testing and not args.preflight_only and args.preparation_evidence_dir,
+                "Input-only preparation requires the original test-input checks and separate evidence")
+        OUT = checked_path(ROOT / "build", str(Path(args.preparation_evidence_dir).relative_to("build")))
+        require(OUT != ROOT / "build/hq-stage2", "Cannot replace the accepted Debug build evidence")
+    else:
+        require(not args.preparation_evidence_dir, "Preparation evidence requires input-only mode")
     config = json.loads(INPUTS.read_text())
     if args.preflight_only:
         print(json.dumps(preflight(config), indent=2))
@@ -685,6 +697,11 @@ def main():
         verify_actual_sources(report)
         verify_selected_zayit_files(report)
         authorize_pinned_equatable_macro(report)
+        if args.prepare_inputs_only:
+            prepare_original_hanlin(config, report, verify_only=True)
+            report.update(status="PREPARED_ORIGINAL_INPUTS_ONLY", scope="RELEASE_INPUT_RESTORATION",
+                          app_build_executed=False, runtime="NOT_RUN", signing=False)
+            return 0
         derived_data = checked_path(ROOT / "build", str(Path(args.derived_data).relative_to("build")))
         signing = (["CODE_SIGNING_ALLOWED=YES", "CODE_SIGNING_REQUIRED=YES", "CODE_SIGN_IDENTITY=-"] if args.build_for_testing
                    else ["CODE_SIGNING_ALLOWED=NO", "CODE_SIGNING_REQUIRED=NO", "CODE_SIGN_IDENTITY="])

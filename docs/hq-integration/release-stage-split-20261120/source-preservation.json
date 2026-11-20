@@ -1,0 +1,245 @@
+{
+  "status": "SOURCE_PRESERVATION_PASS",
+  "native_ui_executed": 0,
+  "checks": [
+    {
+      "check": "Git-byte-identical original: Scripts/CI/runtime27.py",
+      "status": "PASS"
+    },
+    {
+      "check": "Git-byte-identical original: Scripts/CI/run-faithful-production-release.py",
+      "status": "PASS"
+    },
+    {
+      "check": "Git-byte-identical original: Scripts/CI/verify-runtime27-release-gate.py",
+      "status": "PASS"
+    },
+    {
+      "check": "Git-byte-identical original: Scripts/CI/test-runtime27-release-gate.py",
+      "status": "PASS"
+    },
+    {
+      "check": "Git-byte-identical original: Scripts/CI/runtime27-release-manifest.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Git-byte-identical original: tools/verify_xcresult_zero_skips.py",
+      "status": "PASS"
+    },
+    {
+      "check": "Only explicit preparation-mode additions; all original helper/default code AST preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "Only authenticated xctestrun selection and required Release HID wiring added; every original matrix/default gate AST preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "Default full five-configuration collection AST preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "Original final strict gate body AST identical after extraction into complete_release",
+      "status": "PASS"
+    },
+    {
+      "check": "Original actual-source auditor body AST identical after extraction",
+      "status": "PASS"
+    },
+    {
+      "check": "Original prototype/native/production default ordering, time budgets and guards AST identical",
+      "status": "PASS"
+    },
+    {
+      "check": "All non-R27 workflow inputs, jobs, permissions and concurrency bytes unchanged",
+      "status": "PASS"
+    },
+    {
+      "check": "Original 5 configurations, 96 required UI and 2 separate oracles unchanged",
+      "status": "PASS"
+    }
+  ],
+  "fingerprints": {
+    "Scripts/CI/runtime27.py": {
+      "before": {
+        "bytes": 26235,
+        "sha256": "4cd655633b6b644b5a18c1d3860c77435a7f4ae9b95f7a67929e19a674840ac9",
+        "git_blob": "0a272f2e08c8393cc4679f55438cebff94f92faa"
+      },
+      "after": {
+        "bytes": 26235,
+        "sha256": "4cd655633b6b644b5a18c1d3860c77435a7f4ae9b95f7a67929e19a674840ac9",
+        "git_blob": "0a272f2e08c8393cc4679f55438cebff94f92faa"
+      },
+      "after_worktree_bytes": {
+        "bytes": 26235,
+        "sha256": "4cd655633b6b644b5a18c1d3860c77435a7f4ae9b95f7a67929e19a674840ac9",
+        "git_blob": "0a272f2e08c8393cc4679f55438cebff94f92faa"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    },
+    "Scripts/CI/run-faithful-production-release.py": {
+      "before": {
+        "bytes": 10834,
+        "sha256": "6e211230c772acf83643503de24e7f3f2c405f0c111091fcd0f5bcc90cd116f1",
+        "git_blob": "fa12215ba5c7e6044459fe0a9ec75c7a354dfc7a"
+      },
+      "after": {
+        "bytes": 10834,
+        "sha256": "6e211230c772acf83643503de24e7f3f2c405f0c111091fcd0f5bcc90cd116f1",
+        "git_blob": "fa12215ba5c7e6044459fe0a9ec75c7a354dfc7a"
+      },
+      "after_worktree_bytes": {
+        "bytes": 10834,
+        "sha256": "6e211230c772acf83643503de24e7f3f2c405f0c111091fcd0f5bcc90cd116f1",
+        "git_blob": "fa12215ba5c7e6044459fe0a9ec75c7a354dfc7a"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    },
+    "Scripts/CI/verify-runtime27-release-gate.py": {
+      "before": {
+        "bytes": 18620,
+        "sha256": "b3d628601889a307d2b8e807db14bfa41da3641cda294e0e6a33d9fd611898b1",
+        "git_blob": "4f2d0a7de29a24069ca506fa368b2ab0be817acb"
+      },
+      "after": {
+        "bytes": 18620,
+        "sha256": "b3d628601889a307d2b8e807db14bfa41da3641cda294e0e6a33d9fd611898b1",
+        "git_blob": "4f2d0a7de29a24069ca506fa368b2ab0be817acb"
+      },
+      "after_worktree_bytes": {
+        "bytes": 18620,
+        "sha256": "b3d628601889a307d2b8e807db14bfa41da3641cda294e0e6a33d9fd611898b1",
+        "git_blob": "4f2d0a7de29a24069ca506fa368b2ab0be817acb"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    },
+    "Scripts/CI/test-runtime27-release-gate.py": {
+      "before": {
+        "bytes": 25110,
+        "sha256": "0253b2ce63ebafcc55f133514975555bf5a93956fbe3fd54994774a920f6315b",
+        "git_blob": "4e3bd0789907e82518ed0381d52717f5b290729e"
+      },
+      "after": {
+        "bytes": 25110,
+        "sha256": "0253b2ce63ebafcc55f133514975555bf5a93956fbe3fd54994774a920f6315b",
+        "git_blob": "4e3bd0789907e82518ed0381d52717f5b290729e"
+      },
+      "after_worktree_bytes": {
+        "bytes": 25110,
+        "sha256": "0253b2ce63ebafcc55f133514975555bf5a93956fbe3fd54994774a920f6315b",
+        "git_blob": "4e3bd0789907e82518ed0381d52717f5b290729e"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    },
+    "Scripts/CI/runtime27-release-manifest.json": {
+      "before": {
+        "bytes": 16053,
+        "sha256": "73784927d8a33f7412859f37c55e9c988ada2f1dbb4e84fdcc29c4be09b1ca03",
+        "git_blob": "a641e16ca0bc5ee0c45829afe60d91250c8fe6aa"
+      },
+      "after": {
+        "bytes": 16053,
+        "sha256": "73784927d8a33f7412859f37c55e9c988ada2f1dbb4e84fdcc29c4be09b1ca03",
+        "git_blob": "a641e16ca0bc5ee0c45829afe60d91250c8fe6aa"
+      },
+      "after_worktree_bytes": {
+        "bytes": 16053,
+        "sha256": "73784927d8a33f7412859f37c55e9c988ada2f1dbb4e84fdcc29c4be09b1ca03",
+        "git_blob": "a641e16ca0bc5ee0c45829afe60d91250c8fe6aa"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    },
+    "tools/verify_xcresult_zero_skips.py": {
+      "before": {
+        "bytes": 10243,
+        "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+        "git_blob": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b"
+      },
+      "after": {
+        "bytes": 10243,
+        "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+        "git_blob": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b"
+      },
+      "after_worktree_bytes": {
+        "bytes": 10243,
+        "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+        "git_blob": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "before": {
+        "bytes": 46418,
+        "sha256": "eb9df6467fd26673e9a6e495f3bbdcf6e066e700db4daab54d882f14041b415e",
+        "git_blob": "32080db5067fe2cfcb959cf4f696dabed7a0888a"
+      },
+      "after": {
+        "bytes": 47630,
+        "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+        "git_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1"
+      },
+      "after_worktree_bytes": {
+        "bytes": 47630,
+        "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0",
+        "git_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    },
+    "Scripts/CI/run-faithful-ipad-matrix.py": {
+      "before": {
+        "bytes": 47882,
+        "sha256": "1226c240e9b3f4b70bfeb0e681d1a9902a36a0a115d43c3f31a594afc0e1f9a1",
+        "git_blob": "8f881b6a9efc7ea5a98139105c8f8fb258665f11"
+      },
+      "after": {
+        "bytes": 49298,
+        "sha256": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171",
+        "git_blob": "84cb750c02a4cff41e529d332ec4f29c098619d0"
+      },
+      "after_worktree_bytes": {
+        "bytes": 49298,
+        "sha256": "41a0be10a827d820e537ed0a598abe296929a22072f7f4e15fc485dd53cab171",
+        "git_blob": "84cb750c02a4cff41e529d332ec4f29c098619d0"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    },
+    "Scripts/CI/runtime27-release.py": {
+      "before": {
+        "bytes": 13024,
+        "sha256": "92f8f79fcf085334512c6f7ad5de97e17c68a3d6e8b0bd9ac1088eef5bc337dc",
+        "git_blob": "91d78d5beae95b1ec88e7f7558fea5c4d3c0b043"
+      },
+      "after": {
+        "bytes": 14612,
+        "sha256": "aae3efc5c2fdb1123f24c05842d4b235434a46b6125c8280461f875a6690ea41",
+        "git_blob": "3baae6db531f2e14b1d55f2ab41d76af8fb24029"
+      },
+      "after_worktree_bytes": {
+        "bytes": 14612,
+        "sha256": "aae3efc5c2fdb1123f24c05842d4b235434a46b6125c8280461f875a6690ea41",
+        "git_blob": "3baae6db531f2e14b1d55f2ab41d76af8fb24029"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    },
+    ".github/workflows/sefaria-embedded-validation.yml": {
+      "before": {
+        "bytes": 35717,
+        "sha256": "361d710124e01540f6ffa44e2fa9ef30b266ccc685abef6b39cfea5d40b43cf2",
+        "git_blob": "5ec661a48a22e7f49b4335fe488565e39e1a6add"
+      },
+      "after": {
+        "bytes": 43290,
+        "sha256": "4447ad0c79c5afc1a6ba3325966cd4c39c73c6a527a82ed1d1e9ae958d1007d9",
+        "git_blob": "08ba8590f0e29e5ad4b3c4295dc9a2cc602fb207"
+      },
+      "after_worktree_bytes": {
+        "bytes": 43290,
+        "sha256": "4447ad0c79c5afc1a6ba3325966cd4c39c73c6a527a82ed1d1e9ae958d1007d9",
+        "git_blob": "08ba8590f0e29e5ad4b3c4295dc9a2cc602fb207"
+      },
+      "comparison": "GIT_CANONICAL_LF"
+    }
+  },
+  "baseline": "c24f71123818576e06cafdc8474a525be0f30811"
+}
