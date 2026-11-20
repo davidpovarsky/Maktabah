@@ -1,0 +1,21 @@
+{
+  "base": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "source_sha256": "5553b5e90e4ecd73f56979799ce2760d6e6187ae419f7e0d92cfe6bfffabf878",
+  "original_prefix_unchanged": true,
+  "original_bytes": 149675,
+  "append_lines": 399,
+  "command": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+    "-frontend",
+    "-parse",
+    "-swift-version",
+    "6",
+    "C:\\Users\\DAVID\\Code\\Maktabah-native-note-commentary-20261120\\Maktabah-iOSUITests\\FaithfulReaderUIAcceptanceTests.swift"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.39100000000325963,
+  "parse_only": true,
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "diagnostics": ""
+}

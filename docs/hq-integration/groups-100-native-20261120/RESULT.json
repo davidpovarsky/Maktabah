@@ -1,0 +1,15 @@
+{
+  "source_prepared": true,
+  "swift_frontend_parse": "PASS",
+  "original_source_and_manifests_preserved": true,
+  "added_native_declarations": 1,
+  "native_executions": 0,
+  "apple_typecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "physical": "NOT_RUN",
+  "production_database": "NOT_RUN",
+  "p95": "NOT_MEASURED",
+  "memory": "NOT_MEASURED",
+  "asana_completed": false,
+  "faithful_git_lf_sha256": "5553b5e90e4ecd73f56979799ce2760d6e6187ae419f7e0d92cfe6bfffabf878"
+}
