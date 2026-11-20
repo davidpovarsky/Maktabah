@@ -1,0 +1,117 @@
+{
+  "label": "candidate-attempt1",
+  "head": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-20T02:15:59.726905+00:00",
+  "source_hashes_unchanged": true,
+  "raw_log_sha256": "a2e2c6f54d1b3065a00b915936db7f85907982c890ae78691ed72597ac996b69",
+  "occurrence_case_results": [
+    [
+      "OccurrenceActionTests.testAuthorityChangeCannotReplayPreviousCount",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testCancellationAfterProviderEntryCannotPublish",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testDeadlineStopsPendingCountWithoutPublishingPartialData",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testDocumentAndSegmentUnitsAreNotSilentlyReinterpreted",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testDuplicatedScopesFailBeforeCounting",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testExactOccurrencesStayDistinctFromMatchingDocumentTotal",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testForgedOrPartialEvidenceNeverPublishesAnyCount",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testLemmatizedModeCannotProduceAnExactCount",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testMissingOptionalCountPortCannotExecuteOrAdvertise",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testMissingOrDifferentCatalogRevisionDoesNotCount",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testOriginalSearchPortAndPageTotalRemainUnchanged",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testOtherBackendsRemainUnsupportedWithoutFallback",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testProvenZeroHasExactZeroAndCoverageEvidence",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testQualifiedPortCanAdvertiseOnlyWithCurrentRightsAndReadiness",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testReplayReusesSameProofButNewGenerationInvalidatesIt",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testRestrictedWorkAuthorityRequiresExactExplicitScope",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testRightsAndDeepLinksCannotReachCountProvider",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testSourceChangeAfterCountingDiscardsAValidNumericResult",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testTypedFailuresContainNoPartialNumber",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testUnavailableIndexCannotBecomeZeroOrReachProvider",
+      "passed"
+    ]
+  ],
+  "summary_lines": [
+    "Test Suite 'BackendSemanticsTests' passed at 2026-11-20 02:15:52.573",
+    "\t Executed 15 tests, with 0 failures (0 unexpected) in 0.05 (0.05) seconds",
+    "Test Suite 'CatalogActionResolverTests' passed at 2026-11-20 02:15:52.737",
+    "\t Executed 19 tests, with 0 failures (0 unexpected) in 0.163 (0.163) seconds",
+    "Test Suite 'CatalogSourceSectionsTests' passed at 2026-11-20 02:15:52.750",
+    "\t Executed 6 tests, with 0 failures (0 unexpected) in 0.012 (0.012) seconds",
+    "Test Suite 'CommentaryActionTests' passed at 2026-11-20 02:15:52.968",
+    "\t Executed 19 tests, with 0 failures (0 unexpected) in 0.217 (0.217) seconds",
+    "Test Suite 'ContractAPITests' passed at 2026-11-20 02:15:52.968",
+    "\t Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds",
+    "Test Suite 'EngineTests' passed at 2026-11-20 02:15:55.882",
+    "\t Executed 18 tests, with 0 failures (0 unexpected) in 2.913 (2.913) seconds",
+    "Test Suite 'NoteDraftActionTests' passed at 2026-11-20 02:15:56.635",
+    "\t Executed 17 tests, with 0 failures (0 unexpected) in 0.753 (0.753) seconds",
+    "Test Suite 'OccurrenceActionTests' passed at 2026-11-20 02:15:58.563",
+    "\t Executed 20 tests, with 0 failures (0 unexpected) in 1.927 (1.927) seconds",
+    "Test Suite 'SearchResultsActionTests' passed at 2026-11-20 02:15:59.024",
+    "\t Executed 14 tests, with 0 failures (0 unexpected) in 0.461 (0.461) seconds",
+    "Test Suite 'WireSecurityTests' failed at 2026-11-20 02:15:59.486",
+    "\t Executed 7 tests, with 1 failure (0 unexpected) in 0.462 (0.462) seconds",
+    "Test Suite 'debug.xctest' failed at 2026-11-20 02:15:59.486",
+    "\t Executed 137 tests, with 1 failure (0 unexpected) in 6.959 (6.959) seconds",
+    "Test Suite 'All tests' failed at 2026-11-20 02:15:59.486",
+    "\t Executed 137 tests, with 1 failure (0 unexpected) in 6.959 (6.959) seconds"
+  ],
+  "native_executed": 0
+}

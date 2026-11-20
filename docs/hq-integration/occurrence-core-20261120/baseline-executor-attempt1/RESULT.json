@@ -1,0 +1,97 @@
+{
+  "label": "baseline-executor-attempt1",
+  "head": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-20T02:09:16.979613+00:00",
+  "source_hashes_unchanged": true,
+  "raw_log_sha256": "f29f22cbcadd2c7cd85a4ed225706cc89a6a0a3fb419f945bfaf64ba62d16807",
+  "occurrence_case_results": [
+    [
+      "OccurrenceActionTests.testAuthorityChangeCannotReplayPreviousCount",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testCancellationAfterProviderEntryCannotPublish",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testDeadlineStopsPendingCountWithoutPublishingPartialData",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testDocumentAndSegmentUnitsAreNotSilentlyReinterpreted",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testDuplicatedScopesFailBeforeCounting",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testExactOccurrencesStayDistinctFromMatchingDocumentTotal",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testForgedOrPartialEvidenceNeverPublishesAnyCount",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testLemmatizedModeCannotProduceAnExactCount",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testMissingOptionalCountPortCannotExecuteOrAdvertise",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testMissingOrDifferentCatalogRevisionDoesNotCount",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testOriginalSearchPortAndPageTotalRemainUnchanged",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testOtherBackendsRemainUnsupportedWithoutFallback",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testProvenZeroHasExactZeroAndCoverageEvidence",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testQualifiedPortCanAdvertiseOnlyWithCurrentRightsAndReadiness",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testReplayReusesSameProofButNewGenerationInvalidatesIt",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testRestrictedWorkAuthorityRequiresExactExplicitScope",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testRightsAndDeepLinksCannotReachCountProvider",
+      "passed"
+    ],
+    [
+      "OccurrenceActionTests.testSourceChangeAfterCountingDiscardsAValidNumericResult",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testTypedFailuresContainNoPartialNumber",
+      "failed"
+    ],
+    [
+      "OccurrenceActionTests.testUnavailableIndexCannotBecomeZeroOrReachProvider",
+      "failed"
+    ]
+  ],
+  "summary_lines": [
+    "Test Suite 'OccurrenceActionTests' failed at 2026-11-20 02:09:16.319",
+    "\t Executed 20 tests, with 79 failures (0 unexpected) in 2.648 (2.648) seconds",
+    "Test Suite 'Selected tests' failed at 2026-11-20 02:09:16.319",
+    "\t Executed 20 tests, with 79 failures (0 unexpected) in 2.648 (2.648) seconds"
+  ],
+  "native_executed": 0
+}
