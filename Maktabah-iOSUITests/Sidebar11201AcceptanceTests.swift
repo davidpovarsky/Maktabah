@@ -117,7 +117,7 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
         waitSelected(libraryDot)
 
         let pager = app.descendants(matching: .any)["reader-sidebar-pager"].firstMatch
-        XCTAssertTrue(pager.waitForExistence(timeout: 15))
+        XCTAssertTrue(pager.exists || pager.waitForExistence(timeout: 15))
         let library = app.otherElements["library-column"].firstMatch
         // Paths are exported from the pinned miniTest10 fixture's real category
         // hierarchy. Fail closed when absent, never guess ancestor labels.
@@ -167,7 +167,7 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
             // The actual native TOC is a CollectionView; its navigation
             // title belongs to the surrounding NavigationBar, not its rows.
             let toc = app.descendants(matching: .any)["toc-column"].firstMatch
-            XCTAssertTrue(toc.waitForExistence(timeout: 15))
+            XCTAssertTrue(toc.exists || toc.waitForExistence(timeout: 15))
             let column = sidebarColumnFrame(in: pager)
             let titles = app.navigationBars.staticTexts.matching(NSPredicate(
                 format: "label == %@", language == "he" ? "תוכן עניינים" : "Table of Contents"
@@ -268,7 +268,7 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
                 if target.exists && target.isHittable { break }
                 library.collectionViews.firstMatch.swipeUp()
             }
-            XCTAssertTrue(target.waitForExistence(timeout: 15), "Fixture path is missing: \(title)")
+            XCTAssertTrue(target.exists || target.waitForExistence(timeout: 15), "Fixture path is missing: \(title)")
             XCTAssertTrue(target.staticTexts[title].exists, "Canonical cell must retain the real title")
             XCTAssertTrue(target.isHittable, "Canonical catalog occurrence must be visible")
             if index + 1 < path.count {
@@ -282,7 +282,7 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
                     ["chevron.down", "chevron.forward"])).count, 1,
                     "Observe the original category's actual disclosure state")
                 if collapsed.exists { target.tap() }
-                XCTAssertTrue(expanded.waitForExistence(timeout: 15),
+                XCTAssertTrue(expanded.exists || expanded.waitForExistence(timeout: 15),
                               "The original category must be visibly expanded before finding its child")
             }
         }
@@ -329,6 +329,12 @@ final class Sidebar11201AcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func waitSelected(_ dot: XCUIElement) {
+        // Read the same actual native predicate before starting the poller.
+        // Absent or unselected controls still receive the original15s wait.
+        if dot.exists {
+            let selected = dot.isSelected
+            if selected { XCTAssertTrue(selected); return }
+        }
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "isSelected == true"), object: dot
         )], timeout: 15), .completed)
