@@ -1,0 +1,46 @@
+{
+  "head": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "tree": "5128feff6992aab17b368775e3b5d7ec7e33cc82",
+  "canonical_entries": [
+    {
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "sha": "5f5f22eeea9e04889f2bd278d32d819b313380c2",
+      "mode": "100644"
+    },
+    {
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "sha": "07dc9da3b401c8396a869d593e8c20bd30b35102",
+      "mode": "100644"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "sha": "5abc35f714e575733ba9428a5726ee00c8841335",
+      "mode": "100644"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+      "sha": "f3955e1945696120f46b1293bf9e067a9e923877",
+      "mode": "100644"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "sha": "2fc7554d7bacf3df97e566f45ec32cf597a2362d",
+      "mode": "100644"
+    },
+    {
+      "path": "Source/Otzaria/Debug/OtzariaFileLogger.swift",
+      "sha": "afead5090be564ca0bd561ef71155ae9f3bf0b1d",
+      "mode": "100644"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "sha": "d4f061293e7c8682d41320602da5692d47dce7d9",
+      "mode": "100644"
+    },
+    {
+      "path": "Scripts/CI/typecheck-faithful-ui-tests.py",
+      "sha": "0102957b43d9e4a71cd122046418dd33b55b8210",
+      "mode": "100644"
+    }
+  ]
+}

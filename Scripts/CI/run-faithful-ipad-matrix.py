@@ -23,13 +23,16 @@ import runtime27_release_handoff
 
 
 def requires_native_log_collection(selection):
-    """Retain the original persistent log for routing and explicit Escape diagnostics."""
+    """Retain the original log for routing and explicit Escape/font diagnostics."""
     for case in selection:
         suite, separator, method = case.partition("/")
         if suite in ("NativeRoutingAcceptanceTests", "NativeRoutingPhoneAcceptanceTests"):
             return True
         if suite == "FaithfulReaderUIAcceptanceTests" and (
                 not separator or method == "testPointerHoverClickAndHardwareKeyboardDismissal"):
+            return True
+        if suite == "GlobalSearchNativeAcceptanceTests" and (
+                not separator or method == "testHeaderAndHistoryNativeAccessibilityAudit"):
             return True
     return False
 

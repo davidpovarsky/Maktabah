@@ -1,0 +1,7 @@
+{
+  "entry": "visual-11-search/DFFFAB3F-BE6C-43E1-A8FD-5B023C86093B.txt",
+  "text": "Dynamic Type font sizes are partially unsupported\nUser will not be able to change the font size of this UILabel\nelement=unavailable",
+  "expectedBytes": 131,
+  "expectedSHA256": "2387bf852f884c895eba4f7d55c4d772d72cc399c2adbb2ccc2c89dc3e44e790",
+  "source": "Existing exact Sentinel read of selected original capture; no new download."
+}

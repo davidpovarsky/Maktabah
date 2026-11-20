@@ -1,0 +1,17 @@
+testEmptySelectionDoesNotExpandCollection (__main__.OriginalCollectionSelectorTests.testEmptySelectionDoesNotExpandCollection) ... ok
+testExactGlobalAuditRetainsOriginalPersistentLog (__main__.OriginalCollectionSelectorTests.testExactGlobalAuditRetainsOriginalPersistentLog) ... ok
+testMixedSelectionContainingActualAuditRetainsLog (__main__.OriginalCollectionSelectorTests.testMixedSelectionContainingActualAuditRetainsLog) ... ok
+testOriginalEscapeCaseStillCollected (__main__.OriginalCollectionSelectorTests.testOriginalEscapeCaseStillCollected) ... ok
+testOriginalFaithfulWholeClassStillCollected (__main__.OriginalCollectionSelectorTests.testOriginalFaithfulWholeClassStillCollected) ... ok
+testOriginalPhoneRoutingCaseStillCollected (__main__.OriginalCollectionSelectorTests.testOriginalPhoneRoutingCaseStillCollected) ... ok
+testOriginalRoutingWholeClassStillCollected (__main__.OriginalCollectionSelectorTests.testOriginalRoutingWholeClassStillCollected) ... ok
+testSameMethodOnDifferentSuiteDoesNotExpandCollection (__main__.OriginalCollectionSelectorTests.testSameMethodOnDifferentSuiteDoesNotExpandCollection) ... ok
+testSimilarMethodNameDoesNotExpandCollection (__main__.OriginalCollectionSelectorTests.testSimilarMethodNameDoesNotExpandCollection) ... ok
+testUnrelatedFaithfulCaseDoesNotExpandCollection (__main__.OriginalCollectionSelectorTests.testUnrelatedFaithfulCaseDoesNotExpandCollection) ... ok
+testUnrelatedGlobalCaseDoesNotExpandCollection (__main__.OriginalCollectionSelectorTests.testUnrelatedGlobalCaseDoesNotExpandCollection) ... ok
+testWholeGlobalClassIncludesTheAudit (__main__.OriginalCollectionSelectorTests.testWholeGlobalClassIncludesTheAudit) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.000s
+
+OK

@@ -1,0 +1,15 @@
+{
+  "base_commit": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "base_git_blobs_verified": 8,
+  "collector_block_sha256": "c25897ff6eb89e54c419115e4c300d1cf3cdb6a2e0f35d7e1b2c11152a38f694",
+  "dynamic_type_cause": "UNRESOLVED_ELEMENT_UNAVAILABLE",
+  "native_ui": "NOT_RUN",
+  "original_matrix_inverse": "BYTE_IDENTICAL",
+  "original_test_and_audit_inverse": "BYTE_IDENTICAL",
+  "product_release_inverse": "BYTE_IDENTICAL",
+  "retained_python_cases": 12,
+  "standalone_uikit_component_sha256": "fb2e8166db9abb820efc5c7664896a4ced5f1867b2acc4709b2381eac566a660",
+  "status": "PASS_SOURCE_PRESERVATION_AND_RETAINED_PYTHON_EVIDENCE_ONLY",
+  "swift_parse_typecheck": "NOT_RUN",
+  "test_declarations_unchanged": 29
+}

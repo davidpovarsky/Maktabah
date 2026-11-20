@@ -1,0 +1,222 @@
+{
+  "schema": "root-global-search-font-diagnostics-20261120",
+  "files": [
+    {
+      "bytes": 89402,
+      "git_blob": "14f458874a131628e2e770b63e74beffd2de12f7",
+      "mode": "100644",
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "sha256": "4f56efa323615e0c602d5c55a090c2d6751b1fb229bced37a216b92d7b15424f"
+    },
+    {
+      "bytes": 49924,
+      "git_blob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "mode": "100644",
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6"
+    },
+    {
+      "bytes": 16318,
+      "git_blob": "4c4481645881ceb012029beec17267eba546dd57",
+      "mode": "100644",
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "sha256": "6879c1f3cb317c459502f42ebc0d4086579972fffdf90d7fc991eb6f2b83e92d"
+    },
+    {
+      "bytes": 2684,
+      "git_blob": "f4d55ddc9523938e22534d3752e4f282634fa772",
+      "mode": "100644",
+      "path": "Tests/HQ/global-search-font-diagnostics/test_collection_contract.py",
+      "sha256": "f5cc684d04436ac01e3e1ed29f63d20ebf39a6c52f628896a2670f9a64b3b1e3"
+    },
+    {
+      "bytes": 8661,
+      "git_blob": "93dd4efcad33baef9e6dd7c34d8705e8d2864b7e",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/ARTIFACTS.json",
+      "sha256": "5bd75600fbbd5b99a3ce73c775b613c358948bf964a43733e0511386a6c942cf"
+    },
+    {
+      "bytes": 2379,
+      "git_blob": "3b8689935ed0251f4f2bbdbd57fed8b3e470c8a6",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/BASE_COMMIT.json",
+      "sha256": "fe8ea7ea4203c54ecffe9efa6a56e0f0f431cef96569ab57088ae2364d392c9b"
+    },
+    {
+      "bytes": 3814,
+      "git_blob": "c94858f597dba9003bdfd0c6cc900a38afdc60b3",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/BASE_PROOF.json",
+      "sha256": "ed225710dd44fe52ac2d7199d1c0a0f3b5733c21bc621e36416fffc51dc8db73"
+    },
+    {
+      "bytes": 1615,
+      "git_blob": "b7c352f3a25e1b2d61d160bd024d7891f927c500",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/HISTORICAL_EVIDENCE_REVIEW.json",
+      "sha256": "7f1fccce725f450b6607f117a9e16caa10dedb2977eb0c4c5ea5322a67408ad6"
+    },
+    {
+      "bytes": 851,
+      "git_blob": "3e8ffe58c6a2a07930694b345fcf9537e1cae432",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/PEER_REVIEW.json",
+      "sha256": "839325f20a9a20d2fcf0ad94835e2ac08e93051c67824c758764ad8595ff7e78"
+    },
+    {
+      "bytes": 8567,
+      "git_blob": "2d1bc6ce7aaa837308076c624b6b381ee07b1f1e",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/README.md",
+      "sha256": "e948abab2577c82f234d401e81c22de064cdc09efffddf143080b3f528d61eab"
+    },
+    {
+      "bytes": 17893,
+      "git_blob": "278dbacd6e30350bc7972d2ed0e76d68ac95df36",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/SOURCE.patch",
+      "sha256": "d081f95a1050448404df54c3077e6a435e9f39203c96db951be74c503b67b7db"
+    },
+    {
+      "bytes": 712,
+      "git_blob": "b8e4e4ff8255659a5173b59fc23ae0f7a52377dd",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/SOURCE_PRESERVATION.json",
+      "sha256": "43d767e212f68fd9d950c7c3b2d084578de5d468c73e6073f9faa94718c142ce"
+    },
+    {
+      "bytes": 785,
+      "git_blob": "59ecafc06e7183f11442c77f7b7b7166e15377a3",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/COLLECTION_RESULT.json",
+      "sha256": "5a56caf390625cbb8c72f7c8355666ac0227fe6d721c7f5587c08d5b1c2182d2"
+    },
+    {
+      "bytes": 131,
+      "git_blob": "f1f0478753a674315e305a75652d9b994d09bcff",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/DFFFAB3F-BE6C-43E1-A8FD-5B023C86093B.txt",
+      "sha256": "2387bf852f884c895eba4f7d55c4d772d72cc399c2adbb2ccc2c89dc3e44e790"
+    },
+    {
+      "bytes": 425,
+      "git_blob": "d7b413bc97da56d3d4397257b23bf2495aec78d5",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/RETAINED_TEXT.json",
+      "sha256": "7d264fa88bf3ee1ad7181a334e577504c0c9672d4e6ac62e2da1c438bb35e01c"
+    },
+    {
+      "bytes": 19647,
+      "git_blob": "b2c0b821f8cb2360284c61124cb25e0ac6244e52",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/baseline/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift.gz",
+      "sha256": "b0f68b1512fce712fd97a96cb2f72f3b8707fa50b58ec78db24a3cbbb79d616e"
+    },
+    {
+      "bytes": 11054,
+      "git_blob": "8c5721be181c58e16479813f3484c6a77568fb28",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/baseline/Scripts/CI/run-faithful-ipad-matrix.py.gz",
+      "sha256": "72a5037fc21a60d1a982859d1fbb676a92eaec2f1a8aacfef9b047796563324d"
+    },
+    {
+      "bytes": 6366,
+      "git_blob": "fddc2e7125c757e0bc0fda1f25b1a95d780097aa",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/baseline/Scripts/CI/typecheck-faithful-ui-tests.py.gz",
+      "sha256": "313c865ef0b10fbe8d0318bebc84c7f6f062f1e85912f0346aa99d8d8989a26b"
+    },
+    {
+      "bytes": 1203,
+      "git_blob": "160c612128f923e9a0830175d1cc651f8a5f9dab",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/baseline/Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift.gz",
+      "sha256": "9761279b0ab2c267076fe1a14786f5f09c56b1f063c1b364bdfdbdccc29f1836"
+    },
+    {
+      "bytes": 1310,
+      "git_blob": "19b7576abf3b1ea9770cf50a7abd36f09f96f218",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/baseline/Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift.gz",
+      "sha256": "4428fed186e8c6f91420b3564a626aeec176f7a92b464452d97d053bf2fbf790"
+    },
+    {
+      "bytes": 2172,
+      "git_blob": "31da66aa332659b040f30ae8b614c8dacda3b6cb",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/baseline/Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift.gz",
+      "sha256": "37e5888287d642f3f7a4e091cdfe5d77e4ad13bd2a69c8c908e398073a1080ce"
+    },
+    {
+      "bytes": 3018,
+      "git_blob": "b10d33fea5fe254ab4570a9ddcf82274c89ffdbb",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/baseline/Source/Features/Search/iOS/SearchModeView.swift.gz",
+      "sha256": "b418c601a8bb1090d94dc15954d320ab6503bf69ca62f4c9b790abde6490e0b6"
+    },
+    {
+      "bytes": 785,
+      "git_blob": "bffecf55e238c39d262138edcf6b041dd790af45",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/baseline/Source/Otzaria/Debug/OtzariaFileLogger.swift.gz",
+      "sha256": "3d7a358760f1f39f54f1348fafdeded073f4386daea147b1395e86aef1f74ab5"
+    },
+    {
+      "bytes": 1783,
+      "git_blob": "79f9706c3d49f7b70f0567f48fbdb0aa4f5a6a11",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/collection.stderr.log",
+      "sha256": "f72bc0d9f95f6abc268fb06bc245e5bb9fc02c5174e09699fdec7865d21c2440"
+    },
+    {
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/collection.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 6756,
+      "git_blob": "9ecc76bddd618ae2110872fc5d6766ca93916ef9",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/original-audit-case.log",
+      "sha256": "8a17eeb001786bff3155b7be40cb0af39a0f764f8ad341d7078ced428c8e6124"
+    },
+    {
+      "bytes": 32089,
+      "git_blob": "d69a12796f1aaf73c020d9f122138b9ba35e510b",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/raw/test-simulator-11-search.log.gz",
+      "sha256": "47a166825c9b04cdcf82deaafbd806a9a66529f8d45bd37db729bf62204fa968"
+    },
+    {
+      "bytes": 8036,
+      "git_blob": "8023da26ec7dc96f6b06081a18d96f649fdaa2be",
+      "mode": "100644",
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/verify.py",
+      "sha256": "7cbb8d1be9dc7ddc864865ea09f43f4dbb1a8412288b588954195ea2f92ee1f7"
+    },
+    {
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/ROOT_GIT_SOURCE_AUTHORITY.json",
+      "bytes": 1432,
+      "sha256": "a626367922c7f443d9f8925ca11db22a26d48694346d49ccceb12dbc8206103f",
+      "git_blob": "baf80bb6ccc547d7fcfe9540e12455c6a2ba9d2f",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/ROOT_SOURCE_VERIFIER.log",
+      "bytes": 712,
+      "sha256": "43d767e212f68fd9d950c7c3b2d084578de5d468c73e6073f9faa94718c142ce",
+      "git_blob": "b8e4e4ff8255659a5173b59fc23ae0f7a52377dd",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/hq-integration/global-search-font-diagnostics-20261120/ROOT_REVIEW.json",
+      "bytes": 1125,
+      "sha256": "d33c7a95ee8f4bf7c06ca8b1fa1c80f05709f968b97973cb10a9b253032e5c2e",
+      "git_blob": "b451fccec6beaa1b213a7ec455b1d495c7416623",
+      "mode": "100644"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHeaderAndHistoryNativeAccessibilityAudit]' started.
+    t =     0.00s Start Test at 2026-11-20 12:40:46.425
+    t =     0.05s Set Up
+    t =     0.06s Open com.davidpovarsky.chavrusatext
+    t =     0.06s     Launch com.davidpovarsky.chavrusatext
+    t =     0.06s         Terminate com.davidpovarsky.chavrusatext:64746
+2026-11-20 12:40:47.924 xcodebuild[56355:407320] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-11-20 12:40:47.924 xcodebuild[56355:407320] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     2.80s         Setting up automation session
+    t =    11.35s         Wait for com.davidpovarsky.chavrusatext to idle
+    t =    18.35s Get number of matches for: Elements matching predicate 'label CONTAINS[c] "חיפוש" OR label CONTAINS[c] "Search"'
+    t =    20.47s Checking existence of `Button (Element at index 0)`
+    t =    21.25s Find the Button (Element at index 0)
+    t =    21.65s Waiting 60.0s for "magnifyingglass" Button to exist
+    t =    22.68s     Checking `Expect predicate `existsNoRetry == 1` for object "magnifyingglass" Button`
+    t =    22.69s         Checking existence of `"magnifyingglass" Button`
+    t =    23.34s Find the "magnifyingglass" Button
+    t =    23.83s Tap "magnifyingglass" Button
+    t =    23.84s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    23.85s     Find the "magnifyingglass" Button
+    t =    25.45s     Check for interrupting elements affecting "magnifyingglass" Button
+    t =    25.83s         Wait for com.apple.springboard to idle
+    t =    25.90s Ignoring failure to get hierarchy for remote element in process 60215 (Error getting main window kAXErrorServerNotFound)
+    t =    25.90s Ignoring failure to get hierarchy for remote element in process 60215 (Error getting main window kAXErrorServerNotFound)
+    t =    25.92s     Synthesize event
+    t =    26.30s     Wait for com.davidpovarsky.chavrusatext to idle
+    t =    29.44s Waiting 40.0s for "global-search-screen" Other to exist
+    t =    30.46s     Checking `Expect predicate `existsNoRetry == 1` for object "global-search-screen" Other`
+    t =    30.46s         Checking existence of `"global-search-screen" Other`
+    t =    31.00s Waiting 15.0s for "global-search-header" Other to exist
+    t =    32.02s     Checking `Expect predicate `existsNoRetry == 1` for object "global-search-header" Other`
+    t =    32.02s         Checking existence of `"global-search-header" Other`
+    t =    32.43s Waiting 15.0s for "global-search-history" CollectionView to exist
+    t =    33.47s     Checking `Expect predicate `existsNoRetry == 1` for object "global-search-history" CollectionView`
+    t =    33.47s         Checking existence of `"global-search-history" CollectionView`
+    t =    33.76s Waiting 15.0s for "global-search-query" Any to exist
+    t =    34.80s     Checking `Expect predicate `existsNoRetry == 1` for object "global-search-query" Any`
+    t =    34.81s         Checking existence of `"global-search-query" Any`
+    t =    35.42s Find the "global-search-query" Any
+    t =    35.90s Find the "global-search-query" TextField
+    t =    36.52s Get number of matches for: Elements matching predicate '"global-search-query" IN identifiers'
+    t =    36.83s Get number of matches for: Elements matching predicate '"global-search-query" IN identifiers'
+    t =    37.36s Waiting 15.0s for "global-search-history-heading" Any to exist
+    t =    38.36s     Checking `Expect predicate `existsNoRetry == 1` for object "global-search-history-heading" Any`
+    t =    38.37s         Checking existence of `"global-search-history-heading" Any`
+    t =    39.20s Find the "global-search-history-heading" Any
+    t =    39.98s Find the "global-search-history-heading" StaticText
+    t =    40.76s Find the "global-search-history-heading" StaticText
+    t =    41.45s Waiting 15.0s for "global-search-query" Any to exist
+    t =    42.47s     Checking `Expect predicate `existsNoRetry == 1` for object "global-search-query" Any`
+    t =    42.47s         Checking existence of `"global-search-query" Any`
+    t =    42.89s Find the "global-search-query" Any
+    t =    43.30s Find the "global-search-query" TextField
+    t =    43.74s Get number of matches for: Elements matching predicate '"global-search-query" IN identifiers'
+    t =    43.91s Get number of matches for: Elements matching predicate '"global-search-query" IN identifiers'
+    t =    44.21s Find the "global-search-query" TextField
+    t =    44.63s Waiting 15.0s for "global-search-options" Any to exist
+    t =    45.67s     Checking `Expect predicate `existsNoRetry == 1` for object "global-search-options" Any`
+    t =    45.67s         Checking existence of `"global-search-options" Any`
+    t =    46.07s Find the "global-search-options" Any
+    t =    46.54s Find the "global-search-history-heading" StaticText
+    t =    47.33s Find the "global-search-history-heading" StaticText
+    t =    60.94s Find the Any (Descendant with identity binding to AX element pid: 67810, elementOrHash.elementID: 5061914624.318)
+    t =    62.18s     Find the Any (Descendant with identity binding to AX element pid: 67810, elementOrHash.elementID: 5061914624.318) (retry 1)
+    t =    63.42s     Find the Any (Descendant with identity binding to AX element pid: 67810, elementOrHash.elementID: 5061914624.318) (retry 2)
+    t =    63.55s Added attachment named 'actual-unfiltered-accessibility-issue'
+    t =    63.55s Find the Any (Descendant with identity binding to AX element pid: 67810, elementOrHash.elementID: 5061914624.318)
+    t =    64.71s     Find the Any (Descendant with identity binding to AX element pid: 67810, elementOrHash.elementID: 5061914624.318) (retry 1)
+    t =    65.87s     Find the Any (Descendant with identity binding to AX element pid: 67810, elementOrHash.elementID: 5061914624.318) (retry 2)
+/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift:482: error: -[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHeaderAndHistoryNativeAccessibilityAudit] : Dynamic Type font sizes are partially unsupported
+    t =    66.76s Tear Down
+    t =    66.77s     Requesting snapshot of accessibility hierarchy for app with pid 67810
+    t =    67.60s     Requesting snapshot of accessibility hierarchy for app with pid 67810
+    t =    67.82s     Added attachment named 'global-search-final-native-hierarchy'
+    t =    68.28s     Added attachment named 'global-search-final-native-screen'
+Test Case '-[Maktabah_iOSUITests.GlobalSearchNativeAcceptanceTests testHeaderAndHistoryNativeAccessibilityAudit]' failed (68.593 seconds).

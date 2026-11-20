@@ -1,0 +1,33 @@
+{
+  "status": "HISTORICAL_NATIVE_FAILURE_RETAINED_NO_NEW_NATIVE_EXECUTION",
+  "run_id": 44723902453,
+  "attempt": 1,
+  "checkout_sha": "60a57972acb28739ec738565083bf17fb7503028",
+  "application_sha": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "case_id": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+  "actual_outcome": "FAILED",
+  "actual_duration_seconds": 68.593,
+  "issue_bytes": 131,
+  "issue_sha256": "2387bf852f884c895eba4f7d55c4d772d72cc399c2adbb2ccc2c89dc3e44e790",
+  "issue_element": "unavailable",
+  "raw_log_gzip_sha256": "47a166825c9b04cdcf82deaafbd806a9a66529f8d45bd37db729bf62204fa968",
+  "raw_log_uncompressed_sha256": "3f5c027a3dd08806d85402b460d26230fcd261e9bee5f107763f811425075a9d",
+  "excerpt_original_line_range_inclusive": [
+    426,
+    501
+  ],
+  "excerpt_sha256": "8a17eeb001786bff3155b7be40cb0af39a0f764f8ad341d7078ced428c8e6124",
+  "observed": [
+    "Original heading, single native text field and bounds assertions reached before audit",
+    "Issue callback persisted the unfiltered issue",
+    "Issue element lookup retried and was unavailable",
+    "Audit still failed; original callback returns false"
+  ],
+  "not_observed": [
+    "Identity of the failing UILabel",
+    "A product font defect",
+    "A passing candidate Native audit",
+    "Actual candidate log collection after a failing audit"
+  ],
+  "scope": "Raw log is retained from previously verified 14632383919 evidence ZIP; issue text is retained from the earlier exact Sentinel read recorded in RETAINED_TEXT.json. No new large artifact download or full capture-archive SHA claim."
+}

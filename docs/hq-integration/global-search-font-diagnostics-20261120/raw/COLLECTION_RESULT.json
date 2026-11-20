@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python",
+    "/workspace/scratch/8c31d602ec0a/dynamic-type-diagnostics-20261120/candidate/Tests/HQ/global-search-font-diagnostics/test_collection_contract.py"
+  ],
+  "started_at": "2026-11-20T16:04:34.626865+00:00",
+  "completed_at": "2026-11-20T16:04:34.737348+00:00",
+  "exit_code": 0,
+  "python": "3.12.14",
+  "script_sha256": "f5cc684d04436ac01e3e1ed29f63d20ebf39a6c52f628896a2670f9a64b3b1e3",
+  "source_sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "f72bc0d9f95f6abc268fb06bc245e5bb9fc02c5174e09699fdec7865d21c2440",
+  "scope": "pure original Python selection function only; no Swift, UIKit, Xcode or Native execution"
+}

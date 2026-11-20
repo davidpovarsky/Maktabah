@@ -56,7 +56,7 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    private func launchSearch(backend: String? = nil, language: String? = nil, readerUnitMode: String? = nil, recordNativePages: Bool = false) throws {
+    private func launchSearch(backend: String? = nil, language: String? = nil, readerUnitMode: String? = nil, recordNativePages: Bool = false, recordNativeFonts: Bool = false) throws {
         let backend = backend ?? environment["GLOBAL_SEARCH_TEST_BACKEND"] ?? "otzaria"
         let language = language ?? environment["GLOBAL_SEARCH_TEST_LANGUAGE"] ?? "he"
         XCTAssertTrue(["otzaria", "sefaria", "sefariaEmbedded"].contains(backend))
@@ -69,7 +69,8 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
         launchWithTier(.realUI, backend: backend,
                        extraArgs: ["-preferredBackend", backend, "-smokeBackend", backend,
                                    "-studyWorkspaceTestingNamespace", workspaceNamespace,
-                                   "-lastSelectedTab", "0"] + readerArguments + (recordNativePages ? ["-GlobalSearchNativeTraceEnabled", "YES"] : []),
+                                   "-lastSelectedTab", "0"] + readerArguments + (recordNativePages ? ["-GlobalSearchNativeTraceEnabled", "YES"] : [])
+                           + (recordNativeFonts ? ["-GlobalSearchFontDiagnosticsEnabled", "YES"] : []),
                        language: language, locale: language == "he" ? "he_IL" : "en_US")
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         let tab = findTabButton(hebrew: "חיפוש", english: "Search")
@@ -468,7 +469,7 @@ final class GlobalSearchNativeAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     func testHeaderAndHistoryNativeAccessibilityAudit() throws {
-        try launchSearch()
+        try launchSearch(recordNativeFonts: true)
         let heading = try require("global-search-history-heading")
         XCTAssertEqual(heading.elementType, .staticText)
         XCTAssertEqual(heading.label, "חיפושים אחרונים")

@@ -1,0 +1,70 @@
+{
+  "status": "GIT_BLOB_EXACT",
+  "source": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "git_blob": "5f5f22eeea9e04889f2bd278d32d819b313380c2",
+      "ref": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+      "source": "https://github.com/davidpovarsky/Maktabah/blob/e603d8182a1c10c4b37b14c92b5f0bc3829edea8/Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "bytes": 6813,
+      "sha256": "e28b7db9b430281b99463014b0e44956c89ec8d7cb52d83771d518b297f1feb6"
+    },
+    {
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "git_blob": "07dc9da3b401c8396a869d593e8c20bd30b35102",
+      "ref": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+      "source": "https://github.com/davidpovarsky/Maktabah/blob/e603d8182a1c10c4b37b14c92b5f0bc3829edea8/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "bytes": 89243,
+      "sha256": "548a940d0f9715674822753679c236604735c0857ef241cbc7adacf6f46fd0d3"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "git_blob": "5abc35f714e575733ba9428a5726ee00c8841335",
+      "ref": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+      "source": "https://github.com/davidpovarsky/Maktabah/blob/e603d8182a1c10c4b37b14c92b5f0bc3829edea8/Scripts/CI/run-faithful-ipad-matrix.py",
+      "bytes": 49752,
+      "sha256": "1d4b45162b2f2752020a822512d5e5edd679de3e905d0f092b0a21897776eafc"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+      "git_blob": "f3955e1945696120f46b1293bf9e067a9e923877",
+      "ref": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+      "source": "https://github.com/davidpovarsky/Maktabah/blob/e603d8182a1c10c4b37b14c92b5f0bc3829edea8/Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+      "bytes": 3532,
+      "sha256": "4d8595b82e1d9045fbe30a0f001d8251d9c067447d188f8dbcced6a0128eb11e"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "git_blob": "2fc7554d7bacf3df97e566f45ec32cf597a2362d",
+      "ref": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+      "source": "https://github.com/davidpovarsky/Maktabah/blob/e603d8182a1c10c4b37b14c92b5f0bc3829edea8/Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "bytes": 3537,
+      "sha256": "9e46465ad6490329db3704e0c33ffb12c3a420bc087f770051d067dd00515dd3"
+    },
+    {
+      "path": "Source/Otzaria/Debug/OtzariaFileLogger.swift",
+      "git_blob": "afead5090be564ca0bd561ef71155ae9f3bf0b1d",
+      "ref": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+      "source": "https://github.com/davidpovarsky/Maktabah/blob/e603d8182a1c10c4b37b14c92b5f0bc3829edea8/Source/Otzaria/Debug/OtzariaFileLogger.swift",
+      "bytes": 2026,
+      "sha256": "f2f5214d3c45f2ba8da632e5ff9331ccac4d43c80cb5da0c3940b6f1b0111904"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "git_blob": "d4f061293e7c8682d41320602da5692d47dce7d9",
+      "ref": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+      "source": "https://github.com/davidpovarsky/Maktabah/blob/e603d8182a1c10c4b37b14c92b5f0bc3829edea8/Source/Features/Search/iOS/SearchModeView.swift",
+      "bytes": 11558,
+      "sha256": "25c1f34a17fd4c565c9c557a21b842275eb5c970858c4c3a11327609dac320fb"
+    },
+    {
+      "path": "Scripts/CI/typecheck-faithful-ui-tests.py",
+      "git_blob": "0102957b43d9e4a71cd122046418dd33b55b8210",
+      "ref": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+      "source": "https://github.com/davidpovarsky/Maktabah/blob/e603d8182a1c10c4b37b14c92b5f0bc3829edea8/Scripts/CI/typecheck-faithful-ui-tests.py",
+      "bytes": 24211,
+      "sha256": "07e2c054f1c826631a946db4d868f7f1d8d85c34d5bb511feb2d5976fd5d40e4"
+    }
+  ]
+}

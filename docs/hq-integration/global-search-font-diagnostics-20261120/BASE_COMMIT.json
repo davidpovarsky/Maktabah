@@ -1,0 +1,40 @@
+{
+  "sha": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "node_id": "C_kwDOTEwysNoAKGU2MDNkODE4MmExYzEwYzRiMzdiMTRjOTJiNWYwYmMzODI5ZWRlYTg",
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "html_url": "https://github.com/davidpovarsky/Maktabah/commit/e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "author": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T15:19:45Z"
+  },
+  "committer": {
+    "name": "davidpovarsky",
+    "email": "davidpovarski1@gmail.com",
+    "date": "2026-11-20T15:19:45Z"
+  },
+  "tree": {
+    "sha": "5128feff6992aab17b368775e3b5d7ec7e33cc82",
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/trees/5128feff6992aab17b368775e3b5d7ec7e33cc82"
+  },
+  "message": "Merge passive History diagnostics without dropping group snapshot changes [skip ci]\n\nCombine disjoint Faithful source edits by exact three-way merge, with commutative merge and both inverses verified. Preserve original 40 test declarations, UUID query/Return, 90-second settlement and persistence/cold/UI acceptance. Record bounded preference-read reasons and metadata from the existing explicitly enabled DEBUG trace.\n\nForward existing additional launch arguments through the R27 override; default arguments remain identical. No production, retry, seeding, synchronization or assertion/budget changes. Swift parse, Apple typecheck and Native for the combined source remain NOT_RUN. Retain original incoming packet and Root source verification including initial newline-only export failure.",
+  "parents": [
+    {
+      "sha": "b82fe8843803bdd6fbecc6bf0262bdcdfb9e2e28",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/b82fe8843803bdd6fbecc6bf0262bdcdfb9e2e28",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/commit/b82fe8843803bdd6fbecc6bf0262bdcdfb9e2e28"
+    },
+    {
+      "sha": "e23e8fde506c80187e87a19a390ddb3317b663b6",
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/commits/e23e8fde506c80187e87a19a390ddb3317b663b6",
+      "html_url": "https://github.com/davidpovarsky/Maktabah/commit/e23e8fde506c80187e87a19a390ddb3317b663b6"
+    }
+  ],
+  "verification": {
+    "verified": false,
+    "reason": "unsigned",
+    "signature": null,
+    "payload": null,
+    "verified_at": null
+  }
+}
