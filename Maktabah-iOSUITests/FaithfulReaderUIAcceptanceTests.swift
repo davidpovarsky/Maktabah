@@ -485,6 +485,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
 
     /// Actual application presentation/return, with the existing read-only
     /// TextKit observer proving identity and the current source/pixel anchor.
+    @MainActor
     func exerciseOverviewReplacement(orientation: UIDeviceOrientation, phone: Bool) throws {
         XCUIDevice.shared.orientation = orientation
         let platform = phone ? "phone" : (orientation.isLandscape ? "landscape" : "portrait")
@@ -492,10 +493,120 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         // Its canonical navigation may restore the top or a later position;
         // establish the required nonzero position through the actual reader.
         launchReader(recordViewport: true, fontSize: 48)
+        try establishSingleBookOverviewFixture(phone: phone)
         try exerciseOverviewAtCurrentPosition(platform: platform + "-nonzero", phone: phone, requiresNonzeroPosition: true)
         // Also retain full-display visual proof at the original 19pt default.
         launchReader(recordViewport: true, fontSize: 19)
+        try establishSingleBookOverviewFixture(phone: phone)
         try exerciseOverviewAtCurrentPosition(platform: platform, phone: phone, requiresNonzeroPosition: false)
+    }
+
+
+    private struct OverviewFixtureWorkspace: Decodable, Sendable {
+        struct Document: Decodable, Sendable {
+            struct Session: Decodable, Sendable { let id: UUID; let bookId: Int }
+            let backend: String; let session: Session
+        }
+        struct Group: Decodable, Sendable {
+            let id: UUID; let profileID: UUID; let activeTabID: UUID?; let tabs: [Document]
+        }
+        struct Scene: Decodable, Sendable {
+            let profileID: UUID; let groupID: UUID; let activeTabIDsByGroup: [UUID: UUID]?
+        }
+        let groups: [Group]; let scenes: [String: Scene]; let lastActiveSceneID: String?
+        func current() -> (Group, UUID)? {
+            guard let sceneID = lastActiveSceneID, let scene = scenes[sceneID],
+                  let group = groups.first(where: { $0.id == scene.groupID && $0.profileID == scene.profileID }),
+                  let activeID = scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID,
+                  group.tabs.contains(where: { $0.session.id == activeID }) else { return nil }
+            return (group, activeID)
+        }
+    }
+
+    /// A fresh sidecar still imports the ordinary reader's real saved tabs.
+    /// Establish this test's one-book precondition through original UI before
+    /// measuring any source/pixel anchor; never rewrite a session or viewport.
+    @MainActor
+    private func establishSingleBookOverviewFixture(phone: Bool) throws {
+        XCTAssertNotEqual(readerTestTier, .production, "Fixture preparation is limited to the isolated miniTest10 cases")
+        assertReaderHasText()
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        let source = locator.components(separatedBy: "|")
+        XCTAssertEqual(source.count, 3)
+        XCTAssertEqual(source.first, "otzaria")
+        let bookID = try XCTUnwrap(source.count == 3 && source[1].hasPrefix("book:")
+            ? Int(source[1].dropFirst("book:".count)) : nil)
+        tap(app.buttons[phone ? "reader-book-tabs-overview" : "reader-tabs-overview"])
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        XCTAssertTrue(overview.waitForExistence(timeout: 20))
+        let toggle = app.buttons["study-tabs-layout-toggle"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+        if toggle.label == "תצוגת רשת" { tap(toggle) }
+        let prefix = "tab-switcher-grid-cell-"
+        let cells = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", prefix))
+        XCTAssertTrue(cells.firstMatch.waitForExistence(timeout: 15))
+        let selected = cells.allElementsBoundByIndex.filter { $0.isSelected }
+        XCTAssertEqual(selected.count, 1, "The original overview must identify one actual selected document")
+        let selectedCell = try XCTUnwrap(selected.first)
+        let keptID = try XCTUnwrap(UUID(uuidString: String(selectedCell.identifier.dropFirst(prefix.count))))
+        let observedIDs = try cells.allElementsBoundByIndex.map {
+            try XCTUnwrap(UUID(uuidString: String($0.identifier.dropFirst(prefix.count))))
+        }
+        let originalIDs = Set(observedIDs)
+        XCTAssertEqual(originalIDs.count, observedIDs.count)
+        XCTAssertLessThanOrEqual(originalIDs.count, 32, "Keep fixture cleanup bounded to the observed original group")
+        let url = try workspaceSidecarURL()
+        @Sendable func currentWorkspace() -> (OverviewFixtureWorkspace.Group, UUID)? {
+            guard let bytes = try? Data(contentsOf: url),
+                  let snapshot = try? JSONDecoder().decode(OverviewFixtureWorkspace.self, from: bytes) else { return nil }
+            return snapshot.current()
+        }
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let (group, active) = currentWorkspace() else { return false }
+            return active == keptID && Set(group.tabs.map { $0.session.id }) == originalIDs
+                && group.tabs.count == originalIDs.count
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed,
+                       "Corroborate the selected native UUID and every observed member with this exact test sidecar")
+        let original = try XCTUnwrap(currentWorkspace())
+        let retained = try XCTUnwrap(original.0.tabs.first { $0.session.id == keptID })
+        XCTAssertEqual(retained.backend, "otzaria")
+        XCTAssertEqual(retained.session.bookId, bookID)
+        try attachWorkspaceSnapshot("overview-fixture-original-members")
+        retainNativeEvidence("overview-fixture-before-native-close")
+        var removed = Set<UUID>()
+        for id in originalIDs.subtracting([keptID]).sorted(by: { $0.uuidString < $1.uuidString }) {
+            let cell = cells[prefix + id.uuidString]
+            XCTAssertTrue(cell.exists && cell.isHittable)
+            XCTAssertFalse(cell.isSelected, "Never close the selected source document during preparation")
+            cell.swipeRight()
+            let vanished = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: cell)
+            XCTAssertEqual(XCTWaiter.wait(for: [vanished], timeout: 15), .completed,
+                           "The original RTL swipe must remove this exact observed noncurrent UUID")
+            removed.insert(id)
+            let expectedIDs = originalIDs.subtracting(removed)
+            let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                guard let (group, active) = currentWorkspace() else { return false }
+                return group.id == original.0.id && active == keptID
+                    && Set(group.tabs.map { $0.session.id }) == expectedIDs
+                    && group.tabs.count == expectedIDs.count
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 15), .completed,
+                           "Each original close must persist only that UUID removal and preserve the active document")
+            XCTAssertTrue(cells[prefix + keptID.uuidString].exists)
+            XCTAssertTrue(cells[prefix + keptID.uuidString].isSelected)
+        }
+        XCTAssertEqual(cells.count, 1)
+        XCTAssertEqual(try XCTUnwrap(currentWorkspace()).1, keptID)
+        try attachWorkspaceSnapshot("overview-fixture-single-original-book")
+        tap(app.buttons["סיום"])
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: overview)], timeout: 15), .completed)
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
     }
 
     private func exerciseOverviewAtCurrentPosition(platform: String, phone: Bool, requiresNonzeroPosition: Bool) throws {
@@ -995,6 +1106,7 @@ final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderIPhoneTests: FaithfulReaderUIBase {
+    @MainActor
     func testSourceOverviewReplacesReaderAndRestoresViewport() throws {
         try exerciseOverviewReplacement(orientation: .portrait, phone: true)
     }
@@ -1060,10 +1172,12 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    @MainActor
     func testSourceOverviewReplacesReaderAndRestoresViewportLandscape() throws {
         try exerciseOverviewReplacement(orientation: .landscapeLeft, phone: false)
     }
 
+    @MainActor
     func testSourceOverviewReplacesReaderAndRestoresViewportPortrait() throws {
         try exerciseOverviewReplacement(orientation: .portrait, phone: false)
     }
