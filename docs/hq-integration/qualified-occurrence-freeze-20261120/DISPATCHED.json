@@ -1,0 +1,86 @@
+{
+  "checkout_sha": "b07f229e85fe894722566ad9444de31d0ba4490f",
+  "application_source": "2e6f08659b347a755aef4e4fe6c00d9592ba700d",
+  "dispatches": [
+    {
+      "label": "sdk",
+      "branch": "codex/otzaria-qualified-sdk-20261120",
+      "head": "b07f229e85fe894722566ad9444de31d0ba4490f",
+      "dispatch": "POSTED_ONCE",
+      "run_id": 44684593065,
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684593065",
+      "status": "queued",
+      "conclusion": null,
+      "inputs": {
+        "run_simulator_tests": "false",
+        "validation_runner": "xcode-27",
+        "run_production_release": "false",
+        "hq_stage2_focused": "false",
+        "hq_stage2_expected_sha": "b07f229e85fe894722566ad9444de31d0ba4490f",
+        "ui_sdk_check_only": "true",
+        "runtime27_mode": "off"
+      },
+      "observed_at": "2026-11-20T05:59:02.953849+00:00"
+    },
+    {
+      "label": "native92",
+      "branch": "codex/otzaria-qualified-native92-20261120",
+      "head": "b07f229e85fe894722566ad9444de31d0ba4490f",
+      "dispatch": "POSTED_ONCE",
+      "run_id": 44684611471,
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684611471",
+      "status": "queued",
+      "conclusion": null,
+      "inputs": {
+        "run_simulator_tests": "false",
+        "validation_runner": "xcode-27",
+        "run_production_release": "false",
+        "hq_stage2_focused": "false",
+        "hq_stage2_expected_sha": "b07f229e85fe894722566ad9444de31d0ba4490f",
+        "ui_sdk_check_only": "false",
+        "runtime27_mode": "ui"
+      },
+      "observed_at": "2026-11-20T05:59:13.883658+00:00"
+    },
+    {
+      "label": "release96",
+      "branch": "codex/otzaria-qualified-release96-20261120",
+      "head": "b07f229e85fe894722566ad9444de31d0ba4490f",
+      "dispatch": "POSTED_ONCE",
+      "run_id": 44684629656,
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684629656",
+      "status": "queued",
+      "conclusion": null,
+      "inputs": {
+        "run_simulator_tests": "false",
+        "validation_runner": "xcode-27",
+        "run_production_release": "false",
+        "hq_stage2_focused": "false",
+        "hq_stage2_expected_sha": "b07f229e85fe894722566ad9444de31d0ba4490f",
+        "ui_sdk_check_only": "false",
+        "runtime27_mode": "release"
+      },
+      "observed_at": "2026-11-20T05:59:26.973788+00:00"
+    },
+    {
+      "label": "v32d5",
+      "branch": "codex/otzaria-qualified-v32-d5-20261120",
+      "head": "b07f229e85fe894722566ad9444de31d0ba4490f",
+      "dispatch": "POSTED_ONCE",
+      "run_id": 44684680952,
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44684680952",
+      "status": "queued",
+      "conclusion": null,
+      "inputs": {
+        "native_existing_v32": "true",
+        "native_expected_sha": "b07f229e85fe894722566ad9444de31d0ba4490f",
+        "publish_release": "false",
+        "existing_release_tag": "otzaria-search-data-v32-20261010190601-102293b3a63c",
+        "repair_manifest_layout": "false",
+        "source_release_tag": "v32-20261010190601"
+      },
+      "observed_at": "2026-11-20T05:59:54.749150+00:00"
+    }
+  ],
+  "new_run_passes_claimed": 0
+}

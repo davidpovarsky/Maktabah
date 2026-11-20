@@ -1,0 +1,13 @@
+{
+  "tested_checkout": "b07f229e85fe894722566ad9444de31d0ba4490f",
+  "pre_documentation_commit_parent": "ab62044d1ce35259019326b37ece8e91967b81ee",
+  "compared_trees": [
+    "Source",
+    "Vendor",
+    "Maktabah.xcodeproj",
+    "Maktabah-iOSUITests"
+  ],
+  "all_trees_identical": true,
+  "extra_changes": "docs/hq-integration only",
+  "actual_native_results_reused": false
+}

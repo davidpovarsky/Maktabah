@@ -1,0 +1,55 @@
+{
+  "at_utc": "2026-11-20T05:55:54.424829+00:00",
+  "checkout_sha": "b07f229e85fe894722566ad9444de31d0ba4490f",
+  "application_source": "2e6f08659b347a755aef4e4fe6c00d9592ba700d",
+  "native_executed": 0,
+  "apple_typecheck": false,
+  "commands": [
+    {
+      "name": "full-v32-source-oracle-release-preflight",
+      "command": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/hq-v32-prebuilt-native.py",
+        "preflight",
+        "--expected-sha",
+        "b07f229e85fe894722566ad9444de31d0ba4490f"
+      ],
+      "started": "2026-11-20T05:55:54.435023+00:00",
+      "finished": "2026-11-20T05:55:56.941148+00:00",
+      "exit": 0,
+      "log_sha256": "a08ae813aac402029b42394ed18adce80296df6270d10883671238976e825621"
+    },
+    {
+      "name": "v32-evidence-gate26",
+      "command": [
+        "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+        "Scripts/CI/test-v32-prebuilt-native.py"
+      ],
+      "started": "2026-11-20T05:55:56.952376+00:00",
+      "finished": "2026-11-20T05:55:57.875853+00:00",
+      "exit": 0,
+      "log_sha256": "ba77685f3a6c2d1c7fed0dbe368e976b339b344c294aa9676674919fc2685602"
+    }
+  ],
+  "release_source_manifest": {
+    "ui": 96,
+    "oracles": 2,
+    "configurations": 5,
+    "status": "ORIGINAL_LOAD_MANIFEST_PASS",
+    "representation": "EXACT_CANONICAL_GIT_BLOBS_EXPORTED_TO_DISPOSABLE_DIRECTORY",
+    "native_executed": 0
+  },
+  "native_declarations": {
+    "selected": 92,
+    "status": "DECLARATIONS_MATCH",
+    "expected_per_device": {
+      "ipad11": 72,
+      "iphone": 20
+    },
+    "hid_comparison": true,
+    "diagnostic_only": false,
+    "native_executed": 0
+  },
+  "status": "SOURCE_INPUT_ORACLE_AND_DECLARATION_PREFLIGHT_PASS_NOT_NATIVE",
+  "finished_at": "2026-11-20T05:56:11.958018+00:00"
+}
