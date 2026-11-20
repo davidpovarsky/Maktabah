@@ -1369,6 +1369,12 @@
 		2685A10D7F57D43CC7ADB0F0 /* HanlinChatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 61E07D48951CEA128AC5733B /* HanlinChatUI */; };
 		E8AF13DBAAB27A9D851D1C51 /* HanlinPresentationKit in Frameworks */ = {isa = PBXBuildFile; productRef = B8B0F4BF32E70713AE17DB39 /* HanlinPresentationKit */; };
 		FE6A59AF7AC18FAB419866BB /* HanlinRichUI in Frameworks */ = {isa = PBXBuildFile; productRef = D8320A0FB8BA35EB57884C8B /* HanlinRichUI */; };
+		E87B9F1B268D74CCA1A03D7E /* TorahAnnotationEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */; };
+		D063CFCD71B1E5C5250AE920 /* TorahAnnotationEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */; };
+		EA8CD1F296E0EA146F79764C /* TorahAnnotationEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */; };
+		4C4E1E4F9DC2F168D2260AC8 /* AnnotationExchangeLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */; };
+		7CFE6AEF1FAFD68BFCEEC502 /* AnnotationExchangeLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */; };
+		D238792D20CAE8596B84D69F /* AnnotationExchangeLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2149,6 +2155,8 @@
 		F42668FE5B9E0D7D95054B2B /* OtzariaHanlinChatSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift; sourceTree = SOURCE_ROOT; };
 		0B179A7D53E7B5E5F7920D18 /* OtzariaHanlinChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift; sourceTree = SOURCE_ROOT; };
 		8C3C3FCF16863769D7BE6F42 /* OtzariaHanlinConversationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinConversationStore.swift; sourceTree = SOURCE_ROOT; };
+		5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Exchange/TorahAnnotationEnvelope.swift"; sourceTree = "<group>"; };
+		15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Exchange/AnnotationExchangeLedger.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2231,6 +2239,8 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */,
+				15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */,
 				9F5BEF33F7E721EEC8281795 /* Global Search UI */,
 				93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */,
 				177DC9EB2AB8099576B13411 /* ThirdPartyNotices */,
@@ -4246,6 +4256,8 @@
 		4B3202242EDAFE85003B95D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				4C4E1E4F9DC2F168D2260AC8 /* AnnotationExchangeLedger.swift in Sources */,
+				E87B9F1B268D74CCA1A03D7E /* TorahAnnotationEnvelope.swift in Sources */,
 				12625FDCCD291F169D6788B2 /* MaktabahBookUpdateSafety.swift in Sources */,
 				E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */,
 								CF1000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
@@ -4593,6 +4605,8 @@
 		4B7C90A52F83494200454BE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				7CFE6AEF1FAFD68BFCEEC502 /* AnnotationExchangeLedger.swift in Sources */,
+				D063CFCD71B1E5C5250AE920 /* TorahAnnotationEnvelope.swift in Sources */,
 				36A587F9D67487F899E8D564 /* MaktabahBookUpdateSafety.swift in Sources */,
 								CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
 				CF2000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */,
@@ -4945,6 +4959,8 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				D238792D20CAE8596B84D69F /* AnnotationExchangeLedger.swift in Sources */,
+				EA8CD1F296E0EA146F79764C /* TorahAnnotationEnvelope.swift in Sources */,
 				DFC8CE07B634812E1D8AF37E /* MaktabahNativeIntents.swift in Sources */,
 				98A05700AC19A0B451C190A6 /* OtzariaHanlinHostAdapter.swift in Sources */,
 				D9ABE98FD86C08EB2CD0E6E6 /* OtzariaHanlinChatOwner.swift in Sources */,
