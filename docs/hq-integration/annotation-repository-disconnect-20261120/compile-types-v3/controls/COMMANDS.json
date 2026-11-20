@@ -1,0 +1,49 @@
+[
+  {
+    "name": "new26",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/workspace/scratch/8c31d602ec0a/annotation-disconnect-apple-v3-20261120/candidate/Scripts/CI/test-annotation-disconnect-apple.py",
+      "--artifacts-dir",
+      "/workspace/scratch/8c31d602ec0a/annotation-disconnect-apple-v3-20261120/controls/new26"
+    ],
+    "exit": 0,
+    "status": "PASS_PYTHON_ADMISSION_COLLECTION_CONTROLS",
+    "tests": 26,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  {
+    "name": "original43",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/workspace/scratch/8c31d602ec0a/annotation-disconnect-apple-v3-20261120/candidate/Scripts/CI/test-local-annotation-cloud-apple.py",
+      "--artifacts-dir",
+      "/workspace/scratch/8c31d602ec0a/annotation-disconnect-apple-v3-20261120/controls/original43"
+    ],
+    "exit": 0,
+    "status": "PASS",
+    "tests": 43,
+    "failures": 0,
+    "errors": 0,
+    "skips": null
+  },
+  {
+    "name": "sql13",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/workspace/scratch/8c31d602ec0a/annotation-disconnect-apple-v3-20261120/candidate/tools/test-local-cloud-pending-sql.py",
+      "--root",
+      "/workspace/scratch/8c31d602ec0a/annotation-disconnect-apple-v3-20261120/candidate",
+      "--output",
+      "/workspace/scratch/8c31d602ec0a/annotation-disconnect-apple-v3-20261120/controls/sql13/RESULT.json"
+    ],
+    "exit": 0,
+    "status": "PASS_SQLITE_PREMISES_ONLY",
+    "tests": 13,
+    "failures": null,
+    "errors": null,
+    "skips": null
+  }
+]

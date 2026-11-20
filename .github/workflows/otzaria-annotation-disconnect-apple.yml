@@ -1,0 +1,121 @@
+name: Original annotation disconnect RED and repaired whole-source regression
+
+on:
+  push:
+    branches:
+      - codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: annotation-disconnect-apple-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  original-repository-disconnect:
+    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120' }}
+    runs-on: xcode-27
+    timeout-minutes: 75
+    env:
+      EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 4
+          submodules: false
+          persist-credentials: false
+      - name: Bind exact original and candidate source before execution
+        id: source
+        timeout-minutes: 3
+        run: |
+          python3 - <<'PYBOOT'
+          import hashlib, json, pathlib
+          root = pathlib.Path.cwd()
+          output = root / 'build/annotation-disconnect-route'
+          output.mkdir(parents=True, exist_ok=True)
+          expected = {'Scripts/CI/annotation-disconnect-apple.py': 'cb96c1d136de2bf78caf55a85e73bc02ffea17d1646837f3354f2dbd5acf4802', 'Scripts/CI/annotation-disconnect-apple.inputs.json': '3986d86119ccb07a3e806505c9d27a72456b304976a4f44df71aa2bfcd69b703', 'Scripts/CI/test-annotation-disconnect-apple.py': '2dd6666c359cc2d8ff0a281851a546a0be20993b0fef5427b05f6976a539783c', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
+          report = {'status': 'FAILED', 'scope': 'Source bootstrap only; no Swift or Native execution', 'pins': expected}
+          try:
+              if set(expected) != {'Scripts/CI/annotation-disconnect-apple.py', 'Scripts/CI/annotation-disconnect-apple.inputs.json', 'Scripts/CI/test-annotation-disconnect-apple.py', 'Scripts/CI/select-runtime27-toolchain.py'}:
+                  raise ValueError('Final reviewed source bootstrap has not been supplied')
+              for relative, digest in expected.items():
+                  if hashlib.sha256((root / relative).read_bytes()).hexdigest() != digest:
+                      raise ValueError('Reviewed executable CI input differs: ' + relative)
+              report['status'] = 'BOOTSTRAP_SOURCE_BOUND'
+          except Exception as error:
+              report['error'] = repr(error)
+              raise
+          finally:
+              (output / 'bootstrap.json').write_text(json.dumps(report, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+          PYBOOT
+          python3 Scripts/CI/annotation-disconnect-apple.py --phase before
+      - name: Select the unchanged installed Apple toolchain
+        id: toolchain
+        timeout-minutes: 8
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/local-annotation-cloud-route/toolchain.json
+      - name: Check authority, evidence, cold reader and owned process controls
+        id: controls
+        timeout-minutes: 3
+        run: |
+          set -o pipefail
+          python3 Scripts/CI/test-annotation-disconnect-apple.py --artifacts-dir build/annotation-disconnect-route/python-controls 2>&1 | tee build/annotation-disconnect-route/python-controls.log
+          mkdir -p build/local-annotation-cloud-route
+          python3 Scripts/CI/test-local-annotation-cloud-apple.py --artifacts-dir build/local-annotation-cloud-route/python-controls 2>&1 | tee build/local-annotation-cloud-route/python-controls.log
+          python3 tools/test-local-cloud-pending-sql.py --root . --output build/local-annotation-cloud-route/sql-premises/RESULT.json
+      - name: Execute unchanged original local43, cold2 and owned cloud48
+        id: local
+        if: ${{ steps.source.outcome == 'success' && steps.toolchain.outcome == 'success' && steps.controls.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 20
+        run: python3 tools/hq-local-annotation-cloud-acceptance.py --artifacts-dir build/local-annotation-cloud-acceptance
+      - name: Execute unchanged original exchange28 and two process-termination reopens
+        id: exchange
+        if: ${{ always() && steps.source.outcome == 'success' && steps.toolchain.outcome == 'success' && steps.controls.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 14
+        run: python3 tools/hq-annotation-exchange-acceptance.py --artifacts-dir build/local-annotation-cloud-exchange-regression
+      - name: Execute exact original Repository RED and all10 repaired controls
+        id: race
+        if: ${{ always() && steps.source.outcome == 'success' && steps.toolchain.outcome == 'success' && steps.controls.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 15
+        run: python3 tools/hq-annotation-disconnect-acceptance.py --artifacts-dir build/annotation-disconnect-acceptance
+      - name: Require every complete original and repaired gate
+        if: always()
+        timeout-minutes: 3
+        env:
+          DISCONNECT_TOOLCHAIN_OUTCOME: ${{ steps.toolchain.outcome }}
+          DISCONNECT_CONTROLS_OUTCOME: ${{ steps.controls.outcome }}
+          DISCONNECT_LOCAL_OUTCOME: ${{ steps.local.outcome }}
+          DISCONNECT_EXCHANGE_OUTCOME: ${{ steps.exchange.outcome }}
+          DISCONNECT_RACE_OUTCOME: ${{ steps.race.outcome }}
+        run: python3 Scripts/CI/annotation-disconnect-apple.py --phase after
+      - name: Preserve actual source, failures, markers and original owned databases
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: annotation-disconnect-original-red10-local43-cold2-cloud48-exchange28-crash2
+          path: |
+            build/annotation-disconnect-route/**
+            build/local-annotation-cloud-route/**
+            build/local-annotation-cloud-acceptance/*.json
+            build/local-annotation-cloud-acceptance/*.log
+            build/local-annotation-cloud-acceptance/owned-*/fixtures/**
+            build/local-annotation-cloud-acceptance/owned-*/cloud-fixtures/**
+            build/local-annotation-cloud-acceptance/owned-*/package/Package.swift
+            build/local-annotation-cloud-acceptance/owned-*/package/Sources/**
+            build/local-annotation-cloud-exchange-regression/*.json
+            build/local-annotation-cloud-exchange-regression/*.log
+            build/local-annotation-cloud-exchange-regression/owned-*/fixtures/**
+            build/local-annotation-cloud-exchange-regression/owned-*/package/Package.swift
+            build/local-annotation-cloud-exchange-regression/owned-*/package/Sources/**
+            build/annotation-disconnect-acceptance/*.json
+            build/annotation-disconnect-acceptance/*.log
+            build/annotation-disconnect-acceptance/owned-*/fixtures/**
+            build/annotation-disconnect-acceptance/owned-*/package/Package.swift
+            build/annotation-disconnect-acceptance/owned-*/package/Sources/**
+          if-no-files-found: error
+          retention-days: 30

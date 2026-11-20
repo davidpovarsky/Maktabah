@@ -1,0 +1,18 @@
+[
+  {
+    "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+    "bytes": 13510,
+    "sha256": "5dbb277fd43bade110df53bfd30fbd5f356507bb74662444e3fb166734f474d3",
+    "git_blob": "f872b9e4b7151ea8e247157821821c7235a74517",
+    "mode": "100644",
+    "type": "blob"
+  },
+  {
+    "path": "Tests/HQ/annotation-disconnect/AnnotationRepositoryDisconnectAcceptance.swift",
+    "bytes": 20684,
+    "sha256": "fe03c32486a4ed0dd79f06b9cefeb2b022feaa89414f421ee8bd57a654a000d5",
+    "git_blob": "1c9596801f94749a82c254f05a86e432ea55761a",
+    "mode": "100644",
+    "type": "blob"
+  }
+]

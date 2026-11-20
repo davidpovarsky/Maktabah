@@ -1,0 +1,46 @@
+{
+  "status": "READY_FOR_EXACT_NEW_APPLE_BRANCH",
+  "branch": "codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120",
+  "source_m": "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
+  "source_chain": [
+    "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
+    "939eaf3a5b56fe604354b235579cf7aa4a60e3d4",
+    "7af3a06d48ccbe77acef180cb99d120971c3804e"
+  ],
+  "source_tree": "c8f03d50b2c0791db7e3328a01d4c5d59a3399fa",
+  "previous_failed_run": 44803894875,
+  "previous_failed_f": "a3bd12da51a57215eb4564101400627ce17ca75e",
+  "full_prior_archive": {
+    "bytes": 1235424,
+    "sha256": "954761d5715c527449a92d54263be1974c568e9bd6b09b1e645b1bf97d60def0",
+    "crc_members": 169
+  },
+  "old_runtime_counts": {
+    "local": 0,
+    "cloud": 0,
+    "repository_red": 0,
+    "repository_green": 0
+  },
+  "old_failures": [
+    "CloudKitCoreManager.swift266 continuation expression compile error",
+    "fixture SyncPendingStore struct cannot use objectidentity ==="
+  ],
+  "source_fix": "Two explicit Void/anyError continuation annotations; test compares the sole actual private pending-store database reference by synchronous Mirror and exactidentity. Full source inverses verified.",
+  "source_review": "Root and C; actual source-only M changes exactly2paths vsM939, all6393other leaf/mode relations verified",
+  "ci_review": "Same authorized fork/id/ref/workflow/head; newexactbranch; sourcechain F/M3/M939/7af requiresdepth4. Exact4source delta from7af. Cmetadata update only M/trees/third affectedsourcepin; existing Cloud validators and all runtime/compiler/process/case deadlines preserved.",
+  "local_python": {
+    "new": 26,
+    "original": 43,
+    "sql": 13,
+    "all_passed": true,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "stable_input_records": 49
+  },
+  "full_git_checkout_gate": "NOT_RUN locally; must pass actual CI checkout and event",
+  "swift_executed_locally": 0,
+  "native_executed": 0,
+  "live_cloudkit_executed": 0,
+  "reference": "https://developer.apple.com/documentation/swift/checkedcontinuation"
+}

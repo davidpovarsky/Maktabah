@@ -1,0 +1,31 @@
+test_actual_child_failure_is_retained_and_never_normal_completion (__main__.Controls.test_actual_child_failure_is_retained_and_never_normal_completion) ... ok
+test_actual_ten_declarations_and_reviewed_whole_repository_hash (__main__.Controls.test_actual_ten_declarations_and_reviewed_whole_repository_hash) ... ok
+test_authorized_fork_requires_exact_identity_and_boolean (__main__.Controls.test_authorized_fork_requires_exact_identity_and_boolean) ... ok
+test_candidate_failed_skipped_wrong_name_source_and_timeout_are_denied (__main__.Controls.test_candidate_failed_skipped_wrong_name_source_and_timeout_are_denied) ... ok
+test_candidate_progress_cold_read_requires_committed_original_helper_note (__main__.Controls.test_candidate_progress_cold_read_requires_committed_original_helper_note) ... ok
+test_candidate_progress_requires_real_probe_and_both_returns (__main__.Controls.test_candidate_progress_requires_real_probe_and_both_returns) ... ok
+test_canonical_repository_metadata_accepts_the_authorized_fork (__main__.Controls.test_canonical_repository_metadata_accepts_the_authorized_fork) ... ok
+test_draft_baseline_and_new_core_substitutions_are_denied (__main__.Controls.test_draft_baseline_and_new_core_substitutions_are_denied) ... ok
+test_duplicate_malformed_and_oversized_json_are_rejected (__main__.Controls.test_duplicate_malformed_and_oversized_json_are_rejected) ... ok
+test_duplicate_sequence_and_regressing_monotonic_marker_are_rejected (__main__.Controls.test_duplicate_sequence_and_regressing_monotonic_marker_are_rejected) ... ok
+test_exact_push_authority_accepts_actual_attempt_numbers (__main__.Controls.test_exact_push_authority_accepts_actual_attempt_numbers) ... ok
+test_independent_sqlite_cold_reader_checks_original_note_uuid_tags_and_queue (__main__.Controls.test_independent_sqlite_cold_reader_checks_original_note_uuid_tags_and_queue) ... ok
+test_manual_pull_request_schedule_and_wrong_ref_are_denied (__main__.Controls.test_manual_pull_request_schedule_and_wrong_ref_are_denied) ... ok
+test_missing_terminate_reap_group_and_wrong_exit_are_rejected (__main__.Controls.test_missing_terminate_reap_group_and_wrong_exit_are_rejected) ... ok
+test_mixed_payload_head_ref_repository_and_deletion_are_denied (__main__.Controls.test_mixed_payload_head_ref_repository_and_deletion_are_denied) ... ok
+test_numbered_original_cycle_is_red_never_a_pass (__main__.Controls.test_numbered_original_cycle_is_red_never_a_pass) ... ok
+test_original_error_or_early_completion_never_counts_as_deadlock (__main__.Controls.test_original_error_or_early_completion_never_counts_as_deadlock) ... ok
+test_owned_process_timeout_preserves_output_and_does_not_signal_other_group (__main__.Controls.test_owned_process_timeout_preserves_output_and_does_not_signal_other_group) ... ok
+test_path_escape_and_symlink_are_denied_without_opening_external_database (__main__.Controls.test_path_escape_and_symlink_are_denied_without_opening_external_database) ... ok
+test_reviewed_binding_and_unchanged_counts (__main__.Controls.test_reviewed_binding_and_unchanged_counts) ... ok
+test_source_file_traversal_and_symlink_are_rejected (__main__.Controls.test_source_file_traversal_and_symlink_are_rejected) ... ok
+test_source_report_rejects_missing_changed_or_wrong_run_inputs (__main__.Controls.test_source_report_rejects_missing_changed_or_wrong_run_inputs) ... ok
+test_timeout_without_lifetime_or_helper_marker_is_rejected (__main__.Controls.test_timeout_without_lifetime_or_helper_marker_is_rejected) ... ok
+test_uncommitted_write_or_lost_tag_or_pending_delete_is_rejected (__main__.Controls.test_uncommitted_write_or_lost_tag_or_pending_delete_is_rejected) ... ok
+test_wrong_repository_workflow_and_checkout_are_denied (__main__.Controls.test_wrong_repository_workflow_and_checkout_are_denied) ... ok
+test_zero_missing_and_noninteger_run_attempt_are_denied (__main__.Controls.test_zero_missing_and_noninteger_run_attempt_are_denied) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.206s
+
+OK

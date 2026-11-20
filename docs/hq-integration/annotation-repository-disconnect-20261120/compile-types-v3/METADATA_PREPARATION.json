@@ -1,0 +1,21 @@
+{
+  "source_m": "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
+  "source_trees": {
+    "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+    "Source": "800b37c839b15f86fd59320022b8c35f0aaeabca",
+    "Tests": "deaf2b40e4e852d13c4aadea6d9c8dd26bd76584",
+    "tools": "cb52d9a96e01f1aaf6888dded9cc2f28bcc82424"
+  },
+  "branch": "codex/otzaria-annotation-disconnect-apple-v3-reviewed-20261120",
+  "bootstrap": {
+    "Scripts/CI/annotation-disconnect-apple.py": "cb96c1d136de2bf78caf55a85e73bc02ffea17d1646837f3354f2dbd5acf4802",
+    "Scripts/CI/annotation-disconnect-apple.inputs.json": "3986d86119ccb07a3e806505c9d27a72456b304976a4f44df71aa2bfcd69b703",
+    "Scripts/CI/test-annotation-disconnect-apple.py": "2dd6666c359cc2d8ff0a281851a546a0be20993b0fef5427b05f6976a539783c",
+    "Scripts/CI/select-runtime27-toolchain.py": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+  },
+  "source_chain": [
+    "1e55f6012a1b8cedd674349106f27b0e0e476a0b",
+    "939eaf3a5b56fe604354b235579cf7aa4a60e3d4",
+    "7af3a06d48ccbe77acef180cb99d120971c3804e"
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "cases": [
+    {
+      "name": "seconds_only_original_queue_removal_can_erase_newer_replacement",
+      "observations": {
+        "legacy_remaining": [
+          [
+            2,
+            "other-delete",
+            "delete",
+            1999999999
+          ]
+        ],
+        "old": [
+          [
+            1,
+            "same-uuid",
+            "upload",
+            2000000000
+          ],
+          [
+            2,
+            "other-delete",
+            "delete",
+            1999999999
+          ]
+        ],
+        "replacement": [
+          [
+            2,
+            "other-delete",
+            "delete",
+            1999999999
+          ],
+          [
+            3,
+            "same-uuid",
+            "upload",
+            2000000000
+          ]
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "same_connection_same_second_replacement_advances_total_changes",
+      "observations": {
+        "after": [
+          4,
+          2
+        ],
+        "before": [
+          3,
+          2
+        ],
+        "guard_must_defer": true
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "foreign_original_same_second_replacement_advances_data_version",
+      "observations": {
+        "after": [
+          3,
+          3
+        ],
+        "before": [
+          3,
+          2
+        ],
+        "guard_must_defer": true,
+        "new_row": [
+          3,
+          "same-uuid",
+          "upload",
+          2000000000
+        ],
+        "old_row": [
+          1,
+          "same-uuid",
+          "upload",
+          2000000000
+        ],
+        "original_columns_identical": true
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "foreign_identical_row_replacement_advances_data_version",
+      "observations": {
+        "after": [
+          3,
+          3
+        ],
+        "all_queue_values_identical": true,
+        "before": [
+          3,
+          2
+        ],
+        "guard_must_defer": true
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "foreign_noop_update_does_not_claim_a_new_pending_enqueue",
+      "observations": {
+        "after": [
+          3,
+          2
+        ],
+        "before": [
+          3,
+          2
+        ],
+        "foreign_sql_changes": 1,
+        "queue_values_identical": true,
+        "scope": "SQLite may omit physical writes for a no-op UPDATE; it is not the original pending enqueue operation"
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "foreign_committed_pending_aba_advances_data_version",
+      "observations": {
+        "after": [
+          3,
+          3
+        ],
+        "before": [
+          3,
+          2
+        ],
+        "guard_must_defer": true,
+        "queue_values_restored": true
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "foreign_delete_recreate_same_rowid_advances_data_version",
+      "observations": {
+        "after": [
+          3,
+          3
+        ],
+        "before": [
+          3,
+          2
+        ],
+        "guard_must_defer": true,
+        "rowid_and_values_restored": true
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "foreign_commit_after_read_cannot_upgrade_stale_ack_transaction",
+      "observations": {
+        "newer_pending_preserved": true,
+        "sqlite_errorcode": 517
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "foreign_rollback_has_no_committed_pending_change",
+      "observations": {
+        "after": [
+          3,
+          2
+        ],
+        "before": [
+          3,
+          2
+        ],
+        "pending_unchanged": true
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "own_write_stamp_survives_outer_commit_for_post_commit_validation",
+      "observations": {
+        "after_commit": [
+          5,
+          2
+        ],
+        "after_own_writes": [
+          5,
+          2
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "unrelated_write_is_conservatively_detectable",
+      "observations": {
+        "after": [
+          4,
+          2
+        ],
+        "before": [
+          3,
+          2
+        ],
+        "conservative_deferral": true,
+        "queue_unchanged": true
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "exact_candidate_delete_preserves_unrelated_original_pending_delete",
+      "observations": {
+        "after": 4,
+        "total_changes_before": 3,
+        "unrelated_delete_preserved": true
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "candidate_delete_never_removes_later_delete_operation",
+      "observations": {
+        "candidate_delete_changes": 0,
+        "later_delete_preserved": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "cloudkit_executed": 0,
+  "failed": 0,
+  "native_ui_executed": 0,
+  "observed_at": "2026-11-20T19:49:18.868084+00:00",
+  "passed": 13,
+  "scope": "Actual SQLite counter, transaction and exact SQL premises only; full production Swift controls remain NOT_RUN",
+  "source_after": {
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+    "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+  },
+  "source_before": {
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift": "017d15ae11bdb6cf60b9070f51490a5ca33d7cb3ec7dbc68e46aee0f849e7972",
+    "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14"
+  },
+  "sqlite_version": "3.53.1",
+  "status": "PASS_SQLITE_PREMISES_ONLY",
+  "swift_executed": 0
+}

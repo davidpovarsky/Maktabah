@@ -1,0 +1,48 @@
+test_actual_exchange_timing_is_required_but_local_has_no_fabricated_timing (__main__.Results.test_actual_exchange_timing_is_required_but_local_has_no_fabricated_timing) ... ok
+test_boolean_counts_are_rejected (__main__.Results.test_boolean_counts_are_rejected) ... ok
+test_cloud_boolean_counts_are_rejected (__main__.Results.test_cloud_boolean_counts_are_rejected) ... ok
+test_cloud_copy_before_after_claim_cannot_replace_actual_copy (__main__.Results.test_cloud_copy_before_after_claim_cannot_replace_actual_copy) ... ok
+test_cloud_production_copy_must_remain_whole_and_exact (__main__.Results.test_cloud_production_copy_must_remain_whole_and_exact) ... ok
+test_cloud_skip_or_error_is_not_success (__main__.Results.test_cloud_skip_or_error_is_not_success) ... ok
+test_cold_reopen_requires_actual_prior_process (__main__.Results.test_cold_reopen_requires_actual_prior_process) ... ok
+test_cold_reopen_requires_distinct_pids (__main__.Results.test_cold_reopen_requires_distinct_pids) ... ok
+test_compile_or_workflow_failure_cannot_become_pass (__main__.Results.test_compile_or_workflow_failure_cannot_become_pass) ... ok
+test_complete_synthetic_receipts_and_real_sqlite_readback (__main__.Results.test_complete_synthetic_receipts_and_real_sqlite_readback) ... ok
+test_component_cannot_claim_live_cloudkit (__main__.Results.test_component_cannot_claim_live_cloudkit) ... ok
+test_copied_compile_input_cannot_drift (__main__.Results.test_copied_compile_input_cannot_drift) ... ok
+test_crash_exit_and_verifier_must_both_match (__main__.Results.test_crash_exit_and_verifier_must_both_match) ... ok
+test_crash_reopen_output_is_required (__main__.Results.test_crash_reopen_output_is_required) ... ok
+test_current_sqlite_head_cannot_be_replaced_by_receipt (__main__.Results.test_current_sqlite_head_cannot_be_replaced_by_receipt) ... ok
+test_duplicate_cloud_case_is_not_success (__main__.Results.test_duplicate_cloud_case_is_not_success) ... ok
+test_duplicate_exchange_case_cannot_replace_original (__main__.Results.test_duplicate_exchange_case_cannot_replace_original) ... ok
+test_extra_compiled_source_is_rejected (__main__.Results.test_extra_compiled_source_is_rejected) ... ok
+test_foreign_owned_directory_is_rejected (__main__.Results.test_foreign_owned_directory_is_rejected) ... ok
+test_matching_fabricated_source_hash_is_rejected (__main__.Results.test_matching_fabricated_source_hash_is_rejected) ... ok
+test_missing_actual_cloud_process_is_rejected (__main__.Results.test_missing_actual_cloud_process_is_rejected) ... ok
+test_missing_actual_process_or_changed_deadline_is_rejected (__main__.Results.test_missing_actual_process_or_changed_deadline_is_rejected) ... ok
+test_missing_cloud_case_is_not_success (__main__.Results.test_missing_cloud_case_is_not_success) ... ok
+test_missing_local_case_is_not_success (__main__.Results.test_missing_local_case_is_not_success) ... ok
+test_missing_or_mutated_driver_source_closure_is_rejected (__main__.Results.test_missing_or_mutated_driver_source_closure_is_rejected) ... ok
+test_one_crash_phase_cannot_be_counted_twice (__main__.Results.test_one_crash_phase_cannot_be_counted_twice) ... ok
+test_original_fixture_prefix_must_remain_exact (__main__.Results.test_original_fixture_prefix_must_remain_exact) ... ok
+test_original_queue_and_payload_bytes_are_independently_checked (__main__.Results.test_original_queue_and_payload_bytes_are_independently_checked) ... ok
+test_skip_or_error_is_not_success (__main__.Results.test_skip_or_error_is_not_success) ... ok
+test_sql_premise_failure_is_not_hidden_by_swift_success (__main__.Results.test_sql_premise_failure_is_not_hidden_by_swift_success) ... ok
+test_sql_premise_source_drift_is_rejected (__main__.Results.test_sql_premise_source_drift_is_rejected) ... ok
+test_wrong_checkout_is_rejected (__main__.Results.test_wrong_checkout_is_rejected) ... ok
+test_duplicate_json_keys_are_denied (__main__.SourceAndAuthority.test_duplicate_json_keys_are_denied) ... ok
+test_exact_environment (__main__.SourceAndAuthority.test_exact_environment) ... ok
+test_failed_source_capture_retains_changed_bytes_without_pass (__main__.SourceAndAuthority.test_failed_source_capture_retains_changed_bytes_without_pass) ... ok
+test_git_working_tree_snapshot_and_extra_core_input (__main__.SourceAndAuthority.test_git_working_tree_snapshot_and_extra_core_input) ... ok
+test_missing_original_node_is_rejected_before_compile (__main__.SourceAndAuthority.test_missing_original_node_is_rejected_before_compile) ... ok
+test_original_source_pins_match_complete_local_projection (__main__.SourceAndAuthority.test_original_source_pins_match_complete_local_projection) ... ok
+test_replacement_node_in_boundary_is_rejected (__main__.SourceAndAuthority.test_replacement_node_in_boundary_is_rejected) ... ok
+test_source_unsafe_path_or_symlink_is_denied (__main__.SourceAndAuthority.test_source_unsafe_path_or_symlink_is_denied) ... ok
+test_unmatched_synthetic_localization_key_is_rejected (__main__.SourceAndAuthority.test_unmatched_synthetic_localization_key_is_rejected) ... ok
+test_whole_original_node_and_exact_catalog_boundary_are_present (__main__.SourceAndAuthority.test_whole_original_node_and_exact_catalog_boundary_are_present) ... ok
+test_wrong_push_identity_is_denied (__main__.SourceAndAuthority.test_wrong_push_identity_is_denied) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 1.423s
+
+OK
