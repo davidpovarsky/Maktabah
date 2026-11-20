@@ -1,0 +1,191 @@
+{
+  "createdUTC": "2026-11-20T10:45:20.856437+00:00",
+  "representation": "Exact staged Git blobs; text uses repository canonical line endings. Compressed raw records retain original bytes.",
+  "files": [
+    {
+      "path": "ARTIFACT_VERIFIED.json",
+      "bytes": 10868,
+      "sha256": "cf5a27c00a6cc34b1c294ccff069d39e1f774850bb92e6499a26eb2aedfcbd65"
+    },
+    {
+      "path": "BUILD_ERROR_INVENTORY.json",
+      "bytes": 1497,
+      "sha256": "6f82eca1f045e3019f3367cd2100826d25683151e2b24fbba1158a9728f8f766"
+    },
+    {
+      "path": "FIRST_ERROR.txt.gz",
+      "bytes": 677,
+      "sha256": "03ebe130cf5fafed676823ba232b55e2eea0100f6bab3587a33d1ef743ed39f3"
+    },
+    {
+      "path": "foundation-signature/baseline.stderr.log.gz",
+      "bytes": 466,
+      "sha256": "b1be80a89e646b6c335c4bf04f7ccd7d1387ab1a107883ae3c82cae98a94c66d"
+    },
+    {
+      "path": "foundation-signature/baseline.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "foundation-signature/baseline.swift",
+      "bytes": 493,
+      "sha256": "22b33ae435fcee57ca273570c0b91fe468cc0c9439002b3cf6eac7655a2a1fe3"
+    },
+    {
+      "path": "foundation-signature/candidate.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "foundation-signature/candidate.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "foundation-signature/candidate.swift",
+      "bytes": 511,
+      "sha256": "6b1b0b8093ae05e315245d80cd193dc9fea531cab89c11bc2203559a1ed3fdff"
+    },
+    {
+      "path": "foundation-signature/RESULT.json",
+      "bytes": 3458,
+      "sha256": "73718c7ff3d0a5b3939b27e5d96dfaca6ef9e831771be7482ac9880872d717e4"
+    },
+    {
+      "path": "foundation-signature/swift-version.txt",
+      "bytes": 104,
+      "sha256": "a2aa2d7dcd61b2f3db2c0e6ff30a1f0ab2d45f58a9542e79f6b7fa7111b09dd5"
+    },
+    {
+      "path": "raw/14620494030-runtime27-evidence.zip",
+      "bytes": 1518143,
+      "sha256": "94c7e5943028b16dbf7c2734d922d934684cb335c106b3d52499b447ab9be7aa"
+    },
+    {
+      "path": "raw/AFTER_WATCH_RUN.json.gz",
+      "bytes": 1619,
+      "sha256": "237a28696d3ecc542e26c57551c7352acde9b8c0cc3088f0b47d046c37b4c2a4"
+    },
+    {
+      "path": "raw/BUILD_RESULT.raw.json.gz",
+      "bytes": 23400,
+      "sha256": "91ec8a0547c5b2bcb0ac62581bb7ec1fa28fda7c7c21cb65b24d9bf9b97bf1af"
+    },
+    {
+      "path": "raw/DECLARATIONS.raw.json.gz",
+      "bytes": 2636,
+      "sha256": "cd35e4bdd37c39a2eb5a16c878a658a8ecca952a06e50a392fa109d4ff3f4f98"
+    },
+    {
+      "path": "raw/EXPECTED_R27_CASES.git-lf.json.gz",
+      "bytes": 35407,
+      "sha256": "80efcb1afb84d4992e5a2021c6baff51d322d06502828ea310c95270048b5bdf"
+    },
+    {
+      "path": "raw/FINAL_ARTIFACTS.json.gz",
+      "bytes": 493,
+      "sha256": "c2820dd636e9736b5356cbad0c1564e8ffa32c60f2708d4d381d83855a41ce03"
+    },
+    {
+      "path": "raw/FINAL_ARTIFACTS_PAGE_1.json.gz",
+      "bytes": 462,
+      "sha256": "86b5acac4724812ceedc296b4f5fc52d78036fc7324a64f5dbc16ac9ccc921a5"
+    },
+    {
+      "path": "raw/FINAL_JOBS.json.gz",
+      "bytes": 1586,
+      "sha256": "79a3f13f459caba423c9806991a4c608f5d4049d5a7d5b854e2ce5e9ccd0f7bc"
+    },
+    {
+      "path": "raw/FINAL_JOBS_PAGE_1.json.gz",
+      "bytes": 1508,
+      "sha256": "7f297db89d3581977038818f4c6d6c7693a8aafba739999475591138a5b56f12"
+    },
+    {
+      "path": "raw/FINITE_WATCH.log.gz",
+      "bytes": 1399,
+      "sha256": "c06a03b2222664b9a3121feae8e894c32848a450d05323910bffadee8f8edd69"
+    },
+    {
+      "path": "raw/JUNIT.raw.xml.gz",
+      "bytes": 7182,
+      "sha256": "d865331dd110fb8af7edba3aac4dd6a22a3d556958006969098767567bedb6aa"
+    },
+    {
+      "path": "raw/PREWATCH_PROCESSES.json.gz",
+      "bytes": 116,
+      "sha256": "5655b2440bb9f4ef506728eb4691129ccc3a8561949103c2a587e14909580a0f"
+    },
+    {
+      "path": "raw/PREWATCH_RUN.json.gz",
+      "bytes": 1613,
+      "sha256": "9b9711c49b01c6cec3f6984902bc87e22f61678935fde3163152505ffaa7d8ce"
+    },
+    {
+      "path": "raw/REQUEST.json.gz",
+      "bytes": 166,
+      "sha256": "58089b7c016029684f2b9f5fba37d4818c96d0e06a042768f22e6957fab07ebd"
+    },
+    {
+      "path": "raw/RUNTIME_RESULT.raw.json.gz",
+      "bytes": 14878,
+      "sha256": "ce8278561b1457d4395551866aa78472584eac2020e3f66f3c0ad08d5b192730"
+    },
+    {
+      "path": "raw/SOURCE_BINDING_EXPECTATIONS.json.gz",
+      "bytes": 508,
+      "sha256": "2824ae368e07b9f88b0373bf430abe96364c3ef4f94bf7b55f0a46d9dbbb4500"
+    },
+    {
+      "path": "raw/WATCH_RESULT.json.gz",
+      "bytes": 587,
+      "sha256": "935dfebacc5976be23cea07dc61c8a7fca67dc272af2148ded3d68c7b60a2530"
+    },
+    {
+      "path": "raw/WATCH_STARTED.json.gz",
+      "bytes": 344,
+      "sha256": "634ea0f66ff6ff1e7375986c0936d56f1e3674aa4817f2c605bba93d536a7f6e"
+    },
+    {
+      "path": "raw/WATCHER_SOURCE.py.gz",
+      "bytes": 3847,
+      "sha256": "631ac8d1b33f13a74eb2c7c783541a5233f71ac6afe44fb3483d1d959f9ceb30"
+    },
+    {
+      "path": "RAW_DIAGNOSTIC_FORMAT.json",
+      "bytes": 699,
+      "sha256": "b0ec6168776d17af02572ae8f2868d906b30d2afc152c7a3325611756b938261"
+    },
+    {
+      "path": "RAW_SOURCE_MAP.json",
+      "bytes": 4626,
+      "sha256": "53d246ab8197f517deeb49e259b28f17632b88b8226904e53412281f0ffecc2b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5014,
+      "sha256": "2937321c6cbfa29912017b556a22e37f957529e34125d2131e7577b39a1d789b"
+    },
+    {
+      "path": "RELEASE_COMPILE_CLOSURE.json",
+      "bytes": 10697,
+      "sha256": "8e507ace4a04ac396366a4e1de53d882efd55d30de4a6476bdd34aa912395075"
+    },
+    {
+      "path": "SIGNATURE_FIX.patch",
+      "bytes": 2633,
+      "sha256": "c99aad91fade4890967a635a8efeeb1e3895700e606abdc0346d9a72ffcf4553"
+    },
+    {
+      "path": "SIGNATURE_FIX_SOURCE.json",
+      "bytes": 810,
+      "sha256": "d4e1e03caea2b8cf10be26c5a64db6035f05aa74f27142b083d06bb57291d7bb"
+    },
+    {
+      "path": "SOURCE_AND_OUTCOME_VERIFICATION.json",
+      "bytes": 11518,
+      "sha256": "2b46ee76b20f158c50a6a11c8cce55f3faf97f87b1f6c27a728e8495b5afbb72"
+    }
+  ]
+}

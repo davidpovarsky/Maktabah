@@ -1,0 +1,31 @@
+{
+  "logMember": "hq-stage2/simulator-build-for-testing.log",
+  "logSHA256": "d8dec344da346aac257324c18522acbb0f059fb9c678d6ef18b7c621808c09f4",
+  "lines": 111757,
+  "errors": [
+    {
+      "line": 108500,
+      "text": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift:1243:50: error: incorrect argument label in call (have '_:atPath:', expected '_:ofItemAtPath:')"
+    },
+    {
+      "line": 108504,
+      "text": "     |                                                  `- error: incorrect argument label in call (have '_:atPath:', expected '_:ofItemAtPath:')"
+    },
+    {
+      "line": 108508,
+      "text": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift:1448:46: error: incorrect argument label in call (have '_:atPath:', expected '_:ofItemAtPath:')"
+    },
+    {
+      "line": 108512,
+      "text": "     |                                              `- error: incorrect argument label in call (have '_:atPath:', expected '_:ofItemAtPath:')"
+    },
+    {
+      "line": 108516,
+      "text": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift:1458:46: error: incorrect argument label in call (have '_:atPath:', expected '_:ofItemAtPath:')"
+    },
+    {
+      "line": 108520,
+      "text": "     |                                              `- error: incorrect argument label in call (have '_:atPath:', expected '_:ofItemAtPath:')"
+    }
+  ]
+}
