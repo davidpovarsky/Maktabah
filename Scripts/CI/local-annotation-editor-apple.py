@@ -23,7 +23,7 @@ import tarfile
 
 REPOSITORY = "davidpovarsky/Maktabah"
 REPOSITORY_ID = 1280062128
-BRANCH = "codex/otzaria-local-annotation-editor-apple-reviewed-20261120"
+BRANCH = "codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120"
 WORKFLOW = ".github/workflows/otzaria-local-annotation-editor-apple.yml"
 BINDING = "Scripts/CI/local-annotation-editor-apple.inputs.json"
 SELF = "Scripts/CI/local-annotation-editor-apple.py"
@@ -37,6 +37,9 @@ EXCHANGE_OUTPUT = "build/local-annotation-editor-exchange-regression"
 ROUTE_OUTPUT = "build/local-annotation-editor-route"
 CI_INPUTS = (WORKFLOW, BINDING, SELF, TESTS)
 LOCAL_DECLARATIONS = "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift"
+LOCAL_NODE = "Source/Features/Annotations/Models/AnnotationNode.swift"
+LOCAL_CATALOG = "Source/Features/Annotations/Models/Annotation.xcstrings"
+LOCAL_BOUNDARY = "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift"
 EXCHANGE_DECLARATIONS = "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift"
 NO_CLAIMS = {
     "native_ui_executed": 0, "app_relaunch_executed": 0,
@@ -133,6 +136,33 @@ def declared_cases(root):
     return {"local": local, "exchange": exchange}
 
 
+def verify_local_model_closure(root, sources):
+    """Reject the observed missing whole model before attempting compilation.
+
+    This is a source-closure check, not a Swift typecheck or localization test.
+    Only the standalone package's generated-localization accessors are synthetic.
+    """
+    require(sources.count(LOCAL_NODE) == 1 and sources.count(LOCAL_BOUNDARY) == 1,
+            "Whole original AnnotationNode and explicit boundary are required")
+    declarations = [relative for relative in sources if re.search(
+        r"\b(?:class|struct|enum|typealias)\s+AnnotationNode\b",
+        exact_file(root, relative).read_text(encoding="utf-8"))]
+    require(declarations == [LOCAL_NODE], "AnnotationNode must be the unique original whole model")
+    node = exact_file(root, LOCAL_NODE).read_text(encoding="utf-8")
+    boundary = exact_file(root, LOCAL_BOUNDARY).read_text(encoding="utf-8")
+    expected = {"today": "Today", "yesterday": "Yesterday", "thisWeek": "This Week",
+                "thisMonth": "This Month", "lastMonth": "Last Month"}
+    require(set(re.findall(r"\.Annotation\.([A-Za-z][A-Za-z0-9]*)", node)) == set(expected),
+            "Original model localization dependency changed")
+    accessors = re.findall(r'static var (\w+): LocalizedStringResource \{ "([^"]+)" \}', boundary)
+    require(len(accessors) == len(expected) and dict(accessors) == expected,
+            "Synthetic localization boundary differs from original keys")
+    catalog = load_json(exact_file(root, LOCAL_CATALOG))
+    require(catalog.get("sourceLanguage") == "en"
+            and set(expected.values()) <= set(catalog.get("strings", {})),
+            "Original localization catalog does not contain the required keys")
+
+
 def observe_source(root, environment):
     root = Path(root)
     identity = environment_identity(environment)
@@ -180,16 +210,17 @@ def observe_source(root, environment):
             require(committed == core[relative], "Core inventory differs")
     names = declared_cases(root)
     require(names == binding.get("case_names"), "Named acceptance selection differs")
-    # Derive driver closure from the unchanged modules, not a subset selected by
+    # Derive driver closure from the complete modules, not a subset selected by
     # this wrapper. This includes provenance-only files and every tracked Core input.
     local = load_module(root, LOCAL_DRIVER, "local_body_original_driver")
     exchange = load_module(root, EXCHANGE_DRIVER, "exchange_original_driver")
+    verify_local_model_closure(root, local.SOURCES)
     required = set(local.SOURCES + exchange.SOURCES) | {
         LOCAL_DRIVER, EXCHANGE_DRIVER, "Maktabah.xcodeproj/project.pbxproj",
         "Source/Core/Database/CloudKitSyncManager.swift",
         "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
         "Source/Features/Annotations/Database/AnnotationRepository.swift",
-        "Source/Core/Configuration/ReusableFunc.swift", SELECTOR,
+        "Source/Core/Configuration/ReusableFunc.swift", SELECTOR, LOCAL_CATALOG,
     }
     require(required <= set(pins), "Incomplete original driver/source closure")
     return {"identity": identity, "reviewed_source_sha": binding["reviewed_source_sha"],
@@ -293,6 +324,7 @@ def verify_results(root, observed, outcomes):
             "Executed developer directory differs from original selection")
     local_module = load_module(root, LOCAL_DRIVER, "local_body_verifier")
     exchange_module = load_module(root, EXCHANGE_DRIVER, "exchange_verifier")
+    verify_local_model_closure(root, local_module.SOURCES)
     local = load_json(exact_file(root, LOCAL_OUTPUT + "/RESULT.json"))
     exchange = load_json(exact_file(root, EXCHANGE_OUTPUT + "/RESULT.json"))
     files = observed["files"]

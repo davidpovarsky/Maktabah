@@ -77,6 +77,15 @@
       "ordinary_original_save_and_tags_still_work_on_legacy_note"
     ]
   },
+  "closure_correction": {
+    "failure_artifact": 14650065379,
+    "failure_artifact_sha256": "55036c390406f18a1c82a49b5537b7d73885aba695fc41ad0a9b235e83423976",
+    "failure_run": 44774181751,
+    "original_catalog": "Source/Features/Annotations/Models/Annotation.xcstrings",
+    "scope": "Whole original Node; explicit synthetic localization accessors only. No localization/UI or Swift qualification from Python.",
+    "source": "1bde04bfbabbf1b1df714668785b580c9141a3b8",
+    "whole_original_model": "Source/Features/Annotations/Models/AnnotationNode.swift"
+  },
   "component_count": 43,
   "core_scope": "Exact original Core tree at b19d; not the separately updated Core194 source. Any change requires explicit reviewed repin.",
   "core_tree_sha": "5d0ee482c8f10726fe3863792dac94c18e94d792",
@@ -93,7 +102,7 @@
   },
   "reviewed_source_sha": "b19d30d9db402ef267e0d3afcc4dece0be013f24",
   "route": {
-    "branch": "codex/otzaria-local-annotation-editor-apple-reviewed-20261120",
+    "branch": "codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120",
     "repository": "davidpovarsky/Maktabah",
     "workflow": ".github/workflows/otzaria-local-annotation-editor-apple.yml"
   },
@@ -170,6 +179,11 @@
       "git_blob": "e88cffe612ba294d9b818fbb09fc05d5b86a3991",
       "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
     },
+    "Source/Features/Annotations/Models/Annotation.xcstrings": {
+      "bytes": 17370,
+      "git_blob": "238e8bb2a3e2a676fb59e2af888a96e8c93553ff",
+      "sha256": "1a5364d2a5f36c614f91933d1225547db1ed92614a9ac3615f3219d1445b88ba"
+    },
     "Source/Features/Annotations/Models/AnnotationChangeTypes.swift": {
       "bytes": 1589,
       "git_blob": "d82cc1be0d2fb1a21b0e97ff25954ca4f1f382ee",
@@ -179,6 +193,11 @@
       "bytes": 270,
       "git_blob": "42b8ba3d8d37d56aab4d83a4fd1354b2f3f8d7cc",
       "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21"
+    },
+    "Source/Features/Annotations/Models/AnnotationNode.swift": {
+      "bytes": 4413,
+      "git_blob": "aefdacf6d13ea0c13d6fde3ed0b160421006290a",
+      "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392"
     },
     "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift": {
       "bytes": 20313,
@@ -201,9 +220,9 @@
       "sha256": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a"
     },
     "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift": {
-      "bytes": 2951,
-      "git_blob": "3a7a5c7164e1178b4fe7ebee97ae5a034e114bd6",
-      "sha256": "c4465d77bda614534486b101969cb6abca0b3f0a8762ccdeca64f1b2a9b98c29"
+      "bytes": 3758,
+      "git_blob": "0f8bf29a30d63aa7769b723973784839a44300c9",
+      "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46"
     },
     "Tests/HQ/sqlite/UnusedZstdBoundary.swift": {
       "bytes": 443,
@@ -216,9 +235,9 @@
       "sha256": "e5bb838def64d8a64f8228889d6d371dfe3968b4ee0ec521cd122f58428eb97f"
     },
     "tools/hq-local-annotation-editor-acceptance.py": {
-      "bytes": 16072,
-      "git_blob": "97908fa861e774f1386d74ec6a5e6aad0a7154d2",
-      "sha256": "247beaff9c1c3c44b75c751e1a623cdf8ce7102c03489871ff50172621527421"
+      "bytes": 16135,
+      "git_blob": "d1ad554013d77c7c80e3cce8c6c17509455ff345",
+      "sha256": "76bd98bf2fe2c8df4332b13e25399a85a95d0e653e2db1f00ebe723eef423a14"
     },
     "tools/test-local-annotation-editor-gate.py": {
       "bytes": 8865,

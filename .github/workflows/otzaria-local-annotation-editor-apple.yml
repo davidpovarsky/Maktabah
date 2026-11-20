@@ -3,7 +3,7 @@ name: Local annotation Apple Foundation 43 and original exchange 28
 on:
   push:
     branches:
-      - codex/otzaria-local-annotation-editor-apple-reviewed-20261120
+      - codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120
 
 permissions:
   actions: read
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   original-annotation-components:
-    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-local-annotation-editor-apple-reviewed-20261120' }}
+    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120' }}
     runs-on: xcode-27
     timeout-minutes: 50
     env:
@@ -36,7 +36,7 @@ jobs:
           root = pathlib.Path.cwd()
           output = root / 'build/local-annotation-editor-route'
           output.mkdir(parents=True, exist_ok=True)
-          expected = {'Scripts/CI/local-annotation-editor-apple.py': '0b7ba240419f11748be34a5a7fa24476605628aa0329c73f0fc4e5955b953715', 'Scripts/CI/local-annotation-editor-apple.inputs.json': 'd39ef384cdc9ec2cfd6d7340c54f23b2728b7c3e6d1775352254cdd0578fd3f7', 'Scripts/CI/test-local-annotation-editor-apple.py': 'e1b99705c513efc6e5a1aad2118eada4d0761a4acaf0ee8c7c35384d86e5268a', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
+          expected = {'Scripts/CI/local-annotation-editor-apple.py': '7bb6ab2ebd5ce8d7f2ea92c7cd59171cf2c96d39371250cc1fd533715d8d7628', 'Scripts/CI/local-annotation-editor-apple.inputs.json': '24668f86e873218a1405d3ad3cf1a45e7f830839948f19f685318f1308badc5f', 'Scripts/CI/test-local-annotation-editor-apple.py': '42bd75d6cf87a3bb62d7f184c339be011ffc8bd4620a98fd495f928b3abb7211', 'Scripts/CI/select-runtime27-toolchain.py': '92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8'}
           report = {'status': 'FAILED', 'scope': 'Bootstrap source only; zero Swift/Native execution', 'pins': expected}
           try:
               for relative, digest in expected.items():

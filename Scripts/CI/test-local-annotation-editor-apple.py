@@ -267,6 +267,42 @@ class Results(unittest.TestCase):
 
 
 class SourceAndAuthority(unittest.TestCase):
+    def test_whole_original_node_and_exact_catalog_boundary_are_present(self):
+        gate.verify_local_model_closure(ROOT, local.SOURCES)
+
+    def test_missing_original_node_is_rejected_before_compile(self):
+        sources = [path for path in local.SOURCES if path != gate.LOCAL_NODE]
+        with self.assertRaisesRegex(ValueError, "Whole original AnnotationNode"):
+            gate.verify_local_model_closure(ROOT, sources)
+
+    def test_replacement_node_in_boundary_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for relative in local.SOURCES + [gate.LOCAL_CATALOG]:
+                target = root / relative; target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / relative, target)
+            boundary = root / gate.LOCAL_BOUNDARY
+            boundary.write_bytes(boundary.read_bytes() + b"\nfinal class AnnotationNode {}\n")
+            with self.assertRaisesRegex(ValueError, "unique original whole model"):
+                gate.verify_local_model_closure(root, local.SOURCES)
+
+    def test_unmatched_synthetic_localization_key_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for relative in local.SOURCES + [gate.LOCAL_CATALOG]:
+                target = root / relative; target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / relative, target)
+            catalog = gate.load_json(root / gate.LOCAL_CATALOG)
+            del catalog["strings"]["Today"]
+            write(root / gate.LOCAL_CATALOG, catalog)
+            with self.assertRaisesRegex(ValueError, "catalog does not contain"):
+                gate.verify_local_model_closure(root, local.SOURCES)
+            shutil.copyfile(ROOT / gate.LOCAL_CATALOG, root / gate.LOCAL_CATALOG)
+            boundary = root / gate.LOCAL_BOUNDARY
+            boundary.write_bytes(boundary.read_bytes().replace(b'{ "Today" }', b'{ "Invented label" }'))
+            with self.assertRaisesRegex(ValueError, "boundary differs from original keys"):
+                gate.verify_local_model_closure(root, local.SOURCES)
+
     def test_exact_environment(self):
         self.assertEqual(gate.environment_identity(environment())["run_attempt"], 1)
 

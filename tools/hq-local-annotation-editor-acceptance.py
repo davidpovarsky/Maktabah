@@ -25,6 +25,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = [
     "Source/Features/Annotations/Models/Annotation.swift",
+    "Source/Features/Annotations/Models/AnnotationNode.swift",
     "Source/Features/Annotations/Models/AnnotationChangeTypes.swift",
     "Source/Features/Annotations/Models/AnnotationEvent.swift",
     "Source/Features/Annotations/Database/AnnotationRepository.swift",

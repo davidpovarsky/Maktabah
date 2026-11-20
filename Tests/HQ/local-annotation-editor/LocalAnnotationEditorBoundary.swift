@@ -71,3 +71,18 @@ final class CloudKitSyncManager: Sendable {
         state.withLock { $0.deletes += ckRecordIds }
     }
 }
+
+// Explicit localization-only boundary for the unchanged AnnotationNode file.
+// Xcode generates these names from the pinned original Annotation.xcstrings;
+// this standalone Foundation package does not run that catalog-generation step.
+// The five original English keys below are synthetic accessors, not a resource
+// or localization acceptance result. No AnnotationNode declaration is doubled.
+extension LocalizedStringResource {
+    enum Annotation {
+        static var today: LocalizedStringResource { "Today" }
+        static var yesterday: LocalizedStringResource { "Yesterday" }
+        static var thisWeek: LocalizedStringResource { "This Week" }
+        static var thisMonth: LocalizedStringResource { "This Month" }
+        static var lastMonth: LocalizedStringResource { "Last Month" }
+    }
+}
