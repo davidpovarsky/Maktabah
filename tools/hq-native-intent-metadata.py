@@ -66,6 +66,11 @@ def main():
                "func setForeground(_ value:", "private func issue(_ context:", "private func finish(_ context:",
                "private func context(sceneID:", "func currentScene(sceneID:", "func assess(_ descriptor:",
                "private func deadline()", "func installIntentDependency()"]
+    # Additional candidate helpers are complete original methods. Immutable
+    # baseline sources do not contain them, and retain their exact old methods.
+    for marker in ["private func intentRootEntities() throws", "private func logIntentFailure("]:
+        if marker in composition:
+            markers.append(marker)
     pieces = {marker: method(composition, marker) for marker in markers}
     registry_start = composition.index("        func id(_ value: String)")
     registry_end = composition.index("        readerSink.deliver =", registry_start)

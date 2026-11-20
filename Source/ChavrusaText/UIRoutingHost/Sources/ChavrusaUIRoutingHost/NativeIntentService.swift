@@ -27,12 +27,15 @@ public final class NativeIntentService {
     public typealias Open = @MainActor @Sendable (Destination) async throws -> UISceneAcknowledgement
     private let discover: Discover
     private let resolveEntities: Discover
+    private let resolveReaderWindows: Discover
     private let awaitForeground: AwaitForeground?
     private let navigate: Open
     public init(discover: @escaping Discover, resolveEntities: Discover? = nil,
+                resolveReaderWindows: Discover? = nil,
                 awaitForeground: AwaitForeground? = nil, navigate: @escaping Open) {
         self.discover = discover
         self.resolveEntities = resolveEntities ?? discover
+        self.resolveReaderWindows = resolveReaderWindows ?? resolveEntities ?? discover
         self.awaitForeground = awaitForeground
         self.navigate = navigate
     }
@@ -46,6 +49,20 @@ public final class NativeIntentService {
         let values = try await resolveEntities()
         try Task.checkCancellation()
         return try filter(values, identifiers: identifiers, matching: query)
+    }
+
+    /// Existing mounted Library windows are metadata only. The host can resolve
+    /// them without observing optional live controls or issuing UI admission.
+    /// Opening still uses the original foreground and fresh execution guards.
+    public func readerWindows(identifiers: [String]? = nil, matching query: String? = nil) async throws -> [Destination] {
+        try Task.checkCancellation()
+        if let identifiers, identifiers.count > 64 { throw UIRouteError(.failed, "too_many_intent_entities") }
+        guard query == nil || query!.utf8.count <= 512 else { throw UIRouteError(.failed, "intent_query_too_large") }
+        let values = try await resolveReaderWindows()
+        try Task.checkCancellation()
+        return try filter(values, identifiers: identifiers, matching: query).filter {
+            $0.destination.rawValue == "native.library" && $0.component == nil
+        }
     }
 
     private func filter(_ values: [Destination], identifiers: [String]?, matching query: String?) throws -> [Destination] {

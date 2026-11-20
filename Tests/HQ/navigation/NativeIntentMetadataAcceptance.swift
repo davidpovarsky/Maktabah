@@ -37,6 +37,13 @@ private struct FixtureFailure: Error { let reason: String }
                     print("OBSERVED \(backend.rawValue) status=\((error as? UIRouteError)?.status.rawValue ?? "unknown") code=\((error as? UIRouteError)?.code ?? "unknown") mounted=\(session.mounted) foreground=\(session.foreground) prepareCalls=\(c.foregroundPreparationCalls) effectCalls=\(c.nativeEffectCalls)")
                     throw error
                 }
+                // The corrected synchronous metadata path has no async live-UI
+                // observation at which to run the injected revocation. Exercise
+                // the same original transition immediately after it instead.
+                try require(c.backend.snapshotCalls == 0, "Window identity must not enter revocable live discovery")
+                try c.setForeground(false, session: session)
+                let afterBackground = try await q.entities(for: [c.rootID(session)])
+                try require(!session.foreground && afterBackground.map(\.id) == [c.rootID(session)], "The exact existing identity survives the actual original foreground transition")
                 try require(c.contexts.isEmpty && c.foregroundPreparationCalls == 0 && c.nativeEffectCalls == 0, "Identity resolution cannot navigate")
             }))
             cases.append(("root_identity_does_not_borrow_busy_ui_admission_\(backend.rawValue)", {
