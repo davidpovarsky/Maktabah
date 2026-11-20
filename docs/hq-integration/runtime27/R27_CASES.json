@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_test_commit": "34c7ab5ae026a0d3d08f02a2c97ddf4b38e1a56c",
+  "source_test_commit": "2e6f08659b347a755aef4e4fe6c00d9592ba700d",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "34c7ab5ae026a0d3d08f02a2c97ddf4b38e1a56c",
+  "app_source": "2e6f08659b347a755aef4e4fe6c00d9592ba700d",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
   "scope": "All92 selected Native cases: all90 prior cases plus2 exact-token occurrence Core cases;72 iPad27 and20 iPhone27. Zero skips required. Original realUI installation, engines, owners and exact-source oracles remain mandatory; prior-source passes are not transferred.",
@@ -1362,7 +1362,7 @@
       "native": "NOT_RUN"
     }
   },
-  "application_source_sha": "34c7ab5ae026a0d3d08f02a2c97ddf4b38e1a56c",
+  "application_source_sha": "2e6f08659b347a755aef4e4fe6c00d9592ba700d",
   "hanlin_source_pin_history": {
     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
@@ -1631,7 +1631,7 @@
     "preserved_selected_case_count": 78,
     "required_cases_before_phase2_additions": 80,
     "helper_path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
-    "helper_sha256": "56de96e664914886219c1c226b1622f6c78780136900a3b52d72f7c154716cc0",
+    "helper_sha256": "b3e3165a9a54d39dfc32866fd078a410201f1db7240d261ee32124209ac09fa3",
     "setup_correction": "Exact current global-search-query native field + Return; actual original submission settles, cold session relaunch exposes persisted original inline history; focus retains real keyboard. No fabricated history, engine result or receipt.",
     "preserved_oracles": [
       "normal bootstrap per original R27 overrides",
@@ -1647,13 +1647,22 @@
     "whole_phase_accepted": false,
     "previous_windows_checkout_manifest_sha256": "5646b548ab1272540f8fc5c4b6d3472766f3ec8400d58edcb46f506808017285",
     "previous_manifest_hash_encoding": "SHA256 of original repository LF bytes; Windows raw CRLF checkout digest retained separately",
-    "frozen_helper_git_blob_sha256": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d",
+    "frozen_helper_git_blob_sha256": "b3e3165a9a54d39dfc32866fd078a410201f1db7240d261ee32124209ac09fa3",
     "helper_freeze_history": [
       {
         "application_source": "ca314e7cc5d5cdde2bb15a54a79c92541296349f",
         "frozen_helper_git_blob_sha256": "46cc8103a4353ec83df4be8df4a9d19d5e22215811e2d3a21b812ff92e26bbe2"
+      },
+      {
+        "application_source": "34c7ab5ae026a0d3d08f02a2c97ddf4b38e1a56c",
+        "helper_sha256": "56de96e664914886219c1c226b1622f6c78780136900a3b52d72f7c154716cc0",
+        "helper_sha256_representation": "HISTORICAL_RAW_WINDOWS_CHECKOUT_CRLF",
+        "frozen_helper_git_blob_sha256": "a614944ecd441e529a27c86aeb3af824aebe46670efa639ee01bc312e40a684d",
+        "superseded_at_utc": "2026-11-20T05:52:29.479744+00:00"
       }
-    ]
+    ],
+    "helper_sha256_representation": "SHA256_OF_CANONICAL_GIT_BLOB_LF",
+    "current_application_source": "2e6f08659b347a755aef4e4fe6c00d9592ba700d"
   },
   "phase2_actions_20261120": {
     "baseline_selected_cases": 80,
@@ -2020,5 +2029,47 @@
     "prior_source_preservation_passed": 2,
     "apple_typecheck": "NOT_RUN",
     "native_result": "NOT_RUN"
+  },
+  "qualified_occurrence_integrated_freeze_20261120": {
+    "prepared_at_utc": "2026-11-20T05:52:29.479744+00:00",
+    "application_and_test_source": "2e6f08659b347a755aef4e4fe6c00d9592ba700d",
+    "application_trees": {
+      "Source": "232e2cce598e3479b4eff9094f39ea8d6db3d9b5",
+      "Vendor": "a9bf10318cfc44c87885c3dcfba48cbaced67788",
+      "Maktabah-iOSUITests": "3e2184d053b281095a530038416c0517adc3e850",
+      "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+    },
+    "previous_application_source": "34c7ab5ae026a0d3d08f02a2c97ddf4b38e1a56c",
+    "previous_native_manifest_git_blob_sha256": "fbfa7bb2eca1258f747f1cde817fcae24718d40688e75f07ddf43f8fa34a9639",
+    "previous_release_manifest_git_blob_sha256": "7897577ded6c32d82914018e8378db95862e6eabec5fdb263887f95630c9da83",
+    "registry": "ONE_QUALIFIED_ORIGINAL_265_TO_EXACT_OCCURRENCES_D5_CONTRACT",
+    "qualification_source": "e332b02c089cd0f068a7fe9e5c9dde40b5729ea1",
+    "qualification_report_git_lf_sha256": "3ccd704a831f4a96ec06a691bdc17e7a8988168659bad766815018c9106983a1",
+    "independent_full_sql_raw_sha256": "015b4ac382b8c6005d672234cfa7fc1ddaf291f7e5e0d07982f2c89db242f781",
+    "native_status": "NOT_RUN",
+    "native_cases_executed": 0,
+    "prior_source_acceptance_transferred": false,
+    "required_native_cases": 92,
+    "expected_per_device": {
+      "ipad11": 72,
+      "iphone": 20
+    },
+    "required_release_ui_cases": 96,
+    "required_release_oracle_cases": 2,
+    "helper_path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "helper_git_blob_sha256": "b3e3165a9a54d39dfc32866fd078a410201f1db7240d261ee32124209ac09fa3",
+    "sidebar_path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+    "sidebar_git_blob_sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+    "hash_representation": "SHA256_OF_CANONICAL_GIT_BLOB_LF",
+    "preserved_case_selections_oracles_groups_hid_and_timeouts": true,
+    "full_v32_acceptance": "Original installer, resume and two process phases plus actual bounded Swift/C counts authenticated against independent SQL; Core/UI acceptance remains separate.",
+    "source_changes_since_previous_freeze": [
+      "Qualified original index-read contract with unchanged published payloads and original writer",
+      "Original mounted-root Intent window metadata followed by existing foreground Core discovery",
+      "Bounded native Library/TOC mounted-geometry observation",
+      "Existing-process URL failure ACK diagnostics without success fallback",
+      "Native test wait fast-path and bounded old-reader-tab scroll with all original oracles",
+      "Actual full-v32 decoded occurrence result reporting through the original engine handle"
+    ]
   }
 }
