@@ -34,10 +34,11 @@ final class AnnotationLocalEditorCloudAccountObservation: Sendable {
     init(center: NotificationCenter, changedNotification: Notification.Name) {
         self.center = center; observer = Mutex(nil)
         let lifetime = lifetime
-        let token = center.addObserver(forName: changedNotification, object: nil, queue: nil) { _ in
-            lifetime.retire()
+        observer.withLock { value in
+            value = center.addObserver(forName: changedNotification, object: nil, queue: nil) { _ in
+                lifetime.retire()
+            }
         }
-        observer.withLock { $0 = token }
     }
 
     deinit {
