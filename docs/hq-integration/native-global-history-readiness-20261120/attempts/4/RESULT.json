@@ -1,0 +1,125 @@
+{
+  "source": "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\Maktabah-iOSUITests\\FaithfulReaderUIAcceptanceTests.swift",
+  "workingSourceSHA256": "c78fd2089d8475cb44fa23e32ff3c0c33d683c18725551a2a7a3613cef795835",
+  "gitLFSourceSHA256": "4a5d3376f46fef3b55bb6f975d27d13633c2f07496bfac6fcbc8133e6a67d71a",
+  "extractedCompleteBlocksSHA256": [
+    "1f56e3b1fb64f04a57cf322a527b3a65c375fb5eaca0b29c09b70eae16ff19d9",
+    "c6850d6ba3be3a3ef68163db70e5d0e7b9e2bfb0828ecee8639d56f20db49d13"
+  ],
+  "generatedSHA256": "15ab9c8fe4be604e379976937d6e9de902dd40acc7b0feeb9e031e2d56d2bced",
+  "boundary": "Complete source helpers; explicit disposable test-owned XML plists. No app/CFPreferences/Simulator/Apple/Native execution.",
+  "diskFreeBefore": 1198170112,
+  "commands": [
+    {
+      "kind": "compile",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+        "-parse-as-library",
+        "-j",
+        "1",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-global-history-readiness-20261120\\fixture-attempt4\\NativeHistoryObservationAcceptance.swift",
+        "-o",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-global-history-readiness-20261120\\fixture-attempt4\\NativeHistoryObservationAcceptance.exe"
+      ],
+      "startedUTC": "2026-11-20T06:57:39.114955+00:00",
+      "finishedUTC": "2026-11-20T06:57:43.811280+00:00",
+      "returncode": 0,
+      "warningCount": 0,
+      "outputSHA256": "d068be697a19aff59dbea7afc0a5fc42fd37baee1c90814848c9afe638bce395"
+    },
+    {
+      "kind": "runtime",
+      "command": [
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native-global-history-readiness-20261120\\fixture-attempt4\\NativeHistoryObservationAcceptance.exe",
+        "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\ghp"
+      ],
+      "startedUTC": "2026-11-20T06:57:43.811812+00:00",
+      "finishedUTC": "2026-11-20T06:57:45.091507+00:00",
+      "returncode": 0,
+      "warningCount": 0,
+      "outputSHA256": "0d08c6f1597cf66b6430a9d5feacbcbb44fa476f29ca8961eb5e72c5b3124ef0"
+    }
+  ],
+  "sourceUnchanged": true,
+  "caseNames": [
+    "missing_installation_is_not_persistence",
+    "foreign_bundle_preferences_are_not_accepted",
+    "unique_installation_must_be_pinned_before_success",
+    "exact_pinned_query_and_original_namespace_are_accepted",
+    "another_query_does_not_satisfy_uuid_query",
+    "duplicate_query_is_not_exact_once",
+    "two_original_metadata_candidates_fail_closed",
+    "same_path_with_changed_metadata_is_rejected",
+    "foreign_namespace_sidecar_cannot_confirm_installation",
+    "delayed_test_writer_requires_actual_bytes_without_sidecar",
+    "oversized_preferences_fail_closed",
+    "observation_leaves_owned_files_byte_identical"
+  ],
+  "caseResults": [
+    [
+      "CASE",
+      "missing_installation_is_not_persistence",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "foreign_bundle_preferences_are_not_accepted",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "unique_installation_must_be_pinned_before_success",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "exact_pinned_query_and_original_namespace_are_accepted",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "another_query_does_not_satisfy_uuid_query",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "duplicate_query_is_not_exact_once",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "two_original_metadata_candidates_fail_closed",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "same_path_with_changed_metadata_is_rejected",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "foreign_namespace_sidecar_cannot_confirm_installation",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "delayed_test_writer_requires_actual_bytes_without_sidecar",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "oversized_preferences_fail_closed",
+      "PASS"
+    ],
+    [
+      "CASE",
+      "observation_leaves_owned_files_byte_identical",
+      "PASS"
+    ]
+  ],
+  "passed": 12,
+  "failed": 0,
+  "exactCaseInventory": true,
+  "nativeExecuted": 0,
+  "status": "PASS"
+}

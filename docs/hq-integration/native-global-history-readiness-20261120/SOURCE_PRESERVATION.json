@@ -1,0 +1,25 @@
+{
+  "base": "d05fbdd1abad848282000ba0e225cab686d4210f",
+  "source": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "sourceBeforeGitLF_SHA256": "53ca3541c0faf5c96e4847b2fffcaeb3c3c23ba9dd82fd1fd3ef22d09e1d001e",
+  "sourceAfterGitLF_SHA256": "4a5d3376f46fef3b55bb6f975d27d13633c2f07496bfac6fcbc8133e6a67d71a",
+  "exactInverseRestoresWholeBaseFile": true,
+  "onlyChangedSourceRegions": [
+    "Added read-only observation helper",
+    "exerciseGlobalHistorySubmission"
+  ],
+  "originalQueryAndFinalUIOracleLinesPreserved": [
+    "let query = \"בדיקת היסטוריה \" + UUID().uuidString",
+    "globalInput.typeText(query + \"\\n\")",
+    "XCTAssertEqual(globalInput.value as? String, query)",
+    "XCTAssertEqual(historyRows.count, 1, \"The exact genuine submitted history query must occur once\")",
+    "XCTAssertTrue(historyRow.label.contains(query))",
+    "XCTAssertTrue(historyIsVisible, \"A submitted global query must appear in the original global history\")",
+    "XCTAssertTrue(historyRow.isHittable, \"The submitted history row must actually be visible and usable above the native keyboard\")",
+    "XCTAssertLessThanOrEqual(historyRow.frame.maxY, app.keyboards.firstMatch.frame.minY + 2,"
+  ],
+  "same90SecondWait": true,
+  "productionFilesChanged": false,
+  "rootCauseProven": false,
+  "candidateNativeExecuted": 0
+}
