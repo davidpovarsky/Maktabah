@@ -27,10 +27,159 @@ class EvidenceControls(unittest.TestCase):
                       golden=dict(query=gate.GOLDEN_QUERY, normalizedQuery="controlled query",
                                   orderedResultIDs=[101, 102], stableSourceIDs=["otzaria-book:1"] * 2,
                                   references=["reference one", "reference two"], highlightedTopResults=2))
+        common.update(self.occurrence_fixture())
         install = copy.deepcopy(common) | dict(phase="install", nativeDownloadRan=True, resumedDownloadBytes=1048576)
         reopen = copy.deepcopy(common) | dict(phase="reopen", nativeDownloadRan=False, resumedDownloadBytes=0)
         log = "Captured prebuilt install PID: 123\nCaptured prebuilt reopen PID: 456\n"
         return install, reopen, log
+
+
+    def occurrence_fixture(self):
+        # Controlled schema examples from the retained Windows C report.
+        # These synthetic gate fixtures are never Native execution evidence.
+        oracle = gate.load_occurrence_oracle()
+        manifest, review = oracle["manifest"], oracle["review"]
+        consumer = {
+            "upstreamRepository": "davidpovarsky/otzaria_search_engine",
+            "upstreamBranch": "codex/otzaria-exact-occurrences-20261120",
+            "upstreamCommit": review["consumerCommit"], "engineVersion": "0.1.0",
+            "indexSchemaVersion": 4, "defaultGenerationOrder": 5, "adapterVersion": "0.1.0",
+            "semanticEnabled": False, "syncedAt": "synthetic evidence-gate fixture",
+            "semanticSidecarRevision": manifest["lexicalEngine"]["semanticSidecarRevision"],
+            "resourceHashes": {k: v["sha256"] for k, v in manifest["resources"].items()
+                               if k.startswith("Vendor/OtzariaSearchEngine/Resources/")},
+        }
+        checks = []
+        for observed in review["full"]["globalSQLComparisons"]:
+            query = observed["query"]
+            checks.append({
+                "query": query,
+                "request": {"version": 1, "mode": "exact", "query": query, "facets": ["/"],
+                            "bookIds": [], "timeoutMs": 60_000,
+                            "limits": copy.deepcopy(gate.EXACT_OCCURRENCE_LIMITS)},
+                "result": {"occurrences": observed["occurrences"],
+                           "matchingLiveDocuments": observed["matchingLiveDocuments"],
+                           "proof": copy.deepcopy(observed["proof"]),
+                           "work": copy.deepcopy(observed["actualWork"])},
+            })
+        return {"consumerBuild": consumer, "artifactProducer": copy.deepcopy(manifest["lexicalEngine"]),
+                "exactOccurrences": checks}
+
+    def reject_occurrence(self, change):
+        self.reject(lambda install, reopen, log: change(reopen))
+
+    def test_both_native_phases_require_exact_occurrence_evidence(self):
+        for phase in ("install", "reopen"):
+            with self.subTest(phase=phase):
+                self.reject(lambda a, b, log: (a if phase == "install" else b).pop("exactOccurrences") and None)
+
+    def test_occurrence_query_inventory_rejects_missing_duplicate_and_unknown(self):
+        for mode in ("missing", "duplicate", "unknown"):
+            with self.subTest(mode=mode):
+                def mutate(item):
+                    if mode == "missing":
+                        item["exactOccurrences"].pop()
+                    elif mode == "duplicate":
+                        item["exactOccurrences"][1] = copy.deepcopy(item["exactOccurrences"][0])
+                    else:
+                        item["exactOccurrences"][0]["query"] = "unknown"
+                self.reject_occurrence(mutate)
+
+    def test_document_hits_cannot_be_reported_as_occurrences(self):
+        def mutate(item):
+            value = item["exactOccurrences"][0]["result"]
+            value["occurrences"] = value["matchingLiveDocuments"]
+        self.reject_occurrence(mutate)
+
+    def test_consumer_and_producer_must_both_match_the_directional_contract(self):
+        changes = [
+            lambda x: x["consumerBuild"].update(upstreamCommit=gate.load_occurrence_oracle()["review"]["producerCommit"]),
+            lambda x: x["consumerBuild"].update(upstreamRepository="another/repository"),
+            lambda x: x["consumerBuild"].update(resourceHashes={}),
+            lambda x: x["consumerBuild"].update(indexSchemaVersion=4.0),
+            lambda x: x["artifactProducer"].update(defaultGenerationOrder=5.0),
+            lambda x: x["artifactProducer"].update(commit=gate.load_occurrence_oracle()["review"]["consumerCommit"]),
+        ]
+        for index, change in enumerate(changes):
+            with self.subTest(change=index):
+                self.reject_occurrence(change)
+
+    def test_proof_refuses_other_query_scope_engine_corpus_and_count_kind(self):
+        changes = [
+            {"engineCommit": "0" * 40}, {"originalUpstreamBase": "1" * 40},
+            {"analyzedToken": "משה"}, {"requestedFacets": ["/book/1"]},
+            {"liveIndexDocuments": 18879}, {"countKind": "matchingDocuments"}, {"exact": False},
+            {"requestToken": 0},
+        ]
+        for change in changes:
+            with self.subTest(change=change):
+                self.reject_occurrence(lambda x: x["exactOccurrences"][0]["result"]["proof"].update(change))
+
+    def test_partial_error_or_invalid_scalar_cannot_pass_as_a_count(self):
+        changes = [
+            lambda v: v.pop("proof"),
+            lambda v: v.update(error="budget_exceeded"),
+            lambda v: v.update(occurrences=-1),
+            lambda v: v.update(matchingLiveDocuments=True),
+        ]
+        for index, change in enumerate(changes):
+            with self.subTest(change=index):
+                self.reject_occurrence(lambda x: change(x["exactOccurrences"][0]["result"]))
+
+    def test_reported_request_must_keep_full_scope_and_published_hard_bounds(self):
+        changes = [
+            lambda q: q.update(bookIds=[1]), lambda q: q.update(facets=["/book/1"]),
+            lambda q: q.update(mode="fuzzy"), lambda q: q.update(timeoutMs=60_001),
+            lambda q: q["limits"].update(maxCandidateDocuments=1_000_001),
+            lambda q: q.update(version=True),
+            lambda q: q.update(timeoutMs=60_000.0),
+            lambda q: q["limits"].update(maxPositions=10_000_000.0),
+        ]
+        for index, change in enumerate(changes):
+            with self.subTest(change=index):
+                self.reject_occurrence(lambda x: change(x["exactOccurrences"][0]["request"]))
+
+    def test_snapshot_requires_the_original_full_index_segment_without_deletes(self):
+        changes = [
+            lambda g: g["segments"][0].update(segmentId="a" * 32),
+            lambda g: g["segments"][0].update(deleteOpstamp=1),
+            lambda g: g["segments"].append(copy.deepcopy(g["segments"][0])),
+            lambda g: g.update(generationId=-1),
+        ]
+        for index, change in enumerate(changes):
+            with self.subTest(change=index):
+                self.reject_occurrence(lambda x: change(x["exactOccurrences"][0]["result"]["proof"]["searcherGeneration"]))
+
+    def test_work_evidence_must_be_complete_and_within_the_actual_request_budget(self):
+        changes = [
+            {"visitedCandidateDocuments": 0}, {"visitedCandidateDocuments": 1_000_001},
+            {"inspectedPositions": 10_000_001}, {"visitedSegments": 0},
+        ]
+        for change in changes:
+            with self.subTest(change=change):
+                self.reject_occurrence(lambda x: x["exactOccurrences"][0]["result"]["work"].update(change))
+
+    def test_process_local_request_tokens_and_generations_may_change_after_cold_reopen(self):
+        install, reopen, log = self.fixture()
+        for check in reopen["exactOccurrences"]:
+            check["result"]["proof"]["requestToken"] += 1_000
+            check["result"]["proof"]["searcherGeneration"]["generationId"] += 100
+            # Swift may omit a nil Optional property; this still means no deletes.
+            check["result"]["proof"]["searcherGeneration"]["segments"][0].pop("deleteOpstamp")
+        result = gate.validate_reports(install, reopen, log)
+        self.assertEqual(result["exact_occurrence_checks_per_phase"], 2)
+        self.assertEqual(result["exact_occurrence_boundary"], "ACTUAL_NATIVE_SWIFT_C_BRIDGE_NOT_CORE_OR_UI")
+
+    def test_independent_oracle_requires_both_pinned_representations(self):
+        with patch.object(gate, "QUALIFICATION_REVIEW_SHA256_LF", "0" * 64):
+            with self.assertRaises(RuntimeError):
+                gate.load_occurrence_oracle()
+        raw = gate.gzip.decompress((gate.QUALIFICATION_ROOT /
+            "raw/full-sql-global-oracle/attempt4-partitioned/RESULT.json.gz").read_bytes())
+        with patch.object(gate.gzip, "decompress", return_value=raw + b"\n"):
+            with self.assertRaises(RuntimeError):
+                gate.load_occurrence_oracle()
+
 
     def reject(self, change):
         install, reopen, log = self.fixture()

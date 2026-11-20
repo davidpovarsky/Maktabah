@@ -1,0 +1,13 @@
+{
+  "at_utc": "2026-11-20T05:34:29.847247+00:00",
+  "exit_code": 0,
+  "expected_test_methods": 26,
+  "original_methods_ast_identical": 15,
+  "driver_sha256_lf": "9200321c1b1cee0b651881c4206d1c27a84b2160085d8e9dd3f263163519d73e",
+  "test_source_sha256_lf": "4ac3e8933d1ee6ebd6d679995abef283db90e50610f0816abc38780a7b2dcd41",
+  "log_sha256": "e5ed482464c0d3928c42e2c484cb3571381c3455da5b953bd6caf80cf6c73fdb",
+  "native_executed": 0,
+  "apple_typecheck": false,
+  "review_followup": "Explicit integer types for source schema/generation order and request timeout/limits; four mutation subcases added inside existing new methods",
+  "app_source_pin": "PENDING_COMBINED_FINAL_SOURCE"
+}

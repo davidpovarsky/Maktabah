@@ -1,0 +1,18 @@
+{
+  "reviewer": "github_native_audit",
+  "mode": "READ_ONLY_SOURCE_REVIEW_NO_TEST_RERUN",
+  "blocking_findings": [],
+  "verified": [
+    "Git-LF review and raw independent SQL hashes",
+    "Full original row/book/partition coverage",
+    "Two distinct expected exact queries in both native process phases",
+    "Actual original265 producer and d5 consumer/proof",
+    "Exact global request scope and published hard bounds",
+    "Original full index segment and no deletes",
+    "Per-process work and source proof; process-local tokens may differ",
+    "All original resume/reopen/PID/three-mode/golden guards retained"
+  ],
+  "minor_recommendation": "Explicit integer schema for numeric-equivalent Python values",
+  "resolution": "Applied source integer guards and four mutation subcases; final 26-method execution retained",
+  "native_executed_by_review": 0
+}

@@ -1,0 +1,9 @@
+{
+  "base": "263e6b1357c2322226bce54dc8051007b6b12285",
+  "driver_before_sha256_lf": "e7480a6ca1591a440c81d148cf8b1c4542ac9a1941fab1d9897aa12c4b1eacaf",
+  "driver_after_sha256_lf": "9ff6b0cded6b854d33f88ee7fd68276b74faa03d87f0b60e4328fee173b361e5",
+  "status": "SOURCE_WRITTEN_TESTS_NOT_RUN",
+  "source_pin": "PENDING_COMBINED_FINAL_APP_SHA",
+  "native_executed": 0,
+  "original_app_code_changed_by_this_branch": false
+}
