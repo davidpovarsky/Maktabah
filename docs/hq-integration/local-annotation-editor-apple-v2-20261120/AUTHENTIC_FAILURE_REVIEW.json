@@ -1,0 +1,67 @@
+{
+  "all_zip_crc_verified": true,
+  "artifact_bytes": 815530,
+  "artifact_id": 14650065379,
+  "artifact_sha256": "55036c390406f18a1c82a49b5537b7d73885aba695fc41ad0a9b235e83423976",
+  "compiler_source_errors": [
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-acceptance/owned-f686d7ca-7fb7-4a2b-bdea-50748a74af22/package/Sources/LocalAnnotationEditorAcceptance/AnnotationChangeTypes.swift:26:19: error: cannot find type 'AnnotationNode' in scope",
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-acceptance/owned-f686d7ca-7fb7-4a2b-bdea-50748a74af22/package/Sources/LocalAnnotationEditorAcceptance/AnnotationChangeTypes.swift:12:29: error: cannot find type 'AnnotationNode' in scope",
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-acceptance/owned-f686d7ca-7fb7-4a2b-bdea-50748a74af22/package/Sources/LocalAnnotationEditorAcceptance/AnnotationChangeTypes.swift:13:22: error: cannot find type 'AnnotationNode' in scope",
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-acceptance/owned-f686d7ca-7fb7-4a2b-bdea-50748a74af22/package/Sources/LocalAnnotationEditorAcceptance/AnnotationChangeTypes.swift:19:29: error: cannot find type 'AnnotationNode' in scope",
+    "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-acceptance/owned-f686d7ca-7fb7-4a2b-bdea-50748a74af22/package/Sources/LocalAnnotationEditorAcceptance/AnnotationChangeTypes.swift:20:22: error: cannot find type 'AnnotationNode' in scope"
+  ],
+  "exchange_failed": 0,
+  "exchange_passed": 28,
+  "exchange_process_termination_checks": [
+    {
+      "actual_journal_observation": "CRASH_JOURNAL_MODE wal; synchronous=2",
+      "expected_terminated_exit": 73,
+      "phase": "after",
+      "status": "PASS",
+      "terminated_exit": 73,
+      "termination_command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-9946992d-e371-4c62-8954-0d42ba81091b/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "crash-after-commit",
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-9946992d-e371-4c62-8954-0d42ba81091b/fixtures"
+      ],
+      "verify_command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-9946992d-e371-4c62-8954-0d42ba81091b/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "verify-crash-after",
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-9946992d-e371-4c62-8954-0d42ba81091b/fixtures"
+      ],
+      "verify_exit": 0
+    },
+    {
+      "actual_journal_observation": "CRASH_JOURNAL_MODE wal; synchronous=2",
+      "expected_terminated_exit": 73,
+      "phase": "before",
+      "status": "PASS",
+      "terminated_exit": 73,
+      "termination_command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-9946992d-e371-4c62-8954-0d42ba81091b/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "crash-before-outer-commit",
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-9946992d-e371-4c62-8954-0d42ba81091b/fixtures"
+      ],
+      "verify_command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-9946992d-e371-4c62-8954-0d42ba81091b/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "verify-crash-before",
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-9946992d-e371-4c62-8954-0d42ba81091b/fixtures"
+      ],
+      "verify_exit": 0
+    }
+  ],
+  "exchange_status": "PASS_ACTUAL_SQLITE_COMPONENT",
+  "excluded": "DOWNLOAD_INPUT contains signed URL; excluded from all publication",
+  "final_gate_status": "FAILED",
+  "local_classification": "NOT_RUN_COMPILE_FAILURE",
+  "local_cold_executed": 0,
+  "local_executed": 0,
+  "local_failed": 0,
+  "local_passed": 0,
+  "local_status": "FAILED",
+  "root_source_review": "ROOT_SOURCE_REVIEW.json",
+  "run": 44774181751,
+  "source": "1bde04bfbabbf1b1df714668785b580c9141a3b8",
+  "source_git_proof": "SOURCE_GIT_PROOF.json",
+  "zip_entries": 81
+}

@@ -1,0 +1,7 @@
+{
+  "preserved": "Whole original model, original local43/exchange28 assertions, driver execution semantics and budgets",
+  "qualification": "No candidate Swift/Apple or UI execution implied",
+  "result": "No concrete source blocker found",
+  "reviewer": "/root",
+  "scope": "All six-file source diff; source review only"
+}

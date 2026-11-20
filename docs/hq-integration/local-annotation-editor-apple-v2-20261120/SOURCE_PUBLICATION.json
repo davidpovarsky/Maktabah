@@ -1,0 +1,50 @@
+{
+  "activation_branch": "codex/otzaria-local-annotation-editor-apple-reviewed-v2-20261120",
+  "activation_ref_after_source_publication": "404_NOT_FOUND",
+  "authoring_branch": "codex/otzaria-local-annotation-editor-apple-ci-v2-20261120",
+  "authoring_ref_readback_exact": true,
+  "dispatches_by_C": 0,
+  "files": [
+    {
+      "bytes": 5443,
+      "git_blob": "a8fd5640667f232f775d512fc66a7f9c3859dbd9",
+      "path": ".github/workflows/otzaria-local-annotation-editor-apple.yml",
+      "sha256": "c44d4a954e46dbc01475647d152c84f3d7c2a0640dbd6701f2e8cb40a73bb099"
+    },
+    {
+      "bytes": 26964,
+      "git_blob": "b16513a9e672b3154ec6239bcd9ee4ef658cfd33",
+      "path": "Scripts/CI/local-annotation-editor-apple.py",
+      "sha256": "7bb6ab2ebd5ce8d7f2ea92c7cd59171cf2c96d39371250cc1fd533715d8d7628"
+    },
+    {
+      "bytes": 12882,
+      "git_blob": "2d3904736a96afe6e09ddeda68588fe61e20123e",
+      "path": "Scripts/CI/local-annotation-editor-apple.inputs.json",
+      "sha256": "24668f86e873218a1405d3ad3cf1a45e7f830839948f19f685318f1308badc5f"
+    },
+    {
+      "bytes": 23499,
+      "git_blob": "db8de78988018f4004b114e3c5c71eae0a900d47",
+      "path": "Scripts/CI/test-local-annotation-editor-apple.py",
+      "sha256": "42bd75d6cf87a3bb62d7f184c339be011ffc8bd4620a98fd495f928b3abb7211"
+    },
+    {
+      "bytes": 3758,
+      "git_blob": "0f8bf29a30d63aa7769b723973784839a44300c9",
+      "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift",
+      "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46"
+    },
+    {
+      "bytes": 16135,
+      "git_blob": "d1ad554013d77c7c80e3cce8c6c17509455ff345",
+      "path": "tools/hq-local-annotation-editor-acceptance.py",
+      "sha256": "76bd98bf2fe2c8df4332b13e25399a85a95d0e653e2db1f00ebe723eef423a14"
+    }
+  ],
+  "git_comparison_exact_six_modified_files": true,
+  "parent": "1bde04bfbabbf1b1df714668785b580c9141a3b8",
+  "published_at": "2026-11-20T16:55:54.679180+00:00",
+  "source_commit": "5b0f8ef7875a373918d1e2e32f45651e1a15a11f",
+  "source_tree": "ff685eaa3d66badca85c17411aa194fdd62e33a8"
+}
