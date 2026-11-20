@@ -1,0 +1,70 @@
+{
+  "source_base": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+  "rustc": "1.92.0",
+  "cargo": "1.92.0",
+  "primitive_source_sha256_lf": {
+    "rust/src/lib.rs": "6a7b6eac89e781fc7d141f036f0d58f3092be40c42bcca48735e0aa929d3de18",
+    "rust/src/api/search_engine.rs": "59a6ae51a038780d8a78d19952087b735e096373394347affc02160765973f75",
+    "rust/src/exact_occurrences.rs": "c0a1374c9b58450e73ee84fafe0f4b7555fe22e29651f25ccc43b98a7fd6a757",
+    "rust/src/exact_occurrences/tests.rs": "431f127619ac594c8a09096bbdf2a03627a57148080f1b92486169da1913739e",
+    "rust/Cargo.toml": "3e9584afbfb53cd97ae08371ae17831c59652f12b6073f6ed1756d7e5e1f586d",
+    "rust/Cargo.lock": "d8cf629b23f9bf53028ddcca6f27ef7fdf8a0ee1e6e5807050c7f3d3eb5b04da"
+  },
+  "baseline_counterexample": {
+    "exit": 101,
+    "passed": 0,
+    "failed": 1,
+    "expected_actual_document_total": 1,
+    "required_occurrences": 2,
+    "kind": "intentional semantic counterexample, not a regression in count_exact"
+  },
+  "focused": {
+    "exit": 0,
+    "passed": 19,
+    "failed": 0,
+    "ignored": 0
+  },
+  "full_default_library": {
+    "exit": 101,
+    "passed": 360,
+    "failed": 4,
+    "ignored": 0,
+    "new_19_are_included_in_360": true,
+    "failed_test_names": [
+      "api::benchmark::tests::test_run_benchmark_on_real_index",
+      "api::benchmark::tests::test_comprehensive_benchmark",
+      "api::diagnostic_test::tests::test_diagnostic",
+      "api::focused_benchmark::tests::test_focused_benchmark"
+    ],
+    "reason": "unchanged diagnostic/benchmark tests open hardcoded existing C:\\אוצריא\\index; original constructor rejects incompatible schema before writer creation"
+  },
+  "retained_failed_attempts": [
+    "focused-green-attempt1.json",
+    "focused-green-attempt2.json"
+  ],
+  "source_patch": {
+    "base": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+    "patch_sha256": "be2e2da1eabba22ec8a99178c0c8e2b450a6e478243d147a55947d8770a522df",
+    "patch_bytes": 37902,
+    "pristine_base_index_apply_check_exit": 0,
+    "stderr": "",
+    "source_paths": [
+      "rust/src/lib.rs",
+      "rust/src/api/search_engine.rs",
+      "rust/src/exact_occurrences.rs",
+      "rust/src/exact_occurrences/tests.rs"
+    ],
+    "artifact": "source.patch.gz",
+    "compressed_sha256": "bb370e5357fd5b7f73eda342cf784df2bba764561e213f601bb6b99913b5a8d2",
+    "compressed_bytes": 8651
+  },
+  "scope_exclusions": {
+    "AppleSDK": "NOT_RUN",
+    "XCFramework": "NOT_RUN",
+    "Native": "NOT_RUN",
+    "CoreExposure": "NOT_IMPLEMENTED",
+    "SefariaOccurrence": "UNSUPPORTED",
+    "phrase_fuzzy_morphology_occurrences": "UNSUPPORTED"
+  },
+  "remote_push": "NOT_PERFORMED; parent owns approved fork/publication after review"
+}

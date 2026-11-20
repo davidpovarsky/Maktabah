@@ -1,0 +1,12 @@
+{
+  "published_at": "2026-11-20T01:28:11.115785+00:00",
+  "repository": "https://github.com/davidpovarsky/otzaria_search_engine",
+  "branch": "codex/otzaria-exact-occurrences-20261120",
+  "commit": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "original_upstream_base": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+  "primitive": "fffd346555d4c4a0e487b30619aa79253b2372c3",
+  "source_clean": true,
+  "original_origin": "https://github.com/Otzaria/otzaria_search_engine.git",
+  "app_pin_changed": false,
+  "first_cli_attempt": "Rejected unsupported --remote flag before repository action; corrected command used --clone=false."
+}

@@ -1,0 +1,69 @@
+{
+  "primitive_commit": "fffd346555d4c4a0e487b30619aa79253b2372c3",
+  "job_id": "job_2608db498c68",
+  "job_exit": 0,
+  "safe_library": {
+    "passed": 360,
+    "failed": 0,
+    "ignored": 4,
+    "new_19_included_in_360": true,
+    "result": "safe-library-regression.json"
+  },
+  "focused_repeat": {
+    "passed": 19,
+    "failed": 0,
+    "ignored": 0,
+    "filtered_out": 345,
+    "result": "focused-after-hygiene.json"
+  },
+  "guard_probe": {
+    "passed_checks": 8,
+    "failed_checks": 0,
+    "engine_linked": false,
+    "result": "diagnostic-fixture-guard.json"
+  },
+  "optional_diagnostics": "NOT_RUN after hygiene; four ignored are not passes",
+  "prior_actual_result": {
+    "passed": 360,
+    "failed": 4,
+    "ignored": 0,
+    "unchanged_evidence_sha256_lf": {
+      "full-default-regression.json": "b04aa0bd58c5618ad8809a91a87bfbe098b023b21aeff68987d99fc2fa579298",
+      "full-default-regression.log": "952c6f5039d0f06b46516b19b0bb0ad7ab71b04c74442684aafbf1178080e17c",
+      "verification-primitive.json": "d5ffbe90dbaf72c5a962e234422209a3b86f938bab3dcba28f6b11b4ef9bc686",
+      "legacy-index-post-run-observation.json": "d40d1e7ea3c92c3461535aacc818e6b1f7a691d2be4615bacfe8374a98a3f8c3"
+    }
+  },
+  "benchmark_queries_and_assertions_reversible_diff_equals_parent": true,
+  "source_sha256_lf": {
+    "rust/src/lib.rs": "9c462be414fe668eeb7103cd71420bcf8dcf2ccd4c8f8f3058e34997541fd1dc",
+    "rust/src/api/search_engine.rs": "59a6ae51a038780d8a78d19952087b735e096373394347affc02160765973f75",
+    "rust/src/exact_occurrences.rs": "c0a1374c9b58450e73ee84fafe0f4b7555fe22e29651f25ccc43b98a7fd6a757",
+    "rust/src/exact_occurrences/tests.rs": "431f127619ac594c8a09096bbdf2a03627a57148080f1b92486169da1913739e",
+    "rust/src/api/benchmark.rs": "ee53c2865eaa906b7c1b0c9883e09a0b1ec396d60d061d9c2252b01665667cf8",
+    "rust/src/api/diagnostic_test.rs": "958e65490ecb4e72cca3a4924caacb6730e022e84453a3e0e64bc4db6b36962a",
+    "rust/src/api/focused_benchmark.rs": "d6f0895e2c40c30527bd72bf12364dc7c38aaf7a84d4df48c8829b02e87e48c3",
+    "rust/src/diagnostic_test_fixture.rs": "0b5164005fb56fccda341b27fb479726ab7490426c2314ad39b849f0c42afd05",
+    "rust/src/frb_generated.rs": "fe47a4916b97877b2fc3fe81109c36a0fa9696d449dae4fb8493721947a11a54",
+    "rust/Cargo.toml": "3e9584afbfb53cd97ae08371ae17831c59652f12b6073f6ed1756d7e5e1f586d",
+    "rust/Cargo.lock": "d8cf629b23f9bf53028ddcca6f27ef7fdf8a0ee1e6e5807050c7f3d3eb5b04da"
+  },
+  "patch": {
+    "base": "fffd346555d4c4a0e487b30619aa79253b2372c3",
+    "source_paths": [
+      "rust/src/lib.rs",
+      "rust/src/api/benchmark.rs",
+      "rust/src/api/diagnostic_test.rs",
+      "rust/src/api/focused_benchmark.rs",
+      "rust/src/diagnostic_test_fixture.rs"
+    ],
+    "patch_bytes": 6870,
+    "patch_sha256": "7bd0d6c27d5fa28d8e3885782d654a209d44ca00653748e25ae49371e961e57e",
+    "artifact": "hygiene-source.patch.gz",
+    "compressed_bytes": 1996,
+    "compressed_sha256": "6d4f49e4cb67ecebd5b7519a4cf11e49b17292cb6b139841cb6d3f6622e638d7",
+    "pristine_parent_index_apply_check_exit": 0,
+    "stderr": ""
+  },
+  "publication": "local only; no remote push/fork/FFI/pin change"
+}
