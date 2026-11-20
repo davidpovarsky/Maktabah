@@ -1670,7 +1670,8 @@ extension NativeRoutingPhoneAcceptanceTests {
 // result, synthesize an acknowledgement, or bypass the normal bootstrap.
 extension NativeRoutingAcceptanceTests {
     private func actionProbeURL(kind: String, token: UUID, phase: String) throws -> URL {
-        XCTAssertTrue(["notes", "search", "commentary", "count"].contains(kind))
+        XCTAssertTrue(["notes", "search", "commentary", "count", "journey-count-results",
+                       "journey-commentary-draft", "journey-catalog-stop"].contains(kind))
         XCTAssertTrue(["trigger.txt", "result.json", "closed.json"].contains(phase))
         let documents = try actualReaderLogURL().deletingLastPathComponent().deletingLastPathComponent()
         XCTAssertEqual(documents.lastPathComponent, "Documents")
@@ -2090,5 +2091,367 @@ extension NativeRoutingPhoneAcceptanceTests {
 extension NativeRoutingPhoneAcceptanceTests {
     @MainActor func testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone() throws {
         try runCoreOriginalExactTokenCount(expectedPad: false)
+    }
+}
+
+
+// Compound probes are separate Native cases. Primitive PASS results are not
+// counted as completion of these journeys, and no oracle below is a mock ACK.
+extension NativeRoutingAcceptanceTests {
+    private func requireSemanticStep(_ step: [String: Any], action: String) throws {
+        XCTAssertEqual(step["apiVersion"] as? Int, 1)
+        XCTAssertEqual(step["action"] as? String, action)
+        XCTAssertEqual(step["status"] as? String, "completed")
+        XCTAssertEqual(step["backend"] as? String, "otzaria")
+        XCTAssertNotNil(step["backendGeneration"] as? NSNumber)
+        XCTAssertNotNil((step["requestId"] as? String).flatMap(UUID.init(uuidString:)))
+        XCTAssertNil(step["error"]); XCTAssertNil(step["candidates"]); XCTAssertNil(step["next"])
+    }
+
+    @MainActor private func requireSemanticReceipts(
+        _ expected: [(result: [String: Any], destination: String, presentation: String)],
+        before: Set<String>
+    ) throws {
+        let after = try actualNativeReceiptLines(), added = after.subtracting(before)
+        XCTAssertTrue(before.isSubset(of: after), "Keep every original receipt")
+        XCTAssertEqual(added.count, expected.count, "Exactly one actual receipt per completed native step")
+        var priorEnd: UInt64 = 0
+        var priorScene: String?
+        let workspace = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: workspaceSidecarURL())) as? [String: Any])
+        let scenes = try XCTUnwrap(workspace["scenes"] as? [String: Any])
+        var requestIDs = Set<String>()
+        for step in expected {
+            let request = try XCTUnwrap(step.result["requestId"] as? String)
+            XCTAssertTrue(requestIDs.insert(request).inserted)
+            let matches = added.filter { $0.contains("request=\(request) ") }
+            XCTAssertEqual(matches.count, 1)
+            let line = try XCTUnwrap(matches.first), parts = line.split(separator: " ", maxSplits: 2)
+            XCTAssertEqual(parts.count, 3)
+            guard parts.count == 3 else { throw SemanticProbeFailure.receipt }
+            XCTAssertEqual(parts[1], "[NativeNavigationReceipt]")
+            var fields: [String: String] = [:]
+            for field in parts[2].split(separator: " ") {
+                let pair = field.split(separator: "=", maxSplits: 1)
+                XCTAssertEqual(pair.count, 2)
+                guard pair.count == 2 else { throw SemanticProbeFailure.receipt }
+                XCTAssertNil(fields[String(pair[0])])
+                fields[String(pair[0])] = String(pair[1])
+            }
+            XCTAssertEqual(Set(fields.keys), ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"])
+            XCTAssertEqual(fields["request"], request)
+            XCTAssertEqual(fields["destination"], step.destination)
+            XCTAssertEqual(fields["presentation"], step.presentation)
+            XCTAssertEqual(fields["backend"], "otzaria"); XCTAssertEqual(fields["epoch"], "none")
+            XCTAssertEqual(fields["generation"], (step.result["backendGeneration"] as? NSNumber)?.stringValue)
+            let scene = try XCTUnwrap(fields["scene"])
+            XCTAssertNotNil(scenes[scene])
+            if let priorScene { XCTAssertEqual(scene, priorScene) }
+            priorScene = scene
+            let revisions = try XCTUnwrap(fields["revision"]?.components(separatedBy: "->"))
+            XCTAssertEqual(revisions.count, 2)
+            guard revisions.count == 2 else { throw SemanticProbeFailure.receipt }
+            let start = try XCTUnwrap(UInt64(revisions[0])), end = try XCTUnwrap(UInt64(revisions[1]))
+            XCTAssertGreaterThan(end, start); XCTAssertGreaterThanOrEqual(start, priorEnd)
+            priorEnd = end
+            let attachment = XCTAttachment(string: line)
+            attachment.name = "actual-semantic-native-receipt-\(step.destination)"
+            attachment.lifetime = .keepAlways; add(attachment)
+        }
+    }
+    private enum SemanticProbeFailure: Error { case receipt }
+
+    @MainActor fileprivate func runSemanticCountThenResults(expectedPad: Bool) throws {
+        let kind = "journey-count-results", token = UUID(), query = "אברהם"
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", kind, "-nativeActionAcceptanceToken", token.uuidString])
+        let oracle = try systemReaderOracleDocument(), metadata = try readerSourceMetadata()
+        let source = try XCTUnwrap(oracle.rows.first { $0.bookId == 1 && $0.lineIndex == 0 })
+        try openInExistingProcess(try readerURL(bookID: source.bookId, lineIndex: source.lineIndex))
+        try requireSystemReaderSource(source)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+
+        // The original Search Return is the only engine warm-up, exactly as in
+        // the existing headless count case. No fixture opens or populates it.
+        let search = findTabButton(hebrew: "חיפוש", english: "Search")
+        XCTAssertTrue(search.waitForExistence(timeout: 10)); XCTAssertTrue(search.isHittable); search.tap()
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+        let field = fields.firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 20)); XCTAssertEqual(fields.count, 1)
+        XCTAssertTrue(field.isHittable); field.tap(); field.typeText(query + "\n")
+        XCTAssertEqual(field.value as? String, query)
+        let row = app.buttons.matching(NSPredicate(format:
+            "identifier BEGINSWITH %@", "search-result-preview-toggle-")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 90)); XCTAssertTrue(row.isHittable)
+        let application = app!
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                !application.descendants(matching: .any).matching(identifier: "global-search-loading").firstMatch.exists
+                    && !application.descendants(matching: .any).matching(identifier: "global-search-dirty").firstMatch.exists
+                    && !application.buttons["global-search-cancel"].exists
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 90), .completed)
+        let library = findTabButton(hebrew: "ספרייה", english: "Library")
+        XCTAssertTrue(library.waitForExistence(timeout: 10)); XCTAssertTrue(library.isHittable); library.tap()
+        try requireSystemReaderSource(source); try requirePreservedOriginalWorkspace(original)
+        let before = try actualNativeReceiptLines()
+        try triggerOriginalAction(kind, token: token)
+        let proof = try readOriginalActionProof(kind, token: token)
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        XCTAssertEqual(proof["plannedActions"] as? [String], ["search.countOccurrences", "search.openResults"])
+        XCTAssertEqual(proof["journeyComplete"] as? Bool, true)
+        let steps = try XCTUnwrap(proof["steps"] as? [[String: Any]])
+        XCTAssertEqual(steps.count, 2)
+        guard steps.count == 2 else { throw SemanticProbeFailure.receipt }
+        let counted = steps[0]
+        try requireSemanticStep(counted, action: "search.countOccurrences")
+        XCTAssertNil(counted["effects"])
+        let opened = try requireCompletedOriginalAction(["coreResult": steps[1]],
+            action: "search.openResults", effect: "search_results_opened")
+        XCTAssertNotEqual(counted["requestId"] as? String, opened["requestId"] as? String)
+        XCTAssertEqual(counted["backendGeneration"] as? NSNumber, opened["backendGeneration"] as? NSNumber)
+        XCTAssertEqual(counted["backendGeneration"] as? NSNumber, proof["originalBackendGeneration"] as? NSNumber)
+        let data = try XCTUnwrap(counted["data"] as? [String: Any])
+        // Same sealed independent all-row SQLite/Zstandard expectation used by
+        // the original count case; 109 occurrences are not 98 matching rows.
+        XCTAssertEqual(data["count"] as? Int, 109)
+        XCTAssertEqual(data["matchingDocuments"] as? Int, 98)
+        XCTAssertNotEqual(data["count"] as? Int, data["matchingDocuments"] as? Int)
+        XCTAssertEqual(data["countUnit"] as? String, "matching_occurrences")
+        XCTAssertEqual(data["precision"] as? String, "exact")
+        XCTAssertEqual(data["normalizedToken"] as? String, query)
+        let countQuery = try XCTUnwrap(data["query"] as? [String: Any])
+        let permissionQuery = try XCTUnwrap(data["searchQuery"] as? [String: Any])
+        for actual in [countQuery, permissionQuery] {
+            XCTAssertEqual(actual["backend"] as? String, "otzaria")
+            XCTAssertEqual(Data(try XCTUnwrap(actual["text"] as? String).utf8), Data(query.utf8))
+            XCTAssertEqual(actual["matchMode"] as? String, "exact")
+            let refs = try XCTUnwrap(actual["scopeWorkRefs"] as? [[String: Any]])
+            XCTAssertEqual(refs.count, 1)
+            let scoped = try XCTUnwrap(refs.first)
+            XCTAssertEqual(scoped["backend"] as? String, "otzaria")
+            XCTAssertEqual(scoped["workKey"] as? String, "book:1")
+            XCTAssertNil(scoped["catalogRevision"])
+        }
+        let evidence = try XCTUnwrap(data["evidence"] as? [String: Any])
+        XCTAssertEqual(evidence["contract"] as? String, "otzaria-exact-token-positions-v1")
+        XCTAssertEqual(evidence["engineRevision"] as? String, "d5d59d1269bdf87fb0a6901cf31941726a0c699b")
+        XCTAssertEqual(evidence["artifactIdentity"] as? String, "08a5ddf76ae187e3ca29c1b483637f1dc8e2a2dcb7001cdb7fe3327236234e83")
+        XCTAssertEqual(evidence["databaseSHA256"] as? String, oracle.databaseSHA256)
+        XCTAssertEqual(evidence["expectedIndexedDocuments"] as? Int, 18_879)
+        XCTAssertEqual(evidence["observedIndexedDocuments"] as? Int, 18_879)
+        XCTAssertEqual(evidence["completeManagedArtifact"] as? Bool, true)
+        XCTAssertNotNil(try XCTUnwrap(evidence["engineSnapshotSHA256"] as? String)
+            .range(of: "^[0-9a-f]{64}$", options: .regularExpression))
+        XCTAssertGreaterThanOrEqual(try XCTUnwrap(evidence["visitedDocuments"] as? Int), 98)
+        XCTAssertLessThanOrEqual(try XCTUnwrap(evidence["visitedDocuments"] as? Int), 1_000_000)
+        XCTAssertGreaterThanOrEqual(try XCTUnwrap(evidence["visitedPositions"] as? Int), 109)
+        XCTAssertLessThanOrEqual(try XCTUnwrap(evidence["visitedPositions"] as? Int), 10_000_000)
+        XCTAssertGreaterThanOrEqual(try XCTUnwrap(proof["readAuthorityObservations"] as? Int), 5)
+        XCTAssertGreaterThan(try XCTUnwrap(proof["readAuthorityAfterSearch"] as? Int), 0)
+        XCTAssertEqual(Data(try XCTUnwrap(proof["originalQuery"] as? String).utf8), Data(query.utf8))
+        XCTAssertEqual(proof["originalExactScope"] as? Bool, true)
+        XCTAssertEqual(proof["originalSort"] as? String, permissionQuery["sortOrder"] as? String)
+        XCTAssertEqual(proof["originalBookIDs"] as? [Int], [1])
+        XCTAssertEqual(proof["originalModelBookIDs"] as? [Int], [1])
+        XCTAssertEqual(try XCTUnwrap(proof["originalSubmissionAfter"] as? Int),
+            try XCTUnwrap(proof["originalSubmissionBefore"] as? Int) + 1)
+        XCTAssertEqual(proof["originalHasSubmitted"] as? Bool, true)
+        XCTAssertEqual(proof["originalIsSearching"] as? Bool, false)
+        XCTAssertEqual(proof["originalResultsAreDirty"] as? Bool, false)
+        XCTAssertNil(proof["originalError"])
+        XCTAssertTrue(app.otherElements["global-search-screen"].exists)
+        XCTAssertTrue(field.exists); XCTAssertTrue(field.isHittable)
+        XCTAssertEqual(field.value as? String, query)
+        XCTAssertTrue(row.waitForExistence(timeout: 15)); XCTAssertTrue(row.isHittable)
+        let stableID = String(row.identifier.dropFirst("search-result-preview-toggle-".count))
+        let rows = try XCTUnwrap(proof["originalRows"] as? [[String: Any]])
+        XCTAssertFalse(rows.isEmpty)
+        for item in rows {
+            let ref = try XCTUnwrap(item["locator"] as? [String: Any])
+            XCTAssertEqual(ref["backend"] as? String, "otzaria")
+            XCTAssertEqual(ref["workKey"] as? String, "book:1")
+        }
+        let visible = try XCTUnwrap(rows.first { $0["stableID"] as? String == stableID })
+        let visibleRef = try XCTUnwrap(visible["locator"] as? [String: Any])
+        let position = try XCTUnwrap(visibleRef["position"] as? [String: Any])
+        let lineIndex = try XCTUnwrap(position["value"] as? Int)
+        try requireOriginalActionRef(visibleRef, bookID: 1, lineIndex: lineIndex)
+        XCTAssertTrue(metadata.rows.contains { $0.count == 3 && $0[1] == 1 && $0[2] == lineIndex })
+        try requireSemanticReceipts([(result: opened, destination: "native.search.results", presentation: "currentTab")], before: before)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertFalse(app.textViews["annotation-note-text"].exists)
+        capture("native-semantic-count-then-same-scoped-original-results")
+    }
+
+    @MainActor fileprivate func runSemanticCommentaryThenDraft(expectedPad: Bool) throws {
+        let kind = "journey-commentary-draft", token = UUID(), rows = try originalCommentaryRows()
+        let metadata = try readerSourceMetadata()
+        for row in [rows.0, rows.1] {
+            XCTAssertTrue(metadata.rows.contains { $0 == [row.id, row.bookId, row.lineIndex] })
+        }
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", kind, "-nativeActionAcceptanceToken", token.uuidString,
+            "-nativeActionAcceptanceTargetWorkKey", "book:3276"])
+        try openInExistingProcess(readerURL(bookID: rows.0.bookId, lineIndex: rows.0.lineIndex, newTab: true))
+        try requireSystemReaderSource(rows.0)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+        let before = try actualNativeReceiptLines()
+        try triggerOriginalAction(kind, token: token)
+        let proof = try readOriginalActionProof(kind, token: token)
+        XCTAssertEqual(proof["plannedActions"] as? [String], ["reader.openCommentary", "notes.prepareDraft"])
+        XCTAssertEqual(proof["journeyComplete"] as? Bool, true)
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        let steps = try XCTUnwrap(proof["steps"] as? [[String: Any]])
+        XCTAssertEqual(steps.count, 2)
+        guard steps.count == 2 else { throw SemanticProbeFailure.receipt }
+        let opened = try requireCompletedOriginalAction(["coreResult": steps[0]], action: "reader.openCommentary", effect: "reader_opened")
+        let drafted = try requireCompletedOriginalAction(["coreResult": steps[1]], action: "notes.prepareDraft", effect: "note_draft_opened")
+        XCTAssertEqual(opened["backendGeneration"] as? NSNumber, drafted["backendGeneration"] as? NSNumber)
+        let openedData = try XCTUnwrap(opened["data"] as? [String: Any])
+        let draftData = try XCTUnwrap(drafted["data"] as? [String: Any])
+        let locator = try XCTUnwrap(openedData["locator"] as? [String: Any])
+        let draftLocator = try XCTUnwrap(draftData["locator"] as? [String: Any])
+        XCTAssertEqual(try JSONSerialization.data(withJSONObject: locator, options: .sortedKeys),
+            try JSONSerialization.data(withJSONObject: draftLocator, options: .sortedKeys))
+        try requireOriginalActionRef(locator, bookID: rows.1.bookId, lineIndex: rows.1.lineIndex)
+        try requireOriginalActionRef(try XCTUnwrap(proof["originalDraftLocator"] as? [String: Any]),
+            bookID: rows.1.bookId, lineIndex: rows.1.lineIndex)
+        try requireOriginalActionRef(try XCTUnwrap(proof["originalBaseLocator"] as? [String: Any]),
+            bookID: rows.0.bookId, lineIndex: rows.0.lineIndex)
+        XCTAssertEqual(draftData["saved"] as? Bool, false)
+        XCTAssertEqual(proof["originalStoreUnchanged"] as? Bool, true)
+        XCTAssertEqual(proof["originalEditorOwnerObserved"] as? Bool, true)
+        XCTAssertEqual(proof["originalUnsavedEditor"] as? Bool, true)
+        XCTAssertEqual(proof["originalEditorOwnsProposal"] as? Bool, true)
+        XCTAssertEqual(proof["originalEditorPresentationActive"] as? Bool, true)
+        let text = app.textViews["annotation-note-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 10)); XCTAssertTrue(text.isHittable)
+        XCTAssertEqual(text.value as? String, "טיוטת מסע \(token.uuidString)")
+        XCTAssertTrue(app.buttons["annotation-save"].exists)
+        XCTAssertFalse(app.buttons["annotation-delete"].exists)
+        try requireSemanticReceipts([
+            (result: opened, destination: "native.reader", presentation: "newTab"),
+            (result: drafted, destination: "native.reader.noteDraft", presentation: "sheet")
+        ], before: before)
+        capture("native-semantic-commentary-original-unsaved-editor")
+
+        let cancel = app.buttons["annotation-cancel"]
+        XCTAssertTrue(cancel.exists); XCTAssertTrue(cancel.isHittable); cancel.tap()
+        let closed = try readOriginalActionProof(kind, token: token, phase: "closed.json")
+        for key in ["originalStoreUnchanged", "originalEditorDismissed", "originalSceneReady", "originalEditorOwnerUnchanged"] {
+            XCTAssertEqual(closed[key] as? Bool, true)
+        }
+        XCTAssertFalse(text.exists)
+        try requireSystemReaderSource(rows.1)
+        XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(try XCTUnwrap(metadata.books["3276"])))
+        // File-only readiness captures no XCTest instance or live UI across a
+        // concurrency boundary. The real original workspace stays authoritative.
+        let sidecar = try workspaceSidecarURL(), groupID = original.0.id
+        let profileID = original.0.profileID, oldID = original.1, expectedCount = original.0.tabs.count + 1
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let data = try? Data(contentsOf: sidecar),
+                  let snapshot = try? JSONDecoder().decode(ReaderWorkspaceSnapshot.self, from: data),
+                  let (group, selected) = try? snapshot.current() else { return false }
+            return group.id == groupID && group.profileID == profileID
+                && group.tabs.count == expectedCount && selected != oldID
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 15), .completed)
+        let after = try actualReaderWorkspace().current()
+        XCTAssertEqual(after.0.id, original.0.id); XCTAssertEqual(after.0.profileID, original.0.profileID)
+        XCTAssertEqual(try XCTUnwrap(after.0.tabs.first { $0.session.id == after.1 }).session.bookId, rows.1.bookId)
+        for old in original.0.tabs {
+            let retained = try XCTUnwrap(after.0.tabs.first { $0.session.id == old.session.id })
+            XCTAssertEqual(retained.backend, old.backend); XCTAssertEqual(retained.session.bookId, old.session.bookId)
+        }
+        if expectedPad {
+            returnToOriginalIPadReaderTab(original.1)
+        } else {
+            let overview = app.buttons["reader-open-tabs-button"]
+            XCTAssertTrue(overview.waitForExistence(timeout: 10)); XCTAssertTrue(overview.isHittable); overview.tap()
+            let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + original.1.uuidString }
+            let old = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
+            XCTAssertTrue(old.firstMatch.waitForExistence(timeout: 10)); XCTAssertEqual(old.count, 1)
+            XCTAssertTrue(old.firstMatch.isHittable); old.firstMatch.tap()
+        }
+        try requireSystemReaderSource(rows.0)
+        XCTAssertEqual(try actualReaderWorkspace().current().1, original.1)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 2)
+        capture("native-semantic-commentary-draft-cancel-preserves-base")
+    }
+
+    @MainActor fileprivate func runSemanticCatalogHeadingStops(expectedPad: Bool) throws {
+        let kind = "journey-catalog-stop", token = UUID(), rows = try originalCommentaryRows()
+        let metadata = try readerSourceMetadata()
+        let baseTitle = try XCTUnwrap(metadata.books["28"]), commentaryTitle = try XCTUnwrap(metadata.books["3276"])
+        XCTAssertEqual(baseTitle, "תהילים"); XCTAssertEqual(commentaryTitle, "חומת אנך על תהלים")
+        // Original mini DB: toc600 "פרק א" -> heading lineIndex1, not verse2.
+        // That heading has no outgoing/incoming/coverage link. Never substitute
+        // the source verse merely to manufacture a four-step positive result.
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", kind, "-nativeActionAcceptanceToken", token.uuidString,
+            "-nativeActionAcceptanceBaseWorkQuery", baseTitle,
+            "-nativeActionAcceptanceSection", "פרק א",
+            "-nativeActionAcceptanceCommentaryQuery", commentaryTitle])
+        try openInExistingProcess(readerURL(bookID: rows.0.bookId, lineIndex: rows.0.lineIndex, newTab: true))
+        try requireSystemReaderSource(rows.0)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+        let before = try actualNativeReceiptLines()
+        try triggerOriginalAction(kind, token: token)
+        let proof = try readOriginalActionProof(kind, token: token)
+        XCTAssertEqual(proof["plannedActions"] as? [String],
+            ["catalog.resolveWork", "catalog.resolveReference", "reader.openCommentary", "notes.prepareDraft"])
+        XCTAssertEqual(proof["journeyComplete"] as? Bool, false)
+        let steps = try XCTUnwrap(proof["steps"] as? [[String: Any]])
+        XCTAssertEqual(steps.count, 3, "No note action follows an unresolved source link")
+        guard steps.count == 3 else { throw SemanticProbeFailure.receipt }
+        try requireSemanticStep(steps[0], action: "catalog.resolveWork")
+        try requireSemanticStep(steps[1], action: "catalog.resolveReference")
+        XCTAssertNil(steps[0]["effects"]); XCTAssertNil(steps[1]["effects"])
+        let work = try XCTUnwrap((steps[0]["data"] as? [String: Any])?["workRef"] as? [String: Any])
+        XCTAssertEqual(work["backend"] as? String, "otzaria"); XCTAssertEqual(work["workKey"] as? String, "book:28")
+        let locator = try XCTUnwrap((steps[1]["data"] as? [String: Any])?["locator"] as? [String: Any])
+        try requireOriginalActionRef(locator, bookID: 28, lineIndex: 1)
+        XCTAssertEqual(steps[2]["action"] as? String, "reader.openCommentary")
+        XCTAssertEqual(steps[2]["status"] as? String, "failed")
+        XCTAssertEqual((steps[2]["error"] as? [String: Any])?["code"] as? String, "not_found")
+        XCTAssertEqual((steps[2]["error"] as? [String: Any])?["retryable"] as? Bool, false)
+        XCTAssertNil(steps[2]["data"]); XCTAssertNil(steps[2]["effects"]); XCTAssertNil(steps[2]["candidates"])
+        let ids = try steps.map { try XCTUnwrap($0["requestId"] as? String) }
+        XCTAssertEqual(Set(ids).count, 3)
+        XCTAssertEqual(proof["originalStoreUnchanged"] as? Bool, true)
+        XCTAssertEqual(proof["originalUnsavedEditor"] as? Bool, false)
+        XCTAssertEqual(proof["originalEditorPresentationActive"] as? Bool, false)
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        XCTAssertFalse(app.textViews["annotation-note-text"].exists)
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        try requireSystemReaderSource(rows.0); try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        capture("native-semantic-source-catalog-heading-refusal")
+    }
+
+    @MainActor func testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad() throws {
+        try runSemanticCountThenResults(expectedPad: true)
+    }
+    @MainActor func testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad() throws {
+        try runSemanticCommentaryThenDraft(expectedPad: true)
+    }
+    @MainActor func testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad() throws {
+        try runSemanticCatalogHeadingStops(expectedPad: true)
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone() throws {
+        try runSemanticCountThenResults(expectedPad: false)
+    }
+    @MainActor func testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone() throws {
+        try runSemanticCommentaryThenDraft(expectedPad: false)
+    }
+    @MainActor func testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone() throws {
+        try runSemanticCatalogHeadingStops(expectedPad: false)
     }
 }
