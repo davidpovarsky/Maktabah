@@ -1340,7 +1340,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     private let documents: URL
 
     init?(kind: String) {
-        guard ["notes", "search", "commentary"].contains(kind) else { return nil }
+        guard ["notes", "search", "commentary", "count"].contains(kind) else { return nil }
         let args = ProcessInfo.processInfo.arguments
         func value(_ key: String) -> String? {
             guard let i = args.firstIndex(of: key), args.indices.contains(i + 1) else { return nil }
@@ -1498,7 +1498,124 @@ extension MaktabahNativeRoutingComposition {
         }
     }
 
+
+    /// Disposable miniTest10 acceptance caller only. It grants read access to
+    /// the actual current Reader work, then uses the public Core contract.
+    /// The registry, managed coverage policy, cached-engine lease and original
+    /// Rust analyzer remain production code; this probe cannot open an index.
+    private func runOccurrenceCountAcceptanceProbe(_ probe: MaktabahNativeActionAcceptanceProbe,
+                                                    manager: iOSNavigationManager,
+                                                    reader: ReaderViewModel) async {
+        do {
+            for _ in 0..<900 {
+                try Task.checkCancellation()
+                if probe.hasResult { return }
+                let search = manager.unifiedSearchSession
+                if manager.currentMode == .viewer,
+                   MaktabahNativeInspectorBinding.currentReader(in: manager) === reader,
+                   let scene = actionAcceptanceSession(manager: manager), scene.isPresentationReady,
+                   search.hasSubmitted, !search.isSearching, !search.resultsAreDirty,
+                   search.errorMessage == nil, search.query == "אברהם",
+                   search.selectedBookIds.isEmpty, !search.results.isEmpty,
+                   let locator = reader.selectedSegmentLocator, try probe.consumeTrigger() {
+                    guard let entry = scenes[scene.sceneID], entry.session === scene else {
+                        throw UIRouteError(.staleState, "count_acceptance_scene_changed")
+                    }
+                    let ref = try ActionAppIdentityBridge.actionRef(locator)
+                    let source = try hanlinSource(sceneID: scene.sceneID, entry: entry)
+                    guard ref.backend == .otzaria, ref.workKey == "book:1", source.backend.backend == .otzaria else {
+                        throw UIRouteError(.unavailable, "count_acceptance_original_work_required")
+                    }
+                    let context = ActionExecutionContext(
+                        subjectID: "maktabah.acceptance.count:" + probe.token.uuidString,
+                        correlationID: probe.token, origin: .inApp,
+                        allowedBackends: [.otzaria], contentRights: [.otzaria],
+                        scopes: [.discovery, .contentRead],
+                        allowedWorkKeys: [.otzaria: [ref.workKey]],
+                        foregroundSceneID: scene.sceneID.rawValue, maxActions: 3)
+                    try issue(context, sceneID: scene.sceneID)
+                    defer { finish(context, sceneID: scene.sceneID) }
+                    let submission = search.submissionRevision
+                    let originalRows = search.results.map(\.stableID)
+                    func requireSameOriginalSource() throws {
+                        try Task.checkCancellation()
+                        guard contexts[scene.sceneID] == context,
+                              let live = scenes[scene.sceneID], live.session === scene,
+                              manager.currentMode == .viewer,
+                              MaktabahNativeInspectorBinding.currentReader(in: manager) === reader,
+                              try hanlinSource(sceneID: scene.sceneID, entry: live) == source,
+                              let current = reader.selectedSegmentLocator,
+                              try ActionAppIdentityBridge.actionRef(current) == ref,
+                              search.query == "אברהם", search.submissionRevision == submission,
+                              search.hasSubmitted, !search.isSearching, !search.resultsAreDirty,
+                              search.errorMessage == nil, search.selectedBookIds.isEmpty,
+                              search.results.map(\.stableID) == originalRows else {
+                            throw UIRouteError(.staleState, "count_acceptance_original_source_changed")
+                        }
+                    }
+                    let work = ActionWorkRef(backend: ref.backend, workKey: ref.workKey)
+                    func request(text: String, id: UUID = UUID()) throws -> ActionRequest {
+                        .init(requestId: id, action: "search.countOccurrences", arguments: [
+                            "text": .string(text), "scopeWorkRefs": try .encoded([work]),
+                            "matchMode": .string("exact"), "countUnit": .string("matching_occurrences"),
+                        ], expectedBackend: source.backend.backend, expectedGeneration: source.backend.generation,
+                           requestedPresentation: .headless, deadlineMs: 10_000)
+                    }
+                    let countRequest = try request(text: "אברהם", id: probe.token)
+                    let result = await core.execute(countRequest, context: context)
+                    try requireSameOriginalSource()
+                    // The original analyzer, not a whitespace check in this
+                    // caller, must refuse two analyzed tokens without a scalar.
+                    let unsupportedRequest = try request(text: "אברהם שלום")
+                    let unsupported = await core.execute(unsupportedRequest, context: context)
+                    try requireSameOriginalSource()
+                    let cancelledRequest = try request(text: "אברהם")
+                    // Both statements run on MainActor before the child can
+                    // enter Core. This proves pre-cancelled admission only;
+                    // it is not an in-flight engine cancellation assertion.
+                    let cancelledTask = Task { @MainActor in
+                        await self.core.execute(cancelledRequest, context: context)
+                    }
+                    cancelledTask.cancel()
+                    let cancelled = await cancelledTask.value
+                    try requireSameOriginalSource()
+                    try probe.write(payload: [
+                        "coreRequest": try probe.json(countRequest), "coreResult": try probe.json(result),
+                        "unsupportedRequest": try probe.json(unsupportedRequest),
+                        "unsupportedResult": try probe.json(unsupported),
+                        "preCancelledRequest": try probe.json(cancelledRequest),
+                        "preCancelledResult": try probe.json(cancelled),
+                        "originalReaderLocator": try probe.json(ref),
+                        "originalSourceUnchanged": true,
+                        "originalBackendGeneration": source.backend.generation,
+                        "originalSearchQuery": search.query,
+                        "originalSearchSubmission": submission,
+                        "originalSearchHasSubmitted": search.hasSubmitted,
+                        "originalSearchIsSearching": search.isSearching,
+                        "originalSearchResultsAreDirty": search.resultsAreDirty,
+                        "originalSearchBookIDs": search.selectedBookIds.sorted(),
+                        "originalSearchRowIDs": originalRows,
+                        "originalSearchUnchanged": true,
+                        "processID": ProcessInfo.processInfo.processIdentifier,
+                    ])
+                    return
+                }
+                try await Task.sleep(for: .milliseconds(100))
+            }
+            try probe.write(payload: ["probeError": "original_count_source_or_search_or_trigger_not_ready"])
+        } catch is CancellationError {
+            // An inactive Reader cannot publish another owner's result.
+        } catch {
+            try? probe.write(payload: ["probeError": "count_action_failed",
+                                      "errorType": String(describing: type(of: error))])
+        }
+    }
+
     func runCommentaryAcceptanceProbe(manager: iOSNavigationManager, reader: ReaderViewModel) async {
+        if let probe = MaktabahNativeActionAcceptanceProbe(kind: "count") {
+            await runOccurrenceCountAcceptanceProbe(probe, manager: manager, reader: reader)
+            return
+        }
         guard let probe = MaktabahNativeActionAcceptanceProbe(kind: "commentary") else { return }
         do {
             guard let workKey = probe.argument("-nativeActionAcceptanceTargetWorkKey") else {

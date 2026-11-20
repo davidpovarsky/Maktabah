@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-app-tests-20261120",
+  "cleanup": true,
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_b521124aff0140bc88413a63a24fd3bd\\script.py"
+  ],
+  "output": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift 2051b29d661467b8af2376fb48a7900ea486d8664607003db85b7cbd69e1af9c\r\nMaktabah-iOSUITests/NativeRoutingAcceptanceTests.swift 25705118db531ce2e4ebc6b2e609fbbb9df4808d89b76b35c6eaa2c21eb5b59b\r\nOracle exact source SHA and scoped109/98 verified\r\n175\t1\tMaktabah-iOSUITests/NativeRoutingAcceptanceTests.swift\r\n118\t1\tSource/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift\r\n\r\nEvidence files ['MaktabahNativeRoutingComposition.parse.log', 'NativeRoutingAcceptanceTests.parse.log', 'README.md', 'SENTINEL_JOB.json', 'SOURCE_PREFLIGHT.json']\nwarning: in the working copy of 'Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift', LF will be replaced by CRLF the next time Git touches it",
+  "duration": 0.25,
+  "returncode": 0
+}
