@@ -1,0 +1,120 @@
+{
+  "status": "SOURCE_CANDIDATE_ONLY_NATIVE_PENDING",
+  "createdAt": "2026-11-20T14:14:47.216433+00:00",
+  "baseCommit": "fa65529611f65cd6a145d99dec49e10e01ffd52f",
+  "failedNative": {
+    "runId": 44723902453,
+    "attempt": 1,
+    "checkout": "60a57972acb28739ec738565083bf17fb7503028",
+    "applicationSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "case": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+    "artifact": {
+      "id": 14632383919,
+      "bytes": 35944918,
+      "sha256": "1dec4baa131deaa5cfdb1f2f62b3dea6a84ee7713bccf67a2e62a41f1ff72310",
+      "independentlyRehashedHere": true
+    },
+    "selectedCaptures": {
+      "artifactId": 14632274701,
+      "fullArchiveVerified": false,
+      "selectedNotePNGBytes": 504196,
+      "selectedNotePNGSHA256": "53820919b83cad7c08a65d26f2977f66e974d7c6da33acb7e0462b7f3c3d1715"
+    }
+  },
+  "observed": {
+    "resultStatus": "cancelled",
+    "errorCode": "deadline_exceeded",
+    "editorUnsaved": true,
+    "editorOwnsProposal": true,
+    "storeUnchanged": true,
+    "markerRegisteredAtDiagnosticBoundaries": false
+  },
+  "candidate": {
+    "changedProductFiles": 3,
+    "inverseChecksPassed": 3,
+    "unchangedGuardFiles": 6,
+    "syntaxParsesPassed": 3,
+    "warningsPerParse": 2,
+    "runtimeTestsExecuted": 0,
+    "AppleTypecheck": "NOT_RUN",
+    "Native": "NOT_RUN"
+  },
+  "sourceInputs": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "baseSHA256": "a01bdcdf53aa505c7dc2151bfb24c8088566cb47265d3324364fffebf8f8cbfd",
+      "candidateSHA256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c",
+      "failedNativeSourceSHA256": "a01bdcdf53aa505c7dc2151bfb24c8088566cb47265d3324364fffebf8f8cbfd",
+      "failedNativeEqualsBase": true,
+      "changed": true
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "baseSHA256": "884754d03e74b282a9c4a5e680a7f5685410e84a10885ef72c1736680504b859",
+      "candidateSHA256": "9f1a65a9d37e936fd1d2e0396999d85970d6056906b519a7873f5ed96fba4b35",
+      "failedNativeSourceSHA256": "396b03505534622bfba0356c95ca3bb7bf48b5f61389c42959346213392d565e",
+      "failedNativeEqualsBase": false,
+      "changed": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+      "baseSHA256": "2181d2a78c0179046a92ffd617456b981626f6da62b0c37297b2e50217167d54",
+      "candidateSHA256": "bdabaaf466a3fc446c20c5be019b85c8c1a54a85bd4abed820ddd5c14c492c97",
+      "failedNativeSourceSHA256": "2181d2a78c0179046a92ffd617456b981626f6da62b0c37297b2e50217167d54",
+      "failedNativeEqualsBase": true,
+      "changed": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "baseSHA256": "c984947478e9a29464c5ec9fff7d87b1cbb6f67a923fa2662c79c62ed033de89",
+      "candidateSHA256": "c984947478e9a29464c5ec9fff7d87b1cbb6f67a923fa2662c79c62ed033de89",
+      "failedNativeSourceSHA256": "c984947478e9a29464c5ec9fff7d87b1cbb6f67a923fa2662c79c62ed033de89",
+      "failedNativeEqualsBase": true,
+      "changed": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "baseSHA256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f",
+      "candidateSHA256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f",
+      "failedNativeSourceSHA256": "7e3e255c7aeb208a4ff0e4fb9641feaa39fa87321b3cd0f591faac77c6ae3e8b",
+      "failedNativeEqualsBase": false,
+      "changed": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "baseSHA256": "4d0b19560fef3968d1dc1799df1dd97a3aaac432668be4a97f8d750c80364505",
+      "candidateSHA256": "4d0b19560fef3968d1dc1799df1dd97a3aaac432668be4a97f8d750c80364505",
+      "failedNativeSourceSHA256": "4d0b19560fef3968d1dc1799df1dd97a3aaac432668be4a97f8d750c80364505",
+      "failedNativeEqualsBase": true,
+      "changed": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "baseSHA256": "89de17fcc574058e8af14a7286fedee766892415074386b38dbfbc35ba321c59",
+      "candidateSHA256": "89de17fcc574058e8af14a7286fedee766892415074386b38dbfbc35ba321c59",
+      "failedNativeSourceSHA256": "89de17fcc574058e8af14a7286fedee766892415074386b38dbfbc35ba321c59",
+      "failedNativeEqualsBase": true,
+      "changed": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+      "baseSHA256": "8a645180349f0a32b3bd35d4ab97e9cab456acd86e7d7fa5e668833136c5900d",
+      "candidateSHA256": "8a645180349f0a32b3bd35d4ab97e9cab456acd86e7d7fa5e668833136c5900d",
+      "failedNativeSourceSHA256": "8a645180349f0a32b3bd35d4ab97e9cab456acd86e7d7fa5e668833136c5900d",
+      "failedNativeEqualsBase": true,
+      "changed": false
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "baseSHA256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f",
+      "candidateSHA256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f",
+      "failedNativeSourceSHA256": "90a34895607e98f05b7cee448d7d96c17ee463a568f31b7fe3ebb3cd0ed4d11d",
+      "failedNativeEqualsBase": false,
+      "changed": false
+    }
+  ],
+  "review": {
+    "root": "Approved narrow same-witness placement; no root-cause or Native PASS attribution.",
+    "peerC": "Read exact three hunks; no source blocker. SwiftUI mount and actual Native completion remain unproved."
+  }
+}

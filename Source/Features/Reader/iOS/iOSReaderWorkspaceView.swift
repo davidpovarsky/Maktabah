@@ -555,10 +555,12 @@ struct iOSReaderWorkspaceView: View {
                     nativeRoutingSession?.noteEditorTextViewChanged(
                         id: nativeNoteEditorOwnerID, reader: viewModel,
                         presentationID: presentationID, textView: textView)
+                },
+                nativeSurface: {
+                    AnyView(Color.clear.modifier(MaktabahNativeRoutingSurface(kind: .noteDraft,
+                        noteReader: viewModel, noteDraft: editingAnnotation)))
                 }
             )
-            .modifier(MaktabahNativeRoutingSurface(kind: .noteDraft,
-                noteReader: viewModel, noteDraft: editingAnnotation))
         }
     }
 

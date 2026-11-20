@@ -8,6 +8,9 @@ struct iOSAnnotationEditorSheet: View {
     let onDelete: (Int64) throws -> Void
     // Passive host observation only; Save/Cancel and persistence stay here.
     var onNativeTextView: ((UITextView?) -> Void)? = nil
+    // Host-owned visibility observation mounts on the actual editor Form.
+    // The editor's default presentation, editing and persistence remain unchanged.
+    var nativeSurface: (@MainActor () -> AnyView)? = nil
 
     @State private var noteText: String = ""
     @State private var selectedColorHex: String = ""
@@ -157,6 +160,7 @@ struct iOSAnnotationEditorSheet: View {
                     }
                 }
             }
+            .background { nativeSurface?() }
             .navigationTitle(.Annotation.editAnnotation)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
