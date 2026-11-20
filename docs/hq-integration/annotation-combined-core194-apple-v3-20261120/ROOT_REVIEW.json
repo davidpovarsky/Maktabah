@@ -1,0 +1,288 @@
+{
+  "status": "ROOT_AND_INDEPENDENT_STATIC_REVIEW_COMPLETE_AWAITING_ACTUAL_EXECUTION",
+  "parent": "bd855c02fcef94a732f584c5992aeacec6b1b21d",
+  "base_tree": "3c08a3de2102dd80df64f79dd56035a689d26edb",
+  "prior_F": "52585e91a591c35f7e3e62a495fedb02def2f7de",
+  "prior_failure": "Actual Core194+expectedbaseline20 passed; component postgate KeyError for omitted original Core Integration input; original local/exchange/race stages completed but wholequalification FAILED",
+  "prior_artifact": {
+    "id": 14674435032,
+    "bytes": 5847910,
+    "sha256": "fc1be8fcce3fbe2bdd4ecdcc5a7c9230ae1470678cc8868482cbb13eec9efc31",
+    "CRC_members": 12
+  },
+  "prior_full_app": "Actual v1 job136582815484 SUCCESS22:07:44; v2 job136592380092 SUCCESS22:31:45; both combined aggregate jobs FAILED. No transfer to new F.",
+  "new_branch": "codex/otzaria-annotation-core194-combined-apple-v3-20261120",
+  "new_workflow": ".github/workflows/otzaria-annotation-core194-combined-apple-v3.yml",
+  "source_inventory": {
+    "old_core_pins": 49,
+    "new_core_pins": 54,
+    "added_unchanged_pins": [
+      {
+        "path": "Source/Otzaria/Actions/.gitignore",
+        "sha": "0ca9c3807d91c4f5557a3a222a0d61efc9fa6917",
+        "mode": "100644",
+        "size": 35
+      },
+      {
+        "path": "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift",
+        "sha": "c247e147286e7da365e96ca4a56cca074516bdec",
+        "mode": "100644",
+        "size": 9104
+      },
+      {
+        "path": "Source/Otzaria/Actions/Integration/ActionLiveOccurrenceCounter.swift",
+        "sha": "e7720d8f646f1636342eca6e6d66a099f80621fd",
+        "mode": "100644",
+        "size": 12257
+      },
+      {
+        "path": "Source/Otzaria/Actions/Integration/ActionOccurrenceCoveragePolicy.swift",
+        "sha": "92719b8baf92e84a5d0f48ada75a5ece07348adc",
+        "mode": "100644",
+        "size": 4779
+      },
+      {
+        "path": "Source/Otzaria/Actions/README.md",
+        "sha": "0c740823c4dbf5a2dd0d0ba114f2846a065641c3",
+        "mode": "100644",
+        "size": 3456
+      }
+    ],
+    "new_total_pins": 119
+  },
+  "driver_edits": [
+    {
+      "old": "codex/otzaria-annotation-core194-combined-apple-v2-20261120",
+      "new": "codex/otzaria-annotation-core194-combined-apple-v3-20261120"
+    },
+    {
+      "old": ".github/workflows/otzaria-annotation-core194-combined-apple-v2.yml",
+      "new": ".github/workflows/otzaria-annotation-core194-combined-apple-v3.yml"
+    },
+    {
+      "old": "docs/hq-integration/annotation-combined-core194-apple-v2-20261120/",
+      "new": "docs/hq-integration/annotation-combined-core194-apple-v3-20261120/"
+    },
+    {
+      "old": "def observe(root, environment, scope, phase):\n",
+      "new": "def require_complete_core_source_inventory(files, committed_core):\n    require(committed_core and all(path.startswith(CORE + \"/\") for path in committed_core),\n            \"Whole original Core inventory missing\")\n    require(all(files.get(path) == expected for path, expected in committed_core.items()),\n            \"Whole original Core input missing or changed\")\n\n\ndef observe(root, environment, scope, phase):\n"
+    },
+    {
+      "old": "    baseline = git(root, \"show\", BASE + \":\" + REPOSITORY_SOURCE)\n    require({\"bytes\": len(baseline)",
+      "new": "    require_complete_core_source_inventory(files, committed_records(root, [CORE]))\n    baseline = git(root, \"show\", BASE + \":\" + REPOSITORY_SOURCE)\n    require({\"bytes\": len(baseline)"
+    }
+  ],
+  "test_addition": "\n    def test_complete_core_inventory_includes_the_original_integration_inputs(self):\n        pins = route.load_json(ROOT / route.BINDING)[\"source_pins\"]\n        core = {path: value for path, value in pins.items() if path.startswith(route.CORE + \"/\")}\n        self.assertEqual(len(core), 54)\n        required = {route.CORE + \"/Integration/\" + name for name in (\n            \"ActionAppIdentityBridge.swift\", \"ActionLiveOccurrenceCounter.swift\",\n            \"ActionOccurrenceCoveragePolicy.swift\")}\n        self.assertTrue(required <= set(core))\n        route.require_complete_core_source_inventory(pins, core)\n\n    def test_actual_v2_missing_core_inputs_and_changed_records_are_refused_before_execution(self):\n        pins = route.load_json(ROOT / route.BINDING)[\"source_pins\"]\n        core = {path: value for path, value in pins.items() if path.startswith(route.CORE + \"/\")}\n        omitted = {route.CORE + \"/\" + path for path in (\n            \".gitignore\", \"README.md\", \"Integration/ActionAppIdentityBridge.swift\",\n            \"Integration/ActionLiveOccurrenceCounter.swift\",\n            \"Integration/ActionOccurrenceCoveragePolicy.swift\")}\n        actual_v2 = {path: value for path, value in pins.items() if path not in omitted}\n        with self.assertRaisesRegex(ValueError, \"Whole original Core input missing or changed\"):\n            route.require_complete_core_source_inventory(actual_v2, core)\n        for path in sorted(omitted):\n            with self.subTest(path=path):\n                changed = copy.deepcopy(pins)\n                changed[path][\"bytes\"] += 1\n                with self.assertRaisesRegex(ValueError, \"Whole original Core input missing or changed\"):\n                    route.require_complete_core_source_inventory(changed, core)\n        with self.assertRaisesRegex(ValueError, \"Whole original Core inventory missing\"):\n            route.require_complete_core_source_inventory(pins, {})\n\n",
+  "original40_test_whole_inverse_exact": true,
+  "new_test_names": 42,
+  "new_Python_Swift_Native_executions": 0,
+  "core_driver": "Only exactbranch/workflowmetadata; wholebodyinverse retained",
+  "core_manifest": "Only originalCoreDriver supportpin updated",
+  "workflow_edits": [
+    {
+      "old": "codex/otzaria-annotation-core194-combined-apple-v2-20261120",
+      "new": "codex/otzaria-annotation-core194-combined-apple-v3-20261120",
+      "count": 3
+    },
+    {
+      "old": "40ec0e8d07ae5e7b8d5964de91a8e9d29a393e7070ef40bc62db94df68ea959f",
+      "new": "2a3261b14034b665d6a5f4f5e2b619c0da234a35df4bab16ddfb06f4dcbe737f",
+      "count": 2
+    },
+    {
+      "old": "67ecb0506b6e35a53249d3c9d81b80b2b0f85ab288eeebd4e4b3e693b4cc86d7",
+      "new": "1b149e1de256e30ca3bbe29b3fdea0a5b9c7e230e12a20d06a6a4f6de48fc24c",
+      "count": 2
+    },
+    {
+      "old": "5d80bb1e4bfbfa47f9d5e7259796add2c70cb1d90f67750b1a829debbd7a1db6",
+      "new": "d42db8edc79a5dbb3e25e2edab1f96abb353d044810ad8825b8482161035ca8a",
+      "count": 2
+    },
+    {
+      "old": "--expected-inputs-sha256 7d840410c2b1a705285b782deb7be7ca04cee7542be7dace5b6beed687202d9d",
+      "new": "--expected-inputs-sha256 422d134dbb2513ca8fa926230559c51b1547c55082e53805ef694f8561083937",
+      "count": 1
+    }
+  ],
+  "original_required_components_budgets_and_13_result_bodies": "UNCHANGED",
+  "created": [
+    {
+      "path": "Scripts/CI/annotation-combined-core194-apple.py",
+      "bytes": 61025,
+      "sha256": "2a3261b14034b665d6a5f4f5e2b619c0da234a35df4bab16ddfb06f4dcbe737f",
+      "git_blob": "ba026e4b10c95ad0b9469be5ba84a22d54ab2aa7"
+    },
+    {
+      "path": "Scripts/CI/test-annotation-combined-core194-apple.py",
+      "bytes": 38572,
+      "sha256": "d42db8edc79a5dbb3e25e2edab1f96abb353d044810ad8825b8482161035ca8a",
+      "git_blob": "e272f0bc3a8b5fd074b629783bb9973fe7bc12d1"
+    },
+    {
+      "path": "tools/hq-cold-search-core-acceptance.py",
+      "bytes": 16993,
+      "sha256": "8e308b41e9bb1bdcabcb5528a7e3269684c0a1eb52ee94ade32ea55ba49283ea",
+      "git_blob": "a7f8867a4118ff2707a2aa9ed75f7ab28fbbc5ea"
+    },
+    {
+      "path": "Tests/HQ/cold-search/CORE_INPUTS.json",
+      "bytes": 38973,
+      "sha256": "422d134dbb2513ca8fa926230559c51b1547c55082e53805ef694f8561083937",
+      "git_blob": "2d678e0d7ad4a446eecab240dc44ddfe6028091c"
+    },
+    {
+      "path": "Scripts/CI/annotation-combined-core194-apple.inputs.json",
+      "bytes": 42138,
+      "sha256": "1b149e1de256e30ca3bbe29b3fdea0a5b9c7e230e12a20d06a6a4f6de48fc24c",
+      "git_blob": "8e5ebc9ed2a49c2fd04c419e0560fefd6de0c6c6"
+    },
+    {
+      "path": ".github/workflows/otzaria-annotation-core194-combined-apple-v3.yml",
+      "bytes": 11998,
+      "sha256": "2299ef5aad8ea1b5e4bd6ea5109564939207f5cdcc3a1d6d21734820e565d286",
+      "git_blob": "deaa00e1cfbba323ad1c553949e5abcac4a98d74"
+    }
+  ],
+  "elements": [
+    {
+      "path": ".github/workflows/otzaria-local-annotation-cloud-apple.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b450b1adcc95d26571e103a2acad406c786b7db"
+    },
+    {
+      "path": "Scripts/CI/annotation-disconnect-apple.inputs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7cdea6fa72a8abfb407f71948cd0e6bb7a02dea9"
+    },
+    {
+      "path": "Scripts/CI/annotation-disconnect-apple.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72a3bc23ea32e72a5a0364a196d5596099f5e68b"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "401931f2f39d47bc56790f267e03d622218a0ea3"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05b1879352e4abe926e6de7fe17603de428746cf"
+    },
+    {
+      "path": "Scripts/CI/local-annotation-cloud-apple.inputs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3f7cf43689e33ef3527b78cd959a04cf79b229a"
+    },
+    {
+      "path": "Scripts/CI/local-annotation-cloud-apple.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d13ca7d1be66bafa5c0a9d450eb98881975d7537"
+    },
+    {
+      "path": "Scripts/CI/test-annotation-disconnect-apple.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e76c28302de51e1ae55c70e28c0fc442e7737b3c"
+    },
+    {
+      "path": "Scripts/CI/test-local-annotation-cloud-apple.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57e2909492663413c6770e476ca7657a3fe18fea"
+    },
+    {
+      "path": "docs/hq-integration/annotation-repository-disconnect-20261120/compile-types-v3/REPOSITORY_API.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a5d1c68082a505f92925490a22c9516d5c970a4"
+    },
+    {
+      "path": "tools/hq-annotation-disconnect-acceptance.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc0de14212b41e02f925e023e4a1b44ce4503a5a"
+    },
+    {
+      "path": "Scripts/CI/annotation-combined-core194-apple.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba026e4b10c95ad0b9469be5ba84a22d54ab2aa7"
+    },
+    {
+      "path": "Scripts/CI/test-annotation-combined-core194-apple.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e272f0bc3a8b5fd074b629783bb9973fe7bc12d1"
+    },
+    {
+      "path": "tools/hq-cold-search-core-acceptance.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7f8867a4118ff2707a2aa9ed75f7ab28fbbc5ea"
+    },
+    {
+      "path": "Tests/HQ/cold-search/CORE_INPUTS.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d678e0d7ad4a446eecab240dc44ddfe6028091c"
+    },
+    {
+      "path": "Scripts/CI/annotation-combined-core194-apple.inputs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e5ebc9ed2a49c2fd04c419e0560fefd6de0c6c6"
+    },
+    {
+      "path": ".github/workflows/otzaria-annotation-core194-combined-apple-v3.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "deaa00e1cfbba323ad1c553949e5abcac4a98d74"
+    },
+    {
+      "path": "docs/hq-integration/annotation-combined-core194-apple-v3-20261120/reference/original-cloud-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a51e2b47b0237de65a1702a7ef64645a4ea11f4"
+    }
+  ],
+  "local_runtime": "UNAVAILABLE",
+  "failure_evidence_limit": "Full original v2 artifact authenticated and retained by GitHub; local full source replay not completed after environment loss.",
+  "test_preparation_failure": {
+    "blob": "e8d00156a47764669b6f442bc548b0b493533844",
+    "status": "REJECTED_BEFORE_COMMIT_OR_ACTIVATION",
+    "actual_tests_run": 0,
+    "finding": "Two proposed methods nested after top-level case_names, not class Controls; discovered by independent source review",
+    "original_regex_count_was_not_unittest_discovery": true
+  },
+  "test_placement": "Exact new methods inserted within class Controls before top-level def case_names; no local unittest execution",
+  "additional_preparation_issue": {
+    "status": "CORRECTED_BEFORE_COMMIT_OR_ACTIVATION",
+    "outdated_workflow_blob": "baaecaf9322038bcd30cbba476c969b8ad03e829",
+    "description": "Core driver metadata changed its manifest support pin; original Core CLI expected-inputs pin also required exact update",
+    "actual_tests_run": 0
+  },
+  "reviewed_at": "2026-11-20 22:36:07 UTC",
+  "protected_trees": {
+    "Maktabah-iOSUITests": "9be9f4c91114f5daffceac8a8ded0e7314f29fb4",
+    "Maktabah.xcodeproj": "d2a88b3624cfab55682ea68e2634f4b6a7d5533f",
+    "Source": "efeee8e2366dfa1155f9c029cff1de5c6441f39b",
+    "Source/Otzaria/Actions": "a89104250c1aedf75e6aa95ed3f111a4dc597217",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "independent_peer": {
+    "agent": "asana_audit",
+    "source_review_blob": "0879df6d6ad415294141a28333bd291ee9da8d9b",
+    "scope": "Read exact final six Git blobs;54actualCorepins;original40 whole test inverse;42direct class declarations;five driver edits;13result validators unchanged; allworkflow/bootstrap/CoreCLI pins match",
+    "execution": "No Python/Swift/Native executed"
+  },
+  "preparation_errors_preserved": true
+}

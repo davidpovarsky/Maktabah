@@ -27,7 +27,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_BASE = "7af3a06d48ccbe77acef180cb99d120971c3804e"
-CORE_TREE = "5d0ee482c8f10726fe3863792dac94c18e94d792"
+CORE_TREE = "a89104250c1aedf75e6aa95ed3f111a4dc597217"
 REPOSITORY = "Source/Features/Annotations/Database/AnnotationRepository.swift"
 BASELINE_SHA256 = "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af"
 BASELINE_GIT_BLOB = "86512a8286560aedb248da4abea1a41f5c96ea0e"
@@ -385,7 +385,7 @@ def main():
         sdk = subprocess.check_output(["xcrun", "--sdk", "macosx", "--show-sdk-path"], text=True, timeout=30).strip()
         require((Path(sdk) / "usr/include/sqlite3.h").is_file(), "Original Apple SQLite3 SDK required")
         require(git(ROOT, "rev-parse", "HEAD:Source/Otzaria/Actions").decode().strip() == CORE_TREE,
-                "This gate qualifies original Core5d0, not a different Core tree")
+                "This gate requires the reviewed combined Core tree")
         cloud = load_cloud()
         declaration_names((ROOT / FIXTURE).read_text())
         paths = sorted(set(cloud.source_provenance(ROOT)) | {SELF, FIXTURE})
