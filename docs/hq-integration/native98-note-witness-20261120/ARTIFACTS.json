@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "path": "raw/INITIAL_WORKTREE.json.gz",
+      "bytes": 1053,
+      "sha256": "c7fa0f278b04ab0a5879cbf504f4298fcfbb300963fbc546025d9749654afc1b",
+      "uncompressedBytes": 3066,
+      "uncompressedSHA256": "d68859d018b7ff59bb08c0f2582f4bcd10efa0803f5a3dbb18ebc05532ec050e"
+    },
+    {
+      "path": "raw/iOSAnnotationEditorSheet-syntax.stderr.log.gz",
+      "bytes": 141,
+      "sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e",
+      "uncompressedBytes": 165,
+      "uncompressedSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "raw/iOSAnnotationEditorSheet-syntax.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/iOSAnnotationEditorSheet.swift.before.swift.gz",
+      "bytes": 4153,
+      "sha256": "a9bbf8b67d293b8cbcc7067d79bb4e4817ffc67ba8ff13d178e811d1200ec00c",
+      "uncompressedBytes": 20052,
+      "uncompressedSHA256": "a01bdcdf53aa505c7dc2151bfb24c8088566cb47265d3324364fffebf8f8cbfd"
+    },
+    {
+      "path": "raw/iOSReaderWorkspaceView-syntax.stderr.log.gz",
+      "bytes": 141,
+      "sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e",
+      "uncompressedBytes": 165,
+      "uncompressedSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "raw/iOSReaderWorkspaceView-syntax.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/iOSReaderWorkspaceView.swift.before.swift.gz",
+      "bytes": 6674,
+      "sha256": "c495469e987da4f954b9351ec5febeff05f1b0ac01e46d7e7bc895f812a9dd67",
+      "uncompressedBytes": 31913,
+      "uncompressedSHA256": "884754d03e74b282a9c4a5e680a7f5685410e84a10885ef72c1736680504b859"
+    },
+    {
+      "path": "raw/NativeSurfaceWitness-syntax.stderr.log.gz",
+      "bytes": 141,
+      "sha256": "7bee3ffa8b7a1c707ae072953e5995be8f8c833e5a7ee18573743f00b320cc9e",
+      "uncompressedBytes": 165,
+      "uncompressedSHA256": "46c07c943450de41f9fb4d131daa40ad4fe2d1bede2fbfec2d2441c2aa59c539"
+    },
+    {
+      "path": "raw/NativeSurfaceWitness-syntax.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/NativeSurfaceWitness.swift.before.swift.gz",
+      "bytes": 2017,
+      "sha256": "42622cb27102abc56c12f0cad7a3d6e5a439bbc29d79b7adb924244b2005cd0f",
+      "uncompressedBytes": 6651,
+      "uncompressedSHA256": "2181d2a78c0179046a92ffd617456b981626f6da62b0c37297b2e50217167d54"
+    },
+    {
+      "path": "raw/note-placement-candidate.patch.gz",
+      "bytes": 1150,
+      "sha256": "b76e9e34d599deff4b4570f4714c049b59e478d0cd51d04d89d5c11bdfcec6cf",
+      "uncompressedBytes": 3548,
+      "uncompressedSHA256": "4e5dde5b49fb08437557cdee7220c0176586cf425f9c93f801824632ab321c72"
+    },
+    {
+      "path": "raw/NOTE_PLACEMENT_SOURCE_VALIDATION.json.gz",
+      "bytes": 1445,
+      "sha256": "67043fd6d7439814567b78e1b7cacd587bb7b2931d99adfe3ca5e7df5bc3c4f2",
+      "uncompressedBytes": 5261,
+      "uncompressedSHA256": "d58f1be7b153164ec4f91bd2d7cd0808e3c1d726a2692bb1ce02adf72bfdacb7"
+    },
+    {
+      "path": "raw/NOTE_PLACEMENT_SOURCE_WITNESS.json.gz",
+      "bytes": 756,
+      "sha256": "6ca1ba3cb0f161373596bf132da9f1ba70a53462b44e11a0fa2ce1dbfa12c10c",
+      "uncompressedBytes": 1618,
+      "uncompressedSHA256": "49416d99b555fdd96e16b30433c13bc4b7aa7b58a6388d8cafa180087507817a"
+    },
+    {
+      "path": "raw/ARTIFACT_VERIFIED.json.gz",
+      "bytes": 228,
+      "sha256": "7418a871803e13472ad47808fdba60c2ce2844b4315047ac45e5598869588f85",
+      "uncompressedBytes": 311,
+      "uncompressedSHA256": "f38f0a60bb1913d8ce40297eb6ccc46750b1bb0abca0fcfb2958e240bd1f1a57"
+    },
+    {
+      "path": "raw/RUN_OBSERVED_1339.stdout.json.gz",
+      "bytes": 1608,
+      "sha256": "860e74658dd11eee3520b48449762eeb53d10871ca5be1593fc0a62b1f68f6ff",
+      "uncompressedBytes": 12774,
+      "uncompressedSHA256": "ff693ab208edd10944f538ef0b241344b3d45f23dcd57c19f10afdd882a12624"
+    },
+    {
+      "path": "raw/JOBS_OBSERVED_1339.stdout.json.gz",
+      "bytes": 1439,
+      "sha256": "ca537656adad550e8eaae12fa5d70b4f9bdf340c32e1405d94d4ffc0dcafea5c",
+      "uncompressedBytes": 8292,
+      "uncompressedSHA256": "f52ab3aa05ba1af907e54cb12deddb9ab478546b1fc0f72199433a8253e5dcd3"
+    },
+    {
+      "path": "raw/captures-ARTIFACT_METADATA.json.gz",
+      "bytes": 480,
+      "sha256": "fa97ad94dfd2b6d9f2b2a152b18ff2f40dbb03d12e90420d844c6391ab1452e4",
+      "uncompressedBytes": 849,
+      "uncompressedSHA256": "688c448646a660c660cc9623163303ba9dcffac684bbc1ea7b373d49f4b1091e"
+    },
+    {
+      "path": "raw/captures-RANGE_EVIDENCE.json.gz",
+      "bytes": 8119,
+      "sha256": "dcb40c149441229357ebd8a2d352a7d8a3f60cfc4003b75dbe087ca700690847",
+      "uncompressedBytes": 32569,
+      "uncompressedSHA256": "026a4b4e2c2382261bad06a1ae0ae5e293e40878073c2e496d48470dea742a26"
+    },
+    {
+      "path": "raw/C8D50A54-15CE-47C2-A308-A5DFC50C1A59.json.gz",
+      "bytes": 331,
+      "sha256": "970097c8ff094c674a12267805d488a8326fee78b703a9a121c4b1a74e4d930e",
+      "uncompressedBytes": 490,
+      "uncompressedSHA256": "7d7ff9d490f4636d8434ad138981a2c056ca5a4d5cf041a4d5e6014a8dde6b84"
+    },
+    {
+      "path": "raw/FC771D10-7087-43A8-95E5-895FDFBDDDD6.txt.gz",
+      "bytes": 5566,
+      "sha256": "ba4c09c55766cfd2d43ea5a4c2c0afda6778c8c24dc2da5d87809ebec7359019",
+      "uncompressedBytes": 41065,
+      "uncompressedSHA256": "d208ccb570629f0b7e9f1aebab274ff057d5d9617083babf55570cb670cb518a"
+    },
+    {
+      "path": "48351B92-5475-4CF2-88C1-E4D4BCFF73E5.png",
+      "bytes": 504196,
+      "sha256": "53820919b83cad7c08a65d26f2977f66e974d7c6da33acb7e0462b7f3c3d1715"
+    },
+    {
+      "path": "raw/otzaria-reader.log.gz",
+      "bytes": 11121,
+      "sha256": "86eeaac88ddf20fb60e206da1c612fd39eecc08f2def2dea811419d9b0db577d",
+      "uncompressedBytes": 235488,
+      "uncompressedSHA256": "2ab5c09583a7a1f4d95ef3ff60bb87cb179b6d1b2e5fb90528994f6b23d6f803"
+    },
+    {
+      "path": "raw/test-simulator-11.log.gz",
+      "bytes": 25575,
+      "sha256": "bf7c1e399f1fc53612df42788739d2574bf5f4633443f61d7e75207f079a2765",
+      "uncompressedBytes": 262387,
+      "uncompressedSHA256": "23a3e52329ad60253ee97fe4d5a9a63d95ea20fb77e36ee4fc605057acc5147f"
+    },
+    {
+      "path": "raw/candidate-iOSAnnotationEditorSheet.swift.gz",
+      "bytes": 4268,
+      "sha256": "5618ea87e72f78393df6af0032f129d85e95b6755d7c5ec40da5c91f8439373e",
+      "uncompressedBytes": 20313,
+      "uncompressedSHA256": "bc6d1737e558bd2dc7698c85b580a7bbae5151579f22dff44537976ae7ac401c"
+    },
+    {
+      "path": "raw/candidate-iOSReaderWorkspaceView.swift.gz",
+      "bytes": 6692,
+      "sha256": "20b6c6c9e231d150db247b2bd9bc30905bdbfacc50e6d40d7d624db39b8554b5",
+      "uncompressedBytes": 32001,
+      "uncompressedSHA256": "9f1a65a9d37e936fd1d2e0396999d85970d6056906b519a7873f5ed96fba4b35"
+    },
+    {
+      "path": "raw/candidate-NativeSurfaceWitness.swift.gz",
+      "bytes": 2066,
+      "sha256": "86d27ad5528f91ea8b6b6f7cb9cf317cea350c788b83c01c2fa1c00d26046060",
+      "uncompressedBytes": 6821,
+      "uncompressedSHA256": "bdabaaf466a3fc446c20c5be019b85c8c1a54a85bd4abed820ddd5c14c492c97"
+    },
+    {
+      "path": "REVIEW.json",
+      "bytes": 5695,
+      "sha256": "33aa9128cb729a84df65a32d214ce9d65324740495aa1b4237e57061f707aa51",
+      "canonicalLF": true
+    },
+    {
+      "path": "README.md",
+      "bytes": 4559,
+      "sha256": "d67f6ae466876fd30ae361ae54f5ea35cf5f1ed217f7113336a3f6711b55b82f",
+      "canonicalLF": true
+    },
+    {
+      "path": "verify-evidence.py",
+      "bytes": 4581,
+      "sha256": "57ac9e78a9f3827db9f3c3f3dfa29bee765e27ab3bf0dae21ef5d87cb6ca37fe",
+      "canonicalLF": true
+    }
+  ]
+}

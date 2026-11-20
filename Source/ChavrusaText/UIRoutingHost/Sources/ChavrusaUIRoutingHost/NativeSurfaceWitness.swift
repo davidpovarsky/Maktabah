@@ -30,13 +30,21 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
         self.diagnose = diagnose
     }
 
-    public func makeUIViewController(context: Context) -> MarkerController { MarkerController() }
+    public func makeUIViewController(context: Context) -> MarkerController {
+        #if DEBUG
+        diagnose("lifecycle=make")
+        #endif
+        return MarkerController()
+    }
     public func updateUIViewController(_ controller: MarkerController, context: Context) {
         _ = scenePhase
         let view = controller.marker
         view.surface = surface; view.report = report; view.submissionID = submissionID
         view.diagnose = diagnose
         observeVisibility { [weak view] in view?.currentEvidence() }
+        #if DEBUG
+        diagnose("lifecycle=update registered=1")
+        #endif
         view.setNeedsLayout()
     }
     public static func dismantleUIViewController(_ controller: MarkerController, coordinator: ()) {
