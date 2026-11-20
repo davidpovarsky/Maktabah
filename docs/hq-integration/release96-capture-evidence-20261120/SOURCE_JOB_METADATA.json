@@ -1,0 +1,108 @@
+{
+  "check_run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/check-runs/136270631605",
+  "completed_at": "2026-11-20T16:28:16Z",
+  "conclusion": "failure",
+  "created_at": "2026-11-20T11:52:04Z",
+  "head_branch": "codex/otzaria-release96-signature-reviewed-20261120",
+  "head_sha": "60a57972acb28739ec738565083bf17fb7503028",
+  "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44723918854/job/136270631605",
+  "id": 136270631605,
+  "labels": [
+    "xcode-27"
+  ],
+  "name": "Release native matrix (partial acceptance)",
+  "node_id": "CR_kwDOTEwysM8AAAAfulzStQ",
+  "run_attempt": 1,
+  "run_id": 44723918854,
+  "run_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/runs/44723918854",
+  "runner_group_id": 0,
+  "runner_group_name": "GitHub Actions",
+  "runner_id": 1000022551,
+  "runner_name": "GitHub Actions 1000022551",
+  "started_at": "2026-11-20T11:52:07Z",
+  "status": "completed",
+  "steps": [
+    {
+      "completed_at": "2026-11-20T11:52:09Z",
+      "conclusion": "success",
+      "name": "Set up job",
+      "number": 1,
+      "started_at": "2026-11-20T11:52:08Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-20T11:52:14Z",
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4",
+      "number": 2,
+      "started_at": "2026-11-20T11:52:09Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-20T11:52:55Z",
+      "conclusion": "success",
+      "name": "Select the identical installed SDK and runtime",
+      "number": 3,
+      "started_at": "2026-11-20T11:52:14Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-20T16:24:09Z",
+      "conclusion": "failure",
+      "name": "Execute the complete matrix with the original Debug products",
+      "number": 4,
+      "started_at": "2026-11-20T11:52:55Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-20T16:24:09Z",
+      "conclusion": "skipped",
+      "name": "Bind complete native evidence without granting Release",
+      "number": 5,
+      "started_at": "2026-11-20T16:24:09Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-20T16:24:09Z",
+      "conclusion": "skipped",
+      "name": "Upload exact Release native handoff",
+      "number": 6,
+      "started_at": "2026-11-20T16:24:09Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-20T16:24:16Z",
+      "conclusion": "success",
+      "name": "Retain partial native evidence including failure",
+      "number": 7,
+      "started_at": "2026-11-20T16:24:09Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-20T16:28:02Z",
+      "conclusion": "success",
+      "name": "Retain original native results and visual captures",
+      "number": 8,
+      "started_at": "2026-11-20T16:24:16Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-20T16:28:03Z",
+      "conclusion": "success",
+      "name": "Post Run actions/checkout@v4",
+      "number": 16,
+      "started_at": "2026-11-20T16:28:02Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-20T16:28:14Z",
+      "conclusion": "success",
+      "name": "Complete job",
+      "number": 17,
+      "started_at": "2026-11-20T16:28:03Z",
+      "status": "completed"
+    }
+  ],
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/jobs/136270631605",
+  "workflow_name": "Sefaria Embedded Real iOS Runtime Validation"
+}

@@ -1,0 +1,14 @@
+{
+  "archiveRoot": "Upload-artifact common ancestor build/artifacts; exact visual-11 members only, no basename fallback",
+  "exportLog": "runtime27/release-native-matrix-driver.log",
+  "exportLogSha256": "d8ddc31d698bc2facda8e0846cf06f0cc5fee3f474d56c9a4668105fbc7f9b0a",
+  "exportLogSourceArchiveSha256": "fb87af0c12fc727d682419c19cc04833ed6825f1732708f1803ab0ae1328cf19",
+  "exportLogSourceArtifactId": 14647558906,
+  "noBasenameFallback": true,
+  "originalWorkflowArtifactPaths": [
+    "build/artifacts/**/*.xcresult/**",
+    "build/artifacts/**/*.mp4",
+    "build/artifacts/visual-*/**"
+  ],
+  "originalWorkflowBlob": "08ba8590f0e29e5ad4b3c4295dc9a2cc602fb207"
+}

@@ -1,0 +1,190 @@
+{
+  "limitations": [
+    "The original workflow and Native stage failed; production was skipped. They remain failed/unqualified.",
+    "The original matrix ended at its outer bound; complete iPad11 results do not qualify interrupted later lanes.",
+    "This processor proves full artifact integrity and exact extraction only; it performs no app, test, UI or Swift execution.",
+    "The capture selection is for evidence of the existing failures, not an oracle alteration, image normalization or fixed-product PASS."
+  ],
+  "limits": {
+    "exactSelectedMembers": 20,
+    "maxExpandedArchiveBytes": 8589934592,
+    "maxOtherSelectedBytes": 8388608,
+    "maxSelectedTotalBytes": 134217728,
+    "maxSelectedVideoBytes": 67108864
+  },
+  "originalApplicationSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+  "schemaVersion": 1,
+  "scope": "Read-only processing of historical Release96 captures; 0 new Native/app/test executions.",
+  "selectedMembers": [
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "exportLogLine": 17282,
+      "path": "visual-11/9087306E-25E5-4E0D-813E-3914BDAA5E1C.txt",
+      "purpose": "candidate-search-landscape-ui-tree_0_B988832E-8279-44A9-9297-83C7002D08BC.txt"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "exportLogLine": 17283,
+      "path": "visual-11/2FAF321F-D2D9-4F94-A7BF-26EA71FF44E2.png",
+      "purpose": "candidate-search-landscape_0_8D0FF559-AAF9-49E2-93FF-E7C4D4A8E0DC.png"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "exportLogLine": 17284,
+      "path": "visual-11/51712312-C0CC-4E1B-A8BA-C12F7CF3B721.txt",
+      "purpose": "candidate-flags-off-search-landscape-ui-tree_0_CCECB803-ED64-4902-8A9A-1EDC45E12382.txt"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "exportLogLine": 17285,
+      "path": "visual-11/C3D2C8DB-A4EC-48F1-A7CB-8F35953D6FF7.png",
+      "purpose": "candidate-flags-off-search-landscape_0_A95396C2-3B58-41A5-AEE8-5B80C290BDA6.png"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "exportLogLine": 17289,
+      "path": "visual-11/89D32B28-9D7A-4E7F-8283-9158A22CA742.txt",
+      "purpose": "candidate-search-portrait-ui-tree_0_865FD378-2D0C-4243-A4E1-B7CF51B44AD8.txt"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "exportLogLine": 17290,
+      "path": "visual-11/F743CD9B-9F61-41F1-837D-CE10BAD33B84.png",
+      "purpose": "candidate-search-portrait_0_07983324-E266-4219-8EBD-D647937F9D51.png"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "exportLogLine": 17291,
+      "path": "visual-11/44EF8C0A-7504-4ACC-A4FE-CB71B481B51F.txt",
+      "purpose": "candidate-flags-off-search-portrait-ui-tree_0_073D91D7-8DFB-432D-8103-B9C331451194.txt"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "exportLogLine": 17292,
+      "path": "visual-11/80196B61-0CF1-4629-9EF9-2E3934E92C1F.png",
+      "purpose": "candidate-flags-off-search-portrait_0_C6481197-B275-4684-B79D-CAE5A9FA3942.png"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "exportLogLine": 17306,
+      "path": "visual-11/84658947-E38E-4897-9C93-051C5EE8D1B6.txt",
+      "purpose": "candidate-studyCommentaries-landscape-ui-tree_0_C4767859-9439-421A-BA5A-3D4BBFA618B9.txt"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+      "exportLogLine": 17307,
+      "path": "visual-11/5C0F6368-4710-4B02-B7E1-D741A0ECC91D.png",
+      "purpose": "candidate-studyCommentaries-landscape_0_3A498D73-21AF-42E6-B05B-22D30D0651F1.png"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "exportLogLine": 17314,
+      "path": "visual-11/3AAD5D52-661F-4169-A291-57B649A0183F.txt",
+      "purpose": "candidate-studyCommentaries-portrait-ui-tree_0_B49C7FF7-FA53-4904-8E64-18B1DC56C30A.txt"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+      "exportLogLine": 17315,
+      "path": "visual-11/CEABA033-57C6-496F-8FD9-A2D9A1631067.png",
+      "purpose": "candidate-studyCommentaries-portrait_0_FD2DB57C-47C2-4D21-8FD8-7C3802637E90.png"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "exportLogLine": 17492,
+      "path": "visual-11/483A02B8-10EB-45EE-AB1E-E9EB082019BF.txt",
+      "purpose": "candidate-pointer-over-compact-search-ui-tree_0_8B90982A-160D-4844-8062-2557C24B0974.txt"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "exportLogLine": 17493,
+      "path": "visual-11/2753D740-F1C8-4E29-9234-8DEC8B7B3729.png",
+      "purpose": "candidate-pointer-over-compact-search_0_DBC0D146-D337-46FC-9100-192CF639522B.png"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "exportLogLine": 17485,
+      "path": "visual-11/2BDDCC3D-AC17-4AFF-BE03-F6474C702803.txt",
+      "purpose": "Debug description for `\"reader-library-command-palette\" Any`_0_9CDDA8E6-3F5B-4407-9BFB-C0835BFDD081.txt"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "exportLogLine": 17487,
+      "path": "visual-11/D80AC0AA-8946-45F0-91D3-D669C43663CA",
+      "purpose": "Synthesized Event 2026-11-20 at 12.48.21 PM"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+      "exportLogLine": 17497,
+      "path": "visual-11/2C13E821-26A3-4178-B3F3-A8C86797F2C7.mp4",
+      "purpose": "Screen Recording 2026-11-20 at 12.47.26 PM.mp4"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "exportLogLine": 17956,
+      "path": "visual-11/969E50F2-BF3F-426A-80DA-A2F17D5AA9CE",
+      "purpose": "Synthesized Event 2026-11-20 at 01.23.45 PM"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "exportLogLine": 17957,
+      "path": "visual-11/ECE45368-7CE9-4E05-8FE1-9B607FE14DEA",
+      "purpose": "Synthesized Event 2026-11-20 at 01.23.35 PM"
+    },
+    {
+      "caseId": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+      "exportLogLine": 17958,
+      "path": "visual-11/76A11742-C49C-44D6-9A3F-462FC322167C.mp4",
+      "purpose": "Screen Recording 2026-11-20 at 01.23.13 PM.mp4"
+    }
+  ],
+  "selectionProvenance": {
+    "archiveRoot": "Upload-artifact common ancestor build/artifacts; exact visual-11 members only, no basename fallback",
+    "exportLog": "runtime27/release-native-matrix-driver.log",
+    "exportLogSha256": "d8ddc31d698bc2facda8e0846cf06f0cc5fee3f474d56c9a4668105fbc7f9b0a",
+    "exportLogSourceArchiveSha256": "fb87af0c12fc727d682419c19cc04833ed6825f1732708f1803ab0ae1328cf19",
+    "exportLogSourceArtifactId": 14647558906,
+    "noBasenameFallback": true,
+    "originalWorkflowArtifactPaths": [
+      "build/artifacts/**/*.xcresult/**",
+      "build/artifacts/**/*.mp4",
+      "build/artifacts/visual-*/**"
+    ],
+    "originalWorkflowBlob": "08ba8590f0e29e5ad4b3c4295dc9a2cc602fb207"
+  },
+  "sourceArtifact": {
+    "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647594631/zip",
+    "created_at": "2026-11-20T16:28:02Z",
+    "digest": "sha256:ea8232db03a3f78c9fd722a1f5777e43f638bef7f4d115a7c0eef9a6319f2457",
+    "expired": false,
+    "id": 14647594631,
+    "name": "runtime27-release-native-captures",
+    "size_in_bytes": 3271556396,
+    "updated_at": "2026-11-20T16:28:02Z"
+  },
+  "sourceJob": {
+    "conclusion": "failure",
+    "head_sha": "60a57972acb28739ec738565083bf17fb7503028",
+    "id": 136270631605,
+    "name": "Release native matrix (partial acceptance)",
+    "run_attempt": 1,
+    "run_id": 44723918854,
+    "status": "completed"
+  },
+  "sourceRun": {
+    "conclusion": "failure",
+    "head_branch": "codex/otzaria-release96-signature-reviewed-20261120",
+    "head_sha": "60a57972acb28739ec738565083bf17fb7503028",
+    "id": 44723918854,
+    "path": ".github/workflows/sefaria-embedded-validation.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "uploadStep": {
+    "completed_at": "2026-11-20T16:28:02Z",
+    "conclusion": "success",
+    "name": "Retain original native results and visual captures",
+    "number": 8,
+    "started_at": "2026-11-20T16:24:16Z",
+    "status": "completed"
+  }
+}

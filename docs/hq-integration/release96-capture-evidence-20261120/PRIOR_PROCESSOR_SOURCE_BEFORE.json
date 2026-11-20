@@ -1,0 +1,64 @@
+{
+  "attempt": 1,
+  "branch": "codex/otzaria-native98-commentary-evidence-20261120",
+  "changedPaths": [
+    ".github/workflows/otzaria-native98-commentary-evidence.yml",
+    "Scripts/CI/native98-commentary-evidence.json",
+    "Scripts/CI/native98-commentary-evidence.py",
+    "Scripts/CI/test-native98-commentary-evidence.py",
+    "docs/hq-integration/native98-commentary-evidence-20261120/ACTUAL_METADATA_CONTROL.json",
+    "docs/hq-integration/native98-commentary-evidence-20261120/ARTIFACTS.json",
+    "docs/hq-integration/native98-commentary-evidence-20261120/BASE_SOURCE_AUTHORITY.json",
+    "docs/hq-integration/native98-commentary-evidence-20261120/CHECKOUT_SOURCE_REVIEW.json",
+    "docs/hq-integration/native98-commentary-evidence-20261120/COMMENTARY_EXPORT_MAPPING.txt",
+    "docs/hq-integration/native98-commentary-evidence-20261120/EXPORT_MAPPING_PROVENANCE.json",
+    "docs/hq-integration/native98-commentary-evidence-20261120/LOCAL_VALIDATION.json",
+    "docs/hq-integration/native98-commentary-evidence-20261120/PEER_REVIEW.json",
+    "docs/hq-integration/native98-commentary-evidence-20261120/README.md",
+    "docs/hq-integration/native98-commentary-evidence-20261120/ROOT_REVIEW.json",
+    "docs/hq-integration/native98-commentary-evidence-20261120/SOURCE.patch",
+    "docs/hq-integration/native98-commentary-evidence-20261120/WORKFLOW_VALIDATION.json",
+    "docs/hq-integration/native98-commentary-evidence-20261120/python-controls-attempt1.log",
+    "docs/hq-integration/native98-commentary-evidence-20261120/python-controls-final.log",
+    "docs/hq-integration/native98-commentary-evidence-20261120/raw/BASE_COMMIT.json.gz",
+    "docs/hq-integration/native98-commentary-evidence-20261120/raw/BASE_TREE.json.gz",
+    "docs/hq-integration/native98-commentary-evidence-20261120/raw/CONNECTOR_SIZE_REJECTION.json.gz",
+    "docs/hq-integration/native98-commentary-evidence-20261120/raw/SOURCE_ARTIFACTS_METADATA.json.gz",
+    "docs/hq-integration/native98-commentary-evidence-20261120/raw/SOURCE_EXPORT_LOG.log.gz",
+    "docs/hq-integration/native98-commentary-evidence-20261120/raw/SOURCE_JOBS_METADATA.json.gz",
+    "docs/hq-integration/native98-commentary-evidence-20261120/raw/SOURCE_RUN_METADATA.json.gz",
+    "docs/hq-integration/native98-commentary-evidence-20261120/raw/SOURCE_WORKFLOW.yml.gz",
+    "docs/hq-integration/native98-commentary-evidence-20261120/verify.py"
+  ],
+  "head": "d749a2222ff06ae723d14bb174ead19331004e91",
+  "inputs": [
+    {
+      "bytes": 2829,
+      "gitBlob": "976839e0bad90ccca2e8947055bc8bf424200de0",
+      "path": ".github/workflows/otzaria-native98-commentary-evidence.yml",
+      "sha256": "04b63203f554b17c495a1d1ded1cc44e1868ce2cc794a73159b8f52046d2fbe3"
+    },
+    {
+      "bytes": 18410,
+      "gitBlob": "a43f22bc3e62b0749dfc0dd9494b1b0193a16a07",
+      "path": "Scripts/CI/native98-commentary-evidence.py",
+      "sha256": "61826896dd6bfdcad1f462ebd508454a201facde921c1a57d72568cb6d4cef72"
+    },
+    {
+      "bytes": 14434,
+      "gitBlob": "13c74fafb0d97bb5551cd8401d75a37d19774675",
+      "path": "Scripts/CI/test-native98-commentary-evidence.py",
+      "sha256": "2e1178acbeb759a21c2811d1321c99139ff394437b468501850c73f06314e406"
+    },
+    {
+      "bytes": 2857,
+      "gitBlob": "063adf6b62b16116521ae556f0d5162b788649a9",
+      "path": "Scripts/CI/native98-commentary-evidence.json",
+      "sha256": "3bfecef77c4e5341ec16ff9bdebe5b611cafa042d30d31af90dbb49d2d0a8e07"
+    }
+  ],
+  "parent": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "repository": "davidpovarsky/Maktabah",
+  "runId": "44776995967",
+  "tree": "b93fe8b365e93840b6e84234c8a16a75340de66d"
+}
