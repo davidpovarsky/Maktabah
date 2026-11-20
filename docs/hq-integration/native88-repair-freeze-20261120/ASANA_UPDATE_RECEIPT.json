@@ -1,0 +1,71 @@
+{
+  "update": {
+    "at": "2026-11-20 07:13:28 UTC",
+    "result": {
+      "data": [
+        {
+          "gid": "1219614315863536",
+          "name": "[RESEARCH] מנוע פעולות אחוד לאוצריא — ארכיטקטורה וסקירת פתרונות קיימים"
+        },
+        {
+          "gid": "1219614472017979",
+          "name": "[RESEARCH] פעולות חיפוש, ספירה, פתיחת מפרשים והכנת הערות דרך API אחוד"
+        },
+        {
+          "gid": "1219602987688812",
+          "name": "[P2][R05–R08] רגרסיות race, שפה, HTML, נתונים ואופליין"
+        },
+        {
+          "gid": "1220107239748221",
+          "name": "[רוני | QA][MAIN_SESSION] XCTest/XCUITest + iPad פיזי — פרופילים/קבוצות/טאבים"
+        },
+        {
+          "gid": "1220546245946205",
+          "name": "[P1][IN_PROGRESS][GLOBAL SEARCH UX] עיצוב מחדש של החיפוש הגלובלי — Native SwiftUI/UIKit + Liquid Glass + Sidebar + סינון תוצאות"
+        },
+        {
+          "gid": "1220542361203468",
+          "name": "UI-03 | Scene Navigation Orchestrator — פתיחת מסכים, פאנלים ורכיבים במצב מדויק"
+        },
+        {
+          "gid": "1220539645638524",
+          "name": "[P1][11201][OTZARIA-INDEX] אזהרת ״נדרש תיקון״ אף שהחיפוש עובד — לאבחן ולתקן metadata/status"
+        }
+      ],
+      "failed": [],
+      "summary": "Updated 7 of 7 tasks."
+    }
+  },
+  "readback": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "task_id": "1219614472017979",
+        "completed": false,
+        "modified_at": "2026-11-20T07:13:30.887Z",
+        "run_link_verified": true,
+        "source_verified": true
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "task_id": "1219602987688812",
+        "completed": false,
+        "modified_at": "2026-11-20T07:13:30.849Z",
+        "run_link_verified": true,
+        "source_verified": true
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "task_id": "1220539645638524",
+        "completed": false,
+        "modified_at": "2026-11-20T07:13:30.939Z",
+        "run_link_verified": true,
+        "source_verified": true
+      }
+    }
+  ]
+}
