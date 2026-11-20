@@ -164,9 +164,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         try? nativeStateChanged()
     }
     func detachNoteEditor(id: UUID) {
-        guard noteEditorOwner?.id == id else { return }
+        guard let owner = noteEditorOwner, owner.id == id else { return }
+        // Leaving the Reader normally unmounts its idle editor registration.
+        // Revoke only a note-owned presentation, not the admitted Search/root
+        // transition that caused this original Reader to disappear.
+        let hadNotePresentation = noteDraftBinding != nil || owner.current != nil || owner.presentationActive
         noteEditorOwner = nil
-        presentation.revoke()
+        if hadNotePresentation { presentation.revoke() }
         try? nativeStateChanged()
     }
     func noteEditorTextViewChanged(id: UUID, reader: ReaderViewModel, presentationID: UUID, textView: UITextView?) {

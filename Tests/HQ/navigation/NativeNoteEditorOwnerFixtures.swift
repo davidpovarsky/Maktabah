@@ -23,13 +23,22 @@ enum ActionPortError: Error { case staleState }
     // ACTUAL_WORKSPACE_SETTER
 }
 
+@MainActor final class PresentationBoundaryDouble {
+    var pending = true
+    private(set) var revocations = 0
+    func revoke() { revocations += 1; pending = false }
+}
 @MainActor final class SceneBoundaryDouble {
     var noteEditorOwner: MaktabahNativeNoteEditorOwner?
+    // Presence only: the original detachment never invokes binding behavior.
+    var noteDraftBinding: NSObject?
+    let presentation = PresentationBoundaryDouble()
     private(set) var revision = 0
     init(_ owner: MaktabahNativeNoteEditorOwner) { noteEditorOwner = owner }
     func nativeStateChanged() throws { revision += 1 }
     // ACTUAL_SCENE_CALLBACK
     // ACTUAL_SCENE_DISMISSAL
+    // ACTUAL_SCENE_DETACH
 }
 
 @MainActor final class World {
@@ -204,7 +213,54 @@ private struct FixtureFailure: Error {}
             w.dismissed(presentation: id)
             try require(!w.owner.presentationActive && w.owner.textView == nil && w.scene.revision == revision)
         }
-        print("RESULT \(15 - failures)/15 passed")
+        check("idle_reader_detach_preserves_pending_other_surface") {
+            let w = World()
+            w.scene.detachNoteEditor(id: w.owner.id)
+            try require(w.scene.noteEditorOwner == nil && w.scene.revision == 1)
+            try require(w.scene.presentation.pending && w.scene.presentation.revocations == 0)
+        }
+        check("retained_note_binding_detach_revokes") {
+            let w = World()
+            w.scene.noteDraftBinding = NSObject()
+            w.scene.detachNoteEditor(id: w.owner.id)
+            try require(w.scene.noteEditorOwner == nil && w.scene.revision == 1)
+            try require(!w.scene.presentation.pending && w.scene.presentation.revocations == 1)
+        }
+        check("original_manual_draft_detach_revokes_before_text_callback") {
+            let w = World()
+            _ = w.begin()
+            try require(w.owner.current != nil && !w.owner.presentationActive)
+            w.scene.detachNoteEditor(id: w.owner.id)
+            try require(!w.scene.presentation.pending && w.scene.presentation.revocations == 1
+                && w.scene.noteEditorOwner == nil && w.scene.revision == 1)
+        }
+        check("closing_note_presentation_detach_revokes_after_binding_nil") {
+            let w = World(), view = UITextView(), id = w.begin()
+            w.callback(view, presentation: id)
+            w.workspace.setEditingAnnotation(nil)
+            try require(w.owner.current == nil && w.owner.presentationActive)
+            let revision = w.scene.revision
+            w.scene.detachNoteEditor(id: w.owner.id)
+            try require(!w.scene.presentation.pending && w.scene.presentation.revocations == 1
+                && w.scene.noteEditorOwner == nil && w.scene.revision == revision + 1)
+        }
+        check("stale_reader_detach_cannot_revoke_current_owner") {
+            let w = World()
+            w.scene.noteDraftBinding = NSObject()
+            w.scene.detachNoteEditor(id: UUID())
+            try require(w.scene.noteEditorOwner === w.owner && w.scene.revision == 0
+                && w.scene.presentation.pending && w.scene.presentation.revocations == 0)
+        }
+        check("duplicate_reader_detach_does_not_invalidate_or_revoke_successor") {
+            let w = World()
+            w.scene.detachNoteEditor(id: w.owner.id)
+            let revision = w.scene.revision, revocations = w.scene.presentation.revocations
+            w.scene.presentation.pending = true
+            w.scene.detachNoteEditor(id: w.owner.id)
+            try require(w.scene.noteEditorOwner == nil && w.scene.revision == revision
+                && w.scene.presentation.pending && w.scene.presentation.revocations == revocations)
+        }
+        print("RESULT \(21 - failures)/21 passed")
         if failures != 0 { exit(1) }
     }
 }
