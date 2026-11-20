@@ -1,6 +1,6 @@
 # Explicit current-work read consent for the original Hanlin consumer
 
-Status at the source commit: implementation prepared; Windows syntax parsing completed for eight changed Swift files. The bounded original-Core/Host and original filesystem-store continuations are running. No Apple build, Native UI, real-provider search, or physical-device acceptance is claimed here. The subsequent evidence record must identify actual executed cases before any acceptance status changes.
+Current status: exact production/test source `e6ef4da1c2067061daa8f1f66e55e1e423a91cd5` passed 48/48 original-Core/Host/SDK fixtures and 11/11 actual original filesystem-store fixtures on Windows Swift 6.3.3. All eight changed Swift files also passed syntax parsing and match their Git blobs. Full Apple app typechecking, Native UI, real-provider search and physical-device acceptance remain pending. See [EVIDENCE.md](EVIDENCE.md) for complete actual results, retained RED/timeouts and exact source boundaries.
 
 ## Provenance and scope
 
@@ -36,7 +36,7 @@ The adapter rechecks its full authority after Core awaits; revoked/stale results
 
 This enables a bounded read-only consumer path. It does not add App Intents, UI mutation tools, notes/search-results/commentary actions, corpus-wide grants, selections, or occurrence-count support.
 
-## Verification declared and evidence boundaries
+## Executed verification and evidence boundaries
 
 The host source declares 48 cases: all 28 original names plus 20 additions. New cases cover exact scope, default denial, omitted/broad/foreign scope, missing rights/readiness, argument authority injection, metadata compatibility, result scope validation, cancellation, in-flight revocation, original SDK dispatcher/invalidation, exact consent consumption, superseded dismissal, changed source/configuration/namespace and replay denial. These use the actual original Core/adapter/SDK dispatcher with explicitly identified native-source/backend/authority doubles. They do not instantiate UIKit, the app owner, AgentSession or a provider.
 
@@ -51,9 +51,9 @@ Preserved unsuccessful attempts:
 | Host continuation preflight `job_88bd2c6b000f` | Windows source-path comparison assertion before Swift; 0 executed. All 62 package inputs were subsequently compared byte-for-byte with the current sources and original SDK and matched. |
 | Store job `job_b1598c8df7e0` | 300-second compilation timeout after generated XCTest discovery; 11 declared, 0 executed |
 
-No timeout or declaration is a passing test. Continuation job `job_a58d37322a97` uses the exact unchanged prepared packages and commands sequentially with a finite 600-second bound per suite, fresh logs, the original strict XCTest verifier and before/after byte comparisons. Results belong in the evidence follow-up.
+No timeout or declaration is a passing test. The default continuation subsequently executed all 48 host cases: 38 passed and 10 failed because the separate context omitted the Core discovery prerequisite. The corrected source passed all 48. The same exact-source continuation also passed all 11 store cases. Both use the original strict verifier and before/after byte comparisons; no declaration or timeout is counted as a pass. All additional failed/timed-out attempts are retained in [EVIDENCE.md](EVIDENCE.md).
 
-The recorded Windows frontend parses target `arm64-apple-ios27.0-simulator` syntactically only. They do not load/typecheck Apple frameworks and are not Apple build evidence. The source snapshot in `SOURCE_INPUTS.json` identifies the actual eight files. `git diff --check` passed and the original SDK tracked tree was clean at that observation.
+The recorded Windows frontend parses target `arm64-apple-ios27.0-simulator` syntactically only. They do not load/typecheck Apple frameworks and are not Apple build evidence. The initial source snapshot in `SOURCE_INPUTS.json` is retained; `evidence/source-e6ef4da1-verification.json` identifies all eight final files against the exact tested Git blobs. `git diff --check` passed and the original SDK tracked tree was clean at that observation.
 
 ## Native cases prepared, not executed
 
@@ -68,10 +68,9 @@ Both cases are NOT_RUN and require registration in the next source freeze on the
 
 ## Remaining gates
 
-1. Actual passing exact-source portable executions, with no failed/missing case, must be recorded.
-2. Apple SDK typecheck/build of the full original app and combined Core/Host/SDK regressions.
-3. The two original Native consent cases on iPad and phone, plus existing consumer/navigation/draft regressions. SwiftUI closure selection and actual presentation timing remain an Apple/Native observation.
-4. A configured real-provider invocation and the original live Otzaria backend search, with bounded scope, cancellation and no stale excerpts, remain unexecuted. No test fixture makes an external model request.
-5. Physical-device latency, backgrounding/account transitions and accessibility/RTL interaction remain unverified by these portable fixtures.
+1. Apple SDK typecheck/build of the full original app and combined Core/Host/SDK regressions.
+2. The two new Native consent cases exercising the original app owners on iPad and phone, plus existing consumer/navigation/draft regressions. SwiftUI closure selection and actual presentation timing remain an Apple/Native observation.
+3. A configured real-provider invocation and the original live Otzaria backend search, with bounded scope, cancellation and no stale excerpts, remain unexecuted. No test fixture makes an external model request.
+4. Physical-device latency, backgrounding/account transitions and accessibility/RTL interaction remain unverified by these portable fixtures.
 
 The root integration owner controls source freezing, Native selections and Asana status. This branch must not turn declared or historical coverage into current Native/provider acceptance.
