@@ -1,0 +1,33 @@
+{
+  "reviewer": "/root/asana_audit",
+  "scope": "Independent source and primary API review; no compile/test executed",
+  "file": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+  "candidateSHA256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+  "findings": [],
+  "assessment": [
+    "Original integer bounds reject negative, empty, outside and overflowing ranges before new index offset operations.",
+    "Both indices are formed in the same immutable source UTF16 view; lower/upper samePosition in that source's UnicodeScalarView require exact scalar boundaries.",
+    "Original slicing, UTF8 exact selected-text equality, scalar-count cap, locator check and notSupported error remain.",
+    "No normalization, range rounding, Character-only boundary policy or fallback introduced.",
+    "The original two split-surrogate NSRanges exercise lower and upper endpoint rejection; original tests unchanged."
+  ],
+  "primarySources": [
+    {
+      "url": "https://github.com/swiftlang/swift/blob/main/stdlib/public/core/StringUTF16View.swift",
+      "claim": "samePosition(in: String.UnicodeScalarView) returns nil when no exact scalar position exists, explicitly including a trailing UTF16 surrogate.",
+      "sourceRole": "Published standard-library API/source semantics, not identification of the runner binary."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/swift/string",
+      "claim": "samePosition(in:) validates exact positions across String views."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/swift/string/utf16view/index(_:offsetby:)",
+      "claim": "Offset operation requires staying within view bounds; existing guard satisfies this."
+    }
+  ],
+  "AppleCompile": "NOT_RUN_BY_REVIEWER",
+  "SwiftTests": "NOT_RUN_BY_REVIEWER",
+  "Native": "NOT_RUN",
+  "nextGate": "Actual corrected Apple Core194, preserving first run193PASS/1FAIL and original11/9 baseline result."
+}

@@ -1,0 +1,83 @@
+{
+  "reviewed_at": "2026-11-20T15:41:41.513543+00:00",
+  "base_commit": "a826e66ab2710f1d3c05342da5b39b79e8c30c44",
+  "base_tree": "3c360bada95f478513ab482bfd6a6807adbe826e",
+  "actual_Git_tree_entries": 7409,
+  "all14_candidate_paths_new_and_sealed": true,
+  "unchanged_original_inputs": [
+    {
+      "bytes": 29224,
+      "git_blob": "2a3b379ed998830190923536ec0924fd6e622639",
+      "path": "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+      "sha256": "a7b495b21cdcad159101ba2665deff191d3451f883ffcbd158758ba752f0cf19"
+    },
+    {
+      "bytes": 26498,
+      "git_blob": "4b21b39abc9628b8f007c49d9cebaa21d22a212d",
+      "path": "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift",
+      "sha256": "51ba13a30cf33d7a3c274531a44f2a3eb8098c42614e7ffd5a306e714b805c5e"
+    },
+    {
+      "bytes": 18733,
+      "git_blob": "22f3980075810cec64fa1e4d52198e5ae2dfa2b2",
+      "path": "Source/Otzaria/Search/OtzariaSearchModels.swift",
+      "sha256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9"
+    },
+    {
+      "bytes": 738,
+      "git_blob": "7fdf7740fd0e4bcddcabd529bc0589310d927ff3",
+      "path": "Source/Otzaria/Search/OtzariaSearchMode.swift",
+      "sha256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876"
+    },
+    {
+      "bytes": 977,
+      "git_blob": "af5eacbd314306e836e9aa153cbd2cb55c2dd5e9",
+      "path": "Source/Otzaria/Search/OtzariaSearchSnippetRenderer.swift",
+      "sha256": "72076785cbad55847681725bcef3ca038d0e714911026fbe16d70b365cc3ac6d"
+    },
+    {
+      "bytes": 11971,
+      "git_blob": "076041c2abc7e82e711a29c4c2c20afafa1f10b4",
+      "path": "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift",
+      "sha256": "8ec1e4a4f834b84e12001e600109fd660e4a38bdcb4a48c3a584da14c2a3fc78"
+    },
+    {
+      "bytes": 7084,
+      "git_blob": "503de6da4698f6b40675df0ac09e208e10138756",
+      "path": "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift",
+      "sha256": "6b3ada4ad48a7f0b93d274e673bb94c95e0ea51cf9f4321edec297851cd6001c"
+    },
+    {
+      "bytes": 42358,
+      "git_blob": "8df9fc1232e154fae2787f4dbddf199c7f00494c",
+      "path": "Source/Otzaria/Storage/ITorahSharedContainer.swift",
+      "sha256": "d4fc6b5ae5f52d78806448cf5d499f46421fce15734d651c400ab1f08cd0aa67"
+    },
+    {
+      "bytes": 35675,
+      "git_blob": "eb689ae87de7f9fa8d360e45a141d5a4aecf23c8",
+      "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+      "sha256": "23df24a82b1203b981286ca119c843f3a3add4b3551fbb1d9b96dde5406ae7a9"
+    }
+  ],
+  "frozen16_actual_Git_and_local_byte_exact": true,
+  "original_selector_Git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+  "three_original_generation_archives_verified_members": 49,
+  "whole7_generated_sources_byte_identical": true,
+  "exact_original_lock_enum_and_generation_methods_verified": true,
+  "reviewed_cases": 32,
+  "baseline": "One unpublished pre-guard Repository case must fail with exact stale_constructor_performed_more_native_work and ordinary exit1; not historical19b baseline",
+  "review_scope": "Complete runtime driver, C double, metadata boundaries and all32 case bodies; no concrete blocker found",
+  "python_verifier": {
+    "actual_methods": 8,
+    "passed": 8,
+    "root_reran": false,
+    "retained_log_verified": true
+  },
+  "local_generation": "3 attempts preserved; attempt1 C-double syntaxFAIL then attempt2PASS; attempt3 synchronous same-deadline semaphore fix",
+  "source_scope": "Whole7 Repository/Bridge/model files plus exact lock enum and generation accessors; app metadata and native constructor are explicit doubles; unused native symbols abort",
+  "workflow": "Exact single push ref/repo/event, actualSHA checkout, read-only,25min,no cancellation,always evidence",
+  "Darwin32": "NOT_RUN",
+  "real_engine": "NOT_RUN",
+  "Native": "NOT_RUN"
+}

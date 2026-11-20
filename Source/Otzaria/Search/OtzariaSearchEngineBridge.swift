@@ -54,6 +54,10 @@ private func c_semantic(_ handle: UnsafeMutableRawPointer?, _ json: UnsafePointe
 @_silgen_name("otzaria_search_engine_free_string")
 private func c_freeString(_ value: UnsafeMutablePointer<CChar>?)
 
+enum OtzariaSearchExecutionPreparationError: Error, Sendable {
+    case unavailable, sourceBusy, sourceChanged, deadlineExceeded
+}
+
 final class OtzariaSearchEngineBridge: @unchecked Sendable {
     private let queue = DispatchQueue(label: "com.goldcreative.otzaria.search-engine", qos: .userInitiated)
     private var handle: UnsafeMutableRawPointer?
@@ -67,9 +71,24 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
     private var occurrenceAfterNativeCount: (@Sendable () -> Void)?
     #endif
 
-    init(indexURL: URL) throws {
+    convenience init(indexURL: URL) throws {
+        try self.init(indexURL: indexURL, requiresExistingCompatibleIndex: false)
+    }
+
+    /// Cooperative app cold-open only. The caller owns the original storage
+    /// mutation locks. The unchanged native constructor is still writer-capable;
+    /// this is not a globally read-only filesystem or native-engine contract.
+    convenience init(existingIndexURL: URL) throws {
+        try self.init(indexURL: existingIndexURL, requiresExistingCompatibleIndex: true)
+    }
+
+    private init(indexURL: URL, requiresExistingCompatibleIndex: Bool) throws {
         queue.setSpecific(key: queueIdentity, value: 1)
-        try FileManager.default.createDirectory(at: indexURL, withIntermediateDirectories: true)
+        if requiresExistingCompatibleIndex {
+            try Self.validateExistingCompatibleIndex(indexURL)
+        } else {
+            try FileManager.default.createDirectory(at: indexURL, withIntermediateDirectories: true)
+        }
         var errorPtr: UnsafeMutablePointer<CChar>? = nil
         let handle = indexURL.path.withCString { cPath in
             c_engineNewWithError(cPath, &errorPtr)
@@ -385,6 +404,60 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
 
     static func buildInfo() throws -> OtzariaSearchEngineBuildInfo {
         try decodeStatic(operation: "buildInfo", raw: c_buildInfo())
+    }
+
+    static func checkExecutionPreparationDeadline(_ deadline: UInt64) throws {
+        try Task.checkCancellation()
+        guard DispatchTime.now().uptimeNanoseconds < deadline else {
+            throw OtzariaSearchExecutionPreparationError.deadlineExceeded
+        }
+    }
+
+    /// Reject a missing/legacy/corrupt index before the original C constructor.
+    /// In particular, legacy-compatible metadata would cause its sidecar repair.
+    static func validateExistingCompatibleIndex(_ indexURL: URL) throws {
+        let manager = FileManager.default
+        let directory = try manager.attributesOfItem(atPath: indexURL.path)
+        guard directory[.type] as? FileAttributeType == .typeDirectory else {
+            throw OtzariaSearchExecutionPreparationError.unavailable
+        }
+        for name in ["meta.json", "otzaria_index_meta.json"] {
+            let attributes = try manager.attributesOfItem(atPath: indexURL.appendingPathComponent(name).path)
+            guard attributes[.type] as? FileAttributeType == .typeRegular,
+                  let bytes = attributes[.size] as? NSNumber,
+                  bytes.uint64Value > 0, bytes.uint64Value <= 1_048_576 else {
+                throw OtzariaSearchExecutionPreparationError.unavailable
+            }
+        }
+        let compatibility = try checkCompatibility(indexURL: indexURL)
+        guard compatibility.compatible, compatibility.status == "compatible" else {
+            throw OtzariaSearchExecutionPreparationError.unavailable
+        }
+    }
+
+    static func validateExecutionDictionary(_ url: URL, expectedSHA256: String, deadline: UInt64) throws {
+        try checkExecutionPreparationDeadline(deadline)
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
+        let maximum: UInt64 = 67_108_864
+        guard attributes[.type] as? FileAttributeType == .typeRegular,
+              let bytes = attributes[.size] as? NSNumber,
+              bytes.uint64Value > 0, bytes.uint64Value <= maximum else {
+            throw OtzariaSearchExecutionPreparationError.unavailable
+        }
+        let file = try FileHandle(forReadingFrom: url)
+        defer { try? file.close() }
+        var hasher = SHA256(), consumed: UInt64 = 0
+        while let chunk = try file.read(upToCount: 1_048_576), !chunk.isEmpty {
+            try checkExecutionPreparationDeadline(deadline)
+            consumed += UInt64(chunk.count)
+            guard consumed <= maximum else { throw OtzariaSearchExecutionPreparationError.unavailable }
+            hasher.update(data: chunk)
+        }
+        let observed = hasher.finalize().map { String(format: "%02x", $0) }.joined()
+        guard consumed == bytes.uint64Value, observed == expectedSHA256 else {
+            throw OtzariaSearchExecutionPreparationError.unavailable
+        }
+        try checkExecutionPreparationDeadline(deadline)
     }
 
     static func sanitizeQuery(_ query: String) throws -> String {

@@ -1,0 +1,56 @@
+{
+  "status": "ACTUAL_V3_DARWIN_OWNERSHIP_PASS_INDEPENDENTLY_VERIFIED",
+  "reviewed_at": "2026-11-20T16:25:47.811790+00:00",
+  "run": 44772413131,
+  "attempt": 1,
+  "head": "8ad0dd4e0ca69d347ef0a4c200189665941b751d",
+  "job": 136413226417,
+  "started_at": "2026-11-20T16:20:39Z",
+  "completed_at": "2026-11-20T16:22:25Z",
+  "artifact": 14647278403,
+  "bytes": 1226088,
+  "sha256": "8e900dd588e592636635dd9ee1ab3ab0a405bcf6c243aefb25ca9eab96f2c5c2",
+  "outer_crc_members": 253,
+  "canonical_source_members": 16,
+  "stages": {
+    "pre-guard1": {
+      "completed": 1,
+      "passed": 0,
+      "failures": [
+        {
+          "code": "stale_constructor_performed_more_native_work",
+          "id": "constructor_generation_switch_stops_further_native_work",
+          "outcome": "failed"
+        }
+      ],
+      "qualified": true,
+      "compile_exit": 0,
+      "runtime_exit": 1,
+      "runtime_seconds": 0.040500083000011955,
+      "source_unchanged": true,
+      "refusal_mismatches": []
+    },
+    "candidate32": {
+      "completed": 32,
+      "passed": 32,
+      "failures": [],
+      "qualified": true,
+      "compile_exit": 0,
+      "runtime_exit": 0,
+      "runtime_seconds": 2.1022646250000037,
+      "source_unchanged": true,
+      "refusal_mismatches": []
+    }
+  },
+  "source_before_after_unchanged": true,
+  "original_qualifier_replayed": true,
+  "real_C_engine_executed": 0,
+  "Native_UI_executed": 0,
+  "original_URL_fixture_observation": "Actual before-creation URL without directory hint differs from same-manager URL after creation. Original product exact guard retained.",
+  "cache_barrier_observation": {
+    "caseSetup": "cache-deadline-barrier",
+    "freeOuterOwners": "database-mutation-fixture,migration-fixture,otzaria-search-mutation-fixture",
+    "observedAttempt": "2",
+    "reachedSecondAttempt": "true"
+  }
+}

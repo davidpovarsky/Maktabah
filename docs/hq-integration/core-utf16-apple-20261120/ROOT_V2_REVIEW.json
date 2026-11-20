@@ -1,0 +1,42 @@
+{
+  "reviewed_at": "2026-11-20T15:38:06.832592+00:00",
+  "parent_source": "a826e66ab2710f1d3c05342da5b39b79e8c30c44",
+  "parent_tree": "3c360bada95f478513ab482bfd6a6807adbe826e",
+  "branch": "codex/otzaria-cold-search-core-apple-v2-20261120",
+  "manifest_sha256": "34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff",
+  "changed_runtime_paths": [
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+    "tools/hq-cold-search-core-acceptance.py",
+    "Tests/HQ/cold-search/CORE_INPUTS.json",
+    ".github/workflows/otzaria-cold-search-core-validation.yml"
+  ],
+  "production_diff": "Only ten inserted UTF16 scalar-boundary lines in original ActionNoteDraft",
+  "all_12_original_tests_byte_identical": true,
+  "all_174_original_case_ids_unchanged": true,
+  "all_20_added_case_ids_and_source_unchanged": true,
+  "all_other_Core_and_cold_review_sources_byte_identical": true,
+  "driver_branch_only_inverse_exact": true,
+  "workflow_branch_manifest_only_inverse_exact": true,
+  "baseline_executor_archive_unchanged": true,
+  "first_run_outcome": "193PASS/1FAIL/0SKIP; unchanged original UTF16 selection case failed two assertions",
+  "local_source_contract": {
+    "command": [
+      "python3",
+      "cold-search-utf16-repair-20261120/candidate/tools/hq-cold-search-core-acceptance.py",
+      "--repo",
+      "cold-search-utf16-repair-20261120/candidate",
+      "--verify-only",
+      "--output",
+      "cold-search-utf16-repair-20261120/v2-local-preflight",
+      "--expected-inputs-sha256",
+      "34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff"
+    ],
+    "returncode": 0,
+    "observed_at": "2026-11-20T15:38:06.832119+00:00",
+    "scope": "Manifest/source/inventory preflight only; no Swift execution",
+    "swift_tests_executed": 0
+  },
+  "AppleCoreV2": "NOT_RUN",
+  "Native": "NOT_RUN",
+  "actual_C_engine": "NOT_RUN"
+}

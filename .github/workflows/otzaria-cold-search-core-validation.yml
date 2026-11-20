@@ -1,0 +1,54 @@
+name: Exact cold-search Core acceptance (isolated)
+
+on:
+  push:
+    branches:
+      - codex/otzaria-cold-search-core-apple-v2-20261120
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cold-search-core-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  core-source-acceptance:
+    if: ${{ github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-cold-search-core-apple-v2-20261120' }}
+    runs-on: xcode-27
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          submodules: false
+          persist-credentials: false
+      - name: Verify the immutable source and exact XCTest declaration contract
+        run: >-
+          python3 tools/hq-cold-search-core-acceptance.py --verify-only
+          --output build/cold-search-core-preflight
+          --expected-inputs-sha256 34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff
+      - name: Verify the actual-leaf evidence verifier
+        run: python3 Tests/HQ/cold-search/test_core_driver.py
+      - name: Select the original existing Apple SDK toolchain
+        run: >-
+          python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+          --report build/cold-search-core-toolchain.json
+      - name: Execute baseline twenty then unchanged original 174 plus twenty
+        run: >-
+          python3 tools/hq-cold-search-core-acceptance.py
+          --output build/cold-search-core-apple
+          --expected-inputs-sha256 34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff
+      - name: Retain authentic source, commands, XCTest leaves and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cold-search-core-apple
+          if-no-files-found: error
+          path: |
+            build/cold-search-core-toolchain.json
+            build/cold-search-core-preflight/*.json
+            build/cold-search-core-apple/*.json
+            build/cold-search-core-apple/*.log
+            build/cold-search-core-apple/SOURCE_INPUTS.zip

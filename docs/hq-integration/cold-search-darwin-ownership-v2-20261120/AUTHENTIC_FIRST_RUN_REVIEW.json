@@ -1,0 +1,118 @@
+{
+  "status": "AUTHENTIC_FIRST_FAILURE_VERIFIED",
+  "run": 44765987116,
+  "attempt": 1,
+  "head": "3ef8f6c410074a633dda5c33121d429ccf543ef3",
+  "branch": "codex/otzaria-cold-search-ownership-apple-20261120",
+  "job": 136390606628,
+  "actual_job_started_at": "2026-11-20T15:43:13Z",
+  "actual_job_completed_at": "2026-11-20T15:45:28Z",
+  "artifact": 14646590409,
+  "zip_bytes": 1203409,
+  "zip_sha256": "8f3314fbd0e7be164d42aecc684c4baa6370bc74af2942808a5f79998c8c19a7",
+  "source_inputs_zip_sha256": "a58eb50ef884cbebd51b41beaef6a1f2c9ad63d30372adf610cfa15835033cdb",
+  "bound_source_inputs": 15,
+  "stages": {
+    "pre-guard1": {
+      "declared_and_completed": 1,
+      "passed": 0,
+      "failed": 1,
+      "qualified": false,
+      "compile_exit": 0,
+      "runtime_exit": 1,
+      "source_unchanged": true,
+      "failure_rows": [
+        {
+          "code": "candidate_handle_not_closed",
+          "id": "constructor_generation_switch_stops_further_native_work",
+          "outcome": "failed"
+        }
+      ]
+    },
+    "candidate32": {
+      "declared_and_completed": 32,
+      "passed": 18,
+      "failed": 14,
+      "qualified": false,
+      "compile_exit": 0,
+      "runtime_exit": 1,
+      "source_unchanged": true,
+      "failure_rows": [
+        {
+          "code": "outer_storage_owner_retained_across_wait",
+          "id": "cache_contention_releases_all_outer_storage_owners",
+          "outcome": "failed"
+        },
+        {
+          "code": "source_changed",
+          "id": "bridge_to_migration_cycle_unwinds_before_retry",
+          "outcome": "failed"
+        },
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "legacy_compatible_index_is_not_repaired",
+          "outcome": "failed"
+        },
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "incompatible_index_never_opens",
+          "outcome": "failed"
+        },
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "recovery_building_installing_markers_all_refuse",
+          "outcome": "failed"
+        },
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "dictionary_digest_mismatch_never_opens",
+          "outcome": "failed"
+        },
+        {
+          "code": "candidate_handle_not_closed",
+          "id": "constructor_generation_switch_stops_further_native_work",
+          "outcome": "failed"
+        },
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "failed_constructor_never_publishes",
+          "outcome": "failed"
+        },
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "configuration_failure_closes_unpublished_handle",
+          "outcome": "failed"
+        },
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "wrong_manifest_count_closes_unpublished_handle",
+          "outcome": "failed"
+        },
+        {
+          "code": "source_changed",
+          "id": "valid_cold_open_uses_original_cache_once",
+          "outcome": "failed"
+        },
+        {
+          "code": "changed_metadata_allowed_more_native_work",
+          "id": "constructor_metadata_change_is_closed_before_configuration",
+          "outcome": "failed"
+        },
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "cancellation_during_constructor_closes_without_configuration",
+          "outcome": "failed"
+        },
+        {
+          "code": "wrong_or_missing_refusal",
+          "id": "deadline_during_constructor_rejects_late_publication",
+          "outcome": "failed"
+        }
+      ]
+    }
+  },
+  "baseline_red_qualified": false,
+  "actual_c_or_rust_engine_executed": 0,
+  "native_ui_executed": 0,
+  "interpretation": "Both Swift stages compiled and all named custom Foundation checks completed. The baseline failure was the wrong oracle; candidate18/32 passed. No app/engine/Native credit."
+}

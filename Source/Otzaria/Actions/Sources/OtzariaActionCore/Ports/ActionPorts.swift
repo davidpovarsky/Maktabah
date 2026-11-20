@@ -53,6 +53,19 @@ public protocol ActionSearchPort: Sendable {
     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage
 }
 
+/// Optional execution-only acquisition of an existing source's physical search
+/// readiness. Discovery never calls this port. It returns no grant, result or
+/// capability; Core always rechecks its original snapshot and assessment.
+public protocol ActionSearchExecutionPreparationPort: Sendable {
+    /// Hook configuration only, never capability or read authorization. The
+    /// synchronous value lets an unconfigured facade keep its original path.
+    var hasSearchExecutionPreparation: Bool { get }
+    func prepareSearchExecution(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws
+}
+public extension ActionSearchExecutionPreparationPort {
+    var hasSearchExecutionPreparation: Bool { true }
+}
+
 public struct ActionOpenReaderCommand: Sendable, Equatable {
     public let destination: ActionReaderDestination
     public let sceneID: String

@@ -1,0 +1,160 @@
+{
+  "review": {
+    "reviewed_at": "2026-11-20T15:38:06.832592+00:00",
+    "parent_source": "a826e66ab2710f1d3c05342da5b39b79e8c30c44",
+    "parent_tree": "3c360bada95f478513ab482bfd6a6807adbe826e",
+    "branch": "codex/otzaria-cold-search-core-apple-v2-20261120",
+    "manifest_sha256": "34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff",
+    "changed_runtime_paths": [
+      "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+      "tools/hq-cold-search-core-acceptance.py",
+      "Tests/HQ/cold-search/CORE_INPUTS.json",
+      ".github/workflows/otzaria-cold-search-core-validation.yml"
+    ],
+    "production_diff": "Only ten inserted UTF16 scalar-boundary lines in original ActionNoteDraft",
+    "all_12_original_tests_byte_identical": true,
+    "all_174_original_case_ids_unchanged": true,
+    "all_20_added_case_ids_and_source_unchanged": true,
+    "all_other_Core_and_cold_review_sources_byte_identical": true,
+    "driver_branch_only_inverse_exact": true,
+    "workflow_branch_manifest_only_inverse_exact": true,
+    "baseline_executor_archive_unchanged": true,
+    "first_run_outcome": "193PASS/1FAIL/0SKIP; unchanged original UTF16 selection case failed two assertions",
+    "local_source_contract": {
+      "command": [
+        "python3",
+        "cold-search-utf16-repair-20261120/candidate/tools/hq-cold-search-core-acceptance.py",
+        "--repo",
+        "cold-search-utf16-repair-20261120/candidate",
+        "--verify-only",
+        "--output",
+        "cold-search-utf16-repair-20261120/v2-local-preflight",
+        "--expected-inputs-sha256",
+        "34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff"
+      ],
+      "returncode": 0,
+      "observed_at": "2026-11-20T15:38:06.832119+00:00",
+      "scope": "Manifest/source/inventory preflight only; no Swift execution",
+      "swift_tests_executed": 0
+    },
+    "AppleCoreV2": "NOT_RUN",
+    "Native": "NOT_RUN",
+    "actual_C_engine": "NOT_RUN"
+  },
+  "files": [
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+      "bytes": 5097,
+      "sha256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+      "git_blob": "b2a58dff91dfa13ce0bb01e0a4b53eb2cb9eec28"
+    },
+    {
+      "path": "tools/hq-cold-search-core-acceptance.py",
+      "bytes": 16973,
+      "sha256": "64f0c0dd045137ab3b59da5c5146e9a226488c0865bd4b2f9df4576abe3e319a",
+      "git_blob": "2f89bd845f0d65c765b500fc16b866c190b97bc6"
+    },
+    {
+      "path": "Tests/HQ/cold-search/CORE_INPUTS.json",
+      "bytes": 38973,
+      "sha256": "34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff",
+      "git_blob": "98ed8e682cccedf7a5a8e089b1de6eb3e6ea51d4"
+    },
+    {
+      "path": ".github/workflows/otzaria-cold-search-core-validation.yml",
+      "bytes": 2101,
+      "sha256": "be5512a48abf51be945c0f7b901005bb591f72eb2785519a8906adf48e4c865b",
+      "git_blob": "7b66773995c480d72a0410a086322b8bdaf6f1e5"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/ActionNoteDraft.baseline.swift",
+      "bytes": 4419,
+      "sha256": "10d57f821cdffe726bd34e12f34786ad22b28ec17a3fbd95f16439694120d27c",
+      "git_blob": "19efebf5fa38eb155c708e1cbf674478890a6880"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/ActionNoteDraft.candidate.swift",
+      "bytes": 5097,
+      "sha256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+      "git_blob": "b2a58dff91dfa13ce0bb01e0a4b53eb2cb9eec28"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/INDEPENDENT_REVIEW_A.json",
+      "bytes": 1983,
+      "sha256": "9217e3e852b08d73f673754ebe083702b6cc08a268687ef1574a7922b5606632",
+      "git_blob": "b8567cdbc431ed446034b610769bac884d35ab66"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/LOCAL_PREFLIGHT.json",
+      "bytes": 570,
+      "sha256": "ac1f034cfdef759cea6ab916439e84c8b57945829c2b499b5d27e232502471d2",
+      "git_blob": "cad229014de4cd6899210e1d89c08d4be94c8adf"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/LOCAL_PREFLIGHT.log",
+      "bytes": 110,
+      "sha256": "b9e7a86937a506db548419a8392f342a64181e0ec5324bc559de6f7e36aeefce",
+      "git_blob": "150b80eb425aec1ccdd58bead8f7b3af97689a18"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/LOCAL_SOURCE_RESULT.json",
+      "bytes": 603,
+      "sha256": "2baa0fcef65fcedf21cff3d3df968687ac1679a82f0e58cf3a1569070a533ab4",
+      "git_blob": "7083cba973ad0bdbba9fc95ce7414605923bfc36"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/PROPOSED.patch",
+      "bytes": 1284,
+      "sha256": "afdb0444e0619456ec86d01286f0a88c400ba074922032a1c515313c01ba8c3c",
+      "git_blob": "6965e4700ebaf3a386436cf238007e26a2043941"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/README.md",
+      "bytes": 3522,
+      "sha256": "d47567b3268d451237b7e770619357312127e6b79c3ca8a143c5771e264f0ee6",
+      "git_blob": "6aae2f9e4870e00eb7c1159a8d8300df1d6995fa"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/ROOT_V2_REVIEW.json",
+      "bytes": 1891,
+      "sha256": "0bc3d5f138f759f99d4ee9e6c4730d4a87ecd5ee1cd95f8d5730521d59ad01ee",
+      "git_blob": "ae2101f6cdd12ab97e1c954ecc6e762cac450fd8"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/SOURCE_REVIEW.json",
+      "bytes": 500,
+      "sha256": "1129a0b08a7da3110127eff89aac3010f393e5a1cdd54c8a710759b9f38efae3",
+      "git_blob": "d7209d941871a2d56eb0a5333c78153d86a0ec5e"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/first-run-44762582027-artifact-14642357201.zip",
+      "bytes": 246247,
+      "sha256": "333dc94f24ce2c5dcd2270a236c5807ce2be4cb6d348c861550a4e08f655d81b",
+      "git_blob": "27ec2cac2a3e9793bdfd365565a6f49d8bdcbc7c"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/first-run-GITHUB_RECEIPTS.json",
+      "bytes": 36577,
+      "sha256": "0e0d58ebccb1a453f160d32ef8f2038220bfc17b3c12bc3b0af706b70c57a8b2",
+      "git_blob": "d0949d7ef1d505eb089989d244837163307ee49b"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/first-run-ROOT_REVIEW.json",
+      "bytes": 981,
+      "sha256": "0cda12b24a4e9016071f3de7f4726027379c3cb05f5e3d3de7fdea6852613001",
+      "git_blob": "131894f2c041431809ccc7cf02f5cf2d10ab2f7f"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/first-run-job-136378677060.log.gz",
+      "bytes": 6223,
+      "sha256": "4e298e883304428b7292bdf6ffa233a9643dbe149d2103d20ba39c4623196a85",
+      "git_blob": "c2754a7c6a77c4f740ffc72827e8100719d823af"
+    },
+    {
+      "path": "docs/hq-integration/core-utf16-apple-20261120/first-run-original_driver.py",
+      "bytes": 16970,
+      "sha256": "bc2b40a712fa2576582006763b9e86a2dba82eb8c9b453914ea32429542bf6e5",
+      "git_blob": "66cdf584cd22b837bd8831bd013c94f1d0442f6f"
+    }
+  ]
+}

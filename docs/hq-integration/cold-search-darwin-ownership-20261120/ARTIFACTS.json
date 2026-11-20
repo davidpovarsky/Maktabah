@@ -1,0 +1,35 @@
+{
+  "files": [
+    {
+      "bytes": 15566,
+      "git_blob": "e9b800b5daaf7fc581d709aac70406ef5d63bb30",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/LOCAL_PREPARATION.json",
+      "sha256": "e8e899429cc541544f9c47d5e49cee4cec663cf5168c7ed843c197d37d7b0ece"
+    },
+    {
+      "bytes": 7318,
+      "git_blob": "2fbbf459a3f11ddef4e72953edd3ff26cfa8ae3c",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/README.md",
+      "sha256": "067a89c606e0ea8b5aaa0b9c6df33eea4abfb1a3b879f21616b16e5a68dd5088"
+    },
+    {
+      "bytes": 32411,
+      "git_blob": "345569f61f78cc065e6164c8958b2fb632c3d5fa",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/raw/local-generation-attempt1.tar.gz",
+      "sha256": "b48e8aaea2091ae50b32023ac3fd4e724f309b2e08a45a60d28ba9bc586ff380"
+    },
+    {
+      "bytes": 35982,
+      "git_blob": "074a8f2807475dfba37fae05f568bda76924dd43",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/raw/local-generation-attempt2.tar.gz",
+      "sha256": "d4693ab52d0869f51b13ec40b9940be4292b4d1d582ec3dc9a105d72683ed016"
+    },
+    {
+      "bytes": 32157,
+      "git_blob": "9099de6f990071ee23afc724a7e3d0b947333eec",
+      "path": "docs/hq-integration/cold-search-darwin-ownership-20261120/raw/local-generation-attempt3.tar.gz",
+      "sha256": "8cdb40038ee8abbadd21ada3ba71791dffc95151ced83e5965341b32a86dd17e"
+    }
+  ],
+  "status": "SEALED_PREPARATION_NOT_APPLE_EXECUTION"
+}

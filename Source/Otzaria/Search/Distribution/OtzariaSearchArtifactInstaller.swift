@@ -289,14 +289,21 @@ struct OtzariaSearchArtifactInstaller: Sendable {
     }
 
     func recover(databasePath: String, storage: OtzariaSearchArtifactStorage) {
-        let fileManager = FileManager.default
-        let staging = storage.stagingURL(databasePath: databasePath)
-        if fileManager.fileExists(atPath: staging.path) { try? fileManager.removeItem(at: staging) }
-        let manager = OtzariaSearchIndexManager.shared
-        let final = manager.indexURL(for: databasePath)
-        let previous = manager.previousIndexURL(for: databasePath)
-        if !fileManager.fileExists(atPath: final.path), fileManager.fileExists(atPath: previous.path) {
-            try? fileManager.moveItem(at: previous, to: final)
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        ITorahStorageLock.withLock(name: "database-mutation-\(profileID)") {
+            ITorahStorageLock.withLock(name: "otzaria-search-mutation-\(profileID)") {
+                guard profileID == OtzariaDataProfileRegistry.activeProfileID,
+                      OtzariaSearchIndexManager.shared.indexRootURL == storage.indexRootURL else { return }
+                let fileManager = FileManager.default
+                let staging = storage.stagingURL(databasePath: databasePath)
+                if fileManager.fileExists(atPath: staging.path) { try? fileManager.removeItem(at: staging) }
+                let manager = OtzariaSearchIndexManager.shared
+                let final = manager.indexURL(for: databasePath)
+                let previous = manager.previousIndexURL(for: databasePath)
+                if !fileManager.fileExists(atPath: final.path), fileManager.fileExists(atPath: previous.path) {
+                    try? fileManager.moveItem(at: previous, to: final)
+                }
+            }
         }
     }
 }
@@ -305,24 +312,37 @@ private extension OtzariaSearchArtifactInstaller {
     func promote(stagingURL: URL, databasePath: String, finalURL: URL, previousURL: URL,
                  validateContext: @Sendable () throws -> Void = { try Task.checkCancellation() }) throws {
         try validateContext()
-        let fileManager = FileManager.default
-        let final = finalURL
-        let previous = previousURL
-        OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
-        if fileManager.fileExists(atPath: previous.path) { try fileManager.removeItem(at: previous) }
-        if fileManager.fileExists(atPath: final.path) { try fileManager.moveItem(at: final, to: previous) }
-        do {
-            try fileManager.moveItem(at: stagingURL, to: final)
-            let engine = try OtzariaSearchEngineBridge(indexURL: final)
-            do { _ = try engine.documentCount() }
-            catch { engine.close(); throw error }
-            engine.close()
-            if fileManager.fileExists(atPath: previous.path) { try fileManager.removeItem(at: previous) }
-            OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
-        } catch {
-            if fileManager.fileExists(atPath: final.path) { try? fileManager.removeItem(at: final) }
-            if fileManager.fileExists(atPath: previous.path) { try? fileManager.moveItem(at: previous, to: final) }
-            throw OtzariaSearchArtifactError.activationFailed(error.localizedDescription)
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        try ITorahStorageLock.withLock(name: "database-mutation-\(profileID)") {
+            try ITorahStorageLock.withLock(name: "otzaria-search-mutation-\(profileID)") {
+                try validateContext()
+                let manager = OtzariaSearchIndexManager.shared
+                guard profileID == OtzariaDataProfileRegistry.activeProfileID,
+                      finalURL == manager.indexURL(for: databasePath),
+                      previousURL == manager.previousIndexURL(for: databasePath),
+                      stagingURL == finalURL.appendingPathExtension("installing") else {
+                    throw OtzariaSearchArtifactError.incompatible("active database/profile changed before promotion")
+                }
+                let fileManager = FileManager.default
+                let final = finalURL
+                let previous = previousURL
+                OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
+                if fileManager.fileExists(atPath: previous.path) { try fileManager.removeItem(at: previous) }
+                if fileManager.fileExists(atPath: final.path) { try fileManager.moveItem(at: final, to: previous) }
+                do {
+                    try fileManager.moveItem(at: stagingURL, to: final)
+                    let engine = try OtzariaSearchEngineBridge(indexURL: final)
+                    do { _ = try engine.documentCount() }
+                    catch { engine.close(); throw error }
+                    engine.close()
+                    if fileManager.fileExists(atPath: previous.path) { try fileManager.removeItem(at: previous) }
+                    OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
+                } catch {
+                    if fileManager.fileExists(atPath: final.path) { try? fileManager.removeItem(at: final) }
+                    if fileManager.fileExists(atPath: previous.path) { try? fileManager.moveItem(at: previous, to: final) }
+                    throw OtzariaSearchArtifactError.activationFailed(error.localizedDescription)
+                }
+            }
         }
     }
 

@@ -1,0 +1,200 @@
+--- a/.github/workflows/otzaria-cold-search-ownership-validation.yml
++++ b/.github/workflows/otzaria-cold-search-ownership-validation.yml
+@@ -3,7 +3,7 @@
+ on:
+   push:
+     branches:
+-      - codex/otzaria-cold-search-ownership-apple-20261120
++      - codex/otzaria-cold-search-ownership-v2-20261120
+ 
+ permissions:
+   actions: read
+@@ -15,7 +15,7 @@
+ 
+ jobs:
+   darwin-ownership:
+-    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-cold-search-ownership-apple-20261120' }}
++    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-cold-search-ownership-v2-20261120' }}
+     runs-on: xcode-27
+     timeout-minutes: 25
+     steps:
+@@ -33,10 +33,10 @@
+           head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+           assert re.fullmatch(r"[0-9a-f]{40}", os.environ["GITHUB_SHA"]) and head == os.environ["GITHUB_SHA"]
+           assert os.environ["GITHUB_REPOSITORY"] == "davidpovarsky/Maktabah"
+-          assert os.environ["GITHUB_REF"] == "refs/heads/codex/otzaria-cold-search-ownership-apple-20261120"
++          assert os.environ["GITHUB_REF"] == "refs/heads/codex/otzaria-cold-search-ownership-v2-20261120"
+           assert not subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=no"], text=True)
+           pins = {
+-              "Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json": "85d72a500037ff914fe47b2cc33094a104df8d13cbddcfac9294236dbe0bbdb2",
++              "Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json": "cdfae26afdc8854b8433a385ca3497d14c772db240529d0b4f43749f557dbfb9",
+               "tools/hq-cold-search-ownership.py": "06226561f58167cbf0dbf3ec070e1255037eaceda9c7b7640010548745d398aa",
+               "Scripts/CI/select-runtime27-toolchain.py": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8",
+           }
+@@ -57,7 +57,7 @@
+           python3 tools/hq-cold-search-ownership.py
+           --repo .
+           --output build/cold-search-ownership
+-          --expected-inputs-sha256 85d72a500037ff914fe47b2cc33094a104df8d13cbddcfac9294236dbe0bbdb2
++          --expected-inputs-sha256 cdfae26afdc8854b8433a385ca3497d14c772db240529d0b4f43749f557dbfb9
+       - name: Preserve actual source, compiler, and ownership evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+--- a/Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json
++++ b/Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json
+@@ -63,6 +63,7 @@
+       "sha256": "f5297d1540cc3d7072e905a1895f91bf3800e5b5899db99d6f396683b0fb1950"
+     }
+   },
++  "fixture_base_commit": "3ef8f6c410074a633dda5c33121d429ccf543ef3",
+   "inputs": [
+     {
+       "bytes": 29224,
+@@ -119,16 +120,16 @@
+       "sha256": "23df24a82b1203b981286ca119c843f3a3add4b3551fbb1d9b96dde5406ae7a9"
+     },
+     {
+-      "bytes": 10975,
+-      "git_blob": "283aa18a3c19f69d08cdfe2aef40bc47ca640c77",
++      "bytes": 12138,
++      "git_blob": "ebb6f4f1985aaec2bfe3ad701675bcfeafa357b2",
+       "path": "Tests/HQ/cold-search-ownership/OwnershipBoundary.swift",
+-      "sha256": "4298b197fd2120d33391b2a0eeb07cf02aca8e09f4caf47654ce2e8645f1fe8d"
++      "sha256": "d23ea88cc298eaa83f322bed228eec1ac0eb74d34dd969184ce454f47bb5b9b1"
+     },
+     {
+-      "bytes": 23057,
+-      "git_blob": "4905fa0d499c9cccfbdf745d195ce3b05298d0c7",
++      "bytes": 24911,
++      "git_blob": "329257d2e2c552b86cee123379d73fa42c01b7f5",
+       "path": "Tests/HQ/cold-search-ownership/OwnershipCases.swift",
+-      "sha256": "dc77899c0a5c8de7053867ba87ea467478d21c6a8bb9ef99df9b4cb57e507cbf"
++      "sha256": "c23be0887cd788af514668c143d53aa7b4f34c7e15cadb25612bbe0c4a1b9703"
+     },
+     {
+       "bytes": 3318,
+--- a/Tests/HQ/cold-search-ownership/OwnershipBoundary.swift
++++ b/Tests/HQ/cold-search-ownership/OwnershipBoundary.swift
+@@ -20,6 +20,11 @@
+         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+         current.update { $0 = (directory, "fixture") }
+     }
++}
++
++enum OwnershipFixtureEvidence {
++    static let sourceSetup = OwnershipBox<[[String: String]]>([])
++    static let refusals = OwnershipBox<[[String: String]]>([])
+ }
+ 
+ enum ITorahSharedContainer {
+@@ -124,8 +129,21 @@
+         let database = directory.appendingPathComponent("seforim.db")
+         // This is an explicit metadata-only file double, not an SQLite fixture.
+         try Data("metadata-only-db-double".utf8).write(to: database)
+-        let index = directory.appendingPathComponent("Index")
+-        try FileManager.default.createDirectory(at: index, withIntermediateDirectories: true)
++        let beforeCreation = directory.appendingPathComponent("Index")
++        try FileManager.default.createDirectory(at: beforeCreation, withIntermediateDirectories: true)
++        // The original repository requires exact manager URL identity. Ask the
++        // fixture's same manager after the directory exists, while retaining
++        // the implicit pre-creation URL as evidence of the first-run boundary.
++        let index = OtzariaSearchIndexManager.shared.indexURL(for: database.path)
++        try require(beforeCreation.standardizedFileURL.path == index.standardizedFileURL.path,
++                    "fixture_manager_changed_index_path")
++        OwnershipFixtureEvidence.sourceSetup.update { rows in
++            rows.append(["caseSetup": name, "beforeCreationURL": beforeCreation.absoluteString,
++                         "managerExistingURL": index.absoluteString,
++                         "beforeCreationHasDirectoryPath": String(beforeCreation.hasDirectoryPath),
++                         "managerHasDirectoryPath": String(index.hasDirectoryPath),
++                         "originalExactURLEquality": String(beforeCreation == index)])
++        }
+         let sidecar = Data("{\"fixture\":\"native-compatibility-double\"}".utf8)
+         for (name, bytes) in [("meta.json", Data("{\"fixture\":\"tantivy-metadata-double\"}".utf8)),
+                               ("identity.json", Data("{\"fixture\":\"identity-double\"}".utf8)),
+--- a/Tests/HQ/cold-search-ownership/OwnershipCases.swift
++++ b/Tests/HQ/cold-search-ownership/OwnershipCases.swift
+@@ -25,11 +25,15 @@
+ @MainActor private func refuses(_ accepted: Set<String>, _ body: @MainActor () async throws -> Void) async throws {
+     var observed: String?
+     do { try await body() } catch { observed = failureTag(error) }
++    OwnershipFixtureEvidence.refusals.update {
++        $0.append(["expected": accepted.sorted().joined(separator: ","), "observed": observed ?? "no_error"])
++    }
+     try require(observed.map { accepted.contains($0) } == true, "wrong_or_missing_refusal")
+ }
+ 
+ @MainActor private final class OwnershipChecks {
+     private var rows: [[String: String]] = []
++    private var nativeBoundaryObservations: [[String: String]] = []
+     let only = ProcessInfo.processInfo.environment["COLD_OWNERSHIP_ONLY"]
+     func run(_ name: String, _ body: @MainActor () async throws -> Void) async {
+         if let only, only != name { return }
+@@ -41,13 +45,20 @@
+         } catch {
+             rows.append(["id": name, "outcome": "failed", "code": failureTag(error)])
+         }
++        let native = OwnershipNativeDouble.stats()
++        nativeBoundaryObservations.append(["id": name, "constructors": String(native.constructors),
++            "closes": String(native.closes), "counts": String(native.counts),
++            "dictionaries": String(native.dictionaries), "compatibilities": String(native.compatibilities)])
+         save()
+     }
+     private func save() {
+         let output = URL(fileURLWithPath: ProcessInfo.processInfo.environment["COLD_OWNERSHIP_REPORT"]!)
+         let value: [String: Any] = ["scope": "FOUNDATION_OWNERSHIP_WITH_EXPLICIT_NATIVE_CONSTRUCTOR_DOUBLE",
+                                   "actualCOrRustEngineExecuted": 0, "nativeUIExecuted": 0,
+-                                  "checks": rows]
++                                  "checks": rows,
++                                  "fixtureSourceSetup": OwnershipFixtureEvidence.sourceSetup.read(),
++                                  "refusalObservations": OwnershipFixtureEvidence.refusals.read(),
++                                  "nativeBoundaryObservations": nativeBoundaryObservations]
+         do {
+             try JSONSerialization.data(withJSONObject: value, options: [.prettyPrinted, .sortedKeys]).write(to: output, options: .atomic)
+         } catch { print("OWNERSHIP_REPORT_WRITE_FAILED"); exit(72) }
+@@ -166,21 +177,36 @@
+             let source = try OwnershipSource.make("cache-deadline")
+             let held = try OwnershipHeldLock(repository: .shared)
+             let attempts = OwnershipBox(0)
++            let atSecondAttempt = DispatchSemaphore(value: 0)
++            let resumeSecondAttempt = DispatchSemaphore(value: 0)
++            defer { held.release.signal(); resumeSecondAttempt.signal() }
+             let task = Task.detached { try await source.prepare(validate: {
+-                attempts.update { $0 += 1 }; try source.validate()
++                attempts.update { $0 += 1 }
++                if attempts.read() == 2 {
++                    // With the real cache lock held, the inner source callback
++                    // cannot run. This is the next original outer-loop callback,
++                    // before acquisition: all previous storage owners must be free.
++                    atSecondAttempt.signal()
++                    try require(ownershipSignalArrived(resumeSecondAttempt, before: .now() + 1),
++                                "fixture_second_attempt_not_released")
++                }
++                try source.validate()
+             }) }
+-            try await Task<Never, Never>.sleep(nanoseconds: 15_000_000)
++            defer { task.cancel() }
++            let reachedSecondAttempt = ownershipSignalArrived(atSecondAttempt, before: .now() + 1)
+             var observed = Set<String>()
+-            let end = DispatchTime.now().uptimeNanoseconds + 70_000_000
+-            while observed.count < 3 && DispatchTime.now().uptimeNanoseconds < end {
+-                for name in ["migration-fixture", "database-mutation-fixture", "otzaria-search-mutation-fixture"] {
+-                    if try ITorahStorageLock.tryWithLock(name: name, block: { true }) == true { observed.insert(name) }
+-                }
+-                try await Task<Never, Never>.sleep(nanoseconds: 1_000_000)
++            for name in ["migration-fixture", "database-mutation-fixture", "otzaria-search-mutation-fixture"] {
++                if try ITorahStorageLock.tryWithLock(name: name, block: { true }) == true { observed.insert(name) }
++            }
++            OwnershipFixtureEvidence.sourceSetup.update {
++                $0.append(["caseSetup": "cache-deadline-barrier", "reachedSecondAttempt": String(reachedSecondAttempt),
++                           "observedAttempt": String(attempts.read()), "freeOuterOwners": observed.sorted().joined(separator: ",")])
+             }
+             task.cancel()
+-            try held.finish()
+-            try await refuses(["cancelled"]) { try await task.value }
++            resumeSecondAttempt.signal()
++            try held.finish()
++            try await refuses(["cancelled"]) { try await task.value }
++            try require(reachedSecondAttempt, "fixture_second_attempt_not_observed")
+             try require(attempts.read() > 1, "no_actual_repeated_cache_attempt")
+             try require(observed.count == 3, "outer_storage_owner_retained_across_wait")
+             try source.requireNoOpenOrPublication()

@@ -1,0 +1,1443 @@
+{
+  ".github/workflows/otzaria-cold-search-core-validation.yml": {
+    "git_blob": "6976a33f37f1b8b93beb32497fa81da154e4ef2e",
+    "sha256": "e9e2e40e056e7f9a4fade4d3e2c8f3c0d2fbf9a32c8196e9a2257227efc2b10e"
+  },
+  "Tests/HQ/cold-search/CORE_INPUTS.json": {
+    "git_blob": "169047bbab9ae00d6fa43e787a95016f2822e4ac",
+    "sha256": "59a9e89f2bf16f556917577509de64c1c3f99052e7d1509e0c5bf1d9c04226e6"
+  },
+  "actual_c_engine_executed": 0,
+  "actual_xctest_completed": 214,
+  "completed_at": "2026-11-20T15:25:33.733168+00:00",
+  "declared_added": 20,
+  "declared_original": 174,
+  "git_head": "a826e66ab2710f1d3c05342da5b39b79e8c30c44",
+  "github": {
+    "GITHUB_JOB": "core-source-acceptance",
+    "GITHUB_REF": "refs/heads/codex/otzaria-cold-search-core-apple-20261120",
+    "GITHUB_REPOSITORY": "davidpovarsky/Maktabah",
+    "GITHUB_RUN_ATTEMPT": "1",
+    "GITHUB_RUN_ID": "44762582027",
+    "GITHUB_SHA": "a826e66ab2710f1d3c05342da5b39b79e8c30c44"
+  },
+  "inputs_sha256": "59a9e89f2bf16f556917577509de64c1c3f99052e7d1509e0c5bf1d9c04226e6",
+  "native_ui_executed": 0,
+  "scope": "ORIGINAL_CORE_XCTEST_WITH_EXPLICIT_PROVIDER_UI_DOUBLES",
+  "stages": {
+    "baseline20": {
+      "actual_completed": 20,
+      "checks": {
+        "authentic_summary": true,
+        "exact_completed_once": true,
+        "exact_leaf_outcomes": true,
+        "exact_started_once": true,
+        "expected_exit_class": true,
+        "process_completed": true
+      },
+      "failed": 9,
+      "final_summary": [
+        20,
+        35,
+        0
+      ],
+      "leaves": [
+        {
+          "id": "ColdSearchExecutionOfflineTests/testAlreadyReadyReadKeepsOldPath",
+          "outcome": "passed",
+          "seconds": 0.077
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testAuthorizedColdQueryKeepsExactQueryAndFreshAssessment",
+          "outcome": "failed",
+          "seconds": 0.59
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testBackendABADuringPreparationCannotRestoreOldInvocation",
+          "outcome": "failed",
+          "seconds": 0.022
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testCancellationDuringPreparationNeverDispatchesSearch",
+          "outcome": "failed",
+          "seconds": 0.52
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testColdOpenResultsUsesOriginalGrantAndReceiptWithoutHeadlessQuery",
+          "outcome": "failed",
+          "seconds": 0.029
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testDeadlineDuringPreparationRetainsOriginalDeadlineFailure",
+          "outcome": "failed",
+          "seconds": 0.028
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testDiscoveryAndBackendReportRemainObservations",
+          "outcome": "passed",
+          "seconds": 0.038
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testGenerationChangeDuringPreparationDiscardsAuthority",
+          "outcome": "failed",
+          "seconds": 0.033
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testMetadataReadNeverPreparesSearch",
+          "outcome": "passed",
+          "seconds": 0.025
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testMissingContentRightsCannotPrepareOrRead",
+          "outcome": "passed",
+          "seconds": 0.017
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testMissingReadScopeCannotPrepareOrRead",
+          "outcome": "passed",
+          "seconds": 0.027
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testOccurrenceCountCannotInheritSearchPreparation",
+          "outcome": "passed",
+          "seconds": 0.032
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testPreCancelledRequestDoesNotPrepare",
+          "outcome": "passed",
+          "seconds": 0.02
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testPreparationFailureNeverBecomesSuccessfulZero",
+          "outcome": "failed",
+          "seconds": 0.024
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testProviderWithoutOptionalPreparationKeepsOldUnavailableResult",
+          "outcome": "passed",
+          "seconds": 0.05
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testReplayDoesNotRepeatPreparationAndConflictDoesNotReuseIt",
+          "outcome": "failed",
+          "seconds": 0.039
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testRestrictedGlobalSearchCannotBorrowOneWorkGrant",
+          "outcome": "passed",
+          "seconds": 0.03
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testRestrictedWorkDenialPrecedesPreparation",
+          "outcome": "passed",
+          "seconds": 0.059
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testSuccessfulPreparationReturnDoesNotManufactureReadiness",
+          "outcome": "failed",
+          "seconds": 0.058
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testUnregisteredOrUnsupportedOperationsNeverPrepare",
+          "outcome": "passed",
+          "seconds": 0.06
+        }
+      ],
+      "passed": 11,
+      "process": {
+        "command": [
+          "xcrun",
+          "swift",
+          "test",
+          "--package-path",
+          "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/exact-source-work/Source/Otzaria/Actions",
+          "--scratch-path",
+          "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/swiftpm-cache",
+          "--jobs",
+          "1",
+          "--disable-swift-testing",
+          "--filter",
+          "ColdSearchExecutionOfflineTests"
+        ],
+        "completed_at": "2026-11-20T15:25:08.669693+00:00",
+        "cwd": "/Users/runner/work/Maktabah/Maktabah",
+        "elapsed_seconds": 90.28477441599998,
+        "log_sha256": "44d48d33098ab816bbd3d91ca4a48f50ee7b479faf0ec23e7164dabd1fdd12a8",
+        "pid": 2378,
+        "returncode": 1,
+        "started_at": "2026-11-20T15:23:38.385537+00:00",
+        "timed_out": false
+      },
+      "qualified": true,
+      "skipped": 0,
+      "source_unchanged": true,
+      "starts": [
+        "ColdSearchExecutionOfflineTests/testAlreadyReadyReadKeepsOldPath",
+        "ColdSearchExecutionOfflineTests/testAuthorizedColdQueryKeepsExactQueryAndFreshAssessment",
+        "ColdSearchExecutionOfflineTests/testBackendABADuringPreparationCannotRestoreOldInvocation",
+        "ColdSearchExecutionOfflineTests/testCancellationDuringPreparationNeverDispatchesSearch",
+        "ColdSearchExecutionOfflineTests/testColdOpenResultsUsesOriginalGrantAndReceiptWithoutHeadlessQuery",
+        "ColdSearchExecutionOfflineTests/testDeadlineDuringPreparationRetainsOriginalDeadlineFailure",
+        "ColdSearchExecutionOfflineTests/testDiscoveryAndBackendReportRemainObservations",
+        "ColdSearchExecutionOfflineTests/testGenerationChangeDuringPreparationDiscardsAuthority",
+        "ColdSearchExecutionOfflineTests/testMetadataReadNeverPreparesSearch",
+        "ColdSearchExecutionOfflineTests/testMissingContentRightsCannotPrepareOrRead",
+        "ColdSearchExecutionOfflineTests/testMissingReadScopeCannotPrepareOrRead",
+        "ColdSearchExecutionOfflineTests/testOccurrenceCountCannotInheritSearchPreparation",
+        "ColdSearchExecutionOfflineTests/testPreCancelledRequestDoesNotPrepare",
+        "ColdSearchExecutionOfflineTests/testPreparationFailureNeverBecomesSuccessfulZero",
+        "ColdSearchExecutionOfflineTests/testProviderWithoutOptionalPreparationKeepsOldUnavailableResult",
+        "ColdSearchExecutionOfflineTests/testReplayDoesNotRepeatPreparationAndConflictDoesNotReuseIt",
+        "ColdSearchExecutionOfflineTests/testRestrictedGlobalSearchCannotBorrowOneWorkGrant",
+        "ColdSearchExecutionOfflineTests/testRestrictedWorkDenialPrecedesPreparation",
+        "ColdSearchExecutionOfflineTests/testSuccessfulPreparationReturnDoesNotManufactureReadiness",
+        "ColdSearchExecutionOfflineTests/testUnregisteredOrUnsupportedOperationsNeverPrepare"
+      ]
+    },
+    "candidate194": {
+      "actual_completed": 194,
+      "checks": {
+        "authentic_summary": false,
+        "exact_completed_once": true,
+        "exact_leaf_outcomes": false,
+        "exact_started_once": true,
+        "expected_exit_class": false,
+        "process_completed": true
+      },
+      "failed": 1,
+      "final_summary": [
+        194,
+        2,
+        0
+      ],
+      "leaves": [
+        {
+          "id": "BackendSemanticsTests/testActualEmbeddedHandlerFixtures",
+          "outcome": "passed",
+          "seconds": 0.013
+        },
+        {
+          "id": "BackendSemanticsTests/testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "BackendSemanticsTests/testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "BackendSemanticsTests/testEmbeddedReadinessIsPerOperationAndEpoch",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "BackendSemanticsTests/testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "BackendSemanticsTests/testIgnoredModesAndSortsAreRejected",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "BackendSemanticsTests/testInactiveBackendCannotBecomeAvailable",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "BackendSemanticsTests/testInvocationGenerationEpochDeadlineAndCancellation",
+          "outcome": "passed",
+          "seconds": 0.004
+        },
+        {
+          "id": "BackendSemanticsTests/testLegacyDownloadedReadingDoesNotEnableOfflineSearch",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "BackendSemanticsTests/testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "BackendSemanticsTests/testLoadedRuntimeContractRequiresExactSchemaNonceAndPositiveReadiness",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "BackendSemanticsTests/testOtzariaScopeUsesOnlyProvenCanonicalBookFilters",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "BackendSemanticsTests/testRegistrationDoesNotProveReadiness",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "BackendSemanticsTests/testSourceFeaturesSurviveWithoutEnablingStagedActions",
+          "outcome": "passed",
+          "seconds": 0.002
+        },
+        {
+          "id": "BackendSemanticsTests/testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "CatalogActionResolverTests/testBudgetsFailWithoutSearchingOnlyPrefix",
+          "outcome": "passed",
+          "seconds": 0.002
+        },
+        {
+          "id": "CatalogActionResolverTests/testDeadlineAndCancellationBeforeAndDuringSourceAwait",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testDeadlineExpiresAcrossEachAwaitAndUnknownRPCEpoch",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity",
+          "outcome": "passed",
+          "seconds": 0.023
+        },
+        {
+          "id": "CatalogActionResolverTests/testDuplicateTitlesEditionsAliasesAndLimitOne",
+          "outcome": "passed",
+          "seconds": 0.004
+        },
+        {
+          "id": "CatalogActionResolverTests/testExistenceProofsNeverSurviveTheInvocation",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testGenerationBackendAndEpochChangeAcrossEveryDataAwait",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testIdenticalSectionAndFocusShareExistenceProof",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testLargeCatalogLastMatchAndDeadlineDuringActorScan",
+          "outcome": "passed",
+          "seconds": 0.028
+        },
+        {
+          "id": "CatalogActionResolverTests/testMalformedAndCrossBackendInputsBeforeProvider",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testMalformedReferenceCandidatesAndCandidateBudgetFailClosed",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testMissingVersusUnavailableAndRedactedFailure",
+          "outcome": "passed",
+          "seconds": 0.002
+        },
+        {
+          "id": "CatalogActionResolverTests/testProofDeduplicationKeepsDataRevisionsDistinct",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testReferenceAmbiguityIsStableCappedAndFullyValidated",
+          "outcome": "passed",
+          "seconds": 0.006
+        },
+        {
+          "id": "CatalogActionResolverTests/testReferenceFidelityUnknownEmbeddedAndWrongWork",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testRevisionIdentityAndOpaqueKeyOrderingAreNotConcatenated",
+          "outcome": "passed",
+          "seconds": 0.002
+        },
+        {
+          "id": "CatalogActionResolverTests/testSourceNormalizationPreservesNikudAndCase",
+          "outcome": "passed",
+          "seconds": 0.003
+        },
+        {
+          "id": "CatalogActionResolverTests/testSourceSubstitutionAndMalformedCatalogRejected",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogActionResolverTests/testThreeBackendsAndExactSectionFocus",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogSourceSectionsTests/testConservativeNamesDoNotInferChapterNumbersOrDropNiqqud",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogSourceSectionsTests/testDeadlineAndCancellationRemainExplicit",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogSourceSectionsTests/testEmptyAndOversizedSourcesNeverInventAUniqueReference",
+          "outcome": "passed",
+          "seconds": 0.008
+        },
+        {
+          "id": "CatalogSourceSectionsTests/testInvalidSourceAfterAnExactMatchFailsInsteadOfTruncating",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "CatalogSourceSectionsTests/testRepeatedIdentityDeduplicatesButRepeatedTitleRemainsAmbiguous",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CatalogSourceSectionsTests/testSourceTitlePreservesZeroAndRevisionMetadata",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testAlreadyReadyReadKeepsOldPath",
+          "outcome": "passed",
+          "seconds": 0.028
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testAuthorizedColdQueryKeepsExactQueryAndFreshAssessment",
+          "outcome": "passed",
+          "seconds": 0.024
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testBackendABADuringPreparationCannotRestoreOldInvocation",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testCancellationDuringPreparationNeverDispatchesSearch",
+          "outcome": "passed",
+          "seconds": 0.032
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testColdOpenResultsUsesOriginalGrantAndReceiptWithoutHeadlessQuery",
+          "outcome": "passed",
+          "seconds": 0.037
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testDeadlineDuringPreparationRetainsOriginalDeadlineFailure",
+          "outcome": "passed",
+          "seconds": 0.148
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testDiscoveryAndBackendReportRemainObservations",
+          "outcome": "passed",
+          "seconds": 0.043
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testGenerationChangeDuringPreparationDiscardsAuthority",
+          "outcome": "passed",
+          "seconds": 0.02
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testMetadataReadNeverPreparesSearch",
+          "outcome": "passed",
+          "seconds": 0.033
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testMissingContentRightsCannotPrepareOrRead",
+          "outcome": "passed",
+          "seconds": 0.024
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testMissingReadScopeCannotPrepareOrRead",
+          "outcome": "passed",
+          "seconds": 0.021
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testOccurrenceCountCannotInheritSearchPreparation",
+          "outcome": "passed",
+          "seconds": 0.023
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testPreCancelledRequestDoesNotPrepare",
+          "outcome": "passed",
+          "seconds": 0.017
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testPreparationFailureNeverBecomesSuccessfulZero",
+          "outcome": "passed",
+          "seconds": 0.02
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testProviderWithoutOptionalPreparationKeepsOldUnavailableResult",
+          "outcome": "passed",
+          "seconds": 0.053
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testReplayDoesNotRepeatPreparationAndConflictDoesNotReuseIt",
+          "outcome": "passed",
+          "seconds": 0.039
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testRestrictedGlobalSearchCannotBorrowOneWorkGrant",
+          "outcome": "passed",
+          "seconds": 0.027
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testRestrictedWorkDenialPrecedesPreparation",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testSuccessfulPreparationReturnDoesNotManufactureReadiness",
+          "outcome": "passed",
+          "seconds": 0.033
+        },
+        {
+          "id": "ColdSearchExecutionOfflineTests/testUnregisteredOrUnsupportedOperationsNeverPrepare",
+          "outcome": "passed",
+          "seconds": 0.062
+        },
+        {
+          "id": "CommentaryActionTests/testAcknowledgedCommentaryPublishesExactDestinationAndFocusContinuation",
+          "outcome": "passed",
+          "seconds": 0.036
+        },
+        {
+          "id": "CommentaryActionTests/testAcknowledgedSectionOnlyCommentaryDoesNotInventSegmentContinuation",
+          "outcome": "passed",
+          "seconds": 0.031
+        },
+        {
+          "id": "CommentaryActionTests/testAmbiguousLinkedPassagesStayAmbiguousAndBounded",
+          "outcome": "passed",
+          "seconds": 0.006
+        },
+        {
+          "id": "CommentaryActionTests/testBackendChangeDuringNativePreparationNeverOpens",
+          "outcome": "passed",
+          "seconds": 0.026
+        },
+        {
+          "id": "CommentaryActionTests/testCatalogTitleCannotCreateMissingRelationship",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CommentaryActionTests/testDuplicateLinkIsDeduplicatedWithoutDroppingFocus",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CommentaryActionTests/testEngineUsesOriginalReaderReceiptAndIdempotentRequest",
+          "outcome": "passed",
+          "seconds": 0.053
+        },
+        {
+          "id": "CommentaryActionTests/testExactLinkedSectionAndFocusAcrossAllSources",
+          "outcome": "passed",
+          "seconds": 0.002
+        },
+        {
+          "id": "CommentaryActionTests/testExplicitWorkStillRequiresSourceLinkAndExactQuery",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CommentaryActionTests/testFocusFromAnotherWorkIsInvalid",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "CommentaryActionTests/testForeignAndUnknownCatalogTargetsAreInvalid",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "CommentaryActionTests/testHeadlessAndRestrictedWorkCannotOpen",
+          "outcome": "passed",
+          "seconds": 0.031
+        },
+        {
+          "id": "CommentaryActionTests/testNFCWhitespaceAndSourceAliasesAreConservative",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CommentaryActionTests/testOriginalIndependentReaderResultShapeIsUnchanged",
+          "outcome": "passed",
+          "seconds": 0.024
+        },
+        {
+          "id": "CommentaryActionTests/testOversizedRelationshipPayloadFailsWithoutPrefixUniqueness",
+          "outcome": "passed",
+          "seconds": 0.003
+        },
+        {
+          "id": "CommentaryActionTests/testRejectedCommentaryReceiptPublishesNoContinuation",
+          "outcome": "passed",
+          "seconds": 0.034
+        },
+        {
+          "id": "CommentaryActionTests/testSemanticCapabilityRequiresBothNavigationAndOriginalLinks",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "CommentaryActionTests/testSourceCannotSubstituteProofForBase",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CommentaryActionTests/testSourceGenerationAndEmbeddedEpochChangesDiscardLinks",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CommentaryActionTests/testUnprovenFocusCannotOpenSectionInstead",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CommentaryActionTests/testUnsupportedSourceOrSinkDoesNotAdvertiseOrExecute",
+          "outcome": "passed",
+          "seconds": 0.055
+        },
+        {
+          "id": "CommentaryActionTests/testWrongBaseLinkIsInvalid",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "CommentaryActionTests/testWrongNativeReceiptCannotComplete",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "ContractAPITests/testPositionKindValueMismatchRejected",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "ContractAPITests/testWirePositionAndSendableAPI",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "EngineTests/testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends",
+          "outcome": "passed",
+          "seconds": 0.39
+        },
+        {
+          "id": "EngineTests/testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented",
+          "outcome": "passed",
+          "seconds": 0.033
+        },
+        {
+          "id": "EngineTests/testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls",
+          "outcome": "passed",
+          "seconds": 0.051
+        },
+        {
+          "id": "EngineTests/testCancellationDeadlineAndReplayBudget",
+          "outcome": "passed",
+          "seconds": 0.237
+        },
+        {
+          "id": "EngineTests/testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason",
+          "outcome": "passed",
+          "seconds": 0.044
+        },
+        {
+          "id": "EngineTests/testGenerationAndEmbeddedEpochChangesDiscardResults",
+          "outcome": "passed",
+          "seconds": 0.052
+        },
+        {
+          "id": "EngineTests/testInactiveBackendRequiresSwitchWithoutCommandCalls",
+          "outcome": "passed",
+          "seconds": 0.026
+        },
+        {
+          "id": "EngineTests/testInitialFiveAcrossAllThreeMockBackends",
+          "outcome": "passed",
+          "seconds": 0.237
+        },
+        {
+          "id": "EngineTests/testOutputAndWorkScopeBudgets",
+          "outcome": "passed",
+          "seconds": 0.05
+        },
+        {
+          "id": "EngineTests/testPaginationIdentityAndProviderErrors",
+          "outcome": "passed",
+          "seconds": 0.036
+        },
+        {
+          "id": "EngineTests/testRightsOriginAndScopeFailClosed",
+          "outcome": "passed",
+          "seconds": 0.018
+        },
+        {
+          "id": "EngineTests/testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange",
+          "outcome": "passed",
+          "seconds": 0.049
+        },
+        {
+          "id": "EngineTests/testSemanticSupportAvailabilityAndRealZeroAreDistinct",
+          "outcome": "passed",
+          "seconds": 0.05
+        },
+        {
+          "id": "EngineTests/testStagedCountWritesAndDiscoveryCannotAdvertiseThem",
+          "outcome": "passed",
+          "seconds": 0.041
+        },
+        {
+          "id": "EngineTests/testTypedUnsignedResolutionLimitDoesNotDefault",
+          "outcome": "passed",
+          "seconds": 0.033
+        },
+        {
+          "id": "EngineTests/testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay",
+          "outcome": "passed",
+          "seconds": 0.231
+        },
+        {
+          "id": "EngineTests/testUIQueueSceneAndExactReceiptBinding",
+          "outcome": "passed",
+          "seconds": 0.092
+        },
+        {
+          "id": "EngineTests/testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines",
+          "outcome": "passed",
+          "seconds": 1.09
+        },
+        {
+          "id": "NoteDraftActionTests/testExactDraftAcrossSourcesReturnsUnsavedReceiptWithoutExportingText",
+          "outcome": "passed",
+          "seconds": 0.134
+        },
+        {
+          "id": "NoteDraftActionTests/testFinalSourceOrVisibilityLossRefusesCompletion",
+          "outcome": "passed",
+          "seconds": 0.021
+        },
+        {
+          "id": "NoteDraftActionTests/testGenerationChangeAfterActualEffectDoesNotClaimCompletion",
+          "outcome": "passed",
+          "seconds": 0.031
+        },
+        {
+          "id": "NoteDraftActionTests/testGenerationChangeDuringPreparationPreventsPresentation",
+          "outcome": "passed",
+          "seconds": 0.031
+        },
+        {
+          "id": "NoteDraftActionTests/testHeadlessMissingSceneAndScopeCannotPresentDraft",
+          "outcome": "passed",
+          "seconds": 0.09
+        },
+        {
+          "id": "NoteDraftActionTests/testInvalidMissingOversizedOrSplitUTF16SelectionCannotGuessFallback",
+          "outcome": "failed",
+          "seconds": 0.296
+        },
+        {
+          "id": "NoteDraftActionTests/testMissingOriginalEditorIsNotAdvertisedOrExecuted",
+          "outcome": "passed",
+          "seconds": 0.05
+        },
+        {
+          "id": "NoteDraftActionTests/testMissingProposalCreatesOnlyBlankEditableDraft",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "NoteDraftActionTests/testOriginalUTF16RangeAndExactUnicodeAreRequired",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "NoteDraftActionTests/testProposalBoundsRejectBeforeAnyEditorOrResolverCall",
+          "outcome": "passed",
+          "seconds": 0.024
+        },
+        {
+          "id": "NoteDraftActionTests/testQueueIsNotSuccessfulPresentationAndHandleIsBounded",
+          "outcome": "passed",
+          "seconds": 0.054
+        },
+        {
+          "id": "NoteDraftActionTests/testReceiptRequiresExactRequestSnapshotSceneDraftAndUnsavedState",
+          "outcome": "passed",
+          "seconds": 0.152
+        },
+        {
+          "id": "NoteDraftActionTests/testSameRequestIsIdempotentAndChangedProposalConflicts",
+          "outcome": "passed",
+          "seconds": 0.059
+        },
+        {
+          "id": "NoteDraftActionTests/testSelectedTextCannotSubstituteOriginalSelection",
+          "outcome": "passed",
+          "seconds": 0.027
+        },
+        {
+          "id": "NoteDraftActionTests/testSelectionReadinessIsTruthfulAndUnavailableDoesNotResolveOrPresent",
+          "outcome": "passed",
+          "seconds": 0.037
+        },
+        {
+          "id": "NoteDraftActionTests/testUnverifiedLocatorFailsBeforeEditorPreparation",
+          "outcome": "passed",
+          "seconds": 0.024
+        },
+        {
+          "id": "NoteDraftActionTests/testWorkPolicyRejectsBeforeSelectionOrPresentation",
+          "outcome": "passed",
+          "seconds": 0.026
+        },
+        {
+          "id": "OccurrenceActionTests/testAuthorityChangeCannotReplayPreviousCount",
+          "outcome": "passed",
+          "seconds": 0.022
+        },
+        {
+          "id": "OccurrenceActionTests/testCancellationAfterProviderEntryCannotPublish",
+          "outcome": "passed",
+          "seconds": 0.031
+        },
+        {
+          "id": "OccurrenceActionTests/testDeadlineStopsPendingCountWithoutPublishingPartialData",
+          "outcome": "passed",
+          "seconds": 0.149
+        },
+        {
+          "id": "OccurrenceActionTests/testDocumentAndSegmentUnitsAreNotSilentlyReinterpreted",
+          "outcome": "passed",
+          "seconds": 0.022
+        },
+        {
+          "id": "OccurrenceActionTests/testDuplicatedScopesFailBeforeCounting",
+          "outcome": "passed",
+          "seconds": 0.017
+        },
+        {
+          "id": "OccurrenceActionTests/testExactOccurrencesStayDistinctFromMatchingDocumentTotal",
+          "outcome": "passed",
+          "seconds": 0.018
+        },
+        {
+          "id": "OccurrenceActionTests/testForgedOrPartialEvidenceNeverPublishesAnyCount",
+          "outcome": "passed",
+          "seconds": 0.406
+        },
+        {
+          "id": "OccurrenceActionTests/testLemmatizedModeCannotProduceAnExactCount",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "OccurrenceActionTests/testMissingOptionalCountPortCannotExecuteOrAdvertise",
+          "outcome": "passed",
+          "seconds": 0.025
+        },
+        {
+          "id": "OccurrenceActionTests/testMissingOrDifferentCatalogRevisionDoesNotCount",
+          "outcome": "passed",
+          "seconds": 0.054
+        },
+        {
+          "id": "OccurrenceActionTests/testOriginalSearchPortAndPageTotalRemainUnchanged",
+          "outcome": "passed",
+          "seconds": 0.028
+        },
+        {
+          "id": "OccurrenceActionTests/testOtherBackendsRemainUnsupportedWithoutFallback",
+          "outcome": "passed",
+          "seconds": 0.045
+        },
+        {
+          "id": "OccurrenceActionTests/testProvenZeroHasExactZeroAndCoverageEvidence",
+          "outcome": "passed",
+          "seconds": 0.024
+        },
+        {
+          "id": "OccurrenceActionTests/testQualifiedPortCanAdvertiseOnlyWithCurrentRightsAndReadiness",
+          "outcome": "passed",
+          "seconds": 0.042
+        },
+        {
+          "id": "OccurrenceActionTests/testReplayReusesSameProofButNewGenerationInvalidatesIt",
+          "outcome": "passed",
+          "seconds": 0.026
+        },
+        {
+          "id": "OccurrenceActionTests/testRestrictedWorkAuthorityRequiresExactExplicitScope",
+          "outcome": "passed",
+          "seconds": 0.031
+        },
+        {
+          "id": "OccurrenceActionTests/testRightsAndDeepLinksCannotReachCountProvider",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "OccurrenceActionTests/testSourceChangeAfterCountingDiscardsAValidNumericResult",
+          "outcome": "passed",
+          "seconds": 0.028
+        },
+        {
+          "id": "OccurrenceActionTests/testTypedFailuresContainNoPartialNumber",
+          "outcome": "passed",
+          "seconds": 0.191
+        },
+        {
+          "id": "OccurrenceActionTests/testUnavailableIndexCannotBecomeZeroOrReachProvider",
+          "outcome": "passed",
+          "seconds": 0.03
+        },
+        {
+          "id": "SearchResultsActionTests/testAbsentOptionalSearchPortIsUnsupported",
+          "outcome": "passed",
+          "seconds": 0.021
+        },
+        {
+          "id": "SearchResultsActionTests/testAbsentUIIsNotAdvertised",
+          "outcome": "passed",
+          "seconds": 0.031
+        },
+        {
+          "id": "SearchResultsActionTests/testActualResultsChangeAfterLastBackendAwaitRejectsSuccess",
+          "outcome": "passed",
+          "seconds": 0.019
+        },
+        {
+          "id": "SearchResultsActionTests/testBlockedNativeSceneIsNotAdvertisedOrExecuted",
+          "outcome": "passed",
+          "seconds": 0.065
+        },
+        {
+          "id": "SearchResultsActionTests/testByteExactQueryPurposeDoesNotNormalizeUnicode",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "SearchResultsActionTests/testCompleteUsesOriginalUISinkAndNeverSubstitutesHeadlessSearch",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "SearchResultsActionTests/testGenericAndDifferentQueryCannotBorrowSearchPreparation",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "SearchResultsActionTests/testHeadlessCannotCommit",
+          "outcome": "passed",
+          "seconds": 0.028
+        },
+        {
+          "id": "SearchResultsActionTests/testNativeFailureSurvivesWithoutBecomingRetryableBackendFailure",
+          "outcome": "passed",
+          "seconds": 0.021
+        },
+        {
+          "id": "SearchResultsActionTests/testNoteAndSearchPurposesCannotBeCombinedOrSubstituted",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "SearchResultsActionTests/testOnlyRepresentableNativeModesAndScopeAreReported",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "SearchResultsActionTests/testRevokedPurposeNeverMutatesAndWrongReceiptNeverCompletes",
+          "outcome": "passed",
+          "seconds": 0.053
+        },
+        {
+          "id": "SearchResultsActionTests/testStrictNestedArgumentsRejectIgnoredFieldsHandlesAndPaging",
+          "outcome": "passed",
+          "seconds": 0.0
+        },
+        {
+          "id": "SearchResultsActionTests/testUnknownScopeNeverReachesUI",
+          "outcome": "passed",
+          "seconds": 0.03
+        },
+        {
+          "id": "SemanticJourneyTests/testAbsentRightsRemainDeniedByOriginalCore",
+          "outcome": "passed",
+          "seconds": 0.031
+        },
+        {
+          "id": "SemanticJourneyTests/testActualCatalogTOCAndLinksFeedOneExactFourStepJourney",
+          "outcome": "passed",
+          "seconds": 0.046
+        },
+        {
+          "id": "SemanticJourneyTests/testAmbiguousBaseCatalogStopsBeforeTOCOrNativeAction",
+          "outcome": "passed",
+          "seconds": 0.026
+        },
+        {
+          "id": "SemanticJourneyTests/testAmbiguousCommentaryNeverChoosesFirstTargetOrOpensDraft",
+          "outcome": "passed",
+          "seconds": 0.026
+        },
+        {
+          "id": "SemanticJourneyTests/testBackendGenerationChangeNeverOpensOldCountQuery",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "SemanticJourneyTests/testCancellationOfInflightCountNeverPublishesOrOpens",
+          "outcome": "passed",
+          "seconds": 0.034
+        },
+        {
+          "id": "SemanticJourneyTests/testCanonicalSearchProjectionPreservesAllFieldsAndRejectsPaging",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "SemanticJourneyTests/testCommentaryDraftUsesExactAcknowledgedFocusAndOriginalUnsavedEditor",
+          "outcome": "passed",
+          "seconds": 0.045
+        },
+        {
+          "id": "SemanticJourneyTests/testCountOpensByteExactOriginalQueryWithSameScopeAndDistinctDocumentCount",
+          "outcome": "passed",
+          "seconds": 0.046
+        },
+        {
+          "id": "SemanticJourneyTests/testCredentialContextReplacementCannotReuseCompletedRead",
+          "outcome": "passed",
+          "seconds": 0.03
+        },
+        {
+          "id": "SemanticJourneyTests/testExplicitWorkReadAuthorityCannotBecomeGlobalScope",
+          "outcome": "passed",
+          "seconds": 0.024
+        },
+        {
+          "id": "SemanticJourneyTests/testMissingOrInvisibleOriginalSelectionDoesNotInventNoteRange",
+          "outcome": "passed",
+          "seconds": 0.033
+        },
+        {
+          "id": "SemanticJourneyTests/testMissingReadAuthorityCannotCountOrOpen",
+          "outcome": "passed",
+          "seconds": 0.026
+        },
+        {
+          "id": "SemanticJourneyTests/testNoteReceiptMustStillBeUnsavedAndActuallyVisible",
+          "outcome": "passed",
+          "seconds": 0.073
+        },
+        {
+          "id": "SemanticJourneyTests/testOriginalFinalResultsVisibilityGuardRemainsMandatory",
+          "outcome": "passed",
+          "seconds": 0.037
+        },
+        {
+          "id": "SemanticJourneyTests/testOriginalHeadlessReadRemainsIndependentOfJourneys",
+          "outcome": "passed",
+          "seconds": 0.023
+        },
+        {
+          "id": "SemanticJourneyTests/testProvenZeroStillOpensTheSameSearch",
+          "outcome": "passed",
+          "seconds": 0.044
+        },
+        {
+          "id": "SemanticJourneyTests/testQueuedResultsAreNotSuccessfulJourney",
+          "outcome": "passed",
+          "seconds": 0.038
+        },
+        {
+          "id": "SemanticJourneyTests/testReadGrantForOtherSceneCannotReachCount",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "SemanticJourneyTests/testReadRevokedDuringResultsPresentationDiscardsNumberButPreservesNativeEffect",
+          "outcome": "passed",
+          "seconds": 0.035
+        },
+        {
+          "id": "SemanticJourneyTests/testReadScopeDoesNotSupplyMissingNavigationPermission",
+          "outcome": "passed",
+          "seconds": 0.039
+        },
+        {
+          "id": "SemanticJourneyTests/testRevisionBoundCountCannotDropRevisionToBypassOriginalResultsRefusal",
+          "outcome": "passed",
+          "seconds": 0.03
+        },
+        {
+          "id": "SemanticJourneyTests/testRevokedReadAuthorityDiscardsCompletedProviderNumberBeforePublication",
+          "outcome": "passed",
+          "seconds": 0.025
+        },
+        {
+          "id": "SemanticJourneyTests/testSectionOnlyRelationshipCannotInventSelectedSegmentForDraft",
+          "outcome": "passed",
+          "seconds": 0.025
+        },
+        {
+          "id": "SemanticJourneyTests/testSourceABAEpochDiscardsCountEvenWhenBackendSnapshotIsIdentical",
+          "outcome": "passed",
+          "seconds": 0.02
+        },
+        {
+          "id": "SemanticJourneyTests/testSourceChangeAfterReaderReceiptStopsBeforeDraftAndRetainsFirstEffect",
+          "outcome": "passed",
+          "seconds": 0.032
+        },
+        {
+          "id": "SemanticJourneyTests/testSourceChangedDuringResultsPresentationDiscardsNumberButDoesNotEraseReceipt",
+          "outcome": "passed",
+          "seconds": 0.034
+        },
+        {
+          "id": "SemanticJourneyTests/testUnknownCommentatorIsNotInventedFromBaseTitle",
+          "outcome": "passed",
+          "seconds": 0.045
+        },
+        {
+          "id": "SemanticJourneyTests/testUnknownTOCSectionStopsWithoutGuessingLineZero",
+          "outcome": "passed",
+          "seconds": 0.026
+        },
+        {
+          "id": "SemanticJourneyTests/testUnqualifiedCountFailureDoesNotBecomeZeroOrSearchFallback",
+          "outcome": "passed",
+          "seconds": 0.018
+        },
+        {
+          "id": "SemanticJourneyTests/testUnsupportedCountUnitNeverInvokesResultsUI",
+          "outcome": "passed",
+          "seconds": 0.022
+        },
+        {
+          "id": "SemanticJourneyTests/testWrongCommentaryReceiptCannotPrepareAnyDraft",
+          "outcome": "passed",
+          "seconds": 0.022
+        },
+        {
+          "id": "SemanticJourneyTests/testWrongNativeReceiptLeavesTheCountButDoesNotCompleteJourney",
+          "outcome": "passed",
+          "seconds": 0.026
+        },
+        {
+          "id": "WireSecurityTests/testBoundedGenericObjectIngressReusesExactParser",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "WireSecurityTests/testByteDepthAndInvalidGrammarBudgets",
+          "outcome": "passed",
+          "seconds": 0.028
+        },
+        {
+          "id": "WireSecurityTests/testDuplicateDecodedKeysRejected",
+          "outcome": "passed",
+          "seconds": 0.001
+        },
+        {
+          "id": "WireSecurityTests/testEnvelopeTypeBoundsAndUnknownFields",
+          "outcome": "passed",
+          "seconds": 0.01
+        },
+        {
+          "id": "WireSecurityTests/testExactNumericTokenClassificationBeforeFoundationCoercion",
+          "outcome": "passed",
+          "seconds": 0.029
+        },
+        {
+          "id": "WireSecurityTests/testFrozenCatalogAndElevenExamplesProject",
+          "outcome": "passed",
+          "seconds": 0.222
+        },
+        {
+          "id": "WireSecurityTests/testWireKeysDoNotAcquireUnicodeNormalizationAliases",
+          "outcome": "passed",
+          "seconds": 0.018
+        }
+      ],
+      "passed": 193,
+      "process": {
+        "command": [
+          "xcrun",
+          "swift",
+          "test",
+          "--package-path",
+          "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/exact-source-work/Source/Otzaria/Actions",
+          "--scratch-path",
+          "/Users/runner/work/Maktabah/Maktabah/build/cold-search-core-apple/swiftpm-cache",
+          "--jobs",
+          "1",
+          "--disable-swift-testing"
+        ],
+        "completed_at": "2026-11-20T15:25:33.668214+00:00",
+        "cwd": "/Users/runner/work/Maktabah/Maktabah",
+        "elapsed_seconds": 24.963288041999988,
+        "log_sha256": "0398637ba74d00380366cba950b4ee85057b29f5172deb6253c04adc84938429",
+        "pid": 4725,
+        "returncode": 1,
+        "started_at": "2026-11-20T15:25:08.705121+00:00",
+        "timed_out": false
+      },
+      "qualified": false,
+      "skipped": 0,
+      "source_unchanged": true,
+      "starts": [
+        "BackendSemanticsTests/testActualEmbeddedHandlerFixtures",
+        "BackendSemanticsTests/testArgumentProjectionRefusesTypeCoercionsAndCrossBackendScope",
+        "BackendSemanticsTests/testEmbeddedCatalogRejectsPartialParseAndPreservesSourceAliases",
+        "BackendSemanticsTests/testEmbeddedReadinessIsPerOperationAndEpoch",
+        "BackendSemanticsTests/testEmbeddedReferenceNeedsActualRefsNotEchoOrTrim",
+        "BackendSemanticsTests/testIgnoredModesAndSortsAreRejected",
+        "BackendSemanticsTests/testInactiveBackendCannotBecomeAvailable",
+        "BackendSemanticsTests/testInvocationGenerationEpochDeadlineAndCancellation",
+        "BackendSemanticsTests/testLegacyDownloadedReadingDoesNotEnableOfflineSearch",
+        "BackendSemanticsTests/testLegacyScopeNeverInventsPathsOrEntersUnboundedFallback",
+        "BackendSemanticsTests/testLoadedRuntimeContractRequiresExactSchemaNonceAndPositiveReadiness",
+        "BackendSemanticsTests/testOtzariaScopeUsesOnlyProvenCanonicalBookFilters",
+        "BackendSemanticsTests/testRegistrationDoesNotProveReadiness",
+        "BackendSemanticsTests/testSourceFeaturesSurviveWithoutEnablingStagedActions",
+        "BackendSemanticsTests/testStateAssessmentTargetsEveryQualifiedReferenceBeforeProbing",
+        "CatalogActionResolverTests/testBudgetsFailWithoutSearchingOnlyPrefix",
+        "CatalogActionResolverTests/testDeadlineAndCancellationBeforeAndDuringSourceAwait",
+        "CatalogActionResolverTests/testDeadlineExpiresAcrossEachAwaitAndUnknownRPCEpoch",
+        "CatalogActionResolverTests/testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity",
+        "CatalogActionResolverTests/testDuplicateTitlesEditionsAliasesAndLimitOne",
+        "CatalogActionResolverTests/testExistenceProofsNeverSurviveTheInvocation",
+        "CatalogActionResolverTests/testGenerationBackendAndEpochChangeAcrossEveryDataAwait",
+        "CatalogActionResolverTests/testIdenticalSectionAndFocusShareExistenceProof",
+        "CatalogActionResolverTests/testLargeCatalogLastMatchAndDeadlineDuringActorScan",
+        "CatalogActionResolverTests/testMalformedAndCrossBackendInputsBeforeProvider",
+        "CatalogActionResolverTests/testMalformedReferenceCandidatesAndCandidateBudgetFailClosed",
+        "CatalogActionResolverTests/testMissingVersusUnavailableAndRedactedFailure",
+        "CatalogActionResolverTests/testProofDeduplicationKeepsDataRevisionsDistinct",
+        "CatalogActionResolverTests/testReferenceAmbiguityIsStableCappedAndFullyValidated",
+        "CatalogActionResolverTests/testReferenceFidelityUnknownEmbeddedAndWrongWork",
+        "CatalogActionResolverTests/testRevisionIdentityAndOpaqueKeyOrderingAreNotConcatenated",
+        "CatalogActionResolverTests/testSourceNormalizationPreservesNikudAndCase",
+        "CatalogActionResolverTests/testSourceSubstitutionAndMalformedCatalogRejected",
+        "CatalogActionResolverTests/testThreeBackendsAndExactSectionFocus",
+        "CatalogSourceSectionsTests/testConservativeNamesDoNotInferChapterNumbersOrDropNiqqud",
+        "CatalogSourceSectionsTests/testDeadlineAndCancellationRemainExplicit",
+        "CatalogSourceSectionsTests/testEmptyAndOversizedSourcesNeverInventAUniqueReference",
+        "CatalogSourceSectionsTests/testInvalidSourceAfterAnExactMatchFailsInsteadOfTruncating",
+        "CatalogSourceSectionsTests/testRepeatedIdentityDeduplicatesButRepeatedTitleRemainsAmbiguous",
+        "CatalogSourceSectionsTests/testSourceTitlePreservesZeroAndRevisionMetadata",
+        "ColdSearchExecutionOfflineTests/testAlreadyReadyReadKeepsOldPath",
+        "ColdSearchExecutionOfflineTests/testAuthorizedColdQueryKeepsExactQueryAndFreshAssessment",
+        "ColdSearchExecutionOfflineTests/testBackendABADuringPreparationCannotRestoreOldInvocation",
+        "ColdSearchExecutionOfflineTests/testCancellationDuringPreparationNeverDispatchesSearch",
+        "ColdSearchExecutionOfflineTests/testColdOpenResultsUsesOriginalGrantAndReceiptWithoutHeadlessQuery",
+        "ColdSearchExecutionOfflineTests/testDeadlineDuringPreparationRetainsOriginalDeadlineFailure",
+        "ColdSearchExecutionOfflineTests/testDiscoveryAndBackendReportRemainObservations",
+        "ColdSearchExecutionOfflineTests/testGenerationChangeDuringPreparationDiscardsAuthority",
+        "ColdSearchExecutionOfflineTests/testMetadataReadNeverPreparesSearch",
+        "ColdSearchExecutionOfflineTests/testMissingContentRightsCannotPrepareOrRead",
+        "ColdSearchExecutionOfflineTests/testMissingReadScopeCannotPrepareOrRead",
+        "ColdSearchExecutionOfflineTests/testOccurrenceCountCannotInheritSearchPreparation",
+        "ColdSearchExecutionOfflineTests/testPreCancelledRequestDoesNotPrepare",
+        "ColdSearchExecutionOfflineTests/testPreparationFailureNeverBecomesSuccessfulZero",
+        "ColdSearchExecutionOfflineTests/testProviderWithoutOptionalPreparationKeepsOldUnavailableResult",
+        "ColdSearchExecutionOfflineTests/testReplayDoesNotRepeatPreparationAndConflictDoesNotReuseIt",
+        "ColdSearchExecutionOfflineTests/testRestrictedGlobalSearchCannotBorrowOneWorkGrant",
+        "ColdSearchExecutionOfflineTests/testRestrictedWorkDenialPrecedesPreparation",
+        "ColdSearchExecutionOfflineTests/testSuccessfulPreparationReturnDoesNotManufactureReadiness",
+        "ColdSearchExecutionOfflineTests/testUnregisteredOrUnsupportedOperationsNeverPrepare",
+        "CommentaryActionTests/testAcknowledgedCommentaryPublishesExactDestinationAndFocusContinuation",
+        "CommentaryActionTests/testAcknowledgedSectionOnlyCommentaryDoesNotInventSegmentContinuation",
+        "CommentaryActionTests/testAmbiguousLinkedPassagesStayAmbiguousAndBounded",
+        "CommentaryActionTests/testBackendChangeDuringNativePreparationNeverOpens",
+        "CommentaryActionTests/testCatalogTitleCannotCreateMissingRelationship",
+        "CommentaryActionTests/testDuplicateLinkIsDeduplicatedWithoutDroppingFocus",
+        "CommentaryActionTests/testEngineUsesOriginalReaderReceiptAndIdempotentRequest",
+        "CommentaryActionTests/testExactLinkedSectionAndFocusAcrossAllSources",
+        "CommentaryActionTests/testExplicitWorkStillRequiresSourceLinkAndExactQuery",
+        "CommentaryActionTests/testFocusFromAnotherWorkIsInvalid",
+        "CommentaryActionTests/testForeignAndUnknownCatalogTargetsAreInvalid",
+        "CommentaryActionTests/testHeadlessAndRestrictedWorkCannotOpen",
+        "CommentaryActionTests/testNFCWhitespaceAndSourceAliasesAreConservative",
+        "CommentaryActionTests/testOriginalIndependentReaderResultShapeIsUnchanged",
+        "CommentaryActionTests/testOversizedRelationshipPayloadFailsWithoutPrefixUniqueness",
+        "CommentaryActionTests/testRejectedCommentaryReceiptPublishesNoContinuation",
+        "CommentaryActionTests/testSemanticCapabilityRequiresBothNavigationAndOriginalLinks",
+        "CommentaryActionTests/testSourceCannotSubstituteProofForBase",
+        "CommentaryActionTests/testSourceGenerationAndEmbeddedEpochChangesDiscardLinks",
+        "CommentaryActionTests/testUnprovenFocusCannotOpenSectionInstead",
+        "CommentaryActionTests/testUnsupportedSourceOrSinkDoesNotAdvertiseOrExecute",
+        "CommentaryActionTests/testWrongBaseLinkIsInvalid",
+        "CommentaryActionTests/testWrongNativeReceiptCannotComplete",
+        "ContractAPITests/testPositionKindValueMismatchRejected",
+        "ContractAPITests/testWirePositionAndSendableAPI",
+        "EngineTests/testAdvertisementUsesExecutionPolicyAcrossOriginsAndBackends",
+        "EngineTests/testAmbiguityCappedAndUnknownEmbeddedReferenceNotInvented",
+        "EngineTests/testBackendConflictsAndInvalidSemanticsPrecedeAllProviderCalls",
+        "EngineTests/testCancellationDeadlineAndReplayBudget",
+        "EngineTests/testCandidateProjectionRefusesExtraDataAndDropsProviderDebugReason",
+        "EngineTests/testGenerationAndEmbeddedEpochChangesDiscardResults",
+        "EngineTests/testInactiveBackendRequiresSwitchWithoutCommandCalls",
+        "EngineTests/testInitialFiveAcrossAllThreeMockBackends",
+        "EngineTests/testOutputAndWorkScopeBudgets",
+        "EngineTests/testPaginationIdentityAndProviderErrors",
+        "EngineTests/testRightsOriginAndScopeFailClosed",
+        "EngineTests/testSameRequestCannotReplayUnderChangedAuthorityOrAfterGenerationChange",
+        "EngineTests/testSemanticSupportAvailabilityAndRealZeroAreDistinct",
+        "EngineTests/testStagedCountWritesAndDiscoveryCannotAdvertiseThem",
+        "EngineTests/testTypedUnsignedResolutionLimitDoesNotDefault",
+        "EngineTests/testTypedUnsignedSearchPreservesWireValuesAndCanonicalReplay",
+        "EngineTests/testUIQueueSceneAndExactReceiptBinding",
+        "EngineTests/testUncooperativeWorkersHaveBoundedAdmissionAndFiniteDeadlines",
+        "NoteDraftActionTests/testExactDraftAcrossSourcesReturnsUnsavedReceiptWithoutExportingText",
+        "NoteDraftActionTests/testFinalSourceOrVisibilityLossRefusesCompletion",
+        "NoteDraftActionTests/testGenerationChangeAfterActualEffectDoesNotClaimCompletion",
+        "NoteDraftActionTests/testGenerationChangeDuringPreparationPreventsPresentation",
+        "NoteDraftActionTests/testHeadlessMissingSceneAndScopeCannotPresentDraft",
+        "NoteDraftActionTests/testInvalidMissingOversizedOrSplitUTF16SelectionCannotGuessFallback",
+        "NoteDraftActionTests/testMissingOriginalEditorIsNotAdvertisedOrExecuted",
+        "NoteDraftActionTests/testMissingProposalCreatesOnlyBlankEditableDraft",
+        "NoteDraftActionTests/testOriginalUTF16RangeAndExactUnicodeAreRequired",
+        "NoteDraftActionTests/testProposalBoundsRejectBeforeAnyEditorOrResolverCall",
+        "NoteDraftActionTests/testQueueIsNotSuccessfulPresentationAndHandleIsBounded",
+        "NoteDraftActionTests/testReceiptRequiresExactRequestSnapshotSceneDraftAndUnsavedState",
+        "NoteDraftActionTests/testSameRequestIsIdempotentAndChangedProposalConflicts",
+        "NoteDraftActionTests/testSelectedTextCannotSubstituteOriginalSelection",
+        "NoteDraftActionTests/testSelectionReadinessIsTruthfulAndUnavailableDoesNotResolveOrPresent",
+        "NoteDraftActionTests/testUnverifiedLocatorFailsBeforeEditorPreparation",
+        "NoteDraftActionTests/testWorkPolicyRejectsBeforeSelectionOrPresentation",
+        "OccurrenceActionTests/testAuthorityChangeCannotReplayPreviousCount",
+        "OccurrenceActionTests/testCancellationAfterProviderEntryCannotPublish",
+        "OccurrenceActionTests/testDeadlineStopsPendingCountWithoutPublishingPartialData",
+        "OccurrenceActionTests/testDocumentAndSegmentUnitsAreNotSilentlyReinterpreted",
+        "OccurrenceActionTests/testDuplicatedScopesFailBeforeCounting",
+        "OccurrenceActionTests/testExactOccurrencesStayDistinctFromMatchingDocumentTotal",
+        "OccurrenceActionTests/testForgedOrPartialEvidenceNeverPublishesAnyCount",
+        "OccurrenceActionTests/testLemmatizedModeCannotProduceAnExactCount",
+        "OccurrenceActionTests/testMissingOptionalCountPortCannotExecuteOrAdvertise",
+        "OccurrenceActionTests/testMissingOrDifferentCatalogRevisionDoesNotCount",
+        "OccurrenceActionTests/testOriginalSearchPortAndPageTotalRemainUnchanged",
+        "OccurrenceActionTests/testOtherBackendsRemainUnsupportedWithoutFallback",
+        "OccurrenceActionTests/testProvenZeroHasExactZeroAndCoverageEvidence",
+        "OccurrenceActionTests/testQualifiedPortCanAdvertiseOnlyWithCurrentRightsAndReadiness",
+        "OccurrenceActionTests/testReplayReusesSameProofButNewGenerationInvalidatesIt",
+        "OccurrenceActionTests/testRestrictedWorkAuthorityRequiresExactExplicitScope",
+        "OccurrenceActionTests/testRightsAndDeepLinksCannotReachCountProvider",
+        "OccurrenceActionTests/testSourceChangeAfterCountingDiscardsAValidNumericResult",
+        "OccurrenceActionTests/testTypedFailuresContainNoPartialNumber",
+        "OccurrenceActionTests/testUnavailableIndexCannotBecomeZeroOrReachProvider",
+        "SearchResultsActionTests/testAbsentOptionalSearchPortIsUnsupported",
+        "SearchResultsActionTests/testAbsentUIIsNotAdvertised",
+        "SearchResultsActionTests/testActualResultsChangeAfterLastBackendAwaitRejectsSuccess",
+        "SearchResultsActionTests/testBlockedNativeSceneIsNotAdvertisedOrExecuted",
+        "SearchResultsActionTests/testByteExactQueryPurposeDoesNotNormalizeUnicode",
+        "SearchResultsActionTests/testCompleteUsesOriginalUISinkAndNeverSubstitutesHeadlessSearch",
+        "SearchResultsActionTests/testGenericAndDifferentQueryCannotBorrowSearchPreparation",
+        "SearchResultsActionTests/testHeadlessCannotCommit",
+        "SearchResultsActionTests/testNativeFailureSurvivesWithoutBecomingRetryableBackendFailure",
+        "SearchResultsActionTests/testNoteAndSearchPurposesCannotBeCombinedOrSubstituted",
+        "SearchResultsActionTests/testOnlyRepresentableNativeModesAndScopeAreReported",
+        "SearchResultsActionTests/testRevokedPurposeNeverMutatesAndWrongReceiptNeverCompletes",
+        "SearchResultsActionTests/testStrictNestedArgumentsRejectIgnoredFieldsHandlesAndPaging",
+        "SearchResultsActionTests/testUnknownScopeNeverReachesUI",
+        "SemanticJourneyTests/testAbsentRightsRemainDeniedByOriginalCore",
+        "SemanticJourneyTests/testActualCatalogTOCAndLinksFeedOneExactFourStepJourney",
+        "SemanticJourneyTests/testAmbiguousBaseCatalogStopsBeforeTOCOrNativeAction",
+        "SemanticJourneyTests/testAmbiguousCommentaryNeverChoosesFirstTargetOrOpensDraft",
+        "SemanticJourneyTests/testBackendGenerationChangeNeverOpensOldCountQuery",
+        "SemanticJourneyTests/testCancellationOfInflightCountNeverPublishesOrOpens",
+        "SemanticJourneyTests/testCanonicalSearchProjectionPreservesAllFieldsAndRejectsPaging",
+        "SemanticJourneyTests/testCommentaryDraftUsesExactAcknowledgedFocusAndOriginalUnsavedEditor",
+        "SemanticJourneyTests/testCountOpensByteExactOriginalQueryWithSameScopeAndDistinctDocumentCount",
+        "SemanticJourneyTests/testCredentialContextReplacementCannotReuseCompletedRead",
+        "SemanticJourneyTests/testExplicitWorkReadAuthorityCannotBecomeGlobalScope",
+        "SemanticJourneyTests/testMissingOrInvisibleOriginalSelectionDoesNotInventNoteRange",
+        "SemanticJourneyTests/testMissingReadAuthorityCannotCountOrOpen",
+        "SemanticJourneyTests/testNoteReceiptMustStillBeUnsavedAndActuallyVisible",
+        "SemanticJourneyTests/testOriginalFinalResultsVisibilityGuardRemainsMandatory",
+        "SemanticJourneyTests/testOriginalHeadlessReadRemainsIndependentOfJourneys",
+        "SemanticJourneyTests/testProvenZeroStillOpensTheSameSearch",
+        "SemanticJourneyTests/testQueuedResultsAreNotSuccessfulJourney",
+        "SemanticJourneyTests/testReadGrantForOtherSceneCannotReachCount",
+        "SemanticJourneyTests/testReadRevokedDuringResultsPresentationDiscardsNumberButPreservesNativeEffect",
+        "SemanticJourneyTests/testReadScopeDoesNotSupplyMissingNavigationPermission",
+        "SemanticJourneyTests/testRevisionBoundCountCannotDropRevisionToBypassOriginalResultsRefusal",
+        "SemanticJourneyTests/testRevokedReadAuthorityDiscardsCompletedProviderNumberBeforePublication",
+        "SemanticJourneyTests/testSectionOnlyRelationshipCannotInventSelectedSegmentForDraft",
+        "SemanticJourneyTests/testSourceABAEpochDiscardsCountEvenWhenBackendSnapshotIsIdentical",
+        "SemanticJourneyTests/testSourceChangeAfterReaderReceiptStopsBeforeDraftAndRetainsFirstEffect",
+        "SemanticJourneyTests/testSourceChangedDuringResultsPresentationDiscardsNumberButDoesNotEraseReceipt",
+        "SemanticJourneyTests/testUnknownCommentatorIsNotInventedFromBaseTitle",
+        "SemanticJourneyTests/testUnknownTOCSectionStopsWithoutGuessingLineZero",
+        "SemanticJourneyTests/testUnqualifiedCountFailureDoesNotBecomeZeroOrSearchFallback",
+        "SemanticJourneyTests/testUnsupportedCountUnitNeverInvokesResultsUI",
+        "SemanticJourneyTests/testWrongCommentaryReceiptCannotPrepareAnyDraft",
+        "SemanticJourneyTests/testWrongNativeReceiptLeavesTheCountButDoesNotCompleteJourney",
+        "WireSecurityTests/testBoundedGenericObjectIngressReusesExactParser",
+        "WireSecurityTests/testByteDepthAndInvalidGrammarBudgets",
+        "WireSecurityTests/testDuplicateDecodedKeysRejected",
+        "WireSecurityTests/testEnvelopeTypeBoundsAndUnknownFields",
+        "WireSecurityTests/testExactNumericTokenClassificationBeforeFoundationCoercion",
+        "WireSecurityTests/testFrozenCatalogAndElevenExamplesProject",
+        "WireSecurityTests/testWireKeysDoNotAcquireUnicodeNormalizationAliases"
+      ]
+    }
+  },
+  "started_at": "2026-11-20T15:23:32.887294+00:00",
+  "status": "FAIL_ACTUAL_CORE_ACCEPTANCE",
+  "swift_identity": {
+    "command": [
+      "xcrun",
+      "swift",
+      "--version"
+    ],
+    "completed_at": "2026-11-20T15:23:37.972594+00:00",
+    "cwd": "/Users/runner/work/Maktabah/Maktabah",
+    "elapsed_seconds": 4.259203542000023,
+    "log_sha256": "448e3f9c46706640fe62ea0140ecfccbb330baba2076b2916c0423af9642ee06",
+    "pid": 2258,
+    "returncode": 0,
+    "started_at": "2026-11-20T15:23:33.713609+00:00",
+    "timed_out": false
+  },
+  "windows_job_outcome": "UNKNOWN",
+  "windows_orphaned_job": "job_ed394b183ed4",
+  "windows_twenty_source_equivalence": "NOT_VERIFIED",
+  "xcode_identity": {
+    "command": [
+      "xcodebuild",
+      "-version"
+    ],
+    "completed_at": "2026-11-20T15:23:38.266627+00:00",
+    "cwd": "/Users/runner/work/Maktabah/Maktabah",
+    "elapsed_seconds": 0.2926020419999986,
+    "log_sha256": "67c5b47bcf0e788aecae2f9b3af345813bdf7fe736faefb9666a7f4b2bf27ba7",
+    "pid": 2375,
+    "returncode": 0,
+    "started_at": "2026-11-20T15:23:37.974033+00:00",
+    "timed_out": false
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "actual_c_or_rust_engine_executed": 0,
+  "baseline_case": "constructor_generation_switch_stops_further_native_work",
+  "baseline_failure_code": "stale_constructor_performed_more_native_work",
+  "baseline_scope": "UNPUBLISHED_CANDIDATE_BEFORE_POST_CONSTRUCTOR_GUARD_NOT_HISTORICAL_NATIVE_SOURCE",
+  "cases": [
+    "old_storage_owner_excludes_new_try",
+    "throw_releases_original_storage_owner",
+    "nonrecursive_storage_try_does_not_deadlock",
+    "unavailable_file_lock_fails_closed_and_releases_thread_owner",
+    "actual_darwin_cross_process_flock_excludes_try",
+    "bridge_try_recursive_acquisition_is_balanced",
+    "foreign_bridge_owner_returns_busy",
+    "migration_contention_cancellation_has_no_native_open",
+    "database_contention_deadline_has_no_native_open",
+    "search_contention_deadline_has_no_native_open",
+    "cache_contention_releases_all_outer_storage_owners",
+    "bridge_busy_cancellation_never_opens_native_engine",
+    "bridge_to_migration_cycle_unwinds_before_retry",
+    "generation_mismatch_precedes_native_open",
+    "repository_invalidation_aba_rejects_same_fingerprint",
+    "profile_change_cannot_borrow_original_index",
+    "missing_index_is_not_created",
+    "legacy_compatible_index_is_not_repaired",
+    "incompatible_index_never_opens",
+    "recovery_building_installing_markers_all_refuse",
+    "dictionary_digest_mismatch_never_opens",
+    "constructor_generation_switch_stops_further_native_work",
+    "failed_constructor_never_publishes",
+    "configuration_failure_closes_unpublished_handle",
+    "wrong_manifest_count_closes_unpublished_handle",
+    "valid_cold_open_uses_original_cache_once",
+    "original_legacy_constructor_keeps_existing_directory_behavior",
+    "pre_cancelled_execution_has_no_native_open",
+    "expired_deadline_has_no_native_open",
+    "constructor_metadata_change_is_closed_before_configuration",
+    "cancellation_during_constructor_closes_without_configuration",
+    "deadline_during_constructor_rejects_late_publication"
+  ],
+  "extractions": {
+    "OriginalGenerationSnapshot": {
+      "bytes": 70,
+      "marker": "func generationSnapshot() -> UInt64",
+      "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+      "sha256": "815ba7ec96ddf0e5939a528331be9fccfa3040aee08536742d285436ea24e674"
+    },
+    "OriginalWithLock": {
+      "bytes": 813,
+      "marker": "static func withLock<T>",
+      "path": "Source/Otzaria/Storage/ITorahSharedContainer.swift",
+      "sha256": "4a6502cbef09aa9184888af50cdf83ce09fd974e0249a2fde715912c4c2db40d"
+    },
+    "StorageLock": {
+      "bytes": 2692,
+      "marker": "enum ITorahStorageLock {",
+      "path": "Source/Otzaria/Storage/ITorahSharedContainer.swift",
+      "sha256": "786ad85110cd3f1ccb46c379307ace0fa210820eb0519f4e5fc2d841b41b1980"
+    },
+    "TryGenerationSnapshot": {
+      "bytes": 152,
+      "marker": "func tryGenerationSnapshot() -> UInt64?",
+      "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+      "sha256": "f5297d1540cc3d7072e905a1895f91bf3800e5b5899db99d6f396683b0fb1950"
+    }
+  },
+  "fixture_base_commit": "96f2b8a34259032c9328d972b8eacbdc94121e81",
+  "inputs": [
+    {
+      "bytes": 29224,
+      "git_blob": "2a3b379ed998830190923536ec0924fd6e622639",
+      "path": "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+      "sha256": "a7b495b21cdcad159101ba2665deff191d3451f883ffcbd158758ba752f0cf19"
+    },
+    {
+      "bytes": 26498,
+      "git_blob": "4b21b39abc9628b8f007c49d9cebaa21d22a212d",
+      "path": "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift",
+      "sha256": "51ba13a30cf33d7a3c274531a44f2a3eb8098c42614e7ffd5a306e714b805c5e"
+    },
+    {
+      "bytes": 18733,
+      "git_blob": "22f3980075810cec64fa1e4d52198e5ae2dfa2b2",
+      "path": "Source/Otzaria/Search/OtzariaSearchModels.swift",
+      "sha256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9"
+    },
+    {
+      "bytes": 738,
+      "git_blob": "7fdf7740fd0e4bcddcabd529bc0589310d927ff3",
+      "path": "Source/Otzaria/Search/OtzariaSearchMode.swift",
+      "sha256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876"
+    },
+    {
+      "bytes": 977,
+      "git_blob": "af5eacbd314306e836e9aa153cbd2cb55c2dd5e9",
+      "path": "Source/Otzaria/Search/OtzariaSearchSnippetRenderer.swift",
+      "sha256": "72076785cbad55847681725bcef3ca038d0e714911026fbe16d70b365cc3ac6d"
+    },
+    {
+      "bytes": 11971,
+      "git_blob": "076041c2abc7e82e711a29c4c2c20afafa1f10b4",
+      "path": "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift",
+      "sha256": "8ec1e4a4f834b84e12001e600109fd660e4a38bdcb4a48c3a584da14c2a3fc78"
+    },
+    {
+      "bytes": 7084,
+      "git_blob": "503de6da4698f6b40675df0ac09e208e10138756",
+      "path": "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift",
+      "sha256": "6b3ada4ad48a7f0b93d274e673bb94c95e0ea51cf9f4321edec297851cd6001c"
+    },
+    {
+      "bytes": 42358,
+      "git_blob": "8df9fc1232e154fae2787f4dbddf199c7f00494c",
+      "path": "Source/Otzaria/Storage/ITorahSharedContainer.swift",
+      "sha256": "d4fc6b5ae5f52d78806448cf5d499f46421fce15734d651c400ab1f08cd0aa67"
+    },
+    {
+      "bytes": 35675,
+      "git_blob": "eb689ae87de7f9fa8d360e45a141d5a4aecf23c8",
+      "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+      "sha256": "23df24a82b1203b981286ca119c843f3a3add4b3551fbb1d9b96dde5406ae7a9"
+    },
+    {
+      "bytes": 12138,
+      "git_blob": "ebb6f4f1985aaec2bfe3ad701675bcfeafa357b2",
+      "path": "Tests/HQ/cold-search-ownership/OwnershipBoundary.swift",
+      "sha256": "d23ea88cc298eaa83f322bed228eec1ac0eb74d34dd969184ce454f47bb5b9b1"
+    },
+    {
+      "bytes": 26301,
+      "git_blob": "8e72aa33b9aef676cacda8977d9554101b250ded",
+      "path": "Tests/HQ/cold-search-ownership/OwnershipCases.swift",
+      "sha256": "23fba01209862d3dd73dd561de0cc2ea058c1c10983a481c5b4f7a787c790bec"
+    },
+    {
+      "bytes": 3318,
+      "git_blob": "0557a8cb7ec68390cac39b1e0637f128f2905ac2",
+      "path": "Tests/HQ/cold-search-ownership/NativeConstructorDouble.c",
+      "sha256": "8a6ec20f92b4d4f91f319f302fcb87c995701a0f2b512041568e6aba0b9a0eaa"
+    },
+    {
+      "bytes": 6315,
+      "git_blob": "eda860af2099b412220d6eb0f528c8b65cb8f601",
+      "path": "Tests/HQ/cold-search-ownership/pre-publication-Repository.swift.gz",
+      "sha256": "3c2f7edbcd16bbf27133d11c96242b608b1a5b72a11da06ae64e2ceb9944f0d1"
+    },
+    {
+      "bytes": 14971,
+      "git_blob": "bef1edc5aa29c14ce095964879871aec4dd3e5b7",
+      "path": "tools/hq-cold-search-ownership.py",
+      "sha256": "06226561f58167cbf0dbf3ec070e1255037eaceda9c7b7640010548745d398aa"
+    },
+    {
+      "bytes": 3412,
+      "git_blob": "f21becb6a16fe3f32806ddd128f481e7eff4e3d1",
+      "path": "Tests/HQ/cold-search-ownership/test_ownership_driver.py",
+      "sha256": "704488db3307fae2fd30e0858eb1a839fe56528a3ec9370a465a9c9825e7c22b"
+    }
+  ],
+  "native_engine_boundary": "EXPLICIT_CONSTRUCTOR_DOUBLE",
+  "native_ui_executed": 0,
+  "original_base_commit": "19b68b8b0085a3e44e519835194398486273aaa4",
+  "reviewed_product_commit": "a826e66ab2710f1d3c05342da5b39b79e8c30c44",
+  "schema_version": 1,
+  "source_scope": "WHOLE_REPOSITORY_BRIDGE_MODELS_AND_EXACT_OWNER_METHODS",
+  "unpublished_pre_guard_repository_sha256": "68b67ec72d25012173e44792688ab45b3380065de0cbf65e279efae781bbcc65"
+}

@@ -1,0 +1,23 @@
+{
+  "scope": "SOURCE_REVIEW_AND_LOCAL_PYTHON_ONLY",
+  "files": [
+    {
+      "path": "INDEPENDENT_CORE_REVIEW.json",
+      "bytes": 25136,
+      "sha256": "c4b0b4b29c83b41843886865f13838bc6c23fa1f58eade18886d6a4022e3a209",
+      "git_blob": "804967df0be088a6d82b25c38260ce29307990ab"
+    },
+    {
+      "path": "ROOT_SOURCE_REVIEW.json",
+      "bytes": 589,
+      "sha256": "9bfd8cc94525b3b43e78d208a70037209c689c5f1a8daa99b1d834bd55c51445",
+      "git_blob": "8a729ae7291b28c610cb75de3d6e0cd8b39434d9"
+    },
+    {
+      "path": "LOCAL_VALIDATION_ATTEMPTS.zip",
+      "bytes": 14988,
+      "sha256": "0b3892a0e7c444b675212bd95b043d7476786b3320424d2b6eecdf63d545edc5",
+      "git_blob": "64d9f083694664318251eea4de8679e71ff31a8f"
+    }
+  ]
+}

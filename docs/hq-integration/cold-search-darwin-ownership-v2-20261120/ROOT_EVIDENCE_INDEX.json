@@ -1,0 +1,281 @@
+{
+  "files": [
+    {
+      "path": ".github/workflows/otzaria-cold-search-ownership-validation.yml",
+      "bytes": 3483,
+      "sha256": "e32e759500d7725c6acbf0a5bf654bf107d24b5cd73b599408f0098d3a1a6981",
+      "git_blob": "38e2c7d4850e1dd41f2ca7b25d8be51e3075798d"
+    },
+    {
+      "path": "Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json",
+      "bytes": 7318,
+      "sha256": "cdfae26afdc8854b8433a385ca3497d14c772db240529d0b4f43749f557dbfb9",
+      "git_blob": "350ce88807b9165a47c1ad753b680658c89b89a7"
+    },
+    {
+      "path": "Tests/HQ/cold-search-ownership/OwnershipBoundary.swift",
+      "bytes": 12138,
+      "sha256": "d23ea88cc298eaa83f322bed228eec1ac0eb74d34dd969184ce454f47bb5b9b1",
+      "git_blob": "ebb6f4f1985aaec2bfe3ad701675bcfeafa357b2"
+    },
+    {
+      "path": "Tests/HQ/cold-search-ownership/OwnershipCases.swift",
+      "bytes": 24911,
+      "sha256": "c23be0887cd788af514668c143d53aa7b4f34c7e15cadb25612bbe0c4a1b9703",
+      "git_blob": "329257d2e2c552b86cee123379d73fa42c01b7f5"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/ARTIFACTS.json",
+      "bytes": 11416,
+      "sha256": "f224dc2635b9f5061dc5ecc61773f06c051a19ecda53652252edbc845758e9a1",
+      "git_blob": "76f432fb728568a719d611e34c6389db5abb1df4"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/AUTHENTIC_FIRST_RUN_REVIEW.json",
+      "bytes": 3867,
+      "sha256": "f28e8bf0e39d7b52183a18b2180fe8853598ba658b89145e8455d20a02fc49b6",
+      "git_blob": "94520ef97d8a5b21af1e69fdcaac96c6c43f0ff5"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/RAW_INPUTS.json",
+      "bytes": 16742,
+      "sha256": "643192fe66c50f2d3f9b777133f18fec51099ff6ff443136885e6f0cf41cd058",
+      "git_blob": "4e017badab1597064815268b15a5ffac933bce27"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/README.md",
+      "bytes": 6700,
+      "sha256": "46ac5768d1739671aeb0b1dcd3e94ab09679d69b0c4700006b2cddb144fb420d",
+      "git_blob": "ad1a5389a31c20e44ba9e406f4f055dde38cf46a"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/SOURCE_PRESERVATION.json",
+      "bytes": 5897,
+      "sha256": "feefb9a14477acb110e56e4d50aec9680b9922d1e242e1b1659b1f520dfc8628",
+      "git_blob": "c6fa1dc7432f50ca680c257e02379be9a0518942"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/ARCHIVE_VERIFICATION.json.gz",
+      "bytes": 4088,
+      "sha256": "cc9922907b32397b46cc0efcab03327f134e05d4d9dfa9cda4dc605e86051019",
+      "git_blob": "650fb7fc5a2bb76ee161577ae7c384c78713b9da"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/ARTIFACT_METADATA.json.gz",
+      "bytes": 464,
+      "sha256": "9fcbf8d96885e95878cb54e59b1a5e3a4832339d0b695143b85eb565ef8e1a35",
+      "git_blob": "8f23b7e3799cb9b96f8135190d89cfa7a846fb5f"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/BASE_COMMIT.json.gz",
+      "bytes": 941,
+      "sha256": "ebd878ea757b16099a9f01fde55d4e6320ed1d5d82429661ffc508bd5bc941e4",
+      "git_blob": "a0c2d355a14aed9e565069fa54c1e00dc9e449b6"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/JOB-136390606628.log.gz",
+      "bytes": 6216,
+      "sha256": "3947d78695f7a4f1cb99859b66c732488ffda409c88e8ffbb27b2c958374a037",
+      "git_blob": "921175b7602cef689e09542cb8911c211111f0af"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/JOBS.json.gz",
+      "bytes": 840,
+      "sha256": "791678b48ca45c4ece86dd004dc287f4f6afb75e62a877dafd86a310ec072d0c",
+      "git_blob": "7c97e8966791b9e59a6db45503909e2710dc61a8"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/RUN.json.gz",
+      "bytes": 2110,
+      "sha256": "3691b53e724799ae2a79d94181df3802f79f3c9523b5ba4bca002ad389dac51b",
+      "git_blob": "ab6fae8fbbcc8a9ec71a280c44fed6f82cc7a55c"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership-route__source-route.json.gz",
+      "bytes": 516,
+      "sha256": "52a0a66ea0e0125080d0693bacedee0731a508456c21ca08ac91327e8bc0af2a",
+      "git_blob": "ccb97b9381ddcfae1a1352fd54e431c205fe6dd5"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership-route__toolchain.json.gz",
+      "bytes": 843,
+      "sha256": "dd11ffaa15ed5b40e11a12add52ad80a2e2af209f586c753d06a3940f46591da",
+      "git_blob": "af492b08cafed2adb74bed6e420a9764bb3d62d0"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership-route__verifier.log.gz",
+      "bytes": 353,
+      "sha256": "376261be86aeb2212299da0123ccaaec4b18b9fbdc02c81cf692f5e964b228b4",
+      "git_blob": "ee0abdad79756f3a3dbe98305c38099b5b657d5f"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__GENERATED_INPUTS.json.gz",
+      "bytes": 1570,
+      "sha256": "d217001b7cdd23cf619705c38cecf249fa11e82d64850194ecd47ff25beb7eb8",
+      "git_blob": "85f6010337f15c3d86f6b9d7c3f3d9269104d7f9"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__RESULT.json.gz",
+      "bytes": 2194,
+      "sha256": "0af4f5dd9c835d9fd2e8fcb1792dce4c1568a72c04aa6fc06df1e547dd0d8fe6",
+      "git_blob": "bfc0625f29bafa61a5d3e47751266c9b85d8fcde"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__SOURCE_INPUTS.zip.gz",
+      "bytes": 62303,
+      "sha256": "52fc25269f1cbd175c737436dd8a5c93b7893c2d084c2ee8bb879d4fd1d3aa56",
+      "git_blob": "ba7cd004472a210bf237b1e7ed3103af038f3f3c"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__candidate32.CHECKS.json.gz",
+      "bytes": 945,
+      "sha256": "4f1f12670f871a0ccadf9968a8d2e70208e90d3acb78b2d7ea41e4f1c4237a30",
+      "git_blob": "7af18457223851b48eca794286e8b25dcd3f6bf1"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__candidate32.compile.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__candidate32.result.json.gz",
+      "bytes": 1544,
+      "sha256": "ee3b78db26f0e958de9c1203dd30cd0ac4c95b1e5c7abaf839f9ad8301347a3a",
+      "git_blob": "2a7f88422a5937059abd8ac8eae64efd4faa48aa"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__candidate32.run.log.gz",
+      "bytes": 58,
+      "sha256": "1ec31b2543684de5fe14fcec40ce54be274eb9dac72a865ba7e70277f9642d3e",
+      "git_blob": "855c695c82ae8b22e78372c349ab97eeef8f7fc3"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__candidate32.source-after.json.gz",
+      "bytes": 642,
+      "sha256": "3930bd82523d7fa0a4582faf48da3c251fba1df50425f792786011c1995ec930",
+      "git_blob": "ec8d533b38201723ff2df72bd6d7302d127c7938"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__candidate32.source-before.json.gz",
+      "bytes": 642,
+      "sha256": "3930bd82523d7fa0a4582faf48da3c251fba1df50425f792786011c1995ec930",
+      "git_blob": "ec8d533b38201723ff2df72bd6d7302d127c7938"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__native-double-compile.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__pre-guard1.CHECKS.json.gz",
+      "bytes": 241,
+      "sha256": "65ab6351a576f9c66d5776ef0378e3750f122d037ed77c2cbb05cafbd48203d9",
+      "git_blob": "5f93ca15e6b1f4cecbf4f8a1eecd726d674883d5"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__pre-guard1.compile.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__pre-guard1.result.json.gz",
+      "bytes": 846,
+      "sha256": "4d05f17aadc8a7df32e2cc6c54bdb311324d9aede72b7cf7182de097485ea2b1",
+      "git_blob": "087e96ced757a557a80d569db3340ed604bb7024"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__pre-guard1.run.log.gz",
+      "bytes": 55,
+      "sha256": "9cce19155d1d6daf3de6b959315107f0a6cb18e52b8ce64be892e5e1ae54732f",
+      "git_blob": "1fb1d3ded6283d7db998cfa2e61bd510effe5233"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__pre-guard1.source-after.json.gz",
+      "bytes": 643,
+      "sha256": "cd69df673e0d6cac212be5282b207ccbb6f9f275607bd9e63c1b9f565b141a96",
+      "git_blob": "eaac1967b3ab29bd48de358143574ee490000b77"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__pre-guard1.source-before.json.gz",
+      "bytes": 643,
+      "sha256": "cd69df673e0d6cac212be5282b207ccbb6f9f275607bd9e63c1b9f565b141a96",
+      "git_blob": "eaac1967b3ab29bd48de358143574ee490000b77"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__source-after.json.gz",
+      "bytes": 1417,
+      "sha256": "9a1540ba6743076ab359457a1329cd5e45beb02fd43e64c55ce0ea2dac39a8d1",
+      "git_blob": "72b06c66f9406053e04c4660b906ba05895ec077"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__source-before.json.gz",
+      "bytes": 1417,
+      "sha256": "9a1540ba6743076ab359457a1329cd5e45beb02fd43e64c55ce0ea2dac39a8d1",
+      "git_blob": "72b06c66f9406053e04c4660b906ba05895ec077"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/extracted__cold-search-ownership__swift-version.log.gz",
+      "bytes": 125,
+      "sha256": "39c4c6654cd9fe7f2c626f87da4bc522a418aa9174e37e6a754ec160da0a879d",
+      "git_blob": "dade4735c9d6c7c806eff8bc512acd11345977a3"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/v2-preparation__BASE_INPUTS.json.gz",
+      "bytes": 1881,
+      "sha256": "970ae1af6776045c0f86cfccc631ec9d89a06c2752d0e512684cbcdda8714ea9",
+      "git_blob": "9b99b5b655ee084969cb95e4defe6ed05f924d1d"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/v2-preparation__generation__GENERATED_INPUTS.json.gz",
+      "bytes": 1571,
+      "sha256": "3b5d30d5a0f6c2c7b758de425965d3ae1fb245885a1dc0fef90cff302d028152",
+      "git_blob": "dfd056280ea97292ea1ad2695d5ae798b45cd7f8"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/v2-preparation__generation__RESULT.json.gz",
+      "bytes": 257,
+      "sha256": "66f94c56156392e17333c5156ae4483b65a10233f5dd43899ebd7673748b636e",
+      "git_blob": "7f77222fe6a9da49696c5732cea1f16f5e9f9b7d"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/v2-preparation__generation__source-before.json.gz",
+      "bytes": 1423,
+      "sha256": "1ab003d0d4077caf4ae58795f2adc91a19cb188713f3418800f1a9911af0539a",
+      "git_blob": "0f8f5547aee3edc9aed8bcd5d3704ce187218c62"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/verify_first_run.py.gz",
+      "bytes": 1804,
+      "sha256": "ed94f27d501f1089125948b5ddada32544e24a60dcf7bba55b2acee106d40a2b",
+      "git_blob": "2398c70d5289e76515ca3f8a72ce3c9d59e67d28"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/first-artifact-14646590409.zip",
+      "bytes": 1203409,
+      "sha256": "8f3314fbd0e7be164d42aecc684c4baa6370bc74af2942808a5f79998c8c19a7",
+      "git_blob": "720886f6bd9ea0187f7d7ce86c96cc01cf94a4a2"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/V2_SOURCE.patch",
+      "bytes": 11680,
+      "sha256": "947e329364ea68c1093ff2aa27eaf33055768e909039efab0c8419623ae28683",
+      "git_blob": "a339d1c8e36224ab301cb3f9c5671056c6849936"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/raw/ROOT_API_SOURCE_AUTHORITY.json.gz",
+      "bytes": 309943,
+      "sha256": "552b9c357de560ac86acda8d10e3a6890aff809bd493235edd76c0e60161ef38",
+      "git_blob": "6de76d82a24246fd827edecd0ae8a108a4deeb09"
+    },
+    {
+      "path": "docs/hq-integration/cold-search-darwin-ownership-v2-20261120/ROOT_REVIEW.json",
+      "bytes": 1866,
+      "sha256": "dcb21609295a02eb42de99eacddd8c073f99e743cb74aed628d95e8d20232fad",
+      "git_blob": "f794fb2ccfdd25468dc47255e5a9a785863acfd8"
+    }
+  ],
+  "scope": "Root completed original42-file packet with exact full artifact and source patch"
+}

@@ -1,0 +1,17 @@
+{
+  "reviewed_at": "2026-11-20T16:19:32.955390+00:00",
+  "base": "96f2b8a34259032c9328d972b8eacbdc94121e81",
+  "base_tree": "57f85214a2ec1fc3591eae58c7a750900c680047",
+  "all27_prepared_files_hash_verified": true,
+  "complete_three_file_delta_read": true,
+  "original_v2_failure_independently_verified": "31/32; exact qualified baseline RED; 253 ZIP members and 16 Git-bound source inputs; all source before/after identical",
+  "fixture_change": "Missing path invocation captures its actual same-manager missing URL after deletion. Existing-directory capture correctly yielded source_changed; that refusal is not added to the accepted set. The same immutable bridge/profile/revision/hash boundaries remain.",
+  "preservation": "All32 case IDs, original expected refusal set, deadlines, no-creation/no-open/cache assertions, every other case, all production code, original driver/qualifier/Cdouble unchanged",
+  "workflow": "Only exact new v3 branch and manifest hash changed",
+  "manifest_sha256": "b04dc2b518fa552934920a2c0a39043c1b5ad85eb55583e822ede6c95eca42ba",
+  "root_source_evidence_replay_exit": 0,
+  "independent_C_review": "source-only no concrete blocker",
+  "v3_Swift_Darwin": "NOT_RUN",
+  "real_C_engine": "NOT_RUN",
+  "Native": "NOT_RUN"
+}

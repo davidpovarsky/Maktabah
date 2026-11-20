@@ -1,0 +1,98 @@
+[
+  {
+    "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+    "bytes": 35675,
+    "sha256": "23df24a82b1203b981286ca119c843f3a3add4b3551fbb1d9b96dde5406ae7a9",
+    "git_blob": "eb689ae87de7f9fa8d360e45a141d5a4aecf23c8"
+  },
+  {
+    "path": "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift",
+    "bytes": 11971,
+    "sha256": "8ec1e4a4f834b84e12001e600109fd660e4a38bdcb4a48c3a584da14c2a3fc78",
+    "git_blob": "076041c2abc7e82e711a29c4c2c20afafa1f10b4"
+  },
+  {
+    "path": "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift",
+    "bytes": 7084,
+    "sha256": "6b3ada4ad48a7f0b93d274e673bb94c95e0ea51cf9f4321edec297851cd6001c",
+    "git_blob": "503de6da4698f6b40675df0ac09e208e10138756"
+  },
+  {
+    "path": "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift",
+    "bytes": 26498,
+    "sha256": "51ba13a30cf33d7a3c274531a44f2a3eb8098c42614e7ffd5a306e714b805c5e",
+    "git_blob": "4b21b39abc9628b8f007c49d9cebaa21d22a212d"
+  },
+  {
+    "path": "Source/Otzaria/Search/OtzariaSearchMode.swift",
+    "bytes": 738,
+    "sha256": "4d6b3340b0ae26b5a7367038eaab6675a40bac58b989cbe6b1e145e956ac8876",
+    "git_blob": "7fdf7740fd0e4bcddcabd529bc0589310d927ff3"
+  },
+  {
+    "path": "Source/Otzaria/Search/OtzariaSearchModels.swift",
+    "bytes": 18733,
+    "sha256": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9",
+    "git_blob": "22f3980075810cec64fa1e4d52198e5ae2dfa2b2"
+  },
+  {
+    "path": "Source/Otzaria/Search/OtzariaSearchSnippetRenderer.swift",
+    "bytes": 977,
+    "sha256": "72076785cbad55847681725bcef3ca038d0e714911026fbe16d70b365cc3ac6d",
+    "git_blob": "af5eacbd314306e836e9aa153cbd2cb55c2dd5e9"
+  },
+  {
+    "path": "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+    "bytes": 29224,
+    "sha256": "a7b495b21cdcad159101ba2665deff191d3451f883ffcbd158758ba752f0cf19",
+    "git_blob": "2a3b379ed998830190923536ec0924fd6e622639"
+  },
+  {
+    "path": "Source/Otzaria/Storage/ITorahSharedContainer.swift",
+    "bytes": 42358,
+    "sha256": "d4fc6b5ae5f52d78806448cf5d499f46421fce15734d651c400ab1f08cd0aa67",
+    "git_blob": "8df9fc1232e154fae2787f4dbddf199c7f00494c"
+  },
+  {
+    "path": "Tests/HQ/cold-search-ownership/NativeConstructorDouble.c",
+    "bytes": 3318,
+    "sha256": "8a6ec20f92b4d4f91f319f302fcb87c995701a0f2b512041568e6aba0b9a0eaa",
+    "git_blob": "0557a8cb7ec68390cac39b1e0637f128f2905ac2"
+  },
+  {
+    "path": "Tests/HQ/cold-search-ownership/OWNERSHIP_INPUTS.json",
+    "bytes": 7318,
+    "sha256": "cdfae26afdc8854b8433a385ca3497d14c772db240529d0b4f43749f557dbfb9",
+    "git_blob": "350ce88807b9165a47c1ad753b680658c89b89a7"
+  },
+  {
+    "path": "Tests/HQ/cold-search-ownership/OwnershipBoundary.swift",
+    "bytes": 12138,
+    "sha256": "d23ea88cc298eaa83f322bed228eec1ac0eb74d34dd969184ce454f47bb5b9b1",
+    "git_blob": "ebb6f4f1985aaec2bfe3ad701675bcfeafa357b2"
+  },
+  {
+    "path": "Tests/HQ/cold-search-ownership/OwnershipCases.swift",
+    "bytes": 24911,
+    "sha256": "c23be0887cd788af514668c143d53aa7b4f34c7e15cadb25612bbe0c4a1b9703",
+    "git_blob": "329257d2e2c552b86cee123379d73fa42c01b7f5"
+  },
+  {
+    "path": "Tests/HQ/cold-search-ownership/pre-publication-Repository.swift.gz",
+    "bytes": 6315,
+    "sha256": "3c2f7edbcd16bbf27133d11c96242b608b1a5b72a11da06ae64e2ceb9944f0d1",
+    "git_blob": "eda860af2099b412220d6eb0f528c8b65cb8f601"
+  },
+  {
+    "path": "Tests/HQ/cold-search-ownership/test_ownership_driver.py",
+    "bytes": 3412,
+    "sha256": "704488db3307fae2fd30e0858eb1a839fe56528a3ec9370a465a9c9825e7c22b",
+    "git_blob": "f21becb6a16fe3f32806ddd128f481e7eff4e3d1"
+  },
+  {
+    "path": "tools/hq-cold-search-ownership.py",
+    "bytes": 14971,
+    "sha256": "06226561f58167cbf0dbf3ec070e1255037eaceda9c7b7640010548745d398aa",
+    "git_blob": "bef1edc5aa29c14ce095964879871aec4dd3e5b7"
+  }
+]

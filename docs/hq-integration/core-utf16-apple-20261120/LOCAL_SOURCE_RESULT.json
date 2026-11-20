@@ -1,0 +1,16 @@
+{
+  "actual_c_engine_executed": 0,
+  "actual_xctest_completed": 0,
+  "completed_at": "2026-11-20T15:38:06.821900+00:00",
+  "declared_added": 20,
+  "declared_original": 174,
+  "inputs_sha256": "34469214c2fbcdd9058e0c8a614163c766114219fc484177341676b2873611ff",
+  "native_ui_executed": 0,
+  "scope": "ORIGINAL_CORE_XCTEST_WITH_EXPLICIT_PROVIDER_UI_DOUBLES",
+  "stages": {},
+  "started_at": "2026-11-20T15:38:06.804020+00:00",
+  "status": "PASS_SOURCE_CONTRACT_ONLY",
+  "windows_job_outcome": "UNKNOWN",
+  "windows_orphaned_job": "job_ed394b183ed4",
+  "windows_twenty_source_equivalence": "NOT_VERIFIED"
+}
