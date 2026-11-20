@@ -5,6 +5,13 @@ struct StudyProfile: Codable, Equatable, Identifiable, Sendable {
     var name: String
     var symbol: String
     var order: Int
+    /// Absent in existing v1 sidecars; nil keeps the original system appearance.
+    var color: StudyProfileColor? = nil
+}
+
+/// Stable semantic choices, independent of SwiftUI and device color encoding.
+enum StudyProfileColor: String, Codable, CaseIterable, Sendable {
+    case blue, teal, green, orange, red, purple
 }
 
 struct ReaderDocumentTab: Codable, Equatable, Identifiable, Sendable {

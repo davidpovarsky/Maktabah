@@ -28,7 +28,9 @@ struct StudyProfileMenu: View {
                         catch { workspace.errorMessage = error.localizedDescription }
                     }
                 } label: {
-                    Label(profile.name, systemImage: workspace.profile?.id == profile.id ? "checkmark" : profile.symbol)
+                    Label { Text(profile.name) } icon: {
+                        StudyProfileIcon(symbol: workspace.profile?.id == profile.id ? "checkmark" : profile.symbol, color: profile.color)
+                    }
                 }
                 .accessibilityAddTraits(workspace.profile?.id == profile.id ? .isSelected : [])
             }
@@ -36,12 +38,15 @@ struct StudyProfileMenu: View {
             Button("ניהול פרופילי לימוד", systemImage: "person.crop.circle.badge.plus", action: onManage)
         } label: {
             if usesNativeToolbar {
-                Label(workspace.profile?.name ?? "פרופילי לימוד", systemImage: workspace.profile?.symbol ?? "person.crop.circle")
+                Label { Text(workspace.profile?.name ?? "פרופילי לימוד") } icon: {
+                    StudyProfileIcon(symbol: workspace.profile?.symbol ?? "person.crop.circle", color: workspace.profile?.color)
+                }
                     .labelStyle(.iconOnly)
             } else {
                 HStack(spacing: 5) {
                     if !compact { Text(workspace.profile?.name ?? "אישי").font(.system(size: 15, weight: .medium)).lineLimit(1) }
-                    Image(systemName: workspace.profile?.symbol ?? "person.crop.circle.fill").font(.system(size: 20))
+                    StudyProfileIcon(symbol: workspace.profile?.symbol ?? "person.crop.circle.fill", color: workspace.profile?.color)
+                        .font(.system(size: 20))
                 }
                 .frame(height: 44)
                 .padding(.horizontal, compact ? 5 : 10)

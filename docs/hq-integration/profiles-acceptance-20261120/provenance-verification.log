@@ -1,0 +1,1 @@
+{"result": "PASS", "current_rows": 32, "historical_rows_still_matching": 29, "historical_drift_rows_preserved": 3, "scope": "Exact current source/diff/manifest bytes only; historical gaps, Native and license approvals remain explicit."}

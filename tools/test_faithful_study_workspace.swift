@@ -223,7 +223,127 @@ struct FaithfulStudyWorkspaceTests {
         try expect(ReaderNavigationDisplayPolicy.navigationUnitTitle(containing: 1, entries: ancestry) == nil, "Root work metadata cannot fabricate a section")
         try expect(ReaderNavigationDisplayPolicy.navigationUnitTitle(containing: 2, entries: [.init(id: 1, parentID: nil, title: "ספר"), .init(id: 2, parentID: 1, title: "פסקה ב")]) == nil, "A paragraph leaf alone must not become a navigation unit")
         try expect(ReaderNavigationDisplayPolicy.navigationUnitTitle(containing: 4, entries: [.init(id: 1, parentID: nil, title: "ספר"), .init(id: 3, parentID: 1, title: "הלכות שבת"), .init(id: 4, parentID: 3, title: "פסקה א")]) == "הלכות שבת", "Book-specific branching section names need no fixed hierarchy depth")
+        checks += try verifyHistoricalMigrationAndProfileColors(in: directory)
         print("PASS: \(checks) workspace persistence/migration/rollback/scene/semantic-location checks")
+    }
+
+
+    /// Starts from JSON emitted by the exact pre-workspace/pre-color Codable sources.
+    /// No UIKit/DB hydration is claimed by this portable persistence boundary test.
+    @MainActor
+    static func verifyHistoricalMigrationAndProfileColors(in directory: URL) throws -> Int {
+        var checks = 0
+        func expect(_ value: @autoclosure () -> Bool, _ message: String) throws {
+            guard value() else { throw CheckFailure(message: message) }
+            checks += 1
+        }
+        let fixtures = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
+            .appendingPathComponent("fixtures/study-workspace")
+        let legacyBytes = try Data(contentsOf: fixtures.appendingPathComponent("legacy-reader-session-v1.json"))
+        let legacy = try JSONDecoder().decode(iOSReaderSession.self, from: legacyBytes)
+        try expect(legacy.schemaVersion == 1 && legacy.tabs.count == 10, "Decode ten historical session tabs with the real production Codable type")
+        try expect(legacy.tabs[6].id == legacy.activeTabId, "Decode the independently fixed historical active tab")
+        try expect(legacy.tabs[0].scrollPosition == CGPoint(x: 0, y: 120.5)
+            && legacy.tabs[6].selectedRange == NSRange(location: 18, length: 7),
+            "Historical JSON must retain actual encoded viewport and selection values")
+
+        let migration = directory.appendingPathComponent("historical-migration")
+        try FileManager.default.createDirectory(at: migration, withIntermediateDirectories: true)
+        let canonicalURL = migration.appendingPathComponent("ios_reader_session.json")
+        try legacyBytes.write(to: canonicalURL, options: .atomic)
+        let originalRepair = BackendSessionIntegrityRepair()
+        let repaired = originalRepair.repairSessionSnapshot(session: legacy, targetBackend: .otzaria)
+        try expect(repaired.foreignTabs.isEmpty && repaired.sanitizedSession.tabs == legacy.tabs,
+                   "The original backend repair retains every correctly qualified historical tab")
+        let decodedDocuments = repaired.sanitizedSession.tabs.map {
+            ReaderDocumentTab(backend: originalRepair.detectTabBackend($0), session: $0)
+        }
+        let migratedPersistence = StudyWorkspacePersistence(url: migration.appendingPathComponent("StudyWorkspace/workspace-v1.json"))
+        let migratedStore = StudyWorkspaceStore(persistence: migratedPersistence, canonicalSessionURL: canonicalURL)
+        try migratedStore.attach(scene: "migration-window", legacyTabs: decodedDocuments,
+                                 activeID: repaired.sanitizedSession.activeTabId)
+        let migratedGroup = migratedStore.selectedGroup(scene: "migration-window")
+        try expect(migratedGroup?.tabs.map(\.session) == legacy.tabs,
+                   "Production attach preserves all ten decoded tabs, not a hand-built replacement")
+        try expect(migratedGroup?.activeTabID == legacy.activeTabId, "Migration preserves the decoded active UUID")
+        try expect(migratedStore.snapshot?.profiles.first?.name == "אישי"
+            && migratedStore.snapshot?.profiles.first?.color == nil,
+            "Migration keeps the original default profile and implicit system color")
+        let beforeReattach = migratedStore.snapshot
+        try migratedStore.attach(scene: "migration-window", legacyTabs: [], activeID: nil)
+        try expect(migratedStore.snapshot == beforeReattach, "Repeated migration cannot replace historical tabs with an empty input")
+        try expect(tryData(canonicalURL) == legacyBytes, "Migration never rewrites historical canonical session bytes")
+        try expect(tryData(migratedPersistence.url.deletingLastPathComponent().appendingPathComponent("pre-workspace-ios-reader-session.json")) == legacyBytes,
+                   "The exact historical JSON bytes are preserved by the original archive")
+        let coldMigration = StudyWorkspaceStore(persistence: migratedPersistence, canonicalSessionURL: canonicalURL)
+        try expect(coldMigration.snapshot == migratedStore.snapshot, "Every migrated session field survives a cold workspace decode")
+
+        let oldWorkspaceBytes = try Data(contentsOf: fixtures.appendingPathComponent("legacy-study-workspace-v1.json"))
+        let legacyWorkspace = try JSONDecoder().decode(StudyWorkspaceSnapshot.self, from: oldWorkspaceBytes)
+        try expect(legacyWorkspace.profiles.count == 2 && legacyWorkspace.profiles.allSatisfy { $0.color == nil },
+                   "Exact pre-color workspace JSON decodes every absent optional color as nil")
+        let colorParent = directory.appendingPathComponent("profile-colors")
+        try FileManager.default.createDirectory(at: colorParent, withIntermediateDirectories: true)
+        let colorPersistence = StudyWorkspacePersistence(url: colorParent.appendingPathComponent("workspace-v1.json"))
+        try oldWorkspaceBytes.write(to: colorPersistence.url, options: .atomic)
+        let colors = StudyWorkspaceStore(persistence: colorPersistence, canonicalSessionURL: canonicalURL)
+        try expect(colors.snapshot == legacyWorkspace && tryData(colorPersistence.url) == oldWorkspaceBytes,
+                   "Loading an existing sidecar neither migrates nor rewrites its bytes")
+        let original = colors.snapshot!
+        let selected = original.profiles[0]
+        let untouched = original.profiles[1]
+        try colors.updateProfile(selected.id, name: selected.name, symbol: selected.symbol, color: .blue)
+        let changed = colors.snapshot!
+        try expect(changed.profiles.first(where: { $0.id == selected.id })?.color == .blue,
+                   "An explicit color edit updates the intended existing profile")
+        try expect(changed.revision == original.revision + 1, "One editor Save uses one original transaction")
+        try expect(changed.profiles.first(where: { $0.id == untouched.id }) == untouched
+            && changed.groups == original.groups && changed.scenes == original.scenes,
+            "Color edits preserve other profiles, all documents, both scene selections and group membership")
+        let serialized = try Data(contentsOf: colorPersistence.url)
+        let decoded = try JSONDecoder().decode(StudyWorkspaceSnapshot.self, from: serialized)
+        try expect(decoded == changed, "Explicit profile color survives the actual persisted round trip")
+        let json = try JSONSerialization.jsonObject(with: serialized) as! [String: Any]
+        let serializedProfiles = json["profiles"] as! [[String: Any]]
+        try expect(serializedProfiles.first(where: { $0["id"] as? String == selected.id.uuidString })?["color"] as? String == "blue",
+                   "The new field is a stable semantic value, not a UIKit archive")
+        try expect(serializedProfiles.first(where: { $0["id"] as? String == untouched.id.uuidString })?["color"] == nil,
+                   "Untouched legacy profiles still omit the optional key")
+        try colors.renameProfile(selected.id, name: "שם חדש", symbol: "book.closed")
+        try expect(colors.snapshot?.profiles.first(where: { $0.id == selected.id })?.color == .blue,
+                   "The existing rename API must not silently reset an explicitly chosen color")
+
+        let beforeFailure = colors.snapshot
+        let beforeFailureBytes = try Data(contentsOf: colorPersistence.url)
+        let retained = directory.appendingPathComponent("retained-profile-colors")
+        try FileManager.default.moveItem(at: colorParent, to: retained)
+        try Data("deliberately unwritable parent".utf8).write(to: colorParent)
+        do {
+            try colors.updateProfile(selected.id, name: "must not commit", symbol: "star", color: .red)
+            throw CheckFailure(message: "Failed color persistence must not report success")
+        } catch is CheckFailure { throw CheckFailure(message: "Color I/O failure did not propagate") }
+        catch { checks += 1 }
+        try expect(colors.snapshot == beforeFailure, "Failed color Save rolls back name, symbol and color together")
+        try FileManager.default.removeItem(at: colorParent)
+        try FileManager.default.moveItem(at: retained, to: colorParent)
+        try expect(tryData(colorPersistence.url) == beforeFailureBytes, "Failed color Save preserves every durable byte")
+        try colors.updateProfile(selected.id, name: selected.name, symbol: selected.symbol, color: nil)
+        let resetBytes = try Data(contentsOf: colorPersistence.url)
+        let resetJSON = try JSONSerialization.jsonObject(with: resetBytes) as! [String: Any]
+        let resetProfiles = resetJSON["profiles"] as! [[String: Any]]
+        try expect(resetProfiles.allSatisfy { $0["color"] == nil },
+                   "Explicit default selection removes the optional key and restores legacy serialization")
+        let resetSnapshot = try JSONDecoder().decode(StudyWorkspaceSnapshot.self, from: resetBytes)
+        try expect(resetSnapshot.version == 1,
+                   "Profile colors do not change or migrate the workspace schema")
+        let newID = try colors.addProfile(name: "צבע חדש", symbol: "star", color: .purple)
+        try expect(colors.snapshot?.profiles.first(where: { $0.id == newID })?.color == .purple,
+                   "The original create flow can atomically persist an explicit profile color")
+        let defaultID = try colors.addProfile(name: "ברירת מחדל", symbol: "star")
+        try expect(colors.snapshot?.profiles.first(where: { $0.id == defaultID })?.color == nil,
+                   "Existing callers preserve the original default appearance")
+        try expect(tryData(canonicalURL) == legacyBytes, "Profile creation and edits never rewrite the historical reader session")
+        return checks
     }
 
     static func tryData(_ url: URL) -> Data? { try? Data(contentsOf: url) }

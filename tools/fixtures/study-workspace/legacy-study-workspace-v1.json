@@ -1,0 +1,560 @@
+{
+  "groups" : [
+    {
+      "activeTabID" : "00000000-0000-0000-0000-000000000007",
+      "id" : "20000000-0000-0000-0000-000000000001",
+      "name" : "כל הכרטיסיות",
+      "order" : 0,
+      "profileID" : "10000000-0000-0000-0000-000000000001",
+      "tabs" : [
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 100,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:17"
+            },
+            "bookId" : 17,
+            "bookTitle" : "נתוני בדיקת מיגרציה 17",
+            "contentId" : 100,
+            "expandedNodeIDs" : [
+              1000,
+              2000
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000001",
+            "isSidebarCollapsed" : true,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 100,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:17"
+            },
+            "nearDistance" : 2,
+            "page" : 1,
+            "part" : 1,
+            "scrollPosition" : [
+              0,
+              120.5
+            ],
+            "searchModeRaw" : 0,
+            "searchText" : "מילת בדיקה 0",
+            "selectedRange" : [
+              0,
+              1
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 107,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:18"
+            },
+            "bookId" : 18,
+            "bookTitle" : "נתוני בדיקת מיגרציה 18",
+            "contentId" : 107,
+            "expandedNodeIDs" : [
+              1001,
+              2001
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000002",
+            "isSidebarCollapsed" : false,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 107,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:18"
+            },
+            "nearDistance" : 3,
+            "page" : 2,
+            "part" : 2,
+            "scrollPosition" : [
+              0,
+              170.5
+            ],
+            "searchModeRaw" : 1,
+            "searchText" : "מילת בדיקה 1",
+            "selectedRange" : [
+              3,
+              2
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              10.25
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 114,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:19"
+            },
+            "bookId" : 19,
+            "bookTitle" : "נתוני בדיקת מיגרציה 19",
+            "contentId" : 114,
+            "expandedNodeIDs" : [
+              1002,
+              2002
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000003",
+            "isSidebarCollapsed" : true,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 114,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:19"
+            },
+            "nearDistance" : 4,
+            "page" : 3,
+            "part" : 1,
+            "scrollPosition" : [
+              0,
+              220.5
+            ],
+            "searchModeRaw" : 2,
+            "searchText" : "מילת בדיקה 2",
+            "selectedRange" : [
+              6,
+              3
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              20.5
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 121,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:17"
+            },
+            "bookId" : 17,
+            "bookTitle" : "נתוני בדיקת מיגרציה 17",
+            "contentId" : 121,
+            "expandedNodeIDs" : [
+              1003,
+              2003
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000004",
+            "isSidebarCollapsed" : false,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 121,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:17"
+            },
+            "nearDistance" : 5,
+            "page" : 4,
+            "part" : 2,
+            "scrollPosition" : [
+              0,
+              270.5
+            ],
+            "searchModeRaw" : 3,
+            "searchText" : "מילת בדיקה 3",
+            "selectedRange" : [
+              9,
+              4
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              30.75
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 128,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:18"
+            },
+            "bookId" : 18,
+            "bookTitle" : "נתוני בדיקת מיגרציה 18",
+            "contentId" : 128,
+            "expandedNodeIDs" : [
+              1004,
+              2004
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000005",
+            "isSidebarCollapsed" : true,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 128,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:18"
+            },
+            "nearDistance" : 6,
+            "page" : 5,
+            "part" : 1,
+            "scrollPosition" : [
+              0,
+              320.5
+            ],
+            "searchModeRaw" : 0,
+            "searchText" : "מילת בדיקה 4",
+            "selectedRange" : [
+              12,
+              5
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              41
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 135,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:19"
+            },
+            "bookId" : 19,
+            "bookTitle" : "נתוני בדיקת מיגרציה 19",
+            "contentId" : 135,
+            "expandedNodeIDs" : [
+              1005,
+              2005
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000006",
+            "isSidebarCollapsed" : false,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 135,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:19"
+            },
+            "nearDistance" : 7,
+            "page" : 6,
+            "part" : 2,
+            "scrollPosition" : [
+              0,
+              370.5
+            ],
+            "searchModeRaw" : 1,
+            "searchText" : "מילת בדיקה 5",
+            "selectedRange" : [
+              15,
+              6
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              51.25
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 142,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:17"
+            },
+            "bookId" : 17,
+            "bookTitle" : "נתוני בדיקת מיגרציה 17",
+            "contentId" : 142,
+            "expandedNodeIDs" : [
+              1006,
+              2006
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000007",
+            "isSidebarCollapsed" : true,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 142,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:17"
+            },
+            "nearDistance" : 8,
+            "page" : 7,
+            "part" : 1,
+            "scrollPosition" : [
+              0,
+              420.5
+            ],
+            "searchModeRaw" : 2,
+            "searchText" : "מילת בדיקה 6",
+            "selectedRange" : [
+              18,
+              7
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              61.5
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 149,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:18"
+            },
+            "bookId" : 18,
+            "bookTitle" : "נתוני בדיקת מיגרציה 18",
+            "contentId" : 149,
+            "expandedNodeIDs" : [
+              1007,
+              2007
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000008",
+            "isSidebarCollapsed" : false,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 149,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:18"
+            },
+            "nearDistance" : 9,
+            "page" : 8,
+            "part" : 2,
+            "scrollPosition" : [
+              0,
+              470.5
+            ],
+            "searchModeRaw" : 3,
+            "searchText" : "מילת בדיקה 7",
+            "selectedRange" : [
+              21,
+              8
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              71.75
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 156,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:19"
+            },
+            "bookId" : 19,
+            "bookTitle" : "נתוני בדיקת מיגרציה 19",
+            "contentId" : 156,
+            "expandedNodeIDs" : [
+              1008,
+              2008
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000009",
+            "isSidebarCollapsed" : true,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 156,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:19"
+            },
+            "nearDistance" : 10,
+            "page" : 9,
+            "part" : 1,
+            "scrollPosition" : [
+              0,
+              520.5
+            ],
+            "searchModeRaw" : 0,
+            "searchText" : "מילת בדיקה 8",
+            "selectedRange" : [
+              24,
+              9
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              82
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 163,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:17"
+            },
+            "bookId" : 17,
+            "bookTitle" : "נתוני בדיקת מיגרציה 17",
+            "contentId" : 163,
+            "expandedNodeIDs" : [
+              1009,
+              2009
+            ],
+            "highlightTerms" : [
+              "מילת",
+              "בדיקה"
+            ],
+            "id" : "00000000-0000-0000-0000-000000000010",
+            "isSidebarCollapsed" : false,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 163,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:17"
+            },
+            "nearDistance" : 11,
+            "page" : 10,
+            "part" : 2,
+            "scrollPosition" : [
+              0,
+              570.5
+            ],
+            "searchModeRaw" : 1,
+            "searchText" : "מילת בדיקה 9",
+            "selectedRange" : [
+              27,
+              10
+            ],
+            "sidebarScrollPosition" : [
+              0,
+              92.25
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id" : "20000000-0000-0000-0000-000000000002",
+      "name" : "קבוצה ריקה",
+      "order" : 0,
+      "profileID" : "10000000-0000-0000-0000-000000000002",
+      "tabs" : [
+
+      ]
+    }
+  ],
+  "lastActiveSceneID" : "fixture-window-a",
+  "migratedLegacySession" : true,
+  "profiles" : [
+    {
+      "id" : "10000000-0000-0000-0000-000000000001",
+      "name" : "אישי",
+      "order" : 0,
+      "symbol" : "person.crop.circle"
+    },
+    {
+      "id" : "10000000-0000-0000-0000-000000000002",
+      "name" : "פרופיל בדיקה נוסף",
+      "order" : 1,
+      "symbol" : "star"
+    }
+  ],
+  "revision" : 0,
+  "scenes" : {
+    "fixture-window-a" : {
+      "groupID" : "20000000-0000-0000-0000-000000000001",
+      "profileID" : "10000000-0000-0000-0000-000000000001"
+    },
+    "fixture-window-b" : {
+      "groupID" : "20000000-0000-0000-0000-000000000002",
+      "profileID" : "10000000-0000-0000-0000-000000000002"
+    }
+  },
+  "version" : 1
+}

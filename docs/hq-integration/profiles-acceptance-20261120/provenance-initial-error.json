@@ -1,0 +1,13 @@
+{
+  "job_id": "job_ac3773310a1e",
+  "exit_code": 1,
+  "phase": "merge-base metadata after all five syntax parses passed",
+  "command": [
+    "git",
+    "merge-base",
+    "bfc7f5a6aa849ab7e9a892cf63c693a8f49ac8a1",
+    "d46af139b3a265399c16d87f5923acd8e3444024"
+  ],
+  "error": "git returned 1; no common ancestor was reported in the available object graph",
+  "resolution": "Keep absence explicit; no invented ancestor, fetch, history rewrite, policy change or test-pass inference."
+}

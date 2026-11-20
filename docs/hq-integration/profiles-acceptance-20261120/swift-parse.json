@@ -1,0 +1,85 @@
+{
+  "scope": "Windows Swift parser only; not Apple SDK typecheck or Native execution",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios18.0-simulator",
+        "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift"
+      ],
+      "exit_code": 0,
+      "output": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "lf_sha256": "da6920095961f53add1c9776e31db2efced8835dd35f6e8e0c08527af2d0ef69"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios18.0-simulator",
+        "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift"
+      ],
+      "exit_code": 0,
+      "output": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "lf_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios18.0-simulator",
+        "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift"
+      ],
+      "exit_code": 0,
+      "output": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "lf_sha256": "b166532ca71f220d081e1ff9fb978830c6a6dc6c3b249bdc70b036e846304ede"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios18.0-simulator",
+        "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift"
+      ],
+      "exit_code": 0,
+      "output": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "lf_sha256": "dec666dbb22ac874a3e918bfc5013555e7e798d4b8f0e9f9ee39263067efe096"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-D",
+        "DEBUG",
+        "-target",
+        "arm64-apple-ios18.0-simulator",
+        "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+      ],
+      "exit_code": 0,
+      "output": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n",
+      "lf_sha256": "699ede8473ae36bc46531ba465384bee0eb98ea0051d90ebefe2919cec605c55"
+    }
+  ]
+}

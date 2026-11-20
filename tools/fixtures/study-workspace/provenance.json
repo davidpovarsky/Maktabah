@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "scope": "Constructed test identities encoded by exact historical production Codable declarations; not a user session, source existence proof, or native migration result.",
+  "session_revision_before_study_workspace": "f092f3996927251d105dfb9243dfac487b196534",
+  "workspace_revision_before_optional_color": "bfc7f5a6aa849ab7e9a892cf63c693a8f49ac8a1",
+  "generator_sha256": "7f64e22bea72c2ffc785b664562a685b1ce680945b1a4183631bdcdad862c2b6",
+  "sources": [
+    {
+      "revision": "f092f3996927251d105dfb9243dfac487b196534",
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "git_blob": "d5ba71b45447d640ee979da51fc5effafc84aa13",
+      "full_git_bytes_sha256": "4ed6723b2f190b9691971c5edc9fa5936281984b78bfe2a5928f55d2283a2c7d",
+      "compiled_exact_prefix_sha256": "1ca4d899f307e59d46b3aad96b723038630155d5c4beb5ba632f281a1e73680d",
+      "prefix_ends_before": "/// A canonical reader destination:",
+      "rewritten_declarations": false
+    },
+    {
+      "revision": "f092f3996927251d105dfb9243dfac487b196534",
+      "path": "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "git_blob": "d3c3451a79e2d0ded0db3a22d7754ea85747e99c",
+      "full_git_bytes_sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "compiled_exact_prefix_sha256": "d46288f1c865767b196b49fa8dac5ce3a339a8a6e82a7eb58139d70c7006da87",
+      "prefix_ends_before": "// MARK: - Backend Session Integrity Repair",
+      "rewritten_declarations": false
+    },
+    {
+      "revision": "bfc7f5a6aa849ab7e9a892cf63c693a8f49ac8a1",
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "git_blob": "651c77818b59cb0eac5667d63cc51ceac09aa192",
+      "full_git_bytes_sha256": "31191cc0c61f8b834a2aa24018a3b65051fdffad7abbb96d7b611efe8d4231c7",
+      "compiled_exact_prefix_sha256": "31191cc0c61f8b834a2aa24018a3b65051fdffad7abbb96d7b611efe8d4231c7",
+      "prefix_ends_before": null,
+      "rewritten_declarations": false
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "legacy-reader-session-v1.json",
+      "bytes": 10608,
+      "sha256": "d3d65f962f1bedc25c7e4154316c8789b641590aa2b64a53421ed7b40b86108c"
+    },
+    {
+      "path": "legacy-study-workspace-v1.json",
+      "bytes": 15231,
+      "sha256": "3eaab9c19f18b6ceb59931320f96bfd534d8b6ed5e82a4b9b059b60db51377cc"
+    }
+  ],
+  "compiler": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "result": "PASS",
+  "mode": "write"
+}
