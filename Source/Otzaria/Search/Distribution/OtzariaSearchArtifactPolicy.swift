@@ -8,16 +8,21 @@ enum OtzariaManagedDiscoveryDisposition: Equatable, Sendable {
 
 /// Directional READ compatibility is separate from an index writer identity.
 /// A source-parity candidate is deliberately insufficient to admit an index.
-/// Qualification requires the old producer's actual artifacts to pass the new
-/// runtime's read/install/recovery/rollback gates before this registry changes.
+/// Qualification binds immutable original artifacts to reviewed runtime evidence.
+/// Platform acceptance remains a separate gate before releasing the candidate.
 enum OtzariaLexicalIndexReadCompatibility {
     enum Contract: String, CaseIterable, Sendable {
         case original265ToExactOccurrencesD5 = "otzaria-265-to-d5-lexical-read-v1"
     }
 
-    // No contract is runtime-qualified. Do not populate this from a manifest,
-    // user default, environment variable, schema equality, or git ancestry.
-    private static let qualifiedContracts: Set<Contract> = []
+    // Actual Windows reads/counts/rollback: evidence commit df3b894cef2c8ea3dd50ccb31394635aa8fe4077.
+    // docs/hq-integration/index-read-qualification-20261120/QUALIFICATION_REVIEW.json
+    // Git LF report SHA256 3ccd704a831f4a96ec06a691bdc17e7a8988168659bad766815018c9106983a1.
+    // Original Windows bytes: raw/QUALIFICATION_REVIEW.json.gz; SHA256 56fead3a78281ea6a1ba68d21806d5fa7505f2ba32b709fd03c1ce831c8fa3ca.
+    // Apple full-v32 runtime acceptance remains a separate release gate.
+    // Never populate this from a manifest, user default, environment variable,
+    // schema equality, or git ancestry; only this exact reviewed pair is admitted.
+    private static let qualifiedContracts: Set<Contract> = [.original265ToExactOccurrencesD5]
 
     // Exact required-resource projection reported by both real C binaries.
     // The published artifact additionally records optional lexical.db; claiming

@@ -68,3 +68,9 @@ The policy's production registry and application engine pin are unchanged by thi
 QUALIFICATION_REVIEW.json is the machine-readable sealed review. SHA256SUMS.json records both the original and stored deterministic-gzip hashes for every raw evidence file. Raw C response logs, commands, complete result objects, original manifests, archive verification receipts, before/after inventories, rollback runs, source snapshots, failures, and all 71 SQL coverage partitions are included. Large database/index/library/executable payloads remain in their owned authenticated locations and are represented by their exact verified digests.
 
 The source files listed in SHA256SUMS.json are committed with this package. The final reviewer never opens an engine or database; it parses and hashes the completed original records, compares complete SQL counts to actual C scalars, and checks that production remains disabled. The packaging script only preserves evidence after that reviewer has succeeded.
+
+## Exact report bytes on Windows and in Git
+
+The original generated Windows QUALIFICATION_REVIEW.json is 28174 bytes with SHA-256 56fead3a78281ea6a1ba68d21806d5fa7505f2ba32b709fd03c1ce831c8fa3ca. Those exact bytes remain losslessly retained in raw/QUALIFICATION_REVIEW.json.gz and are the meaning of qualificationReviewSHA256 in SHA256SUMS.json.
+
+Git normalizes this readable JSON file to LF. The immutable df3b894cef2c8ea3dd50ccb31394635aa8fe4077 Git blob is 27739 bytes with SHA-256 3ccd704a831f4a96ec06a691bdc17e7a8988168659bad766815018c9106983a1. A check against that repository text on Apple must use this Git LF digest. Independent byte comparison proved that CRLF-to-LF conversion is the only difference; decoded JSON content is identical. All 211 raw gzip records and their original digests remain unchanged. The historical OFF evidence commit is preserved.

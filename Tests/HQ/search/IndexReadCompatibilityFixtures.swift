@@ -111,23 +111,21 @@ import Foundation
                     "candidate accepted arbitrary required-resource subset")
             }
         }
-        await run("production_candidate_remains_unqualified_and_rejected") {
-            try require(OtzariaLexicalIndexReadCompatibility.qualifiedContract(manifest: mini, consumer: consumer) == nil,
-                "qualification must be empty")
-            try require(rejects {
-                try SubjectArtifactPolicy.validate(mini, database: database(mini),
-                    databaseBytes: mini.sourceDatabase.databaseBytes, build: consumer)
-            }, "candidate probe must not enable production")
+        await run("production_qualified_exact_265_to_d5_is_accepted") {
+            try require(OtzariaLexicalIndexReadCompatibility.qualifiedContract(manifest: mini, consumer: consumer)
+                == .original265ToExactOccurrencesD5, "only the exact evidenced contract is qualified")
+            try SubjectArtifactPolicy.validate(mini, database: database(mini),
+                databaseBytes: mini.sourceDatabase.databaseBytes, build: consumer)
         }
         let full = try JSONDecoder().decode(OtzariaSearchArtifactManifest.self,
             from: Data(contentsOf: root.appendingPathComponent("docs/hq-search/manifests/otzaria-search-manifest.json")))
-        await run("actual_v32_manifest_candidate_metadata_probe_only") {
+        await run("actual_v32_manifest_has_qualified_production_admission") {
             activate(full); defer { activate(mini) }
             try probe(full, database: database(full), bytes: full.sourceDatabase.databaseBytes)
-            try require(rejects {
-                try SubjectArtifactPolicy.validate(full, database: database(full),
-                    databaseBytes: full.sourceDatabase.databaseBytes, build: consumer)
-            }, "v32 runtime admission must remain disabled")
+            try require(OtzariaLexicalIndexReadCompatibility.qualifiedContract(manifest: full, consumer: consumer)
+                == .original265ToExactOccurrencesD5, "full v32 requires the same exact evidenced contract")
+            try SubjectArtifactPolicy.validate(full, database: database(full),
+                databaseBytes: full.sourceDatabase.databaseBytes, build: consumer)
         }
         let manifestNegatives: [(String, [String], Any)] = [
             ("format", ["formatVersion"], 2),
@@ -216,8 +214,8 @@ import Foundation
                 && identity.resourceHashes == producer.resourceHashes, "producer required-resource projection changed")
             try require(BaselineArtifactPolicy.managedIdentityMatchesCanonicalData(identity, currentDatabase: fingerprint, build: producer),
                 "old runtime metadata rollback rejected original producer")
-            try require(!SubjectArtifactPolicy.managedIdentityMatchesCanonicalData(identity, currentDatabase: fingerprint,
-                build: consumer, trustedManifest: mini), "candidate identity became runtime-qualified")
+            try require(SubjectArtifactPolicy.managedIdentityMatchesCanonicalData(identity, currentDatabase: fingerprint,
+                build: consumer, trustedManifest: mini), "qualified consumer rejected the trusted original producer")
         }
         await run("untrusted_bare_commit_cannot_authorize_cross_revision_read") {
             let fp = OtzariaIndexFingerprint(databasePath: "old-path", fileSize: 123, modificationTime: 7)
@@ -269,7 +267,7 @@ import Foundation
     static func reset(_ name: String) throws -> (OtzariaResolvedSearchArtifact, String) {
         FixtureWorld.root = stateRoot.appendingPathComponent(name)
         try FileManager.default.createDirectory(at: manager.indexRootURL, withIntermediateDirectories: true)
-        FixtureWorld.build = consumer; FixtureWorld.admitCandidate = true
+        FixtureWorld.build = consumer
         FixtureWorld.compatible = true; FixtureWorld.count = mini.lexicalArtifact.documentCount
         FixtureWorld.openFails = false; FixtureWorld.finalOpenFails = false; FixtureWorld.countFails = false
         FixtureWorld.writes = 0; FixtureWorld.opens = 0; FixtureWorld.closes = 0
@@ -367,7 +365,7 @@ import Foundation
             _ = try manager.recoverTrustedManagedIndex(databasePath: path)
             try assertProducer(final, artifact: artifact, path: path)
         }
-        for failure in ["production_disabled", "incompatible_engine", "wrong_count", "count_error", "wrong_resource", "wrong_source", "wrong_profile"] {
+        for failure in ["unqualified_consumer_revision", "incompatible_engine", "wrong_count", "count_error", "wrong_resource", "wrong_source", "wrong_profile"] {
             await run("recovery_\(failure)_preserves_existing_index") {
                 var (artifact, path) = try reset("recover-" + failure)
                 if failure == "wrong_resource" {
@@ -377,7 +375,9 @@ import Foundation
                         manifest: changed, partURLs: artifact.partURLs)
                 }
                 let final = try trustedIndex(artifact, path: path)
-                if failure == "production_disabled" { FixtureWorld.admitCandidate = false }
+                if failure == "unqualified_consumer_revision" {
+                    FixtureWorld.build = try mutate(consumer!, ["upstreamCommit"], String(repeating: "f", count: 40))
+                }
                 if failure == "incompatible_engine" { FixtureWorld.compatible = false }
                 if failure == "wrong_count" { FixtureWorld.count += 1 }
                 if failure == "count_error" { FixtureWorld.countFails = true }
@@ -422,12 +422,13 @@ import Foundation
             } catch OtzariaSearchArtifactError.cancelled {}
             try require(try finalSnapshot(final) == before, "cancelled transfer changed original final")
         }
-        await run("production_readiness_rejects_unqualified_producer_without_mutation") {
-            let (artifact, path) = try reset("readiness-disabled")
+        await run("production_readiness_rejects_unqualified_consumer_without_mutation") {
+            let (artifact, path) = try reset("readiness-unqualified-consumer")
             let final = try trustedIndex(artifact, path: path); let before = try finalSnapshot(final)
-            FixtureWorld.admitCandidate = false
+            FixtureWorld.build = try mutate(consumer!, ["upstreamCommit"], String(repeating: "f", count: 40))
             try require(rejects { _ = try manager.validateCurrentIndex(databasePath: path) }, "unqualified read admitted")
             try require(try finalSnapshot(final) == before, "readiness changed original index")
+            try require(FixtureWorld.opens == FixtureWorld.closes, "rejected readiness leaked an engine")
         }
         await run("new_writer_identity_keeps_real_consumer_revision") {
             let (_, path) = try reset("new-writer")
@@ -479,7 +480,8 @@ import Foundation
         let failures = results.filter { $0["outcome"] == "FAIL" }
         let report: [String: Any] = ["counts": ["total": results.count, "passed": results.count - failures.count,
             "failed": failures.count, "skipped": 0], "cases": results,
-            "runtime_qualification": "NOT_RUN; production registry empty", "real_engine_or_index": false]
+            "runtime_qualification": "NOT_RUN_BY_THIS_PORTABLE_SUITE; exact evidenced candidate registry enabled",
+            "real_engine_or_index": false]
         try JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys])
             .write(to: URL(fileURLWithPath: CommandLine.arguments[3]))
         for result in failures { print("FAIL \(result["name"]!): \(result["detail"]!)") }
