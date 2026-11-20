@@ -156,7 +156,19 @@ struct MaktabahNativeRoutingSurface: ViewModifier {
     }
     @Environment(\.maktabahNativeRoutingSession) private var session
     func body(content: Content) -> some View {
-        content.background {
+        content
+            #if DEBUG
+            .onAppear {
+                guard kind == .noteDraft else { return }
+                if let session {
+                    session.diagnoseNoteDraftSurface(stage: "sheet-surface-appear",
+                        reader: noteReader, draft: noteDraft)
+                } else {
+                    OtzariaFileLogger.shared.log("[NativeNoteDraftDiagnostic] stage=sheet-surface-appear session=false")
+                }
+            }
+            #endif
+            .background {
             if let session,
                kind != .inspector || inspectorReader.map({ session.ownsInspectorReader($0) }) == true,
                kind != .noteDraft || (noteReader.flatMap { reader in

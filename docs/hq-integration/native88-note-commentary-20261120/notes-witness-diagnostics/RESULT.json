@@ -1,0 +1,48 @@
+{
+  "status": "PREPARED_DEBUG_DIAGNOSTICS_NATIVE_NOT_RUN",
+  "sourceParent": "83c1198b9055879886588c224b90a47224790de6",
+  "observedNativeFailure": "Original notes editor and exact proposal visible; Core deadline_exceeded; no noteDraft witness diagnostic in Native88 log",
+  "productFixClaimed": false,
+  "diagnosticStages": [
+    "after-apply",
+    "wait-begin",
+    "sheet-surface-appear",
+    "wait-error",
+    "before-binding-release"
+  ],
+  "scope": "DEBUG-only passive source/owner/projection/UI flags and existing live marker evidence; no editor/source text logging",
+  "preserved": [
+    "original sheet/controls/persistence",
+    "selection and source guards",
+    "actual glyph and UIKit witness requirements",
+    "5-second acknowledgement deadline",
+    "all Native acceptance assertions",
+    "release source after DEBUG removal and whitespace normalization"
+  ],
+  "sourceFiles": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift"
+  ],
+  "validation": {
+    "byteInverseProof": true,
+    "syntaxParseFilesPassed": 3,
+    "syntaxParseDiagnostics": 0,
+    "AppleSDKTypecheck": "NOT_RUN",
+    "NativeExecution": "NOT_RUN",
+    "newCompilerCache": false
+  },
+  "interpretation": "Ordering of flags matters: binding release can precede a wait-error callback after Core timeout. Never infer causal absence solely from a post-release snapshot.",
+  "peerReview": {
+    "status": "READ_ONLY_SOURCE_REVIEW_NO_BLOCKER",
+    "reviewer": "hanlin_api_integration",
+    "scope": "Actual source diff; passivity, ordering and ownership. Not Apple typecheck/Native execution.",
+    "findings": [
+      "Stages before wait and before release distinguish post-timeout cleanup",
+      "No validateVisible/force-layout/selection/ack call added",
+      "Existing marker currentEvidence does not publish; only diagnostic dedup mutates",
+      "No note/source text or IDs logged",
+      "MainActor and Optional map/flatMap source signatures reviewed"
+    ]
+  }
+}

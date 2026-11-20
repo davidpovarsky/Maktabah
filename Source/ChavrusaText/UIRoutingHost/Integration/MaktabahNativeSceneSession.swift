@@ -184,6 +184,43 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
               let bound = noteDraftBinding, bound.owner === owner, bound.draft == draft else { return false }
         return true
     }
+    #if DEBUG
+    /// Passive flags for the actual owner/marker seam. Never publishes a
+    /// receipt, forces TextKit layout, changes selection, or logs note content.
+    func diagnoseNoteDraftSurface(stage: String, reader: ReaderViewModel? = nil, draft: Annotation? = nil) {
+        let bound = noteDraftBinding, owner = noteEditorOwner
+        var validation = "no_binding"
+        if let bound {
+            do { try bound.validate(); validation = "valid" }
+            catch { validation = (error as? UIRouteError)?.code ?? String(describing: type(of: error)) }
+        }
+        let projected = (try? project().surface(.noteDraft)) != nil
+        let surfaceAvailable = (try? surface(.noteDraft)) != nil
+        let destination = UIDestinationID(rawValue: "native.reader.noteDraft")!
+        let check = visibilityChecks[destination], evidence = check?()
+        let textView = owner?.textView
+        let sameOwner = bound.map { owner === $0.owner } ?? false
+        let currentMatches = bound.map { owner?.current == $0.draft } ?? false
+        let passedReaderMatches = reader.map { owner?.reader === $0 } ?? false
+        let passedDraftMatches = draft.map { owner?.current == $0 } ?? false
+        let proposalMatches = bound.flatMap { bound in
+            textView.map { ($0.text ?? "").utf8.elementsEqual((bound.request.proposedText ?? "").utf8) }
+        } ?? false
+        let source = bound?.sourceDiagnostic() ?? "no_binding"
+        OtzariaFileLogger.shared.log("[NativeNoteDraftDiagnostic] stage=\(stage)"
+            + " mounted=\(mounted) foreground=\(foreground) pending=\(submissionID != nil)"
+            + " owner=\(owner != nil) binding=\(bound != nil) applied=\(bound?.isApplied == true)"
+            + " sameOwner=\(sameOwner) currentDraft=\(currentMatches)"
+            + " passedReader=\(passedReaderMatches) passedDraft=\(passedDraftMatches)"
+            + " sourceValidation=\(validation) source={\(source)}"
+            + " projected=\(projected) surface=\(surfaceAvailable)"
+            + " markerRegistered=\(check != nil) markerVisible=\(evidence?.isVisible == true)"
+            + " textView=\(textView != nil) textWindow=\(textView?.window != nil)"
+            + " textScene=\(textView?.window?.windowScene?.session.persistentIdentifier == sceneID.rawValue)"
+            + " proposalMatches=\(proposalMatches)")
+    }
+    #endif
+
     func canPrepareNoteDraft() -> Bool {
         guard mounted, foreground, isPresentationReady, noteDraftBinding == nil,
               let owner = noteEditorOwner, owner.current == nil,
@@ -197,6 +234,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         return bound
     }
     func releaseNoteDraft(_ bound: MaktabahNativeNoteDraftBinding) {
+        #if DEBUG
+        if noteDraftBinding === bound { diagnoseNoteDraftSurface(stage: "before-binding-release") }
+        #endif
         if noteDraftBinding === bound { noteDraftBinding = nil }
         // The original unsaved editor remains under the user's Save/Cancel.
     }
@@ -398,6 +438,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             try validateSurface(command)
             guard let bound = noteDraftBinding else { throw ActionPortError.unavailable }
             try bound.apply()
+            #if DEBUG
+            diagnoseNoteDraftSurface(stage: "after-apply")
+            #endif
             return
         }
         if command.route.route.destination.rawValue == "native.search.results" {
@@ -438,6 +481,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func waitUntilVisible(_ command: UISceneCommand) async throws -> NativeSurfaceState {
+        #if DEBUG
+        if command.route.route.destination.rawValue == "native.reader.noteDraft" {
+            diagnoseNoteDraftSurface(stage: "wait-begin")
+        }
+        #endif
         // A container's deduplicated layout callback can precede final geometry
         // or TextKit paint/scroll restoration. Observe the same live UIKit
         // witness only while its original request is waiting; never echo the route.
@@ -456,6 +504,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         catch {
             #if DEBUG
             OtzariaFileLogger.shared.log("[NativePresentationWait] code=\((error as? UIRouteError)?.code ?? (error is CancellationError ? "cancelled" : "unavailable")) mounted=\(mounted) foreground=\(foreground) ready=\(isPresentationReady)")
+            if command.route.route.destination.rawValue == "native.reader.noteDraft" {
+                diagnoseNoteDraftSurface(stage: "wait-error")
+            }
             #endif
             throw error
         }
