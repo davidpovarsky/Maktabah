@@ -1,0 +1,36 @@
+{
+  "original_methods": [
+    "test_controlled_complete_report_is_accepted",
+    "test_report_failure_is_not_promoted",
+    "test_wrong_artifact_is_rejected",
+    "test_partial_corpus_is_rejected",
+    "test_missing_native_resume_is_rejected",
+    "test_full_native_redownload_does_not_count_as_resume",
+    "test_reopen_download_is_rejected",
+    "test_reindex_on_reopen_is_rejected",
+    "test_skipped_original_validator_is_rejected",
+    "test_same_process_is_not_a_restart",
+    "test_changed_order_after_restart_is_rejected",
+    "test_missing_query_mode_is_rejected",
+    "test_exact_real_manifest_passes_and_modified_bytes_fail",
+    "test_explicit_owned_simulator_is_used",
+    "test_unavailable_owned_simulator_cannot_fall_back"
+  ],
+  "preserved_original_method_count": 15,
+  "all_original_test_method_ASTs_unchanged": true,
+  "new_methods": [
+    "test_both_native_phases_require_exact_occurrence_evidence",
+    "test_consumer_and_producer_must_both_match_the_directional_contract",
+    "test_document_hits_cannot_be_reported_as_occurrences",
+    "test_independent_oracle_requires_both_pinned_representations",
+    "test_occurrence_query_inventory_rejects_missing_duplicate_and_unknown",
+    "test_partial_error_or_invalid_scalar_cannot_pass_as_a_count",
+    "test_process_local_request_tokens_and_generations_may_change_after_cold_reopen",
+    "test_proof_refuses_other_query_scope_engine_corpus_and_count_kind",
+    "test_reported_request_must_keep_full_scope_and_published_hard_bounds",
+    "test_snapshot_requires_the_original_full_index_segment_without_deletes",
+    "test_work_evidence_must_be_complete_and_within_the_actual_request_budget"
+  ],
+  "total_methods": 26,
+  "boundary": "Synthetic Python evidence-gate tests, no Native execution"
+}

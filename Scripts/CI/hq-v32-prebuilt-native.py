@@ -7,6 +7,7 @@ does not publish or reindex, and never uses an existing simulator or user data.
 import argparse
 import datetime
 import hashlib
+import gzip
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -29,6 +30,14 @@ DATABASE_BYTES = 3_821_240_320
 ARCHIVE_BYTES = 1_850_679_582
 APP_SOURCE = "7e777509d486a17bec5b4bd437a9ac7f51d3a43a"
 GOLDEN_QUERY = "לחתוך צנון בסכין בשרי"
+
+QUALIFICATION_ROOT = ROOT / "docs/hq-integration/index-read-qualification-20261120"
+QUALIFICATION_REVIEW_SHA256_LF = "3ccd704a831f4a96ec06a691bdc17e7a8988168659bad766815018c9106983a1"
+SQL_ORACLE_SHA256_RAW = "015b4ac382b8c6005d672234cfa7fc1ddaf291f7e5e0d07982f2c89db242f781"
+EXACT_OCCURRENCE_LIMITS = {
+    "maxCandidateDocuments": 1_000_000, "maxPositions": 10_000_000,
+    "maxPositionsPerDocument": 262_144, "maxSegments": 4_096,
+}
 
 
 def require(value, message):
@@ -84,6 +93,7 @@ def preflight(expected):
     require(command(["git", "rev-parse", "HEAD"]) == expected, "Wrong checkout")
     config = json.loads((ROOT / "Scripts/CI/hq-stage2-focused-apple.inputs.json").read_text())
     require(config["application_source_sha"] == APP_SOURCE, "Unreviewed app source")
+    load_occurrence_oracle()
     original = json.loads(command([sys.executable, "Scripts/CI/hq-stage2-focused-apple.py", "--preflight-only"]))
     return {"checkout_sha": expected, "application_source_sha": APP_SOURCE,
             "original_build_preflight": original,
@@ -168,7 +178,135 @@ def prepare(report):
                   native_download_and_install="NOT_RUN")
 
 
+
+def load_occurrence_oracle():
+    """Authenticate the independent SQL result, not a native scalar being judged."""
+    review_raw = (QUALIFICATION_ROOT / "QUALIFICATION_REVIEW.json").read_bytes()
+    # Git stores this JSON as LF; Windows checkouts may use CRLF. The raw
+    # Windows hash is separately preserved in the immutable evidence archive.
+    review_lf = review_raw.replace(b"\r\n", b"\n")
+    require(hashlib.sha256(review_lf).hexdigest() == QUALIFICATION_REVIEW_SHA256_LF,
+            "Unreviewed original-index qualification record")
+    review = json.loads(review_lf)
+    sql_raw = gzip.decompress((QUALIFICATION_ROOT /
+        "raw/full-sql-global-oracle/attempt4-partitioned/RESULT.json.gz").read_bytes())
+    require(hashlib.sha256(sql_raw).hexdigest() == SQL_ORACLE_SHA256_RAW,
+            "Independent SQL oracle bytes changed")
+    sql = json.loads(sql_raw)
+    require(sql["status"] == "COMPLETE_INDEPENDENT_SQL_ORACLE_NOT_ENGINE_QUALIFICATION"
+            and sql["rowsScanned"] == 7_080_797 and sql["originalBooks"] == 7_876
+            and sql["partitionCount"] == 71 and sql["allOriginalRowIDsVerifiedExactlyOnce"] is True
+            and sql["partial"] is False and sql["engineLoaded"] is False and sql["indexRead"] is False
+            and sql["databaseSHA256BeforeAndAfter"] == DATABASE_SHA,
+            "Independent SQL coverage is incomplete or has another source")
+    require(review["producerCommit"] == "265a14ea54f959a3e266d6e8acfa3a3b98101d68"
+            and review["consumerCommit"] == "d5d59d1269bdf87fb0a6901cf31941726a0c699b"
+            and review["inputs"]["full-v32"]["artifactIdentity"] == IDENTITY,
+            "Qualification is for another producer, consumer or corpus")
+    require(set(sql["counts"]) == {"בראשית", "אברהם"}, "Unexpected independent query set")
+    manifest = exact_manifest((ROOT /
+        "docs/hq-integration/full-v32-native-20261119/otzaria-search-manifest.json").read_bytes())
+    return {"sql": sql, "review": review, "manifest": manifest}
+
+
+def validate_exact_occurrences(item, phase, oracle):
+    """Require actual d5 bridge evidence in each native process, without a Core/UI claim."""
+    def uint(value, positive=False):
+        return type(value) is int and (1 if positive else 0) <= value <= (1 << 64) - 1
+
+    sql, review, manifest = oracle["sql"], oracle["review"], oracle["manifest"]
+    producer = item.get("artifactProducer")
+    require(producer == manifest["lexicalEngine"]
+            and all(type(producer.get(k)) is int for k in ("indexSchemaVersion", "defaultGenerationOrder")),
+            phase + " did not retain the original artifact producer")
+    build = item.get("consumerBuild")
+    expected_build = {
+        "upstreamRepository": "davidpovarsky/otzaria_search_engine",
+        "upstreamBranch": "codex/otzaria-exact-occurrences-20261120",
+        "upstreamCommit": review["consumerCommit"], "engineVersion": "0.1.0",
+        "indexSchemaVersion": 4, "defaultGenerationOrder": 5, "adapterVersion": "0.1.0",
+        "semanticSidecarRevision": manifest["lexicalEngine"]["semanticSidecarRevision"],
+        "resourceHashes": {key: value["sha256"] for key, value in manifest["resources"].items()
+                           if key.startswith("Vendor/OtzariaSearchEngine/Resources/")},
+    }
+    require(isinstance(build, dict) and all(build.get(k) == v for k, v in expected_build.items())
+            and all(type(build.get(k)) is int for k in ("indexSchemaVersion", "defaultGenerationOrder"))
+            and type(build.get("semanticEnabled")) is bool
+            and isinstance(build.get("syncedAt"), str) and bool(build["syncedAt"]),
+            phase + " native consumer build identity is missing or mismatched")
+    checks = item.get("exactOccurrences")
+    require(isinstance(checks, list) and len(checks) == len(sql["counts"]),
+            phase + " must contain both actual exact occurrence checks")
+    require(all(isinstance(check, dict) and set(check) == {"query", "request", "result"}
+                for check in checks), phase + " malformed exact occurrence wrapper")
+    queries = [check.get("query") for check in checks]
+    require(all(isinstance(q, str) for q in queries) and len(set(queries)) == len(queries)
+            and set(queries) == set(sql["counts"]), phase + " missing, duplicate or unexpected count query")
+    expected_segments = sorted(segment["segment_id"].replace("-", "")
+                               for segment in review["inputs"]["full-v32"]["originalSegments"])
+    for check in checks:
+        query = check["query"]
+        request = check["request"]
+        expected_request = {"version": 1, "mode": "exact", "query": query, "facets": ["/"],
+                            "bookIds": [], "timeoutMs": 60_000, "limits": EXACT_OCCURRENCE_LIMITS}
+        require(isinstance(request, dict) and request == expected_request
+                and all(uint(request.get(k)) for k in ("version", "timeoutMs"))
+                and all(uint(v) for v in request["limits"].values()),
+                phase + " count request changed its scope, semantics or hard limits")
+        value = check["result"]
+        require(isinstance(value, dict)
+                and set(value) == {"occurrences", "matchingLiveDocuments", "proof", "work"},
+                phase + " missing or partial exact occurrence result")
+        expected = sql["counts"][query]
+        require(uint(value.get("occurrences")) and uint(value.get("matchingLiveDocuments"))
+                and value["occurrences"] == expected["occurrences"]
+                and value["matchingLiveDocuments"] == expected["matchingLiveDocuments"],
+                phase + " exact occurrences/documents differ from the independent full SQL oracle")
+        proof, work = value["proof"], value["work"]
+        proof_keys = {"requestToken", "countKind", "exact", "analyzedToken", "requestedFacets",
+                      "searcherGeneration", "liveIndexDocuments", "indexSchemaVersion",
+                      "enginePackageVersion", "engineCommit", "originalUpstreamBase",
+                      "engineRepository", "engineBranch"}
+        require(isinstance(proof, dict) and set(proof) == proof_keys
+                and uint(proof.get("requestToken"), positive=True)
+                and proof["countKind"] == "distinctTokenPositions" and proof["exact"] is True
+                and proof["analyzedToken"] == query and proof["requestedFacets"] == ["/"]
+                and type(proof["liveIndexDocuments"]) is int and proof["liveIndexDocuments"] == 7_080_797
+                and type(proof["indexSchemaVersion"]) is int and proof["indexSchemaVersion"] == 4
+                and proof["enginePackageVersion"] == "0.1.0"
+                and proof["engineCommit"] == review["consumerCommit"]
+                and proof["originalUpstreamBase"] == review["producerCommit"]
+                and proof["engineRepository"] == build["upstreamRepository"]
+                and proof["engineBranch"] == build["upstreamBranch"],
+                phase + " exact occurrence proof has another source, scope, query or count kind")
+        generation = proof["searcherGeneration"]
+        require(isinstance(generation, dict) and set(generation) == {"generationId", "segments"}
+                and uint(generation.get("generationId")) and isinstance(generation.get("segments"), list),
+                phase + " missing original engine snapshot")
+        segments = generation["segments"]
+        require(all(isinstance(seg, dict) and set(seg) in
+                    ({"segmentId"}, {"segmentId", "deleteOpstamp"})
+                    and isinstance(seg.get("segmentId"), str)
+                    and seg.get("deleteOpstamp") is None for seg in segments)
+                and sorted(seg["segmentId"] for seg in segments) == expected_segments,
+                phase + " original full index segment identity or deletion state changed")
+        require(isinstance(work, dict)
+                and set(work) == {"visitedCandidateDocuments", "inspectedPositions", "visitedSegments"}
+                and all(uint(v) for v in work.values())
+                and value["matchingLiveDocuments"] <= work["visitedCandidateDocuments"]
+                    <= EXACT_OCCURRENCE_LIMITS["maxCandidateDocuments"]
+                and value["occurrences"] <= work["inspectedPositions"]
+                    <= EXACT_OCCURRENCE_LIMITS["maxPositions"]
+                and work["visitedSegments"] == len(segments)
+                    <= EXACT_OCCURRENCE_LIMITS["maxSegments"],
+                phase + " exact count has missing or out-of-budget work evidence")
+    # Request tokens and generation numbers are local to an engine/process.
+    # They are validated in each phase, never forced equal across cold reopen.
+    return len(checks)
+
+
 def validate_reports(install, reopen, log):
+    occurrence_oracle = load_occurrence_oracle()
     for phase, item in [("install", install), ("reopen", reopen)]:
         require(item.get("passed") is True and item["phase"] == phase, phase + " did not pass")
         require(item["artifactIdentity"] == IDENTITY and item["documentCount"] == 7080797
@@ -187,6 +325,7 @@ def validate_reports(install, reopen, log):
                 phase + " golden query evidence missing")
         require(len(set(golden["orderedResultIDs"])) == len(golden["orderedResultIDs"]),
                 phase + " repeated result identity")
+        validate_exact_occurrences(item, phase, occurrence_oracle)
     require(install["nativeDownloadRan"] is True and install["resumedDownloadBytes"] == 1048576,
             "Real native partial-download resume did not occur")
     require(reopen["nativeDownloadRan"] is False and reopen["resumedDownloadBytes"] == 0,
@@ -199,7 +338,12 @@ def validate_reports(install, reopen, log):
     return {"app_pids": pids, "original_modes": ["exact", "fuzzy", "advanced"],
             "golden_results": len(install["golden"]["orderedResultIDs"]),
             "golden_result_identities_equal_after_restart": True,
-            "native_resumed_bytes": install["resumedDownloadBytes"]}
+            "native_resumed_bytes": install["resumedDownloadBytes"],
+            "exact_occurrence_checks_per_phase": 2,
+            "exact_occurrence_engine_revision": occurrence_oracle["review"]["consumerCommit"],
+            "independent_sql_oracle_sha256_raw": SQL_ORACLE_SHA256_RAW,
+            "qualification_review_sha256_git_lf": QUALIFICATION_REVIEW_SHA256_LF,
+            "exact_occurrence_boundary": "ACTUAL_NATIVE_SWIFT_C_BRIDGE_NOT_CORE_OR_UI"}
 
 
 def validated_container_witness(witness, expected_udid, expected_bundle, expected_nonce):
@@ -295,7 +439,7 @@ def run_native(report):
         checked_file(installed_database, DATABASE_BYTES, DATABASE_SHA)
         report["actual_app_database_sha256"] = DATABASE_SHA
         report["status"] = "FULL_V32_ORIGINAL_APP_INSTALL_QUERY_RELAUNCH_PASS"
-        report["scope"] = "Original native downloader, installer, engine, exact/fuzzy/advanced queries and process restart; no XCTest UI or physical device"
+        report["scope"] = "Original native downloader, installer, d5 engine, exact/fuzzy/advanced queries, SQL-qualified exact occurrences and process restart; no Core admission, XCTest UI or physical device"
     finally:
         # Only the exact simulator created above is eligible. Preserve failure
         # reports/logs first; canonical release data remains reproducible.

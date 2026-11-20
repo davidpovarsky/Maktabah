@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:/ProgramData/SentinelX/.venv/Scripts/python.exe",
+    "Scripts/CI/test-v32-prebuilt-native.py"
+  ],
+  "exit_code": 0,
+  "test_methods_expected": 26,
+  "original_methods_preserved": 15,
+  "log_sha256": "375522cf8046b883d2f11487c7ff1b090804ae75b0280e040ba2731458181409",
+  "native_executed": 0,
+  "apple_typecheck": false,
+  "at_utc": "2026-11-20T05:23:56.944412+00:00"
+}

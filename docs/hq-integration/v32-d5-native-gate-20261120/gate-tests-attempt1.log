@@ -1,0 +1,31 @@
+test_both_native_phases_require_exact_occurrence_evidence (__main__.EvidenceControls.test_both_native_phases_require_exact_occurrence_evidence) ... ok
+test_changed_order_after_restart_is_rejected (__main__.EvidenceControls.test_changed_order_after_restart_is_rejected) ... ok
+test_consumer_and_producer_must_both_match_the_directional_contract (__main__.EvidenceControls.test_consumer_and_producer_must_both_match_the_directional_contract) ... ok
+test_controlled_complete_report_is_accepted (__main__.EvidenceControls.test_controlled_complete_report_is_accepted) ... ok
+test_document_hits_cannot_be_reported_as_occurrences (__main__.EvidenceControls.test_document_hits_cannot_be_reported_as_occurrences) ... ok
+test_exact_real_manifest_passes_and_modified_bytes_fail (__main__.EvidenceControls.test_exact_real_manifest_passes_and_modified_bytes_fail) ... ok
+test_explicit_owned_simulator_is_used (__main__.EvidenceControls.test_explicit_owned_simulator_is_used) ... ok
+test_full_native_redownload_does_not_count_as_resume (__main__.EvidenceControls.test_full_native_redownload_does_not_count_as_resume) ... ok
+test_independent_oracle_requires_both_pinned_representations (__main__.EvidenceControls.test_independent_oracle_requires_both_pinned_representations) ... ok
+test_missing_native_resume_is_rejected (__main__.EvidenceControls.test_missing_native_resume_is_rejected) ... ok
+test_missing_query_mode_is_rejected (__main__.EvidenceControls.test_missing_query_mode_is_rejected) ... ok
+test_occurrence_query_inventory_rejects_missing_duplicate_and_unknown (__main__.EvidenceControls.test_occurrence_query_inventory_rejects_missing_duplicate_and_unknown) ... ok
+test_partial_corpus_is_rejected (__main__.EvidenceControls.test_partial_corpus_is_rejected) ... ok
+test_partial_error_or_invalid_scalar_cannot_pass_as_a_count (__main__.EvidenceControls.test_partial_error_or_invalid_scalar_cannot_pass_as_a_count) ... ok
+test_process_local_request_tokens_and_generations_may_change_after_cold_reopen (__main__.EvidenceControls.test_process_local_request_tokens_and_generations_may_change_after_cold_reopen) ... ok
+test_proof_refuses_other_query_scope_engine_corpus_and_count_kind (__main__.EvidenceControls.test_proof_refuses_other_query_scope_engine_corpus_and_count_kind) ... ok
+test_reindex_on_reopen_is_rejected (__main__.EvidenceControls.test_reindex_on_reopen_is_rejected) ... ok
+test_reopen_download_is_rejected (__main__.EvidenceControls.test_reopen_download_is_rejected) ... ok
+test_report_failure_is_not_promoted (__main__.EvidenceControls.test_report_failure_is_not_promoted) ... ok
+test_reported_request_must_keep_full_scope_and_published_hard_bounds (__main__.EvidenceControls.test_reported_request_must_keep_full_scope_and_published_hard_bounds) ... ok
+test_same_process_is_not_a_restart (__main__.EvidenceControls.test_same_process_is_not_a_restart) ... ok
+test_skipped_original_validator_is_rejected (__main__.EvidenceControls.test_skipped_original_validator_is_rejected) ... ok
+test_snapshot_requires_the_original_full_index_segment_without_deletes (__main__.EvidenceControls.test_snapshot_requires_the_original_full_index_segment_without_deletes) ... ok
+test_unavailable_owned_simulator_cannot_fall_back (__main__.EvidenceControls.test_unavailable_owned_simulator_cannot_fall_back) ... ok
+test_work_evidence_must_be_complete_and_within_the_actual_request_budget (__main__.EvidenceControls.test_work_evidence_must_be_complete_and_within_the_actual_request_budget) ... ok
+test_wrong_artifact_is_rejected (__main__.EvidenceControls.test_wrong_artifact_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.250s
+
+OK
