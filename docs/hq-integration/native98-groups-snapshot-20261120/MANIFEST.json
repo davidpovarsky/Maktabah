@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-20T15:02:49.495655+00:00",
+  "base_commit": "0a493e0a362e88405fabe7a08ff60fb51820496f",
+  "candidate_sha256": "76b37e57bb844bf95eb2828a599655f444a7cc2fe25cfc5b51ba58faffed5460",
+  "files": [
+    {
+      "path": "NATIVE_FAILURE_REVIEW.json",
+      "bytes": 47421,
+      "sha256": "f46faf1f2f13256ac5b3aa97d0027beab56cc7b7195ec3e4feb1d1c3cadcd393",
+      "git_blob": "f0b427ed364177eaf7e324b8c925573e9271ab5e"
+    },
+    {
+      "path": "PEER_REVIEW.json",
+      "bytes": 3051,
+      "sha256": "735ccfde5b8451e3b5b27f0743bf003efd3466c311fb5de5993b66405bd13941",
+      "git_blob": "8933215e89b301e6b80665f391a28fcf7d529d37"
+    },
+    {
+      "path": "PROPOSED.patch",
+      "bytes": 9600,
+      "sha256": "c5f7495d768373d41d2fda608c57e0cf17a67038b9a07681be493bc099374e24",
+      "git_blob": "000916e4fce797ddf7fffe250241304ba0fbcca9"
+    },
+    {
+      "path": "RAW_FILES.json",
+      "bytes": 2638,
+      "sha256": "8c606e62b24021711982e014cf0572f3b77fa4070cbb74d691d9d574aa6397d9",
+      "git_blob": "722a3450e7bf7397c99e0ef095be823685bad12c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4820,
+      "sha256": "84d055945157dbf97d04b34aa2e02eec936fd3a86070f15e20a43a93b86838aa",
+      "git_blob": "8a2a1feadc979495aaba0ed5fc622a7977aa3c83"
+    },
+    {
+      "path": "SOURCE_REVIEW.json",
+      "bytes": 844,
+      "sha256": "20662b9f7b56cdcc5e9ccbc51ab08b718cdeef70c609228236427f343ffaa950",
+      "git_blob": "134b9e3d44271952d837a50716b17eff4f517d0b"
+    },
+    {
+      "path": "VERIFY_PACKET.py",
+      "bytes": 3905,
+      "sha256": "020545b0e5dcc12f368a8cacffe54a26a8f196fa8e5a71f200fbcc51e8287371",
+      "git_blob": "07557e85a9d903a326b191936cb9818eb0a8d63e"
+    },
+    {
+      "path": "raw/ACTUAL_CASE.log.gz",
+      "bytes": 12834,
+      "sha256": "3d243974acbc9ff932f8038031ed877ad0fc55162d450116b199275ca4d6d0c3",
+      "git_blob": "063774ceac9b3a98ce7743c3730d9170d3f900f1"
+    },
+    {
+      "path": "raw/Faithful.baseline.swift.gz",
+      "bytes": 38771,
+      "sha256": "d973bfaff4fb527f224079f1f9c88f133ead606f3a59a1e2eab33e8b3bc8e4a2",
+      "git_blob": "5f129ea82719b63869ec5eb5200690ab3f387d05"
+    },
+    {
+      "path": "raw/Faithful.candidate.swift.gz",
+      "bytes": 39975,
+      "sha256": "66466c6b4022cee466eed081e6530f3a7ee27d1c57a19bd8856edbf729ff3fca",
+      "git_blob": "3942df52b9103ab2eda082f7de53e638a1dcf8d9"
+    },
+    {
+      "path": "raw/Faithful.original-M87.swift.gz",
+      "bytes": 36588,
+      "sha256": "c5987e7fdbd739211e4891a98f7776d243e498f4e532ef757cb1d94914ba763a",
+      "git_blob": "70c7be987b3f70a2b06f8c827755c0d649d19235"
+    },
+    {
+      "path": "raw/INITIAL_PEER_REVIEW.json.gz",
+      "bytes": 994,
+      "sha256": "c218057e2a3560a97bda3ec322780296ea1f0e9377516ebe8f5ec07a3500511c",
+      "git_blob": "6b16eff51329dd051688175a77c4262daf64214b"
+    },
+    {
+      "path": "raw/RETAINED_HELPER_READ.json.gz",
+      "bytes": 8979,
+      "sha256": "7d3fdf3b7caa0e1abfd2a6db9ff9cf65e4e640dc7585908d6337bd500ec4d4e0",
+      "git_blob": "b2f1c199f648f7518c90f06889f2b6e5f0023009"
+    },
+    {
+      "path": "raw/build_candidate.py.gz",
+      "bytes": 3590,
+      "sha256": "93e26b72dab1898c32c9451a35ee258d2c0c820ce8e3316ea036b522a8963813",
+      "git_blob": "474bced9454dff68527adf04e949345444e9e561"
+    },
+    {
+      "path": "raw/test-simulator-11.log.gz",
+      "bytes": 25575,
+      "sha256": "5773bf92a7db2dcbbc889cac38d13858b47aefea37c64152b013d3ff1d210e04",
+      "git_blob": "058567fbf2225e0414e0ac6c7728a8f37f972c41"
+    }
+  ]
+}

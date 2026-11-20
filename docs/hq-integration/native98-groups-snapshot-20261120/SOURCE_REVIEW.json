@@ -1,0 +1,17 @@
+{
+  "at_utc": "2026-11-20T14:43:30.935783+00:00",
+  "base_commit": "0a493e0a362e88405fabe7a08ff60fb51820496f",
+  "baseline_sha256": "a61c37fdb602c466f2e6925f22726feb2c253247007ecaa9ddaf919fba9daeee",
+  "candidate_sha256": "76b37e57bb844bf95eb2828a599655f444a7cc2fe25cfc5b51ba58faffed5460",
+  "exact_inverse": true,
+  "same_test_ids": true,
+  "original_100_transitions_and_membership_and_cold_oracles": true,
+  "shared_tap_unchanged": true,
+  "profile_color_candidate_preserved": true,
+  "production_source_changes": 0,
+  "timeouts_changed": 0,
+  "native_rerun": "NOT_RUN",
+  "apple_typecheck": "NOT_RUN",
+  "syntax_parse": "NOT_RUN",
+  "scope": "One fresh real AX snapshot per observation/selection; exact scoped ownership, both live post-state hittability checks, real window-relative midpoint tap, and passive automation phase timing only"
+}

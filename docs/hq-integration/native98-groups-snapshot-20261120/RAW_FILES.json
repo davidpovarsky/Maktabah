@@ -1,0 +1,68 @@
+{
+  "files": [
+    {
+      "original": "Faithful.baseline.swift",
+      "stored": "raw/Faithful.baseline.swift.gz",
+      "bytes": 184053,
+      "sha256": "a61c37fdb602c466f2e6925f22726feb2c253247007ecaa9ddaf919fba9daeee",
+      "gzip_bytes": 38771,
+      "gzip_sha256": "d973bfaff4fb527f224079f1f9c88f133ead606f3a59a1e2eab33e8b3bc8e4a2"
+    },
+    {
+      "original": "Faithful.candidate.swift",
+      "stored": "raw/Faithful.candidate.swift.gz",
+      "bytes": 189685,
+      "sha256": "76b37e57bb844bf95eb2828a599655f444a7cc2fe25cfc5b51ba58faffed5460",
+      "gzip_bytes": 39975,
+      "gzip_sha256": "66466c6b4022cee466eed081e6530f3a7ee27d1c57a19bd8856edbf729ff3fca"
+    },
+    {
+      "original": "Faithful.original-M87.swift",
+      "stored": "raw/Faithful.original-M87.swift.gz",
+      "bytes": 174503,
+      "sha256": "51bebde38ca03e8318e5330001d39fcc517d8fbe68977e0a7652bdd76129c9d1",
+      "gzip_bytes": 36588,
+      "gzip_sha256": "c5987e7fdbd739211e4891a98f7776d243e498f4e532ef757cb1d94914ba763a"
+    },
+    {
+      "original": "ACTUAL_CASE.log",
+      "stored": "raw/ACTUAL_CASE.log.gz",
+      "bytes": 161069,
+      "sha256": "4ca5dfbb66165d175edcf476374052daffcd009173f58414cfb696bab70ff4c5",
+      "gzip_bytes": 12834,
+      "gzip_sha256": "3d243974acbc9ff932f8038031ed877ad0fc55162d450116b199275ca4d6d0c3"
+    },
+    {
+      "original": "build_candidate.py",
+      "stored": "raw/build_candidate.py.gz",
+      "bytes": 12286,
+      "sha256": "ba69b80c727bf92bee83e793755a475390544fedb6f686b3990903e5e4963b9a",
+      "gzip_bytes": 3590,
+      "gzip_sha256": "93e26b72dab1898c32c9451a35ee258d2c0c820ce8e3316ea036b522a8963813"
+    },
+    {
+      "original": "INITIAL_PEER_REVIEW.json",
+      "stored": "raw/INITIAL_PEER_REVIEW.json.gz",
+      "bytes": 1995,
+      "sha256": "5fd2fd52161d32e3be5fb1deb2c01dd3ec89ee5eb9e2cce1bdc4c692a0144a6a",
+      "gzip_bytes": 994,
+      "gzip_sha256": "c218057e2a3560a97bda3ec322780296ea1f0e9377516ebe8f5ec07a3500511c"
+    },
+    {
+      "original": "RETAINED_HELPER_READ.json",
+      "stored": "raw/RETAINED_HELPER_READ.json.gz",
+      "bytes": 92462,
+      "sha256": "9ea5329346229774fc5c610727e103766e03cd7b9a8acf69ddc42637a97c96c5",
+      "gzip_bytes": 8979,
+      "gzip_sha256": "7d3fdf3b7caa0e1abfd2a6db9ff9cf65e4e640dc7585908d6337bd500ec4d4e0"
+    },
+    {
+      "original": "test-simulator-11.log",
+      "stored": "raw/test-simulator-11.log.gz",
+      "bytes": 262387,
+      "sha256": "23a3e52329ad60253ee97fe4d5a9a63d95ea20fb77e36ee4fc605057acc5147f",
+      "gzip_bytes": 25575,
+      "gzip_sha256": "5773bf92a7db2dcbbc889cac38d13858b47aefea37c64152b013d3ff1d210e04"
+    }
+  ]
+}

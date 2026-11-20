@@ -1,0 +1,46 @@
+{
+  "schema": "source-only-peer-review.v1",
+  "reviewed_at_utc": "2026-11-20T14:45:43.615453+00:00",
+  "reviewer": "github_native_audit",
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "base_commit": "0a493e0a362e88405fabe7a08ff60fb51820496f",
+  "candidate_sha256": "76b37e57bb844bf95eb2828a599655f444a7cc2fe25cfc5b51ba58faffed5460",
+  "candidate_bytes": 189685,
+  "baseline_sha256": "a61c37fdb602c466f2e6925f22726feb2c253247007ecaa9ddaf919fba9daeee",
+  "patch_sha256": "c5f7495d768373d41d2fda608c57e0cf17a67038b9a07681be493bc099374e24",
+  "source_checks": {
+    "exact_diff_matches_full_inputs": true,
+    "original_test_declarations_identical": true,
+    "original_test_declarations_count": 40,
+    "original_menu_branch_bytes_preserved": true,
+    "explicit_mainactor_local_snapshot_walk": true
+  },
+  "reviewed_preservation": [
+    "One fresh snapshot per observation and pre-tap preparation; none retained across transition or predicate evaluation.",
+    "All five original XCTest identifying properties and global exact error-alert absence.",
+    "Document cards restricted to collectionView descendants of the same unique overview.",
+    "Exact sidecar owner/group/document/revision/scene checks and complete profile/group/member/locator equality.",
+    "Both original live control/card hittability requirements.",
+    "Unique exact-label selector child and original enabled-selector requirement.",
+    "Finite positive containment and live target/window frame equality before actual window-relative midpoint coordinate tap.",
+    "Original 100 distinct transitions, final reader/locator, cold relaunch and 600-second gate.",
+    "Ordinary XCTest idle behavior; no animation disabling or API-side action shortcut."
+  ],
+  "limitations": [
+    "Source review only: no Swift typecheck, Apple SDK, UIKit or Native execution by this reviewer.",
+    "Actual previous Native98 completed 28 counted transitions before the 600-second timeout; post-timeout commits do not satisfy acceptance.",
+    "First three retained taps took 4.83-5.57 seconds until first post-action observation, apart from later AX attributes. This change does not prove 100 transitions plus cold restore fit 600 seconds.",
+    "Atomic snapshots reduce repeated attributes but live hit tests remain necessary; the next Native run must establish runtime behavior."
+  ],
+  "prior_packaging_attempt": {
+    "outcome": "Stopped before report write on incorrect expected baseline SHA supplied in earlier review message.",
+    "incorrect_expected_baseline_sha256": "46bb19871ff173bf450f6b899cfcfa4710ebc0383c6de5e5ac654fc5fcc61307",
+    "actual_baseline_sha256": "a61c37fdb602c466f2e6925f22726feb2c253247007ecaa9ddaf919fba9daeee",
+    "source_or_test_failure": false
+  },
+  "primary_api_sources": [
+    "https://developer.apple.com/documentation/xcuiautomation/xcuielementsnapshot.md",
+    "https://developer.apple.com/documentation/xcuiautomation/xcuielement/ishittable",
+    "https://developer.apple.com/documentation/xcuiautomation/xcuielementquery/matching(_:identifier:)"
+  ]
+}
