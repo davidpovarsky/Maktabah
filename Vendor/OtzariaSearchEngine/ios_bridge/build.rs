@@ -30,6 +30,18 @@ fn main() {
         commit, manifest_commit,
         "manifest commit does not match UPSTREAM_COMMIT"
     );
+    let repository = value["repository"].as_str().expect("manifest repository missing");
+    let branch = value["branch"].as_str().expect("manifest branch missing");
+    assert!(!repository.is_empty() && !repository.contains(['\n', '\r']),
+        "manifest repository must be one nonempty line");
+    assert!(!branch.is_empty() && !branch.contains(['\n', '\r']),
+        "manifest branch must be one nonempty line");
+    let original_base = value["original_upstream_base"].as_str().unwrap_or(&commit);
+    assert!(original_base.len() == 40 && original_base.bytes().all(|b| b.is_ascii_hexdigit()),
+        "original upstream base must contain one full Git SHA");
+    println!("cargo:rustc-env=OTZARIA_ENGINE_REPOSITORY={repository}");
+    println!("cargo:rustc-env=OTZARIA_ENGINE_BRANCH={branch}");
+    println!("cargo:rustc-env=OTZARIA_ORIGINAL_UPSTREAM_BASE={original_base}");
     let synced_at = value["synced_at"].as_str().unwrap_or("unknown");
     let default_generation_order = value["default_generation_order"]
         .as_u64()

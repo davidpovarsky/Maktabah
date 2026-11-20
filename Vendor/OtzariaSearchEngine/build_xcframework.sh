@@ -9,7 +9,7 @@ OUT="$ROOT/OtzariaSearchEngine.xcframework"
 HEADER_DIR="$ROOT/include"
 PIN_FILE="$ROOT/Upstream/UPSTREAM_COMMIT"
 LIB_NAME="libotzaria_search_engine_ios.a"
-REPOSITORY="https://github.com/Otzaria/otzaria_search_engine.git"
+REPOSITORY="https://github.com/davidpovarsky/otzaria_search_engine.git"
 
 for tool in cargo rustup git lipo xcodebuild; do
   command -v "$tool" >/dev/null 2>&1 || { echo "$tool is required" >&2; exit 1; }

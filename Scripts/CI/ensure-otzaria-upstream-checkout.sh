@@ -28,8 +28,8 @@ ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 VENDOR="$ROOT/Vendor/OtzariaSearchEngine"
 CHECKOUT="$VENDOR/Checkout/otzaria_search_engine"
 PIN_FILE="$VENDOR/Upstream/UPSTREAM_COMMIT"
-REPOSITORY="https://github.com/Otzaria/otzaria_search_engine.git"
-BRANCH="refactor"
+REPOSITORY="https://github.com/davidpovarsky/otzaria_search_engine.git"
+BRANCH="codex/otzaria-exact-occurrences-20261120"
 
 # Paths the Cargo graph resolves through; a checkout missing any of them cannot
 # satisfy the bridge manifest even when git metadata looks correct.
