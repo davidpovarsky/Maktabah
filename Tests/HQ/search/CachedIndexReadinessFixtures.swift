@@ -1,4 +1,11 @@
 import Foundation
+#if canImport(Darwin)
+import Darwin
+#elseif canImport(Glibc)
+import Glibc
+#elseif canImport(ucrt)
+import ucrt
+#endif
 protocol CopyableResult { func formatForClipboard() -> String }
 extension String { func convertToArabicDigits() -> String { self } }
 extension NSAttributedString {
@@ -28,6 +35,10 @@ final class OtzariaSearchEngineBridge {
     static var releaseCount: DispatchSemaphore?
     init(indexURL: URL) throws { Self.constructions += 1 }
     func close() {}
+    func countExactTokenOccurrences(request: OtzariaExactOccurrenceRequest,
+                                    expectedSource: OtzariaExactOccurrenceSource) async throws -> OtzariaExactOccurrenceResult {
+        throw OtzariaExactOccurrenceError.engineUnavailable // unused boundary double; no FFI count claim
+    }
     func configureDictionaries(magic: URL?, translation: URL?, acronyms: URL?) throws -> [String: Bool] {
         ["translation": true, "acronyms": true]
     }
@@ -47,9 +58,10 @@ enum OtzariaSearchSnippetRenderer { static func plainText(fromHTML value: String
 
 @main struct CachedIndexReadinessFixtures {
     static var assertions = 0
+    static var failures = 0
     static func check(_ value: Bool, _ message: String) {
         assertions += 1
-        if !value { fatalError(message) }
+        if !value { failures += 1; print("FAIL assertion \(assertions): \(message)") }
     }
     static func main() throws {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
@@ -118,6 +130,60 @@ enum OtzariaSearchSnippetRenderer { static func plainText(fromHTML value: String
         let afterABA = repository.resourceObservation(databasePath: database.path)
         check(afterABA.revision > beforeABA.revision && afterABA.fingerprint == beforeABA.fingerprint,
             "A-to-B-to-A invalidation remains observable even when final disk bytes are identical")
-        print("PASS: \(assertions) real-repository cached readiness assertions; FFI/storage dependencies are doubles")
+        // Original/custom cache discovery keeps working without installation
+        // manifests, while each existing original manifest is a raw witness.
+        let indexManifest = root.appendingPathComponent("otzaria_prebuilt_installation.json")
+        let databaseManifest = root.appendingPathComponent("seforim-installation.json")
+        _ = try repository.engine(databasePath: database.path)
+        let withoutManifests = repository.resourceObservation(databasePath: database.path)
+        check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == 125,
+              "optional manifest absence preserves ordinary/custom cache readiness")
+        try Data("{\"index\":1}".utf8).write(to: indexManifest)
+        let withIndex = repository.resourceObservation(databasePath: database.path)
+        check(withIndex.fingerprint != withoutManifests.fingerprint &&
+              repository.observedOpenIndexDocumentCount(databasePath: database.path) == nil,
+              "adding the original index manifest revokes the old raw stamp")
+        repository.invalidate(databasePath: database.path)
+        _ = try repository.engine(databasePath: database.path)
+        check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == 125,
+              "explicit reopen can observe the newly installed index manifest")
+        try Data("{\"database\":1}".utf8).write(to: databaseManifest)
+        let withBoth = repository.resourceObservation(databasePath: database.path)
+        check(withBoth.fingerprint != withIndex.fingerprint &&
+              repository.observedOpenIndexDocumentCount(databasePath: database.path) == nil,
+              "adding the original adjacent DB manifest revokes the old stamp")
+        repository.invalidate(databasePath: database.path)
+        _ = try repository.engine(databasePath: database.path)
+        check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == 125,
+              "both unchanged manifests permit an ordinary cached observation")
+        try Data("{\"database\":2}".utf8).write(to: databaseManifest)
+        check(repository.resourceObservation(databasePath: database.path).fingerprint != withBoth.fingerprint &&
+              repository.observedOpenIndexDocumentCount(databasePath: database.path) == nil,
+              "same-sized manifest replacement changes raw fingerprint and revokes cached evidence")
+        repository.invalidate(databasePath: database.path)
+        _ = try repository.engine(databasePath: database.path)
+        try FileManager.default.removeItem(at: indexManifest)
+        check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == nil,
+              "removing a previously observed manifest revokes its cached stamp")
+        repository.invalidate(databasePath: database.path)
+        _ = try repository.engine(databasePath: database.path)
+        try FileManager.default.removeItem(at: databaseManifest)
+        check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == nil,
+              "removing the adjacent DB manifest also revokes its cached stamp")
+        repository.invalidate(databasePath: database.path)
+        _ = try repository.engine(databasePath: database.path)
+        check(repository.observedOpenIndexDocumentCount(databasePath: database.path) == 125,
+              "explicit original reopen restores custom readiness with both optional manifests absent")
+        try Data(repeating: 120, count: 1_048_577).write(to: indexManifest)
+        check(repository.resourceObservation(databasePath: database.path).fingerprint == nil &&
+              repository.observedOpenIndexDocumentCount(databasePath: database.path) == nil,
+              "existing oversized optional metadata fails closed rather than becoming absent")
+        try FileManager.default.removeItem(at: indexManifest)
+        check(repository.resourceObservation(databasePath: database.path).fingerprint == withoutManifests.fingerprint &&
+              repository.observedOpenIndexDocumentCount(databasePath: database.path) == 125,
+              "removing only the owned oversized fixture restores the unchanged optional-nil stamp")
+        repository.closeAllEngines()
+        print("RESULT: \(assertions - failures) PASS \(failures) FAIL; \(assertions) real-repository cached readiness assertions; FFI/storage dependencies are doubles")
+        if failures > 0 { exit(1) }
     }
 }

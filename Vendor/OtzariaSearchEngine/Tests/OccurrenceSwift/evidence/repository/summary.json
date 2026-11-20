@@ -1,0 +1,52 @@
+{
+  "baseCommit": "9af79f40afccb18efd6e0b1158248714b403b9e3",
+  "actualWholeRepositoryBridgeCRust": {
+    "passed": 42,
+    "failed": 0,
+    "retainedBridgeCases": 28,
+    "newRepositoryCases": 14,
+    "compileExit": 0,
+    "runtimeExit": 0,
+    "engineSource": "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+    "staticLibrarySHA256": "7f23e3e87aa604b410f9cd21f1b56aab2d30596c697d46c8fb19ad160e34c7a0",
+    "resources": {
+      "dictionary.json": {
+        "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\Vendor\\OtzariaSearchEngine\\Resources\\dictionary.json",
+        "bytes": 451576,
+        "sha256": "cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69"
+      },
+      "Acronyms.json": {
+        "source": "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\Vendor\\OtzariaSearchEngine\\Resources\\Acronyms.json",
+        "bytes": 1366445,
+        "sha256": "cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f"
+      }
+    },
+    "executableSHA256": "52b340cc67ab7ad6bddd6538b9cd9f498e9ce7042d7a715a633e0e31c5225f6b"
+  },
+  "cachedReadinessWholeRepositoryWithExplicitBoundaryDoubles": {
+    "originalAssertionsRetained": 14,
+    "newManifestAssertions": 11,
+    "baseline": {
+      "passed": 19,
+      "failed": 6,
+      "failures": [
+        "FAIL assertion 16: adding the original index manifest revokes the old raw stamp",
+        "FAIL assertion 18: adding the original adjacent DB manifest revokes the old stamp",
+        "FAIL assertion 20: same-sized manifest replacement changes raw fingerprint and revokes cached evidence",
+        "FAIL assertion 21: removing a previously observed manifest revokes its cached stamp",
+        "FAIL assertion 22: removing the adjacent DB manifest also revokes its cached stamp",
+        "FAIL assertion 24: existing oversized optional metadata fails closed rather than becoming absent"
+      ]
+    },
+    "candidate": {
+      "passed": 25,
+      "failed": 0
+    }
+  },
+  "sourceUnchangedAfterRuntime": true,
+  "engineCheckoutPristineAfter": true,
+  "AppleSDK": "NOT_RUN",
+  "NativeUI": "NOT_RUN",
+  "managedCoverage": "NOT_CONNECTED",
+  "unsafeOriginalDiagnostics": "NOT_RUN"
+}

@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument("--otzaria-baseline", help="Compile the full view model from this Git ref for an expected red regression run")
 parser.add_argument("--cached-readiness-only", action="store_true", help="Run only the whole-repository readiness regression")
+parser.add_argument("--cached-readiness-baseline", help="Compile the whole repository from this Git ref for an expected red manifest-witness regression")
 parser.add_argument("--bootstrap-search-only", action="store_true", help="Run the exact bootstrap search method with boundary doubles; no native/FFI acceptance")
 options = parser.parse_args()
 
@@ -103,9 +104,18 @@ with tempfile.TemporaryDirectory(prefix="otzaria-search-fixture-") as name:
     cached_sources = ["Source/Features/Search/Models/SearchResultItem.swift",
                       "Source/Otzaria/Search/OtzariaSearchMode.swift",
                       "Source/Otzaria/Search/OtzariaSearchModels.swift",
+                      "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift",
                       "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
                       "Tests/HQ/search/CachedIndexReadinessFixtures.swift"]
+    cached_paths = [str(ROOT / p) for p in cached_sources]
+    if options.cached_readiness_baseline:
+        baseline = temp / "OtzariaTantivySearchRepository.swift"
+        body = subprocess.check_output([
+            "git", "show", options.cached_readiness_baseline + ":Source/Otzaria/Search/OtzariaTantivySearchRepository.swift"], cwd=ROOT)
+        baseline.write_bytes(body)
+        cached_paths[cached_sources.index("Source/Otzaria/Search/OtzariaTantivySearchRepository.swift")] = str(baseline)
+        print("Whole repository baseline: " + options.cached_readiness_baseline + "; SHA256 " + hashlib.sha256(body).hexdigest(), flush=True)
     run(["swiftc", "-swift-version", "5", "-parse-as-library", str(temp / "Locator.swift"),
-         *[str(ROOT / p) for p in cached_sources], "-o", str(cached_executable)], temp)
+         *cached_paths, "-o", str(cached_executable)], temp)
     run([str(cached_executable)], temp)
     print(f"Portable Swift fixtures completed in {time.monotonic() - started:.2f}s")

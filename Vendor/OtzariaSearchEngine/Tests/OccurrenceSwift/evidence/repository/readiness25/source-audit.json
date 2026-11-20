@@ -1,0 +1,9 @@
+{
+  "repositoryBase": "9af79f40afccb18efd6e0b1158248714b403b9e3",
+  "repositoryBaseLF_SHA256": "73f2b257bd60aeb59a3216cbf442aa29b76ea2f790cfb60c54a8114ba84d790c",
+  "repositoryCandidateLF_SHA256": "1ad1aac7c7471cd94b40c27a3d5a8948ad0e58cd432293f379907d0869b72e3a",
+  "existingPrefixAndAllHistoricalMethodsUnchanged": true,
+  "noOpenRecoveryDiscoveryCountInNewSeam": true,
+  "peerSourceReview": "No concrete lock/lifecycle/authority blocker; no runtime performed by peer",
+  "boundedMetadataNote": "Byte budget, not a hard I/O latency SLA"
+}

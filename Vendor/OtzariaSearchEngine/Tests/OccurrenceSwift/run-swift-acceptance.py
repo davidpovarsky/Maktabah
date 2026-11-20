@@ -20,6 +20,7 @@ PRODUCTION = [
     "Source/Otzaria/Search/OtzariaSearchEngineBridge.swift",
     "Source/Otzaria/Search/OtzariaExactOccurrenceModels.swift",
     "Source/Otzaria/Search/OtzariaExactOccurrenceOperation.swift",
+    "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
 ]
 
 
@@ -138,6 +139,16 @@ def main():
             shutil.which("swift"), "build", "--package-path", str(package),
             "--disable-automatic-resolution", "--show-bin-path",
         ], env=env).splitlines()[-1]
+        resources = {}
+        for name in ("dictionary.json", "Acronyms.json"):
+            source_resource = ENGINE / "Resources" / name
+            target_resource = Path(bin_path) / name
+            resource_bytes = source_resource.read_bytes()
+            target_resource.write_bytes(resource_bytes)
+            assert target_resource.read_bytes() == resource_bytes
+            resources[name] = {"source": str(source_resource), "bytes": len(resource_bytes),
+                               "sha256": hashlib.sha256(resource_bytes).hexdigest()}
+        record["actualRepositoryDictionaryResources"] = resources
         executable = Path(bin_path) / "OtzariaOccurrenceSwiftAcceptance.exe"
         record["executableSHA256"] = digest(executable)
         runtime_command = [
@@ -160,6 +171,9 @@ def main():
         assert git("status", "--porcelain") == ""
         for relative, hashes in inventory.items():
             assert digest(ROOT / relative) == hashes["sha256Raw"], "Source changed while running: " + relative
+        for name, resource in resources.items():
+            assert digest(Path(resource["source"])) == resource["sha256"]
+            assert digest(Path(bin_path) / name) == resource["sha256"]
         record["engineCheckoutPristineAfter"] = True
         record["status"] = "PASS"
     except Exception as error:

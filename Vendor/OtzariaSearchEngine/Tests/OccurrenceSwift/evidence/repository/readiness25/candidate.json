@@ -1,0 +1,10 @@
+{
+  "name": "candidate",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\tools\\hq-search-tests.py",
+    "--cached-readiness-only"
+  ],
+  "exit": 0,
+  "seconds": 103.266
+}
