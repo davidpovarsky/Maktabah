@@ -1,0 +1,245 @@
+{
+  "observedAt": "2026-11-20T04:02:45.816129+00:00",
+  "status": "PORTABLE_POLICY_CORRECTION_VERIFIED_REGISTRY_DISABLED",
+  "sourceParent": "cb434aca5e91eed9000f3927a4d79bb78dd55a8e",
+  "priorPolicyCommit": "2ba5b080aac4a3f496848693bb7f70d5d2e921c3",
+  "runtimeResources": 2,
+  "artifactResources": 3,
+  "red": {
+    "path": "raw/red-2ba-attempt3/RESULT.json.gz",
+    "counts": {
+      "failed": 7,
+      "passed": 92,
+      "skipped": 0,
+      "total": 99
+    },
+    "sha256": "69c1265f824f157bc533aa3a04352f3b3f34e24cef6ca4af06c5d437b8c0823f",
+    "failedCases": [
+      {
+        "detail": "incompatible(\"unqualified read candidate\")",
+        "name": "candidate_GREEN_exact_265_to_d5_full_policy_probe",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "candidate accepted unobserved three-resource build",
+        "name": "candidate_rejects_fabricated_optional_resource_build_claim",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "incompatible(\"unqualified read candidate\")",
+        "name": "actual_v32_manifest_candidate_metadata_probe_only",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "original producer fields were not bound",
+        "name": "producer_metadata_binding_accepts_only_its_original_fields",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "metadata binding accepted the unobserved all-resource identity",
+        "name": "producer_metadata_binding_rejects_unreported_optional_resource",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "trusted old container did not recover",
+        "name": "recovery_preserves_original_producer_across_path_change",
+        "outcome": "FAIL"
+      },
+      {
+        "detail": "original producer265 replaced by consumerd5",
+        "name": "recovery_repairs_consumer_restamp_from_original_manifest",
+        "outcome": "FAIL"
+      }
+    ]
+  },
+  "green": {
+    "path": "raw/green-two-actual-resources/RESULT.json.gz",
+    "counts": {
+      "failed": 0,
+      "passed": 99,
+      "skipped": 0,
+      "total": 99
+    },
+    "sha256": "e6272a7b2b5b6cbf6a8513b0c9b17e4f8646457518fff1c985ae64ba300ecdd3"
+  },
+  "sameFixtureAndRunner": true,
+  "exactWriterMethodsUnchanged": {
+    "func makeIdentity(": true,
+    "func prepareOrResumeBuildingIndex(": true,
+    "private func canSeedBuildingIndex(": true
+  },
+  "failedPreparationAttempts": [
+    {
+      "path": "raw/red-2ba",
+      "result": "compile failed, zero tests"
+    },
+    {
+      "path": "raw/red-2ba-attempt2",
+      "result": "compiler timeout at 120 seconds, zero tests"
+    }
+  ],
+  "runtimeQualification": "IN_PROGRESS_SEPARATE_EVIDENCE_NOT_AUTHORIZED_BY_THIS_COMMIT",
+  "originalSearchAndReadinessRegression": "NOT_RERUN_YET_FOR_THIS_CORRECTION; awaiting sole compiler slot",
+  "appleNativePhysicalExecuted": false,
+  "changedProductionFile": "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift",
+  "changedFunctions": [
+    "OtzariaLexicalIndexReadCompatibility.candidateContract",
+    "OtzariaSearchArtifactPolicy.identityMatchesArtifactProducer"
+  ],
+  "newOrChangedCallers": [],
+  "productionQualification": "DISABLED_EMPTY_REGISTRY",
+  "entries": [
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\green-two-actual-resources\\cases.json",
+      "path": "raw/green-two-actual-resources/cases.json.gz",
+      "originalBytes": 10784,
+      "originalSHA256": "7dd7383df727d907740fb2431260b18c20ec71a947ab1d7c4b1e058c68f2474d",
+      "storedBytes": 1365,
+      "storedSHA256": "4a203dd3105699fd6f37df145620ee270c573fa778fb00df8e1b6c93a201ccdc"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\green-two-actual-resources\\compile.log",
+      "path": "raw/green-two-actual-resources/compile.log.gz",
+      "originalBytes": 246,
+      "originalSHA256": "ffae17a62045cbbe033448cd28fb6d4126b85e24e4f83651906e5a1c1cd71626",
+      "storedBytes": 142,
+      "storedSHA256": "0988143306b9bbaefff144c4d2f5e28859db25901728481c420702699ca76caa"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\green-two-actual-resources\\RESULT.json",
+      "path": "raw/green-two-actual-resources/RESULT.json.gz",
+      "originalBytes": 15082,
+      "originalSHA256": "e6272a7b2b5b6cbf6a8513b0c9b17e4f8646457518fff1c985ae64ba300ecdd3",
+      "storedBytes": 3031,
+      "storedSHA256": "58a9ed0b339e6f534e20d49c9d6ea19a46871f257a34574ac8cc937f5e824ce2"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\green-two-actual-resources\\tests.log",
+      "path": "raw/green-two-actual-resources/tests.log.gz",
+      "originalBytes": 56,
+      "originalSHA256": "a7547df397e2e98c3de1f27caa3ad142b3ea7f210031b7d07e548273fc0c8dd5",
+      "storedBytes": 73,
+      "storedSHA256": "11f1a290105373001099d6ebad6696790dd199234ef15205282a0abb9a86629d"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\green-two-actual-resources-runner.log",
+      "path": "raw/green-two-actual-resources-runner.log.gz",
+      "originalBytes": 181,
+      "originalSHA256": "f118d0950a25623a9f102e83bb8a4ee36f3d97a94dbab5701c1541fdf63228e8",
+      "storedBytes": 166,
+      "storedSHA256": "47c26a13b505e08287f4450ef9475981eba97ef4b7363c1fcd43004d0ab6ab71"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\red-2ba\\compile.log",
+      "path": "raw/red-2ba/compile.log.gz",
+      "originalBytes": 1370,
+      "originalSHA256": "8dff0936d4282a32a3b059726d81ab74f2276edd843beace60f4fd1274d94a25",
+      "storedBytes": 506,
+      "storedSHA256": "6b3428c3102c06a54a7bb937e4c77aef6ed20f3184b2dccca7048305118432ec"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\red-2ba\\RESULT.json",
+      "path": "raw/red-2ba/RESULT.json.gz",
+      "originalBytes": 3192,
+      "originalSHA256": "59345268724378c187b12f1ba772d07c39df2c75845d59ed74f7e0984c828b63",
+      "storedBytes": 1691,
+      "storedSHA256": "512d137a3e308cb88bf0eed6b12b4be76856d20d4f58acdb1ff67dac6fb7314d"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\red-2ba\\runner.log",
+      "path": "raw/red-2ba/runner.log.gz",
+      "originalBytes": 1410,
+      "originalSHA256": "935f5ab7635ff3a9ce608b7b309ec0d661cddccad34f28d4c471b36ab6ae7064",
+      "storedBytes": 534,
+      "storedSHA256": "1869c853dd0a4fdd218090762cae663c8eb31f71d15daba21cd4679fae4db1b6"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\red-2ba-attempt2\\runner.log",
+      "path": "raw/red-2ba-attempt2/runner.log.gz",
+      "originalBytes": 2412,
+      "originalSHA256": "a2673f9b1b81f3119da6570c6f85e9343e98cff88e9e346dd248005a58b3b1bc",
+      "storedBytes": 659,
+      "storedSHA256": "0763c267eb6666559f251fd75e7e4669d8e225491e607db7fbdb8c5c04e6f8b0"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\red-2ba-attempt3\\cases.json",
+      "path": "raw/red-2ba-attempt3/cases.json.gz",
+      "originalBytes": 11250,
+      "originalSHA256": "6e40b828a7a8ffb99232fc9d47018f880e4bd3cd13b1069d7fc6b6e402c17343",
+      "storedBytes": 1542,
+      "storedSHA256": "6e9d135d9a2690d88d50f6b7f8a8d2919c94bb962f2da037f5d031fd5ada117c"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\red-2ba-attempt3\\compile.log",
+      "path": "raw/red-2ba-attempt3/compile.log.gz",
+      "originalBytes": 246,
+      "originalSHA256": "79446ae2f552f32acd84780f58619bdea18eed147ab07e24ce0a60851f8b9b88",
+      "storedBytes": 144,
+      "storedSHA256": "f5debf1f1bf457ed39c2b27d896d7f52a2c0ac5d9acbc773ce4479dc68dc56a4"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\red-2ba-attempt3\\RESULT.json",
+      "path": "raw/red-2ba-attempt3/RESULT.json.gz",
+      "originalBytes": 15529,
+      "originalSHA256": "69c1265f824f157bc533aa3a04352f3b3f34e24cef6ca4af06c5d437b8c0823f",
+      "storedBytes": 3178,
+      "storedSHA256": "012e0facb7a35944a70cf52b060b3a761b45c200deeb72d51d90c0a2387f788e"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\red-2ba-attempt3\\runner.log",
+      "path": "raw/red-2ba-attempt3/runner.log.gz",
+      "originalBytes": 913,
+      "originalSHA256": "674d5974ba3d1ef8156841841806a997d44081cba023d0454ea3d67a1b1c0d5b",
+      "storedBytes": 477,
+      "storedSHA256": "5baa249557e20f3b251f2d195a6b345b613f54998a8c45380c85d44e70a58bf4"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\policy-actual-resources\\red-2ba-attempt3\\tests.log",
+      "path": "raw/red-2ba-attempt3/tests.log.gz",
+      "originalBytes": 821,
+      "originalSHA256": "09aeba8134f7c5ed2e2c149fbb30fb820ba7f2018fc85af1c55e7ead1d7c3517",
+      "storedBytes": 417,
+      "storedSHA256": "db2d26391a6642347c6c4a2d11f1119220a7f60e5a3f6544fed52dfc7c8516ee"
+    },
+    {
+      "originalPath": "git:2ba5b080aac4a3f496848693bb7f70d5d2e921c3:Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift",
+      "path": "source/RED-OtzariaSearchArtifactPolicy.swift.gz",
+      "originalBytes": 15007,
+      "originalSHA256": "9386bab3f68a98aa522e6eba22629b4dd9f79eb040a31f91b15533d89456fe30",
+      "storedBytes": 3874,
+      "storedSHA256": "1e14a21a457c88106a7cac5837342dfa8c2eeec910d41eafc615276f4c1cf250"
+    },
+    {
+      "originalPath": "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift",
+      "path": "source/OtzariaSearchArtifactPolicy.swift.gz",
+      "originalBytes": 15775,
+      "originalSHA256": "2a43dd19fdba64d94992a567adc91572830decca14c3f74805d3eab433b0c47e",
+      "storedBytes": 4049,
+      "storedSHA256": "19cd63daac9799cd5e7ee5cb568687d777ebc57cb218b821ca77dd5a20683416"
+    },
+    {
+      "originalPath": "Tests/HQ/search/IndexReadCompatibilityFixtures.swift",
+      "path": "source/IndexReadCompatibilityFixtures.swift.gz",
+      "originalBytes": 35259,
+      "originalSHA256": "c070ee7bb7a08f345725bffffc15e702e7772f21abfcee2dadf2cf44e12fd239",
+      "storedBytes": 7307,
+      "storedSHA256": "59f16660885de626a9dea15533d8244bab8ed7245552d2666bc6873a0a318f20"
+    },
+    {
+      "originalPath": "tools/hq-otzaria-read-compatibility.py",
+      "path": "source/hq-otzaria-read-compatibility.py.gz",
+      "originalBytes": 9612,
+      "originalSHA256": "f579e721fc7cffde36e4b7da0a1d77b40d50724f38c15ac855f0983d787d716d",
+      "storedBytes": 3233,
+      "storedSHA256": "22fce9a10f0af219c1368f566f9d6dddff7585fb0b1c97336821b2152f17495a"
+    },
+    {
+      "originalPath": "Tests/HQ/search/Fixtures/actual-265-d5-build-info-20261120.json",
+      "path": "source/actual-265-d5-build-info-20261120.json.gz",
+      "originalBytes": 2784,
+      "originalSHA256": "d63244a5ef4d501101d151a88f368547467f92924cc35867b23a7ee107c3fdd5",
+      "storedBytes": 1100,
+      "storedSHA256": "6f6bb6aaea29082c52743d49aca2ce6f7db6065f97c96bca4e7172586692fe03"
+    }
+  ]
+}

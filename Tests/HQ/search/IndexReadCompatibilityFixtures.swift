@@ -58,13 +58,13 @@ import Foundation
         return try decoder.decode(OtzariaDatabaseInstallationManifest.self,
             from: JSONSerialization.data(withJSONObject: object))
     }
-    static func build(_ manifest: OtzariaSearchArtifactManifest) -> OtzariaSearchEngineBuildInfo {
-        let engine = manifest.lexicalEngine
-        return .init(upstreamRepository: engine.repository, upstreamBranch: "main", upstreamCommit: engine.commit,
-            engineVersion: engine.engineVersion, indexSchemaVersion: engine.indexSchemaVersion,
-            defaultGenerationOrder: engine.defaultGenerationOrder, semanticEnabled: false,
-            semanticSidecarRevision: engine.semanticSidecarRevision, syncedAt: "fixture",
-            adapterVersion: engine.adapterVersion, resourceHashes: manifest.resources.mapValues(\.sha256))
+    struct ActualBuildInfoFixture: Decodable {
+        struct Response: Decodable {
+            let ok: Bool
+            let value: OtzariaSearchEngineBuildInfo
+        }
+        let producer: Response
+        let consumer: Response
     }
     static func activate(_ manifest: OtzariaSearchArtifactManifest) {
         OtzariaDataProfileRegistry.activeProfileID = manifest.effectiveProfileID
@@ -93,6 +93,24 @@ import Foundation
             }, "baseline unexpectedly admitted the unimplemented read candidate")
         }
         await run("candidate_GREEN_exact_265_to_d5_full_policy_probe") { try probe(mini) }
+        await run("actual_C_build_info_has_two_required_resources_and_full_manifest_has_three") {
+            try require(producer.resourceHashes == consumer.resourceHashes && consumer.resourceHashes.count == 2,
+                "actual original C resource projection changed")
+            try require(mini.resources.count == 3 && mini.resources["Application Support/Otzaria/lexical.db"] != nil,
+                "authenticated full artifact resource map lost its optional lexical database")
+        }
+        await run("candidate_rejects_fabricated_optional_resource_build_claim") {
+            let fabricated = try mutate(consumer!, ["resourceHashes"], mini.resources.mapValues(\.sha256))
+            try require(rejects { try probe(mini, build: fabricated) }, "candidate accepted unobserved three-resource build")
+        }
+        for name in consumer.resourceHashes.keys.sorted() {
+            await run("candidate_rejects_missing_required_consumer_resource_" + name) {
+                var resources = consumer.resourceHashes
+                resources.removeValue(forKey: name)
+                try require(rejects { try probe(mini, build: mutate(consumer!, ["resourceHashes"], resources)) },
+                    "candidate accepted arbitrary required-resource subset")
+            }
+        }
         await run("production_candidate_remains_unqualified_and_rejected") {
             try require(OtzariaLexicalIndexReadCompatibility.qualifiedContract(manifest: mini, consumer: consumer) == nil,
                 "qualification must be empty")
@@ -195,7 +213,7 @@ import Foundation
             try require(identity.upstreamCommit == producer.upstreamCommit && consumer.upstreamCommit != identity.upstreamCommit,
                 "producer identity was restamped")
             try require(identity.database == fingerprint && identity.catalogueHash == mini.lexicalArtifact.catalogueHash
-                && identity.resourceHashes == mini.resources.mapValues(\.sha256), "producer fields changed")
+                && identity.resourceHashes == producer.resourceHashes, "producer required-resource projection changed")
             try require(BaselineArtifactPolicy.managedIdentityMatchesCanonicalData(identity, currentDatabase: fingerprint, build: producer),
                 "old runtime metadata rollback rejected original producer")
             try require(!SubjectArtifactPolicy.managedIdentityMatchesCanonicalData(identity, currentDatabase: fingerprint,
@@ -221,6 +239,20 @@ import Foundation
         await run("producer_metadata_binding_accepts_only_its_original_fields") {
             try require(SubjectArtifactPolicy.identityMatchesArtifactProducer(originalIdentity, manifest: mini),
                 "original producer fields were not bound")
+        }
+        await run("producer_metadata_binding_rejects_unreported_optional_resource") {
+            let changed = try mutate(originalIdentity, ["resourceHashes"], mini.resources.mapValues(\.sha256))
+            try require(!SubjectArtifactPolicy.identityMatchesArtifactProducer(changed, manifest: mini),
+                "metadata binding accepted the unobserved all-resource identity")
+        }
+        for name in producer.resourceHashes.keys.sorted() {
+            await run("producer_metadata_binding_rejects_missing_required_resource_" + name) {
+                var resources = producer.resourceHashes
+                resources.removeValue(forKey: name)
+                let changed = try mutate(originalIdentity, ["resourceHashes"], resources)
+                try require(!SubjectArtifactPolicy.identityMatchesArtifactProducer(changed, manifest: mini),
+                    "metadata binding accepted a partial resource projection")
+            }
         }
         let identityNegatives: [(String, Any)] = [("upstreamCommit", consumer.upstreamCommit),
             ("engineVersion", "0.1.1"), ("indexSchemaVersion", 5), ("defaultGenerationOrder", 6),
@@ -290,7 +322,7 @@ import Foundation
     static func assertProducer(_ url: URL, artifact: OtzariaResolvedSearchArtifact, path: String) throws {
         guard let identity = manager.storedIdentity(indexURL: url) else { throw FixtureFailure.failed("missing identity") }
         try require(identity.upstreamCommit == producer.upstreamCommit, "original producer265 replaced by consumerd5")
-        try require(identity.resourceHashes == artifact.manifest.resources.mapValues(\.sha256), "resource provenance changed")
+        try require(identity.resourceHashes == producer.resourceHashes, "producer required-resource provenance changed")
         let fp = try manager.currentFingerprint(databasePath: path)
         try require(BaselineArtifactPolicy.managedIdentityMatchesCanonicalData(identity, currentDatabase: fp, build: producer),
             "metadata cannot roll back to original runtime")
@@ -437,10 +469,11 @@ import Foundation
         stateRoot = URL(fileURLWithPath: CommandLine.arguments[2])
         mini = try JSONDecoder().decode(OtzariaSearchArtifactManifest.self,
             from: Data(contentsOf: root.appendingPathComponent("Tests/HQ/search/Fixtures/otzaria-miniTest10-v6-manifest.json")))
-        producer = build(mini)
-        consumer = try mutate(producer!, ["upstreamRepository"], "davidpovarsky/otzaria_search_engine")
-        consumer = try mutate(consumer!, ["upstreamCommit"], "d5d59d1269bdf87fb0a6901cf31941726a0c699b")
-        consumer = try mutate(consumer!, ["upstreamBranch"], "codex/otzaria-exact-occurrences-20261120")
+        let actual = try JSONDecoder().decode(ActualBuildInfoFixture.self,
+            from: Data(contentsOf: root.appendingPathComponent("Tests/HQ/search/Fixtures/actual-265-d5-build-info-20261120.json")))
+        try require(actual.producer.ok && actual.consumer.ok, "actual C buildInfo call failed")
+        producer = actual.producer.value
+        consumer = actual.consumer.value
         try await policyCases(root: root)
         try await flowCases()
         let failures = results.filter { $0["outcome"] == "FAIL" }
