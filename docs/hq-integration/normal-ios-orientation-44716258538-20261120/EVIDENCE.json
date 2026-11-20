@@ -1,0 +1,43 @@
+{
+  "runID": 44716258538,
+  "runHead": "e9050ad8998a070c92c73a881b0d7deb6e216e88",
+  "applicationTestSource": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "runAttempt": 1,
+  "workflowConclusion": "failure",
+  "repairBase": "b9508ff7e302dcd692b97c2c510993d0c2652809",
+  "repairSourceSHA256": "d263057ae4f586f0257329182e3d76edab978382ff0a74a906e13a931d46ab02",
+  "testDriverSHA256": "93e60a94780893b3fe2ef830d2168842c9dd3f04222d432eb8f23ab22ea19dd5",
+  "baseline": {
+    "executed": 23,
+    "passed": 17,
+    "failed": 6,
+    "errors": 0,
+    "skips": 0
+  },
+  "candidate": {
+    "executed": 23,
+    "passed": 23,
+    "failed": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "authenticArtifactArchives": 4,
+  "authenticArchiveEntries": 63,
+  "originalPNG": {
+    "sha256": "f943a3895a70b33818fd5fc4bff627a79dcd0f6af73deea98d56698e15ee55cc",
+    "observedDimensions": [
+      2064,
+      2752
+    ],
+    "preTransformRawRetained": false,
+    "preTransformDimensionsInferredNotObserved": [
+      2752,
+      2064
+    ]
+  },
+  "appleRepairExecuted": false,
+  "nativeRepairExecuted": false,
+  "laterNormalAcceptancePhasesExecuted": false,
+  "verifierCommand": "python docs/hq-integration/normal-ios-orientation-44716258538-20261120/verify-evidence.py --git-ref HEAD",
+  "sealedAtUTC": "2026-11-20T12:16:29.717479+00:00"
+}

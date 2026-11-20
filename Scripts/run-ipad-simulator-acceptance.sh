@@ -176,7 +176,6 @@ capture_screen() {
     sleep "$wait_seconds"
   fi
   xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/$output" >/dev/null 2>&1 || echo "Warning: failed to capture $output"
-  normalize_screenshot_orientation "$SCREENSHOT_DIR/$output" "$CURRENT_ORIENTATION"
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
   sleep 1
 }
@@ -663,7 +662,6 @@ EOF
 capture_current_ui() {
   local name="$1"
   xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/$name" >/dev/null
-  normalize_screenshot_orientation "$SCREENSHOT_DIR/$name" "$CURRENT_ORIENTATION"
   idb ui describe-all \
     --key AXUniqueId --key AXLabel --key AXValue --key help --key frame \
     --udid "$UDID" > "$REPORT_DIR/${name%.png}-accessibility.json"
@@ -1098,29 +1096,6 @@ rotate_simulator() {
   sleep 2
 }
 
-normalize_screenshot_orientation() {
-  local path="$1"
-  local orientation="$2"
-  local degrees
-  case "$orientation" in
-    portrait) return 0 ;;
-    portraitUpsideDown) degrees=180 ;;
-    landscapeLeft) degrees=90 ;;
-    landscapeRight) degrees=-90 ;;
-    *) echo "Unsupported screenshot orientation: $orientation" >&2; return 64 ;;
-  esac
-
-  # Xcode 26's headless simctl capture keeps the native portrait framebuffer
-  # dimensions after an HID rotation. Rotate the encoded PNG so the artifact
-  # matches the interface orientation the app actually rendered.
-  local oriented_path="${path%.png}.oriented.png"
-  if ! sips -r "$degrees" "$path" --out "$oriented_path" >/dev/null; then
-    echo "Failed to normalize screenshot orientation: $path" >&2
-    return 1
-  fi
-  mv "$oriented_path" "$path"
-}
-
 set_orientation() {
   CURRENT_ORIENTATION="$1"
   echo "Next captures will use simulator orientation $CURRENT_ORIENTATION"
@@ -1150,13 +1125,14 @@ require_screenshot() {
 
 echo ""
 echo "=== [PHASE 0: Interface Orientation Probe] ==="
+# Keep current-runtime simctl capture bytes unchanged. The admitted SDK/runtime
+# is 27+, so the old Xcode 26 pixel rotation must not rewrite orientation evidence.
 SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
 xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap >/dev/null
 rotate_simulator landscapeLeft
 xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/orientation-probe-landscape.png" >/dev/null
-normalize_screenshot_orientation "$SCREENSHOT_DIR/orientation-probe-landscape.png" landscapeLeft
 if ! require_screenshot "orientation-probe-landscape.png" landscape; then
-  echo "IDB UI orientation probe or screenshot normalization failed." >&2
+  echo "IDB UI orientation probe or raw screenshot orientation failed." >&2
   exit 1
 fi
 rotate_simulator portrait

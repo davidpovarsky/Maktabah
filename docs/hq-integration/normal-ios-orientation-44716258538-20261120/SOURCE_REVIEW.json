@@ -1,0 +1,7 @@
+{
+  "reviewer": "Root",
+  "scope": "complete shell delta at b950 isolated worktree",
+  "finding": "No new blocker; only legacy normalizer and three calls removed, scoped comment and failure wording; original rotate_simulator/require_screenshot and all later gates preserved",
+  "testAttribution": "23/23 is portable Bash boundary controls only",
+  "appleAndNativeRepairExecuted": false
+}
