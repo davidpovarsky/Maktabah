@@ -1534,14 +1534,48 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         motion.tap()
         let toggle = settings.switches["Reduce Motion"].firstMatch
         XCTAssertTrue(toggle.waitForExistence(timeout: 15))
+
+        // On this Settings layout the native switch accessibility element
+        // includes the complete labelled row. Its automatic hittable point
+        // was the row centre, not the visible trailing switch track.
+        @MainActor
+        func tapOriginalReduceMotionSwitch(stage: String) {
+            let nativeWindow = settings.windows.firstMatch
+            guard toggle.exists, toggle.isHittable, nativeWindow.exists else {
+                XCTFail("The original Reduce Motion switch must be visible and hittable")
+                return
+            }
+            let controlFrame = toggle.frame
+            let windowFrame = nativeWindow.frame
+            let target = toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5))
+            let point = target.screenPoint
+            let geometry = [
+                controlFrame.minX, controlFrame.minY, controlFrame.width, controlFrame.height,
+                windowFrame.minX, windowFrame.minY, windowFrame.width, windowFrame.height,
+                point.x, point.y
+            ]
+            guard geometry.allSatisfy({ $0.isFinite }), !controlFrame.isEmpty,
+                  !windowFrame.isEmpty, controlFrame.contains(point), windowFrame.contains(point) else {
+                XCTFail("The original switch tap must stay inside its finite visible native window")
+                return
+            }
+            let witness = XCTAttachment(string:
+                "stage=\(stage)\ncontrolFrame=\(controlFrame)\nwindowFrame=\(windowFrame)\n"
+                + "screenPoint=\(point)\nsystemReduceMotion=\(UIAccessibility.isReduceMotionEnabled)\n"
+                + settings.debugDescription)
+            witness.name = "system-reduce-motion-\(stage)-original-switch"
+            witness.lifetime = .keepAlways
+            add(witness)
+            target.tap()
+        }
         // Verify the actual system preference, independent of the Settings
         // switch's localized accessibility value on this OS version.
         let wasEnabled = UIAccessibility.isReduceMotionEnabled
-        if !wasEnabled { toggle.tap() }
+        if !wasEnabled { tapOriginalReduceMotionSwitch(stage: "enable") }
         let restoration = NativeUIRestoration {
             settings.activate()
             XCTAssertTrue(toggle.waitForExistence(timeout: 15))
-            if UIAccessibility.isReduceMotionEnabled != wasEnabled { toggle.tap() }
+            if UIAccessibility.isReduceMotionEnabled != wasEnabled { tapOriginalReduceMotionSwitch(stage: "restore") }
             let restored = XCTNSPredicateExpectation(
                 predicate: NSPredicate { _, _ in
                     MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled == wasEnabled }

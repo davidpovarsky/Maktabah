@@ -1,0 +1,14 @@
+{
+  "at_utc": "2026-11-20T09:09:35.598438+00:00",
+  "source_review": {
+    "reviewer": "github_native_audit",
+    "reviewed_source_git_lf_sha256": "92abf09a2e01e8a1c027ea85b1d457b7440fe8aea6360d60bd61c48fdc99b13c",
+    "result": "No concrete source blocker; MainActor local helper and stored NativeUIRestoration closure share actor; original Settings/toggle retained through teardown; original15s predicates and later palette assertions unchanged",
+    "execution": "Read-only review, not compiler or Native execution"
+  },
+  "event_review": {
+    "reviewer": "hanlin_api_integration",
+    "result": "Decoded original toggle event and independently extracted/viewed original navigation frames; both successful navigation taps corroborate the same mapping; old switch action lands in row centre and switch remainsOFF",
+    "candidate_result": "NOT_RUN"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "source_run": 44665679661,
+  "artifact": 14608653727,
+  "original_video_sha256": "8374c72049b875bbf41590170b6b39e4433d2ea1fa83d96e7080d955b6634257",
+  "empirical_mapping": "landscape=(raw_y,834-raw_x), corroborated by two successful original navigation events in same PID/window/orientation; no claim about the private orientation enum meaning",
+  "parent_window_points": {
+    "width": 1210,
+    "height": 834
+  },
+  "observed_event_orientation_raw": 1,
+  "target_process_id": 51127,
+  "events": [
+    {
+      "action": "Accessibility navigation",
+      "raw": [
+        443.5,
+        95.25
+      ],
+      "mapped": [
+        95.25,
+        390.5
+      ],
+      "visual_correspondence": "inside actual Accessibility label in original t20 frame; navigation succeeded"
+    },
+    {
+      "action": "Motion navigation",
+      "raw": [
+        301.5,
+        405.5
+      ],
+      "mapped": [
+        405.5,
+        532.5
+      ],
+      "visual_correspondence": "inside actual Motion label in original t29.5 frame; navigation succeeded"
+    },
+    {
+      "action": "Reduce Motion automatic switch tap",
+      "raw": [
+        704,
+        765
+      ],
+      "mapped": [
+        765,
+        130
+      ],
+      "visual_correspondence": "middle of labelled row, substantially left of visible trailing switch; original t34.5/40/48 still OFF"
+    }
+  ],
+  "visual_bounds_are_raster_estimates_not_native_AX_frames": true,
+  "approximate_row_points": {
+    "x": 340,
+    "y": 104,
+    "width": 850,
+    "height": 52
+  },
+  "approximate_switch_track_points": {
+    "minX": 1109,
+    "maxX": 1172,
+    "minY": 116,
+    "maxY": 144
+  },
+  "candidate_illustrative_point_if_AX_frame_is_row": [
+    1147.5,
+    130
+  ],
+  "candidate_actual_point": "computed only from live original native switch frame, normalized(0.95,0.5), required inside same original Settings window",
+  "candidate_native_result": "NOT_RUN",
+  "original_status_oracles": "UIAccessibility.isReduceMotionEnabled within15 seconds and restoration within15 seconds, unchanged"
+}
