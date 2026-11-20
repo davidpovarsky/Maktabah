@@ -172,7 +172,7 @@ struct iOSMainView: View {
                 .opacity(0.02)
                 .allowsHitTesting(false)
         }
-        .modifier(MaktabahNativeRoutingHost(manager: navigationManager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings, sidebar: MaktabahApp.isIpad ? sidebar : nil))
+        .modifier(MaktabahNativeRoutingHost(manager: navigationManager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings, sidebar: MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled ? sidebar : nil))
         .modifier(CompactStudyWorkspaceHostModifier(manager: navigationManager))
         #if DEBUG
         .task {

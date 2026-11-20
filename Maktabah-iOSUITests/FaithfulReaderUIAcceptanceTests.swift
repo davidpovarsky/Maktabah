@@ -67,14 +67,14 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let topInset: Double?; let bottomInset: Double?
         let overviewPresentations: [Presentation]?
     }
-    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil) {
+    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil, tier: TestTier? = nil) {
         // The downstream observer reads the actual original source anchor;
         // never activate the baseline renderer's crash-prone file exporter.
         let prefix = (recordViewport ? ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"] : nil).map {
             URL(fileURLWithPath: $0).appendingPathComponent("faithful-\(scenario)-" + UUID().uuidString).path
         }
         viewportURL = prefix.map { URL(fileURLWithPath: $0 + ".viewport.json") }
-        launchWithTier(readerTestTier, scenario: scenario, backend: backend, extraArgs: [
+        launchWithTier(tier ?? readerTestTier, scenario: scenario, backend: backend, extraArgs: [
             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
             "-studyWorkspaceTestingNamespace", workspaceNamespace,
             "-textViewBackgroundColorLight", String(background)
@@ -995,17 +995,24 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
 
     func testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace() throws {
         let containers = try workspaceContainerParent()
-        launchReader(enabled: false)
+        launchReader(enabled: false, tier: .realUI)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
         XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["reader-sidebar-pager"].exists)
+        XCTAssertFalse(app.buttons["reader-command-palette-launcher"].exists)
         let originalHighlights = try XCTUnwrap(getRenderedHighlightSnapshot())
         capture("candidate-before-workspace-migration-original-reader")
         app.terminate()
         XCTAssertTrue(matchingTestSidecars(in: containers, namespace: workspaceNamespace).isEmpty,
                       "Disabled startup/shutdown must not create workspace state in any installed app container")
-        launchReader()
+        launchReader(tier: .realUI)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
-        XCTAssertTrue(app.descendants(matching: .any)["chavrusa-reader-host"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.buttons["reader-command-palette-launcher"].waitForExistence(timeout: 30))
+        let pager = app.descendants(matching: .any)["reader-sidebar-pager"]
+        if !pager.exists || !pager.isHittable { tap(readerSidebarToggle()) }
+        XCTAssertTrue(pager.waitForExistence(timeout: 30), "The enabled original split must mount its actual sidebar pager")
         let migratedHighlights = try XCTUnwrap(getRenderedHighlightSnapshot())
         XCTAssertEqual(migratedHighlights.searchHighlightCount, originalHighlights.searchHighlightCount)
         XCTAssertEqual(migratedHighlights.annotationHighlightCount, originalHighlights.annotationHighlightCount)
@@ -1015,9 +1022,12 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let sidecar = try workspaceSidecarURL()
         app.terminate()
         let enabledBytes = try Data(contentsOf: sidecar)
-        launchReader(enabled: false)
+        launchReader(enabled: false, tier: .realUI)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
         XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["reader-sidebar-pager"].exists)
+        XCTAssertFalse(app.buttons["reader-command-palette-launcher"].exists)
         XCTAssertFalse(app.textFields["reader-library-search-field"].exists)
         capture("candidate-disabled-original-reader")
         app.terminate()

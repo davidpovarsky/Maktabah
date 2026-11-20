@@ -1,0 +1,26 @@
+{
+  "Source/UI/iOS/Views/iPadLayout.swift": {
+    "working_copy_raw_sha256": "a1ac28d4ef5a08a2e6d9a7acb6f99a9f69e70d58aa05540532f0739b24c43fb4",
+    "repository_lf_sha256": "a1ac28d4ef5a08a2e6d9a7acb6f99a9f69e70d58aa05540532f0739b24c43fb4"
+  },
+  "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": {
+    "working_copy_raw_sha256": "64f534d1db5e265d515ebb9081f14d91e0f5b515dfb05d8ad6b62e9248047eca",
+    "repository_lf_sha256": "64f534d1db5e265d515ebb9081f14d91e0f5b515dfb05d8ad6b62e9248047eca"
+  },
+  "Source/UI/iOS/Views/iOSMainView.swift": {
+    "working_copy_raw_sha256": "32e6ab953ba92b747d5415798d873d166d950b4b3495c881e0b0f7cdb01d481a",
+    "repository_lf_sha256": "32e6ab953ba92b747d5415798d873d166d950b4b3495c881e0b0f7cdb01d481a"
+  },
+  "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+    "working_copy_raw_sha256": "db39a6592c78cd337ec0e60313755fdc09c237b915f149009aa353623c0f3c9d",
+    "repository_lf_sha256": "db39a6592c78cd337ec0e60313755fdc09c237b915f149009aa353623c0f3c9d"
+  },
+  "tools/hq-feature-off-lifecycle.py": {
+    "working_copy_raw_sha256": "a5a8a739904bbd21d8661a531c460304a1be96eb9c10ced2f123f5164e1f14eb",
+    "repository_lf_sha256": "a5a8a739904bbd21d8661a531c460304a1be96eb9c10ced2f123f5164e1f14eb"
+  },
+  "tools/test_reader_feature_off_lifecycle.swift": {
+    "working_copy_raw_sha256": "767d60d1a7f550d4a62407dd97c6814f0f08f40a2834504acd0627f2dcb661c7",
+    "repository_lf_sha256": "767d60d1a7f550d4a62407dd97c6814f0f08f40a2834504acd0627f2dcb661c7"
+  }
+}
