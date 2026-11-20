@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "parent_source": "03642363a6051bd996bd49d8bdae77ff577fd704",
+  "parent_tree": "b93dd370b964efc12f9ac33d69e80887d127afd3",
+  "source_packet_base": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5",
+  "canonical_original_inputs": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
+      "size": 160603,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
+      "archive_path": "docs/hq-integration/release-reader-diagnostics-20261120/base/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift.gz"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "size": 49924,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "archive_path": "docs/hq-integration/release-reader-diagnostics-20261120/base/Scripts/CI/run-faithful-ipad-matrix.py.gz"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78750ebdfdf7fe45b4b59684c3a113c963938db6",
+      "size": 149723,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/78750ebdfdf7fe45b4b59684c3a113c963938db6",
+      "archive_path": "docs/hq-integration/release-reader-diagnostics-20261120/base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift.gz"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41a4968b1caee3df6f24b7950079d9ac63d83cf7",
+      "size": 20432,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/41a4968b1caee3df6f24b7950079d9ac63d83cf7",
+      "archive_path": "docs/hq-integration/release-reader-diagnostics-20261120/base/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift.gz"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29511fe48539bed05880eb6090b1825702a1f990",
+      "size": 32001,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/29511fe48539bed05880eb6090b1825702a1f990",
+      "archive_path": "docs/hq-integration/release-reader-diagnostics-20261120/base/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift.gz"
+    },
+    {
+      "path": "Source/Otzaria/Debug/OtzariaFileLogger.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afead5090be564ca0bd561ef71155ae9f3bf0b1d",
+      "size": 2026,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/afead5090be564ca0bd561ef71155ae9f3bf0b1d",
+      "archive_path": "docs/hq-integration/release-reader-diagnostics-20261120/base/Source/Otzaria/Debug/OtzariaFileLogger.swift.gz"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf44a7546bd360c5813e108d4e70e9ce85af3271",
+      "size": 21392,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/bf44a7546bd360c5813e108d4e70e9ce85af3271",
+      "archive_path": "docs/hq-integration/release-reader-diagnostics-20261120/base/Source/UI/iOS/Views/iPadLayout.swift.gz"
+    }
+  ],
+  "full_source_delta_read": true,
+  "read_only_packet_replay_exit_code": 0,
+  "source_python_checks_passed": 28,
+  "source_python_checks_failed": 0,
+  "actual_swift_compilation": "NOT_RUN",
+  "actual_native_cases": "NOT_RUN",
+  "review": [
+    "Both DEBUG diagnostic files recover their exact originals after removing the three additions. No guard, deadline, return, await, dispatch, Core cold path or error mapping changes.",
+    "Observer is default nil and only installed by original miniTest10 Commentary flag plus UUID. Fixed bounded categorical fields only; no source content or identifiers. Monotonic catch time is captured before original asynchronous logger.",
+    "Shared-sidebar Inspector uses the existing floating panel for every width, keeps the original Reader in its existing HStack position and removes the reserved390+18 column for this owner. Original nil-owner predicate and all test oracles unchanged.",
+    "Owner requirement independently read from Asana1219643110971002: panel over Reader and unchanged content insets, including wide iPad. Original planned system Side Sheet/three detents/physical RTL remains unfulfilled by this narrow correction."
+  ],
+  "native_next_cases": [
+    "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait"
+  ],
+  "approval": "Integrate source and exact evidence, then perform original actual Apple build/Native acceptance. No Native success credit yet."
+}

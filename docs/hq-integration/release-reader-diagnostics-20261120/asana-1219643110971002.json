@@ -1,0 +1,65 @@
+{
+  "data": {
+    "gid": "1219643110971002",
+    "actual_time_minutes": null,
+    "assignee": null,
+    "assignee_status": "upcoming",
+    "completed": false,
+    "completed_at": null,
+    "created_at": "2026-10-19T12:36:23.421Z",
+    "due_at": null,
+    "due_on": null,
+    "followers": [
+      {
+        "gid": "1219597879016933",
+        "name": "דוד פוברסקי",
+        "resource_type": "user"
+      }
+    ],
+    "hearted": false,
+    "hearts": [],
+    "liked": false,
+    "likes": [],
+    "memberships": [
+      {
+        "project": {
+          "gid": "1219602719070493",
+          "resource_subtype": "default_project",
+          "name": "אוצריא",
+          "resource_type": "project"
+        },
+        "section": {
+          "gid": "1219602719070494",
+          "name": "To Do",
+          "resource_type": "section"
+        }
+      }
+    ],
+    "modified_at": "2026-11-02T10:47:21.481Z",
+    "name": "[PLANNED][UX] Maktabah — Native iPadOS 27 Side Sheet ל-TorahInspectorKit בשלושה גבהים",
+    "notes": "סטטוס: PLANNED / FUTURE — רעיון לתכנון והטמעה בהמשך בלבד. לא להתחיל עבודה כעת, לא לשנות קוד, לא לפתוח CI/Simulator, לא למזג ולא להפיץ. אין תאריך יעד; התחלה רק בהוראה מפורשת.\n\nמטרה:\nלהחליף בתוך Maktabah (ולא ב-Pinkha/Anytype) את שכבת הצגת כלי הלימוד/מפרשים המבוססת כיום על FloatingPanel + עמודת HStack ברוחב ידני + Sheet קומפקטי, ב-SwiftUI system .sheet אמיתי עם .presentationPlacement(.trailing) של iPadOS 27, ברוח Apple Maps. זהו רכיב מערכתי ולא Inspector, Sidebar או overlay מדומה. אותו Reader/TorahInspectorKit נשאר; אין להחליף מנוע מקורות.\n\nהתנהגות יעד:\n• שלושה detents ניתנים לגרירה: Peek קטן ~155pt (תקציר שימושי), Medium (חצי גובה), Large (גובה מלא ככל שהמערכת מאפשרת).\n• באייפד רחב חלונית צפה בצד מעל הקורא, עם רקע הקורא גלוי; במצב חלון צר של אותו iPad — בדיקת התאמה אוטומטית ל-bottom sheet בסגנון iPhone. לא להציג צילום iPhone כאימות של שינוי גודל חלון iPad.\n• לקבוע מדיניות צד פיזי ב-RTL: מימין בעברית בהתאם ל-Apple Maps (לא להניח ש-trailing = right), ולוודא אנגלית/LTR.\n• .presentationDragIndicator(.visible), .presentationBackgroundInteraction לפי מבחני UX והרשאות אינטראקציה (כולל בחירה/גלילה בקורא מאחור), שילוב חומר מערכתי; בלי רקע זכוכית כפול/פינות כפולות.\n• מצב Peek חייב להציג תוכן שנכנס לגובה; לשמר selection, selectedTool, נתונים ו-navigation stack במעבר בין detents, ספרים, טאבים ו-backends.\n\nממצאים מהקוד (branch מדויק fix/maktabah-search-detail-unification):\n• Source/iOS/Views/Reader/iOSReaderWorkspaceView.swift: שלושה מסלולי presentation; StudyContentFloatingPanelLayout, floatingWorkspace, wideWorkspace, panelResizeHandle, compactStudyPanel [.medium,.large], updatePanelPresentation, compactPanelDidDismiss, מעבר TOC.\n• Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift: חיבור תוכן TorahInspectorKit, annotations, onClose, openInNewTab, selectedTool, session.\n• Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift: repositories, selection ומיפוי מקורות – לא לשכתב.\n• Source/iOS/Views/iPadLayout.swift: NavigationSplitView בעל שלוש עמודות; לבדוק אם יש להצמיד presentation ברמת workspace / root כדי למנוע שה-Sheet ייתחם לעמודת Detail.\n• Maktabah uses TorahInspectorKit pinned revision e6e18a0329ba2aa788a4bd482caac210f96e5ab5; בדיקת מצב pin בזמן הביצוע חובה. Kit chrome כבר מכיל .embeddedSheet/.floatingPanel.\n• iOS deployment target כרגע 18.6, CI ב-Xcode 26. למימוש חדש יידרש SDK/Xcode 27; לשמור נתיב fallback למערכות קודמות ולבדוק Apple API availability לפני שינוי CI.\n\nתוכנית עתידית (לא לביצוע עכשיו):\n1. ליצור feature branch נפרד ותצורת NativeStudySheetPresenter מבודדת, עם שינויי upstream מינימליים.\n2. לשמר reader selection, notes add/edit/delete, source single/double tap, open in new tab, backend switch, TOC transition/dismissal, scroll viewport anchoring, accessibility ו-RTL.\n3. לבחון עיצוב Peek ומצבי כלי הלימוד, ולקבוע fallbacks iOS 18/26 ו-iPhone. לא להסיר FloatingPanel לפני תוצאות מוכחות.\n4. להריץ בהוראה מפורשת בלבד בדיקות ממוקדות ב-Xcode 27: iPad 3 detents, iPad SAME DEVICE resized window with measured before/after width and screenshots, portrait/landscape, Hebrew RTL / English LTR, iPhone, Sefaria/Otzaria, notes, TOC, keyboard, background taps/gestures. עדות PASS/FAIL/BLOCKED; אין להניח ש-PresentationDetent מקבל שלושת המצבים זהה בכל size class.\n5. להתאים מבחני קבלה קיימים Scripts/run-ipad-simulator-acceptance.sh – לא למחוק assertions שקשורים לשמירת viewport, source taps, annotations ו-RTL; לשנות רק הנחות גאומטריה ישנות.\n\nקישורים:\nדיון ומפרט המשתמש: https://chatgpt.com/share/e/6ad60e2f-9a3c-8002-bc11-5d9e017db958\nMaktabah branch: https://github.com/davidpovarsky/Maktabah/tree/fix/maktabah-search-detail-unification\nPresenter קיים: https://github.com/davidpovarsky/Maktabah/blob/fix/maktabah-search-detail-unification/Source/iOS/Views/Reader/iOSReaderWorkspaceView.swift\nHost Kit: https://github.com/davidpovarsky/Maktabah/blob/fix/maktabah-search-detail-unification/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift\nAcceptance harness: https://github.com/davidpovarsky/Maktabah/blob/fix/maktabah-search-detail-unification/Scripts/run-ipad-simulator-acceptance.sh\nTorahInspectorKit: https://github.com/davidpovarsky/TorahInspectorKit\nDemo code and screenshots: https://github.com/davidpovarsky/ipad-side-sheet-ios27\nReal iPadOS27 simulator demo run (#38803684298): https://github.com/davidpovarsky/ipad-side-sheet-ios27/actions/runs/38803684298 — בנייה וצילום על iPad ב-3 detents; הקטנת חלון אותו iPad טרם אומתה.\nApple presentationPlacement: https://developer.apple.com/documentation/swiftui/view/presentationplacement%28_%3A%29\nApple presentationDetents(_:selection:): https://developer.apple.com/documentation/swiftui/view/presentationdetents%28_%3Aselection%3A%29\nApple presentationBackgroundInteraction(_:) : https://developer.apple.com/documentation/swiftui/view/presentationbackgroundinteraction%28_%3A%29\nמשימה קשורה אך באפליקציה אחרת (Anytype) — לא להתבלבל: https://app.asana.com/1/1219597879016953/project/1219604672449660/task/1219633037678176\n\n[2026-11-02 | OWNER PRECISE UX REQUIREMENT — OPEN]\nActual iPad Inspector screenshot: remove the full-height pale-brown OUTER side background/host column behind the tool panel. Present the Inspector panel itself directly over the reader surface (native system side sheet where available); preserve reader visible and its content insets while panel appears/disappears. Remove redundant panel title 'כלי לימוד' and static label 'קטע נבחר', while keeping selected passage itself, source content/actions and accessibility labels. Do not merely shrink brown host or add a second wrapper. Coordinate with planned iPadOS27 Native Sheet/fallback; QA Hebrew RTL, Sefaria/Otzaria, notes, source links, screen resizing, overlay/dismissal, scroll anchoring. PLANNED/NOT IMPLEMENTED. Do not remove FloatingPanel path prior to measured parity, don't alter code now.",
+    "num_hearts": 0,
+    "num_likes": 0,
+    "parent": null,
+    "permalink_url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219643110971002",
+    "projects": [
+      {
+        "gid": "1219602719070493",
+        "resource_subtype": "default_project",
+        "name": "אוצריא",
+        "resource_type": "project"
+      }
+    ],
+    "resource_type": "task",
+    "start_at": null,
+    "start_on": null,
+    "tags": [],
+    "resource_subtype": "default_task",
+    "workspace": {
+      "gid": "1219597879016953",
+      "name": "My Company",
+      "resource_type": "workspace"
+    },
+    "comments": []
+  }
+}

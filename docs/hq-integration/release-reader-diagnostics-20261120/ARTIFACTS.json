@@ -1,0 +1,135 @@
+{
+  "changed_source": [
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+  ],
+  "files": [
+    {
+      "bytes": 482,
+      "path": "ATTEMPT1.json",
+      "sha256": "8561a2da7973f8fa7628b56e96bf37811140e344c3dd338f6269e77470c84bef"
+    },
+    {
+      "bytes": 7777,
+      "path": "README.md",
+      "sha256": "7b91170fc821bb1ce0e493df54c444177896814c663a344ccac22995d528f8c0"
+    },
+    {
+      "bytes": 8146,
+      "path": "SOURCE.patch",
+      "sha256": "19da37af5226974ee0d74463dca79ce2ad303c40692f15f383081b96672d183b"
+    },
+    {
+      "bytes": 857,
+      "path": "SOURCE_AUTHORITY.json",
+      "sha256": "0e562894590df1bc983e63b714715e0bd0331f1a87e903050cfd5acb99547bf3"
+    },
+    {
+      "bytes": 3619,
+      "path": "SOURCE_CHECKS.json",
+      "sha256": "53b4f1488cebf982ebe711be4341b563db224f4486e55597bcbc7c9f167fd07d"
+    },
+    {
+      "bytes": 571,
+      "path": "UNCHANGED_AUTHORITY.json",
+      "sha256": "ab4145a5b07a9a82a73921a2a8dce8dd908ea2254f5c616852005dd3d1354730"
+    },
+    {
+      "bytes": 8758,
+      "path": "asana-1219643110971002.json",
+      "sha256": "c10df7ad55cd0445aa56891c081a96478ec77644f69bea015b93fe8844aaeb6c"
+    },
+    {
+      "bytes": 16547,
+      "path": "asana-1220036734107652.json",
+      "sha256": "bed39d381c4f5d1190ac1a19e0fb71434bf4126e8ba16dcda7c9813cd3c8d057"
+    },
+    {
+      "bytes": 6738,
+      "path": "attempt1-verify_source.py",
+      "sha256": "51d1af145334cff1cea43a99041f1d9587558ffcd215b3687cd30a8349c9ac1e"
+    },
+    {
+      "bytes": 27926,
+      "path": "base/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift.gz",
+      "sha256": "ca2b906e130d8783497419575e420a31d6edd0ab99d2b9f609cf27b5582f648d",
+      "uncompressed_bytes": 160603,
+      "uncompressed_sha256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f"
+    },
+    {
+      "bytes": 11079,
+      "path": "base/Scripts/CI/run-faithful-ipad-matrix.py.gz",
+      "sha256": "f2a21049e38f86537190a16a4b0a53da60bc467b3e9b9602558fe9aff6a5b0c1",
+      "uncompressed_bytes": 49924,
+      "uncompressed_sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6"
+    },
+    {
+      "bytes": 25980,
+      "path": "base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift.gz",
+      "sha256": "40c7cc868cae0077fd53854480b5bd5b99b312ba8ba88e509a050b146081361c",
+      "uncompressed_bytes": 149723,
+      "uncompressed_sha256": "777fbfbefc9456fabd2b10638b397e64ae07362fb84fce04261ab519fff538b4"
+    },
+    {
+      "bytes": 4920,
+      "path": "base/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift.gz",
+      "sha256": "e096608f575afd8ed8bb364d394f098cfd9c6ec6e87f7a81285510709a311564",
+      "uncompressed_bytes": 20432,
+      "uncompressed_sha256": "8a645180349f0a32b3bd35d4ab97e9cab456acd86e7d7fa5e668833136c5900d"
+    },
+    {
+      "bytes": 6692,
+      "path": "base/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift.gz",
+      "sha256": "9616429d61ab67a4753ccdb9ca8ffbd90f7f1129a59668daed61c447aef1d421",
+      "uncompressed_bytes": 32001,
+      "uncompressed_sha256": "9f1a65a9d37e936fd1d2e0396999d85970d6056906b519a7873f5ed96fba4b35"
+    },
+    {
+      "bytes": 785,
+      "path": "base/Source/Otzaria/Debug/OtzariaFileLogger.swift.gz",
+      "sha256": "3d7a358760f1f39f54f1348fafdeded073f4386daea147b1395e86aef1f74ab5",
+      "uncompressed_bytes": 2026,
+      "uncompressed_sha256": "f2f5214d3c45f2ba8da632e5ff9331ccac4d43c80cb5da0c3940b6f1b0111904"
+    },
+    {
+      "bytes": 4233,
+      "path": "base/Source/UI/iOS/Views/iPadLayout.swift.gz",
+      "sha256": "5537dbda211686906d45024051d49f3ae71047d57575ba582d8ad9f54b165b77",
+      "uncompressed_bytes": 21392,
+      "uncompressed_sha256": "ded371540b4c49a8dc6f9603ca53b42b5bd4e0de83f2d05adaa09616e0828518"
+    },
+    {
+      "bytes": 1500,
+      "path": "verify_packet.py",
+      "sha256": "aee750fcf913885cc3d41f7e645ff1ab5df16030a574defa5383d1ee6484f679"
+    },
+    {
+      "bytes": 7542,
+      "path": "verify_source.py",
+      "sha256": "01d6dfea26cb270664998e384050c4a16e8c578200565924a8bfa17bbd4ce266"
+    }
+  ],
+  "source_base": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5",
+  "source_outputs": [
+    {
+      "bytes": 24050,
+      "gitBlob": "d2bd516fbe25995ba70879128daa660ed84d0273",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+      "sha256": "e05faf57856de89a9a88017f400ea67ce461e782b2ffd284f069dd93bf1cff0c"
+    },
+    {
+      "bytes": 151190,
+      "gitBlob": "69ab8d64bbd116609551771aecd2777095e41959",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "636c62c721335caa85a8225b91bc9880fd50cdd270b044cc93d852156bf737f9"
+    },
+    {
+      "bytes": 32103,
+      "gitBlob": "0324b71b4b1e2863fa8ec02e8cd3d36155cb4ced",
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256": "86c1bc72309cbb96a1bdb6fd7142ac0f807da07edd8fa6aee6d0be1a39696b50"
+    }
+  ],
+  "swift_apple_native": "NOT_RUN"
+}

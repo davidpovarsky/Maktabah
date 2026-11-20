@@ -220,6 +220,25 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                   requiredCoreActions: ["reader.open"], requiresContent: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab), .init(presentation: .newTab)]))
         ])
+        #if DEBUG
+        let diagnosticArguments = ProcessInfo.processInfo.arguments
+        func diagnosticValue(_ flag: String) -> String? {
+            guard let index = diagnosticArguments.firstIndex(of: flag),
+                  diagnosticArguments.indices.contains(index + 1) else { return nil }
+            return diagnosticArguments[index + 1]
+        }
+        if OtzariaDataProfileRegistry.activeProfileID == "miniTest10",
+           diagnosticValue("-nativeActionAcceptanceKind") == "commentary",
+           let rawToken = diagnosticValue("-nativeActionAcceptanceToken"), UUID(uuidString: rawToken) != nil {
+            orchestrator.debugFailureObserver = { observation in
+                let dispatched = observation.didDispatch.map { $0 ? "true" : "false" } ?? "unobserved"
+                let coreStarted = observation.coreStarted.map { $0 ? "true" : "false" } ?? "unobserved"
+                // Capture monotonic values in the original catch, before the
+                // existing serial file logger asynchronously writes its Date.
+                OtzariaFileLogger.shared.log("[NativeReaderFailureObservation] boundary=\(observation.boundary.rawValue) status=\(observation.status.rawValue) code=\(observation.code) didDispatch=\(dispatched) coreStarted=\(coreStarted) taskCancelled=\(observation.taskCancelled) deadlineExpired=\(observation.deadlineExpired) uptimeNanoseconds=\(observation.uptimeNanoseconds)")
+            }
+        }
+        #endif
         readerSink.deliver = { [weak self] command in
             guard let self else { throw ActionPortError.unavailable }
             return try await receiveReader(command)

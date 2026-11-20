@@ -1,0 +1,17 @@
+[
+  {
+    "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+    "gitBlob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+    "gitCommit": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5"
+  },
+  {
+    "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "gitBlob": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
+    "gitCommit": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5"
+  },
+  {
+    "path": "Source/Otzaria/Debug/OtzariaFileLogger.swift",
+    "gitBlob": "afead5090be564ca0bd561ef71155ae9f3bf0b1d",
+    "gitCommit": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5"
+  }
+]

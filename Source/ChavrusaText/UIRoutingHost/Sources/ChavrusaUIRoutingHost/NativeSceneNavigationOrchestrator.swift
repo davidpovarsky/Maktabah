@@ -42,6 +42,60 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
     }
     private var readerExecutions: [UIStableID: ReaderExecution] = [:]
 
+    #if DEBUG
+    /// Passive, default-off evidence at the original failure boundaries. The
+    /// app may retain these fixed fields; no route, identity or content escapes.
+    public struct DebugFailureObservation: Sendable {
+        public enum Boundary: String, Sendable { case readerPlan, nativeCommit }
+        public let boundary: Boundary
+        public let status: ActionStatus
+        public let code: String
+        public let didDispatch: Bool?
+        public let coreStarted: Bool?
+        public let taskCancelled: Bool
+        public let deadlineExpired: Bool
+        public let uptimeNanoseconds: UInt64
+    }
+    public var debugFailureObserver: (@MainActor (DebugFailureObservation) -> Void)?
+
+    private func observeDebugFailure(_ error: any Error,
+                                     boundary: DebugFailureObservation.Boundary,
+                                     invocation: ActionPortInvocation,
+                                     didDispatch: Bool? = nil, coreStarted: Bool? = nil) {
+        guard let observer = debugFailureObserver else { return }
+        let now = clock.now()
+        let portStatus: ActionStatus?
+        switch error as? ActionPortError {
+        case .unavailable, .notFound: portStatus = .unavailable
+        case .staleState: portStatus = .staleState
+        case .notSupported: portStatus = .notSupported
+        default: portStatus = nil
+        }
+        let status = (error as? UIRouteError)?.status ?? (error as? ActionNavigationError)?.status
+            ?? portStatus ?? (error is CancellationError ? .cancelled : .failed)
+        let rawCode = (error as? UIRouteError)?.code ?? (error as? ActionNavigationError)?.code
+        let allowedCodes: Set<String> = [
+            "deadline_exceeded", "native_context_changed", "backend_generation_changed",
+            "scene_lifetime_changed", "native_reader_receipt_missing", "native_effect_uncertain",
+            "native_reader_execution_in_progress", "scene_driver_missing", "native_request_replay_conflict",
+            "native_request_in_progress", "native_request_already_finished", "native_effect_requires_reconciliation",
+            "native_dispatch_ledger_full", "scene_revision_changed", "exact_foreground_scene_required",
+            "scene_missing", "scene_not_mounted", "scene_changed_during_observation", "scene_or_backend_changed",
+            "scene_target_changed", "scene_receipt_mismatch", "core_receipt_mismatch", "unexpected_core_receipt",
+            "navigation_authority_changed", "navigation_command_mismatch", "navigation_preparation_consumed",
+            "navigation_commit_not_authorized", "rpc_epoch_unavailable",
+            "presentation_binding_changed", "native_surface_not_visible", "native_route_changed"
+        ]
+        let code = rawCode.flatMap { allowedCodes.contains($0) ? $0 : nil }
+            ?? (error is CancellationError ? "cancelled" : "other_fixed_failure")
+        observer(.init(boundary: boundary, status: status, code: code,
+            didDispatch: didDispatch, coreStarted: coreStarted,
+            taskCancelled: Task.isCancelled,
+            deadlineExpired: now >= invocation.deadlineUptimeNanoseconds,
+            uptimeNanoseconds: now))
+    }
+    #endif
+
     public init(core: ActionExecutor, backend: any ActionSynchronousBackendStatePort, authority: NativeNavigationAuthority,
                 directory: NativeSceneDirectory, dispatchCapacity: Int = 256, clock: any ActionClock = SystemActionClock()) throws {
         guard (1...512).contains(dispatchCapacity) else { throw UIRouteError(.failed, "invalid_dispatch_capacity") }
@@ -136,6 +190,10 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             }
             return result
         } catch {
+            #if DEBUG
+            observeDebugFailure(error, boundary: .readerPlan, invocation: originalInvocation,
+                                coreStarted: phase.coreStarted)
+            #endif
             // Once Core starts, an outer deadline/cancellation/freshness failure
             // cannot assert that no native effect happened. No retry/rollback.
             if phase.coreStarted { throw UIRouteError(.failed, "native_effect_uncertain") }
@@ -268,6 +326,10 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             dispatches[requestID]?.acknowledged = true
             return .acknowledged(receipt)
         } catch {
+            #if DEBUG
+            observeDebugFailure(error, boundary: .nativeCommit, invocation: command.invocation,
+                                didDispatch: didDispatch)
+            #endif
             // Preserve failed pre-dispatch identity too: never auto-retry the
             // same request with a different route/context after a partial await.
             return acknowledgement(error, didDispatch: didDispatch)

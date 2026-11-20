@@ -1,0 +1,22 @@
+[
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+    "gitBlob": "41a4968b1caee3df6f24b7950079d9ac63d83cf7",
+    "gitCommit": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "gitBlob": "78750ebdfdf7fe45b4b59684c3a113c963938db6",
+    "gitCommit": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5"
+  },
+  {
+    "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+    "gitBlob": "29511fe48539bed05880eb6090b1825702a1f990",
+    "gitCommit": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5"
+  },
+  {
+    "path": "Source/UI/iOS/Views/iPadLayout.swift",
+    "gitBlob": "bf44a7546bd360c5813e108d4e70e9ce85af3271",
+    "gitCommit": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5"
+  }
+]

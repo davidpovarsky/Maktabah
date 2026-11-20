@@ -1,0 +1,123 @@
+{
+  "apple_typecheck": "NOT_RUN",
+  "checks": [
+    {
+      "name": "Git blob: Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+      "passed": true
+    },
+    {
+      "name": "Git blob: Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "passed": true
+    },
+    {
+      "name": "Git blob: Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "passed": true
+    },
+    {
+      "name": "Git blob: Source/UI/iOS/Views/iPadLayout.swift",
+      "passed": true
+    },
+    {
+      "name": "Git blob: Scripts/CI/run-faithful-ipad-matrix.py",
+      "passed": true
+    },
+    {
+      "name": "Git blob: Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "passed": true
+    },
+    {
+      "name": "Git blob: Source/Otzaria/Debug/OtzariaFileLogger.swift",
+      "passed": true
+    },
+    {
+      "name": "one declared DEBUG observation block",
+      "passed": true
+    },
+    {
+      "name": "one reader catch observation",
+      "passed": true
+    },
+    {
+      "name": "one native catch observation",
+      "passed": true
+    },
+    {
+      "name": "whole original orchestrator inverse including all guards catches returns budgets",
+      "passed": true
+    },
+    {
+      "name": "one app DEBUG opt-in block",
+      "passed": true
+    },
+    {
+      "name": "whole original composition inverse including cold Core and Hanlin",
+      "passed": true
+    },
+    {
+      "name": "observer installed only after full registry initialization",
+      "passed": true
+    },
+    {
+      "name": "exact miniTest10 + commentary + UUID gate",
+      "passed": true
+    },
+    {
+      "name": "default optional observer and early return before clock",
+      "passed": true
+    },
+    {
+      "name": "no task scheduling or raw error export in diagnostic additions",
+      "passed": true
+    },
+    {
+      "name": "fixed code fallback and monotonic observation captured before sink",
+      "passed": true
+    },
+    {
+      "name": "log contains no raw token source route query or scene ID",
+      "passed": true
+    },
+    {
+      "name": "one shared-owner overlay policy change",
+      "passed": true
+    },
+    {
+      "name": "whole original Reader workspace inverse incl text selection notes layout state",
+      "passed": true
+    },
+    {
+      "name": "legacy nil-owner predicate exact",
+      "passed": true
+    },
+    {
+      "name": "original FloatingPanel configuration and docked host condition unchanged",
+      "passed": true
+    },
+    {
+      "name": "executed original Python collector: NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+      "passed": true
+    },
+    {
+      "name": "executed original Python collector: NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+      "passed": true
+    },
+    {
+      "name": "executed original Python collector: OtherTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+      "passed": true
+    },
+    {
+      "name": "executed original Python collector: XNativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+      "passed": true
+    },
+    {
+      "name": "original collector retains persistent file after failed executed case result",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "native_execution": 0,
+  "passed": 28,
+  "scope": "Git/source inverse and actual original Python collector function only",
+  "source_base": "064987c44a5b4ba8d2500c03bc6beba3e34f78e5",
+  "swift_compile": "NOT_RUN"
+}

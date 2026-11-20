@@ -152,7 +152,9 @@ struct iOSReaderWorkspaceView: View {
 
     private var shouldPresentPanelInContent: Bool {
         if sidebarCoordinator != nil {
-            return detailColumnWidth < 430 + Self.minimumPanelWidth + 18
+            // The shared-sidebar Inspector overlays the existing Reader at
+            // every iPad width; it must never reserve a second host column.
+            return true
         }
         return useWideLayout && librarySidebarIsOpen && contentsIsOpen
     }
@@ -324,7 +326,7 @@ struct iOSReaderWorkspaceView: View {
         GeometryReader { geometry in
             if sidebarCoordinator != nil {
                 // One original HStack/reader position across page and width
-                // changes; only the inspector moves between docking/floating.
+                // changes; the original Inspector floats over that surface.
                 wideWorkspace(totalWidth: geometry.size.width)
             } else if useWideLayout {
                 if shouldPresentPanelInContent {

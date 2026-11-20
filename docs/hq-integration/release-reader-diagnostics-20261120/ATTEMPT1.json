@@ -1,0 +1,8 @@
+{
+  "command": "python release-reader-diagnostics-20261120/verify_source.py",
+  "exit_code": 1,
+  "failed_check": "whole original orchestrator inverse including all guards catches returns budgets",
+  "reason": "The verifier replaced the added block with an extra newline; exact reverse diff retained one additional blank line. Product source was unchanged.",
+  "swift_or_native_executed": 0,
+  "verifier_sha256": "51d1af145334cff1cea43a99041f1d9587558ffcd215b3687cd30a8349c9ac1e"
+}
