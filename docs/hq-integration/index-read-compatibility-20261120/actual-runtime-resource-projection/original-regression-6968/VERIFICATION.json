@@ -1,0 +1,90 @@
+{
+  "actualResult": {
+    "sourceCommit": "6968a3db1bf31d5aef387fea5014892a8fc31e9b",
+    "policySHA256": "2a43dd19fdba64d94992a567adc91572830decca14c3f74805d3eab433b0c47e",
+    "driverSHA256": "03847a6fe2292594d2d5888280ca3aa61b2c5ad83691a5fab09d82f0a247aa28",
+    "executionWrapperSHA256": "7b3e95bc3b283c12f2255ea1ee5149100e05aa08e176b153b06d0c2f52feb836",
+    "startedAt": "2026-11-20T04:06:56.341150+00:00",
+    "boundaries": "Original unmodified fixtures and driver; only swiftc -j1 scheduling injection; explicit Combine/FFI doubles; no Native/Apple/real index",
+    "exit": 0,
+    "seconds": 48.188,
+    "logSHA256": "9821b68377a1cd4e8a226add3f7b7bf74e4baf3df32218bd564ac4ad71c53ab6",
+    "driverUnchanged": true,
+    "policyUnchanged": true,
+    "portableSearchAssertions": 191,
+    "cachedReadinessAssertions": 14,
+    "passed": true,
+    "finishedAt": "2026-11-20T04:07:44.548107+00:00"
+  },
+  "compilerSchedulingOnly": "swiftc -j1; original driver and sources unchanged",
+  "notTestCaseCount": true,
+  "warning": "Original redundant SearchResultItem Sendable conformance diagnostic retained without suppression",
+  "entries": [
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\attempt1\\command-01.json",
+      "path": "raw/attempt1/command-01.json.gz",
+      "originalBytes": 1088,
+      "originalSHA256": "90bbcab537a7d86dad1befd52b506f5e2ba6f65167a23cb47f2dabc0b1df6a43",
+      "storedSHA256": "6eeb1f9b4076b51eeab197793b877360d4ff4c42a20d27b5e84bb5a8b0c73c28"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\attempt1\\command-02.json",
+      "path": "raw/attempt1/command-02.json.gz",
+      "originalBytes": 8044,
+      "originalSHA256": "3c91cf7020734dbe529bddd912a5d2ebdc714424fa7ac9bd7cf7042a1d7b29dd",
+      "storedSHA256": "0163fadc15cb94c4d8ec3ff7830fcfb1f9584981edb33ea3226c4a1e1f628d7a"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\attempt1\\command-03.json",
+      "path": "raw/attempt1/command-03.json.gz",
+      "originalBytes": 603,
+      "originalSHA256": "9de3db8597c79f07b1b983965fc657700c5df537ce61bed16d89fba21c2e846b",
+      "storedSHA256": "bb7a3ad5296d154245707a60e2f69616986faf234e2107a19e66dd6574004c18"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\attempt1\\command-04.json",
+      "path": "raw/attempt1/command-04.json.gz",
+      "originalBytes": 3301,
+      "originalSHA256": "5193a2541a68c93e17264e8fc147502daed3fbb43b0ed4106adf7446f792d563",
+      "storedSHA256": "ad854584a4490ab25b0711abae1c4d8fc66816c741c0718d743359754e036f58"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\attempt1\\command-05.json",
+      "path": "raw/attempt1/command-05.json.gz",
+      "originalBytes": 455,
+      "originalSHA256": "f7e64bfb2b4b7a4e5c2a5b61699bba9411eea994e6ea2b504dfd7f95a0019469",
+      "storedSHA256": "fed94acec305408704cb4a808c63030e0383345801f17d6030c5598a0401a1c7"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\attempt1\\original-driver.log",
+      "path": "raw/attempt1/original-driver.log.gz",
+      "originalBytes": 2002,
+      "originalSHA256": "9821b68377a1cd4e8a226add3f7b7bf74e4baf3df32218bd564ac4ad71c53ab6",
+      "storedSHA256": "dc8e5832fceaad09546aca7a12f163e4e05592ec2d818e44225c397c45f000e4"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\attempt1\\original-hq-search-tests.py",
+      "path": "raw/attempt1/original-hq-search-tests.py.gz",
+      "originalBytes": 7830,
+      "originalSHA256": "03847a6fe2292594d2d5888280ca3aa61b2c5ad83691a5fab09d82f0a247aa28",
+      "storedSHA256": "ec1c65913e9a46ea615f180899ac802b5b5ff6993615327dd4209651c5943584"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\attempt1\\RESULT.json",
+      "path": "raw/attempt1/RESULT.json.gz",
+      "originalBytes": 867,
+      "originalSHA256": "df7770104bb76f470c1eadd9970782b8e516314764e704ce462f617c6025a774",
+      "storedSHA256": "54d61211d5e1cbe92a72e8d8a8d6587ceb8729716fe4e37c677506bf013a8e77"
+    },
+    {
+      "originalPath": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\run-original-driver-single-worker.py",
+      "path": "raw/run-original-driver-single-worker.py.gz",
+      "originalBytes": 1811,
+      "originalSHA256": "7b3e95bc3b283c12f2255ea1ee5149100e05aa08e176b153b06d0c2f52feb836",
+      "storedSHA256": "16888c21738ac2045a03082b1225e869350f735a69c01aa9a85e7408d95e4645"
+    }
+  ],
+  "Native": "NOT_RUN",
+  "Apple": "NOT_RUN",
+  "productionRegistryEnabled": false
+}
