@@ -1,0 +1,186 @@
+{
+  "status": "VERIFIED_EARLY_SOURCE_APPLE_SDK_AND_MACOS_COMPONENT_PASS",
+  "runURL": "https://github.com/davidpovarsky/Maktabah/actions/runs/44676266509",
+  "runID": 44676266509,
+  "runAttempt": 1,
+  "workflowConclusion": "success",
+  "successfulJobID": 136088731098,
+  "otherWorkflowJobsSkipped": 4,
+  "source": {
+    "checkout": "f7c110da7f35a1043c1ad6da777cb89fa6d07460",
+    "application": "34c7ab5ae026a0d3d08f02a2c97ddf4b38e1a56c",
+    "trees": {
+      "Source": {
+        "workflow": "edeb20fe6ba7c44c2e9818bfce259cdceada9180",
+        "application": "edeb20fe6ba7c44c2e9818bfce259cdceada9180",
+        "equal": true
+      },
+      "Vendor": {
+        "workflow": "a9bf10318cfc44c87885c3dcfba48cbaced67788",
+        "application": "a9bf10318cfc44c87885c3dcfba48cbaced67788",
+        "equal": true
+      },
+      "Maktabah.xcodeproj/project.pbxproj": {
+        "workflow": "2741615644741d39b0b19c6146f9c459323dabab",
+        "application": "2741615644741d39b0b19c6146f9c459323dabab",
+        "equal": true
+      },
+      "Maktabah-iOSUITests": {
+        "workflow": "d4712d2d60ca8f6863aeff24af001f121c308b71",
+        "application": "d4712d2d60ca8f6863aeff24af001f121c308b71",
+        "equal": true
+      }
+    },
+    "registry": "OFF_EMPTY_SET",
+    "all112ArtifactSourceHashesMatchGit": true
+  },
+  "artifact": {
+    "id": 14603534090,
+    "name": "faithful-ui-sdk-check",
+    "bytes": 216219,
+    "sha256": "9ae66dcefa94594a75ed3a189a5b9ab8819821777f855021ab1c1c244e0c4c19",
+    "entries": 46,
+    "allCRCsVerified": true
+  },
+  "toolchain": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.0.0",
+    "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+    "target": "arm64-apple-ios27.0-simulator"
+  },
+  "sdkCompilation": {
+    "uiAcceptanceCodeGeneration": "SDK_COMPILE_PASS",
+    "nativeRoutingHost": "SDK_COMPILE_PASS",
+    "nativeSidebarSearch": "SDK_COMPILE_PASS",
+    "sidebarSplitAdapter": "SDK_COMPILE_PASS",
+    "readerTextVisibility": "SDK_COMPILE_PASS",
+    "toolbar": "SDK_COMPILE_PASS",
+    "originalAppMembership": "PASS",
+    "reportedMainWarningCount": 2668
+  },
+  "groups": [
+    {
+      "name": "hanlin-api12-host",
+      "count": 48,
+      "kind": "executed macOS XCTest leaves",
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "boundary": "Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance."
+    },
+    {
+      "name": "hanlin-consumer-store",
+      "count": 11,
+      "kind": "executed macOS XCTest leaves",
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "boundary": "Complete app store with actual Foundation files, independent host/SDK CAS, scoped lease rejection and platform filesystem write failure. Complete original SDK contract/presentation modules and unchanged message DTO; no engine/provider, UIKit scene, native navigation or physical protection proof."
+    },
+    {
+      "name": "hanlin-navigation-contract",
+      "count": 8,
+      "kind": "executed macOS XCTest leaves",
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "boundary": "Whole unchanged SDK HostDispatcher + complete original Platform/Host contract modules. Explicit host/navigation effect double; no AgentSession, provider, UIKit, Otzaria runtime or actual UI acknowledgement."
+    },
+    {
+      "name": "annotation-exchange",
+      "count": 28,
+      "kind": "real SQLite component cases",
+      "failed": 0,
+      "additionalWALProcessExitAndReopenControls": 2,
+      "capabilityEnabled": false,
+      "annotationRepositoryRuntime": false,
+      "CloudKitRuntime": false,
+      "AnytypeRuntime": false
+    },
+    {
+      "name": "book-page-cache",
+      "count": 26,
+      "kind": "source-bound macOS portable cases",
+      "failed": 0
+    },
+    {
+      "name": "inspector-owner",
+      "count": 17,
+      "kind": "source-bound macOS portable cases",
+      "failed": 0
+    },
+    {
+      "name": "hebrew-ranges",
+      "count": 15,
+      "kind": "real Swift/Foundation source-range cases",
+      "failed": 0
+    },
+    {
+      "name": "sqlite",
+      "count": 25,
+      "kind": "actual SQLite 3.54.0 source cases",
+      "failed": 0,
+      "fullSourceDatabaseCountExecuted": 0,
+      "decompressorExecuted": false
+    },
+    {
+      "name": "workspace",
+      "count": 89,
+      "kind": "portable assertions; not XCTest case count"
+    }
+  ],
+  "SDKOriginalSource": {
+    "repository": "https://github.com/davidpovarsky/hanlin-ai.git",
+    "commit": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "all424ReportedBlobsMatchIndependentGitHubTree": true,
+    "packageManifestSHA256": {
+      "Packages/HanlinAgentSDK": "9af2a15811e934e4082360e46f368ea2b0d5ba5d97a77d8bb0ddb34d48e0666b",
+      "Packages/HanlinPlatform": "e9ea19d4bc3fe3873137e0c2e32cda50892ecd39103f3a63250acaa8f373e458",
+      "Packages/HanlinPresentationSDK": "59272c233aca8fbf72f50a9296539b2ed55b33f625ce34d208a2b1c4e3d569b8"
+    }
+  },
+  "nativeDeclarationsChecked": 92,
+  "nativeUICasesExecuted": 0,
+  "fullAppBuildExecuted": false,
+  "physicalDeviceExecuted": false,
+  "d5OccurrenceRuntimeExecuted": false,
+  "fullV32InstallerProbeExecuted": false,
+  "sourceScopesStillRequiringFullAppBuild": {
+    "appComposedSidebar": {
+      "scope": "Full source belongs to actual app compilation, not this standalone SDK module",
+      "status": "REQUIRES_FULL_APP_BUILD",
+      "standaloneCoverage": [
+        "exact native search/title adapters",
+        "exact native split configuration"
+      ],
+      "appMembershipGate": "verify-otzaria-xcode-project.py",
+      "sourceHashes": {
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift": "43f3c338218db1b86a7e5978d85d2e2f447ff16f7570e1e7c24f2b8d56ec5de1",
+        "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentationState.swift": "483ae8936b6986bd156a3ac8e5d8c50a07bb2151cb490ec8d3fee0a2f270683b",
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift": "4549047d28085a9c3b3a638bbcffd8eed6b21db779e838a6ad26379cccaef612"
+      }
+    },
+    "appComposedGlobalSearchField": {
+      "scope": "Actual representable/coordinator require the original native Scene and Environment owner",
+      "status": "REQUIRES_FULL_APP_BUILD",
+      "standaloneCoverage": "Exact original GlobalSearchTextField UIKit control, with no source substitutions",
+      "appMembershipGate": "verify-otzaria-xcode-project.py",
+      "sourceHashes": {
+        "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift": "e28b7db9b430281b99463014b0e44956c89ec8d7cb52d83771d518b297f1feb6"
+      },
+      "componentSHA256": "a4c78e808d4337dfba867cacad8abd8f361afe3e6f2bdee86db512f63f187e2a",
+      "nativeUITestsExecuted": 0
+    }
+  },
+  "warnings": "The main SDK report records 2668 warnings, predominantly XCTest actor-isolation diagnostics; this is not a warning-free UI compile. The three Hanlin XCTest component reports separately record zero warnings.",
+  "boundaries": [
+    "Registry OFF in this early source; candidate ON requires its own validation",
+    "No complete app build or simulator launch in this job",
+    "No Native UI or physical device acceptance",
+    "No d5 occurrence runtime or new full-v32 acceptance probe executed here",
+    "Later background AppIntent, TOC acknowledgement, qualified registry and full-v32 probe changes receive no credit from this run"
+  ],
+  "sourceBindingReviewSHA256": "9ae3453770e2b72f98464fdc0438a79b13436e99fa9c7dcdc4291ddd3b15fa55",
+  "rawArtifactReviewIsIntermediate": "Its NEXT_STEP source-binding field is superseded by the separate completed SOURCE_BINDING_REVIEW and this combined result; the raw intermediate was preserved unchanged.",
+  "collectionOnly": "No compiler, engine, Native run, CI dispatch, cancellation, or duplicate watcher was started while collecting this evidence."
+}

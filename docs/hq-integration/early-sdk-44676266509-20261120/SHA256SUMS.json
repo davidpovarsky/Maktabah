@@ -1,0 +1,117 @@
+{
+  "createdAt": "2026-11-20T05:55:21.153368+00:00",
+  "entries": [
+    {
+      "path": "raw/14603534090.zip",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\14603534090.zip",
+      "rawBytes": 216219,
+      "rawSHA256": "9ae66dcefa94594a75ed3a189a5b9ab8819821777f855021ab1c1c244e0c4c19",
+      "storedBytes": 216219,
+      "storedSHA256": "9ae66dcefa94594a75ed3a189a5b9ab8819821777f855021ab1c1c244e0c4c19",
+      "encoding": "original authenticated GitHub ZIP"
+    },
+    {
+      "path": "raw/artifact-metadata.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\artifact-metadata.json",
+      "rawBytes": 764,
+      "rawSHA256": "d8faea4eb4244499b80b7b8ad55d99561d9ad667f2df5e23022ae180a4a88cf8",
+      "storedBytes": 420,
+      "storedSHA256": "f42959d4f6afa75370904c4eb95d59c04ac1a9b6188ffc3e5c72c635e4f7dc3f",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/ARTIFACT_REVIEW.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\ARTIFACT_REVIEW.json",
+      "rawBytes": 6222,
+      "rawSHA256": "fff396d924fb2a47953cc2ccb574edf1d44e8583ade72b9bbb9a6ec22598038e",
+      "storedBytes": 2606,
+      "storedSHA256": "a83ae83e5996c2957781b2f8d8ec26948b82f0d0cdac56805aef19b5a3783725",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/audit_artifact.py.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\audit_artifact.py",
+      "rawBytes": 10171,
+      "rawSHA256": "ddd7b8064e5af4458923aae758a3c89a0f4735be5dc5d60a2fe815e77447c1c8",
+      "storedBytes": 3675,
+      "storedSHA256": "7a0368467516bbf2c0e8f6445b346994df3144116fca08e394bccfbbfea39995",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/hanlin-sdk-api-tree-projection.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\hanlin-sdk-api-tree-projection.json",
+      "rawBytes": 94258,
+      "rawSHA256": "c96b380ed4bca2bceea7ed279596b9be93a0a5b8b6615375e98de9f0bc786f92",
+      "storedBytes": 18083,
+      "storedSHA256": "4640dacfd1dfcfd0d1d7d7c2bd046cf335359661389047f40f20d7a54d7b9ea5",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/NAMED_EXECUTED_CASES.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\NAMED_EXECUTED_CASES.json",
+      "rawBytes": 11265,
+      "rawSHA256": "b0d4b0e96432fff05bcd4a31b438c5cebc5c58f9e46b2ec3beb1586aad872ca4",
+      "storedBytes": 3958,
+      "storedSHA256": "22d1cfab0b302f08ebbc9debb41792a0da5250b344468aea4a13dd9c3ed6e15c",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/SOURCE_BINDING_REVIEW.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\SOURCE_BINDING_REVIEW.json",
+      "rawBytes": 69399,
+      "rawSHA256": "9ae3453770e2b72f98464fdc0438a79b13436e99fa9c7dcdc4291ddd3b15fa55",
+      "storedBytes": 8788,
+      "storedSHA256": "483ae9c40ed7d92c16febc27816109ac17d3f1f6ae330ce21dd4549b0cbb1b0f",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/SOURCE_HASH_REFERENCES.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\SOURCE_HASH_REFERENCES.json",
+      "rawBytes": 48700,
+      "rawSHA256": "42e612517d64f7cb7468ad8f74ace8fcb2f8651e8f6b29c38b554fd91ccb6b93",
+      "storedBytes": 6883,
+      "storedSHA256": "6c7662a043fd2f3423f80a6a679d78055a1d83858e32873aaab2e26a080be8cd",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/workflow-job-selected-lines.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\workflow-job-selected-lines.json",
+      "rawBytes": 2603,
+      "rawSHA256": "d3472761ec9cbcae64eccf239473eee626e4aa5e8831f7bcfc3567e4f584128a",
+      "storedBytes": 530,
+      "storedSHA256": "4057ad2b4f901597d4650daac61c1eb1e3c2a324eb8e389073b320bfe3187639",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/workflow-jobs.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\workflow-jobs.json",
+      "rawBytes": 2748,
+      "rawSHA256": "84843db52ad921d1098e52da81da1bc352cb47b54c7a7b62de5057ab3fc886a5",
+      "storedBytes": 597,
+      "storedSHA256": "d86f01892268975d3d174cc31adc6c9802f543e261102df034cda9c0198324eb",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/workflow-run.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\workflow-run.json",
+      "rawBytes": 12760,
+      "rawSHA256": "836dc9884063df79881637f065c54ada52fd1d931a93d1688fae76b9201ddfef",
+      "storedBytes": 1602,
+      "storedSHA256": "0bc627a6ad81cae6e6c26d9942eaac69274c328275ac4c6aad3ceea6c667ffa1",
+      "encoding": "lossless deterministic gzip"
+    },
+    {
+      "path": "raw/ZIP_INDEX.json.gz",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\early-sdk-44676266509-20261120\\ZIP_INDEX.json",
+      "rawBytes": 6421,
+      "rawSHA256": "2ded0fe62227c58d0f27b55e15e7415cec4d942096ad2f52033e19144ea66b18",
+      "storedBytes": 1049,
+      "storedSHA256": "bce95e9c9c802ab756c23621aaa09ed63e08d430f370127847fd9d7fb92f8e0b",
+      "encoding": "lossless deterministic gzip"
+    }
+  ],
+  "rawFiles": 12,
+  "storedBytes": 264410,
+  "summarySHA256": "63f035587d70bb23afef952b55b8fd77b480522b67dd264489dc5e81fc9499d5",
+  "readmeSHA256": "4df81bdbb28c8b1b2b6d091c4f9a60010ffbc387d7213bc265baeea799238f80"
+}
