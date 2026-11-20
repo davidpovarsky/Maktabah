@@ -1,0 +1,20 @@
+{
+  "id": 14595389912,
+  "node_id": "MDg6QXJ0aWZhY3QxNDU5NTM4OTkxMg==",
+  "name": "ios-build-zayit-xcframework",
+  "size_in_bytes": 123727544,
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14595389912",
+  "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14595389912/zip",
+  "expired": false,
+  "digest": "sha256:64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+  "created_at": "2026-11-20T02:42:53Z",
+  "updated_at": "2026-11-20T02:42:53Z",
+  "expires_at": "2027-02-18T02:34:34Z",
+  "workflow_run": {
+    "id": 44661774024,
+    "repository_id": 1280062128,
+    "head_repository_id": 1280062128,
+    "head_branch": "codex/otzaria-occurrence-framework-20261120",
+    "head_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168"
+  }
+}

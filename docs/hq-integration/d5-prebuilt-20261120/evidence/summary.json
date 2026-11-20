@@ -1,0 +1,271 @@
+{
+  "checkout_sha": "c6467f29cc23de8f5125ded220063750611e84e5",
+  "elapsed_s": 1.813,
+  "tests_run": 36,
+  "passed": [
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_artifact_from_outside_exact_upload_window_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_both_real_successful_jobs_are_accepted_without_whole_workflow_success",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_framework_bindings_cannot_be_omitted_renamed_or_duplicated",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_restore_rejects_bad_producer_before_downloading_archive",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_restore_rejects_wrong_download_bytes_before_extraction",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_skipped_missing_duplicate_or_failed_build_steps_are_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_identity_digest_size_and_lifetime_are_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_run_head_and_repository_are_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_config_producer_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_job_identity_attempt_head_or_outcome_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_actual_zayit_whole_tree_is_identical_and_rebuild_is_off",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_added_compiled_source_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_changed_build_script_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_changed_cargo_build_input_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_changed_compiled_rust_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_changed_export_header_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_changed_original_upstream_pin_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_changed_pinned_upstream_resource_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_current_whole_otzaria_tree_drift_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_current_whole_vendor_freeze_remains_strict",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_declared_symlink_or_submodule_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_deleted_declared_test_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_duplicate_manifest_path_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_exact_actual_trees_preserve_all_prior_inputs_and_78_additions",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_invalid_manifest_paths_are_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_manifest_git_crlf_checkout_preserves_exact_lf_digest",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_modified_declared_test_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_old_265_producer_tree_cannot_pass_as_d5",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_project_membership_change_requires_new_exclusion_review",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_removed_producer_input_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_symlink_replacement_of_producer_input_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_undeclared_added_test_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_wrong_manifest_digest_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_wrong_producer_sha_is_rejected",
+    "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_wrong_whole_producer_tree_is_rejected"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "subcases": [
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_artifact_from_outside_exact_upload_window_is_rejected (created='2026-11-20T02:44:02Z')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_artifact_from_outside_exact_upload_window_is_rejected (created='2026-11-20T03:00:00Z')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_both_real_successful_jobs_are_accepted_without_whole_workflow_success (artifact=14596463166)",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_both_real_successful_jobs_are_accepted_without_whole_workflow_success (artifact=14595389912)",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_framework_bindings_cannot_be_omitted_renamed_or_duplicated (mode='omitted')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_framework_bindings_cannot_be_omitted_renamed_or_duplicated (mode='renamed')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_framework_bindings_cannot_be_omitted_renamed_or_duplicated (mode='duplicated')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_framework_bindings_cannot_be_omitted_renamed_or_duplicated (mode='wrong_destination')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_framework_bindings_cannot_be_omitted_renamed_or_duplicated (mode='missing_job')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_skipped_missing_duplicate_or_failed_build_steps_are_rejected (mutation='missing')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_skipped_missing_duplicate_or_failed_build_steps_are_rejected (mutation='duplicate')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_skipped_missing_duplicate_or_failed_build_steps_are_rejected (mutation='skipped')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_skipped_missing_duplicate_or_failed_build_steps_are_rejected (mutation='failure')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_skipped_missing_duplicate_or_failed_build_steps_are_rejected (mutation='in_progress')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_identity_digest_size_and_lifetime_are_rejected (key='id', value=12763376316)",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_identity_digest_size_and_lifetime_are_rejected (key='name', value='wrong-framework')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_identity_digest_size_and_lifetime_are_rejected (key='size_in_bytes', value=1)",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_identity_digest_size_and_lifetime_are_rejected (key='digest', value='sha256:ba24e27a2c26281e0af3d11cd7ea00fe88ff44a3634194dfd10ce89a526eccd5')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_identity_digest_size_and_lifetime_are_rejected (key='digest', value=None)",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_identity_digest_size_and_lifetime_are_rejected (key='expired', value=True)",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_run_head_and_repository_are_rejected (key='id')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_run_head_and_repository_are_rejected (key='head_sha')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_run_head_and_repository_are_rejected (key='repository_id')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_run_head_and_repository_are_rejected (key='head_repository_id')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_artifact_run_head_and_repository_are_rejected (key='head_branch')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_job_identity_attempt_head_or_outcome_is_rejected (key='id', value=136041463406)",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_job_identity_attempt_head_or_outcome_is_rejected (key='name', value='Resolve Swift packages')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_job_identity_attempt_head_or_outcome_is_rejected (key='run_id', value=40566258679)",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_job_identity_attempt_head_or_outcome_is_rejected (key='run_attempt', value=2)",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_job_identity_attempt_head_or_outcome_is_rejected (key='head_sha', value='41c278ac67f0c03e19270ed65b891b242a1a3f2e')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_job_identity_attempt_head_or_outcome_is_rejected (key='status', value='in_progress')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_job_identity_attempt_head_or_outcome_is_rejected (key='conclusion', value='failure')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_job_identity_attempt_head_or_outcome_is_rejected (key='conclusion', value='skipped')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected (key='id')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected (key='run_attempt')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected (key='head_sha')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected (key='head_commit')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected (key='path')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected (key='status')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected (key='conclusion')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected (key='repository')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltMetadataTests.test_wrong_run_identity_attempt_head_workflow_and_state_are_rejected (key='head_repository')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_declared_symlink_or_submodule_is_rejected (mode='120000')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_declared_symlink_or_submodule_is_rejected (mode='160000')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_declared_symlink_or_submodule_is_rejected (mode='100755')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_invalid_manifest_paths_are_rejected (path='../escape')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_invalid_manifest_paths_are_rejected (path='/absolute')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_invalid_manifest_paths_are_rejected (path='Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/../source.rs')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_invalid_manifest_paths_are_rejected (path='Vendor/OtzariaSearchEngine/Tests/OccurrenceSwiftExtra/new.swift')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_invalid_manifest_paths_are_rejected (path='Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift//new.swift')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_invalid_manifest_paths_are_rejected (path='Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/dir\\\\new.swift')",
+      "result": "PASS"
+    },
+    {
+      "id": "test_stage2_prebuilt_bindings.PrebuiltSourceTests.test_invalid_manifest_paths_are_rejected (path='Vendor/OtzariaSearchEngine/ios_bridge/new.rs')",
+      "result": "PASS"
+    }
+  ],
+  "source_before": {
+    "Scripts/CI/hq-stage2-focused-apple.py": "138ddf1d1de084f8bf0ddd25aec7b8affc043d54670c765758572e717104588d",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "d3cc2d19a52d4f6242de6a2467d4309f9c27f8ffd9ac9a9f32b72fd2283e8b0a",
+    "Scripts/CI/hq-stage2-otzaria-test-additions.json": "9b5e94c7527f1d6194b53da9b87c7646aaf05bfb1476a5ea3cfd88801a3171e4",
+    "Tests/CI/test_stage2_prebuilt_bindings.py": "ede9ed27b98f75d3a32244c2e1276a579939f7f247e9a09eb3e898d50f39a26a"
+  },
+  "source_after": {
+    "Scripts/CI/hq-stage2-focused-apple.py": "138ddf1d1de084f8bf0ddd25aec7b8affc043d54670c765758572e717104588d",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "d3cc2d19a52d4f6242de6a2467d4309f9c27f8ffd9ac9a9f32b72fd2283e8b0a",
+    "Scripts/CI/hq-stage2-otzaria-test-additions.json": "9b5e94c7527f1d6194b53da9b87c7646aaf05bfb1476a5ea3cfd88801a3171e4",
+    "Tests/CI/test_stage2_prebuilt_bindings.py": "ede9ed27b98f75d3a32244c2e1276a579939f7f247e9a09eb3e898d50f39a26a"
+  },
+  "source_unchanged": true,
+  "apple_or_native_execution": false,
+  "macro_original4_exit": 0
+}

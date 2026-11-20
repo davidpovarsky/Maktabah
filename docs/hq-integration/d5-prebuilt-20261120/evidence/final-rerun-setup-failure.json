@@ -1,0 +1,10 @@
+{
+  "job_id": "job_d9254de827cd",
+  "status": "failed",
+  "exit_code": 1,
+  "started_at": "2026-11-20T04:37:11.533851+00:00",
+  "finished_at": "2026-11-20T04:37:12.227897+00:00",
+  "tests_executed": 0,
+  "reason": "Evidence runner used the last extended source-list entry as the test module; importlib found no loader for a JSON fixture. Production validator was not executed.",
+  "output": "Traceback (most recent call last):\r\n  File \"C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_41eb7c466ffd48129a8abdbfa1dd1c7e\\script.py\", line 8, in <module>\r\n    spec=importlib.util.spec_from_file_location('test_stage2_prebuilt_bindings',p/paths[-1]);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)\r\n                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"<frozen importlib._bootstrap>\", line 810, in module_from_spec\r\nAttributeError: 'NoneType' object has no attribute 'loader'"
+}

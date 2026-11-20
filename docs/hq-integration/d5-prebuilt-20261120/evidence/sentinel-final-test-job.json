@@ -1,0 +1,23 @@
+{
+  "id": "job_c8e0605dec32",
+  "type": "job_result",
+  "source": "script_run@host_7ec8382e82747448",
+  "severity": "info",
+  "tool": "script_run",
+  "host": "host_7ec8382e82747448",
+  "status": "succeeded",
+  "exit_code": 0,
+  "created_at": 1795149475.0211542,
+  "started_at": "2026-11-20T04:37:55.077924+00:00",
+  "finished_at": "2026-11-20T04:38:00.256174+00:00",
+  "duration_s": 5.18,
+  "error": null,
+  "output_truncated": false,
+  "timeout_s": 180,
+  "read": false,
+  "notified": {
+    "telegram": null,
+    "resend": null
+  },
+  "notify_spec": {}
+}

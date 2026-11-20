@@ -1,0 +1,16 @@
+{
+  "preserved_producer_entries": 43,
+  "reviewed_added_regular_files": 78,
+  "mode": "EXACT_NEW_TEST_FILES_ONLY",
+  "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+  "producer_whole_tree": "5a6c6501c021ffadcde31254239617f10cd1a362",
+  "current_whole_tree": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+  "manifest_sha256_lf": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6",
+  "excluded_build_inputs": {
+    "Maktabah.xcodeproj/project.pbxproj": "2741615644741d39b0b19c6146f9c459323dabab",
+    "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
+    "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
+    "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+  },
+  "binary_attribution": "PRODUCER_TREE_ONLY_NOT_CURRENT_WHOLE_TREE"
+}

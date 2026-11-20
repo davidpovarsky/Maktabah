@@ -1,0 +1,26 @@
+{
+  "whitespace_changes": {
+    "Scripts\\CI\\hq-stage2-focused-apple.py": {
+      "before": "138ddf1d1de084f8bf0ddd25aec7b8affc043d54670c765758572e717104588d",
+      "after": "eb9df6467fd26673e9a6e495f3bbdcf6e066e700db4daab54d882f14041b415e"
+    },
+    "Scripts\\CI\\hq-stage2-otzaria-test-additions.json": {
+      "before": "9b5e94c7527f1d6194b53da9b87c7646aaf05bfb1476a5ea3cfd88801a3171e4",
+      "after": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+    },
+    "Tests\\CI\\fixtures\\d5-prebuilt-20261120\\producer-otzaria-job.json": {
+      "before": "f6ac74492eaccad20218aa46ab257f82a7b138a1d44f0dda6816d2e71df573fb",
+      "after": "6578560eb471e57cc46cc2a36453fc733b6f3d900964c50f2e69a65d10cb34de"
+    },
+    "Tests\\CI\\fixtures\\d5-prebuilt-20261120\\producer-run-attempt1.json": {
+      "before": "fe64efc5419a452687ac7cc4ad959e25c47cbe0c469e708b8b4e1859d7064d53",
+      "after": "633d4ae0624b82b85cecfa85443b7b71cf9d30fe642405a033b50d8b4157dced"
+    },
+    "Tests\\CI\\fixtures\\d5-prebuilt-20261120\\producer-zayit-job.json": {
+      "before": "9d327369f07b607764f1d82c6858156abf65c1aa48207a5aba58800108484582",
+      "after": "ee61c512d703603f20382ab1aca1d41d2e1d8a3ed60847ad64fee1aa9941122f"
+    }
+  },
+  "validator_ast_identical": true,
+  "final_manifest_sha256_lf": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+}

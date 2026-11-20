@@ -1,0 +1,68 @@
+{
+  "source": {
+    "preserved_producer_entries": 43,
+    "reviewed_added_regular_files": 78,
+    "mode": "EXACT_NEW_TEST_FILES_ONLY",
+    "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+    "producer_whole_tree": "5a6c6501c021ffadcde31254239617f10cd1a362",
+    "current_whole_tree": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+    "manifest_sha256_lf": "9b5e94c7527f1d6194b53da9b87c7646aaf05bfb1476a5ea3cfd88801a3171e4",
+    "excluded_build_inputs": {
+      "Maktabah.xcodeproj/project.pbxproj": "2741615644741d39b0b19c6146f9c459323dabab",
+      "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
+      "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
+      "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+    },
+    "binary_attribution": "PRODUCER_TREE_ONLY_NOT_CURRENT_WHOLE_TREE"
+  },
+  "metadata": [
+    {
+      "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+      "producer_run": 44661774024,
+      "producer_attempt": 1,
+      "producer_run_conclusion": "failure",
+      "producer_job": 136041463727,
+      "producer_job_conclusion": "success",
+      "artifact_digest": "sha256:efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+      "artifact_created_at": "2026-11-20T02:59:15Z",
+      "scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW"
+    },
+    {
+      "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+      "producer_run": 44661774024,
+      "producer_attempt": 1,
+      "producer_run_conclusion": "failure",
+      "producer_job": 136041463406,
+      "producer_job_conclusion": "success",
+      "artifact_digest": "sha256:64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+      "artifact_created_at": "2026-11-20T02:42:53Z",
+      "scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW"
+    }
+  ],
+  "unchanged_inputs": {
+    "sefaria_gitlink": true,
+    "resource_producer_sha": true,
+    "resource_bundle_sha256": true,
+    "resources": true,
+    "embedded_js_overlay_paths": true,
+    "hanlin_gitlink": true
+  },
+  "unchanged_package_and_JS_artifacts": true,
+  "exact_source_project_freeze_pending": {
+    "Source": {
+      "pinned": "0071219869ddcdc44e8378b7c0fe89c226dc807d",
+      "actual": "20042052efd710f01d0df04cac69fdd336e9021b"
+    },
+    "Maktabah.xcodeproj": {
+      "pinned": "0504a80db4dcd844871922ccf68d419eccb478f0",
+      "actual": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+    }
+  },
+  "full_preflight": {
+    "status": "BLOCKED_UNTIL_ROOT_SOURCE_FREEZE",
+    "observed_error": "Application tree drift: Source"
+  },
+  "metadata_requests": 5,
+  "binary_downloads": 0,
+  "apple_compile_or_native_execution": false
+}
