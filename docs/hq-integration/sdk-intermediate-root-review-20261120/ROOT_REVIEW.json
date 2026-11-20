@@ -1,0 +1,30 @@
+{
+  "reviewed_at": "2026-11-20T16:15:01.026712+00:00",
+  "run": 44765034019,
+  "attempt": 1,
+  "source": "86e817f6c9b9f3d8726832280c6ee9916bfcf7ad",
+  "application_source": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "artifact": 14646210906,
+  "bytes": 231140,
+  "sha256": "1f8dcea4aea110eb40a206c9fba5748e448ea27cb07b63354a075240323a0792",
+  "root_prior_direct_Git_inputs": 24,
+  "root_raw_ZIP_CRC_members": 48,
+  "source_before_after": "identical",
+  "root_evidence_replay": "Actual VERIFY_PACKET.py exit0; original raw bytes, named component outcomes, compiler report and declaration selection reproduced, without network/compiler/test execution",
+  "original_UI_compiler": "11 whole XCTest files, Swift6 code generation, iOS27 simulator SDK27.2",
+  "declarations_only": 116,
+  "compiler_checker_controls": 8,
+  "Native_UI": 0,
+  "full_app_build": false,
+  "new_dynamic_type_source": "50bc631a not included",
+  "cold_Core194": "not included",
+  "new_local_annotation_body": "not included",
+  "component_scope": "See complete packet; actual original SQLite25/ledger28+2 crash-reopen/Hebrew15/cache26/Inspector17/legacyHanlin8/store11/API48; workspace89 is reported aggregate assertions, not XCTest leaves",
+  "warnings": {
+    "UI_occurrences": 2844,
+    "appended_Host_occurrences": 4,
+    "source_location_UI_headers": 1422
+  },
+  "packet_index_sha256": "103803a1f8af7e32c2daa80f9df486313be9648d6185292c3680441e66e37ad7",
+  "integration": "Only the original isolated CI route and all source-specific result documentation; retain current application/test trees without implying acceptance of newer changes."
+}

@@ -1,0 +1,909 @@
+{
+  "status": "SDK_EVIDENCE_VERIFIED",
+  "run": {
+    "id": 44765034019,
+    "head_sha": "86e817f6c9b9f3d8726832280c6ee9916bfcf7ad",
+    "head_branch": "codex/otzaria-ui-sdk-intermediate-20261120",
+    "path": ".github/workflows/otzaria-ui-sdk-intermediate.yml",
+    "event": "push",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-20T15:36:51Z",
+    "updated_at": "2026-11-20T15:47:07Z"
+  },
+  "job": {
+    "id": 136387248090,
+    "name": "Focused SDK and workspace checks (no app/runtime acceptance)",
+    "started_at": "2026-11-20T15:40:30Z",
+    "completed_at": "2026-11-20T15:47:06Z",
+    "conclusion": "success"
+  },
+  "artifact": {
+    "id": 14646210906,
+    "bytes": 231140,
+    "sha256": "1f8dcea4aea110eb40a206c9fba5748e448ea27cb07b63354a075240323a0792",
+    "members": [
+      {
+        "path": "toolbar-sdk-compile.log",
+        "bytes": 1575,
+        "sha256": "ba14e24f93aaa60a4c778424152cca4224ff4f3007db6b449aabdfe33a4b2cc6",
+        "zip_crc32": "076af9d8"
+      },
+      {
+        "path": "ui-acceptance-typecheck.annotation-exchange-RESULT.json",
+        "bytes": 27151,
+        "sha256": "7ea45db7a5d99ba62f5d37f6e02bc817ff82f35455f449619eb5ea11e987a430",
+        "zip_crc32": "f2ddebd1"
+      },
+      {
+        "path": "toolbar-sdk-compile.json",
+        "bytes": 2445,
+        "sha256": "abbf58c1c46d5492ed822c374ebd8b8e97fb4712d0d00fe7ebb276854fb9f6e3",
+        "zip_crc32": "dbce97a7"
+      },
+      {
+        "path": "ui-acceptance-typecheck.annotation-exchange-compile.log",
+        "bytes": 6448,
+        "sha256": "5d883333f7c4f46c9bb24920365aebb8489ffd2aa55ec1a0cece1cb031496ed8",
+        "zip_crc32": "1a0b5949"
+      },
+      {
+        "path": "ui-acceptance-typecheck.annotation-exchange-crash-after.log",
+        "bytes": 59,
+        "sha256": "1f9934c06d52b7ed61bce7b215b8433cc033bdf7e698869f3476f3269c4b7ec8",
+        "zip_crc32": "a9e8fc8f"
+      },
+      {
+        "path": "ui-acceptance-typecheck.annotation-exchange-crash-before.log",
+        "bytes": 59,
+        "sha256": "1f9934c06d52b7ed61bce7b215b8433cc033bdf7e698869f3476f3269c4b7ec8",
+        "zip_crc32": "a9e8fc8f"
+      },
+      {
+        "path": "ui-acceptance-typecheck.annotation-exchange-driver.log",
+        "bytes": 3819,
+        "sha256": "c488a2c2857ff4235ceed96a6eb3d8e373f1b363329a369b366cd7af6fb88eba",
+        "zip_crc32": "39a696d3"
+      },
+      {
+        "path": "ui-acceptance-typecheck.annotation-exchange-tests.log",
+        "bytes": 3361,
+        "sha256": "7284cc3c9a515c81ab6afce261a7604218663b5c8f28e48c7e9cbfa124b57c52",
+        "zip_crc32": "b4754036"
+      },
+      {
+        "path": "ui-acceptance-typecheck.annotation-exchange-verify-crash-after.log",
+        "bytes": 73,
+        "sha256": "cfd98c102ca8b8abf4e8e31add161486a0fcc4ed231479c6de68d7613750a17d",
+        "zip_crc32": "74f457a5"
+      },
+      {
+        "path": "ui-acceptance-typecheck.annotation-exchange-verify-crash-before.log",
+        "bytes": 74,
+        "sha256": "a24a932e2d9e7626bafc0c299192ef4c63a15992661292798a8a8f0dca998c9c",
+        "zip_crc32": "788434db"
+      },
+      {
+        "path": "ui-acceptance-typecheck.book-page-cache-RESULT.json",
+        "bytes": 3560,
+        "sha256": "4f0ea8e859c5093ebb2ca70ee20a12585483e2aaa33e6d85fd951fa9c7cf52ba",
+        "zip_crc32": "d5399ba1"
+      },
+      {
+        "path": "ui-acceptance-typecheck.book-page-cache-compile.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "zip_crc32": "00000000"
+      },
+      {
+        "path": "ui-acceptance-typecheck.book-page-cache-driver.log",
+        "bytes": 3560,
+        "sha256": "4f0ea8e859c5093ebb2ca70ee20a12585483e2aaa33e6d85fd951fa9c7cf52ba",
+        "zip_crc32": "d5399ba1"
+      },
+      {
+        "path": "ui-acceptance-typecheck.book-page-cache-tests.log",
+        "bytes": 3397,
+        "sha256": "622a6d6a6d949ce524a77ff18d008a9ebf6493503c077d8886c82b7774933c8d",
+        "zip_crc32": "368fca7a"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-api12-host-RESULT.json",
+        "bytes": 6785,
+        "sha256": "eeefecd517fe19ebf6c7d21e1344ccbcacf8a1322eb81d2d990f4328ad494232",
+        "zip_crc32": "b43cfedc"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-api12-host-driver.log",
+        "bytes": 20344,
+        "sha256": "02e2323982cbe4e87f0cea08e71283e43be208766417885a95efc2f579ab63d8",
+        "zip_crc32": "c86d7fda"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-api12-host-inputs.json",
+        "bytes": 18713,
+        "sha256": "b21239cce3da40bd1dab88027ac9a3da4d8a95b4a67b0f3a43d3c88158a27a44",
+        "zip_crc32": "7963bb04"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-consumer-store-driver.log",
+        "bytes": 4275,
+        "sha256": "a96e7ea09e6be29fa4fab1ac1ab6e88356044ab3368b38a7245479e0c8c2a07e",
+        "zip_crc32": "ceb5ff9e"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-consumer-store-RESULT.json",
+        "bytes": 14390,
+        "sha256": "dfa6bf732464f05d37945ebdeb0e13f7bf73c7592ba6f3b08b1feb21ffd10acb",
+        "zip_crc32": "2d0c285e"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-api12-host-swift-test.log",
+        "bytes": 16883,
+        "sha256": "1172232967990c216a89392b3651265490b083737ccdf35f99e2eed84f9b486e",
+        "zip_crc32": "7b67b453"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-consumer-store-inputs.json",
+        "bytes": 9233,
+        "sha256": "0a0b411d03ae2efe60606bf4d71ea4d41ca64aa29e81e8a8bd687754e6c108b8",
+        "zip_crc32": "d99b5093"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-navigation-contract-RESULT.json",
+        "bytes": 1964,
+        "sha256": "abde50d60ce3d09c639ceed36a7b431d54fc1a7199826bb4464d7215692732af",
+        "zip_crc32": "ad92448c"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-navigation-contract-driver.log",
+        "bytes": 1826,
+        "sha256": "4fc5c116246e8e7c575fff33ab44d1b85d648f228a6d9967e2fbe86164782002",
+        "zip_crc32": "44358768"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-consumer-store-swift-test.log",
+        "bytes": 6986,
+        "sha256": "5da9df410f64fc74f7dd92cdbfe30eec91f4b9eba5543a0b06d9459c79a34cd2",
+        "zip_crc32": "253c3b88"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-navigation-contract-inputs.json",
+        "bytes": 9878,
+        "sha256": "f0d68d5644fded52b0c0d1edfebb5951d6f26fe42a3c94f0b15d91f21f64eb43",
+        "zip_crc32": "ab32b063"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-navigation-contract-swift-test.log",
+        "bytes": 4486,
+        "sha256": "0f009dc06eb8c7a252a63c81fba45aa611fce029945666e5837323adde01f547",
+        "zip_crc32": "3cd5b979"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-sdk-prepare.log",
+        "bytes": 679,
+        "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+        "zip_crc32": "684fed2b"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hanlin-sdk-inputs.json",
+        "bytes": 61045,
+        "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+        "zip_crc32": "0443c256"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hebrew-ranges-RESULT.json",
+        "bytes": 5929,
+        "sha256": "a90ce8c89778d61acd3f6b4412f314b4ec6e9460e73099a5ea18e38a9dce0208",
+        "zip_crc32": "281a3d6c"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hebrew-ranges-compile.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "zip_crc32": "00000000"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hebrew-ranges-driver.log",
+        "bytes": 3641,
+        "sha256": "d1a1a70c8c52f1ca0c77aba0ab2d0630a97a897efe50273a8d3abc11d9af087d",
+        "zip_crc32": "f28b3556"
+      },
+      {
+        "path": "ui-acceptance-typecheck.hebrew-ranges-tests.log",
+        "bytes": 2568,
+        "sha256": "2cbc7858b9c2f9adcf07e3bfd8edc83cd1ffe867d56ba3bb69a194966cfcb43b",
+        "zip_crc32": "9c8f5dc0"
+      },
+      {
+        "path": "ui-acceptance-typecheck.inspector-owner-RESULT.json",
+        "bytes": 2235,
+        "sha256": "659efbf2c0fb8ed9e4a7d3d995ce94700409897a61ffbb1447f65a21093d9712",
+        "zip_crc32": "9a984806"
+      },
+      {
+        "path": "ui-acceptance-typecheck.inspector-owner-compile.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "zip_crc32": "00000000"
+      },
+      {
+        "path": "ui-acceptance-typecheck.inspector-owner-driver.log",
+        "bytes": 2097,
+        "sha256": "79224324479cbcc5d02f8eb85f9a4523db465ce0370f6555a7966763af7ea097",
+        "zip_crc32": "d9cc7371"
+      },
+      {
+        "path": "ui-acceptance-typecheck.inspector-owner-tests.log",
+        "bytes": 1159,
+        "sha256": "2cc1609be21ee948eff9b8b3ac3383906d5092ec34851a750a1c4cb38b76f53e",
+        "zip_crc32": "71aee73f"
+      },
+      {
+        "path": "ui-acceptance-typecheck.intermediate-source.after.json",
+        "bytes": 7806,
+        "sha256": "58502cf84ab00c7e1545d8115477a88163cc8ecc0fe52863d02ac4c1fc2d6f42",
+        "zip_crc32": "47bace72"
+      },
+      {
+        "path": "ui-acceptance-typecheck.intermediate-source.before.json",
+        "bytes": 7803,
+        "sha256": "60a34e2c97848e42b1a422338a47742727aa75cccc5b4af2f64ff01d2615bf12",
+        "zip_crc32": "f8e22671"
+      },
+      {
+        "path": "ui-acceptance-typecheck.json",
+        "bytes": 121189,
+        "sha256": "1b83705ac8a6c41309aea05c44b1f9d8cf8bdaec728c4fd9d140f0d9d60e5ba5",
+        "zip_crc32": "409bbb93"
+      },
+      {
+        "path": "ui-acceptance-typecheck.log",
+        "bytes": 2647677,
+        "sha256": "2b0147bcc9132c5371657cd8511cb817fea1cbd8b2a7fdc1d9386fc2e101bd3c",
+        "zip_crc32": "f30fccac"
+      },
+      {
+        "path": "ui-acceptance-typecheck.sqlite-RESULT.json",
+        "bytes": 4595,
+        "sha256": "3490b1e8b54fe8b10c469e2bae52d18bb5683867daf74912c1eeaffab4b6acf3",
+        "zip_crc32": "593e36bb"
+      },
+      {
+        "path": "ui-acceptance-typecheck.sqlite-compile.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "zip_crc32": "00000000"
+      },
+      {
+        "path": "ui-acceptance-typecheck.sqlite-driver.log",
+        "bytes": 1909,
+        "sha256": "ab71309c89fbcfe6ac55a64701041e32464e15cda1a4da3bf29da8905c65e83e",
+        "zip_crc32": "9d0a91ad"
+      },
+      {
+        "path": "ui-acceptance-typecheck.sqlite-tests.log",
+        "bytes": 1318,
+        "sha256": "bb28e81d15113c17563f78aabb02c85eba496b023590f17a2e2bf1425743d5f7",
+        "zip_crc32": "906dab43"
+      },
+      {
+        "path": "ui-acceptance-typecheck.toolchain.json",
+        "bytes": 17538,
+        "sha256": "177bcc3ee575c79981e02c7bf1bcf16f3b7c74a7810356dd0d2b76033b2d542a",
+        "zip_crc32": "7eeab25b"
+      },
+      {
+        "path": "workspace-compile.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "zip_crc32": "00000000"
+      },
+      {
+        "path": "workspace-test-results.log",
+        "bytes": 81,
+        "sha256": "8f8bb8afe055d405d4919410ebd67ec2fe0bc97aa90ce97bfd7e8d21b67a6555",
+        "zip_crc32": "44e8906c"
+      },
+      {
+        "path": "xcuiautomation-voiceover-sdk.txt",
+        "bytes": 13992,
+        "sha256": "a67c1b7395766d301e65f88ed64c1424a2e707fca4ddd3a6d50e1bb7d072cb67",
+        "zip_crc32": "21e571d5"
+      }
+    ],
+    "all_crc_passed": true
+  },
+  "source": {
+    "reviewed_application": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+    "four_trees": {
+      "Maktabah-iOSUITests": "4ca3b75613f63f104db613a05518516b304f0ead",
+      "Maktabah.xcodeproj": "f80e996fa5144a7be76a7ccad8c2939e1d03d9b5",
+      "Source": "2c44edd5258cb0ea121472d76c4aef23ccbefc4d",
+      "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    "root_fetched_inputs_verified": [
+      {
+        "bytes": 2057,
+        "git_blob": "83b8b22b8183cab82b2f549649f0a75b91152fdc",
+        "path": ".github/workflows/otzaria-ui-sdk-intermediate.yml",
+        "sha256": "e67d8e97c13b3073fa4600d9826fdbcb43654187ed3195a208a52606a293a4ff"
+      },
+      {
+        "bytes": 44363,
+        "git_blob": "ac42069b4dbbe57898c45e280513412c8df41ee7",
+        "path": ".github/workflows/sefaria-embedded-validation.yml",
+        "sha256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4"
+      },
+      {
+        "bytes": 5480,
+        "git_blob": "39636e8abaac379d996e51d5717390590f5d4d98",
+        "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+        "sha256": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce"
+      },
+      {
+        "bytes": 14183,
+        "git_blob": "05a97fe61782a0c96900c2c23ff992435a751c90",
+        "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+        "sha256": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab"
+      },
+      {
+        "bytes": 196355,
+        "git_blob": "479ba206e76aa69b90cf8f04ae55ee5a99d60186",
+        "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+        "sha256": "00d8ba990af59931666f7b95ee04419edd538c23f7e4aa0e7949f2a9958a84f1"
+      },
+      {
+        "bytes": 89243,
+        "git_blob": "07dc9da3b401c8396a869d593e8c20bd30b35102",
+        "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+        "sha256": "548a940d0f9715674822753679c236604735c0857ef241cbc7adacf6f46fd0d3"
+      },
+      {
+        "bytes": 19027,
+        "git_blob": "feeae0d69a3881aa15faa2be085273dd4ef97111",
+        "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+        "sha256": "f55e88d3577b79f1146b762aa85f93f7c7582f6f0ffae63efba5db61b91db2b6"
+      },
+      {
+        "bytes": 9285,
+        "git_blob": "f0f7296544e040d69dbf98917777925439468d80",
+        "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+        "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+      },
+      {
+        "bytes": 160603,
+        "git_blob": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "sha256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f"
+      },
+      {
+        "bytes": 4954,
+        "git_blob": "c3ef8fc552967872a3313cff28a35d35be2a95a1",
+        "path": "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+        "sha256": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5"
+      },
+      {
+        "bytes": 31760,
+        "git_blob": "26ddbe5bbd20d759424bf253756e9c755ba50a58",
+        "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+        "sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f"
+      },
+      {
+        "bytes": 27748,
+        "git_blob": "9175d3f728caac49b975d8409f01a6efdd101e28",
+        "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+        "sha256": "d4d78663f69d64d0507dd5941cba364e31c9d1c81c9de4625880132c059341dd"
+      },
+      {
+        "bytes": 19775,
+        "git_blob": "65befdcc2d7884edb0976fac0005c03676c4e2ac",
+        "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+        "sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8"
+      },
+      {
+        "bytes": 4333,
+        "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+        "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+        "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+      },
+      {
+        "bytes": 4117,
+        "git_blob": "2b3d439abe961e77cf81538043a77d6be50c3904",
+        "path": "Scripts/CI/prepare-hanlin-sdk.py",
+        "sha256": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404"
+      },
+      {
+        "bytes": 26341,
+        "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+        "path": "Scripts/CI/runtime27.py",
+        "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583"
+      },
+      {
+        "bytes": 6377,
+        "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+        "path": "Scripts/CI/select-runtime27-toolchain.py",
+        "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+      },
+      {
+        "bytes": 1805,
+        "git_blob": "777da2ddd5f941a2ebe1b884fe75367534e4862b",
+        "path": "Scripts/CI/test-faithful-workspace.py",
+        "sha256": "13dd6477d2b142c4637f6f79231f17d379e0e042a0bceb715d8693a1cd4cbec5"
+      },
+      {
+        "bytes": 4710,
+        "git_blob": "345477a37faedb3992c13f954fd12f2cfd08dd93",
+        "path": "Scripts/CI/test-verify-faithful-xctest.py",
+        "sha256": "a97fc97872023abe8763dd38ce04aacd12b434626916e722c564c1cdd669a9d6"
+      },
+      {
+        "bytes": 24211,
+        "git_blob": "0102957b43d9e4a71cd122046418dd33b55b8210",
+        "path": "Scripts/CI/typecheck-faithful-ui-tests.py",
+        "sha256": "07e2c054f1c826631a946db4d868f7f1d8d85c34d5bb511feb2d5976fd5d40e4"
+      },
+      {
+        "bytes": 6009,
+        "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+        "path": "Scripts/CI/verify-faithful-xctest.py",
+        "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+      },
+      {
+        "bytes": 7113,
+        "git_blob": "f1430aff9f5db79f386cc7c8edfd28fdd75806ab",
+        "path": "Scripts/CI/verify-otzaria-xcode-project.py",
+        "sha256": "c3bc822db4b816989217de154fdcb56266e897a2e1212f894a7a9cd33b36c4ee"
+      },
+      {
+        "bytes": 6007,
+        "git_blob": "eafdcd9e20360fd6ef883fee0c1d793a19cbe25b",
+        "path": "Scripts/CI/verify-ui-sdk-intermediate-source.py",
+        "sha256": "1e81f07d3076ac188770c896a1ac4d57d46821d4ffe28c0024468a8114808440"
+      },
+      {
+        "bytes": 200381,
+        "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+        "path": "docs/hq-integration/runtime27/R27_CASES.json",
+        "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+      }
+    ],
+    "before_after_equal": true,
+    "before": "2026-11-20T15:40:58.598242+00:00",
+    "after": "2026-11-20T15:46:55.731243+00:00"
+  },
+  "sdk": {
+    "xcode": "Xcode 27.2\nBuild version 27B52",
+    "swift": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.2.0",
+    "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.2.sdk",
+    "target": "arm64-apple-ios27.0-simulator",
+    "complete_ui_files": [
+      "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+      "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+      "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift"
+    ],
+    "declarations": [
+      "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+      "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+      "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+      "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+      "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
+      "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
+      "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
+      "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+      "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+      "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+      "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad",
+      "GlobalSearchNativeAcceptanceTests/testHebrewHeaderUsesActualRTLGeometry",
+      "GlobalSearchNativeAcceptanceTests/testEnglishHeaderUsesActualLTRGeometry",
+      "GlobalSearchNativeAcceptanceTests/testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear",
+      "GlobalSearchNativeAcceptanceTests/testOtzariaDefaultAdvancedFormExposesRealConditionalControls",
+      "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings",
+      "GlobalSearchNativeAcceptanceTests/testOptionsDismissalReturnsToSameQueryWithoutSubmission",
+      "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+      "GlobalSearchNativeAcceptanceTests/testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow",
+      "GlobalSearchNativeAcceptanceTests/testZayitLoadedTitleSubstringUsesActualMountedProjection",
+      "GlobalSearchNativeAcceptanceTests/testZayitZeroMatchProjectionRetainsRealExplicitPaging",
+      "GlobalSearchNativeAcceptanceTests/testReturnProducesOriginalRowsWithPersistentHeader",
+      "GlobalSearchNativeAcceptanceTests/testModeEditRequiresExplicitRerun",
+      "GlobalSearchNativeAcceptanceTests/testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity",
+      "GlobalSearchNativeAcceptanceTests/testZeroMatchProjectionRetainsExplicitLoadMore",
+      "GlobalSearchNativeAcceptanceTests/testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch",
+      "GlobalSearchNativeAcceptanceTests/testEmbeddedOffersExactOnlyAndNoIgnoredOptions",
+      "GlobalSearchNativeAcceptanceTests/testLegacyAdvancedUsesItsOwnSourceControls",
+      "GlobalSearchNativeAcceptanceTests/testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine",
+      "GlobalSearchNativeAcceptanceTests/testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight",
+      "GlobalSearchNativeAcceptanceTests/testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata",
+      "GlobalSearchNativeAcceptanceTests/testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred",
+      "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "SearchDataNativeAcceptanceTests/testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount",
+      "SearchDataNativeAcceptanceTests/testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch",
+      "SearchDataNativeAcceptanceTests/testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch",
+      "SearchDataNativeAcceptanceTests/testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks",
+      "SearchDataNativeAcceptanceTests/testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry",
+      "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+      "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePadTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
+      "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesLegacyNativeScene",
+      "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesEmbeddedNativeScene",
+      "NativeRoutingAcceptanceTests/testColdHistoryURLWaitsForActualSceneMount",
+      "NativeRoutingAcceptanceTests/testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+      "NativeRoutingAcceptanceTests/testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+      "NativeRoutingAcceptanceTests/testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+      "NativeRoutingAcceptanceTests/testReplayCannotIssueSecondNativeReceipt",
+      "NativeRoutingAcceptanceTests/testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+      "NativeRoutingAcceptanceTests/testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge",
+      "NativeRoutingAcceptanceTests/testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+      "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+      "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+      "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+      "NativeRoutingAcceptanceTests/testPublicV2LibraryPreservesPrivateQueryAndOriginalReader",
+      "NativeRoutingAcceptanceTests/testPublicV2TOCPreservesPrivateFilterAndOriginalReader",
+      "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+      "NativeRoutingAcceptanceTests/testSystemBookIntentResolvesNamedChapterThroughOriginalCore",
+      "NativeRoutingAcceptanceTests/testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader",
+      "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+      "NativeRoutingAcceptanceTests/testSystemBookIntentRejectsMissingSourceWithoutMutation",
+      "NativeRoutingAcceptanceTests/testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "NativeRoutingAcceptanceTests/testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField",
+      "NativeRoutingAcceptanceTests/testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent",
+      "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+      "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+      "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+      "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+      "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+      "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+      "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+      "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+      "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry",
+      "Sidebar11201AcceptanceTests/testSidebarBodyPagingLTR",
+      "Sidebar11201AcceptanceTests/testSidebarBodyPagingRTL",
+      "Sidebar11201AcceptanceTests/testSidebarSceneStateSurvivesBackgroundAndRotation",
+      "Sidebar11201AcceptanceTests/testOriginalBottomTOCActionUsesActualSidebarPage",
+      "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+      "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+      "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+      "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+      "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+      "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+      "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "R27NativePhoneTests/testNormalBootstrapLegacyGenesisAndRotation",
+      "R27NativePhoneTests/testNormalBootstrapEmbeddedGenesisAndRotation",
+      "NativeRoutingPhoneAcceptanceTests/testPhoneWarmHistoryUsesActualForegroundScene",
+      "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+      "NativeRoutingPhoneAcceptanceTests/testPhoneWrongBackendCannotNavigateOrIssueReceipt",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2CurrentReaderShowsCanonicalSourceLines",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2OtherBookCannotReplaceCurrentReader",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2LibraryPreservesOriginalReaderOwner",
+      "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder",
+      "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+      "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+      "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+      "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+      "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone",
+      "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+      "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+      "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+      "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+      "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+      "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
+    ],
+    "compiler_regression_controls": 8,
+    "warnings_by_log_section": [
+      {
+        "section": "11 complete UI files code generation",
+        "warning_occurrences": 2844,
+        "source_location_warning_headers": 1422,
+        "compiler_error_headers": 0
+      },
+      {
+        "section": "Compiler declaration regression checks (not Native):",
+        "warning_occurrences": 0,
+        "source_location_warning_headers": 0,
+        "compiler_error_headers": 0
+      },
+      {
+        "section": "=== Exact native sidebar adapter SDK compilation ===",
+        "warning_occurrences": 0,
+        "source_location_warning_headers": 0,
+        "compiler_error_headers": 0
+      },
+      {
+        "section": "=== Actual native reader TextKit witness SDK compilation ===",
+        "warning_occurrences": 0,
+        "source_location_warning_headers": 0,
+        "compiler_error_headers": 0
+      },
+      {
+        "section": "=== Native routing host SDK compilation ===",
+        "warning_occurrences": 4,
+        "source_location_warning_headers": 0,
+        "compiler_error_headers": 0
+      }
+    ],
+    "native_ui_executed": 0
+  },
+  "components": {
+    "sqlite": {
+      "passed": 25,
+      "failed": 0,
+      "case_names": [
+        "successful_rows_and_genuine_zero",
+        "all_supported_binding_types_keep_values",
+        "step_error_before_first_row_is_not_empty_success",
+        "step_error_after_first_row_is_not_partial_success",
+        "same_cached_query_recovers_after_step_failure",
+        "actual_sqlite_interrupt_never_returns_partial_rows",
+        "cached_statement_recovers_after_interrupt",
+        "out_of_range_int_bind_cannot_succeed",
+        "out_of_range_int64_bind_cannot_succeed",
+        "out_of_range_double_bind_cannot_succeed",
+        "out_of_range_text_bind_cannot_succeed",
+        "out_of_range_null_bind_cannot_succeed",
+        "unsupported_bind_type_still_fails_without_poisoning_cache",
+        "mapping_error_is_preserved_and_statement_is_reset",
+        "cached_schema_change_error_is_not_empty_success",
+        "transaction_rolls_back_when_a_read_fails",
+        "actual_writer_lock_is_not_empty_success",
+        "read_under_writer_lock_recovers_after_rollback",
+        "readonly_connection_rejects_writes",
+        "serialized_concurrent_reads_preserve_entire_results",
+        "recursive_fetch_acquisition_keeps_original_owner",
+        "pre_cancelled_fetch_does_not_map_or_leak_lock",
+        "cancelled_fetch_leaves_contended_lock_before_owner_release",
+        "cancellation_wins_as_recursive_lock_becomes_available",
+        "cancellation_after_acquisition_resets_statement_and_unlocks"
+      ],
+      "boundary": "Actual original SQLite wrapper and disposable SQLite3.54 files; no real corpus read, UI or decompressor execution"
+    },
+    "annotation_ledger": {
+      "passed": 28,
+      "failed": 0,
+      "case_names": [
+        "actual_platform_SHA256_known_vectors",
+        "constructor_is_inert_and_capability_stays_off",
+        "exact_rich_bytes_preview_and_unknown_fields_survive_reopen",
+        "unknown_version_is_exact_quarantine_without_execution",
+        "all_original_handles_close_before_reopen_and_retry",
+        "duplicate_escaped_keys_malformed_UTF8_and_numbers_are_rejected",
+        "invalid_UUID_base64_types_and_scope_are_rejected",
+        "oversized_payload_fails_intact_without_rows",
+        "schema_constraints_reject_fractional_revision_and_invalid_status",
+        "unknown_ledger_schema_fails_closed",
+        "missing_or_ambiguous_original_UUID_is_not_backfilled",
+        "same_second_source_edit_rejects_stale_witness",
+        "tag_locator_and_embedded_NUL_each_change_source_witness",
+        "source_metadata_and_revision_mismatch_do_not_write",
+        "dangling_original_tag_link_changes_witness_and_rejects_stale_commit",
+        "idempotent_retry_binds_exact_payload_and_destination_set",
+        "ACK_is_bound_to_destination_account_space_UUID_revision_digest_and_message",
+        "old_ACK_does_not_consume_newer_revision_or_account",
+        "nested_enqueue_failure_rolls_back_source_cloud_queue_and_ledger",
+        "outer_failure_after_inner_release_rolls_back_everything",
+        "successful_outer_transaction_preserves_original_cloud_queue_semantics",
+        "tombstone_requires_prior_identity_and_absent_original_source",
+        "known_inbox_is_review_only_exact_idempotent_and_account_scoped",
+        "incoming_digest_and_identity_mismatch_are_rejected",
+        "corrupt_payload_and_orphan_outbox_fail_closed",
+        "pre_cancelled_commit_and_ACK_do_not_write",
+        "cancellation_after_real_enqueue_rolls_back_before_commit",
+        "eight_concurrent_same_revision_writers_have_one_atomic_winner"
+      ],
+      "boundary": "Real SQLite/CryptoKit/original sync-pending component; original AnnotationRepository runtime, Anytype, CloudKit and UI not executed"
+    },
+    "annotation_process_reopen": {
+      "passed": 2,
+      "failed": 0,
+      "case_names": [
+        "before_commit",
+        "after_commit"
+      ],
+      "boundary": "Actual process exit73 and reopen using SQLite WAL/full synchronous; separate from UI and the original repository runtime"
+    },
+    "hebrew_ranges": {
+      "passed": 15,
+      "failed": 0,
+      "case_names": [
+        "Original Hebrew niqqud remains in the highlighted source range",
+        "Combining Latin prefix does not move a Hebrew highlight",
+        "Family emoji prefix retains the exact following source range",
+        "Regional-indicator flag prefix retains the exact source range",
+        "Variation selector prefix retains the exact source range",
+        "Supplementary scalar prefix uses its original UTF16 width",
+        "Canonical-equivalent combining characters within a match retain its full extent",
+        "Joined emoji inside the match is not truncated",
+        "Repeated matches after a multi-scalar prefix preserve both positions",
+        "Repeated keywords do not duplicate a source highlight",
+        "Bidi isolates remain outside the selected Hebrew word",
+        "Hebrew maqaf remains meaningful during matching",
+        "Whitespace-only keywords produce no highlight",
+        "Empty source produces no highlight",
+        "Case-insensitive Latin match after combining prefix retains source spelling"
+      ],
+      "boundary": "Complete original String extension with real Swift/Foundation; independent literal source-span oracles. No UIKit/TextKit or device claim."
+    },
+    "book_page_cache": {
+      "passed": 26,
+      "failed": 0,
+      "case_names": [
+        "Raw text and all original metadata survive unchanged",
+        "Same content ID stays scoped to its book",
+        "Small replacement returns only the current value",
+        "Processed value keeps its original immutable identity",
+        "Every renderer range and delta remains unchanged",
+        "All render flags and both text hashes remain isolated",
+        "Per-book removal clears raw and processed together",
+        "Per-book removal preserves another book",
+        "Global removal clears both stores",
+        "A raw page larger than the byte budget is not retained and invalidates the old identity",
+        "Large reference metadata contributes to retention cost",
+        "Both locator strings contribute to retention cost",
+        "Oversized processed text is not retained and invalidates the old identity",
+        "Range storage contributes to processed retention cost",
+        "Replacement event storage contributes to retention cost",
+        "Both delta event arrays contribute to retention cost",
+        "Retained raw payload across books stays within the byte budget",
+        "The latest fitting raw page remains usable",
+        "Retained raw payload within one book stays within the byte budget",
+        "Retained processed payload across books stays within the byte budget",
+        "The original book limit remains bounded",
+        "The page count remains bounded even for tiny values",
+        "A small processed value is retained while cached",
+        "Removal releases values; the ledger owns no payload",
+        "Capacity is reusable after clear",
+        "Concurrent reads writes and removals never return a foreign payload"
+      ],
+      "boundary": "Compiled original cache behavior/capacity/lifetime component; no UI or physical performance acceptance"
+    },
+    "inspector_owner": {
+      "passed": 17,
+      "failed": 0,
+      "case_names": [
+        "Creating a binding does not open the panel or change selection",
+        "Opening the existing panel preserves source, selection and original Reader identity",
+        "Repeated presentation stays on the same original panel and selection",
+        "Missing active identity cannot fall back to the first Reader",
+        "Non-Reader app mode cannot supply an inspector owner",
+        "Loading content cannot advertise a ready inspector",
+        "A section from another book cannot bind the active Reader",
+        "An unrelated retained line anchor cannot select another book",
+        "An unrelated selected locator cannot select another backend",
+        "Closing the retained tab before commit prevents the effect",
+        "Replacing a Reader under the same tab UUID prevents the effect",
+        "Switching the active tab before commit prevents the effect",
+        "A new content destination invalidates the old inspector request",
+        "A changed private selection invalidates the old inspector request",
+        "A changed source anchor invalidates the old inspector request",
+        "A changed reading mode invalidates the old inspector request",
+        "A changed backend invalidates the old inspector request"
+      ],
+      "boundary": "Exact app binding with real Swift6/MainActor, explicit model/backend DTO doubles. No UIKit, Core permission, database or native presentation acceptance."
+    },
+    "hanlin-navigation-contract": {
+      "passed": 8,
+      "failed": 0,
+      "case_names": [
+        "testAccountTransitionMustRemainRejected",
+        "testAlreadyStaleContextNeverNavigates",
+        "testGenerationTransitionDropsAcknowledgementAfterNavigationEffect",
+        "testObjectTransitionDropsAcknowledgementAfterNavigationEffect",
+        "testQueuedIsNotPresentationAcknowledgement",
+        "testReplyCannotSubstituteNewContextToBypassGuard",
+        "testRevokedSessionNeverNavigates",
+        "testStableContextPreservesExactPresentedAcknowledgement"
+      ],
+      "boundary": "Whole unchanged SDK HostDispatcher + complete original Platform/Host contract modules. Explicit host/navigation effect double; no AgentSession, provider, UIKit, Otzaria runtime or actual UI acknowledgement."
+    },
+    "hanlin-consumer-store": {
+      "passed": 11,
+      "failed": 0,
+      "case_names": [
+        "testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision",
+        "testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite",
+        "testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord",
+        "testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing",
+        "testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata",
+        "testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden",
+        "testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks",
+        "testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave",
+        "testForeignMessagePresentationIdentityNeverReachesDisk",
+        "testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates",
+        "testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory"
+      ],
+      "boundary": "Complete app store with actual Foundation files, independent host/SDK CAS, scoped lease rejection and platform filesystem write failure. Complete original SDK contract/presentation modules and unchanged message DTO; no engine/provider, UIKit scene, native navigation or physical protection proof."
+    },
+    "hanlin-api12-host": {
+      "passed": 48,
+      "failed": 0,
+      "case_names": [
+        "testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery",
+        "testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback",
+        "testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect",
+        "testAPI12DeniesBackgroundBeforeNativeEffect",
+        "testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats",
+        "testAPI12RejectsMismatchedNativeAcknowledgement",
+        "testAPI12RetainsReceiptWhenSuccessorWasRevoked",
+        "testAPI12TransitionReturnsLiveCorrelatedSuccessor",
+        "testBackgroundNavigationIsDenied",
+        "testCancellationDuringAuthorityLookupNeverReachesCore",
+        "testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait",
+        "testCanonicalSchemaRejectionNeverBecomesCompleted",
+        "testCatalogIsExactReadOnlyProjectionAndBackendQualified",
+        "testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions",
+        "testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights",
+        "testConsentConsumesOnlyOnceForExactDismissalSourceAndConfiguration",
+        "testConsentRejectsChangedConfigurationOrNamespaceAndRevocation",
+        "testConsentRejectsEveryChangedSourceDimensionWithoutGrant",
+        "testContentRightsHideSearchButPreserveCanonicalMetadataActions",
+        "testContextRevocationDuringReadSuppressesResult",
+        "testEmptyNativeForegroundIdentityIsDenied",
+        "testExplicitCancellationReachesOriginalCoreTask",
+        "testForeignProviderAndStaleCatalogAreRejected",
+        "testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult",
+        "testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts",
+        "testModelArgumentsCannotChooseContentContextOrBackend",
+        "testMutationGuaranteeIsRejectedBeforeDispatch",
+        "testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID",
+        "testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork",
+        "testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges",
+        "testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead",
+        "testOutputLimitAndExpiredDeadlineAreEnforced",
+        "testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected",
+        "testRealCoreExecutionPreservesGenerationBeyondDoublePrecision",
+        "testReplayDoesNotExecuteAgain",
+        "testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead",
+        "testScopedReadDoesNotRestrictOriginalMetadataForAnotherWork",
+        "testScopedReadIssuerKeepsMetadataContextAndBoundsOnlySearch",
+        "testScopedReadIssuerRejectsMissingForegroundOrForeignOrigin",
+        "testScopedReadIssuerRejectsUnknownBackendAndNoncanonicalWork",
+        "testScopedSearchCancellationReachesOriginalCoreWorker",
+        "testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead",
+        "testScopedSearchUsesActualCoreAvailabilityWithoutHidingOldMetadata",
+        "testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession",
+        "testSDKDispatcherDoesNotRepeatQueuedHostTransition",
+        "testSeparateReadContextCannotBelongToAnotherSceneOrSubject",
+        "testSeparateReadContextWithoutContentRightsStaysClosed",
+        "testSupersededDismissalCannotConsumeCurrentConsentEvenWhileDismissing"
+      ],
+      "boundary": "Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance."
+    },
+    "workspace": {
+      "passed_assertions_reported": 89,
+      "raw_summary": "PASS: 89 workspace persistence/migration/rollback/scene/semantic-location checks",
+      "individual_runtime_leaf_names_emitted": false,
+      "boundary": "Original executable assertions, not XCTest/UI leaves; raw aggregate only"
+    }
+  },
+  "limits": {
+    "full_app_build": "NOT_RUN",
+    "app_composed_sidebar": "REQUIRES_FULL_APP_BUILD",
+    "app_composed_global_search_field": "REQUIRES_FULL_APP_BUILD",
+    "full_18_ui_file_codegen": "NOT_RUN_ONLY_ORIGINAL_11",
+    "native_116": "NOT_RUN_DECLARATIONS_ONLY",
+    "physical_device": "NOT_RUN",
+    "original_annotation_repository_runtime": false,
+    "cold_core_798_credit": false,
+    "anytype_new_local_body_credit": false
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "id": 14646210906,
+  "bytes": 231140,
+  "sha256": "1f8dcea4aea110eb40a206c9fba5748e448ea27cb07b63354a075240323a0792",
+  "members": [
+    {
+      "path": "toolbar-sdk-compile.log",
+      "bytes": 1575,
+      "sha256": "ba14e24f93aaa60a4c778424152cca4224ff4f3007db6b449aabdfe33a4b2cc6",
+      "zip_crc32": "076af9d8"
+    },
+    {
+      "path": "ui-acceptance-typecheck.annotation-exchange-RESULT.json",
+      "bytes": 27151,
+      "sha256": "7ea45db7a5d99ba62f5d37f6e02bc817ff82f35455f449619eb5ea11e987a430",
+      "zip_crc32": "f2ddebd1"
+    },
+    {
+      "path": "toolbar-sdk-compile.json",
+      "bytes": 2445,
+      "sha256": "abbf58c1c46d5492ed822c374ebd8b8e97fb4712d0d00fe7ebb276854fb9f6e3",
+      "zip_crc32": "dbce97a7"
+    },
+    {
+      "path": "ui-acceptance-typecheck.annotation-exchange-compile.log",
+      "bytes": 6448,
+      "sha256": "5d883333f7c4f46c9bb24920365aebb8489ffd2aa55ec1a0cece1cb031496ed8",
+      "zip_crc32": "1a0b5949"
+    },
+    {
+      "path": "ui-acceptance-typecheck.annotation-exchange-crash-after.log",
+      "bytes": 59,
+      "sha256": "1f9934c06d52b7ed61bce7b215b8433cc033bdf7e698869f3476f3269c4b7ec8",
+      "zip_crc32": "a9e8fc8f"
+    },
+    {
+      "path": "ui-acceptance-typecheck.annotation-exchange-crash-before.log",
+      "bytes": 59,
+      "sha256": "1f9934c06d52b7ed61bce7b215b8433cc033bdf7e698869f3476f3269c4b7ec8",
+      "zip_crc32": "a9e8fc8f"
+    },
+    {
+      "path": "ui-acceptance-typecheck.annotation-exchange-driver.log",
+      "bytes": 3819,
+      "sha256": "c488a2c2857ff4235ceed96a6eb3d8e373f1b363329a369b366cd7af6fb88eba",
+      "zip_crc32": "39a696d3"
+    },
+    {
+      "path": "ui-acceptance-typecheck.annotation-exchange-tests.log",
+      "bytes": 3361,
+      "sha256": "7284cc3c9a515c81ab6afce261a7604218663b5c8f28e48c7e9cbfa124b57c52",
+      "zip_crc32": "b4754036"
+    },
+    {
+      "path": "ui-acceptance-typecheck.annotation-exchange-verify-crash-after.log",
+      "bytes": 73,
+      "sha256": "cfd98c102ca8b8abf4e8e31add161486a0fcc4ed231479c6de68d7613750a17d",
+      "zip_crc32": "74f457a5"
+    },
+    {
+      "path": "ui-acceptance-typecheck.annotation-exchange-verify-crash-before.log",
+      "bytes": 74,
+      "sha256": "a24a932e2d9e7626bafc0c299192ef4c63a15992661292798a8a8f0dca998c9c",
+      "zip_crc32": "788434db"
+    },
+    {
+      "path": "ui-acceptance-typecheck.book-page-cache-RESULT.json",
+      "bytes": 3560,
+      "sha256": "4f0ea8e859c5093ebb2ca70ee20a12585483e2aaa33e6d85fd951fa9c7cf52ba",
+      "zip_crc32": "d5399ba1"
+    },
+    {
+      "path": "ui-acceptance-typecheck.book-page-cache-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_crc32": "00000000"
+    },
+    {
+      "path": "ui-acceptance-typecheck.book-page-cache-driver.log",
+      "bytes": 3560,
+      "sha256": "4f0ea8e859c5093ebb2ca70ee20a12585483e2aaa33e6d85fd951fa9c7cf52ba",
+      "zip_crc32": "d5399ba1"
+    },
+    {
+      "path": "ui-acceptance-typecheck.book-page-cache-tests.log",
+      "bytes": 3397,
+      "sha256": "622a6d6a6d949ce524a77ff18d008a9ebf6493503c077d8886c82b7774933c8d",
+      "zip_crc32": "368fca7a"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-api12-host-RESULT.json",
+      "bytes": 6785,
+      "sha256": "eeefecd517fe19ebf6c7d21e1344ccbcacf8a1322eb81d2d990f4328ad494232",
+      "zip_crc32": "b43cfedc"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-api12-host-driver.log",
+      "bytes": 20344,
+      "sha256": "02e2323982cbe4e87f0cea08e71283e43be208766417885a95efc2f579ab63d8",
+      "zip_crc32": "c86d7fda"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-api12-host-inputs.json",
+      "bytes": 18713,
+      "sha256": "b21239cce3da40bd1dab88027ac9a3da4d8a95b4a67b0f3a43d3c88158a27a44",
+      "zip_crc32": "7963bb04"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-consumer-store-driver.log",
+      "bytes": 4275,
+      "sha256": "a96e7ea09e6be29fa4fab1ac1ab6e88356044ab3368b38a7245479e0c8c2a07e",
+      "zip_crc32": "ceb5ff9e"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-consumer-store-RESULT.json",
+      "bytes": 14390,
+      "sha256": "dfa6bf732464f05d37945ebdeb0e13f7bf73c7592ba6f3b08b1feb21ffd10acb",
+      "zip_crc32": "2d0c285e"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-api12-host-swift-test.log",
+      "bytes": 16883,
+      "sha256": "1172232967990c216a89392b3651265490b083737ccdf35f99e2eed84f9b486e",
+      "zip_crc32": "7b67b453"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-consumer-store-inputs.json",
+      "bytes": 9233,
+      "sha256": "0a0b411d03ae2efe60606bf4d71ea4d41ca64aa29e81e8a8bd687754e6c108b8",
+      "zip_crc32": "d99b5093"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-navigation-contract-RESULT.json",
+      "bytes": 1964,
+      "sha256": "abde50d60ce3d09c639ceed36a7b431d54fc1a7199826bb4464d7215692732af",
+      "zip_crc32": "ad92448c"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-navigation-contract-driver.log",
+      "bytes": 1826,
+      "sha256": "4fc5c116246e8e7c575fff33ab44d1b85d648f228a6d9967e2fbe86164782002",
+      "zip_crc32": "44358768"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-consumer-store-swift-test.log",
+      "bytes": 6986,
+      "sha256": "5da9df410f64fc74f7dd92cdbfe30eec91f4b9eba5543a0b06d9459c79a34cd2",
+      "zip_crc32": "253c3b88"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-navigation-contract-inputs.json",
+      "bytes": 9878,
+      "sha256": "f0d68d5644fded52b0c0d1edfebb5951d6f26fe42a3c94f0b15d91f21f64eb43",
+      "zip_crc32": "ab32b063"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-navigation-contract-swift-test.log",
+      "bytes": 4486,
+      "sha256": "0f009dc06eb8c7a252a63c81fba45aa611fce029945666e5837323adde01f547",
+      "zip_crc32": "3cd5b979"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-sdk-prepare.log",
+      "bytes": 679,
+      "sha256": "baca24125ae53ea60324b2491d0150e52d5c02edae797fb114e68d35dbc52d25",
+      "zip_crc32": "684fed2b"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hanlin-sdk-inputs.json",
+      "bytes": 61045,
+      "sha256": "ec4c621eadd675d28dfa100d012e1147dce01c03c72a95625cfa1f74bf401118",
+      "zip_crc32": "0443c256"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hebrew-ranges-RESULT.json",
+      "bytes": 5929,
+      "sha256": "a90ce8c89778d61acd3f6b4412f314b4ec6e9460e73099a5ea18e38a9dce0208",
+      "zip_crc32": "281a3d6c"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hebrew-ranges-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_crc32": "00000000"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hebrew-ranges-driver.log",
+      "bytes": 3641,
+      "sha256": "d1a1a70c8c52f1ca0c77aba0ab2d0630a97a897efe50273a8d3abc11d9af087d",
+      "zip_crc32": "f28b3556"
+    },
+    {
+      "path": "ui-acceptance-typecheck.hebrew-ranges-tests.log",
+      "bytes": 2568,
+      "sha256": "2cbc7858b9c2f9adcf07e3bfd8edc83cd1ffe867d56ba3bb69a194966cfcb43b",
+      "zip_crc32": "9c8f5dc0"
+    },
+    {
+      "path": "ui-acceptance-typecheck.inspector-owner-RESULT.json",
+      "bytes": 2235,
+      "sha256": "659efbf2c0fb8ed9e4a7d3d995ce94700409897a61ffbb1447f65a21093d9712",
+      "zip_crc32": "9a984806"
+    },
+    {
+      "path": "ui-acceptance-typecheck.inspector-owner-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_crc32": "00000000"
+    },
+    {
+      "path": "ui-acceptance-typecheck.inspector-owner-driver.log",
+      "bytes": 2097,
+      "sha256": "79224324479cbcc5d02f8eb85f9a4523db465ce0370f6555a7966763af7ea097",
+      "zip_crc32": "d9cc7371"
+    },
+    {
+      "path": "ui-acceptance-typecheck.inspector-owner-tests.log",
+      "bytes": 1159,
+      "sha256": "2cc1609be21ee948eff9b8b3ac3383906d5092ec34851a750a1c4cb38b76f53e",
+      "zip_crc32": "71aee73f"
+    },
+    {
+      "path": "ui-acceptance-typecheck.intermediate-source.after.json",
+      "bytes": 7806,
+      "sha256": "58502cf84ab00c7e1545d8115477a88163cc8ecc0fe52863d02ac4c1fc2d6f42",
+      "zip_crc32": "47bace72"
+    },
+    {
+      "path": "ui-acceptance-typecheck.intermediate-source.before.json",
+      "bytes": 7803,
+      "sha256": "60a34e2c97848e42b1a422338a47742727aa75cccc5b4af2f64ff01d2615bf12",
+      "zip_crc32": "f8e22671"
+    },
+    {
+      "path": "ui-acceptance-typecheck.json",
+      "bytes": 121189,
+      "sha256": "1b83705ac8a6c41309aea05c44b1f9d8cf8bdaec728c4fd9d140f0d9d60e5ba5",
+      "zip_crc32": "409bbb93"
+    },
+    {
+      "path": "ui-acceptance-typecheck.log",
+      "bytes": 2647677,
+      "sha256": "2b0147bcc9132c5371657cd8511cb817fea1cbd8b2a7fdc1d9386fc2e101bd3c",
+      "zip_crc32": "f30fccac"
+    },
+    {
+      "path": "ui-acceptance-typecheck.sqlite-RESULT.json",
+      "bytes": 4595,
+      "sha256": "3490b1e8b54fe8b10c469e2bae52d18bb5683867daf74912c1eeaffab4b6acf3",
+      "zip_crc32": "593e36bb"
+    },
+    {
+      "path": "ui-acceptance-typecheck.sqlite-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_crc32": "00000000"
+    },
+    {
+      "path": "ui-acceptance-typecheck.sqlite-driver.log",
+      "bytes": 1909,
+      "sha256": "ab71309c89fbcfe6ac55a64701041e32464e15cda1a4da3bf29da8905c65e83e",
+      "zip_crc32": "9d0a91ad"
+    },
+    {
+      "path": "ui-acceptance-typecheck.sqlite-tests.log",
+      "bytes": 1318,
+      "sha256": "bb28e81d15113c17563f78aabb02c85eba496b023590f17a2e2bf1425743d5f7",
+      "zip_crc32": "906dab43"
+    },
+    {
+      "path": "ui-acceptance-typecheck.toolchain.json",
+      "bytes": 17538,
+      "sha256": "177bcc3ee575c79981e02c7bf1bcf16f3b7c74a7810356dd0d2b76033b2d542a",
+      "zip_crc32": "7eeab25b"
+    },
+    {
+      "path": "workspace-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "zip_crc32": "00000000"
+    },
+    {
+      "path": "workspace-test-results.log",
+      "bytes": 81,
+      "sha256": "8f8bb8afe055d405d4919410ebd67ec2fe0bc97aa90ce97bfd7e8d21b67a6555",
+      "zip_crc32": "44e8906c"
+    },
+    {
+      "path": "xcuiautomation-voiceover-sdk.txt",
+      "bytes": 13992,
+      "sha256": "a67c1b7395766d301e65f88ed64c1424a2e707fca4ddd3a6d50e1bb7d072cb67",
+      "zip_crc32": "21e571d5"
+    }
+  ],
+  "all_crc_passed": true
+}

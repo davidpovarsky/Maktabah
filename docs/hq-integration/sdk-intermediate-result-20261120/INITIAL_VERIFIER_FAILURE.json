@@ -1,0 +1,10 @@
+{
+  "status": "EVIDENCE_PARSER_FAILED",
+  "scope": "Local evidence replay only, not Apple/SDK execution",
+  "error_type": "json.decoder.JSONDecodeError",
+  "error_message": "Expecting value: line 1 column 1 (char 0)",
+  "location": "cache_log = read(\"ui-acceptance-typecheck.book-page-cache-tests.log\")",
+  "retained_verifier": "raw/verification-attempt1/driver.py.gz",
+  "cause": "Original cache log emits exact PASS lines before JSON; parser originally expected pure JSON",
+  "correction": "Final verifier validates all26 PASS lines and matching complete JSON. No source/test/runtime change."
+}

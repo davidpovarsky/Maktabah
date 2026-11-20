@@ -1,0 +1,9 @@
+{
+  "source": "Existing artifact downloaded once by Root; no additional network collection by reviewer",
+  "artifact_id": 14646210906,
+  "expected_bytes": 231140,
+  "expected_sha256": "1f8dcea4aea110eb40a206c9fba5748e448ea27cb07b63354a075240323a0792",
+  "original_download_input_sha256": "68c4cfb8e638c6a2cacee37547540b3fe8823702bb9de7e04ed093a69cf1a7a9",
+  "signed_download_url": "OMITTED_EPHEMERAL_TRANSPORT_CREDENTIAL",
+  "artifact_retained_exact": true
+}
