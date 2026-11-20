@@ -1,0 +1,156 @@
+{
+  "observed_date": "2026-11-20",
+  "tasks": [
+    {
+      "task_id": "1219604672452265",
+      "name": "[P1][OPEN] T5 — הערות תורה + חיפוש מסמכים מכל המרחב לפי מקור קנוני (Heart/Inspector)",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219604672449660/task/1219604672452265",
+      "modified_at": "2026-11-19T21:29:59.727Z",
+      "completed": false,
+      "comments_read": 50,
+      "snapshot_sha256": "d144ffff022ecf9f7c7aa0e21b94b8aab5c0484e55588a5f4afcb142408a39c6",
+      "notes_sha256": "412bf508715d9f58660fd79532eccfb87f5a59bb9e5fe3e6c14a0171aaa41c96",
+      "latest_comments": [
+        {
+          "gid": "1220720871931679",
+          "created_at": "2026-11-19T19:54:56.763Z",
+          "text_sha256": "5341beee85d13f1c436dcc881ffbd1a0cf7a7999c13dba5ef50c4e87ed96fec7"
+        },
+        {
+          "gid": "1220722384935436",
+          "created_at": "2026-11-19T20:40:32.405Z",
+          "text_sha256": "81838ee637bacb79be23e837bd298cac37cace59cb13485da2d2d90d64fdf924"
+        },
+        {
+          "gid": "1220722383143259",
+          "created_at": "2026-11-19T20:50:44.057Z",
+          "text_sha256": "c27324e42a62001683d2098ff50b33ba24f21175527104bbb87f36040e7c84b2"
+        },
+        {
+          "gid": "1220723757734635",
+          "created_at": "2026-11-19T21:29:59.726Z",
+          "text_sha256": "28b91993a92ebffd3a1a6644401e666a1172caeaa7884222b1019789c04a56a3"
+        }
+      ]
+    },
+    {
+      "task_id": "1219604675987308",
+      "name": "[DEFERRED] T7 — Otzaria והרחבות מקורות",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219604672449660/task/1219604675987308",
+      "modified_at": "2026-10-17T22:12:22.554Z",
+      "completed": false,
+      "comments_read": 0,
+      "snapshot_sha256": "15cb33ab9e0108235859de4acad9e6bc79453d26ac0418a725d18d7a66ab788c",
+      "notes_sha256": "ff3e135cb8c0f4e03c2de18ba1c2f031838e7fcc3581e9d38019bbee1a57a460",
+      "latest_comments": []
+    },
+    {
+      "task_id": "1219604770636937",
+      "name": "[P0][IN PROGRESS] T2 full — multi-client idempotent, sync-safe immutable storage (separate from working single-device trial)",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219604672449660/task/1219604770636937",
+      "modified_at": "2026-11-18T23:57:06.658Z",
+      "completed": false,
+      "comments_read": 41,
+      "snapshot_sha256": "84622684037b11007fd8e9ab6580cc5618077ae467d35d3e0244eec157990ac8",
+      "notes_sha256": "a634bf1540c9de80f577aabceab56a3a6f8122b1f6d00d1fdddd20d5f95b2f34",
+      "latest_comments": [
+        {
+          "gid": "1220686765665779",
+          "created_at": "2026-11-18T21:42:35.588Z",
+          "text_sha256": "daed4e272eef3d83f73f30986ca2c6fbbd168c5ff86c2d455977de8b16a62064"
+        },
+        {
+          "gid": "1220687319189595",
+          "created_at": "2026-11-18T22:01:33.904Z",
+          "text_sha256": "0d54cfa27c342e2cc1facecf145ef680f7081b3c58ee8ca9fb0fdf37228ed198"
+        },
+        {
+          "gid": "1220688200528128",
+          "created_at": "2026-11-18T22:33:10.840Z",
+          "text_sha256": "4739a09a16c25cbbd1bbd5b7abf8c24ee9e3e27e219b3c59680e29bc1c387e9f"
+        },
+        {
+          "gid": "1220689783693281",
+          "created_at": "2026-11-18T23:57:06.658Z",
+          "text_sha256": "2c5965f9fd80c3e659b07c22c293f988c54a48787ae938a460d5aaaffff4e45c"
+        }
+      ]
+    },
+    {
+      "task_id": "1219878948851393",
+      "name": "[ROADMAP][3 שלבים] Pinkha — עורך עברי נקי, מסמכים וקישורי תורה, כתיבה מתקדמת",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219604672449660/task/1219878948851393",
+      "modified_at": "2026-11-03T00:34:18.331Z",
+      "completed": false,
+      "comments_read": 0,
+      "snapshot_sha256": "af1e32484cae1da91acfde5f8b3ecc010e2873a4c7bcf1e4c60c058674bff812",
+      "notes_sha256": "73d2745ae4ff2cc9bf609afb5d2d5fae77cd8d72b5e2653a1f057a1dd90f4b58",
+      "latest_comments": []
+    },
+    {
+      "task_id": "1220545194715722",
+      "name": "[P1][PLANNED][CROSS-APP] אוצריא ↔ AnyTapy — הערות מקור מסווגות, עורך Anytype מוטמע וסנכרון בטוח",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220545194715722",
+      "modified_at": "2026-11-15T13:57:16.334Z",
+      "completed": false,
+      "comments_read": 0,
+      "snapshot_sha256": "762c64476381d5de0ee9c7ad71f0cf108d096cf3699efbaa0b3940511bfb12c6",
+      "notes_sha256": "a4ddd179595147b313c2100b64f60920c177ee2b8be008e9a0ed1699f5a89f28",
+      "latest_comments": []
+    }
+  ],
+  "license_files": [
+    {
+      "license_repository": "anyproto/anytype-heart",
+      "ref": "d98420b1113536afd08cde6de9a5816f6d27ffff",
+      "path": "LICENSE.md",
+      "sha256": "daad9eb95adc6262b07115ba2cf87cd4c64acaca4b45d48e0fd3b15a72a31dc1",
+      "size": 2576
+    },
+    {
+      "license_repository": "hmlongco/Factory",
+      "ref": "8ca11a7bd1ede031e8e6d7a912bb116e2e43961b",
+      "path": "LICENSE",
+      "sha256": "cbc148598c4eb033fa103eee82b7040d3c9e49c519fe10348c684e56731bec25",
+      "size": 1069
+    },
+    {
+      "license_repository": "apple/swift-protobuf",
+      "ref": "c6fe6442e6a64250495669325044052e113e990c",
+      "path": "LICENSE.txt",
+      "sha256": "186c5f0192a754714a7e542233ddaaad28745626e0ad32e358d3f5af00afb84a",
+      "size": 11757
+    }
+  ],
+  "github_run_metadata": [
+    {
+      "run": "44618798543",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "a05088b98844bba30f90b794effb8cf579e2ef08",
+      "head_branch": "codex/chatgpt-wave15-ui-resume-20261119",
+      "updated_at": "2026-11-19T22:48:55Z",
+      "html_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/44618798543"
+    },
+    {
+      "run": "44610974453",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "be6cc5d8b5e65ee78f46e09b3105e3360eec894f",
+      "head_branch": "codex/chatgpt-wave15-ui-resume-20261119",
+      "updated_at": "2026-11-19T20:43:26Z",
+      "html_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/44610974453"
+    },
+    {
+      "run": "44419232954",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "a0477e9d2ba9ae721f8ac6f55210c5855fbf931e",
+      "head_branch": "codex/chatgpt-wave15-integration-20261118",
+      "updated_at": "2026-11-18T23:18:22Z",
+      "html_url": "https://github.com/davidpovarsky/anytype-swift/actions/runs/44419232954"
+    }
+  ],
+  "qualification_boundary": "Run metadata only; no original CI artifact requalification was performed in this audit.",
+  "boundary": "Task evidence is attributed to its source comments. This audit checked GitHub status/head metadata but did not requalify original run artifacts. Historical pause text is superseded by the current explicit owner continuation; technical acceptance remains open."
+}

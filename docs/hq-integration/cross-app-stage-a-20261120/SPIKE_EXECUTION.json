@@ -1,0 +1,21 @@
+{
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "docs\\hq-integration\\cross-app-stage-a-20261120\\audit_editor_dependencies.py",
+    "--anytype-repo",
+    "C:\\Users\\DAVID\\Code\\anytype-swift",
+    "--otzaria-repo",
+    "C:\\Users\\DAVID\\Code\\Maktabah-cross-app-stage-a-20261120",
+    "--anytype-ref",
+    "a05088b98844bba30f90b794effb8cf579e2ef08",
+    "--otzaria-ref",
+    "c95da4a6a84c7b46b5d67294925af8d7c8e680e0",
+    "--any-engine-ref",
+    "d58b6a004c93320a4c57c8eba8e4518048d70fc1",
+    "--output",
+    "docs\\hq-integration\\cross-app-stage-a-20261120\\DEPENDENCY_SPIKE.json"
+  ],
+  "exit": 0,
+  "stdout": "{\"output\": \"docs\\\\hq-integration\\\\cross-app-stage-a-20261120\\\\DEPENDENCY_SPIKE.json\", \"sha256\": \"72e6e9c3719055440f659d496c76162930ad92a7c60fdf210e55fbe5829b7ceb\", \"editor_subtree_swift_files\": 498, \"assembly_constructor_count\": 27, \"module_manifests\": 16, \"locked_remote_packages\": 44, \"worktree_unchanged\": true, \"observations\": {\"editor_is_internal_app_struct\": true, \"editor_uses_global_factory\": true, \"assembly_opens_object_in_space\": true, \"opened_document_provider_calls_open\": true, \"object_lifecycle_calls_native_open_close\": true, \"block_service_uses_native_commands\": true, \"separate_editor_package_manifest_present\": false, \"crossapp_or_extensionkit_source_matches\": [], \"any_engine_ui_references_original_editor\": [], \"any_engine_is_separate_editor_controller\": true, \"otzaria_existing_uuid_assignment\": true, \"otzaria_existing_transactional_cloudkit_pending_upload\": true, \"otzaria_events_are_passthrough\": true}, \"signing_sources\": {\"anytype_group_ids\": [\"group.io.anytype.app\", \"group.io.anytype.app.dev\"], \"otzaria_group_ids\": [\"group.com.davidpovarsky.chavrusatext\", \"group.com.davidpovarsky.itorah\"], \"common_group_ids\": [], \"anytype_declared_teams\": [\"J3NXTX3T5S\"], \"otzaria_all_declared_teams\": [\"NA6HPWARQ2\", \"Q37L5CJ4ZG\"], \"installed_signatures_or_provisioning_verified\": false}}\n",
+  "stderr": ""
+}
