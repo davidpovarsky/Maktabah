@@ -26,6 +26,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     private let backend: any ActionSynchronousBackendStatePort & ActionResolverDataPort & ActionSearchPort
     private struct Registration {
         let managerID: ObjectIdentifier
+        weak var manager: iOSNavigationManager?
         let session: MaktabahNativeSceneSession
         let lease: NativeNavigationAuthority.Lease
         let windowNumber: Int
@@ -96,6 +97,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
     private var mountWaiters: [ObjectIdentifier: MountWaiter] = [:]
     private var intentsInstalled = false
+    #if DEBUG
+    private var acceptanceReaderIntentService: NativeReaderIntentService?
+    private var semanticIntentAcceptanceObserver: (@MainActor (NativeReaderIntentService.OpenRequest, ActionSemanticJourneyResult, [UISceneReceipt]) -> Void)?
+    #endif
 
     private final class ReaderInvocation {
         let route: UIValidatedRoute
@@ -158,10 +163,12 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let managerID: ObjectIdentifier
         let context: ActionExecutionContext
         var observation: HanlinSourceObservation
+        let didAcknowledge: (@MainActor (UISceneReceipt) -> Void)?
         init(sceneID: UIStableID, managerID: ObjectIdentifier, context: ActionExecutionContext,
-             observation: HanlinSourceObservation) {
+             observation: HanlinSourceObservation, didAcknowledge: (@MainActor (UISceneReceipt) -> Void)? = nil) {
             self.sceneID = sceneID; self.managerID = managerID
             self.context = context; self.observation = observation
+            self.didAcknowledge = didAcknowledge
         }
     }
     private struct SemanticJourneyInvocation {
@@ -271,7 +278,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                       context.subjectID == "maktabah.scene:" + sceneID.rawValue else { throw UIRouteError(.staleState, "native_scene_context_changed") }
             }
             try orchestrator.register(session)
-            scenes[sceneID] = .init(managerID: ObjectIdentifier(manager), session: session, lease: lease, windowNumber: windowNumber)
+            scenes[sceneID] = .init(managerID: ObjectIdentifier(manager), manager: manager, session: session, lease: lease, windowNumber: windowNumber)
             #if DEBUG
             OtzariaFileLogger.shared.log("[NativeSceneLifecycle] event=mount pid=\(ProcessInfo.processInfo.processIdentifier) foreground=\(foreground)")
             #endif
@@ -786,6 +793,11 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let observed = try hanlinSource(sceneID: sceneID, entry: entry)
         let owner = SemanticJourneyOwner(sceneID: sceneID, managerID: managerID,
             context: context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend), observation: observed)
+        return semanticJourneys(owner: owner, manager: manager, readAuthority: readAuthority)
+    }
+
+    private func semanticJourneys(owner: SemanticJourneyOwner, manager: iOSNavigationManager,
+                                  readAuthority: (@MainActor () throws -> ActionExecutionContext)? = nil) -> ActionSemanticJourneys {
         let navigation: ActionSemanticJourneys.Authority = { [self] in
             try validateSemanticJourney(owner)
             return .init(context: owner.context, snapshot: owner.observation.backend)
@@ -823,7 +835,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                         manager: manager, continuing: continuing)
                 default: throw ActionPortError.notSupported
                 }
-            } catch let error as UIRouteError { throw ActionNavigationError(error.status, error.code) }
+            } catch let error as UIRouteError {
+                throw ActionNativeUIFailure(status: error.status,
+                    failure: .init(code: error.code, message: ""))
+            }
         }
     }
 
@@ -1059,6 +1074,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             if let continuing {
                 do { try advanceSemanticJourney(continuing.owner, receipt: receipt) }
                 catch { throw Self.uncertainNativeEffect(error) }
+                continuing.owner.didAcknowledge?(receipt)
             }
         }
         return result
@@ -1146,6 +1162,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         if result.status == .completed {
             guard let receipt = pending.receipt else { throw ActionPortError.invalidResponse }
             record(.acknowledged(receipt))
+            continuing?.owner.didAcknowledge?(receipt)
         }
         return result
     }
@@ -1427,6 +1444,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         guard identities.count == 1, let selected = identities.first else {
             throw UIRouteError(.staleState, "intent_window_no_longer_available")
         }
+        let selectedEntry = scenes[selected.sceneID]
         do { try await awaitIntentForeground(selected) }
         catch {
             logIntentFailure(error, stage: "reader_foreground")
@@ -1445,6 +1463,13 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
               try backend.currentBackendSnapshot() == request.expectedSnapshot else {
             throw UIRouteError(.staleState, "intent_source_generation_changed")
         }
+        if request.commentaryDraft != nil {
+            guard let selectedEntry, selectedEntry.session === entry.session,
+                  selectedEntry.managerID == entry.managerID else {
+                throw UIRouteError(.staleState, "intent_window_changed_during_activation")
+            }
+            return try await openReaderCommentaryDraftIntent(request, sceneID: window.sceneID, entry: entry)
+        }
         // Use R's ORIGINAL bounded-section/focus resolver, then the existing
         // public binder and Core reader.open with the original retained owner.
         let native = try ActionAppIdentityBridge.appLocator(request.locator)
@@ -1457,6 +1482,72 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         return try await open(public: intent, sceneID: window.sceneID, managerID: entry.managerID,
             expectedSnapshot: request.expectedSnapshot, origin: .appIntent, until: deadline())
     }
+    private func openReaderCommentaryDraftIntent(_ request: NativeReaderIntentService.OpenRequest,
+        sceneID: UIStableID, entry: Registration) async throws -> UISceneAcknowledgement {
+        guard let draft = request.commentaryDraft, request.newTab,
+              let manager = entry.manager, ObjectIdentifier(manager) == entry.managerID,
+              contexts[sceneID] == nil else {
+            throw UIRouteError(.unavailable, "native_scene_busy")
+        }
+        let observed = try hanlinSource(sceneID: sceneID, entry: entry)
+        guard observed.backend == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "intent_source_generation_changed")
+        }
+        var receipts: [UISceneReceipt] = []
+        let owner = SemanticJourneyOwner(sceneID: sceneID, managerID: entry.managerID,
+            context: context(sceneID: sceneID, origin: .appIntent, snapshot: observed.backend),
+            observation: observed, didAcknowledge: { receipt in
+                // Keep one excess item so a duplicate fails the exact-two guard.
+                if receipts.count < 3 { receipts.append(receipt) }
+            })
+        let journey = await semanticJourneys(owner: owner, manager: manager).commentaryThenPrepareDraft(
+            baseLocator: request.locator, workRef: draft.workRef, proposedText: draft.proposedText)
+        let acknowledgement = try NativeReaderIntentService.commentaryDraftAcknowledgement(
+            journey, receipts: receipts, request: request)
+        do {
+            try validateReaderIntentJourneyOwner(owner, initial: observed, entry: entry, manager: manager)
+        } catch {
+            let status: ActionStatus = error is CancellationError ? .cancelled : .staleState
+            throw NativeReaderIntentService.CommentaryDraftFailure(journey: journey, receipts: receipts,
+                status: status, code: "native_effect_uncertain")
+        }
+        #if DEBUG
+        semanticIntentAcceptanceObserver?(request, journey, receipts)
+        #endif
+        return acknowledgement
+    }
+
+    /// The original Core owns each final visible acknowledgement. After the
+    /// aggregate await, independently retain the exact source/window owner while
+    /// the note sheet legitimately makes generic chat readiness false.
+    private func validateReaderIntentJourneyOwner(_ owner: SemanticJourneyOwner,
+        initial: HanlinSourceObservation, entry: Registration, manager: iOSNavigationManager) throws {
+        try Task.checkCancellation()
+        guard let current = scenes[owner.sceneID], current.session === entry.session,
+              current.managerID == owner.managerID, current.manager === manager,
+              current.session.mounted, current.session.foreground, contexts[owner.sceneID] == nil,
+              try backend.currentBackendSnapshot() == owner.observation.backend,
+              let source = current.session.workspaceProjectionSource, source.isAuthoritative,
+              let workspace = try source.read(), let binding = current.publicBinding,
+              let originalBinding = entry.publicBinding, binding === originalBinding,
+              binding.ownsSource(workspace), let mapping = workspace.mappingOwnershipObservation(),
+              mapping.coverage == .liveNativeSetters, mapping.scene == owner.sceneID.rawValue,
+              mapping.owner == owner.managerID, mapping.source.event.phase == .available,
+              mapping.source.event.epoch == mapping.epoch,
+              ObjectIdentifier(mapping.source) == owner.observation.source,
+              mapping.epoch == owner.observation.epoch, mapping.projection == owner.observation.projection,
+              owner.observation.source == initial.source,
+              owner.observation.epoch.sourceID == initial.epoch.sourceID,
+              owner.observation.locale == initial.locale, Locale.current.identifier == initial.locale,
+              mapping.projection.profileID == initial.projection.profileID,
+              mapping.projection.groupID == initial.projection.groupID,
+              mapping.projection.profileIDs == initial.projection.profileIDs,
+              mapping.projection.groupIDs == initial.projection.groupIDs,
+              initial.projection.targets.allSatisfy({ mapping.projection.targets[$0.key] == $0.value }) else {
+            throw ActionPortError.staleState
+        }
+    }
+
     func installIntentDependency() {
         guard !intentsInstalled else { return }
         let service = NativeIntentService(discover: { [self] in
@@ -1484,6 +1575,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             catch { logIntentFailure(error, stage: "reader_navigation"); throw error }
         })
         AppDependencyManager.shared.add(dependency: readerService)
+        #if DEBUG
+        acceptanceReaderIntentService = readerService
+        #endif
         intentsInstalled = true
     }
 
@@ -2000,6 +2094,7 @@ extension MaktabahNativeRoutingComposition {
                             let original = try AnnotationRepository.shared.loadAllAnnotations()
                             let proposal = "טיוטת מסע \(probe.token.uuidString)"
                             let journey: ActionSemanticJourneyResult
+                            var intentReceipts: [UISceneReceipt] = []
                             if probe.kind == "journey-catalog-stop" {
                                 guard let work = probe.argument("-nativeActionAcceptanceBaseWorkQuery"),
                                       let section = probe.argument("-nativeActionAcceptanceSection"),
@@ -2010,12 +2105,41 @@ extension MaktabahNativeRoutingComposition {
                                     backend: ref.backend, baseWorkQuery: work, section: section,
                                     commentaryQuery: commentary, proposedText: proposal, manager: manager)
                             } else {
-                                guard let target = probe.argument("-nativeActionAcceptanceTargetWorkKey") else {
+                                guard let target = probe.argument("-nativeActionAcceptanceTargetWorkKey"),
+                                      let service = self.acceptanceReaderIntentService,
+                                      self.semanticIntentAcceptanceObserver == nil else {
                                     throw ActionPortError.invalidResponse
                                 }
-                                journey = try await self.openCommentaryThenPrepareDraft(baseLocator: ref,
-                                    workRef: .init(backend: ref.backend, workKey: target),
-                                    proposedText: proposal, manager: manager)
+                                let windows = try self.intentRootEntities().filter {
+                                    $0.destination.rawValue == "native.library" && $0.sceneID == scene.sceneID
+                                        && $0.backend == ref.backend
+                                }
+                                guard windows.count == 1, let window = windows.first else { throw ActionPortError.staleState }
+                                let baseWork = try NativeReaderIntentService.Work(reference:
+                                    .init(backend: ref.backend, workKey: ref.workKey, catalogRevision: ref.catalogRevision), title: "")
+                                let location = try NativeReaderIntentService.Location(reference: ref, title: "")
+                                let targetWork = ActionWorkRef(backend: ref.backend, workKey: target)
+                                let commentary = try NativeReaderIntentService.Work(reference: targetWork, title: "")
+                                var observed: ActionSemanticJourneyResult?
+                                var duplicateObservation = false
+                                self.semanticIntentAcceptanceObserver = { request, result, receipts in
+                                    guard request.locator == ref, request.windowIdentifier == window.id,
+                                          let draft = request.commentaryDraft, draft.workRef == targetWork,
+                                          draft.proposedText.utf8.elementsEqual(proposal.utf8) else { return }
+                                    if observed != nil { duplicateObservation = true; return }
+                                    observed = result; intentReceipts = receipts
+                                }
+                                defer { self.semanticIntentAcceptanceObserver = nil }
+                                // This is the exact instance registered with AppDependencyManager.
+                                // It re-resolves both entities and uses the production intent host.
+                                let acknowledgement = try await service.open(workIdentifier: baseWork.id,
+                                    locationIdentifier: location.id, windowIdentifier: window.id, newTab: true,
+                                    commentaryWorkIdentifier: commentary.id, proposedText: proposal)
+                                try NativeIntentOutcome.requireVisibleAcknowledgement(acknowledgement)
+                                guard !duplicateObservation, let observed, intentReceipts.count == 2,
+                                      case .acknowledged(let final) = acknowledgement,
+                                      intentReceipts.last == final else { throw ActionPortError.invalidResponse }
+                                journey = observed
                             }
                             let currentReader = MaktabahNativeInspectorBinding.currentReader(in: manager)
                             let editor = currentReader.flatMap { scene.noteDraftAcceptanceState(reader: $0) }
@@ -2032,6 +2156,12 @@ extension MaktabahNativeRoutingComposition {
                                 "originalEditorPresentationActive": editor?.presentationActive == true,
                                 "processID": ProcessInfo.processInfo.processIdentifier,
                             ]
+                            if probe.kind == "journey-commentary-draft" {
+                                payload["productionConsumer"] = "NativeReaderIntentService.open"
+                                payload["appIntentsSystemExecution"] = "NOT_RUN"
+                                payload["nativeReceiptRequestIDs"] = intentReceipts.map { $0.requestId.uuidString }
+                                payload["nativeReceiptSceneIDs"] = intentReceipts.map { $0.sceneID.rawValue }
+                            }
                             if let actual = draft?.backendLocator {
                                 payload["originalDraftLocator"] = try probe.json(ActionAppIdentityBridge.actionRef(actual))
                             }

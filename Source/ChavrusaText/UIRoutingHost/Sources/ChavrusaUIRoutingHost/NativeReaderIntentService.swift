@@ -30,11 +30,105 @@ import OtzariaUIRouting
             self.reference = reference; self.title = title
         }
     }
+    /// Source metadata selected explicitly by the person. This carries no read
+    /// scope, saved-note authority, scene ownership or native acknowledgement.
+    public struct CommentaryDraft: Sendable, Equatable {
+        public let workRef: ActionWorkRef
+        public let proposedText: String
+    }
     public struct OpenRequest: Sendable {
         public let locator: ActionTextRef
         public let expectedSnapshot: ActionBackendSnapshot
         public let windowIdentifier: String
         public let newTab: Bool
+        public let commentaryDraft: CommentaryDraft?
+        init(locator: ActionTextRef, expectedSnapshot: ActionBackendSnapshot,
+             windowIdentifier: String, newTab: Bool, commentaryDraft: CommentaryDraft? = nil) {
+            self.locator = locator; self.expectedSnapshot = expectedSnapshot
+            self.windowIdentifier = windowIdentifier; self.newTab = newTab
+            self.commentaryDraft = commentaryDraft
+        }
+    }
+
+    /// A refused later step must not erase the reader effect that already
+    /// completed. These are the original results/receipts, never wire authority.
+    public struct CommentaryDraftFailure: Error, LocalizedError, Sendable {
+        public let journey: ActionSemanticJourneyResult
+        public let receipts: [UISceneReceipt]
+        public let status: ActionStatus
+        public let code: String
+        public init(journey: ActionSemanticJourneyResult, receipts: [UISceneReceipt],
+                    status: ActionStatus, code: String) {
+            self.journey = journey; self.receipts = receipts
+            self.status = status; self.code = code
+        }
+        public var errorDescription: String? {
+            if journey.steps.first?.action == "reader.openCommentary", journey.steps.first?.status == .completed {
+                return "The commentary opened, but its unsaved note draft could not be confirmed."
+            }
+            return NativeIntentOutcome(status: status, code: code).errorDescription
+        }
+    }
+
+    /// Only the two observed native receipts may complete this fixed sequence.
+    /// Core still owns both independent admissions and final visibility checks.
+    public static func commentaryDraftAcknowledgement(_ journey: ActionSemanticJourneyResult,
+        receipts: [UISceneReceipt], request: OpenRequest) throws -> UISceneAcknowledgement {
+        func failure(_ status: ActionStatus, _ code: String) -> CommentaryDraftFailure {
+            .init(journey: journey, receipts: receipts, status: status, code: code)
+        }
+        let plan = ["reader.openCommentary", "notes.prepareDraft"]
+        guard journey.plannedActions == plan, !journey.steps.isEmpty, journey.steps.count <= 2,
+              journey.steps.map(\.action) == Array(plan.prefix(journey.steps.count)),
+              Set(journey.steps.map(\.requestId)).count == journey.steps.count else {
+            throw failure(.failed, "native_effect_uncertain")
+        }
+        guard journey.isComplete else {
+            let refused = journey.steps.last!
+            throw failure(refused.status == .completed ? .failed : refused.status,
+                refused.error?.code ?? "semantic_journey_not_completed")
+        }
+        do {
+            guard request.newTab, let draft = request.commentaryDraft, receipts.count == 2,
+                  let reader = receipts[0].coreReceipt,
+                  receipts[0].requestId == journey.steps[0].requestId,
+                  receipts[1].requestId == journey.steps[1].requestId,
+                  receipts[0].sceneID == receipts[1].sceneID,
+                  receipts.allSatisfy({
+                      $0.backendSnapshot == request.expectedSnapshot
+                          && $0.route.requestId == $0.requestId
+                          && $0.route.backend == request.expectedSnapshot.backend
+                          && $0.route.expectedBackendSnapshot == request.expectedSnapshot
+                          && $0.route.scene.kind == .specific && $0.route.scene.sceneID == $0.sceneID
+                          && $0.appliedSceneRevision > $0.basedOnSceneRevision
+                  }),
+                  journey.steps.allSatisfy({
+                      $0.backend == request.expectedSnapshot.backend
+                          && $0.backendGeneration == request.expectedSnapshot.generation
+                  }),
+                  reader.requestId == receipts[0].requestId, reader.snapshot == request.expectedSnapshot,
+                  reader.sceneID == receipts[0].sceneID.rawValue,
+                  reader.destination.presentationMode == .newTab,
+                  reader.destination.sectionLocator.backend == draft.workRef.backend,
+                  reader.destination.sectionLocator.workKey == draft.workRef.workKey,
+                  reader.destination.sectionLocator.catalogRevision == draft.workRef.catalogRevision,
+                  receipts[0].route.destination.rawValue == "native.reader",
+                  receipts[0].route.content == reader.destination,
+                  receipts[1].route.destination.rawValue == "native.reader.noteDraft",
+                  receipts[1].route.presentation.kind == .sheet, receipts[1].coreReceipt == nil,
+                  receipts[0].route.state.workspaceID == receipts[1].route.state.workspaceID,
+                  receipts[0].route.state.profileID == receipts[1].route.state.profileID,
+                  try journey.steps[0].data?["destination"]?.decoded(as: ActionReaderDestination.self) == reader.destination,
+                  try journey.steps[0].data?["locator"]?.decoded(as: ActionTextRef.self)
+                    == (reader.destination.focusLocator ?? reader.destination.sectionLocator),
+                  try journey.steps[1].data?["locator"]?.decoded(as: ActionTextRef.self)
+                    == (reader.destination.focusLocator ?? reader.destination.sectionLocator),
+                  journey.steps[1].data?["saved"] == .bool(false) else {
+                throw failure(.failed, "native_effect_uncertain")
+            }
+            return .acknowledged(receipts[1])
+        } catch let error as CommentaryDraftFailure { throw error }
+        catch { throw failure(.failed, "native_effect_uncertain") }
     }
     public typealias Execute = @MainActor @Sendable (ActionRequest) async throws -> CoreObservation
     public typealias Open = @MainActor @Sendable (OpenRequest) async throws -> UISceneAcknowledgement
@@ -85,7 +179,8 @@ import OtzariaUIRouting
         return values
     }
     public func open(workIdentifier: String, locationIdentifier: String,
-                     windowIdentifier: String, newTab: Bool) async throws -> UISceneAcknowledgement {
+                     windowIdentifier: String, newTab: Bool,
+                     commentaryWorkIdentifier: String? = nil, proposedText: String? = nil) async throws -> UISceneAcknowledgement {
         try Task.checkCancellation()
         guard !windowIdentifier.isEmpty, windowIdentifier.utf8.count <= 512 else {
             throw UIRouteError(.failed, "invalid_intent_window")
@@ -93,12 +188,41 @@ import OtzariaUIRouting
         let work: ActionWorkRef = try NativeReaderEntityIdentifier.decode(workIdentifier, prefix: "maktabah.work.v1.")
         let ref: ActionTextRef = try NativeReaderEntityIdentifier.decode(locationIdentifier, prefix: "maktabah.location.v1.")
         guard sameWork(ref, work) else { throw UIRouteError(.failed, "intent_work_location_mismatch") }
+        let commentary: ActionWorkRef?
+        switch (commentaryWorkIdentifier, proposedText) {
+        case (nil, nil): commentary = nil
+        case let (.some(identifier), .some(text)):
+            guard newTab else { throw UIRouteError(.failed, "intent_commentary_requires_new_tab") }
+            guard text.unicodeScalars.count <= 10_000, text.utf8.count <= 40_000 else {
+                throw UIRouteError(.failed, "invalid_intent_note_proposal")
+            }
+            let target: ActionWorkRef = try NativeReaderEntityIdentifier.decode(identifier, prefix: "maktabah.work.v1.")
+            guard target.backend == work.backend else {
+                throw UIRouteError(.failed, "intent_commentary_backend_mismatch")
+            }
+            commentary = target
+        default: throw UIRouteError(.failed, "incomplete_intent_commentary_draft")
+        }
         // Re-resolve the cached system entity through Core immediately before the
         // native host. Its original source/binder/reader.open validate again.
         guard let verified = try await verifyLocation(ref) else { throw UIRouteError(.staleState, "intent_location_no_longer_available") }
         try Task.checkCancellation()
+        var draft: CommentaryDraft?
+        if let commentary, let proposedText {
+            let response = try await call("catalog.resolveWork",
+                arguments: ["workRef": try ActionJSON.encoded(commentary)], backend: commentary.backend)
+            guard response.snapshot == verified.snapshot else {
+                throw UIRouteError(.staleState, "intent_source_generation_changed")
+            }
+            let matches = try workValues(response, defaultTitle: commentary.workKey)
+            guard matches.count == 1, matches[0].reference == commentary else {
+                throw UIRouteError(.staleState, "intent_commentary_no_longer_available")
+            }
+            try Task.checkCancellation()
+            draft = .init(workRef: commentary, proposedText: proposedText)
+        }
         return try await navigate(.init(locator: verified.location.reference, expectedSnapshot: verified.snapshot,
-                                        windowIdentifier: windowIdentifier, newTab: newTab))
+                                        windowIdentifier: windowIdentifier, newTab: newTab, commentaryDraft: draft))
     }
 
     private func verifyLocation(_ ref: ActionTextRef) async throws -> (location: Location, snapshot: ActionBackendSnapshot)? {

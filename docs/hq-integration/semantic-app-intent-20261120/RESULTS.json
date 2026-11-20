@@ -1,0 +1,64 @@
+{
+  "base": "d78d3750ef429875568253b32410edf22becf55c",
+  "scope": "production AppIntent consumer source + actual portable verification",
+  "service": {
+    "red": {
+      "executed": 35,
+      "passed": 33,
+      "failedCases": 2,
+      "assertionFailures": 6
+    },
+    "green": {
+      "executed": 35,
+      "passed": 35
+    },
+    "final": {
+      "executed": 35,
+      "passed": 35,
+      "inputCount": 125
+    }
+  },
+  "host": {
+    "setupAttempt1Executed": 0,
+    "compileAttempt2Executed": 0,
+    "attempt3": {
+      "executed": 102,
+      "passed": 101,
+      "failed": 1
+    },
+    "final": {
+      "executed": 102,
+      "passed": 102,
+      "original": 60,
+      "additional": 42
+    }
+  },
+  "syntaxOnly": {
+    "initial": 6,
+    "finalNativeCountSetup": 2,
+    "crossTargetWarningsPerParse": 2
+  },
+  "nativeExecuted": 0,
+  "appleTypecheck": "NOT_RUN",
+  "siriShortcutsSystemUI": "NOT_RUN",
+  "nativeCaseIDs": [
+    "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone"
+  ],
+  "newCountSetup": "SOURCE_VERIFIED_ONLY",
+  "sourceInputCount": 131,
+  "rawEntryCount": 211,
+  "exactSDK": "original e004 unchanged; no Vendor/workflow/project change",
+  "consumer": "existing OpenBookAtLocationIntent -> installed NativeReaderIntentService -> existing Core semantic journey -> original Reader and unsaved note",
+  "reviews": [
+    {
+      "reviewer": "Root",
+      "scope": "source only: paired inputs, fresh source, exact two receipts, post-await owner, complete factory, public failure contract"
+    },
+    {
+      "reviewer": "github_native_audit",
+      "scope": "source only: original receipt/epoch/partial result; truthful error-description issue retained as actual RED then corrected"
+    }
+  ],
+  "sealedAt": "2026-11-20T13:22:06.374494+00:00"
+}

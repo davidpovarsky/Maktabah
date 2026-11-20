@@ -1848,7 +1848,7 @@ extension NativeRoutingAcceptanceTests {
         let source = try XCTUnwrap(oracle.rows.first { $0.bookId == 1 && $0.lineIndex == 0 })
         // This is the existing public Reader route, before the count baseline.
         // It binds the disposable caller's allowed work to the actual Reader.
-        try openInExistingProcess(try readerURL(bookID: source.bookId, lineIndex: source.lineIndex))
+        try openInExistingProcess(try readerURL(bookID: source.bookId, lineIndex: source.lineIndex, newTab: true))
         try requireSystemReaderSource(source)
         let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
 
@@ -2166,7 +2166,7 @@ extension NativeRoutingAcceptanceTests {
             "-nativeActionAcceptanceKind", kind, "-nativeActionAcceptanceToken", token.uuidString])
         let oracle = try systemReaderOracleDocument(), metadata = try readerSourceMetadata()
         let source = try XCTUnwrap(oracle.rows.first { $0.bookId == 1 && $0.lineIndex == 0 })
-        try openInExistingProcess(try readerURL(bookID: source.bookId, lineIndex: source.lineIndex))
+        try openInExistingProcess(try readerURL(bookID: source.bookId, lineIndex: source.lineIndex, newTab: true))
         try requireSystemReaderSource(source)
         let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
 
@@ -2303,6 +2303,8 @@ extension NativeRoutingAcceptanceTests {
         let proof = try readOriginalActionProof(kind, token: token)
         XCTAssertEqual(proof["plannedActions"] as? [String], ["reader.openCommentary", "notes.prepareDraft"])
         XCTAssertEqual(proof["journeyComplete"] as? Bool, true)
+        XCTAssertEqual(proof["productionConsumer"] as? String, "NativeReaderIntentService.open")
+        XCTAssertEqual(proof["appIntentsSystemExecution"] as? String, "NOT_RUN")
         XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
         let steps = try XCTUnwrap(proof["steps"] as? [[String: Any]])
         XCTAssertEqual(steps.count, 2)
@@ -2310,6 +2312,10 @@ extension NativeRoutingAcceptanceTests {
         let opened = try requireCompletedOriginalAction(["coreResult": steps[0]], action: "reader.openCommentary", effect: "reader_opened")
         let drafted = try requireCompletedOriginalAction(["coreResult": steps[1]], action: "notes.prepareDraft", effect: "note_draft_opened")
         XCTAssertEqual(opened["backendGeneration"] as? NSNumber, drafted["backendGeneration"] as? NSNumber)
+        let receiptIDs = try XCTUnwrap(proof["nativeReceiptRequestIDs"] as? [String])
+        XCTAssertEqual(receiptIDs, try steps.map { try XCTUnwrap($0["requestId"] as? String) })
+        let receiptScenes = try XCTUnwrap(proof["nativeReceiptSceneIDs"] as? [String])
+        XCTAssertEqual(receiptScenes.count, 2); XCTAssertEqual(Set(receiptScenes).count, 1)
         let openedData = try XCTUnwrap(opened["data"] as? [String: Any])
         let draftData = try XCTUnwrap(drafted["data"] as? [String: Any])
         let locator = try XCTUnwrap(openedData["locator"] as? [String: Any])

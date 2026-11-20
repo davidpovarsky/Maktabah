@@ -30,11 +30,32 @@ struct BoundarySceneSnapshot {
     var visibleRoute: BoundaryRoute? = "native.reader"
     var backendSnapshot: ActionBackendSnapshot
 }
-@MainActor final class BoundaryBackend {
+@MainActor final class BoundaryBackend: ActionBackendStatePort, ActionResolverPort, ActionSearchPort {
     var current = ActionBackendSnapshot(backend: .otzaria, generation: 7)
     var failure: ActionPortError?
+    var readCalls = 0
     func currentBackendSnapshot() throws -> ActionBackendSnapshot {
         if let failure { throw failure }; return current
+    }
+    func snapshot() async throws -> ActionBackendSnapshot { try currentBackendSnapshot() }
+    func report(for backend: ActionBackendID) async throws -> ActionBackendReport {
+        .init(id: backend, operations: [:])
+    }
+    func assess(action: String, arguments: ActionObject, invocation: ActionPortInvocation) async throws -> ActionCapabilityAssessment {
+        .init(registered: true, supported: true, availableNow: true)
+    }
+    func resolveWork(_ query: ActionResolveWorkQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionWorkRef> {
+        throw ActionPortError.notSupported
+    }
+    func resolveReference(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> {
+        throw ActionPortError.notSupported
+    }
+    func validateDestination(_ destination: ActionReaderDestination, invocation: ActionPortInvocation) async throws -> ActionReaderDestination {
+        throw ActionPortError.notSupported
+    }
+    func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage {
+        readCalls += 1
+        throw ActionPortError.notSupported
     }
 }
 @MainActor final class BoundaryDirectory {
@@ -51,12 +72,69 @@ struct BoundarySceneSnapshot {
         return .init(revision: revision, visibleRoute: visibleRoute, backendSnapshot: backend)
     }
 }
-final class BoundaryIdentity { }
+final class BoundaryIdentity { var event = BoundarySourceEvent() }
+// These are explicit portable UIKit ownership boundaries. They do not model
+// rendering, native visibility, AppIntents system delivery, or save semantics.
+struct UIRouteError: Error {
+    let status: ActionStatus
+    let code: String
+    init(_ status: ActionStatus, _ code: String) { self.status = status; self.code = code }
+}
+enum NativeObservationDeadline {
+    @MainActor static func run<T>(until: UInt64, clock: any ActionClock,
+        operation: @MainActor () async throws -> T) async throws -> T { try await operation() }
+}
+typealias iOSNavigationManager = BoundaryIdentity
+enum BoundarySourcePhase { case available, unavailable }
+struct BoundarySourceEvent {
+    var phase: BoundarySourcePhase = .available
+    var epoch = StudyWorkspaceMappingEpoch(sourceID: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!, revision: 2)
+}
+enum BoundaryCoverage { case liveNativeSetters, incomplete }
+struct BoundaryMapping {
+    var coverage: BoundaryCoverage = .liveNativeSetters
+    var scene: String
+    var owner: ObjectIdentifier
+    var source: BoundaryIdentity
+    var epoch: StudyWorkspaceMappingEpoch
+    var projection: StudyWorkspaceMappingProjection
+}
+@MainActor final class BoundaryWorkspace {
+    var mapping: BoundaryMapping?
+    init(_ mapping: BoundaryMapping) { self.mapping = mapping }
+    func mappingOwnershipObservation() -> BoundaryMapping? { mapping }
+}
+@MainActor final class BoundaryProjectionSource {
+    var isAuthoritative = true
+    var workspace: BoundaryWorkspace?
+    var failure: ActionPortError?
+    init(_ workspace: BoundaryWorkspace) { self.workspace = workspace }
+    func read() throws -> BoundaryWorkspace? {
+        if let failure { throw failure }
+        return workspace
+    }
+}
+@MainActor final class BoundaryBinding {
+    var workspace: BoundaryWorkspace
+    var owns = true
+    init(_ workspace: BoundaryWorkspace) { self.workspace = workspace }
+    func ownsSource(_ current: BoundaryWorkspace) -> Bool { owns && current === workspace }
+}
+@MainActor final class BoundarySession {
+    var mounted = true
+    var foreground = true
+    var workspaceProjectionSource: BoundaryProjectionSource?
+}
+
 enum ControlFailure: Error { case failed(String) }
 @MainActor final class ControlRecorder {
     var outcomes: [(String, Bool)] = []
     func run(_ name: String, _ body: () throws -> Void) {
         do { try body(); outcomes.append((name, true)); print("PASS " + name) }
+        catch { outcomes.append((name, false)); print("FAIL " + name + " " + String(describing: error)) }
+    }
+    func runAsync(_ name: String, _ body: () async throws -> Void) async {
+        do { try await body(); outcomes.append((name, true)); print("PASS " + name) }
         catch { outcomes.append((name, false)); print("FAIL " + name + " " + String(describing: error)) }
     }
     func require(_ value: Bool, _ explanation: String = "assertion") throws {
@@ -69,7 +147,17 @@ enum ControlFailure: Error { case failed(String) }
 }
 
 @MainActor final class MaktabahNativeRoutingComposition {
-    struct SceneEntry { let managerID: ObjectIdentifier }
+    struct Registration {
+        let managerID: ObjectIdentifier
+        var manager: iOSNavigationManager?
+        var session: BoundarySession
+        var publicBinding: BoundaryBinding?
+        init(managerID: ObjectIdentifier, manager: iOSNavigationManager? = nil,
+             session: BoundarySession = BoundarySession(), publicBinding: BoundaryBinding? = nil) {
+            self.managerID = managerID; self.manager = manager; self.session = session; self.publicBinding = publicBinding
+        }
+    }
+    typealias SceneEntry = Registration
     var scenes: [UIStableID: SceneEntry] = [:]
     var contexts: [UIStableID: ActionExecutionContext] = [:]
     let backend = BoundaryBackend()
@@ -78,7 +166,102 @@ enum ControlFailure: Error { case failed(String) }
     var sourceUnavailable = false
     fileprivate func hanlinSource(sceneID: UIStableID, entry: SceneEntry) throws -> HanlinSourceObservation {
         guard !sourceUnavailable else { throw ActionPortError.unavailable }
-        return sourceObservation
+        // The original hanlinSource reads the backend synchronously on every
+        // observation. Preserve that boundary behavior instead of echoing a
+        // stale canned snapshot after a backend mutation.
+        let value = sourceObservation!
+        return .init(backend: try backend.currentBackendSnapshot(), source: value.source,
+            epoch: value.epoch, projection: value.projection, readerContent: value.readerContent,
+            currentWorkReadSource: value.currentWorkReadSource, selectedRange: value.selectedRange,
+            locale: value.locale)
+    }
+
+
+    private lazy var core = try! ActionExecutor(state: backend, resolver: backend, search: backend)
+    private var dispatched: [(ActionRequest, ActionExecutionContext)] = []
+    private var nativeFailure: UIRouteError?
+    private var failNote = false
+    private var invalidateAfterReader = false
+    private func deadline() -> UInt64 { UInt64.max }
+    private func waitForMount(managerID: ObjectIdentifier) async throws -> UIStableID {
+        guard let found = scenes.first(where: { $0.value.managerID == managerID }) else { throw ActionPortError.unavailable }
+        return found.key
+    }
+    private func context(sceneID: UIStableID, origin: ActionOrigin, snapshot: ActionBackendSnapshot) -> ActionExecutionContext {
+        .init(subjectID: "boundary-navigation", origin: origin, allowedBackends: [snapshot.backend],
+              scopes: [.discovery, .navigation], foregroundSceneID: sceneID.rawValue)
+    }
+    // Dispatch doubles are deliberately explicit: the original factory and
+    // journey own admission/continuation; these do not prove a UIKit ACK.
+    private func openSearchResults(query: ActionSearchResultsQuery, manager: iOSNavigationManager,
+                                   continuing: SemanticJourneyInvocation?) async throws -> ActionResult {
+        guard let continuing else { throw ActionPortError.invalidResponse }
+        dispatched.append((continuing.request, continuing.owner.context))
+        throw ActionPortError.notSupported
+    }
+    private func openCommentary(baseLocator: ActionTextRef, workRef: ActionWorkRef?,
+        commentaryQuery: String?, manager: iOSNavigationManager, continuing: SemanticJourneyInvocation?) async throws -> ActionResult {
+        guard let continuing, manager === self.manager else { throw ActionPortError.invalidResponse }
+        let owner = continuing.owner, request = continuing.request
+        dispatched.append((request, owner.context))
+        if let nativeFailure { throw nativeFailure }
+        let observed = receipt(for: owner)
+        try advanceSemanticJourney(owner, receipt: observed)
+        contexts.removeValue(forKey: scene)
+        owner.didAcknowledge?(observed)
+        let destination = observed.coreReceipt!.destination
+        let result = ActionResult(request: request, status: .completed,
+            data: ["destination": try .encoded(destination), "locator": try .encoded(destination.focusLocator ?? destination.sectionLocator)],
+            backend: backend.current.backend, backendGeneration: backend.current.generation)
+        if invalidateAfterReader { sourceObservation = observation(epoch: 3) }
+        return result
+    }
+    private func prepareNoteDraft(locator: ActionTextRef, selectedText: String?, proposedText: String?,
+        manager: iOSNavigationManager, continuing: SemanticJourneyInvocation?) async throws -> ActionResult {
+        guard let continuing, selectedText == nil, manager === self.manager else { throw ActionPortError.invalidResponse }
+        let request = continuing.request
+        dispatched.append((request, continuing.owner.context))
+        if failNote { throw UIRouteError(.unavailable, "original_note_editor_not_visible") }
+        return .init(request: request, status: .completed,
+            data: ["locator": try .encoded(locator), "saved": .bool(false)],
+            backend: backend.current.backend, backendGeneration: backend.current.generation)
+    }
+    private func postAwaitSetup() -> (owner: SemanticJourneyOwner, initial: HanlinSourceObservation, entry: Registration) {
+        let initial = observation(locale: Locale.current.identifier)
+        let target = StudyWorkspaceMappingTarget(backend: .otzaria, bookID: 2, workKey: "book:2", readerOwner: ObjectIdentifier(readerB))
+        var targets = initial.projection.targets
+        targets[otherID] = target
+        let finalProjection = StudyWorkspaceMappingProjection(profileID: profileID, groupID: groupID,
+            profileIDs: [profileID], groupIDs: [groupID], activeTabID: otherID, targets: targets)
+        let observed = observation(epoch: 2, actualProjection: finalProjection,
+            reader: .init(sectionLocator: section, focusLocator: focus, presentationMode: .newTab),
+            locale: Locale.current.identifier)
+        sourceObservation = observed
+        sourceA.event = .init(phase: .available, epoch: observed.epoch)
+        let mapping = BoundaryMapping(scene: scene.rawValue, owner: ObjectIdentifier(manager), source: sourceA,
+            epoch: observed.epoch, projection: observed.projection)
+        let workspace = BoundaryWorkspace(mapping)
+        let session = BoundarySession()
+        session.workspaceProjectionSource = BoundaryProjectionSource(workspace)
+        let entry = Registration(managerID: ObjectIdentifier(manager), manager: manager,
+            session: session, publicBinding: BoundaryBinding(workspace))
+        scenes[scene] = entry
+        let authority = context(sceneID: scene, origin: .appIntent, snapshot: backend.current)
+        return (.init(sceneID: scene, managerID: ObjectIdentifier(manager), context: authority, observation: observed), initial, entry)
+    }
+    private func postMapping() -> BoundaryMapping {
+        scenes[scene]!.session.workspaceProjectionSource!.workspace!.mapping!
+    }
+    private func updatePostMapping(_ update: (inout BoundaryMapping) -> Void) {
+        let workspace = scenes[scene]!.session.workspaceProjectionSource!.workspace!
+        var value = workspace.mapping!
+        update(&value)
+        workspace.mapping = value
+    }
+    private func adoptProjection(_ owner: SemanticJourneyOwner, _ projection: StudyWorkspaceMappingProjection) {
+        updatePostMapping { $0.projection = projection }
+        owner.observation = observation(epoch: owner.observation.epoch.revision,
+            actualProjection: projection, locale: owner.observation.locale)
     }
 
     /* ORIGINAL_COMPOSITION_MEMBERS */
@@ -343,6 +526,151 @@ enum ControlFailure: Error { case failed(String) }
         cancelled.cancel()
         let cancelledCorrectly = await cancelled.value
         controls.run("pre_cancelled_task_never_admits_continuation") { try controls.require(cancelledCorrectly) }
+
+        controls.run("intent_post_accepts_exact_own_new_tab_with_original_targets") {
+            let f = Self(), value = f.postAwaitSetup()
+            try f.validateReaderIntentJourneyOwner(value.owner, initial: value.initial, entry: value.entry, manager: f.manager)
+            try controls.require(value.owner.context.origin == .appIntent)
+            try controls.require(value.owner.observation.projection.targets.count == value.initial.projection.targets.count + 1)
+        }
+        for (name, mutate) in [
+            ("intent_post_scene_removed", { (f: MaktabahNativeRoutingComposition) in f.scenes.removeValue(forKey: f.scene) }),
+            ("intent_post_session_replaced", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.session = BoundarySession() }),
+            ("intent_post_manager_replaced", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.manager = f.otherManager }),
+            ("intent_post_manager_id_replaced", { (f: MaktabahNativeRoutingComposition) in let e = f.scenes[f.scene]!; f.scenes[f.scene] = .init(managerID: ObjectIdentifier(f.otherManager), manager: f.manager, session: e.session, publicBinding: e.publicBinding) }),
+            ("intent_post_window_unmounted", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.session.mounted = false }),
+            ("intent_post_window_background", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.session.foreground = false }),
+            ("intent_post_other_invocation_busy", { (f: MaktabahNativeRoutingComposition) in f.contexts[f.scene] = f.nativeContext }),
+            ("intent_post_backend_generation_changed", { (f: MaktabahNativeRoutingComposition) in f.backend.current = .init(backend: .otzaria, generation: 8) }),
+            ("intent_post_projection_source_missing", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.session.workspaceProjectionSource = nil }),
+            ("intent_post_projection_not_authoritative", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.session.workspaceProjectionSource!.isAuthoritative = false }),
+            ("intent_post_workspace_missing", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.session.workspaceProjectionSource!.workspace = nil }),
+            ("intent_post_workspace_read_failed", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.session.workspaceProjectionSource!.failure = .unavailable }),
+            ("intent_post_binding_missing", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.publicBinding = nil }),
+            ("intent_post_binding_replaced", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.publicBinding = BoundaryBinding(f.scenes[f.scene]!.session.workspaceProjectionSource!.workspace!) }),
+            ("intent_post_binding_lost_workspace", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.publicBinding!.owns = false }),
+            ("intent_post_mapping_missing", { (f: MaktabahNativeRoutingComposition) in f.scenes[f.scene]!.session.workspaceProjectionSource!.workspace!.mapping = nil }),
+            ("intent_post_mapping_coverage_incomplete", { (f: MaktabahNativeRoutingComposition) in f.updatePostMapping { $0.coverage = .incomplete } }),
+            ("intent_post_mapping_wrong_scene", { (f: MaktabahNativeRoutingComposition) in f.updatePostMapping { $0.scene = "other-scene" } }),
+            ("intent_post_mapping_wrong_owner", { (f: MaktabahNativeRoutingComposition) in f.updatePostMapping { $0.owner = ObjectIdentifier(f.otherManager) } }),
+            ("intent_post_mapping_source_unavailable", { (f: MaktabahNativeRoutingComposition) in f.sourceA.event.phase = .unavailable }),
+            ("intent_post_mapping_event_epoch_stale", { (f: MaktabahNativeRoutingComposition) in f.sourceA.event.epoch = .init(sourceID: f.epochSourceID, revision: 3) }),
+            ("intent_post_mapping_source_replaced", { (f: MaktabahNativeRoutingComposition) in f.sourceB.event = f.sourceA.event; f.updatePostMapping { $0.source = f.sourceB } }),
+            ("intent_post_mapping_epoch_changed", { (f: MaktabahNativeRoutingComposition) in f.updatePostMapping { $0.epoch = .init(sourceID: f.epochSourceID, revision: 3) }; f.sourceA.event.epoch = f.postMapping().epoch }),
+            ("intent_post_mapping_projection_changed", { (f: MaktabahNativeRoutingComposition) in f.updatePostMapping { $0.projection = f.mappingProjection(version: 7) } })
+        ] {
+            controls.run(name) {
+                let f = Self(), value = f.postAwaitSetup()
+                mutate(f)
+                try controls.refused { try f.validateReaderIntentJourneyOwner(value.owner, initial: value.initial, entry: value.entry, manager: f.manager) }
+            }
+        }
+        for (name, mutate) in [
+            ("intent_post_coherently_adopted_profile_change_refused", { (f: MaktabahNativeRoutingComposition, p: inout StudyWorkspaceMappingProjection) in p = .init(profileID: f.otherID, groupID: p.groupID, profileIDs: p.profileIDs, groupIDs: p.groupIDs, activeTabID: p.activeTabID, targets: p.targets) }),
+            ("intent_post_coherently_adopted_group_change_refused", { (f: MaktabahNativeRoutingComposition, p: inout StudyWorkspaceMappingProjection) in p = .init(profileID: p.profileID, groupID: f.otherID, profileIDs: p.profileIDs, groupIDs: p.groupIDs, activeTabID: p.activeTabID, targets: p.targets) }),
+            ("intent_post_coherently_adopted_profile_membership_refused", { (f: MaktabahNativeRoutingComposition, p: inout StudyWorkspaceMappingProjection) in p = .init(profileID: p.profileID, groupID: p.groupID, profileIDs: [f.profileID, f.otherID], groupIDs: p.groupIDs, activeTabID: p.activeTabID, targets: p.targets) }),
+            ("intent_post_coherently_adopted_group_membership_refused", { (f: MaktabahNativeRoutingComposition, p: inout StudyWorkspaceMappingProjection) in p = .init(profileID: p.profileID, groupID: p.groupID, profileIDs: p.profileIDs, groupIDs: [f.groupID, f.otherID], activeTabID: p.activeTabID, targets: p.targets) }),
+            ("intent_post_original_base_target_replaced_refused", { (f: MaktabahNativeRoutingComposition, p: inout StudyWorkspaceMappingProjection) in var targets = p.targets; targets[f.tabID] = .init(backend: .otzaria, bookID: 1, workKey: "book:1", readerOwner: ObjectIdentifier(f.readerB)); p = .init(profileID: p.profileID, groupID: p.groupID, profileIDs: p.profileIDs, groupIDs: p.groupIDs, activeTabID: p.activeTabID, targets: targets) }),
+            ("intent_post_original_base_target_removed_refused", { (f: MaktabahNativeRoutingComposition, p: inout StudyWorkspaceMappingProjection) in var targets = p.targets; targets.removeValue(forKey: f.tabID); p = .init(profileID: p.profileID, groupID: p.groupID, profileIDs: p.profileIDs, groupIDs: p.groupIDs, activeTabID: p.activeTabID, targets: targets) })
+        ] {
+            controls.run(name) {
+                let f = Self(), value = f.postAwaitSetup()
+                var projection = f.postMapping().projection
+                mutate(f, &projection)
+                f.adoptProjection(value.owner, projection)
+                try controls.refused { try f.validateReaderIntentJourneyOwner(value.owner, initial: value.initial, entry: value.entry, manager: f.manager) }
+            }
+        }
+
+        controls.run("intent_post_coherent_source_namespace_aba_refused") {
+            let f = Self(), value = f.postAwaitSetup()
+            value.owner.observation = f.observation(epoch: 2, epochSource: f.otherID,
+                actualProjection: value.owner.observation.projection, locale: Locale.current.identifier)
+            f.updatePostMapping { $0.epoch = value.owner.observation.epoch }
+            f.sourceA.event.epoch = value.owner.observation.epoch
+            try controls.refused { try f.validateReaderIntentJourneyOwner(value.owner, initial: value.initial, entry: value.entry, manager: f.manager) }
+        }
+        controls.run("intent_post_coherent_locale_change_refused") {
+            let f = Self(), value = f.postAwaitSetup()
+            value.owner.observation = f.observation(epoch: 2,
+                actualProjection: value.owner.observation.projection, locale: "changed-locale")
+            try controls.refused { try f.validateReaderIntentJourneyOwner(value.owner, initial: value.initial, entry: value.entry, manager: f.manager) }
+        }
+        await controls.runAsync("factory_public_forwarder_retains_in_app_navigation_without_read") {
+            let f = Self(); _ = f.setup()
+            let journey = try await f.semanticJourneys(manager: f.manager)
+            let result = await journey.commentaryThenPrepareDraft(baseLocator: f.base, proposedText: "proposal")
+            try controls.require(result.isComplete && f.dispatched.count == 2)
+            try controls.require(f.dispatched.allSatisfy { $0.1.origin == .inApp && $0.1.contentRights.isEmpty && !$0.1.scopes.contains(.contentRead) })
+        }
+        await controls.runAsync("factory_app_intent_owner_preserves_exact_context_and_two_steps") {
+            let f = Self(); _ = f.setup()
+            let context = f.context(sceneID: f.scene, origin: .appIntent, snapshot: f.backend.current)
+            let owner = SemanticJourneyOwner(sceneID: f.scene, managerID: ObjectIdentifier(f.manager),
+                context: context, observation: f.sourceObservation)
+            let journey = f.semanticJourneys(owner: owner, manager: f.manager)
+            let result = await journey.commentaryThenPrepareDraft(baseLocator: f.base, workRef: .init(backend: .otzaria, workKey: "book:2"), proposedText: "e\u{0301}")
+            try controls.require(result.isComplete && f.dispatched.count == 2)
+            try controls.require(f.dispatched.allSatisfy { $0.1 == context })
+            try controls.require(f.dispatched.map { $0.0.action } == ["reader.openCommentary", "notes.prepareDraft"])
+            try controls.require(f.dispatched[1].0.arguments["locator"] == (try .encoded(f.focus)))
+            try controls.require(Array(f.dispatched[1].0.arguments["proposedText"]!.string!.utf8) == Array("e\u{0301}".utf8))
+        }
+        await controls.runAsync("factory_note_failure_retains_actual_first_step_result") {
+            let f = Self(), owner = f.setup(); f.failNote = true
+            let result = await f.semanticJourneys(owner: owner, manager: f.manager)
+                .commentaryThenPrepareDraft(baseLocator: f.base, proposedText: "proposal")
+            try controls.require(!result.isComplete && result.steps.count == 2 && f.dispatched.count == 2)
+            try controls.require(result.steps[0].status == .completed && result.steps[1].status == .unavailable)
+            try controls.require(result.steps[1].error?.code == "original_note_editor_not_visible")
+            try controls.require(try result.steps[0].data?["locator"]?.decoded(as: ActionTextRef.self) == f.focus)
+        }
+        await controls.runAsync("factory_source_aba_after_reader_stops_note_and_retains_reader") {
+            let f = Self(), owner = f.setup(); f.invalidateAfterReader = true
+            let result = await f.semanticJourneys(owner: owner, manager: f.manager)
+                .commentaryThenPrepareDraft(baseLocator: f.base, proposedText: "proposal")
+            try controls.require(!result.isComplete && result.steps.count == 2 && f.dispatched.count == 1)
+            try controls.require(result.steps[0].status == .completed && result.steps[1].status == .staleState)
+        }
+        await controls.runAsync("factory_backend_change_before_dispatch_refused") {
+            let f = Self(), owner = f.setup()
+            let journey = f.semanticJourneys(owner: owner, manager: f.manager)
+            f.backend.current = .init(backend: .otzaria, generation: 8)
+            let result = await journey.commentaryThenPrepareDraft(baseLocator: f.base)
+            try controls.require(!result.isComplete && result.steps.count == 1 && result.steps[0].status == .staleState && f.dispatched.isEmpty)
+        }
+        await controls.runAsync("factory_native_typed_failure_preserves_status_and_code") {
+            let f = Self(), owner = f.setup(); f.nativeFailure = .init(.cancelled, "cancelled")
+            let result = await f.semanticJourneys(owner: owner, manager: f.manager)
+                .commentaryThenPrepareDraft(baseLocator: f.base)
+            try controls.require(result.steps.count == 1 && result.steps[0].status == .cancelled)
+            try controls.require(result.steps[0].error?.code == "cancelled" && f.dispatched.count == 1)
+        }
+        await controls.runAsync("factory_missing_read_authority_cannot_count_or_dispatch") {
+            let f = Self(), owner = f.setup()
+            let result = await f.semanticJourneys(owner: owner, manager: f.manager)
+                .countThenOpenResults(.init(backend: .otzaria, text: "word"))
+            try controls.require(result.steps.count == 1 && result.steps[0].status == .unavailable)
+            try controls.require(result.steps[0].error?.code == "trusted_read_authority_unavailable")
+            try controls.require(f.dispatched.isEmpty && f.backend.readCalls == 0)
+        }
+        await controls.runAsync("factory_read_authority_for_other_scene_refused") {
+            let f = Self(), owner = f.setup()
+            let other = ActionExecutionContext(subjectID: "boundary-read", origin: .inApp, allowedBackends: [.otzaria],
+                contentRights: [.otzaria], scopes: [.discovery, .contentRead], foregroundSceneID: "other-scene")
+            let journey = f.semanticJourneys(owner: owner, manager: f.manager, readAuthority: { other })
+            let result = await journey.countThenOpenResults(.init(backend: .otzaria, text: "word"))
+            try controls.require(result.steps.count == 1 && result.steps[0].status == .staleState)
+            try controls.require(f.dispatched.isEmpty && f.backend.readCalls == 0)
+        }
+        await controls.runAsync("factory_unknown_native_code_uses_original_public_sanitization") {
+            let f = Self(), owner = f.setup(); f.nativeFailure = .init(.cancelled, "unknown_boundary_code")
+            let result = await f.semanticJourneys(owner: owner, manager: f.manager)
+                .commentaryThenPrepareDraft(baseLocator: f.base)
+            try controls.require(result.steps.count == 1 && result.steps[0].status == .cancelled)
+            try controls.require(result.steps[0].error?.code == "native_ui_failed")
+            try controls.require(result.steps[0].error?.retryable == false && f.dispatched.count == 1)
+        }
         print("SUMMARY \(controls.outcomes.count) \(controls.outcomes.filter { $0.1 }.count) \(controls.outcomes.filter { !$0.1 }.count)")
         return controls.outcomes.allSatisfy { $0.1 }
     }
