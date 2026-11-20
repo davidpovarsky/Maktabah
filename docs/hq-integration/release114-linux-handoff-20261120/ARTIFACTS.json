@@ -1,0 +1,498 @@
+{
+  "sourceCommit": "c10ce8af00fbc1fc62910c1ac06ec7a0f3d79494",
+  "artifacts": [
+    {
+      "path": "docs/hq-integration/release114-linux-handoff-20261120/raw/VALIDATION_SOURCE.py.gz",
+      "compressedBytes": 2008,
+      "compressedSHA256": "0ffec16612f6df87e34c1b05ba426db586d2211cd85cc4a423e1239e6ea31853",
+      "uncompressedBytes": 4580,
+      "uncompressedSHA256": "030f42fa32b5a8c1c2ed20b79801fcaa4d2b45cfbd85d5c8a5c1d40c2d819b7f",
+      "kind": "actual Linux execution"
+    },
+    {
+      "path": "docs/hq-integration/release114-linux-handoff-20261120/raw/INPUTS_BEFORE.json.gz",
+      "compressedBytes": 5099,
+      "compressedSHA256": "dcecea1081e2c005086f0828151664c943c66f8ac3dbc9ffdeaa0725d677f1d8",
+      "uncompressedBytes": 14548,
+      "uncompressedSHA256": "3668f50100841ada36ec22ae8cde71852815d55c2e4a46b55637815f01ea0d04",
+      "kind": "actual Linux execution"
+    },
+    {
+      "path": "docs/hq-integration/release114-linux-handoff-20261120/raw/INPUTS_AFTER.json.gz",
+      "compressedBytes": 5099,
+      "compressedSHA256": "dcecea1081e2c005086f0828151664c943c66f8ac3dbc9ffdeaa0725d677f1d8",
+      "uncompressedBytes": 14548,
+      "uncompressedSHA256": "3668f50100841ada36ec22ae8cde71852815d55c2e4a46b55637815f01ea0d04",
+      "kind": "actual Linux execution"
+    },
+    {
+      "path": "docs/hq-integration/release114-linux-handoff-20261120/raw/stdout.log.gz",
+      "compressedBytes": 20,
+      "compressedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "actual Linux execution"
+    },
+    {
+      "path": "docs/hq-integration/release114-linux-handoff-20261120/raw/stderr.log.gz",
+      "compressedBytes": 902,
+      "compressedSHA256": "578f2aac5832cc90aedb973c4de8da80af7fd0d859a9199ee2220c2bec9301d1",
+      "uncompressedBytes": 4125,
+      "uncompressedSHA256": "05af49e3168db8fc09e96b40b243e3caf6f9951d8a4e7393e66470945f42d766",
+      "kind": "actual Linux execution"
+    },
+    {
+      "path": "docs/hq-integration/release114-linux-handoff-20261120/raw/RESULT.json.gz",
+      "compressedBytes": 1556,
+      "compressedSHA256": "c501e87d26be51cdd36633945d722194af4fc2bdf0aa726adc0b2cddf7166077",
+      "uncompressedBytes": 7087,
+      "uncompressedSHA256": "caaa5985f26471c854c87672e2c5602b9f7834e6f908a790eeb2446da0ee4917",
+      "kind": "actual Linux execution"
+    },
+    {
+      "path": "docs/hq-integration/release114-linux-handoff-20261120/raw/ORIGINAL_SOURCE.zip.gz",
+      "compressedBytes": 380955,
+      "compressedSHA256": "7bb3a3ee439cb770de72414c452089e8c69b222fed5478f0890c533db5ef2b62",
+      "uncompressedBytes": 388072,
+      "uncompressedSHA256": "0c98cac2c5a94a62309c46829fbca2e1283b67f541780b19f20bf986f9724959",
+      "kind": "Exact complete86-file Git source projection plus source manifest; original innerZIP CRC PASS"
+    }
+  ],
+  "sourceArchive": {
+    "bytes": 388072,
+    "sha256": "0c98cac2c5a94a62309c46829fbca2e1283b67f541780b19f20bf986f9724959",
+    "CRC": "PASS"
+  },
+  "inputFiles": [
+    {
+      "path": ".github/workflows/sefaria-embedded-validation.yml",
+      "bytes": 44363,
+      "sha256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4"
+    },
+    {
+      "path": "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift",
+      "bytes": 5997,
+      "sha256": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd"
+    },
+    {
+      "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+      "bytes": 5480,
+      "sha256": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce"
+    },
+    {
+      "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+      "bytes": 14183,
+      "sha256": "a85e542258934f1adebe468fd72eb19c82aa75bfc3d512e93e6f176114b7c6ab"
+    },
+    {
+      "path": "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift",
+      "bytes": 5521,
+      "sha256": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18"
+    },
+    {
+      "path": "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+      "bytes": 2105,
+      "sha256": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 182817,
+      "sha256": "17407e7fff4efb27be7cb0da4c6f2883b1a78de74de0e5a601de54a51ef87139"
+    },
+    {
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "bytes": 82132,
+      "sha256": "9d8c1339233ad8d3c5ad74ccaaad04b94541d010617fc69b61e131a363a57a32"
+    },
+    {
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "bytes": 18962,
+      "sha256": "552a010f1b9f6ecd29406e1bca22eec509594e0938cad457fcf9275b96e27240"
+    },
+    {
+      "path": "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift",
+      "bytes": 4123,
+      "sha256": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd"
+    },
+    {
+      "path": "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift",
+      "bytes": 3648,
+      "sha256": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c"
+    },
+    {
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "bytes": 9285,
+      "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 160036,
+      "sha256": "bc9c330ba8c60153ab2fff3d355c3e41e82077ad512452e632b91c6d39a637ec"
+    },
+    {
+      "path": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+      "bytes": 11615,
+      "sha256": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e"
+    },
+    {
+      "path": "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+      "bytes": 4954,
+      "sha256": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "bytes": 31726,
+      "sha256": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b"
+    },
+    {
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "bytes": 27748,
+      "sha256": "d4d78663f69d64d0507dd5941cba364e31c9d1c81c9de4625880132c059341dd"
+    },
+    {
+      "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "bytes": 19775,
+      "sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8"
+    },
+    {
+      "path": "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift",
+      "bytes": 3665,
+      "sha256": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f"
+    },
+    {
+      "path": "Scripts/CI/app-store-connect-provisioning.py",
+      "bytes": 8932,
+      "sha256": "506a10aba5061089419b9bd76976490b132e056804c46369a0dd93fc8473953b"
+    },
+    {
+      "path": "Scripts/CI/build-faithful-prototype-reference.py",
+      "bytes": 6046,
+      "sha256": "dcad707af9db6351bf2fa5b86cdaa81aa41fb5668ee3a4760e55cc3d44126e12"
+    },
+    {
+      "path": "Scripts/CI/cache-key-inputs.py",
+      "bytes": 865,
+      "sha256": "81033663abc229e3546d6faf12d2cb1d731996aab2d035fc609082e08c369960"
+    },
+    {
+      "path": "Scripts/CI/collect-faithful-simulator-failure.py",
+      "bytes": 1743,
+      "sha256": "25ea5c086b234583c84d306692ccfbf3c098c4c1fd3ed14c30278f29beb800f6"
+    },
+    {
+      "path": "Scripts/CI/collect-runtime27-palette-log.py",
+      "bytes": 4713,
+      "sha256": "4eca164c61e84d39f0a01e193020ba6245058d1c198d2aa1490cfa0152fd304f"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "bytes": 4333,
+      "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 47630,
+      "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "bytes": 19318,
+      "sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+    },
+    {
+      "path": "Scripts/CI/hq-v32-prebuilt-native.py",
+      "bytes": 29386,
+      "sha256": "69d3960dfb5e4bd8261d4d4d29ba73696f76e3477548834c255d59759e9ed986"
+    },
+    {
+      "path": "Scripts/CI/prepare-faithful-ipad-fixtures.py",
+      "bytes": 3752,
+      "sha256": "1aef6221d2cefe49432c859e3a483c8b6321c062e156738bca66a12c6d792dbe"
+    },
+    {
+      "path": "Scripts/CI/prepare-hanlin-sdk.py",
+      "bytes": 4117,
+      "sha256": "7e9a303e20390b9a33ee6cddc73979dc1557741636d6e00067c55a90188af404"
+    },
+    {
+      "path": "Scripts/CI/prepare-ios-macro-authorization.py",
+      "bytes": 3362,
+      "sha256": "26c483cf04a41d16ccde9a35767b39e31f7b59d51f891c0089024012b0ea65f5"
+    },
+    {
+      "path": "Scripts/CI/prepare-normal-ios-workspace.py",
+      "bytes": 10766,
+      "sha256": "0352a277567dcfa562e6e4cab02b0c2fdb614fe3df0af75971e2e532b1b18f52"
+    },
+    {
+      "path": "Scripts/CI/prepare-pinned-sharp-libvips.py",
+      "bytes": 6252,
+      "sha256": "37a279a3ab6e1bf7ece3d92c657a8c4f5e1fcb9e5007564b4aef0408f0eee764"
+    },
+    {
+      "path": "Scripts/CI/prepare-swift-packages.py",
+      "bytes": 3813,
+      "sha256": "a849c3d438a8bd84a031a4d3bc93f7522ea1203a047f91c3284346a0b3f0e85d"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "bytes": 49752,
+      "sha256": "1d4b45162b2f2752020a822512d5e5edd679de3e905d0f092b0a21897776eafc"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-production-release.py",
+      "bytes": 10834,
+      "sha256": "6e211230c772acf83643503de24e7f3f2c405f0c111091fcd0f5bcc90cd116f1"
+    },
+    {
+      "path": "Scripts/CI/runtime27-fixture-oracle.py",
+      "bytes": 5883,
+      "sha256": "8a32a5d82a04a833466021d2a237aae3687d1d87c4ee24ca5df105bbe43e793c"
+    },
+    {
+      "path": "Scripts/CI/runtime27-fixture-recovery.py",
+      "bytes": 1355,
+      "sha256": "2dc5f680dde048cbb46463bcf1ca159e41ebb786c87074210175882275853c00"
+    },
+    {
+      "path": "Scripts/CI/runtime27-hid.py",
+      "bytes": 8944,
+      "sha256": "7488ccd1d101b5ae455815906b06f5671ca820eaabc18c6ef4b92c492e2172b0"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "bytes": 56247,
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-stages.py",
+      "bytes": 18985,
+      "sha256": "1615b5aa05a260207023954f55ead35832ea814dcaf2881c12d958d341f750b8"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release.py",
+      "bytes": 14612,
+      "sha256": "aae3efc5c2fdb1123f24c05842d4b235434a46b6125c8280461f875a6690ea41"
+    },
+    {
+      "path": "Scripts/CI/runtime27-url-delivery.py",
+      "bytes": 5818,
+      "sha256": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "bytes": 26341,
+      "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583"
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "path": "Scripts/CI/runtime27_release_handoff.py",
+      "bytes": 22934,
+      "sha256": "28ab9a2a3d1f7426521fcb7401621fb46e8bc7f6de4e3d6c5bc556b69ccbd9dd"
+    },
+    {
+      "path": "Scripts/CI/sefaria-toc-apple55.py",
+      "bytes": 14675,
+      "sha256": "682fa506c34af463844327850c5df0119b4c0c8fab0249527949b424809e465f"
+    },
+    {
+      "path": "Scripts/CI/select-ipad-simulator.py",
+      "bytes": 2166,
+      "sha256": "254739972d21289d387cd95f7e4a803aedb4da63bdc459e2a5adcdf558d6f8f4"
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "bytes": 6377,
+      "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+    },
+    {
+      "path": "Scripts/CI/shutdown-faithful-simulator.py",
+      "bytes": 1417,
+      "sha256": "6036b2210fff9fb7a70da707efb067788b3cc5b45aa0cb88017285f865139046"
+    },
+    {
+      "path": "Scripts/CI/test-9401-exact-source.py",
+      "bytes": 10286,
+      "sha256": "343065fa83b370f11851050a6f2fb9aa05721cecfd8743d48b10bbc1f5ed0c02"
+    },
+    {
+      "path": "Scripts/CI/test-faithful-tabs-in-app.py",
+      "bytes": 6986,
+      "sha256": "1042050138db72c975361170fdc530dc9076fdf6a90ddb124d37a35d42b9f578"
+    },
+    {
+      "path": "Scripts/CI/test-faithful-workspace.py",
+      "bytes": 1805,
+      "sha256": "13dd6477d2b142c4637f6f79231f17d379e0e042a0bceb715d8693a1cd4cbec5"
+    },
+    {
+      "path": "Scripts/CI/test-native-reader-reservation.py",
+      "bytes": 2255,
+      "sha256": "b69457e2a64ef86808b9b2240217f1acd45cca82fb8a7f6053a35351dd6b50c7"
+    },
+    {
+      "path": "Scripts/CI/test-native-sidebar-policy.py",
+      "bytes": 723,
+      "sha256": "fc4d75cffde13b6b77fd9210054f5bd7f080ea7ab04688531afa2149613163b2"
+    },
+    {
+      "path": "Scripts/CI/test-normal-ios-raw-capture.py",
+      "bytes": 15828,
+      "sha256": "93e60a94780893b3fe2ef830d2168842c9dd3f04222d432eb8f23ab22ea19dd5"
+    },
+    {
+      "path": "Scripts/CI/test-normal-ios-toolchain.py",
+      "bytes": 15337,
+      "sha256": "bced71f7dfb4bf96db462acfe0bf0dbbd40ed73b0e7f4cf7b1126ea18a42ca5d"
+    },
+    {
+      "path": "Scripts/CI/test-normal-ios-workspace.py",
+      "bytes": 21853,
+      "sha256": "7db8686277573bbc9224b4a9f6a56cb78f686ac63d6d137f0f0293568d0c9f44"
+    },
+    {
+      "path": "Scripts/CI/test-otzaria-package-registration.py",
+      "bytes": 3589,
+      "sha256": "b9609973f3272e7ab962639918226636d2280c56bbf59e3d63014619f8021b61"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-fixture-oracle.py",
+      "bytes": 5414,
+      "sha256": "ca6e0f1b600f4601c5cf35453a735c2ba195978c220235f56df7f96608839c97"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-fixture-recovery.py",
+      "bytes": 2966,
+      "sha256": "ac0afbc8c79d4cbb0c999156e41ff26811be37374ec00459b09af0a75f9a6a0c"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-hid.py",
+      "bytes": 9508,
+      "sha256": "55331d080ade96946fd1fa817af437c64128dd1f1a9d94fe873712de79fb114d"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-gate.py",
+      "bytes": 25110,
+      "sha256": "0253b2ce63ebafcc55f133514975555bf5a93956fbe3fd54994774a920f6315b"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-handoff.py",
+      "bytes": 20175,
+      "sha256": "81df1415c68ce53d0b94e65756e82322e3168d976329df2db376c768f82538e4"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-producer.py",
+      "bytes": 12785,
+      "sha256": "dca60ae3502a9d5651205957193340f0d0b827695a76dd77e296345d36ed3dac"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-stages.py",
+      "bytes": 22575,
+      "sha256": "55bd0d7029b0f44ad23f1157fa31fd47e6f098e30b9d9959dff5b9e1c08acb22"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-url-delivery.py",
+      "bytes": 6840,
+      "sha256": "24d092635946b6d7053f1f94b1234f7344dddb2b3bbfedb7a6a8d0dc785429c1"
+    },
+    {
+      "path": "Scripts/CI/test-shutdown-faithful-simulator.py",
+      "bytes": 2259,
+      "sha256": "6423e1eeba3aeb719f7f6fd72eea200d1c97afea65ba0eaf31da5657ff5e4c03"
+    },
+    {
+      "path": "Scripts/CI/test-strict-10601-contracts.py",
+      "bytes": 6426,
+      "sha256": "caea685049cc4bf4a0d03c1bb1b611fd1b6bf752ddf39c235014d5bd5c014c37"
+    },
+    {
+      "path": "Scripts/CI/test-strict-10601-portable.py",
+      "bytes": 2017,
+      "sha256": "bae6ddf462dbc5c8562379472dc47903b18c5b7d4832457badcf4040e6731dad"
+    },
+    {
+      "path": "Scripts/CI/test-v32-prebuilt-native.py",
+      "bytes": 13547,
+      "sha256": "4ac3e8933d1ee6ebd6d679995abef283db90e50610f0816abc38780a7b2dcd41"
+    },
+    {
+      "path": "Scripts/CI/test-v32-seed-workspace.py",
+      "bytes": 6493,
+      "sha256": "70a3c017f30ccc154d518ae73fd7c611c69e46e8ed159355912154736de0b411"
+    },
+    {
+      "path": "Scripts/CI/test-verify-faithful-xctest.py",
+      "bytes": 4710,
+      "sha256": "a97fc97872023abe8763dd38ce04aacd12b434626916e722c564c1cdd669a9d6"
+    },
+    {
+      "path": "Scripts/CI/test-zayit-framework-source-closure.py",
+      "bytes": 5943,
+      "sha256": "0ababa4165e3bf9ededa8a441f2cdaa91f1a38d04c2d4662823a6c3515c475ef"
+    },
+    {
+      "path": "Scripts/CI/test_hq_stage2_macro_trust.py",
+      "bytes": 4316,
+      "sha256": "3873184a71073e8c30cddbcfb4f83879a306e0701bf6e6dcec3596a8b66a8dd8"
+    },
+    {
+      "path": "Scripts/CI/typecheck-faithful-ui-tests.py",
+      "bytes": 24211,
+      "sha256": "07e2c054f1c826631a946db4d868f7f1d8d85c34d5bb511feb2d5976fd5d40e4"
+    },
+    {
+      "path": "Scripts/CI/verify-9401-exact-source.py",
+      "bytes": 30858,
+      "sha256": "7d10306c0dbb7989f2bbbb1f7c15476c013743948aae5f4abacb8ff8fdb3da9d"
+    },
+    {
+      "path": "Scripts/CI/verify-cloudkit-production-schema.py",
+      "bytes": 4745,
+      "sha256": "296e4deab4a932ba44c23615ee4105912e8ee3482ba94d4a39412f20f5deb789"
+    },
+    {
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "bytes": 6009,
+      "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+    },
+    {
+      "path": "Scripts/CI/verify-ios-signing-entitlements.py",
+      "bytes": 5537,
+      "sha256": "cb1ba9effcb0de4e59a66ed4c67d161bfd2c869673e5b949e35b709ecdffa722"
+    },
+    {
+      "path": "Scripts/CI/verify-otzaria-xcode-project.py",
+      "bytes": 7113,
+      "sha256": "c3bc822db4b816989217de154fdcb56266e897a2e1212f894a7a9cd33b36c4ee"
+    },
+    {
+      "path": "Scripts/CI/verify-release-stage-preservation.py",
+      "bytes": 11308,
+      "sha256": "1d0f08ea9e854843354ac1520652e06581454ca1289d37f035b7c24be6c238d9"
+    },
+    {
+      "path": "Scripts/CI/verify-runtime27-release-gate.py",
+      "bytes": 18620,
+      "sha256": "b3d628601889a307d2b8e807db14bfa41da3641cda294e0e6a33d9fd611898b1"
+    },
+    {
+      "path": "Scripts/CI/verify-upstream-boundary.py",
+      "bytes": 30948,
+      "sha256": "3c0f76129fb88c172ae0986a860cb9bb65a1784541026cf864f077476c23b1a4"
+    },
+    {
+      "path": "Scripts/CI/wait-for-testflight-build.py",
+      "bytes": 6542,
+      "sha256": "471af69fd3fbed792e7c4b30781bac01bd471f24c2f7b7a12c501aab961fefe2"
+    },
+    {
+      "path": "tools/verify_xcresult_zero_skips.py",
+      "bytes": 10243,
+      "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+    }
+  ]
+}

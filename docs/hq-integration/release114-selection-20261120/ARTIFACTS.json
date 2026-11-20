@@ -1,0 +1,198 @@
+{
+  "baseCommit": "3b1bd069ac12bb95b0f3667cc625602ae5c517aa",
+  "artifacts": [
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/PRE_REVIEW_SOURCE_PRESERVATION.json.gz",
+      "compressedBytes": 941,
+      "compressedSHA256": "87a8c6502ff3a7081533d253a05cdf4f220e046f73aee1acf8351d1ab1d2774d",
+      "uncompressedBytes": 4199,
+      "uncompressedSHA256": "a6be88ec239849a23aec21db68b368050db13385bdf081c36f2c8e9702e52b09",
+      "kind": "source preservation"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/SOURCE_PRESERVATION.json.gz",
+      "compressedBytes": 1113,
+      "compressedSHA256": "9bb09ca542de2c47f09e2d649ed57fbb82ab8dcf17dffe21b3a63b95d9533c66",
+      "uncompressedBytes": 4742,
+      "uncompressedSHA256": "c2e37fba932d4b4762f242b1581791c9977c9b1ce4122304e4aed691155b2123",
+      "kind": "source preservation"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation/0.stderr.log.gz",
+      "compressedBytes": 998,
+      "compressedSHA256": "60556c6c423295a173259badc684ee3ee059875570b47f1c2d560e5c8c31dae4",
+      "uncompressedBytes": 3423,
+      "uncompressedSHA256": "29d21c126e530a38e65dc04964894512a56455f258aaf850f80766502b0e066e",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation/0.stdout.log.gz",
+      "compressedBytes": 20,
+      "compressedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation/INPUTS_BEFORE.json.gz",
+      "compressedBytes": 1342,
+      "compressedSHA256": "f9e46e83810720c2f83b07816c7a4e96b93cf1f38d7d7bba1e46f8789182fe08",
+      "uncompressedBytes": 3601,
+      "uncompressedSHA256": "73ab4961d42f9376072448eceee975d1c613e02f09208a3978be6a6c1f3bba1c",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation/RESULT.json.gz",
+      "compressedBytes": 431,
+      "compressedSHA256": "ff880028516b9a5ae0c788f459f4157f6752dea6474a9e7d8f915697c0905b46",
+      "uncompressedBytes": 786,
+      "uncompressedSHA256": "1e9df7e9de120dd0836747d50c951b21928a8abf759408ee2145e5b620dbc78f",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation/VALIDATION_SOURCE.py.gz",
+      "compressedBytes": 1717,
+      "compressedSHA256": "f25000dcf750e64d815061c8c99d333028536376a664cab3f7087326ea8b446c",
+      "uncompressedBytes": 4580,
+      "uncompressedSHA256": "4070eea10a052242d1c0662e3e12050974b1e0873b01d8c8e1dc1b1053d10ae6",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical/0.stderr.log.gz",
+      "compressedBytes": 510,
+      "compressedSHA256": "56b89ea8f61efab5cae7d7681c1404667896d86a8563e17c3db0227457ff9f43",
+      "uncompressedBytes": 2088,
+      "uncompressedSHA256": "3c8f422b80dbb5bac508ab9a384d793783eb4e1f53efd958cca9a15e180aba49",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical/0.stdout.log.gz",
+      "compressedBytes": 20,
+      "compressedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical/1.stderr.log.gz",
+      "compressedBytes": 972,
+      "compressedSHA256": "8469874ebe5ad032c1b1fefd299781a7129f383e80a694c6a0c5852c2a71335a",
+      "uncompressedBytes": 4250,
+      "uncompressedSHA256": "a5e31afcf1e9671f8002052593d2e9136cb78dd865f945f7f4aa03c73fc33039",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical/1.stdout.log.gz",
+      "compressedBytes": 20,
+      "compressedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical/2.stderr.log.gz",
+      "compressedBytes": 1655,
+      "compressedSHA256": "ee7018025d439aa3b2eae7309211bd18397b17c313106ad7bab127503b408bc8",
+      "uncompressedBytes": 7360,
+      "uncompressedSHA256": "961d131848fff6004f3779acf22ed28b607fc7380eb801880a88305986f592b3",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical/2.stdout.log.gz",
+      "compressedBytes": 20,
+      "compressedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical/INPUTS_BEFORE.json.gz",
+      "compressedBytes": 5284,
+      "compressedSHA256": "ef8ee0d32994adcc8e560286feb75ebe0e8153ee9d664035bcfd14c847f6ccb1",
+      "uncompressedBytes": 22095,
+      "uncompressedSHA256": "d7d6168391ff4b02796db0d7bd1d85c02b382bd76713236f84ad49b4752a0701",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical/RESULT.json.gz",
+      "compressedBytes": 686,
+      "compressedSHA256": "e6b76ed5b0472925ec56ec232802217416cb306fc1473d942429b0e372c905f8",
+      "uncompressedBytes": 2222,
+      "uncompressedSHA256": "492e53a674626d0f9f2872cc6680ea8f6f1462f4c239d3c2c23f59a5fe396d28",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical/VALIDATION_SOURCE.py.gz",
+      "compressedBytes": 1826,
+      "compressedSHA256": "814170d16aa573753c2ef5c788843dfbff3063c2caa6a46e6eebbc5dd0745d52",
+      "uncompressedBytes": 4325,
+      "uncompressedSHA256": "6ae07cc962a93244d41a5d91b3de358cc6a251b068f9eb6d2f0ca77806bcacc5",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical-remainder/INPUTS_UNCHANGED.json.gz",
+      "compressedBytes": 5284,
+      "compressedSHA256": "ef8ee0d32994adcc8e560286feb75ebe0e8153ee9d664035bcfd14c847f6ccb1",
+      "uncompressedBytes": 22095,
+      "uncompressedSHA256": "d7d6168391ff4b02796db0d7bd1d85c02b382bd76713236f84ad49b4752a0701",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical-remainder/RESULT.json.gz",
+      "compressedBytes": 454,
+      "compressedSHA256": "b70d962b7455d45fd252a13d876284387f2883681ea2e2b470f75d7797f6f9a9",
+      "uncompressedBytes": 710,
+      "uncompressedSHA256": "9282038fcf9f9fb313f1b7b0949a838380ca592d5bb6e6b5a9fbf03c098ace82",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical-remainder/stderr.log.gz",
+      "compressedBytes": 844,
+      "compressedSHA256": "668001a432fd62391d26e6a02c78d38786421c2943ae40c5b7fa0ca5eb89d2bb",
+      "uncompressedBytes": 3473,
+      "uncompressedSHA256": "6ac2d532f9db7f3b1e6777ab4d4b4482feb9c3f5ff82283ed5534d5611b581b9",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical-remainder/stdout.log.gz",
+      "compressedBytes": 20,
+      "compressedSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "uncompressedBytes": 0,
+      "uncompressedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/raw/validation-canonical-remainder/VALIDATION_SOURCE.py.gz",
+      "compressedBytes": 1004,
+      "compressedSHA256": "44291100022223d08f2be8cd6b4fa03ef0bc525b922ee12c7dc2e0a070ccd586",
+      "uncompressedBytes": 2189,
+      "uncompressedSHA256": "ea48e772a714551f243e32f6c2c80dc19130165d53dae9467d54e8aa286a3b4f",
+      "kind": "actual validation raw output/source"
+    },
+    {
+      "path": "docs/hq-integration/release114-selection-20261120/SOURCE.patch.gz",
+      "compressedBytes": 2695,
+      "compressedSHA256": "ddc7163d3474f75129785ad1cfdb9d0c28f7bcab487d0299f960d05129f72ea0",
+      "uncompressedBytes": 11654,
+      "uncompressedSHA256": "60ca458d0e2f1209f4f625ad4629de19d68af1d633fb6ab37d9d4ecbabe4cb17",
+      "kind": "exact three-file canonical Git diff"
+    }
+  ],
+  "sources": [
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "bytes": 56247,
+      "canonicalGitLF_SHA256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-producer.py",
+      "bytes": 12785,
+      "canonicalGitLF_SHA256": "dca60ae3502a9d5651205957193340f0d0b827695a76dd77e296345d36ed3dac"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-release-stages.py",
+      "bytes": 22575,
+      "canonicalGitLF_SHA256": "55bd0d7029b0f44ad23f1157fa31fd47e6f098e30b9d9959dff5b9e1c08acb22"
+    }
+  ]
+}

@@ -109,7 +109,7 @@ class ReleaseProducerTests(unittest.TestCase):
 
     def test_complete_synthetic_producer_payload_reaches_unchanged_real_evidence_checks(self):
         result = self.check()
-        self.assertEqual(result["required_ui_passed"], 96)
+        self.assertEqual(result["required_ui_passed"], 114)
         self.assertEqual(result["separate_oracle_executed"], 2)
         self.assertEqual(len(result["configurations"]), 5)
 
@@ -197,10 +197,10 @@ class ReleaseProducerTests(unittest.TestCase):
 
     def test_current_manifest_names_real_compilable_target_declarations(self):
         manifest = producer["load_manifest"](ROOT)
-        self.assertEqual(sum(len(row["required_ui_cases"]) for row in manifest["configurations"]), 96)
+        self.assertEqual(sum(len(row["required_ui_cases"]) for row in manifest["configurations"]), 114)
         self.assertEqual({row["id"]: len(row["required_ui_cases"]) for row in manifest["configurations"]},
-                         {"ipad11-native": 54, "ipad13-native": 34, "ipad13-largest-text": 1,
-                          "iphone-native": 6, "ipad13-production-release": 1})
+                         {"ipad11-native": 63, "ipad13-native": 34, "ipad13-largest-text": 1,
+                          "iphone-native": 15, "ipad13-production-release": 1})
         self.assertEqual(sum(len(row.get("required_oracle_cases", [])) for row in manifest["configurations"]), 2)
         self.assertEqual(manifest["prepared_source_requirements"][0]["path"],
                          "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift")
