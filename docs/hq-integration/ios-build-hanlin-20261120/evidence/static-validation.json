@@ -1,0 +1,13 @@
+{
+  "scope": "Parsed workflow configuration only; no compiler or runtime execution",
+  "base_sha": "e90feda1ed411b98ebc4a55f1d6df0b089a6f305",
+  "sdk_sha": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "jobs_with_mandatory_preparation": [
+    "swiftpm",
+    "simulator-build",
+    "device-build"
+  ],
+  "unchanged_original_steps_inputs_conditions_dependencies": true,
+  "workflow_sha256": "9d085ad749530c0ad03cd0441aa6982f27381784a8be47865b5acccc89ad9916",
+  "preparer_git_blob": "2b3d439abe961e77cf81538043a77d6be50c3904"
+}

@@ -1,0 +1,9 @@
+test_changed_or_unverified_source_cannot_modify_authorizations (__main__.PinnedMacroTrustTests.test_changed_or_unverified_source_cannot_modify_authorizations) ... ok
+test_exact_entry_preserves_existing_trust_and_is_idempotent (__main__.PinnedMacroTrustTests.test_exact_entry_preserves_existing_trust_and_is_idempotent) ... ok
+test_malformed_existing_file_is_not_replaced (__main__.PinnedMacroTrustTests.test_malformed_existing_file_is_not_replaced) ... ok
+test_read_failure_is_not_treated_as_missing (__main__.PinnedMacroTrustTests.test_read_failure_is_not_treated_as_missing) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.057s
+
+OK

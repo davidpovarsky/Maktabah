@@ -1,0 +1,70 @@
+{
+  "run_id": 44669016128,
+  "head_sha": "a741f464b12b884d23577e15b255101b82c8f7db",
+  "conclusion": "failure",
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44669016128",
+  "jobs": [
+    {
+      "id": 136065226734,
+      "name": "Resolve Swift packages once",
+      "conclusion": "success"
+    },
+    {
+      "id": 136065227030,
+      "name": "Build or restore Otzaria framework",
+      "conclusion": "success"
+    },
+    {
+      "id": 136065227102,
+      "name": "Build or restore Zayit framework",
+      "conclusion": "success"
+    },
+    {
+      "id": 136071503389,
+      "name": "Build simulator app",
+      "conclusion": "failure"
+    },
+    {
+      "id": 136071503412,
+      "name": "Build unsigned device IPA",
+      "conclusion": "failure"
+    },
+    {
+      "id": 136071868718,
+      "name": "Real native Otzaria bootstrap acceptance",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 136072388440,
+      "name": "Build and cache summary",
+      "conclusion": "failure"
+    }
+  ],
+  "hanlin_materialization": {
+    "sdk_sha": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "verified_original_files": 424,
+    "actual_success_jobs": [
+      136065226734,
+      136071503389,
+      136071503412
+    ]
+  },
+  "remaining_failures": {
+    "simulator": "Original Inspector backend fixture omitted ChavrusaTextLocalizationResolver.swift and TalmudHebrewAddressFormatter.swift; compile failed, zero fixture executions; simulator app build/acceptance did not run",
+    "device": "Original pinned EquatableMacros target not authorized in runner security directory; ComputeTargetDependencyGraph failed before app compilation"
+  },
+  "xcode_observed": "26.6 / iOS SDK26.5; no API-availability failure observed before these earlier gates",
+  "watcher": {
+    "job_id": "job_daf6e9509d44",
+    "timeout_seconds": 600,
+    "own_watcher_exited_verified": true,
+    "final_metadata_collected_after_timeout": true,
+    "no_redispatch": true
+  },
+  "archive": {
+    "name": "run-44669016128.zip",
+    "bytes": 63494,
+    "sha256": "e1282d7e386ff0bbe915a5daa68b31e88a07b0de2cfa4d5f8d5ed21d9909abe0"
+  },
+  "observation_utc": "2026-11-20T04:10:31.236937+00:00"
+}

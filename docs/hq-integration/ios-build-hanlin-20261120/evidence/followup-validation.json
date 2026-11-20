@@ -1,0 +1,23 @@
+{
+  "base_sha": "366dbaafbe02bf075f935ee996cdb8c60293d67d",
+  "observed_utc": "2026-11-20T04:12:10.682815+00:00",
+  "workflow_sha256": "4c2751fffd789723ecfa68eca88d263b6165f1098766d9d8a5b04101c0db8204",
+  "new_wrapper_sha256": "26c483cf04a41d16ccde9a35767b39e31f7b59d51f891c0089024012b0ea65f5",
+  "original_authorizer_git_blob": "24598be7cfb103b104cf9b869c9a158eb5ee4909",
+  "original_authorizer_tests_executed": 4,
+  "original_authorizer_tests_passed": 4,
+  "workflow_parsed_equal_after_removing_only_two_source_dependencies_and_two_authorizer_calls": true,
+  "global_macro_validation_disabled": false,
+  "original_equatable_pin": [
+    {
+      "identity": "equatable",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/ordo-one/equatable",
+      "state": {
+        "revision": "597c2bb34af0c51331eb3b5e705f942d8ee20daa",
+        "version": "1.4.1"
+      }
+    }
+  ],
+  "AppleExecution": "PENDING_NEXT_ACTUAL_RUN"
+}
