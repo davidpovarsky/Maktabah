@@ -1,0 +1,192 @@
+{
+  "observedAtUTC": "2026-11-20T08:14:44.151807+00:00",
+  "originalRun": 44665679661,
+  "originalCheckout": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+  "originalAppSource": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "originalEvidenceCommit": "f2a4eef9004710be8040e183d8713dc28f73c2c7",
+  "originalFailures": [
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1350: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchLandscapeMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1350
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Native navigation geometry",
+      "execution_order": 11,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1350: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchPortraitMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1350
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Native navigation geometry",
+      "execution_order": 12,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad11-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"108.0\") is not equal to (\"160.0\") +/- (\"1.0\")"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1353: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateAnnotationsLandscapeMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"108.0\") is not equal to (\"160.0\") +/- (\"1.0\")"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1353
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-11.tests.json",
+      "summary_path": "artifacts/runtime27/verified-11.summary.json",
+      "first_observed_failure_bucket": "Native navigation geometry",
+      "execution_order": 9,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    },
+    {
+      "configuration_id": "ipad13-native",
+      "case_id": "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+      "status": "FAIL",
+      "failure_messages": [
+        "XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+      ],
+      "raw_locations_and_errors": [
+        {
+          "errors": [
+            "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:1350: error: -[Maktabah_iOSUITests.FaithfulReaderUIAcceptanceTests testCandidateGlobalSearchLandscapeMatchesOriginalNavigation] : XCTAssertEqualWithAccuracy failed: (\"86.0\") is not equal to (\"106.0\") +/- (\"1.0\") - A viewer-only document strip must not shift another global tab's native navigation"
+          ],
+          "locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1350
+            }
+          ]
+        }
+      ],
+      "basis": "artifacts/runtime27/verified-13.tests.json",
+      "summary_path": "artifacts/runtime27/verified-13.summary.json",
+      "first_observed_failure_bucket": "Native navigation geometry",
+      "execution_order": 4,
+      "relative_to_failed_candidate_window_case": "BEFORE",
+      "causal_limit": "Ordering does not establish that the window failure caused this later assertion."
+    }
+  ],
+  "observations": {
+    "ipad11Window": [
+      0,
+      0,
+      1210,
+      834
+    ],
+    "annotationsOriginalBar": [
+      0,
+      32,
+      1210,
+      160
+    ],
+    "annotationsEnabledBar": [
+      0,
+      32,
+      1210,
+      108
+    ],
+    "annotationsOriginalTitleY": 89.5,
+    "annotationsEnabledTitleY": 37.5,
+    "searchOriginalSidebarBar": [
+      890,
+      106,
+      320,
+      108
+    ],
+    "searchEnabledSidebarBar": [
+      890,
+      86,
+      320,
+      108
+    ],
+    "searchOriginalMainBar": [
+      0,
+      106,
+      1210,
+      106
+    ],
+    "searchEnabledMainBar": [
+      0,
+      86,
+      1210,
+      106
+    ],
+    "searchOriginalParentY": 96,
+    "searchEnabledParentY": 32,
+    "annotationsOriginalBookTitle": "ברכות",
+    "annotationsEnabledBookTitle": "Unknown Book (103)",
+    "allGeometryFailuresPrecedeCandidateWindowFailure": true
+  },
+  "causalLimits": [
+    "Observed native geometry differs; the proposed tab-bar policy repair has not executed on Apple.",
+    "Different persisted selected-tab entry and incomplete metadata readiness are plausible confounders, not proven causes.",
+    "Consecutive iPad 11 Search landscape/portrait failures mean lastSelectedTab alone does not establish a fixture-only explanation.",
+    "Source proves an unconditional parent viewer preference can flow to the enclosing TabView; it does not prove UIKit layout causality."
+  ],
+  "officialAPIReferences": [
+    {
+      "url": "https://developer.apple.com/documentation/swiftui/view/toolbarvisibility(_:for:).md",
+      "finding": "Visibility preference propagates to the nearest bar-rendering container, including TabView; argument type is Visibility; API available iOS/iPadOS 18+."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/swiftui/visibility.md",
+      "finding": "Visibility.automatic lets the accepting component determine display policy; enum available iOS/iPadOS 15+."
+    }
+  ],
+  "sourcePeerReview": {
+    "reviewer": "/root/github_native_audit",
+    "scope": "Read-only exact diff and workspaceViewerTabContent source, no compiler or Native",
+    "finding": "No concrete type/lifecycle blocker. Same selectedTab owner; active Reader visible/hidden unchanged; scroll/window/onChange guards retained. Geometry parity still requires actual Native."
+  },
+  "nativeRepairStatus": "NOT_RUN",
+  "acceptanceOracleChanges": false,
+  "fixtureChanges": false
+}
