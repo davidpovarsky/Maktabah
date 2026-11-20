@@ -1,0 +1,12 @@
+{
+  "name": "baseline-9af79f40",
+  "command": [
+    "C:\\ProgramData\\SentinelX\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\DAVID\\Code\\Maktabah-occurrence-bridge-20261120\\tools\\hq-search-tests.py",
+    "--cached-readiness-only",
+    "--cached-readiness-baseline",
+    "9af79f40"
+  ],
+  "exit": 1,
+  "seconds": 332.36
+}

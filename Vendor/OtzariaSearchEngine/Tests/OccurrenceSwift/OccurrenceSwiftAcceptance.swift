@@ -126,6 +126,48 @@ struct OccurrenceSwiftAcceptance {
             await runner.run("deadline_timer_has_no_owner_retain_cycle", category: "lifetime") {
                 try await OccurrenceLifetimeCases.timerDoesNotRetainOwner(source)
             }
+            await runner.run("repository_unopened_never_constructs_engine", category: "repository") {
+                try await OccurrenceRepositoryCases.unopened(source)
+            }
+            await runner.run("repository_uses_original_cached_engine_and_real_count", category: "repository") {
+                try await OccurrenceRepositoryCases.originalCachedEngine(source)
+            }
+            await runner.run("repository_rejects_stale_revision_and_fingerprint_before_enqueue", category: "repository") {
+                try await OccurrenceRepositoryCases.staleExpectations(source)
+            }
+            await runner.run("repository_optional_manifests_preserve_custom_readiness", category: "repository") {
+                try await OccurrenceRepositoryCases.missingManifests(source)
+            }
+            await runner.run("repository_both_manifests_revoke_old_cached_stamp", category: "repository") {
+                try await OccurrenceRepositoryCases.manifestsEnterWitness(source)
+            }
+            await runner.run("repository_oversized_manifest_has_no_fingerprint", category: "repository") {
+                try await OccurrenceRepositoryCases.oversizedManifest(source)
+            }
+            await runner.run("repository_four_source_mutations_after_real_native_count", category: "repository") {
+                try await OccurrenceRepositoryCases.postCountSourceMutation(source)
+            }
+            await runner.run("repository_invalidation_cancels_original_engine_lease", category: "repository") {
+                try await OccurrenceRepositoryCases.invalidationCancelsLease(source)
+            }
+            await runner.run("repository_capture_lock_wait_is_cancellable", category: "repository") {
+                try await OccurrenceRepositoryCases.cacheLockCancellation(source)
+            }
+            await runner.run("repository_capture_lock_wait_obeys_deadline", category: "repository") {
+                try await OccurrenceRepositoryCases.cacheLockDeadline(source)
+            }
+            await runner.run("repository_lock_wait_consumes_original_native_deadline", category: "repository") {
+                try await OccurrenceRepositoryCases.cacheWaitConsumesDeadline(source)
+            }
+            await runner.run("repository_post_count_lock_wait_is_cancellable", category: "repository") {
+                try await OccurrenceRepositoryCases.postCountLock(source, cancel: true)
+            }
+            await runner.run("repository_post_count_lock_wait_obeys_deadline", category: "repository") {
+                try await OccurrenceRepositoryCases.postCountLock(source, cancel: false)
+            }
+            await runner.run("repository_supported_ABA_revision_rejects_old_authority", category: "repository") {
+                try await OccurrenceRepositoryCases.publicationABA(source)
+            }
             await runner.run("forged_response_proofs_are_rejected", category: "decoder_adversarial") {
                 try await OccurrenceDecoderCases.tamperedProof(source)
             }

@@ -1,0 +1,161 @@
+[
+  {
+    "path": "actual42/compile.log.gz",
+    "bytes": 748,
+    "sha256Raw": "a8d7df52bd12870a865444e0191e069321a66d06c6a2f50eceb2b7bcde85aacc"
+  },
+  {
+    "path": "actual42/Package.resolved",
+    "bytes": 626,
+    "sha256Raw": "be51cadd647858233f78691590bcddcfc555acecb041eb836f462f3a9fef38df",
+    "sha256LF": "be51cadd647858233f78691590bcddcfc555acecb041eb836f462f3a9fef38df"
+  },
+  {
+    "path": "actual42/run-swift-acceptance.py.gz",
+    "bytes": 3128,
+    "sha256Raw": "64e4c5d1c6b61ee257bfad93cceabae15c875d4c1adc4b846a7f748be98d4579"
+  },
+  {
+    "path": "actual42/runtime-result.json",
+    "bytes": 7393,
+    "sha256Raw": "8d9f6fae24e320d40809bc52ab1f46f38c8a0454f690c602771599e47676e812",
+    "sha256LF": "8d9f6fae24e320d40809bc52ab1f46f38c8a0454f690c602771599e47676e812"
+  },
+  {
+    "path": "actual42/runtime.log.gz",
+    "bytes": 2568,
+    "sha256Raw": "33b54bef987846e90eee7fa98e553974e091767e18b3c8e3b1fee2edabae1d24"
+  },
+  {
+    "path": "actual42/source-snapshot/OccurrenceRepositoryCases.swift.gz",
+    "bytes": 2711,
+    "sha256Raw": "727b71e18a2f860554f5b1cc4398ede4271e5f4b95c1303c3e89d941b21692a2"
+  },
+  {
+    "path": "actual42/source-snapshot/OccurrenceRepositoryFixtures.swift.gz",
+    "bytes": 2230,
+    "sha256Raw": "524ab900af015ccbfd9ca4ccf1f3e2748f01eed0b533c3b6f608389f0c928840"
+  },
+  {
+    "path": "actual42/source-snapshot/OccurrenceSwiftAcceptance.swift.gz",
+    "bytes": 2674,
+    "sha256Raw": "a75044ef6c8207f4a74747108a177312a7b7585dc91cc0f92d73cead28979570"
+  },
+  {
+    "path": "actual42/source-snapshot/OccurrenceSwiftFixtures.swift.gz",
+    "bytes": 2443,
+    "sha256Raw": "071ce06b9d58399494af7ef48aa329db21b4dae16cb2fcce61d935ea79f76e57"
+  },
+  {
+    "path": "actual42/source-snapshot/OccurrenceSwiftLifetimeCases.swift.gz",
+    "bytes": 2796,
+    "sha256Raw": "8ec6c2e96424440bebb19546a7406505e8c1e1a949d1c854c6f3a21897d8cdc2"
+  },
+  {
+    "path": "actual42/source-snapshot/OccurrenceSwiftNativeCases.swift.gz",
+    "bytes": 3165,
+    "sha256Raw": "2f232fce69fbb3299c304bf47cc8448d3746fd7fe8c5b711b0fad96aecb8771a"
+  },
+  {
+    "path": "actual42/source-snapshot/OtzariaExactOccurrenceModels.swift.gz",
+    "bytes": 3035,
+    "sha256Raw": "d53144063160f6a813084b8d865caaa58afbd8ffc59d2433059db8e735308aa7"
+  },
+  {
+    "path": "actual42/source-snapshot/OtzariaExactOccurrenceOperation.swift.gz",
+    "bytes": 2189,
+    "sha256Raw": "c9e92a5ca2aba72c2232d5a6436c56dce5a0d86db36241811a601ce745431a16"
+  },
+  {
+    "path": "actual42/source-snapshot/OtzariaSearchEngineBridge.swift.gz",
+    "bytes": 4775,
+    "sha256Raw": "cc9137e1462d75950abe5e77158628ecb1243761f3e952efc0ba6ea38f84d3bb"
+  },
+  {
+    "path": "actual42/source-snapshot/OtzariaSearchMode.swift.gz",
+    "bytes": 319,
+    "sha256Raw": "fc560aa6aad48d6261d14ab45fb784c8d59dd89c5f9bb7cdab39396a8d73d9f2"
+  },
+  {
+    "path": "actual42/source-snapshot/OtzariaSearchModels.swift.gz",
+    "bytes": 4385,
+    "sha256Raw": "1aa79082c28a7bca410287a13ba2db2ff8e8e9e62a27b1469a3bb11c4cb60313"
+  },
+  {
+    "path": "actual42/source-snapshot/OtzariaTantivySearchRepository.swift.gz",
+    "bytes": 4964,
+    "sha256Raw": "157c2602a90a7c9d89354a6e9eca5440d4ba56aaa3217365c4f57926eaf96ccc"
+  },
+  {
+    "path": "actual42/verification.json",
+    "bytes": 13960,
+    "sha256Raw": "6390b7e0da05b30226d454ee3aff9938ba87510c93f99e6d9c78683485c1e863",
+    "sha256LF": "b76fabf120f3c75bd3607d9c799057b0c70aae2b35d2a038a74d1bcf9ff51fb1"
+  },
+  {
+    "path": "readiness25/baseline-9af79f40.json",
+    "bytes": 337,
+    "sha256Raw": "33317b009de0dac627023110819c291e0facf63f4d43e6e004bed613a1825257",
+    "sha256LF": "2b021d51b3cb70a51a1b886904f66675dec067bd3bf66383370d55f904e5986f"
+  },
+  {
+    "path": "readiness25/baseline-9af79f40.log.gz",
+    "bytes": 832,
+    "sha256Raw": "3ce30491995e631177f6f3c1785c080b03b615d38da696bfb4f4ae06cb5f94f3"
+  },
+  {
+    "path": "readiness25/baseline-repository.swift.gz",
+    "bytes": 3226,
+    "sha256Raw": "1971a2ae5a2757bb78830428c34c3b79220b98197fccff40156ad39bb59f7907"
+  },
+  {
+    "path": "readiness25/CachedIndexReadinessFixtures.swift.gz",
+    "bytes": 2948,
+    "sha256Raw": "f1bb7f7178750d3a4dfcbd53348a583e13e4d2259de4d1af266399dc4907ac61"
+  },
+  {
+    "path": "readiness25/candidate-repository.swift.gz",
+    "bytes": 4964,
+    "sha256Raw": "157c2602a90a7c9d89354a6e9eca5440d4ba56aaa3217365c4f57926eaf96ccc"
+  },
+  {
+    "path": "readiness25/candidate.json",
+    "bytes": 277,
+    "sha256Raw": "a34e4e631e8b2aa2d7d216d9fa362097843739fe675b4b34f08fc1a7a64ba427",
+    "sha256LF": "e2babcb0d623bbd224d30d4123fb503daec5aba15ab4798afe56e8df7e7639c4"
+  },
+  {
+    "path": "readiness25/candidate.log.gz",
+    "bytes": 876,
+    "sha256Raw": "0c04107e5d8fabd4dcd9461eff76fcc1f81627960d6ea6e57791907da5b9463a"
+  },
+  {
+    "path": "readiness25/hq-search-tests.py.gz",
+    "bytes": 2559,
+    "sha256Raw": "c3a7839ffc200a8679c8d7c473e13b81dc5c422784929e1e1a7933f215a81d1f"
+  },
+  {
+    "path": "readiness25/source-audit.json",
+    "bytes": 550,
+    "sha256Raw": "ef59d8cd45308972fa21d0a8cee5a2267029b23330911cfcab443fe19f4e286a",
+    "sha256LF": "cf09273428bfaf02cde8bf6ce95d85a23b029e8dcfe32c1d3940da4d8af5200e"
+  },
+  {
+    "path": "readiness25/summary.json",
+    "bytes": 875,
+    "sha256Raw": "bf205c301c611463fee01ffbb81258472b203e469c6bc4110d5e8bf3ff988171",
+    "sha256LF": "3a6236f7a83f241206a9b328eb9e2aba70b1e8af6d5d648296cc1ffad22cd616"
+  },
+  {
+    "path": "sentinel-jobs.json",
+    "bytes": 8468,
+    "sha256Raw": "826983d167958ab7ee194bf000ed227950e041afdc6b6f30ca558dcc983b085b",
+    "sha256LF": "826983d167958ab7ee194bf000ed227950e041afdc6b6f30ca558dcc983b085b"
+  },
+  {
+    "path": "summary.json",
+    "bytes": 2186,
+    "sha256Raw": "e0fe8e667809e34e998a5a2ba0cede8ebbb60b8183a7e2762f5fde4b0a07e423",
+    "sha256LF": "e0fe8e667809e34e998a5a2ba0cede8ebbb60b8183a7e2762f5fde4b0a07e423"
+  }
+]

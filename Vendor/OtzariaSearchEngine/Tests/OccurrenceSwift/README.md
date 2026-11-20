@@ -1,5 +1,7 @@
 # Exact occurrence Swift bridge — source and runtime acceptance
 
+The original Bridge tranche below was committed as `9af79f40`. The current runner also includes the cached repository lease: **42/42 actual whole-Repository/Bridge/C/Rust cases**, with **25/25 separate portable readiness assertions** after an exact old-source baseline of **19 PASS / 6 FAIL**. See [REPOSITORY.md](REPOSITORY.md) and `evidence/repository/summary.json` for that additive tranche and its limits.
+
 This tranche adds a typed asynchronous entry to the original `OtzariaSearchEngineBridge`. It calls the actual C occurrence API from Maktabah `99f7927e4da72f2463417f5c2de2c4d20c6aa168`, linked to the pristine owned-engine commit `d5d59d1269bdf87fb0a6901cf31941726a0c699b`. It does not implement another analyzer or count text in Swift.
 
 ## Scope and API
@@ -58,7 +60,7 @@ All following records are preserved under `evidence/`.
 | Whole-Bridge attempt 2 | Compile/link/runtime exit 0; **28/28** | Complete current runtime suite; includes the same initial 17 |
 | Final driver pin enforcement | Syntax and existing exact lock comparison passed | Driver-only reproducibility tightening after attempt 2; runtime production bytes unchanged |
 
-Attempt 2 was SentinelX job `job_64c8a4e98004`, 2026-11-20 02:56:16–03:01:52 UTC. Attempt 1 was `job_4f44790f62d8`. There are **28 unique current cases**, not 45.
+Attempt 2 was SentinelX job `job_64c8a4e98004`, 2026-11-20 02:56:16–03:01:52 UTC. Attempt 1 was `job_4f44790f62d8`. There are **28 unique Bridge-tranche cases**, not 45; they are included in the expanded 42-case repository run.
 
 The complete suite covers actual legacy Bridge calls, two positions versus one document, original Hebrew normalization and prefix exclusion, original book/facet scopes, byte-distinct Unicode scopes, actual deleted postings and snapshot proof, zero matches, unsupported query shapes, all work budgets, expired deadlines, mismatched source, oversized JSON, and strict typed bounds. Adversarial decoder cases are separately labelled and do not count as independent engine or corpus oracles.
 
@@ -87,7 +89,7 @@ Use the existing real C static-library build record from `Tests/OccurrenceFFI` a
 python Vendor/OtzariaSearchEngine/Tests/OccurrenceSwift/run-swift-acceptance.py \
   --build-record <actual-staticlib-build.json> \
   --native-library-dir <windows_x86_64_msvc-0.52.6/lib> \
-  --output <owned-evidence-directory> --expected-cases 28
+  --output <owned-evidence-directory> --expected-cases 42
 ```
 
 The driver verifies the real library hash, truthful source manifest, pristine engine checkout, exact source copies, immutable dependency pins, runtime exit/case count, and unchanged source/library/checkouts after execution. It preserves compile/runtime logs and result JSON. The test-only MSVC link excludes clang's injected static CRT `libcmt` while using the actual Rust-emitted native libraries and `msvcrt`; this is the same verified link arrangement as the external C consumer.

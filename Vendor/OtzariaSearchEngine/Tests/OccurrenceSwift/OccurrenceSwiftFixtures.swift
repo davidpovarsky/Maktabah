@@ -4,8 +4,8 @@ struct OccurrenceTestFailure: Error, CustomStringConvertible, Sendable {
     let description: String
 }
 
-func requireOccurrence(_ condition: @autoclosure () -> Bool, _ message: String) throws {
-    if !condition() { throw OccurrenceTestFailure(description: message) }
+func requireOccurrence(_ condition: Bool, _ message: String) throws {
+    if !condition { throw OccurrenceTestFailure(description: message) }
 }
 
 /// Every index path is created here; there is no caller/user index parameter.

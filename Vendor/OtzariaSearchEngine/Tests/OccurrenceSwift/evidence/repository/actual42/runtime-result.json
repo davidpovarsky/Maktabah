@@ -1,0 +1,264 @@
+{
+  "AppleSDK" : "NOT_RUN",
+  "NativeUI" : "NOT_RUN",
+  "cases" : [
+    {
+      "category" : "dependency",
+      "name" : "official_crypto_known_SHA256",
+      "passed" : true,
+      "seconds" : 0.010179519653320312
+    },
+    {
+      "category" : "original_engine",
+      "name" : "whole_bridge_legacy_and_two_positions_one_document",
+      "passed" : true,
+      "seconds" : 0.5668239593505859
+    },
+    {
+      "category" : "original_engine",
+      "name" : "original_hebrew_analyzer_and_prefix_exclusion",
+      "passed" : true,
+      "seconds" : 0.40410423278808594
+    },
+    {
+      "category" : "original_engine",
+      "name" : "original_book_and_facet_dimensions",
+      "passed" : true,
+      "seconds" : 1.08966064453125
+    },
+    {
+      "category" : "original_engine",
+      "name" : "byte_exact_unicode_scope_identity",
+      "passed" : true,
+      "seconds" : 0.8073406219482422
+    },
+    {
+      "category" : "original_engine",
+      "name" : "actual_deleted_postings_and_snapshot",
+      "passed" : true,
+      "seconds" : 1.2238636016845703
+    },
+    {
+      "category" : "original_engine",
+      "name" : "authoritative_zero_matches",
+      "passed" : true,
+      "seconds" : 0.42453765869140625
+    },
+    {
+      "category" : "original_engine",
+      "name" : "empty_and_multiple_tokens_are_unsupported",
+      "passed" : true,
+      "seconds" : 0.5464572906494141
+    },
+    {
+      "category" : "original_engine",
+      "name" : "all_original_work_budgets_return_no_scalar",
+      "passed" : true,
+      "seconds" : 0.6268081665039062
+    },
+    {
+      "category" : "lifetime",
+      "name" : "already_elapsed_deadline_returns_no_scalar",
+      "passed" : true,
+      "seconds" : 0.3875083923339844
+    },
+    {
+      "category" : "source_validation",
+      "name" : "compiled_source_mismatch_cannot_enqueue",
+      "passed" : true,
+      "seconds" : 0.3614330291748047
+    },
+    {
+      "category" : "input_validation",
+      "name" : "oversized_json_envelope_cannot_enqueue",
+      "passed" : true,
+      "seconds" : 0.5827693939208984
+    },
+    {
+      "category" : "lifetime",
+      "name" : "cancel_before_continuation_registration",
+      "passed" : true,
+      "seconds" : 0.001827239990234375
+    },
+    {
+      "category" : "lifetime",
+      "name" : "precancelled_task_cannot_enqueue",
+      "passed" : true,
+      "seconds" : 0.4135856628417969
+    },
+    {
+      "category" : "lifetime",
+      "name" : "queued_cancellation_returns_before_queue_release",
+      "passed" : true,
+      "seconds" : 0.33556556701660156
+    },
+    {
+      "category" : "lifetime",
+      "name" : "queued_deadline_returns_before_queue_release",
+      "passed" : true,
+      "seconds" : 0.6022357940673828
+    },
+    {
+      "category" : "lifetime",
+      "name" : "cancellation_isolated_from_other_queued_request",
+      "passed" : true,
+      "seconds" : 0.40343666076660156
+    },
+    {
+      "category" : "lifetime",
+      "name" : "cancelled_queued_capacity_retained_then_recovers",
+      "passed" : true,
+      "seconds" : 1.0061264038085938
+    },
+    {
+      "category" : "lifetime",
+      "name" : "close_cancels_before_queue_sync",
+      "passed" : true,
+      "seconds" : 0.31616783142089844
+    },
+    {
+      "category" : "lifetime",
+      "name" : "concurrent_close_revokes_completed_native_count",
+      "passed" : true,
+      "seconds" : 0.5622425079345703
+    },
+    {
+      "category" : "lifetime",
+      "name" : "own_queue_close_does_not_self_sync",
+      "passed" : true,
+      "seconds" : 0.43902587890625
+    },
+    {
+      "category" : "lifetime",
+      "name" : "final_engine_retain_released_on_original_queue",
+      "passed" : true,
+      "seconds" : 0.3269519805908203
+    },
+    {
+      "category" : "lifetime",
+      "name" : "deadline_timer_has_no_owner_retain_cycle",
+      "passed" : true,
+      "seconds" : 0.41352081298828125
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_unopened_never_constructs_engine",
+      "passed" : true,
+      "seconds" : 0.4644145965576172
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_uses_original_cached_engine_and_real_count",
+      "passed" : true,
+      "seconds" : 2.2253341674804688
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_rejects_stale_revision_and_fingerprint_before_enqueue",
+      "passed" : true,
+      "seconds" : 2.2439842224121094
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_optional_manifests_preserve_custom_readiness",
+      "passed" : true,
+      "seconds" : 2.3311767578125
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_both_manifests_revoke_old_cached_stamp",
+      "passed" : true,
+      "seconds" : 6.679481506347656
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_oversized_manifest_has_no_fingerprint",
+      "passed" : true,
+      "seconds" : 2.301309585571289
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_four_source_mutations_after_real_native_count",
+      "passed" : true,
+      "seconds" : 12.125968933105469
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_invalidation_cancels_original_engine_lease",
+      "passed" : true,
+      "seconds" : 2.694437026977539
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_capture_lock_wait_is_cancellable",
+      "passed" : true,
+      "seconds" : 3.0793914794921875
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_capture_lock_wait_obeys_deadline",
+      "passed" : true,
+      "seconds" : 3.9268741607666016
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_lock_wait_consumes_original_native_deadline",
+      "passed" : true,
+      "seconds" : 5.030275344848633
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_post_count_lock_wait_is_cancellable",
+      "passed" : true,
+      "seconds" : 3.7029953002929688
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_post_count_lock_wait_obeys_deadline",
+      "passed" : true,
+      "seconds" : 5.076194763183594
+    },
+    {
+      "category" : "repository",
+      "name" : "repository_supported_ABA_revision_rejects_old_authority",
+      "passed" : true,
+      "seconds" : 4.750648498535156
+    },
+    {
+      "category" : "decoder_adversarial",
+      "name" : "forged_response_proofs_are_rejected",
+      "passed" : true,
+      "seconds" : 0.5222091674804688
+    },
+    {
+      "category" : "decoder_adversarial",
+      "name" : "UInt64_identifiers_do_not_round_through_double",
+      "passed" : true,
+      "seconds" : 0.5996341705322266
+    },
+    {
+      "category" : "decoder_adversarial",
+      "name" : "native_error_messages_are_not_exposed",
+      "passed" : true,
+      "seconds" : 0.0278167724609375
+    },
+    {
+      "category" : "input_validation",
+      "name" : "typed_request_bounds",
+      "passed" : true,
+      "seconds" : 0.000583648681640625
+    },
+    {
+      "category" : "fixture",
+      "name" : "owned_fixture_cleanup",
+      "passed" : true,
+      "seconds" : 2.4390735626220703
+    }
+  ],
+  "failed" : 0,
+  "originalUserPathDiagnostics" : "NOT_RUN",
+  "passed" : 42,
+  "platform" : "Windows Swift 6.3.3 + real C + original Rust",
+  "sourceCommit" : "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+  "wholeOriginalBridge" : true
+}
