@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "observedAt": "2026-11-20T11:37:00.645999+00:00",
+  "base": "3bc062fed639d0213dfb30c87cb35bd71ac80bcb",
+  "wholeOriginalFileBytesReconstructed": true,
+  "mutationsLimitedToExplicitDEBUGInsertionsAndCaseKindAllowlist": true,
+  "debugStacks": {
+    "probeKind": [
+      "#if os(iOS)",
+      "#if DEBUG"
+    ],
+    "functions": [
+      "#if os(iOS)",
+      "#if DEBUG"
+    ],
+    "dispatch": [
+      "#if os(iOS)",
+      "#if DEBUG"
+    ]
+  },
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "baseGitBlobSHA256": "16ee95adee837798843414dccc07ce2c5152e4ca2c70653585ac7a088882294e",
+      "candidateSHA256": "5dd52bedc07c0338df5f6995fd744706d45ac3821713fd141c58494bdc5369c0",
+      "bytes": 140471,
+      "rawCRLFCount": 0
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "baseGitBlobSHA256": "7e3e255c7aeb208a4ff0e4fb9641feaa39fa87321b3cd0f591faac77c6ae3e8b",
+      "candidateSHA256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f",
+      "bytes": 45049,
+      "rawCRLFCount": 0
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "baseGitBlobSHA256": "90a34895607e98f05b7cee448d7d96c17ee463a568f31b7fe3ebb3cd0ed4d11d",
+      "candidateSHA256": "bc9c330ba8c60153ab2fff3d355c3e41e82077ad512452e632b91c6d39a637ec",
+      "bytes": 160036,
+      "rawCRLFCount": 0
+    }
+  ],
+  "originalDeclaredTestsInThisFile": 50,
+  "candidateDeclaredTestsInThisFile": 56,
+  "newCases": [
+    "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+    "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+    "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+    "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+    "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone"
+  ],
+  "appleTypecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "coreRerun": "NOT_RUN_UNCHANGED",
+  "gitStatus": " M Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift\n M Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift\n M Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift\n"
+}

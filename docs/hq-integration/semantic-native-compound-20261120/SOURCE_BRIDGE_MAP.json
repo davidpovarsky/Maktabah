@@ -1,0 +1,39 @@
+{
+  "sourceCommit": "a4200ee4b08b3c2013284d7e128b7dc0c9c4ddc1",
+  "scope": "Source-only mapping of original TOC/catalog identity; no live Native execution",
+  "files": [
+    {
+      "path": "Source/Otzaria/App/OtzariaAppContainer.swift",
+      "gitSHA256": "4cea2cf3f54cd81bae51a79ab9fc0e2f83e9ea1f1823c15f3252122e94e4690b",
+      "spans": [
+        {
+          "firstLine": 725,
+          "lastLine": 750,
+          "source": "    func getTOCEntries(for book: BooksData) -> [TOC] {\n        lock.lock()\n        defer { lock.unlock() }\n        guard let db = try? requireDatabase() else { return [] }\n        guard let schema = try? OtzariaTOCSchemaCompatibility.projection(in: db) else { return [] }\n\n        return (try? db.fetch(query: \"\"\"\n            SELECT te.id, te.parentId, te.level, COALESCE(\\(schema.resolvedLineIndex), 0) AS resolvedLineIndex, tt.text\n            FROM tocEntry te\n            JOIN tocText tt ON tt.id = te.textId\n            LEFT JOIN line ln ON ln.id = te.lineId\n            WHERE te.bookId = ?\n            ORDER BY resolvedLineIndex, te.id\n        \"\"\", parameters: [book.id]) { row -> TOC in\n            TOC(\n                bab: (row.string(at: 4) ?? \"\").otsariaPlainText,\n                level: max(row.int(at: 2), 1),\n                sub: 0,\n                id: row.int(at: 3),\n                parentId: row.isNull(at: 1) ? nil : row.int(at: 1),\n                entryId: row.int(at: 0)\n            )\n        }) ?? []\n    }\n\n    func search("
+        }
+      ]
+    },
+    {
+      "path": "Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift",
+      "gitSHA256": "5a42c4d09d55207eab25d0690c4125da0899037741ecdb12f13e27b92e8b42fc",
+      "spans": [
+        {
+          "firstLine": 225,
+          "lastLine": 266,
+          "source": "        }\n        return TextLocator(backend: .otzaria, workKey: \"book:\\(bookID)\", position: .legacyLine(line))\n    }\n\n    func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {\n        #if os(iOS)\n        let bookID: Int?\n        if work.locator.workKey.hasPrefix(\"book:\"),\n           let parsed = Int(work.locator.workKey.dropFirst(\"book:\".count)) {\n            bookID = parsed\n        } else if let parsed = Int(work.locator.workKey) {\n            bookID = parsed\n        } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: work.locator.workKey, expectedBookId: 0) {\n            bookID = resolved.id\n        } else {\n            bookID = nil\n        }\n        guard let bookID,\n              let book = try OtzariaMaktabahBridge.shared.fetchBook(byId: bookID) else { return [] }\n        let entries = OtzariaMaktabahBridge.shared.getTOCEntries(for: book)\n        let entryIds = Set(entries.map { $0.entryId })\n        \n        var childrenByParentId: [Int: [TOC]] = [:]\n        var rootEntries: [TOC] = []\n        \n        for entry in entries {\n            if let parentId = entry.parentId, entryIds.contains(parentId) {\n                childrenByParentId[parentId, default: []].append(entry)\n            } else {\n                rootEntries.append(entry)\n            }\n        }\n        \n        func buildNode(for entry: TOC) -> LibraryTOCNode {\n            let childEntries = childrenByParentId[entry.entryId] ?? []\n            let children = childEntries.map { buildNode(for: $0) }\n            let locator = TextLocator(backend: .otzaria, workKey: work.locator.workKey,\n                position: .legacyLine(entry.id))\n            return LibraryTOCNode(locator: locator, title: entry.bab, children: children)\n        }\n        \n        return rootEntries.map { buildNode(for: $0) }"
+        }
+      ]
+    },
+    {
+      "path": "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift",
+      "gitSHA256": "bd78a3f63e300164551411227835e108923729bbd83ed82cfea05e0e5d3dd433",
+      "spans": [
+        {
+          "firstLine": 99,
+          "lastLine": 156,
+          "source": "    static func sourceSections(_ roots: [LibraryTOCNode], invocation: ActionPortInvocation) throws -> [ActionSourceSectionEntry] {\n        guard roots.count <= 100_000 else { throw ActionPortError.unavailable }\n        var pending = roots.reversed().map { ($0, 0) }\n        var entries: [ActionSourceSectionEntry] = []\n        while let (node, depth) = pending.popLast() {\n            try ActionBackendInvocationGuard.check(invocation, current: invocation.snapshot, target: invocation.snapshot.backend)\n            guard depth <= 64, entries.count + pending.count + 1 <= 100_000,\n                  node.children.count <= 100_000 - entries.count - pending.count - 1 else {\n                throw ActionPortError.unavailable\n            }\n            entries.append(.init(locator: try ActionAppIdentityBridge.actionRef(node.locator), title: node.title))\n            pending.append(contentsOf: node.children.reversed().map { ($0, depth + 1) })\n        }\n        return entries\n    }\n\n    static func searchPage(_ page: LibrarySearchPage, query: ActionSearchQuery, works: [LibraryWork]) throws -> ActionSearchPage {\n        guard page.hits.count <= query.limit, page.total >= 0 else { throw ActionPortError.invalidResponse }\n        if let next = page.nextOffset {\n            guard next > query.offset, !page.hits.isEmpty else { throw ActionPortError.invalidResponse }\n        }\n        // The Embedded JS facade can synthesize an empty array/count on invalid\n        // upstream data. Until it exposes provenance, this is not verified zero.\n        if let source = page.sourceEvidence {\n            guard ActionAppIdentityBridge.actionBackend(source.backend) == query.backend,\n                  source.allRowsMapped, source.rawHitCount == page.hits.count else { throw ActionPortError.invalidResponse }\n        }\n        if query.backend == .sefaria, page.hits.isEmpty {\n            guard let source = page.sourceEvidence, source.rawHitCount == 0,\n                  source.totalRelation == \"eq\", page.total <= query.offset, page.nextOffset == nil else {\n                throw ActionPortError.unavailable\n            }\n        } else if query.backend == .sefariaEmbedded, page.hits.isEmpty {\n            throw ActionPortError.unavailable\n        }\n        let allowed = Set(query.scopeWorkRefs.map(\\.workKey))\n        var seen = Set<String>()\n        let hits = try page.hits.compactMap { hit -> ActionSearchHit? in\n            let ref = try ActionAppIdentityBridge.actionRef(hit.locator)\n            if case .canonicalRef(let value) = ref.position {\n                guard value == ref.workKey || value.hasPrefix(ref.workKey + \" \") || value.hasPrefix(ref.workKey + \", \") else {\n                    throw ActionPortError.invalidResponse\n                }\n            }\n            guard ref.backend == query.backend, allowed.isEmpty || allowed.contains(ref.workKey) else {\n                throw ActionPortError.invalidResponse\n            }\n            let titles = works.filter { $0.locator.workKey == ref.workKey }\n            guard !titles.isEmpty else { throw ActionPortError.invalidResponse }\n            guard seen.insert(hit.id).inserted else { return nil }\n            return ActionSearchHit(id: hit.id, locator: ref, title: titles[0].heTitle ?? titles[0].title, snippet: hit.snippet)\n        }\n        // Preserve the actual provider cursor. Its aggregate total is not an\n        // occurrence count, and LibrarySearchPage does not expose exactness.\n        return .init(hits: hits, total: page.total, precision: .unknown,\n                     totalSemantics: .matchingSegments, nextOffset: page.nextOffset)\n    }\n}"
+        }
+      ]
+    }
+  ]
+}

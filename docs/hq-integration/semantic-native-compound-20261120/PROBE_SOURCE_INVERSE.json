@@ -1,0 +1,13 @@
+{
+  "base": "3bc062fed639d0213dfb30c87cb35bd71ac80bcb",
+  "sourceOnly": true,
+  "wholeOriginalBodiesPreserved": true,
+  "before": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "16ee95adee837798843414dccc07ce2c5152e4ca2c70653585ac7a088882294e",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "7e3e255c7aeb208a4ff0e4fb9641feaa39fa87321b3cd0f591faac77c6ae3e8b"
+  },
+  "after": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "5eb3a3629d4634d16a9c14e697e4aeaa8ea5c8c62404ed611e8250437db7e455",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f"
+  }
+}

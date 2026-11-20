@@ -1,0 +1,21 @@
+{
+  "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "sql": "SELECT te.id,te.bookId,b.title,tt.text,src.id,src.lineIndex,l.id,l.targetBookId,t.title,l.targetLineId,dst.lineIndex,\n(SELECT count(*) FROM link l2 WHERE l2.sourceLineId=l.sourceLineId AND l2.targetBookId=l.targetBookId AND l2.connectionTypeId=l.connectionTypeId) AS sameWorkTargets\nFROM tocEntry te JOIN tocText tt ON tt.id=te.textId JOIN book b ON b.id=te.bookId\nJOIN line src ON src.id=te.lineId JOIN link l ON l.sourceLineId=src.id AND l.sourceBookId=te.bookId\nJOIN connection_type ct ON ct.id=l.connectionTypeId JOIN book t ON t.id=l.targetBookId\nJOIN line dst ON dst.id=l.targetLineId\nWHERE upper(ct.name)='COMMENTARY' AND NOT EXISTS(SELECT 1 FROM link_suppressed_side s WHERE s.linkId=l.id AND s.side=0)\nORDER BY te.bookId,src.lineIndex,l.id LIMIT 25",
+  "columns": [
+    "id",
+    "bookId",
+    "title",
+    "text",
+    "id",
+    "lineIndex",
+    "id",
+    "targetBookId",
+    "title",
+    "targetLineId",
+    "lineIndex",
+    "sameWorkTargets"
+  ],
+  "rows": [],
+  "observedAt": "2026-11-20T11:16:41.570743+00:00",
+  "readOnly": true
+}

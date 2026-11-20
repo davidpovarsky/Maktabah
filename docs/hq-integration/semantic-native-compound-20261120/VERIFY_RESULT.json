@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python",
+    "C:\\Users\\DAVID\\Code\\Maktabah-semantic-compound-20261120\\docs\\hq-integration\\semantic-native-compound-20261120\\verify-source.py"
+  ],
+  "exitCode": 0,
+  "observedAt": "2026-11-20T11:45:47.841144+00:00",
+  "stdout": "{\n  \"status\": \"PASS_SOURCE_AND_RECORDED_EVIDENCE_ONLY\",\n  \"sealedFiles\": 48,\n  \"sourceCommit\": \"a4200ee4b08b3c2013284d7e128b7dc0c9c4ddc1\",\n  \"originalDeclarations\": 50,\n  \"candidateDeclarations\": 56,\n  \"newNativeDeclarations\": 6,\n  \"nativeExecuted\": 0,\n  \"appleTypecheck\": \"NOT_RUN\"\n}\n",
+  "stderr": "",
+  "scope": "Source/recorded-evidence verification only"
+}

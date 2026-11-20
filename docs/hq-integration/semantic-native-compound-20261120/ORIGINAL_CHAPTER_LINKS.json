@@ -1,0 +1,14 @@
+{
+  "chapterCoverage": {
+    "sql": "SELECT c.*,l.targetBookId,t.name FROM link_coverage c JOIN link l ON l.id=c.linkId JOIN connection_type t ON t.id=l.connectionTypeId WHERE c.lineId=15827",
+    "rows": []
+  },
+  "chapterOutgoing": {
+    "sql": "SELECT l.*,t.name FROM link l JOIN connection_type t ON t.id=l.connectionTypeId WHERE l.sourceLineId=15827",
+    "rows": []
+  },
+  "chapterIncoming": {
+    "sql": "SELECT l.id,l.sourceBookId,l.sourceLineId,t.name FROM link l JOIN connection_type t ON t.id=l.connectionTypeId WHERE l.targetLineId=15827",
+    "rows": []
+  }
+}
