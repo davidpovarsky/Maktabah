@@ -264,9 +264,9 @@ final class CloudKitCoreManager: Sendable {
     /// Wrapper modern berbasis async/await untuk dipanggil langsung dari konteks `actor` atau Task.
     func upload(records: [CKRecord]) async throws {
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, any Error>) in
-            upload(records: records) { result in
+            upload(records: records, completion: { result in
                 continuation.resume(with: result)
-            }
+            })
         }
     }
 
