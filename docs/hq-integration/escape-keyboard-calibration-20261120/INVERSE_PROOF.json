@@ -1,0 +1,15 @@
+{
+  "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+  "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+  "base_blob": "26ddbe5bbd20d759424bf253756e9c755ba50a58",
+  "base_sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f",
+  "candidate_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+  "candidate_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+  "whole_file_inverse_exact": true,
+  "changed_regions": 2,
+  "product_source_changed": false,
+  "existing_input_oracle_deadline_statements_changed": false,
+  "swift_parse": "NOT_RUN",
+  "apple_typecheck": "NOT_RUN",
+  "native_executions": 0
+}

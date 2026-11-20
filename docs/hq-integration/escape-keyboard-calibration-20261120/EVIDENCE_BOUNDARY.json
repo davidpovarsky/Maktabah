@@ -1,0 +1,60 @@
+{
+  "historical_release": {
+    "run": 44723918854,
+    "attempt": 1,
+    "conclusion": "FAILURE",
+    "head": "60a57972acb28739ec738565083bf17fb7503028",
+    "application": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8"
+  },
+  "pointer_keyboard_case": {
+    "case_id": "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal",
+    "status": "FAIL",
+    "pid": 85512,
+    "observed": "XCTest synthesized the requested Escape toward the same application; the original palette disappearance assertion timed out at 15 seconds.",
+    "trace": "Existing opt-in trace observed a first-responder field in the foreground key window with the callback present, but no logged Escape handler or dismiss entry. The trace limit was not reached.",
+    "not_proved": "The private synthesized keyPhase/keyCode fields do not establish UIKit delivery or a responder-phase cause. Async persisted log timestamps are not dispatch latency."
+  },
+  "synthesized_event": {
+    "member": "visual-11/D80AC0AA-8946-45F0-91D3-D669C43663CA",
+    "bytes": 1765,
+    "sha256": "371bf2fe87e8904c25a43edf86cdd97194cde78319246bb6a2e6ec7cad082645"
+  },
+  "video": {
+    "member": "visual-11/2C13E821-26A3-4178-B3F3-A8C86797F2C7.mp4",
+    "bytes": 6036392,
+    "sha256": "ae1489db0aa300317220abd9f99611b0333d5c976d8f5011f5621b6a8e14b3df",
+    "observed": "The original palette and input remain visible in late frames; viewing derivatives honor the original display matrix and are not acceptance images."
+  },
+  "same_binary_hid_comparison": {
+    "case_id": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "whole_case_status": "FAIL",
+    "pid": 46166,
+    "observed_stage_only": "The original authenticated HID Escape was followed by both actual palette/input disappearance assertions and the dismissed attachment; the case later failed the original StudyTools overflow assertion.",
+    "does_not_establish": "Success of the XCTest typeKey transport or equivalence of the cases' window/query conditions."
+  },
+  "calibration": {
+    "case_id": "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+    "retained_execution": "NOT_OBSERVED",
+    "searched_files": 325,
+    "searched_uncompressed_bytes": 171106900,
+    "search_scope": "Accessible retained logs/testnodes/summary files described in the retained search inventory; not an exhaustive remote run-history query.",
+    "source_declaration_is_not_execution": true
+  },
+  "raw_evidence_links": {
+    "release_result_packet": "../release96-44723918854-20261120/README.md",
+    "authenticated_capture_packet": "../release96-capture-result-44783201113-20261120/README.md",
+    "capture_processor_run": 44783201113,
+    "capture_processor_native_executions": 0,
+    "capture_output_artifact": 14652429659,
+    "capture_output_sha256": "0715dcfc3e64e39bd1c549201951185928f93622807fb25947fa217fcbda277b"
+  },
+  "this_candidate": {
+    "product_behavior_change": false,
+    "input_oracle_deadline_change": false,
+    "swift_parse": "NOT_RUN",
+    "apple_typecheck": "NOT_RUN",
+    "native_executions": 0,
+    "root_cause": "UNPROVEN",
+    "previous_failures_reclassified": false
+  }
+}

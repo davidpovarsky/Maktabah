@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "bytes": 32077,
+      "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+      "git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/EVIDENCE_BOUNDARY.json",
+      "bytes": 3176,
+      "sha256": "922b7fd62207dddcb5b61a13294993b04e2ea051f4d152659094e72c8ded0159",
+      "git_blob": "edf99bbf811f4d91f19143193b8b83f45398dbcf"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/EXACT_EDIT.json",
+      "bytes": 1054,
+      "sha256": "31ebf81a5771757da52da2c45e53ce914570703855be97a91e4444ab1de0b4eb",
+      "git_blob": "baa828bdee9734410324c81422d816675db16919"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/INVERSE_PROOF.json",
+      "bytes": 680,
+      "sha256": "e21ffaf1cab4399db02ef7be99fdbcfd88c3af26b375f0f83aec54637e5a3108",
+      "git_blob": "390ca76a18d51aa04494e3be2ed01a1b80a4f942"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/PROPOSED.patch",
+      "bytes": 1125,
+      "sha256": "dbac71358202dc3b06e81c678bbdc9e4b0e2411114a48e00ee0678bccd347a70",
+      "git_blob": "3c696723c1afe1a89019d3473c6456220f2194be"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/README.md",
+      "bytes": 5387,
+      "sha256": "b203ef5ccfd9e01d7509391da8fe09567354d30462784956887cf60aaa065a93",
+      "git_blob": "e0b6710ca012638db349bd526ff31dcf98018a84"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/SELECTION_PROPOSAL.json",
+      "bytes": 3185,
+      "sha256": "dce2d8be321aa0688c7944b90b6a8e6beaef0e372afe42fd512f29b9fc95f2fe",
+      "git_blob": "308d36e143b66c48d0a7c856cb0bfcd8dc80508c"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/SOURCE_AUTHORITY.json",
+      "bytes": 2842,
+      "sha256": "ae22b9cc459dd07224caf7b0f81e9c33d0872b2f6b46a8a0ae64d0d4a5aac90e",
+      "git_blob": "08bf576f1b1f1c68893ab812ada73d3d338c6109"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/raw/CALIBRATION_RETAINED_SEARCH.json.gz",
+      "bytes": 14322,
+      "sha256": "03d3af7266cff9b966a82dccf4bfad85982882ae5cdefb0d0e881c933c284672",
+      "git_blob": "87ff9c17b669ef5bc5f7ca0faf68d2893147ee55"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/raw/FaithfulReaderUIAcceptanceTests.swift.gz",
+      "bytes": 41734,
+      "sha256": "e60eb0a2e4f4efe6d5fc05dc8717405e06c14349bd360a24837b3bb3f77c47b2",
+      "git_blob": "22e3b13ff28f3e00956cb7701d78aa6940e55288"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/raw/R27NativeInteractionAcceptanceTests.swift.gz",
+      "bytes": 6688,
+      "sha256": "1038f71e70d4a764efa5abc9c65a5546785091a38d7c0e80e84d0daf405f89a3",
+      "git_blob": "24e8e2459dd37cf1221443c3a5c3aa8e90345ea6"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/raw/R27_CASES.json.gz",
+      "bytes": 39232,
+      "sha256": "f7a328df9c28c0a33618ffddcb532181e50c89a9877126efb09c7559f5c69b34",
+      "git_blob": "6b3d03f661499209929feca749b309bd83ec588c"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/raw/run-faithful-ipad-matrix.py.gz",
+      "bytes": 11079,
+      "sha256": "f2a21049e38f86537190a16a4b0a53da60bc467b3e9b9602558fe9aff6a5b0c1",
+      "git_blob": "dc544fb0323bc070926975759d647f79727ae6ec"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/raw/runtime27-release-manifest.json.gz",
+      "bytes": 11910,
+      "sha256": "ade682cc51b30a67252391477857cea465f66bb7ad1dfc1c48c60494523f93c9",
+      "git_blob": "42805c59d2f19ae8b30b1d0ed2de290527e513ab"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/raw/runtime27.py.gz",
+      "bytes": 7945,
+      "sha256": "97ce322736a03e8de2ac0e4244c29e26724b9301a95b7fceeb0b61e7a0ecb5a9",
+      "git_blob": "4a437d86d7ccb7e94d6723a5f92ad615b55f1dd5"
+    },
+    {
+      "path": "docs/hq-integration/escape-keyboard-calibration-20261120/verify_packet.py",
+      "bytes": 5740,
+      "sha256": "0104a86822852c5fcee4746384811e987b08c46e1d3d84f516bb9f9bcb11d68c",
+      "git_blob": "b50d7b99037892a2f8d60e48f627db7a74388353"
+    }
+  ]
+}

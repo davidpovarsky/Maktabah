@@ -1,0 +1,23 @@
+--- a/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift
+@@ -100,6 +100,12 @@
+ }
+ 
+ final class R27NativePadTests: R27NativeUIBase {
++    private var recordsPaletteEscapeCalibration = false
++    override var readerAdditionalLaunchArguments: [String] {
++        super.readerAdditionalLaunchArguments
++            + (recordsPaletteEscapeCalibration ? ["-CommandPaletteEscapeTraceEnabled", "YES"] : [])
++    }
++
+     func testNormalBootstrapOtzariaRotationPreservesExactLocator() throws {
+         XCTAssertTrue(isPad, "Required iPad execution must not be silently skipped")
+         XCUIDevice.shared.orientation = .portrait
+@@ -233,6 +239,7 @@
+     func testNormalBootstrapPaletteKeyboardDispatchCalibration() throws {
+         XCTAssertTrue(isPad)
+         XCUIDevice.shared.orientation = .landscapeLeft
++        recordsPaletteEscapeCalibration = true
+         launchReader(scenario: "readerDetail")
+         let locator = try assertTarget(backend: "otzaria")
+         let launcher = app.navigationBars.buttons["reader-command-palette-launcher"]

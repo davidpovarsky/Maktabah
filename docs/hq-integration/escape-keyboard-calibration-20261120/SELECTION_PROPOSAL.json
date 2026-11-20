@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "prepared_against": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+  "status": "PREPARED_NOT_ACTIVE",
+  "activation_authorized_by_this_packet": false,
+  "single_calibration": {
+    "case_ids": [
+      "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration"
+    ],
+    "expected_cases": 1,
+    "original_native_log_collection": false,
+    "required_before_activation": "Add the exact calibration to the original requires_native_log_collection allowlist, review and freeze that new helper. This packet does not modify it."
+  },
+  "paired_diagnostic": {
+    "case_ids": [
+      "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration",
+      "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal"
+    ],
+    "expected_cases": 2,
+    "original_native_log_collection": true,
+    "collection_reason": "The unchanged Pointer/Keyboard selection already requires the original native log collection after actual result verification, including test failure."
+  },
+  "intended_device": {
+    "family": "iPad",
+    "size": "11",
+    "runtime_major": 27,
+    "fixture": "miniTest10",
+    "initial_orientation": "original case landscapeLeft",
+    "launch_tier": "realUI"
+  },
+  "input_transport": "Original XCUIElement.typeKey; no HID replacement, retry or new hardware keyboard configuration.",
+  "native_hid_broker_required": false,
+  "budgets_unchanged": {
+    "each_test_seconds": 600,
+    "original_calibration_wait_seconds": 15,
+    "original_pointer_disappearance_seconds": 15
+  },
+  "source_freeze_requirements": [
+    "Freeze the actual full application and complete XCTest source before any activation; this packet declares no future F/M.",
+    "Retain the full original Native116 metadata and Release114 plus 2 oracles; these diagnostics do not replace either scope.",
+    "Update the original runtime27.py R27NativeInteractionAcceptanceTests SHA guard for the final combined source without removing it.",
+    "Preserve final project proof, app/source/package/SDK/resource pins and all actual full-app build and result guards."
+  ],
+  "r27_helper_pin": {
+    "path": "Scripts/CI/runtime27.py",
+    "current_base_literal": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+    "current_canonical_r27_sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f",
+    "candidate_r27_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+    "updated_in_this_packet": false
+  },
+  "existing_focused4": {
+    "run": 44786439788,
+    "head": "d5d7928fed2b0a6324d07c5595af10413ac58f8e",
+    "modified": false
+  },
+  "current_selection_crosswalk": {
+    "R27NativePadTests/testNormalBootstrapPaletteKeyboardDispatchCalibration": {
+      "native116_selected": false,
+      "release114_configurations": [],
+      "focused4_selected": false
+    },
+    "FaithfulReaderUIAcceptanceTests/testPointerHoverClickAndHardwareKeyboardDismissal": {
+      "native116_selected": false,
+      "release114_configurations": [
+        "ipad11-native",
+        "ipad13-native"
+      ],
+      "focused4_selected": false
+    }
+  },
+  "candidate_native_outcomes": "NOT_RUN"
+}

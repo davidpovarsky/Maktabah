@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "repository": "davidpovarsky/Maktabah",
+  "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+  "base_tree": "06779cbd3ac194d454ef0aea34465be4e7eaa45a",
+  "packet_manifest_sha256": "0cfd7f9ba3ead32cbdee8b0b11824f3f1017b452f6e6dba7d1078b255a37b2ba",
+  "canonical_inputs": [
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "git_blob": "26ddbe5bbd20d759424bf253756e9c755ba50a58",
+      "sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f",
+      "bytes": 31760
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583",
+      "bytes": 26341
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "git_blob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6",
+      "bytes": 49924
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "git_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+      "sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0",
+      "bytes": 196355
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+      "bytes": 56247
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3",
+      "bytes": 200381
+    }
+  ],
+  "independent_root_checks": {
+    "actual_current_git_tree_inputs_matched": 6,
+    "packet_verifier": "PASS_SOURCE_INVERSE_COLLECTOR_AND_SELECTION_ONLY",
+    "manifested_files": 16,
+    "whole_file_inverse_exact": true,
+    "calibration_body_inverse_exact": true,
+    "original_native116_rows": 116,
+    "original_release114_ui_cases": 114,
+    "original_release_oracles": 2
+  },
+  "review": {
+    "change": "Seven added lines in the original R27 XCTest file: a default-false private trace opt-in, a super-preserving launch-argument override and one assignment before the existing calibration launch.",
+    "preserved": "Original inputs, order, assertions, 15-second waits, other test methods and all product sources are unchanged.",
+    "evidence_limit": "No recorded calibration execution was found in the bounded 325-file search. The earlier Pointer/Keyboard failure remains a failure. HID disappearance in another failing test is a stage observation only.",
+    "collector": "The existing collector covers the proposed paired selection via the unchanged Pointer/Keyboard case. Calibration-only selection remains blocked pending its exact collector allowlist addition.",
+    "future_freeze": "The actual combined R27 SHA guard must be updated during a later source freeze. This commit does not activate CI or alter existing active Focused4."
+  },
+  "execution": {
+    "swift_parse": "NOT_RUN",
+    "apple_typecheck": "NOT_RUN",
+    "native_executions": 0
+  },
+  "candidate": {
+    "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+    "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+    "bytes": 32077
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "repository": "davidpovarsky/Maktabah",
+  "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+  "base_tree": "06779cbd3ac194d454ef0aea34465be4e7eaa45a",
+  "canonicalization": "Git blob verification; one connector-added LF removed only when that exact removal matches the returned blob.",
+  "inputs": [
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+      "git_blob": "26ddbe5bbd20d759424bf253756e9c755ba50a58",
+      "sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f",
+      "bytes": 31760,
+      "retained": "raw/R27NativeInteractionAcceptanceTests.swift.gz"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+      "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583",
+      "bytes": 26341,
+      "retained": "raw/runtime27.py.gz"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+      "git_blob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6",
+      "bytes": 49924,
+      "retained": "raw/run-faithful-ipad-matrix.py.gz"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+      "git_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+      "sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0",
+      "bytes": 196355,
+      "retained": "raw/FaithfulReaderUIAcceptanceTests.swift.gz"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
+      "bytes": 56247,
+      "retained": "raw/runtime27-release-manifest.json.gz"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "base_commit": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3",
+      "bytes": 200381,
+      "retained": "raw/R27_CASES.json.gz"
+    }
+  ],
+  "candidate": {
+    "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+    "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+    "bytes": 32077
+  },
+  "publication": "Prepared only; Root owns review, source freeze and activation."
+}

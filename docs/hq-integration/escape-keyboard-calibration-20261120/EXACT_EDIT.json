@@ -1,0 +1,13 @@
+{
+  "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+  "replacements": [
+    {
+      "before": "final class R27NativePadTests: R27NativeUIBase {\n",
+      "after": "final class R27NativePadTests: R27NativeUIBase {\n    private var recordsPaletteEscapeCalibration = false\n    override var readerAdditionalLaunchArguments: [String] {\n        super.readerAdditionalLaunchArguments\n            + (recordsPaletteEscapeCalibration ? [\"-CommandPaletteEscapeTraceEnabled\", \"YES\"] : [])\n    }\n\n"
+    },
+    {
+      "before": "    func testNormalBootstrapPaletteKeyboardDispatchCalibration() throws {\n        XCTAssertTrue(isPad)\n        XCUIDevice.shared.orientation = .landscapeLeft\n        launchReader(scenario: \"readerDetail\")\n",
+      "after": "    func testNormalBootstrapPaletteKeyboardDispatchCalibration() throws {\n        XCTAssertTrue(isPad)\n        XCUIDevice.shared.orientation = .landscapeLeft\n        recordsPaletteEscapeCalibration = true\n        launchReader(scenario: \"readerDetail\")\n"
+    }
+  ]
+}
