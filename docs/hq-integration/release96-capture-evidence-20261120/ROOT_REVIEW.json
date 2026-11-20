@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "parent": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "parent_tree": "5128feff6992aab17b368775e3b5d7ec7e33cc82",
+  "author_manifest_sha256": "3798be1fbe0dbc9f79eeeb9d1c43778f783af2513aba54003fcd715734097e75",
+  "root_read_only_packet_replay_exit_code": 0,
+  "author_actual_synthetic_controls": 45,
+  "root_reexecuted_synthetic_tests": false,
+  "canonical_prior_inputs": [
+    {
+      "path": ".github/workflows/otzaria-native98-commentary-evidence.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "976839e0bad90ccca2e8947055bc8bf424200de0",
+      "size": 2829,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/976839e0bad90ccca2e8947055bc8bf424200de0"
+    },
+    {
+      "path": "Scripts/CI/native98-commentary-evidence.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "063adf6b62b16116521ae556f0d5162b788649a9",
+      "size": 2857,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/063adf6b62b16116521ae556f0d5162b788649a9"
+    },
+    {
+      "path": "Scripts/CI/native98-commentary-evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a43f22bc3e62b0749dfc0dd9494b1b0193a16a07",
+      "size": 18410,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/a43f22bc3e62b0749dfc0dd9494b1b0193a16a07"
+    },
+    {
+      "path": "Scripts/CI/test-native98-commentary-evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13c74fafb0d97bb5551cd8401d75a37d19774675",
+      "size": 14434,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/13c74fafb0d97bb5551cd8401d75a37d19774675"
+    }
+  ],
+  "original_workflow_git_blob": "08ba8590f0e29e5ad4b3c4295dc9a2cc602fb207",
+  "original_export_log_from_complete_authenticated_zip": true,
+  "export_mappings": 20,
+  "unchanged_prior_security_source_functions_after_only_fixed_user_agent_label": [
+    "Refusal",
+    "require",
+    "sha256",
+    "write_json",
+    "checkpoint",
+    "same_fields",
+    "timestamp",
+    "validate_metadata",
+    "NoRedirect",
+    "safe_storage_url",
+    "GitHubReader",
+    "canonical_entry",
+    "hash_file",
+    "git",
+    "verify_source"
+  ],
+  "changed_functions": [
+    "verify_archive",
+    "main"
+  ],
+  "actual_source_artifact_metadata": {
+    "id": 14647594631,
+    "node_id": "MDg6QXJ0aWZhY3QxNDY0NzU5NDYzMQ==",
+    "name": "runtime27-release-native-captures",
+    "size_in_bytes": 3271556396,
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647594631",
+    "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647594631/zip",
+    "expired": false,
+    "digest": "sha256:ea8232db03a3f78c9fd722a1f5777e43f638bef7f4d115a7c0eef9a6319f2457",
+    "created_at": "2026-11-20T16:28:02Z",
+    "updated_at": "2026-11-20T16:28:02Z",
+    "expires_at": "2027-02-18T11:00:14Z",
+    "workflow_run": {
+      "id": 44723918854,
+      "repository_id": 1280062128,
+      "head_repository_id": 1280062128,
+      "head_branch": "codex/otzaria-release96-signature-reviewed-20261120",
+      "head_sha": "60a57972acb28739ec738565083bf17fb7503028"
+    }
+  },
+  "full_source_archive_download_before_activation": "NOT_RUN",
+  "source_archive_bytes": 3271556396,
+  "review": [
+    "Only exact20 selected paths from original exported failed cases; no filename fallback or transformed pixels/events/videos.",
+    "Every fullZIP member is streamed through SHA/CRC and canonical path/type checks. Size/hash checked before and after; source/metadata ownership remain strict.",
+    "Read-only GitHub token limited to originalAPI requests; new anonymous storage request, no forwarded token and no automatic redirects; signedURL never published.",
+    "Only4 new processor paths plus thisprefix may differ from soleparent e603. No app/UI/Swift case or acceptance change.",
+    "New selection limits8MiB per ordinary member,64MiB per originalvideo,128MiB combined; sourcearchive max8GiB expanded and50000 entries. Actual20min bounded read-only job."
+  ],
+  "approval": "Publish and activate exact evidence-only branch; retain actual success/failure without attributing a Native pass.",
+  "prepublication_metadata_correction": {
+    "field": "parent_tree",
+    "initial_typing_error": "5128feff34157c1a10c228e6b4f873d554b72da0",
+    "corrected_from_actual_root_fetched_Git_tree": "5128feff6992aab17b368775e3b5d7ec7e33cc82",
+    "no_candidate_runtime_change": true
+  }
+}

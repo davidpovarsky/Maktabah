@@ -1,0 +1,14 @@
+{
+  "source": "6339dfd55001b4be7073d6a1cfbc01183002eceb",
+  "source_tree": "e73b94c4a43ffad016b9d3e5395365e43a443f52",
+  "root_merge_base": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "root_merge_tree": "bb8b437d54b632c86273ead54780d571e125442e",
+  "processor_route_additions": 25,
+  "original_source_run_conclusion": "failure",
+  "source_runtime_mutations": 0,
+  "native_executions": 0,
+  "root_full_source_archive_second_download": false,
+  "job_log_capture_correction": "Initial local capture added one LF (22692 bytes); exact connector-returned log (22691 bytes) restored before publication. Initial capture retained outside this sealed publication.",
+  "motion_evidence": "Original video and Settings input records do not expose failing control/window geometry. The final displayed video frame shows Motion settings with Reduce Motion off; no geometry conclusion or tap fix inferred. Separate commit8ff4e820970e6697eabff40ac46e2f6e61484f27 moves the existing witness before its unchanged finite/bounds guard.",
+  "acceptance": "Historical capture extraction only. No application test result promoted."
+}

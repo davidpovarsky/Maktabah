@@ -1,0 +1,71 @@
+name: Recover original Release96 layout and input evidence
+
+on:
+  push:
+    branches: [codex/otzaria-release96-capture-evidence-20261120]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: release96-capture-evidence-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  evidence:
+    if: >-
+      github.repository == 'davidpovarsky/Maktabah' &&
+      github.repository_id == '1280062128' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/codex/otzaria-release96-capture-evidence-20261120'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+          submodules: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/otzaria-release96-capture-evidence.yml
+            /Scripts/CI/release96-capture-evidence.py
+            /Scripts/CI/test-release96-capture-evidence.py
+            /Scripts/CI/release96-capture-evidence.json
+      - name: Verify reviewed evidence processor bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum --check <<'HASHES'
+          bc7ffe737455410eab6fc442929672cdc39167c580620db3a4d4f431c48ab474  Scripts/CI/release96-capture-evidence.py
+          caa5b93724c7bf5e32b24d538dffca759a25a14e345bb0a3d817e45d3287eda6  Scripts/CI/test-release96-capture-evidence.py
+          438968149c8d24965971be36a28b62f55cb847a9b0cae24ecdbbc597f0dca8b7  Scripts/CI/release96-capture-evidence.json
+          HASHES
+      - name: Run synthetic transport and archive refusal controls (no Native)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/release96-capture-evidence
+          python3 -u Scripts/CI/test-release96-capture-evidence.py 2>&1 | tee build/release96-capture-evidence/python-controls.log
+      - name: Verify complete original ZIP and retain exactly twenty evidence files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -u Scripts/CI/release96-capture-evidence.py \
+            --root "$GITHUB_WORKSPACE" \
+            --output "$GITHUB_WORKSPACE/build/release96-capture-evidence" \
+            --cache "$RUNNER_TEMP/release96-capture-source-$GITHUB_RUN_ID" \
+            --manifest-sha256 438968149c8d24965971be36a28b62f55cb847a9b0cae24ecdbbc597f0dca8b7
+      - name: Retain bounded evidence and failures (no full source ZIP)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release96-capture-evidence
+          path: build/release96-capture-evidence/
+          if-no-files-found: error
+          retention-days: 90

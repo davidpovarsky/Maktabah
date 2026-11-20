@@ -1,0 +1,188 @@
+{
+  "status": "PASS_ROOT_AUTHENTICATED_EXTRACTION",
+  "source_run": 44723918854,
+  "processor_run": 44783201113,
+  "processor_source": "6339dfd55001b4be7073d6a1cfbc01183002eceb",
+  "processor_tree": "e73b94c4a43ffad016b9d3e5395365e43a443f52",
+  "processor_source_files": 4,
+  "artifact": 14652429659,
+  "artifact_bytes": 12285444,
+  "artifact_sha256": "0715dcfc3e64e39bd1c549201951185928f93622807fb25947fa217fcbda277b",
+  "artifact_crc_members": 33,
+  "full_original_archive_verified_by_actual_source_bound_CI": {
+    "artifact": 14647594631,
+    "bytes": 3271556396,
+    "sha256": "ea8232db03a3f78c9fd722a1f5777e43f638bef7f4d115a7c0eef9a6319f2457",
+    "members_crc": 4763,
+    "hash_before_after": true
+  },
+  "root_second_download_of_full3GB_archive": false,
+  "selected_original_files": [
+    {
+      "bytes": 895547,
+      "compressedBytes": 883603,
+      "crc32": "89c22bfc",
+      "crcVerified": true,
+      "path": "visual-11/2753D740-F1C8-4E29-9234-8DEC8B7B3729.png",
+      "sha256": "ffde2069b3032456b57396628d3d967ef26b0da3e0c9bcae8e1805ec4e5fb59c"
+    },
+    {
+      "bytes": 213,
+      "compressedBytes": 168,
+      "crc32": "261b8090",
+      "crcVerified": true,
+      "path": "visual-11/2BDDCC3D-AC17-4AFF-BE03-F6474C702803.txt",
+      "sha256": "35b91955a34312d8d290513ead75dc59071f450ce432408d60f1b8e5d081356c"
+    },
+    {
+      "bytes": 6036392,
+      "compressedBytes": 5927299,
+      "crc32": "53bea1c1",
+      "crcVerified": true,
+      "path": "visual-11/2C13E821-26A3-4178-B3F3-A8C86797F2C7.mp4",
+      "sha256": "ae1489db0aa300317220abd9f99611b0333d5c976d8f5011f5621b6a8e14b3df"
+    },
+    {
+      "bytes": 217123,
+      "compressedBytes": 180359,
+      "crc32": "407b3191",
+      "crcVerified": true,
+      "path": "visual-11/2FAF321F-D2D9-4F94-A7BF-26EA71FF44E2.png",
+      "sha256": "a09b200fdf6f7b267b8b47b0d91e886a72a8976299fd1103352e9f56bfdbe395"
+    },
+    {
+      "bytes": 21811,
+      "compressedBytes": 4354,
+      "crc32": "7cbaed67",
+      "crcVerified": true,
+      "path": "visual-11/3AAD5D52-661F-4169-A291-57B649A0183F.txt",
+      "sha256": "b73bbd3d537fe086b87706238c61cba5c65b3557fee4d7b280ed430bd7d45d3a"
+    },
+    {
+      "bytes": 21253,
+      "compressedBytes": 2997,
+      "crc32": "0ff1e0c0",
+      "crcVerified": true,
+      "path": "visual-11/44EF8C0A-7504-4ACC-A4FE-CB71B481B51F.txt",
+      "sha256": "d4804fb9e249c023068f68c4c775af6095b8c52f44ae37643b5ca41b51c4a2c5"
+    },
+    {
+      "bytes": 33682,
+      "compressedBytes": 5447,
+      "crc32": "6ae2f07e",
+      "crcVerified": true,
+      "path": "visual-11/483A02B8-10EB-45EE-AB1E-E9EB082019BF.txt",
+      "sha256": "cef9a2b9c6bd5b7c1e466806f18dbf9c8aad0a65e56cedb55d643bfab78565be"
+    },
+    {
+      "bytes": 21245,
+      "compressedBytes": 2981,
+      "crc32": "56ed4420",
+      "crcVerified": true,
+      "path": "visual-11/51712312-C0CC-4E1B-A8BA-C12F7CF3B721.txt",
+      "sha256": "7ad2b07e4835eb9204b152377aa3a7f45aac8c02e8a9715456dddb8a05cd6b8f"
+    },
+    {
+      "bytes": 1141326,
+      "compressedBytes": 1134261,
+      "crc32": "287488b3",
+      "crcVerified": true,
+      "path": "visual-11/5C0F6368-4710-4B02-B7E1-D741A0ECC91D.png",
+      "sha256": "66f7fc66f70769e323fbeab89d896650ab1a2e7e62dc274f2b7ab9db47cd01a5"
+    },
+    {
+      "bytes": 2100435,
+      "compressedBytes": 2086882,
+      "crc32": "20198339",
+      "crcVerified": true,
+      "path": "visual-11/76A11742-C49C-44D6-9A3F-462FC322167C.mp4",
+      "sha256": "0426c2cacdd15c56c151ccdc066eb36d3d3dfc87bc5b5a7f02830fc9487ae233"
+    },
+    {
+      "bytes": 203804,
+      "compressedBytes": 156175,
+      "crc32": "042a3090",
+      "crcVerified": true,
+      "path": "visual-11/80196B61-0CF1-4629-9EF9-2E3934E92C1F.png",
+      "sha256": "9fd5703bcf9508b412ac91e99aad0b4c4fce0308b6e6af39da33e9df291c78f4"
+    },
+    {
+      "bytes": 21774,
+      "compressedBytes": 4367,
+      "crc32": "14534069",
+      "crcVerified": true,
+      "path": "visual-11/84658947-E38E-4897-9C93-051C5EE8D1B6.txt",
+      "sha256": "0cea3b2e19cd4e0c0faff626d42d35c9dfd5800ed43845000949fd3c8d2e3b53"
+    },
+    {
+      "bytes": 21440,
+      "compressedBytes": 3005,
+      "crc32": "c19050c3",
+      "crcVerified": true,
+      "path": "visual-11/89D32B28-9D7A-4E7F-8283-9158A22CA742.txt",
+      "sha256": "ad5b45806e9fc048848ff8a47f7d5774a32fdfb2afcda2e06ace149f9256c113"
+    },
+    {
+      "bytes": 21429,
+      "compressedBytes": 2983,
+      "crc32": "c2bb81f7",
+      "crcVerified": true,
+      "path": "visual-11/9087306E-25E5-4E0D-813E-3914BDAA5E1C.txt",
+      "sha256": "3f9af5373521d9131c9b3ed0d6b152aeaea7a7648b8e9afcd17166d17ee7fac1"
+    },
+    {
+      "bytes": 1905,
+      "compressedBytes": 1370,
+      "crc32": "70b26246",
+      "crcVerified": true,
+      "path": "visual-11/969E50F2-BF3F-426A-80DA-A2F17D5AA9CE",
+      "sha256": "80621f001028a8094c1ffc924fd1af0c3f9d9edee61691826f8bf93350c794a4"
+    },
+    {
+      "bytes": 216690,
+      "compressedBytes": 180136,
+      "crc32": "9e9e9de4",
+      "crcVerified": true,
+      "path": "visual-11/C3D2C8DB-A4EC-48F1-A7CB-8F35953D6FF7.png",
+      "sha256": "c637b24c81bd9d9d90670bc88fd2887a7c91dde44f3a6a9bf7206e1740dd9286"
+    },
+    {
+      "bytes": 1124909,
+      "compressedBytes": 1097614,
+      "crc32": "c8428e1e",
+      "crcVerified": true,
+      "path": "visual-11/CEABA033-57C6-496F-8FD9-A2D9A1631067.png",
+      "sha256": "14e491d5f58ce749d5a5c84a282044138b5f5b40ee9d0e63f02bd72fd97cdc7f"
+    },
+    {
+      "bytes": 1765,
+      "compressedBytes": 1304,
+      "crc32": "aafbc670",
+      "crcVerified": true,
+      "path": "visual-11/D80AC0AA-8946-45F0-91D3-D669C43663CA",
+      "sha256": "371bf2fe87e8904c25a43edf86cdd97194cde78319246bb6a2e6ec7cad082645"
+    },
+    {
+      "bytes": 1905,
+      "compressedBytes": 1371,
+      "crc32": "ce6380e5",
+      "crcVerified": true,
+      "path": "visual-11/ECE45368-7CE9-4E05-8FE1-9B607FE14DEA",
+      "sha256": "67bca0e5265c3ac04bc57e38bf178fbdec35a4c6d0e75676d4d1ef4566c3ed32"
+    },
+    {
+      "bytes": 204831,
+      "compressedBytes": 157176,
+      "crc32": "2bb08768",
+      "crcVerified": true,
+      "path": "visual-11/F743CD9B-9F61-41F1-837D-CE10BAD33B84.png",
+      "sha256": "8690eacf04c6697ec170cff44bcba1df971c02238bbaf2df42bd3850bb1b7305"
+    }
+  ],
+  "selected_bytes": 12309479,
+  "ci_actual_python_controls": 45,
+  "root_python_test_rerun": false,
+  "metadata_validator_replay": true,
+  "native_executions": 0,
+  "original_source_run_conclusion": "failure"
+}

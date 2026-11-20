@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "scope": "actual retained authenticated API metadata against exact new Release contract; no download or Native execution",
+  "run": 44723918854,
+  "artifact": 14647594631,
+  "job": 136270631605,
+  "uploadStep": 8
+}

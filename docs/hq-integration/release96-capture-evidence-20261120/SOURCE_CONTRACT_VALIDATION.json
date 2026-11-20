@@ -1,0 +1,28 @@
+{
+  "actual_archive_download": "NOT_RUN",
+  "actual_metadata": "PASS",
+  "native": 0,
+  "original_inputs_match": 4,
+  "preserved_original_function_bodies": [
+    "Refusal",
+    "require",
+    "sha256",
+    "write_json",
+    "checkpoint",
+    "same_fields",
+    "timestamp",
+    "validate_metadata",
+    "NoRedirect",
+    "safe_storage_url",
+    "GitHubReader",
+    "canonical_entry",
+    "hash_file",
+    "git",
+    "verify_source"
+  ],
+  "prior_successful_processor_commit": "d749a2222ff06ae723d14bb174ead19331004e91",
+  "scope": "source contract and actual metadata only",
+  "selected_paths": 20,
+  "source_pins": "PASS",
+  "workflow": "exact owned push branch, read-only permissions, finite20min, no app/Swift/Native step"
+}

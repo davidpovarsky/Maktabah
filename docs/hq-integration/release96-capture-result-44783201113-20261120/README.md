@@ -1,0 +1,13 @@
+# Release96 original capture evidence
+
+Actual processor [run 44783201113](https://github.com/davidpovarsky/Maktabah/actions/runs/44783201113), attempt 1, completed successfully on source `6339dfd55001b4be7073d6a1cfbc01183002eceb`, tree `e73b94c4a43ffad016b9d3e5395365e43a443f52`. Its 45 Python controls passed. This is an evidence processor; it executed no Swift, application or Native test. Original Release run [44723918854](https://github.com/davidpovarsky/Maktabah/actions/runs/44723918854) remains **FAILURE**.
+
+The actual processor downloaded original artifact `14647594631` (3,271,556,396 bytes; SHA256 `ea8232db03a3f78c9fd722a1f5777e43f638bef7f4d115a7c0eef9a6319f2457`), verified its entire hash before/after extraction, and checked all 4,763 members' CRC and SHA256. Root independently verified the source-bound output artifact `14652429659` (12,285,444 bytes; SHA256 `0715dcfc3e64e39bd1c549201951185928f93622807fb25947fa217fcbda277b`), all 33 output ZIP member CRCs, the 20 exact selected files (12,309,479 expanded bytes), four canonical processor Git inputs and actual run/job/artifact metadata. Root did not download the original 3 GB archive a second time.
+
+`raw/artifact.zip` is the complete unmodified output, including original GlobalNav, Inspector, Escape and Reduce Motion captures, input event records, source metadata before/after, all 4,763 original archive member records, original CI controls and extraction receipts. These are historical captures, not new successful UI evidence. No signed download URL is published.
+
+The Motion video ends on the genuine Settings Motion page with Reduce Motion off. The original failure happened during the Settings precondition, before app launch. The original geometry witness followed the failing finite/in-bounds guard, so it could not record the rejected rectangle/point. No specific geometry cause was inferred. Commit `8ff4e820970e6697eabff40ac46e2f6e61484f27` moves that existing witness before the unchanged guard, without altering its target, tap, predicate, deadline, restoration or UI test declaration. A new actual Native run is required.
+
+The separately read-only `VERIFY_PACKET.py --root <repository>` rechecks this retained result and replays the original metadata validator. It does not redownload the original archive or execute UI tests. The full immutable route and its prior processor functions/export mapping proof are retained in the adjacent `release96-capture-evidence-20261120` packet.
+
+All source, Vendor, Xcode project and UI-test trees at root merge base `8ff4e820970e6697eabff40ac46e2f6e61484f27` must remain unchanged by this evidence-only integration.

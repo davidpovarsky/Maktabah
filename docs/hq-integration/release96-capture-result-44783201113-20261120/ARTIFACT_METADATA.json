@@ -1,0 +1,20 @@
+{
+  "id": 14652429659,
+  "node_id": "MDg6QXJ0aWZhY3QxNDY1MjQyOTY1OQ==",
+  "name": "release96-capture-evidence",
+  "size_in_bytes": 12285444,
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14652429659",
+  "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14652429659/zip",
+  "expired": false,
+  "digest": "sha256:0715dcfc3e64e39bd1c549201951185928f93622807fb25947fa217fcbda277b",
+  "created_at": "2026-11-20T17:28:13Z",
+  "updated_at": "2026-11-20T17:28:13Z",
+  "expires_at": "2027-02-18T17:25:45Z",
+  "workflow_run": {
+    "id": 44783201113,
+    "repository_id": 1280062128,
+    "head_repository_id": 1280062128,
+    "head_branch": "codex/otzaria-release96-capture-evidence-20261120",
+    "head_sha": "6339dfd55001b4be7073d6a1cfbc01183002eceb"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "head": "6339dfd55001b4be7073d6a1cfbc01183002eceb",
+  "tree": "e73b94c4a43ffad016b9d3e5395365e43a443f52",
+  "inputs": [
+    {
+      "bytes": 2802,
+      "gitBlob": "3ea7d3dc944dc0a6a9aaef8541c76a6862b5dfd0",
+      "path": ".github/workflows/otzaria-release96-capture-evidence.yml",
+      "sha256": "c8a8746e37de38250ae365e4445a0ad9c02b589aa3e3cb5824f4af060c420179"
+    },
+    {
+      "bytes": 18873,
+      "gitBlob": "1af34d0b0168c753b32c3ef6b692c2ba8004e808",
+      "path": "Scripts/CI/release96-capture-evidence.py",
+      "sha256": "bc7ffe737455410eab6fc442929672cdc39167c580620db3a4d4f431c48ab474"
+    },
+    {
+      "bytes": 16059,
+      "gitBlob": "c854507b6a75cb0cee51225722f6360c1d183e00",
+      "path": "Scripts/CI/test-release96-capture-evidence.py",
+      "sha256": "caa5b93724c7bf5e32b24d538dffca759a25a14e345bb0a3d817e45d3287eda6"
+    },
+    {
+      "bytes": 9092,
+      "gitBlob": "3879c9c1064561a14edf749c787d1fd85ccbb474",
+      "path": "Scripts/CI/release96-capture-evidence.json",
+      "sha256": "438968149c8d24965971be36a28b62f55cb847a9b0cae24ecdbbc597f0dca8b7"
+    }
+  ]
+}

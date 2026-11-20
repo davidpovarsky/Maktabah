@@ -1,0 +1,55 @@
+{
+  "files": [
+    {
+      "path": "ARTIFACT_METADATA.json",
+      "bytes": 828,
+      "sha256": "a475c29c34a49d21df1c9d826a29a58668bb193964d194d3488f2c5a716d833b"
+    },
+    {
+      "path": "PROCESSOR_JOB.log.gz",
+      "bytes": 5607,
+      "sha256": "b60ab031361f0f9d1ffeb81b0b9d543caec35086a5218d2b17723fc35b6f2da0"
+    },
+    {
+      "path": "PROCESSOR_JOBS.json",
+      "bytes": 2443,
+      "sha256": "9ef8a40fbf04f5b6c0d697171b8b66cd8ab20bb7f929a2d0d73bb2ed85817542"
+    },
+    {
+      "path": "PROCESSOR_RUN.json",
+      "bytes": 13228,
+      "sha256": "023629be7224d5dab28274c5039bd7cf1e4448bdaf112ed3f680b33730863555"
+    },
+    {
+      "path": "PROCESSOR_SOURCE.json",
+      "bytes": 1098,
+      "sha256": "d8f42fbe60cd99b6b810036b03a1cc8dc44f816689e08fa301f120612cda714b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2643,
+      "sha256": "05b955824af3b00b3ffd026f1ffb7a0823b2d1023cfb6eefd27dc603c85350f0"
+    },
+    {
+      "path": "ROOT_RESULT_VERIFY.json",
+      "bytes": 6445,
+      "sha256": "6568b3ae9af3b01514faff6273cdab7da37ab2a331e09ad6f8d866dc5ccacba5"
+    },
+    {
+      "path": "ROOT_REVIEW.json",
+      "bytes": 1111,
+      "sha256": "7520961c6fab69fe31d3ffa4de575e630aee2edf8a0e4035ca736aca10312954"
+    },
+    {
+      "path": "VERIFY_PACKET.py",
+      "bytes": 5156,
+      "sha256": "805439beed0feee4bdb734e302bf876748dec846dd2cb29e8004b3e36736d971"
+    },
+    {
+      "path": "raw/artifact.zip",
+      "bytes": 12285444,
+      "sha256": "0715dcfc3e64e39bd1c549201951185928f93622807fb25947fa217fcbda277b"
+    }
+  ],
+  "scope": "Historical capture result only; source Native run failure remains."
+}

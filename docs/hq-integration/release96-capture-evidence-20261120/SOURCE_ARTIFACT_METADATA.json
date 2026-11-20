@@ -1,0 +1,20 @@
+{
+  "archive_download_url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647594631/zip",
+  "created_at": "2026-11-20T16:28:02Z",
+  "digest": "sha256:ea8232db03a3f78c9fd722a1f5777e43f638bef7f4d115a7c0eef9a6319f2457",
+  "expired": false,
+  "expires_at": "2027-02-18T11:00:14Z",
+  "id": 14647594631,
+  "name": "runtime27-release-native-captures",
+  "node_id": "MDg6QXJ0aWZhY3QxNDY0NzU5NDYzMQ==",
+  "size_in_bytes": 3271556396,
+  "updated_at": "2026-11-20T16:28:02Z",
+  "url": "https://api.github.com/repos/davidpovarsky/Maktabah/actions/artifacts/14647594631",
+  "workflow_run": {
+    "head_branch": "codex/otzaria-release96-signature-reviewed-20261120",
+    "head_repository_id": 1280062128,
+    "head_sha": "60a57972acb28739ec738565083bf17fb7503028",
+    "id": 44723918854,
+    "repository_id": 1280062128
+  }
+}

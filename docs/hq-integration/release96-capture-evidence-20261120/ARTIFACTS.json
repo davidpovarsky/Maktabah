@@ -1,0 +1,141 @@
+{
+  "files": [
+    {
+      "bytes": 239,
+      "path": "ACTUAL_METADATA_CONTROL.json",
+      "sha256": "dce6d932b7ff6128895c75b9eb35307697bf5f315a06e69918b7329a90191bfd"
+    },
+    {
+      "bytes": 4894,
+      "path": "DRIVER_DELTA.patch",
+      "sha256": "6422492d9e0036c9ad19cd593762edfa74e9883e3bd54ed426531217319988ea"
+    },
+    {
+      "bytes": 667,
+      "path": "EXPORT_MAPPING_PROVENANCE.json",
+      "sha256": "a3006f03913d3b277560b80eb428b6193c4b1415ccb100506fabf370e563fa9e"
+    },
+    {
+      "bytes": 8506,
+      "path": "ORIGINAL_RELEASE_WORKFLOW.yml.gz",
+      "sha256": "055b28948dc199902ae52cb30c48f02219943e678941f97b5b8e5ce6be2ec751",
+      "uncompressed_bytes": 43290,
+      "uncompressed_sha256": "4447ad0c79c5afc1a6ba3325966cd4c39c73c6a527a82ed1d1e9ae958d1007d9"
+    },
+    {
+      "bytes": 1442,
+      "path": "PRIOR_PROCESSOR_RESULT.json",
+      "sha256": "3565f92c859055382d54e4952a99fdfa392e989d09976584c2d1e7772f41c490"
+    },
+    {
+      "bytes": 3626,
+      "path": "PRIOR_PROCESSOR_SOURCE_BEFORE.json",
+      "sha256": "08ac2696299c0e441dec06b65c12cd23352a9398d02f5a17e87d2e9ccfb02b33"
+    },
+    {
+      "bytes": 7020,
+      "path": "README.md",
+      "sha256": "8e0a9fff74d1c67ccc526aeeee665f4642a62c23881bb80c4c05e4b8f1b5fc75"
+    },
+    {
+      "bytes": 2914,
+      "path": "RELEASE_EXPORT_MAPPING.txt",
+      "sha256": "4f3a363fd5b73f428903b71307620b2e74c55319f84f9e1b97e04f5925680b67"
+    },
+    {
+      "bytes": 839,
+      "path": "SOURCE_ARTIFACT_METADATA.json",
+      "sha256": "e7286cdf650acb1b7ed21f6ac1688b1944f8617282f707743bf2ef991f5e85a1"
+    },
+    {
+      "bytes": 728,
+      "path": "SOURCE_CONTRACT_VALIDATION.json",
+      "sha256": "7cdcecef8f256efdb7781f4021c04fa8bb0ea137ddb708bfe27710d498af1738"
+    },
+    {
+      "bytes": 3468,
+      "path": "SOURCE_JOB_METADATA.json",
+      "sha256": "0f324c3912cd82267955497071971eaaf8fb04a54e6d55a4624ec9858a9151f6"
+    },
+    {
+      "bytes": 14107,
+      "path": "SOURCE_RUN_METADATA.json",
+      "sha256": "90da4b3e4d845a8dccc90137c2b7ed57fc3a6a5ab01616fc53b574c61259ea53"
+    },
+    {
+      "bytes": 1091,
+      "path": "prior-successful-source/.github/workflows/otzaria-native98-commentary-evidence.yml.gz",
+      "sha256": "4f083a0a6e12a9ca73046d9cbe8ee04d1abd48bc98094c756e2f054b64b260df",
+      "uncompressed_bytes": 2829,
+      "uncompressed_sha256": "04b63203f554b17c495a1d1ded1cc44e1868ce2cc794a73159b8f52046d2fbe3"
+    },
+    {
+      "bytes": 1369,
+      "path": "prior-successful-source/Scripts/CI/native98-commentary-evidence.json.gz",
+      "sha256": "17fb312ba747d8097be510e94589a6563f0e616fc1def3f3bfe7e5360ea18b8d",
+      "uncompressed_bytes": 2857,
+      "uncompressed_sha256": "3bfecef77c4e5341ec16ff9bdebe5b611cafa042d30d31af90dbb49d2d0a8e07"
+    },
+    {
+      "bytes": 5713,
+      "path": "prior-successful-source/Scripts/CI/native98-commentary-evidence.py.gz",
+      "sha256": "f7f935cd04d034a1a3df798728e30727fd7de5d391b892b5eb216972a4adff70",
+      "uncompressed_bytes": 18410,
+      "uncompressed_sha256": "61826896dd6bfdcad1f462ebd508454a201facde921c1a57d72568cb6d4cef72"
+    },
+    {
+      "bytes": 4252,
+      "path": "prior-successful-source/Scripts/CI/test-native98-commentary-evidence.py.gz",
+      "sha256": "a2626f4d1c5b57e4fb1f41e86e42eb88b92877ea7b7c00ac490e72b151dd47fc",
+      "uncompressed_bytes": 14434,
+      "uncompressed_sha256": "2e1178acbeb759a21c2811d1321c99139ff394437b468501850c73f06314e406"
+    },
+    {
+      "bytes": 4513,
+      "path": "python-controls-attempt1.log",
+      "sha256": "5e71f300b73a27d0d4528cd1e1b46d748d70e0b1343b4fdddb722f93fc656fb5"
+    },
+    {
+      "bytes": 249676,
+      "path": "release-native-matrix-driver.log.gz",
+      "sha256": "5ba4682fb6dd2b1629057f12713eec43e4ca13987edad6d2797c31a13d8179c6",
+      "uncompressed_bytes": 2398880,
+      "uncompressed_sha256": "d8ddc31d698bc2facda8e0846cf06f0cc5fee3f474d56c9a4668105fbc7f9b0a"
+    },
+    {
+      "bytes": 3229,
+      "path": "verify_packet.py",
+      "sha256": "f070115510493f61281345d4851da222eef3f1b707af3ae499ab4ce62668afd4"
+    }
+  ],
+  "full_original_archive_download": "NOT_RUN",
+  "native_executions": 0,
+  "python_controls": "45/45 PASS, synthetic; retained first actual log",
+  "source_base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
+  "source_outputs": [
+    {
+      "bytes": 2802,
+      "gitBlob": "3ea7d3dc944dc0a6a9aaef8541c76a6862b5dfd0",
+      "path": ".github/workflows/otzaria-release96-capture-evidence.yml",
+      "sha256": "c8a8746e37de38250ae365e4445a0ad9c02b589aa3e3cb5824f4af060c420179"
+    },
+    {
+      "bytes": 18873,
+      "gitBlob": "1af34d0b0168c753b32c3ef6b692c2ba8004e808",
+      "path": "Scripts/CI/release96-capture-evidence.py",
+      "sha256": "bc7ffe737455410eab6fc442929672cdc39167c580620db3a4d4f431c48ab474"
+    },
+    {
+      "bytes": 16059,
+      "gitBlob": "c854507b6a75cb0cee51225722f6360c1d183e00",
+      "path": "Scripts/CI/test-release96-capture-evidence.py",
+      "sha256": "caa5b93724c7bf5e32b24d538dffca759a25a14e345bb0a3d817e45d3287eda6"
+    },
+    {
+      "bytes": 9092,
+      "gitBlob": "3879c9c1064561a14edf749c787d1fd85ccbb474",
+      "path": "Scripts/CI/release96-capture-evidence.json",
+      "sha256": "438968149c8d24965971be36a28b62f55cb847a9b0cae24ecdbbc597f0dca8b7"
+    }
+  ]
+}
