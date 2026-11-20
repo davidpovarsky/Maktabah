@@ -68,6 +68,8 @@
       "working_normalized_lf_sha256": "ac42b7e28fcee5e299e646afc7756b70d9fe84f671470c4ca43a057b0206072b"
     }
   },
-  "manifest_sha256": "aa5e24c1f0be70e11ad8dd11eddb5b1f68c7f4d6f75acfdb34a82960c7f0adac",
-  "pending": "Combined source freeze and actual Apple SDK/Native80+Phase2 execution owned by root"
+  "manifest_sha256": "f925eb968f95216da3c1c46c31ced370b7f88c46a381b8117b94733d3e3ad4ce",
+  "pending": "Combined source freeze and actual Apple SDK/Native80+Phase2 execution owned by root",
+  "previous_manifest_repository_lf_sha256": "bdadb6c5e7dc6edee5cfb4d2e04f26d50ce8388209b9a39795143ee2c449a06a",
+  "previous_manifest_windows_crlf_sha256": "5646b548ab1272540f8fc5c4b6d3472766f3ec8400d58edcb46f506808017285"
 }
