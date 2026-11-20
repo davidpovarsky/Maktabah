@@ -1,0 +1,11 @@
+{
+  "Scripts/CI/hq-stage2-focused-apple.py": "eb9df6467fd26673e9a6e495f3bbdcf6e066e700db4daab54d882f14041b415e",
+  "Scripts/CI/hq-stage2-focused-apple.inputs.json": "cd3419d3d1837f8f8ea47bd4ee4d2791c7e855c15317dadd60a7d9919ef7f1fc",
+  "Scripts/CI/hq-stage2-otzaria-test-additions.json": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6",
+  "Tests/CI/test_stage2_prebuilt_bindings.py": "ede9ed27b98f75d3a32244c2e1276a579939f7f247e9a09eb3e898d50f39a26a",
+  "Tests\\CI\\fixtures\\d5-prebuilt-20261120\\14595389912-artifact.json": "eed3cd184f5bedb9527b99f4f4d09d725d1fbaa16f8a8e45c1e13aeee3f0cf88",
+  "Tests\\CI\\fixtures\\d5-prebuilt-20261120\\14596463166-artifact.json": "be8f4bd7575ad2decf189c9fdfc348bd2c82ca37eb71119394baf6aabc93536b",
+  "Tests\\CI\\fixtures\\d5-prebuilt-20261120\\producer-otzaria-job.json": "6578560eb471e57cc46cc2a36453fc733b6f3d900964c50f2e69a65d10cb34de",
+  "Tests\\CI\\fixtures\\d5-prebuilt-20261120\\producer-run-attempt1.json": "633d4ae0624b82b85cecfa85443b7b71cf9d30fe642405a033b50d8b4157dced",
+  "Tests\\CI\\fixtures\\d5-prebuilt-20261120\\producer-zayit-job.json": "ee61c512d703603f20382ab1aca1d41d2e1d8a3ed60847ad64fee1aa9941122f"
+}

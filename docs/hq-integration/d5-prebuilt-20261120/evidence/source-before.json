@@ -1,0 +1,6 @@
+{
+  "Scripts/CI/hq-stage2-focused-apple.py": "138ddf1d1de084f8bf0ddd25aec7b8affc043d54670c765758572e717104588d",
+  "Scripts/CI/hq-stage2-focused-apple.inputs.json": "d3cc2d19a52d4f6242de6a2467d4309f9c27f8ffd9ac9a9f32b72fd2283e8b0a",
+  "Scripts/CI/hq-stage2-otzaria-test-additions.json": "9b5e94c7527f1d6194b53da9b87c7646aaf05bfb1476a5ea3cfd88801a3171e4",
+  "Tests/CI/test_stage2_prebuilt_bindings.py": "ede9ed27b98f75d3a32244c2e1276a579939f7f247e9a09eb3e898d50f39a26a"
+}

@@ -1,0 +1,28 @@
+{
+  "changed_original_functions": [
+    "preflight",
+    "restore"
+  ],
+  "preserved_original_functions": [
+    "capture",
+    "digest",
+    "require",
+    "pins",
+    "zayit_build_plan",
+    "prepare_original_hanlin",
+    "checked_path",
+    "logged",
+    "rebuild_matching_zayit_framework",
+    "verify_selected_zayit_files",
+    "prepare_react_sources",
+    "install_real_pods",
+    "prepare_matching_embedded_bundle",
+    "verify_actual_sources",
+    "authorize_pinned_equatable_macro",
+    "privacy_categories",
+    "validate_privacy_delta",
+    "audit_generated_privacy",
+    "verify_zayit_test_metadata",
+    "main"
+  ]
+}

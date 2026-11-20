@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """One real unsigned app build; immutable prebuilt inputs, no data/runtime stages."""
 import argparse
+from datetime import datetime
 import hashlib
 import inspect
 import json
@@ -19,6 +20,15 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "build/hq-stage2"
 INPUTS = Path(__file__).with_suffix(".inputs.json")
+OTZARIA_ROOT = "Vendor/OtzariaSearchEngine"
+OTZARIA_TEST_ROOT = OTZARIA_ROOT + "/Tests/OccurrenceSwift"
+TEST_ADDITIONS_MANIFEST = Path(__file__).with_name("hq-stage2-otzaria-test-additions.json")
+FRAMEWORK_ARTIFACTS = {
+    "ios-build-otzaria-xcframework": (OTZARIA_ROOT, "OtzariaSearchEngine.xcframework.tar"),
+    "ios-build-zayit-xcframework": ("Vendor/ZayitSearchPort/build", "MaktabahZayitSearch.xcframework.tar"),
+}
+REPOSITORY = "davidpovarsky/Maktabah"
+REPOSITORY_ID = 1280062128
 
 
 def capture(*args):
@@ -37,6 +47,148 @@ def require(condition, message):
 
 def pins(path):
     return {p["identity"]: p["state"]["revision"] for p in json.loads(path.read_text())["pins"]}
+
+
+def git_tree_entries(ref, path):
+    raw = subprocess.check_output(["git", "ls-tree", "-r", "-z", ref, "--", path], cwd=ROOT)
+    result = {}
+    for entry in raw.split(b"\0"):
+        if entry:
+            identity, name = entry.decode("utf-8").split("\t", 1)
+            mode, kind, blob = identity.split(" ")
+            require(name not in result, "Duplicate Git tree path")
+            result[name] = {"mode": mode, "type": kind, "blob": blob}
+    return result
+
+
+def validate_test_additions(producer, current, manifest):
+    """Accept the exact reviewed new regular files, never a directory-wide exclusion."""
+    require(type(manifest.get("version")) is int and manifest["version"] == 1 and manifest.get("test_root") == OTZARIA_TEST_ROOT,
+            "Unknown test-additions contract")
+    declared = {}
+    for entry in manifest["entries"]:
+        name = entry["path"]
+        path = PurePosixPath(name)
+        require(name == path.as_posix() and "\\" not in name and ".." not in path.parts
+                and name.startswith(OTZARIA_TEST_ROOT + "/") and name not in declared,
+                "Invalid or duplicate declared test path")
+        require(entry["mode"] == "100644" and entry["type"] == "blob"
+                and re.fullmatch(r"[0-9a-f]{40}", entry["blob"]), "Test addition is not a pinned regular file")
+        declared[name] = {key: entry[key] for key in ("mode", "type", "blob")}
+    require(declared, "Empty test-additions exception")
+    for name, identity in producer.items():
+        require(current.get(name) == identity, "Changed or removed producer input: " + name)
+    require(not (producer.keys() & declared.keys()), "Declared test was already a producer input")
+    added = current.keys() - producer.keys()
+    require(added == declared.keys(), "Added paths differ from the reviewed test manifest")
+    for name, identity in declared.items():
+        require(current[name] == identity, "Declared test identity drift: " + name)
+    return {"preserved_producer_entries": len(producer), "reviewed_added_regular_files": len(declared)}
+
+
+def verify_otzaria_test_additions(config):
+    # Git text checkouts may use CRLF on Windows; the pin covers the complete
+    # UTF-8 manifest with LF line endings, without reserializing its JSON.
+    manifest_text = TEST_ADDITIONS_MANIFEST.read_text(encoding="utf-8")
+    manifest_sha256 = hashlib.sha256(manifest_text.encode("utf-8")).hexdigest()
+    require(manifest_sha256 == config["otzaria_test_additions_sha256"],
+            "Test-additions manifest digest mismatch")
+    manifest = json.loads(manifest_text)
+    require(manifest["producer_sha"] == config["engine_producer_sha"], "Test manifest producer mismatch")
+    producer_tree = capture("git", "rev-parse", config["engine_producer_sha"] + ":" + OTZARIA_ROOT)
+    current_tree = capture("git", "rev-parse", "HEAD:" + OTZARIA_ROOT)
+    require(producer_tree == manifest["producer_tree"] == config["engine_trees"][OTZARIA_ROOT],
+            "Whole producer Otzaria tree mismatch")
+    require(current_tree == manifest["current_tree"], "Current Otzaria tree differs from reviewed additions")
+    result = validate_test_additions(git_tree_entries(config["engine_producer_sha"], OTZARIA_ROOT),
+                                     git_tree_entries("HEAD", OTZARIA_ROOT), manifest)
+    # These exact reviewed build inputs do not compile the standalone Swift test
+    # package. Re-review this exclusion if project membership or a build input changes.
+    required_inputs = {"Maktabah.xcodeproj/project.pbxproj", OTZARIA_ROOT + "/build_xcframework.sh",
+                       OTZARIA_ROOT + "/ios_bridge/Cargo.toml", OTZARIA_ROOT + "/ios_bridge/build.rs"}
+    require(set(manifest["excluded_build_inputs"]) == required_inputs, "Incomplete test build-exclusion proof")
+    for path, blob in manifest["excluded_build_inputs"].items():
+        require(capture("git", "rev-parse", "HEAD:" + path) == blob, "Reviewed build-exclusion input changed: " + path)
+    return {**result, "mode": "EXACT_NEW_TEST_FILES_ONLY", "producer_sha": manifest["producer_sha"],
+            "producer_whole_tree": producer_tree, "current_whole_tree": current_tree,
+            "manifest_sha256_lf": manifest_sha256,
+            "excluded_build_inputs": manifest["excluded_build_inputs"],
+            "binary_attribution": "PRODUCER_TREE_ONLY_NOT_CURRENT_WHOLE_TREE"}
+
+
+def validate_framework_bindings(config):
+    selected = [item for item in config["artifacts"] if item["name"] in FRAMEWORK_ARTIFACTS]
+    require(len(selected) == 2 and {item["name"] for item in selected} == set(FRAMEWORK_ARTIFACTS),
+            "Both exact framework artifact bindings are required")
+    for item in selected:
+        require((item["destination"], item["tar"]) == FRAMEWORK_ARTIFACTS[item["name"]], "Framework destination mismatch")
+        require(item.get("producer_sha") == config["engine_producer_sha"], "Framework producer SHA mismatch")
+        for key in ("id", "size_in_bytes", "producer_run", "producer_attempt", "producer_job"):
+            require(type(item.get(key)) is int and item[key] > 0, "Missing framework metadata binding: " + key)
+        require(re.fullmatch(r"[0-9a-f]{64}", item["sha256"]), "Invalid framework archive digest")
+        require(item.get("producer_job_name") and item.get("producer_required_steps"), "Missing framework producer steps")
+
+
+def validate_framework_metadata(config, item, artifact, run, job):
+    """Bind downloaded bytes to a completed, successful framework job in the pinned run attempt.
+
+    GitHub artifact metadata has no job ID. The pinned artifact digest, exact run/
+    head, successful named job, and creation during its upload step are checked
+    together; this is not an assertion that the whole workflow succeeded.
+    """
+    require(item["producer_sha"] == config["engine_producer_sha"], "Framework producer SHA mismatch")
+    for key in ("id", "name", "size_in_bytes"):
+        require(artifact.get(key) == item[key], "Framework artifact metadata mismatch: " + key)
+    require(artifact.get("digest") == "sha256:" + item["sha256"] and artifact.get("expired") is False,
+            "Framework artifact digest or lifetime mismatch")
+    workflow = artifact.get("workflow_run", {})
+    require(workflow.get("id") == item["producer_run"] and workflow.get("head_sha") == item["producer_sha"],
+            "Framework artifact run or head mismatch")
+    require(workflow.get("repository_id") == REPOSITORY_ID and workflow.get("head_repository_id") == REPOSITORY_ID,
+            "Framework artifact repository mismatch")
+    require(run.get("id") == item["producer_run"] and run.get("run_attempt") == item["producer_attempt"]
+            and run.get("head_sha") == item["producer_sha"] and run.get("head_commit", {}).get("id") == item["producer_sha"],
+            "Framework producer run identity mismatch")
+    require(run.get("status") == "completed" and run.get("conclusion") == item["producer_run_conclusion"],
+            "Framework producer run state mismatch")
+    require(run.get("path") == ".github/workflows/ios-build.yml" and all(
+        run.get(key, {}).get("full_name") == REPOSITORY and run[key].get("id") == REPOSITORY_ID
+        for key in ("repository", "head_repository")), "Framework producer repository or workflow mismatch")
+    require(workflow.get("head_branch") == run.get("head_branch") == job.get("head_branch"),
+            "Framework producer branch metadata mismatch")
+    for field, key in (("id", "producer_job"), ("name", "producer_job_name"), ("run_id", "producer_run"),
+                       ("run_attempt", "producer_attempt"), ("head_sha", "producer_sha")):
+        require(job.get(field) == item[key], "Framework producer job identity mismatch: " + field)
+    require(job.get("status") == "completed" and job.get("conclusion") == "success", "Framework producer job did not succeed")
+    for name in item["producer_required_steps"]:
+        matches = [step for step in job.get("steps", []) if step.get("name") == name]
+        require(len(matches) == 1 and matches[0].get("status") == "completed"
+                and matches[0].get("conclusion") == "success", "Framework producer step did not succeed: " + name)
+    timestamp = lambda value: datetime.fromisoformat(value.replace("Z", "+00:00"))
+    created = timestamp(artifact["created_at"])
+    uploads = [step for step in job["steps"] if step.get("name") == "Run actions/upload-artifact@v4"
+               and step.get("status") == "completed" and step.get("conclusion") == "success"]
+    require(len(uploads) == 1 and timestamp(uploads[0]["started_at"]) <= created <= timestamp(uploads[0]["completed_at"])
+            and timestamp(job["started_at"]) <= created <= timestamp(job["completed_at"]),
+            "Artifact creation is outside the verified producer upload")
+    return {"producer_sha": item["producer_sha"], "producer_run": run["id"], "producer_attempt": run["run_attempt"],
+            "producer_run_conclusion": run["conclusion"], "producer_job": job["id"], "producer_job_conclusion": job["conclusion"],
+            "artifact_digest": artifact["digest"], "artifact_created_at": artifact["created_at"],
+            "scope": "EXACT_ARTIFACT_AND_SUCCESSFUL_FRAMEWORK_JOB_NOT_WHOLE_WORKFLOW"}
+
+
+def framework_metadata(config, item, cache, metadata_cache):
+    def fetch(endpoint, filename):
+        if endpoint not in metadata_cache:
+            data = json.loads(capture("gh", "api", "repos/" + REPOSITORY + "/actions/" + endpoint))
+            (cache / filename).write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+            metadata_cache[endpoint] = data
+        return metadata_cache[endpoint]
+    artifact = fetch(f"artifacts/{item['id']}", f"{item['id']}-artifact.json")
+    run = fetch(f"runs/{item['producer_run']}/attempts/{item['producer_attempt']}",
+                f"{item['producer_run']}-attempt-{item['producer_attempt']}.json")
+    job = fetch(f"jobs/{item['producer_job']}", f"{item['producer_job']}-job.json")
+    return validate_framework_metadata(config, item, artifact, run, job)
 
 
 def zayit_build_plan(config):
@@ -60,6 +212,7 @@ def zayit_build_plan(config):
 
 
 def preflight(config):
+    validate_framework_bindings(config)
     result = {"checkout_sha": capture("git", "rev-parse", "HEAD"), "application_source_sha": config["application_source_sha"],
               "validator_sha256": digest(Path(__file__)), "inputs_sha256": digest(INPUTS),
               "workflow_sha256": digest(ROOT / ".github/workflows/sefaria-embedded-validation.yml"),
@@ -73,7 +226,9 @@ def preflight(config):
     for path, expected_tree in config["engine_trees"].items():
         require(capture("git", "rev-parse", config["engine_producer_sha"] + ":" + path) == expected_tree,
                 "Prebuilt engine producer source differs: " + path)
-        if path != "Vendor/ZayitSearchPort/Rust":
+        if path == OTZARIA_ROOT:
+            result["otzaria_test_additions"] = verify_otzaria_test_additions(config)
+        elif path != "Vendor/ZayitSearchPort/Rust":
             require(capture("git", "rev-parse", "HEAD:" + path) == expected_tree,
                     "Unreviewed prebuilt engine source drift: " + path)
     result["zayit_framework"] = zayit_build_plan(config)
@@ -126,7 +281,10 @@ def restore(config, report):
     cache = OUT / "inputs"
     cache.mkdir(parents=True, exist_ok=True)
     report["artifact_inputs"] = []
+    metadata_cache = {}
     for item in config["artifacts"]:
+        producer = (framework_metadata(config, item, cache, metadata_cache)
+                    if item["name"] in FRAMEWORK_ARTIFACTS else None)
         archive = cache / (str(item["id"]) + ".zip")
         with archive.open("wb") as output:
             subprocess.run(["gh", "api", f"repos/davidpovarsky/Maktabah/actions/artifacts/{item['id']}/zip"],
@@ -135,7 +293,8 @@ def restore(config, report):
         require(actual == item["sha256"], "Artifact ZIP digest mismatch: " + item["name"])
         role = ("BASELINE_ONLY_REBUILT_BEFORE_LINK" if item.get("destination") == "Vendor/ZayitSearchPort/build"
                 and report["zayit_framework"]["mode"] == "REBUILD_EXACT_REVIEWED_RUST" else "PINNED_INPUT")
-        report["artifact_inputs"].append({**item, "verified_sha256": actual, "role": role})
+        report["artifact_inputs"].append({**item, "verified_sha256": actual, "role": role,
+                                         **({"verified_producer": producer} if producer else {})})
         with zipfile.ZipFile(archive) as zipped:
             if "tar" in item:
                 matches = [n for n in zipped.namelist() if PurePosixPath(n).name == item["tar"]]
