@@ -38,6 +38,20 @@ private func runAsyncCheck(_ action: @escaping @Sendable () async throws -> Void
     try require(finished.wait(timeout: .now() + 15) == .success, "Owned cancellation check timed out")
     try require(failures.failures.isEmpty, failures.failures.joined(separator: "; "))
 }
+// Suspend the Swift task while the bounded semaphore wait runs on a Dispatch
+// worker. The caller captures the absolute deadline before enqueueing, so queue
+// delay never restarts a timing gate. Do not consume task cancellation here:
+// the original SQLite fetch must still observe and handle its cancelled task.
+private func waitForSignal(
+    _ semaphore: DispatchSemaphore,
+    deadline: DispatchTime
+) async -> Bool {
+    await withCheckedContinuation { continuation in
+        DispatchQueue.global(qos: .userInitiated).async {
+            continuation.resume(returning: semaphore.wait(timeout: deadline) == .success)
+        }
+    }
+}
 private func expectCancelled(_ task: Task<[Int], Error>) async throws {
     do { _ = try await task.value }
     catch is CancellationError { return }
@@ -66,7 +80,7 @@ private func checkCancelledContender(_ db: SQLiteDatabase, releaseAtCancellation
             return row.int(at: 0)
         }
     }
-    guard ownerEntered.wait(timeout: .now() + 5) == .success else {
+    guard await waitForSignal(ownerEntered, deadline: .now() + 5) else {
         ownerRelease.signal(); _ = try? await holder.value
         throw CheckFailure(message: "Actual SQLite holder did not start")
     }
@@ -78,7 +92,7 @@ private func checkCancelledContender(_ db: SQLiteDatabase, releaseAtCancellation
             return row.int(at: 0)
         }
     }
-    guard waiterStarted.wait(timeout: .now() + 5) == .success else {
+    guard await waitForSignal(waiterStarted, deadline: .now() + 5) else {
         ownerRelease.signal(); _ = try? await holder.value; _ = try? await waiter.value
         throw CheckFailure(message: "Contending task did not start")
     }
@@ -91,7 +105,7 @@ private func checkCancelledContender(_ db: SQLiteDatabase, releaseAtCancellation
         ownerRelease.signal()
         completedWhileHolderBlocked = true
     } else {
-        completedWhileHolderBlocked = waiterFinished.wait(timeout: .now() + .milliseconds(250)) == .success
+        completedWhileHolderBlocked = await waitForSignal(waiterFinished, deadline: .now() + .milliseconds(250))
         ownerRelease.signal()
     }
     let holderRows = try await holder.value
@@ -259,7 +273,8 @@ private let sourceSQL = """
                 let start = DispatchSemaphore(value: 0)
                 let mapped = FailureRecorder()
                 let task = Task.detached {
-                    _ = start.wait(timeout: .now() + 5)
+                    let didStart = await waitForSignal(start, deadline: .now() + 5)
+                    try require(didStart, "Owned fetch start barrier timed out")
                     return try db.fetch(query: "SELECT value FROM numbers WHERE value = 17") { row in
                         mapped.add("mapped"); return row.int(at: 0)
                     }
@@ -285,7 +300,8 @@ private let sourceSQL = """
                 let start = DispatchSemaphore(value: 0)
                 let control = CancellationControl()
                 let task = Task.detached {
-                    _ = start.wait(timeout: .now() + 5)
+                    let didStart = await waitForSignal(start, deadline: .now() + 5)
+                    try require(didStart, "Owned fetch start barrier timed out")
                     return try db.fetch(query: "SELECT value FROM numbers ORDER BY value") { row in
                         control.cancel()
                         try Task.checkCancellation()

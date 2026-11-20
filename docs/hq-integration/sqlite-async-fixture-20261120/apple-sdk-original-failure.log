@@ -1,0 +1,69 @@
+/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift:69:24: error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+ 67 |         }
+ 68 |     }
+ 69 |     guard ownerEntered.wait(timeout: .now() + 5) == .success else {
+    |                        `- error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+ 70 |         ownerRelease.signal(); _ = try? await holder.value
+ 71 |         throw CheckFailure(message: "Actual SQLite holder did not start")
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait(timeout:)' declared here
+1 | class DispatchSemaphore {
+2 | public func wait(timeout: DispatchTime) -> DispatchTimeoutResult}
+  |             `- note: 'wait(timeout:)' declared here
+3 |
+
+/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift:81:25: error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+ 79 |         }
+ 80 |     }
+ 81 |     guard waiterStarted.wait(timeout: .now() + 5) == .success else {
+    |                         `- error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+ 82 |         ownerRelease.signal(); _ = try? await holder.value; _ = try? await waiter.value
+ 83 |         throw CheckFailure(message: "Contending task did not start")
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait(timeout:)' declared here
+1 | class DispatchSemaphore {
+2 | public func wait(timeout: DispatchTime) -> DispatchTimeoutResult}
+  |             `- note: 'wait(timeout:)' declared here
+3 |
+
+/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift:94:54: error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+ 92 |         completedWhileHolderBlocked = true
+ 93 |     } else {
+ 94 |         completedWhileHolderBlocked = waiterFinished.wait(timeout: .now() + .milliseconds(250)) == .success
+    |                                                      `- error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+ 95 |         ownerRelease.signal()
+ 96 |     }
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait(timeout:)' declared here
+1 | class DispatchSemaphore {
+2 | public func wait(timeout: DispatchTime) -> DispatchTimeoutResult}
+  |             `- note: 'wait(timeout:)' declared here
+3 |
+
+/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift:262:31: error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+260 |                 let mapped = FailureRecorder()
+261 |                 let task = Task.detached {
+262 |                     _ = start.wait(timeout: .now() + 5)
+    |                               `- error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+263 |                     return try db.fetch(query: "SELECT value FROM numbers WHERE value = 17") { row in
+264 |                         mapped.add("mapped"); return row.int(at: 0)
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait(timeout:)' declared here
+1 | class DispatchSemaphore {
+2 | public func wait(timeout: DispatchTime) -> DispatchTimeoutResult}
+  |             `- note: 'wait(timeout:)' declared here
+3 |
+
+/Users/runner/work/Maktabah/Maktabah/Tests/HQ/sqlite/SQLiteDatabaseAcceptance.swift:288:31: error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+286 |                 let control = CancellationControl()
+287 |                 let task = Task.detached {
+288 |                     _ = start.wait(timeout: .now() + 5)
+    |                               `- error: instance method 'wait' is unavailable from asynchronous contexts; Await a Task handle instead
+289 |                     return try db.fetch(query: "SELECT value FROM numbers ORDER BY value") { row in
+290 |                         control.cancel()
+
+Dispatch.DispatchSemaphore.wait:2:13: note: 'wait(timeout:)' declared here
+1 | class DispatchSemaphore {
+2 | public func wait(timeout: DispatchTime) -> DispatchTimeoutResult}
+  |             `- note: 'wait(timeout:)' declared here
+3 |

@@ -1,0 +1,52 @@
+{
+  "base": "bd5142ca5da7c7fe6b658dba2323ac0b463b6672",
+  "failure_run": "https://github.com/davidpovarsky/Maktabah/actions/runs/44648487731",
+  "failure_source": "83bc48f7b27e41d5580124a974d78bfad6ace50c",
+  "failure_evidence_commit": "41cd32b0ea8857241d05f9e2fe977461cf2af3c6",
+  "error_lines_in_original": [
+    69,
+    81,
+    94,
+    262,
+    288
+  ],
+  "failure_log_sha256_lf": "0495a1cfe6d092b3d370b98cc56bb577feda3c9e2933849e20c38df3fad0d151",
+  "case_registration_templates_unchanged": [
+    "successful_rows_and_genuine_zero",
+    "all_supported_binding_types_keep_values",
+    "step_error_before_first_row_is_not_empty_success",
+    "step_error_after_first_row_is_not_partial_success",
+    "same_cached_query_recovers_after_step_failure",
+    "actual_sqlite_interrupt_never_returns_partial_rows",
+    "cached_statement_recovers_after_interrupt",
+    "out_of_range_\\(label)_bind_cannot_succeed",
+    "unsupported_bind_type_still_fails_without_poisoning_cache",
+    "mapping_error_is_preserved_and_statement_is_reset",
+    "cached_schema_change_error_is_not_empty_success",
+    "transaction_rolls_back_when_a_read_fails",
+    "serialized_concurrent_reads_preserve_entire_results",
+    "recursive_fetch_acquisition_keeps_original_owner",
+    "pre_cancelled_fetch_does_not_map_or_leak_lock",
+    "cancelled_fetch_leaves_contended_lock_before_owner_release",
+    "cancellation_wins_as_recursive_lock_becomes_available",
+    "cancellation_after_acquisition_resets_statement_and_unlocks",
+    "actual_readonly_source_\\(oracle.label)",
+    "actual_writer_lock_is_not_empty_success",
+    "read_under_writer_lock_recovers_after_rollback",
+    "readonly_connection_rejects_writes"
+  ],
+  "all_original_require_assertions_retained": true,
+  "timing_gates_retained": {
+    "outer_join_seconds": 15,
+    "owner_start_wait_seconds": 5,
+    "task_start_wait_seconds": 5,
+    "completed_while_owner_blocked_ms": 250,
+    "pre_cancel_sleep_ms": 5,
+    "acquisition_race_repetitions": 32
+  },
+  "production_driver_shared_script_unchanged": true,
+  "apple_sdk_candidate": "NOT_RUN; parent owns combined source freeze and Apple rerun",
+  "failure_log_original_raw_sha256": "ab58da039d56ceaca2c4f82d73c4d73d99249f78e3e205c3b67faf0e0fb06859",
+  "failure_log_original_artifact": "apple-sdk-original-failure.log.gz",
+  "failure_log_display_normalization": "Only trailing whitespace and terminal blank lines removed from readable .log; exact original bytes retained in .log.gz"
+}
