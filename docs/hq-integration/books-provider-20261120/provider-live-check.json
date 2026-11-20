@@ -1,0 +1,27 @@
+{
+  "checked_at_utc": "2026-11-20T00:07:33.706418+00:00",
+  "url": "https://drive.google.com/uc?export=download&id=1FYrscpCBIuIym2ZHB6QBwYfy9eswYDna",
+  "operation": "read-only original configured Books Updates catalog; no updater execution or database open",
+  "http_status": 200,
+  "content_type": "application/octet-stream",
+  "resolved_url": "https://drive.usercontent.google.com/download?id=1FYrscpCBIuIym2ZHB6QBwYfy9eswYDna&export=download",
+  "bytes": 792,
+  "sha256": "99c2cf2fb5e4d5c9f30d2d0016cd769eef2b0953642e3464619310da4710c293",
+  "status": "FETCHED",
+  "rows": 8,
+  "header": [
+    "bkid",
+    "cat",
+    "verName",
+    "link",
+    "size",
+    "bk"
+  ],
+  "data_rows": 7,
+  "column_counts": [
+    6
+  ],
+  "delimiter": ";",
+  "catalog_binding_fields_present": false,
+  "notes": "Configured semicolon-delimited catalog has book ID/category/version/download link/size/title only; no backend/schema/source-database hash/migration manifest fields. Initial generic comma-reader metadata retained separately; exact downloaded bytes unchanged."
+}

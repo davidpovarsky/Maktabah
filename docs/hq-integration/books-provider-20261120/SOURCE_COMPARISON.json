@@ -1,0 +1,18 @@
+{
+  "historical_apple_run": 44190056702,
+  "historical_source": "837497a0666b01979715e3d0a81a983259ac8537",
+  "current_source": "799c30e06f73b97e39cbe08afc2e77a29b2906d1",
+  "paths_compared": [
+    "Source/ChavrusaText/BookUpdates",
+    "Source/Features/Library/Database/Updater",
+    "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+    "Source/Features/Library/Models",
+    "Source/Features/Library/Updates/BookUpdateView.swift",
+    "Source/LibraryBackend",
+    "tools/hq-updates-test-apple.py",
+    "tools/hq-updates-extract-fixtures.py",
+    "Tests/HQ/updates"
+  ],
+  "changed_paths": [],
+  "no_new_test_execution": true
+}
