@@ -28,6 +28,19 @@ import runtime27_interruption
 stop_owned_process_group = runtime27_interruption.stop_owned_process_group
 
 
+def case_contract_path(requested):
+    """Default original scope, or one of two reviewed independent diagnostics."""
+    if requested is None:
+        return ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
+    allowed = {
+        "docs/hq-integration/runtime27/native-study-sheet-ipad11.json",
+        "docs/hq-integration/runtime27/native-study-sheet-iphone.json",
+    }
+    if requested not in allowed:
+        raise ValueError("Unreviewed explicit runtime27 case-manifest path")
+    return ROOT / requested
+
+
 def execution_groups(contract):
     """Exact nonzero affected scope; every group owns a fresh disposable sim."""
     rows = contract["cases"] + contract.get("supplemental_cases", [])
@@ -196,7 +209,9 @@ def main():
               "mode": os.environ.get("RUNTIME27_MODE"), "idb": "NOT_USED_XCUITEST_DRIVER",
               "maestro": "NOT_USED_NO_SELECTED_FLOW", "distribution": False}
     controller = runtime27_interruption.InterruptController()
+    contract_path = case_contract_path(None)
     try:
+        contract_path = case_contract_path(os.environ.get("RUNTIME27_CASE_MANIFEST"))
         if sys.platform != "darwin":
             raise RuntimeError("R27 execution requires real macOS/Xcode")
         controller.install()
@@ -293,7 +308,6 @@ def main():
         report["sidebar_sdk_compile"]["exit_code"] = sidebar_code
         if sidebar_code:
             raise RuntimeError("Owned sidebar adapter did not compile with actual Apple SDK")
-        contract_path = ROOT / "docs/hq-integration/runtime27/R27_CASES.json"
         contract = json.loads(contract_path.read_text())
         groups = execution_groups(contract)
         expected_count = sum(len(group["case_ids"]) for group in groups)
@@ -313,7 +327,7 @@ def main():
         report["full_release_acceptance"] = False
         report["scope"] = contract["scope"]
         test_path = ROOT / "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
-        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b":
+        if hashlib.sha256(test_path.read_bytes()).hexdigest() != "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed":
             raise RuntimeError("Reviewed test source drift")
         report["test_source_commit"] = contract["source_test_commit"]
         subprocess.run(["git", "merge-base", "--is-ancestor", contract["source_test_commit"], "HEAD"], cwd=ROOT, check=True)
@@ -386,7 +400,7 @@ def main():
             try:
                 if report["mode"] == "ui" and "case_outcomes" not in report:
                     try:
-                        collect_cases(report, json.loads((ROOT / "docs/hq-integration/runtime27/R27_CASES.json").read_text()))
+                        collect_cases(report, json.loads(contract_path.read_text()))
                     except BaseException as error:
                         if isinstance(error, KeyboardInterrupt):
                             controller.mark_interrupted(error)

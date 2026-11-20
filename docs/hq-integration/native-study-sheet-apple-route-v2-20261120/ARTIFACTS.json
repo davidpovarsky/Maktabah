@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "parent_commit": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+  "parent_tree": "4483f421ec28c282ae81251d616c6e73d1af4584",
+  "source_sealed": true,
+  "route_activation": false,
+  "qualification": "PREPARED_SOURCE_ONLY",
+  "records": [
+    {
+      "path": ".github/workflows/otzaria-native-study-sheet-native-v2.yml",
+      "mode": "100644",
+      "bytes": 9807,
+      "sha256": "ee1d17599d8889d72c364ec64d3a9572766bed96b9a01126c65f2e43dfd7027d",
+      "git_blob": "d601594b7b777844d97c5a41204c1f61a18a3fd4",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/ADAPTATION_PROOF.json",
+      "mode": "100644",
+      "bytes": 21292,
+      "sha256": "6ca2484d4aa365a412dd98fe39789287a27cb730ea3530c7a79e65247e178872",
+      "git_blob": "b1d6bf8f7a2b7919e9e0eefdd70e93131691085f",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/README.md",
+      "mode": "100644",
+      "bytes": 5553,
+      "sha256": "9c2a2ea90ec27b75198af7cc45aab610f76e9e4b027d95e1afc28da5a2d55093",
+      "git_blob": "4d62a03ebefea5ba3239cd2d488237eb58d9d180",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/REBIND_ONLY.patch",
+      "mode": "100644",
+      "bytes": 8934,
+      "sha256": "ed097755e8fd0bf4b865d8800a3aebf9018347207ca74d68a06666ce74e7a242",
+      "git_blob": "db03d0786887055565f09572b10c56e018a8b1e9",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/RUNTIME_EXACT_EDIT.json",
+      "mode": "100644",
+      "bytes": 1998,
+      "sha256": "474c39af3f6cf756576fa1ccbda831aa61293a93980bc276ba9b347021f2561e",
+      "git_blob": "03b05d3c076714628e29e525ee41c9fd2a6db058",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/SOURCE_BINDING.json",
+      "mode": "100644",
+      "bytes": 11715,
+      "sha256": "fa5e7366d86db601ab709e8e186dbba24931d5be9fef41d1143eb2f4c6f6b7ff",
+      "git_blob": "ca2042aee5cd60303de189080924645584773686",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/SOURCE_PUBLICATION_PROOF.json",
+      "mode": "100644",
+      "bytes": 4210,
+      "sha256": "66f482885e231536e85e3c0feca8aa11b32e08034e92990ed2c4c6c8e8f889b4",
+      "git_blob": "3bf364997263c36105e58217fb82cc2ab8326480",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-ipad11.json",
+      "mode": "100644",
+      "bytes": 202909,
+      "sha256": "4791932ecb1b2a2a5dd77dd8a0a22e7cce33e4908151c5e96de7aa245b3ca325",
+      "git_blob": "50cf4dbdde612913e002593f3d11039de5c6cadd",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/runtime27/native-study-sheet-iphone.json",
+      "mode": "100644",
+      "bytes": 201016,
+      "sha256": "c0daa6acf74755979dbb45bcc884810f9b434d8fae0fd9627e8e0d2e7422bc8a",
+      "git_blob": "73d8dde838131c4f968290fdf73ac06616bf9f21",
+      "previous_git_blob": null
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "mode": "100644",
+      "bytes": 4333,
+      "sha256": "19002dd13d3d75a9b2a5f504a14924d2e4c0b39cf0c1ab78275000a3ce62abf0",
+      "git_blob": "c43c384b081694990452a9009e2aa8cc44ea72f7",
+      "previous_git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "mode": "100644",
+      "bytes": 19318,
+      "sha256": "3ee6e29e4e4a3f1daadd40dabbdaf5b9a44dca38457cf5cfcf93c463754ae7be",
+      "git_blob": "bbdc7fee445b3bf9ab9cb50fa249a313974d0a7b",
+      "previous_git_blob": "fcf0d0791235a43378f5a595e803e23253c83a6f"
+    },
+    {
+      "path": "Scripts/CI/native-study-sheet-native-v2.py",
+      "mode": "100644",
+      "bytes": 32258,
+      "sha256": "644f87a1735c7aca61c9f373fc8c4449916257b3e6539c3069216514105c9001",
+      "git_blob": "df8bc780b90b4dc6a7109a0c1d1ad30fbaaf8098",
+      "previous_git_blob": null
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "mode": "100644",
+      "bytes": 26870,
+      "sha256": "a35f85c96ce264123a841356c5e335e0b81908433478f8b30f480bddd303f912",
+      "git_blob": "cfc9858197f238cae11098f5a703deec8949a999",
+      "previous_git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4"
+    },
+    {
+      "path": "Scripts/CI/test-native-study-sheet-native-v2.py",
+      "mode": "100644",
+      "bytes": 25934,
+      "sha256": "f2851b1dea68cc4fae5444ff34d0158bb5143fce1eec3c52d92739c4fafe9f67",
+      "git_blob": "656b4a595e135bcc59cd8b73eb496884ee4e8239",
+      "previous_git_blob": null
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+diff --git a/Scripts/CI/native-study-sheet-native-v2.py b/Scripts/CI/native-study-sheet-native-v2.py
+--- a/Scripts/CI/native-study-sheet-native-v2.py
++++ b/Scripts/CI/native-study-sheet-native-v2.py
+@@ -15,15 +15,15 @@
+ import sys
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+-DOCS = "docs/hq-integration/native-study-sheet-apple-route-20261120/"
++DOCS = "docs/hq-integration/native-study-sheet-apple-route-v2-20261120/"
+ BINDING_PATH = DOCS + "SOURCE_BINDING.json"
+ BINDING = json.loads((ROOT / BINDING_PATH).read_bytes())
+ BASE = BINDING["source_commit"]
+ TREES = BINDING["protected_trees"]
+-REF = "refs/heads/codex/otzaria-native-study-sheet-native-20261120"
+-WORKFLOW = ".github/workflows/otzaria-native-study-sheet-native.yml"
+-SELF = "Scripts/CI/native-study-sheet-native.py"
+-TESTS = "Scripts/CI/test-native-study-sheet-native.py"
++REF = "refs/heads/codex/otzaria-native-study-sheet-native-v2-20261120"
++WORKFLOW = ".github/workflows/otzaria-native-study-sheet-native-v2.yml"
++SELF = "Scripts/CI/native-study-sheet-native-v2.py"
++TESTS = "Scripts/CI/test-native-study-sheet-native-v2.py"
+ ORIGINAL_MANIFEST = "docs/hq-integration/runtime27/R27_CASES.json"
+ INPUTS = "Scripts/CI/hq-stage2-focused-apple.inputs.json"
+ ADDITIONS = "Scripts/CI/hq-stage2-otzaria-test-additions.json"
+diff --git a/Scripts/CI/test-native-study-sheet-native-v2.py b/Scripts/CI/test-native-study-sheet-native-v2.py
+--- a/Scripts/CI/test-native-study-sheet-native-v2.py
++++ b/Scripts/CI/test-native-study-sheet-native-v2.py
+@@ -23,7 +23,7 @@
+ ARGS, OTHER = PARSER.parse_known_args()
+ if ARGS.base_dir:
+     sys.path.insert(0, str(ARGS.base_dir / "Scripts/CI"))
+-G = runpy.run_path(str(HERE / "native-study-sheet-native.py"))
++G = runpy.run_path(str(HERE / "native-study-sheet-native-v2.py"))
+ RUNTIME = runpy.run_path(str(HERE / "runtime27.py"))
+ 
+ 
+diff --git a/.github/workflows/otzaria-native-study-sheet-native-v2.yml b/.github/workflows/otzaria-native-study-sheet-native-v2.yml
+--- a/.github/workflows/otzaria-native-study-sheet-native-v2.yml
++++ b/.github/workflows/otzaria-native-study-sheet-native-v2.yml
+@@ -2,7 +2,7 @@
+ 
+ on:
+   push:
+-    branches: [codex/otzaria-native-study-sheet-native-20261120]
++    branches: [codex/otzaria-native-study-sheet-native-v2-20261120]
+ 
+ permissions:
+   contents: read
+@@ -28,9 +28,9 @@
+       - name: Select original SDK-matched Apple toolchain
+         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+       - name: Check source/result guards
+-        run: python3 Scripts/CI/test-native-study-sheet-native.py
++        run: python3 Scripts/CI/test-native-study-sheet-native-v2.py
+       - name: Require actual retained RED and candidate Foundation25
+-        run: python3 Scripts/CI/native-study-sheet-native.py foundation
++        run: python3 Scripts/CI/native-study-sheet-native-v2.py foundation
+       - name: Retain every compile/runtime attempt including failure
+         if: always()
+         uses: actions/upload-artifact@v4
+@@ -66,9 +66,9 @@
+           ref: ${{ github.sha }}
+           fetch-depth: 0
+       - name: Bind exact M and unchanged original execution closure
+-        run: python3 Scripts/CI/native-study-sheet-native.py before --configuration ${{ matrix.configuration }}
++        run: python3 Scripts/CI/native-study-sheet-native-v2.py before --configuration ${{ matrix.configuration }}
+       - name: Reject false source or result credit
+-        run: python3 Scripts/CI/test-native-study-sheet-native.py
++        run: python3 Scripts/CI/test-native-study-sheet-native-v2.py
+       - name: Select an existing SDK-matched runtime for the full device matrix
+         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env
+       - name: Require all 55 Sefaria transport cases on actual Apple Foundation
+@@ -127,7 +127,7 @@
+         run: python3 Scripts/CI/runtime27.py
+       - name: Bind post-execution source and actual per-configuration results
+         if: always()
+-        run: python3 Scripts/CI/native-study-sheet-native.py after --configuration ${{ matrix.configuration }}
++        run: python3 Scripts/CI/native-study-sheet-native-v2.py after --configuration ${{ matrix.configuration }}
+       - name: Retain compiler cache only after an actual matching test build
+         id: runtime27_cache_ready
+         if: always()
+@@ -210,7 +210,7 @@
+           path: build/downloaded-native-study-sheet/native-study-sheet-foundation-evidence
+       - name: Require both original scopes and recheck actual raw results
+         if: always()
+-        run: python3 Scripts/CI/native-study-sheet-native.py aggregate --evidence-root build/downloaded-native-study-sheet
++        run: python3 Scripts/CI/native-study-sheet-native-v2.py aggregate --evidence-root build/downloaded-native-study-sheet
+       - name: Retain aggregate failure and partial evidence status
+         if: always()
+         uses: actions/upload-artifact@v4
+diff --git a/Scripts/CI/hq-stage2-focused-apple.inputs.json b/Scripts/CI/hq-stage2-focused-apple.inputs.json
+--- a/Scripts/CI/hq-stage2-focused-apple.inputs.json
++++ b/Scripts/CI/hq-stage2-focused-apple.inputs.json
+@@ -1,7 +1,7 @@
+ {
+-  "application_source_sha": "353888ed645c135da9cb229713d17a4594d1edb6",
++  "application_source_sha": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+   "application_trees": {
+-    "Source": "78a7dc0e608496575fc044a844862d67a8fbfa2c",
++    "Source": "9823059f3346705c5c98f4645257dde28248470a",
+     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+     "Maktabah.xcodeproj": "8dc15c688bc821891a2adca213aff8b1b882acad"
+   },
+diff --git a/docs/hq-integration/runtime27/native-study-sheet-ipad11.json b/docs/hq-integration/runtime27/native-study-sheet-ipad11.json
+--- a/docs/hq-integration/runtime27/native-study-sheet-ipad11.json
++++ b/docs/hq-integration/runtime27/native-study-sheet-ipad11.json
+@@ -1,8 +1,8 @@
+ {
+   "schema_version": 1,
+-  "source_test_commit": "353888ed645c135da9cb229713d17a4594d1edb6",
++  "source_test_commit": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
+-  "app_source": "353888ed645c135da9cb229713d17a4594d1edb6",
++  "app_source": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
+   "independent_qa_thread": null,
+   "scope": "Twelve additive Native Side Sheet cases; this selected scope is not full116/114 acceptance",
+@@ -1441,7 +1441,7 @@
+       "native": "NOT_RUN"
+     }
+   },
+-  "application_source_sha": "353888ed645c135da9cb229713d17a4594d1edb6",
++  "application_source_sha": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+   "hanlin_source_pin_history": {
+     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
+     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
+@@ -2625,7 +2625,7 @@
+   },
+   "native_study_sheet_diagnostic_20261120": {
+     "configuration": "ipad11",
+-    "source_snapshot": "353888ed645c135da9cb229713d17a4594d1edb6",
++    "source_snapshot": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+     "original_execution_case_ids": [
+       "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+       "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",
+diff --git a/docs/hq-integration/runtime27/native-study-sheet-iphone.json b/docs/hq-integration/runtime27/native-study-sheet-iphone.json
+--- a/docs/hq-integration/runtime27/native-study-sheet-iphone.json
++++ b/docs/hq-integration/runtime27/native-study-sheet-iphone.json
+@@ -1,8 +1,8 @@
+ {
+   "schema_version": 1,
+-  "source_test_commit": "353888ed645c135da9cb229713d17a4594d1edb6",
++  "source_test_commit": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
+-  "app_source": "353888ed645c135da9cb229713d17a4594d1edb6",
++  "app_source": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
+   "independent_qa_thread": null,
+   "scope": "Twelve additive Native Side Sheet cases; this selected scope is not full116/114 acceptance",
+@@ -1421,7 +1421,7 @@
+       "native": "NOT_RUN"
+     }
+   },
+-  "application_source_sha": "353888ed645c135da9cb229713d17a4594d1edb6",
++  "application_source_sha": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+   "hanlin_source_pin_history": {
+     "prior_source_test_commit": "c91db4508bf7a9146b20642df514ac4103b3520a",
+     "prior_application_source_sha": "c91db4508bf7a9146b20642df514ac4103b3520a",
+@@ -2605,7 +2605,7 @@
+   },
+   "native_study_sheet_diagnostic_20261120": {
+     "configuration": "iphone",
+-    "source_snapshot": "353888ed645c135da9cb229713d17a4594d1edb6",
++    "source_snapshot": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+     "original_execution_case_ids": [
+       "R27NativePadTests/testNormalBootstrapOtzariaRotationPreservesExactLocator",
+       "R27NativePadTests/testNormalBootstrapLegacyGenesisAndRotation",

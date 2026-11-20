@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "commit": "8685e8c5aca5df5c1e9802467efb98bc129313af",
+  "tree": "4483f421ec28c282ae81251d616c6e73d1af4584",
+  "parent": "353888ed645c135da9cb229713d17a4594d1edb6",
+  "base_tree": "324aad3ea57a4d4807c4d01998a1fd89a10e179e",
+  "base_leaves": 7014,
+  "actual_candidate_leaves": 7020,
+  "exact_expected_leaves": 7020,
+  "unchanged_leaf_modes_verified": 7011,
+  "changes": [
+    {
+      "path": "docs/hq-integration/native-study-sheet-repair-20261120/ARTIFACTS.json",
+      "mode": "100644",
+      "bytes": 2874,
+      "sha256": "6633282e16bc34445216e63f5ec1ffa5ae103cca92c26533a74c0b5ca1fb3d09",
+      "git_blob": "2bbe828e941fe1e1808f9012818760f6f54bac9d",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-repair-20261120/CAPTURE_FINDINGS.json",
+      "mode": "100644",
+      "bytes": 23303,
+      "sha256": "375713608a2584a981191352c4d74415a7ab148003202f2cfa232acc64b0fa9c",
+      "git_blob": "c05266d86a048c5c4443adc4decaf6f1a72a3794",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-repair-20261120/PROPOSED.patch",
+      "mode": "100644",
+      "bytes": 11004,
+      "sha256": "1852de8019c3507cf29c27bd2714a2d5918e57970a958c59ce6711463b1cebda",
+      "git_blob": "efa41d683ed1a9777bc4dd6d4ba113a793e4b90d",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-repair-20261120/README.md",
+      "mode": "100644",
+      "bytes": 6694,
+      "sha256": "20d4d1836cdec16b7e36ef8a01ff1e5f58a168317ed0984a71f01e7039f5df5a",
+      "git_blob": "b7b536050d9f6aedcc81a7c0cc4928084bbc2f36",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-repair-20261120/SOURCE_EDITS.json",
+      "mode": "100644",
+      "bytes": 11383,
+      "sha256": "97aeae964c80db52243715264933059ad1373579eb0a5a69d71bb2e32be32fb7",
+      "git_blob": "1b6d8cc1bc6989ea6f770fbc57b3f206b9dbb9ea",
+      "previous_git_blob": null
+    },
+    {
+      "path": "docs/hq-integration/native-study-sheet-repair-20261120/SOURCE_PROOF.json",
+      "mode": "100644",
+      "bytes": 12703,
+      "sha256": "6c05bfb44eb407e817e6dd29943446c9e3b7d69e6376435883d792203fc8ca59",
+      "git_blob": "61a78ba0dbdf53a9710c0a9742605f6987771e39",
+      "previous_git_blob": null
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "mode": "100644",
+      "bytes": 31307,
+      "sha256": "252eaf744a820a5a37b479fa6746ab0e3cfd1d182247a274f72acd06c945e76a",
+      "git_blob": "40be553b5ec0ebcf917b6c876e02e12bfbd845bd",
+      "previous_git_blob": "7bb0d01beee292c067478db8b4d0380ed405749f"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "mode": "100644",
+      "bytes": 42245,
+      "sha256": "51d09cb4664748d2211126d06b49ff1b6de3459407a5056496a59b42f3dbde68",
+      "git_blob": "8c0d862e202c6a2f7ecff178b5d161aa6fcfc98e",
+      "previous_git_blob": "28f48811b12618719daadfc43a56fe4b3557e414"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/NativeStudySheetPresenter.swift",
+      "mode": "100644",
+      "bytes": 22841,
+      "sha256": "d6af9838d18aa21ddc069c85e815b171f71d5d55bd31b2ec59190f5285402895",
+      "git_blob": "014e14471892a2f822ae349b7b9bc6f83321928a",
+      "previous_git_blob": "d33ce1267578c3660c5e9672e8510b46d73fd9e0"
+    }
+  ],
+  "mismatches": [],
+  "subtrees": [
+    {
+      "path": ".github",
+      "sha": "e3f12604b4a44f5c5a60dfc4330bb131898eb358"
+    },
+    {
+      "path": "Maktabah-iOSUITests",
+      "sha": "d9754e8f411a40dbc13efc98110780854fc40ba7"
+    },
+    {
+      "path": "Maktabah.xcodeproj",
+      "sha": "8dc15c688bc821891a2adca213aff8b1b882acad"
+    },
+    {
+      "path": "Scripts",
+      "sha": "151c2c5a6e638b498ca65bb2207b5d41414452a8"
+    },
+    {
+      "path": "Source",
+      "sha": "9823059f3346705c5c98f4645257dde28248470a"
+    },
+    {
+      "path": "Vendor",
+      "sha": "4065c0e62af325e83a65fe0c70270985229807ae"
+    },
+    {
+      "path": "tools",
+      "sha": "99dce0eb847450ccde6af3ef575440a592d6be1e"
+    }
+  ],
+  "refs_created_or_updated": 0,
+  "ci_activations": 0,
+  "swift": "NOT_RUN",
+  "native": "NOT_RUN"
+}
