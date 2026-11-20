@@ -100,7 +100,22 @@ final class DisconnectCases {
         let current = try repository.captureLocalEditorConnection()
         try check(current.database === connection.database && current.lifetime === connection.lifetime,
                   "replacement connection/lifetime was changed")
-        try check(current.syncPending === connection.syncPending && current.lifetime.isCurrent,
+        // SyncPendingStore is a value containing one private database reference.
+        // Compare that actual reference, rather than attempting object identity
+        // on the struct or accepting equal rows from a different database.
+        func pendingDatabase(_ store: SyncPendingStore) throws -> SQLiteDatabase {
+            let reflected = Mirror(reflecting: store)
+            guard reflected.displayStyle == .struct, reflected.children.count == 1,
+                  let child = reflected.children.first, child.label == "db",
+                  let database = child.value as? SQLiteDatabase else {
+                throw LocalCheckFailure("original pending store database layout differs")
+            }
+            return database
+        }
+        let currentPendingDatabase = try pendingDatabase(current.syncPending)
+        let capturedPendingDatabase = try pendingDatabase(connection.syncPending)
+        try check(currentPendingDatabase === capturedPendingDatabase
+                  && currentPendingDatabase === connection.database && current.lifetime.isCurrent,
                   "replacement pending owner was changed or retired")
     }
 
