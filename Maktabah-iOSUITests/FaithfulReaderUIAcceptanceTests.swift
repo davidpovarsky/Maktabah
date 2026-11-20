@@ -2595,6 +2595,51 @@ private struct GroupStressWorkspace: Decodable, Sendable {
 }
 
 @MainActor
+private enum GroupStressSnapshot {
+    // All attributes below come from one actual XCTest snapshot. No snapshot
+    // survives a tap, workspace transition, or predicate evaluation.
+    static func descendants(of root: any XCUIElementSnapshot) -> [any XCUIElementSnapshot] {
+        var result: [any XCUIElementSnapshot] = []
+        for child in root.children {
+            result.append(child)
+            result.append(contentsOf: descendants(of: child))
+        }
+        return result
+    }
+
+    static func matches(_ element: any XCUIElementSnapshot, identifying name: String) -> Bool {
+        // Preserve XCUIElementQuery's string-subscript identifying properties.
+        element.identifier == name || element.title == name || element.label == name
+            || element.value as? String == name || element.placeholderValue == name
+    }
+
+    static func documentCards(under overview: any XCUIElementSnapshot) -> [any XCUIElementSnapshot] {
+        @MainActor
+        func visit(_ node: any XCUIElementSnapshot, insideCollection: Bool) -> [any XCUIElementSnapshot] {
+            var result: [any XCUIElementSnapshot] = []
+            for child in node.children {
+                if insideCollection, child.elementType == .cell,
+                   child.identifier.hasPrefix("tab-switcher-grid-cell-") {
+                    result.append(child)
+                }
+                result.append(contentsOf: visit(child, insideCollection:
+                    insideCollection || child.elementType == .collectionView))
+            }
+            return result
+        }
+        // The original scope is overview.collectionViews.cells, not all cards
+        // anywhere in the app. Visit each descendant once even for nested lists.
+        return visit(overview, insideCollection: false)
+    }
+
+    static func finitePositive(_ frame: CGRect) -> Bool {
+        !frame.isNull && !frame.isInfinite && !frame.isEmpty
+            && frame.minX.isFinite && frame.minY.isFinite
+            && frame.width.isFinite && frame.height.isFinite
+    }
+}
+
+@MainActor
 private final class GroupStressNativeObservation {
     let application: XCUIApplication
     let url: URL
@@ -2617,18 +2662,36 @@ private final class GroupStressNativeObservation {
               current.group.name == name, current.group.tabs.count == 1,
               sceneID.map({ current.sceneID == $0 }) ?? true,
               afterRevision.map({ workspace.revision > $0 }) ?? true else { return nil }
+        guard let snapshot = try? application.snapshot() else { return nil }
+        let elements = GroupStressSnapshot.descendants(of: snapshot)
+        let overviews = elements.filter { GroupStressSnapshot.matches($0, identifying: "study-groups-overview") }
+        guard overviews.count == 1, let overviewSnapshot = overviews.first,
+              !elements.contains(where: {
+                  $0.elementType == .alert
+                      && GroupStressSnapshot.matches($0, identifying: "לא ניתן לשנות את סביבת הלימוד")
+              }) else { return nil }
+        let segments = elements.filter {
+            $0.elementType == .segmentedControl && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
+        }
+        let controls = segments.isEmpty ? elements.filter {
+            $0.elementType == .button && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
+        } : segments
+        guard controls.count == 1, let controlSnapshot = controls.first,
+              controlSnapshot.isEnabled, controlSnapshot.value as? String == name else { return nil }
+        let cards = GroupStressSnapshot.documentCards(under: overviewSnapshot)
+        let expectedCardID = "tab-switcher-grid-cell-" + current.document.session.id.uuidString
+        guard cards.count == 1, let cardSnapshot = cards.first,
+              cardSnapshot.identifier == expectedCardID, cardSnapshot.isSelected else { return nil }
+
+        // Hittability is a live XCUIElement property, not a frame approximation
+        // or snapshot attribute. Keep both original real hit-test requirements.
         let overview = application.descendants(matching: .any)["study-groups-overview"]
-        guard overview.exists, !application.alerts["לא ניתן לשנות את סביבת הלימוד"].exists else { return nil }
-        let segments = application.segmentedControls["study-group-selector"]
-        let control = segments.exists ? segments : application.buttons["study-group-selector"]
-        guard control.exists, control.isEnabled, control.isHittable,
-              control.value as? String == name else { return nil }
-        let cards = overview.collectionViews.cells.matching(NSPredicate(
-            format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-"))
-        guard cards.count == 1 else { return nil }
-        let card = cards.element(boundBy: 0)
-        guard card.identifier == "tab-switcher-grid-cell-" + current.document.session.id.uuidString,
-              card.isSelected, card.isHittable else { return nil }
+        let control = controlSnapshot.elementType == .segmentedControl
+            ? application.segmentedControls["study-group-selector"]
+            : application.buttons["study-group-selector"]
+        let card = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier == %@", expectedCardID)).element
+        guard control.isHittable, card.isHittable else { return nil }
         return workspace
     }
 }
@@ -2864,8 +2927,12 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
             evidence.transitions.append(observation)
             evidence.record(observation)
             selectOriginalStressGroup(named: target.name)
+            let selectionReturnedAt = ProcessInfo.processInfo.systemUptime
             workspace = try waitForOriginalGroup(named: target.name, at: url,
                                                   sceneID: original.sceneID, afterRevision: workspace.revision)
+            let observationReturnedAt = ProcessInfo.processInfo.systemUptime
+            observation["automationSelectionElapsedSeconds"] = selectionReturnedAt - start
+            observation["automationObservationElapsedSeconds"] = observationReturnedAt - selectionReturnedAt
             let current = try XCTUnwrap(workspace.current)
             XCTAssertEqual(current.group.id, target.id)
             XCTAssertEqual(current.document.session.id, targetDocument.session.id)
@@ -3032,12 +3099,44 @@ final class StudyGroupStressNativeAcceptanceTests: R27NativeUIBase {
 
     @MainActor
     private func selectOriginalStressGroup(named name: String) {
-        let selector = app.segmentedControls["study-group-selector"]
-        if selector.exists {
-            XCTAssertTrue(selector.isEnabled)
-            let targets = selector.buttons.matching(NSPredicate(format: "label == %@", name))
-            XCTAssertEqual(targets.count, 1)
-            tap(targets.element(boundBy: 0))
+        guard let snapshot = try? app.snapshot() else {
+            XCTFail("Require a fresh actual app snapshot before the original group action")
+            return
+        }
+        let elements = GroupStressSnapshot.descendants(of: snapshot)
+        let selectors = elements.filter {
+            $0.elementType == .segmentedControl && GroupStressSnapshot.matches($0, identifying: "study-group-selector")
+        }
+        if !selectors.isEmpty {
+            guard selectors.count == 1, let selectorSnapshot = selectors.first,
+                  selectorSnapshot.isEnabled else {
+                XCTFail("Require the unique enabled original segmented group selector")
+                return
+            }
+            let targets = GroupStressSnapshot.descendants(of: selectorSnapshot).filter {
+                $0.elementType == .button && $0.label == name
+            }
+            guard targets.count == 1, let target = targets.first,
+                  let windowSnapshot = elements.first(where: { $0.elementType == .window }),
+                  [selectorSnapshot.frame, target.frame, windowSnapshot.frame].allSatisfy({ GroupStressSnapshot.finitePositive($0) }),
+                  selectorSnapshot.frame.contains(target.frame),
+                  windowSnapshot.frame.contains(target.frame) else {
+                XCTFail("Require the exact original group button wholly inside its selector and actual window")
+                return
+            }
+            let selector = app.segmentedControls["study-group-selector"]
+            let liveTarget = selector.buttons.matching(NSPredicate(format: "label == %@", name)).element
+            let window = app.windows.firstMatch
+            guard liveTarget.isHittable, liveTarget.frame == target.frame,
+                  window.frame == windowSnapshot.frame else {
+                XCTFail("The original group button and window must remain live and match the fresh snapshot")
+                return
+            }
+            // A real XCTest tap at the same validated button midpoint, relative
+            // to its original window. Preserve ordinary XCTest idle handling.
+            window.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+                .withOffset(CGVector(dx: target.frame.midX - windowSnapshot.frame.minX,
+                                     dy: target.frame.midY - windowSnapshot.frame.minY)).tap()
         } else {
             let menu = app.buttons["study-group-selector"]
             XCTAssertTrue(menu.exists && menu.isEnabled)
