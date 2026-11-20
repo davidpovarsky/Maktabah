@@ -15,3 +15,33 @@ The original SDK, original preparer, package dependencies, signing, project sett
 `evidence/static-validation.json` records a parsed comparison against the exact base workflow: the only changes are the fixed SDK environment value and those three mandatory preparation steps, immediately after the original checkout. This is configuration validation, not a build result. A new actual normal-input workflow dispatch is required; its source and final job outcomes will be recorded separately. The original heavy bootstrap/corpus/live Sefaria options remain available and retain their original gates; this focused rerun uses their default false values.
 
 No Apple build, Native scenario, provider request, device installation, or unsigned IPA success is claimed before actual execution. The older failing run is preserved as baseline, not relabeled by this repair.
+
+## Actual rerun 44669016128
+
+[Run 44669016128](https://github.com/davidpovarsky/Maktabah/actions/runs/44669016128)
+executed source `a741f464b12b884d23577e15b255101b82c8f7db` and finished
+**FAILURE**, not an app or Native pass. Original Hanlin materialization
+verified all 424 files in each of the three package/app jobs. Swift package
+resolution and both original Rust framework jobs passed.
+
+The next two concrete failures are preserved before repair:
+
+- Simulator job 136071503389: the original Inspector backend fixture
+  compile omitted the original `ChavrusaTextLocalizationResolver.swift`
+  and `TalmudHebrewAddressFormatter.swift` dependencies. Zero fixture
+  cases executed; simulator app build and iPad acceptance were skipped.
+- Device job 136071503412: `EquatableMacros` from the existing pinned
+  Equatable package required target/revision authorization. Dependency
+  graph construction failed before actual app compilation.
+
+The selected toolchain was Xcode26.6/iOS SDK26.5. These logs do not yet
+prove an API-availability failure. The normal optional heavy/bootstrap,
+corpus and live-Sefaria inputs remained false, exactly as in the original
+run; their non-execution is not presented as success.
+
+The sole watcher reached its 600-second Sentinel timeout. Its exact owned
+process was confirmed gone, then completed run/job/artifact metadata was
+read once. The workflow was not dispatched twice. Raw console logs,
+SHA-verified small artifacts, metadata and watcher history are in
+`evidence/run-44669016128.zip`; its digest and exact job results are in
+`evidence/run-44669016128.json`.
