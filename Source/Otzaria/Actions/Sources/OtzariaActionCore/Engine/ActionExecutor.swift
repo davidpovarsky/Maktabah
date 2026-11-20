@@ -63,8 +63,10 @@ public actor ActionExecutor {
             try Task.checkCancellation()
             let action = try ActionValidation.request(request, registry: registry)
             try ActionPolicy.authorize(action, context: context, backend: action.explicitBackend)
-            // Metadata is not implementation. Mutations/counts never reach ports.
-            if request.action == "search.countOccurrences" { throw ActionEngineFailure(.notSupported, "exact_count_unavailable") }
+            // Catalog metadata cannot create a count provider or a numeric result.
+            if request.action == "search.countOccurrences", !(search is any ActionOccurrenceCountPort) {
+                throw ActionEngineFailure(.notSupported, "exact_count_unavailable")
+            }
             guard ActionRegistry.implemented.contains(request.action), !action.descriptor.mutatesUserData, action.descriptor.riskTier < 3 else {
                 throw ActionEngineFailure(.notSupported, "action_not_implemented")
             }
@@ -178,6 +180,7 @@ public actor ActionExecutor {
             let notesSupported = ui is any ActionNoteDraftUICommandSink
             let notesReady = await noteDraftAvailable(context: context)
             let searchResultsSupported = ui is any ActionSearchResultsUICommandSink
+            let occurrenceSupported = search is any ActionOccurrenceCountPort
             let searchResultsReady = await searchResultsAvailable(context: context)
             var reports: [ActionJSON] = []
             for target in ActionBackendID.allCases {
@@ -194,6 +197,7 @@ public actor ActionExecutor {
                         && (descriptor.id != "reader.openCommentary" || commentaryAvailable)
                         && (descriptor.id != "notes.prepareDraft" || notesSupported)
                         && (descriptor.id != "search.openResults" || searchResultsSupported)
+                        && (descriptor.id != "search.countOccurrences" || occurrenceSupported)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
@@ -218,10 +222,17 @@ public actor ActionExecutor {
         }
 
         let openResultsQuery = request.action == "search.openResults" ? try ActionSearchResultsQuery.arguments(request.arguments, backend: backend) : nil
-        let searchQuery = request.action == "search.query" ? try ActionValidation.search(request.arguments, backend: backend) : openResultsQuery?.search
+        let occurrenceQuery = request.action == "search.countOccurrences"
+            ? try ActionOccurrenceQuery.arguments(request.arguments, backend: backend) : nil
+        if let reason = occurrenceQuery?.unsupportedReason { throw ActionEngineFailure(.notSupported, reason) }
+        let searchQuery = request.action == "search.query" ? try ActionValidation.search(request.arguments, backend: backend)
+            : openResultsQuery?.search ?? occurrenceQuery?.permissionQuery
         if let searchQuery { try ActionPolicy.search(searchQuery, context: context) }
-        // Assessment and execution see the exact same normalized search defaults.
-        let effectiveArguments = try searchQuery.map { try ActionJSON.encoded($0).object ?? [:] } ?? request.arguments
+        // Assessment and execution see the same normalized arguments. Counts
+        // retain their own unit/mode contract and never inherit pagination.
+        let effectiveArguments: ActionObject
+        if let occurrenceQuery { effectiveArguments = try ActionJSON.encoded(occurrenceQuery).object ?? [:] }
+        else { effectiveArguments = try searchQuery.map { try ActionJSON.encoded($0).object ?? [:] } ?? request.arguments }
         let assessment = try await state.assess(action: request.action, arguments: effectiveArguments, invocation: invocation)
         try await recheck(snapshot, deadline: deadline)
         try ActionPolicy.capability(assessment)
@@ -266,6 +277,30 @@ public actor ActionExecutor {
             let page = try await search.search(query, invocation: invocation)
             try validate(page, query: query, context: context)
             result = completed(try ActionJSON.encoded(page).object ?? [:])
+        case "search.countOccurrences":
+            guard let query = occurrenceQuery, let counter = search as? any ActionOccurrenceCountPort else {
+                throw ActionEngineFailure(.notSupported, "exact_count_unavailable")
+            }
+            // Validate every source-owned work/revision before asking for a
+            // corpus count. A plausible book identifier is not source evidence.
+            for ref in query.scopeWorkRefs {
+                let resolution = try await resolver.resolveWork(.init(backend: backend, query: nil, workRef: ref, limit: 1),
+                                                                invocation: invocation)
+                guard case .unique(let resolved) = resolution, resolved == ref else { throw ActionPortError.notFound }
+                try await recheck(snapshot, deadline: deadline)
+            }
+            let count = try await counter.countOccurrences(query, invocation: invocation)
+            try count.validate(query: query, invocation: invocation)
+            result = completed([
+                "count": .unsigned(count.count),
+                "countUnit": .string("matching_occurrences"),
+                "precision": .string("exact"),
+                "matchingDocuments": .unsigned(count.matchingDocuments),
+                "normalizedToken": .string(count.normalizedToken),
+                "query": try .encoded(query),
+                "searchQuery": try .encoded(query.permissionQuery),
+                "evidence": try .encoded(count.evidence)
+            ])
         case "notes.prepareDraft":
             guard let rawLocator = request.arguments["locator"] else { throw ActionContractError.invalid("locator") }
             let locator = try rawLocator.decoded(as: ActionTextRef.self)
@@ -571,6 +606,16 @@ public actor ActionExecutor {
         let status: ActionStatus, code: String
         var nativeFailure: ActionFailure?
         if let e = error as? ActionEngineFailure { status = e.status; code = e.code }
+        else if let e = error as? ActionOccurrenceFailure {
+            switch e {
+            case .unsupportedQuery: status = .notSupported; code = "occurrence_query_unavailable"
+            case .incompleteCoverage: status = .unavailable; code = "occurrence_coverage_unavailable"
+            case .budgetExceeded: status = .unavailable; code = "occurrence_budget_exceeded"
+            case .cancelled: status = .cancelled; code = "cancelled"
+            case .deadlineExceeded: status = .cancelled; code = "deadline_exceeded"
+            case .staleIndex: status = .staleState; code = "backend_generation_changed"
+            }
+        }
         else if error is CancellationError { status = .cancelled; code = "cancelled" }
         else if error is ActionContractError || error is DecodingError { status = .failed; code = "invalid_arguments" }
         else if let e = error as? ActionNavigationError { status = e.status; code = e.code }
