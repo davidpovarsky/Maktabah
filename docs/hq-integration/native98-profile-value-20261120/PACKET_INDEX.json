@@ -1,0 +1,45 @@
+{
+  "entries": [
+    {
+      "path": "docs/hq-integration/native98-profile-value-20261120/README.md",
+      "bytes": 3061,
+      "sha256": "93dd7f9b9d967ad101bbcfefd940f3b10ef80cf33f33efec824a6b052c0ccd40",
+      "gitBlob": "e32212e8cc6bf99549fde1449195bc478ec1f9f8"
+    },
+    {
+      "path": "docs/hq-integration/native98-profile-value-20261120/OBSERVED_EVENT_DECODE.txt",
+      "bytes": 4701,
+      "sha256": "653d5d026697b3730cc6661081f92157669cddc9a3e84c9f59892abe89075626",
+      "gitBlob": "5372ff727f6fd3e15813556fd70cc48495a6a512"
+    },
+    {
+      "path": "docs/hq-integration/native98-profile-value-20261120/COLLECTION_RECEIPT.json",
+      "bytes": 1262,
+      "sha256": "7cd690591e131505d0e50cf74b2cfbf4fb4a61299812ecffde996a3640a1541e",
+      "gitBlob": "275d4ba05a26bb507b5308074409cc448e71a625"
+    },
+    {
+      "path": "docs/hq-integration/native98-profile-value-20261120/PEER_REVIEW.md",
+      "bytes": 790,
+      "sha256": "944f70fc6a3500b721b85ef1cea761ee3aa3f09338b980bca04a6343270789e7",
+      "gitBlob": "8fc2ee545337f69f3b3afff6e3c5ae4bd0dce179"
+    },
+    {
+      "path": "docs/hq-integration/native98-profile-value-20261120/SOURCE_COMPARISON.json",
+      "bytes": 875,
+      "sha256": "e3bf2c2d5e8c18fb87efebda58a2242b23508131635d191ff4125a58845ae304",
+      "gitBlob": "7b0693ac255479d200e0513b037f5baf60931564"
+    },
+    {
+      "path": "docs/hq-integration/native98-profile-value-20261120/PROPOSED.patch",
+      "bytes": 1817,
+      "sha256": "e032ea9dd79e06fb726d15a94c474d556732cbb1994e38d6084e6c4ddd4567b6",
+      "gitBlob": "a677350ba410cb09f57dd05b2c906c4ffc51bd4b"
+    }
+  ],
+  "productionSource": {
+    "bytes": 184053,
+    "gitBlob": "44f9285689ca55bfff25d4bdc7272476e57a94cf",
+    "sha256": "a61c37fdb602c466f2e6925f22726feb2c253247007ecaa9ddaf919fba9daeee"
+  }
+}

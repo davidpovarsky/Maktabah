@@ -1,0 +1,34 @@
+--- a/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ b/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -2481,7 +2481,30 @@
+     private func chooseProfileColor(named name: String) {
+         let picker = profileColorPicker()
+         XCTAssertTrue(picker.isHittable)
+-        tap(picker)
++        guard let currentValue = picker.value as? String, !currentValue.isEmpty else {
++            XCTFail("The identified native Picker must expose its current value before interaction")
++            return
++        }
++        let valueLabels = picker.staticTexts.matching(NSPredicate(format: "label == %@", currentValue))
++        guard valueLabels.count == 1 else {
++            XCTFail("Tap the unique exact current-value label inside the identified native Picker")
++            return
++        }
++        let valueLabel = valueLabels.element
++        let pickerFrame = picker.frame
++        let valueFrame = valueLabel.frame
++        let windowFrame = app.windows.firstMatch.frame
++        let finiteFrames = [pickerFrame, valueFrame, windowFrame].allSatisfy {
++            !$0.isNull && !$0.isInfinite && !$0.isEmpty
++                && $0.minX.isFinite && $0.minY.isFinite
++                && $0.width.isFinite && $0.height.isFinite
++        }
++        guard picker.isHittable, valueLabel.isHittable, finiteFrames,
++              pickerFrame.contains(valueFrame), windowFrame.contains(valueFrame) else {
++            XCTFail("The current-value label must be hittable and fully inside its Picker and actual window")
++            return
++        }
++        tap(valueLabel)
+         tap(app.buttons.matching(NSPredicate(format: "label == %@", name)).firstMatch)
+         XCTAssertEqual(picker.value as? String, name, "Selection must be visible in the original native Picker before Save")
+     }

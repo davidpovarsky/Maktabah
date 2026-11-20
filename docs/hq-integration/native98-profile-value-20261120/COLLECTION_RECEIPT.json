@@ -1,0 +1,24 @@
+{
+  "id": "job_1d206f40d16c",
+  "type": "job_result",
+  "source": "script_run@host_7ec8382e82747448",
+  "severity": "info",
+  "tool": "script_run",
+  "host": "host_7ec8382e82747448",
+  "status": "succeeded",
+  "exit_code": 0,
+  "created_at": 1795184000.5717766,
+  "started_at": "2026-11-20T14:13:20.641555+00:00",
+  "finished_at": "2026-11-20T14:13:29.442438+00:00",
+  "duration_s": 8.8,
+  "error": null,
+  "output_truncated": false,
+  "timeout_s": 180,
+  "read": false,
+  "notified": {
+    "telegram": null,
+    "resend": null
+  },
+  "notify_spec": {},
+  "output": "{\"output\": \"C:\\\\Users\\\\DAVID\\\\Code\\\\Maktabah-native98-signature-refreeze-20261120\\\\build\\\\native98-44723902453-result-20261120\\\\captures-profile-interaction\", \"entries\": 3686, \"transferredBytes\": 601949, \"selected\": [{\"zipEntry\": \"visual-11/9EF9D7C1-C85D-4BAF-A8A9-2CB1EEB19340\", \"bytes\": 1891, \"sha256\": \"759ec4fc6232816211c41f1f32b4657b15c30ddfef50a37fc0e25da61c96d76e\", \"crc32\": \"234a6bc4\", \"crcValidatedByZipFile\": true}, {\"zipEntry\": \"visual-11/910B5FCC-7413-4569-8BDC-987842CDE8F0\", \"bytes\": 1212, \"sha256\": \"60cd1dcb318daabb103e094c026e8349d702c79b225ff729dd026b1d54fa9709\", \"crc32\": \"da4ce38f\", \"crcValidatedByZipFile\": true}]}"
+}

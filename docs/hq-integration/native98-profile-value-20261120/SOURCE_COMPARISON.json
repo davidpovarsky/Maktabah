@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "sourceCommit": "689d8db5a1186272779b278a5a86752ed9acef6a",
+  "sourceFile": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "original": {
+    "bytes": 182817,
+    "gitBlob": "34a077a9bf2c59daf6ad5668b7414ab357f06a08",
+    "sha256": "17407e7fff4efb27be7cb0da4c6f2883b1a78de74de0e5a601de54a51ef87139"
+  },
+  "candidate": {
+    "bytes": 184053,
+    "gitBlob": "44f9285689ca55bfff25d4bdc7272476e57a94cf",
+    "sha256": "a61c37fdb602c466f2e6925f22726feb2c253247007ecaa9ddaf919fba9daeee"
+  },
+  "exactInverse": true,
+  "replacementCount": 1,
+  "onlyFunction": "chooseProfileColor(named:)",
+  "optionAndFinalAssertionPreserved": true,
+  "allOutsideBytesIdentical": true,
+  "windowsParse": "NOT_RUN",
+  "appleTypecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "reason": "Sentinel host disconnected; real GitHub source and local byte validation only"
+}
