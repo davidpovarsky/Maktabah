@@ -1,0 +1,246 @@
+{
+  "artifactID": 14597472251,
+  "archiveBytes": 1913982366,
+  "advertisedArchiveSHA256": "6de6f2266c92b17cdcaaa818d74c14baebccdddff9e7f2aedb680cb753ae2b52",
+  "fullArchiveHashVerified": false,
+  "method": "Authenticated GitHub artifact redirect; HTTP206 ranges only; original central directory and each selected CRC verified",
+  "transferredBytes": 2145095,
+  "ranges": [
+    {
+      "start": 1913982344,
+      "end": 1913982365,
+      "bytes": 22,
+      "sha256": "a936be5532256d335cef941de786d3b78607b609a4e2344756677c402aab6870"
+    },
+    {
+      "start": 1913982324,
+      "end": 1913982343,
+      "bytes": 20,
+      "sha256": "02e6020e1aeebec2fc47761c98a1aea9805a28a221a33fe0fe7dda41b912675e"
+    },
+    {
+      "start": 1912329118,
+      "end": 1913982343,
+      "bytes": 1653226,
+      "sha256": "0fa6ba6a06da4b3affbddc9797c2e74c3890fccf5c1eab2fedab874985cc7a33"
+    },
+    {
+      "start": 1604358203,
+      "end": 1604358232,
+      "bytes": 30,
+      "sha256": "63f51186bd6ab2e7ac1e007f05e7339a63b73cb9eb54c78fb4a9c1ceb64c64f3"
+    },
+    {
+      "start": 1604358233,
+      "end": 1604358289,
+      "bytes": 57,
+      "sha256": "88f67ab79f1ad3afb529b2957eb9138ec832baa6ab3562f418f8a3285b931d3d"
+    },
+    {
+      "start": 1604358290,
+      "end": 1604361950,
+      "bytes": 3661,
+      "sha256": "6296e2e8b076dd95b3589072cb2b4f9e54d76ad127ce499cc263e8ab4432df69"
+    },
+    {
+      "start": 1605383245,
+      "end": 1605383274,
+      "bytes": 30,
+      "sha256": "63f51186bd6ab2e7ac1e007f05e7339a63b73cb9eb54c78fb4a9c1ceb64c64f3"
+    },
+    {
+      "start": 1605383275,
+      "end": 1605383331,
+      "bytes": 57,
+      "sha256": "bc4eb47340d2b2e4910a3294fb5716bf9191c03c83b3d9089cc80272563c6f8a"
+    },
+    {
+      "start": 1605383332,
+      "end": 1605586844,
+      "bytes": 203513,
+      "sha256": "fae45933d39871d6f843189300fd00586e2a5560bdfeef2060a1945444515738"
+    },
+    {
+      "start": 1619850026,
+      "end": 1619850055,
+      "bytes": 30,
+      "sha256": "63f51186bd6ab2e7ac1e007f05e7339a63b73cb9eb54c78fb4a9c1ceb64c64f3"
+    },
+    {
+      "start": 1619850056,
+      "end": 1619850112,
+      "bytes": 57,
+      "sha256": "66911313b37649c528edd9497c487de48d3bbe12c47a772d0023d4f95bbaa240"
+    },
+    {
+      "start": 1619850113,
+      "end": 1619853789,
+      "bytes": 3677,
+      "sha256": "799a6ff1d7b2594df76bedd6f9fdd320d3317aa5acadc3ea0e9de45688bf6d64"
+    },
+    {
+      "start": 1664224594,
+      "end": 1664224623,
+      "bytes": 30,
+      "sha256": "40bcf8fe1c6a74d7373c72754f503d85bf601901a7df03a5ac87dcd0aa1c3cdd"
+    },
+    {
+      "start": 1664224624,
+      "end": 1664224680,
+      "bytes": 57,
+      "sha256": "8b87e7c8a9a01de0c70d37329b596b2933f3468ec732582a88246cb5335f682b"
+    },
+    {
+      "start": 1664224681,
+      "end": 1664388986,
+      "bytes": 164306,
+      "sha256": "89312454f25a29eeaecd33f71ba2582b1ca6ea467244455eaa5491d769fb18b6"
+    },
+    {
+      "start": 1666028586,
+      "end": 1666028615,
+      "bytes": 30,
+      "sha256": "40bcf8fe1c6a74d7373c72754f503d85bf601901a7df03a5ac87dcd0aa1c3cdd"
+    },
+    {
+      "start": 1666028616,
+      "end": 1666028672,
+      "bytes": 57,
+      "sha256": "6a20f80418fdd97e2af6d61350941bfba0a19bcd62d25129bcd50b57701b4e00"
+    },
+    {
+      "start": 1666028673,
+      "end": 1666031645,
+      "bytes": 2973,
+      "sha256": "84d2619a46692655ca3873e329e8960b7b2b9eb225b867c0f58590c26e5d3b1d"
+    },
+    {
+      "start": 1750331362,
+      "end": 1750331391,
+      "bytes": 30,
+      "sha256": "607c49082784fbeac7e13292a6fc79f5ff34267f8d8fd2c2bc03216d1bd8f1a2"
+    },
+    {
+      "start": 1750331392,
+      "end": 1750331449,
+      "bytes": 58,
+      "sha256": "d78c5d6ea243cf4bfd8cdb29293690f64f925bc3794e01a5119bae8d80015aa8"
+    },
+    {
+      "start": 1750331450,
+      "end": 1750339470,
+      "bytes": 8021,
+      "sha256": "96b2a520eb5d1a39c782623f9c96a94d2c2ab041183d33fefb791ca799a24ca7"
+    },
+    {
+      "start": 1751130875,
+      "end": 1751130904,
+      "bytes": 30,
+      "sha256": "607c49082784fbeac7e13292a6fc79f5ff34267f8d8fd2c2bc03216d1bd8f1a2"
+    },
+    {
+      "start": 1751130905,
+      "end": 1751130962,
+      "bytes": 58,
+      "sha256": "05dcc811e5bc1836efd4f59875565c616591df14bd37b9b6646a0ad1aaebd8b3"
+    },
+    {
+      "start": 1751130963,
+      "end": 1751131118,
+      "bytes": 156,
+      "sha256": "645ab4729e891c94e81a9d8dafdfb37b27e263582e3c86458e7b7a5d5c2ca4ed"
+    },
+    {
+      "start": 1753168228,
+      "end": 1753168257,
+      "bytes": 30,
+      "sha256": "e083ab3e407d8ddb0f925b74e0280253364caf3b50a1396fa9ef04679193598a"
+    },
+    {
+      "start": 1753168258,
+      "end": 1753168311,
+      "bytes": 54,
+      "sha256": "70d9e6658a0560950513506f0aabb0d78dccd81a26bf9bb16ea83a7655bd0e69"
+    },
+    {
+      "start": 1753168312,
+      "end": 1753273136,
+      "bytes": 104825,
+      "sha256": "ee515822c6a873b5aeace43d7eba7427f13c0010e114056e99c244d75367223b"
+    }
+  ],
+  "selected": [
+    {
+      "zipEntry": "visual-11-reader/078CF0BA-EE95-4EAA-A082-0181C08B752D.txt",
+      "file": "078CF0BA-EE95-4EAA-A082-0181C08B752D.txt",
+      "bytes": 28011,
+      "sha256": "0dea5cef4395a2fa4a1b3508c4aad00dcb5e277d1b1560b7f5a8f03256efd35b",
+      "zipCRC32": "01e7c072",
+      "crcValidatedByZipFile": true,
+      "retainedAs": "078CF0BA-EE95-4EAA-A082-0181C08B752D.txt.gz"
+    },
+    {
+      "zipEntry": "visual-11-reader/16DF39CD-DBAA-4860-BFDB-4D12EFABB15C.png",
+      "file": "16DF39CD-DBAA-4860-BFDB-4D12EFABB15C.png",
+      "bytes": 251798,
+      "sha256": "db400b9ad5c408ce0693e502289cd634369c538416cd19d84662453442fb9b64",
+      "zipCRC32": "082c3efe",
+      "crcValidatedByZipFile": true,
+      "retainedAs": "16DF39CD-DBAA-4860-BFDB-4D12EFABB15C.png"
+    },
+    {
+      "zipEntry": "visual-11-reader/4897C7FD-2527-47E9-8B37-EA1360CC8DDF.txt",
+      "file": "4897C7FD-2527-47E9-8B37-EA1360CC8DDF.txt",
+      "bytes": 28021,
+      "sha256": "585445ea83dae6479795bd11a420ce22056d122e1f0b3e9a981566e5f0f95d3d",
+      "zipCRC32": "10869f1e",
+      "crcValidatedByZipFile": true,
+      "retainedAs": "4897C7FD-2527-47E9-8B37-EA1360CC8DDF.txt.gz"
+    },
+    {
+      "zipEntry": "visual-11-search/2DBC105D-6749-4F3D-A6CD-8A76CF752678.png",
+      "file": "2DBC105D-6749-4F3D-A6CD-8A76CF752678.png",
+      "bytes": 210604,
+      "sha256": "235c8b94b8240a77d6d859963bcbbd3e976f76bac42262b0c1b09b37a1c69e0f",
+      "zipCRC32": "78a22bfd",
+      "crcValidatedByZipFile": true,
+      "retainedAs": "2DBC105D-6749-4F3D-A6CD-8A76CF752678.png"
+    },
+    {
+      "zipEntry": "visual-11-search/80778C80-F24B-43EB-B5F2-AA9C35F3D5E4.txt",
+      "file": "80778C80-F24B-43EB-B5F2-AA9C35F3D5E4.txt",
+      "bytes": 21317,
+      "sha256": "49dfe905cfda1be0a7d7fb49023349eaab7ec516b29e173340f7ad772e416a13",
+      "zipCRC32": "de767f6e",
+      "crcValidatedByZipFile": true,
+      "retainedAs": "80778C80-F24B-43EB-B5F2-AA9C35F3D5E4.txt.gz"
+    },
+    {
+      "zipEntry": "visual-11-sidebar/634B99FD-5555-4C67-9085-0E9A338AA6F5.txt",
+      "file": "634B99FD-5555-4C67-9085-0E9A338AA6F5.txt",
+      "bytes": 52427,
+      "sha256": "65e72987cea0c4f8918769773e84f5c00d0479f8b3c870d10b1a704fd13ddbab",
+      "zipCRC32": "170d7df2",
+      "crcValidatedByZipFile": true,
+      "retainedAs": "634B99FD-5555-4C67-9085-0E9A338AA6F5.txt.gz"
+    },
+    {
+      "zipEntry": "visual-11-sidebar/72639405-1A1A-4AF0-AEDF-C4689B3AA97C.txt",
+      "file": "72639405-1A1A-4AF0-AEDF-C4689B3AA97C.txt",
+      "bytes": 191,
+      "sha256": "6b2d1845a0cfe82b837f40e3eebae19d395c1ab4fc8ff19b13c2c9eede899ebc",
+      "zipCRC32": "e3b76c52",
+      "crcValidatedByZipFile": true,
+      "retainedAs": "72639405-1A1A-4AF0-AEDF-C4689B3AA97C.txt.gz"
+    },
+    {
+      "zipEntry": "visual-11-sidebar/A7438746-7DEE-4892-92BB-B09435E3DE03",
+      "file": "A7438746-7DEE-4892-92BB-B09435E3DE03",
+      "bytes": 222348,
+      "sha256": "1906fbf4ff7932f2f2468f0b2691b764e9d83b4c2b0fcd46833ab49a7469589a",
+      "zipCRC32": "391dcba8",
+      "crcValidatedByZipFile": true,
+      "retainedAs": "A7438746-7DEE-4892-92BB-B09435E3DE03.gz"
+    }
+  ]
+}
