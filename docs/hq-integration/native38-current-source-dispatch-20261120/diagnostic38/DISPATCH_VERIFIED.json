@@ -1,0 +1,22 @@
+{
+  "attempted_at_utc": "2026-11-20T08:40:39.025610+00:00",
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "",
+  "checkout": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+  "app_source": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "branch": "codex/otzaria-native38-release-repairs-20261120",
+  "verified_at_utc": "2026-11-20T08:41:22.412190+00:00",
+  "run": {
+    "id": 44704452479,
+    "html_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/44704452479",
+    "head_sha": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+    "head_branch": "codex/otzaria-native38-release-repairs-20261120",
+    "run_attempt": 1,
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-11-20T08:40:38Z",
+    "updated_at": "2026-11-20T08:40:44Z",
+    "path": ".github/workflows/sefaria-embedded-validation.yml"
+  }
+}

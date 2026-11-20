@@ -1,0 +1,19 @@
+{
+  "created_at_utc": "2026-11-20T08:40:37.245057+00:00",
+  "checkout": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+  "app_source": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "scope": "DIAGNOSTIC38_ONLY; full92/Release96+2 unchanged",
+  "payload": {
+    "ref": "codex/otzaria-native38-release-repairs-20261120",
+    "inputs": {
+      "run_simulator_tests": "false",
+      "validation_runner": "xcode-27",
+      "run_production_release": "false",
+      "hq_stage2_focused": "false",
+      "hq_stage2_expected_sha": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+      "ui_sdk_check_only": "false",
+      "runtime27_mode": "ui"
+    }
+  },
+  "action": "ONE_POST_ONLY; ambiguous responses require GET discovery, never automatic POST retry"
+}

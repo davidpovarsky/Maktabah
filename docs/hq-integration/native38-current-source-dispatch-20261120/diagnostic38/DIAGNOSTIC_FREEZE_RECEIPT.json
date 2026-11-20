@@ -1,0 +1,96 @@
+{
+  "at_utc": "2026-11-20T08:40:02.816916+00:00",
+  "application_source_sha": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "full_freeze": "e80cd5f2c27993351533f1be9d0890dfaa82cb42",
+  "diagnostic_checkout": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+  "diagnostic_branch": "codex/otzaria-native38-release-repairs-20261120",
+  "diagnostic_cases": 38,
+  "by_device": {
+    "ipad11": 28,
+    "iphone": 10
+  },
+  "source_preflight": "PASS",
+  "declarations": "DECLARATIONS_MATCH",
+  "groups": [
+    {
+      "label": "11",
+      "size": "11",
+      "hid_comparison": false,
+      "count": 9
+    },
+    {
+      "label": "11-search",
+      "size": "11",
+      "hid_comparison": false,
+      "count": 8
+    },
+    {
+      "label": "11-reader",
+      "size": "11",
+      "hid_comparison": false,
+      "count": 6
+    },
+    {
+      "label": "11-sidebar",
+      "size": "11",
+      "hid_comparison": false,
+      "count": 1
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "hid_comparison": true,
+      "count": 4
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "hid_comparison": false,
+      "count": 10
+    }
+  ],
+  "selected_case_ids": [
+    "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+    "R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+    "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+    "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+    "NativeRoutingAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+    "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+    "StudyProfileNativeAcceptanceTests/testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace",
+    "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+    "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+    "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+    "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+    "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+    "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+    "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportLandscape",
+    "FaithfulReaderUIAcceptanceTests/testSourceOverviewReplacesReaderAndRestoresViewportPortrait",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateGlobalSearchPortraitMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsLandscapeMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateAnnotationsPortraitMatchesOriginalNavigation",
+    "FaithfulReaderUIAcceptanceTests/testCandidateWindowResizePreservesOriginalReaderAndSearch",
+    "FaithfulReaderVisualBaselineTests/testOriginalWindowResizePreservesReader",
+    "FaithfulReaderIPhoneTests/testSourceOverviewReplacesReaderAndRestoresViewport",
+    "Build8401SevenDefectsAcceptanceTests/testA1_A2_SearchResultHighlightAndClearButton",
+    "Build8401SevenDefectsAcceptanceTests/testA3_OrdinaryReaderHasNoClearSearchHighlightButton"
+  ],
+  "full_manifest_git_lf_sha256": "69287919539182eb759c775836fe1c5e5c005c7967d072dd74c8aace42140408",
+  "diagnostic_manifest_git_lf_sha256": "866afcdb0fe3e0c770b99a2673931404c0b3360eb23383ca813412be7cd9c8c8",
+  "full92_release96_plus2_preserved": true,
+  "native_execution": "NOT_RUN"
+}

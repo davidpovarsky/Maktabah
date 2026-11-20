@@ -1,0 +1,46 @@
+{
+  "at_utc": "2026-11-20T08:39:45.194466+00:00",
+  "application_source_sha": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "full_freeze": "e80cd5f2c27993351533f1be9d0890dfaa82cb42",
+  "full_native_cases": 92,
+  "release_ui_cases": 96,
+  "release_oracle_cases": 2,
+  "source_preflight": "PASS",
+  "native_declarations": "DECLARATIONS_MATCH",
+  "native_groups": [
+    {
+      "label": "11",
+      "size": "11",
+      "count": 8
+    },
+    {
+      "label": "11-search",
+      "size": "11",
+      "count": 22
+    },
+    {
+      "label": "11-reader",
+      "size": "11",
+      "count": 35
+    },
+    {
+      "label": "11-sidebar",
+      "size": "11",
+      "count": 5
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "count": 2
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "count": 20
+    }
+  ],
+  "release_manifest": "ORIGINAL_LOAD_MANIFEST_PASS_CANONICAL_GIT_LF",
+  "native_execution": "NOT_RUN",
+  "apple_execution": "NOT_RUN",
+  "immutable_full_branch": "codex/otzaria-native-release-final-20261120"
+}

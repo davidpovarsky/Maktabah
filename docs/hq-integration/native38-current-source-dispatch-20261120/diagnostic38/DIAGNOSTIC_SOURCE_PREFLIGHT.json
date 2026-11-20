@@ -1,0 +1,77 @@
+{
+  "checkout_sha": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+  "application_source_sha": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "original_build_preflight": {
+    "checkout_sha": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+    "application_source_sha": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+    "validator_sha256": "9314b470481538e5d88e12308583b94a708be5dd08fd9351939f86928bedcf22",
+    "inputs_sha256": "ccf4220e9553df22dec37f0a567cf053a264e1ba11de8019e26defd88630051c",
+    "workflow_sha256": "211eb624f64f49d0a7b6531c0f28e791c20e8acb1fffb6aee3b1efe5dbd0e899",
+    "project_sha256": "56f13c8e7290c10ba455ee4df2adb845f8c1a765d7ce59feb864c1c0a7bb8530",
+    "application_trees": {
+      "Source": "8c0c17c9df352161a025eb66a7a16114a32d41a3",
+      "Vendor": "91a62524a787c3c0317db65ffda8c3d21dcb9497",
+      "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+    },
+    "otzaria_test_additions": {
+      "preserved_producer_entries": 43,
+      "reviewed_added_regular_files": 78,
+      "mode": "EXACT_NEW_TEST_FILES_ONLY",
+      "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+      "producer_whole_tree": "5a6c6501c021ffadcde31254239617f10cd1a362",
+      "current_whole_tree": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+      "manifest_sha256_lf": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6",
+      "excluded_build_inputs": {
+        "Maktabah.xcodeproj/project.pbxproj": "2741615644741d39b0b19c6146f9c459323dabab",
+        "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
+        "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
+        "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+      },
+      "binary_attribution": "PRODUCER_TREE_ONLY_NOT_CURRENT_WHOLE_TREE"
+    },
+    "zayit_framework": {
+      "mode": "UNCHANGED_PRODUCTION_PREBUILT",
+      "source_tree": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+      "baseline_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+      "changed_paths": [],
+      "build_script": "Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh",
+      "build_script_git_blob": "a4f123b144b236fc1ec691060cf144e3e9da2cf9"
+    },
+    "hanlin_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+    "embedded_bundle_build": {
+      "mode": "REBUILD_EXACT_REVIEWED_JS",
+      "overlay_paths": [
+        "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+      ],
+      "source_tree": "1a0e21666586f417186b6218049e03fc1cc232fd"
+    },
+    "package_resolved_sha256": "72df8ff305829bde72b7724c12c5a23f73c302f5bd308baf5663ef77bded6bd5",
+    "package_pins": {
+      "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+      "equatable": "597c2bb34af0c51331eb3b5e705f942d8ee20daa",
+      "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+      "hanlin-streaming-markdown": "6bde022876ef4af738c154b3d5c871984ef76195",
+      "highlightswift": "99c431b38a1444a5fd6a4978307fbbefe3a7af53",
+      "iosmath": "ba9ab7729b151329c54fd895a7c1859981d9484c",
+      "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+      "swift-ai-sdk": "e7bf34111e603ca977becd007dd4e5bb109af857",
+      "swift-argument-parser": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+      "swift-cmark": "08ddb528923cc1a6527e02b7a1aee9e516ca749a",
+      "swift-markdown": "7d9a5ce307528578dfa777d505496bd5f544ad94",
+      "swift-syntax": "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+      "swiftui-shimmer": "0226e21f9bf355d40e07e5f5e1c33679d50e167f",
+      "swiftyjson": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+      "torahinspectorkit": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
+      "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+      "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+    }
+  },
+  "driver_sha256": "6a95ce9d6e1f4dc07f6285087c6fba2b7f954206d2a2ea4f25e5563fc1578583",
+  "native_launcher_sha256": "20c491a1b5de0ce77422b60790304078b98bd382126de8c34d70beda8ad45a79",
+  "native_runner_sha256": "a5b316853ad765d8eea62c465ad7ccb588430041d87dac6b145b421262be10c6",
+  "workflow_sha256": "a563631a8c81851e168f7ededc809fbfb7977396942457cad5177604f950d9a0",
+  "ui_xctest_cases_executed": 0,
+  "physical_device": "NOT_RUN",
+  "publication": false,
+  "reindex": false
+}

@@ -1,0 +1,46 @@
+{
+  "at_utc": "2026-11-20T08:31:48.955638+00:00",
+  "application_source_sha": "6685f93c96401285b27bb9e7b82376855180d002",
+  "full_freeze": "dca30f2fa7bd8d85340f5a99db9b3a8d7033a825",
+  "full_native_cases": 92,
+  "release_ui_cases": 96,
+  "release_oracle_cases": 2,
+  "source_preflight": "PASS",
+  "native_declarations": "DECLARATIONS_MATCH",
+  "native_groups": [
+    {
+      "label": "11",
+      "size": "11",
+      "count": 8
+    },
+    {
+      "label": "11-search",
+      "size": "11",
+      "count": 22
+    },
+    {
+      "label": "11-reader",
+      "size": "11",
+      "count": 35
+    },
+    {
+      "label": "11-sidebar",
+      "size": "11",
+      "count": 5
+    },
+    {
+      "label": "11-window",
+      "size": "11",
+      "count": 2
+    },
+    {
+      "label": "phone",
+      "size": "phone",
+      "count": 20
+    }
+  ],
+  "release_manifest": "ORIGINAL_LOAD_MANIFEST_PASS_CANONICAL_GIT_LF",
+  "native_execution": "NOT_RUN",
+  "apple_execution": "NOT_RUN",
+  "immutable_full_branch": "codex/otzaria-native-release-repairs-20261120"
+}

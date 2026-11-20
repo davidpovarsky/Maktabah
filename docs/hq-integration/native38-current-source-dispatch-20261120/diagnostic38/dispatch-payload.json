@@ -1,0 +1,12 @@
+{
+  "ref": "codex/otzaria-native38-release-repairs-20261120",
+  "inputs": {
+    "run_simulator_tests": "false",
+    "validation_runner": "xcode-27",
+    "run_production_release": "false",
+    "hq_stage2_focused": "false",
+    "hq_stage2_expected_sha": "f0bbf9f06b3609d68c72626e5a4dd2c4aee2f99e",
+    "ui_sdk_check_only": "false",
+    "runtime27_mode": "ui"
+  }
+}
