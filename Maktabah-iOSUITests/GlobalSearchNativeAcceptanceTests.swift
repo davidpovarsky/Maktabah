@@ -1033,6 +1033,73 @@ private func searchDataDigest(_ data: Data) -> String {
     SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
 }
 
+// MARK: - Original engine metadata after an explicit fixture reinstallation
+
+private struct SearchDataNativeEngineMetadata: Decodable {
+    let format: String
+    let schema_version: UInt32
+    let engine_version: String
+    let tantivy_version: String
+    let created_at_unix_seconds: UInt64
+}
+
+private enum SearchDataNativeMetadataError: Error { case rejected(String) }
+
+/// The original miniTest10 artifact contains seven Tantivy files, not this
+/// sidecar. The unchanged Rust engine creates it when opening a fresh install.
+/// Only that original creation second may change during an explicit reinstall;
+/// every other byte and the complete nine-file inventory remain checked.
+private func searchDataVerifyRegeneratedEngineMetadata(
+    original: Data,
+    repaired: Data,
+    reinstallationStartedAt: Date,
+    observedAt: Date
+) throws {
+    func require(_ valid: Bool, _ reason: String) throws {
+        if !valid { throw SearchDataNativeMetadataError.rejected(reason) }
+    }
+    let keys: Set<String> = [
+        "format", "schema_version", "engine_version", "tantivy_version", "created_at_unix_seconds"
+    ]
+    func decode(_ data: Data) throws -> (SearchDataNativeEngineMetadata, String) {
+        guard let text = String(data: data, encoding: .utf8),
+              let object = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            throw SearchDataNativeMetadataError.rejected("Original engine metadata must be a UTF-8 JSON object")
+        }
+        try require(Set(object.keys) == keys, "Retain exactly the original five metadata fields")
+        for key in keys {
+            try require(text.components(separatedBy: "\"" + key + "\"").count == 2,
+                        "Each original metadata field must occur exactly once")
+        }
+        let value = try JSONDecoder().decode(SearchDataNativeEngineMetadata.self, from: data)
+        try require(value.format == "otzaria-search-index" && value.schema_version == 4
+            && value.engine_version == "0.1.0" && value.tantivy_version == "0.26.1"
+            && value.created_at_unix_seconds > 0,
+            "Require the original source-pinned miniTest10 v6 engine metadata")
+        return (value, text)
+    }
+    let (before, beforeText) = try decode(original)
+    let (after, afterText) = try decode(repaired)
+    let start = reinstallationStartedAt.timeIntervalSince1970
+    let end = observedAt.timeIntervalSince1970
+    try require(start.isFinite && end.isFinite && start > 0 && end >= start
+        && end < Double(UInt64.max), "Require an actual bounded observation interval")
+    let lower = UInt64(start.rounded(.down))
+    let upper = UInt64(end.rounded(.down))
+    try require(after.created_at_unix_seconds >= before.created_at_unix_seconds
+        && (lower...upper).contains(after.created_at_unix_seconds),
+        "The original engine creation second must fall within this real reinstallation")
+    let beforeField = "\"created_at_unix_seconds\": \(before.created_at_unix_seconds)"
+    let afterField = "\"created_at_unix_seconds\": \(after.created_at_unix_seconds)"
+    try require(beforeText.components(separatedBy: beforeField).count == 2
+        && afterText.components(separatedBy: afterField).count == 2,
+        "Require the original engine's exact metadata field serialization")
+    try require(afterText.replacingOccurrences(of: afterField, with: beforeField).utf8.elementsEqual(beforeText.utf8),
+                "Every metadata byte except the bounded creation second must remain identical")
+}
+
+// MARK: - Complete owned index payload inventory
+
 private func searchDataIndexInventory(_ root: URL, includeSecondaryIdentity: Bool = false) throws -> [String: String] {
     try requireSearchDataFixture(root.standardizedFileURL.path == root.resolvingSymlinksInPath().path,
                                  "Do not follow a fixture path through symbolic links")
@@ -1077,6 +1144,7 @@ private struct SearchDataNativeFixture {
     let databaseDigest: String
     let databaseManifestBytes: Data
     let indexPayload: [String: String]
+    let engineMetadataBytes: Data
     let documentCount: Int
 
     func verifyOwner() throws {
@@ -1202,10 +1270,27 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
             && install["profileVersion"] as? Int == 6
             && source["databaseSHA256"] as? String == digest && count == 18879,
             "Require the genuine installed miniature artifact, never a manufactured index")
+        let payload = try searchDataIndexInventory(index)
+        let parts = try XCTUnwrap(lexical["parts"] as? [[String: Any]])
+        let paths = try parts.map { try XCTUnwrap($0["destinationPath"] as? String) }
+        try requireSearchDataFixture(lexical["fileCount"] as? Int == 7 && paths.count == 7
+            && Set(paths).count == 7 && paths.contains("meta.json")
+            && !paths.contains("otzaria_index_meta.json")
+            && Set(payload.keys) == Set(paths).union([
+                "otzaria_index_meta.json", "otzaria_prebuilt_installation.json"
+            ]), "Require the exact original seven-file artifact and both retained metadata files")
+        let engineMetadata = try searchDataFileBytes(
+            index.appendingPathComponent("otzaria_index_meta.json"), maximum: 65536)
+        try requireSearchDataFixture(searchDataDigest(engineMetadata) == payload["otzaria_index_meta.json"],
+                                     "Capture the exact inventoried original engine metadata")
+        let metadataAttachment = XCTAttachment(data: engineMetadata, uniformTypeIdentifier: "public.json")
+        metadataAttachment.name = "search-data-original-engine-metadata"
+        metadataAttachment.lifetime = .keepAlways
+        add(metadataAttachment)
         let result = SearchDataNativeFixture(appContainer: container, root: root, index: index,
             database: database, databaseManifest: databaseManifest, ownerMetadata: owner.1,
             ownerMetadataBytes: owner.2, databaseDigest: digest, databaseManifestBytes: databaseManifestBytes,
-            indexPayload: try searchDataIndexInventory(index), documentCount: count)
+            indexPayload: payload, engineMetadataBytes: engineMetadata, documentCount: count)
         try result.verifyBooksAndOwner()
         let proof: [String: Any] = ["simulatorUDID": udid, "namespace": workspaceNamespace,
             "storageRoot": root.path, "databaseSHA256": digest,
@@ -1338,10 +1423,40 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
     }
 
     @MainActor
-    private func verifyRecoveredAndCold(_ value: SearchDataNativeFixture) throws {
+    private func verifyRecoveredAndCold(
+        _ value: SearchDataNativeFixture,
+        reinstallationStartedAt: Date? = nil
+    ) throws {
         ready(value, named: "search-data-after-recovery", timeout: 180)
         try value.verifyBooksAndOwner()
-        XCTAssertEqual(try searchDataIndexInventory(value.index), value.indexPayload)
+        var expectedPayload = value.indexPayload
+        if let reinstallationStartedAt {
+            let repairedMetadata = try searchDataFileBytes(
+                value.index.appendingPathComponent("otzaria_index_meta.json"), maximum: 65536)
+            let observedAt = Date()
+            let metadataAttachment = XCTAttachment(data: repairedMetadata, uniformTypeIdentifier: "public.json")
+            metadataAttachment.name = "search-data-reinstalled-engine-metadata"
+            metadataAttachment.lifetime = .keepAlways
+            add(metadataAttachment)
+            let proof: [String: Any] = [
+                "reinstallationStartedAt": reinstallationStartedAt.timeIntervalSince1970,
+                "observedAt": observedAt.timeIntervalSince1970,
+                "originalSHA256": searchDataDigest(value.engineMetadataBytes),
+                "repairedSHA256": searchDataDigest(repairedMetadata),
+                "scope": "original engine-generated creation second; every other metadata byte and all nine files remain checked"
+            ]
+            let attachment = XCTAttachment(
+                data: try JSONSerialization.data(withJSONObject: proof, options: [.sortedKeys]),
+                uniformTypeIdentifier: "public.json")
+            attachment.name = "search-data-reinstallation-metadata-interval"
+            attachment.lifetime = .keepAlways
+            add(attachment)
+            try searchDataVerifyRegeneratedEngineMetadata(
+                original: value.engineMetadataBytes, repaired: repairedMetadata,
+                reinstallationStartedAt: reinstallationStartedAt, observedAt: observedAt)
+            expectedPayload["otzaria_index_meta.json"] = searchDataDigest(repairedMetadata)
+        }
+        XCTAssertEqual(try searchDataIndexInventory(value.index), expectedPayload)
         try actualQueryAfterClosingData()
         app.terminate()
         try launchSearchDataReader()
@@ -1349,7 +1464,8 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
         ready(value, named: "search-data-after-repaired-cold-launch")
         try actualQueryAfterClosingData()
         try value.verifyBooksAndOwner()
-        XCTAssertEqual(try searchDataIndexInventory(value.index), value.indexPayload)
+        XCTAssertEqual(try searchDataIndexInventory(value.index), expectedPayload,
+                       "Cold validation must preserve every repaired index and metadata byte")
     }
 
     @MainActor
@@ -1405,8 +1521,10 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
         try openSearchData()
         status(NSPredicate(format: "label BEGINSWITH %@", "נדרש תיקון לאינדקס:"), named: "search-data-real-corruption-fails-closed")
         try value.verifyBooksAndOwner()
-        tap(try dataAction("search-data-repair-otzaria"))
-        try verifyRecoveredAndCold(value)
+        let repair = try dataAction("search-data-repair-otzaria")
+        let reinstallationStartedAt = Date()
+        tap(repair)
+        try verifyRecoveredAndCold(value, reinstallationStartedAt: reinstallationStartedAt)
     }
 
     @MainActor
@@ -1423,8 +1541,10 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
         status(NSPredicate(format: "label == %@", "האינדקס עדיין לא נבנה"), named: "search-data-original-removal-is-not-ready")
         XCTAssertFalse(FileManager.default.fileExists(atPath: value.index.path))
         try value.verifyBooksAndOwner()
-        tap(try dataAction("search-data-repair-otzaria"))
-        try verifyRecoveredAndCold(value)
+        let repair = try dataAction("search-data-repair-otzaria")
+        let reinstallationStartedAt = Date()
+        tap(repair)
+        try verifyRecoveredAndCold(value, reinstallationStartedAt: reinstallationStartedAt)
     }
 
     @MainActor
@@ -1457,8 +1577,9 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
         XCTAssertTrue(retry.isEnabled && retry.isHittable, "The original repair control must remain actionable after failure")
         try FileManager.default.setAttributes([.posixPermissions: permissions], ofItemAtPath: parent.path)
         try requireSearchDataFixture(FileManager.default.isWritableFile(atPath: parent.path), "Restore the real write precondition")
+        let reinstallationStartedAt = Date()
         tap(retry)
-        try verifyRecoveredAndCold(value)
+        try verifyRecoveredAndCold(value, reinstallationStartedAt: reinstallationStartedAt)
     }
 
 }
