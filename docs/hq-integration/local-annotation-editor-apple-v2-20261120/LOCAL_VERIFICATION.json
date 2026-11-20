@@ -1,0 +1,23 @@
+{
+  "candidate_apple_executed": 0,
+  "candidate_swift_executed": 0,
+  "command": [
+    "python",
+    "verify-evidence.py",
+    "--replay-python"
+  ],
+  "exit_code": 0,
+  "observed_at": "2026-11-20T16:56:34.330434+00:00",
+  "scope": "Local Python/source/artifact verification only; original Apple failure remains failure",
+  "stdout": {
+    "authentic_run": 44774181751,
+    "candidate_apple_executed": 0,
+    "candidate_swift_executed": 0,
+    "local43": "NOT_RUN_COMPILE_FAILURE",
+    "original_exchange_cases": 28,
+    "original_exchange_reopen_gates": 2,
+    "python_replayed": 32,
+    "source_inverse": "EXACT",
+    "status": "VERIFIED"
+  }
+}

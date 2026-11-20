@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "scope": "Integrate real original-store local annotation body persistence and actual Apple component evidence; full app/Native/live CloudKit/Anytype mount remain unqualified.",
+  "original_product_source": "4be6c9b27fa6c882275cddf209f5959cb9b9690b",
+  "actual_apple_source": "421944748f0638b651f771333ab97b620546773b",
+  "actual_run": 44779224809,
+  "actual_job": 136437128170,
+  "artifact": 14650449336,
+  "artifact_bytes": 1031439,
+  "artifact_sha256": "45b61198f542499ca2eb41db374e66089d235d9ba0c10b9befccda5933d53e96",
+  "packet_index_sha256": "bc30cd5dfd47f4088a72efac93c93e976e98e219ff9d002e2e2cc3e5711daaca",
+  "root_full_packet_replay": {
+    "authentication": {
+      "artifact_id": 14650449336,
+      "artifact_sha256": "45b61198f542499ca2eb41db374e66089d235d9ba0c10b9befccda5933d53e96",
+      "compiler_warnings": {
+        "local-annotation-editor-acceptance": [],
+        "local-annotation-editor-exchange-regression": [
+          "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:81:24: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+          "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:316:60: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+          "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:326:102: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+          "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift:61:5: warning: will never be executed",
+          "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift:219:5: warning: will never be executed"
+        ]
+      },
+      "first_failure_preserved_ancestor": "1bde04bfbabbf1b1df714668785b580c9141a3b8",
+      "head": "421944748f0638b651f771333ab97b620546773b",
+      "mac_python_controls": 32,
+      "run": 44779224809,
+      "scope": "Actual Apple Foundation component/cold SQLite processes; no Native UI/Anytype mount/live CloudKit/physical execution",
+      "source_before_after_files": 85,
+      "tree": "491ad8335df97a81066762e4581719b733fa11c2",
+      "whole_original_core_files": 53,
+      "whole_original_core_tree": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+      "zip_crc_members": 228
+    },
+    "observed_at": "2026-11-20T17:22:10.181946+00:00",
+    "original_validator_replay": {
+      "authentic_raw_evidence_unchanged": true,
+      "developer_dir_is_receipt_comparison_only": "/Applications/Xcode_27.2.app/Contents/Developer",
+      "literal_fixture_paths_unchanged": true,
+      "native_processes_started": 0,
+      "original_source_unchanged": true,
+      "original_sqlite_validator_used_mode_ro": true,
+      "replay_owned_copy_changes": [],
+      "replay_root_was_absent": true,
+      "status": "PASS_ORIGINAL_FROZEN_VERIFIER_REPLAY",
+      "swift_compiler_processes_started": 0,
+      "verified": {
+        "exchange_abrupt_process_reopen_gates": 2,
+        "exchange_cases": 28,
+        "exchange_compiled_copy": {
+          "package_sha256": "25c322e726f8efe82f175dd24617aa67241d4c805e259ab7ba6b4748a442c17a",
+          "sources": {
+            "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+            "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+            "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+            "Source/Core/Database/SQLiteDatabase.swift": "8bc64d2bb889d90270b56445e0c9f24a73f5af012fd86f45f44ff18d7b2c0b4b",
+            "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift": "5053083cf4e9105b533fbd1fc7e6aa025c9f86f290676838a11736f0bebcc0de",
+            "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift": "3a7f1bae83c02185341c2c2383a82d142ba016aa167d59f0cff656cc2b12fff8",
+            "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+          }
+        },
+        "exchange_original_queue_sha256": "27785a7fc9e9f5ed1d3ca4e48ff06261bd9afa6101c97795269a58f65573c5ca",
+        "exchange_raw_payload_sha256": "1ec5d78ea1971ac472ad074b3c008790cba52afac3e1d8d1129c4800e2d4b169",
+        "exchange_result_sha256": "8239bbc60edfadc4e2a5c1af5c16700404c904f82905e514b5c802457ca665b2",
+        "local_actual_process_ids": [
+          4971,
+          4972,
+          4979
+        ],
+        "local_cases": 43,
+        "local_cold_reopen_gates": 2,
+        "local_compiled_copy": {
+          "package_sha256": "174cf5819032f97dff4ecdc421831d9f5a0045cc59bd98e5a62a4542594382a1",
+          "sources": {
+            "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "ae4a525b0603124037d07d11c7888412f8eec7b2ebb9cbd812fda3ace0109918",
+            "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": "53181d138b456fb7bfb605e18bcf5fc4237d29a16feb0b70e87e8dca40d99c1f",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift": "cc76dac40c22427ce931fde4286ff11845b6f9672fb659a4d4f7ca117f2f6df5",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift": "65799a7c6bd19bc0386e32ed4de40dfed22ae68419590f6015bc6fb302b5e003",
+            "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift": "e84ef4260eb75d11471a0526ee5e0d7b96465fc717ee445b711e3deb42216e8a",
+            "Source/Core/CloudKit/SyncPendingStore.swift": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+            "Source/Core/Database/SQLiteDatabase.swift": "8bc64d2bb889d90270b56445e0c9f24a73f5af012fd86f45f44ff18d7b2c0b4b",
+            "Source/Features/Annotations/Database/AnnotationRepository.swift": "c3f086003d1667014a50fc996ae3976ebdf3ad82b9b6c9a60484762d6dbc16af",
+            "Source/Features/Annotations/Database/AnnotationStore.swift": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37",
+            "Source/Features/Annotations/Models/Annotation.swift": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d",
+            "Source/Features/Annotations/Models/AnnotationChangeTypes.swift": "50b4f7de8063055ba59ca8dbf1bb626916d013485186adadfdc67dde5a9fdb1b",
+            "Source/Features/Annotations/Models/AnnotationEvent.swift": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21",
+            "Source/Features/Annotations/Models/AnnotationNode.swift": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392",
+            "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift": "130dfa7cb4e50b9a01f85c796a76b93a5bcc0b6a35fd2d23e0da593c82738b2a",
+            "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46",
+            "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+          }
+        },
+        "local_independent_sqlite": {
+          "database_path": "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-acceptance/owned-076f8f4b-e22e-499a-b1c4-9dcc97d49385/fixtures/cold-profile/Annotations.sqlite",
+          "payload_hashes": [
+            "91b536dd927ff002f88fbb0123689898a90f7434ec7e8299ec4e5744f583df79",
+            "50f61d7b830ed34b01ffef9f06a3a8885d7a632b617f53577c4a70102b951e4a"
+          ],
+          "same_annotation_uuid": true,
+          "same_original_row": true,
+          "tags": 2,
+          "versions": 2,
+          "zero_external_destinations": true
+        },
+        "local_result_sha256": "60b2bc9f1fd69918a72c0acb9deea3bb294ac451d9d9c5d7aa86c6f0229d7d91"
+      },
+      "verified_equals_actual_after_output": true
+    },
+    "owned_replay_root_removed": true,
+    "status": "PASS_AUTHENTIC_APPLE_RESULT_AND_ORIGINAL_REPLAY",
+    "swift_rerun": false
+  },
+  "integration_review": [
+    "Exact current originals of Repository/Ledger/project match common base689d;54 additions are absent from current root. All57 branch changes are applied without copying the branch older Core tree.",
+    "Prior full product review covers original Store/DB/queue/rowmapper lifetime capture under Repository mutex, positive original row/UUID/format, atomic sameDB transaction preview/bodyversion/original pending queue, source/version/owner recheck and ABA retirement.",
+    "Local destinations[] is explicit and does not relax original public live-exchange API. Unknown future formats/fields preserve exact bytes and read-only semantics; durable replay creates no new time/version/notification. Postcommit ownership loss remains an honest completed-without-ownership receipt.",
+    "Original default normal save/cancel, AnnotationStore/model/CloudKit/SQLite/pending behavior is unchanged. Three new source files are registered in each of the three original app targets.",
+    "Actual43 local +28 exchange cases, two cold +two crash process reopens and32Mac Python controls qualify only frozenApple source. Original firstcompile failure remains in ancestry/evidence.",
+    "Root executed only the exact unchanged original Python result verifier against authenticated raw evidence using an exclusively owned reconstruction; its full output equals actualafter gate. NoSwift/Native tests rerun."
+  ],
+  "integrated_full_app_native": "NOT_RUN",
+  "live_exchange_enabled": false,
+  "live_cloudkit": "NOT_RUN",
+  "actual_anytype_codec_and_ui": "NOT_RUN"
+}

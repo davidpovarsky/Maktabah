@@ -1,0 +1,44 @@
+{
+  "canonical_encoding": "UTF-8 LF",
+  "files": {
+    "CASE_TABLE.json": {
+      "bytes": 11079,
+      "sha256": "13fff2e5ddb6e23092c6939e9ae48be5f0f2f92e1e67d8afaab06646219d9b6f"
+    },
+    "CASE_TABLE.md": {
+      "bytes": 5997,
+      "sha256": "eb2effc844ae2aa3c4d7f1df036a9577d9fbd570614ffdf3053c25c62cb4b369"
+    },
+    "ORIGINAL_VERIFIER_REPLAY.json": {
+      "bytes": 7895,
+      "sha256": "d0a8257057e8a490d07b4f7479a5f114978ffb3b92381c2d6e9437317320aec2"
+    },
+    "RAW_INVENTORY.json": {
+      "bytes": 2441,
+      "sha256": "f48928e7559f56b82de1496b8a89139b9948ef38b7a4cf7cb7c3d526051f1189"
+    },
+    "README.md": {
+      "bytes": 7464,
+      "sha256": "c5c3e93edb6a1083a8e9dd804a14913edfa8d1f16028f66093b59cf5496102ee"
+    },
+    "RESULT_REVIEW.json": {
+      "bytes": 8537,
+      "sha256": "acec6053732e14774d56c769d03886246fb826f7d9d6f8e8fd5b1f8bb66e94ca"
+    },
+    "SCOPE_AND_PROVENANCE.json": {
+      "bytes": 406,
+      "sha256": "8b21eb1d64a02006f6134157429eae2ab76c15faddb6f64dfaee90b8020ce2ac"
+    },
+    "raw-evidence.tar.gz": {
+      "bytes": 987949,
+      "sha256": "a2a7cc0b929088754048ddaa2631080317d48d2806bc8ebf3bb9d83b71dad7fc"
+    },
+    "verify-result.py": {
+      "bytes": 15072,
+      "sha256": "b703176ccb06cdbd6debeea9ac1fec441f165b535641ca9fa52edc42f116a895"
+    }
+  },
+  "run_id": 44779224809,
+  "schema": "otzaria-local-apple-result-seal-v1",
+  "source": "421944748f0638b651f771333ab97b620546773b"
+}

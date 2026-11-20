@@ -1,0 +1,333 @@
+{
+  "schema": 1,
+  "current_root": "84368c3c4fe0fdc593166cd7800021451346dc87",
+  "current_tree": "9c8484b94f3dd1e37be96cb868357312325085f1",
+  "branch_result": "0fe26c3c5bfbe8675e063777371dbeca6685cf4a",
+  "branch_tree": "d79e8bcbb78ddf4240abbe9aceb7b9c7a09e202d",
+  "common_base": "689d8db5a1186272779b278a5a86752ed9acef6a",
+  "existing_modified_paths": {
+    "Maktabah.xcodeproj/project.pbxproj": "2a2e9d56b7a31b844b87e80b0662f1c4c02b423f",
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": "2a026e03e9fcb29344f341e31b6b9c863a6a02b8",
+    "Source/Features/Annotations/Database/AnnotationRepository.swift": "52d19c0a7042ac81ca9194b52c21e13a17bd640a"
+  },
+  "branch_changes": [
+    {
+      "path": ".github/workflows/otzaria-local-annotation-editor-apple.yml",
+      "status": "added",
+      "git_blob": "a8fd5640667f232f775d512fc66a7f9c3859dbd9"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "modified",
+      "git_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0"
+    },
+    {
+      "path": "Scripts/CI/local-annotation-editor-apple.inputs.json",
+      "status": "added",
+      "git_blob": "2d3904736a96afe6e09ddeda68588fe61e20123e"
+    },
+    {
+      "path": "Scripts/CI/local-annotation-editor-apple.py",
+      "status": "added",
+      "git_blob": "b16513a9e672b3154ec6239bcd9ee4ef658cfd33"
+    },
+    {
+      "path": "Scripts/CI/test-local-annotation-editor-apple.py",
+      "status": "added",
+      "git_blob": "db8de78988018f4004b114e3c5c71eae0a900d47"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "status": "modified",
+      "git_blob": "c58864a98532c50c5b158c5e9ffbf0775ea92136"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "status": "added",
+      "git_blob": "e1aeea55762ad6550052559e9ea0a45246171c50"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "status": "added",
+      "git_blob": "5e4fbd410327133847213a6bdb866ebe6d894422"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "status": "added",
+      "git_blob": "c9f6fdbbb5737cd66b3157c44ceb9acffd7f3e1d"
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "status": "modified",
+      "git_blob": "86512a8286560aedb248da4abea1a41f5c96ea0e"
+    },
+    {
+      "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorAcceptance.swift",
+      "status": "added",
+      "git_blob": "467f45f7859ad03824d030be1855c2b27a1a98a5"
+    },
+    {
+      "path": "Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift",
+      "status": "added",
+      "git_blob": "0f8bf29a30d63aa7769b723973784839a44300c9"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/CASE_TABLE.json",
+      "status": "added",
+      "git_blob": "9a5518d4cc263ec147e810b53cd90343116e3217"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/CASE_TABLE.md",
+      "status": "added",
+      "git_blob": "7a3abddafe0565e1cd714c46fe899d47583a42d2"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/MANIFEST.json",
+      "status": "added",
+      "git_blob": "83d13bdd92f42b5135d42c80a78ca2e53aecbdcf"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/ORIGINAL_VERIFIER_REPLAY.json",
+      "status": "added",
+      "git_blob": "7b38a7d32f92c538c0bd52b22584835d18a67365"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/RAW_INVENTORY.json",
+      "status": "added",
+      "git_blob": "d0efb739407bc708a2f33de2d6df657e9123b824"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/README.md",
+      "status": "added",
+      "git_blob": "5fb6a3cb4474e79e1a152b744b25dba63c9ccc9d"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/RESULT_REVIEW.json",
+      "status": "added",
+      "git_blob": "80808ff416d7200d61f3b4ad421e6ecbc76c6cf3"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/SCOPE_AND_PROVENANCE.json",
+      "status": "added",
+      "git_blob": "a31a385e49bdafd6a5d0f05a95303c7c1e4f3f98"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/raw-evidence.tar.gz",
+      "status": "added",
+      "git_blob": "2ba8d544b69f66c27f92545b2cfb427f1c1eff23"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-apple-v2-result-44779224809-20261120/verify-result.py",
+      "status": "added",
+      "git_blob": "1223d5f3cda73a5973ed34b252863602779658f7"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/APPLE_PLAN.json",
+      "status": "added",
+      "git_blob": "e0167ba66c4fbbaa7ae61e5eca61d6275034ede9"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/BASE_INPUTS.json",
+      "status": "added",
+      "git_blob": "3e369bdf0301b25b1ba6285d77cc7d368b9a9926"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/MANIFEST.json",
+      "status": "added",
+      "git_blob": "4ed509231d2b6fd5b071fa72b0509bf81f75140e"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/RAW_INVENTORY.json",
+      "status": "added",
+      "git_blob": "01920f3283110accfafbfb0655ab8bd82d108e08"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/README.md",
+      "status": "added",
+      "git_blob": "31ac23f2d10002a0a12fc04e691ac7a6193ce4aa"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/SOURCE.patch",
+      "status": "added",
+      "git_blob": "7f51f3129d705b5d21c1e24e1ff003a1126a0c28"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/SOURCE_PROOF.json",
+      "status": "added",
+      "git_blob": "39601e1fbbb17883a49f19e53a93e90ffbca92c3"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/TARGET_REGISTRATION.json",
+      "status": "added",
+      "git_blob": "2ec2961f7e390af2ba48b0b3e437411853f5ef92"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/raw-evidence.tar.gz",
+      "status": "added",
+      "git_blob": "660219cec4bd794f4d167313cc509e12de2479a3"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-20261120/verify-evidence.py",
+      "status": "added",
+      "git_blob": "0e2bb5f10cbe5c8dd50101c0b842c4358ec74df5"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-20261120/MANIFEST.json",
+      "status": "added",
+      "git_blob": "f89552dbd5e7d4c00d5bb5c24ccf794a9dfd9b97"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-20261120/PEER_REVIEW.json",
+      "status": "added",
+      "git_blob": "9545848a938be539e4e9b99bf8348d30cb3ae709"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-20261120/RAW_INVENTORY.json",
+      "status": "added",
+      "git_blob": "02fba7aba44e1a5b7b25e414908e45585627c460"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-20261120/README.md",
+      "status": "added",
+      "git_blob": "f438a5f2100402be8116940a688c08bb1cb11388"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-20261120/SOURCE_PROOF.json",
+      "status": "added",
+      "git_blob": "163e61c0790fc5e256f91e30dcb144b382374d4f"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-20261120/SOURCE_PUBLICATION.json",
+      "status": "added",
+      "git_blob": "78ca673b529216c70a15240bd0a8bfe84d40a88f"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-20261120/WORKFLOW_PROOF.json",
+      "status": "added",
+      "git_blob": "434331b9d52fa0fc539e57ff235203426ed01bfd"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-20261120/raw-evidence.tar.gz",
+      "status": "added",
+      "git_blob": "46041dadd80e1ba80753e49b2e461bea8480f27c"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-20261120/verify-evidence.py",
+      "status": "added",
+      "git_blob": "e892ffb2b0da7b91f9a152de1465687af569b691"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-root-review-20261120/ROOT_GIT_AUTHORITY.json.gz",
+      "status": "added",
+      "git_blob": "e049fc77a383d7e167923af1ef5f5ab91e10000b"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-root-review-20261120/ROOT_REVIEW.json",
+      "status": "added",
+      "git_blob": "a0e050eb81473ce7ff41db08bcb8250b7924d788"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/AUTHENTIC_FAILURE_REVIEW.json",
+      "status": "added",
+      "git_blob": "12044590cb517e78c86f7c465b9a8b33e99e9a86"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/LOCAL_VERIFICATION.json",
+      "status": "added",
+      "git_blob": "4dc7e0d558fd6f2aab56013d74b7b3257426137d"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/MANIFEST.json",
+      "status": "added",
+      "git_blob": "f4b0258fd892bd32df46dc720f3abb4a81c7e62a"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/PEER_REVIEW.json",
+      "status": "added",
+      "git_blob": "68a4d1e536c1c4da097663bced7f64d5163f8bce"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/RAW_INVENTORY.json",
+      "status": "added",
+      "git_blob": "ba905e4cf56ef4341f5d4f8d1ab79c42dda82d59"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/README.md",
+      "status": "added",
+      "git_blob": "5a232bd2b1b3b7481ff579baa9e06c102cee64b7"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/SOURCE_PRESERVATION.json",
+      "status": "added",
+      "git_blob": "8e22eef8bc3b6bdee5dc6675153a53be66affbf3"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/SOURCE_PUBLICATION.json",
+      "status": "added",
+      "git_blob": "acbfc1a981deb95643d0ca60e9708036deb30cc8"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/raw-evidence.tar.gz",
+      "status": "added",
+      "git_blob": "42e09ba50be38eace25e34cfab8bcefe3a127e59"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-20261120/verify-evidence.py",
+      "status": "added",
+      "git_blob": "9a37dea946665f57ae401f07b49bf3d6f059fbb1"
+    },
+    {
+      "path": "docs/hq-integration/local-annotation-editor-apple-v2-root-review-20261120/ROOT_REVIEW.json",
+      "status": "added",
+      "git_blob": "3e895824d46cb558e6e75dd1dad92324649438ad"
+    },
+    {
+      "path": "tools/hq-local-annotation-editor-acceptance.py",
+      "status": "added",
+      "git_blob": "d1ad554013d77c7c80e3cce8c6c17509455ff345"
+    },
+    {
+      "path": "tools/test-local-annotation-editor-gate.py",
+      "status": "added",
+      "git_blob": "b6f0e88657f7f0586175f14b325fd784a95d747c"
+    },
+    {
+      "path": "tools/test-local-annotation-editor-sql.py",
+      "status": "added",
+      "git_blob": "fa91b24b351651d7ddd62a0c2894d0b7fb418759"
+    }
+  ],
+  "ancestry": [
+    "4be6c9b27fa6c882275cddf209f5959cb9b9690b",
+    "b19d30d9db402ef267e0d3afcc4dece0be013f24",
+    "6cd53aae3dbf6b443ab74ad6eff926e8ea529338",
+    "f765893e332cce08c18b00185ac8ee04be1d4677",
+    "1bde04bfbabbf1b1df714668785b580c9141a3b8",
+    "5b0f8ef7875a373918d1e2e32f45651e1a15a11f",
+    "19db1fa70516a3918509a94c75bfc31d379687a1",
+    "421944748f0638b651f771333ab97b620546773b",
+    "0fe26c3c5bfbe8675e063777371dbeca6685cf4a"
+  ],
+  "preserved_current_core": {
+    "path": "Source/Otzaria/Actions",
+    "mode": "040000",
+    "type": "tree",
+    "sha": "a89104250c1aedf75e6aa95ed3f111a4dc597217",
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/trees/a89104250c1aedf75e6aa95ed3f111a4dc597217"
+  },
+  "preserved_ui_tests": {
+    "path": "Maktabah-iOSUITests",
+    "mode": "040000",
+    "type": "tree",
+    "sha": "dddad156bc5025941829255ba1ad58d4db53c0de",
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/trees/dddad156bc5025941829255ba1ad58d4db53c0de"
+  },
+  "preserved_vendor": {
+    "path": "Vendor",
+    "mode": "040000",
+    "type": "tree",
+    "sha": "4065c0e62af325e83a65fe0c70270985229807ae",
+    "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/trees/4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "merge_rule": "Overlay only exact57 branch changes; retain all unrelated current-root paths and later Core194/cold/DynamicType/Reader fixes."
+}

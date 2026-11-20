@@ -1,0 +1,39 @@
+{
+  "ci_source_commit": "6cd53aae3dbf6b443ab74ad6eff926e8ea529338",
+  "files": {
+    "PEER_REVIEW.json": {
+      "bytes": 770,
+      "sha256": "5badf45773ab9e5abde4e82e1a0d8a13433d19a023632deb6c6831bf293f0595"
+    },
+    "RAW_INVENTORY.json": {
+      "bytes": 7883,
+      "sha256": "d0ba7cdcbfa0ae6833ee008e01efc680a5e150f757fbbb3a321698f65b4020b5"
+    },
+    "README.md": {
+      "bytes": 8162,
+      "sha256": "9e5bab56649c089123596eac466bc751707a680e4b4da3c93ed515a6af3a6051"
+    },
+    "SOURCE_PROOF.json": {
+      "bytes": 14534,
+      "sha256": "82414db7d2040fa5fa26578e90a6fae300763ae1cb6245c0662ddc96539a2b19"
+    },
+    "SOURCE_PUBLICATION.json": {
+      "bytes": 2056,
+      "sha256": "cba8d6199f9bf02343cdb9869d63ef1c8e33c1e6e6bcf3f752d1e5286fcf1562"
+    },
+    "WORKFLOW_PROOF.json": {
+      "bytes": 814,
+      "sha256": "f160026aa9a1c8d94247d9dce1d4dfca6b23ed6feae55ef08f41b276e7ecac67"
+    },
+    "raw-evidence.tar.gz": {
+      "bytes": 210188,
+      "sha256": "8653ef585053b2247ac4706d019761a00a0ef000e0ae4432056fdc611fd274f3"
+    },
+    "verify-evidence.py": {
+      "bytes": 5456,
+      "sha256": "37b1a0193c0ea99d8bf5471c9fdfaa2d7f09b4ac19e96e6006b6b8eb62868e8c"
+    }
+  },
+  "schema": "local-annotation-apple-evidence-v1",
+  "state": "PREPARED_NOT_RUN_APPLE"
+}

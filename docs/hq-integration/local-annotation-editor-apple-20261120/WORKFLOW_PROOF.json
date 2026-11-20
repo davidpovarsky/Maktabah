@@ -1,0 +1,26 @@
+{
+  "activation_or_dispatch": false,
+  "exact_single_push_branch": true,
+  "native_ui_executed": 0,
+  "original_drivers_byte_identical": true,
+  "original_exchange_show_bin_path": "Unchanged original check_output has no local timeout; the 840s outer step is a new failure bound, not a replaced internal assertion.",
+  "original_plan_commands_unchanged": true,
+  "python_parse": 2,
+  "status": "PASS_SOURCE_AND_WORKFLOW_ONLY",
+  "step_outer_budgets_seconds": {
+    "exchange": 840,
+    "job": 3000,
+    "local": 960
+  },
+  "swift_executed": 0,
+  "unchanged_original_deadlines_seconds": {
+    "exchange_cases": 150,
+    "exchange_compile": 300,
+    "exchange_each_crash_or_reopen": 40,
+    "local_binary_path": 30,
+    "local_cases": 180,
+    "local_compile": 480,
+    "local_each_cold": 45
+  },
+  "yaml_parse": 1
+}

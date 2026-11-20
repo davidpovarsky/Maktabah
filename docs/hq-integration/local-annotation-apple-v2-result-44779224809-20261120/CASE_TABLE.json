@@ -1,0 +1,456 @@
+[
+  {
+    "name": "legacy_read_has_no_schema_or_original_mutation",
+    "ordinal": 1,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "same_uuid_atomic_two_block_body_and_plain_preview",
+    "ordinal": 2,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "all_original_metadata_tags_and_uuid_preserved",
+    "ordinal": 3,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "original_queue_upload_delete_preserved_and_no_exchange_destination",
+    "ordinal": 4,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "original_store_cache_reads_committed_preview",
+    "ordinal": 5,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "original_cloudkit_boundary_receives_plain_record_once_without_requeue",
+    "ordinal": 6,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "exact_retry_returns_same_version_without_duplicate_publication",
+    "ordinal": 7,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "same_mutation_different_body_is_conflict",
+    "ordinal": 8,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "new_revision_preserves_immutable_previous_bytes",
+    "ordinal": 9,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "second_session_stale_revision_cannot_overwrite",
+    "ordinal": 10,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "normal_save_invalidates_old_rich_intent_without_altering_normal_path",
+    "ordinal": 11,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "original_tag_change_invalidates_source_witness",
+    "ordinal": 12,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "changed_original_row_is_rejected_by_post_worker_read_publication",
+    "ordinal": 13,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "changed_version_is_rejected_by_post_worker_read_publication",
+    "ordinal": 14,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "pending_original_delete_cannot_be_resurrected",
+    "ordinal": 15,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "missing_original_annotation_is_not_recreated",
+    "ordinal": 16,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "ambiguous_uuid_is_never_selected_by_first_match",
+    "ordinal": 17,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "profile_switch_and_return_never_revives_old_owner",
+    "ordinal": 18,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "disconnect_reconnect_same_file_requires_fresh_session",
+    "ordinal": 19,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "retire_before_save_has_no_schema_or_write",
+    "ordinal": 20,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "read_and_cancel_does_not_save_or_backfill",
+    "ordinal": 21,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "foreign_session_snapshot_is_denied",
+    "ordinal": 22,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "unsupported_body_format_is_readable_but_never_overwritten",
+    "ordinal": 23,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "future_envelope_is_retained_and_read_only",
+    "ordinal": 24,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "unknown_envelope_and_rich_metadata_survive_supported_edit",
+    "ordinal": 25,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "altered_snapshot_document_cannot_remove_preserved_unknown_fields",
+    "ordinal": 26,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "unknown_local_commit_marker_is_not_reinterpreted",
+    "ordinal": 27,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "future_database_schema_is_not_migrated_by_read",
+    "ordinal": 28,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "partial_schema_is_not_repaired_by_read",
+    "ordinal": 29,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "corrupt_body_digest_is_rejected",
+    "ordinal": 30,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "payload_bound_failure_rolls_back_preview_schema_and_queue",
+    "ordinal": 31,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "sqlite_failure_after_preview_rolls_back_entire_commit",
+    "ordinal": 32,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "retirement_during_original_sql_rolls_back_before_commit",
+    "ordinal": 33,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "normal_plain_save_preserves_rich_bytes_but_marks_body_stale",
+    "ordinal": 34,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "lowercase_original_uuid_bytes_are_not_restamped",
+    "ordinal": 35,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "nul_preview_is_rejected_before_original_sqlite_string_binding",
+    "ordinal": 36,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "empty_format_contract_has_no_implicit_editor_default",
+    "ordinal": 37,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "format_conversion_is_not_implicit_even_when_both_are_known",
+    "ordinal": 38,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "replay_of_older_head_cannot_replace_or_publish_newer_body",
+    "ordinal": 39,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "retirement_during_publication_reports_real_commit_without_owner_delivery",
+    "ordinal": 40,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "orphaned_version_is_not_treated_as_a_legacy_empty_note",
+    "ordinal": 41,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "original_exchange_api_still_rejects_empty_destinations",
+    "ordinal": 42,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "name": "ordinary_original_save_and_tags_still_work_on_legacy_note",
+    "ordinal": 43,
+    "status": "PASS",
+    "suite": "local"
+  },
+  {
+    "milliseconds": 1.2860298156738281,
+    "name": "actual_platform_SHA256_known_vectors",
+    "ordinal": 1,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 18.800973892211914,
+    "name": "constructor_is_inert_and_capability_stays_off",
+    "ordinal": 2,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 20.588994026184082,
+    "name": "exact_rich_bytes_preview_and_unknown_fields_survive_reopen",
+    "ordinal": 3,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 20.577073097229004,
+    "name": "unknown_version_is_exact_quarantine_without_execution",
+    "ordinal": 4,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 15.892982482910156,
+    "name": "all_original_handles_close_before_reopen_and_retry",
+    "ordinal": 5,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 1.4119148254394531,
+    "name": "duplicate_escaped_keys_malformed_UTF8_and_numbers_are_rejected",
+    "ordinal": 6,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 7.032036781311035,
+    "name": "invalid_UUID_base64_types_and_scope_are_rejected",
+    "ordinal": 7,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 8.659958839416504,
+    "name": "oversized_payload_fails_intact_without_rows",
+    "ordinal": 8,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 7.013916969299316,
+    "name": "schema_constraints_reject_fractional_revision_and_invalid_status",
+    "ordinal": 9,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 4.1359663009643555,
+    "name": "unknown_ledger_schema_fails_closed",
+    "ordinal": 10,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 8.608102798461914,
+    "name": "missing_or_ambiguous_original_UUID_is_not_backfilled",
+    "ordinal": 11,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 5.878090858459473,
+    "name": "same_second_source_edit_rejects_stale_witness",
+    "ordinal": 12,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 9.424090385437012,
+    "name": "tag_locator_and_embedded_NUL_each_change_source_witness",
+    "ordinal": 13,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 4.5729875564575195,
+    "name": "source_metadata_and_revision_mismatch_do_not_write",
+    "ordinal": 14,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 8.2550048828125,
+    "name": "dangling_original_tag_link_changes_witness_and_rejects_stale_commit",
+    "ordinal": 15,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 10.655999183654785,
+    "name": "idempotent_retry_binds_exact_payload_and_destination_set",
+    "ordinal": 16,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 17.845988273620605,
+    "name": "ACK_is_bound_to_destination_account_space_UUID_revision_digest_and_message",
+    "ordinal": 17,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 15.554070472717285,
+    "name": "old_ACK_does_not_consume_newer_revision_or_account",
+    "ordinal": 18,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 6.905913352966309,
+    "name": "nested_enqueue_failure_rolls_back_source_cloud_queue_and_ledger",
+    "ordinal": 19,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 5.610942840576172,
+    "name": "outer_failure_after_inner_release_rolls_back_everything",
+    "ordinal": 20,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 7.039070129394531,
+    "name": "successful_outer_transaction_preserves_original_cloud_queue_semantics",
+    "ordinal": 21,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 20.89107036590576,
+    "name": "tombstone_requires_prior_identity_and_absent_original_source",
+    "ordinal": 22,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 15.473008155822754,
+    "name": "known_inbox_is_review_only_exact_idempotent_and_account_scoped",
+    "ordinal": 23,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 4.271984100341797,
+    "name": "incoming_digest_and_identity_mismatch_are_rejected",
+    "ordinal": 24,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 15.108942985534668,
+    "name": "corrupt_payload_and_orphan_outbox_fail_closed",
+    "ordinal": 25,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 20.359039306640625,
+    "name": "pre_cancelled_commit_and_ACK_do_not_write",
+    "ordinal": 26,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 17.202019691467285,
+    "name": "cancellation_after_real_enqueue_rolls_back_before_commit",
+    "ordinal": 27,
+    "status": "PASS",
+    "suite": "exchange"
+  },
+  {
+    "milliseconds": 15.473008155822754,
+    "name": "eight_concurrent_same_revision_writers_have_one_atomic_winner",
+    "ordinal": 28,
+    "status": "PASS",
+    "suite": "exchange"
+  }
+]

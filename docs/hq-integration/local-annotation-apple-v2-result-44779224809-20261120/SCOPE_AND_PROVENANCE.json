@@ -1,0 +1,10 @@
+{
+  "cloudkit_owned_completion_work_not_in_this_source": true,
+  "docs_only": true,
+  "first_failure_packet_ancestor": "19db1fa70516a3918509a94c75bfc31d379687a1",
+  "frozen_source": "421944748f0638b651f771333ab97b620546773b",
+  "no_ci_dispatch_or_ref_rewrite": true,
+  "no_local_swift": true,
+  "raw_source_proof": "raw-evidence.tar.gz:SOURCE_GIT_PROOF.json",
+  "replay": "ORIGINAL_VERIFIER_REPLAY.json"
+}

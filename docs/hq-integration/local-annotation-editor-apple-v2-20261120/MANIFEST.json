@@ -1,0 +1,45 @@
+{
+  "candidate_apple_executed": 0,
+  "candidate_swift_executed": 0,
+  "files": {
+    "AUTHENTIC_FAILURE_REVIEW.json": {
+      "bytes": 4252,
+      "sha256": "d109f4e9de821eb0b937f67f0524c255c3450dabe80a11be10ef70a6b9c73043"
+    },
+    "LOCAL_VERIFICATION.json": {
+      "bytes": 647,
+      "sha256": "c6d5f874bad8570b3a9ddf1724b6210b7ecaeb7d3902f9d4ab9e9e71280376bf"
+    },
+    "PEER_REVIEW.json": {
+      "bytes": 323,
+      "sha256": "07f76e74a68e26bb51ddb9d080163fa780dcddb7b165cec041d395d414cb0eea"
+    },
+    "RAW_INVENTORY.json": {
+      "bytes": 3606,
+      "sha256": "d9ae1844683d2e0017184acd83b9128bdb72353cc164dcb8125f6794c6044d17"
+    },
+    "README.md": {
+      "bytes": 6018,
+      "sha256": "66cac6d5bebf5f3c5b58e8ec0087b9fd6578df57d55b4bcaee1e502cb9071450"
+    },
+    "SOURCE_PRESERVATION.json": {
+      "bytes": 6651,
+      "sha256": "6463adf4ceb4a8afded83521e764f02ce912f9b0e5cf36218d88e0957e349653"
+    },
+    "SOURCE_PUBLICATION.json": {
+      "bytes": 2108,
+      "sha256": "4fb0f4b252b7c2a730a7cd749697567c77334ec3e764a7c37f886ba5a4b6ed26"
+    },
+    "raw-evidence.tar.gz": {
+      "bytes": 834588,
+      "sha256": "1f21d5b4d7d2676918fc48aad98db57de824a965eb991fecaf1144d5c9202db5"
+    },
+    "verify-evidence.py": {
+      "bytes": 9108,
+      "sha256": "37291504fe8f8575ac5dd0e9900490a78dfc44123abe79eecd1c06a4af4b00b1"
+    }
+  },
+  "original_failure_run": 44774181751,
+  "schema": "otzaria-local43-apple-v2-closure-evidence-v1",
+  "source_commit": "5b0f8ef7875a373918d1e2e32f45651e1a15a11f"
+}

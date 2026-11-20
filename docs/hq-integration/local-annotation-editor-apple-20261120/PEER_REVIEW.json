@@ -1,0 +1,15 @@
+{
+  "finding": "No concrete blocker found in required both-driver success, always final after gate, named43/28 sets, source/cold/crash/copy checks.",
+  "limits": [
+    "No Python/Swift execution by reviewer",
+    "No independent validation of actual driver JSON schemas by reviewer",
+    "No Apple or Native result"
+  ],
+  "observed_at": "2026-11-20T16:23:48.174206+00:00",
+  "reviewed_source_sha256": {
+    ".github/workflows/otzaria-local-annotation-editor-apple.yml": "45f1951f037c7965c097459ecce2c756e0ea5b8c3083ba368559fb1b3de7ab20",
+    "Scripts/CI/local-annotation-editor-apple.py": "0b7ba240419f11748be34a5a7fa24476605628aa0329c73f0fc4e5955b953715"
+  },
+  "reviewer": "/root/hanlin_api_integration",
+  "scope": "Read-only complete wrapper and workflow source"
+}

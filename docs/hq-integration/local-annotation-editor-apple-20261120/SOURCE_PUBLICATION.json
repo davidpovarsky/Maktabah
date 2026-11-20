@@ -1,0 +1,63 @@
+{
+  "repository": "davidpovarsky/Maktabah",
+  "base": "b19d30d9db402ef267e0d3afcc4dece0be013f24",
+  "base_tree": "b5480a4f8d9de22f3124fff78523435088a38a4d",
+  "source_commit": "6cd53aae3dbf6b443ab74ad6eff926e8ea529338",
+  "source_tree": "25c831ffc70260df63dc6f05257faaaf1cbcf1b1",
+  "author_ref": "refs/heads/codex/otzaria-local-annotation-editor-apple-ci-20261120",
+  "readback_sha": "6cd53aae3dbf6b443ab74ad6eff926e8ea529338",
+  "expected_head_lease": "b19d30d9db402ef267e0d3afcc4dece0be013f24",
+  "force": false,
+  "compare": {
+    "status": "ahead",
+    "total_commits": 1,
+    "files": [
+      {
+        "path": ".github/workflows/otzaria-local-annotation-editor-apple.yml",
+        "status": "added",
+        "additions": 102,
+        "deletions": 0
+      },
+      {
+        "path": "Scripts/CI/local-annotation-editor-apple.inputs.json",
+        "status": "added",
+        "additions": 234,
+        "deletions": 0
+      },
+      {
+        "path": "Scripts/CI/local-annotation-editor-apple.py",
+        "status": "added",
+        "additions": 423,
+        "deletions": 0
+      },
+      {
+        "path": "Scripts/CI/test-local-annotation-editor-apple.py",
+        "status": "added",
+        "additions": 361,
+        "deletions": 0
+      }
+    ]
+  },
+  "created_blobs": [
+    {
+      "path": ".github/workflows/otzaria-local-annotation-editor-apple.yml",
+      "sha": "67ee325061bbbaf2db7392ea7be5837dbf0f7566"
+    },
+    {
+      "path": "Scripts/CI/local-annotation-editor-apple.py",
+      "sha": "4c76ef2c4536b61e04b90fcf75ee646bf6216b11"
+    },
+    {
+      "path": "Scripts/CI/local-annotation-editor-apple.inputs.json",
+      "sha": "6e836d0efc5422a3fa3f88e43a484e3c38f1350d"
+    },
+    {
+      "path": "Scripts/CI/test-local-annotation-editor-apple.py",
+      "sha": "a7545339b009fe71d6db4172e2c1c29482582822"
+    }
+  ],
+  "activation_branch": "codex/otzaria-local-annotation-editor-apple-reviewed-20261120",
+  "activation_ref_observed_before_publication": "GitHub 404 absent",
+  "activation_ref_created": false,
+  "dispatch_performed": false
+}

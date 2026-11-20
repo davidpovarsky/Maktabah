@@ -1,0 +1,173 @@
+{
+  "artifact_bytes": 1031439,
+  "artifact_id": 14650449336,
+  "artifact_sha256": "45b61198f542499ca2eb41db374e66089d235d9ba0c10b9befccda5933d53e96",
+  "cold_processes": [
+    {
+      "annotationUUID": "D68CC2C4-F931-4063-A581-C6AE334D860A",
+      "exchangeDestinations": 0,
+      "mode": "cold-write",
+      "originalPendingUpload": true,
+      "payloadSHA256": "91b536dd927ff002f88fbb0123689898a90f7434ec7e8299ec4e5744f583df79",
+      "processID": 4971,
+      "revision": 1,
+      "sourceSHA256": "7d4657b1b22046366a1abb277f82d7908085bcbcf22a36a4d63c218b510816c3",
+      "sqliteVersion": "3.54.0",
+      "status": "PASS_COMPONENT_COLD_PROCESS"
+    },
+    {
+      "annotationUUID": "D68CC2C4-F931-4063-A581-C6AE334D860A",
+      "exchangeDestinations": 0,
+      "mode": "cold-reopen",
+      "originalPendingUpload": true,
+      "payloadSHA256": "50f61d7b830ed34b01ffef9f06a3a8885d7a632b617f53577c4a70102b951e4a",
+      "priorProcessID": 4971,
+      "processID": 4972,
+      "revision": 2,
+      "sourceSHA256": "532e5afd93fe8509dd7f8f3d6c03e181837587acbb82196d51dc09d5c252e942",
+      "sqliteVersion": "3.54.0",
+      "status": "PASS_COMPONENT_COLD_PROCESS"
+    },
+    {
+      "annotationUUID": "D68CC2C4-F931-4063-A581-C6AE334D860A",
+      "exchangeDestinations": 0,
+      "mode": "cold-reopen-final",
+      "originalPendingUpload": true,
+      "payloadSHA256": "50f61d7b830ed34b01ffef9f06a3a8885d7a632b617f53577c4a70102b951e4a",
+      "priorProcessID": 4972,
+      "processID": 4979,
+      "revision": 2,
+      "sourceSHA256": "532e5afd93fe8509dd7f8f3d6c03e181837587acbb82196d51dc09d5c252e942",
+      "sqliteVersion": "3.54.0",
+      "status": "PASS_COMPONENT_COLD_PROCESS"
+    }
+  ],
+  "cold_reopens": 2,
+  "compiler": "Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)\nTarget: arm64-apple-macosx27.2.0",
+  "compiler_warning_locations": {
+    "local-annotation-editor-acceptance": [],
+    "local-annotation-editor-exchange-regression": [
+      "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:81:24: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+      "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:316:60: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+      "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:326:102: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+      "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift:61:5: warning: will never be executed",
+      "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift:219:5: warning: will never be executed"
+    ]
+  },
+  "exchange_cases": {
+    "executed": 28,
+    "failed": 0,
+    "passed": 28,
+    "skipped": 0
+  },
+  "exchange_process_termination_checks": [
+    {
+      "actual_journal_observation": "CRASH_JOURNAL_MODE wal; synchronous=2",
+      "expected_terminated_exit": 73,
+      "phase": "after",
+      "status": "PASS",
+      "terminated_exit": 73,
+      "termination_command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "crash-after-commit",
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/fixtures"
+      ],
+      "verify_command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "verify-crash-after",
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/fixtures"
+      ],
+      "verify_exit": 0
+    },
+    {
+      "actual_journal_observation": "CRASH_JOURNAL_MODE wal; synchronous=2",
+      "expected_terminated_exit": 73,
+      "phase": "before",
+      "status": "PASS",
+      "terminated_exit": 73,
+      "termination_command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "crash-before-outer-commit",
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/fixtures"
+      ],
+      "verify_command": [
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/swift-build/out/Products/Debug/ExchangeAcceptance",
+        "verify-crash-before",
+        "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-exchange-regression/owned-d82492d8-0e1f-4ed0-9657-e3fdf7679d6b/fixtures"
+      ],
+      "verify_exit": 0
+    }
+  ],
+  "first_failure": {
+    "durable_packet": "docs/hq-integration/local-annotation-editor-apple-v2-20261120",
+    "packet_commit": "19db1fa70516a3918509a94c75bfc31d379687a1",
+    "preserved_in_ancestry": true,
+    "result": "Local compile failure: five missing AnnotationNode type diagnostics; local43/cold2 NOT_RUN; original exchange28+2 PASS",
+    "run_id": 44774181751,
+    "source": "1bde04bfbabbf1b1df714668785b580c9141a3b8"
+  },
+  "head": "421944748f0638b651f771333ab97b620546773b",
+  "independent_sqlite": {
+    "database_path": "/Users/runner/work/Maktabah/Maktabah/build/local-annotation-editor-acceptance/owned-076f8f4b-e22e-499a-b1c4-9dcc97d49385/fixtures/cold-profile/Annotations.sqlite",
+    "payload_hashes": [
+      "91b536dd927ff002f88fbb0123689898a90f7434ec7e8299ec4e5744f583df79",
+      "50f61d7b830ed34b01ffef9f06a3a8885d7a632b617f53577c4a70102b951e4a"
+    ],
+    "same_annotation_uuid": true,
+    "same_original_row": true,
+    "tags": 2,
+    "versions": 2,
+    "zero_external_destinations": true
+  },
+  "is_later_core194_source": false,
+  "job_completed_at": "2026-11-20T17:05:25Z",
+  "job_id": 136437128170,
+  "job_started_at": "2026-11-20T17:01:45Z",
+  "local_cases": {
+    "executed": 43,
+    "failed": 0,
+    "passed": 43,
+    "skipped": 0
+  },
+  "mac_python_controls": {
+    "errors": 0,
+    "executed": 32,
+    "failed": 0,
+    "skipped": 0
+  },
+  "original_verifier_output_equals_actual_gate": true,
+  "replay_attempt1": "New offline verifier stopped before replay because connector omits REST node_id; exact explicit projection fixed; retained separately, not an Apple/Swift failure",
+  "review_native_processes": 0,
+  "review_swift_processes": 0,
+  "run_attempt": 1,
+  "run_id": 44779224809,
+  "schema": "otzaria-local-annotation-apple-v2-independent-review-v1",
+  "scope": {
+    "actual": [
+      "Apple Foundation",
+      "whole original Store/Repository/SQLite/ledger/session",
+      "separate-process local SQLite cold persistence",
+      "original exchange28 and WAL process termination/reopen"
+    ],
+    "explicit_boundaries": [
+      "catalog/UI/CloudKit doubles",
+      "five synthetic generated-localization accessors",
+      "opaque acceptance-only two-block body bytes"
+    ],
+    "live_exchange_enabled": false,
+    "not_executed": [
+      "Anytype editor runtime or UI mount",
+      "full app build/relaunch",
+      "XCTest Native UI",
+      "live CloudKit transport or account/profile isolation",
+      "physical hardware"
+    ]
+  },
+  "sdk": "/Applications/Xcode_27.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk",
+  "source_files_before_and_after": 85,
+  "sqlite_version": "3.54.0",
+  "status": "PASS_SOURCE_BOUND_APPLE_FOUNDATION_LOCAL43_COLD2_EXCHANGE28_CRASH2",
+  "tree": "491ad8335df97a81066762e4581719b733fa11c2",
+  "whole_core_files": 53,
+  "whole_core_tree": "5d0ee482c8f10726fe3863792dac94c18e94d792"
+}

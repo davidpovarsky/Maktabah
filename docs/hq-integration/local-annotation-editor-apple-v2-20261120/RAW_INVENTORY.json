@@ -1,0 +1,93 @@
+{
+  "files": {
+    "candidate/.github/workflows/otzaria-local-annotation-editor-apple.yml": {
+      "bytes": 5443,
+      "sha256": "c44d4a954e46dbc01475647d152c84f3d7c2a0640dbd6701f2e8cb40a73bb099"
+    },
+    "candidate/Scripts/CI/local-annotation-editor-apple.inputs.json": {
+      "bytes": 12882,
+      "sha256": "24668f86e873218a1405d3ad3cf1a45e7f830839948f19f685318f1308badc5f"
+    },
+    "candidate/Scripts/CI/local-annotation-editor-apple.py": {
+      "bytes": 26964,
+      "sha256": "7bb6ab2ebd5ce8d7f2ea92c7cd59171cf2c96d39371250cc1fd533715d8d7628"
+    },
+    "candidate/Scripts/CI/test-local-annotation-editor-apple.py": {
+      "bytes": 23499,
+      "sha256": "42bd75d6cf87a3bb62d7f184c339be011ffc8bd4620a98fd495f928b3abb7211"
+    },
+    "candidate/Tests/HQ/local-annotation-editor/LocalAnnotationEditorBoundary.swift": {
+      "bytes": 3758,
+      "sha256": "0d5eee1b035e3b05938f72e6acb08415c2a621870dd51795a90eb83eacb16b46"
+    },
+    "candidate/tools/hq-local-annotation-editor-acceptance.py": {
+      "bytes": 16135,
+      "sha256": "76bd98bf2fe2c8df4332b13e25399a85a95d0e653e2db1f00ebe723eef423a14"
+    },
+    "evidence/AUTHENTIC_FAILURE_REVIEW.json": {
+      "bytes": 4252,
+      "sha256": "d109f4e9de821eb0b937f67f0524c255c3450dabe80a11be10ef70a6b9c73043"
+    },
+    "evidence/BASE_PROJECTION.json": {
+      "bytes": 7234,
+      "sha256": "9f703f83b102e9380130671233cdd9963b25df6c9fbfeec89a366e0964bc18d0"
+    },
+    "evidence/CANDIDATE.patch": {
+      "bytes": 15078,
+      "sha256": "33f5018210c74950a6c986b4ea82371029f35678a2a51175aced0579f309d31a"
+    },
+    "evidence/FAILURE_PACKET_INPUTS.json": {
+      "bytes": 944,
+      "sha256": "b6fc9cc20352bf27fd08b09df44e660dfb1acc6455b1e92aedcc1e445a38f5de"
+    },
+    "evidence/PREPARE_ATTEMPT1.json": {
+      "bytes": 533,
+      "sha256": "1985dc2cd456d5c16afb36132382a96a36d83cdb5496f3014db2eb70cbdb8ec5"
+    },
+    "evidence/SOURCE_PRESERVATION.json": {
+      "bytes": 6651,
+      "sha256": "6463adf4ceb4a8afded83521e764f02ce912f9b0e5cf36218d88e0957e349653"
+    },
+    "failure/ARTIFACT_METADATA.json": {
+      "bytes": 860,
+      "sha256": "e8f50528672949855f37b56e373e6c94a45d0455364f6cbe9598ec4b466b7d9f"
+    },
+    "failure/JOB.log": {
+      "bytes": 36586,
+      "sha256": "664a0215893273c44d567744215a412acff0edcfbfc9b85618c491771dbf0c9d"
+    },
+    "failure/ROOT_SOURCE_REVIEW.json": {
+      "bytes": 487,
+      "sha256": "ec067ea3ef251f31be785e07bd9869ada5af62395076dcd0d015ed2a7890e9f3"
+    },
+    "failure/RUN.json": {
+      "bytes": 14360,
+      "sha256": "306d46e1e89d8f186b9d3af8d3336cc6745a99608db42c603b32459f22474cdc"
+    },
+    "failure/SOURCE_GIT_PROOF.json": {
+      "bytes": 23819,
+      "sha256": "6e2e9a67e7eedc364fc4ab08b57c5d976ee60fd76eb3a0b1729487f8574c2657"
+    },
+    "failure/artifact.zip": {
+      "bytes": 815530,
+      "sha256": "55036c390406f18a1c82a49b5537b7d73885aba695fc41ad0a9b235e83423976"
+    },
+    "original-model/Source/Features/Annotations/Models/Annotation.xcstrings": {
+      "bytes": 17370,
+      "sha256": "1a5364d2a5f36c614f91933d1225547db1ed92614a9ac3615f3219d1445b88ba"
+    },
+    "original-model/Source/Features/Annotations/Models/AnnotationNode.swift": {
+      "bytes": 4413,
+      "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392"
+    },
+    "python-controls/RESULT.json": {
+      "bytes": 15610,
+      "sha256": "3bbbe482b122bb7e822c6789cd10e0d070c0ef9a8b26cc41f5fae1ef648381e7"
+    },
+    "python-controls/stdout.log": {
+      "bytes": 4100,
+      "sha256": "df13485945be419e2e68544e965348f2a1ca0c5865c4a3e115c80f9fd686b82f"
+    }
+  },
+  "members": 22
+}

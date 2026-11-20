@@ -1,0 +1,269 @@
+--- a/Maktabah.xcodeproj/project.pbxproj
++++ b/Maktabah.xcodeproj/project.pbxproj
+@@ -1389,6 +1389,15 @@
+ 		D2F86FB13C3717CFF8A90CF5 /* ActionLiveOccurrenceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */; };
+ 		AB5F4859B86BDD4C5689FBE1 /* ActionLiveOccurrenceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */; };
+ 		CD43474CAD4598816EBBACB7 /* ActionLiveOccurrenceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */; };
++		C4D9F799C43B95EC13DAFE68 /* AnnotationLocalEditorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */; };
++		FDFFEE666030424CBE21238A /* AnnotationLocalEditorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */; };
++		AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */; };
++		339269F3BD193BCD1D8B9A27 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
++		9D6C002E3485E64BCFCAB334 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
++		2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
++		387C03A49E4420CA3ECF3308 /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
++		2636D2D8F62C8C21A825A12A /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
++		D627561A0D3655B435E380A6 /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
+ /* End PBXBuildFile section */
+ 
+ /* Begin PBXContainerItemProxy section */
+@@ -2177,6 +2186,9 @@
+ 		50DAE20D05123E43D5D4AC0E /* OtzariaExactOccurrenceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search/OtzariaExactOccurrenceOperation.swift"; sourceTree = "<group>"; };
+ 		D0484FE7FC64F330F16C8C5A /* ActionOccurrenceCoveragePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionOccurrenceCoveragePolicy.swift"; sourceTree = "<group>"; };
+ 		DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionLiveOccurrenceCounter.swift"; sourceTree = "<group>"; };
++		CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorModels.swift"; sourceTree = "<group>"; };
++		60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift"; sourceTree = "<group>"; };
++		5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorSession.swift"; sourceTree = "<group>"; };
+ /* End PBXFileReference section */
+ 
+ /* Begin PBXFileSystemSynchronizedRootGroup section */
+@@ -2261,6 +2273,9 @@
+ 			children = (
+ 				5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */,
+ 				15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */,
++				CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */,
++				60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */,
++				5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */,
+ 				9F5BEF33F7E721EEC8281795 /* Global Search UI */,
+ 				93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */,
+ 				177DC9EB2AB8099576B13411 /* ThirdPartyNotices */,
+@@ -4283,6 +4298,9 @@
+ 			isa = PBXSourcesBuildPhase;
+ 			files = (
+ 				4C4E1E4F9DC2F168D2260AC8 /* AnnotationExchangeLedger.swift in Sources */,
++				C4D9F799C43B95EC13DAFE68 /* AnnotationLocalEditorModels.swift in Sources */,
++				339269F3BD193BCD1D8B9A27 /* AnnotationLocalEditorPersistence.swift in Sources */,
++				387C03A49E4420CA3ECF3308 /* AnnotationLocalEditorSession.swift in Sources */,
+ 				E87B9F1B268D74CCA1A03D7E /* TorahAnnotationEnvelope.swift in Sources */,
+ 				12625FDCCD291F169D6788B2 /* MaktabahBookUpdateSafety.swift in Sources */,
+ 				E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */,
+@@ -4636,6 +4654,9 @@
+ 			isa = PBXSourcesBuildPhase;
+ 			files = (
+ 				7CFE6AEF1FAFD68BFCEEC502 /* AnnotationExchangeLedger.swift in Sources */,
++				FDFFEE666030424CBE21238A /* AnnotationLocalEditorModels.swift in Sources */,
++				9D6C002E3485E64BCFCAB334 /* AnnotationLocalEditorPersistence.swift in Sources */,
++				2636D2D8F62C8C21A825A12A /* AnnotationLocalEditorSession.swift in Sources */,
+ 				D063CFCD71B1E5C5250AE920 /* TorahAnnotationEnvelope.swift in Sources */,
+ 				36A587F9D67487F899E8D564 /* MaktabahBookUpdateSafety.swift in Sources */,
+ 								CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
+@@ -4994,6 +5015,9 @@
+ 			isa = PBXSourcesBuildPhase;
+ 			files = (
+ 				D238792D20CAE8596B84D69F /* AnnotationExchangeLedger.swift in Sources */,
++				AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */,
++				2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */,
++				D627561A0D3655B435E380A6 /* AnnotationLocalEditorSession.swift in Sources */,
+ 				EA8CD1F296E0EA146F79764C /* TorahAnnotationEnvelope.swift in Sources */,
+ 				DFC8CE07B634812E1D8AF37E /* MaktabahNativeIntents.swift in Sources */,
+ 				98A05700AC19A0B451C190A6 /* OtzariaHanlinHostAdapter.swift in Sources */,
+--- a/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift
++++ b/Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift
+@@ -31,6 +31,19 @@
+     let payloadDigest: String
+     let replayed: Bool
+     let deliveries: [AnnotationExchangeDelivery]
++}
++
++/// Validated immutable version bytes. Reading a version neither applies it nor
++/// creates a transport acknowledgement; unknown envelope versions stay intact.
++struct AnnotationExchangeVersion: Sendable, Equatable {
++    let mutationID: UUID
++    let namespace: String
++    let annotationUUID: UUID
++    let revision: Int64
++    let sourceDigest: String
++    let payloadDigest: String
++    let payload: Data
++    let destinationsJSON: String
+ }
+ 
+ /// Explicit component on the original injected handle. It never opens a DB,
+@@ -190,6 +203,20 @@
+     /// A successful retry cannot overwrite a later head or create more messages.
+     func commit(mutationID: UUID, payload: Data, expectedSource: AnnotationExchangeSourceWitness,
+                 expectedRevision: Int64, destinations: [AnnotationExchangeDestination]) throws -> AnnotationExchangeCommit {
++        try commitValidated(mutationID: mutationID, payload: payload, expectedSource: expectedSource,
++            expectedRevision: expectedRevision, destinations: destinations, localOnly: false)
++    }
++
++    /// Explicit offline persistence. No account/Space is invented and no outbox
++    /// row is produced. The existing exchange entry point still rejects [].
++    func commitLocal(mutationID: UUID, payload: Data, expectedSource: AnnotationExchangeSourceWitness,
++                     expectedRevision: Int64) throws -> AnnotationExchangeCommit {
++        try commitValidated(mutationID: mutationID, payload: payload, expectedSource: expectedSource,
++            expectedRevision: expectedRevision, destinations: [], localOnly: true)
++    }
++
++    private func commitValidated(mutationID: UUID, payload: Data, expectedSource: AnnotationExchangeSourceWitness,
++                expectedRevision: Int64, destinations: [AnnotationExchangeDestination], localOnly: Bool) throws -> AnnotationExchangeCommit {
+         try Task.checkCancellation()
+         guard expectedRevision >= 0 else { throw AnnotationExchangeError.staleRevision }
+         let decoded = try TorahAnnotationEnvelopeCodec.decode(payload)
+@@ -201,7 +228,9 @@
+             throw AnnotationExchangeError.staleSource
+         }
+         let payloadHash = try hash(payload)
+-        let scopes = try AnnotationExchangeValidation.destinationList(destinations)
++        let scopes: String
++        if localOnly { scopes = "[]" }
++        else { scopes = try AnnotationExchangeValidation.destinationList(destinations) }
+         var answer: AnnotationExchangeCommit?
+         try database.transaction {
+             try requireSchema()
+@@ -261,6 +290,86 @@
+         return answer
+     }
+ 
++    /// Read-only schema discovery for legacy notes. A partial or future schema
++    /// is not treated as an empty store and is never repaired by a read.
++    func hasInstalledSchema() throws -> Bool {
++        let expected = [Self.schema, Self.heads, Self.versions, Self.outbox, Self.inbox]
++        let rows = try database.fetch(query: """
++            SELECT name, type FROM sqlite_master WHERE name IN (?, ?, ?, ?, ?);
++            """, parameters: expected) { row in (row.string(at: 0), row.string(at: 1)) }
++        if rows.isEmpty { return false }
++        guard rows.count == expected.count, Set(rows.compactMap { $0.0 }) == Set(expected),
++              rows.allSatisfy({ $0.1 == "table" }) else { throw AnnotationExchangeError.schemaMismatch }
++        try requireSchema()
++        return true
++    }
++
++    func currentVersion(namespace: String, annotationUUID: UUID) throws -> AnnotationExchangeVersion? {
++        guard AnnotationExchangeValidation.identifier(namespace) else { throw AnnotationExchangeError.invalidScope }
++        var result: AnnotationExchangeVersion?
++        try database.transaction {
++            try requireSchema()
++            let revision = try currentRevisionLocked(namespace: namespace, annotationUUID: annotationUUID)
++            if revision == 0 {
++                let orphaned = try database.fetch(query: "SELECT COUNT(*) FROM \(Self.versions) WHERE namespace = ? AND annotation_uuid = ?;",
++                    parameters: [namespace, annotationUUID.uuidString]) { $0.int64(at: 0) }.first ?? 0
++                guard orphaned == 0 else { throw AnnotationExchangeError.corruptRecord }
++            }
++            let rows = try versionRows(where: "namespace = ? AND annotation_uuid = ? AND revision = ?",
++                parameters: [namespace, annotationUUID.uuidString, revision])
++            guard rows.count == (revision == 0 ? 0 : 1) else { throw AnnotationExchangeError.corruptRecord }
++            result = rows.first
++        }
++        return result
++    }
++
++    func version(mutationID: UUID) throws -> AnnotationExchangeVersion? {
++        try requireSchema()
++        let rows = try versionRows(where: "mutation_id = ?", parameters: [mutationID.uuidString])
++        guard rows.count <= 1 else { throw AnnotationExchangeError.corruptRecord }
++        return rows.first
++    }
++
++    private func versionRows(where suffix: String, parameters: [Any]) throws -> [AnnotationExchangeVersion] {
++        try database.fetch(query: """
++            SELECT mutation_id, namespace, annotation_uuid, revision, source_digest,
++                   payload_digest, payload_base64, deletion_state, destinations_json
++            FROM \(Self.versions) WHERE \(suffix);
++            """, parameters: parameters) { row in
++                func text(_ index: Int32) throws -> String {
++                    guard row.type(at: index) == SQLITE_TEXT, let value = row.string(at: index),
++                          value.utf8.count == Int(sqlite3_column_bytes(row.stmt, index)) else {
++                        throw AnnotationExchangeError.corruptRecord
++                    }
++                    return value
++                }
++                let mutationText = try text(0), namespace = try text(1), uuidText = try text(2)
++                let sourceDigest = try text(4), payloadDigest = try text(5), encoded = try text(6)
++                let deletion = try text(7), destinations = try text(8)
++                guard let mutation = UUID(uuidString: mutationText), mutation.uuidString == mutationText,
++                      AnnotationExchangeValidation.identifier(namespace),
++                      let uuid = UUID(uuidString: uuidText), uuid.uuidString == uuidText,
++                      row.type(at: 3) == SQLITE_INTEGER, row.int64(at: 3) > 0,
++                      AnnotationExchangeValidation.digest(sourceDigest),
++                      AnnotationExchangeValidation.digest(payloadDigest),
++                      let payload = Data(base64Encoded: encoded), payload.base64EncodedString() == encoded,
++                      payload.count <= TorahAnnotationEnvelopeCodec.maximumBytes,
++                      try self.hash(payload) == payloadDigest,
++                      TorahAnnotationEnvelope.DeletionState(rawValue: deletion) != nil else {
++                    throw AnnotationExchangeError.corruptRecord
++                }
++                let decoded = try TorahAnnotationEnvelopeCodec.decode(payload)
++                if case .supported(let envelope, _) = decoded {
++                    guard envelope.namespace == namespace, envelope.annotationUUID == uuid,
++                          envelope.source["snapshotSHA256"]?.string == sourceDigest,
++                          envelope.deletionState.rawValue == deletion else { throw AnnotationExchangeError.corruptRecord }
++                }
++                return .init(mutationID: mutation, namespace: namespace, annotationUUID: uuid,
++                    revision: row.int64(at: 3), sourceDigest: sourceDigest, payloadDigest: payloadDigest,
++                    payload: payload, destinationsJSON: destinations)
++            }
++    }
++
+     func currentRevision(namespace: String, annotationUUID: UUID) throws -> Int64 {
+         guard AnnotationExchangeValidation.identifier(namespace) else { throw AnnotationExchangeError.invalidScope }
+         try requireSchema()
+--- a/Source/Features/Annotations/Database/AnnotationRepository.swift
++++ b/Source/Features/Annotations/Database/AnnotationRepository.swift
+@@ -47,6 +47,7 @@
+         var db: SQLiteDatabase?
+         var syncPendingStore: SyncPendingStore?
+         var dbURL: URL?
++        var localEditorLifetime = AnnotationLocalEditorLifetime()
+     }
+ 
+     private let state = Mutex(State())
+@@ -84,7 +85,11 @@
+         }
+ 
+         let url = folderURL.appendingPathComponent("Annotations.sqlite")
+-        state.withLock { $0.dbURL = url }
++        state.withLock { s in
++            s.localEditorLifetime.retire()
++            s.localEditorLifetime = AnnotationLocalEditorLifetime()
++            s.dbURL = url
++        }
+ 
+         let isNewDatabase = !fm.fileExists(atPath: url.path)
+ 
+@@ -105,6 +110,8 @@
+                 db.enableWALMode()
+                 let store = SyncPendingStore(database: db)
+                 state.withLock { s in
++                    s.localEditorLifetime.retire()
++                    s.localEditorLifetime = AnnotationLocalEditorLifetime()
+                     s.db = db
+                     s.syncPendingStore = store
+                 }
+@@ -116,6 +123,7 @@
+ 
+     func disconnect() {
+         state.withLock { s in
++            s.localEditorLifetime.retire()
+             s.db?.checkpoint()
+             s.db = nil
+             s.syncPendingStore = nil
+@@ -124,6 +132,19 @@
+ 
+     func checkpoint() {
+         _db?.checkpoint()
++    }
++
++    // Captures an existing handle only; no setup, UUID backfill, or migration.
++    func captureLocalEditorConnection() throws -> AnnotationLocalEditorConnection {
++        try state.withLock { s in
++            guard let db = s.db, let pending = s.syncPendingStore, let url = s.dbURL else {
++                throw AnnotationLocalEditorError.noConnection
++            }
++            try s.localEditorLifetime.requireCurrent()
++            return .init(database: db, syncPending: pending, databaseURL: url,
++                         lifetime: s.localEditorLifetime,
++                         mapRow: { [self] row, tags in makeAnnotation(from: row, tags: tags) })
++        }
+     }
+ 
+     // MARK: - Schema

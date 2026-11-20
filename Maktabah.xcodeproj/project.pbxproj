@@ -1389,6 +1389,15 @@
 		D2F86FB13C3717CFF8A90CF5 /* ActionLiveOccurrenceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */; };
 		AB5F4859B86BDD4C5689FBE1 /* ActionLiveOccurrenceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */; };
 		CD43474CAD4598816EBBACB7 /* ActionLiveOccurrenceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */; };
+		C4D9F799C43B95EC13DAFE68 /* AnnotationLocalEditorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */; };
+		FDFFEE666030424CBE21238A /* AnnotationLocalEditorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */; };
+		AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */; };
+		339269F3BD193BCD1D8B9A27 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
+		9D6C002E3485E64BCFCAB334 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
+		2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */; };
+		387C03A49E4420CA3ECF3308 /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
+		2636D2D8F62C8C21A825A12A /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
+		D627561A0D3655B435E380A6 /* AnnotationLocalEditorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2177,6 +2186,9 @@
 		50DAE20D05123E43D5D4AC0E /* OtzariaExactOccurrenceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search/OtzariaExactOccurrenceOperation.swift"; sourceTree = "<group>"; };
 		D0484FE7FC64F330F16C8C5A /* ActionOccurrenceCoveragePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionOccurrenceCoveragePolicy.swift"; sourceTree = "<group>"; };
 		DF1DBD3D3E948B3DD85ABEC2 /* ActionLiveOccurrenceCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actions/Integration/ActionLiveOccurrenceCounter.swift"; sourceTree = "<group>"; };
+		CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorModels.swift"; sourceTree = "<group>"; };
+		60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift"; sourceTree = "<group>"; };
+		5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/LocalEditor/AnnotationLocalEditorSession.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2261,6 +2273,9 @@
 			children = (
 				5C779026CC573B19C11E67E9 /* TorahAnnotationEnvelope.swift */,
 				15AA5DEFA4B1E2823A7CCD9A /* AnnotationExchangeLedger.swift */,
+				CA3731254136642FE1C1A7A0 /* AnnotationLocalEditorModels.swift */,
+				60BCDFAFF80B303F5EAA4126 /* AnnotationLocalEditorPersistence.swift */,
+				5835D2C31D3517A99B534126 /* AnnotationLocalEditorSession.swift */,
 				9F5BEF33F7E721EEC8281795 /* Global Search UI */,
 				93BC6D6F42379C09C6C58650 /* MaktabahBookUpdateSafety.swift */,
 				177DC9EB2AB8099576B13411 /* ThirdPartyNotices */,
@@ -4283,6 +4298,9 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				4C4E1E4F9DC2F168D2260AC8 /* AnnotationExchangeLedger.swift in Sources */,
+				C4D9F799C43B95EC13DAFE68 /* AnnotationLocalEditorModels.swift in Sources */,
+				339269F3BD193BCD1D8B9A27 /* AnnotationLocalEditorPersistence.swift in Sources */,
+				387C03A49E4420CA3ECF3308 /* AnnotationLocalEditorSession.swift in Sources */,
 				E87B9F1B268D74CCA1A03D7E /* TorahAnnotationEnvelope.swift in Sources */,
 				12625FDCCD291F169D6788B2 /* MaktabahBookUpdateSafety.swift in Sources */,
 				E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */,
@@ -4636,6 +4654,9 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				7CFE6AEF1FAFD68BFCEEC502 /* AnnotationExchangeLedger.swift in Sources */,
+				FDFFEE666030424CBE21238A /* AnnotationLocalEditorModels.swift in Sources */,
+				9D6C002E3485E64BCFCAB334 /* AnnotationLocalEditorPersistence.swift in Sources */,
+				2636D2D8F62C8C21A825A12A /* AnnotationLocalEditorSession.swift in Sources */,
 				D063CFCD71B1E5C5250AE920 /* TorahAnnotationEnvelope.swift in Sources */,
 				36A587F9D67487F899E8D564 /* MaktabahBookUpdateSafety.swift in Sources */,
 								CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
@@ -4994,6 +5015,9 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				D238792D20CAE8596B84D69F /* AnnotationExchangeLedger.swift in Sources */,
+				AB467DB193BB97E635A4C008 /* AnnotationLocalEditorModels.swift in Sources */,
+				2A81EE6B3B2514B9F4773658 /* AnnotationLocalEditorPersistence.swift in Sources */,
+				D627561A0D3655B435E380A6 /* AnnotationLocalEditorSession.swift in Sources */,
 				EA8CD1F296E0EA146F79764C /* TorahAnnotationEnvelope.swift in Sources */,
 				DFC8CE07B634812E1D8AF37E /* MaktabahNativeIntents.swift in Sources */,
 				98A05700AC19A0B451C190A6 /* OtzariaHanlinHostAdapter.swift in Sources */,

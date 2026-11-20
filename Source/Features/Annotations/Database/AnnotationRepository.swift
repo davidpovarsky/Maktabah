@@ -47,6 +47,7 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
         var db: SQLiteDatabase?
         var syncPendingStore: SyncPendingStore?
         var dbURL: URL?
+        var localEditorLifetime = AnnotationLocalEditorLifetime()
     }
 
     private let state = Mutex(State())
@@ -84,7 +85,11 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
         }
 
         let url = folderURL.appendingPathComponent("Annotations.sqlite")
-        state.withLock { $0.dbURL = url }
+        state.withLock { s in
+            s.localEditorLifetime.retire()
+            s.localEditorLifetime = AnnotationLocalEditorLifetime()
+            s.dbURL = url
+        }
 
         let isNewDatabase = !fm.fileExists(atPath: url.path)
 
@@ -105,6 +110,8 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
                 db.enableWALMode()
                 let store = SyncPendingStore(database: db)
                 state.withLock { s in
+                    s.localEditorLifetime.retire()
+                    s.localEditorLifetime = AnnotationLocalEditorLifetime()
                     s.db = db
                     s.syncPendingStore = store
                 }
@@ -116,6 +123,7 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
 
     func disconnect() {
         state.withLock { s in
+            s.localEditorLifetime.retire()
             s.db?.checkpoint()
             s.db = nil
             s.syncPendingStore = nil
@@ -124,6 +132,19 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
 
     func checkpoint() {
         _db?.checkpoint()
+    }
+
+    // Captures an existing handle only; no setup, UUID backfill, or migration.
+    func captureLocalEditorConnection() throws -> AnnotationLocalEditorConnection {
+        try state.withLock { s in
+            guard let db = s.db, let pending = s.syncPendingStore, let url = s.dbURL else {
+                throw AnnotationLocalEditorError.noConnection
+            }
+            try s.localEditorLifetime.requireCurrent()
+            return .init(database: db, syncPending: pending, databaseURL: url,
+                         lifetime: s.localEditorLifetime,
+                         mapRow: { [self] row, tags in makeAnnotation(from: row, tags: tags) })
+        }
     }
 
     // MARK: - Schema

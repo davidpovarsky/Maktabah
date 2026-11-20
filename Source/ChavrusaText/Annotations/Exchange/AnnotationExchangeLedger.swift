@@ -33,6 +33,19 @@ struct AnnotationExchangeCommit: Sendable, Equatable {
     let deliveries: [AnnotationExchangeDelivery]
 }
 
+/// Validated immutable version bytes. Reading a version neither applies it nor
+/// creates a transport acknowledgement; unknown envelope versions stay intact.
+struct AnnotationExchangeVersion: Sendable, Equatable {
+    let mutationID: UUID
+    let namespace: String
+    let annotationUUID: UUID
+    let revision: Int64
+    let sourceDigest: String
+    let payloadDigest: String
+    let payload: Data
+    let destinationsJSON: String
+}
+
 /// Explicit component on the original injected handle. It never opens a DB,
 /// changes annotations/CloudKit, applies incoming data, or starts a transport.
 final class AnnotationExchangeLedger: Sendable {
@@ -190,6 +203,20 @@ final class AnnotationExchangeLedger: Sendable {
     /// A successful retry cannot overwrite a later head or create more messages.
     func commit(mutationID: UUID, payload: Data, expectedSource: AnnotationExchangeSourceWitness,
                 expectedRevision: Int64, destinations: [AnnotationExchangeDestination]) throws -> AnnotationExchangeCommit {
+        try commitValidated(mutationID: mutationID, payload: payload, expectedSource: expectedSource,
+            expectedRevision: expectedRevision, destinations: destinations, localOnly: false)
+    }
+
+    /// Explicit offline persistence. No account/Space is invented and no outbox
+    /// row is produced. The existing exchange entry point still rejects [].
+    func commitLocal(mutationID: UUID, payload: Data, expectedSource: AnnotationExchangeSourceWitness,
+                     expectedRevision: Int64) throws -> AnnotationExchangeCommit {
+        try commitValidated(mutationID: mutationID, payload: payload, expectedSource: expectedSource,
+            expectedRevision: expectedRevision, destinations: [], localOnly: true)
+    }
+
+    private func commitValidated(mutationID: UUID, payload: Data, expectedSource: AnnotationExchangeSourceWitness,
+                expectedRevision: Int64, destinations: [AnnotationExchangeDestination], localOnly: Bool) throws -> AnnotationExchangeCommit {
         try Task.checkCancellation()
         guard expectedRevision >= 0 else { throw AnnotationExchangeError.staleRevision }
         let decoded = try TorahAnnotationEnvelopeCodec.decode(payload)
@@ -201,7 +228,9 @@ final class AnnotationExchangeLedger: Sendable {
             throw AnnotationExchangeError.staleSource
         }
         let payloadHash = try hash(payload)
-        let scopes = try AnnotationExchangeValidation.destinationList(destinations)
+        let scopes: String
+        if localOnly { scopes = "[]" }
+        else { scopes = try AnnotationExchangeValidation.destinationList(destinations) }
         var answer: AnnotationExchangeCommit?
         try database.transaction {
             try requireSchema()
@@ -259,6 +288,86 @@ final class AnnotationExchangeLedger: Sendable {
         }
         guard let answer else { throw AnnotationExchangeError.corruptRecord }
         return answer
+    }
+
+    /// Read-only schema discovery for legacy notes. A partial or future schema
+    /// is not treated as an empty store and is never repaired by a read.
+    func hasInstalledSchema() throws -> Bool {
+        let expected = [Self.schema, Self.heads, Self.versions, Self.outbox, Self.inbox]
+        let rows = try database.fetch(query: """
+            SELECT name, type FROM sqlite_master WHERE name IN (?, ?, ?, ?, ?);
+            """, parameters: expected) { row in (row.string(at: 0), row.string(at: 1)) }
+        if rows.isEmpty { return false }
+        guard rows.count == expected.count, Set(rows.compactMap { $0.0 }) == Set(expected),
+              rows.allSatisfy({ $0.1 == "table" }) else { throw AnnotationExchangeError.schemaMismatch }
+        try requireSchema()
+        return true
+    }
+
+    func currentVersion(namespace: String, annotationUUID: UUID) throws -> AnnotationExchangeVersion? {
+        guard AnnotationExchangeValidation.identifier(namespace) else { throw AnnotationExchangeError.invalidScope }
+        var result: AnnotationExchangeVersion?
+        try database.transaction {
+            try requireSchema()
+            let revision = try currentRevisionLocked(namespace: namespace, annotationUUID: annotationUUID)
+            if revision == 0 {
+                let orphaned = try database.fetch(query: "SELECT COUNT(*) FROM \(Self.versions) WHERE namespace = ? AND annotation_uuid = ?;",
+                    parameters: [namespace, annotationUUID.uuidString]) { $0.int64(at: 0) }.first ?? 0
+                guard orphaned == 0 else { throw AnnotationExchangeError.corruptRecord }
+            }
+            let rows = try versionRows(where: "namespace = ? AND annotation_uuid = ? AND revision = ?",
+                parameters: [namespace, annotationUUID.uuidString, revision])
+            guard rows.count == (revision == 0 ? 0 : 1) else { throw AnnotationExchangeError.corruptRecord }
+            result = rows.first
+        }
+        return result
+    }
+
+    func version(mutationID: UUID) throws -> AnnotationExchangeVersion? {
+        try requireSchema()
+        let rows = try versionRows(where: "mutation_id = ?", parameters: [mutationID.uuidString])
+        guard rows.count <= 1 else { throw AnnotationExchangeError.corruptRecord }
+        return rows.first
+    }
+
+    private func versionRows(where suffix: String, parameters: [Any]) throws -> [AnnotationExchangeVersion] {
+        try database.fetch(query: """
+            SELECT mutation_id, namespace, annotation_uuid, revision, source_digest,
+                   payload_digest, payload_base64, deletion_state, destinations_json
+            FROM \(Self.versions) WHERE \(suffix);
+            """, parameters: parameters) { row in
+                func text(_ index: Int32) throws -> String {
+                    guard row.type(at: index) == SQLITE_TEXT, let value = row.string(at: index),
+                          value.utf8.count == Int(sqlite3_column_bytes(row.stmt, index)) else {
+                        throw AnnotationExchangeError.corruptRecord
+                    }
+                    return value
+                }
+                let mutationText = try text(0), namespace = try text(1), uuidText = try text(2)
+                let sourceDigest = try text(4), payloadDigest = try text(5), encoded = try text(6)
+                let deletion = try text(7), destinations = try text(8)
+                guard let mutation = UUID(uuidString: mutationText), mutation.uuidString == mutationText,
+                      AnnotationExchangeValidation.identifier(namespace),
+                      let uuid = UUID(uuidString: uuidText), uuid.uuidString == uuidText,
+                      row.type(at: 3) == SQLITE_INTEGER, row.int64(at: 3) > 0,
+                      AnnotationExchangeValidation.digest(sourceDigest),
+                      AnnotationExchangeValidation.digest(payloadDigest),
+                      let payload = Data(base64Encoded: encoded), payload.base64EncodedString() == encoded,
+                      payload.count <= TorahAnnotationEnvelopeCodec.maximumBytes,
+                      try self.hash(payload) == payloadDigest,
+                      TorahAnnotationEnvelope.DeletionState(rawValue: deletion) != nil else {
+                    throw AnnotationExchangeError.corruptRecord
+                }
+                let decoded = try TorahAnnotationEnvelopeCodec.decode(payload)
+                if case .supported(let envelope, _) = decoded {
+                    guard envelope.namespace == namespace, envelope.annotationUUID == uuid,
+                          envelope.source["snapshotSHA256"]?.string == sourceDigest,
+                          envelope.deletionState.rawValue == deletion else { throw AnnotationExchangeError.corruptRecord }
+                }
+                return .init(mutationID: mutation, namespace: namespace, annotationUUID: uuid,
+                    revision: row.int64(at: 3), sourceDigest: sourceDigest, payloadDigest: payloadDigest,
+                    payload: payload, destinationsJSON: destinations)
+            }
     }
 
     func currentRevision(namespace: String, annotationUUID: UUID) throws -> Int64 {

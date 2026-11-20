@@ -1,0 +1,73 @@
+{
+  "archive": {
+    "bytes": 987949,
+    "sha256": "a2a7cc0b929088754048ddaa2631080317d48d2806bc8ebf3bb9d83b71dad7fc"
+  },
+  "complete_original_artifact_included": true,
+  "excluded": [
+    "DOWNLOAD_INPUT.json (temporary signed download URL)"
+  ],
+  "members": {
+    "ARTIFACT.json": {
+      "bytes": 864,
+      "sha256": "9dbc21048e9f2a501b5215abd4fa7f3ff20a414073df9abe551b60fffe11d566"
+    },
+    "C_REVIEW_ATTEMPT1.json": {
+      "bytes": 831,
+      "sha256": "7b5e3378c622c4127fe0165c244ce1a263a20ef224e90db5c2a7894566cac3cc"
+    },
+    "C_REVIEW_ATTEMPT2.json": {
+      "bytes": 7895,
+      "sha256": "d0a8257057e8a490d07b4f7479a5f114978ffb3b92381c2d6e9437317320aec2"
+    },
+    "JOB.log": {
+      "bytes": 36697,
+      "sha256": "b3883bd534179d30ba640499d117e35a4b1cefc3f89ec1a698e4a5049cb7a300"
+    },
+    "JOBS.json": {
+      "bytes": 4289,
+      "sha256": "0fb825386a11d3b715c6f5c979acad7e9c57bd11b60911760f80cf54d58f2339"
+    },
+    "ROOT_SOURCE_REVIEW.json": {
+      "bytes": 475,
+      "sha256": "276c9cae3db487c5f36dfdfad10fdf9ad4275b209aa6365e606afd181fd5f85b"
+    },
+    "RUN.json": {
+      "bytes": 14364,
+      "sha256": "7d2b8c204c8244cf0656198eccfe79ffb2a38ddad6dddf689d2d077ea38811ae"
+    },
+    "SOURCE_GIT_PROOF.json": {
+      "bytes": 24358,
+      "sha256": "5ae7cc350d2946f660c8ea0cebcfb0d29581fcabecebe64ad70adce88b24f518"
+    },
+    "artifact.zip": {
+      "bytes": 1031439,
+      "sha256": "45b61198f542499ca2eb41db374e66089d235d9ba0c10b9befccda5933d53e96"
+    },
+    "independent-api/ancestry.json": {
+      "bytes": 90277,
+      "sha256": "3b8f71fd18188f611344ecc30ef0681bd108463bfe54756acf7336972e9880cf"
+    },
+    "independent-api/artifacts.json": {
+      "bytes": 916,
+      "sha256": "9b7c84e939a6ae80d07ce0562d0e1f53ce0b795fbe7c2705f49c9447fcf9a64b"
+    },
+    "independent-api/commit.json": {
+      "bytes": 1565,
+      "sha256": "77c58818745f9674a8c1233e611b973850f745213a326dca96a51de1182fd81c"
+    },
+    "independent-api/core_tree.json": {
+      "bytes": 22757,
+      "sha256": "afe54f434e61b41aa549ad74261c0941efc478b56d70122d83660a64ad82cc1d"
+    },
+    "independent-api/jobs.json": {
+      "bytes": 2174,
+      "sha256": "910b53d34cac9bdc54ef6c8a66a5ceaf627e2a5733db90d3cba2143a0699e085"
+    },
+    "independent-api/run.json": {
+      "bytes": 14364,
+      "sha256": "7d2b8c204c8244cf0656198eccfe79ffb2a38ddad6dddf689d2d077ea38811ae"
+    }
+  },
+  "schema": "otzaria-exact-apple-result-raw-v1"
+}

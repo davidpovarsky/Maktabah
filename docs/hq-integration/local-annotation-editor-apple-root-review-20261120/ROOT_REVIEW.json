@@ -1,0 +1,17 @@
+{
+  "reviewed_at": "2026-11-20T16:30:38.631120+00:00",
+  "source_candidate": "4be6c9b27fa6c882275cddf209f5959cb9b9690b",
+  "component_evidence": "b19d30d9db402ef267e0d3afcc4dece0be013f24",
+  "reviewed_ci_head": "f765893e332cce08c18b00185ac8ee04be1d4677",
+  "original_pin_files": 26,
+  "complete_Core_files": 53,
+  "core_tree": "5d0ee482c8f10726fe3863792dac94c18e94d792",
+  "new_CI_files": 4,
+  "all13_ci_and_documentation_blobs_verified": true,
+  "source_review": "Complete new wrapper/workflow read; original local and exchange drivers/assertions preserved; explicit boundaries retained",
+  "qualification": "Actual outcome success for both independent steps, complete43+2cold with3PIDs and original28+2crash, whole source copies and before/after hashes, exact run/ref/repository/workflow/SHA, real installed Apple tools required",
+  "failure_retention": "Both original driver steps remain bounded; later failure captures changed/missing source as UNVERIFIED; always-upload preserves raw evidence",
+  "local_preparation": "28 Python controls actually passed by C; Root replayed sealed byte/source/evidence verification only",
+  "scope": "Apple Foundation/SQLite component; not newer integrated Core194, full app, real renderer mount, CloudKit transport, Native or physical device",
+  "Apple_execution": "NOT_RUN"
+}
