@@ -115,3 +115,5 @@ mini-only Native selection do not qualify this new full-corpus d5 probe.
 ## Additional DTO validation
 
 The exact committed reporter and original request/model code passed four standalone Windows encoding checks. See [DTO_ROUNDTRIP.md](DTO_ROUNDTRIP.md) for the actual results and synthetic-boundary limits. Full Apple install/reopen occurrence execution remains pending.
+
+Checksum scope: SHA256SUMS.json hashes the committed Git blobs (canonical LF for text). RAW_EVIDENCE_SHA256.json separately hashes the original decompressed evidence bytes and their gzip archives. This distinction preserves exact Windows logs while keeping repository checksums valid after checkout on Apple.
