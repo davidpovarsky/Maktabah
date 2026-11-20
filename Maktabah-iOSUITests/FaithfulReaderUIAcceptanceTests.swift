@@ -1713,11 +1713,6 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
                 windowFrame.minX, windowFrame.minY, windowFrame.width, windowFrame.height,
                 point.x, point.y
             ]
-            guard geometry.allSatisfy({ $0.isFinite }), !controlFrame.isEmpty,
-                  !windowFrame.isEmpty, controlFrame.contains(point), windowFrame.contains(point) else {
-                XCTFail("The original switch tap must stay inside its finite visible native window")
-                return
-            }
             let witness = XCTAttachment(string:
                 "stage=\(stage)\ncontrolFrame=\(controlFrame)\nwindowFrame=\(windowFrame)\n"
                 + "screenPoint=\(point)\nsystemReduceMotion=\(UIAccessibility.isReduceMotionEnabled)\n"
@@ -1725,6 +1720,11 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             witness.name = "system-reduce-motion-\(stage)-original-switch"
             witness.lifetime = .keepAlways
             add(witness)
+            guard geometry.allSatisfy({ $0.isFinite }), !controlFrame.isEmpty,
+                  !windowFrame.isEmpty, controlFrame.contains(point), windowFrame.contains(point) else {
+                XCTFail("The original switch tap must stay inside its finite visible native window")
+                return
+            }
             target.tap()
         }
         // Verify the actual system preference, independent of the Settings

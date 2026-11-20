@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "source_parent": "ff41568be4c4352ecaea9cd8e01cb2f7312fbe72",
+  "source_path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "original_git_blob": "479ba206e76aa69b90cf8f04ae55ee5a99d60186",
+  "original_sha256": "00d8ba990af59931666f7b95ee04419edd538c23f7e4aa0e7949f2a9958a84f1",
+  "candidate_git_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+  "candidate_sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0",
+  "actual_original_failure_run": 44723918854,
+  "actual_processor_run": 44783201113,
+  "actual_capture_artifact": 14652429659,
+  "source_archive_full_sha256": "ea8232db03a3f78c9fd722a1f5777e43f638bef7f4d115a7c0eef9a6319f2457",
+  "source_video": "visual-11/76A11742-C49C-44D6-9A3F-462FC322167C.mp4",
+  "source_video_sha256": "0426c2cacdd15c56c151ccdc066eb36d3d3dfc87bc5b5a7f02830fc9487ae233",
+  "source_failure": "The original switch tap must stay inside its finite visible native window",
+  "observation": "Original video shows actual Motion settings and Reduce Motion OFF. Both Settings navigation tap events precede the failure. The original witness was after the failing guard, so actual controlFrame/windowFrame/screenPoint are absent. Which geometry condition failed remains unknown.",
+  "source_change": "Move exactly the existing witness block before the unchanged finite/containment guard. No new tap, alternative coordinate/window, orientation, wait, deadline, switch oracle or restoration change.",
+  "root_validation": {
+    "whole_file_inverse_exact": true,
+    "byte_count_unchanged": true,
+    "all_text_outside_moved_block_identical": true,
+    "actual_swift": "NOT_RUN",
+    "native_execution": 0
+  },
+  "next_original_case": "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+  "claim": "Diagnostic only; not a fix or passing Reduce Motion acceptance."
+}
