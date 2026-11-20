@@ -1,0 +1,19 @@
+{
+  "reviewScope": "Read-only source, not Apple or Native execution",
+  "initialReviews": [
+    "B: actual TaskLocal/synchronous original retry initiation, ownership and one-shot gate; runtime inheritance/property behavior pending",
+    "C: 12 original-control Native methods, actual TOC selector availability/RTL/canonical references; native sidebar toggle correction reviewed"
+  ],
+  "actualCompilerFindings": [
+    "Attempt1: DEBUG configuration local-shadow compile failure; 0 executed",
+    "Attempt2: URLProtocol unavailable Sendable made self capture invalid; 0 executed"
+  ],
+  "followupReview": {
+    "finding1": "rejected start callback bypassed lifetime stop",
+    "finding2": "held receipt could be emitted after an already-stopped worker",
+    "resolution": "begin before admission, context-less guarded completion, markHeld under same recursive lock",
+    "finalReview": "B reread full Lifetime/startLoading/stopLoading: both findings closed in source; no new blocker",
+    "executedControl": "3 actual class/client-double lifecycle cases RED0PASS/3FAIL to GREEN3/3"
+  },
+  "windowsTransportResult": "52 executed,29PASS/23FAIL; protocol property loss; never relabeled Apple PASS"
+}

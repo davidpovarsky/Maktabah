@@ -1,0 +1,181 @@
+{
+  "formatVersion": 1,
+  "preparedAt": "2026-11-20T13:10:23.531424+00:00",
+  "base": "f3401ec1597e1d882d2e2c6db9492ed211058712",
+  "sourceInputs": [
+    {
+      "path": "Scripts/CI/sefaria-toc-apple55.py",
+      "rawSHA256": "682fa506c34af463844327850c5df0119b4c0c8fab0249527949b424809e465f",
+      "rawBytes": 14675,
+      "canonicalLFSHA256": "682fa506c34af463844327850c5df0119b4c0c8fab0249527949b424809e465f"
+    },
+    {
+      "path": "Tests/CI/test_sefaria_toc_apple55.py",
+      "rawSHA256": "7ea298f74d5d27b8b39a1ec794e26b6a60febfd467aaa45955192fb5b1a195f5",
+      "rawBytes": 14101,
+      "canonicalLFSHA256": "7ea298f74d5d27b8b39a1ec794e26b6a60febfd467aaa45955192fb5b1a195f5"
+    },
+    {
+      "path": "tools/hq-sefaria-toc-transport.py",
+      "rawSHA256": "451bd2ea7e1722ec34cec24447da40fa8b54f964885c96def2e8a26ec216fcbd",
+      "rawBytes": 8768,
+      "canonicalLFSHA256": "451bd2ea7e1722ec34cec24447da40fa8b54f964885c96def2e8a26ec216fcbd"
+    },
+    {
+      "path": ".github/workflows/sefaria-embedded-validation.yml",
+      "rawSHA256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4",
+      "rawBytes": 44363,
+      "canonicalLFSHA256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4"
+    },
+    {
+      "path": ".github/workflows/ios-build.yml",
+      "rawSHA256": "3007261f207d6955130dca50c90d1e5656033f8122eca0bec0862a7a447ba194",
+      "rawBytes": 49006,
+      "canonicalLFSHA256": "3007261f207d6955130dca50c90d1e5656033f8122eca0bec0862a7a447ba194"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "rawSHA256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3",
+      "rawBytes": 200381,
+      "canonicalLFSHA256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact": "raw/controls-attempt1/RESULT.json.gz",
+      "artifactSHA256": "946227d4d578e9fd8f62998b34e33d8096bf6992d57c9404c48deeb8c5128084",
+      "artifactBytes": 305,
+      "rawSHA256": "8ecca5cd6208beb865b24c3a9daa39e548830de9b7f48d360d0b6cf63eebf7c4",
+      "rawBytes": 439
+    },
+    {
+      "artifact": "raw/controls-attempt1/stderr.log.gz",
+      "artifactSHA256": "416883912c0e5a4d0ae2d005be2b33141235d178d077ed97d22be35d7a8306c7",
+      "artifactBytes": 773,
+      "rawSHA256": "a0a3d2b33b744a6a970ae974898b93cdd8fd078c8e390ced3630e482b0e5c71f",
+      "rawBytes": 3492
+    },
+    {
+      "artifact": "raw/controls-attempt1/stdout.log.gz",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "artifactBytes": 20,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0
+    },
+    {
+      "artifact": "raw/final-controls/INPUTS_AFTER.json.gz",
+      "artifactSHA256": "d256b74e90cbb44c7bcca762dbca5bdabee283f1877dd09ca4bef62b03fcc95c",
+      "artifactBytes": 1645,
+      "rawSHA256": "691491a51371cb89c6a2be965dcbd2e2bdd2498b8fabaa21ad6d62338ab59542",
+      "rawBytes": 4201
+    },
+    {
+      "artifact": "raw/final-controls/INPUTS_BEFORE.json.gz",
+      "artifactSHA256": "d256b74e90cbb44c7bcca762dbca5bdabee283f1877dd09ca4bef62b03fcc95c",
+      "artifactBytes": 1645,
+      "rawSHA256": "691491a51371cb89c6a2be965dcbd2e2bdd2498b8fabaa21ad6d62338ab59542",
+      "rawBytes": 4201
+    },
+    {
+      "artifact": "raw/final-controls/python-controls.stderr.log.gz",
+      "artifactSHA256": "1ab296258ecf7a92fa48d8918c635b24c80586f501712b8d4c699ae7cf649576",
+      "artifactBytes": 772,
+      "rawSHA256": "50a91bef083332d1852065003712f4e69def367d36a77aa9fb210afa8fce97d8",
+      "rawBytes": 3492
+    },
+    {
+      "artifact": "raw/final-controls/python-controls.stdout.log.gz",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "artifactBytes": 20,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0
+    },
+    {
+      "artifact": "raw/final-controls/RESULT.json.gz",
+      "artifactSHA256": "791bcd2ab268444648cca75d7f19562b5d6377ead1a77759b24f990a036567f9",
+      "artifactBytes": 1036,
+      "rawSHA256": "3f9d5226974c725dba940651ebe78734f65fcbbba577a9f793ae46ab77434fcf",
+      "rawBytes": 4241
+    },
+    {
+      "artifact": "raw/final-controls/VALIDATION_SOURCE.py.gz",
+      "artifactSHA256": "defbef3a38744659a4fdc459930d80dedf57bb12ef168e7a88f057d674a25de0",
+      "artifactBytes": 3401,
+      "rawSHA256": "3aae7aec178f41acb26e91ee023366387a8ff49f6f69fe23834008a8fb7e899c",
+      "rawBytes": 9356
+    },
+    {
+      "artifact": "raw/final-controls-after-review/INPUTS_AFTER.json.gz",
+      "artifactSHA256": "3550156c5360b6bd5132950d6506a8270afa67a2e8223b1829a6220bec209c0b",
+      "artifactBytes": 1746,
+      "rawSHA256": "5f399ef342f86ffe0ff58a4b0e92cd14ba1c9996d5043c84621865820a554fa4",
+      "rawBytes": 4451
+    },
+    {
+      "artifact": "raw/final-controls-after-review/INPUTS_BEFORE.json.gz",
+      "artifactSHA256": "3550156c5360b6bd5132950d6506a8270afa67a2e8223b1829a6220bec209c0b",
+      "artifactBytes": 1746,
+      "rawSHA256": "5f399ef342f86ffe0ff58a4b0e92cd14ba1c9996d5043c84621865820a554fa4",
+      "rawBytes": 4451
+    },
+    {
+      "artifact": "raw/final-controls-after-review/python-controls.stderr.log.gz",
+      "artifactSHA256": "08576c4d3d78abc075e292e9b0ac282fd9e3e99b9a18ddd5120b84d8ba4a73bb",
+      "artifactBytes": 772,
+      "rawSHA256": "1457c4efea39e1717e8099495c20c1e10ec41cc9677171f5f2c562cf5bb1b4ce",
+      "rawBytes": 3492
+    },
+    {
+      "artifact": "raw/final-controls-after-review/python-controls.stdout.log.gz",
+      "artifactSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "artifactBytes": 20,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0
+    },
+    {
+      "artifact": "raw/final-controls-after-review/RESULT.json.gz",
+      "artifactSHA256": "abadfe38257de7b94c9e8e7e3ea8aee0661685a3187ef9dce6b7b1e4d90cc2c1",
+      "artifactBytes": 1033,
+      "rawSHA256": "1768a9a210de534cb29252d0872293e96dc88586a01ae8814d22d0a0248d11c4",
+      "rawBytes": 4241
+    },
+    {
+      "artifact": "raw/final-controls-after-review/VALIDATION_SOURCE.py.gz",
+      "artifactSHA256": "940785d34be7c6ba817abe9b0ce2d1d76332f12cc9b32e1581b7f0c6a2b9ed4b",
+      "artifactBytes": 3423,
+      "rawSHA256": "00ab96f1780a973d724ec701a4a65a6dbe131e9179e94d0e2b6cbab4d4fbc0d3",
+      "rawBytes": 9397
+    },
+    {
+      "artifact": "raw/WORKFLOW_EDITS.json.gz",
+      "artifactSHA256": "a910dacf9318db14050b87cfb6843d3bee7ea4c6e71ada73171c2ad633920090",
+      "artifactBytes": 1185,
+      "rawSHA256": "23183556ca6afa8385ae3fb3b31d2a7e986bc91c67535efafb502985b8f7d2cf",
+      "rawBytes": 5354
+    },
+    {
+      "artifact": "raw/DRIVER_EDITS.json.gz",
+      "artifactSHA256": "d7c6f618fed02a656b7131f3eda96d8c7a728531aa07ace05a2ff9b925d41f12",
+      "artifactBytes": 1085,
+      "rawSHA256": "7e3a103ec061f7c7c7ab252eeb937e3eff112c1ceb5a187a212c695b402b125e",
+      "rawBytes": 3561
+    },
+    {
+      "artifact": "raw/MANIFEST_PREPARATION.json.gz",
+      "artifactSHA256": "0436c97a9244e8c64496ab49acb1a2ef2dcfa8345196e4a23074b546c9fdb722",
+      "artifactBytes": 4573,
+      "rawSHA256": "b2664c25a8376e108dc9b2343f7599d8a1297db6f164e6c7afe7278c450e122a",
+      "rawBytes": 51931
+    },
+    {
+      "artifact": "SOURCE.patch.gz",
+      "artifactSHA256": "d7ab141bce6436266b48d92b0afef37522e42c44810235a59eac1626786de220",
+      "artifactBytes": 15693,
+      "rawSHA256": "1296102e20a1a2da803c72a597def23772954297c07ce847249b04917ea3f637",
+      "rawBytes": 68558
+    }
+  ],
+  "AppleFoundation55": "NOT_RUN",
+  "Native116": "NOT_RUN",
+  "finalApplicationSource": "PENDING"
+}

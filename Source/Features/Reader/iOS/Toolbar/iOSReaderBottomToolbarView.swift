@@ -167,6 +167,9 @@ struct iOSReaderBottomToolbarView: View {
                 selectedId: viewModel.tocViewModel.findNode(
                     forContentId: viewModel.currentContentId
                 )?.id,
+                onRetry: viewModel.currentBook.map { book in
+                    { viewModel.loadTOC(book: book) }
+                },
                 onSelect: { id, title in
                     viewModel.didSelectTOCNode(id: id, title: title)
                     showingTOC = false

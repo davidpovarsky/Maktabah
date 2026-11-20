@@ -321,6 +321,7 @@ struct iPadLayout: View {
                 selectedId: selectedTOCNode(for: tab.viewModel)?.id,
                 bookTitle: tab.book.book,
                 onClose: closeTableOfContents,
+                onRetry: { tab.viewModel.loadTOC(book: tab.book) },
                 embedsNavigationStack: false,
                 onSelect: { id in
                     tab.viewModel.didSelectTOCNode(id: id)

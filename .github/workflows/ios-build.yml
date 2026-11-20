@@ -63,6 +63,17 @@ jobs:
           github_token: ${{ github.token }}
       - name: Select an installed SDK-matched Xcode 27 and runtime
         run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/logs/normal-ios-toolchain.json
+      - name: Require all 55 Sefaria transport cases on actual Apple Foundation
+        env:
+          EXPECTED_CHECKOUT_SHA: ${{ github.sha }}
+        run: python3 Scripts/CI/sefaria-toc-apple55.py
+      - name: Retain complete Apple Foundation transport evidence including failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build-sefaria-toc-apple55
+          path: build/artifacts/sefaria-toc-apple55/
+          if-no-files-found: error
       - name: Identify the selected Apple compiler and SDKs
         id: xcode
         run: |

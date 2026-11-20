@@ -5,12 +5,12 @@
   "app_source": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "All98 required Native cases: all92 original cases plus one hundred-group-switch case and five original Search Data readiness/repair/failure cases;78 iPad27 and20 iPhone27. Zero skips required. Original realUI installation, engines, owners and exact-source oracles remain mandatory; prior-source passes are not transferred.",
+  "scope": "Preparation for the complete Native116: all98 original selected cases plus6 original Core compound journeys and12 Hebrew/English Sefaria TOC/transport cases. Exact final app/test source pins remain pending Coordinator integration; this preparation is not an executable frozen-source acceptance or a completed Native result.",
   "native_cases_executed": 0,
-  "required_nonzero_cases": 98,
+  "required_nonzero_cases": 116,
   "expected_per_device": {
-    "ipad11": 78,
-    "iphone": 20
+    "ipad11": 87,
+    "iphone": 29
   },
   "cases": [
     {
@@ -163,7 +163,10 @@
         "FaithfulReaderUIAcceptanceTests/testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace",
         "HanlinConsumerAcceptanceTests/testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart",
         "HanlinReaderConsumerAcceptanceTests/testOriginalReaderChatReturnsToSameNativeWorkspace",
-        "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+        "StudyGroupStressNativeAcceptanceTests/testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore",
+        "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+        "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+        "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad"
       ],
       "hid_comparison": false
     },
@@ -246,7 +249,13 @@
         "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
         "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
         "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
-        "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad"
+        "NativeRoutingAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+        "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+        "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+        "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry"
       ],
       "hid_comparison": false
     },
@@ -294,7 +303,16 @@
         "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
         "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
         "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
-        "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone"
+        "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+        "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+        "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
       ],
       "hid_comparison": false
     }
@@ -397,7 +415,25 @@
     "SearchDataNativeAcceptanceTests/testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch",
     "SearchDataNativeAcceptanceTests/testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch",
     "SearchDataNativeAcceptanceTests/testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks",
-    "SearchDataNativeAcceptanceTests/testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry"
+    "SearchDataNativeAcceptanceTests/testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry",
+    "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+    "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+    "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad",
+    "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+    "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+    "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone",
+    "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+    "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+    "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+    "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+    "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+    "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry",
+    "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+    "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+    "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+    "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+    "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+    "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
   ],
   "prior_pass_reuse_state": "Eight historical passes eligible only after fresh fingerprints and exact changed-path reachability review; zero newly reused certified at dispatch",
   "original_app_source": "07d1cafa6c6bc27aaf299aa826d28a4c02090cb5",
@@ -504,7 +540,7 @@
     "automatic_retry": false,
     "full_phase_accepted": false
   },
-  "selected_scope_reason": "Freeze the combined original Core note/search/commentary integration, presentation lifecycle fix, full-v32 SQLite cancellation, Global History continuation, profile color/migration and true feature-off fallback. Preserve every preceding selected case, original engines/resources and original Hanlin SDK e00498e33f106cc43be0476ffa2e09329c8ca300. The new cases share the existing dedicated 11-inch group; each execution group retains its fresh disposable simulator. Source inspection and portable results are not Native acceptance.",
+  "selected_scope_reason": "All98 original case IDs, catalog/oracles, order within each original group, seven owned Simulator groups, original600s per-test limits and HID-only11-window remain. Append6 Core and12 Sefaria declarations; final source/pins are deliberately not set before the pending AppIntent integration.",
   "supplemental_cases": [
     {
       "case_id": "NativeRoutingAcceptanceTests/testWarmHistoryURLUsesOtzariaNativeScene",
@@ -1052,6 +1088,132 @@
       "status": "NOT_RUN",
       "oracle": "Actual POSIX write denial in exact disposable miniature index parent causes visible original install failure; existing repair control remains actionable; restoring OS permission permits genuine repair/query/cold readiness. Pinned owner, backup and teardown restore exact bytes/permissions.",
       "prerequisite": "Original realUI miniTest10 v6 installation, unique owned UUID workspace and exact source; no fabricated readiness or UI receipt"
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Actual Core exact-token count109/98 from independent original miniTest10 SQL, followed by original completed Search results scoped to book1; exact query, source evidence and existing UI/submission receipts. No hit-count substitution or registry override.",
+      "prerequisite": "Original realUI miniTest10 v6, immutable combined Core/Host source, actual managed cached engine where required, source-bound original UI. No consumer allowlist expansion."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original source link6529212 from base book28/index2 to commentary3276/index4, then original unsaved note editor via one-use commentary continuation. Exact ordered source-owned receipts, visible text/locator, cancellation and unchanged annotation stores/base Reader.",
+      "prerequisite": "Original realUI miniTest10 v6, immutable combined Core/Host source, actual managed cached engine where required, source-bound original UI. No consumer allowlist expansion."
+    },
+    {
+      "case_id": "NativeRoutingAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original catalog resolves Psalms chapter1/toc600 to book28/index1; actual no-commentary result must stop before note draft. Exact catalog outcomes, no fabricated alias/link, no editor or navigation receipt.",
+      "prerequisite": "Original realUI miniTest10 v6, immutable combined Core/Host source, actual managed cached engine where required, source-bound original UI. No consumer allowlist expansion."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Actual Core exact-token count109/98 from independent original miniTest10 SQL, followed by original completed Search results scoped to book1; exact query, source evidence and existing UI/submission receipts. No hit-count substitution or registry override.",
+      "prerequisite": "Original realUI miniTest10 v6, immutable combined Core/Host source, actual managed cached engine where required, source-bound original UI. No consumer allowlist expansion."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original source link6529212 from base book28/index2 to commentary3276/index4, then original unsaved note editor via one-use commentary continuation. Exact ordered source-owned receipts, visible text/locator, cancellation and unchanged annotation stores/base Reader.",
+      "prerequisite": "Original realUI miniTest10 v6, immutable combined Core/Host source, actual managed cached engine where required, source-bound original UI. No consumer allowlist expansion."
+    },
+    {
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original catalog resolves Psalms chapter1/toc600 to book28/index1; actual no-commentary result must stop before note draft. Exact catalog outcomes, no fabricated alias/link, no editor or navigation receipt.",
+      "prerequisite": "Original realUI miniTest10 v6, immutable combined Core/Host source, actual managed cached engine where required, source-bound original UI. No consumer allowlist expansion."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original Embedded mobile-index TOC in the requested Hebrew/English locale; actual Berakhot/Eruvin12a/12b and Berakhot chapter navigation preserve exact canonical work/reference and original rendered Reader text. Native localized rows, disclosure/picker and accessibility labels, without a stand-in renderer.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original Embedded mobile-index TOC in the requested Hebrew/English locale; actual Berakhot/Eruvin12a/12b and Berakhot chapter navigation preserve exact canonical work/reference and original rendered Reader text. Native localized rows, disclosure/picker and accessibility labels, without a stand-in renderer.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original Embedded Hebrew/English chapter/complex TOC navigates Genesis2, original Rashi chapter2 child, and Pesach Haggadah/Magid/The Four Sons. Exact visible localized original rows, bounded uniqueness, canonical Reader/work and rendered text; no synthetic ref or segment-focus claim.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original Embedded Hebrew/English chapter/complex TOC navigates Genesis2, original Rashi chapter2 child, and Pesach Haggadah/Magid/The Four Sons. Exact visible localized original rows, bounded uniqueness, canonical Reader/work and rendered text; no synthetic ref or segment-focus claim.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original Remote Genesis TOC request is tagged exactly once through its live owner/TaskLocal and actual URL Loading boundary; visible held/loading state, real transport failure, then original user Retry outside the scope returns nonempty original TOC. Exact owned nonce/proof files and source/Reader stability. No fabricated success response, physical-offline or Hermes transport claim.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry",
+      "device": "ipad11",
+      "status": "NOT_RUN",
+      "oracle": "Original Remote Genesis TOC request is tagged exactly once through its live owner/TaskLocal and actual URL Loading boundary; visible held/loading state, real transport failure, then original user Retry outside the scope returns nonempty original TOC. Exact owned nonce/proof files and source/Reader stability. No fabricated success response, physical-offline or Hermes transport claim.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original Embedded mobile-index TOC in the requested Hebrew/English locale; actual Berakhot/Eruvin12a/12b and Berakhot chapter navigation preserve exact canonical work/reference and original rendered Reader text. Native localized rows, disclosure/picker and accessibility labels, without a stand-in renderer.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original Embedded mobile-index TOC in the requested Hebrew/English locale; actual Berakhot/Eruvin12a/12b and Berakhot chapter navigation preserve exact canonical work/reference and original rendered Reader text. Native localized rows, disclosure/picker and accessibility labels, without a stand-in renderer.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original Embedded Hebrew/English chapter/complex TOC navigates Genesis2, original Rashi chapter2 child, and Pesach Haggadah/Magid/The Four Sons. Exact visible localized original rows, bounded uniqueness, canonical Reader/work and rendered text; no synthetic ref or segment-focus claim.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original Embedded Hebrew/English chapter/complex TOC navigates Genesis2, original Rashi chapter2 child, and Pesach Haggadah/Magid/The Four Sons. Exact visible localized original rows, bounded uniqueness, canonical Reader/work and rendered text; no synthetic ref or segment-focus claim.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original Remote Genesis TOC request is tagged exactly once through its live owner/TaskLocal and actual URL Loading boundary; visible held/loading state, real transport failure, then original user Retry outside the scope returns nonempty original TOC. Exact owned nonce/proof files and source/Reader stability. No fabricated success response, physical-offline or Hermes transport claim.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
+    },
+    {
+      "case_id": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone",
+      "device": "iphone",
+      "status": "NOT_RUN",
+      "oracle": "Original Remote Genesis TOC request is tagged exactly once through its live owner/TaskLocal and actual URL Loading boundary; visible held/loading state, real transport failure, then original user Retry outside the scope returns nonempty original TOC. Exact owned nonce/proof files and source/Reader stability. No fabricated success response, physical-offline or Hermes transport claim.",
+      "prerequisite": "Whole Apple Foundation55 gate must actually pass. Original realUI Simulator, exact miniTest10 bootstrap, per-test UUID ownership and requested language; original Embedded or Remote backend as named. No Native credit from host fixture."
     }
   ],
   "manager_native_review_history": [
@@ -2583,5 +2745,26 @@
     "excludes_subsequent_compound_core_and_anytype_work": true,
     "acceptance": "PENDING_ACTUAL_CURRENT_SOURCE_APPLE_AND_NATIVE_EXECUTION",
     "execution_coordination": "Prepared only. Root reviews and selects separate immutable Native/Release refs before any dispatch."
+  },
+  "native116_preparation_20261120": {
+    "status": "SOURCE_SELECTION_PREPARED_FINAL_APPLICATION_FREEZE_PENDING",
+    "baselineFrozenCheckout": "60a57972acb28739ec738565083bf17fb7503028",
+    "baselineApplicationSource": "87b783ac3f0257e8461762e0ea9dfa5248dd06e8",
+    "integrationBase": "a15d3cf893cd2d4224a131154aad15ebda74f1ac",
+    "coreNativeSource": "a4200ee4b08b3c2013284d7e128b7dc0c9c4ddc1",
+    "sefariaNativeSource": "13a07c8bcabc008b6c25fecc84ce13de63cea3da",
+    "rashiEnglishBindingCorrection": "f3401ec1597e1d882d2e2c6db9492ed211058712",
+    "additionalCoreCases": 6,
+    "additionalSefariaCases": 12,
+    "original98Preserved": true,
+    "selected116": 116,
+    "perDevice": {
+      "ipad11": 87,
+      "iphone": 29
+    },
+    "appleFoundation55": "NOT_RUN",
+    "native116": "NOT_RUN",
+    "release96Plus2Manifest": "UNCHANGED",
+    "finalApplicationSource": "PENDING_COORDINATOR_FREEZE_AFTER_APPINTENT_TRANCHE"
   }
 }
