@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-20T08:42:17.823683+00:00",
+  "source_commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+  "scope": "Documentation byte-encoding receipt only; no source, test method, CI, or execution changes.",
+  "existing_FILES_json_scope": "Hashes and sizes in the unchanged original FILES.json refer to the local raw packaging bytes before Git CRLF-to-LF normalization. This receipt preserves those exact bytes and separately records immutable canonical Git blobs.",
+  "original_video_scope": "The authenticated selected video remains in the owned build capture directory; no full 3.11GB capture ZIP verification is claimed.",
+  "existing_native_result": "Original A1 FAIL; changed A1 Native and Apple typecheck NOT_RUN at this record.",
+  "records": [
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/2FD910F8-C567-4C20-92BC-5653137EE2F9.txt",
+      "raw_local": {
+        "bytes": 199,
+        "sha256": "850fc0d1a529ecb4c149b0bd80f94424fa2711c492b2db54a9cf6b2f30aeee96"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 199,
+        "sha256": "850fc0d1a529ecb4c149b0bd80f94424fa2711c492b2db54a9cf6b2f30aeee96"
+      },
+      "identical_bytes": true
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/ARTIFACT_METADATA.json",
+      "raw_local": {
+        "bytes": 847,
+        "sha256": "f2391921970e0f035f3feaead0cdd6d8079c33cfa378416a45487b7d046e6b5f"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 827,
+        "sha256": "1220a82798f6deef8c7220aabd88fd50a4e2a9b45a2f3c6fd3c2857bb682317c"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/ARTIFACT_METADATA.json.raw.gz",
+        "bytes": 479,
+        "sha256": "3a75719a234ffd23c186cd43e5ab63a2fb34d4177ada85e859701fe982aa5339",
+        "uncompressed_sha256": "f2391921970e0f035f3feaead0cdd6d8079c33cfa378416a45487b7d046e6b5f"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/F7AD9B93-08A8-4AF8-8D74-16DC1D70636C.txt",
+      "raw_local": {
+        "bytes": 199,
+        "sha256": "850fc0d1a529ecb4c149b0bd80f94424fa2711c492b2db54a9cf6b2f30aeee96"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 199,
+        "sha256": "850fc0d1a529ecb4c149b0bd80f94424fa2711c492b2db54a9cf6b2f30aeee96"
+      },
+      "identical_bytes": true
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/FILES.json",
+      "raw_local": {
+        "bytes": 2197,
+        "sha256": "1548ae0d1eb8a7668b0bef0113bbbd6ff9c8003ba9add44cb96a79e290eb64a1"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 2131,
+        "sha256": "8b6141549235c763f84aa2bd85848c932099b2144007a9bcc5f77f2c95812d88"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/FILES.json.raw.gz",
+        "bytes": 994,
+        "sha256": "c926ca0b808c745cd79233a006a4a2c41dcce7361f3311a8a005056d61261ebd",
+        "uncompressed_sha256": "1548ae0d1eb8a7668b0bef0113bbbd6ff9c8003ba9add44cb96a79e290eb64a1"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/frame-25.png",
+      "raw_local": {
+        "bytes": 167234,
+        "sha256": "9820403aa9b0800eada3ba7e3cff1276c8777200a40fe98d353db2821a83708d"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 167234,
+        "sha256": "9820403aa9b0800eada3ba7e3cff1276c8777200a40fe98d353db2821a83708d"
+      },
+      "identical_bytes": true
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/frame-41.7.png",
+      "raw_local": {
+        "bytes": 272719,
+        "sha256": "58304c278a201234a7ad4a5508be92ee661eada0171d29bbce20ae18e8821aa1"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 272719,
+        "sha256": "58304c278a201234a7ad4a5508be92ee661eada0171d29bbce20ae18e8821aa1"
+      },
+      "identical_bytes": true
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/frame-42.7.png",
+      "raw_local": {
+        "bytes": 636092,
+        "sha256": "a01de297e6d97cba9350fbfce36988af3453b4a2dd61929bc9774fdc2fc5688a"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 636092,
+        "sha256": "a01de297e6d97cba9350fbfce36988af3453b4a2dd61929bc9774fdc2fc5688a"
+      },
+      "identical_bytes": true
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/FRAME_RECEIPT.json",
+      "raw_local": {
+        "bytes": 1713,
+        "sha256": "4287ca88c6f61096b5dae78d1a83ad2ad4d15e872a8cadb5e994842b606fc8e5"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 1666,
+        "sha256": "c3924faea234bed1d0d8baee10b7635db12305862de081d6650226c67ac17711"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/FRAME_RECEIPT.json.raw.gz",
+        "bytes": 669,
+        "sha256": "3a5b3ebf717f21e746d030f4d2d1ebdcfda51c9c816432a62a349e268e81f252",
+        "uncompressed_sha256": "4287ca88c6f61096b5dae78d1a83ad2ad4d15e872a8cadb5e994842b606fc8e5"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/ORIGINAL_AX_DIAGNOSTIC_PARENT.json",
+      "raw_local": {
+        "bytes": 1014,
+        "sha256": "61180d34883147a62bec8995719e5a42d184f7cb259843a5d48eacdeb7645dde"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 1008,
+        "sha256": "8de4bb71e4c259a2962db5fb584cc276f45fbe0c19985b94c48a88afdbe88e73"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/ORIGINAL_AX_DIAGNOSTIC_PARENT.json.raw.gz",
+        "bytes": 531,
+        "sha256": "d11ffa2e2b5c89512573ff63f84ac7699a47f4b12f6cd0ef32d7a28a6d572c64",
+        "uncompressed_sha256": "61180d34883147a62bec8995719e5a42d184f7cb259843a5d48eacdeb7645dde"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/RANGE_EVIDENCE.json",
+      "raw_local": {
+        "bytes": 3920,
+        "sha256": "bdc25109f5c4bb2ee614bf78f4a798d430bb768ca98cc90f7789e7914ea2eb14"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 3803,
+        "sha256": "a1fc7b13f2bc76f1bf17554507d64e1977efc181704fb5087202fc8888202334"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/RANGE_EVIDENCE.json.raw.gz",
+        "bytes": 1182,
+        "sha256": "04b2abc8a12de05f4fc71df2f6db476bd048ae7e8689e0377f12e0fa47c22dda",
+        "uncompressed_sha256": "bdc25109f5c4bb2ee614bf78f4a798d430bb768ca98cc90f7789e7914ea2eb14"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/README.md",
+      "raw_local": {
+        "bytes": 2934,
+        "sha256": "c3d8124a65ad4af96e83d9439323460b60871331bfdcc0916c06a669e92eb3ef"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 2911,
+        "sha256": "7787aa39a0c125b6ed97d710f1897cfff8d1ca3087bc8e81246f8a823a6c2f3f"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/README.md.raw.gz",
+        "bytes": 1495,
+        "sha256": "b9dbb2891b6f15f9ee1e8866f236b6bc7d21803f1147601c19e73ce092210ad7",
+        "uncompressed_sha256": "c3d8124a65ad4af96e83d9439323460b60871331bfdcc0916c06a669e92eb3ef"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/RESULT.json",
+      "raw_local": {
+        "bytes": 2344,
+        "sha256": "454f5fd556a366b1894558d3123a73e08ccdfc53420d1555e66470cbe5a4a742"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 2301,
+        "sha256": "cc6f4dafad512af75b5534c50c67cda3f21a9b16038afc392e2383acc4e5a998"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/RESULT.json.raw.gz",
+        "bytes": 1273,
+        "sha256": "6b30b159b12ff8b639946c8f6eaaf7dfcfae72d4e7396b808fd0df1b0363baa6",
+        "uncompressed_sha256": "454f5fd556a366b1894558d3123a73e08ccdfc53420d1555e66470cbe5a4a742"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/SAMPLE_BOUNDARY_FRAMES.json",
+      "raw_local": {
+        "bytes": 1141,
+        "sha256": "cc34b921f3f0480780fdee356aae4b397d941b63848e6c4f87ff7875a529fd6d"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 1115,
+        "sha256": "73cdaa57ac893064abeecf660718f38d77abf5e557845f3ea814227cfd2727f4"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/SAMPLE_BOUNDARY_FRAMES.json.raw.gz",
+        "bytes": 364,
+        "sha256": "2043150eafc661497640941526d5ceec06f1ccbdf475d2429c0cd5ba8901e62c",
+        "uncompressed_sha256": "cc34b921f3f0480780fdee356aae4b397d941b63848e6c4f87ff7875a529fd6d"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/SOURCE_EVIDENCE.json",
+      "raw_local": {
+        "bytes": 6137,
+        "sha256": "9f38b3224273cd26ff874822b83376d4010c3412495a8cfba6d89b5c42bf17b4"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 6099,
+        "sha256": "1ad80eefabce6bdc96aa2fe394fa03db3f9ce23cfbd2ab8333446ee8c25b09bf"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/SOURCE_EVIDENCE.json.raw.gz",
+        "bytes": 1875,
+        "sha256": "765b7a76f5e795302312e884feec8f288b9452831139bd60bffef59b35cf13da",
+        "uncompressed_sha256": "9f38b3224273cd26ff874822b83376d4010c3412495a8cfba6d89b5c42bf17b4"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/swift-parse.log",
+      "raw_local": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "identical_bytes": true
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/SWIFT_PARSE.json",
+      "raw_local": {
+        "bytes": 369,
+        "sha256": "9b4e1853800fbace128b78082f6810882a88f6408d7dd3ffc7061a75d257da90"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 357,
+        "sha256": "b4aa666dfd069fa0b157eb98f6156183d1e0321fdc7561aebafa734f4c3df4c4"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/SWIFT_PARSE.json.raw.gz",
+        "bytes": 266,
+        "sha256": "88e92f9fd6794b00b2f9d10e9ecb12ec83ece1c5a3d1e2a1dc9d343e9c1b62da",
+        "uncompressed_sha256": "9b4e1853800fbace128b78082f6810882a88f6408d7dd3ffc7061a75d257da90"
+      }
+    },
+    {
+      "path": "docs/hq-integration/release-a1-render-readiness-20261120/TIMING.json",
+      "raw_local": {
+        "bytes": 662,
+        "sha256": "0ffa7a29de089c2acb71089b6b732f75f131d6e950fb69cc02d9bdb7a932c6dc"
+      },
+      "canonical_git_blob": {
+        "commit": "9086a9e0b94ab79480e269fa264f41f548f1f4c2",
+        "bytes": 649,
+        "sha256": "7c2ea168c6274686cff816a386f912fd1e6f5a320615fc751609007f477a14de"
+      },
+      "identical_bytes": false,
+      "lossless_raw_archive": {
+        "path": "docs/hq-integration/release-a1-render-readiness-20261120/encoding-receipt/TIMING.json.raw.gz",
+        "bytes": 395,
+        "sha256": "a1661a18465d841d801768b4de92df44cc65a17d22263f7f3a7a8a8ef9453052",
+        "uncompressed_sha256": "0ffa7a29de089c2acb71089b6b732f75f131d6e950fb69cc02d9bdb7a932c6dc"
+      }
+    }
+  ]
+}
