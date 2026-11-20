@@ -1,0 +1,273 @@
+{
+  "createdAt": "2026-11-20T05:28:37.124399+00:00",
+  "entries": [
+    {
+      "path": "raw/executed/EVIDENCE_REPRESENTATION_REVIEW.json.gz",
+      "rawBytes": 522,
+      "rawSHA256": "f83389ad8f14fb254bfd7f1c1c33aba491bf6477b4aff4bee828ec935bcb7203",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\EVIDENCE_REPRESENTATION_REVIEW.json",
+      "storedBytes": 341,
+      "storedSHA256": "d2ed4278ed25fd03c7d82f369bfcad5f4cefff377c2cb833726324ab58288215"
+    },
+    {
+      "path": "raw/executed/original-regression-on-attempt1/command-01.json.gz",
+      "rawBytes": 1088,
+      "rawSHA256": "f033bb02dbe1fb26e43806abe6bf77cde1a9e4938d2592b27cb694f39be9b301",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\original-regression-on-attempt1\\command-01.json",
+      "storedBytes": 384,
+      "storedSHA256": "b9c07fa3638413845ba35f6c8895415d00a42078051a10654ed5905433a8dee8"
+    },
+    {
+      "path": "raw/executed/original-regression-on-attempt1/command-02.json.gz",
+      "rawBytes": 8045,
+      "rawSHA256": "3ce7b9e102b5d03b147ff388e7b1d6432b3a4cea3089246b819dd0e444816956",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\original-regression-on-attempt1\\command-02.json",
+      "storedBytes": 1320,
+      "storedSHA256": "a2394d0d077e393f60e3a81644ff83f944fd1a02f80c7ac3ee9645c752f99c97"
+    },
+    {
+      "path": "raw/executed/original-regression-on-attempt1/command-03.json.gz",
+      "rawBytes": 603,
+      "rawSHA256": "35b1e26d0df1eee72b80d7de2bba64b53cc6e2cfadd412755fc5e348cf468c82",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\original-regression-on-attempt1\\command-03.json",
+      "storedBytes": 263,
+      "storedSHA256": "d27873cc4438f21649c2daa2a93a37db56cf8185ca2a7d94d5acb81d009ba65f"
+    },
+    {
+      "path": "raw/executed/original-regression-on-attempt1/command-04.json.gz",
+      "rawBytes": 3301,
+      "rawSHA256": "18cf24601d93edf3620fe60f07d8672512be06de26bc73a72ae210c7b4febef8",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\original-regression-on-attempt1\\command-04.json",
+      "storedBytes": 708,
+      "storedSHA256": "d8a69b2fef98c65b78218b52add992cf40ebfb2835e8c811de48ae1b53e92e47"
+    },
+    {
+      "path": "raw/executed/original-regression-on-attempt1/command-05.json.gz",
+      "rawBytes": 455,
+      "rawSHA256": "5f60a160464f8f585e9fec0553df857368129e2db7dd45f2fe88621788397fa5",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\original-regression-on-attempt1\\command-05.json",
+      "storedBytes": 227,
+      "storedSHA256": "f32cf1ec7ad8c5b76fad3d641ccee978ee71d62ca46736c282ffe040589a7c47"
+    },
+    {
+      "path": "raw/executed/original-regression-on-attempt1/original-driver.log.gz",
+      "rawBytes": 2002,
+      "rawSHA256": "c26411d88ca9dfa8ed25966989184ac5a59010d791122ae469bafc29e388c246",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\original-regression-on-attempt1\\original-driver.log",
+      "storedBytes": 741,
+      "storedSHA256": "2ff3d42776b8ad799d737322c575e985182f7bb9e2b1ca946ba4b0576b04b5a9"
+    },
+    {
+      "path": "raw/executed/original-regression-on-attempt1/RESULT.json.gz",
+      "rawBytes": 1006,
+      "rawSHA256": "5b14f7d9bcd4fad87d30e979f42409131963feb6e0ea5aa73af6c470cc05943d",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\original-regression-on-attempt1\\RESULT.json",
+      "storedBytes": 603,
+      "storedSHA256": "c80d2b86022af8a46467c28ca3daa677651f05eae122c1732671d05383ef199d"
+    },
+    {
+      "path": "raw/executed/PATCH_REVIEW.json.gz",
+      "rawBytes": 1715,
+      "rawSHA256": "8d889b5f21f17188899187f6f9e3a1cfc390d66049d8343ba091080612a3728d",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\PATCH_REVIEW.json",
+      "storedBytes": 910,
+      "storedSHA256": "55565ba40202aef5c53644d700f89c6e1bc7bd2392cca3deed08ef4b96e0ebf1"
+    },
+    {
+      "path": "raw/executed/policy-on-attempt1/cases.json.gz",
+      "rawBytes": 10834,
+      "rawSHA256": "03b77ccefc9729af0b6ad203c8503758315761eb974be98e2c6e8fc0df0ae5d7",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\policy-on-attempt1\\cases.json",
+      "storedBytes": 1396,
+      "storedSHA256": "21b577bf66d993bcd2cf24538d482e874c5987b66241c67bb7c9fe5b15151608"
+    },
+    {
+      "path": "raw/executed/policy-on-attempt1/compile.log.gz",
+      "rawBytes": 246,
+      "rawSHA256": "05afc8866e941c404a000261c88577dc8c703314fbfd70d1d818c9e20a91abc6",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\policy-on-attempt1\\compile.log",
+      "storedBytes": 143,
+      "storedSHA256": "5d38f24489ec401600c9fc3e80ae740cc097c2b0b26ad1dfbab0386a5970977b"
+    },
+    {
+      "path": "raw/executed/policy-on-attempt1/driver.log.gz",
+      "rawBytes": 181,
+      "rawSHA256": "f118d0950a25623a9f102e83bb8a4ee36f3d97a94dbab5701c1541fdf63228e8",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\policy-on-attempt1\\driver.log",
+      "storedBytes": 166,
+      "storedSHA256": "47c26a13b505e08287f4450ef9475981eba97ef4b7363c1fcd43004d0ab6ab71"
+    },
+    {
+      "path": "raw/executed/policy-on-attempt1/RESULT.json.gz",
+      "rawBytes": 15440,
+      "rawSHA256": "2995c4d3294e4bf29f8ad79ffdd2e27e88d71fb5e1b33a337cc9e04d2a3be5dd",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\policy-on-attempt1\\RESULT.json",
+      "storedBytes": 3229,
+      "storedSHA256": "d3b07e7dea09f2ce1c3d3297998d8b1d415a658fa930ba91673bc3f506e93f0d"
+    },
+    {
+      "path": "raw/executed/policy-on-attempt1/tests.log.gz",
+      "rawBytes": 56,
+      "rawSHA256": "a7547df397e2e98c3de1f27caa3ad142b3ea7f210031b7d07e548273fc0c8dd5",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\qualified-candidate\\policy-on-attempt1\\tests.log",
+      "storedBytes": 73,
+      "storedSHA256": "11f1a290105373001099d6ebad6696790dd199234ef15205282a0abb9a86629d"
+    },
+    {
+      "path": "raw/job-receipt.json.gz",
+      "rawBytes": 2369,
+      "rawSHA256": "9a4d513b347e40f3306ad42b1e5eb2f3c3f42dad8fdd5d0bce5b5a7cb1bc22cd",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "SentinelX notifications_get structured job; JSON serialization of actual returned fields",
+      "storedBytes": 1160,
+      "storedSHA256": "51a9dd30dd018692a585d19dc15f3dae6b84a64f1dc768a576566228065f3d29"
+    },
+    {
+      "path": "raw/driver/run-original-driver-single-worker.py.gz",
+      "rawBytes": 1811,
+      "rawSHA256": "7b3e95bc3b283c12f2255ea1ee5149100e05aa08e176b153b06d0c2f52feb836",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\index-read-qualification-20261120\\regression-original-search-readiness\\run-original-driver-single-worker.py",
+      "storedBytes": 863,
+      "storedSHA256": "16888c21738ac2045a03082b1225e869350f735a69c01aa9a85e7408d95e4645"
+    },
+    {
+      "path": "raw/generated/BaselinePolicy.swift.gz",
+      "rawBytes": 7618,
+      "rawSHA256": "f0c848fac73932408455ed584f19799204ef1c20f2fb8f99a0769f2f6830dbd8",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\read-compat-6qqsapcv\\BaselinePolicy.swift",
+      "storedBytes": 2025,
+      "storedSHA256": "c580ada527c64864b9fa6f3aabd3ddaafbe8d29aaa83e67435ac499b0fe98df1"
+    },
+    {
+      "path": "raw/generated/Installer.swift.gz",
+      "rawBytes": 16203,
+      "rawSHA256": "121a451eff9f0dd91525c2d0bd21e61a54c1af32350c36bc20fd0bc91a896f68",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\read-compat-6qqsapcv\\Installer.swift",
+      "storedBytes": 2421,
+      "storedSHA256": "1153a401564a88bd586fe3f10132d7d85bf7dead0fa0d2d3e363b841b17ff9f0"
+    },
+    {
+      "path": "raw/generated/Manager.swift.gz",
+      "rawBytes": 16706,
+      "rawSHA256": "3844ccf44080c5c2841714e26d38dc2c19a04fe73eac60242ae34f9dd8d7c5d0",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\read-compat-6qqsapcv\\Manager.swift",
+      "storedBytes": 3591,
+      "storedSHA256": "a51db03e37e871e4c16634cfe99b22bd6affbc0bf7d2181192a18d6f380dc132"
+    },
+    {
+      "path": "raw/generated/Models.swift.gz",
+      "rawBytes": 10803,
+      "rawSHA256": "9c48529fe9ac403c66b7d681edf444549464139fc929ac5f6100ed7a239560de",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\read-compat-6qqsapcv\\Models.swift",
+      "storedBytes": 2389,
+      "storedSHA256": "0d96b64f75b616ee7016b1cd26505d2dc8d2387c95bf43786f64c5a7b51ef0d7"
+    },
+    {
+      "path": "raw/generated/Policy.swift.gz",
+      "rawBytes": 16626,
+      "rawSHA256": "a3425873043acf5d95872fe60732cc916fc97ea6bea05c75991c905cd19c1631",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\build\\read-compat-6qqsapcv\\Policy.swift",
+      "storedBytes": 4329,
+      "storedSHA256": "5aead58ec7ca82099eeb5e650587b4aa0927925366e7a568cbb19359eaa93a63"
+    },
+    {
+      "path": "raw/source/Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift.gz",
+      "rawBytes": 16314,
+      "rawSHA256": "266d21482cd9aacc3441068937fb3bd4dc292f9b8cb718af9dc384d8802bad35",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\Source\\Otzaria\\Search\\Distribution\\OtzariaSearchArtifactPolicy.swift",
+      "storedBytes": 4308,
+      "storedSHA256": "3233015996f265b6582afafd4f48d5778d7b6c1789c04b3dad05480bdbb11fe0"
+    },
+    {
+      "path": "raw/source/Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift.gz",
+      "rawBytes": 18217,
+      "rawSHA256": "76e52d7018757fffaa70e547de49915ca5d767d4fff54f227b78d583fec17e66",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\Source\\Otzaria\\Search\\Distribution\\OtzariaSearchArtifactInstaller.swift",
+      "storedBytes": 2862,
+      "storedSHA256": "9f4faefbc4bcbc8c8406cd1ed0b1202fe4c4a3ada6839b6c8eeb803d90ac22ba"
+    },
+    {
+      "path": "raw/source/Source/Otzaria/Search/OtzariaSearchIndexManager.swift.gz",
+      "rawBytes": 28274,
+      "rawSHA256": "d9ca8f6735dd57bcb4f6425f90b9ad76f974212c76be147352b1488b4c15f651",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\Source\\Otzaria\\Search\\OtzariaSearchIndexManager.swift",
+      "storedBytes": 5784,
+      "storedSHA256": "a3e3e6a495b46a514e9422915c854ec925a2f65a316a19308796985aadee9a65"
+    },
+    {
+      "path": "raw/source/Source/Otzaria/Search/OtzariaTantivySearchRepository.swift.gz",
+      "rawBytes": 12774,
+      "rawSHA256": "68b7e02cd525b14961bd7c903a9bfc7b7655a7e6976a7e9c75b9dd5bf003bf78",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\Source\\Otzaria\\Search\\OtzariaTantivySearchRepository.swift",
+      "storedBytes": 3245,
+      "storedSHA256": "7f3efc042d20c4d5d86666a0785d7dd1c82bb45686a2c1314fe02c9d13a81f85"
+    },
+    {
+      "path": "raw/source/Tests/HQ/search/IndexReadCompatibilityFixtures.swift.gz",
+      "rawBytes": 35651,
+      "rawSHA256": "0904c4a4ea6fdc21c725aa286e277f0f47e8bad8fbc154e1ba7d26d39a5727cc",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\Tests\\HQ\\search\\IndexReadCompatibilityFixtures.swift",
+      "storedBytes": 7360,
+      "storedSHA256": "82152320bab4479a72cafe0f69dd1965462f3514fd00a7b043b316fb753bf910"
+    },
+    {
+      "path": "raw/source/Tests/HQ/search/IndexReadCompatibilityBoundary.swift.gz",
+      "rawBytes": 6052,
+      "rawSHA256": "13e4783765dbe297d45c36b22fd99a021c109c865b34730ed9abf1f1b6194c34",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\Tests\\HQ\\search\\IndexReadCompatibilityBoundary.swift",
+      "storedBytes": 1930,
+      "storedSHA256": "f59f0f527bdfce78c7129620453abb3136bcdc86ae8896c21d297a59758f26d7"
+    },
+    {
+      "path": "raw/source/tools/hq-otzaria-read-compatibility.py.gz",
+      "rawBytes": 9929,
+      "rawSHA256": "b5f7acd1e40f752c296e9a1a565d2e1c686db11826b1beb8c1551772e1b15f5f",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\tools\\hq-otzaria-read-compatibility.py",
+      "storedBytes": 3420,
+      "storedSHA256": "1ba536a95ae0608d4c4e1df0d07579120afbef000e3e7b21f78bec29c4133e8e"
+    },
+    {
+      "path": "raw/source/tools/hq-search-tests.py.gz",
+      "rawBytes": 7830,
+      "rawSHA256": "03847a6fe2292594d2d5888280ca3aa61b2c5ad83691a5fab09d82f0a247aa28",
+      "representation": "Lossless deterministic gzip of exact captured source bytes",
+      "source": "C:\\Users\\DAVID\\Code\\Maktabah-index-read-compatibility-20261120\\tools\\hq-search-tests.py",
+      "storedBytes": 2451,
+      "storedSHA256": "ec1c65913e9a46ea615f180899ac802b5b5ff6993615327dd4209651c5943584"
+    }
+  ],
+  "historicalRawEvidenceUnchanged": true,
+  "rawEvidenceFiles": 29,
+  "readmeSHA256": "65fe94d306bc957f00064581b2452c225aa370d15c00d08c6ee127128d7ae9c2",
+  "sourceCommit": "e332b02c089cd0f068a7fe9e5c9dde40b5729ea1",
+  "storedBytes": 58642,
+  "summarySHA256": "20ad7e52561fc75b267a47c5f686d033e0d56333666d63f46757506f3019db70",
+  "uncompressedBytes": 252671
+}

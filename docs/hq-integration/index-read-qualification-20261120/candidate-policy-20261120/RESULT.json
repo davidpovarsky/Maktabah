@@ -1,0 +1,146 @@
+{
+  "boundaries": {
+    "AppleRuntimeExecuted": 0,
+    "NativeExecuted": 0,
+    "mainMerge": "NOT_CLAIMED",
+    "oldIndexRuntimeExecutedByThisSuite": 0,
+    "original14": "Real repository cached readiness, FFI/storage doubles",
+    "original191": "Real models/wrapper/session, fake FFI and Combine",
+    "policy": "Complete real Swift policy and original installer/recovery/readiness/writer methods, controlled FFI/provider/storage dependencies",
+    "qualifiedWholeApp32": "NOT_RUN_BY_THIS_AGENT"
+  },
+  "branch": "codex/otzaria-qualified-read-candidate-20261120",
+  "candidateAdmissionOverrideRemoved": true,
+  "exactWriterMethodsUnchanged": {
+    "func makeIdentity(": true,
+    "func prepareOrResumeBuildingIndex(": true,
+    "private func canSeedBuildingIndex(": true
+  },
+  "executionOnlySchedulingChange": "swiftc -j1",
+  "expectedStateUpdates": [
+    {
+      "new": "production_qualified_exact_265_to_d5_is_accepted",
+      "old": "production_candidate_remains_unqualified_and_rejected",
+      "rule": "Exact evidenced enum and ordinary production validate must accept"
+    },
+    {
+      "new": "actual_v32_manifest_has_qualified_production_admission",
+      "old": "actual_v32_manifest_candidate_metadata_probe_only",
+      "rule": "Authenticated v32 uses same exact evidenced enum and ordinary production validate"
+    },
+    {
+      "new": "producer_identity_uses_manifest_fields_and_keeps_consumer_honest",
+      "old": "producer_identity_uses_manifest_fields_and_keeps_consumer_honest",
+      "rule": "Trusted-manifest managed read now admitted; original producer fields and rollback remain unchanged"
+    },
+    {
+      "new": "recovery_unqualified_consumer_revision_preserves_existing_index",
+      "old": "recovery_production_disabled_preserves_existing_index",
+      "rule": "Unknown real consumer revision remains rejected with unchanged existing bytes and balanced opens/closes"
+    },
+    {
+      "new": "production_readiness_rejects_unqualified_consumer_without_mutation",
+      "old": "production_readiness_rejects_unqualified_producer_without_mutation",
+      "rule": "Unknown real consumer revision remains rejected without mutation and with balanced opens/closes"
+    }
+  ],
+  "fixtureFlowUsesRealProductionValidate": true,
+  "job": {
+    "created_at": 1795152026.3960693,
+    "duration_s": 117.76,
+    "error": null,
+    "exit_code": 0,
+    "finished_at": "2026-11-20T05:22:24.230156+00:00",
+    "id": "job_8bfa116dcbe3",
+    "output_truncated": false,
+    "started_at": "2026-11-20T05:20:26.465884+00:00",
+    "status": "succeeded",
+    "timeout_s": 900
+  },
+  "noDatabaseIndexArchiveOrBinaryCopiedIntoGit": true,
+  "noHeavyCompilerProcessesObservedAfterRun": true,
+  "observedDiskAfterRunBytesFree": 1639895040,
+  "originalCachedReadinessAssertions": 14,
+  "originalCountsAreAssertionsNotTestCases": true,
+  "originalSearchAssertions": 191,
+  "ownedPolicyBuildCachesBytes": 6484648,
+  "policyAndOriginalDriverUnchangedDuringExecution": true,
+  "policyCases": {
+    "failed": 0,
+    "passed": 99,
+    "skipped": 0,
+    "total": 99
+  },
+  "qualification": {
+    "gitLFReviewSHA256": "3ccd704a831f4a96ec06a691bdc17e7a8988168659bad766815018c9106983a1",
+    "historicRawEvidenceFilesUnchanged": 211,
+    "immutableOffEvidenceCommit": "df3b894cef2c8ea3dd50ccb31394635aa8fe4077",
+    "rawWindowsReviewPreservedAt": "../raw/QUALIFICATION_REVIEW.json.gz",
+    "rawWindowsReviewSHA256": "56fead3a78281ea6a1ba68d21806d5fa7505f2ba32b709fd03c1ce831c8fa3ca"
+  },
+  "retainedNegative": "untrusted_bare_commit_cannot_authorize_cross_revision_read",
+  "sourceCommit": "e332b02c089cd0f068a7fe9e5c9dde40b5729ea1",
+  "sourceFiles": {
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift": {
+      "gitBlobBytes": 18217,
+      "gitBlobLF_SHA256": "76e52d7018757fffaa70e547de49915ca5d767d4fff54f227b78d583fec17e66",
+      "onlyPhysicalLineEndingDifference": true,
+      "rawBytes": 18217,
+      "rawWindowsSHA256": "76e52d7018757fffaa70e547de49915ca5d767d4fff54f227b78d583fec17e66"
+    },
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift": {
+      "gitBlobBytes": 16314,
+      "gitBlobLF_SHA256": "266d21482cd9aacc3441068937fb3bd4dc292f9b8cb718af9dc384d8802bad35",
+      "onlyPhysicalLineEndingDifference": true,
+      "rawBytes": 16314,
+      "rawWindowsSHA256": "266d21482cd9aacc3441068937fb3bd4dc292f9b8cb718af9dc384d8802bad35"
+    },
+    "Source/Otzaria/Search/OtzariaSearchIndexManager.swift": {
+      "gitBlobBytes": 28274,
+      "gitBlobLF_SHA256": "d9ca8f6735dd57bcb4f6425f90b9ad76f974212c76be147352b1488b4c15f651",
+      "onlyPhysicalLineEndingDifference": true,
+      "rawBytes": 28274,
+      "rawWindowsSHA256": "d9ca8f6735dd57bcb4f6425f90b9ad76f974212c76be147352b1488b4c15f651"
+    },
+    "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift": {
+      "gitBlobBytes": 12466,
+      "gitBlobLF_SHA256": "73f2b257bd60aeb59a3216cbf442aa29b76ea2f790cfb60c54a8114ba84d790c",
+      "onlyPhysicalLineEndingDifference": true,
+      "rawBytes": 12774,
+      "rawWindowsSHA256": "68b7e02cd525b14961bd7c903a9bfc7b7655a7e6976a7e9c75b9dd5bf003bf78"
+    },
+    "Tests/HQ/search/IndexReadCompatibilityBoundary.swift": {
+      "gitBlobBytes": 6052,
+      "gitBlobLF_SHA256": "13e4783765dbe297d45c36b22fd99a021c109c865b34730ed9abf1f1b6194c34",
+      "onlyPhysicalLineEndingDifference": true,
+      "rawBytes": 6052,
+      "rawWindowsSHA256": "13e4783765dbe297d45c36b22fd99a021c109c865b34730ed9abf1f1b6194c34"
+    },
+    "Tests/HQ/search/IndexReadCompatibilityFixtures.swift": {
+      "gitBlobBytes": 35651,
+      "gitBlobLF_SHA256": "0904c4a4ea6fdc21c725aa286e277f0f47e8bad8fbc154e1ba7d26d39a5727cc",
+      "onlyPhysicalLineEndingDifference": true,
+      "rawBytes": 35651,
+      "rawWindowsSHA256": "0904c4a4ea6fdc21c725aa286e277f0f47e8bad8fbc154e1ba7d26d39a5727cc"
+    },
+    "tools/hq-otzaria-read-compatibility.py": {
+      "gitBlobBytes": 9929,
+      "gitBlobLF_SHA256": "b5f7acd1e40f752c296e9a1a565d2e1c686db11826b1beb8c1551772e1b15f5f",
+      "onlyPhysicalLineEndingDifference": true,
+      "rawBytes": 9929,
+      "rawWindowsSHA256": "b5f7acd1e40f752c296e9a1a565d2e1c686db11826b1beb8c1551772e1b15f5f"
+    },
+    "tools/hq-search-tests.py": {
+      "gitBlobBytes": 7719,
+      "gitBlobLF_SHA256": "dd2cf57adee5da533e94ed8ddc313d61a7d8d4fb75e5b457355da43a30ff84d9",
+      "onlyPhysicalLineEndingDifference": true,
+      "rawBytes": 7830,
+      "rawWindowsSHA256": "03847a6fe2292594d2d5888280ca3aa61b2c5ad83691a5fab09d82f0a247aa28"
+    }
+  },
+  "sourceRegistry": [
+    "original265ToExactOccurrencesD5"
+  ],
+  "status": "PASS_WINDOWS_CANDIDATE_POLICY_AND_ORIGINAL_REGRESSION",
+  "warning": "Existing redundant SearchResultItem Sendable conformance warning remains in original regression log"
+}
