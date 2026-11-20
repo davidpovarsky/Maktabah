@@ -37,7 +37,7 @@ env:
 jobs:
   otzaria-framework:
     name: Build or restore Otzaria framework
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 90
     outputs:
       framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
@@ -61,11 +61,20 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26
+      - name: Select an installed SDK-matched Xcode 27 and runtime
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/logs/normal-ios-toolchain.json
+      - name: Identify the selected Apple compiler and SDKs
         id: xcode
         run: |
-          bash Scripts/CI/select-xcode-26.sh
-          echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          TOOLCHAIN_ID="$(
+            {
+              xcodebuild -version
+              xcrun swiftc --version
+              xcrun --sdk iphoneos --show-sdk-version
+              xcrun --sdk iphonesimulator --show-sdk-version
+            } | shasum -a 256 | cut -d' ' -f1
+          )"
+          echo "id=$TOOLCHAIN_ID" >> "$GITHUB_OUTPUT"
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -212,7 +221,7 @@ jobs:
 
   zayit-framework:
     name: Build or restore Zayit framework
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 60
     outputs:
       framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
@@ -236,11 +245,20 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26
+      - name: Select an installed SDK-matched Xcode 27 and runtime
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/logs/normal-ios-toolchain.json
+      - name: Identify the selected Apple compiler and SDKs
         id: xcode
         run: |
-          bash Scripts/CI/select-xcode-26.sh
-          echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          TOOLCHAIN_ID="$(
+            {
+              xcodebuild -version
+              xcrun swiftc --version
+              xcrun --sdk iphoneos --show-sdk-version
+              xcrun --sdk iphonesimulator --show-sdk-version
+            } | shasum -a 256 | cut -d' ' -f1
+          )"
+          echo "id=$TOOLCHAIN_ID" >> "$GITHUB_OUTPUT"
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -360,7 +378,7 @@ jobs:
 
   swiftpm:
     name: Resolve Swift packages once
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 30
     outputs:
       cache-hit: ${{ steps.swiftpm-cache.outputs.cache-hit }}
@@ -388,11 +406,20 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26 and identify package graph
+      - name: Select an installed SDK-matched Xcode 27 and runtime
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/logs/normal-ios-toolchain.json
+      - name: Identify the selected Apple compiler, SDKs, and package graph
         id: cache-inputs
         run: |
-          bash Scripts/CI/select-xcode-26.sh
-          echo "xcode=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          TOOLCHAIN_ID="$(
+            {
+              xcodebuild -version
+              xcrun swiftc --version
+              xcrun --sdk iphoneos --show-sdk-version
+              xcrun --sdk iphonesimulator --show-sdk-version
+            } | shasum -a 256 | cut -d' ' -f1
+          )"
+          echo "xcode=$TOOLCHAIN_ID" >> "$GITHUB_OUTPUT"
           echo "swiftpm=$(python3 Scripts/CI/cache-key-inputs.py swiftpm)" >> "$GITHUB_OUTPUT"
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -455,7 +482,7 @@ jobs:
   simulator-build:
     name: Build simulator app
     needs: [otzaria-framework, zayit-framework, swiftpm]
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 75
     steps:
       - name: Live Activity · refresh
@@ -481,8 +508,8 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26
-        run: bash Scripts/CI/select-xcode-26.sh
+      - name: Select an installed SDK-matched Xcode 27 and runtime
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/logs/normal-ios-toolchain.json
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -719,7 +746,7 @@ jobs:
   device-build:
     name: Build unsigned device IPA
     needs: [otzaria-framework, zayit-framework, swiftpm]
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 75
     steps:
       - name: Live Activity · refresh
@@ -745,8 +772,8 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26
-        run: bash Scripts/CI/select-xcode-26.sh
+      - name: Select an installed SDK-matched Xcode 27 and runtime
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/logs/normal-ios-toolchain.json
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -848,7 +875,7 @@ jobs:
     name: Real native Otzaria bootstrap acceptance
     if: ${{ inputs.run_heavy_otzaria_acceptance == true }}
     needs: simulator-build
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 240
     steps:
       - name: Live Activity · refresh
@@ -868,8 +895,8 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26
-        run: bash Scripts/CI/select-xcode-26.sh
+      - name: Select an installed SDK-matched Xcode 27 and runtime
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/logs/normal-ios-toolchain.json
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true

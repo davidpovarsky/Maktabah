@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "hashBoundary": "Committed Git blob bytes; raw gzip preserves original Windows records.",
+  "entries": {
+    "README.md": {
+      "bytes": 6134,
+      "sha256": "44060cfdd1322ba7ad36ef39a973be24cd5e043a2261cc0941992114ed242e8c"
+    },
+    "SOURCE_REVIEW.json": {
+      "bytes": 2168,
+      "sha256": "1cdb3c017abcc2a1cba021bb832315f7efc260658994058af813fba8d82d75bf"
+    },
+    "raw/RUNS.json.gz": {
+      "bytes": 844,
+      "sha256": "e3342de8002f03d1ff9ca8869960c17846507e1bb4e15d1e990418291d150315"
+    },
+    "raw/acceptance-bash-syntax.log.gz": {
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    "raw/baseline-result.json.gz": {
+      "bytes": 2318,
+      "sha256": "55c1dca70307c424d41ba923c21a6d485b11f46a57b9fe5b8386fef29e762ee0"
+    },
+    "raw/baseline.stderr.log.gz": {
+      "bytes": 2196,
+      "sha256": "72b80276b8e5f8687d6ec92442d598f18aea99e29542f77fd82cd3a9717f0fd2"
+    },
+    "raw/baseline.stdout.log.gz": {
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    "raw/candidate-result.json.gz": {
+      "bytes": 1134,
+      "sha256": "ee45b1b662691dfdbcce28ac2c649b88b3326135c3d3632ecd0c5ed6aa1b1088"
+    },
+    "raw/candidate.stderr.log.gz": {
+      "bytes": 754,
+      "sha256": "1793bd268fca7d93ad152deb2233e4c0afad763219220278201a95b6956d7a13"
+    },
+    "raw/candidate.stdout.log.gz": {
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    "raw/original-127ee-dispatch.json.gz": {
+      "bytes": 450,
+      "sha256": "b3bf06d3ec1f447f7941491d608b8f59c9fad109d99342fae0f26411d44573e3"
+    },
+    "raw/runtime-selection-after.txt.gz": {
+      "bytes": 1453,
+      "sha256": "ff998c094e312278da739936762d9080f35acc89b8d793050a745b171864360d"
+    },
+    "raw/runtime-selection-before.txt.gz": {
+      "bytes": 333,
+      "sha256": "0a633103c0ebd9a4e42112fa07bed0c4ed9299ff0f86d8931d2de1752afab6be"
+    }
+  }
+}

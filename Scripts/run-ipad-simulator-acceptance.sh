@@ -25,9 +25,67 @@ mkdir -p "$SCREENSHOT_DIR" "$LOG_DIR" "$REPORT_DIR" "$CRASH_DIR"
 BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" 2>/dev/null || echo "com.davidpovarsky.chavrusatext")"
 echo "Target app: $APP (bundle: $BUNDLE_ID)"
 
-# 1. Discover iPad Pro 13-inch simulator device type and latest iOS runtime
-DEVICE_TYPE="$(xcrun simctl list devicetypes -j | python3 -c 'import json,sys; values=json.load(sys.stdin)["devicetypes"]; print(next(item["identifier"] for item in values if "iPad Pro" in item["name"] and "13-inch" in item["name"]))')"
-RUNTIME="$(xcrun simctl list runtimes -j | python3 -c 'import json,sys; values=[item for item in json.load(sys.stdin)["runtimes"] if item.get("isAvailable") and item["identifier"].startswith("com.apple.CoreSimulator.SimRuntime.iOS")]; print(values[-1]["identifier"])')"
+# 1. Admit the actual app only to the selected SDK-matched iOS 27 runtime.
+# Local callers retain automatic selection within the same installed SDK pair.
+SELECTION="$(python3 - "$APP" "$ROOT" "$REPORT_DIR/normal-ios-runtime-selection.json" <<'PY'
+# BEGIN NORMAL_IOS_RUNTIME_SELECTION
+import json
+import os
+from pathlib import Path
+import plistlib
+import re
+import runpy
+import subprocess
+import sys
+
+def version(value):
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9]+(?:\.[0-9]+){0,2}", value):
+        raise SystemExit("Missing or malformed app/SDK/runtime version")
+    return (tuple(int(part) for part in value.split(".")) + (0, 0))[:3]
+
+app, root, report_path = map(Path, sys.argv[1:])
+with (app / "Info.plist").open("rb") as stream:
+    minimum = plistlib.load(stream).get("MinimumOSVersion")
+minimum_version = version(minimum)
+sdk = subprocess.check_output(
+    ["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"], text=True).strip()
+if version(sdk)[0] != 27:
+    raise SystemExit("Original app acceptance requires the selected iOS 27 SDK")
+runtimes = json.loads(subprocess.check_output(
+    ["xcrun", "simctl", "list", "runtimes", "available", "-j"], text=True))["runtimes"]
+selector = runpy.run_path(str(root / "Scripts/CI/select-runtime27-toolchain.py"))
+matches = [row for row in selector["matching_runtimes"](sdk, runtimes)
+           if version(row["version"]) >= max((27, 0, 0), minimum_version)]
+requested = os.environ.get("FAITHFUL_RUNTIME27_IDENTIFIER")
+if requested:
+    matches = [row for row in matches if row["identifier"] == requested]
+    if len(matches) != 1:
+        raise SystemExit("Selected runtime is unavailable or incompatible with the app/SDK")
+elif not matches:
+    raise SystemExit("No installed SDK-matched iOS 27 runtime can run the actual app")
+runtime = sorted(matches, key=lambda row: (version(row["version"]), row["identifier"]), reverse=True)[0]
+known_types = {row["identifier"] for row in json.loads(subprocess.check_output(
+    ["xcrun", "simctl", "list", "devicetypes", "-j"], text=True))["devicetypes"]}
+types = [row for row in runtime["supportedDeviceTypes"]
+         if "iPad Pro" in row["name"] and "13-inch" in row["name"] and row["identifier"] in known_types]
+if not types:
+    raise SystemExit("The selected runtime has no installed compatible 13-inch iPad Pro type")
+device = types[0]["identifier"]
+if not re.fullmatch(r"com\.apple\.CoreSimulator\.SimRuntime\.[A-Za-z0-9.-]+", runtime["identifier"]) or not re.fullmatch(
+        r"com\.apple\.CoreSimulator\.SimDeviceType\.[A-Za-z0-9.-]+", device):
+    raise SystemExit("Unexpected installed simulator identifier")
+report_path.write_text(json.dumps({
+    "status": "APP_MINIMUM_AND_SDK_MATCHED_RUNTIME",
+    "app_minimum_os": minimum, "sdk_version": sdk,
+    "requested_runtime_identifier": requested,
+    "runtime": {key: runtime.get(key) for key in ["identifier", "version", "buildversion", "isAvailable"]},
+    "device_type": device, "native_ui_executed": 0
+}, indent=2) + "\n", encoding="utf-8")
+print(runtime["identifier"] + "\t" + device)
+# END NORMAL_IOS_RUNTIME_SELECTION
+PY
+)"
+IFS=$'\t' read -r RUNTIME DEVICE_TYPE <<< "$SELECTION"
 
 echo "Creating iPad Pro 13-inch simulator (Device: $DEVICE_TYPE, Runtime: $RUNTIME)..."
 UDID="$(xcrun simctl create 'Maktabah Acceptance iPad' "$DEVICE_TYPE" "$RUNTIME")"

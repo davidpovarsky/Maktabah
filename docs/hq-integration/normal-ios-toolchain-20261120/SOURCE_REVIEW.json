@@ -1,0 +1,63 @@
+{
+  "generatedUTC": "2026-11-20T07:34:57.744887+00:00",
+  "base": "2f74d05b1cf75597b3a38fa64d0939b45caa44c2",
+  "actual_failed_run": 44672943654,
+  "actual_failed_checkout": "127ee9eddc2a9aea05c45ccf41420bb0cdd47705",
+  "operational_paths": [
+    ".github/workflows/ios-build.yml",
+    "Scripts/run-ipad-simulator-acceptance.sh"
+  ],
+  "app_sdk_native_sources_changed": [],
+  "original_acceptance_remainder_inverse_exact": true,
+  "all_other_workflow_steps_exact_structural_equal": {
+    "otzaria-framework": 25,
+    "zayit-framework": 21,
+    "swiftpm": 12,
+    "simulator-build": 28,
+    "device-build": 14,
+    "native-bootstrap-heavy": 15,
+    "build-summary": 2
+  },
+  "all_original_workflow_inputs_permissions_conditions_timeouts_preserved": true,
+  "original_common_selector_unchanged": true,
+  "original_common_selector_sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8",
+  "source_hashes_lf": {
+    ".github/workflows/ios-build.yml": {
+      "before": "4c2751fffd789723ecfa68eca88d263b6165f1098766d9d8a5b04101c0db8204",
+      "after": "91781359217c1b48c7bc98393265d6bca61e98576325dc206285527d4dfb5691"
+    },
+    "Scripts/run-ipad-simulator-acceptance.sh": {
+      "before": "71a7220f45a191be9698a7e6698a61a15b806e0989bf1b5b41047b815b3c3b79",
+      "after": "9879532570b4bbc4720900d95ac2c1e451593847fff4c9ada1068e8fb8049bb0"
+    }
+  },
+  "baseline": {
+    "methods_run": 29,
+    "passed_methods": 6,
+    "failed_methods": 22,
+    "error_methods": 1,
+    "failure_entries_including_subtests": 34,
+    "error_entries": 1,
+    "skipped": 0,
+    "missing_receipt_probe_error": "The new receipt assertion cannot index the legacy absent receipt; this is fixture observation, not an application crash."
+  },
+  "candidate": {
+    "methods_run": 29,
+    "passed": 29,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "bash_syntax": {
+    "command": [
+      "C:\\Program Files\\Git\\bin\\bash.exe",
+      "-n",
+      "C:\\Users\\DAVID\\Code\\Maktabah-normalios-toolchain-20261120\\Scripts\\run-ipad-simulator-acceptance.sh"
+    ],
+    "exit": 0,
+    "stderr": ""
+  },
+  "apple_compiles": 0,
+  "native_executed": 0,
+  "dispatches": 0
+}
