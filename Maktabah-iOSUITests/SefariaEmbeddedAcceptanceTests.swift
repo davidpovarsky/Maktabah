@@ -276,7 +276,8 @@ class SefariaTOCNativeBase: R27NativeUIBase {
     }
 
     @MainActor
-    private func row(_ label: String, scrolls: Int = 12) throws -> XCUIElement {
+    private func row(_ label: String, scrolls: Int = 12,
+                     scrollPastDuplicateLabels: Bool = false) throws -> XCUIElement {
         let observation = SefariaTOCNativeObservation(app)
         for turn in 0...scrolls {
             let list = try requireVisible("toc-content-list", timeout: 15)
@@ -284,7 +285,9 @@ class SefariaTOCNativeBase: R27NativeUIBase {
                 format: "identifier BEGINSWITH %@ AND label == %@", "toc-row-", label))
             let visible = rows.allElementsBoundByIndex.filter { observation.visible($0) }
             if visible.count == 1 { return visible[0] }
-            XCTAssertLessThanOrEqual(visible.count, 1, "A TOC label must identify one original visible row")
+            if !scrollPastDuplicateLabels {
+                XCTAssertLessThanOrEqual(visible.count, 1, "A TOC label must identify one original visible row")
+            }
             if turn == scrolls { break }
             list.swipeUp(velocity: .slow)
         }
@@ -356,7 +359,10 @@ class SefariaTOCNativeBase: R27NativeUIBase {
         try showOriginalTOC()
         try selectStructure(hebrew ? "פרקים" : "Chapters")
         try expand(hebrew ? "פרק ב׳" : "2", hebrew: hebrew)
-        try row(hebrew ? "א׳" : "1", scrolls: 2).tap()
+        // The original Group/ForEach flattens root "1" and child "1" in AX.
+        // Keep the same bounded swipes; accept only one visible/hittable node.
+        try row(hebrew ? "א׳" : "1", scrolls: 2,
+                scrollPastDuplicateLabels: !hebrew).tap()
         // Source node is Rashi on Genesis 2:1; the existing Reader resolver
         // presents its bounded chapter. No exact segment-focus claim is made.
         try requireReader(backend: "sefariaEmbedded", work: "Rashi on Genesis", reference: "Rashi on Genesis 2")

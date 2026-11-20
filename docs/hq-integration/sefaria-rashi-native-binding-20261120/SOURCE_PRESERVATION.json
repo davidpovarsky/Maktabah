@@ -1,0 +1,27 @@
+{
+  "time": "2026-11-20T12:52:31.370459+00:00",
+  "base": "8ff5f20f9b01913919c1ff21587dcbe4f99d8c7f",
+  "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+  "beforeSHA256": "6b9dedf2fda3a1197eb205fbc2317048652f5c202c79a55f0957d79d98143e91",
+  "afterSHA256": "d4d78663f69d64d0507dd5941cba364e31c9d1c81c9de4625880132c059341dd",
+  "exactInverse": true,
+  "replacements": [
+    [
+      "private func row(_ label: String, scrolls: Int = 12) throws -> XCUIElement {",
+      "private func row(_ label: String, scrolls: Int = 12,\n                     scrollPastDuplicateLabels: Bool = false) throws -> XCUIElement {"
+    ],
+    [
+      "            XCTAssertLessThanOrEqual(visible.count, 1, \"A TOC label must identify one original visible row\")",
+      "            if !scrollPastDuplicateLabels {\n                XCTAssertLessThanOrEqual(visible.count, 1, \"A TOC label must identify one original visible row\")\n            }"
+    ],
+    [
+      "        try row(hebrew ? \"א׳\" : \"1\", scrolls: 2).tap()",
+      "        // The original Group/ForEach flattens root \"1\" and child \"1\" in AX.\n        // Keep the same bounded swipes; accept only one visible/hittable node.\n        try row(hebrew ? \"א׳\" : \"1\", scrolls: 2,\n                scrollPastDuplicateLabels: !hebrew).tap()"
+    ]
+  ],
+  "scope": "English Rashi child label only may remain ambiguous before the original maximum two swipes; final return still requires exactly one original visible/hittable row. All default calls keep the earlier ambiguity assertion.",
+  "sourceHierarchy": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift uses Group and recursive ForEach; no parent AX container is declared. Original IDs remain toc-row-/toc-expand- plus node id.",
+  "native": "NOT_RUN",
+  "appleTypecheck": "NOT_RUN",
+  "casesOrOraclesRemoved": 0
+}
