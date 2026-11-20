@@ -1,0 +1,7 @@
+{
+  "initial_diff_check": "FAIL: three whitespace-only compiler-context lines in the uncompressed diagnostic excerpt had trailing spaces. Raw source log unchanged.",
+  "correction": "Retain the exact diagnostic excerpt as gzip rather than alter its bytes. Original complete ZIP is also retained.",
+  "diagnostic_excerpt_raw_sha256": "9d90e0936795c771459df374f1de5e796155536751b4a2af815889da895a056e",
+  "source_patch_changed": false,
+  "final_diff_check": "PASS"
+}

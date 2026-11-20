@@ -1,0 +1,14 @@
+{
+  "observed_at": "2026-11-20T09:40:16.501704+00:00",
+  "base": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "test_file": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "test_before_lf_sha256": "387879fcc00f2d90f8bb03319c59faf392f093062fcd0d1551a6c34009f9bb11",
+  "test_after_lf_sha256": "397099a55c6da0d3d9e0f2e8b8a13e4bf9e0f0e3a8114ac8d59a42eb3a7fb899",
+  "whole_file_exact_inverse": true,
+  "other_tracked_file_changes": [],
+  "product_source_vendor_project_workflow_changes": [],
+  "ui_oracles_timeouts_and_callers_unchanged": true,
+  "new_native_tests_added": 0,
+  "candidate_apple_typecheck": "NOT_RUN",
+  "candidate_native_execution": "NOT_RUN"
+}

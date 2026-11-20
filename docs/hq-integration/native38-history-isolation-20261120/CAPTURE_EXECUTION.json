@@ -1,0 +1,79 @@
+[
+  {
+    "name": "baseline-typecheck",
+    "command": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+      "-j",
+      "1",
+      "-swift-version",
+      "6",
+      "-strict-concurrency=complete",
+      "-parse-as-library",
+      "-typecheck",
+      "build\\native38-history-isolation-20261120\\baseline-capture.swift"
+    ],
+    "started_at": "2026-11-20T09:32:50.804432+00:00",
+    "finished_at": "2026-11-20T09:32:53.881315+00:00",
+    "exit": 1,
+    "timed_out": false,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "cdaa18a81249e6ea811898d2552e13b893c96c07f189abae8c8dc233345c5792",
+    "stdout": "",
+    "stderr": "build\\native38-history-isolation-20261120\\baseline-capture.swift:116:16: error: converting non-Sendable function value to '@Sendable () -> NativeGlobalHistoryObservation' may introduce data races\r\n114 |                                        expectedContainer: originalContainer, expectedMetadata: originalMetadata)\r\n115 |         }\r\n116 |         return historyObservation\r\n    |                `- error: converting non-Sendable function value to '@Sendable () -> NativeGlobalHistoryObservation' may introduce data races\r\n117 |     }\r\n118 |     func predicate(in containers: URL, query: String, originalContainer: URL, originalMetadata: Data) -> NSPredicate {\r\n"
+  },
+  {
+    "name": "candidate-compile",
+    "command": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+      "-j",
+      "1",
+      "-swift-version",
+      "6",
+      "-strict-concurrency=complete",
+      "-parse-as-library",
+      "build\\native38-history-isolation-20261120\\candidate-capture.swift",
+      "-o",
+      "build\\native38-history-isolation-20261120\\candidate-capture.exe"
+    ],
+    "started_at": "2026-11-20T09:32:53.882314+00:00",
+    "finished_at": "2026-11-20T09:32:57.961418+00:00",
+    "exit": 0,
+    "timed_out": false,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "344abcec38b059baea1671447a092714a1e5466c6de4d7a2c926ec094de7a630",
+    "stdout": "",
+    "stderr": "   Creating library build\\native38-history-isolation-20261120\\candidate-capture.lib and object build\\native38-history-isolation-20261120\\candidate-capture.exp\r\r\n"
+  },
+  {
+    "name": "candidate-runtime",
+    "command": [
+      "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native38-history-isolation-20261120\\candidate-capture.exe",
+      "C:\\Users\\DAVID\\Code\\Maktabah-native-window-inspector-20261120\\build\\native38-history-isolation-20261120"
+    ],
+    "started_at": "2026-11-20T09:32:57.963564+00:00",
+    "finished_at": "2026-11-20T09:32:58.375806+00:00",
+    "exit": 0,
+    "timed_out": false,
+    "stdout_sha256": "c00cc5276ee5b6147d0e724ea6f527dde6abba9010ea7c4d458910a438561a6f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "CASE original_pinned_observation PASS\r\nCASE namespace_capture_independent_of_owner PASS\r\nCASE exact_query_oracle_preserved PASS\r\nCASE pinned_metadata_oracle_preserved PASS\r\nRESULT 4 PASS 0 FAIL; no UIKit/Simulator/runtime acceptance\r\n",
+    "stderr": ""
+  },
+  {
+    "name": "faithful-syntax-parse",
+    "command": [
+      "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+      "-frontend",
+      "-parse",
+      "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+    ],
+    "started_at": "2026-11-20T09:32:58.376900+00:00",
+    "finished_at": "2026-11-20T09:32:58.724224+00:00",
+    "exit": 0,
+    "timed_out": false,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "",
+    "stderr": ""
+  }
+]

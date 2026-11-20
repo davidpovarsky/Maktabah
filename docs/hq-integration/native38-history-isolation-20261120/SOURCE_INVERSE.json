@@ -1,0 +1,20 @@
+{
+  "base": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "branch": "codex/otzaria-history-isolation-20261120",
+  "source": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "before_lf_sha256": "387879fcc00f2d90f8bb03319c59faf392f093062fcd0d1551a6c34009f9bb11",
+  "after_lf_sha256": "397099a55c6da0d3d9e0f2e8b8a13e4bf9e0f0e3a8114ac8d59a42eb3a7fb899",
+  "exact_inverse_entire_file": true,
+  "substitutions": [
+    {
+      "old": "        let initial = observeNativeGlobalHistory(in: containers, namespace: workspaceNamespace, query: query)\n",
+      "new": "        let historyNamespace = workspaceNamespace\n        let initial = observeNativeGlobalHistory(in: containers, namespace: historyNamespace, query: query)\n"
+    },
+    {
+      "old": "        func historyObservation() -> NativeGlobalHistoryObservation {\n            observeNativeGlobalHistory(in: containers, namespace: workspaceNamespace, query: query,\n                                       expectedContainer: originalContainer, expectedMetadata: originalMetadata)\n        }\n",
+      "new": "        let historyObservation: @Sendable () -> NativeGlobalHistoryObservation = {\n            observeNativeGlobalHistory(in: containers, namespace: historyNamespace, query: query,\n                                       expectedContainer: originalContainer, expectedMetadata: originalMetadata)\n        }\n"
+    }
+  ],
+  "unchanged": "All remaining bytes, including predicate/MainActor.assumeIsolated, 90-second waiter, Return, query/row/keyboard checks and attachments",
+  "actual_apple_baseline": "Native38 run44704452479 compiler error at Faithful991; 0 UI executed,38 NOT_RUN"
+}

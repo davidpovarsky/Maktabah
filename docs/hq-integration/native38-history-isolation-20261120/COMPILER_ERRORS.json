@@ -1,0 +1,14 @@
+[
+  {
+    "line": 108355,
+    "text": "/Users/runner/work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:991:67: error: sending 'self' risks causing data races [#RegionIsolation::SendingRisksDataRace]"
+  },
+  {
+    "line": 108359,
+    "text": "     |                                                                   |- error: sending 'self' risks causing data races [#RegionIsolation::SendingRisksDataRace]"
+  },
+  {
+    "line": 111390,
+    "text": "** TEST BUILD FAILED **"
+  }
+]

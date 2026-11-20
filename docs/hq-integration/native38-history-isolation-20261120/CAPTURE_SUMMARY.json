@@ -1,0 +1,24 @@
+{
+  "baseline_host_compile_exit": 1,
+  "baseline_rejected": true,
+  "candidate_host_compile_exit": 0,
+  "candidate_runtime_exit": 0,
+  "case_names": [
+    "original_pinned_observation",
+    "namespace_capture_independent_of_owner",
+    "exact_query_oracle_preserved",
+    "pinned_metadata_oracle_preserved"
+  ],
+  "expected_case_names": [
+    "original_pinned_observation",
+    "namespace_capture_independent_of_owner",
+    "exact_query_oracle_preserved",
+    "pinned_metadata_oracle_preserved"
+  ],
+  "exact_four_controls_pass": true,
+  "whole_test_file_parse_exit": 0,
+  "apple_typecheck": "NOT_RUN_CANDIDATE",
+  "native_execution": "NOT_RUN; original Native38 baseline has0executed/38NOT_RUN",
+  "no_original_helper_changed": true,
+  "source_scope": "Complete actual Foundation observers and exact closure block; explicit test-only owner/property lists, no UIKit/XCTest scheduling proof"
+}

@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "scope": "Exact canonical staged Git bytes; gzip/ZIP retain raw byte-sensitive evidence; excludes this manifest.",
+  "base": "0f5111e8f8e379e17da558ddbe2aab5214ac0315",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 149734,
+      "sha256": "397099a55c6da0d3d9e0f2e8b8a13e4bf9e0f0e3a8114ac8d59a42eb3a7fb899"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/CAPTURE_EXECUTION.json",
+      "bytes": 3995,
+      "sha256": "587b39bbb5eb131e3b59286956d3a1c38622e21facbbba2154e9b19017082ba7"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/CAPTURE_FIXTURE_INPUTS.json",
+      "bytes": 725,
+      "sha256": "abdc5572e10cd841750769ce931ef546045792395f09cb0531ed57a7098c2f7e"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/CAPTURE_SUMMARY.json",
+      "bytes": 893,
+      "sha256": "940c725f3122465466dd986704b9afdd0140e03f9735f00a16b80d8b43e4e95a"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/CASE_OUTCOMES.json",
+      "bytes": 16224,
+      "sha256": "43699a4749ada1dc92ebcb35903d9749e8270132047fc56bcb5e45f4e6eb92cb"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/CASE_TABLE.md",
+      "bytes": 4498,
+      "sha256": "7464cb3ac3e0b086ed9b186cbf8c4a142261075c06c317c572d9b62d0e59c13b"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/COMPILER_ERRORS.json",
+      "bytes": 511,
+      "sha256": "8c3328c981bf8611bf60653d0ef6c7f1de0115a80c385381c5a6028b431cc05a"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/FINAL_SOURCE_PRESERVATION.json",
+      "bytes": 672,
+      "sha256": "b8544255225d77b1e7b9b8b83f892212777db8d72b455f4d7429d38f7f6eb1aa"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/FIRST_APPLE_ERROR.txt.gz",
+      "bytes": 629,
+      "sha256": "1bbf15662ceef51365ec465f55002308cfa8d22e36ed53088cc883b759c2e3da"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/PACKAGING_CHECKS.json",
+      "bytes": 465,
+      "sha256": "373c55bd1af658c7b78c52b8850d8dd3bcac543b706e30f132304f3867594a6a"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/README.md",
+      "bytes": 6700,
+      "sha256": "6b27c34817c7a4fb33a977f1e83a2b4b21a176522ff91c544bb82bff2fc137a4"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/SOURCE_INVERSE.json",
+      "bytes": 1658,
+      "sha256": "2758adacba2cc137a95b5f821711771116aa8d1e29b91737795df40468957169"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/VERIFIED_OUTCOME.json",
+      "bytes": 14217,
+      "sha256": "703e5b0fbeb3df99c66f7907e0cc601c9c8b39259e99955b132c51253073f4c7"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/ZIP_INVENTORY.json",
+      "bytes": 9300,
+      "sha256": "b0a86e05044dd18edad3aa28f97543c0260301da650d5e33829ac66b31345b66"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/ZIP_VERIFIED.json",
+      "bytes": 508,
+      "sha256": "9e12895a77e062722db72d5e30a7838e2cd70ab7bb87ce6e6753db04ad88c573"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-Faithful.after.git-lf.swift.gz",
+      "bytes": 30970,
+      "sha256": "bd3f4d1e3a1e18015739ef8dd99fbb63401b7b8592ecb57123fd5ce6f4e43528"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-Faithful.before.git-lf.swift.gz",
+      "bytes": 30948,
+      "sha256": "f6f04cdafb85eb9d4fe14d174f31630a897aa5a7a4e13cbe9b3c2f00661a30b9"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-PROPOSED.patch.gz",
+      "bytes": 530,
+      "sha256": "0dbc5d7d7921b855743ad5db3a4d6b1e03982e2193c537054ae62dcb5164b415"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-baseline-capture.swift.gz",
+      "bytes": 2987,
+      "sha256": "b3f92dd01c2b4a89d0ee1d8fd0c09d58a779e121017e452e055d16688e981c36"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-baseline-typecheck.stderr.log.gz",
+      "bytes": 313,
+      "sha256": "ab86131e71c59ff4ecbb3719ce7cc022bb3172ca235e6fae8eb4162b47a54b9b"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-baseline-typecheck.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-candidate-capture.swift.gz",
+      "bytes": 2994,
+      "sha256": "dbb74a9741af49d5312f98068d6c1da0ac46e85c659cc5c706113fc189a31064"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-candidate-compile.stderr.log.gz",
+      "bytes": 114,
+      "sha256": "f811798bf2ce1b308f600d5034d4417fc1d95350ed3a79eea4c9b1aa554dc5f6"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-candidate-compile.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-candidate-runtime.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-candidate-runtime.stdout.log.gz",
+      "bytes": 177,
+      "sha256": "1e2b84ca5615c2567ea65595ca1b3f27080528fae999c76ae3eeb285387fef7d"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-faithful-syntax-parse.stderr.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/fixture-faithful-syntax-parse.stdout.log.gz",
+      "bytes": 20,
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-AFTER_WATCH_RUN.json.gz",
+      "bytes": 1757,
+      "sha256": "632d9ec8886cb7317a1caf9915d539cb71dc38efc7343f96f584bbad9185a2ba"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-EXPECTED_R27_CASES.git-lf.json.gz",
+      "bytes": 32658,
+      "sha256": "73f7f301471b9ab524ab45c6d5b1a0216f6ee1749ec7f4fc6526ce9b015bd461"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-EXPECTED_SOURCE_TREES.json.gz",
+      "bytes": 2091,
+      "sha256": "dcf6a27b0164c8b682b652fde8df7d5c980a62c7c8ca65196b4105287a33cb33"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-FINAL_ARTIFACTS.json.gz",
+      "bytes": 501,
+      "sha256": "7c92c2e617da81e14382cdd729074140b6ee16d8a37d6362d8ddaa09cb73c680"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-FINAL_JOBS.json.gz",
+      "bytes": 1589,
+      "sha256": "340cd2b4db1f341d9b977cba97a9f3481e1eec7c65e3485e760fae09f362e873"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-FINITE_WATCH.log.gz",
+      "bytes": 1612,
+      "sha256": "1b1b650768a503cdd68c3c2f1708c6ebe44f02fbb07e1a36006f35a21cc8168a"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-PREWATCH_PROCESSES.json.gz",
+      "bytes": 119,
+      "sha256": "0030a2b345e43d6a92fc72aff0b80b71c32f9952778cc15250329e4ba717a735"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-PREWATCH_RUN.json.gz",
+      "bytes": 1753,
+      "sha256": "3999daf896c103055453b2c3668cc83a5f09918228148130b6aa1bf3bab094f3"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-SOURCE_BINDING_EXPECTATIONS.json.gz",
+      "bytes": 437,
+      "sha256": "f4d6f9f9fe64b126660358bd33e1c3c4e6d6e5d472742d59f6ead635820a71fd"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-WATCH_RESULT.json.gz",
+      "bytes": 387,
+      "sha256": "fe8c5814e1aab56f440ea0e36042a86272ed129226efb9b509a44deb4b72ee60"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/run-WATCH_STARTED.json.gz",
+      "bytes": 278,
+      "sha256": "6843ac1c069db7fb66dec31bd6a8f7151a888bd403215ac617553968e834c3a1"
+    },
+    {
+      "path": "docs/hq-integration/native38-history-isolation-20261120/runtime27-evidence.zip",
+      "bytes": 1502571,
+      "sha256": "a3198ef3647bea46864fcb69d4b4656ac23596f36bd498dc5b703a01da1ecbfe"
+    }
+  ]
+}

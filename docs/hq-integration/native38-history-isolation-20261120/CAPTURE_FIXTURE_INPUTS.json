@@ -1,0 +1,15 @@
+{
+  "full_helpers_sha256": "90bac52e59225781c71b04e58e06b5cb9ef5bd85cb166a0437390ac157a37459",
+  "full_helpers_before_after_identical": true,
+  "closure_blocks": {
+    "baseline": {
+      "sha256": "fdba8d2805fe228a0ea4c33be07ccb034eb83e7ad7e9451c8df3905477fe1d42",
+      "bytes": 293
+    },
+    "candidate": {
+      "sha256": "9e7f319f1ac49fd4dc213f5ce8803d2051701231cee528bfae223902bad5a350",
+      "bytes": 304
+    }
+  },
+  "boundary": "Actual complete file observation helpers and exact original/candidate closure blocks. Test-only owner and disposable metadata/property-list storage; no XCTest/UI/Apple typecheck. Explicit Sendable return tests transferable capture shape; Apple RED remains separately authenticated."
+}

@@ -1,0 +1,398 @@
+[
+  {
+    "name": "artifacts/runtime27/CommandPalette.abi.json",
+    "bytes": 149,
+    "compressed_bytes": 111,
+    "crc32": "a8bd602e"
+  },
+  {
+    "name": "artifacts/runtime27/CommandPalette.swiftdoc",
+    "bytes": 29836,
+    "compressed_bytes": 9047,
+    "crc32": "4a26dd66"
+  },
+  {
+    "name": "artifacts/runtime27/CommandPalette.swiftmodule",
+    "bytes": 188328,
+    "compressed_bytes": 73720,
+    "crc32": "eda1e2af"
+  },
+  {
+    "name": "artifacts/runtime27/CommandPalette.swiftsourceinfo",
+    "bytes": 37164,
+    "compressed_bytes": 9348,
+    "crc32": "6e3a96b9"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.abi.json",
+    "bytes": 149,
+    "compressed_bytes": 111,
+    "crc32": "a8bd602e"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.swift",
+    "bytes": 12387,
+    "compressed_bytes": 3501,
+    "crc32": "2fd51d9b"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.swiftdoc",
+    "bytes": 412,
+    "compressed_bytes": 361,
+    "crc32": "7dfca882"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.swiftmodule",
+    "bytes": 39696,
+    "compressed_bytes": 18512,
+    "crc32": "f1b52e99"
+  },
+  {
+    "name": "artifacts/runtime27/ReaderSidebarSplit.swiftsourceinfo",
+    "bytes": 676,
+    "compressed_bytes": 558,
+    "crc32": "193eefb7"
+  },
+  {
+    "name": "artifacts/runtime27/build-for-testing-driver.log",
+    "bytes": 32431,
+    "compressed_bytes": 7037,
+    "crc32": "f7246747"
+  },
+  {
+    "name": "artifacts/runtime27/cases.html",
+    "bytes": 13446,
+    "compressed_bytes": 3198,
+    "crc32": "3d5572ff"
+  },
+  {
+    "name": "artifacts/runtime27/checkout.txt",
+    "bytes": 41,
+    "compressed_bytes": 42,
+    "crc32": "bd212251"
+  },
+  {
+    "name": "artifacts/runtime27/device-types.json",
+    "bytes": 66366,
+    "compressed_bytes": 3254,
+    "crc32": "2f2a14e2"
+  },
+  {
+    "name": "artifacts/runtime27/hid-prepare.log",
+    "bytes": 1623,
+    "compressed_bytes": 480,
+    "crc32": "2a87a0ea"
+  },
+  {
+    "name": "artifacts/runtime27/hid-tools.json",
+    "bytes": 908,
+    "compressed_bytes": 496,
+    "crc32": "1c524f00"
+  },
+  {
+    "name": "artifacts/runtime27/ios-simulator-skill-SKILL.md",
+    "bytes": 31145,
+    "compressed_bytes": 12379,
+    "crc32": "6740da09"
+  },
+  {
+    "name": "artifacts/runtime27/junit.xml",
+    "bytes": 14373,
+    "compressed_bytes": 3264,
+    "crc32": "f4c86f38"
+  },
+  {
+    "name": "artifacts/runtime27/maestro-mobile-testing-skill-SKILL.md",
+    "bytes": 8582,
+    "compressed_bytes": 3914,
+    "crc32": "c7975600"
+  },
+  {
+    "name": "artifacts/runtime27/palette-sdk-compile.log",
+    "bytes": 0,
+    "compressed_bytes": 2,
+    "crc32": "00000000"
+  },
+  {
+    "name": "artifacts/runtime27/result.json",
+    "bytes": 96662,
+    "compressed_bytes": 10895,
+    "crc32": "a8df6394"
+  },
+  {
+    "name": "artifacts/runtime27/runtimes.json",
+    "bytes": 58443,
+    "compressed_bytes": 2316,
+    "crc32": "09af062f"
+  },
+  {
+    "name": "artifacts/runtime27/sdk-path.txt",
+    "bytes": 122,
+    "compressed_bytes": 92,
+    "crc32": "feabc55a"
+  },
+  {
+    "name": "artifacts/runtime27/sdk.txt",
+    "bytes": 5,
+    "compressed_bytes": 7,
+    "crc32": "4f490a66"
+  },
+  {
+    "name": "artifacts/runtime27/selected-test-declarations.json",
+    "bytes": 11552,
+    "compressed_bytes": 1112,
+    "crc32": "912a99a8"
+  },
+  {
+    "name": "artifacts/runtime27/sidebar-sdk-compile.log",
+    "bytes": 0,
+    "compressed_bytes": 2,
+    "crc32": "00000000"
+  },
+  {
+    "name": "artifacts/runtime27/simctl-io-help.txt",
+    "bytes": 3082,
+    "compressed_bytes": 1221,
+    "crc32": "2f3c2d49"
+  },
+  {
+    "name": "artifacts/runtime27/simctl-ui-help.txt",
+    "bytes": 1776,
+    "compressed_bytes": 597,
+    "crc32": "ad928ec8"
+  },
+  {
+    "name": "artifacts/runtime27/swift.txt",
+    "bytes": 128,
+    "compressed_bytes": 108,
+    "crc32": "8051ba9a"
+  },
+  {
+    "name": "artifacts/runtime27/test-tree.txt",
+    "bytes": 41,
+    "compressed_bytes": 41,
+    "crc32": "41598f02"
+  },
+  {
+    "name": "artifacts/runtime27/toolchain-selection.json",
+    "bytes": 13019,
+    "compressed_bytes": 783,
+    "crc32": "bef32d98"
+  },
+  {
+    "name": "artifacts/runtime27/xcode.txt",
+    "bytes": 31,
+    "compressed_bytes": 33,
+    "crc32": "ff4998b5"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-activities-help.txt",
+    "bytes": 906,
+    "compressed_bytes": 400,
+    "crc32": "ce147c80"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-summary-help.txt",
+    "bytes": 708,
+    "compressed_bytes": 318,
+    "crc32": "467b8959"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-summary-schema.json",
+    "bytes": 5804,
+    "compressed_bytes": 898,
+    "crc32": "f0c8e545"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-test-details-help.txt",
+    "bytes": 817,
+    "compressed_bytes": 359,
+    "crc32": "831f0c85"
+  },
+  {
+    "name": "hq-stage2/ExpoModulesProvider.swift",
+    "bytes": 1246,
+    "compressed_bytes": 473,
+    "crc32": "497ff62d"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-tests-schema.json",
+    "bytes": 3740,
+    "compressed_bytes": 715,
+    "crc32": "e9cfa77c"
+  },
+  {
+    "name": "artifacts/runtime27/xcresult-tests-help.txt",
+    "bytes": 713,
+    "compressed_bytes": 321,
+    "crc32": "20702f38"
+  },
+  {
+    "name": "hq-stage2/actual-source-inputs.json",
+    "bytes": 113162,
+    "compressed_bytes": 35131,
+    "crc32": "7b821288"
+  },
+  {
+    "name": "hq-stage2/generated-Maktabah-project.pbxproj",
+    "bytes": 610513,
+    "compressed_bytes": 92309,
+    "crc32": "27a46682"
+  },
+  {
+    "name": "hq-stage2/generated-pods-project.diff",
+    "bytes": 409488,
+    "compressed_bytes": 53842,
+    "crc32": "91f1041e"
+  },
+  {
+    "name": "hq-stage2/generated-privacy.diff",
+    "bytes": 2618,
+    "compressed_bytes": 560,
+    "crc32": "dde2a370"
+  },
+  {
+    "name": "hq-stage2/hanlin-sdk-inputs.json",
+    "bytes": 61045,
+    "compressed_bytes": 16010,
+    "crc32": "0443c256"
+  },
+  {
+    "name": "hq-stage2/hanlin-sdk.log",
+    "bytes": 679,
+    "compressed_bytes": 416,
+    "crc32": "684fed2b"
+  },
+  {
+    "name": "hq-stage2/maktabah_zayit_search.h.log",
+    "bytes": 300,
+    "compressed_bytes": 148,
+    "crc32": "fd7085b1"
+  },
+  {
+    "name": "hq-stage2/matching-embedded-bundle.log",
+    "bytes": 741,
+    "compressed_bytes": 365,
+    "crc32": "82f7285f"
+  },
+  {
+    "name": "hq-stage2/native-script-permissions.log",
+    "bytes": 0,
+    "compressed_bytes": 2,
+    "crc32": "00000000"
+  },
+  {
+    "name": "hq-stage2/npm-ci.log",
+    "bytes": 3331,
+    "compressed_bytes": 1238,
+    "crc32": "9b6de75a"
+  },
+  {
+    "name": "hq-stage2/otzaria_search_engine.h.log",
+    "bytes": 304,
+    "compressed_bytes": 143,
+    "crc32": "1619658f"
+  },
+  {
+    "name": "hq-stage2/pinned-sharp-inputs.log",
+    "bytes": 991,
+    "compressed_bytes": 509,
+    "crc32": "b445597c"
+  },
+  {
+    "name": "hq-stage2/pod-install.log",
+    "bytes": 31807,
+    "compressed_bytes": 5113,
+    "crc32": "cab9e423"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+    "bytes": 877,
+    "compressed_bytes": 331,
+    "crc32": "0cf24b94"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+    "bytes": 855,
+    "compressed_bytes": 301,
+    "crc32": "10470de0"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+    "bytes": 1482,
+    "compressed_bytes": 368,
+    "crc32": "ddedeecd"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+    "bytes": 776,
+    "compressed_bytes": 312,
+    "crc32": "efb09f89"
+  },
+  {
+    "name": "hq-stage2/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+    "bytes": 1233,
+    "compressed_bytes": 326,
+    "crc32": "82c8ab68"
+  },
+  {
+    "name": "hq-stage2/privacy-generated.xcprivacy",
+    "bytes": 1386,
+    "compressed_bytes": 383,
+    "crc32": "621daac8"
+  },
+  {
+    "name": "hq-stage2/privacy-original.xcprivacy",
+    "bytes": 1132,
+    "compressed_bytes": 324,
+    "crc32": "9873bf8c"
+  },
+  {
+    "name": "hq-stage2/react-source-checkout.log",
+    "bytes": 453,
+    "compressed_bytes": 220,
+    "crc32": "6a5c37f3"
+  },
+  {
+    "name": "hq-stage2/resolve-packages.log",
+    "bytes": 4898,
+    "compressed_bytes": 1343,
+    "crc32": "9395a953"
+  },
+  {
+    "name": "hq-stage2/resolved-Package.resolved",
+    "bytes": 4432,
+    "compressed_bytes": 1039,
+    "crc32": "71bee3ea"
+  },
+  {
+    "name": "hq-stage2/result.json",
+    "bytes": 82806,
+    "compressed_bytes": 23207,
+    "crc32": "c01c857f"
+  },
+  {
+    "name": "hq-stage2/simulator-build-for-testing.log",
+    "bytes": 21814374,
+    "compressed_bytes": 1074593,
+    "crc32": "679d7c6e"
+  },
+  {
+    "name": "hq-stage2/resolved-Podfile.lock",
+    "bytes": 100298,
+    "compressed_bytes": 11017,
+    "crc32": "b37aa330"
+  },
+  {
+    "name": "hq-stage2/target-membership.log",
+    "bytes": 130,
+    "compressed_bytes": 110,
+    "crc32": "0c5c3cb5"
+  },
+  {
+    "name": "hq-stage2/workspace-Package.resolved",
+    "bytes": 4432,
+    "compressed_bytes": 1039,
+    "crc32": "71bee3ea"
+  }
+]
