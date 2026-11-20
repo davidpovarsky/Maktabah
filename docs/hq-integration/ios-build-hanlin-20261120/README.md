@@ -45,3 +45,28 @@ read once. The workflow was not dispatched twice. Raw console logs,
 SHA-verified small artifacts, metadata and watcher history are in
 `evidence/run-44669016128.zip`; its digest and exact job results are in
 `evidence/run-44669016128.json`.
+
+## Narrow follow-up for the demonstrated gates
+
+The Inspector backend compile now includes the same two original
+localization source files already used by the existing TestFlight fixture.
+Its original cases, flags and executable remain unchanged.
+
+Both actual app-build jobs now invoke
+`Scripts/CI/prepare-ios-macro-authorization.py` after restoring package
+inputs. This adapter verifies the committed and resolved Equatable entry
+(`https://github.com/ordo-one/equatable`, revision
+`597c2bb34af0c51331eb3b5e705f942d8ee20daa`), verifies the actual standalone
+checkout has that HEAD and is pristine, then invokes the existing
+`authorize_pinned_equatable_macro` implementation. The original helper
+adds only that package/target/revision fingerprint, preserves existing
+authorizations and retains normal Xcode validation. No global macro
+validation switch or package revision changed.
+
+The existing four filesystem tests of that authorizer actually passed on
+Windows. They cover idempotence/preservation, mismatched or unverified
+source, malformed existing data and a read failure. The new wrapper syntax
+parsed. YAML structural comparison proves no other original steps, inputs
+or gates changed in this follow-up. This does not yet claim that Xcode
+accepted the macro or that either app target built; the next real workflow
+run is required.
