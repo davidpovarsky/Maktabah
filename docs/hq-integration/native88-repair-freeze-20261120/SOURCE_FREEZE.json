@@ -1,0 +1,60 @@
+{
+  "prepared_at_utc": "2026-11-20T07:06:05.448880+00:00",
+  "application_and_test_source": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+  "application_trees": {
+    "Source": "dbbd875cfdeffad0d8bb888acb7e626ac7765cd1",
+    "Vendor": "a9bf10318cfc44c87885c3dcfba48cbaced67788",
+    "Maktabah-iOSUITests": "f6deb72fb3e84918061baaa727463aaef7b6a2aa",
+    "Maktabah.xcodeproj": "1f639a7aad1a355b42b236602cc5dc54324aab33"
+  },
+  "previous_application_source": "2e6f08659b347a755aef4e4fe6c00d9592ba700d",
+  "previous_native_manifest_git_lf_sha256": "0bdeda3a0b12688074b68a4751547e83994bfd82d370e463b1e51ff65de0d3ff",
+  "previous_release_manifest_git_lf_sha256": "73784927d8a33f7412859f37c55e9c988ada2f1dbb4e84fdcc29c4be09b1ca03",
+  "test_inputs_git_lf_sha256": {
+    "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+    "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+    "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift": "6560cb3026ce1dd621e7a76ac6876857485fd096453eeb0cc8c5c9f5b9993654",
+    "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+    "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift": "60f784dde093bb9e21de40a58281e972fe6915fa7af26e8a42dc59012605d16d",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "18fc9270f4fd4e2d640a1e78725f5a6a456060a785e1d68f4ab3fdc6a9fdf540",
+    "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift": "fdcf38a22fa039bbd4a8f8183c1e3d6a93ceca889af6cc0ee6e0e7146e2c42b1",
+    "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift": "77e35177cca7c0a3456eb1ae14b8015725bb89d4e9946fa493dfef86849d03d9",
+    "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+    "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+    "Maktabah-iOSUITests/MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "208cf8c5d887cf9acf3642f4e06b738ef8cadf0c4d81bc5743ee016c699922a9",
+    "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift": "f1622e1ccbe44788b625c7eefb66bcc4b8fcf4766da43b709045f56c7580d08e",
+    "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift": "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b",
+    "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift": "a79b4b0b78bf0e1e22f070d4558fc3d692f70c199012a5cd6e85043ea2530562",
+    "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+    "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f"
+  },
+  "hash_representation": "SHA256_OF_CANONICAL_GIT_BLOB_LF",
+  "native_status": "NOT_RUN",
+  "native_cases_executed": 0,
+  "prior_source_acceptance_transferred": false,
+  "required_native_cases": 92,
+  "expected_per_device": {
+    "ipad11": 72,
+    "iphone": 20
+  },
+  "required_release_ui_cases": 96,
+  "required_release_oracle_cases": 2,
+  "original_sdk_gitlink": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "registry": "ONE_QUALIFIED_ORIGINAL_265_TO_EXACT_OCCURRENCES_D5_CONTRACT",
+  "preserved_selections_oracles_groups_hid_individual_timeouts": true,
+  "source_repairs": {
+    "core_deployment_floor": "58b32dc24b480007b98027af11ce637aff37cb00",
+    "commentary_original_new_tab_setup": "83c1198b9055879886588c224b90a47224790de6",
+    "notes_debug_witness_only": "fa32d4d3bb08bf72f6e2cae58860f464252b6a5f",
+    "original_compact_study_action": "d05fbdd1abad848282000ba0e225cab686d4210f",
+    "core_query_environment_and_profile_action": "269d0216e435fab837bd69e9867e7b4fd8723b71",
+    "history_readiness_and_diagnostics": "944031be614bbdbc2ba56d2d97eefc4b340b061f"
+  },
+  "remaining_actual_failures": {
+    "notes": "Actual Native88 deadline failure; diagnostic instrumentation only, root cause unresolved",
+    "global_history": "Actual Native88 missing persisted history row; readiness/diagnostics strengthened, root cause unresolved"
+  },
+  "release_orchestration": "Separate three-stage hosted-runner implementation in progress; no full Release acceptance"
+}
