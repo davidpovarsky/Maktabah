@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pin, materialize and validate the canonical Otzaria search upstream."""
+"""Pin and validate the original engine with the reviewed owner extension."""
 
 from __future__ import annotations
 
@@ -21,9 +21,9 @@ PIN = ROOT / "Upstream" / "UPSTREAM_COMMIT"
 MANIFEST = ROOT / "Upstream" / "UPSTREAM_MANIFEST.json"
 RESOURCE_MANIFEST = ROOT / "Upstream" / "RESOURCE_MANIFEST.json"
 RESOURCES = ROOT / "Resources"
-ENGINE_REPOSITORY = "Otzaria/otzaria_search_engine"
+ENGINE_REPOSITORY = "davidpovarsky/otzaria_search_engine"
 ENGINE_URL = f"https://github.com/{ENGINE_REPOSITORY}.git"
-ENGINE_BRANCH = "refactor"
+ENGINE_BRANCH = "codex/otzaria-exact-occurrences-20261120"
 APP_REPOSITORY = "Otzaria/otzaria"
 APP_BRANCH = "dev"
 RESOURCE_PATHS = ("assets/dictionary.json", "assets/Acronyms.json")
@@ -183,7 +183,7 @@ def validate(resource_records: list[dict[str, object]], run_builds: bool) -> lis
 def main() -> int:
     parser = argparse.ArgumentParser()
     target = parser.add_mutually_exclusive_group(required=False)
-    target.add_argument("--latest", action="store_true", help="pin origin/refactor HEAD")
+    target.add_argument("--latest", action="store_true", help="pin the reviewed owner extension branch HEAD")
     target.add_argument("--commit", help="pin an explicitly reviewed commit")
     parser.add_argument("--check", action="store_true", help="validate without changing tracked state")
     parser.add_argument("--skip-validation", action="store_true", help="skip Cargo builds (hash and cleanliness checks still run)")
@@ -194,11 +194,11 @@ def main() -> int:
 
     ensure_checkout()
     old = PIN.read_text(encoding="utf-8").strip() if PIN.exists() else None
-    requested = "origin/refactor" if args.latest else (args.commit or old)
+    requested = f"origin/{ENGINE_BRANCH}" if args.latest else (args.commit or old)
     if not requested:
         raise RuntimeError("no committed upstream pin exists")
     new = git("rev-parse", requested)
-    git("merge-base", "--is-ancestor", new, "origin/refactor")
+    git("merge-base", "--is-ancestor", new, f"origin/{ENGINE_BRANCH}")
     commit_count = int(git("rev-list", "--count", f"{old}..{new}")) if old else 0
     log = git("log", "--oneline", "--no-decorate", f"{old}..{new}") if old and old != new else ""
     changed = git("diff", "--name-only", old, new) if old and old != new else ""
