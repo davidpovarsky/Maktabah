@@ -1,0 +1,54 @@
+{
+  "README.md": {
+    "bytes": 2557,
+    "sha256": "aee1f5916489396689a7b6b873bcee56ed259984721ac9a8dd83b2944f2bab24"
+  },
+  "raw/baseline-compile.stderr.log.gz": {
+    "bytes": 156,
+    "sha256": "4674b805e16c2f2bc28493cf25f95a96665fa336f87abb03f775d2a3cee5511d",
+    "uncompressedBytes": 317,
+    "uncompressedSha256": "a063a966c6c174c652409e2fe54defff0e5983c79a85ba00e0487b76899a0de9"
+  },
+  "raw/baseline-compile.stdout.log.gz": {
+    "bytes": 20,
+    "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+    "uncompressedBytes": 0,
+    "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "raw/baseline-launcher.py.gz": {
+    "bytes": 1715,
+    "sha256": "146afedbd080aa4f52808e49a88e516d8baf72270d36cf20868455d9459f051d",
+    "uncompressedBytes": 4281,
+    "uncompressedSha256": "86fe3a2da494288fa13a9ca3a0a6c5f8c43c76d6111c8f642e474bd3f8a90467"
+  },
+  "raw/baseline-process-observation.json.gz": {
+    "bytes": 310,
+    "sha256": "7974a457188d57e118908bdcb492d0ed4847f169244bbca84736b47e123a66e9",
+    "uncompressedBytes": 482,
+    "uncompressedSha256": "305e5788ca9c8dcd009e56108cd5bbb686b1020c0a42ba37c4daa1f360313092"
+  },
+  "raw/baseline-result.json.gz": {
+    "bytes": 1810,
+    "sha256": "7f13058456a5a7aa569b53433f583ed55dc17d0826931df1adf2a3ee9d1f61cd",
+    "uncompressedBytes": 16807,
+    "uncompressedSha256": "8ee546d4a6fa25cbdd0900ecf70aaaacf7ac6888ef9df009f6cef1190b3608b5"
+  },
+  "raw/baseline-source.json.gz": {
+    "bytes": 4286,
+    "sha256": "cf57390d4baae3de0556c6a417825f25eb8305ad261a577d26ef5fc2f1787f70",
+    "uncompressedBytes": 13163,
+    "uncompressedSha256": "d6a5f680556e157e4c81b6e5bb75827341047f2d5af4ac2b167d35d40309c851"
+  },
+  "raw/baseline-tests.stderr.log.gz": {
+    "bytes": 20,
+    "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+    "uncompressedBytes": 0,
+    "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "raw/baseline-tests.stdout.log.gz": {
+    "bytes": 20,
+    "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+    "uncompressedBytes": 0,
+    "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
