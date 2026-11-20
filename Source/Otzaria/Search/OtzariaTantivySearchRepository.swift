@@ -58,6 +58,142 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         return engine
     }
 
+    /// Explicit execution may acquire an existing, already compatible index.
+    /// It shares the original cache and storage ownership; it cannot install,
+    /// recover, rebuild or run a query. The native constructor remains writer-
+    /// capable, so this guarantee covers cooperative app mutations, not external
+    /// filesystem writers that ignore the application's storage locks.
+    func prepareExistingSearchExecution(
+        databasePath: String, profileID: String, expectedIndexURL: URL,
+        expectedRevision: UInt64, expectedFingerprint: Data, expectedIndexMetadata: Data,
+        expectedDocumentCount: UInt64, requiredResourceHashes: [String: String],
+        deadlineUptimeNanoseconds: UInt64,
+        validateSource: @escaping @Sendable () throws -> Void
+    ) async throws {
+        while true {
+            try OtzariaSearchEngineBridge.checkExecutionPreparationDeadline(deadlineUptimeNanoseconds)
+            do {
+                try validateSource()
+                if try tryPrepareExistingSearchExecution(databasePath: databasePath, profileID: profileID,
+                    expectedIndexURL: expectedIndexURL, expectedRevision: expectedRevision,
+                    expectedFingerprint: expectedFingerprint, expectedIndexMetadata: expectedIndexMetadata,
+                    expectedDocumentCount: expectedDocumentCount, requiredResourceHashes: requiredResourceHashes,
+                    deadline: deadlineUptimeNanoseconds, validateSource: validateSource) { return }
+            } catch OtzariaSearchExecutionPreparationError.sourceBusy {
+                // The bridge can own its lock while waiting for migration.
+                // Every storage/cache lock has unwound before this retry.
+            }
+            try OtzariaSearchEngineBridge.checkExecutionPreparationDeadline(deadlineUptimeNanoseconds)
+            let now = DispatchTime.now().uptimeNanoseconds
+            guard now < deadlineUptimeNanoseconds else { throw OtzariaSearchExecutionPreparationError.deadlineExceeded }
+            try await Task<Never, Never>.sleep(nanoseconds: min(1_000_000, deadlineUptimeNanoseconds - now))
+        }
+    }
+
+    /// Acquire/release every lock synchronously on the same thread. A busy
+    /// inner lock releases both outer locks before the async retry can suspend.
+    /// Original mutations already use search -> cache; no cache -> storage path
+    /// is introduced. Legacy migration precedes database -> search -> cache.
+    /// validateSource must use the bridge's nonblocking owner observation.
+    private func tryPrepareExistingSearchExecution(
+        databasePath: String, profileID: String, expectedIndexURL: URL,
+        expectedRevision: UInt64, expectedFingerprint: Data, expectedIndexMetadata: Data,
+        expectedDocumentCount: UInt64, requiredResourceHashes: [String: String], deadline: UInt64,
+        validateSource: @Sendable () throws -> Void
+    ) throws -> Bool {
+        let prepared = try ITorahStorageLock.tryWithLock(name: "migration-\(profileID)") {
+            try ITorahStorageLock.tryWithLock(name: "database-mutation-\(profileID)") {
+                try ITorahStorageLock.tryWithLock(name: "otzaria-search-mutation-\(profileID)") {
+                    guard lock.try() else { return false }
+                    defer { lock.unlock() }
+                    try OtzariaSearchEngineBridge.checkExecutionPreparationDeadline(deadline)
+                    try validateSource()
+                    guard profileID == OtzariaDataProfileRegistry.activeProfileID,
+                          manager.indexURL(for: databasePath) == expectedIndexURL,
+                          readPublicationRevision() == expectedRevision else {
+                        throw OtzariaSearchExecutionPreparationError.sourceChanged
+                    }
+                    let fileManager = FileManager.default
+                    guard !indexingDatabasePaths.contains(databasePath),
+                          !fileManager.fileExists(atPath: manager.sentinelURL(for: databasePath).path),
+                          !fileManager.fileExists(atPath: manager.buildingIndexURL(for: databasePath).path),
+                          !fileManager.fileExists(atPath: expectedIndexURL.appendingPathExtension("installing").path) else {
+                        throw OtzariaSearchExecutionPreparationError.unavailable
+                    }
+                    let before = try openIndexStamp(databasePath: databasePath)
+                    let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+                    guard try encoder.encode(before) == expectedFingerprint,
+                          try smallMetadata(at: expectedIndexURL.appendingPathComponent("otzaria_index_meta.json")) == expectedIndexMetadata else {
+                        throw OtzariaSearchExecutionPreparationError.sourceChanged
+                    }
+                    try OtzariaSearchEngineBridge.validateExistingCompatibleIndex(expectedIndexURL)
+                    let translationKey = "Vendor/OtzariaSearchEngine/Resources/dictionary.json"
+                    let acronymsKey = "Vendor/OtzariaSearchEngine/Resources/Acronyms.json"
+                    guard Set(requiredResourceHashes.keys) == Set([translationKey, acronymsKey]),
+                          let translationHash = requiredResourceHashes[translationKey],
+                          let acronymsHash = requiredResourceHashes[acronymsKey],
+                          let translation = Bundle.main.url(forResource: "dictionary", withExtension: "json"),
+                          let acronyms = Bundle.main.url(forResource: "Acronyms", withExtension: "json") else {
+                        throw OtzariaSearchExecutionPreparationError.unavailable
+                    }
+                    func validateDictionaries() throws {
+                        try OtzariaSearchEngineBridge.validateExecutionDictionary(translation, expectedSHA256: translationHash, deadline: deadline)
+                        try OtzariaSearchEngineBridge.validateExecutionDictionary(acronyms, expectedSHA256: acronymsHash, deadline: deadline)
+                    }
+                    func validateCurrentSource() throws {
+                        try OtzariaSearchEngineBridge.checkExecutionPreparationDeadline(deadline)
+                        try validateSource()
+                        guard profileID == OtzariaDataProfileRegistry.activeProfileID,
+                              manager.indexURL(for: databasePath) == expectedIndexURL,
+                              readPublicationRevision() == expectedRevision,
+                              before == (try openIndexStamp(databasePath: databasePath)),
+                              try smallMetadata(at: expectedIndexURL.appendingPathComponent("otzaria_index_meta.json")) == expectedIndexMetadata else {
+                            throw OtzariaSearchExecutionPreparationError.sourceChanged
+                        }
+                    }
+                    func validateCount(_ engine: OtzariaSearchEngineBridge) throws {
+                        try validateCurrentSource()
+                        let count = try engine.documentCount()
+                        guard count > 0, count == expectedDocumentCount else {
+                            throw OtzariaSearchExecutionPreparationError.unavailable
+                        }
+                        try validateCurrentSource()
+                    }
+                    try validateDictionaries()
+                    try validateCurrentSource()
+                    if let cached = engineCache[databasePath] {
+                        guard engineStamps[databasePath] == before else {
+                            throw OtzariaSearchExecutionPreparationError.sourceChanged
+                        }
+                        try validateCount(cached)
+                        try validateDictionaries()
+                        try validateCurrentSource()
+                        return true
+                    }
+                    let engine = try OtzariaSearchEngineBridge(existingIndexURL: expectedIndexURL)
+                    var published = false
+                    defer { if !published { engine.close() } }
+                    // A synchronous native open cannot be interrupted. Reject
+                    // changed authority before any further native operation.
+                    try validateCurrentSource()
+                    try Self.configureRequiredDictionaries(engine: engine,
+                        magic: OtzariaMagicDictionaryManager.shared.validatedDatabaseURL,
+                        translation: translation, acronyms: acronyms)
+                    try validateCount(engine)
+                    try validateDictionaries()
+                    try validateCurrentSource()
+                    // Opening does not change source authority. As in the original
+                    // engine(), retain its exact current stamp without a new grant.
+                    engineCache[databasePath] = engine
+                    engineStamps[databasePath] = before
+                    published = true
+                    return true
+                } ?? false
+            } ?? false
+        }
+        return prepared ?? false
+    }
+
     /// Discovery can inspect an already-open engine, but must never construct
     /// one (the native constructor can create/write an index). A disk/profile
     /// change makes the observation unknown, even if a cached engine still works.

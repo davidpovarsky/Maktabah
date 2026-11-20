@@ -131,6 +131,13 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     private let lock = NSRecursiveLock()
     private(set) var dbGeneration: UInt64 = 0
     func generationSnapshot() -> UInt64 { lock.withLock { dbGeneration } }
+    /// A storage-lock holder must not wait for this owner: openIfNeeded can
+    /// hold it while waiting for the original legacy-migration lock.
+    func tryGenerationSnapshot() -> UInt64? {
+        guard lock.try() else { return nil }
+        defer { lock.unlock() }
+        return dbGeneration
+    }
     private var database: SQLiteDatabase?
     private var openedDatabaseURL: URL?
     private var readingUnitService: OtzariaReadingUnitService?

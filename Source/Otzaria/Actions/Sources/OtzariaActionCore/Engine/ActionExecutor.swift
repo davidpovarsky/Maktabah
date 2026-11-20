@@ -233,8 +233,20 @@ public actor ActionExecutor {
         let effectiveArguments: ActionObject
         if let occurrenceQuery { effectiveArguments = try ActionJSON.encoded(occurrenceQuery).object ?? [:] }
         else { effectiveArguments = try searchQuery.map { try ActionJSON.encoded($0).object ?? [:] } ?? request.arguments }
-        let assessment = try await state.assess(action: request.action, arguments: effectiveArguments, invocation: invocation)
+        var assessment = try await state.assess(action: request.action, arguments: effectiveArguments, invocation: invocation)
         try await recheck(snapshot, deadline: deadline)
+        if ["search.query", "search.openResults"].contains(request.action),
+           assessment.registered, assessment.supported, !assessment.availableNow,
+           let searchQuery, let preparation = search as? any ActionSearchExecutionPreparationPort,
+           preparation.hasSearchExecutionPreparation {
+            // Explicit execution has already passed the original read/work
+            // policy. Preparation grants no authority and supplies no result;
+            // fresh assessment of this same snapshot remains the admission.
+            try await preparation.prepareSearchExecution(searchQuery, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            assessment = try await state.assess(action: request.action, arguments: effectiveArguments, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+        }
         try ActionPolicy.capability(assessment)
         let result: ActionResult
         var navigationCompletion: ActionNavigationPreparation? = nil

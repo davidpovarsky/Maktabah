@@ -925,6 +925,32 @@ enum ITorahStorageLock {
 
     private static let lockMap = LockMapBox()
 
+    /// Execution callers may retry this bounded attempt under their own deadline.
+    /// It uses the SAME per-name thread/file ownership as withLock, but fails
+    /// closed if cross-process locking cannot be established. No lock crosses
+    /// an await and the existing blocking API keeps its original behavior.
+    static func tryWithLock<T>(name: String, block: () throws -> T) throws -> T? {
+        let threadLock = lockMap.lock(for: name)
+        guard threadLock.try() else { return nil }
+        defer { threadLock.unlock() }
+
+        #if canImport(Darwin)
+        let lockDir = ITorahSharedContainer.otzariaRootURL.appendingPathComponent(".locks", isDirectory: true)
+        try FileManager.default.createDirectory(at: lockDir, withIntermediateDirectories: true)
+        let lockFile = lockDir.appendingPathComponent("\(name).lock")
+        let fd = open(lockFile.path, O_CREAT | O_RDWR, 0o666)
+        guard fd >= 0 else { throw POSIXError(POSIXErrorCode(rawValue: errno) ?? .EIO) }
+        defer { close(fd) }
+        guard flock(fd, LOCK_EX | LOCK_NB) == 0 else {
+            let code = errno
+            if code == EWOULDBLOCK || code == EAGAIN { return nil }
+            throw POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO)
+        }
+        defer { flock(fd, LOCK_UN) }
+        #endif
+        return try block()
+    }
+
     static func withLock<T>(name: String, block: () throws -> T) rethrows -> T {
         let threadLock = lockMap.lock(for: name)
         threadLock.lock()

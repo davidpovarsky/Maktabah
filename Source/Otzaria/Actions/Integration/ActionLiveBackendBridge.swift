@@ -88,7 +88,135 @@ enum ActionLiveBackendBridge {
             }, embeddedCatalog: { invocation in
                 try await EmbeddedActionRPC.catalog(invocation: invocation)
             }, occurrenceReadiness: ActionLiveOccurrenceCounter.readiness,
-               occurrenceCounter: ActionLiveOccurrenceCounter.count)
+               occurrenceCounter: ActionLiveOccurrenceCounter.count,
+               searchExecutionPreparation: ActionLiveSearchExecutionPreparation.make)
+    }
+}
+
+private enum ActionLiveSearchExecutionPreparation {
+    /// Capture source ownership synchronously, without opening an engine. The
+    /// facade rechecks its exact backend snapshot after this factory returns
+    /// and before the returned work can begin on a utility executor.
+    @MainActor static func make(_ query: ActionSearchQuery, _ invocation: ActionPortInvocation) throws
+        -> ActionBackendCoordinatorFacade.SearchExecutionWork {
+        try check(invocation)
+        guard query.backend == .otzaria, invocation.snapshot.backend == .otzaria else {
+            throw ActionPortError.unavailable
+        }
+        let bridge = OtzariaMaktabahBridge.shared
+        let access = OtzariaDatabaseAccessController.shared
+        let selection = access.selectionObservation()
+        let generation = bridge.generationSnapshot()
+        let profile = OtzariaDataProfileRegistry.activeProfileID
+        guard selection.source == .managedInternal, let path = selection.url?.path,
+              path == bridge.databasePath else { throw ActionPortError.unavailable }
+        let repository = OtzariaTantivySearchRepository.shared
+        let observation = repository.resourceObservation(databasePath: path)
+        guard let fingerprint = observation.fingerprint else { throw ActionPortError.unavailable }
+        let validateSource: @Sendable () throws -> Void = {
+            try check(invocation)
+            guard let currentGeneration = bridge.tryGenerationSnapshot() else {
+                throw OtzariaSearchExecutionPreparationError.sourceBusy
+            }
+            guard selection == access.selectionObservation(), generation == currentGeneration,
+                  path == bridge.databasePath, profile == OtzariaDataProfileRegistry.activeProfileID else {
+                throw ActionPortError.staleState
+            }
+        }
+        do { try validateSource() }
+        catch OtzariaSearchExecutionPreparationError.sourceBusy { throw ActionPortError.unavailable }
+        return {
+            let task = Task.detached(priority: .utility) {
+                try await prepare(databasePath: path, profileID: profile,
+                    expectedRevision: observation.revision, expectedFingerprint: fingerprint,
+                    invocation: invocation, validateSource: validateSource)
+            }
+            do { try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() } }
+            catch let error as ActionPortError { throw error }
+            catch is CancellationError { throw CancellationError() }
+            catch let error as OtzariaSearchExecutionPreparationError {
+                switch error {
+                case .sourceChanged: throw ActionPortError.staleState
+                case .deadlineExceeded: throw CancellationError()
+                case .unavailable, .sourceBusy: throw ActionPortError.unavailable
+                }
+            }
+            catch { throw ActionPortError.unavailable }
+        }
+    }
+
+    private static func prepare(databasePath path: String, profileID profile: String,
+                                expectedRevision: UInt64, expectedFingerprint: Data,
+                                invocation: ActionPortInvocation,
+                                validateSource: @escaping @Sendable () throws -> Void) async throws {
+        try validateSource()
+        let storage = try OtzariaDatabaseStorage(profileID: profile)
+        guard URL(fileURLWithPath: path).standardizedFileURL == storage.finalDatabaseURL.standardizedFileURL else {
+            throw ActionPortError.unavailable
+        }
+        let manager = OtzariaSearchIndexManager.shared
+        let repository = OtzariaTantivySearchRepository.shared
+        let url = manager.indexURL(for: path)
+        let current = try manager.currentFingerprint(databasePath: path)
+        guard let databaseBytes = Int64(exactly: current.fileSize) else { throw ActionPortError.unavailable }
+        let build = try OtzariaSearchEngineBridge.buildInfo()
+        let decoder = JSONDecoder(); decoder.dateDecodingStrategy = .iso8601
+        let database = try decoder.decode(OtzariaDatabaseInstallationManifest.self,
+            from: smallMetadata(at: storage.installationManifestURL, invocation: invocation))
+        let manifest = try JSONDecoder().decode(OtzariaSearchArtifactManifest.self,
+            from: smallMetadata(at: url.appendingPathComponent("otzaria_prebuilt_installation.json"), invocation: invocation))
+        let identity = try JSONDecoder().decode(OtzariaIndexBuildIdentity.self,
+            from: smallMetadata(at: manager.identityURL(indexURL: url), invocation: invocation))
+        try OtzariaSearchArtifactPolicy.validate(manifest, database: database,
+            databaseBytes: databaseBytes, build: build)
+        guard let expectedCount = UInt64(exactly: manifest.lexicalArtifact.documentCount), expectedCount > 0,
+              OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(identity,
+                currentDatabase: current, build: build, trustedManifest: manifest) else {
+            throw ActionPortError.unavailable
+        }
+        let indexMetadata = try smallMetadata(at: url.appendingPathComponent("otzaria_index_meta.json"), invocation: invocation)
+        try OtzariaSearchEngineBridge.validateExistingCompatibleIndex(url)
+        try validateSource()
+        let before = repository.resourceObservation(databasePath: path)
+        guard before.revision == expectedRevision, before.fingerprint == expectedFingerprint else {
+            throw ActionPortError.staleState
+        }
+        try await repository.prepareExistingSearchExecution(databasePath: path, profileID: profile,
+            expectedIndexURL: url, expectedRevision: expectedRevision, expectedFingerprint: expectedFingerprint,
+            expectedIndexMetadata: indexMetadata, expectedDocumentCount: expectedCount,
+            requiredResourceHashes: build.resourceHashes, deadlineUptimeNanoseconds: invocation.deadlineUptimeNanoseconds,
+            validateSource: validateSource)
+        try validateSource()
+        let after = repository.resourceObservation(databasePath: path)
+        guard after.revision == expectedRevision, after.fingerprint == expectedFingerprint else {
+            throw ActionPortError.staleState
+        }
+    }
+
+    private static func smallMetadata(at url: URL, invocation: ActionPortInvocation) throws -> Data {
+        try check(invocation)
+        let maximum = 1_048_576
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
+        guard attributes[.type] as? FileAttributeType == .typeRegular,
+              let size = attributes[.size] as? NSNumber,
+              size.uint64Value > 0, size.uint64Value <= UInt64(maximum) else { throw ActionPortError.unavailable }
+        let file = try FileHandle(forReadingFrom: url)
+        defer { try? file.close() }
+        var bytes = Data()
+        while bytes.count <= maximum {
+            try check(invocation)
+            guard let chunk = try file.read(upToCount: maximum + 1 - bytes.count), !chunk.isEmpty else {
+                guard bytes.count == size.intValue else { throw ActionPortError.unavailable }
+                return bytes
+            }
+            bytes.append(chunk)
+        }
+        throw ActionPortError.unavailable
+    }
+
+    private static func check(_ invocation: ActionPortInvocation) throws {
+        try Task.checkCancellation()
+        guard DispatchTime.now().uptimeNanoseconds < invocation.deadlineUptimeNanoseconds else { throw CancellationError() }
     }
 }
 

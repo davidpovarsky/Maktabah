@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchExecutionPreparationPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -12,6 +12,8 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
     typealias EmbeddedCatalog = @Sendable (ActionPortInvocation) async throws -> [LibraryCatalogNode]
     typealias OccurrenceReadiness = @Sendable (ActionBackendSnapshot) async -> ActionReadinessEvidence
     typealias OccurrenceCounter = @Sendable (ActionOccurrenceQuery, ActionPortInvocation) async throws -> ActionExactOccurrenceCount
+    typealias SearchExecutionWork = @Sendable () async throws -> Void
+    typealias SearchExecutionPreparation = @MainActor @Sendable (ActionSearchQuery, ActionPortInvocation) throws -> SearchExecutionWork
     private let coordinator: BackendCoordinator
     private let readiness: ReadinessProbe
     private let epoch: EpochProbe
@@ -22,6 +24,8 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
     private let embeddedCatalog: EmbeddedCatalog?
     private let occurrenceReadiness: OccurrenceReadiness?
     private let occurrenceCounter: OccurrenceCounter?
+    private let searchExecutionPreparation: SearchExecutionPreparation?
+    nonisolated let hasSearchExecutionPreparation: Bool
 
     init(coordinator: BackendCoordinator, epoch: @escaping EpochProbe = { nil },
          currentEpoch: (@MainActor @Sendable () throws -> UInt64?)? = nil,
@@ -31,13 +35,16 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
          embeddedReferenceProof: EmbeddedReferenceProof? = nil,
          embeddedCatalog: EmbeddedCatalog? = nil,
          occurrenceReadiness: OccurrenceReadiness? = nil,
-         occurrenceCounter: OccurrenceCounter? = nil) {
+         occurrenceCounter: OccurrenceCounter? = nil,
+         searchExecutionPreparation: SearchExecutionPreparation? = nil) {
         self.coordinator = coordinator; self.epoch = epoch; self.currentEpoch = currentEpoch; self.readiness = readiness
         self.resourceWitness = resourceWitness
         self.embeddedSearch = embeddedSearch; self.embeddedReferenceProof = embeddedReferenceProof
         self.embeddedCatalog = embeddedCatalog
         self.occurrenceReadiness = occurrenceReadiness
         self.occurrenceCounter = occurrenceCounter
+        self.searchExecutionPreparation = searchExecutionPreparation
+        self.hasSearchExecutionPreparation = searchExecutionPreparation != nil
     }
 
     func snapshot() async throws -> ActionBackendSnapshot {
@@ -182,6 +189,28 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         let result = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
         try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
         return result
+    }
+
+    /// Execution-only optional seam. It cannot manufacture registration,
+    /// capability readiness or a read grant; Core reassesses after it returns.
+    func prepareSearchExecution(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws {
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        guard query.backend == .otzaria, let searchExecutionPreparation else { throw ActionPortError.unavailable }
+        try ActionSearchSemantics.validateBounds(query)
+        guard ActionSearchSemantics.unsupportedReason(query) == nil else { throw ActionPortError.notSupported }
+        let evidence = try await currentEvidence(for: query.backend)
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+        guard evidence.catalog.isReady, evidence.registeredCapabilities.contains("search") else {
+            throw ActionPortError.unavailable
+        }
+        // Capture the app's source synchronously, then check this same facade's
+        // authority before starting work. A source change between the first
+        // await and capture must not open the newly selected source by accident.
+        let work = try searchExecutionPreparation(query, invocation)
+        try ActionBackendInvocationGuard.check(invocation, current: currentBackendSnapshot(), target: query.backend)
+        do { try await work() }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
     }
 
     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage {
