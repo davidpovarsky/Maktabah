@@ -1,0 +1,50 @@
+name: Immutable intermediate SDK checks (no Native acceptance)
+
+on:
+  push:
+    branches:
+      - codex/otzaria-ui-sdk-intermediate-20261120
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: sefaria-embedded-val-${{ github.ref }}-ui-sdk-only-xcode-27-matrix
+  cancel-in-progress: false
+
+jobs:
+  ui-sdk-check-only:
+    name: Focused SDK and workspace checks (no app/runtime acceptance)
+    if: ${{ github.event_name == 'push' && github.repository == 'davidpovarsky/Maktabah' && github.ref == 'refs/heads/codex/otzaria-ui-sdk-intermediate-20261120' }}
+    runs-on: xcode-27
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          submodules: false
+          persist-credentials: false
+      - name: Bind the exact immutable source and fixed SDK-only scope
+        run: python3 Scripts/CI/verify-ui-sdk-intermediate-source.py --phase before
+      - name: Select the same existing SDK and runtime pair as Native acceptance
+        run: python3 Scripts/CI/select-runtime27-toolchain.py --github-env --report build/artifacts/ui-acceptance-typecheck.toolchain.json
+      - name: Typecheck black-box tests with the actual iPad SDK
+        run: python3 Scripts/CI/typecheck-faithful-ui-tests.py
+      - name: Verify actual portable workspace contracts on macOS
+        run: python3 Scripts/CI/test-faithful-workspace.py
+      - name: Verify source remained bound after the original checks
+        if: always()
+        run: python3 Scripts/CI/verify-ui-sdk-intermediate-source.py --phase after
+      - name: Upload exact SDK and compiler diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: faithful-ui-sdk-check
+          path: |
+            build/artifacts/ui-acceptance-typecheck.*
+            build/artifacts/xcuiautomation-voiceover-sdk.txt
+            build/artifacts/toolbar-sdk-compile.*
+            build/artifacts/workspace-compile.log
+            build/artifacts/workspace-test-results.log
