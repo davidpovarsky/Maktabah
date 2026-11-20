@@ -1,0 +1,29 @@
+{
+  "expected_checkout": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+  "application_source": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "branch": "codex/otzaria-phase3-release-sourcefix-20261120",
+  "inputs": {
+    "validation_runner": "xcode-27",
+    "hq_stage2_expected_sha": "9cc346601bdb3fdda34c2c6ac59894f71dc9ea49",
+    "run_simulator_tests": "false",
+    "run_production_release": "false",
+    "ui_sdk_check_only": "false",
+    "hq_stage2_focused": "false",
+    "runtime27_mode": "release",
+    "ui_diagnostic_cases": "",
+    "source_ref": "",
+    "books_updates_check_only": "false"
+  },
+  "dispatch_output": "https://github.com/davidpovarsky/Maktabah/actions/runs/44665679661\n",
+  "at": "2026-11-20T03:08:36.866682+00:00",
+  "source_preflight_exit": 0,
+  "required_UI": 96,
+  "required_separate_oracles": 2,
+  "new_workflow_dispatched": true,
+  "prior_script_timeout": {
+    "job": "job_448d2c3a96fa",
+    "source_preflight_completed": true,
+    "remote_branch_observed_absent_after_timeout": true
+  },
+  "native_executed_at_dispatch": 0
+}

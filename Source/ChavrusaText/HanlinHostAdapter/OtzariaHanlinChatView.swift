@@ -23,12 +23,13 @@ struct OtzariaHanlinChatLaunchButton: View {
 struct OtzariaHanlinChatPresentationHost: ViewModifier {
     let owner: OtzariaHanlinChatOwner?
     func body(content: Content) -> some View {
-        content
+        let dismissedSessionID = owner?.presentation?.id
+        return content
             .environment(\.otzariaHanlinChatOwner, owner)
             .sheet(isPresented: Binding(
-                get: { owner?.isPresented == true },
-                set: { owner?.presentationBindingChanged($0) }),
-                onDismiss: { owner?.didDismiss() }) {
+                get: { owner?.isPresented == true && owner?.presentation?.id == dismissedSessionID },
+                set: { [dismissedSessionID] in owner?.presentationBindingChanged($0, sessionID: dismissedSessionID) }),
+                onDismiss: { [dismissedSessionID] in owner?.didDismiss(sessionID: dismissedSessionID) }) {
                     if let owner, let session = owner.presentation {
                         OtzariaHanlinChatView(session: session, owner: owner)
                     }
@@ -52,6 +53,17 @@ private struct OtzariaHanlinChatView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
+                if let scope = session.currentWorkReadScope {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(String(localized: "Book search: \(scope.title)")).font(.subheadline)
+                        Text(String(localized: "Otzaria. Matching excerpts may be shared with your connected model."))
+                            .font(.caption).foregroundStyle(.secondary)
+                        Button(String(localized: "End book access")) { owner.endCurrentWorkReadAccess(sessionID: session.id) }
+                            .accessibilityIdentifier("otzaria-hanlin-end-book-access")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal).padding(.vertical, 8)
+                    .accessibilityIdentifier("otzaria-hanlin-book-access")
+                }
                 if let error = session.errorMessage { HanlinChatErrorBanner(errorMessage: error) }
                 if session.isConfigured || !session.messages.isEmpty || !session.draft.isEmpty {
                     GeometryReader { geometry in
@@ -165,7 +177,7 @@ private struct OtzariaHanlinChatView: View {
                                         case .markdown(let text): HanlinMarkdownView(text: text)
                                         case .openUI:
                                             OpenUIBlock(part: part, state: state) { _ in
-                                                // Native actions are not advertised by this metadata-only host.
+                                                // Native actions are not advertised by this read-only host.
                                                 // Local renderer state uses the original message state owner.
                                                 throw HanlinHostError.denied
                                             }
@@ -244,6 +256,7 @@ private struct OtzariaHanlinConnectionView: View {
     @State private var endpoint = "https://api.openai.com/v1"
     @State private var model = ""
     @State private var credential = ""
+    @State private var allowCurrentWorkRead = false
     var body: some View {
         Form {
             Section(String(localized: "Model connection")) {
@@ -257,17 +270,38 @@ private struct OtzariaHanlinConnectionView: View {
                     .textInputAutocapitalization(.never).autocorrectionDisabled()
                     .accessibilityIdentifier("otzaria-hanlin-api-key")
                 Button(String(localized: "Connect")) {
-                    session.configure(endpoint: endpoint, modelID: model, credential: credential)
+                    session.configure(endpoint: endpoint, modelID: model, credential: credential,
+                        allowCurrentWorkRead: allowCurrentWorkRead)
                     credential = ""
                 }
-                .disabled(session.isConnecting)
+                .disabled(session.isConnecting || session.currentWorkReadScope != nil)
                 .accessibilityIdentifier("otzaria-hanlin-connect")
             }
+            if let scope = session.currentWorkReadOffer, session.currentWorkReadScope == nil {
+                Section(String(localized: "Book access")) {
+                    Text(scope.title).font(.headline)
+                        .accessibilityIdentifier("otzaria-hanlin-consent-book-title")
+                    Text(String(localized: "Library: Otzaria")).foregroundStyle(.secondary)
+                    Toggle(String(localized: "Allow search in this book for this chat"), isOn: $allowCurrentWorkRead)
+                        .disabled(session.isConnecting)
+                        .accessibilityIdentifier("otzaria-hanlin-allow-current-book")
+                    Text(String(localized: "When you send a message, matching excerpts from this book may be sent to the service and model above. This permission ends when the chat closes or its source changes."))
+                        .font(.footnote)
+                    Text(String(localized: "Connecting with book access reopens this saved conversation. Your messages and draft stay saved."))
+                        .font(.footnote)
+                }
+                .accessibilityIdentifier("otzaria-hanlin-current-book-consent")
+            } else if session.currentWorkReadScope == nil {
+                Section(String(localized: "Book access")) {
+                    Text(String(localized: "Search access is unavailable for the current source."))
+                }
+            }
             Section {
-                Text(String(localized: "This conversation uses your messages and permitted catalog metadata. Book text and selections are not shared."))
+                Text(String(localized: "This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared."))
                 Text(String(localized: "Conversations are saved for this study profile, group and library. Your API key lasts only until you close this chat."))
             }
         }
+        .accessibilityIdentifier("otzaria-hanlin-connection-form")
         .onDisappear { credential = "" }
     }
 }

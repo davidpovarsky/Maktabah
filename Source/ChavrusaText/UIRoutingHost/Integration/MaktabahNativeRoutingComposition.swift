@@ -32,12 +32,16 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         var publicBinding: MaktabahNativePublicBindingAdapter? = nil
         let hanlinSceneID = UUID()
         var hanlin: HanlinRegistration?
+        // Remains source-owned while the old chat is dismissed but its one-use
+        // read consent has not yet been consumed. Foreground/source transitions
+        // must revoke it even when the live SDK registration is already gone.
+        var pendingHanlinReadConsent: HanlinReadConsent?
     }
     private var scenes: [UIStableID: Registration] = [:]
     private var contexts: [UIStableID: ActionExecutionContext] = [:]
     // Ephemeral association to the actual native registration, not another
     // account, workspace, permission store or scene-selection authority.
-    private struct HanlinSourceObservation: Equatable {
+    fileprivate struct HanlinSourceObservation: Equatable {
         let backend: ActionBackendSnapshot
         let source: ObjectIdentifier
         let epoch: StudyWorkspaceMappingEpoch
@@ -51,7 +55,33 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let binding: OtzariaHanlinBinding
         let observed: HanlinSourceObservation
         let invalidated: @MainActor () -> Void
+        let readScope: OtzariaHanlinCurrentWorkReadScope?
+        let requiredConfigurationID: UUID?
+        var configuredConnectionID: UUID?
         var navigation: HanlinNavigationRequest?
+    }
+    /// Only the real native Connect action constructs this transient witness.
+    /// It has no Codable/store path and cannot be supplied by the SDK/model.
+    @MainActor final class HanlinReadConsent {
+        fileprivate let witness: OtzariaHanlinCurrentWorkReadConsent<HanlinSourceObservation>
+        private let invalidated: @MainActor () -> Void
+        private var notified = false
+        var originalSession: HanlinHostSession { witness.session }
+        var scope: OtzariaHanlinCurrentWorkReadScope { witness.scope }
+        var configurationID: UUID { witness.configurationID }
+        fileprivate init(session: HanlinHostSession, scope: OtzariaHanlinCurrentWorkReadScope,
+                         configurationID: UUID, observed: HanlinSourceObservation,
+                         invalidated: @escaping @MainActor () -> Void) {
+            witness = .init(session: session, scope: scope, configurationID: configurationID, source: observed)
+            self.invalidated = invalidated
+        }
+        func revoke() { witness.revoke() }
+        fileprivate func invalidate() {
+            witness.revoke()
+            guard !notified else { return }
+            notified = true
+            invalidated()
+        }
     }
     private struct HanlinNavigationRequest {
         let destination: HanlinHostDestination
@@ -326,24 +356,41 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
     /// The existing profile/group and native mapping own the SDK namespace.
     /// The scene-owned chat composes the original SDK; this authority exposes
-    /// metadata and navigation only, with no implicit book/selection read grant.
+    /// metadata/navigation by default. Only the explicit current-work connection
+    /// consent below can issue a separate bounded search context.
     func makeHanlinHostSession(manager: iOSNavigationManager, conversationID: UUID,
-                               invalidated: @escaping @MainActor () -> Void = {}) throws
+        readConnection: (consent: HanlinReadConsent, dismissedSessionID: UUID, configurationID: UUID)? = nil,
+        invalidated: @escaping @MainActor () -> Void = {}) throws
         -> (host: OtzariaHanlinHostAdapter, session: HanlinHostSession) {
         try Task.checkCancellation()
         let matches = scenes.filter { $0.value.managerID == ObjectIdentifier(manager) }
         guard matches.count == 1, let (sceneID, entry) = matches.first else { throw HanlinHostError.invalidContext }
         return try issueHanlinHostSession(sceneID: sceneID, entry: entry,
-            conversationID: conversationID, invalidated: invalidated)
+            conversationID: conversationID, readConnection: readConnection, invalidated: invalidated)
     }
 
     private func issueHanlinHostSession(sceneID: UIStableID, entry: Registration,
-        conversationID: UUID, invalidated: @escaping @MainActor () -> Void)
+        conversationID: UUID,
+        readConnection: (consent: HanlinReadConsent, dismissedSessionID: UUID, configurationID: UUID)? = nil,
+        invalidated: @escaping @MainActor () -> Void)
         throws -> (host: OtzariaHanlinHostAdapter, session: HanlinHostSession) {
         let observed = try hanlinSource(sceneID: sceneID, entry: entry)
         let namespace = try HanlinConversationNamespace(app: "otzaria",
             account: observed.projection.profileID.uuidString,
             workspace: observed.projection.groupID.uuidString, space: observed.backend.backend.rawValue)
+        let readScope: OtzariaHanlinCurrentWorkReadScope?
+        if let readConnection {
+            guard entry.pendingHanlinReadConsent === readConnection.consent,
+                  readConnection.consent.originalSession.conversationID == conversationID,
+                  readConnection.consent.originalSession.context.sceneID == entry.hanlinSceneID else {
+                readConnection.consent.revoke()
+                throw HanlinHostError.staleContext
+            }
+            readScope = try readConnection.consent.witness.consume(
+                dismissedSessionID: readConnection.dismissedSessionID, currentSource: observed,
+                namespace: namespace, configurationID: readConnection.configurationID)
+            scenes[sceneID]?.pendingHanlinReadConsent = nil
+        } else { readScope = nil }
         // Native UIKit identifiers remain strings. This UUID belongs only to the
         // SDK association and is discarded with this exact native registration.
         let objectReference = try observed.readerContent.map { content in
@@ -357,12 +404,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             generation: UUID(), objectReference: objectReference, sourceRevision: "backend:" + String(observed.backend.generation)
                 + ";rpc:" + (observed.backend.rpcEpoch.map(String.init) ?? "none")
                 + ";mapping:" + observed.epoch.sourceID.uuidString + ":" + String(observed.epoch.revision)
-                + ";tab:" + (observed.projection.activeTabID?.uuidString ?? "none"),
+                + ";tab:" + (observed.projection.activeTabID?.uuidString ?? "none")
+                + (readConnection.map { ";read-configuration:" + $0.configurationID.uuidString } ?? ""),
             localeIdentifier: observed.locale)
-        let binding = OtzariaHanlinBinding(context: sdkContext,
-            executionContext: context(sceneID: sceneID, origin: .internalAI, snapshot: observed.backend),
+        let metadataContext = context(sceneID: sceneID, origin: .internalAI, snapshot: observed.backend)
+        let binding = OtzariaHanlinBinding(context: sdkContext, executionContext: metadataContext,
             backend: observed.backend, catalogRevision: .init(observed.backend.generation),
-            availableReadActions: ["system.listBackends", "catalog.resolveWork", "catalog.resolveReference"])
+            availableReadActions: Set(["system.listBackends", "catalog.resolveWork", "catalog.resolveReference"])
+                .union(readScope == nil ? [] : ["search.query"]),
+            searchExecutionContext: try readScope?.searchContext(from: metadataContext))
         let session = HanlinHostSession(conversationID: conversationID, context: sdkContext)
         // Replay/cancellation admission belongs to this exact SDK session.
         // Reuse the one original Core, not a process-wide transport budget that
@@ -370,8 +420,65 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let adapter = try OtzariaHanlinHostAdapter(core: core, authority: self)
         invalidateHanlin(sceneID: sceneID)
         scenes[sceneID]?.hanlin = .init(session: session, binding: binding, observed: observed,
-                                      invalidated: invalidated, navigation: nil)
+            invalidated: invalidated, readScope: readScope,
+            requiredConfigurationID: readConnection?.configurationID, configuredConnectionID: nil, navigation: nil)
         return (adapter, session)
+    }
+
+    /// Source metadata labels a bounded offer; it does not itself grant reading.
+    /// Embedded search cannot scope by work; other backends are not enabled here.
+    func hanlinCurrentWorkReadOffer(manager: iOSNavigationManager, session: HanlinHostSession)
+        throws -> OtzariaHanlinCurrentWorkReadScope? {
+        let (_, entry, active) = try hanlinRegistration(for: session.context)
+        guard active.session == session, entry.managerID == ObjectIdentifier(manager) else { throw HanlinHostError.staleContext }
+        guard active.observed.backend.backend == .otzaria,
+              let content = active.observed.readerContent,
+              let tabID = active.observed.projection.activeTabID, manager.activeTabId == tabID else { return nil }
+        let tabs = manager.openTabs.filter { $0.id == tabID }
+        guard tabs.count == 1, let tab = tabs.first,
+              let locator = tab.book.backendLocator, locator.backend == .otzaria,
+              locator.workKey == content.sectionLocator.workKey else { return nil }
+        return try .init(workRef: .init(backend: .otzaria, workKey: locator.workKey), title: tab.book.title)
+    }
+
+    func makeHanlinCurrentWorkReadConsent(manager: iOSNavigationManager, session: HanlinHostSession,
+        displayedScope: OtzariaHanlinCurrentWorkReadScope, configurationID: UUID,
+        invalidated: @escaping @MainActor () -> Void) throws -> HanlinReadConsent {
+        let (sceneID, entry, active) = try hanlinRegistration(for: session.context)
+        guard active.session == session, active.readScope == nil, active.configuredConnectionID == nil,
+              entry.pendingHanlinReadConsent == nil,
+              try hanlinCurrentWorkReadOffer(manager: manager, session: session) == displayedScope else {
+            throw HanlinHostError.staleContext
+        }
+        let consent = HanlinReadConsent(session: session, scope: displayedScope,
+            configurationID: configurationID, observed: active.observed, invalidated: invalidated)
+        scenes[sceneID]?.pendingHanlinReadConsent = consent
+        return consent
+    }
+
+    func hanlinCurrentWorkReadScope(for session: HanlinHostSession) throws -> OtzariaHanlinCurrentWorkReadScope? {
+        let (_, _, active) = try hanlinRegistration(for: session.context)
+        guard active.session == session else { throw HanlinHostError.staleContext }
+        return active.readScope
+    }
+
+    /// The exact immutable native connection request owns this nonce. It is
+    /// activated only after local original-engine construction and before the
+    /// original SDK session exists. No provider request is made by this method.
+    func hanlinConnectionConfigured(_ configurationID: UUID, session: HanlinHostSession) throws {
+        let (sceneID, _, active) = try hanlinRegistration(for: session.context)
+        guard active.session == session,
+              active.configuredConnectionID == nil || active.configuredConnectionID == configurationID,
+              active.requiredConfigurationID == nil || active.requiredConfigurationID == configurationID else {
+            invalidateHanlin(sceneID: sceneID)
+            throw HanlinHostError.staleContext
+        }
+        scenes[sceneID]?.hanlin?.configuredConnectionID = configurationID
+    }
+
+    private func requireHanlinReadConnection(_ active: HanlinRegistration) throws {
+        if let required = active.requiredConfigurationID,
+           active.configuredConnectionID != required { throw HanlinHostError.denied }
     }
 
     private func hanlinSource(sceneID: UIStableID, entry: Registration, allowingHanlinSession: UUID? = nil) throws -> HanlinSourceObservation {
@@ -416,16 +523,22 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     func current(for session: HanlinHostSession) async throws -> OtzariaHanlinBinding {
         let (_, _, active) = try hanlinRegistration(for: session.context)
         guard active.session == session else { throw HanlinHostError.staleContext }
+        try requireHanlinReadConnection(active)
         return active.binding
     }
 
     func current(for context: HanlinHostContext) async throws -> OtzariaHanlinBinding {
-        try hanlinRegistration(for: context).2.binding
+        let active = try hanlinRegistration(for: context).2
+        try requireHanlinReadConnection(active)
+        return active.binding
     }
 
     private func invalidateHanlin(sceneID: UIStableID) {
         let prior = scenes[sceneID]?.hanlin
+        let pending = scenes[sceneID]?.pendingHanlinReadConsent
         scenes[sceneID]?.hanlin = nil
+        scenes[sceneID]?.pendingHanlinReadConsent = nil
+        pending?.invalidate()
         prior?.invalidated()
     }
 

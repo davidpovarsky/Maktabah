@@ -1,0 +1,120 @@
+Building for debugging...
+[0/5] Write swift-version-2807070033DA82CF.txt
+[1/6] Write sources
+[4/7] Emitting module OtzariaHanlinHostAdapter
+[5/8] Compiling OtzariaHanlinHostAdapter OtzariaHanlinHostAdapter.swift
+[7/10] Emitting module OtzariaHanlinHostAdapterTests
+[8/11] Compiling OtzariaHanlinHostAdapterTests AdapterTests.swift
+[9/12] C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hh\x86_64-unknown-windows-msvc\debug\HanlinHostCheckPackageDiscoveredTests.derived\all-discovered-tests.swift
+[10/13] Write sources
+[12/14] Emitting module HanlinHostCheckPackageDiscoveredTests
+[13/16] Compiling HanlinHostCheckPackageDiscoveredTests OtzariaHanlinHostAdapterTests.swift
+[14/16] Compiling HanlinHostCheckPackageDiscoveredTests all-discovered-tests.swift
+[15/17] Write Objects.LinkFileList
+[16/17] Linking HanlinHostCheckPackageTests.xctest
+Build complete! (83.12s)
+Test Suite 'All tests' started at 2026-11-20 03:13:31.350
+Test Suite 'debug.xctest' started at 2026-11-20 03:13:31.687
+Test Suite 'OtzariaHanlinHostAdapterTests' started at 2026-11-20 03:13:31.687
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback' started at 2026-11-20 03:13:31.687
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback' passed (0.377 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect' started at 2026-11-20 03:13:32.065
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect' passed (0.071 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12DeniesBackgroundBeforeNativeEffect' started at 2026-11-20 03:13:32.136
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12DeniesBackgroundBeforeNativeEffect' passed (0.121 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats' started at 2026-11-20 03:13:32.256
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats' passed (0.095 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12RejectsMismatchedNativeAcknowledgement' started at 2026-11-20 03:13:32.351
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12RejectsMismatchedNativeAcknowledgement' passed (0.078 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12RetainsReceiptWhenSuccessorWasRevoked' started at 2026-11-20 03:13:32.429
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12RetainsReceiptWhenSuccessorWasRevoked' passed (0.078 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12TransitionReturnsLiveCorrelatedSuccessor' started at 2026-11-20 03:13:32.507
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12TransitionReturnsLiveCorrelatedSuccessor' passed (0.237 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery' started at 2026-11-20 03:13:32.744
+Test Case 'OtzariaHanlinHostAdapterTests.testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery' passed (0.153 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testBackgroundNavigationIsDenied' started at 2026-11-20 03:13:32.897
+Test Case 'OtzariaHanlinHostAdapterTests.testBackgroundNavigationIsDenied' passed (0.101 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCancellationDuringAuthorityLookupNeverReachesCore' started at 2026-11-20 03:13:32.998
+Test Case 'OtzariaHanlinHostAdapterTests.testCancellationDuringAuthorityLookupNeverReachesCore' passed (0.103 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait' started at 2026-11-20 03:13:33.101
+Test Case 'OtzariaHanlinHostAdapterTests.testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait' passed (0.137 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCanonicalSchemaRejectionNeverBecomesCompleted' started at 2026-11-20 03:13:33.238
+Test Case 'OtzariaHanlinHostAdapterTests.testCanonicalSchemaRejectionNeverBecomesCompleted' passed (0.103 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogIsExactReadOnlyProjectionAndBackendQualified' started at 2026-11-20 03:13:33.341
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogIsExactReadOnlyProjectionAndBackendQualified' passed (0.096 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions' started at 2026-11-20 03:13:33.436
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions' passed (0.112 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights' started at 2026-11-20 03:13:33.548
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights' passed (0.201 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentConsumesOnlyOnceForExactDismissalSourceAndConfiguration' started at 2026-11-20 03:13:33.749
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentConsumesOnlyOnceForExactDismissalSourceAndConfiguration' passed (0.003 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentRejectsChangedConfigurationOrNamespaceAndRevocation' started at 2026-11-20 03:13:33.752
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentRejectsChangedConfigurationOrNamespaceAndRevocation' passed (0.001 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentRejectsEveryChangedSourceDimensionWithoutGrant' started at 2026-11-20 03:13:33.753
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentRejectsEveryChangedSourceDimensionWithoutGrant' passed (0.001 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testContentRightsHideSearchButPreserveCanonicalMetadataActions' started at 2026-11-20 03:13:33.753
+Test Case 'OtzariaHanlinHostAdapterTests.testContentRightsHideSearchButPreserveCanonicalMetadataActions' passed (0.118 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testContextRevocationDuringReadSuppressesResult' started at 2026-11-20 03:13:33.871
+Test Case 'OtzariaHanlinHostAdapterTests.testContextRevocationDuringReadSuppressesResult' passed (0.236 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testEmptyNativeForegroundIdentityIsDenied' started at 2026-11-20 03:13:34.107
+Test Case 'OtzariaHanlinHostAdapterTests.testEmptyNativeForegroundIdentityIsDenied' passed (0.266 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testExplicitCancellationReachesOriginalCoreTask' started at 2026-11-20 03:13:34.374
+Test Case 'OtzariaHanlinHostAdapterTests.testExplicitCancellationReachesOriginalCoreTask' passed (0.135 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testForeignProviderAndStaleCatalogAreRejected' started at 2026-11-20 03:13:34.508
+Test Case 'OtzariaHanlinHostAdapterTests.testForeignProviderAndStaleCatalogAreRejected' passed (0.145 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult' started at 2026-11-20 03:13:34.654
+Test Case 'OtzariaHanlinHostAdapterTests.testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult' passed (0.185 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts' started at 2026-11-20 03:13:34.838
+Test Case 'OtzariaHanlinHostAdapterTests.testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts' passed (0.124 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testModelArgumentsCannotChooseContentContextOrBackend' started at 2026-11-20 03:13:34.962
+Test Case 'OtzariaHanlinHostAdapterTests.testModelArgumentsCannotChooseContentContextOrBackend' passed (0.183 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testMutationGuaranteeIsRejectedBeforeDispatch' started at 2026-11-20 03:13:35.145
+Test Case 'OtzariaHanlinHostAdapterTests.testMutationGuaranteeIsRejectedBeforeDispatch' passed (0.11 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID' started at 2026-11-20 03:13:35.256
+Test Case 'OtzariaHanlinHostAdapterTests.testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID' passed (0.137 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork' started at 2026-11-20 03:13:35.393
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork' passed (0.195 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges' started at 2026-11-20 03:13:35.589
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges' passed (0.229 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead' started at 2026-11-20 03:13:35.817
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead' passed (0.24 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOutputLimitAndExpiredDeadlineAreEnforced' started at 2026-11-20 03:13:36.058
+Test Case 'OtzariaHanlinHostAdapterTests.testOutputLimitAndExpiredDeadlineAreEnforced' passed (0.177 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected' started at 2026-11-20 03:13:36.235
+Test Case 'OtzariaHanlinHostAdapterTests.testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected' passed (0.157 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testRealCoreExecutionPreservesGenerationBeyondDoublePrecision' started at 2026-11-20 03:13:36.391
+Test Case 'OtzariaHanlinHostAdapterTests.testRealCoreExecutionPreservesGenerationBeyondDoublePrecision' passed (0.192 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testReplayDoesNotExecuteAgain' started at 2026-11-20 03:13:36.584
+Test Case 'OtzariaHanlinHostAdapterTests.testReplayDoesNotExecuteAgain' passed (0.168 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead' started at 2026-11-20 03:13:36.752
+Test Case 'OtzariaHanlinHostAdapterTests.testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead' passed (0.191 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession' started at 2026-11-20 03:13:36.943
+Test Case 'OtzariaHanlinHostAdapterTests.testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession' passed (0.104 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSDKDispatcherDoesNotRepeatQueuedHostTransition' started at 2026-11-20 03:13:37.048
+Test Case 'OtzariaHanlinHostAdapterTests.testSDKDispatcherDoesNotRepeatQueuedHostTransition' passed (0.117 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadDoesNotRestrictOriginalMetadataForAnotherWork' started at 2026-11-20 03:13:37.165
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadDoesNotRestrictOriginalMetadataForAnotherWork' passed (0.288 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerKeepsMetadataContextAndBoundsOnlySearch' started at 2026-11-20 03:13:37.453
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerKeepsMetadataContextAndBoundsOnlySearch' passed (0.165 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerRejectsMissingForegroundOrForeignOrigin' started at 2026-11-20 03:13:37.618
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerRejectsMissingForegroundOrForeignOrigin' passed (0.0 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerRejectsUnknownBackendAndNoncanonicalWork' started at 2026-11-20 03:13:37.619
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerRejectsUnknownBackendAndNoncanonicalWork' passed (0.107 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchCancellationReachesOriginalCoreWorker' started at 2026-11-20 03:13:37.726
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchCancellationReachesOriginalCoreWorker' passed (0.268 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead' started at 2026-11-20 03:13:37.994
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead' passed (0.202 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchUsesActualCoreAvailabilityWithoutHidingOldMetadata' started at 2026-11-20 03:13:38.196
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchUsesActualCoreAvailabilityWithoutHidingOldMetadata' passed (0.214 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSeparateReadContextCannotBelongToAnotherSceneOrSubject' started at 2026-11-20 03:13:38.411
+Test Case 'OtzariaHanlinHostAdapterTests.testSeparateReadContextCannotBelongToAnotherSceneOrSubject' passed (0.455 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSeparateReadContextWithoutContentRightsStaysClosed' started at 2026-11-20 03:13:38.866
+Test Case 'OtzariaHanlinHostAdapterTests.testSeparateReadContextWithoutContentRightsStaysClosed' passed (0.81 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSupersededDismissalCannotConsumeCurrentConsentEvenWhileDismissing' started at 2026-11-20 03:13:39.676
+Test Case 'OtzariaHanlinHostAdapterTests.testSupersededDismissalCannotConsumeCurrentConsentEvenWhileDismissing' passed (0.0 seconds)
+Test Suite 'OtzariaHanlinHostAdapterTests' passed at 2026-11-20 03:13:39.677
+	 Executed 48 tests, with 0 failures (0 unexpected) in 7.986 (7.986) seconds
+Test Suite 'debug.xctest' passed at 2026-11-20 03:13:39.683
+	 Executed 48 tests, with 0 failures (0 unexpected) in 7.986 (7.986) seconds
+Test Suite 'All tests' passed at 2026-11-20 03:13:39.683
+	 Executed 48 tests, with 0 failures (0 unexpected) in 7.986 (7.986) seconds

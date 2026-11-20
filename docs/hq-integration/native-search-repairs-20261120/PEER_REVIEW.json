@@ -1,0 +1,9 @@
+{
+  "scope": "SOURCE_REVIEW_ONLY_NOT_NATIVE",
+  "reviewer": "hanlin_api_integration",
+  "files_reviewed": 8,
+  "blocking_source_findings": [],
+  "initial_test_limitation": "A nonmaterialized original tab always scrolled right without native RTL evidence",
+  "correction": "Bounded8 gestures now try right then left when no geometry; existing actual frame drives physical direction otherwise",
+  "native_executed": 0
+}

@@ -1,0 +1,140 @@
+{
+  "observed_at": "2026-11-20T02:50:53.036290+00:00",
+  "base_sha": "7e777509d486a17bec5b4bd437a9ac7f51d3a43a",
+  "sdk_sha": "e00498e33f106cc43be0476ffa2e09329c8ca300",
+  "sdk_tracked_clean": true,
+  "syntax_only": true,
+  "native_executed": 0,
+  "rows": [
+    {
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "sha256": "77e35177cca7c0a3456eb1ae14b8015725bb89d4e9946fa493dfef86849d03d9",
+      "bytes": 16731,
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift",
+      "sha256": "9a4bf8f574a9a4b3c523f8445b338b02443dd9e4c76631fa6d159b080f3faf49",
+      "bytes": 18119,
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "sha256": "01e7fd67955b102c8716a96223ee041cd9d7be4bd5b9b616163f1a5baee4b5a0",
+      "bytes": 21382,
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "sha256": "9dab5f5711950dba354dd9f03bd033ca44dd7c7f0d20f2b518dd4567002cd41f",
+      "bytes": 20031,
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+      "sha256": "fd542378ea742c418044005600e114d5804ddcda76394ddaa916c4263355785b",
+      "bytes": 24122,
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "89348cf4056029a19d9c65bb83b717a83d46b6b86b0f307bb9756831ac743b2e",
+      "bytes": 101282,
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    },
+    {
+      "path": "Tests/HQ/hanlin-consumer/OtzariaHanlinConversationStoreTests.swift",
+      "sha256": "45bb2a82e110fcccfe41e7c68ca4ccc26aa74e8e0cba0f8542657cb996f5af3a",
+      "bytes": 18885,
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Tests/HQ/hanlin-consumer/OtzariaHanlinConversationStoreTests.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    },
+    {
+      "path": "Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift",
+      "sha256": "5e051ca8ab19dc96739acc698e40a7edf205360a96b535b4a9b9279aba7804e3",
+      "bytes": 52983,
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'\n"
+    }
+  ],
+  "diff_check_exit_code": 0,
+  "diff_check_output": "warning: in the working copy of 'Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Tests/HQ/hanlin-consumer/OtzariaHanlinConversationStoreTests.swift', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift', LF will be replaced by CRLF the next time Git touches it\n"
+}

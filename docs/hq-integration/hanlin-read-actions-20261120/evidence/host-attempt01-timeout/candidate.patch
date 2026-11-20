@@ -1,0 +1,1162 @@
+diff --git a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift
+index 57870430..3b1bf49f 100644
+--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift
++++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatOwner.swift
+@@ -44,6 +44,15 @@ final class OtzariaHanlinChatOwner {
+     @ObservationIgnored private var presentedSceneID: String?
+     @ObservationIgnored private var pendingNavigation: OtzariaHanlinNavigationHandoff?
+     @ObservationIgnored private var pendingHistory: (namespace: HanlinConversationNamespace, id: UUID)?
++    private struct ReadReopen {
++        let originalSessionID: UUID
++        let namespace: HanlinConversationNamespace
++        let conversationID: UUID
++        let consent: MaktabahNativeRoutingComposition.HanlinReadConsent?
++        let connection: OtzariaHanlinConnectionRequest?
++    }
++    @ObservationIgnored private var pendingReadReopen: ReadReopen?
++    @ObservationIgnored private var connectionAfterMount: (sessionID: UUID, request: OtzariaHanlinConnectionRequest)?
+     @ObservationIgnored private let conversations = OtzariaHanlinConversationStore.shared
+     @ObservationIgnored private var navigationTask: Task<Void, Never>?
+     @ObservationIgnored private var retired = false
+@@ -54,18 +63,27 @@ final class OtzariaHanlinChatOwner {
+     }
+ 
+     func open(conversationID: UUID? = nil, expectedNamespace: HanlinConversationNamespace? = nil) {
++        openConversation(conversationID: conversationID, expectedNamespace: expectedNamespace, readReopen: nil)
++    }
++
++    private func openConversation(conversationID: UUID?, expectedNamespace: HanlinConversationNamespace?, readReopen: ReadReopen?) {
+         guard !retired, presentation == nil, navigationTask == nil,
+               let manager, let nativeSession, nativeSession.mounted, nativeSession.foreground else { return }
+         var issued: HanlinHostSession?
+         do {
+-            let prepared = try composition.makeHanlinHostSession(manager: manager, conversationID: conversationID ?? UUID()) { [weak self] in
++            let readConnection: (consent: MaktabahNativeRoutingComposition.HanlinReadConsent, dismissedSessionID: UUID, configurationID: UUID)?
++            if let readReopen, let consent = readReopen.consent, let connection = readReopen.connection {
++                readConnection = (consent, readReopen.originalSessionID, connection.id)
++            } else { readConnection = nil }
++            let prepared = try composition.makeHanlinHostSession(manager: manager, conversationID: conversationID ?? UUID(),
++                readConnection: readConnection) { [weak self] in
+                 self?.requestClose()
+             }
+             issued = prepared.session
+             let identity = prepared.session
+             if let expectedNamespace {
+                 guard identity.context.namespace == expectedNamespace,
+-                      try conversations.history(identity.conversationID, namespace: expectedNamespace) != nil else {
++                      readReopen != nil || (try conversations.history(identity.conversationID, namespace: expectedNamespace)) != nil else {
+                     throw HanlinHostError.staleContext
+                 }
+             }
+@@ -75,7 +93,19 @@ final class OtzariaHanlinChatOwner {
+                       nativeSession.mounted, nativeSession.foreground else { throw HanlinHostError.staleContext }
+                 try self.composition.validateHanlinHostSession(identity)
+             }
++            let readScope = try composition.hanlinCurrentWorkReadScope(for: identity)
++            let readOffer = try? composition.hanlinCurrentWorkReadOffer(manager: manager, session: identity)
+             let value = try OtzariaHanlinChatSession(identity: identity, host: prepared.host, store: scopedStore,
++                currentWorkReadOffer: readOffer, currentWorkReadScope: readScope,
++                requiredConfigurationID: readScope == nil ? nil : readReopen?.connection?.id,
++                onConnectionConfigured: { [weak self] configurationID in
++                    guard let self else { throw HanlinHostError.staleContext }
++                    try self.validate(sessionID)
++                    try self.composition.hanlinConnectionConfigured(configurationID, session: identity)
++                }, onRequestReadConnection: { [weak self] request, scope in
++                    guard let self else { throw HanlinHostError.staleContext }
++                    try self.requestReadConnection(request, displayedScope: scope, sessionID: sessionID)
++                },
+                 sourceDestination: { [weak self] event in
+                     guard let self else { throw HanlinHostError.staleContext }
+                     return try self.composition.hanlinSourceDestination(event, session: identity)
+@@ -89,7 +119,12 @@ final class OtzariaHanlinChatOwner {
+                 })
+             try nativeSession.beginStudyChatPresentation(sessionID)
+             host = prepared.host; presentation = value; presentedSceneID = nil; isPresented = true
++            if let connection = readReopen?.connection {
++                connectionAfterMount = (sessionID, connection)
++            }
+         } catch {
++            readReopen?.consent?.revoke()
++            connectionAfterMount = nil
+             if let issued {
+                 nativeSession.finishStudyChatPresentation(issued.id)
+                 composition.closeHanlinHostSession(issued)
+@@ -105,6 +140,10 @@ final class OtzariaHanlinChatOwner {
+             requestClose(sessionID: sessionID); return
+         }
+         presentedSceneID = sceneID
++        if let pending = connectionAfterMount, pending.sessionID == sessionID {
++            connectionAfterMount = nil
++            presentation?.configure(pending.request)
++        }
+     }
+ 
+     private func validate(_ sessionID: UUID) throws {
+@@ -116,7 +155,7 @@ final class OtzariaHanlinChatOwner {
+ 
+     private func queueNavigation(_ url: URL, sessionID: UUID) async throws {
+         try validate(sessionID)
+-        guard pendingNavigation == nil, pendingHistory == nil, navigationTask == nil,
++        guard pendingNavigation == nil, pendingHistory == nil, pendingReadReopen == nil, navigationTask == nil,
+               let host, let presentation else { throw HanlinHostError.duplicateInvocation }
+         let destination = HanlinHostDestination(context: presentation.identity.context, objectReference: url.absoluteString)
+         let response = try await host.open(destination)
+@@ -137,7 +176,7 @@ final class OtzariaHanlinChatOwner {
+     }
+ 
+     func selectHistory(_ id: UUID) throws {
+-        guard let presentation, pendingNavigation == nil, pendingHistory == nil,
++        guard let presentation, pendingNavigation == nil, pendingHistory == nil, pendingReadReopen == nil,
+               navigationTask == nil else { throw HanlinHostError.staleContext }
+         try validate(presentation.id)
+         let namespace = presentation.identity.context.namespace
+@@ -152,6 +191,36 @@ final class OtzariaHanlinChatOwner {
+         try conversations.deleteConversation(summary, namespace: presentation.identity.context.namespace)
+     }
+ 
++    /// Called only by the native connection form after the user confirms the
++    /// displayed work and supplies the exact immutable model configuration.
++    private func requestReadConnection(_ request: OtzariaHanlinConnectionRequest,
++        displayedScope: OtzariaHanlinCurrentWorkReadScope, sessionID: UUID) throws {
++        try validate(sessionID)
++        guard let presentation, let manager, !presentation.isConfigured,
++              !presentation.isConnecting, !presentation.isStreaming,
++              pendingNavigation == nil, pendingHistory == nil, pendingReadReopen == nil,
++              navigationTask == nil else { throw HanlinHostError.denied }
++        let consent = try composition.makeHanlinCurrentWorkReadConsent(manager: manager,
++            session: presentation.identity, displayedScope: displayedScope, configurationID: request.id)
++        pendingReadReopen = .init(originalSessionID: sessionID, namespace: presentation.identity.context.namespace,
++            conversationID: presentation.identity.conversationID, consent: consent, connection: request)
++        requestClose(sessionID: sessionID, preservingContinuation: true)
++    }
++
++    /// Revocation cancels the original stream now, before asynchronous SDK
++    /// invalidation or sheet dismissal. No connection/key follows the reopen.
++    func endCurrentWorkReadAccess(sessionID: UUID) {
++        guard let presentation, presentation.id == sessionID, presentation.currentWorkReadScope != nil else { return }
++        do {
++            try validate(sessionID)
++            guard pendingNavigation == nil, pendingHistory == nil, pendingReadReopen == nil,
++                  navigationTask == nil else { throw HanlinHostError.staleContext }
++            pendingReadReopen = .init(originalSessionID: sessionID, namespace: presentation.identity.context.namespace,
++                conversationID: presentation.identity.conversationID, consent: nil, connection: nil)
++            requestClose(sessionID: sessionID, preservingContinuation: true)
++        } catch { requestClose(sessionID: sessionID) }
++    }
++
+     /// A programmatic dismissal already owns its continuation. SwiftUI echoing
+     /// false must not cancel the native handoff or the selected history reopen.
+     func presentationBindingChanged(_ value: Bool) {
+@@ -162,7 +231,9 @@ final class OtzariaHanlinChatOwner {
+         guard let presentation, sessionID == nil || presentation.id == sessionID else { return }
+         if !preservingContinuation {
+             pendingNavigation?.cancel(); pendingNavigation = nil; pendingHistory = nil
++            pendingReadReopen?.consent?.revoke(); pendingReadReopen = nil
+         }
++        connectionAfterMount = nil
+         isPresented = false; presentedSceneID = nil
+         presentation.revoke()
+         if pendingNavigation == nil { composition.closeHanlinHostSession(presentation.identity) }
+@@ -171,13 +242,24 @@ final class OtzariaHanlinChatOwner {
+ 
+     /// SwiftUI calls this after the actual owned sheet finishes dismissing.
+     /// A replacement cannot be opened while that old presentation is retained.
+-    func didDismiss() {
+-        if let presentation {
+-            presentation.revoke()
+-            if pendingNavigation == nil { composition.closeHanlinHostSession(presentation.identity) }
+-            nativeSession?.finishStudyChatPresentation(presentation.id)
+-        }
++    func didDismiss(sessionID: UUID?) {
++        // A superseded SwiftUI callback has no ownership over this sheet or its
++        // pending grant, even if the current sheet is itself already dismissing.
++        guard let sessionID, let current = presentation, current.id == sessionID, !isPresented else { return }
++        current.revoke()
++        if pendingNavigation == nil { composition.closeHanlinHostSession(current.identity) }
++        nativeSession?.finishStudyChatPresentation(sessionID)
+         presentation = nil; host = nil; isPresented = false; presentedSceneID = nil
++        connectionAfterMount = nil
++        if let readReopen = pendingReadReopen {
++            pendingReadReopen = nil
++            guard !retired, readReopen.originalSessionID == sessionID else {
++                readReopen.consent?.revoke(); return
++            }
++            openConversation(conversationID: readReopen.conversationID,
++                expectedNamespace: readReopen.namespace, readReopen: readReopen)
++            return
++        }
+         if !retired, let history = pendingHistory {
+             pendingHistory = nil
+             open(conversationID: history.id, expectedNamespace: history.namespace)
+@@ -220,6 +302,7 @@ final class OtzariaHanlinChatOwner {
+         if let presentation { nativeSession?.finishStudyChatPresentation(presentation.id) }
+         navigationTask?.cancel(); navigationTask = nil
+         pendingNavigation?.cancel(); pendingNavigation = nil; pendingHistory = nil
++        pendingReadReopen?.consent?.revoke(); pendingReadReopen = nil; connectionAfterMount = nil
+         requestClose()
+     }
+ }
+diff --git a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift
+index eacc1dff..aa522b41 100644
+--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift
++++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift
+@@ -8,6 +8,19 @@ import HanlinHostContracts
+ import HanlinPresentationKit
+ import HanlinRichUI
+ 
++/// One immutable, transient request from the native connection form. The nonce
++/// binds the user's current-work consent to this exact endpoint/model/key
++/// configuration without persisting or hashing a credential.
++@MainActor
++final class OtzariaHanlinConnectionRequest {
++    let id = UUID()
++    let configuration: HanlinChatModelConfiguration
++    init(endpoint: String, modelID: String, credential: String) throws {
++        configuration = try OtzariaHanlinChatSession.configuration(
++            endpoint: endpoint, modelID: modelID, credential: credential)
++    }
++}
++
+ /// Scene-owned presentation state around the original SDK session and engine.
+ /// The original Core/scene adapter remains the only source of host authority.
+ @MainActor @Observable
+@@ -35,6 +48,9 @@ final class OtzariaHanlinChatSession: Identifiable {
+     private(set) var isStreaming = false
+     private(set) var errorMessage: String?
+     let presentationDescriptor: HostPresentationDescriptor
++    let currentWorkReadOffer: OtzariaHanlinCurrentWorkReadScope?
++    let currentWorkReadScope: OtzariaHanlinCurrentWorkReadScope?
++    private let requiredConfigurationID: UUID?
+ 
+     typealias Activity = OtzariaHanlinToolActivity
+ 
+@@ -42,6 +58,8 @@ final class OtzariaHanlinChatSession: Identifiable {
+     @ObservationIgnored private let validateOwner: @MainActor () throws -> Void
+     @ObservationIgnored private let onClose: @MainActor () -> Void
+     @ObservationIgnored private let onNavigate: @MainActor (URL) async throws -> Void
++    @ObservationIgnored private let onConnectionConfigured: @MainActor (UUID) throws -> Void
++    @ObservationIgnored private let onRequestReadConnection: @MainActor (OtzariaHanlinConnectionRequest, OtzariaHanlinCurrentWorkReadScope) throws -> Void
+     @ObservationIgnored private let sourceDestination: @MainActor (HanlinHostResultEvent) throws -> URL?
+     @ObservationIgnored private var pendingHostResults: [String: HanlinHostResultEvent] = [:]
+     @ObservationIgnored private let store: OtzariaHanlinScopedConversationStore
+@@ -55,12 +73,21 @@ final class OtzariaHanlinChatSession: Identifiable {
+ 
+     init(identity: HanlinHostSession, host: OtzariaHanlinHostAdapter,
+          store: OtzariaHanlinScopedConversationStore,
++         currentWorkReadOffer: OtzariaHanlinCurrentWorkReadScope? = nil,
++         currentWorkReadScope: OtzariaHanlinCurrentWorkReadScope? = nil,
++         requiredConfigurationID: UUID? = nil,
++         onConnectionConfigured: @escaping @MainActor (UUID) throws -> Void = { _ in },
++         onRequestReadConnection: @escaping @MainActor (OtzariaHanlinConnectionRequest, OtzariaHanlinCurrentWorkReadScope) throws -> Void = { _, _ in throw HanlinHostError.denied },
+          sourceDestination: @escaping @MainActor (HanlinHostResultEvent) throws -> URL?,
+          validateOwner: @escaping @MainActor () throws -> Void,
+          onClose: @escaping @MainActor () -> Void,
+          onNavigate: @escaping @MainActor (URL) async throws -> Void) throws {
+         self.identity = identity; self.host = host; self.store = store; self.sourceDestination = sourceDestination
+         self.validateOwner = validateOwner; self.onClose = onClose; self.onNavigate = onNavigate
++        self.currentWorkReadOffer = currentWorkReadOffer; self.currentWorkReadScope = currentWorkReadScope
++        self.requiredConfigurationID = requiredConfigurationID
++        self.onConnectionConfigured = onConnectionConfigured; self.onRequestReadConnection = onRequestReadConnection
++        guard (currentWorkReadScope == nil) == (requiredConfigurationID == nil) else { throw HanlinHostError.denied }
+         let descriptor = try OpenUICatalogs.host(appID: identity.context.namespace.app, research: true)
+         presentationDescriptor = descriptor
+         selectedProfile = descriptor.defaultProfile
+@@ -143,19 +170,43 @@ final class OtzariaHanlinChatSession: Identifiable {
+         try validateOwner()
+     }
+ 
+-    /// Explicit user input only. Credentials remain inside this presentation's
+-    /// original engine; no persistent credential or shared-group discovery.
+-    func configure(endpoint: String, modelID: String, credential: String) {
++    /// Explicit native input only. Reading is OFF unless this exact connection
++    /// form action requests the displayed current work. That action only queues
++    /// a source-bound dismissal/reopen; it never sends a model message.
++    func configure(endpoint: String, modelID: String, credential: String, allowCurrentWorkRead: Bool = false) {
+         guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }
++        do {
++            let request = try OtzariaHanlinConnectionRequest(endpoint: endpoint, modelID: modelID, credential: credential)
++            if allowCurrentWorkRead {
++                guard currentWorkReadScope == nil, let offer = currentWorkReadOffer else { throw HanlinHostError.denied }
++                try validateOwner()
++                try onRequestReadConnection(request, offer)
++            } else {
++                configure(request)
++            }
++        } catch {
++            if !closed { errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.") }
++        }
++    }
++
++    /// Only the original owner may carry the same immutable request through an
++    /// actual sheet dismissal. A different request cannot reuse its read grant.
++    func configure(_ request: OtzariaHanlinConnectionRequest) {
++        guard !closed, !storageFailed, !isConfigured, !isConnecting, operation == nil else { return }
++        guard requiredConfigurationID == nil || requiredConfigurationID == request.id else {
++            onClose(); return
++        }
+         isConnecting = true
+         operation = Task { @MainActor [weak self] in
+             guard let self else { return }
+             defer { self.isConnecting = false; self.operation = nil }
+             do {
+-                try await self.requireCurrent()
+-                let configuration = try Self.configuration(endpoint: endpoint, modelID: modelID, credential: credential)
++                try Task.checkCancellation()
++                try self.validateOwner()
++                let configuration = request.configuration
+                 let engine = try HanlinAISDKAgentEngine(configuration: configuration,
+                     fetch: HanlinAISDKProviderFactory.makeFetch(sessionConfiguration: .ephemeral))
++                try self.onConnectionConfigured(request.id)
+                 try await self.requireCurrent()
+                 let session = HanlinAgentSession(identity: self.identity, host: self.host, engine: engine, store: self.store)
+                 session.onHostResult = { [weak self] event in
+@@ -174,7 +225,12 @@ final class OtzariaHanlinChatSession: Identifiable {
+                 self.isConfigured = true
+                 self.errorMessage = nil
+             } catch {
+-                if !self.closed { self.errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.") }
++                if !self.closed {
++                    self.errorMessage = String(localized: "The connection could not be configured. Check the address, model and key.")
++                    // A failed granted connection cannot be retried with a new
++                    // endpoint/key while retaining the previous user's consent.
++                    if self.currentWorkReadScope != nil { self.onClose() }
++                }
+             }
+         }
+     }
+@@ -220,8 +276,11 @@ final class OtzariaHanlinChatSession: Identifiable {
+             defer { self.isStreaming = false; self.operation = nil }
+             do {
+                 try await self.requireCurrent()
++                let readInstructions = try self.currentWorkReadScope?.modelInstructions()
++                    ?? "This conversation has no permission to read a book or selection or modify library data."
+                 let instructions = OpenUICatalogs.instructions(for: profile)
+-                    + "\nUse only the host's current advertised catalog. This conversation has no permission to read a book or selection or modify library data. Do not invent citations or application actions."
++                    + "\nUse only the host's current advertised catalog. " + readInstructions
++                    + " Do not invent citations or application actions."
+                 let stream = try await agent.stream(messages: history, systemPrompt: instructions,
+                     modelReference: model, maxSteps: 8, presentationReference: profile.profile.reference.key)
+                 for try await event in stream {
+diff --git a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift
+index 6e394bf4..73d25c7e 100644
+--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift
++++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift
+@@ -23,12 +23,13 @@ struct OtzariaHanlinChatLaunchButton: View {
+ struct OtzariaHanlinChatPresentationHost: ViewModifier {
+     let owner: OtzariaHanlinChatOwner?
+     func body(content: Content) -> some View {
+-        content
++        let dismissedSessionID = owner?.presentation?.id
++        return content
+             .environment(\.otzariaHanlinChatOwner, owner)
+             .sheet(isPresented: Binding(
+                 get: { owner?.isPresented == true },
+                 set: { owner?.presentationBindingChanged($0) }),
+-                onDismiss: { owner?.didDismiss() }) {
++                onDismiss: { [dismissedSessionID] in owner?.didDismiss(sessionID: dismissedSessionID) }) {
+                     if let owner, let session = owner.presentation {
+                         OtzariaHanlinChatView(session: session, owner: owner)
+                     }
+@@ -52,6 +53,17 @@ private struct OtzariaHanlinChatView: View {
+     var body: some View {
+         NavigationStack {
+             VStack(spacing: 0) {
++                if let scope = session.currentWorkReadScope {
++                    VStack(alignment: .leading, spacing: 4) {
++                        Text(String(localized: "Book search: \(scope.title)")).font(.subheadline)
++                        Text(String(localized: "Otzaria. Matching excerpts may be shared with your connected model."))
++                            .font(.caption).foregroundStyle(.secondary)
++                        Button(String(localized: "End book access")) { owner.endCurrentWorkReadAccess(sessionID: session.id) }
++                            .accessibilityIdentifier("otzaria-hanlin-end-book-access")
++                    }
++                    .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal).padding(.vertical, 8)
++                    .accessibilityIdentifier("otzaria-hanlin-book-access")
++                }
+                 if let error = session.errorMessage { HanlinChatErrorBanner(errorMessage: error) }
+                 if session.isConfigured || !session.messages.isEmpty || !session.draft.isEmpty {
+                     GeometryReader { geometry in
+@@ -165,7 +177,7 @@ private struct OtzariaHanlinChatView: View {
+                                         case .markdown(let text): HanlinMarkdownView(text: text)
+                                         case .openUI:
+                                             OpenUIBlock(part: part, state: state) { _ in
+-                                                // Native actions are not advertised by this metadata-only host.
++                                                // Native actions are not advertised by this read-only host.
+                                                 // Local renderer state uses the original message state owner.
+                                                 throw HanlinHostError.denied
+                                             }
+@@ -244,6 +256,7 @@ private struct OtzariaHanlinConnectionView: View {
+     @State private var endpoint = "https://api.openai.com/v1"
+     @State private var model = ""
+     @State private var credential = ""
++    @State private var allowCurrentWorkRead = false
+     var body: some View {
+         Form {
+             Section(String(localized: "Model connection")) {
+@@ -257,14 +270,33 @@ private struct OtzariaHanlinConnectionView: View {
+                     .textInputAutocapitalization(.never).autocorrectionDisabled()
+                     .accessibilityIdentifier("otzaria-hanlin-api-key")
+                 Button(String(localized: "Connect")) {
+-                    session.configure(endpoint: endpoint, modelID: model, credential: credential)
++                    session.configure(endpoint: endpoint, modelID: model, credential: credential,
++                        allowCurrentWorkRead: allowCurrentWorkRead)
+                     credential = ""
+                 }
+-                .disabled(session.isConnecting)
++                .disabled(session.isConnecting || session.currentWorkReadScope != nil)
+                 .accessibilityIdentifier("otzaria-hanlin-connect")
+             }
++            if let scope = session.currentWorkReadOffer, session.currentWorkReadScope == nil {
++                Section(String(localized: "Book access")) {
++                    Text(scope.title).font(.headline)
++                    Text(String(localized: "Library: Otzaria")).foregroundStyle(.secondary)
++                    Toggle(String(localized: "Allow search in this book for this chat"), isOn: $allowCurrentWorkRead)
++                        .disabled(session.isConnecting)
++                        .accessibilityIdentifier("otzaria-hanlin-allow-current-book")
++                    Text(String(localized: "When you send a message, matching excerpts from this book may be sent to the service and model above. This permission ends when the chat closes or its source changes."))
++                        .font(.footnote)
++                    Text(String(localized: "Connecting with book access reopens this saved conversation. Your messages and draft stay saved."))
++                        .font(.footnote)
++                }
++                .accessibilityIdentifier("otzaria-hanlin-current-book-consent")
++            } else if session.currentWorkReadScope == nil {
++                Section(String(localized: "Book access")) {
++                    Text(String(localized: "Search access is unavailable for the current source."))
++                }
++            }
+             Section {
+-                Text(String(localized: "This conversation uses your messages and permitted catalog metadata. Book text and selections are not shared."))
++                Text(String(localized: "This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared."))
+                 Text(String(localized: "Conversations are saved for this study profile, group and library. Your API key lasts only until you close this chat."))
+             }
+         }
+diff --git a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift
+index 1cab6893..64d8f4bb 100644
+--- a/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift
++++ b/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift
+@@ -9,17 +9,98 @@ import OtzariaActionCore
+ public struct OtzariaHanlinBinding: Sendable, Equatable {
+     public let context: HanlinHostContext
+     public let executionContext: ActionExecutionContext
++    /// Optional host-issued content authority for search only. Metadata and
++    /// navigation keep their original context; model arguments cannot select it.
++    public let searchExecutionContext: ActionExecutionContext?
+     public let backend: ActionBackendSnapshot
+     public let catalogRevision: HanlinCatalogRevision
+     public let availableReadActions: Set<String>
+ 
+     public init(context: HanlinHostContext, executionContext: ActionExecutionContext,
+                 backend: ActionBackendSnapshot, catalogRevision: HanlinCatalogRevision,
+-                availableReadActions: Set<String>) {
++                availableReadActions: Set<String>, searchExecutionContext: ActionExecutionContext? = nil) {
+         self.context = context; self.executionContext = executionContext
+         self.backend = backend; self.catalogRevision = catalogRevision
+         self.availableReadActions = availableReadActions
++        self.searchExecutionContext = searchExecutionContext
+     }
++
++    // This dispatch is a fixed host mapping, never an argument or model field.
++    fileprivate func executionContext(for action: String) -> ActionExecutionContext {
++        action == "search.query" ? (searchExecutionContext ?? executionContext) : executionContext
++    }
++}
++
++/// One original Otzaria work, confirmed by the native reader owner. A license
++/// string, opening a chat, selection text, or model argument never constructs
++/// this permission. The explicit native connection consent is its issuer.
++struct OtzariaHanlinCurrentWorkReadScope: Sendable, Equatable {
++    let workRef: ActionWorkRef
++    let title: String
++
++    init(workRef: ActionWorkRef, title: String) throws {
++        guard workRef.backend == .otzaria, workRef.catalogRevision == nil,
++              workRef.workKey.hasPrefix("book:"),
++              let bookID = Int64(workRef.workKey.dropFirst(5)), bookID > 0,
++              Int(exactly: bookID) != nil, workRef.workKey == "book:" + String(bookID),
++              !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
++              title.utf8.count <= 4_096 else { throw HanlinHostError.denied }
++        self.workRef = workRef; self.title = title
++    }
++
++    func searchContext(from metadata: ActionExecutionContext) throws -> ActionExecutionContext {
++        guard metadata.origin == .internalAI, metadata.allowedBackends == [.otzaria],
++              metadata.scopes.contains(.discovery),
++              let scene = metadata.foregroundSceneID, !scene.isEmpty,
++              metadata.contentRights.isEmpty, !metadata.scopes.contains(.contentRead) else {
++            throw HanlinHostError.denied
++        }
++        return .init(subjectID: metadata.subjectID, correlationID: metadata.correlationID,
++            origin: metadata.origin, allowedBackends: [.otzaria], contentRights: [.otzaria],
++            scopes: [.contentRead], allowedWorkKeys: [.otzaria: [workRef.workKey]],
++            foregroundSceneID: scene, maxActions: min(metadata.maxActions, 20),
++            maxResultBytes: min(metadata.maxResultBytes, 32_768))
++    }
++
++    func modelInstructions() throws -> String {
++        let scope = String(decoding: try JSONEncoder().encode([workRef]), as: UTF8.self)
++        return "The user authorized bounded read-only search of exactly the current Otzaria work for this connection. "
++            + "Use search.query only with backend \"otzaria\" and scopeWorkRefs " + scope
++            + ". Include this exact scope in every search. Do not read selections, change library data, or infer access to other works. "
++            + "Catalog metadata actions retain their original public metadata scope."
++    }
++}
++
++/// A transient user-action continuation, not Codable and never persisted. The
++/// native owner supplies its full original source observation as Source. Only
++/// its exact sheet dismissal may consume this witness, once, for the exact
++/// immutable model configuration selected at the user action.
++@MainActor
++final class OtzariaHanlinCurrentWorkReadConsent<Source: Equatable> {
++    let session: HanlinHostSession
++    let scope: OtzariaHanlinCurrentWorkReadScope
++    let configurationID: UUID
++    private let source: Source
++    private var available = true
++
++    init(session: HanlinHostSession, scope: OtzariaHanlinCurrentWorkReadScope,
++         configurationID: UUID, source: Source) {
++        self.session = session; self.scope = scope
++        self.configurationID = configurationID; self.source = source
++    }
++
++    func consume(dismissedSessionID: UUID, currentSource: Source,
++                 namespace: HanlinConversationNamespace, configurationID: UUID) throws -> OtzariaHanlinCurrentWorkReadScope {
++        guard available else { throw HanlinHostError.staleContext }
++        // A late dismissal belonging to another sheet must not retire this one.
++        guard dismissedSessionID == session.id else { throw HanlinHostError.staleContext }
++        available = false
++        guard currentSource == source, namespace == session.context.namespace,
++              configurationID == self.configurationID else { throw HanlinHostError.staleContext }
++        return scope
++    }
++
++    func revoke() { available = false }
+ }
+ 
+ /// App-owned seam, deliberately not an SDK permission store or second executor.
+@@ -86,7 +167,15 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
+         // Policy and current backend readiness belong to the SAME original Core.
+         // A local name allowlist is only this transport's read-only surface.
+         let advertised = await core.advertisedActions(for: binding.backend.backend, context: binding.executionContext)
+-        let catalog = try makeCatalog(binding, advertised: Set(advertised.map(\.id)))
++        var actionIDs = Set(advertised.map(\.id))
++        if let searchContext = binding.searchExecutionContext {
++            // Only the fixed search action may use this separately issued grant.
++            // Ask the same Core policy/readiness implementation, not a host copy.
++            actionIDs.remove("search.query")
++            let readActions = await core.advertisedActions(for: binding.backend.backend, context: searchContext)
++            if readActions.contains(where: { $0.id == "search.query" }) { actionIDs.insert("search.query") }
++        }
++        let catalog = try makeCatalog(binding, advertised: actionIDs)
+         // A projection is not a permission grant. Recheck after the Core await.
+         guard try await checkedBinding(context) == binding else { throw HanlinHostError.staleContext }
+         return catalog
+@@ -143,7 +232,8 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
+             throw HanlinHostError.storageLimitExceeded
+         }
+         seen.insert(request.id)
+-        let task = Task { [core] in await core.execute(canonical, context: binding.executionContext) }
++        let executionContext = binding.executionContext(for: action)
++        let task = Task { [core] in await core.execute(canonical, context: executionContext) }
+         workers[request.id] = task
+         defer { workers.removeValue(forKey: request.id) }
+         let result = await withTaskCancellationHandler {
+@@ -155,7 +245,7 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
+         guard try await checkedBinding(binding.context) == binding else { throw HanlinHostError.staleContext }
+         if cancelled.contains(invocationID), result.status != .cancelled { throw CancellationError() }
+         let encoded = try JSONEncoder().encode(result)
+-        guard encoded.count <= min(request.limits.maximumOutputBytes, binding.executionContext.maxResultBytes) else {
++        guard encoded.count <= min(request.limits.maximumOutputBytes, executionContext.maxResultBytes) else {
+             throw HanlinHostError.outputLimitExceeded
+         }
+         let outcome: HanlinToolOutcome
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
+index f209c645..045ac97e 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
+@@ -37,7 +37,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+     private var contexts: [UIStableID: ActionExecutionContext] = [:]
+     // Ephemeral association to the actual native registration, not another
+     // account, workspace, permission store or scene-selection authority.
+-    private struct HanlinSourceObservation: Equatable {
++    fileprivate struct HanlinSourceObservation: Equatable {
+         let backend: ActionBackendSnapshot
+         let source: ObjectIdentifier
+         let epoch: StudyWorkspaceMappingEpoch
+@@ -51,8 +51,24 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+         let binding: OtzariaHanlinBinding
+         let observed: HanlinSourceObservation
+         let invalidated: @MainActor () -> Void
++        let readScope: OtzariaHanlinCurrentWorkReadScope?
++        let requiredConfigurationID: UUID?
++        var configuredConnectionID: UUID?
+         var navigation: HanlinNavigationRequest?
+     }
++    /// Only the real native Connect action constructs this transient witness.
++    /// It has no Codable/store path and cannot be supplied by the SDK/model.
++    @MainActor final class HanlinReadConsent {
++        fileprivate let witness: OtzariaHanlinCurrentWorkReadConsent<HanlinSourceObservation>
++        var originalSession: HanlinHostSession { witness.session }
++        var scope: OtzariaHanlinCurrentWorkReadScope { witness.scope }
++        var configurationID: UUID { witness.configurationID }
++        fileprivate init(session: HanlinHostSession, scope: OtzariaHanlinCurrentWorkReadScope,
++                         configurationID: UUID, observed: HanlinSourceObservation) {
++            witness = .init(session: session, scope: scope, configurationID: configurationID, source: observed)
++        }
++        func revoke() { witness.revoke() }
++    }
+     private struct HanlinNavigationRequest {
+         let destination: HanlinHostDestination
+         let intent: PublicNavigationSpecV2
+@@ -326,24 +342,39 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+     }
+     /// The existing profile/group and native mapping own the SDK namespace.
+     /// The scene-owned chat composes the original SDK; this authority exposes
+-    /// metadata and navigation only, with no implicit book/selection read grant.
++    /// metadata/navigation by default. Only the explicit current-work connection
++    /// consent below can issue a separate bounded search context.
+     func makeHanlinHostSession(manager: iOSNavigationManager, conversationID: UUID,
+-                               invalidated: @escaping @MainActor () -> Void = {}) throws
++        readConnection: (consent: HanlinReadConsent, dismissedSessionID: UUID, configurationID: UUID)? = nil,
++        invalidated: @escaping @MainActor () -> Void = {}) throws
+         -> (host: OtzariaHanlinHostAdapter, session: HanlinHostSession) {
+         try Task.checkCancellation()
+         let matches = scenes.filter { $0.value.managerID == ObjectIdentifier(manager) }
+         guard matches.count == 1, let (sceneID, entry) = matches.first else { throw HanlinHostError.invalidContext }
+         return try issueHanlinHostSession(sceneID: sceneID, entry: entry,
+-            conversationID: conversationID, invalidated: invalidated)
++            conversationID: conversationID, readConnection: readConnection, invalidated: invalidated)
+     }
+ 
+     private func issueHanlinHostSession(sceneID: UIStableID, entry: Registration,
+-        conversationID: UUID, invalidated: @escaping @MainActor () -> Void)
++        conversationID: UUID,
++        readConnection: (consent: HanlinReadConsent, dismissedSessionID: UUID, configurationID: UUID)? = nil,
++        invalidated: @escaping @MainActor () -> Void)
+         throws -> (host: OtzariaHanlinHostAdapter, session: HanlinHostSession) {
+         let observed = try hanlinSource(sceneID: sceneID, entry: entry)
+         let namespace = try HanlinConversationNamespace(app: "otzaria",
+             account: observed.projection.profileID.uuidString,
+             workspace: observed.projection.groupID.uuidString, space: observed.backend.backend.rawValue)
++        let readScope: OtzariaHanlinCurrentWorkReadScope?
++        if let readConnection {
++            guard readConnection.consent.originalSession.conversationID == conversationID,
++                  readConnection.consent.originalSession.context.sceneID == entry.hanlinSceneID else {
++                readConnection.consent.revoke()
++                throw HanlinHostError.staleContext
++            }
++            readScope = try readConnection.consent.witness.consume(
++                dismissedSessionID: readConnection.dismissedSessionID, currentSource: observed,
++                namespace: namespace, configurationID: readConnection.configurationID)
++        } else { readScope = nil }
+         // Native UIKit identifiers remain strings. This UUID belongs only to the
+         // SDK association and is discarded with this exact native registration.
+         let objectReference = try observed.readerContent.map { content in
+@@ -357,12 +388,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+             generation: UUID(), objectReference: objectReference, sourceRevision: "backend:" + String(observed.backend.generation)
+                 + ";rpc:" + (observed.backend.rpcEpoch.map(String.init) ?? "none")
+                 + ";mapping:" + observed.epoch.sourceID.uuidString + ":" + String(observed.epoch.revision)
+-                + ";tab:" + (observed.projection.activeTabID?.uuidString ?? "none"),
++                + ";tab:" + (observed.projection.activeTabID?.uuidString ?? "none")
++                + (readConnection.map { ";read-configuration:" + $0.configurationID.uuidString } ?? ""),
+             localeIdentifier: observed.locale)
+-        let binding = OtzariaHanlinBinding(context: sdkContext,
+-            executionContext: context(sceneID: sceneID, origin: .internalAI, snapshot: observed.backend),
++        let metadataContext = context(sceneID: sceneID, origin: .internalAI, snapshot: observed.backend)
++        let binding = OtzariaHanlinBinding(context: sdkContext, executionContext: metadataContext,
+             backend: observed.backend, catalogRevision: .init(observed.backend.generation),
+-            availableReadActions: ["system.listBackends", "catalog.resolveWork", "catalog.resolveReference"])
++            availableReadActions: Set(["system.listBackends", "catalog.resolveWork", "catalog.resolveReference"])
++                .union(readScope == nil ? [] : ["search.query"]),
++            searchExecutionContext: try readScope?.searchContext(from: metadataContext))
+         let session = HanlinHostSession(conversationID: conversationID, context: sdkContext)
+         // Replay/cancellation admission belongs to this exact SDK session.
+         // Reuse the one original Core, not a process-wide transport budget that
+@@ -370,10 +404,62 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+         let adapter = try OtzariaHanlinHostAdapter(core: core, authority: self)
+         invalidateHanlin(sceneID: sceneID)
+         scenes[sceneID]?.hanlin = .init(session: session, binding: binding, observed: observed,
+-                                      invalidated: invalidated, navigation: nil)
++            invalidated: invalidated, readScope: readScope,
++            requiredConfigurationID: readConnection?.configurationID, configuredConnectionID: nil, navigation: nil)
+         return (adapter, session)
+     }
+ 
++    /// Source metadata labels a bounded offer; it does not itself grant reading.
++    /// Embedded search cannot scope by work; other backends are not enabled here.
++    func hanlinCurrentWorkReadOffer(manager: iOSNavigationManager, session: HanlinHostSession)
++        throws -> OtzariaHanlinCurrentWorkReadScope? {
++        let (_, entry, active) = try hanlinRegistration(for: session.context)
++        guard active.session == session, entry.managerID == ObjectIdentifier(manager) else { throw HanlinHostError.staleContext }
++        guard active.observed.backend.backend == .otzaria,
++              let content = active.observed.readerContent,
++              let tabID = active.observed.projection.activeTabID, manager.activeTabId == tabID else { return nil }
++        let tabs = manager.openTabs.filter { $0.id == tabID }
++        guard tabs.count == 1, let tab = tabs.first,
++              let locator = tab.book.backendLocator, locator.backend == .otzaria,
++              locator.workKey == content.sectionLocator.workKey else { return nil }
++        return try .init(workRef: .init(backend: .otzaria, workKey: locator.workKey), title: tab.book.title)
++    }
++
++    func makeHanlinCurrentWorkReadConsent(manager: iOSNavigationManager, session: HanlinHostSession,
++        displayedScope: OtzariaHanlinCurrentWorkReadScope, configurationID: UUID) throws -> HanlinReadConsent {
++        let (_, _, active) = try hanlinRegistration(for: session.context)
++        guard active.session == session, active.readScope == nil,
++              try hanlinCurrentWorkReadOffer(manager: manager, session: session) == displayedScope else {
++            throw HanlinHostError.staleContext
++        }
++        return .init(session: session, scope: displayedScope, configurationID: configurationID, observed: active.observed)
++    }
++
++    func hanlinCurrentWorkReadScope(for session: HanlinHostSession) throws -> OtzariaHanlinCurrentWorkReadScope? {
++        let (_, _, active) = try hanlinRegistration(for: session.context)
++        guard active.session == session else { throw HanlinHostError.staleContext }
++        return active.readScope
++    }
++
++    /// The exact immutable native connection request owns this nonce. It is
++    /// activated only after local original-engine construction and before the
++    /// original SDK session exists. No provider request is made by this method.
++    func hanlinConnectionConfigured(_ configurationID: UUID, session: HanlinHostSession) throws {
++        let (sceneID, _, active) = try hanlinRegistration(for: session.context)
++        guard active.session == session,
++              active.configuredConnectionID == nil || active.configuredConnectionID == configurationID,
++              active.requiredConfigurationID == nil || active.requiredConfigurationID == configurationID else {
++            invalidateHanlin(sceneID: sceneID)
++            throw HanlinHostError.staleContext
++        }
++        scenes[sceneID]?.hanlin?.configuredConnectionID = configurationID
++    }
++
++    private func requireHanlinReadConnection(_ active: HanlinRegistration) throws {
++        if let required = active.requiredConfigurationID,
++           active.configuredConnectionID != required { throw HanlinHostError.denied }
++    }
++
+     private func hanlinSource(sceneID: UIStableID, entry: Registration, allowingHanlinSession: UUID? = nil) throws -> HanlinSourceObservation {
+         guard entry.session.mounted, entry.session.foreground,
+               entry.session.isStudyChatContextReady(allowing: allowingHanlinSession), let publicBinding = entry.publicBinding,
+@@ -416,11 +502,14 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
+     func current(for session: HanlinHostSession) async throws -> OtzariaHanlinBinding {
+         let (_, _, active) = try hanlinRegistration(for: session.context)
+         guard active.session == session else { throw HanlinHostError.staleContext }
++        try requireHanlinReadConnection(active)
+         return active.binding
+     }
+ 
+     func current(for context: HanlinHostContext) async throws -> OtzariaHanlinBinding {
+-        try hanlinRegistration(for: context).2.binding
++        let active = try hanlinRegistration(for: context).2
++        try requireHanlinReadConnection(active)
++        return active.binding
+     }
+ 
+     private func invalidateHanlin(sceneID: UIStableID) {
+diff --git a/Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift b/Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift
+index f8884472..0e7c5d19 100644
+--- a/Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift
++++ b/Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift
+@@ -9,6 +9,16 @@ import OtzariaActionCore
+ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchPort, OtzariaHanlinNavigationAuthority {
+     var binding: OtzariaHanlinBinding
+     var reads = 0
++    var searchReads = 0
++    var metadataReads = 0
++    var serveReadActions = false
++    var wrongSearchWork = false
++    var searchHold = false
++    var searchEntered = false
++    var searchBlocked: CheckedContinuation<Void, Never>?
++    var searchObservedCancellation = false
++    var lastSearchQuery: ActionSearchQuery?
++    var authorityRevoked = false
+     var unavailableActions = Set<String>()
+     var hold = false
+     var entered = false
+@@ -29,9 +39,13 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
+             holdAuthority = false; authorityEntered = true
+             await withCheckedContinuation { authorityBlocked = $0 }
+         }
++        guard !authorityRevoked else { throw HanlinHostError.staleContext }
++        return binding
++    }
++    func current(for context: HanlinHostContext) async throws -> OtzariaHanlinBinding {
++        guard !authorityRevoked else { throw HanlinHostError.staleContext }
+         return binding
+     }
+-    func current(for context: HanlinHostContext) async throws -> OtzariaHanlinBinding { binding }
+     func snapshot() async throws -> ActionBackendSnapshot { binding.backend }
+     func report(for backend: ActionBackendID) async throws -> ActionBackendReport {
+         reads += 1
+@@ -47,10 +61,43 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
+     func assess(action: String, arguments: ActionObject, invocation: ActionPortInvocation) async throws -> ActionCapabilityAssessment {
+         .init(registered: true, supported: true, availableNow: true)
+     }
+-    func resolveWork(_ query: ActionResolveWorkQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionWorkRef> { throw ActionPortError.unavailable }
+-    func resolveReference(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> { throw ActionPortError.unavailable }
++    func resolveWork(_ query: ActionResolveWorkQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionWorkRef> {
++        guard serveReadActions else { throw ActionPortError.unavailable }
++        metadataReads += 1
++        return .unique(query.workRef ?? .init(backend: query.backend, workKey: "book:2"))
++    }
++    func resolveReference(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> {
++        guard serveReadActions else { throw ActionPortError.unavailable }
++        metadataReads += 1
++        return .unique(.init(backend: query.backend, workKey: query.workRef?.workKey ?? "book:2", position: .legacyLine(0)))
++    }
+     func validateDestination(_ destination: ActionReaderDestination, invocation: ActionPortInvocation) async throws -> ActionReaderDestination { throw ActionPortError.unavailable }
+-    func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage { throw ActionPortError.unavailable }
++    func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage {
++        guard serveReadActions else { throw ActionPortError.unavailable }
++        searchReads += 1; lastSearchQuery = query; searchEntered = true
++        if searchHold { await withCheckedContinuation { searchBlocked = $0 } }
++        searchObservedCancellation = Task.isCancelled
++        let work = wrongSearchWork ? "book:2" : (query.scopeWorkRefs.first?.workKey ?? "book:1")
++        return .init(hits: [.init(id: "fixture-hit", locator: .init(backend: query.backend, workKey: work, position: .legacyLine(0)),
++            title: "Fixture work", snippet: wrongSearchWork ? "FORBIDDEN_OTHER_WORK" : "Allowed fixture excerpt")],
++            total: 1, precision: .exact, nextOffset: nil)
++    }
++    func enableReadActions() { serveReadActions = true }
++    func setSearchHold() { searchHold = true }
++    func setWrongSearchWork() { wrongSearchWork = true }
++    func releaseSearch() { searchBlocked?.resume(); searchBlocked = nil }
++    func revokeAuthority() { authorityRevoked = true }
++    func removeSearchGrant() {
++        binding = .init(context: binding.context, executionContext: binding.executionContext, backend: binding.backend,
++            catalogRevision: binding.catalogRevision, availableReadActions: binding.availableReadActions)
++    }
++    func waitForSearch() async throws {
++        let deadline = ContinuousClock.now + .seconds(5)
++        while !searchEntered {
++            guard ContinuousClock.now < deadline else { throw NSError(domain: "SearchWasNotEntered", code: 1) }
++            try await Task.sleep(for: .milliseconds(5))
++        }
++    }
+     func open(_ destination: HanlinHostDestination, binding: OtzariaHanlinBinding) async throws -> HanlinHostNavigationResult {
+         if wrongReceipt { return .presented(requestID: UUID(), context: destination.context,
+             objectReference: destination.objectReference, blockReference: destination.blockReference) }
+@@ -118,7 +165,8 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
+             objectReference: old.objectReference, selectionReferences: old.selectionReferences,
+             sourceRevision: old.sourceRevision)
+         binding = .init(context: context, executionContext: binding.executionContext, backend: binding.backend,
+-            catalogRevision: binding.catalogRevision, availableReadActions: binding.availableReadActions)
++            catalogRevision: binding.catalogRevision, availableReadActions: binding.availableReadActions,
++            searchExecutionContext: binding.searchExecutionContext)
+     }
+ }
+ 
+@@ -152,8 +200,8 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
+                             raw: String? = "{}", outputLimit: Int = 65_536,
+                             guarantee: HanlinHostWriteGuarantee = .readOnly,
+                             provider: String? = nil, revision: UInt64? = nil,
+-                            deadline: Date? = nil) throws -> HanlinHostInvocation {
+-        let tool = try XCTUnwrap(catalog.tools.first { $0.route.logicalToolID.localToolID.rawValue == "system.list-backends" })
++                            deadline: Date? = nil, toolID: String = "system.list-backends") throws -> HanlinHostInvocation {
++        let tool = try XCTUnwrap(catalog.tools.first { $0.route.logicalToolID.localToolID.rawValue == toolID })
+         let logical = HanlinLogicalToolID(providerInstanceID: try provider.map { try .init(validating: $0) }
+             ?? tool.route.logicalToolID.providerInstanceID, localToolID: tool.route.logicalToolID.localToolID)
+         let request = HanlinToolInvocationRequest(id: try .init(validating: "inv-" + UUID().uuidString.lowercased()),
+@@ -445,4 +493,304 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
+         let count = await fixture.navigationCount; XCTAssertEqual(count, 1)
+     }
+ 
++    // The following tests execute the original Core, actual downstream issuer /
++    // adapter, and where named the unmodified original SDK dispatcher. Backend
++    // contents and native source observations are explicit fixture doubles.
++    private func scopedSetup() async throws
++        -> (Fixture, OtzariaHanlinHostAdapter, HanlinHostSession, HanlinHostCatalog, ActionExecutionContext) {
++        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture-profile",
++            workspace: "fixture-group", space: "otzaria"), sceneID: UUID(), generation: UUID(),
++            objectReference: "fixture-original-reader", sourceRevision: "fixture-source-and-configuration")
++        let metadata = ActionExecutionContext(subjectID: "fixture-native-owner", origin: .internalAI,
++            allowedBackends: [.otzaria], scopes: [.discovery, .navigation], foregroundSceneID: "fixture-native-scene")
++        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture book")
++        let binding = OtzariaHanlinBinding(context: context, executionContext: metadata,
++            backend: .init(backend: .otzaria, generation: 73), catalogRevision: .init(73),
++            availableReadActions: ["system.listBackends", "catalog.resolveWork", "catalog.resolveReference", "search.query"],
++            searchExecutionContext: try scope.searchContext(from: metadata))
++        let fixture = Fixture(binding: binding)
++        await fixture.enableReadActions()
++        let core = try ActionExecutor(state: fixture, resolver: fixture, search: fixture)
++        let adapter = try OtzariaHanlinHostAdapter(core: core, authority: fixture)
++        let session = HanlinHostSession(conversationID: UUID(), context: context)
++        let catalog = try await adapter.catalog(for: context)
++        await fixture.resetReads()
++        return (fixture, adapter, session, catalog, metadata)
++    }
++
++    private var scopedQuery: String {
++        #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:1"}],"limit":2}"#
++    }
++
++    private func completedAction(_ result: HanlinHostExecutionResult) throws -> ActionResult {
++        guard case .completed(let blocks) = result.result.outcome, case .text(let value) = blocks.first else {
++            XCTFail("Expected actual Core completion"); throw HanlinHostError.invalidRecord
++        }
++        return try JSONDecoder().decode(ActionResult.self, from: Data(value.utf8))
++    }
++
++    func testScopedReadIssuerRejectsUnknownBackendAndNoncanonicalWork() throws {
++        for backend in [ActionBackendID.sefaria, .sefariaEmbedded] {
++            XCTAssertThrowsError(try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: backend, workKey: "book:1"), title: "Fixture"))
++        }
++        for key in ["book:0", "book:-1", "book:01", "book:1extra", "Genesis", ""] {
++            XCTAssertThrowsError(try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: key), title: "Fixture"))
++        }
++        XCTAssertThrowsError(try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1", catalogRevision: "guessed"), title: "Fixture"))
++        XCTAssertThrowsError(try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: " "))
++    }
++
++    func testScopedReadIssuerKeepsMetadataContextAndBoundsOnlySearch() async throws {
++        let (fixture, _, session, _, originalMetadata) = try await scopedSetup()
++        let binding = try await fixture.current(for: session)
++        XCTAssertEqual(binding.executionContext, originalMetadata)
++        XCTAssertTrue(binding.executionContext.contentRights.isEmpty)
++        XCTAssertNil(binding.executionContext.allowedWorkKeys)
++        let read = try XCTUnwrap(binding.searchExecutionContext)
++        XCTAssertEqual(read.contentRights, [.otzaria])
++        XCTAssertEqual(read.allowedBackends, [.otzaria])
++        XCTAssertEqual(read.allowedWorkKeys, [.otzaria: ["book:1"]])
++        XCTAssertEqual(read.scopes, [.contentRead])
++        XCTAssertEqual(read.foregroundSceneID, originalMetadata.foregroundSceneID)
++        XCTAssertEqual(read.maxActions, 20)
++        XCTAssertEqual(read.maxResultBytes, 32_768)
++    }
++
++    func testScopedReadIssuerRejectsMissingForegroundOrForeignOrigin() throws {
++        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
++        for context in [
++            ActionExecutionContext(subjectID: "fixture", origin: .internalAI, allowedBackends: [.otzaria], scopes: [.discovery]),
++            ActionExecutionContext(subjectID: "fixture", origin: .mcp, allowedBackends: [.otzaria], scopes: [.discovery], foregroundSceneID: "scene"),
++            ActionExecutionContext(subjectID: "fixture", origin: .internalAI, allowedBackends: [.otzaria, .sefaria], scopes: [.discovery], foregroundSceneID: "scene")
++        ] { XCTAssertThrowsError(try scope.searchContext(from: context)) }
++    }
++
++    func testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery() async throws {
++        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
++        let value = try await adapter.execute(invocation(session, catalog, raw: scopedQuery, toolID: "search.query")) { _ in }
++        let result = try completedAction(value)
++        XCTAssertEqual(result.action, "search.query")
++        XCTAssertEqual(result.status, .completed)
++        XCTAssertEqual(result.backendGeneration, 73)
++        XCTAssertEqual(value.effectState, .confirmedNoEffect)
++        let observed = await fixture.lastSearchQuery
++        XCTAssertEqual(observed?.scopeWorkRefs, [.init(backend: .otzaria, workKey: "book:1")])
++        XCTAssertEqual(observed?.limit, 2)
++        let count = await fixture.searchReads; XCTAssertEqual(count, 1)
++    }
++
++    func testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead() async throws {
++        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
++        for raw in [
++            #"{"backend":"otzaria","text":"fixture"}"#,
++            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[]}"#,
++            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:2"}]}"#,
++            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:1"},{"backend":"otzaria","workKey":"book:2"}]}"#
++        ] {
++            let value = try await adapter.execute(invocation(session, catalog, raw: raw, toolID: "search.query")) { _ in }
++            guard case .failed = value.result.outcome else { return XCTFail("Out-of-scope search completed") }
++        }
++        let count = await fixture.searchReads; XCTAssertEqual(count, 0)
++    }
++
++    func testModelArgumentsCannotChooseContentContextOrBackend() async throws {
++        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
++        for raw in [
++            #"{"backend":"sefaria","text":"fixture","scopeWorkRefs":[{"backend":"sefaria","workKey":"book:1"}]}"#,
++            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:1"}],"contentRights":["otzaria"]}"#,
++            #"{"backend":"otzaria","text":"fixture","scopeWorkRefs":[{"backend":"otzaria","workKey":"book:1"}],"searchExecutionContext":"unrestricted"}"#
++        ] {
++            let value = try await adapter.execute(invocation(session, catalog, raw: raw, toolID: "search.query")) { _ in }
++            guard case .failed = value.result.outcome else { return XCTFail("Model supplied host authority") }
++        }
++        let count = await fixture.searchReads; XCTAssertEqual(count, 0)
++    }
++
++    func testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead() async throws {
++        let (fixture, adapter, session, oldCatalog, _) = try await scopedSetup()
++        await fixture.removeSearchGrant()
++        let current = try await adapter.catalog(for: session.context)
++        XCTAssertEqual(Set(current.tools.map { $0.route.logicalToolID.localToolID.rawValue }),
++            ["system.list-backends", "catalog.resolve-work", "catalog.resolve-reference"])
++        let value = try await adapter.execute(invocation(session, oldCatalog, raw: scopedQuery, toolID: "search.query")) { _ in }
++        guard case .failed = value.result.outcome else { return XCTFail("Removed read authority accepted an old descriptor") }
++        let count = await fixture.searchReads; XCTAssertEqual(count, 0)
++    }
++
++    func testScopedSearchUsesActualCoreAvailabilityWithoutHidingOldMetadata() async throws {
++        let (fixture, adapter, session, _, _) = try await scopedSetup()
++        await fixture.setUnavailable(["search.query"])
++        let current = try await adapter.catalog(for: session.context)
++        XCTAssertEqual(Set(current.tools.map { $0.route.logicalToolID.localToolID.rawValue }),
++            ["system.list-backends", "catalog.resolve-work", "catalog.resolve-reference"])
++    }
++
++    func testScopedReadDoesNotRestrictOriginalMetadataForAnotherWork() async throws {
++        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
++        let requests: [(String, String)] = [
++            ("system.list-backends", "{}"),
++            ("catalog.resolve-work", #"{"backend":"otzaria","workRef":{"backend":"otzaria","workKey":"book:2"}}"#),
++            ("catalog.resolve-reference", #"{"backend":"otzaria","workRef":{"backend":"otzaria","workKey":"book:2"},"section":"fixture"}"#)
++        ]
++        for (name, raw) in requests {
++            let value = try await adapter.execute(invocation(session, catalog, raw: raw, toolID: name)) { _ in }
++            XCTAssertEqual(try completedAction(value).status, .completed, name)
++        }
++        let metadata = await fixture.metadataReads; XCTAssertEqual(metadata, 2)
++        let searches = await fixture.searchReads; XCTAssertEqual(searches, 0)
++    }
++
++    func testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork() async throws {
++        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
++        await fixture.setWrongSearchWork()
++        let value = try await adapter.execute(invocation(session, catalog, raw: scopedQuery, toolID: "search.query")) { _ in }
++        guard case .failed = value.result.outcome else { return XCTFail("Foreign work excerpt escaped") }
++        XCTAssertFalse(String(decoding: try JSONEncoder().encode(value), as: UTF8.self).contains("FORBIDDEN_OTHER_WORK"))
++        let count = await fixture.searchReads; XCTAssertEqual(count, 1)
++    }
++
++    func testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult() async throws {
++        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
++        await fixture.setSearchHold()
++        let call = try invocation(session, catalog, raw: scopedQuery, toolID: "search.query")
++        let work = Task { try await adapter.execute(call) { _ in } }
++        do { try await fixture.waitForSearch() }
++        catch { work.cancel(); await fixture.releaseSearch(); throw error }
++        await fixture.removeSearchGrant()
++        await fixture.releaseSearch()
++        do { _ = try await work.value; XCTFail("Revoked read result escaped") }
++        catch let error as HanlinHostError { XCTAssertEqual(error, .staleContext) }
++    }
++
++    func testScopedSearchCancellationReachesOriginalCoreWorker() async throws {
++        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
++        await fixture.setSearchHold()
++        let call = try invocation(session, catalog, raw: scopedQuery, toolID: "search.query")
++        let work = Task { try await adapter.execute(call) { _ in } }
++        do { try await fixture.waitForSearch() }
++        catch { work.cancel(); await fixture.releaseSearch(); throw error }
++        await adapter.cancel(call.request.id)
++        await fixture.releaseSearch()
++        let value = try await work.value
++        guard case .failed(let error) = value.result.outcome else { return XCTFail("Cancelled search completed") }
++        XCTAssertEqual(error.code, .cancelled)
++        let cancelled = await fixture.searchObservedCancellation; XCTAssertTrue(cancelled)
++    }
++
++    func testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges() async throws {
++        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
++        let tool = try XCTUnwrap(catalog.tools.first { $0.route.logicalToolID.localToolID.rawValue == "search.query" })
++        let dispatcher = HanlinHostDispatcher(host: adapter)
++        let value = try await dispatcher.dispatch(alias: tool.route.alias, argumentsJSON: scopedQuery,
++            providerCallID: "fixture-scoped-call", runID: UUID(), step: 0, session: session, catalog: catalog,
++            limits: .init(maximumOutputBytes: 65_536))
++        XCTAssertEqual(try completedAction(value).status, .completed)
++        let count = await fixture.searchReads; XCTAssertEqual(count, 1)
++    }
++
++    func testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead() async throws {
++        let (fixture, adapter, session, catalog, _) = try await scopedSetup()
++        await fixture.setSearchHold()
++        let tool = try XCTUnwrap(catalog.tools.first { $0.route.logicalToolID.localToolID.rawValue == "search.query" })
++        let dispatcher = HanlinHostDispatcher(host: adapter)
++        let query = scopedQuery
++        let work = Task {
++            try await dispatcher.dispatch(alias: tool.route.alias, argumentsJSON: query,
++                providerCallID: "fixture-revoked-call", runID: UUID(), step: 0, session: session, catalog: catalog,
++                limits: .init(maximumOutputBytes: 65_536))
++        }
++        do { try await fixture.waitForSearch() }
++        catch { work.cancel(); await fixture.releaseSearch(); throw error }
++        await fixture.revokeAuthority()
++        await dispatcher.invalidate(session)
++        await fixture.releaseSearch()
++        do { _ = try await work.value; XCTFail("Retired SDK session exposed content") }
++        catch let error as HanlinHostError { XCTAssertEqual(error, .staleContext) }
++        let cancelled = await fixture.searchObservedCancellation; XCTAssertTrue(cancelled)
++    }
++
++    // Actual consent state uses the full native observation; this explicit
++    // portable witness tests lifecycle without claiming UIKit/scene execution.
++    private struct ConsentSource: Equatable {
++        var backendGeneration = 7
++        var rpcEpoch = 3
++        var profile = "profile"
++        var group = "group"
++        var source = "original-source"
++        var sourceRevision = 8
++        var tab = "original-tab"
++        var work = "book:1"
++        var selection = "none"
++    }
++
++    @MainActor
++    func testConsentConsumesOnlyOnceForExactDismissalSourceAndConfiguration() throws {
++        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture", workspace: "group", space: "otzaria"),
++            sceneID: UUID(), generation: UUID())
++        let session = HanlinHostSession(conversationID: UUID(), context: context)
++        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
++        let id = UUID(), source = ConsentSource()
++        let consent = OtzariaHanlinCurrentWorkReadConsent(session: session, scope: scope, configurationID: id, source: source)
++        XCTAssertEqual(try consent.consume(dismissedSessionID: session.id, currentSource: source,
++            namespace: context.namespace, configurationID: id), scope)
++        XCTAssertThrowsError(try consent.consume(dismissedSessionID: session.id, currentSource: source,
++            namespace: context.namespace, configurationID: id))
++    }
++
++    @MainActor
++    func testConsentRejectsEveryChangedSourceDimensionWithoutGrant() throws {
++        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture", workspace: "group", space: "otzaria"),
++            sceneID: UUID(), generation: UUID())
++        let session = HanlinHostSession(conversationID: UUID(), context: context)
++        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
++        let id = UUID(), source = ConsentSource()
++        var changed: [ConsentSource] = []
++        var v = source; v.backendGeneration += 1; changed.append(v)
++        v = source; v.rpcEpoch += 1; changed.append(v)
++        v = source; v.profile = "other"; changed.append(v)
++        v = source; v.group = "other"; changed.append(v)
++        v = source; v.source = "replacement"; changed.append(v)
++        v = source; v.sourceRevision += 1; changed.append(v)
++        v = source; v.tab = "other"; changed.append(v)
++        v = source; v.work = "book:2"; changed.append(v)
++        v = source; v.selection = "changed"; changed.append(v)
++        for candidate in changed {
++            let consent = OtzariaHanlinCurrentWorkReadConsent(session: session, scope: scope, configurationID: id, source: source)
++            XCTAssertThrowsError(try consent.consume(dismissedSessionID: session.id, currentSource: candidate,
++                namespace: context.namespace, configurationID: id))
++            XCTAssertThrowsError(try consent.consume(dismissedSessionID: session.id, currentSource: source,
++                namespace: context.namespace, configurationID: id), "Rejected witness must not become usable after a later source restoration")
++        }
++    }
++
++    @MainActor
++    func testConsentRejectsChangedConfigurationOrNamespaceAndRevocation() throws {
++        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture", workspace: "group", space: "otzaria"),
++            sceneID: UUID(), generation: UUID())
++        let session = HanlinHostSession(conversationID: UUID(), context: context)
++        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
++        let id = UUID(), source = ConsentSource()
++        let foreign = try HanlinConversationNamespace(app: "otzaria", account: "other-account", workspace: "group", space: "otzaria")
++        for mode in 0..<3 {
++            let consent = OtzariaHanlinCurrentWorkReadConsent(session: session, scope: scope, configurationID: id, source: source)
++            if mode == 2 { consent.revoke() }
++            XCTAssertThrowsError(try consent.consume(dismissedSessionID: session.id, currentSource: source,
++                namespace: mode == 1 ? foreign : context.namespace, configurationID: mode == 0 ? UUID() : id))
++        }
++    }
++
++    @MainActor
++    func testSupersededDismissalCannotConsumeCurrentConsentEvenWhileDismissing() throws {
++        let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture", workspace: "group", space: "otzaria"),
++            sceneID: UUID(), generation: UUID())
++        let current = HanlinHostSession(conversationID: UUID(), context: context)
++        let scope = try OtzariaHanlinCurrentWorkReadScope(workRef: .init(backend: .otzaria, workKey: "book:1"), title: "Fixture")
++        let id = UUID(), source = ConsentSource()
++        let consent = OtzariaHanlinCurrentWorkReadConsent(session: current, scope: scope, configurationID: id, source: source)
++        XCTAssertThrowsError(try consent.consume(dismissedSessionID: UUID(), currentSource: source,
++            namespace: context.namespace, configurationID: id))
++        XCTAssertEqual(try consent.consume(dismissedSessionID: current.id, currentSource: source,
++            namespace: context.namespace, configurationID: id), scope)
++    }
++
+ }

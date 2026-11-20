@@ -1,0 +1,323 @@
+[0/1] Planning build
+Building for debugging...
+[0/22] Copying HanlinAppManifest.schema.json
+[1/22] Write swift-version-2807070033DA82CF.txt
+[2/22] Write sources
+[8/22] Wrapping AST for HanlinPresentationKit for debugging
+[9/22] Wrapping AST for HanlinPlatformContracts for debugging
+[10/22] Wrapping AST for HanlinHostContracts for debugging
+[11/22] Wrapping AST for HanlinChatCore for debugging
+[12/22] Wrapping AST for OtzariaHanlinConsumerStore for debugging
+[13/22] C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\all-discovered-tests.swift
+[14/22] Wrapping AST for OtzariaHanlinConversationStoreTests for debugging
+[15/22] Write sources
+[17/23] Emitting module OtzariaHanlinStoreProofPackageDiscoveredTests
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:7:89: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 5 |     @available(*, deprecated, message: "Not actually deprecated. Marked as deprecated to allow inclusion of deprecated tests (which test deprecated functionality) without warnings")
+ 6 |     static nonisolated(unsafe) let __allTests__OtzariaHanlinConversationStoreTests = [
+ 7 |         ("testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision", asyncTest(testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision)),
+   |                                                                                         |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                         `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:8:86: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 6 |     static nonisolated(unsafe) let __allTests__OtzariaHanlinConversationStoreTests = [
+ 7 |         ("testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision", asyncTest(testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision)),
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+   |                                                                                      |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                      `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:9:96: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 7 |         ("testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision", asyncTest(testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision)),
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+   |                                                                                                |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                                `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:10:91: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+   |                                                                                           |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                           `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:11:85: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+   |                                                                                     |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                     `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:12:86: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+   |                                                                                      |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                      `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:13:94: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+   |                                                                                              |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                              `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:14:91: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+   |                                                                                           |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                           `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:15:78: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+   |                                                                              |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                              `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+17 |         ("testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory", asyncTest(testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory))
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:16:92: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+   |                                                                                            |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                            `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+17 |         ("testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory", asyncTest(testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory))
+18 |     ]
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:17:77: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+17 |         ("testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory", asyncTest(testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory))
+   |                                                                             |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                             `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+18 |     ]
+19 | }
+
+[#SendingRisksDataRace]: <https://docs.swift.org/compiler/documentation/diagnostics/sending-risks-data-race>
+[18/25] Compiling OtzariaHanlinStoreProofPackageDiscoveredTests OtzariaHanlinConversationStoreTests.swift
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:7:89: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 5 |     @available(*, deprecated, message: "Not actually deprecated. Marked as deprecated to allow inclusion of deprecated tests (which test deprecated functionality) without warnings")
+ 6 |     static nonisolated(unsafe) let __allTests__OtzariaHanlinConversationStoreTests = [
+ 7 |         ("testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision", asyncTest(testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision)),
+   |                                                                                         |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                         `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:8:86: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 6 |     static nonisolated(unsafe) let __allTests__OtzariaHanlinConversationStoreTests = [
+ 7 |         ("testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision", asyncTest(testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision)),
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+   |                                                                                      |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                      `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:9:96: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 7 |         ("testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision", asyncTest(testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision)),
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+   |                                                                                                |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                                `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:10:91: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+   |                                                                                           |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                           `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:11:85: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+   |                                                                                     |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                     `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:12:86: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+   |                                                                                      |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                      `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:13:94: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+   |                                                                                              |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                              `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:14:91: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+   |                                                                                           |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                           `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:15:78: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+   |                                                                              |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                              `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+17 |         ("testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory", asyncTest(testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory))
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:16:92: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+   |                                                                                            |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                            `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+17 |         ("testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory", asyncTest(testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory))
+18 |     ]
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:17:77: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+17 |         ("testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory", asyncTest(testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory))
+   |                                                                             |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                             `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+18 |     ]
+19 | }
+
+[#SendingRisksDataRace]: <https://docs.swift.org/compiler/documentation/diagnostics/sending-risks-data-race>
+[19/25] Compiling OtzariaHanlinStoreProofPackageDiscoveredTests all-discovered-tests.swift
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:7:89: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 5 |     @available(*, deprecated, message: "Not actually deprecated. Marked as deprecated to allow inclusion of deprecated tests (which test deprecated functionality) without warnings")
+ 6 |     static nonisolated(unsafe) let __allTests__OtzariaHanlinConversationStoreTests = [
+ 7 |         ("testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision", asyncTest(testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision)),
+   |                                                                                         |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                         `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:8:86: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 6 |     static nonisolated(unsafe) let __allTests__OtzariaHanlinConversationStoreTests = [
+ 7 |         ("testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision", asyncTest(testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision)),
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+   |                                                                                      |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                      `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:9:96: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 7 |         ("testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision", asyncTest(testActualFilesystemWriteFailurePreservesOriginalBytesAndRevision)),
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+   |                                                                                                |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                                `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:10:91: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 8 |         ("testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite", asyncTest(testAuthorityChangeBeforeOriginalAsyncPortCallPreventsTheWrite)),
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+   |                                                                                           |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                           `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:11:85: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+ 9 |         ("testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord", asyncTest(testConcurrentSceneHistoryConflictPreservesTheWinningHistoryAndSDKRecord)),
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+   |                                                                                     |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                     `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:12:86: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+10 |         ("testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing", asyncTest(testCorruptAndFutureGenerationsArePreservedAndNeverTreatedAsMissing)),
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+   |                                                                                      |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                      `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:13:94: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+11 |         ("testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata", asyncTest(testDiskReopenKeepsHostHistorySeparateFromOriginalSDKMetadata)),
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+   |                                                                                              |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                              `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:14:91: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+12 |         ("testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden", asyncTest(testDraftHistoryHasItsOwnTitleAndMetadataOnlyRecordsStayHidden)),
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+   |                                                                                           |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                           `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:15:78: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+13 |         ("testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks", asyncTest(testExactSessionRejectsForeignNamespaceConversationAndRevokedCallbacks)),
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+   |                                                                              |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                              `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+17 |         ("testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory", asyncTest(testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory))
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:16:92: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+14 |         ("testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave", asyncTest(testExplicitHistoryDeletionCannotBeResurrectedByDelayedFirstSDKSave)),
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+   |                                                                                            |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                                            `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+17 |         ("testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory", asyncTest(testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory))
+18 |     ]
+
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageDiscoveredTests.derived\OtzariaHanlinConversationStoreTests.swift:17:77: warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+15 |         ("testForeignMessagePresentationIdentityNeverReachesDisk", asyncTest(testForeignMessagePresentationIdentityNeverReachesDisk)),
+16 |         ("testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates", asyncTest(testOriginalMessageStateAndDisclosureChangesSurviveHostAndSDKUpdates)),
+17 |         ("testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory", asyncTest(testStaleDeleteCannotEraseNewSDKMetadataOrHostHistory))
+   |                                                                             |- warning: sending 'self' risks causing data races; this is an error in the Swift 6 language mode [#SendingRisksDataRace]
+   |                                                                             `- note: task-isolated 'self' is captured by a main actor-isolated closure. main actor-isolated uses in closure may race against later nonisolated uses
+18 |     ]
+19 | }
+
+[#SendingRisksDataRace]: <https://docs.swift.org/compiler/documentation/diagnostics/sending-risks-data-race>
+[20/26] C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hcs\x86_64-unknown-windows-msvc\debug\OtzariaHanlinStoreProofPackageTests.derived\runner.swift
+[21/26] Wrapping AST for OtzariaHanlinStoreProofPackageDiscoveredTests for debugging
+[22/26] Write sources
+[24/27] Emitting module OtzariaHanlinStoreProofPackageTests
+[25/28] Compiling OtzariaHanlinStoreProofPackageTests runner.swift
+[26/29] Wrapping AST for OtzariaHanlinStoreProofPackageTests for debugging
+[27/29] Write Objects.LinkFileList
