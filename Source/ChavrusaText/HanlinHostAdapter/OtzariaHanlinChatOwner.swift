@@ -44,6 +44,15 @@ final class OtzariaHanlinChatOwner {
     @ObservationIgnored private var presentedSceneID: String?
     @ObservationIgnored private var pendingNavigation: OtzariaHanlinNavigationHandoff?
     @ObservationIgnored private var pendingHistory: (namespace: HanlinConversationNamespace, id: UUID)?
+    private struct ReadReopen {
+        let originalSessionID: UUID
+        let namespace: HanlinConversationNamespace
+        let conversationID: UUID
+        let consent: MaktabahNativeRoutingComposition.HanlinReadConsent?
+        let connection: OtzariaHanlinConnectionRequest?
+    }
+    @ObservationIgnored private var pendingReadReopen: ReadReopen?
+    @ObservationIgnored private var connectionAfterMount: (sessionID: UUID, request: OtzariaHanlinConnectionRequest)?
     @ObservationIgnored private let conversations = OtzariaHanlinConversationStore.shared
     @ObservationIgnored private var navigationTask: Task<Void, Never>?
     @ObservationIgnored private var retired = false
@@ -54,19 +63,30 @@ final class OtzariaHanlinChatOwner {
     }
 
     func open(conversationID: UUID? = nil, expectedNamespace: HanlinConversationNamespace? = nil) {
+        openConversation(conversationID: conversationID, expectedNamespace: expectedNamespace, readReopen: nil)
+    }
+
+    private func openConversation(conversationID: UUID?, expectedNamespace: HanlinConversationNamespace?, readReopen: ReadReopen?) {
         guard !retired, presentation == nil, navigationTask == nil,
               let manager, let nativeSession, nativeSession.mounted, nativeSession.foreground else { return }
         var issued: HanlinHostSession?
         do {
-            let prepared = try composition.makeHanlinHostSession(manager: manager, conversationID: conversationID ?? UUID()) { [weak self] in
+            let readConnection: (consent: MaktabahNativeRoutingComposition.HanlinReadConsent, dismissedSessionID: UUID, configurationID: UUID)?
+            if let readReopen, let consent = readReopen.consent, let connection = readReopen.connection {
+                readConnection = (consent, readReopen.originalSessionID, connection.id)
+            } else { readConnection = nil }
+            let prepared = try composition.makeHanlinHostSession(manager: manager, conversationID: conversationID ?? UUID(),
+                readConnection: readConnection) { [weak self] in
                 self?.requestClose()
             }
             issued = prepared.session
             let identity = prepared.session
             if let expectedNamespace {
-                guard identity.context.namespace == expectedNamespace,
-                      try conversations.history(identity.conversationID, namespace: expectedNamespace) != nil else {
-                    throw HanlinHostError.staleContext
+                guard identity.context.namespace == expectedNamespace else { throw HanlinHostError.staleContext }
+                if readReopen == nil {
+                    guard try conversations.history(identity.conversationID, namespace: expectedNamespace) != nil else {
+                        throw HanlinHostError.staleContext
+                    }
                 }
             }
             let sessionID = identity.id
@@ -75,7 +95,19 @@ final class OtzariaHanlinChatOwner {
                       nativeSession.mounted, nativeSession.foreground else { throw HanlinHostError.staleContext }
                 try self.composition.validateHanlinHostSession(identity)
             }
+            let readScope = try composition.hanlinCurrentWorkReadScope(for: identity)
+            let readOffer = try? composition.hanlinCurrentWorkReadOffer(manager: manager, session: identity)
             let value = try OtzariaHanlinChatSession(identity: identity, host: prepared.host, store: scopedStore,
+                currentWorkReadOffer: readOffer, currentWorkReadScope: readScope,
+                requiredConfigurationID: readScope == nil ? nil : readReopen?.connection?.id,
+                onConnectionConfigured: { [weak self] configurationID in
+                    guard let self else { throw HanlinHostError.staleContext }
+                    try self.validate(sessionID)
+                    try self.composition.hanlinConnectionConfigured(configurationID, session: identity)
+                }, onRequestReadConnection: { [weak self] request, scope in
+                    guard let self else { throw HanlinHostError.staleContext }
+                    try self.requestReadConnection(request, displayedScope: scope, sessionID: sessionID)
+                },
                 sourceDestination: { [weak self] event in
                     guard let self else { throw HanlinHostError.staleContext }
                     return try self.composition.hanlinSourceDestination(event, session: identity)
@@ -89,7 +121,12 @@ final class OtzariaHanlinChatOwner {
                 })
             try nativeSession.beginStudyChatPresentation(sessionID)
             host = prepared.host; presentation = value; presentedSceneID = nil; isPresented = true
+            if let connection = readReopen?.connection {
+                connectionAfterMount = (sessionID, connection)
+            }
         } catch {
+            readReopen?.consent?.revoke()
+            connectionAfterMount = nil
             if let issued {
                 nativeSession.finishStudyChatPresentation(issued.id)
                 composition.closeHanlinHostSession(issued)
@@ -105,6 +142,10 @@ final class OtzariaHanlinChatOwner {
             requestClose(sessionID: sessionID); return
         }
         presentedSceneID = sceneID
+        if let pending = connectionAfterMount, pending.sessionID == sessionID {
+            connectionAfterMount = nil
+            presentation?.configure(pending.request)
+        }
     }
 
     private func validate(_ sessionID: UUID) throws {
@@ -116,7 +157,7 @@ final class OtzariaHanlinChatOwner {
 
     private func queueNavigation(_ url: URL, sessionID: UUID) async throws {
         try validate(sessionID)
-        guard pendingNavigation == nil, pendingHistory == nil, navigationTask == nil,
+        guard pendingNavigation == nil, pendingHistory == nil, pendingReadReopen == nil, navigationTask == nil,
               let host, let presentation else { throw HanlinHostError.duplicateInvocation }
         let destination = HanlinHostDestination(context: presentation.identity.context, objectReference: url.absoluteString)
         let response = try await host.open(destination)
@@ -137,7 +178,7 @@ final class OtzariaHanlinChatOwner {
     }
 
     func selectHistory(_ id: UUID) throws {
-        guard let presentation, pendingNavigation == nil, pendingHistory == nil,
+        guard let presentation, pendingNavigation == nil, pendingHistory == nil, pendingReadReopen == nil,
               navigationTask == nil else { throw HanlinHostError.staleContext }
         try validate(presentation.id)
         let namespace = presentation.identity.context.namespace
@@ -152,17 +193,52 @@ final class OtzariaHanlinChatOwner {
         try conversations.deleteConversation(summary, namespace: presentation.identity.context.namespace)
     }
 
+    /// Called only by the native connection form after the user confirms the
+    /// displayed work and supplies the exact immutable model configuration.
+    private func requestReadConnection(_ request: OtzariaHanlinConnectionRequest,
+        displayedScope: OtzariaHanlinCurrentWorkReadScope, sessionID: UUID) throws {
+        try validate(sessionID)
+        guard let presentation, let manager, !presentation.isConfigured,
+              !presentation.isConnecting, !presentation.isStreaming,
+              pendingNavigation == nil, pendingHistory == nil, pendingReadReopen == nil,
+              navigationTask == nil else { throw HanlinHostError.denied }
+        let consent = try composition.makeHanlinCurrentWorkReadConsent(manager: manager,
+            session: presentation.identity, displayedScope: displayedScope, configurationID: request.id) { [weak self] in
+                self?.requestClose(sessionID: sessionID)
+            }
+        pendingReadReopen = .init(originalSessionID: sessionID, namespace: presentation.identity.context.namespace,
+            conversationID: presentation.identity.conversationID, consent: consent, connection: request)
+        requestClose(sessionID: sessionID, preservingContinuation: true)
+    }
+
+    /// Revocation cancels the original stream now, before asynchronous SDK
+    /// invalidation or sheet dismissal. No connection/key follows the reopen.
+    func endCurrentWorkReadAccess(sessionID: UUID) {
+        guard let presentation, presentation.id == sessionID, presentation.currentWorkReadScope != nil else { return }
+        do {
+            try validate(sessionID)
+            guard pendingNavigation == nil, pendingHistory == nil, pendingReadReopen == nil,
+                  navigationTask == nil else { throw HanlinHostError.staleContext }
+            pendingReadReopen = .init(originalSessionID: sessionID, namespace: presentation.identity.context.namespace,
+                conversationID: presentation.identity.conversationID, consent: nil, connection: nil)
+            requestClose(sessionID: sessionID, preservingContinuation: true)
+        } catch { requestClose(sessionID: sessionID) }
+    }
+
     /// A programmatic dismissal already owns its continuation. SwiftUI echoing
     /// false must not cancel the native handoff or the selected history reopen.
-    func presentationBindingChanged(_ value: Bool) {
-        if !value && isPresented { requestClose() }
+    func presentationBindingChanged(_ value: Bool, sessionID: UUID?) {
+        guard let sessionID, presentation?.id == sessionID else { return }
+        if !value && isPresented { requestClose(sessionID: sessionID) }
     }
 
     func requestClose(sessionID: UUID? = nil, preservingContinuation: Bool = false) {
         guard let presentation, sessionID == nil || presentation.id == sessionID else { return }
         if !preservingContinuation {
             pendingNavigation?.cancel(); pendingNavigation = nil; pendingHistory = nil
+            pendingReadReopen?.consent?.revoke(); pendingReadReopen = nil
         }
+        connectionAfterMount = nil
         isPresented = false; presentedSceneID = nil
         presentation.revoke()
         if pendingNavigation == nil { composition.closeHanlinHostSession(presentation.identity) }
@@ -171,13 +247,24 @@ final class OtzariaHanlinChatOwner {
 
     /// SwiftUI calls this after the actual owned sheet finishes dismissing.
     /// A replacement cannot be opened while that old presentation is retained.
-    func didDismiss() {
-        if let presentation {
-            presentation.revoke()
-            if pendingNavigation == nil { composition.closeHanlinHostSession(presentation.identity) }
-            nativeSession?.finishStudyChatPresentation(presentation.id)
-        }
+    func didDismiss(sessionID: UUID?) {
+        // A superseded SwiftUI callback has no ownership over this sheet or its
+        // pending grant, even if the current sheet is itself already dismissing.
+        guard let sessionID, let current = presentation, current.id == sessionID, !isPresented else { return }
+        current.revoke()
+        if pendingNavigation == nil { composition.closeHanlinHostSession(current.identity) }
+        nativeSession?.finishStudyChatPresentation(sessionID)
         presentation = nil; host = nil; isPresented = false; presentedSceneID = nil
+        connectionAfterMount = nil
+        if let readReopen = pendingReadReopen {
+            pendingReadReopen = nil
+            guard !retired, readReopen.originalSessionID == sessionID else {
+                readReopen.consent?.revoke(); return
+            }
+            openConversation(conversationID: readReopen.conversationID,
+                expectedNamespace: readReopen.namespace, readReopen: readReopen)
+            return
+        }
         if !retired, let history = pendingHistory {
             pendingHistory = nil
             open(conversationID: history.id, expectedNamespace: history.namespace)
@@ -220,6 +307,7 @@ final class OtzariaHanlinChatOwner {
         if let presentation { nativeSession?.finishStudyChatPresentation(presentation.id) }
         navigationTask?.cancel(); navigationTask = nil
         pendingNavigation?.cancel(); pendingNavigation = nil; pendingHistory = nil
+        pendingReadReopen?.consent?.revoke(); pendingReadReopen = nil; connectionAfterMount = nil
         requestClose()
     }
 }

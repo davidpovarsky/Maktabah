@@ -1,0 +1,30 @@
+[0/1] Planning build
+Building for debugging...
+[0/28] Copying examples.v1.json
+[1/28] Write swift-version-2807070033DA82CF.txt
+[2/28] Write sources
+[7/28] Copying backend-capability-matrix.v1.json
+[8/28] Copying backend-acceptance-cases.v1.json
+[9/28] Copying action-result.v1.schema.json
+[10/28] Copying action-request.v1.schema.json
+[11/28] Copying action-catalog.v1.json
+[12/28] Copying HanlinAppManifest.schema.json
+[13/28] Write sources
+[14/28] Wrapping AST for OtzariaActionCore for debugging
+[15/28] Wrapping AST for HanlinPlatformContracts for debugging
+[16/28] Wrapping AST for HanlinHostContracts for debugging
+[18/29] Emitting module OtzariaHanlinHostAdapter
+[19/30] Compiling OtzariaHanlinHostAdapter OtzariaHanlinHostAdapter.swift
+[20/31] Wrapping AST for OtzariaHanlinHostAdapter for debugging
+[21/31] Wrapping AST for HanlinAgentCore for debugging
+[23/32] Emitting module OtzariaHanlinHostAdapterTests
+[24/33] Compiling OtzariaHanlinHostAdapterTests AdapterTests.swift
+[25/34] Wrapping AST for OtzariaHanlinHostAdapterTests for debugging
+[26/34] C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hh\x86_64-unknown-windows-msvc\debug\HanlinHostCheckPackageDiscoveredTests.derived\all-discovered-tests.swift
+[27/34] Write sources
+[29/35] Emitting module HanlinHostCheckPackageDiscoveredTests
+[30/37] Compiling HanlinHostCheckPackageDiscoveredTests OtzariaHanlinHostAdapterTests.swift
+[31/37] Compiling HanlinHostCheckPackageDiscoveredTests all-discovered-tests.swift
+[32/38] C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hh\x86_64-unknown-windows-msvc\debug\HanlinHostCheckPackageTests.derived\runner.swift
+[33/38] Wrapping AST for HanlinHostCheckPackageDiscoveredTests for debugging
+[34/38] Write sources

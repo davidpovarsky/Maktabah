@@ -1,0 +1,38 @@
+{
+  "observed_at": "2026-11-20T02:56:39.715117+00:00",
+  "boundary": "Tiny compiler importer diagnostic only; no production source or fixture executed",
+  "rows": [
+    {
+      "label": "default",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-typecheck",
+        "-I",
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Platforms\\6.3.3\\Windows.platform\\Developer\\Library\\Testing-6.3.3\\usr\\lib\\swift\\windows",
+        "-module-cache-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-read-actions-20261120\\build\\hanlin-read-actions-20261120\\runner-diagnostic\\cache-default",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-read-actions-20261120\\build\\hanlin-read-actions-20261120\\runner-diagnostic\\OptionalTestingImport.swift"
+      ],
+      "exit_code": 124,
+      "duration_s": 15.827999999979511,
+      "output": ""
+    },
+    {
+      "label": "alias",
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.exe",
+        "-typecheck",
+        "-I",
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Platforms\\6.3.3\\Windows.platform\\Developer\\Library\\Testing-6.3.3\\usr\\lib\\swift\\windows",
+        "-module-cache-path",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-read-actions-20261120\\build\\hanlin-read-actions-20261120\\runner-diagnostic\\cache-alias",
+        "-module-alias",
+        "Testing=_Testing_Unavailable",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hanlin-read-actions-20261120\\build\\hanlin-read-actions-20261120\\runner-diagnostic\\OptionalTestingImport.swift"
+      ],
+      "exit_code": 0,
+      "duration_s": 7.422000000020489,
+      "output": ""
+    }
+  ]
+}

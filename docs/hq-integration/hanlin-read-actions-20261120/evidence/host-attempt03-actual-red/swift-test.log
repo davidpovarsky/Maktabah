@@ -1,0 +1,153 @@
+[0/1] Planning build
+Building for debugging...
+[0/28] Copying examples.v1.json
+[1/28] Write swift-version-2807070033DA82CF.txt
+[2/28] Write sources
+[7/28] Copying backend-capability-matrix.v1.json
+[8/28] Copying backend-acceptance-cases.v1.json
+[9/28] Copying action-result.v1.schema.json
+[10/28] Copying action-request.v1.schema.json
+[11/28] Copying action-catalog.v1.json
+[12/28] Copying HanlinAppManifest.schema.json
+[13/28] Write sources
+[14/28] Wrapping AST for OtzariaActionCore for debugging
+[15/28] Wrapping AST for HanlinPlatformContracts for debugging
+[16/28] Wrapping AST for HanlinHostContracts for debugging
+[18/29] Emitting module OtzariaHanlinHostAdapter
+[19/30] Wrapping AST for OtzariaHanlinHostAdapter for debugging
+[20/30] Wrapping AST for HanlinAgentCore for debugging
+[22/31] Emitting module OtzariaHanlinHostAdapterTests
+[23/32] Wrapping AST for OtzariaHanlinHostAdapterTests for debugging
+[24/32] C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hh\x86_64-unknown-windows-msvc\debug\HanlinHostCheckPackageDiscoveredTests.derived\all-discovered-tests.swift
+[25/32] Write sources
+[27/33] Emitting module HanlinHostCheckPackageDiscoveredTests
+[28/35] Compiling HanlinHostCheckPackageDiscoveredTests OtzariaHanlinHostAdapterTests.swift
+[29/35] Compiling HanlinHostCheckPackageDiscoveredTests all-discovered-tests.swift
+[30/36] C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hh\x86_64-unknown-windows-msvc\debug\HanlinHostCheckPackageTests.derived\runner.swift
+[31/36] Wrapping AST for HanlinHostCheckPackageDiscoveredTests for debugging
+[32/36] Write sources
+[34/37] Emitting module HanlinHostCheckPackageTests
+[35/38] Compiling HanlinHostCheckPackageTests runner.swift
+[36/39] Wrapping AST for HanlinHostCheckPackageTests for debugging
+[37/39] Write Objects.LinkFileList
+[38/39] Linking HanlinHostCheckPackageTests.xctest
+Build complete! (417.70s)
+Test Suite 'All tests' started at 2026-11-20 02:57:11.684
+Test Suite 'debug.xctest' started at 2026-11-20 02:57:12.026
+Test Suite 'OtzariaHanlinHostAdapterTests' started at 2026-11-20 02:57:12.026
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback' started at 2026-11-20 02:57:12.026
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12CancellationAfterEntryRetainsReceiptWithoutClaimingRollback' passed (0.305 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect' started at 2026-11-20 02:57:12.332
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12CancellationBeforeAuthorityReturnHasNoNativeEffect' passed (0.154 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12DeniesBackgroundBeforeNativeEffect' started at 2026-11-20 02:57:12.486
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12DeniesBackgroundBeforeNativeEffect' passed (0.124 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats' started at 2026-11-20 02:57:12.610
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12QueuedReceiptNeverIssuesSuccessorOrRepeats' passed (0.146 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12RejectsMismatchedNativeAcknowledgement' started at 2026-11-20 02:57:12.756
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12RejectsMismatchedNativeAcknowledgement' passed (0.162 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12RetainsReceiptWhenSuccessorWasRevoked' started at 2026-11-20 02:57:12.918
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12RetainsReceiptWhenSuccessorWasRevoked' passed (0.162 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12TransitionReturnsLiveCorrelatedSuccessor' started at 2026-11-20 02:57:13.080
+Test Case 'OtzariaHanlinHostAdapterTests.testAPI12TransitionReturnsLiveCorrelatedSuccessor' passed (0.131 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery' started at 2026-11-20 02:57:13.212
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:209: error: OtzariaHanlinHostAdapterTests.testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testAllowedScopedSearchExecutesOriginalCoreAndPreservesExactQuery' failed (0.139 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testBackgroundNavigationIsDenied' started at 2026-11-20 02:57:13.351
+Test Case 'OtzariaHanlinHostAdapterTests.testBackgroundNavigationIsDenied' passed (0.147 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCancellationDuringAuthorityLookupNeverReachesCore' started at 2026-11-20 02:57:13.498
+Test Case 'OtzariaHanlinHostAdapterTests.testCancellationDuringAuthorityLookupNeverReachesCore' passed (0.152 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait' started at 2026-11-20 02:57:13.651
+Test Case 'OtzariaHanlinHostAdapterTests.testCanonicalCatalogReadRevalidatesOriginalHostAfterAwait' passed (0.184 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCanonicalSchemaRejectionNeverBecomesCompleted' started at 2026-11-20 02:57:13.835
+Test Case 'OtzariaHanlinHostAdapterTests.testCanonicalSchemaRejectionNeverBecomesCompleted' passed (0.156 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogIsExactReadOnlyProjectionAndBackendQualified' started at 2026-11-20 02:57:13.991
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogIsExactReadOnlyProjectionAndBackendQualified' passed (0.128 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions' started at 2026-11-20 02:57:14.118
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogUsesCanonicalAvailabilityAndDoesNotExposeMetadataOnlyActions' passed (0.219 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights' started at 2026-11-20 02:57:14.338
+Test Case 'OtzariaHanlinHostAdapterTests.testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights' passed (0.273 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentConsumesOnlyOnceForExactDismissalSourceAndConfiguration' started at 2026-11-20 02:57:14.611
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentConsumesOnlyOnceForExactDismissalSourceAndConfiguration' passed (0.001 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentRejectsChangedConfigurationOrNamespaceAndRevocation' started at 2026-11-20 02:57:14.612
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentRejectsChangedConfigurationOrNamespaceAndRevocation' passed (0.001 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentRejectsEveryChangedSourceDimensionWithoutGrant' started at 2026-11-20 02:57:14.614
+Test Case 'OtzariaHanlinHostAdapterTests.testConsentRejectsEveryChangedSourceDimensionWithoutGrant' passed (0.001 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testContentRightsHideSearchButPreserveCanonicalMetadataActions' started at 2026-11-20 02:57:14.614
+Test Case 'OtzariaHanlinHostAdapterTests.testContentRightsHideSearchButPreserveCanonicalMetadataActions' passed (0.153 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testContextRevocationDuringReadSuppressesResult' started at 2026-11-20 02:57:14.768
+Test Case 'OtzariaHanlinHostAdapterTests.testContextRevocationDuringReadSuppressesResult' passed (0.194 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testEmptyNativeForegroundIdentityIsDenied' started at 2026-11-20 02:57:14.962
+Test Case 'OtzariaHanlinHostAdapterTests.testEmptyNativeForegroundIdentityIsDenied' passed (0.152 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testExplicitCancellationReachesOriginalCoreTask' started at 2026-11-20 02:57:15.114
+Test Case 'OtzariaHanlinHostAdapterTests.testExplicitCancellationReachesOriginalCoreTask' passed (0.183 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testForeignProviderAndStaleCatalogAreRejected' started at 2026-11-20 02:57:15.297
+Test Case 'OtzariaHanlinHostAdapterTests.testForeignProviderAndStaleCatalogAreRejected' passed (0.162 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult' started at 2026-11-20 02:57:15.458
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:209: error: OtzariaHanlinHostAdapterTests.testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testGrantRevocationDuringSearchSuppressesEvenCompletedBackendResult' failed (0.175 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts' started at 2026-11-20 02:57:15.633
+Test Case 'OtzariaHanlinHostAdapterTests.testMissingOriginalArgumentsAndDuplicateKeysNeverReachCorePorts' passed (0.19 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testModelArgumentsCannotChooseContentContextOrBackend' started at 2026-11-20 02:57:15.823
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:209: error: OtzariaHanlinHostAdapterTests.testModelArgumentsCannotChooseContentContextOrBackend : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testModelArgumentsCannotChooseContentContextOrBackend' failed (0.257 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testMutationGuaranteeIsRejectedBeforeDispatch' started at 2026-11-20 02:57:16.080
+Test Case 'OtzariaHanlinHostAdapterTests.testMutationGuaranteeIsRejectedBeforeDispatch' passed (0.236 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID' started at 2026-11-20 02:57:16.317
+Test Case 'OtzariaHanlinHostAdapterTests.testOpaqueNativeSceneIDIsNotReinterpretedAsSDKSceneUUID' passed (0.245 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork' started at 2026-11-20 02:57:16.562
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:209: error: OtzariaHanlinHostAdapterTests.testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalCoreRejectsBackendResponseOutsideAuthorizedWork' failed (0.215 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges' started at 2026-11-20 02:57:16.777
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:687: error: OtzariaHanlinHostAdapterTests.testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalSDKDispatcherConsumesScopedSearchWithoutSDKChanges' failed (0.16 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead' started at 2026-11-20 02:57:16.937
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:699: error: OtzariaHanlinHostAdapterTests.testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testOriginalSDKInvalidationCancelsAndSuppressesInFlightScopedRead' failed (0.165 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testOutputLimitAndExpiredDeadlineAreEnforced' started at 2026-11-20 02:57:17.103
+Test Case 'OtzariaHanlinHostAdapterTests.testOutputLimitAndExpiredDeadlineAreEnforced' passed (0.212 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected' started at 2026-11-20 02:57:17.315
+Test Case 'OtzariaHanlinHostAdapterTests.testQueuedNavigationIsNotPresentedAndForeignReceiptIsRejected' passed (0.158 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testRealCoreExecutionPreservesGenerationBeyondDoublePrecision' started at 2026-11-20 02:57:17.474
+Test Case 'OtzariaHanlinHostAdapterTests.testRealCoreExecutionPreservesGenerationBeyondDoublePrecision' passed (0.198 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testReplayDoesNotExecuteAgain' started at 2026-11-20 02:57:17.672
+Test Case 'OtzariaHanlinHostAdapterTests.testReplayDoesNotExecuteAgain' passed (0.198 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead' started at 2026-11-20 02:57:17.870
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:209: error: OtzariaHanlinHostAdapterTests.testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testRevokedReadGrantIsHiddenAndForcedOldToolCannotRead' failed (0.197 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession' started at 2026-11-20 02:57:18.067
+Test Case 'OtzariaHanlinHostAdapterTests.testSDKDispatcherAcceptsHostTransitionAndRetiresOriginalSession' passed (0.157 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSDKDispatcherDoesNotRepeatQueuedHostTransition' started at 2026-11-20 02:57:18.225
+Test Case 'OtzariaHanlinHostAdapterTests.testSDKDispatcherDoesNotRepeatQueuedHostTransition' passed (0.168 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadDoesNotRestrictOriginalMetadataForAnotherWork' started at 2026-11-20 02:57:18.393
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadDoesNotRestrictOriginalMetadataForAnotherWork' passed (0.283 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerKeepsMetadataContextAndBoundsOnlySearch' started at 2026-11-20 02:57:18.676
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerKeepsMetadataContextAndBoundsOnlySearch' passed (0.148 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerRejectsMissingForegroundOrForeignOrigin' started at 2026-11-20 02:57:18.824
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerRejectsMissingForegroundOrForeignOrigin' passed (0.0 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerRejectsUnknownBackendAndNoncanonicalWork' started at 2026-11-20 02:57:18.825
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedReadIssuerRejectsUnknownBackendAndNoncanonicalWork' passed (0.0 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchCancellationReachesOriginalCoreWorker' started at 2026-11-20 02:57:18.826
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:209: error: OtzariaHanlinHostAdapterTests.testScopedSearchCancellationReachesOriginalCoreWorker : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchCancellationReachesOriginalCoreWorker' failed (0.144 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead' started at 2026-11-20 02:57:18.970
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:209: error: OtzariaHanlinHostAdapterTests.testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchRejectsMissingAndBroaderScopeBeforeBackendRead' failed (0.167 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchUsesActualCoreAvailabilityWithoutHidingOldMetadata' started at 2026-11-20 02:57:19.137
+Test Case 'OtzariaHanlinHostAdapterTests.testScopedSearchUsesActualCoreAvailabilityWithoutHidingOldMetadata' passed (0.201 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSeparateReadContextCannotBelongToAnotherSceneOrSubject' started at 2026-11-20 02:57:19.338
+Test Case 'OtzariaHanlinHostAdapterTests.testSeparateReadContextCannotBelongToAnotherSceneOrSubject' passed (0.31 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSeparateReadContextWithoutContentRightsStaysClosed' started at 2026-11-20 02:57:19.648
+C:\Users\DAVID\Code\Maktabah-hanlin-read-actions-20261120\build\hanlin-read-actions-20261120\host-initial\package\Tests\OtzariaHanlinHostAdapterTests\AdapterTests.swift:209: error: OtzariaHanlinHostAdapterTests.testSeparateReadContextWithoutContentRightsStaysClosed : XCTUnwrap failed: expected non-nil value of type "HanlinHostTool" - 
+Test Case 'OtzariaHanlinHostAdapterTests.testSeparateReadContextWithoutContentRightsStaysClosed' failed (0.28 seconds)
+Test Case 'OtzariaHanlinHostAdapterTests.testSupersededDismissalCannotConsumeCurrentConsentEvenWhileDismissing' started at 2026-11-20 02:57:19.929
+Test Case 'OtzariaHanlinHostAdapterTests.testSupersededDismissalCannotConsumeCurrentConsentEvenWhileDismissing' passed (0.001 seconds)
+Test Suite 'OtzariaHanlinHostAdapterTests' failed at 2026-11-20 02:57:19.930
+	 Executed 48 tests, with 10 failures (0 unexpected) in 7.899 (7.899) seconds
+Test Suite 'debug.xctest' failed at 2026-11-20 02:57:19.930
+	 Executed 48 tests, with 10 failures (0 unexpected) in 7.899 (7.899) seconds
+Test Suite 'All tests' failed at 2026-11-20 02:57:19.931
+	 Executed 48 tests, with 10 failures (0 unexpected) in 7.899 (7.899) seconds
+◊ Test run started.
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+→ Target Platform: x86_64-unknown-windows-msvc
+√ Test run with 0 tests in 0 suites passed after 0.021 seconds.
