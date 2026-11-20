@@ -1,0 +1,34 @@
+{
+  "base": "c6542e412fb5b052d182aacbea685c62bdf8440c",
+  "canonicalChangedBaselineToCandidate": [
+    "Source/Sefaria/Domain/SefariaNavigationParser.swift"
+  ],
+  "runs": [
+    {
+      "run": "focused-baseline",
+      "inputCount": 15,
+      "swiftCount": 8,
+      "jsonFixtureCount": 7,
+      "sourceInputRecordSHA256": "1c0f49550f45cb4a2b1f430b9fe773bdb7e605cb210090303830222fd4c1f786",
+      "currentCanonicalInputsMatch": false
+    },
+    {
+      "run": "focused-candidate",
+      "inputCount": 15,
+      "swiftCount": 8,
+      "jsonFixtureCount": 7,
+      "sourceInputRecordSHA256": "10de5643845bb5acf7d9d54ccbeea506a98d474b33aad1f84b9af904d9955b1e",
+      "currentCanonicalInputsMatch": true
+    },
+    {
+      "run": "original-regression",
+      "inputCount": 45,
+      "swiftCount": 38,
+      "jsonFixtureCount": 7,
+      "sourceInputRecordSHA256": "00aaa0150f22d167aaacd733f6980571c433e1567e579cc899874e92f16afcb4",
+      "currentCanonicalInputsMatch": true
+    }
+  ],
+  "compiledCandidateWasDirtyWorkingSource": "Candidate hashes, not base HEAD, identify the repaired parser and added tests",
+  "native": "NOT_RUN"
+}

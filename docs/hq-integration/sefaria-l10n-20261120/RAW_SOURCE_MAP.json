@@ -1,0 +1,224 @@
+[
+  {
+    "source": "baseline-driver.stderr.log",
+    "retained": "raw/baseline-driver.stderr.log.gz",
+    "sourceBytes": 0,
+    "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "baseline-driver.stdout.log",
+    "retained": "raw/baseline-driver.stdout.log.gz",
+    "sourceBytes": 2890,
+    "sourceSHA256": "bcd29de9a7a0e78ec92e25c5074911acfc734c9b1dfedb5709415c31e12892d7"
+  },
+  {
+    "source": "BASELINE_LAUNCH.json",
+    "retained": "raw/BASELINE_LAUNCH.json.gz",
+    "sourceBytes": 697,
+    "sourceSHA256": "620fd5afe0f71a4065e7580480f02b25063a34fb54dc9da009218bd272c49042"
+  },
+  {
+    "source": "focused-candidate-driver.stderr.log",
+    "retained": "raw/focused-candidate-driver.stderr.log.gz",
+    "sourceBytes": 0,
+    "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "focused-candidate-driver.stdout.log",
+    "retained": "raw/focused-candidate-driver.stdout.log.gz",
+    "sourceBytes": 2452,
+    "sourceSHA256": "5a33e96161aa9776711d6ca8532489fca52923b50a24d87cbe0b16691c8beeba"
+  },
+  {
+    "source": "focused-candidate-launch.json",
+    "retained": "raw/focused-candidate-launch.json.gz",
+    "sourceBytes": 626,
+    "sourceSHA256": "c22237256d326e3878c598a794a708179a8b12108bf284a3779ec1c81984648c"
+  },
+  {
+    "source": "original-regression-driver.stderr.log",
+    "retained": "raw/original-regression-driver.stderr.log.gz",
+    "sourceBytes": 0,
+    "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "original-regression-driver.stdout.log",
+    "retained": "raw/original-regression-driver.stdout.log.gz",
+    "sourceBytes": 1291,
+    "sourceSHA256": "28e71277c94b24806cd8b9fab3cde24c1e81ca5ceaea83236d4679d2566b4326"
+  },
+  {
+    "source": "original-regression-launch.json",
+    "retained": "raw/original-regression-launch.json.gz",
+    "sourceBytes": 654,
+    "sourceSHA256": "35a04c4a71a2999fa6e5875784d33ff86d205a44148825fafab93732a22dfe6d"
+  },
+  {
+    "source": "ORIGINAL_ASANA_ACCEPTANCE.json",
+    "retained": "raw/ORIGINAL_ASANA_ACCEPTANCE.json.gz",
+    "sourceBytes": 1497,
+    "sourceSHA256": "66ca03b058c8e7ebf944a41e34912395addb6c2cf137fac284316fde065c420e"
+  },
+  {
+    "source": "PREPARATION.json",
+    "retained": "raw/PREPARATION.json.gz",
+    "sourceBytes": 1030,
+    "sourceSHA256": "ff5e2024e7a1490c1c7f3f60094f7f907fef25c28f64a887e0c66a0de8efc361"
+  },
+  {
+    "source": "PROPOSED.patch",
+    "retained": "raw/PROPOSED.patch.gz",
+    "sourceBytes": 17761,
+    "sourceSHA256": "9ddd92e6fd5ed90cdd6bf64c4523d662fe667b1fe7e50a36ff98ed18d49a40fb"
+  },
+  {
+    "source": "SOURCE_PRESERVATION.json",
+    "retained": "raw/SOURCE_PRESERVATION.json.gz",
+    "sourceBytes": 914,
+    "sourceSHA256": "41c753b9bbe9ee825b48627cdca7200cecb3d11214ef29af3eb2ef69a13d06e5"
+  },
+  {
+    "source": "focused-baseline/CASES.json",
+    "retained": "focused-baseline/CASES.json",
+    "sourceBytes": 13860,
+    "sourceSHA256": "c326d3c406ecb9c52026b91fe4ecced2e2281e5a85d797545549a4b388554db7"
+  },
+  {
+    "source": "focused-baseline/COMMANDS.json",
+    "retained": "focused-baseline/COMMANDS.json",
+    "sourceBytes": 2475,
+    "sourceSHA256": "5c5faf135ea3d7c772049bb4901153b1153c24373caaa674dc14c1ffc2cd6841"
+  },
+  {
+    "source": "focused-baseline/compile.stderr.log",
+    "retained": "focused-baseline/compile.stderr.log.gz",
+    "sourceBytes": 289,
+    "sourceSHA256": "37e64dc5980d3b0913c6833a401603153cabd86c3e36140973a82d14550c6f33"
+  },
+  {
+    "source": "focused-baseline/compile.stdout.log",
+    "retained": "focused-baseline/compile.stdout.log.gz",
+    "sourceBytes": 0,
+    "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "focused-baseline/INPUTS.json",
+    "retained": "focused-baseline/INPUTS.json",
+    "sourceBytes": 5120,
+    "sourceSHA256": "1c0f49550f45cb4a2b1f430b9fe773bdb7e605cb210090303830222fd4c1f786"
+  },
+  {
+    "source": "focused-baseline/RESULT.json",
+    "retained": "focused-baseline/RESULT.json",
+    "sourceBytes": 3314,
+    "sourceSHA256": "aa205e6276eb34ab421a38ad26a19a7804e94c5f557a151736a67a458a27f9ab"
+  },
+  {
+    "source": "focused-baseline/runtime.stderr.log",
+    "retained": "focused-baseline/runtime.stderr.log.gz",
+    "sourceBytes": 0,
+    "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "focused-baseline/runtime.stdout.log",
+    "retained": "focused-baseline/runtime.stdout.log.gz",
+    "sourceBytes": 10579,
+    "sourceSHA256": "77a16b6fdd093ac1fa37b0bf2e7ae31fae26893331834d43a3f5b1eee5036cee"
+  },
+  {
+    "source": "focused-candidate/CASES.json",
+    "retained": "focused-candidate/CASES.json",
+    "sourceBytes": 13994,
+    "sourceSHA256": "5d5475237a2de007fbd947d5fd276740127f63328fc3c5738de49f83e6abe240"
+  },
+  {
+    "source": "focused-candidate/COMMANDS.json",
+    "retained": "focused-candidate/COMMANDS.json",
+    "sourceBytes": 2487,
+    "sourceSHA256": "faee0365207fb0b6c463b205a54d4973ae8ea0b9cb78aed5d758f6dcce15ee90"
+  },
+  {
+    "source": "focused-candidate/compile.stderr.log",
+    "retained": "focused-candidate/compile.stderr.log.gz",
+    "sourceBytes": 291,
+    "sourceSHA256": "a579ae15f6b7a3b9e6a8732927526af8b19cf6b2b5f027a6d383a1046d7d525e"
+  },
+  {
+    "source": "focused-candidate/compile.stdout.log",
+    "retained": "focused-candidate/compile.stdout.log.gz",
+    "sourceBytes": 0,
+    "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "focused-candidate/INPUTS.json",
+    "retained": "focused-candidate/INPUTS.json",
+    "sourceBytes": 5120,
+    "sourceSHA256": "10de5643845bb5acf7d9d54ccbeea506a98d474b33aad1f84b9af904d9955b1e"
+  },
+  {
+    "source": "focused-candidate/RESULT.json",
+    "retained": "focused-candidate/RESULT.json",
+    "sourceBytes": 2816,
+    "sourceSHA256": "a14bda309b37eb4d5f5a73b596e34c281bcc3b7ed13208bed7dfe95561dfdbd4"
+  },
+  {
+    "source": "focused-candidate/runtime.stderr.log",
+    "retained": "focused-candidate/runtime.stderr.log.gz",
+    "sourceBytes": 0,
+    "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "focused-candidate/runtime.stdout.log",
+    "retained": "focused-candidate/runtime.stdout.log.gz",
+    "sourceBytes": 10713,
+    "sourceSHA256": "93447fa442d36be79b5ea2b82a46d32e07faa5d8c421a8ed6b4e3dee482a5522"
+  },
+  {
+    "source": "original-regression/COMMANDS.json",
+    "retained": "original-regression/COMMANDS.json",
+    "sourceBytes": 7504,
+    "sourceSHA256": "8aec253d7430c8ba29c71049b899b87d0aaa5be859ed8420daefc54e57b6900b"
+  },
+  {
+    "source": "original-regression/compile.stderr.log",
+    "retained": "original-regression/compile.stderr.log.gz",
+    "sourceBytes": 295,
+    "sourceSHA256": "22a2651835e842d513a8b342c1c43ed92949064222909bb4495b3fa22158b642"
+  },
+  {
+    "source": "original-regression/compile.stdout.log",
+    "retained": "original-regression/compile.stdout.log.gz",
+    "sourceBytes": 0,
+    "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "source": "original-regression/INPUTS.json",
+    "retained": "original-regression/INPUTS.json",
+    "sourceBytes": 15270,
+    "sourceSHA256": "00aaa0150f22d167aaacd733f6980571c433e1567e579cc899874e92f16afcb4"
+  },
+  {
+    "source": "original-regression/ORIGINAL_WORKFLOW_STEP.txt",
+    "retained": "original-regression/ORIGINAL_WORKFLOW_STEP.txt.gz",
+    "sourceBytes": 2702,
+    "sourceSHA256": "dec3bae72c093d2d8b493e366fbbb455a12fac45d9d302190c2f175d6a7d39fa"
+  },
+  {
+    "source": "original-regression/RESULT.json",
+    "retained": "original-regression/RESULT.json",
+    "sourceBytes": 1435,
+    "sourceSHA256": "7e744b63798302093d6a7fc967592b695962fa1ea1b0debdef4ced8a287fc09f"
+  },
+  {
+    "source": "original-regression/runtime.stderr.log",
+    "retained": "original-regression/runtime.stderr.log.gz",
+    "sourceBytes": 422,
+    "sourceSHA256": "2264095bb76c5add5b85aa56a24657e99114e6b7062ec2a3f4457de05c5a8d62"
+  },
+  {
+    "source": "original-regression/runtime.stdout.log",
+    "retained": "original-regression/runtime.stdout.log.gz",
+    "sourceBytes": 93,
+    "sourceSHA256": "1ecdc9fb1ada4aa4b7777437aab7c44d78bcdc6b2b258a38d2105ceb98f2e5c8"
+  }
+]

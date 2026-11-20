@@ -127,7 +127,11 @@ enum SefariaNavigationParser {
                 primary = shapes.map { shape in
                     LibraryTOCNode(
                         locator: locator(indexTitle: indexTitle, ref: shape.title),
-                        title: shape.heTitle ?? shape.title,
+                        title: LibraryPresentationPolicy.workTitle(
+                            title: shape.title,
+                            heTitle: shape.heTitle,
+                            localeIdentifier: prefersHebrew ? "he" : "en"
+                        ),
                         children: shapeChildren(
                             shape.chapters,
                             indexTitle: indexTitle,
@@ -157,13 +161,15 @@ enum SefariaNavigationParser {
             return children.compactMap { value in
                 guard case .object(let child) = value else { return nil }
                 let key = string(child["key"]) ?? schemaTitle(child, language: "en") ?? indexTitle
-                let title = schemaTitle(child, language: "he")
-                    ?? schemaTitle(child, language: "en")
-                    ?? key
+                let title = LibraryPresentationPolicy.workTitle(
+                    title: schemaTitle(child, language: "en") ?? "",
+                    heTitle: schemaTitle(child, language: "he"),
+                    localeIdentifier: prefersHebrew ? "he" : "en"
+                )
                 let ref = nodeReference(child, baseRef: baseRef, key: key)
                 return LibraryTOCNode(
                     locator: locator(indexTitle: indexTitle, ref: ref),
-                    title: title,
+                    title: title.isEmpty ? key : title,
                     children: schemaNodes(value, indexTitle: indexTitle, baseRef: ref, prefersHebrew: prefersHebrew)
                 )
             }
@@ -203,9 +209,11 @@ enum SefariaNavigationParser {
             return values.enumerated().map { offset, child in
                 if case .object(let object) = child,
                    let childRef = string(object["title"]) ?? string(object["book"]) ?? string(object["section"]) {
-                    let childTitle = string(object["heTitle"])
-                        ?? string(object["title"])
-                        ?? childRef
+                    let childTitle = LibraryPresentationPolicy.workTitle(
+                        title: childRef,
+                        heTitle: string(object["heTitle"]),
+                        localeIdentifier: prefersHebrew ? "he" : "en"
+                    )
                     return LibraryTOCNode(
                         locator: locator(indexTitle: indexTitle, ref: childRef),
                         title: childTitle,

@@ -1,0 +1,28 @@
+{
+  "compile": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Swift\\Toolchains\\6.3.3+Asserts\\usr\\bin\\swiftc.EXE",
+    "-j1",
+    "-module-cache-path",
+    "C:\\Users\\DAVID\\Code\\Maktabah-inspector-harness-20261120\\build\\inspector-harness-baseline-20261120\\module-cache",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\Source\\LibraryBackend\\LibraryBackendModels.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\Source\\LibraryBackend\\LibraryPresentationPolicy+Display.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\Source\\Sefaria\\Domain\\SefariaModels.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\Source\\Sefaria\\Domain\\SefariaNavigationParser.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\Source\\Sefaria\\Network\\SefariaDTOs.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\Source\\ChavrusaText\\Localization\\ChavrusaTextLocalizationResolver.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\Source\\ChavrusaText\\Localization\\TalmudHebrewAddressFormatter.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\Vendor\\SefariaNativeTests\\TestSupport.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\SefariaNavigationLanguageCases.swift",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\inputs\\SefariaNavigationLanguageMain.swift",
+    "-o",
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\sefaria-navigation-language.exe"
+  ],
+  "compileTimeoutSeconds": 240,
+  "execute": [
+    "C:\\Users\\DAVID\\Code\\Maktabah-sefaria-l10n-20261120\\build\\sefaria-l10n-20261120\\focused-baseline\\sefaria-navigation-language.exe"
+  ],
+  "runtimeTimeoutSeconds": 30
+}

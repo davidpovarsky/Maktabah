@@ -1,0 +1,474 @@
+[
+  {
+    "actual": [
+      "קדש",
+      "מגיד"
+    ],
+    "expected": [
+      "קדש",
+      "מגיד"
+    ],
+    "name": "schema.hebrew.root",
+    "passed": true
+  },
+  {
+    "actual": [
+      "קדש",
+      "מגיד"
+    ],
+    "expected": [
+      "Kadesh",
+      "Magid"
+    ],
+    "name": "schema.english.root",
+    "passed": false
+  },
+  {
+    "actual": [
+      "ארבעת הבנים"
+    ],
+    "expected": [
+      "ארבעת הבנים"
+    ],
+    "name": "schema.hebrew.nested",
+    "passed": true
+  },
+  {
+    "actual": [
+      "ארבעת הבנים"
+    ],
+    "expected": [
+      "The Four Sons"
+    ],
+    "name": "schema.english.nested",
+    "passed": false
+  },
+  {
+    "actual": [
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 1",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 2",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons 1"
+    ],
+    "expected": [
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 1",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 2",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons 1"
+    ],
+    "name": "schema.hebrew.canonical-tree",
+    "passed": true
+  },
+  {
+    "actual": [
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 1",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 2",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons 1"
+    ],
+    "expected": [
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 1",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Kadesh 2",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons",
+      "sefaria|Pesach Haggadah|ref:Pesach Haggadah, Magid, The Four Sons 1"
+    ],
+    "name": "schema.english.canonical-tree",
+    "passed": true
+  },
+  {
+    "actual": [
+      "English title",
+      "כותרת עברית",
+      "עברית זמינה",
+      " \n\t ",
+      "\n",
+      "MissingTitles"
+    ],
+    "expected": [
+      "English title",
+      "כותרת עברית",
+      "עברית זמינה",
+      "Available English",
+      "BothBlank",
+      "MissingTitles"
+    ],
+    "name": "schema.hebrew.missing-empty-whitespace",
+    "passed": false
+  },
+  {
+    "actual": [
+      "English title",
+      "כותרת עברית",
+      "עברית זמינה",
+      " \n\t ",
+      "\n",
+      "MissingTitles"
+    ],
+    "expected": [
+      "English title",
+      "כותרת עברית",
+      "עברית זמינה",
+      "Available English",
+      "BothBlank",
+      "MissingTitles"
+    ],
+    "name": "schema.english.missing-empty-whitespace",
+    "passed": false
+  },
+  {
+    "actual": [
+      "עברית ראשית"
+    ],
+    "expected": [
+      "עברית ראשית"
+    ],
+    "name": "schema.hebrew.primary-over-alias",
+    "passed": true
+  },
+  {
+    "actual": [
+      "עברית ראשית"
+    ],
+    "expected": [
+      "Primary English"
+    ],
+    "name": "schema.english.primary-over-alias",
+    "passed": false
+  },
+  {
+    "actual": [
+      "sefaria|Complex Work|ref:Complex Work, EnglishOnly",
+      "sefaria|Complex Work|ref:Complex Work, HebrewOnly",
+      "sefaria|Complex Work|ref:Complex Work, EmptyEnglish",
+      "sefaria|Complex Work|ref:Complex Work, BlankHebrew",
+      "sefaria|Complex Work|ref:Complex Work, BothBlank",
+      "sefaria|Complex Work|ref:Complex Work, MissingTitles",
+      "sefaria|Complex Work|ref:Complex Work, Primary",
+      "sefaria|Complex Work|ref:Complex Work",
+      "sefaria|Complex Work|ref:Another Work, Explicit"
+    ],
+    "expected": [
+      "sefaria|Complex Work|ref:Complex Work, EnglishOnly",
+      "sefaria|Complex Work|ref:Complex Work, HebrewOnly",
+      "sefaria|Complex Work|ref:Complex Work, EmptyEnglish",
+      "sefaria|Complex Work|ref:Complex Work, BlankHebrew",
+      "sefaria|Complex Work|ref:Complex Work, BothBlank",
+      "sefaria|Complex Work|ref:Complex Work, MissingTitles",
+      "sefaria|Complex Work|ref:Complex Work, Primary",
+      "sefaria|Complex Work|ref:Complex Work",
+      "sefaria|Complex Work|ref:Another Work, Explicit"
+    ],
+    "name": "schema.hebrew.default-wholeRef-identity",
+    "passed": true
+  },
+  {
+    "actual": [
+      "sefaria|Complex Work|ref:Complex Work, EnglishOnly",
+      "sefaria|Complex Work|ref:Complex Work, HebrewOnly",
+      "sefaria|Complex Work|ref:Complex Work, EmptyEnglish",
+      "sefaria|Complex Work|ref:Complex Work, BlankHebrew",
+      "sefaria|Complex Work|ref:Complex Work, BothBlank",
+      "sefaria|Complex Work|ref:Complex Work, MissingTitles",
+      "sefaria|Complex Work|ref:Complex Work, Primary",
+      "sefaria|Complex Work|ref:Complex Work",
+      "sefaria|Complex Work|ref:Another Work, Explicit"
+    ],
+    "expected": [
+      "sefaria|Complex Work|ref:Complex Work, EnglishOnly",
+      "sefaria|Complex Work|ref:Complex Work, HebrewOnly",
+      "sefaria|Complex Work|ref:Complex Work, EmptyEnglish",
+      "sefaria|Complex Work|ref:Complex Work, BlankHebrew",
+      "sefaria|Complex Work|ref:Complex Work, BothBlank",
+      "sefaria|Complex Work|ref:Complex Work, MissingTitles",
+      "sefaria|Complex Work|ref:Complex Work, Primary",
+      "sefaria|Complex Work|ref:Complex Work",
+      "sefaria|Complex Work|ref:Another Work, Explicit"
+    ],
+    "name": "schema.english.default-wholeRef-identity",
+    "passed": true
+  },
+  {
+    "actual": [
+      "מבוא"
+    ],
+    "expected": [
+      "מבוא"
+    ],
+    "name": "shape.hebrew.complex-root",
+    "passed": true
+  },
+  {
+    "actual": [
+      "מבוא"
+    ],
+    "expected": [
+      "Complex Work, Introduction"
+    ],
+    "name": "shape.english.complex-root",
+    "passed": false
+  },
+  {
+    "actual": [
+      "Complex Work, Missing Hebrew",
+      " \n\t ",
+      "עברית בלבד"
+    ],
+    "expected": [
+      "Complex Work, Missing Hebrew",
+      "Complex Work, Blank Hebrew",
+      "עברית בלבד"
+    ],
+    "name": "shape.hebrew.missing-empty-whitespace",
+    "passed": false
+  },
+  {
+    "actual": [
+      "Complex Work, Missing Hebrew",
+      " \n\t ",
+      "עברית בלבד"
+    ],
+    "expected": [
+      "Complex Work, Missing Hebrew",
+      "Complex Work, Blank Hebrew",
+      "עברית בלבד"
+    ],
+    "name": "shape.english.missing-empty-whitespace",
+    "passed": false
+  },
+  {
+    "actual": [
+      "sefaria|Complex Work|ref:Complex Work, Introduction",
+      "sefaria|Complex Work|ref:Complex Work, Missing Hebrew",
+      "sefaria|Complex Work|ref:Complex Work, Blank Hebrew",
+      "sefaria|Complex Work|ref:"
+    ],
+    "expected": [
+      "sefaria|Complex Work|ref:Complex Work, Introduction",
+      "sefaria|Complex Work|ref:Complex Work, Missing Hebrew",
+      "sefaria|Complex Work|ref:Complex Work, Blank Hebrew",
+      "sefaria|Complex Work|ref:"
+    ],
+    "name": "shape.hebrew.canonical-roots",
+    "passed": true
+  },
+  {
+    "actual": [
+      "sefaria|Complex Work|ref:Complex Work, Introduction",
+      "sefaria|Complex Work|ref:Complex Work, Missing Hebrew",
+      "sefaria|Complex Work|ref:Complex Work, Blank Hebrew",
+      "sefaria|Complex Work|ref:"
+    ],
+    "expected": [
+      "sefaria|Complex Work|ref:Complex Work, Introduction",
+      "sefaria|Complex Work|ref:Complex Work, Missing Hebrew",
+      "sefaria|Complex Work|ref:Complex Work, Blank Hebrew",
+      "sefaria|Complex Work|ref:"
+    ],
+    "name": "shape.english.canonical-roots",
+    "passed": true
+  },
+  {
+    "actual": [
+      "קדש",
+      "",
+      "מדור",
+      "Complex Work, No Hebrew"
+    ],
+    "expected": [
+      "קדש",
+      "Complex Work, Appendix",
+      "מדור",
+      "Complex Work, No Hebrew"
+    ],
+    "name": "shape-child.hebrew.titles-and-fallbacks",
+    "passed": false
+  },
+  {
+    "actual": [
+      "קדש",
+      "",
+      "מדור",
+      "Complex Work, No Hebrew"
+    ],
+    "expected": [
+      "Complex Work, Kadesh",
+      "Complex Work, Appendix",
+      "Complex Work, Section",
+      "Complex Work, No Hebrew"
+    ],
+    "name": "shape-child.english.titles-and-fallbacks",
+    "passed": false
+  },
+  {
+    "actual": [
+      "sefaria|Complex Work|ref:Complex Work",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh 1",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh 2",
+      "sefaria|Complex Work|ref:Complex Work, Appendix",
+      "sefaria|Complex Work|ref:Complex Work, Appendix 1",
+      "sefaria|Complex Work|ref:Complex Work, Section",
+      "sefaria|Complex Work|ref:Complex Work, Section 1",
+      "sefaria|Complex Work|ref:Complex Work, No Hebrew",
+      "sefaria|Complex Work|ref:Complex Work, No Hebrew 1"
+    ],
+    "expected": [
+      "sefaria|Complex Work|ref:Complex Work",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh 1",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh 2",
+      "sefaria|Complex Work|ref:Complex Work, Appendix",
+      "sefaria|Complex Work|ref:Complex Work, Appendix 1",
+      "sefaria|Complex Work|ref:Complex Work, Section",
+      "sefaria|Complex Work|ref:Complex Work, Section 1",
+      "sefaria|Complex Work|ref:Complex Work, No Hebrew",
+      "sefaria|Complex Work|ref:Complex Work, No Hebrew 1"
+    ],
+    "name": "shape-child.hebrew.canonical-tree",
+    "passed": true
+  },
+  {
+    "actual": [
+      "sefaria|Complex Work|ref:Complex Work",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh 1",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh 2",
+      "sefaria|Complex Work|ref:Complex Work, Appendix",
+      "sefaria|Complex Work|ref:Complex Work, Appendix 1",
+      "sefaria|Complex Work|ref:Complex Work, Section",
+      "sefaria|Complex Work|ref:Complex Work, Section 1",
+      "sefaria|Complex Work|ref:Complex Work, No Hebrew",
+      "sefaria|Complex Work|ref:Complex Work, No Hebrew 1"
+    ],
+    "expected": [
+      "sefaria|Complex Work|ref:Complex Work",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh 1",
+      "sefaria|Complex Work|ref:Complex Work, Kadesh 2",
+      "sefaria|Complex Work|ref:Complex Work, Appendix",
+      "sefaria|Complex Work|ref:Complex Work, Appendix 1",
+      "sefaria|Complex Work|ref:Complex Work, Section",
+      "sefaria|Complex Work|ref:Complex Work, Section 1",
+      "sefaria|Complex Work|ref:Complex Work, No Hebrew",
+      "sefaria|Complex Work|ref:Complex Work, No Hebrew 1"
+    ],
+    "name": "shape-child.english.canonical-tree",
+    "passed": true
+  },
+  {
+    "actual": [
+      "י״ב ע״א",
+      "י״ב ע״ב"
+    ],
+    "expected": [
+      "י״ב ע״א",
+      "י״ב ע״ב"
+    ],
+    "name": "adjacent.talmud.hebrew",
+    "passed": true
+  },
+  {
+    "actual": [
+      "12a",
+      "12b"
+    ],
+    "expected": [
+      "12a",
+      "12b"
+    ],
+    "name": "adjacent.talmud.english",
+    "passed": true
+  },
+  {
+    "actual": [
+      "sefaria|Berakhot|ref:Berakhot 12a",
+      "sefaria|Berakhot|ref:Berakhot 12b",
+      "sefaria|Berakhot|ref:Berakhot 12a",
+      "sefaria|Berakhot|ref:Berakhot 12b"
+    ],
+    "expected": [
+      "sefaria|Berakhot|ref:Berakhot 12a",
+      "sefaria|Berakhot|ref:Berakhot 12b",
+      "sefaria|Berakhot|ref:Berakhot 12a",
+      "sefaria|Berakhot|ref:Berakhot 12b"
+    ],
+    "name": "adjacent.talmud.canonical-both",
+    "passed": true
+  },
+  {
+    "actual": [
+      "בראשית"
+    ],
+    "expected": [
+      "בראשית"
+    ],
+    "name": "adjacent.alternate.hebrew",
+    "passed": true
+  },
+  {
+    "actual": [
+      "Bereshit"
+    ],
+    "expected": [
+      "Bereshit"
+    ],
+    "name": "adjacent.alternate.english",
+    "passed": true
+  },
+  {
+    "actual": [
+      "sefaria|Genesis|ref:Genesis 1:1-6:8",
+      "sefaria|Genesis|ref:Genesis 1:1-6:8"
+    ],
+    "expected": [
+      "sefaria|Genesis|ref:Genesis 1:1-6:8",
+      "sefaria|Genesis|ref:Genesis 1:1-6:8"
+    ],
+    "name": "adjacent.alternate.canonical-both",
+    "passed": true
+  },
+  {
+    "actual": [
+      "א",
+      "א"
+    ],
+    "expected": [
+      "א",
+      "א"
+    ],
+    "name": "adjacent.dictionary.literal-headword-both",
+    "passed": true
+  },
+  {
+    "actual": [
+      "sefaria|Jastrow|ref:Jastrow, א",
+      "sefaria|Jastrow|ref:Jastrow, א"
+    ],
+    "expected": [
+      "sefaria|Jastrow|ref:Jastrow, א",
+      "sefaria|Jastrow|ref:Jastrow, א"
+    ],
+    "name": "adjacent.dictionary.canonical-both",
+    "passed": true
+  },
+  {
+    "actual": [
+      "קדש",
+      "מגיד"
+    ],
+    "expected": [
+      "Kadesh",
+      "Magid"
+    ],
+    "name": "default.follows-original-language-policy",
+    "passed": false
+  }
+]
