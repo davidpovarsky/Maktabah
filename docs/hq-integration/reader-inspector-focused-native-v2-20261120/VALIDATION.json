@@ -1,0 +1,308 @@
+{
+  "status": "SOURCE_INVERSES_AND27_PYTHON_CONTROLS_PASS",
+  "source": "409519a6972783990a276ade0dbdc4703bb36ae4",
+  "checks": [
+    {
+      "name": "actual_canonical_M_parent_and_tree",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:.github/workflows/sefaria-embedded-validation.yml",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Maktabah.xcodeproj/project.pbxproj",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Scripts/CI/hq-stage2-focused-apple.py",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Scripts/CI/run-faithful-ipad-matrix.py",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Scripts/CI/runtime27-release-manifest.json",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Scripts/CI/runtime27.py",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Scripts/CI/runtime27_interruption.py",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Scripts/CI/select-runtime27-toolchain.py",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:Scripts/CI/verify-faithful-xctest.py",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:docs/hq-integration/runtime27/R27_CASES.json",
+      "passed": true
+    },
+    {
+      "name": "canonical_input:tools/verify_xcresult_zero_skips.py",
+      "passed": true
+    },
+    {
+      "name": "unique_inverse:\"Maktabah-iOSUITests\": \"9be9f4c91114f5daffceac8a8ded0e7314f29fb4\"",
+      "passed": true
+    },
+    {
+      "name": "unique_inverse:\"Source\": \"3e2541b84ee83a4fed5ec7f93cc5ac488c7c2169\"",
+      "passed": true
+    },
+    {
+      "name": "unique_inverse:b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+      "passed": true
+    },
+    {
+      "name": "unique_inverse:.github/workflows/otzaria-reader-inspector-focused-native-v2.yml",
+      "passed": true
+    },
+    {
+      "name": "unique_inverse:docs/hq-integration/reader-inspector-focused-native-v2-20261120/",
+      "passed": true
+    },
+    {
+      "name": "unique_inverse:codex/otzaria-reader-inspector-focused-native-v2-20261120",
+      "passed": true
+    },
+    {
+      "name": "unique_inverse:409519a6972783990a276ade0dbdc4703bb36ae4",
+      "passed": true
+    },
+    {
+      "name": "whole_original_driver_body_inverse",
+      "passed": true
+    },
+    {
+      "name": "all_original27_controls_exact",
+      "passed": true
+    },
+    {
+      "name": "whole_workflow_inverse_only_branch",
+      "passed": true
+    },
+    {
+      "name": "exact_push_authority",
+      "passed": true
+    },
+    {
+      "name": "read_only_permissions",
+      "passed": true
+    },
+    {
+      "name": "original_runner_job_budget_and_no_cancellation",
+      "passed": true
+    },
+    {
+      "name": "original_full_app_executor",
+      "passed": true
+    },
+    {
+      "name": "always_actual_source_and_result",
+      "passed": true
+    },
+    {
+      "name": "always_capture:Retain real runtime evidence including failure",
+      "passed": true
+    },
+    {
+      "name": "always_capture:Retain original native result bundles and visual captures separately",
+      "passed": true
+    },
+    {
+      "name": "no_continue_on_error",
+      "passed": true
+    },
+    {
+      "name": "original116_rows_plus3_retained_and_same4_selected",
+      "passed": true
+    },
+    {
+      "name": "current_R27_project_and_all_remaining_input_inverses",
+      "passed": true
+    },
+    {
+      "name": "original600_second_case_deadlines",
+      "passed": true
+    },
+    {
+      "name": "unchanged_original_declaration_parser_invocation",
+      "passed": true
+    },
+    {
+      "name": "actual_prior_receipt:SOURCE_BEFORE.json",
+      "passed": true
+    },
+    {
+      "name": "actual_prior_receipt:SOURCE_AFTER.json",
+      "passed": true
+    },
+    {
+      "name": "actual_prior_receipt:RESULT_BEFORE.json",
+      "passed": true
+    },
+    {
+      "name": "actual_prior_receipt:RESULT_AFTER.json",
+      "passed": true
+    },
+    {
+      "name": "same_before_after_filename_case",
+      "passed": true
+    },
+    {
+      "name": "same_runtime_and_build_report_names",
+      "passed": true
+    },
+    {
+      "name": "python_syntax:Scripts/CI/reader-inspector-focused-native.py",
+      "passed": true
+    },
+    {
+      "name": "python_syntax:Scripts/CI/test-reader-inspector-focused-native.py",
+      "passed": true
+    },
+    {
+      "name": "python_syntax:Scripts/CI/runtime27.py",
+      "passed": true
+    },
+    {
+      "name": "actual_original27_pass",
+      "passed": true
+    }
+  ],
+  "source_inputs": [
+    {
+      "path": ".github/workflows/sefaria-embedded-validation.yml",
+      "bytes": 44363,
+      "git_blob": "ac42069b4dbbe57898c45e280513412c8df41ee7",
+      "sha256": "fe77cdc9129fdf293df29eb4d73c3d9dba0a14c665a5ea63dc0e55603a6b38b4"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 198505,
+      "git_blob": "2f2f3a288cf47c2a15161dc462fbde20ce259cc9",
+      "sha256": "4799a197b842565bc80cf9bda44a22f026814160168dfa8b0ac3d2c614bd9733"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 160603,
+      "git_blob": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
+      "sha256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "bytes": 32077,
+      "git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+      "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "bytes": 596038,
+      "git_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+      "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "bytes": 4333,
+      "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+      "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 47630,
+      "git_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "bytes": 19318,
+      "git_blob": "fcf0d0791235a43378f5a595e803e23253c83a6f",
+      "sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "bytes": 49924,
+      "git_blob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "bytes": 56247,
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "bytes": 26341,
+      "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583"
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "bytes": 7650,
+      "git_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "bytes": 6377,
+      "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+      "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+    },
+    {
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "bytes": 6009,
+      "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+      "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "bytes": 200381,
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+    },
+    {
+      "path": "tools/verify_xcresult_zero_skips.py",
+      "bytes": 10243,
+      "git_blob": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b",
+      "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+    }
+  ],
+  "python_controls_passed": 27,
+  "python_control_failures": 0,
+  "swiftc_path": null,
+  "original_swift_declaration_check": "NOT_RUN_LOCALLY; unchanged original Swift frontend remains mandatory on actual CI",
+  "local_full_Git_source_gate": "NOT_RUN: authenticated source projection, not a replacement Git checkout",
+  "actual_Apple_build": "NOT_RUN",
+  "native_executed": 0,
+  "full_phase_credit": false
+}

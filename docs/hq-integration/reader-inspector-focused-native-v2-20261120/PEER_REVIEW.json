@@ -1,0 +1,6 @@
+{
+  "reviewer": "/root/github_native_audit",
+  "scope": "Read-only REBIND_ONLY.patch and REBIND_PROOF.json",
+  "result": "No concrete source-authority issue in narrow binding delta. Exact M/source/UI/R27 values advance together; workflow path/ref/docs consistently versioned; selected IDs,600s gates,360min job,Vendor/project and original27 source unchanged.",
+  "limits": "Constants/inverse review only; no independent API-tree reauthentication, test execution or Native evidence by reviewer."
+}

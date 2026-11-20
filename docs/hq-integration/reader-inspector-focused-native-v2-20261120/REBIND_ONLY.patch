@@ -1,0 +1,50 @@
+--- prior-F4/Scripts/CI/reader-inspector-focused-native.py
++++ candidate/Scripts/CI/reader-inspector-focused-native.py
+@@ -15,10 +15,10 @@
+ import sys
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+-BASE = "8ff4e820970e6697eabff40ac46e2f6e61484f27"
+-REF = "refs/heads/codex/otzaria-reader-inspector-focused-native-20261120"
+-DOCS = "docs/hq-integration/reader-inspector-focused-native-20261120/"
+-WORKFLOW = ".github/workflows/otzaria-reader-inspector-focused-native.yml"
++BASE = "409519a6972783990a276ade0dbdc4703bb36ae4"
++REF = "refs/heads/codex/otzaria-reader-inspector-focused-native-v2-20261120"
++DOCS = "docs/hq-integration/reader-inspector-focused-native-v2-20261120/"
++WORKFLOW = ".github/workflows/otzaria-reader-inspector-focused-native-v2.yml"
+ SELF = "Scripts/CI/reader-inspector-focused-native.py"
+ TESTS = "Scripts/CI/test-reader-inspector-focused-native.py"
+ MANIFEST = "docs/hq-integration/runtime27/R27_CASES.json"
+@@ -27,10 +27,10 @@
+ RUNTIME = "Scripts/CI/runtime27.py"
+ ALLOWED = {WORKFLOW, SELF, TESTS, MANIFEST, INPUTS, ADDITIONS, RUNTIME}
+ TREES = {
+-    "Source": "d4cc25409260ef275214db70ecd57711f24bcaef",
++    "Source": "3e2541b84ee83a4fed5ec7f93cc5ac488c7c2169",
+     "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
+     "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72",
+-    "Maktabah-iOSUITests": "e060cd09a096392cb73fa36bffe7fbf8758ffe50",
++    "Maktabah-iOSUITests": "9be9f4c91114f5daffceac8a8ded0e7314f29fb4",
+ }
+ SELECTED = [
+     "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+@@ -39,7 +39,7 @@
+     "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable",
+ ]
+ OLD_R27 = "53f9db5b97784b9003eacf1bafc69e51bb64dd0580e426f0d8a17d32f4d9de9b"
+-NEW_R27 = "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f"
++NEW_R27 = "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed"
+ OLD_PROJECT = "2741615644741d39b0b19c6146f9c459323dabab"
+ NEW_PROJECT = "489fd95080cd47c8b2138f70bc9ab72e5e4879f0"
+ OUT = ROOT / "build/artifacts/reader-inspector-focused-native"
+--- prior-F4/.github/workflows/otzaria-reader-inspector-focused-native.yml
++++ candidate/.github/workflows/otzaria-reader-inspector-focused-native-v2.yml
+@@ -2,7 +2,7 @@
+ 
+ on:
+   push:
+-    branches: [codex/otzaria-reader-inspector-focused-native-20261120]
++    branches: [codex/otzaria-reader-inspector-focused-native-v2-20261120]
+ 
+ permissions:
+   contents: read

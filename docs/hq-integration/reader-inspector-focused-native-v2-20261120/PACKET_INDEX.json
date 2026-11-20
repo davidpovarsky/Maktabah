@@ -1,0 +1,215 @@
+{
+  "application_source": "409519a6972783990a276ade0dbdc4703bb36ae4",
+  "branch": "codex/otzaria-reader-inspector-focused-native-v2-20261120",
+  "files": [
+    {
+      "bytes": 6415,
+      "git_blob": "56ee76968743c76e7c77d45025b0fc6cc3823d75",
+      "path": ".github/workflows/otzaria-reader-inspector-focused-native-v2.yml",
+      "sha256": "72d520bf6d1c04f4c2602c28dd7b9240cf6b147c28e46152439220798f69b07e"
+    },
+    {
+      "bytes": 4333,
+      "git_blob": "7c8b765c4618c4ef65db129e8f2bd9f3cd9300a9",
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "sha256": "f21bc0a3d5edfb82fb5a2412dae2e60854926d05dfd51e6bbe696c0fa18e5607"
+    },
+    {
+      "bytes": 19318,
+      "git_blob": "23a8e81487a350e97bcb077ed7a01d2caec76f24",
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313"
+    },
+    {
+      "bytes": 15468,
+      "git_blob": "dcfa0cdef996a2b4cd597114f3563f77c1249687",
+      "path": "Scripts/CI/reader-inspector-focused-native.py",
+      "sha256": "24521804567c55a4b1076800103baa8f87adbd128770da55334973b158eda7e9"
+    },
+    {
+      "bytes": 26341,
+      "git_blob": "194e05eae1fb87d5c1ee0dc4244b371c16e2ce42",
+      "path": "Scripts/CI/runtime27.py",
+      "sha256": "f2848a572e5f9396dc9b051009ffe1241103cc90eb2fdb04259687116ff74d03"
+    },
+    {
+      "bytes": 7185,
+      "git_blob": "4d64126b44238654a987acbf1b134c669a25808e",
+      "path": "Scripts/CI/test-reader-inspector-focused-native.py",
+      "sha256": "1e8ec2c7d1e8a845ed5bd3e81323bf26b8e411e89581a6b0c74f9b56c2677e56"
+    },
+    {
+      "bytes": 52674,
+      "git_blob": "c178251ad0f715ee7ef6bb89cae2381f231ffa95",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/ATTEMPT1_PARTIAL_PREPARATION.zip",
+      "sha256": "d856473dbf7c0ccbbd3482c0df3ae35bc638749bcb3fbf47cb81da8e1225adee"
+    },
+    {
+      "bytes": 1798,
+      "git_blob": "cca417f5bda21c5329b308d38e7b72089e5cbe95",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/CANONICAL_INPUTS.json.gz",
+      "sha256": "c40e884fb8ce0e7afcef6832b667a5dc96ed9248eb80533e595a6d8b8cef75f6"
+    },
+    {
+      "bytes": 274978,
+      "git_blob": "1ccd8b1e2ce089268bd2a72487fa731453725a2f",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/CURRENT_SOURCE_INPUTS.zip",
+      "sha256": "23b4d44eb83504150c742f3a5df2979156f5aa2026eec3de29775042813b17ef"
+    },
+    {
+      "bytes": 1580,
+      "git_blob": "10a6d2022d10060219eb7a72f0977c1b2ebb2ca8",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/MATCHED_INPUTS.json.gz",
+      "sha256": "bb3e32ca43e430796c61a6055f5f18b5794cc6ed8d426c446cb90c02b5a3432b"
+    },
+    {
+      "bytes": 644,
+      "git_blob": "a83b6184a7041d5f964d8b21971da777308bc40e",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/M_COMMIT.json.gz",
+      "sha256": "9c1a8902ed7e7708502023dfbe3b4d5f6a9e2d1fc76b0dacb61a6c2718701bba"
+    },
+    {
+      "bytes": 497,
+      "git_blob": "67cc135cba7d458200c362a7de704138a73b4dc8",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/PEER_REVIEW.json",
+      "sha256": "0c28188a244344a3587f31977710902f2f24bd4625964437d0939f49dab826f1"
+    },
+    {
+      "bytes": 10205,
+      "git_blob": "d40ba492149b0ae9518abc72325ec61d8d830996",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/PRIOR_REVIEWED_ROUTE.zip",
+      "sha256": "c70429c81b2f4e9a23a7d446621f52e6be0e067bbb173f5ca55cba56fd92c6ee"
+    },
+    {
+      "bytes": 7074,
+      "git_blob": "0c2bc14cd1c2aefce227e507a44b6a58b60abd64",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/README.md",
+      "sha256": "bd444785102b93c44c9a547e3b058985dc1949f6f2029107a06e6526dfb64d26"
+    },
+    {
+      "bytes": 2472,
+      "git_blob": "16f5553d2a2bfd9cd0898f24b997e7e1ea48c37d",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/REBIND_ONLY.patch",
+      "sha256": "18992ce54bc0c3bfd73e72a9cf055cd1109d9c9d076bb0e0d6214892eb103cc0"
+    },
+    {
+      "bytes": 3755,
+      "git_blob": "b4240583bf6df1cbb830a23b2dd1fd37e996c78e",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/REBIND_PROOF.json",
+      "sha256": "45c263269a3345298cee07b316d40ee4097f9fb24161e1c59e0fd1c573d112f1"
+    },
+    {
+      "bytes": 9442,
+      "git_blob": "c49552638149dc10c47e3f79e816c0bb565ad167",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/VALIDATION.json",
+      "sha256": "43cd19ed9dc1cd12f7dc3a4d17016417c2cda2fe809657290652bf1894659669"
+    },
+    {
+      "bytes": 7830,
+      "git_blob": "4a3e82193f2fe993267fc27ae4c7db75d9919edb",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/prepare_v2.py",
+      "sha256": "12392489cfc69b14f79f2aa4ee03cac42035ffcc6955f39b66a9ae4dad0892ea"
+    },
+    {
+      "bytes": 575,
+      "git_blob": "6f7fbab0216943b78e32de789de1c95c84d7d15e",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/prior-actual4/FOCUSED4ARTIFACTS.json.gz",
+      "sha256": "e88a9e5e5771fc1e0b5908ddac3d44369df7b98305df55a5b1139e606d60d08f"
+    },
+    {
+      "bytes": 1764,
+      "git_blob": "424459e83d68322f6a563703e8688abb4df59ab3",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/prior-actual4/FOCUSED4RUN.json.gz",
+      "sha256": "ef82828a99e7fd5f53d298464d5888d1c2eb7720eb44e969bccfbad40a2f3bde"
+    },
+    {
+      "bytes": 264,
+      "git_blob": "31190ac55ac4dfaad48d69e929b1d188529d2bbf",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/prior-actual4/evidence--artifacts--reader-inspector-focused-native--RESULT_AFTER.json.gz",
+      "sha256": "e71a1f1ee477c2660ab856e64a80e28e2412c2dacb67482f14cebb9d6098142b"
+    },
+    {
+      "bytes": 256,
+      "git_blob": "d4adf15214b4250ab761c5fed78af4a0b11166c1",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/prior-actual4/evidence--artifacts--reader-inspector-focused-native--RESULT_BEFORE.json.gz",
+      "sha256": "905392f1d92773a32c5207cfcbfa0c8f3d5c00bad49dcefaf95c0cc41bfb69c1"
+    },
+    {
+      "bytes": 13429,
+      "git_blob": "4e8e83020ec93e084b63a063f800db622ab0826e",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/prior-actual4/evidence--artifacts--runtime27--result.json.gz",
+      "sha256": "0a523402dbd256043af419ae11ee5ce4a41eb7f158d9e03327a900abddc30f62"
+    },
+    {
+      "bytes": 695,
+      "git_blob": "4be1be5a88b5f1ff505311ee8bfd632a8f708410",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/prior-actual4/evidence--artifacts--runtime27--verified-11-reader.summary.json.gz",
+      "sha256": "4b73dd7e7939c29601be5ee4d66d977278c5d1d3f2ebde84710e620298e26cfd"
+    },
+    {
+      "bytes": 967,
+      "git_blob": "1b5a7e631abac70846695d38350ffd72f8bda730",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/prior-actual4/evidence--artifacts--runtime27--verified-11-reader.tests.json.gz",
+      "sha256": "fd9265555e40db6a4f5a9137f684c9a15b2cd83494ff514c2df947e7fd11386a"
+    },
+    {
+      "bytes": 340,
+      "git_blob": "c0c6ec68b40bcacbbfec01f8ba7c302ad86a004c",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/raw/controls.json.gz",
+      "sha256": "fdfa000dd7e49fa8f961d9236c42dc5f86d6f6f90c71cafcd3eab467b68fa08e"
+    },
+    {
+      "bytes": 618,
+      "git_blob": "dcb6d32123d74d4dbeb79b67d50e0d466883520e",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/raw/controls.stderr.log.gz",
+      "sha256": "92736e8de5ea9e9744eedef3f6287995af56ff93f272be0b6736cab77bbe8abf"
+    },
+    {
+      "bytes": 20,
+      "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/raw/controls.stdout.log.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "bytes": 200,
+      "git_blob": "b3ec0f7698272544890a48bc4bf33264a54b6602",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/raw/prepare.json.gz",
+      "sha256": "3512b50988de454c9b8dfcae9506d9b4c7e67d0ab1f2e9d795d703dfe51de78e"
+    },
+    {
+      "bytes": 20,
+      "git_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/raw/prepare.stderr.log.gz",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "bytes": 227,
+      "git_blob": "8d2902c66d3d284e84608e6c969f80494bf9b185",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/raw/prepare.stdout.log.gz",
+      "sha256": "f379a722d045ce52fa331dadf2fa1eebdff6e8222dd0368c2fe3f4aed629a17e"
+    },
+    {
+      "bytes": 6614,
+      "git_blob": "dba97f0aaee4fb867269e2a33e5aa12863aefd5d",
+      "path": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/validate_v2.py",
+      "sha256": "753a1fc70c25119dc6254f024f564c6ca0fc19563e3e5468335d715906231858"
+    },
+    {
+      "bytes": 192794,
+      "git_blob": "f08940fa845da213195b3e55461f29cfeb5182de",
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "sha256": "055ab2c638620ef5c8ac5dcdab033708ff6d62bb3b64f1cb260e71e40e96263c"
+    }
+  ],
+  "native_executed": 0,
+  "original_python_controls": {
+    "failed": 0,
+    "passed": 27
+  },
+  "payload_bytes": 670792,
+  "payload_count": 33,
+  "schema": 1,
+  "source_or_UI_changes_by_route": 0,
+  "source_tree": "77d3a1f40e551941b255a13d6a00f6b210f367dd",
+  "status": "REVIEWABLE_NOT_PUBLISHED_NOT_ACTIVATED"
+}

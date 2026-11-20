@@ -1,0 +1,71 @@
+{
+  "status": "SOURCE_REBOUND_NATIVE_NOT_RUN",
+  "application_and_test_source": "409519a6972783990a276ade0dbdc4703bb36ae4",
+  "source_tree": "77d3a1f40e551941b255a13d6a00f6b210f367dd",
+  "prior_reviewed_F4": "d5d7928fed2b0a6324d07c5595af10413ac58f8e",
+  "prior_reviewed_M": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+  "new_branch": "codex/otzaria-reader-inspector-focused-native-v2-20261120",
+  "protected_trees": {
+    "Maktabah-iOSUITests": "9be9f4c91114f5daffceac8a8ded0e7314f29fb4",
+    "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72",
+    "Source": "3e2541b84ee83a4fed5ec7f93cc5ac488c7c2169",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "driver_whole_file_inverse": true,
+  "driver_replacements": [
+    {
+      "before": "8ff4e820970e6697eabff40ac46e2f6e61484f27",
+      "after": "409519a6972783990a276ade0dbdc4703bb36ae4"
+    },
+    {
+      "before": "codex/otzaria-reader-inspector-focused-native-20261120",
+      "after": "codex/otzaria-reader-inspector-focused-native-v2-20261120"
+    },
+    {
+      "before": "docs/hq-integration/reader-inspector-focused-native-20261120/",
+      "after": "docs/hq-integration/reader-inspector-focused-native-v2-20261120/"
+    },
+    {
+      "before": ".github/workflows/otzaria-reader-inspector-focused-native.yml",
+      "after": ".github/workflows/otzaria-reader-inspector-focused-native-v2.yml"
+    },
+    {
+      "before": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f",
+      "after": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed"
+    },
+    {
+      "before": "\"Source\": \"d4cc25409260ef275214db70ecd57711f24bcaef\"",
+      "after": "\"Source\": \"3e2541b84ee83a4fed5ec7f93cc5ac488c7c2169\""
+    },
+    {
+      "before": "\"Maktabah-iOSUITests\": \"e060cd09a096392cb73fa36bffe7fbf8758ffe50\"",
+      "after": "\"Maktabah-iOSUITests\": \"9be9f4c91114f5daffceac8a8ded0e7314f29fb4\""
+    }
+  ],
+  "driver_old_sha256": "64c317656b8e3f19f4b0b4cbc8b20ef11e1b4be2c2e6a6672c023799abb411c7",
+  "driver_new_sha256": "24521804567c55a4b1076800103baa8f87adbd128770da55334973b158eda7e9",
+  "unchanged_original27_control_source_sha256": "1e8ec2c7d1e8a845ed5bd3e81323bf26b8e411e89581a6b0c74f9b56c2677e56",
+  "workflow_inverse_exact_branch_only": true,
+  "unchanged_runtime_except_original_single_R27_digest": true,
+  "runtime_matches_prior_F4_except_single_current_R27_digest": true,
+  "runtime_sha256": "f2848a572e5f9396dc9b051009ffe1241103cc90eb2fdb04259687116ff74d03",
+  "prior_F4_R27_source_sha256": "97d33e24844ea293a004d88379b95e5f534df123b58f76df1f0b6d4de059508f",
+  "R27_source_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+  "unchanged_test_additions_except_original_single_project_blob": true,
+  "additions_matches_prior_F4_exactly": true,
+  "additions_sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313",
+  "preserved_original_native_rows": 116,
+  "preserved_extra_existing_release_rows": 3,
+  "selected_four_case_ids": [
+    "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorLandscape",
+    "FaithfulReaderUIAcceptanceTests/testCandidateTrimmedOriginalInspectorPortrait",
+    "FaithfulReaderUIAcceptanceTests/testSystemReduceMotionKeepsOriginalPaletteUsable"
+  ],
+  "all_case_deadlines_seconds": 600,
+  "job_minutes": 360,
+  "source_or_ui_mutations_by_this_route": 0,
+  "native_executions": 0,
+  "full_native116_or_release114_credit": false,
+  "note": "Root separately changed only Motion evidence capture in M. This route preserves the original selected methods and acceptance oracles; it does not claim Motion source byte identity to the failed F4."
+}
