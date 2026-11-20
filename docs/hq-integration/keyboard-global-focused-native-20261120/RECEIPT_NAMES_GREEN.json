@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "keyboard-global-focused-native-20261120/candidate/Scripts/CI/test-keyboard-global-focused-native.py",
+    "--base-dir",
+    "keyboard-global-focused-native-20261120/base"
+  ],
+  "exit_code": 0,
+  "log_sha256": "eeec0e905e839bffada392257a7cd2b1d418db5a5d0ba8e953c521613908fc60",
+  "driver_sha256": "73c6414f5b4fe23ab9ea6b5b6a3e017b8aaf55d344377f9230970235fb7a6909",
+  "controls_sha256": "85061dc49a865604baa16febe58d26cbfc40fc599c75e6892ca7073bb81e0e75",
+  "actual_methods": 36,
+  "actual_pass": 36,
+  "actual_fail": 0,
+  "actual_native": 0,
+  "producer_consumer_boundary": "Actual main serializes real receipts; actual aggregate consumes the same files. Source/Native proof boundaries are explicit synthetic stubs."
+}

@@ -1,0 +1,128 @@
+{
+  "reviewed_at_utc": "2026-11-20T18:49:45Z",
+  "reviewer": "root",
+  "repository": "davidpovarsky/Maktabah",
+  "parent": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "parent_tree": "471d1ba11037617f2cadf14826bf5013d508b8ee",
+  "packet_manifest": {
+    "path": "docs/hq-integration/keyboard-global-focused-native-20261120/ARTIFACTS.json",
+    "bytes": 8788,
+    "sha256": "010c1b1b92de25b50d18c5bc1b7a48f9282557617cb679142022cc38ef3e9f14",
+    "git_blob": "09595018a74653078f609f85b9798e7db4dc174d"
+  },
+  "canonical_inputs": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "git_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+      "bytes": 196355,
+      "sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+      "bytes": 32077,
+      "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "git_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+      "bytes": 596038,
+      "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+      "bytes": 4333,
+      "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "git_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "bytes": 47630,
+      "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "git_blob": "fcf0d0791235a43378f5a595e803e23253c83a6f",
+      "bytes": 19318,
+      "sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "git_blob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "bytes": 49924,
+      "sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "bytes": 56247,
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "bytes": 26341,
+      "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583"
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "git_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+      "bytes": 6377,
+      "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+    },
+    {
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+      "bytes": 6009,
+      "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "bytes": 200381,
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+    },
+    {
+      "path": "tools/verify_xcresult_zero_skips.py",
+      "git_blob": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b",
+      "bytes": 10243,
+      "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+    }
+  ],
+  "canonical_git_inputs_verified": 14,
+  "protected_trees": {
+    "Maktabah-iOSUITests": "2f354910d282a9a645e52663dbfad66c4c751c29",
+    "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72",
+    "Source": "3e2541b84ee83a4fed5ec7f93cc5ac488c7c2169",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "actual_root_python_controls": {
+    "passed": 36,
+    "failed": 0,
+    "skipped": 0,
+    "log": "test_aggregate_cannot_reuse_ipad11_as_ipad13 (__main__.FocusedBoundary.test_aggregate_cannot_reuse_ipad11_as_ipad13) ... ok\ntest_aggregate_consumes_receipts_written_by_actual_main (__main__.FocusedBoundary.test_aggregate_consumes_receipts_written_by_actual_main) ... ok\ntest_aggregate_matrix_failure_even_after_six_labels_rejected (__main__.FocusedBoundary.test_aggregate_matrix_failure_even_after_six_labels_rejected) ... ok\ntest_aggregate_missing_after_or_full_phase_claim_rejected (__main__.FocusedBoundary.test_aggregate_missing_after_or_full_phase_claim_rejected) ... ok\ntest_aggregate_missing_configuration_rejected (__main__.FocusedBoundary.test_aggregate_missing_configuration_rejected) ... ok\ntest_aggregate_source_drift_after_passing_cases_rejected (__main__.FocusedBoundary.test_aggregate_source_drift_after_passing_cases_rejected) ... ok\ntest_aggregate_wrong_run_attempt_head_or_config_rejected (__main__.FocusedBoundary.test_aggregate_wrong_run_attempt_head_or_config_rejected) ... ok\ntest_build_only_cannot_qualify_native (__main__.FocusedBoundary.test_build_only_cannot_qualify_native) ... ok\ntest_changed_original_oracle_rejected (__main__.FocusedBoundary.test_changed_original_oracle_rejected) ... ok\ntest_current_exact_runtime_path_and_project_pin_inverse (__main__.FocusedBoundary.test_current_exact_runtime_path_and_project_pin_inverse) ... ok\ntest_current_two_metadata_scopes_preserve_all_original116 (__main__.FocusedBoundary.test_current_two_metadata_scopes_preserve_all_original116) ... ok\ntest_default_and_exact_two_manifest_paths_only (__main__.FocusedBoundary.test_default_and_exact_two_manifest_paths_only) ... ok\ntest_different_manifest_or_runtime_report_hash_rejected (__main__.FocusedBoundary.test_different_manifest_or_runtime_report_hash_rejected) ... ok\ntest_exact_immutable_child_permitted (__main__.FocusedBoundary.test_exact_immutable_child_permitted) ... ok\ntest_finally_reuses_same_contract_path (__main__.FocusedBoundary.test_finally_reuses_same_contract_path) ... ok\ntest_four_and_two_matching_synthetic_outcomes (__main__.FocusedBoundary.test_four_and_two_matching_synthetic_outcomes) ... ok\ntest_full_phase_status_cannot_qualify_subset (__main__.FocusedBoundary.test_full_phase_status_cannot_qualify_subset) ... ok\ntest_historical_or_full_phase_credit_rejected (__main__.FocusedBoundary.test_historical_or_full_phase_credit_rejected) ... ok\ntest_incomplete_or_wrong_head_build_rejected (__main__.FocusedBoundary.test_incomplete_or_wrong_head_build_rejected) ... ok\ntest_missing_calibration_or_global_selection_rejected (__main__.FocusedBoundary.test_missing_calibration_or_global_selection_rejected) ... ok\ntest_missing_original_row_rejected (__main__.FocusedBoundary.test_missing_original_row_rejected) ... ok\ntest_one_ui_failure_rejected (__main__.FocusedBoundary.test_one_ui_failure_rejected) ... ok\ntest_original_catalog_or_matrix_edit_rejected (__main__.FocusedBoundary.test_original_catalog_or_matrix_edit_rejected) ... ok\ntest_original_default_scope_and_unique_guard_unchanged (__main__.FocusedBoundary.test_original_default_scope_and_unique_guard_unchanged) ... ok\ntest_original_runtime_body_edit_rejected (__main__.FocusedBoundary.test_original_runtime_body_edit_rejected) ... ok\ntest_raw_missing_duplicate_or_expected_failure_leaf_rejected (__main__.FocusedBoundary.test_raw_missing_duplicate_or_expected_failure_leaf_rejected) ... ok\ntest_raw_summary_disagrees_rejected (__main__.FocusedBoundary.test_raw_summary_disagrees_rejected) ... ok\ntest_skip_or_not_run_rejected (__main__.FocusedBoundary.test_skip_or_not_run_rejected) ... ok\ntest_source_or_artifact_pin_edit_rejected (__main__.FocusedBoundary.test_source_or_artifact_pin_edit_rejected) ... ok\ntest_test_additions_exemption_edit_rejected (__main__.FocusedBoundary.test_test_additions_exemption_edit_rejected) ... ok\ntest_unfinalized_binding_rejected (__main__.FocusedBoundary.test_unfinalized_binding_rejected) ... ok\ntest_unreviewed_product_or_test_tree_rejected (__main__.FocusedBoundary.test_unreviewed_product_or_test_tree_rejected) ... ok\ntest_wrong_actual_test_tree_rejected (__main__.FocusedBoundary.test_wrong_actual_test_tree_rejected) ... ok\ntest_wrong_case_device_or_configuration_label_rejected (__main__.FocusedBoundary.test_wrong_case_device_or_configuration_label_rejected) ... ok\ntest_wrong_device_group_rejected (__main__.FocusedBoundary.test_wrong_device_group_rejected) ... ok\ntest_wrong_head_ref_or_parent_rejected (__main__.FocusedBoundary.test_wrong_head_ref_or_parent_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 36 tests in 0.143s\n\nOK\n\n{\n  \"status\": \"PASS_PACKET_SOURCE_INVERSE_ONLY\",\n  \"manifested_files\": 32,\n  \"canonical_base_inputs\": 14,\n  \"original_native_rows_preserved\": 116,\n  \"independent_configurations\": {\n    \"ipad11\": 4,\n    \"ipad13\": 2\n  },\n  \"runtime_body_inverse_exact\": true,\n  \"python_controls\": \"36_PASS_PYTHON_ONLY\",\n  \"swift_compilation\": \"NOT_RUN\",\n  \"native_executions\": 0\n}\n"
+  },
+  "reviewed_scope": {
+    "original_native_rows_preserved": 116,
+    "selection": {
+      "ipad11": 4,
+      "ipad13": 2
+    },
+    "unique_methods": 4,
+    "full_native116": false,
+    "full_release114": false,
+    "original_deadlines_unchanged": true,
+    "actual_swift_compile": "NOT_RUN",
+    "actual_native_executions": 0,
+    "source_read": "Full workflow, driver, original-runtime inverse and control suite reviewed; receipt producer/consumer mismatch corrected before activation. Original red attempt and full previous packet retained.",
+    "execution_identity": "Exactly one direct child of M40. All preexisting leaves except explicitly indexed CI runtime/input files must remain byte and mode identical. Actual sources/UI tests/vendor/project unchanged."
+  },
+  "activation": "PENDING_FROZEN_COMMIT_AND_REF_READBACK"
+}

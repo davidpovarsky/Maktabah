@@ -1,0 +1,20 @@
+{
+  "status": "PASS_SOURCE_CONFIGURATION_AND_F4_WORKFLOW_INVERSE_ONLY",
+  "source_commit": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "original_full_app_workflow_body_inverse_exact": true,
+  "matrix_jobs": [
+    {
+      "configuration": "ipad11",
+      "expected_cases": 4
+    },
+    {
+      "configuration": "ipad13",
+      "expected_cases": 2
+    }
+  ],
+  "aggregate_requires_both_jobs": true,
+  "source_compile": "NOT_RUN",
+  "native_executions": 0,
+  "runtime_delta_sha256": "06a7ea3aa4d2579177c98cd443285f6cd4f2389ef9db7fc9bdf1e857eed6b391",
+  "current_workflow_sha256": "33ba993a3b89db0b29a5895405122bedc0165b185c2d658d452edd0137dd1521"
+}

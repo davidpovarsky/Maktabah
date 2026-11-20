@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "keyboard-global-focused-native-20261120/candidate/Scripts/CI/test-keyboard-global-focused-native.py",
+    "--base-dir",
+    "keyboard-global-focused-native-20261120/base"
+  ],
+  "exit_code": 1,
+  "log_sha256": "27076c140c08418e5311eebd05952a0abcc9bbaf3d26e1d9ffb295c485c52c72",
+  "driver_sha256": "6d3c339327002cd38e280030810ca9d28c4e3e6571afdfef157b055e424ff9b1",
+  "controls_sha256": "85061dc49a865604baa16febe58d26cbfc40fc599c75e6892ca7073bb81e0e75",
+  "actual_methods": 36,
+  "actual_pass": 35,
+  "actual_fail": 1,
+  "actual_native": 0,
+  "prior_red_retained": true
+}

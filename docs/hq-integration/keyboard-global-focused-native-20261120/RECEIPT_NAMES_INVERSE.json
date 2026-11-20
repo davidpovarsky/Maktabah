@@ -1,0 +1,33 @@
+{
+  "driver_delta": "Only RESULT_after.json -> RESULT_AFTER.json",
+  "whole_driver_inverse_exact": true,
+  "all_original_35_control_method_bytes_unchanged": true,
+  "one_new_control": "test_aggregate_consumes_receipts_written_by_actual_main",
+  "other_six_execution_inputs_byte_identical": [
+    {
+      "path": ".github/workflows/otzaria-keyboard-global-focused-native.yml",
+      "sha256": "33ba993a3b89db0b29a5895405122bedc0165b185c2d658d452edd0137dd1521"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "sha256": "abd217a77977c105d2f79811c7ad3eaf293c58577e5d1a538b2ff42ec9911655"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "sha256": "e65131f334b274e5b6abedd3594a703ebc0b77cd4db81958a834ff7fa85f94d4"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/keyboard-global-ipad11.json",
+      "sha256": "c843a2f35ebe1ded621576d6d7823e7d821764b3f832952ae9c3c7285243706d"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/keyboard-global-ipad13.json",
+      "sha256": "517446da0ef24f64981ada33aa0f0f81ea04675d9a19cff9a3128ada0ea31486"
+    }
+  ],
+  "native_executions": 0
+}

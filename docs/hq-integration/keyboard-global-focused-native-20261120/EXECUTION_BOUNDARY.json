@@ -1,0 +1,38 @@
+{
+  "source": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "source_tree": "471d1ba11037617f2cadf14826bf5013d508b8ee",
+  "protected_trees": {
+    "Maktabah-iOSUITests": "2f354910d282a9a645e52663dbfad66c4c751c29",
+    "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72",
+    "Source": "3e2541b84ee83a4fed5ec7f93cc5ac488c7c2169",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "original_focused_route": "d5d7928fed2b0a6324d07c5595af10413ac58f8e",
+  "active_focused4_run": 44786439788,
+  "active_focused4_modified": false,
+  "new_configuration_cases": {
+    "ipad11": 4,
+    "ipad13": 2
+  },
+  "unique_method_count": 4,
+  "retained_original_native_rows_per_scope": 116,
+  "additional_existing_diagnostic_rows_per_scope": 4,
+  "original_R27_CASES_json_modified": false,
+  "original_release114_manifest_modified": false,
+  "local_python_methods": 36,
+  "local_python_scope": "Synthetic refusal and actual original pure runtime source controls; zero Native credit.",
+  "original_swift_declaration_parser": "NOT_RUN locally: no Swift toolchain. The unchanged original parser remains mandatory in each actual Apple job.",
+  "apple_compile": "NOT_RUN",
+  "native_executions": 0,
+  "full_native116_acceptance": false,
+  "full_release114_acceptance": false,
+  "cache_parallelism": "Two separate GitHub job runners; max-parallel2/fail-fast=false. Only the unchanged compiler-cache service is shared. There is no shared local Simulator, app container or mutable checkout.",
+  "aggregate_transport": "actions/download-artifact on the current workflow run, two exact artifact directory names; source context binds run_id/attempt1/head/ref and configuration. No independent full ZIP SHA verification is claimed by this aggregate.",
+  "existing_evidence": [
+    "../escape-keyboard-calibration-20261120/README.md",
+    "../global-tab-policy-20261120/README.md",
+    "../release96-capture-result-44783201113-20261120/README.md"
+  ],
+  "project_pin_proof": "https://github.com/davidpovarsky/Maktabah/blob/d5d7928fed2b0a6324d07c5595af10413ac58f8e/docs/hq-integration/reader-inspector-focused-native-20261120/PROJECT_MEMBERSHIP_INVERSE.json",
+  "publication_owner": "Root only; this preparation performs no activation."
+}

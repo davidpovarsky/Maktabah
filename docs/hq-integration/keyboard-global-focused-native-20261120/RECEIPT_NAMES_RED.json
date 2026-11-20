@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "keyboard-global-focused-native-20261120/candidate/Scripts/CI/test-keyboard-global-focused-native.py",
+    "--base-dir",
+    "keyboard-global-focused-native-20261120/base"
+  ],
+  "exit_code": 1,
+  "log_sha256": "638c90e3288607823c733fc64cf5f8fda753f486b173af4ea4d0126848fe5db5",
+  "driver_sha256": "6d3c339327002cd38e280030810ca9d28c4e3e6571afdfef157b055e424ff9b1",
+  "controls_sha256": "b1e852a3ef11483c3b526e0e4f587bbc15de85c9f9c789ee00e57d2c60af64c2",
+  "expected": "Actual main writes uppercase after receipt; old aggregate lowercase lookup must be rejected on this filesystem.",
+  "native_executions": 0
+}

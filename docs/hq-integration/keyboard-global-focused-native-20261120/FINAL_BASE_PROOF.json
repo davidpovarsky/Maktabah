@@ -1,0 +1,63 @@
+{
+  "source": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "parent": "0ccfa719b301aec5bbb9bd50caec4357dc0576d5",
+  "tree": "471d1ba11037617f2cadf14826bf5013d508b8ee",
+  "changed_paths": [
+    "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/ARTIFACTS.json",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/EVIDENCE_BOUNDARY.json",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/EXACT_EDIT.json",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/INVERSE_PROOF.json",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/PROPOSED.patch",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/README.md",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/ROOT_REVIEW.json",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/SELECTION_PROPOSAL.json",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/SOURCE_AUTHORITY.json",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/raw/CALIBRATION_RETAINED_SEARCH.json.gz",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/raw/FaithfulReaderUIAcceptanceTests.swift.gz",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/raw/R27NativeInteractionAcceptanceTests.swift.gz",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/raw/R27_CASES.json.gz",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/raw/run-faithful-ipad-matrix.py.gz",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/raw/runtime27-release-manifest.json.gz",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/raw/runtime27.py.gz",
+    "docs/hq-integration/escape-keyboard-calibration-20261120/verify_packet.py"
+  ],
+  "protected_trees": {
+    "Maktabah-iOSUITests": "2f354910d282a9a645e52663dbfad66c4c751c29",
+    "Maktabah.xcodeproj": "ebf00ef1e0e466b083f476be9a9bf1a06c7d2b72",
+    "Source": "3e2541b84ee83a4fed5ec7f93cc5ac488c7c2169",
+    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae"
+  },
+  "base_records": [
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "commit": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+      "bytes": 4333,
+      "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "commit": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "git_blob": "fcf0d0791235a43378f5a595e803e23253c83a6f",
+      "bytes": 19318,
+      "sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "commit": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "git_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+      "bytes": 596038,
+      "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "commit": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+      "git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+      "bytes": 32077,
+      "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed"
+    }
+  ],
+  "inherited_canonical_parent_inputs": "release-escape-calibration-20261120/SOURCE_AUTHORITY.json; no CI, original manifest or Faithful changes in this exact 18-file child.",
+  "native_executions": 0
+}

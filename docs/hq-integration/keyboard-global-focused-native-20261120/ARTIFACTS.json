@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "base_commit": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "files": [
+    {
+      "path": ".github/workflows/otzaria-keyboard-global-focused-native.yml",
+      "bytes": 8266,
+      "sha256": "33ba993a3b89db0b29a5895405122bedc0165b185c2d658d452edd0137dd1521",
+      "git_blob": "7e5190059360368b9fc82462c5845c327af3970c"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "bytes": 4333,
+      "sha256": "e65131f334b274e5b6abedd3594a703ebc0b77cd4db81958a834ff7fa85f94d4",
+      "git_blob": "04121d4f825305cd14259405e4e3d23d342ad9f4"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "bytes": 19318,
+      "sha256": "954215baac375c4eaccb206631c93aea0a755c707013af85e2955e87ef9e4313",
+      "git_blob": "23a8e81487a350e97bcb077ed7a01d2caec76f24"
+    },
+    {
+      "path": "Scripts/CI/keyboard-global-focused-native.py",
+      "bytes": 24198,
+      "sha256": "73c6414f5b4fe23ab9ea6b5b6a3e017b8aaf55d344377f9230970235fb7a6909",
+      "git_blob": "4d7c7327d4bae3c694560e54b1e8cb2d629e2295"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "bytes": 26864,
+      "sha256": "abd217a77977c105d2f79811c7ad3eaf293c58577e5d1a538b2ff42ec9911655",
+      "git_blob": "8a5d96dfd584c207e29c4b91ce6aab13d0be8d9e"
+    },
+    {
+      "path": "Scripts/CI/test-keyboard-global-focused-native.py",
+      "bytes": 17303,
+      "sha256": "85061dc49a865604baa16febe58d26cbfc40fc599c75e6892ca7073bb81e0e75",
+      "git_blob": "3b881d7f75261e79029b54abbdfdc230e3ab6c0f"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/BASE_INPUTS.zip",
+      "bytes": 237181,
+      "sha256": "384fdd9ffd2430625e3012a23effdb9031ad4e7988073c54225ad4b068568411",
+      "git_blob": "6cf7798effbe2ca44dbd46ddf30cd533f9930bac"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/CANONICAL_BASE_INPUTS.json",
+      "bytes": 3524,
+      "sha256": "53e306544d2913d7f5412a584879c6d9f2bc367d39126b57c0e1509481e1292d",
+      "git_blob": "f53ed653c114875e7deec67993303d8d758d9108"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/EXECUTION_BOUNDARY.json",
+      "bytes": 2231,
+      "sha256": "03f1ce909c83f5786a4beff4f81308acebfb1addc968802abcec7d356976ee50",
+      "git_blob": "0ce45c6f8d512c163d0dc4a3ef49cc828100a534"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/FINAL_BASE_PROOF.json",
+      "bytes": 3509,
+      "sha256": "a6bb6822035134ed6d6cf43a41cebd28cc39b93d7d30cf17baa0cb7ee1e20e06",
+      "git_blob": "9fad82b506e4f1d7ee82054bc0082157cbc08c41"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/M_SOURCE_TREE_PROOF.json",
+      "bytes": 4584,
+      "sha256": "b5200169a53dbb0652a6934deda22d2abfef7599c1e78a9ed41d66e38709bac9",
+      "git_blob": "5509a1ddf382b5aff7184ff4479ddf40e329afd0"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/PREVIOUS_SEAL_ATTEMPT1.json",
+      "bytes": 415,
+      "sha256": "1d6e3aa1a1a9ba1d9292f129413b207adc9ed5a5f083970c8a81c740b7055ac4",
+      "git_blob": "cb404806a50461b9e505fedf195d2dec1ed1ef1a"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/PREVIOUS_SEAL_ATTEMPT1.zip",
+      "bytes": 453708,
+      "sha256": "3b390ee2e4897ad611e8f941299897eab0c59e57d7f39cacc2139de26e425d4a",
+      "git_blob": "0ca5b061acb8be59d0fa70aaeb054a2a2ccda7ff"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/PROPOSED.patch",
+      "bytes": 445687,
+      "sha256": "28785392e7ee40d336888e070973da22ce6c41738643502bebcea9176d027a13",
+      "git_blob": "3f0c6db55996e50389c8281dc453e9b1bac73b73"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/PYTHON_CONTROLS_ATTEMPT1.log",
+      "bytes": 4473,
+      "sha256": "4e65f209d2b32c3a436749d712bdfecd5ac7907c96870773965fa3850189695d",
+      "git_blob": "25bd7a41a5860a450b96470dde6bbe50dceb091f"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/PYTHON_CONTROLS_FINAL.json",
+      "bytes": 515,
+      "sha256": "deca11aa03dca3c737983cee756e43f1ed1b895ade166cc145dc34ecef065013",
+      "git_blob": "c1f6db675affe688e2d6d26b47236fdb2b6870e0"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/PYTHON_CONTROLS_FINAL.log",
+      "bytes": 4473,
+      "sha256": "3ac38655f2217afa0874f8d25ec00b778630fa052daf68796ead073497a7416c",
+      "git_blob": "4b1cb4505638416d3f1923198a5fc16fec96f4e3"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/README.md",
+      "bytes": 7428,
+      "sha256": "f56eac752fe0d6b4414d8de21366b77928906a896588a7db7a1dbba7eba6f2ee",
+      "git_blob": "e867fdd9338c34c4fda589302c7fc9acaa788fa9"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/RECEIPT_NAMES_GREEN.json",
+      "bytes": 755,
+      "sha256": "faefc383c924217dd1042582399a73b05699620c9a5bb10abf4f92ebd0a12b27",
+      "git_blob": "9cb2bdf9d14ea389bf3cd30f2f5560dd918aea48"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/RECEIPT_NAMES_GREEN.log",
+      "bytes": 4619,
+      "sha256": "eeec0e905e839bffada392257a7cd2b1d418db5a5d0ba8e953c521613908fc60",
+      "git_blob": "a76ec6349c8dfb03c03038b0d949190849a4d888"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/RECEIPT_NAMES_INVERSE.json",
+      "bytes": 1298,
+      "sha256": "72b9008561a43c932063b3f38d5045167e7d0f5b8434bceae61aa00944bea229",
+      "git_blob": "bd591c81d9bc607d94eae613d8b20746e5f07a4c"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/RECEIPT_NAMES_RED.json",
+      "bytes": 647,
+      "sha256": "23959ce1f6203aabf0ff412fb4c4b73c714420061f7d54c4dd73d547ebe2ee3f",
+      "git_blob": "f85bc598762924ae09047b471a903b93e8c8834c"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/RECEIPT_NAMES_RED.log",
+      "bytes": 5256,
+      "sha256": "638c90e3288607823c733fc64cf5f8fda753f486b173af4ea4d0126848fe5db5",
+      "git_blob": "920fc589693bd6109e8aded8aaccb0622ec89ff3"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/RECEIPT_NAMES_RED_WITH_ERROR.json",
+      "bytes": 609,
+      "sha256": "2ed1d19c669d803ec340179af93a3e90afeedb9d55622e02011a7040dfd25ce3",
+      "git_blob": "aedc49a529873966e5103b9132c1979b8f54d934"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/RECEIPT_NAMES_RED_WITH_ERROR.log",
+      "bytes": 5757,
+      "sha256": "27076c140c08418e5311eebd05952a0abcc9bbaf3d26e1d9ffb295c485c52c72",
+      "git_blob": "0c92744170ac599359f6a9123c15347ba33870cf"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/RUNTIME_DELTA.patch",
+      "bytes": 3026,
+      "sha256": "06a7ea3aa4d2579177c98cd443285f6cd4f2389ef9db7fc9bdf1e857eed6b391",
+      "git_blob": "5e1e8e5db674d84bc1f80a586c4450b6e09f002e"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/RUNTIME_EXACT_EDIT.json",
+      "bytes": 1900,
+      "sha256": "00173728ed40e1511d4721f4fa77bf399b205983c93d95ac87f6f7983da19519",
+      "git_blob": "34c8ce639271c3e2273d5f82dcd9a940bdeace0f"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/SOURCE_BINDING.json",
+      "bytes": 2106,
+      "sha256": "f21ec9c4f8a703cddb9a3985602a6d183cd4eee3092edc030c7c35f4153af4f0",
+      "git_blob": "86b3f1746056349ea6103337941ad5b7228eb632"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/WORKFLOW_SOURCE_PROOF.json",
+      "bytes": 648,
+      "sha256": "07689b1ce0b2ddd3dda4184183ca86f5224e801f5b11305de8c55455038c01aa",
+      "git_blob": "80b1396de3bb34b0649f27535604abd6b8bedbd9"
+    },
+    {
+      "path": "docs/hq-integration/keyboard-global-focused-native-20261120/verify_packet.py",
+      "bytes": 4475,
+      "sha256": "6fe8a6ad666da8cfc0e1e4de6334477886de8ced63d8861b32a38799331a391c",
+      "git_blob": "c2b2611ee8fb5d46176b95c6ea196fccafaac458"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/keyboard-global-ipad11.json",
+      "bytes": 192319,
+      "sha256": "c843a2f35ebe1ded621576d6d7823e7d821764b3f832952ae9c3c7285243706d",
+      "git_blob": "1078d835700c2e80e4e089eb21defa30a1316d8a"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/keyboard-global-ipad13.json",
+      "bytes": 191968,
+      "sha256": "517446da0ef24f64981ada33aa0f0f81ea04675d9a19cff9a3128ada0ea31486",
+      "git_blob": "7572c6847fbd6fe823ed3118a06e392d49e813e0"
+    }
+  ]
+}

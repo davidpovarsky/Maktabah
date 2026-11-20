@@ -1,0 +1,91 @@
+{
+  "source": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "tree": "471d1ba11037617f2cadf14826bf5013d508b8ee",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "git_blob": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+      "bytes": 196355,
+      "sha256": "e40e558225e318f614582b5af8466077d81991eecfc254ebcfd149f3cc2a95a0"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "git_blob": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+      "bytes": 32077,
+      "sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "git_blob": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+      "bytes": 596038,
+      "sha256": "3df45d11b27503e2295517f32789d1ae2ae41f6dc9189c0a1fb0a616881415e9"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "git_blob": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+      "bytes": 4333,
+      "sha256": "8298c6c914eb714ccfb4448acd81309f137e51ea6e321ae9f52400c0e4e8b976"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "git_blob": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "bytes": 47630,
+      "sha256": "4adf3ba0502b433b478b00eae696300f36d222caca474bee6d42642c428805d0"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "git_blob": "fcf0d0791235a43378f5a595e803e23253c83a6f",
+      "bytes": 19318,
+      "sha256": "06da005c652839308828d3e8faad72c49f5a0b0ba98285f4ace2a6b7dd058fb6"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "git_blob": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "bytes": 49924,
+      "sha256": "db0b365ef2457814eef58c36fa88352efa1453fa74352e46c32b8477477be5d6"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "git_blob": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "bytes": 56247,
+      "sha256": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "git_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "bytes": 26341,
+      "sha256": "562ac60a6abffc1ab07db64ffb1ceffbc93b90d950c093bf452832b8845c9583"
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "git_blob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "git_blob": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+      "bytes": 6377,
+      "sha256": "92b748b10a32e8d40ff97190bb3b0ba4c199c5e688d8897084406b1bbad43dd8"
+    },
+    {
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "git_blob": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+      "bytes": 6009,
+      "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "git_blob": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "bytes": 200381,
+      "sha256": "d642ddefd5a9ec69107be18bbd608f8a32091d258b6932bccab2df97874f6eb3"
+    },
+    {
+      "path": "tools/verify_xcresult_zero_skips.py",
+      "git_blob": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b",
+      "bytes": 10243,
+      "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+    }
+  ],
+  "status": "ALL14_MATCH_ACTUAL_M_GIT_BLOBS"
+}

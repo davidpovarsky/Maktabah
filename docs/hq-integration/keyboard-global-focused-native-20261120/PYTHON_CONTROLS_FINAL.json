@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "keyboard-global-focused-native-20261120/candidate/Scripts/CI/test-keyboard-global-focused-native.py",
+    "--base-dir",
+    "keyboard-global-focused-native-20261120/base"
+  ],
+  "exit_code": 0,
+  "stdout_stderr_sha256": "3ac38655f2217afa0874f8d25ec00b778630fa052daf68796ead073497a7416c",
+  "complete_methods": 35,
+  "native_executions": 0,
+  "swift_compilation": "NOT_RUN",
+  "scope": "Actual Python synthetic refusal/aggregate and original pure runtime source controls only"
+}

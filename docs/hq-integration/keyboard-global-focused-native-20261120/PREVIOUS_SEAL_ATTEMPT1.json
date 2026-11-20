@@ -1,0 +1,8 @@
+{
+  "original_files": 24,
+  "archive_members": 25,
+  "zip_bytes": 453708,
+  "zip_sha256": "3b390ee2e4897ad611e8f941299897eab0c59e57d7f39cacc2139de26e425d4a",
+  "original_manifest_sha256": "40c16085f7ccd5e06100ed6eca19d6cc11d74b8c6e4aa483462d17e68c1947e8",
+  "reason": "Preserve sealed preparation before Root identified RESULT_after.json versus actual main RESULT_AFTER.json on Linux; no CI activation occurred."
+}

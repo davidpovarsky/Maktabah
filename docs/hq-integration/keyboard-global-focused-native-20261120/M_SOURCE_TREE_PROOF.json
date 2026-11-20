@@ -1,0 +1,120 @@
+{
+  "base": "40c1eaa6bb0092336f1ee687ad1ce1425eaf4223",
+  "tree": "471d1ba11037617f2cadf14826bf5013d508b8ee",
+  "truncated": false,
+  "total_entries": 8303,
+  "selected_entries": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35a80632725ecd4af8ae5e783f6ae85479c24777",
+      "size": 196355,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/35a80632725ecd4af8ae5e783f6ae85479c24777"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d5eac5b984c6d371fa3f6e7e5779cc50269b358",
+      "size": 32077,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/1d5eac5b984c6d371fa3f6e7e5779cc50269b358"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "489fd95080cd47c8b2138f70bc9ab72e5e4879f0",
+      "size": 596038,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/489fd95080cd47c8b2138f70bc9ab72e5e4879f0"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7be9f0990dc6bcf0f99bee7513feedef8d341c38",
+      "size": 4333,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/7be9f0990dc6bcf0f99bee7513feedef8d341c38"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b62897bd94ba50b21dbb3e1cc73a41ffbde472c1",
+      "size": 47630,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/b62897bd94ba50b21dbb3e1cc73a41ffbde472c1"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcf0d0791235a43378f5a595e803e23253c83a6f",
+      "size": 19318,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/fcf0d0791235a43378f5a595e803e23253c83a6f"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91d69f44dc80bb4562b9066984d2d63b9cccfef9",
+      "size": 49924,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/91d69f44dc80bb4562b9066984d2d63b9cccfef9"
+    },
+    {
+      "path": "Scripts/CI/runtime27-release-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef60f21746534660cfc947b349b4b1fa860fe3ee",
+      "size": 56247,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/ef60f21746534660cfc947b349b4b1fa860fe3ee"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+      "size": 26341,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/41268a7e701d9962c6e4ea3cf54764bb9213c3f4"
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+      "size": 7650,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/1fb612721275dc2f3109a955ec97403789e7f7c6"
+    },
+    {
+      "path": "Scripts/CI/select-runtime27-toolchain.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05",
+      "size": 6377,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/2a2202b8b9efb56aa0c39f7bd1ddea8aa1cf4f05"
+    },
+    {
+      "path": "Scripts/CI/verify-faithful-xctest.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0084b85d78c0c9cedd0fbcd12363cec5d39afda1",
+      "size": 6009,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/0084b85d78c0c9cedd0fbcd12363cec5d39afda1"
+    },
+    {
+      "path": "docs/hq-integration/runtime27/R27_CASES.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9e3a9e0895e111df1613c3146bd83ab3b79a713",
+      "size": 200381,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/a9e3a9e0895e111df1613c3146bd83ab3b79a713"
+    },
+    {
+      "path": "tools/verify_xcresult_zero_skips.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f3eda3e64f85f45bd6879ad867844c49a46dc6b",
+      "size": 10243,
+      "url": "https://api.github.com/repos/davidpovarsky/Maktabah/git/blobs/7f3eda3e64f85f45bd6879ad867844c49a46dc6b"
+    }
+  ]
+}
