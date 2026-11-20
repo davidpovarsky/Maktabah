@@ -1,0 +1,117 @@
+{
+  "groups" : [
+    {
+      "activeTabID" : "EF51797E-FF03-4752-A729-4F8A1E2C5A46",
+      "id" : "D8BB0541-6E3C-4930-94B1-E0D593BB02FE",
+      "name" : "כל הכרטיסיות",
+      "order" : 0,
+      "profileID" : "A75F1DE6-1C72-461D-B3C1-9735EECF6A3A",
+      "tabs" : [
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 523,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:3891"
+            },
+            "bookId" : 3891,
+            "bookTitle" : "ספר החינוך",
+            "contentId" : -617,
+            "expandedNodeIDs" : [
+
+            ],
+            "id" : "0CB074C3-6A16-4262-9DF0-DB1AFEA78638",
+            "isSidebarCollapsed" : false,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 523,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:3891"
+            },
+            "nearDistance" : 10,
+            "page" : 1,
+            "part" : 1,
+            "scrollPosition" : [
+              0,
+              0
+            ],
+            "searchText" : "",
+            "selectedRange" : [
+              1233,
+              0
+            ]
+          }
+        },
+        {
+          "backend" : "otzaria",
+          "session" : {
+            "backendLocator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 1,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:1"
+            },
+            "bookId" : 1,
+            "bookTitle" : "בראשית",
+            "contentId" : -618,
+            "expandedNodeIDs" : [
+
+            ],
+            "id" : "EF51797E-FF03-4752-A729-4F8A1E2C5A46",
+            "isSidebarCollapsed" : false,
+            "locator" : {
+              "backend" : "otzaria",
+              "position" : {
+                "integer" : 1,
+                "kind" : "legacyLine"
+              },
+              "workKey" : "book:1"
+            },
+            "nearDistance" : 10,
+            "page" : 1,
+            "part" : 1,
+            "scrollPosition" : [
+              0,
+              0
+            ],
+            "searchText" : "",
+            "selectedRange" : [
+              7,
+              0
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "lastActiveSceneID" : "58DF39F2-7123-4292-82C2-BBDE5A530714",
+  "migratedLegacySession" : true,
+  "profiles" : [
+    {
+      "id" : "A75F1DE6-1C72-461D-B3C1-9735EECF6A3A",
+      "name" : "אישי",
+      "order" : 0,
+      "symbol" : "person.crop.circle"
+    }
+  ],
+  "revision" : 5,
+  "scenes" : {
+    "58DF39F2-7123-4292-82C2-BBDE5A530714" : {
+      "activeTabIDsByGroup" : [
+        "D8BB0541-6E3C-4930-94B1-E0D593BB02FE",
+        "EF51797E-FF03-4752-A729-4F8A1E2C5A46"
+      ],
+      "groupID" : "D8BB0541-6E3C-4930-94B1-E0D593BB02FE",
+      "profileID" : "A75F1DE6-1C72-461D-B3C1-9735EECF6A3A"
+    }
+  },
+  "version" : 1
+}

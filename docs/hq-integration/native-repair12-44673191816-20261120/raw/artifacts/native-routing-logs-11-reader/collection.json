@@ -1,0 +1,11 @@
+{
+  "udid": "900D8B74-DA7F-48DB-B587-CEC1241996A0",
+  "label": "11-reader",
+  "bundleID": "com.davidpovarsky.chavrusatext",
+  "collectedAt": "2026-11-20T06:36:19.507635+00:00",
+  "status": "RETAINED",
+  "actualContainer": "/Users/runner/Library/Developer/CoreSimulator/Devices/900D8B74-DA7F-48DB-B587-CEC1241996A0/data/Containers/Data/Application/680FE64E-E63B-46CB-8474-6F2633DAEECD",
+  "bytes": 85466,
+  "sha256": "c15718ce447866a9d2c350607941126dfd6931accf691688a436614b4ed9af18",
+  "artifact": "native-routing-logs-11-reader/otzaria-reader.log"
+}

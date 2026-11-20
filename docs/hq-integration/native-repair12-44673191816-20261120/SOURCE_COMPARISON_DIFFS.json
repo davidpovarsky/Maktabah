@@ -1,0 +1,20 @@
+[
+  {
+    "stored": "source-comparison/MaktabahNativeRoutingComposition.swift.diff.gz",
+    "originalBytes": 16196,
+    "originalSHA256": "c0af8c24e1fb3d9d85c40132cf6e5fce53bdbc061c203b2b64c18f0184b83350",
+    "losslessGzip": true
+  },
+  {
+    "stored": "source-comparison/MaktabahNativeSceneSession.swift.diff.gz",
+    "originalBytes": 6083,
+    "originalSHA256": "a218b790fc4edcd731ac9874cb4969c8011844d883e290308b6657bea518688b",
+    "losslessGzip": true
+  },
+  {
+    "stored": "source-comparison/NativeRoutingAcceptanceTests.swift.diff.gz",
+    "originalBytes": 22818,
+    "originalSHA256": "ce9a8f2e4d22bb505c7e9fc0536a1d0699c26a37a2bb1b330930d9dbf87c3190",
+    "losslessGzip": true
+  }
+]

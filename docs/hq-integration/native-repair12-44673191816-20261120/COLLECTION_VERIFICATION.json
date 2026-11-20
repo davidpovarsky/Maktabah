@@ -1,0 +1,14 @@
+{
+  "attempt1": {
+    "originalCopyChecks": 52,
+    "zipEntryChecks": 25,
+    "selectedCaptures": 17,
+    "gitStagedBytesEqualWorking": true,
+    "diffCheck": "FAIL",
+    "reason": "Literal unified-diff context blank lines contain a space; preserved original diff bytes using lossless gzip instead of stripping them."
+  },
+  "attempt2": {
+    "sourceDiffsLosslesslyGzipped": 3,
+    "acceptanceSourceModified": false
+  }
+}

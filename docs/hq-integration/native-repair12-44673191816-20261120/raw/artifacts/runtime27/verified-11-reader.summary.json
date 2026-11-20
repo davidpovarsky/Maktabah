@@ -1,0 +1,78 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "900D8B74-DA7F-48DB-B587-CEC1241996A0",
+        "deviceName": "Faithful 11-inch e274295f",
+        "modelName": "iPad Pro 11-inch (M5)",
+        "osBuildNumber": "24B8117",
+        "osVersion": "27.2",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 5,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Maktabah-iOS \u00b7 Built with macOS 27.0.1",
+  "expectedFailures": 0,
+  "failedTests": 5,
+  "finishTime": 1795156558.325,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1795156072.554,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "XCTAssertTrue failed - A hidden panel or model flag is not visible presentation",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 1,
+      "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "testName": "testPublicV2InspectorPreservesOriginalReaderAndWorkspace()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 2,
+      "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+      "testName": "testPublicV2InspectorRequiresVisibleOriginalReader()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 3,
+      "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+      "testName": "testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader()"
+    },
+    {
+      "failureText": "XCTAssertTrue failed",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 4,
+      "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+      "testName": "testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab()"
+    },
+    {
+      "failureText": "failed: caught error: \"Error Domain=OtzariaUIRouting.UIRouteError Code=1 \"The operation couldn\u2019t be completed. (OtzariaUIRouting.UIRouteError error 1.)\" UserInfo={NSLocalizedDescription=The operation couldn\u2019t be completed. (OtzariaUIRouting.UIRouteError error 1.)}\"",
+      "targetName": "Maktabah-iOSUITests",
+      "testIdentifier": 5,
+      "testIdentifierString": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector()",
+      "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+      "testName": "testSystemAppIntentShowsOriginalReaderInspector()"
+    }
+  ],
+  "title": "Test - Maktabah-iOS",
+  "topInsights": [],
+  "totalTestCount": 5
+}

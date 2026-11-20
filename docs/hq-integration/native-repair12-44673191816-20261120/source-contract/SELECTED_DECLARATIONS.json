@@ -1,0 +1,101 @@
+{
+  "suites": [
+    {
+      "suite": "GlobalSearchNativeAcceptanceTests",
+      "selection": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit",
+      "expected": [
+        "testHeaderAndHistoryNativeAccessibilityAudit"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "BookHistoryScopeAcceptanceTests",
+      "selection": "BookHistoryScopeAcceptanceTests/testBookSearchRetainsControlsWithoutGlobalHistory",
+      "expected": [
+        "testBookSearchRetainsControlsWithoutGlobalHistory"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingAcceptanceTests",
+      "selection": "NativeRoutingAcceptanceTests/testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+      "expected": [
+        "testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingAcceptanceTests",
+      "selection": "NativeRoutingAcceptanceTests/testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab",
+      "expected": [
+        "testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingPhoneAcceptanceTests",
+      "selection": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2NewTabPreservesOriginalReader",
+      "expected": [
+        "testPhonePublicV2NewTabPreservesOriginalReader"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingAcceptanceTests",
+      "selection": "NativeRoutingAcceptanceTests/testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "expected": [
+        "testPublicV2InspectorPreservesOriginalReaderAndWorkspace"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingAcceptanceTests",
+      "selection": "NativeRoutingAcceptanceTests/testSystemAppIntentShowsOriginalReaderInspector",
+      "expected": [
+        "testSystemAppIntentShowsOriginalReaderInspector"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingAcceptanceTests",
+      "selection": "NativeRoutingAcceptanceTests/testPublicV2InspectorRequiresVisibleOriginalReader",
+      "expected": [
+        "testPublicV2InspectorRequiresVisibleOriginalReader"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingPhoneAcceptanceTests",
+      "selection": "NativeRoutingPhoneAcceptanceTests/testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace",
+      "expected": [
+        "testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "NativeRoutingPhoneAcceptanceTests",
+      "selection": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector",
+      "expected": [
+        "testPhoneSystemAppIntentShowsOriginalReaderInspector"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "HanlinReaderConsumerAcceptanceTests",
+      "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "expected": [
+        "testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    },
+    {
+      "suite": "HanlinReaderConsumerAcceptanceTests",
+      "selection": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "expected": [
+        "testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending"
+      ],
+      "status": "DECLARATIONS_MATCH"
+    }
+  ],
+  "status": "DECLARATIONS_MATCH"
+}

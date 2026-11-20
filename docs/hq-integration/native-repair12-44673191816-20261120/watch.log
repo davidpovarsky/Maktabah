@@ -1,0 +1,1120 @@
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 2 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 3 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  * Inspect real Xcode27 tools or execute reviewed native cases
+  * Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 3 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  X Inspect real Xcode27 tools or execute reviewed native cases
+  ✓ Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 3 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  X Inspect real Xcode27 tools or execute reviewed native cases
+  ✓ Retain compiler cache only after an actual matching test build
+  * Run actions/cache/save@v4
+  * Retain real runtime evidence including failure
+  * Retain original native result bundles and visual captures separately
+  * Post Run actions/setup-node@v4
+  * Post Run actions/checkout@v4
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+Refreshing run status every 60 seconds. Press Ctrl+C to quit.
+
+* codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 3 hours ago
+
+JOBS
+* R27 real UI environment and acceptance (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  X Inspect real Xcode27 tools or execute reviewed native cases
+  ✓ Retain compiler cache only after an actual matching test build
+  ✓ Run actions/cache/save@v4
+  ✓ Retain real runtime evidence including failure
+  ✓ Retain original native result bundles and visual captures separately
+  - Post Run actions/setup-node@v4
+  ✓ Post Run actions/checkout@v4
+  * Complete job
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)
+X codex/otzaria-native-repair12-20261120 Sefaria Embedded Real iOS Runtime Validation · 44673191816
+Triggered via workflow_dispatch about 3 hours ago
+
+JOBS
+X R27 real UI environment and acceptance in 2h19m48s (ID 136078747239)
+  ✓ Set up job
+  ✓ Require isolated immutable runtime request
+  ✓ Run actions/checkout@v4
+  ✓ Select an existing SDK-matched runtime for the full device matrix
+  ✓ Run actions/setup-node@v4
+  ✓ Run ruby/setup-ruby@v1
+  ✓ Read source-pinned Zayit build mode
+  ✓ Use Rust only for the reviewed matching Zayit build
+  ✓ Key disposable compiler cache by real SDK and native inputs
+  ✓ Run actions/cache/restore@v4
+  X Inspect real Xcode27 tools or execute reviewed native cases
+  ✓ Retain compiler cache only after an actual matching test build
+  ✓ Run actions/cache/save@v4
+  ✓ Retain real runtime evidence including failure
+  ✓ Retain original native result bundles and visual captures separately
+  - Post Run actions/setup-node@v4
+  ✓ Post Run actions/checkout@v4
+  ✓ Complete job
+- Focused unsigned Maktabah-iOS (no runtime or data) in 0s (ID 136078749056)
+- Focused SDK and workspace checks (no app/runtime acceptance) in 0s (ID 136078749303)
+- Books Updates Apple safety checks (no app runtime acceptance) in 0s (ID 136078749657)
+- Validate Sefaria-Mobile Embedded Build and Runtime in 0s (ID 136078749676)

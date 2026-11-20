@@ -1,0 +1,13 @@
+{
+  "run": 44673191816,
+  "checkout": "6030087e27f75b26d9a9bb144ba9ba71eaddadc5",
+  "appAndTestsExpected": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+  "artifactID": 14609861460,
+  "bytes": 63017123,
+  "sha256": "5ff46397642ad94f64c351bbc2dfd5dd97f902602994e8b5354996ac4e00d958",
+  "fullArtifactVerified": true,
+  "startedUTC": "2026-11-20T07:25:24.125809+00:00",
+  "finishedUTC": "2026-11-20T07:27:55.723901+00:00",
+  "diskFreeBefore": 2271694848,
+  "diskFreeAfter": 2122403840
+}

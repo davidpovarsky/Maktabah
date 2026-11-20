@@ -1,0 +1,43 @@
+Contrast failed
+Contrast failed for SwiftUI.AccessibilityNode
+element=Attributes: StaticText, 0x10bf2cf00, {{137.8, 524.5}, {238.5, 24.0}}, label: 'הקלידו מילים ולחצו על חיפוש.'
+Element subtree:
+ →StaticText, 0x10bf2cf00, {{137.8, 524.5}, {238.5, 24.0}}, label: 'הקלידו מילים ולחצו על חיפוש.'
+Path to element:
+ →Application, 0x10bea3480, pid: 52020, label: 'ChavrusaText'
+  ↳Window (Main), 0x10bea35c0, {{0.0, 0.0}, {834.0, 1210.0}}
+   ↳Other, 0x10bea3840, {{0.0, 0.0}, {834.0, 1210.0}}
+    ↳Other, 0x10bea3980, {{0.0, 0.0}, {834.0, 1210.0}}
+     ↳Other, 0x10bea3ac0, {{0.0, 0.0}, {834.0, 1210.0}}
+      ↳Other, 0x10bea3c00, {{0.0, 0.0}, {834.0, 1210.0}}
+       ↳Other, 0x10bea3d40, {{0.0, 0.0}, {834.0, 1210.0}}
+        ↳Other, 0x10bea3e80, {{0.0, 0.0}, {834.0, 1210.0}}
+         ↳Other, 0x10a44b5c0, {{0.0, 0.0}, {834.0, 1210.0}}
+          ↳Other, 0x10a449e00, {{0.0, 0.0}, {834.0, 1210.0}}
+           ↳Other, 0x10a44a440, {{0.0, 0.0}, {834.0, 1210.0}}
+            ↳Other, 0x10a449040, {{0.0, 0.0}, {834.0, 1210.0}}
+             ↳Other, 0x10a44a580, {{0.0, 96.0}, {834.0, 1114.0}}
+              ↳Other, 0x10a449540, {{0.0, 96.0}, {834.0, 1114.0}}
+               ↳Other, 0x10a449900, {{0.0, 96.0}, {834.0, 1114.0}}
+                ↳Other, 0x10bf217c0, {{0.0, 96.0}, {834.0, 1114.0}}
+                 ↳Other, 0x10bf21900, {{0.0, 96.0}, {834.0, 1114.0}}
+                  ↳Other, 0x10bf22440, {{0.0, 96.0}, {834.0, 1114.0}}
+                   ↳Other, 0x10bf22580, {{0.0, 96.0}, {834.0, 1114.0}}
+                    ↳Other, 0x10bf226c0, {{0.0, 96.0}, {834.0, 1114.0}}
+                     ↳Other, 0x10bf22800, {{0.0, 96.0}, {834.0, 1114.0}}
+                      ↳Other, 0x10bf22940, {{0.0, 96.0}, {834.0, 1114.0}}, identifier: 'global-search-screen'
+                       ↳CollectionView, 0x10bf23840, {{0.0, 338.0}, {834.0, 872.0}}, identifier: 'global-search-history'
+                        ↳Cell, 0x10bf2c280, {{0.0, 400.5}, {834.0, 209.0}}
+                         ↳Other, 0x10bf2c8c0, {{0.0, 400.5}, {514.0, 209.0}}
+                          ↳Other, 0x10bf2ca00, {{0.0, 400.5}, {514.0, 209.0}}
+                           ↳Other, 0x10bf2cb40, {{0.0, 400.5}, {514.0, 209.0}}
+                            ↳StaticText, 0x10bf2cf00, {{137.8, 524.5}, {238.5, 24.0}}, label: 'הקלידו מילים ולחצו על חיפוש.'
+Query chain:
+ →Find: Target Application 'com.davidpovarsky.chavrusatext'
+  Output: {
+    Application, 0x10adfbc00, pid: 52020, label: 'ChavrusaText'
+  }
+  ↪︎Find: Descendant with identity binding to AX element pid: 52020, elementOrHash.elementID: 5013904096.321
+    Output: {
+      StaticText, 0x10adf92c0, {{137.8, 524.5}, {238.5, 24.0}}, label: 'הקלידו מילים ולחצו על חיפוש.'
+    }

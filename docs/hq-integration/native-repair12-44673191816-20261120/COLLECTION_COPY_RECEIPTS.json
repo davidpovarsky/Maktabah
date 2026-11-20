@@ -1,0 +1,428 @@
+[
+  {
+    "source": "FINAL_RUN.json",
+    "kind": "collector observation",
+    "originalBytes": 14107,
+    "originalSHA256": "73f9f7e14fd8c8c099a8ce5c34039d34d22d0d8a7452e7d55d69a1bb04fe8a02",
+    "copy": "FINAL_RUN.json",
+    "transformation": "none"
+  },
+  {
+    "source": "ARTIFACTS.json",
+    "kind": "collector observation",
+    "originalBytes": 1877,
+    "originalSHA256": "420682aa941610dc8c735085a3dd770ad9cb06d19c66ea7bd387ce4aecbfa461",
+    "readable": "ARTIFACTS.json",
+    "readableSHA256": "d93ecd34b8bddb0db12b3bd7315c3fe7e6cfd4fcf8cf108d4cd5ad59979ebb6c",
+    "exactOriginalGzip": "collector-original/ARTIFACTS.json.gz",
+    "transformation": "CRLF to LF only for readable copy; gzip restores exact original bytes"
+  },
+  {
+    "source": "EVIDENCE_ARTIFACT.json",
+    "kind": "collector observation",
+    "originalBytes": 809,
+    "originalSHA256": "413c0e21c8e51a3e22bdf433d83a0f65eeef511477e7e2b8c95a80e67f666200",
+    "copy": "EVIDENCE_ARTIFACT.json",
+    "transformation": "none"
+  },
+  {
+    "source": "DOWNLOAD_RECEIPT.json",
+    "kind": "collector observation",
+    "originalBytes": 482,
+    "originalSHA256": "4d4c2bab9affecc6df6d19a16cb4ff0468bc1971fc8f8ae616729d24eb4f5f10",
+    "copy": "DOWNLOAD_RECEIPT.json",
+    "transformation": "none"
+  },
+  {
+    "source": "ZIP_ENTRIES.json",
+    "kind": "collector observation",
+    "originalBytes": 20109,
+    "originalSHA256": "217d501c788bec383241748771a833e9cd4dc2230a4254a5d0d92fbb8c69cb5d",
+    "copy": "ZIP_ENTRIES.json",
+    "transformation": "none"
+  },
+  {
+    "source": "RUN_OBSERVED.json",
+    "kind": "collector observation",
+    "originalBytes": 14616,
+    "originalSHA256": "693fd705b5d7dbba9396d79e0fa4b162030a8cd222b422a54371e4ca8812f79e",
+    "copy": "RUN_OBSERVED.json",
+    "transformation": "none"
+  },
+  {
+    "source": "MATCHING_WATCHERS_OBSERVED.json",
+    "kind": "collector observation",
+    "originalBytes": 73,
+    "originalSHA256": "c210c186ad6d93a07f065fbda63c171246dcd24e27017a7cfca9f92f399b6a78",
+    "copy": "MATCHING_WATCHERS_OBSERVED.json",
+    "transformation": "none"
+  },
+  {
+    "source": "WATCH_STARTED.json",
+    "kind": "collector observation",
+    "originalBytes": 444,
+    "originalSHA256": "71d51eaa7b89f8803b606afcc204ed636fdf80e67a26808afe2fbb82b3c70d1b",
+    "copy": "WATCH_STARTED.json",
+    "transformation": "none"
+  },
+  {
+    "source": "WATCH_RESULT.json",
+    "kind": "collector observation",
+    "originalBytes": 242,
+    "originalSHA256": "bd95c072a0326716a1b9ab29824a044347e6214bcb0786c9127af0e7124f251c",
+    "copy": "WATCH_RESULT.json",
+    "transformation": "none"
+  },
+  {
+    "source": "SOURCE_CASE_MANIFEST.json",
+    "kind": "collector observation",
+    "originalBytes": 121684,
+    "originalSHA256": "de9a8d6853290f818621f38ef86338c2d323050fd562146159e17d691474b841",
+    "copy": "SOURCE_CASE_MANIFEST.json",
+    "transformation": "none"
+  },
+  {
+    "source": "SOURCE_INPUT_CHECKS.json",
+    "kind": "collector observation",
+    "originalBytes": 8524,
+    "originalSHA256": "d57ac63f5ee84c0ab838637e8e360c91169e1a868b3464dd793f1541c0abe922",
+    "copy": "SOURCE_INPUT_CHECKS.json",
+    "transformation": "none"
+  },
+  {
+    "source": "INDEPENDENT_REVIEW.json",
+    "kind": "collector observation",
+    "originalBytes": 17868,
+    "originalSHA256": "8984fca274129b7dbbfe3bca0eeeb5fa61ed8e9477fa531fff484fe3848aad78",
+    "readable": "INDEPENDENT_REVIEW.json",
+    "readableSHA256": "2f2313fd2ddf2758e36ee0d6cfea7e86c3f5fa72f2ba850d3799b9891a140a09",
+    "exactOriginalGzip": "collector-original/INDEPENDENT_REVIEW.json.gz",
+    "transformation": "CRLF to LF only for readable copy; gzip restores exact original bytes"
+  },
+  {
+    "source": "FIRST_CAPTURE_SELECTION.json",
+    "kind": "collector observation",
+    "originalBytes": 3522,
+    "originalSHA256": "2462a36e831b2cb5ce2b89813d168fa87cdbe3ad46ebcb3a03c926d5ed18c8f0",
+    "copy": "FIRST_CAPTURE_SELECTION.json",
+    "transformation": "none"
+  },
+  {
+    "source": "review-native-evidence.py",
+    "kind": "collector source",
+    "originalBytes": 8585,
+    "originalSHA256": "df4c2a6a9593b34c57e972659aad65e7bcd5bb0a4d655b0154e3e35a6d951b7d",
+    "copy": "tools/review-native-evidence.py",
+    "transformation": "none"
+  },
+  {
+    "source": "read-capture-ranges.py",
+    "kind": "collector source",
+    "originalBytes": 5595,
+    "originalSHA256": "01c83efa0606ac0bde77fd00c661ac2de54cbdad03e01c824744e13316bac8c5",
+    "copy": "tools/read-capture-ranges.py",
+    "transformation": "none"
+  },
+  {
+    "source": "watch.log",
+    "kind": "finite workflow observer output",
+    "originalBytes": 55649,
+    "originalSHA256": "fc502354dc19c9b25404ebe19c9837e23fdc8fa8bb26b5d62edef277f34298ef",
+    "copy": "watch.log",
+    "transformation": "none"
+  },
+  {
+    "source": "source-contract\\README.md",
+    "kind": "original source selection contract",
+    "originalBytes": 861,
+    "originalSHA256": "303cca717736564c203365ddd7e02bf31abd7d78f586bd07a6dbe2a526c88f2d",
+    "copy": "source-contract/README.md",
+    "transformation": "none"
+  },
+  {
+    "source": "source-contract\\SELECTED_DECLARATIONS.json",
+    "kind": "original source selection contract",
+    "originalBytes": 3716,
+    "originalSHA256": "a74a8ecfb914481e78b8cfb1b589f656ee360d042883a2d6802b1d1b1015bff5",
+    "copy": "source-contract/SELECTED_DECLARATIONS.json",
+    "transformation": "none"
+  },
+  {
+    "source": "source-contract\\SOURCE_PREFLIGHT.json",
+    "kind": "original source selection contract",
+    "originalBytes": 2744,
+    "originalSHA256": "101d84829bdcddcdd9a8f629284560cb8d5b509f6d3a804d41fa3faf10ae1b65",
+    "copy": "source-contract/SOURCE_PREFLIGHT.json",
+    "transformation": "none"
+  },
+  {
+    "source": "case-logs\\11-HanlinReaderConsumerAcceptanceTests--testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending.log",
+    "kind": "case excerpt from original XCTest log",
+    "originalBytes": 12407,
+    "originalSHA256": "53f91e0d925d146b3e45a20379e39b0131d2dad3cd9c0ff451faa84d824cd76f",
+    "exactOriginalGzip": "case-logs/11-HanlinReaderConsumerAcceptanceTests--testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "case-logs\\11-reader-NativeRoutingAcceptanceTests--testPublicV2InspectorPreservesOriginalReaderAndWorkspace.log",
+    "kind": "case excerpt from original XCTest log",
+    "originalBytes": 10015,
+    "originalSHA256": "92d282870b2f915d5538307dbc738e0b09804570168b439302f3d54ea719ee0c",
+    "exactOriginalGzip": "case-logs/11-reader-NativeRoutingAcceptanceTests--testPublicV2InspectorPreservesOriginalReaderAndWorkspace.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "case-logs\\11-reader-NativeRoutingAcceptanceTests--testPublicV2InspectorRequiresVisibleOriginalReader.log",
+    "kind": "case excerpt from original XCTest log",
+    "originalBytes": 5616,
+    "originalSHA256": "d7d0b214d1c6da31ed4bf25f41896b873dcac60417d2cf05305434c7a1f8410e",
+    "exactOriginalGzip": "case-logs/11-reader-NativeRoutingAcceptanceTests--testPublicV2InspectorRequiresVisibleOriginalReader.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "case-logs\\11-reader-NativeRoutingAcceptanceTests--testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader.log",
+    "kind": "case excerpt from original XCTest log",
+    "originalBytes": 12260,
+    "originalSHA256": "bbcbf9803dd8aa4040ec793b640ece4366a99060b93f5b2296403016893920b4",
+    "exactOriginalGzip": "case-logs/11-reader-NativeRoutingAcceptanceTests--testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "case-logs\\11-reader-NativeRoutingAcceptanceTests--testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab.log",
+    "kind": "case excerpt from original XCTest log",
+    "originalBytes": 11799,
+    "originalSHA256": "b69f27cc2858b88c5b68a8ecb9d528bbc96a1bb4b432d580c2cf5c36ede4d261",
+    "exactOriginalGzip": "case-logs/11-reader-NativeRoutingAcceptanceTests--testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "case-logs\\11-reader-NativeRoutingAcceptanceTests--testSystemAppIntentShowsOriginalReaderInspector.log",
+    "kind": "case excerpt from original XCTest log",
+    "originalBytes": 5675,
+    "originalSHA256": "93e59cfdbe06c000ac5f9542d51d3848b0cca12401213b6732a94a5e7f510658",
+    "exactOriginalGzip": "case-logs/11-reader-NativeRoutingAcceptanceTests--testSystemAppIntentShowsOriginalReaderInspector.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "case-logs\\11-search-GlobalSearchNativeAcceptanceTests--testHeaderAndHistoryNativeAccessibilityAudit.log",
+    "kind": "case excerpt from original XCTest log",
+    "originalBytes": 8438,
+    "originalSHA256": "eaa42d5a718ba76902c261a96e89175f844e736804a2650ffa2a00c9c7e3ed15",
+    "exactOriginalGzip": "case-logs/11-search-GlobalSearchNativeAcceptanceTests--testHeaderAndHistoryNativeAccessibilityAudit.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "case-logs\\phone-HanlinReaderConsumerAcceptanceTests--testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending.log",
+    "kind": "case excerpt from original XCTest log",
+    "originalBytes": 12801,
+    "originalSHA256": "83868c2d6a238f9b947ea5358a5872e4f057e9a17d895a1ba14cf671ea9a2355",
+    "exactOriginalGzip": "case-logs/phone-HanlinReaderConsumerAcceptanceTests--testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "case-logs\\phone-NativeRoutingPhoneAcceptanceTests--testPhoneSystemAppIntentShowsOriginalReaderInspector.log",
+    "kind": "case excerpt from original XCTest log",
+    "originalBytes": 5465,
+    "originalSHA256": "6b11e79a523dfa94fef2bce2865250f7b0a942e7b1caa2482136fc77b14a0e92",
+    "exactOriginalGzip": "case-logs/phone-NativeRoutingPhoneAcceptanceTests--testPhoneSystemAppIntentShowsOriginalReaderInspector.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "raw\\artifacts\\native-routing-logs-11-reader\\collection.json",
+    "kind": "original app diagnostic artifact",
+    "originalBytes": 551,
+    "originalSHA256": "448cb0eb0eae3d70fda6327ca605b02a36bcb7445186faed1d689e7482fc695f",
+    "copy": "raw/artifacts/native-routing-logs-11-reader/collection.json",
+    "transformation": "none"
+  },
+  {
+    "source": "raw\\artifacts\\native-routing-logs-11-reader\\otzaria-reader.log",
+    "kind": "original app diagnostic artifact",
+    "originalBytes": 85466,
+    "originalSHA256": "c15718ce447866a9d2c350607941126dfd6931accf691688a436614b4ed9af18",
+    "exactOriginalGzip": "raw/artifacts/native-routing-logs-11-reader/otzaria-reader.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "raw\\artifacts\\native-routing-logs-phone\\collection.json",
+    "kind": "original app diagnostic artifact",
+    "originalBytes": 543,
+    "originalSHA256": "0593d62b8d9aaf34b8a84bed38653fb1a90e95748baf036dd387a921823eefbc",
+    "copy": "raw/artifacts/native-routing-logs-phone/collection.json",
+    "transformation": "none"
+  },
+  {
+    "source": "raw\\artifacts\\native-routing-logs-phone\\otzaria-reader.log",
+    "kind": "original app diagnostic artifact",
+    "originalBytes": 55398,
+    "originalSHA256": "7b3b398e1aa25da1f67c24588ecfbd7d218e38787461bc03d7b3161a06f7b813",
+    "exactOriginalGzip": "raw/artifacts/native-routing-logs-phone/otzaria-reader.log.gz",
+    "transformation": "lossless gzip"
+  },
+  {
+    "source": "selected-captures\\ARTIFACT_METADATA.json",
+    "kind": "capture range receipt",
+    "originalBytes": 837,
+    "originalSHA256": "1dcd630c31bdc99cd3837f2c2670a4fab603967071880081fb246a382719a0c2",
+    "readable": "captures/ARTIFACT_METADATA.json",
+    "readableSHA256": "d4c663dba5548fb9d11403dd115770351f95732f0669c579f8abacd975f144c8",
+    "exactOriginalGzip": "collector-original/captures/ARTIFACT_METADATA.json.gz",
+    "transformation": "CRLF to LF only for readable copy; gzip restores exact original bytes"
+  },
+  {
+    "source": "selected-captures\\CENTRAL_DIRECTORY_INDEX.json",
+    "kind": "capture range receipt",
+    "originalBytes": 1513792,
+    "originalSHA256": "eed25154fb51f28ab8c32c9f3f5e11a7bbecc4d3d0950d0b5a8419aabdf0c06d",
+    "readable": "captures/CENTRAL_DIRECTORY_INDEX.json",
+    "readableSHA256": "8dbba4b038500700aff91b149d5dbbf3839f2a57a9f563dd0f14cd06f0de0c71",
+    "exactOriginalGzip": "collector-original/captures/CENTRAL_DIRECTORY_INDEX.json.gz",
+    "transformation": "CRLF to LF only for readable copy; gzip restores exact original bytes"
+  },
+  {
+    "source": "selected-captures\\RANGE_EVIDENCE.json",
+    "kind": "capture range receipt",
+    "originalBytes": 17144,
+    "originalSHA256": "e961574ba5996a426194846bbf0bb32e656164c7ed724d1162fceb9a2222a2f3",
+    "readable": "captures/RANGE_EVIDENCE.json",
+    "readableSHA256": "daa63c9ad4cbce63a5941a85dcf082d23b218d18fa7900644ac0624ec5faf9b5",
+    "exactOriginalGzip": "collector-original/captures/RANGE_EVIDENCE.json.gz",
+    "transformation": "CRLF to LF only for readable copy; gzip restores exact original bytes"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11\\94B37C71-8097-4D57-86B4-BE47077500B6.png",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 732126,
+    "originalSHA256": "d25ac50fa2a4cb20f7a7dbc4c4cbbefa9abd43407b04d02cb011a6777da54392",
+    "copy": "captures/entries/visual-11/94B37C71-8097-4D57-86B4-BE47077500B6.png",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11\\F00AD1D5-E28F-4375-A0D7-EF12C148C9D7.txt",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 42228,
+    "originalSHA256": "7fae909521f0e90af194bde951082a8fab439bbf79cb5fad7bdeaff439d90964",
+    "copy": "captures/entries/visual-11/F00AD1D5-E28F-4375-A0D7-EF12C148C9D7.txt",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-reader\\1BD70927-3720-41CD-9F9E-C940AD9018AB.png",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 238191,
+    "originalSHA256": "2f78bb9db417f5da264c6864e7d030f434e5ba6e8517e3247a0b9a8eaabd81b1",
+    "copy": "captures/entries/visual-11-reader/1BD70927-3720-41CD-9F9E-C940AD9018AB.png",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-reader\\27CFD088-6692-4E5A-B966-E22AD8484B62.png",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 238191,
+    "originalSHA256": "2f78bb9db417f5da264c6864e7d030f434e5ba6e8517e3247a0b9a8eaabd81b1",
+    "copy": "captures/entries/visual-11-reader/27CFD088-6692-4E5A-B966-E22AD8484B62.png",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-reader\\77C1F301-6B4C-42D1-9F48-FE13E23783E1.txt",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 28043,
+    "originalSHA256": "36d9f071b0d71b16991006bdcc24fd61e5a3c90fa9c0d57e992764dffc67a4d6",
+    "copy": "captures/entries/visual-11-reader/77C1F301-6B4C-42D1-9F48-FE13E23783E1.txt",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-reader\\88674C95-2FB8-48B5-BBF4-DC3BA2F72D0A.txt",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 253,
+    "originalSHA256": "ecad2b98fa51862756aa533df6cb16b54d88be64e4d997b3e44e4364b09c1498",
+    "copy": "captures/entries/visual-11-reader/88674C95-2FB8-48B5-BBF4-DC3BA2F72D0A.txt",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-reader\\8B332035-EF17-48EE-A5BF-CBB476AB8B7D.json",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 2023,
+    "originalSHA256": "7fcbd886511c3cf5116e22ff9bff2af189d3eca4bb55ddc19a2c6a3a1ee220fc",
+    "copy": "captures/entries/visual-11-reader/8B332035-EF17-48EE-A5BF-CBB476AB8B7D.json",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-reader\\A15CF9C7-5942-46F2-9F81-07DAA975E0A1.json",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 3099,
+    "originalSHA256": "f8fdda464be9ff511c23e9d693876d89163c95fd2c151f0bbc0148976aaa37b0",
+    "copy": "captures/entries/visual-11-reader/A15CF9C7-5942-46F2-9F81-07DAA975E0A1.json",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-reader\\A1D58BBB-F4BD-43E3-831E-D9AF14A9BBB2.txt",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 38740,
+    "originalSHA256": "4884369edcf2d5ffe340bb38e86f31f8eb290b7538379834e9d6b30ce3281bf7",
+    "copy": "captures/entries/visual-11-reader/A1D58BBB-F4BD-43E3-831E-D9AF14A9BBB2.txt",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-reader\\E16C6AE3-DD93-4F9C-83DC-13A190495C6B.txt",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 28033,
+    "originalSHA256": "c1840c4e61bfa687dcc6c94dbf3858e0fe5ac4297145a3cae0d8fbb10dd521f2",
+    "copy": "captures/entries/visual-11-reader/E16C6AE3-DD93-4F9C-83DC-13A190495C6B.txt",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-reader\\F3ED2941-6FD4-461F-BE99-EE2011322F9F.png",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 876776,
+    "originalSHA256": "803038be4bfe4114250e76cd0cee5528cb4b74dd7d1f4192131c9f6c600c1513",
+    "copy": "captures/entries/visual-11-reader/F3ED2941-6FD4-461F-BE99-EE2011322F9F.png",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-search\\6B2DD8DE-8113-4229-BCA2-223CCF6E4D5F.png",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 6935,
+    "originalSHA256": "9473b490c83d8e3942708448943632eff3023f3f67fde890c76f4dd904c41081",
+    "copy": "captures/entries/visual-11-search/6B2DD8DE-8113-4229-BCA2-223CCF6E4D5F.png",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-search\\C24BB6B9-8611-4C30-89A7-722CB2E5524E.txt",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 2844,
+    "originalSHA256": "1d1f156c22075d2727a526befe2df6c6438f6b95c6539249b4a5fe62458031ec",
+    "copy": "captures/entries/visual-11-search/C24BB6B9-8611-4C30-89A7-722CB2E5524E.txt",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-search\\C43475DC-AB20-48DB-8AE4-4122D0BEE84E.png",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 205621,
+    "originalSHA256": "fb6a94966e74ff5ed2b373b2ea84af8db30693b7de93619f11da6864df68e3f8",
+    "copy": "captures/entries/visual-11-search/C43475DC-AB20-48DB-8AE4-4122D0BEE84E.png",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-11-search\\E442F9F8-99A2-4B9C-9401-EAA499125C88.txt",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 45,
+    "originalSHA256": "750caeaf494995db0894f4ca89fc118f4ac317e388ae2f72f09d741e4f5233e3",
+    "copy": "captures/entries/visual-11-search/E442F9F8-99A2-4B9C-9401-EAA499125C88.txt",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-phone\\3BC70AF8-1821-4BB6-9719-91AF434DAEB7.png",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 377098,
+    "originalSHA256": "f3cfcb7de216fa3bbae1a40ab289ee0868f98dfb7c679a63d83cdce42cb32128",
+    "copy": "captures/entries/visual-phone/3BC70AF8-1821-4BB6-9719-91AF434DAEB7.png",
+    "transformation": "none"
+  },
+  {
+    "source": "selected-captures\\entries\\visual-phone\\CC62C0D1-4952-43AD-AAC4-DCE84D45681F.txt",
+    "kind": "original selected capture; CRC and SHA verified",
+    "originalBytes": 13890,
+    "originalSHA256": "a4093102c4136621775215dd87f40aae18ccd3c08f45444a5f118b6d4941c2c2",
+    "copy": "captures/entries/visual-phone/CC62C0D1-4952-43AD-AAC4-DCE84D45681F.txt",
+    "transformation": "none"
+  }
+]

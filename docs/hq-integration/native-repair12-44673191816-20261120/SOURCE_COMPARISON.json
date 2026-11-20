@@ -1,0 +1,103 @@
+{
+  "oldAppAndTests": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+  "comparedCandidate": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+  "comparisons": [
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "inputs": [
+        {
+          "revision": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+          "bytes": 3458,
+          "sha256": "3c591f21c7b545a0d612f01f9cdd86bef543503ad1f7d91be71dc24cb8235b14"
+        },
+        {
+          "revision": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+          "bytes": 3458,
+          "sha256": "3c591f21c7b545a0d612f01f9cdd86bef543503ad1f7d91be71dc24cb8235b14"
+        }
+      ],
+      "byteIdentical": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "inputs": [
+        {
+          "revision": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+          "bytes": 54064,
+          "sha256": "fdcf38a22fa039bbd4a8f8183c1e3d6a93ceca889af6cc0ee6e0e7146e2c42b1"
+        },
+        {
+          "revision": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+          "bytes": 54064,
+          "sha256": "fdcf38a22fa039bbd4a8f8183c1e3d6a93ceca889af6cc0ee6e0e7146e2c42b1"
+        }
+      ],
+      "byteIdentical": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "inputs": [
+        {
+          "revision": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+          "bytes": 16731,
+          "sha256": "77e35177cca7c0a3456eb1ae14b8015725bb89d4e9946fa493dfef86849d03d9"
+        },
+        {
+          "revision": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+          "bytes": 16731,
+          "sha256": "77e35177cca7c0a3456eb1ae14b8015725bb89d4e9946fa493dfef86849d03d9"
+        }
+      ],
+      "byteIdentical": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "inputs": [
+        {
+          "revision": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+          "bytes": 120090,
+          "sha256": "13536d23c0727ffb3954c479053ffeb7e5a1584d067a32cf7e81b4410b22a57e"
+        },
+        {
+          "revision": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+          "bytes": 134771,
+          "sha256": "208cf8c5d887cf9acf3642f4e06b738ef8cadf0c4d81bc5743ee016c699922a9"
+        }
+      ],
+      "byteIdentical": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "inputs": [
+        {
+          "revision": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+          "bytes": 40582,
+          "sha256": "9075d2998c8f4830ad93195ee89c36619c30bc9213f53b59f7665863021ce6c8"
+        },
+        {
+          "revision": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+          "bytes": 43577,
+          "sha256": "2d93952f710b3777e2793bfcf716d6d6870c587ff93daa4e9136f969845d5d51"
+        }
+      ],
+      "byteIdentical": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "inputs": [
+        {
+          "revision": "461de9aaee620d4275a1676ce8e1c230eb8e27ad",
+          "bytes": 101282,
+          "sha256": "89348cf4056029a19d9c65bb83b717a83d46b6b86b0f307bb9756831ac743b2e"
+        },
+        {
+          "revision": "c61213d9fcc8b80a8606ba00a1562215312ca2ed",
+          "bytes": 111814,
+          "sha256": "b33c2f7675007709a4d73b983fa1fac5b587503678820a571a97581309c59d44"
+        }
+      ],
+      "byteIdentical": false
+    }
+  ],
+  "scope": "Exact Git blob identity/diff only; no claim of candidate Apple execution or causal repair."
+}

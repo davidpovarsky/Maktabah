@@ -1,0 +1,177 @@
+[
+  {
+    "zipEntry": "artifacts/runtime27/result.json",
+    "bytes": 165431,
+    "sha256": "d9e34019de5592db6fdc3a941b550f0850312fd9265edbf861181129c374fc21",
+    "stored": "raw/artifacts/runtime27/result.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "hq-stage2/result.json",
+    "bytes": 82673,
+    "sha256": "bab068dadeba397e240702981483487479868772caedfb8d668c3b37de2c4f86",
+    "stored": "raw/hq-stage2/result.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "hq-stage2/actual-source-inputs.json",
+    "bytes": 97263,
+    "sha256": "43abeacc6a9725ab37b625402db04d561ed53ad9ae0928b514523745361fbf42",
+    "stored": "raw/hq-stage2/actual-source-inputs.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11.json",
+    "bytes": 316,
+    "sha256": "0fd6af354ca3b556babf8ecf3fdeb75304dd5ba65c1c7a82d035dfad4d195773",
+    "stored": "raw/artifacts/runtime27/verified-11.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11.tests.json",
+    "bytes": 2278,
+    "sha256": "8cda82004e114640c7590fc707e72f297ed16c24ab6b3890b5499c68b73f0bd4",
+    "stored": "raw/artifacts/runtime27/verified-11.tests.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11.summary.json",
+    "bytes": 1537,
+    "sha256": "176be652795fc58473ef370cc7270b4fc6f20a8f93ec5c0732d6890057cc06bc",
+    "stored": "raw/artifacts/runtime27/verified-11.summary.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11-search.json",
+    "bytes": 316,
+    "sha256": "0dc7f911455cc647fdc123dfa6f41dbf0a4121c5c971899886d24b1a2fc0c8ee",
+    "stored": "raw/artifacts/runtime27/verified-11-search.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11-search.tests.json",
+    "bytes": 2194,
+    "sha256": "fe9fc6d78f257f8c5efdd3a4f25a7ddb079d32579c60013de7f091fef6a61031",
+    "stored": "raw/artifacts/runtime27/verified-11-search.tests.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11-search.summary.json",
+    "bytes": 1453,
+    "sha256": "2bd9cbbb56d8f3a3291a845db6486355681aaa7ef00e420fbea9831ebd66acec",
+    "stored": "raw/artifacts/runtime27/verified-11-search.summary.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11-reader.json",
+    "bytes": 316,
+    "sha256": "5a29ab2485e87b862124c3d778fcd824ba977c68d5eb54f84ee3d109faab0914",
+    "stored": "raw/artifacts/runtime27/verified-11-reader.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11-reader.tests.json",
+    "bytes": 6849,
+    "sha256": "f5415f17c40ccf0bd5952fc6dddbf406d294984ded874d143193581130486244",
+    "stored": "raw/artifacts/runtime27/verified-11-reader.tests.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11-reader.summary.json",
+    "bytes": 3899,
+    "sha256": "5ff5f1cca63516fca8de59d39fe1acb4c6088f8451686c6560ba7f26dea6e8e3",
+    "stored": "raw/artifacts/runtime27/verified-11-reader.summary.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11-sidebar.json",
+    "bytes": 961,
+    "sha256": "39c856b78bfc31629053a46fc0d2fef35f52f41249e7cb148519ab4d426f1483",
+    "stored": "raw/artifacts/runtime27/verified-11-sidebar.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11-sidebar.tests.json",
+    "bytes": 1759,
+    "sha256": "25795181da9c677d1fa99c460876186ba7b87b1bc89a79063f86053e0f201338",
+    "stored": "raw/artifacts/runtime27/verified-11-sidebar.tests.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-11-sidebar.summary.json",
+    "bytes": 986,
+    "sha256": "3269b03de52440778adf031335e1a03b7d6836ee13f8ab581e81880567329ef8",
+    "stored": "raw/artifacts/runtime27/verified-11-sidebar.summary.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-phone.json",
+    "bytes": 316,
+    "sha256": "4c62079c3b433fca2107f9c5fb530257aeea034668bc29f75f8aa7c6ca874fc9",
+    "stored": "raw/artifacts/runtime27/verified-phone.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-phone.tests.json",
+    "bytes": 5138,
+    "sha256": "82f0b1d87e279e78fc3dcfc51520ec4758d217c6b35b7bc694a63384786494cc",
+    "stored": "raw/artifacts/runtime27/verified-phone.tests.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/runtime27/verified-phone.summary.json",
+    "bytes": 2288,
+    "sha256": "2106b1c18b8a6d73f02c316dd3005bc0ba50092ebc36510f6acfff15af6b468a",
+    "stored": "raw/artifacts/runtime27/verified-phone.summary.json",
+    "losslessGzip": false
+  },
+  {
+    "zipEntry": "artifacts/test-simulator-11.log",
+    "bytes": 18604,
+    "sha256": "413b75ad03de51a2d942056ac242b9c2f3d7f3c0eaaa91decef9aabaa49b6d50",
+    "stored": "raw/artifacts/test-simulator-11.log.gz",
+    "losslessGzip": true
+  },
+  {
+    "zipEntry": "artifacts/test-simulator-11-search.log",
+    "bytes": 11591,
+    "sha256": "37a482276e6385180a1dc60ca59a6f953330beaa6fcb54dcf24fe4463d18c9d9",
+    "stored": "raw/artifacts/test-simulator-11-search.log.gz",
+    "losslessGzip": true
+  },
+  {
+    "zipEntry": "artifacts/test-simulator-11-reader.log",
+    "bytes": 48553,
+    "sha256": "579e41d165750131da059af56ca28ff314e51a7f0608b356024ee2e5505a46e7",
+    "stored": "raw/artifacts/test-simulator-11-reader.log.gz",
+    "losslessGzip": true
+  },
+  {
+    "zipEntry": "artifacts/test-simulator-11-sidebar.log",
+    "bytes": 21744,
+    "sha256": "81a000ae5e72c8f866db56b0662afbfe2e7a27bc3a3b178d6e7278e284f7b00a",
+    "stored": "raw/artifacts/test-simulator-11-sidebar.log.gz",
+    "losslessGzip": true
+  },
+  {
+    "zipEntry": "artifacts/test-simulator-phone.log",
+    "bytes": 49844,
+    "sha256": "ba29b63ae5d974cff120c17c5fab7d1600ce7929aceee43f848614d9894a7c32",
+    "stored": "raw/artifacts/test-simulator-phone.log.gz",
+    "losslessGzip": true
+  },
+  {
+    "zipEntry": "artifacts/runtime27/build-for-testing-driver.log",
+    "bytes": 42345,
+    "sha256": "3160bce6290959183104562200e0d1cd66e6105b912ef1bbcb3d68553770bf4d",
+    "stored": "raw/artifacts/runtime27/build-for-testing-driver.log.gz",
+    "losslessGzip": true
+  },
+  {
+    "zipEntry": "artifacts/runtime27/native-matrix-driver.log",
+    "bytes": 200200,
+    "sha256": "96c19d81eeb1f9a6755c57cf21de39e59720b9a3ad211a52d7bfad4d95f15807",
+    "stored": "raw/artifacts/runtime27/native-matrix-driver.log.gz",
+    "losslessGzip": true
+  }
+]
