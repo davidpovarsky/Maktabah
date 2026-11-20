@@ -1,0 +1,67 @@
+{
+  "artifact-metadata.json": {
+    "bytes": 828,
+    "sha256": "31dd600d80c4399e1c37287d7bba4e75cc979af220ecdae4c4bf99d33f8ea969",
+    "gzipSHA256": "f47782fac5f5dfee86744801bca06ac8bb2ea70f53cc416cb7d6fcaf40bf2a81"
+  },
+  "VERIFIED_ERROR_REVIEW.json": {
+    "bytes": 8187,
+    "sha256": "763a81bc5792d46c76de916f5aa62b47431796c58d635a1b1d6fa307617ef2b5",
+    "gzipSHA256": "59b5f016119c225e8784cdebca1fbba6ff00dc7c80425ef9e12be61ca3b35824"
+  },
+  "actual-run-jobs-at-0612.json": {
+    "bytes": 38356,
+    "sha256": "c0fe4f83ee4172b62ad1a168e56db132aead79a589f5efde928a341c823aea0e",
+    "gzipSHA256": "e59d70316e9efb553b1832a62b0d43840fe9413a93e0cab90a77a2fb3a5fee39"
+  },
+  "before-dump.json": {
+    "bytes": 1525,
+    "sha256": "fec59247c09c4cdc8606becaf5c8826fff3ea736aff2fe5df486d26e85d55b92",
+    "gzipSHA256": "ded0cfa00c5d97449150d8abe17ffc79be8f652580d7ec9e74f6d09721954130"
+  },
+  "after-dump.json": {
+    "bytes": 1627,
+    "sha256": "8465134cb10e4d072412b2d9c3d88268082bd564d8398aa7908093dc00b60b03",
+    "gzipSHA256": "a301144c3335ef0e1ed601589c9ef37bba3d3a4dfef9256775dfdebdcee34376"
+  },
+  "before-dump.stderr.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  "after-dump.stderr.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gzipSHA256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e"
+  },
+  "MANIFEST_VALIDATION.json": {
+    "bytes": 2291,
+    "sha256": "294bf7f798c95ed816163f5215243d84ce74d1e8724804b4820b846be5def7e0",
+    "gzipSHA256": "a96a22564462b06dfdb93395cda4081b9d85af9c466e95b96d722ce755b9c51a"
+  },
+  "ORIGINAL_SOURCE_HASHES.json": {
+    "bytes": 6607,
+    "sha256": "73860986d5622979539e5b29ad4407ab56b7a03bc7a09d0fe830966fc42bd178",
+    "gzipSHA256": "6682445424c66054759bb4677cd6ddd45ab3247bbdcacd8472a64c4e67eea8e3"
+  },
+  "OriginalPackage.swift": {
+    "bytes": 429,
+    "sha256": "3987fc6c4d6b2378cc7cf89b44487dbca789980b867476acb4396a73b591be4e",
+    "gzipSHA256": "2a6ead580db002ecd3474246fdfbd9f0a6029274e2443dac1133016d5043e724"
+  },
+  "API_SURFACE_READ_ONLY.txt": {
+    "bytes": 16210,
+    "sha256": "d51bac91afdc11f608ff6d0d0a42abaaa59b5557f39d1c8dc033103d6e9a7a41",
+    "gzipSHA256": "549182bec1a3dbd3db41da72249d26218eb271ab1609d95010d4b24edbb53227"
+  },
+  "executed_manifest_evaluation.py": {
+    "bytes": 4019,
+    "sha256": "e502c48631712c247be0c0b248b3d18d24d97ab3c469b16888ead239be2fde9e",
+    "gzipSHA256": "04f4b2e729c96d0ead5a73cb78e5709aa96416574f1c780191c004b0bc49afd3"
+  },
+  "device-build-logs.zip": {
+    "bytes": 1379837,
+    "sha256": "294fd8fa4e22b6b954587d151ed025698d2161d2a1c9895f512950a14930674e",
+    "encoding": "original GitHub artifact ZIP"
+  }
+}
